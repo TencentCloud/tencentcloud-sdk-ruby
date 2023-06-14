@@ -458,6 +458,210 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationFinancialByMember请求参数结构体
+      class DescribeOrganizationFinancialByMemberRequest < TencentCloud::Common::AbstractModel
+        # @param Month: 查询开始月份。格式：yyyy-mm，例如：2021-01。
+        # @type Month: String
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
+        # @type Limit: Integer
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param EndMonth: 查询结束月份。格式：yyyy-mm，例如：2021-01,默认值为查询开始月份。
+        # @type EndMonth: String
+        # @param MemberUins: 查询成员列表。 最大100个
+        # @type MemberUins: Array
+        # @param ProductCodes: 查询产品列表。 最大100个
+        # @type ProductCodes: Array
+
+        attr_accessor :Month, :Limit, :Offset, :EndMonth, :MemberUins, :ProductCodes
+
+        def initialize(month=nil, limit=nil, offset=nil, endmonth=nil, memberuins=nil, productcodes=nil)
+          @Month = month
+          @Limit = limit
+          @Offset = offset
+          @EndMonth = endmonth
+          @MemberUins = memberuins
+          @ProductCodes = productcodes
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EndMonth = params['EndMonth']
+          @MemberUins = params['MemberUins']
+          @ProductCodes = params['ProductCodes']
+        end
+      end
+
+      # DescribeOrganizationFinancialByMember返回参数结构体
+      class DescribeOrganizationFinancialByMemberResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCost: 当月总消耗。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Float
+        # @param Items: 成员消耗详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCost, :Items, :Total, :RequestId
+
+        def initialize(totalcost=nil, items=nil, total=nil, requestid=nil)
+          @TotalCost = totalcost
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCost = params['TotalCost']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgmemberfinancial_tmp = OrgMemberFinancial.new
+              orgmemberfinancial_tmp.deserialize(i)
+              @Items << orgmemberfinancial_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationFinancialByMonth请求参数结构体
+      class DescribeOrganizationFinancialByMonthRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 查询月数。取值范围：1~6，默认值：6
+        # @type Limit: Integer
+        # @param EndMonth: 查询结束月份。格式：yyyy-mm，例如：2021-01
+        # @type EndMonth: String
+        # @param MemberUins: 查询成员列表。 最大100个
+        # @type MemberUins: Array
+        # @param ProductCodes: 查询产品列表。 最大100个
+        # @type ProductCodes: Array
+
+        attr_accessor :Limit, :EndMonth, :MemberUins, :ProductCodes
+
+        def initialize(limit=nil, endmonth=nil, memberuins=nil, productcodes=nil)
+          @Limit = limit
+          @EndMonth = endmonth
+          @MemberUins = memberuins
+          @ProductCodes = productcodes
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @EndMonth = params['EndMonth']
+          @MemberUins = params['MemberUins']
+          @ProductCodes = params['ProductCodes']
+        end
+      end
+
+      # DescribeOrganizationFinancialByMonth返回参数结构体
+      class DescribeOrganizationFinancialByMonthResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 产品消耗详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgfinancialbymonth_tmp = OrgFinancialByMonth.new
+              orgfinancialbymonth_tmp.deserialize(i)
+              @Items << orgfinancialbymonth_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrganizationFinancialByProduct请求参数结构体
+      class DescribeOrganizationFinancialByProductRequest < TencentCloud::Common::AbstractModel
+        # @param Month: 查询开始月份。格式：yyyy-mm，例如：2021-01
+        # @type Month: String
+        # @param Limit: 限制数目。取值范围：1~50，默认值：10
+        # @type Limit: Integer
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param EndMonth: 查询结束月份。格式：yyyy-mm，例如：2021-01,默认值为查询开始月份
+        # @type EndMonth: String
+        # @param MemberUins: 查询成员列表。 最大100个
+        # @type MemberUins: Array
+        # @param ProductCodes: 查询产品列表。 最大100个
+        # @type ProductCodes: Array
+
+        attr_accessor :Month, :Limit, :Offset, :EndMonth, :MemberUins, :ProductCodes
+
+        def initialize(month=nil, limit=nil, offset=nil, endmonth=nil, memberuins=nil, productcodes=nil)
+          @Month = month
+          @Limit = limit
+          @Offset = offset
+          @EndMonth = endmonth
+          @MemberUins = memberuins
+          @ProductCodes = productcodes
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EndMonth = params['EndMonth']
+          @MemberUins = params['MemberUins']
+          @ProductCodes = params['ProductCodes']
+        end
+      end
+
+      # DescribeOrganizationFinancialByProduct返回参数结构体
+      class DescribeOrganizationFinancialByProductResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCost: 当月总消耗。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Float
+        # @param Items: 产品消耗详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCost, :Items, :Total, :RequestId
+
+        def initialize(totalcost=nil, items=nil, total=nil, requestid=nil)
+          @TotalCost = totalcost
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCost = params['TotalCost']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgproductfinancial_tmp = OrgProductFinancial.new
+              orgproductfinancial_tmp.deserialize(i)
+              @Items << orgproductfinancial_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationMemberAuthAccounts请求参数结构体
       class DescribeOrganizationMemberAuthAccountsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量。
@@ -1122,6 +1326,38 @@ module TencentCloud
         end
       end
 
+      # 按月获取组织财务信息
+      class OrgFinancialByMonth < TencentCloud::Common::AbstractModel
+        # @param Id: 记录ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Month: 月份，格式：yyyy-mm，示例：2021-01。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Month: String
+        # @param TotalCost: 消耗金额，单元：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Float
+        # @param GrowthRate: 比上月增长率%。正数增长，负数下降，空值无法统计。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GrowthRate: String
+
+        attr_accessor :Id, :Month, :TotalCost, :GrowthRate
+
+        def initialize(id=nil, month=nil, totalcost=nil, growthrate=nil)
+          @Id = id
+          @Month = month
+          @TotalCost = totalcost
+          @GrowthRate = growthrate
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Month = params['Month']
+          @TotalCost = params['TotalCost']
+          @GrowthRate = params['GrowthRate']
+        end
+      end
+
       # 组织身份
       class OrgIdentity < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID。
@@ -1386,6 +1622,38 @@ module TencentCloud
         end
       end
 
+      # 组织成员财务信息。
+      class OrgMemberFinancial < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param MemberName: 成员名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberName: String
+        # @param TotalCost: 消耗金额，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Float
+        # @param Ratio: 占比%。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ratio: String
+
+        attr_accessor :MemberUin, :MemberName, :TotalCost, :Ratio
+
+        def initialize(memberuin=nil, membername=nil, totalcost=nil, ratio=nil)
+          @MemberUin = memberuin
+          @MemberName = membername
+          @TotalCost = totalcost
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
+          @TotalCost = params['TotalCost']
+          @Ratio = params['Ratio']
+        end
+      end
+
       # 组织成员被授权的策略
       class OrgMemberPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyId: 策略ID。
@@ -1497,6 +1765,38 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
+        end
+      end
+
+      # 组织产品财务信息
+      class OrgProductFinancial < TencentCloud::Common::AbstractModel
+        # @param ProductName: 产品Code。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param ProductCode: 产品名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param TotalCost: 产品消耗，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCost: Float
+        # @param Ratio: 占比%。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ratio: String
+
+        attr_accessor :ProductName, :ProductCode, :TotalCost, :Ratio
+
+        def initialize(productname=nil, productcode=nil, totalcost=nil, ratio=nil)
+          @ProductName = productname
+          @ProductCode = productcode
+          @TotalCost = totalcost
+          @Ratio = ratio
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @ProductCode = params['ProductCode']
+          @TotalCost = params['TotalCost']
+          @Ratio = params['Ratio']
         end
       end
 

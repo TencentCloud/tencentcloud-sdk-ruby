@@ -2250,7 +2250,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
-        # @param Md5: SOL模板的MD5值
+        # @param Md5: SQL模板的MD5值
         # @type Md5: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :Md5
@@ -4236,7 +4236,7 @@ module TencentCloud
         # @type LockTimeAvg: Float
         # @param RowsExaminedAvg: 平均扫描行数
         # @type RowsExaminedAvg: Float
-        # @param Md5: SOL模板的MD5值
+        # @param Md5: SQL模板的MD5值
         # @type Md5: String
 
         attr_accessor :LockTime, :LockTimeMax, :LockTimeMin, :RowsExamined, :RowsExaminedMax, :RowsExaminedMin, :QueryTime, :QueryTimeMax, :QueryTimeMin, :RowsSent, :RowsSentMax, :RowsSentMin, :ExecTimes, :SqlTemplate, :SqlText, :Schema, :QueryTimeRatio, :LockTimeRatio, :RowsExaminedRatio, :RowsSentRatio, :QueryTimeAvg, :RowsSentAvg, :LockTimeAvg, :RowsExaminedAvg, :Md5

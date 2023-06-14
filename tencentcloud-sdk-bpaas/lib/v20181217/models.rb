@@ -150,12 +150,15 @@ module TencentCloud
         # @param ApprovingNodeId: 正在审批的节点id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApprovingNodeId: String
+        # @param ModifyTime: 更新时间，时间格式：2021-12-12 10:12:10
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ApplyUin, :ApplyOwnUin, :ApplyUinNick, :BpaasId, :BpaasName, :ApplicationParams, :Reason, :CreateTime, :Status, :Nodes, :ApprovingNodeId, :RequestId
+        attr_accessor :ApplyUin, :ApplyOwnUin, :ApplyUinNick, :BpaasId, :BpaasName, :ApplicationParams, :Reason, :CreateTime, :Status, :Nodes, :ApprovingNodeId, :ModifyTime, :RequestId
 
-        def initialize(applyuin=nil, applyownuin=nil, applyuinnick=nil, bpaasid=nil, bpaasname=nil, applicationparams=nil, reason=nil, createtime=nil, status=nil, nodes=nil, approvingnodeid=nil, requestid=nil)
+        def initialize(applyuin=nil, applyownuin=nil, applyuinnick=nil, bpaasid=nil, bpaasname=nil, applicationparams=nil, reason=nil, createtime=nil, status=nil, nodes=nil, approvingnodeid=nil, modifytime=nil, requestid=nil)
           @ApplyUin = applyuin
           @ApplyOwnUin = applyownuin
           @ApplyUinNick = applyuinnick
@@ -167,6 +170,7 @@ module TencentCloud
           @Status = status
           @Nodes = nodes
           @ApprovingNodeId = approvingnodeid
+          @ModifyTime = modifytime
           @RequestId = requestid
         end
 
@@ -196,6 +200,7 @@ module TencentCloud
             end
           end
           @ApprovingNodeId = params['ApprovingNodeId']
+          @ModifyTime = params['ModifyTime']
           @RequestId = params['RequestId']
         end
       end
@@ -367,10 +372,16 @@ module TencentCloud
         # @param ParallelNodes: 并行节点 3-4
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParallelNodes: String
+        # @param RejectedCloudFunctionMsg: scf拒绝时返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RejectedCloudFunctionMsg: String
+        # @param PrevNode: 上一个节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrevNode: String
 
-        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl, :ParallelNodes
+        attr_accessor :NodeId, :NodeName, :NodeType, :NextNode, :Opinion, :ScfName, :SubStatus, :ApprovedUin, :CreateTime, :Msg, :Users, :IsApprove, :ApproveId, :ApproveMethod, :ApproveType, :CallMethod, :DataHubId, :TaskName, :CKafkaRegion, :ExternalUrl, :ParallelNodes, :RejectedCloudFunctionMsg, :PrevNode
 
-        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil, parallelnodes=nil)
+        def initialize(nodeid=nil, nodename=nil, nodetype=nil, nextnode=nil, opinion=nil, scfname=nil, substatus=nil, approveduin=nil, createtime=nil, msg=nil, users=nil, isapprove=nil, approveid=nil, approvemethod=nil, approvetype=nil, callmethod=nil, datahubid=nil, taskname=nil, ckafkaregion=nil, externalurl=nil, parallelnodes=nil, rejectedcloudfunctionmsg=nil, prevnode=nil)
           @NodeId = nodeid
           @NodeName = nodename
           @NodeType = nodetype
@@ -392,6 +403,8 @@ module TencentCloud
           @CKafkaRegion = ckafkaregion
           @ExternalUrl = externalurl
           @ParallelNodes = parallelnodes
+          @RejectedCloudFunctionMsg = rejectedcloudfunctionmsg
+          @PrevNode = prevnode
         end
 
         def deserialize(params)
@@ -422,6 +435,8 @@ module TencentCloud
           @CKafkaRegion = params['CKafkaRegion']
           @ExternalUrl = params['ExternalUrl']
           @ParallelNodes = params['ParallelNodes']
+          @RejectedCloudFunctionMsg = params['RejectedCloudFunctionMsg']
+          @PrevNode = params['PrevNode']
         end
       end
 

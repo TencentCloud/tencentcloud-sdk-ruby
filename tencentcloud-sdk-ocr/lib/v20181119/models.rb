@@ -3381,7 +3381,7 @@ module TencentCloud
       # 混贴票据单张发票识别信息
       class InvoiceItem < TencentCloud::Common::AbstractModel
         # @param Code: 识别结果。
-        # OK：表示识别成功；FailedOperation.UnsupportedInvioce：表示不支持识别；
+        # OK：表示识别成功；FailedOperation.UnsupportedInvoice：表示不支持识别；
         # FailedOperation.UnKnowError：表示识别失败；
         # 其它错误码见各个票据接口的定义。
         # @type Code: String
@@ -3410,13 +3410,13 @@ module TencentCloud
         # @type SingleInvoiceInfos: :class:`Tencentcloud::Ocr.v20181119.models.SingleInvoiceItem`
         # @param Page: 发票处于识别图片或PDF文件中的页教，默认从1开始。
         # @type Page: Integer
-        # @param SubType: 发票详细类型，详见下方 SubType 返回值说明
+        # @param SubType: 发票详细类型，详见上方 SubType 返回值说明
         # @type SubType: String
-        # @param TypeDescription: 发票类型描述，详见下方 TypeDescription  返回值说明
+        # @param TypeDescription: 发票类型描述，详见上方 TypeDescription  返回值说明
         # @type TypeDescription: String
         # @param CutImage: 切割单图文件，Base64编码后的切图后的图片文件，开启 EnableCutImage 后进行返回
         # @type CutImage: String
-        # @param SubTypeDescription: 发票详细类型描述，详见下方 SubType 返回值说明
+        # @param SubTypeDescription: 发票详细类型描述，详见上方 SubType 返回值说明
         # @type SubTypeDescription: String
 
         attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription
@@ -6988,9 +6988,9 @@ module TencentCloud
         # @type Address: String
         # @param Birthday: 出生日期
         # @type Birthday: String
-        # @param IssueDate: 首次领用日期
+        # @param IssueDate: 签发日期
         # @type IssueDate: String
-        # @param ExpirationDate: 签发日期
+        # @param ExpirationDate: 到期日期
         # @type ExpirationDate: String
         # @param EnLastName: 英文姓名
         # @type EnLastName: String

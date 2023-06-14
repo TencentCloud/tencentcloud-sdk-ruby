@@ -2249,32 +2249,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 产品下线了，对应的接口也要下线。
-
-        # 更新Vhost
-
-        # @param request: Request instance for ModifyAMQPVHost.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyAMQPVHostRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyAMQPVHostResponse`
-        def ModifyAMQPVHost(request)
-          body = send_request('ModifyAMQPVHost', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyAMQPVHostResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 更新集群信息
 
         # @param request: Request instance for ModifyCluster.

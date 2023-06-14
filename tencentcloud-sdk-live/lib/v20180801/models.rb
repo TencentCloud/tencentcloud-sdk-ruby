@@ -9871,6 +9871,42 @@ module TencentCloud
         end
       end
 
+      # RestartLivePullStreamTask请求参数结构体
+      class RestartLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 Id。
+        # @type TaskId: String
+        # @param Operator: 操作人备注名称。
+        # @type Operator: String
+
+        attr_accessor :TaskId, :Operator
+
+        def initialize(taskid=nil, operator=nil)
+          @TaskId = taskid
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Operator = params['Operator']
+        end
+      end
+
+      # RestartLivePullStreamTask返回参数结构体
+      class RestartLivePullStreamTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResumeDelayLiveStream请求参数结构体
       class ResumeDelayLiveStreamRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为live。

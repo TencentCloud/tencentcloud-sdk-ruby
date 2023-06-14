@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CloseDBExtranetAccess）用于关闭实例外网链接。
+        # 本接口（CloseDBExtranetAccess）用于关闭实例公网地址。
 
         # @param request: Request instance for CloseDBExtranetAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::CloseDBExtranetAccessRequest`
@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 关闭serverlessDB实例外网
+        # 本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
 
         # @param request: Request instance for CloseServerlessDBExtranetAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::CloseServerlessDBExtranetAccessRequest`
@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeAccounts）用于获取实例用户列表。
+        # 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
 
         # @param request: Request instance for DescribeAccounts.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeAccountsRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+        # 本接口 (DescribeBackupDownloadURL) 用于查询指定备份集的下载地址，可包括全量备份集、增量日志备份集。
 
         # @param request: Request instance for DescribeBackupDownloadURL.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBackupDownloadURLRequest`
@@ -845,7 +845,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+        # 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
 
         # @param request: Request instance for DescribeDBInstanceSecurityGroups.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceSecurityGroupsRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+        # 本接口（DescribeDBVersions）用于查询支持的数据库版本。
 
         # @param request: Request instance for DescribeDBVersions.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBVersionsRequest`
@@ -965,7 +965,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口（DescribeDatabases）用来拉取数据库列表
+        # 接口（DescribeDatabases）用来查询实例的数据库列表。
 
         # @param request: Request instance for DescribeDatabases.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDatabasesRequest`
@@ -1013,7 +1013,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例的密钥信息列表。
+        # 本接口 （DescribeEncryptionKeys） 用于查询实例的密钥信息列表。
 
         # @param request: Request instance for DescribeEncryptionKeys.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeEncryptionKeysRequest`
@@ -1133,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DescribeParamsEvent) 用于查询参数修改事件详情。
+        # 本接口（DescribeParamsEvent）用于查询参数修改事件。
 
         # @param request: Request instance for DescribeParamsEvent.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeParamsEventRequest`
@@ -1181,7 +1181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+        # 本接口（DescribeReadOnlyGroups）用于查询只读组列表
 
         # @param request: Request instance for DescribeReadOnlyGroups.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeReadOnlyGroupsRequest`
@@ -1325,7 +1325,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+        # 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，调用前请仔细确认要操作的实例。只能销毁隔离中的实例。
 
         # @param request: Request instance for DestroyDBInstance.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DestroyDBInstanceRequest`
@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+        # 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
 
         # @param request: Request instance for InquiryPriceCreateDBInstances.
         # @type request: :class:`Tencentcloud::postgres::V20170312::InquiryPriceCreateDBInstancesRequest`
@@ -1661,7 +1661,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改参数
+        # 本接口 (ModifyDBInstanceParameters) 用于修改实例参数。
 
         # @param request: Request instance for ModifyDBInstanceParameters.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceParametersRequest`
@@ -1733,7 +1733,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
+        # 本接口（ModifyDBInstanceSpec）用于修改实例规格，包括内存、磁盘。
 
         # @param request: Request instance for ModifyDBInstanceSpec.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceSpecRequest`
@@ -1757,7 +1757,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
+        # 本接口（ModifyDBInstancesProject）用于修改实例所属项目。
 
         # @param request: Request instance for ModifyDBInstancesProject.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstancesProjectRequest`
@@ -1781,7 +1781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+        # 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述等配置，也可用于管理参数模板中的参数列表。
 
         # @param request: Request instance for ModifyParameterTemplate.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyParameterTemplateRequest`
@@ -1853,7 +1853,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（OpenDBExtranetAccess）用于开通外网。
+        # 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
 
         # @param request: Request instance for OpenDBExtranetAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::OpenDBExtranetAccessRequest`
@@ -1877,7 +1877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开通serverlessDB实例外网
+        # 本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
 
         # @param request: Request instance for OpenServerlessDBExtranetAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::OpenServerlessDBExtranetAccessRequest`

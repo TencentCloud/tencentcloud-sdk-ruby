@@ -2209,15 +2209,19 @@ module TencentCloud
         # @param RealTimeAsr: 语音转文本服务开关状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealTimeAsr: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
+        # @param TextTranslate: 文本翻译服务开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTranslate: :class:`Tencentcloud::Gme.v20180711.models.StatusInfo`
 
-        attr_accessor :RealTimeSpeech, :VoiceMessage, :Porn, :Live, :RealTimeAsr
+        attr_accessor :RealTimeSpeech, :VoiceMessage, :Porn, :Live, :RealTimeAsr, :TextTranslate
 
-        def initialize(realtimespeech=nil, voicemessage=nil, porn=nil, live=nil, realtimeasr=nil)
+        def initialize(realtimespeech=nil, voicemessage=nil, porn=nil, live=nil, realtimeasr=nil, texttranslate=nil)
           @RealTimeSpeech = realtimespeech
           @VoiceMessage = voicemessage
           @Porn = porn
           @Live = live
           @RealTimeAsr = realtimeasr
+          @TextTranslate = texttranslate
         end
 
         def deserialize(params)
@@ -2240,6 +2244,10 @@ module TencentCloud
           unless params['RealTimeAsr'].nil?
             @RealTimeAsr = StatusInfo.new
             @RealTimeAsr.deserialize(params['RealTimeAsr'])
+          end
+          unless params['TextTranslate'].nil?
+            @TextTranslate = StatusInfo.new
+            @TextTranslate.deserialize(params['TextTranslate'])
           end
         end
       end

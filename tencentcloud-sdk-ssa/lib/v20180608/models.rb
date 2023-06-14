@@ -2256,29 +2256,29 @@ module TencentCloud
 
       # DescribeDomainList请求参数结构体
       class DescribeDomainListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: -
+        # @param Offset: 起始，从0开始(只支持32位)
         # @type Offset: Integer
-        # @param Limit: -
+        # @param Limit: limit,最大值200(只支持32位)
         # @type Limit: Integer
-        # @param AssetBasicType: -
+        # @param AssetBasicType: 资产大类，根据此字段时返回不同的子结构,AssetBasicType(只支持32位)
         # @type AssetBasicType: Integer
-        # @param Filter: -
+        # @param Filter: 过滤条件
         # @type Filter: Array
-        # @param Order: -
+        # @param Order: 排序
         # @type Order: String
-        # @param By: -
+        # @param By: 排序字段
         # @type By: String
-        # @param Field: -
+        # @param Field: 导出字段
         # @type Field: Array
-        # @param TimeRange: -
+        # @param TimeRange: 时间范围(只支持32位)
         # @type TimeRange: Integer
-        # @param Logic: -
+        # @param Logic: 逻辑字段(只支持32位)
         # @type Logic: Integer
-        # @param GroupByField: -
+        # @param GroupByField: 聚合字段
         # @type GroupByField: String
         # @param Task: -
         # @type Task: String
-        # @param RequestFrom: -
+        # @param RequestFrom: 0:cfw 1:vss 2.soc 3.waf 4.cwp
         # @type RequestFrom: Integer
 
         attr_accessor :Offset, :Limit, :AssetBasicType, :Filter, :Order, :By, :Field, :TimeRange, :Logic, :GroupByField, :Task, :RequestFrom
@@ -3194,13 +3194,50 @@ module TencentCloud
         # @type PortRisk: Integer
         # @param WeekPwdCount: 弱口令
         # @type WeekPwdCount: Integer
-        # @param AssetLocation: -
+        # @param AssetLocation: 资产归属
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetLocation: String
+        # @param NetworkRisk: 网络风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkRisk: Integer
+        # @param NetworkAttack: 网络攻击
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAttack: Integer
+        # @param BotVisit: bot访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotVisit: Integer
+        # @param NetworkAccess: 网络访问
 
-        attr_accessor :Domain, :ResolveAddr, :Region, :AssetType, :RiskVulCount, :SensitiveCount, :HorseLinkCount, :WebModifyCount, :ScanTime, :DiscoverTime, :ScanTaskCount, :PortRisk, :WeekPwdCount, :AssetLocation
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccess: Integer
+        # @param CreateTime: 资产创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param WafStatus: waf状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafStatus: Integer
+        # @param LastScanTime: 最近扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastScanTime: String
+        # @param AssetId: 资产id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetId: Array
+        # @param AssetName: 资产名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: Array
+        # @param SourceType: 类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: String
+        # @param IsNotCore: 是否核心资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNotCore: Integer
+        # @param IsCloud: 是否云外资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCloud: Integer
 
-        def initialize(domain=nil, resolveaddr=nil, region=nil, assettype=nil, riskvulcount=nil, sensitivecount=nil, horselinkcount=nil, webmodifycount=nil, scantime=nil, discovertime=nil, scantaskcount=nil, portrisk=nil, weekpwdcount=nil, assetlocation=nil)
+        attr_accessor :Domain, :ResolveAddr, :Region, :AssetType, :RiskVulCount, :SensitiveCount, :HorseLinkCount, :WebModifyCount, :ScanTime, :DiscoverTime, :ScanTaskCount, :PortRisk, :WeekPwdCount, :AssetLocation, :NetworkRisk, :NetworkAttack, :BotVisit, :NetworkAccess, :CreateTime, :WafStatus, :LastScanTime, :AssetId, :AssetName, :SourceType, :IsNotCore, :IsCloud
+
+        def initialize(domain=nil, resolveaddr=nil, region=nil, assettype=nil, riskvulcount=nil, sensitivecount=nil, horselinkcount=nil, webmodifycount=nil, scantime=nil, discovertime=nil, scantaskcount=nil, portrisk=nil, weekpwdcount=nil, assetlocation=nil, networkrisk=nil, networkattack=nil, botvisit=nil, networkaccess=nil, createtime=nil, wafstatus=nil, lastscantime=nil, assetid=nil, assetname=nil, sourcetype=nil, isnotcore=nil, iscloud=nil)
           @Domain = domain
           @ResolveAddr = resolveaddr
           @Region = region
@@ -3215,6 +3252,18 @@ module TencentCloud
           @PortRisk = portrisk
           @WeekPwdCount = weekpwdcount
           @AssetLocation = assetlocation
+          @NetworkRisk = networkrisk
+          @NetworkAttack = networkattack
+          @BotVisit = botvisit
+          @NetworkAccess = networkaccess
+          @CreateTime = createtime
+          @WafStatus = wafstatus
+          @LastScanTime = lastscantime
+          @AssetId = assetid
+          @AssetName = assetname
+          @SourceType = sourcetype
+          @IsNotCore = isnotcore
+          @IsCloud = iscloud
         end
 
         def deserialize(params)
@@ -3232,6 +3281,18 @@ module TencentCloud
           @PortRisk = params['PortRisk']
           @WeekPwdCount = params['WeekPwdCount']
           @AssetLocation = params['AssetLocation']
+          @NetworkRisk = params['NetworkRisk']
+          @NetworkAttack = params['NetworkAttack']
+          @BotVisit = params['BotVisit']
+          @NetworkAccess = params['NetworkAccess']
+          @CreateTime = params['CreateTime']
+          @WafStatus = params['WafStatus']
+          @LastScanTime = params['LastScanTime']
+          @AssetId = params['AssetId']
+          @AssetName = params['AssetName']
+          @SourceType = params['SourceType']
+          @IsNotCore = params['IsNotCore']
+          @IsCloud = params['IsCloud']
         end
       end
 

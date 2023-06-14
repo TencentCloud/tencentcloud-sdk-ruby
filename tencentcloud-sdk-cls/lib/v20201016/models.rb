@@ -1857,7 +1857,7 @@ module TencentCloud
         # @type ShipperName: String
         # @param Interval: 投递的时间间隔，单位 秒，默认300，范围 300-900
         # @type Interval: Integer
-        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 5-256
         # @type MaxSize: Integer
         # @param FilterRules: 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
         # @type FilterRules: Array
@@ -5383,7 +5383,7 @@ module TencentCloud
         # @type ShipperName: String
         # @param Interval: 投递的时间间隔，单位 秒，默认300，范围 300-900
         # @type Interval: Integer
-        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        # @param MaxSize: 投递的文件的最大值，单位 MB，默认256，范围 5-256
         # @type MaxSize: Integer
         # @param FilterRules: 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
         # @type FilterRules: Array

@@ -272,58 +272,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
-
-        # 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
-
-        # @param request: Request instance for DescribeAgentDealsCache.
-        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentDealsCacheRequest`
-        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeAgentDealsCacheResponse`
-        def DescribeAgentDealsCache(request)
-          body = send_request('DescribeAgentDealsCache', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAgentDealsCacheResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
-
-        # 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
-
-        # @param request: Request instance for DescribeAgentPayDeals.
-        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentPayDealsRequest`
-        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeAgentPayDealsResponse`
-        def DescribeAgentPayDeals(request)
-          body = send_request('DescribeAgentPayDeals', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAgentPayDealsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 可以查询代理商代付的预付费订单
 
         # @param request: Request instance for DescribeAgentPayDealsV2.
@@ -348,32 +296,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 已提供新接口并推动切换，改切口目前白名单限制所有访问，申请下线
-
-        # 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
-
-        # @param request: Request instance for DescribeAgentSelfPayDeals.
-        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentSelfPayDealsRequest`
-        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeAgentSelfPayDealsResponse`
-        def DescribeAgentSelfPayDeals(request)
-          body = send_request('DescribeAgentSelfPayDeals', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAgentSelfPayDealsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询代理商名下指定代客的自付订单（预付费）
 
         # @param request: Request instance for DescribeAgentSelfPayDealsV2.
@@ -384,32 +306,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAgentSelfPayDealsV2Response.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 已提供新接口并推进切换，白名单禁用控制访问观察后无反馈，可以下线
-
-        # 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
-
-        # @param request: Request instance for DescribeClientBalance.
-        # @type request: :class:`Tencentcloud::partners::V20180321::DescribeClientBalanceRequest`
-        # @rtype: :class:`Tencentcloud::partners::V20180321::DescribeClientBalanceResponse`
-        def DescribeClientBalance(request)
-          body = send_request('DescribeClientBalance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClientBalanceResponse.new
             model.deserialize(response['Response'])
             model
           else

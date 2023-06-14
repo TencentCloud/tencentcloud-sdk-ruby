@@ -620,11 +620,10 @@ module TencentCloud
         # {“ComponentTypeLimit”: [“xxx”]}
         # xxx可以为：
         # HANDWRITE – 手写签名
-        # BORDERLESS_ESIGN – 自动生成无边框腾讯体
         # OCR_ESIGN -- AI智能识别手写签名
         # ESIGN -- 个人印章类型
         # SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
-        # 如：{“ComponentTypeLimit”: [“BORDERLESS_ESIGN”]}
+        # 如：{“ComponentTypeLimit”: [“SYSTEM_ESIGN”]}
 
         # ComponentType为SIGN_DATE时，支持以下参数：
         # 1 Font：字符串类型目前只支持"黑体"、"宋体"，如果不填默认为"黑体"
@@ -1699,7 +1698,7 @@ module TencentCloud
       class CreateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待创建员工的信息，Mobile和DisplayName必填
+        # @param Employees: 待创建员工的信息，Mobile和DisplayName必填,OpenId和Email选填，其他字段暂不支持
         # @type Employees: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -2046,6 +2045,9 @@ module TencentCloud
         # @type FileId: String
 
         attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId
+        extend Gem::Deprecate
+        deprecate :SealImage, :none, 2023, 6
+        deprecate :SealImage=, :none, 2023, 6
 
         def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil)
           @UserName = username
@@ -2711,6 +2713,68 @@ module TencentCloud
         end
       end
 
+      # DescribeExtendedServiceAuthInfos请求参数结构体
+      class DescribeExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ExtendServiceType: 扩展服务类型，默认为空，查询目前支持的所有扩展服务信息，单个指定则查询单个扩展服务开通信息，取值：
+        # OPEN_SERVER_SIGN：开通企业静默签署
+        # OVERSEA_SIGN：企业与港澳台居民签署合同
+        # MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
+        # PAGING_SEAL：骑缝章
+        # BATCH_SIGN：批量签署
+        # @type ExtendServiceType: String
+
+        attr_accessor :Operator, :Agent, :ExtendServiceType
+
+        def initialize(operator=nil, agent=nil, extendservicetype=nil)
+          @Operator = operator
+          @Agent = agent
+          @ExtendServiceType = extendservicetype
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ExtendServiceType = params['ExtendServiceType']
+        end
+      end
+
+      # DescribeExtendedServiceAuthInfos返回参数结构体
+      class DescribeExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
+        # @param AuthInfoList: 授权服务信息列表
+        # @type AuthInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthInfoList, :RequestId
+
+        def initialize(authinfolist=nil, requestid=nil)
+          @AuthInfoList = authinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuthInfoList'].nil?
+            @AuthInfoList = []
+            params['AuthInfoList'].each do |i|
+              extendauthinfo_tmp = ExtendAuthInfo.new
+              extendauthinfo_tmp.deserialize(i)
+              @AuthInfoList << extendauthinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFileUrls请求参数结构体
       class DescribeFileUrlsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，UserId 必填
@@ -2995,9 +3059,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询个数，默认20，最大200
         # @type Limit: Integer
-        # @param ApplicationId: 这个参数跟下面的IsChannel参数配合使用。
-        # IsChannel=false时，ApplicationId参数不起任何作用。
-        # IsChannel=true时，ApplicationId为空，查询所有第三方应用集成平台企业模板列表；ApplicationId不为空，查询指定应用下的模板列表
+        # @param ApplicationId: ApplicationId不为空，查询指定应用下的模板列表
         # ApplicationId为空，查询所有应用下的模板列表
         # @type ApplicationId: String
         # @param IsChannel: 默认为false，查询SaaS模板库列表；
@@ -3010,6 +3072,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :ContentType, :Filters, :Offset, :Limit, :ApplicationId, :IsChannel, :Organization, :GenerateSource
         extend Gem::Deprecate
+        deprecate :IsChannel, :none, 2023, 6
+        deprecate :IsChannel=, :none, 2023, 6
         deprecate :Organization, :none, 2023, 6
         deprecate :Organization=, :none, 2023, 6
         deprecate :GenerateSource, :none, 2023, 6
@@ -3677,6 +3741,58 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 授权服务信息
+      class ExtendAuthInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 授权服务类型
+        # OPEN_SERVER_SIGN：开通企业静默签署
+        # OVERSEA_SIGN：企业与港澳台居民签署合同
+        # MOBILE_CHECK_APPROVER：使用手机号验证签署方身份
+        # PAGING_SEAL：骑缝章
+        # BATCH_SIGN：批量签署
+        # @type Type: String
+        # @param Name: 授权服务名称
+        # @type Name: String
+        # @param Status: 授权服务状态，ENABLE：开通
+        # DISABLE：未开通
+        # @type Status: String
+        # @param OperatorUserId: 授权人用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorUserId: String
+        # @param OperateOn: 授权时间戳，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateOn: Integer
+        # @param HasAuthUserList: 被授权用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAuthUserList: Array
+
+        attr_accessor :Type, :Name, :Status, :OperatorUserId, :OperateOn, :HasAuthUserList
+
+        def initialize(type=nil, name=nil, status=nil, operatoruserid=nil, operateon=nil, hasauthuserlist=nil)
+          @Type = type
+          @Name = name
+          @Status = status
+          @OperatorUserId = operatoruserid
+          @OperateOn = operateon
+          @HasAuthUserList = hasauthuserlist
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Status = params['Status']
+          @OperatorUserId = params['OperatorUserId']
+          @OperateOn = params['OperateOn']
+          unless params['HasAuthUserList'].nil?
+            @HasAuthUserList = []
+            params['HasAuthUserList'].each do |i|
+              hasauthuser_tmp = HasAuthUser.new
+              hasauthuser_tmp.deserialize(i)
+              @HasAuthUserList << hasauthuser_tmp
+            end
+          end
         end
       end
 
@@ -4554,6 +4670,30 @@ module TencentCloud
         end
       end
 
+      # 被授权用户信息
+      class HasAuthUser < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param BelongTo: 用户归属
+        # MainOrg：主企业
+        # CurrentOrg：当前企业
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BelongTo: String
+
+        attr_accessor :UserId, :BelongTo
+
+        def initialize(userid=nil, belongto=nil)
+          @UserId = userid
+          @BelongTo = belongto
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @BelongTo = params['BelongTo']
+        end
+      end
+
       # 企业角色数据信息
       class IntegrateRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
@@ -5099,6 +5239,17 @@ module TencentCloud
         end
       end
 
+      # 模板结构体中的印章信息
+      class SealInfo < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 一码多扫签署二维码对象
       class SignQrCode < TencentCloud::Common::AbstractModel
         # @param QrCodeId: 二维码id
@@ -5432,10 +5583,19 @@ module TencentCloud
         # @param Published: 模板是否已发布。true-已发布；false-未发布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Published: Boolean
+        # @param TemplateSeals: 模板内部指定的印章列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateSeals: Array
+        # @param Seals: 模板内部指定的印章列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seals: Array
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published
+        attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published, :TemplateSeals, :Seals
+        extend Gem::Deprecate
+        deprecate :Seals, :none, 2023, 6
+        deprecate :Seals=, :none, 2023, 6
 
-        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil, templateseals=nil, seals=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
@@ -5456,6 +5616,8 @@ module TencentCloud
           @PreviewUrl = previewurl
           @TemplateVersion = templateversion
           @Published = published
+          @TemplateSeals = templateseals
+          @Seals = seals
         end
 
         def deserialize(params)
@@ -5510,6 +5672,22 @@ module TencentCloud
           @PreviewUrl = params['PreviewUrl']
           @TemplateVersion = params['TemplateVersion']
           @Published = params['Published']
+          unless params['TemplateSeals'].nil?
+            @TemplateSeals = []
+            params['TemplateSeals'].each do |i|
+              sealinfo_tmp = SealInfo.new
+              sealinfo_tmp.deserialize(i)
+              @TemplateSeals << sealinfo_tmp
+            end
+          end
+          unless params['Seals'].nil?
+            @Seals = []
+            params['Seals'].each do |i|
+              sealinfo_tmp = SealInfo.new
+              sealinfo_tmp.deserialize(i)
+              @Seals << sealinfo_tmp
+            end
+          end
         end
       end
 
@@ -5562,9 +5740,9 @@ module TencentCloud
 
       # UpdateIntegrationEmployees请求参数结构体
       class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息
+        # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 员工信息
+        # @param Employees: 员工信息，OpenId和UserId必填一个,Email、DisplayName和Email选填，其他字段暂不支持
         # @type Employees: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`

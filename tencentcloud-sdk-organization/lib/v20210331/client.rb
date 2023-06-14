@@ -269,6 +269,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 以成员维度获取组织财务信息
+
+        # @param request: Request instance for DescribeOrganizationFinancialByMember.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByMemberRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByMemberResponse`
+        def DescribeOrganizationFinancialByMember(request)
+          body = send_request('DescribeOrganizationFinancialByMember', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationFinancialByMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 以月维度获取组织财务信息趋势
+
+        # @param request: Request instance for DescribeOrganizationFinancialByMonth.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByMonthRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByMonthResponse`
+        def DescribeOrganizationFinancialByMonth(request)
+          body = send_request('DescribeOrganizationFinancialByMonth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationFinancialByMonthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 以产品维度获取组织财务信息
+
+        # @param request: Request instance for DescribeOrganizationFinancialByProduct.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByProductRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationFinancialByProductResponse`
+        def DescribeOrganizationFinancialByProduct(request)
+          body = send_request('DescribeOrganizationFinancialByProduct', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrganizationFinancialByProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取组织成员被绑定授权关系的子账号列表
 
         # @param request: Request instance for DescribeOrganizationMemberAuthAccounts.

@@ -6563,50 +6563,6 @@ module TencentCloud
         end
       end
 
-      # ModifyAMQPVHost请求参数结构体
-      class ModifyAMQPVHostRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param VHostId: vhost名称，3-64个字符，只能包含字母、数字、“-”及“_”
-        # @type VHostId: String
-        # @param MsgTtl: 未消费消息的保留时间，以毫秒为单位，60秒-15天
-        # @type MsgTtl: Integer
-        # @param Remark: 说明，最大128个字符
-        # @type Remark: String
-
-        attr_accessor :ClusterId, :VHostId, :MsgTtl, :Remark
-
-        def initialize(clusterid=nil, vhostid=nil, msgttl=nil, remark=nil)
-          @ClusterId = clusterid
-          @VHostId = vhostid
-          @MsgTtl = msgttl
-          @Remark = remark
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @VHostId = params['VHostId']
-          @MsgTtl = params['MsgTtl']
-          @Remark = params['Remark']
-        end
-      end
-
-      # ModifyAMQPVHost返回参数结构体
-      class ModifyAMQPVHostResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyCluster请求参数结构体
       class ModifyClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: Pulsar 集群的ID，需要更新的集群Id。

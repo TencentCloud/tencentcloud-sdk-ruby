@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 域名列表信息啊
+        # 域名列表信息
 
         # @param request: Request instance for DescribeDomainList.
         # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeDomainListRequest`

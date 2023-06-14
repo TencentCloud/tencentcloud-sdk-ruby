@@ -370,6 +370,38 @@ module TencentCloud
         end
       end
 
+      # DeleteEndPoint请求参数结构体
+      class DeleteEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+
+        attr_accessor :EndPointId
+
+        def initialize(endpointid=nil)
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # DeleteEndPoint返回参数结构体
+      class DeleteEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePrivateDNSAccount请求参数结构体
       class DeletePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
         # @param Account: 私有域解析账号

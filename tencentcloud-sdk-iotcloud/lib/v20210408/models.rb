@@ -2546,10 +2546,13 @@ module TencentCloud
         # @param FirmwareUpdateTime: ota最后更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirmwareUpdateTime: Integer
+        # @param CreateUserId: 创建者 Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime
+        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId
 
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -2574,6 +2577,7 @@ module TencentCloud
           @Labels = labels
           @ClientIP = clientip
           @FirmwareUpdateTime = firmwareupdatetime
+          @CreateUserId = createuserid
         end
 
         def deserialize(params)
@@ -2615,6 +2619,7 @@ module TencentCloud
           end
           @ClientIP = params['ClientIP']
           @FirmwareUpdateTime = params['FirmwareUpdateTime']
+          @CreateUserId = params['CreateUserId']
         end
       end
 
@@ -2938,10 +2943,16 @@ module TencentCloud
         # @param ProductId: 产品ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductId: String
+        # @param FwType: 固件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: String
+        # @param CreateUserId: 创建者 Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
 
-        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId
+        attr_accessor :Version, :Md5sum, :CreateTime, :ProductName, :Name, :Description, :ProductId, :FwType, :CreateUserId
 
-        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil)
+        def initialize(version=nil, md5sum=nil, createtime=nil, productname=nil, name=nil, description=nil, productid=nil, fwtype=nil, createuserid=nil)
           @Version = version
           @Md5sum = md5sum
           @CreateTime = createtime
@@ -2949,6 +2960,8 @@ module TencentCloud
           @Name = name
           @Description = description
           @ProductId = productid
+          @FwType = fwtype
+          @CreateUserId = createuserid
         end
 
         def deserialize(params)
@@ -2959,6 +2972,8 @@ module TencentCloud
           @Name = params['Name']
           @Description = params['Description']
           @ProductId = params['ProductId']
+          @FwType = params['FwType']
+          @CreateUserId = params['CreateUserId']
         end
       end
 
