@@ -1108,11 +1108,11 @@ module TencentCloud
 
       # AssociateDirectConnectGatewayNatGateway请求参数结构体
       class AssociateDirectConnectGatewayNatGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 专线网关ID。
+        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         # @type VpcId: String
         # @param NatGatewayId: NAT网关ID。
         # @type NatGatewayId: String
-        # @param DirectConnectGatewayId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param DirectConnectGatewayId: 专线网关ID。
         # @type DirectConnectGatewayId: String
 
         attr_accessor :VpcId, :NatGatewayId, :DirectConnectGatewayId
@@ -16694,10 +16694,13 @@ module TencentCloud
         # @param RestrictState: NAT网关是否被封禁。“NORMAL”：未被封禁，“RESTRICTED”：已被封禁。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestrictState: String
+        # @param NatProductVersion: NAT网关大版本号，传统型=1，标准型=2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatProductVersion: Integer
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -16717,6 +16720,7 @@ module TencentCloud
           @IsExclusive = isexclusive
           @ExclusiveGatewayBandwidth = exclusivegatewaybandwidth
           @RestrictState = restrictstate
+          @NatProductVersion = natproductversion
         end
 
         def deserialize(params)
@@ -16767,6 +16771,7 @@ module TencentCloud
           @IsExclusive = params['IsExclusive']
           @ExclusiveGatewayBandwidth = params['ExclusiveGatewayBandwidth']
           @RestrictState = params['RestrictState']
+          @NatProductVersion = params['NatProductVersion']
         end
       end
 
@@ -19482,9 +19487,9 @@ module TencentCloud
 
       # NAT的SNAT规则
       class SourceIpTranslationNatRule < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: 资源ID，如果ResourceType为USERDEFINED，可以为空
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE
+        # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param PrivateIpAddress: 源IP/网段

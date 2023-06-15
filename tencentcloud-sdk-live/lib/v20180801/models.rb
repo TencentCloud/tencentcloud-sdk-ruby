@@ -1122,6 +1122,117 @@ module TencentCloud
         end
       end
 
+      # CreateLivePadRule请求参数结构体
+      class CreateLivePadRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 推流域名。
+        # @type DomainName: String
+        # @param TemplateId: 模板 ID。
+        # @type TemplateId: Integer
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # 注：如果本参数设置为非空字符串，规则将只对此推流起作用。
+        # @type StreamName: String
+
+        attr_accessor :DomainName, :TemplateId, :AppName, :StreamName
+
+        def initialize(domainname=nil, templateid=nil, appname=nil, streamname=nil)
+          @DomainName = domainname
+          @TemplateId = templateid
+          @AppName = appname
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @TemplateId = params['TemplateId']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # CreateLivePadRule返回参数结构体
+      class CreateLivePadRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLivePadTemplate请求参数结构体
+      class CreateLivePadTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称。
+        # 长度上限：255字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type TemplateName: String
+        # @param Url: 垫片内容。
+        # @type Url: String
+        # @param Description: 描述信息。
+        # 长度上限：1024字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type Description: String
+        # @param WaitDuration: 断流等待时间。
+        # 取值范围：0-30000。
+        # 单位：ms。
+        # @type WaitDuration: Integer
+        # @param MaxDuration: 最大垫片时长。
+        # 取值范围：0 - 正无穷。
+        # 单位：ms。
+        # @type MaxDuration: Integer
+        # @param Type: 垫片内容类型：
+        # 1：图片，2：视频。
+        # 默认值：1。
+        # @type Type: Integer
+
+        attr_accessor :TemplateName, :Url, :Description, :WaitDuration, :MaxDuration, :Type
+
+        def initialize(templatename=nil, url=nil, description=nil, waitduration=nil, maxduration=nil, type=nil)
+          @TemplateName = templatename
+          @Url = url
+          @Description = description
+          @WaitDuration = waitduration
+          @MaxDuration = maxduration
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          @Url = params['Url']
+          @Description = params['Description']
+          @WaitDuration = params['WaitDuration']
+          @MaxDuration = params['MaxDuration']
+          @Type = params['Type']
+        end
+      end
+
+      # CreateLivePadTemplate返回参数结构体
+      class CreateLivePadTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板Id。
+        # @type TemplateId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLivePullStreamTask请求参数结构体
       class CreateLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
         # @param SourceType: 拉流源的类型：
@@ -1678,6 +1789,101 @@ module TencentCloud
 
         def deserialize(params)
           @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLiveStreamMonitor请求参数结构体
+      class CreateLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param OutputInfo: 监播任务的输出信息。
+        # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorOutputInfo`
+        # @param InputList: 待监播的输入流信息列表。
+        # @type InputList: Array
+        # @param MonitorName: 监播任务名称。字段长度小于128字节（一个汉字两个字节）。
+        # @type MonitorName: String
+        # @param NotifyPolicy: 监播事件通知策略。
+        # 不填默认为没有任何通知。
+        # @type NotifyPolicy: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorNotifyPolicy`
+        # @param AsrLanguage: 智能语音识别语种设置：
+        # 0 关闭 1 中文 2 英文 3 日文 4 韩文。
+        # @type AsrLanguage: Integer
+        # @param OcrLanguage: 智能文字识别语种设置：
+        # 0 关闭 1 中、英文。
+        # @type OcrLanguage: Integer
+        # @param AiAsrInputIndexList: 智能语音识别的输入列表，若开启语音识别则必填。
+        # （第1条输入流index为1）
+        # @type AiAsrInputIndexList: Array
+        # @param AiOcrInputIndexList: 智能文字识别的输入列表，若开启文字识别则必填。
+        # （第1条输入流index为1）
+        # @type AiOcrInputIndexList: Array
+        # @param CheckStreamBroken: 是否开启断流检测。
+        # @type CheckStreamBroken: Integer
+        # @param CheckStreamLowFrameRate: 是否开启低帧率检测。
+        # @type CheckStreamLowFrameRate: Integer
+        # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告。
+        # @type AllowMonitorReport: Integer
+
+        attr_accessor :OutputInfo, :InputList, :MonitorName, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport
+
+        def initialize(outputinfo=nil, inputlist=nil, monitorname=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil)
+          @OutputInfo = outputinfo
+          @InputList = inputlist
+          @MonitorName = monitorname
+          @NotifyPolicy = notifypolicy
+          @AsrLanguage = asrlanguage
+          @OcrLanguage = ocrlanguage
+          @AiAsrInputIndexList = aiasrinputindexlist
+          @AiOcrInputIndexList = aiocrinputindexlist
+          @CheckStreamBroken = checkstreambroken
+          @CheckStreamLowFrameRate = checkstreamlowframerate
+          @AllowMonitorReport = allowmonitorreport
+        end
+
+        def deserialize(params)
+          unless params['OutputInfo'].nil?
+            @OutputInfo = LiveStreamMonitorOutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+          unless params['InputList'].nil?
+            @InputList = []
+            params['InputList'].each do |i|
+              livestreammonitorinputinfo_tmp = LiveStreamMonitorInputInfo.new
+              livestreammonitorinputinfo_tmp.deserialize(i)
+              @InputList << livestreammonitorinputinfo_tmp
+            end
+          end
+          @MonitorName = params['MonitorName']
+          unless params['NotifyPolicy'].nil?
+            @NotifyPolicy = LiveStreamMonitorNotifyPolicy.new
+            @NotifyPolicy.deserialize(params['NotifyPolicy'])
+          end
+          @AsrLanguage = params['AsrLanguage']
+          @OcrLanguage = params['OcrLanguage']
+          @AiAsrInputIndexList = params['AiAsrInputIndexList']
+          @AiOcrInputIndexList = params['AiOcrInputIndexList']
+          @CheckStreamBroken = params['CheckStreamBroken']
+          @CheckStreamLowFrameRate = params['CheckStreamLowFrameRate']
+          @AllowMonitorReport = params['AllowMonitorReport']
+        end
+      end
+
+      # CreateLiveStreamMonitor返回参数结构体
+      class CreateLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorId, :RequestId
+
+        def initialize(monitorid=nil, requestid=nil)
+          @MonitorId = monitorid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
           @RequestId = params['RequestId']
         end
       end
@@ -2438,6 +2644,85 @@ module TencentCloud
         end
       end
 
+      # DeleteLivePadRule请求参数结构体
+      class DeleteLivePadRuleRequest < TencentCloud::Common::AbstractModel
+        # @param DomainName: 推流域名。
+        # 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type DomainName: String
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
+        # @type StreamName: String
+        # @param TemplateId: 直播垫片模板id。
+        # @type TemplateId: Integer
+
+        attr_accessor :DomainName, :AppName, :StreamName, :TemplateId
+
+        def initialize(domainname=nil, appname=nil, streamname=nil, templateid=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @StreamName = streamname
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteLivePadRule返回参数结构体
+      class DeleteLivePadRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLivePadTemplate请求参数结构体
+      class DeleteLivePadTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板 ID。
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteLivePadTemplate返回参数结构体
+      class DeleteLivePadTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLivePullStreamTask请求参数结构体
       class DeleteLivePullStreamTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 Id。
@@ -2645,6 +2930,38 @@ module TencentCloud
 
       # DeleteLiveSnapshotTemplate返回参数结构体
       class DeleteLiveSnapshotTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLiveStreamMonitor请求参数结构体
+      class DeleteLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID
+        # @type MonitorId: String
+
+        attr_accessor :MonitorId
+
+        def initialize(monitorid=nil)
+          @MonitorId = monitorid
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+        end
+      end
+
+      # DeleteLiveStreamMonitor返回参数结构体
+      class DeleteLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4271,6 +4588,121 @@ module TencentCloud
         end
       end
 
+      # DescribeLivePadRules请求参数结构体
+      class DescribeLivePadRulesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLivePadRules返回参数结构体
+      class DescribeLivePadRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则信息列表。
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :RequestId
+
+        def initialize(rules=nil, requestid=nil)
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              ruleinfo_tmp = RuleInfo.new
+              ruleinfo_tmp.deserialize(i)
+              @Rules << ruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLivePadTemplate请求参数结构体
+      class DescribeLivePadTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id。
+        # @type TemplateId: Integer
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeLivePadTemplate返回参数结构体
+      class DescribeLivePadTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 直播垫片模板信息。
+        # @type Template: :class:`Tencentcloud::Live.v20180801.models.PadTemplate`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :RequestId
+
+        def initialize(template=nil, requestid=nil)
+          @Template = template
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = PadTemplate.new
+            @Template.deserialize(params['Template'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLivePadTemplates请求参数结构体
+      class DescribeLivePadTemplatesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLivePadTemplates返回参数结构体
+      class DescribeLivePadTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Templates: 直播垫片模板信息。
+        # @type Templates: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Templates, :RequestId
+
+        def initialize(templates=nil, requestid=nil)
+          @Templates = templates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Templates'].nil?
+            @Templates = []
+            params['Templates'].each do |i|
+              padtemplate_tmp = PadTemplate.new
+              padtemplate_tmp.deserialize(i)
+              @Templates << padtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLivePlayAuthKey请求参数结构体
       class DescribeLivePlayAuthKeyRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 域名。
@@ -4770,6 +5202,99 @@ module TencentCloud
           @PageSize = params['PageSize']
           @TotalNum = params['TotalNum']
           @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveStreamMonitorList请求参数结构体
+      class DescribeLiveStreamMonitorListRequest < TencentCloud::Common::AbstractModel
+        # @param Index: 查询列表时的起始偏移。
+        # @type Index: Integer
+        # @param Count: 本次查询的记录个数。最小值为1。
+        # @type Count: Integer
+
+        attr_accessor :Index, :Count
+
+        def initialize(index=nil, count=nil)
+          @Index = index
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Count = params['Count']
+        end
+      end
+
+      # DescribeLiveStreamMonitorList返回参数结构体
+      class DescribeLiveStreamMonitorListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalNum: 账号下的直播流监播任务个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalNum: Integer
+        # @param LiveStreamMonitors: 直播流监播任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveStreamMonitors: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalNum, :LiveStreamMonitors, :RequestId
+
+        def initialize(totalnum=nil, livestreammonitors=nil, requestid=nil)
+          @TotalNum = totalnum
+          @LiveStreamMonitors = livestreammonitors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalNum = params['TotalNum']
+          unless params['LiveStreamMonitors'].nil?
+            @LiveStreamMonitors = []
+            params['LiveStreamMonitors'].each do |i|
+              livestreammonitorinfo_tmp = LiveStreamMonitorInfo.new
+              livestreammonitorinfo_tmp.deserialize(i)
+              @LiveStreamMonitors << livestreammonitorinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveStreamMonitor请求参数结构体
+      class DescribeLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID。
+        # @type MonitorId: String
+
+        attr_accessor :MonitorId
+
+        def initialize(monitorid=nil)
+          @MonitorId = monitorid
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+        end
+      end
+
+      # DescribeLiveStreamMonitor返回参数结构体
+      class DescribeLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param LiveStreamMonitor: 直播监播任务相关信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveStreamMonitor: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveStreamMonitor, :RequestId
+
+        def initialize(livestreammonitor=nil, requestid=nil)
+          @LiveStreamMonitor = livestreammonitor
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LiveStreamMonitor'].nil?
+            @LiveStreamMonitor = LiveStreamMonitorInfo.new
+            @LiveStreamMonitor.deserialize(params['LiveStreamMonitor'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5718,6 +6243,54 @@ module TencentCloud
             end
           end
           @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMonitorReport请求参数结构体
+      class DescribeMonitorReportRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID。
+        # @type MonitorId: String
+
+        attr_accessor :MonitorId
+
+        def initialize(monitorid=nil)
+          @MonitorId = monitorid
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+        end
+      end
+
+      # DescribeMonitorReport返回参数结构体
+      class DescribeMonitorReportResponse < TencentCloud::Common::AbstractModel
+        # @param MPSResult: 媒体处理结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MPSResult: :class:`Tencentcloud::Live.v20180801.models.MPSResult`
+        # @param DiagnoseResult: 媒体诊断结果信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagnoseResult: :class:`Tencentcloud::Live.v20180801.models.DiagnoseResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MPSResult, :DiagnoseResult, :RequestId
+
+        def initialize(mpsresult=nil, diagnoseresult=nil, requestid=nil)
+          @MPSResult = mpsresult
+          @DiagnoseResult = diagnoseresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MPSResult'].nil?
+            @MPSResult = MPSResult.new
+            @MPSResult.deserialize(params['MPSResult'])
+          end
+          unless params['DiagnoseResult'].nil?
+            @DiagnoseResult = DiagnoseResult.new
+            @DiagnoseResult.deserialize(params['DiagnoseResult'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7115,6 +7688,28 @@ module TencentCloud
         end
       end
 
+      # 媒体诊断结果，包含断流信息、低帧率信息等
+      class DiagnoseResult < TencentCloud::Common::AbstractModel
+        # @param StreamBrokenResults: 断流信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamBrokenResults: Array
+        # @param LowFrameRateResults: 低帧率信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowFrameRateResults: Array
+
+        attr_accessor :StreamBrokenResults, :LowFrameRateResults
+
+        def initialize(streambrokenresults=nil, lowframerateresults=nil)
+          @StreamBrokenResults = streambrokenresults
+          @LowFrameRateResults = lowframerateresults
+        end
+
+        def deserialize(params)
+          @StreamBrokenResults = params['StreamBrokenResults']
+          @LowFrameRateResults = params['LowFrameRateResults']
+        end
+      end
+
       # 域名证书信息
       class DomainCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 证书Id。
@@ -7822,6 +8417,226 @@ module TencentCloud
         end
       end
 
+      # 直播监播任务信息。
+      class LiveStreamMonitorInfo < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorId: String
+        # @param MonitorName: 监播任务名称。128字节以内。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorName: String
+        # @param OutputInfo: 监播任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorOutputInfo`
+        # @param InputList: 待监播的输入流信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputList: Array
+        # @param Status: 监播任务状态。
+        # 0： 代表空闲
+        # 1： 代表监播中。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StartTime: 上一次的启动时间，unix时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param StopTime: 上一次的停止时间，unix时间戳。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StopTime: Integer
+        # @param CreateTime: 监播任务创建时间，unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 监播任务更新时间，unix时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param NotifyPolicy: 监播事件通知策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyPolicy: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorNotifyPolicy`
+        # @param AudibleInputIndexList: 输出音频的输入Index列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudibleInputIndexList: Array
+        # @param AiAsrInputIndexList: 开启智能语音识别的输入Index列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiAsrInputIndexList: Array
+        # @param CheckStreamBroken: 是否开启断流检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckStreamBroken: Integer
+        # @param CheckStreamLowFrameRate: 是否开启低帧率检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckStreamLowFrameRate: Integer
+        # @param AsrLanguage: 智能语音识别语种：
+        # 0 关闭 1 中文 2 英文 3日文 4 韩文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrLanguage: Integer
+        # @param OcrLanguage: 智能文字识别语种：
+        # 0 关闭 1 中、英文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OcrLanguage: Integer
+        # @param AiOcrInputIndexList: 开启智能文字识别的输入Index列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiOcrInputIndexList: Array
+        # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowMonitorReport: Integer
+
+        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :Status, :StartTime, :StopTime, :CreateTime, :UpdateTime, :NotifyPolicy, :AudibleInputIndexList, :AiAsrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AsrLanguage, :OcrLanguage, :AiOcrInputIndexList, :AllowMonitorReport
+
+        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, status=nil, starttime=nil, stoptime=nil, createtime=nil, updatetime=nil, notifypolicy=nil, audibleinputindexlist=nil, aiasrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, asrlanguage=nil, ocrlanguage=nil, aiocrinputindexlist=nil, allowmonitorreport=nil)
+          @MonitorId = monitorid
+          @MonitorName = monitorname
+          @OutputInfo = outputinfo
+          @InputList = inputlist
+          @Status = status
+          @StartTime = starttime
+          @StopTime = stoptime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @NotifyPolicy = notifypolicy
+          @AudibleInputIndexList = audibleinputindexlist
+          @AiAsrInputIndexList = aiasrinputindexlist
+          @CheckStreamBroken = checkstreambroken
+          @CheckStreamLowFrameRate = checkstreamlowframerate
+          @AsrLanguage = asrlanguage
+          @OcrLanguage = ocrlanguage
+          @AiOcrInputIndexList = aiocrinputindexlist
+          @AllowMonitorReport = allowmonitorreport
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+          @MonitorName = params['MonitorName']
+          unless params['OutputInfo'].nil?
+            @OutputInfo = LiveStreamMonitorOutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+          unless params['InputList'].nil?
+            @InputList = []
+            params['InputList'].each do |i|
+              livestreammonitorinputinfo_tmp = LiveStreamMonitorInputInfo.new
+              livestreammonitorinputinfo_tmp.deserialize(i)
+              @InputList << livestreammonitorinputinfo_tmp
+            end
+          end
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['NotifyPolicy'].nil?
+            @NotifyPolicy = LiveStreamMonitorNotifyPolicy.new
+            @NotifyPolicy.deserialize(params['NotifyPolicy'])
+          end
+          @AudibleInputIndexList = params['AudibleInputIndexList']
+          @AiAsrInputIndexList = params['AiAsrInputIndexList']
+          @CheckStreamBroken = params['CheckStreamBroken']
+          @CheckStreamLowFrameRate = params['CheckStreamLowFrameRate']
+          @AsrLanguage = params['AsrLanguage']
+          @OcrLanguage = params['OcrLanguage']
+          @AiOcrInputIndexList = params['AiOcrInputIndexList']
+          @AllowMonitorReport = params['AllowMonitorReport']
+        end
+      end
+
+      # 直播监播功能输入流信息
+      class LiveStreamMonitorInputInfo < TencentCloud::Common::AbstractModel
+        # @param InputStreamName: 待监播的输入流名称。256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputStreamName: String
+        # @param InputDomain: 待监播的输入流推流域名。128字节以内，只允许填处于启用状态的推流域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputDomain: String
+        # @param InputApp: 待监播的输入流推流路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputApp: String
+        # @param InputUrl: 待监播的输入流推流url。一般场景下，无需该参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputUrl: String
+        # @param Description: 描述。256字节以内。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :InputStreamName, :InputDomain, :InputApp, :InputUrl, :Description
+
+        def initialize(inputstreamname=nil, inputdomain=nil, inputapp=nil, inputurl=nil, description=nil)
+          @InputStreamName = inputstreamname
+          @InputDomain = inputdomain
+          @InputApp = inputapp
+          @InputUrl = inputurl
+          @Description = description
+        end
+
+        def deserialize(params)
+          @InputStreamName = params['InputStreamName']
+          @InputDomain = params['InputDomain']
+          @InputApp = params['InputApp']
+          @InputUrl = params['InputUrl']
+          @Description = params['Description']
+        end
+      end
+
+      # 直播流监播通知策略
+      class LiveStreamMonitorNotifyPolicy < TencentCloud::Common::AbstractModel
+        # @param NotifyPolicyType: 通知策略类型：范围[0,1]
+        # 0:代表不使用任何通知策略
+        # 1:代表使用全局回调策略，所有事件通知到CallbackUrl。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyPolicyType: Integer
+        # @param CallbackUrl: 回调URL：长度[0,512]
+        # 只支持http和https类型的url。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackUrl: String
+
+        attr_accessor :NotifyPolicyType, :CallbackUrl
+
+        def initialize(notifypolicytype=nil, callbackurl=nil)
+          @NotifyPolicyType = notifypolicytype
+          @CallbackUrl = callbackurl
+        end
+
+        def deserialize(params)
+          @NotifyPolicyType = params['NotifyPolicyType']
+          @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # 直播流监播输出流信息
+      class LiveStreamMonitorOutputInfo < TencentCloud::Common::AbstractModel
+        # @param OutputStreamWidth: 监播任务输出流宽度像素。范围[1,1920]。建议至少大于100像素。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStreamWidth: Integer
+        # @param OutputStreamHeight: 监播任务输出流长度像素。范围[1,1080]，建议至少大于100像素。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStreamHeight: Integer
+        # @param OutputStreamName: 监播任务输出流名称。
+        # 不填时，系统会自动生成。
+        # 256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStreamName: String
+        # @param OutputDomain: 监播任务播放域名。128字节以内，只允许填处于启用状态的播放域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputDomain: String
+        # @param OutputApp: 监播任务播放路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputApp: String
+
+        attr_accessor :OutputStreamWidth, :OutputStreamHeight, :OutputStreamName, :OutputDomain, :OutputApp
+
+        def initialize(outputstreamwidth=nil, outputstreamheight=nil, outputstreamname=nil, outputdomain=nil, outputapp=nil)
+          @OutputStreamWidth = outputstreamwidth
+          @OutputStreamHeight = outputstreamheight
+          @OutputStreamName = outputstreamname
+          @OutputDomain = outputdomain
+          @OutputApp = outputapp
+        end
+
+        def deserialize(params)
+          @OutputStreamWidth = params['OutputStreamWidth']
+          @OutputStreamHeight = params['OutputStreamHeight']
+          @OutputStreamName = params['OutputStreamName']
+          @OutputDomain = params['OutputDomain']
+          @OutputApp = params['OutputApp']
+        end
+      end
+
       # 日志url信息。
       class LogInfo < TencentCloud::Common::AbstractModel
         # @param LogName: 日志名称。
@@ -7848,6 +8663,28 @@ module TencentCloud
           @LogUrl = params['LogUrl']
           @LogTime = params['LogTime']
           @FileSize = params['FileSize']
+        end
+      end
+
+      # 媒体处理结果，包含智能语音识别、智能文字识别结果
+      class MPSResult < TencentCloud::Common::AbstractModel
+        # @param AiAsrResults: 智能语音识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiAsrResults: Array
+        # @param AiOcrResults: 智能文字识别结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiOcrResults: Array
+
+        attr_accessor :AiAsrResults, :AiOcrResults
+
+        def initialize(aiasrresults=nil, aiocrresults=nil)
+          @AiAsrResults = aiasrresults
+          @AiOcrResults = aiocrresults
+        end
+
+        def deserialize(params)
+          @AiAsrResults = params['AiAsrResults']
+          @AiOcrResults = params['AiOcrResults']
         end
       end
 
@@ -8033,6 +8870,70 @@ module TencentCloud
 
       # ModifyLiveDomainReferer返回参数结构体
       class ModifyLiveDomainRefererResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLivePadTemplate请求参数结构体
+      class ModifyLivePadTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id。
+        # @type TemplateId: Integer
+        # @param Url: 垫片内容。
+        # @type Url: String
+        # @param WaitDuration: 断流等待时间。
+        # 取值范围：0-30000。
+        # 单位：ms。
+        # @type WaitDuration: Integer
+        # @param MaxDuration: 最大垫片时长。
+        # 取值范围：0 - 正无穷。
+        # 单位：ms。
+        # @type MaxDuration: Integer
+        # @param TemplateName: 模板名称。
+        # 长度上限：255字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type TemplateName: String
+        # @param Description: 描述信息。
+        # 长度上限：1024字节。
+        # 仅支持中文、英文、数字、_、-。
+        # @type Description: String
+        # @param Type: 垫片内容类型： 1：图片，2：视频。 默认值：1。
+        # @type Type: Integer
+
+        attr_accessor :TemplateId, :Url, :WaitDuration, :MaxDuration, :TemplateName, :Description, :Type
+
+        def initialize(templateid=nil, url=nil, waitduration=nil, maxduration=nil, templatename=nil, description=nil, type=nil)
+          @TemplateId = templateid
+          @Url = url
+          @WaitDuration = waitduration
+          @MaxDuration = maxduration
+          @TemplateName = templatename
+          @Description = description
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @Url = params['Url']
+          @WaitDuration = params['WaitDuration']
+          @MaxDuration = params['MaxDuration']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+          @Type = params['Type']
+        end
+      end
+
+      # ModifyLivePadTemplate返回参数结构体
+      class ModifyLivePadTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8515,6 +9416,97 @@ module TencentCloud
         end
       end
 
+      # ModifyLiveStreamMonitor请求参数结构体
+      class ModifyLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播任务ID。
+        # @type MonitorId: String
+        # @param MonitorName: 监播任务的名称。长度128字节以内（一个汉字两个字节）。
+        # @type MonitorName: String
+        # @param OutputInfo: 监播任务输出信息。
+        # @type OutputInfo: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorOutputInfo`
+        # @param InputList: 待监播的输入流信息。
+        # @type InputList: Array
+        # @param NotifyPolicy: 监播事件通知策略。
+        # @type NotifyPolicy: :class:`Tencentcloud::Live.v20180801.models.LiveStreamMonitorNotifyPolicy`
+        # @param AsrLanguage: 智能语音识别语种：
+        # 0 关闭 1 中文 2 英文 3 日文 4 韩文。
+        # @type AsrLanguage: Integer
+        # @param OcrLanguage: 智能文字识别语种：
+        # 0 关闭 1 中、英文。
+        # @type OcrLanguage: Integer
+        # @param AiAsrInputIndexList: 语音识别输入流列表，1代表第一条输入流。
+        # @type AiAsrInputIndexList: Array
+        # @param AiOcrInputIndexList: 文字识别输入流列表，1代表第一条输入流。
+        # @type AiOcrInputIndexList: Array
+        # @param CheckStreamBroken: 是否开启断流检测。
+        # @type CheckStreamBroken: Integer
+        # @param CheckStreamLowFrameRate: 是否开启低帧率检测。
+        # @type CheckStreamLowFrameRate: Integer
+        # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告。
+        # @type AllowMonitorReport: Integer
+
+        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport
+
+        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil)
+          @MonitorId = monitorid
+          @MonitorName = monitorname
+          @OutputInfo = outputinfo
+          @InputList = inputlist
+          @NotifyPolicy = notifypolicy
+          @AsrLanguage = asrlanguage
+          @OcrLanguage = ocrlanguage
+          @AiAsrInputIndexList = aiasrinputindexlist
+          @AiOcrInputIndexList = aiocrinputindexlist
+          @CheckStreamBroken = checkstreambroken
+          @CheckStreamLowFrameRate = checkstreamlowframerate
+          @AllowMonitorReport = allowmonitorreport
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+          @MonitorName = params['MonitorName']
+          unless params['OutputInfo'].nil?
+            @OutputInfo = LiveStreamMonitorOutputInfo.new
+            @OutputInfo.deserialize(params['OutputInfo'])
+          end
+          unless params['InputList'].nil?
+            @InputList = []
+            params['InputList'].each do |i|
+              livestreammonitorinputinfo_tmp = LiveStreamMonitorInputInfo.new
+              livestreammonitorinputinfo_tmp.deserialize(i)
+              @InputList << livestreammonitorinputinfo_tmp
+            end
+          end
+          unless params['NotifyPolicy'].nil?
+            @NotifyPolicy = LiveStreamMonitorNotifyPolicy.new
+            @NotifyPolicy.deserialize(params['NotifyPolicy'])
+          end
+          @AsrLanguage = params['AsrLanguage']
+          @OcrLanguage = params['OcrLanguage']
+          @AiAsrInputIndexList = params['AiAsrInputIndexList']
+          @AiOcrInputIndexList = params['AiOcrInputIndexList']
+          @CheckStreamBroken = params['CheckStreamBroken']
+          @CheckStreamLowFrameRate = params['CheckStreamLowFrameRate']
+          @AllowMonitorReport = params['AllowMonitorReport']
+        end
+      end
+
+      # ModifyLiveStreamMonitor返回参数结构体
+      class ModifyLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLiveTimeShiftTemplate请求参数结构体
       class ModifyLiveTimeShiftTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 时移模板id。
@@ -8882,6 +9874,58 @@ module TencentCloud
           @Bandwidth = params['Bandwidth']
           @Online = params['Online']
           @Request = params['Request']
+        end
+      end
+
+      # 直播垫片模板。
+      class PadTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id。
+        # @type TemplateId: Integer
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+        # @param Url: 垫片内容。
+        # @type Url: String
+        # @param CreateTime: 模板创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板修改时间。
+        # @type UpdateTime: String
+        # @param Description: 模板描述。
+        # @type Description: String
+        # @param WaitDuration: 断流等待时间。
+        # 取值范围：0-30000。
+        # 单位：ms。
+        # @type WaitDuration: Integer
+        # @param MaxDuration: 最大垫片时长。
+        # 取值范围：0 - 正无穷。
+        # 单位：ms。
+        # @type MaxDuration: Integer
+        # @param Type: 垫片内容类型： 1：图片，2：视频。 默认值：1。
+        # @type Type: Integer
+
+        attr_accessor :TemplateId, :TemplateName, :Url, :CreateTime, :UpdateTime, :Description, :WaitDuration, :MaxDuration, :Type
+
+        def initialize(templateid=nil, templatename=nil, url=nil, createtime=nil, updatetime=nil, description=nil, waitduration=nil, maxduration=nil, type=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Url = url
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Description = description
+          @WaitDuration = waitduration
+          @MaxDuration = maxduration
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Url = params['Url']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Description = params['Description']
+          @WaitDuration = params['WaitDuration']
+          @MaxDuration = params['MaxDuration']
+          @Type = params['Type']
         end
       end
 
@@ -10133,6 +11177,44 @@ module TencentCloud
         end
       end
 
+      # StartLiveStreamMonitor请求参数结构体
+      class StartLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播ID。
+        # @type MonitorId: String
+        # @param AudibleInputIndexList: 监播画面声音InputIndex,支持多个输入声音。
+        # 取值范围 InputIndex必须已经存在。
+        # 不填默认无声音输出。
+        # @type AudibleInputIndexList: Array
+
+        attr_accessor :MonitorId, :AudibleInputIndexList
+
+        def initialize(monitorid=nil, audibleinputindexlist=nil)
+          @MonitorId = monitorid
+          @AudibleInputIndexList = audibleinputindexlist
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+          @AudibleInputIndexList = params['AudibleInputIndexList']
+        end
+      end
+
+      # StartLiveStreamMonitor返回参数结构体
+      class StartLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopLiveRecord请求参数结构体
       class StopLiveRecordRequest < TencentCloud::Common::AbstractModel
         # @param StreamName: 流名称。
@@ -10155,6 +11237,38 @@ module TencentCloud
 
       # StopLiveRecord返回参数结构体
       class StopLiveRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopLiveStreamMonitor请求参数结构体
+      class StopLiveStreamMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorId: 监播ID
+        # @type MonitorId: String
+
+        attr_accessor :MonitorId
+
+        def initialize(monitorid=nil)
+          @MonitorId = monitorid
+        end
+
+        def deserialize(params)
+          @MonitorId = params['MonitorId']
+        end
+      end
+
+      # StopLiveStreamMonitor返回参数结构体
+      class StopLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

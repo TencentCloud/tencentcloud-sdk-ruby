@@ -228,6 +228,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建直播垫片规则。
+
+        # @param request: Request instance for CreateLivePadRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLivePadRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLivePadRuleResponse`
+        def CreateLivePadRule(request)
+          body = send_request('CreateLivePadRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLivePadRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建直播垫片模板。
+
+        # @param request: Request instance for CreateLivePadTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLivePadTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLivePadTemplateResponse`
+        def CreateLivePadTemplate(request)
+          body = send_request('CreateLivePadTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLivePadTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建直播拉流任务。支持将外部已有的点播文件，或者直播源拉取过来转推到指定的目标地址。
         # 注意：
         # 1. 默认支持任务数上限200个，如有特殊需求，可通过提单到售后进行评估增加上限。
@@ -385,6 +433,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateLiveSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来创建直播流监播任务。
+
+        # @param request: Request instance for CreateLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateLiveStreamMonitorResponse`
+        def CreateLiveStreamMonitor(request)
+          body = send_request('CreateLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLiveStreamMonitorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -686,6 +758,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除直播垫片规则。
+
+        # @param request: Request instance for DeleteLivePadRule.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLivePadRuleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLivePadRuleResponse`
+        def DeleteLivePadRule(request)
+          body = send_request('DeleteLivePadRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLivePadRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除直播垫片模板。
+
+        # @param request: Request instance for DeleteLivePadTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLivePadTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLivePadTemplateResponse`
+        def DeleteLivePadTemplate(request)
+          body = send_request('DeleteLivePadTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLivePadTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除接口 CreateLivePullStreamTask 创建的拉流任务。
         # 注意：
         # 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
@@ -819,6 +939,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLiveSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来删除直播流监播任务。
+
+        # @param request: Request instance for DeleteLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::DeleteLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DeleteLiveStreamMonitorResponse`
+        def DeleteLiveStreamMonitor(request)
+          body = send_request('DeleteLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLiveStreamMonitorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1582,6 +1726,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取直播垫片规则列表。
+
+        # @param request: Request instance for DescribeLivePadRules.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePadRulesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePadRulesResponse`
+        def DescribeLivePadRules(request)
+          body = send_request('DescribeLivePadRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLivePadRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取单个直播垫片模板
+
+        # @param request: Request instance for DescribeLivePadTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePadTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePadTemplateResponse`
+        def DescribeLivePadTemplate(request)
+          body = send_request('DescribeLivePadTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLivePadTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取直播垫片模板。
+
+        # @param request: Request instance for DescribeLivePadTemplates.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePadTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePadTemplatesResponse`
+        def DescribeLivePadTemplates(request)
+          body = send_request('DescribeLivePadTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLivePadTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询播放鉴权key。
 
         # @param request: Request instance for DescribeLivePlayAuthKey.
@@ -1813,6 +2029,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLiveStreamEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来查询某个特定监播任务的配置。
+
+        # @param request: Request instance for DescribeLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveStreamMonitorResponse`
+        def DescribeLiveStreamMonitor(request)
+          body = send_request('DescribeLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveStreamMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来查询直播流监播任务配置的列表信息。
+
+        # @param request: Request instance for DescribeLiveStreamMonitorList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveStreamMonitorListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveStreamMonitorListResponse`
+        def DescribeLiveStreamMonitorList(request)
+          body = send_request('DescribeLiveStreamMonitorList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveStreamMonitorListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2238,6 +2502,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogDownloadListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用来查询监播场次7天内的智能识别、断流、低帧率等信息的汇总报告。
+
+        # @param request: Request instance for DescribeMonitorReport.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeMonitorReportRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeMonitorReportResponse`
+        def DescribeMonitorReport(request)
+          body = send_request('DescribeMonitorReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMonitorReportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2867,6 +3155,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改直播垫片模板。
+
+        # @param request: Request instance for ModifyLivePadTemplate.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLivePadTemplateRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLivePadTemplateResponse`
+        def ModifyLivePadTemplate(request)
+          body = send_request('ModifyLivePadTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLivePadTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改播放鉴权key
 
         # @param request: Request instance for ModifyLivePlayAuthKey.
@@ -2999,6 +3311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLiveSnapshotTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来修改直播流监播任务的配置。
+
+        # @param request: Request instance for ModifyLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::ModifyLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::ModifyLiveStreamMonitorResponse`
+        def ModifyLiveStreamMonitor(request)
+          body = send_request('ModifyLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLiveStreamMonitorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3184,6 +3520,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用来启动直播流监播任务。
+
+        # @param request: Request instance for StartLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::StartLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StartLiveStreamMonitorResponse`
+        def StartLiveStreamMonitor(request)
+          body = send_request('StartLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartLiveStreamMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 说明：录制后的文件存放于点播平台。用户如需使用录制功能，需首先自行开通点播账号并确保账号可用。录制文件存放后，相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，请参考对应文档。
 
         # @param request: Request instance for StopLiveRecord.
@@ -3194,6 +3554,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopLiveRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来停止直播流监播任务。
+
+        # @param request: Request instance for StopLiveStreamMonitor.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopLiveStreamMonitorRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopLiveStreamMonitorResponse`
+        def StopLiveStreamMonitor(request)
+          body = send_request('StopLiveStreamMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLiveStreamMonitorResponse.new
             model.deserialize(response['Response'])
             model
           else

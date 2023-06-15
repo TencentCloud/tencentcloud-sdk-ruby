@@ -2495,6 +2495,9 @@ module TencentCloud
         # @type AutomationToolsService: :class:`Tencentcloud::As.v20180419.models.RunAutomationServiceEnabled`
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
+        extend Gem::Deprecate
+        deprecate :AutomationService, :none, 2023, 6
+        deprecate :AutomationService=, :none, 2023, 6
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice

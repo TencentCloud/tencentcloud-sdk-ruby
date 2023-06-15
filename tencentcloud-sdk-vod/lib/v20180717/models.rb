@@ -235,14 +235,17 @@ module TencentCloud
         # @type Size: Integer
         # @param DigitalWatermarkType: 数字水印类型。可选值：
         # <li>Trace 表示经过溯源水印处理；</li>
+        # <li>CopyRight 表示经过版权水印处理；</li>
         # <li>None 表示没有经过数字水印处理。</li>
         # @type DigitalWatermarkType: String
         # @param SubStreamSet: 子流信息列表。
         # @type SubStreamSet: Array
+        # @param CopyRightWatermarkText: 版权信息。
+        # @type CopyRightWatermarkText: String
 
-        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet
+        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText
 
-        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil)
+        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil)
           @Definition = definition
           @Package = package
           @DrmType = drmtype
@@ -250,6 +253,7 @@ module TencentCloud
           @Size = size
           @DigitalWatermarkType = digitalwatermarktype
           @SubStreamSet = substreamset
+          @CopyRightWatermarkText = copyrightwatermarktext
         end
 
         def deserialize(params)
@@ -267,6 +271,7 @@ module TencentCloud
               @SubStreamSet << mediasubstreaminfoitem_tmp
             end
           end
+          @CopyRightWatermarkText = params['CopyRightWatermarkText']
         end
       end
 
@@ -278,15 +283,18 @@ module TencentCloud
         # @type WatermarkSet: Array
         # @param TraceWatermark: 溯源水印。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
+        # @param CopyRightWatermark: 版权水印。
+        # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param SubtitleSet: 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         # @type SubtitleSet: Array
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :SubtitleSet
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :SubtitleSet
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, subtitleset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, subtitleset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
+          @CopyRightWatermark = copyrightwatermark
           @SubtitleSet = subtitleset
         end
 
@@ -303,6 +311,10 @@ module TencentCloud
           unless params['TraceWatermark'].nil?
             @TraceWatermark = TraceWatermarkInput.new
             @TraceWatermark.deserialize(params['TraceWatermark'])
+          end
+          unless params['CopyRightWatermark'].nil?
+            @CopyRightWatermark = CopyRightWatermarkInput.new
+            @CopyRightWatermark.deserialize(params['CopyRightWatermark'])
           end
           @SubtitleSet = params['SubtitleSet']
         end
@@ -4404,10 +4416,10 @@ module TencentCloud
         # <li>White：白色背景</li>
         # 默认值：Black。
         # @type Color: String
-        # @param Width: 画布宽度，即输出视频的宽度，取值范围：0~ 4096，单位：px。
+        # @param Width: 画布宽度，即输出视频的宽度，取值范围：0~ 3840，单位：px。
         # 默认值：0，表示和第一个视频轨的第一个视频片段的视频宽度一致。
         # @type Width: Integer
-        # @param Height: 画布高度，即输出视频的高度（或长边），取值范围：0~ 4096，单位：px。
+        # @param Height: 画布高度，即输出视频的高度（或长边），取值范围：0~ 3840，单位：px。
         # 默认值：0，表示和第一个视频轨的第一个视频片段的视频高度一致。
         # @type Height: Integer
 
@@ -5189,6 +5201,22 @@ module TencentCloud
           @ScreenshotInterval = params['ScreenshotInterval']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 版权水印参数
+      class CopyRightWatermarkInput < TencentCloud::Common::AbstractModel
+        # @param Text: 版权信息，最大长度为 200 个字符。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 
@@ -10667,7 +10695,8 @@ module TencentCloud
         # <li>DescribeFileAttributesTask：获取文件属性任务；</li>
         # <li>RebuildMedia：音画质重生任务；</li>
         # <li>ReviewAudioVideo：音视频审核任务；</li>
-        # <li>ExtractTraceWatermark：提取溯源水印任务。</li>
+        # <li>ExtractTraceWatermark：提取溯源水印任务；</li>
+        # <li>ExtractCopyRightWatermark：提取版权水印任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -10725,6 +10754,9 @@ module TencentCloud
         # @param ExtractTraceWatermarkTask: 提取溯源水印任务信息，仅当 TaskType 为 ExtractTraceWatermark，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractTraceWatermarkTask: :class:`Tencentcloud::Vod.v20180717.models.ExtractTraceWatermarkTask`
+        # @param ExtractCopyRightWatermarkTask: 提取版权水印任务信息，仅当 TaskType 为 ExtractCopyRightWatermark，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractCopyRightWatermarkTask: :class:`Tencentcloud::Vod.v20180717.models.ExtractCopyRightWatermarkTask`
         # @param ReviewAudioVideoTask: 音视频审核任务信息，仅当 TaskType 为 ReviewAudioVideo，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTask`
@@ -10737,9 +10769,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -10760,6 +10792,7 @@ module TencentCloud
           @RemoveWatermarkTask = removewatermarktask
           @RebuildMediaTask = rebuildmediatask
           @ExtractTraceWatermarkTask = extracttracewatermarktask
+          @ExtractCopyRightWatermarkTask = extractcopyrightwatermarktask
           @ReviewAudioVideoTask = reviewaudiovideotask
           @ReduceMediaBitrateTask = reducemediabitratetask
           @DescribeFileAttributesTask = describefileattributestask
@@ -10831,6 +10864,10 @@ module TencentCloud
           unless params['ExtractTraceWatermarkTask'].nil?
             @ExtractTraceWatermarkTask = ExtractTraceWatermarkTask.new
             @ExtractTraceWatermarkTask.deserialize(params['ExtractTraceWatermarkTask'])
+          end
+          unless params['ExtractCopyRightWatermarkTask'].nil?
+            @ExtractCopyRightWatermarkTask = ExtractCopyRightWatermarkTask.new
+            @ExtractCopyRightWatermarkTask.deserialize(params['ExtractCopyRightWatermarkTask'])
           end
           unless params['ReviewAudioVideoTask'].nil?
             @ReviewAudioVideoTask = ReviewAudioVideoTask.new
@@ -11904,6 +11941,7 @@ module TencentCloud
         # <li>RebuildMediaComplete：音画质重生完成事件。</li>
         # <li>ReviewAudioVideoComplete：音视频审核完成；</li>
         # <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
+        # <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
         # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
@@ -11966,6 +12004,9 @@ module TencentCloud
         # @param ExtractTraceWatermarkCompleteEvent: 溯源水印提取完成事件，当事件类型为 ExtractTraceWatermarkComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtractTraceWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ExtractTraceWatermarkTask`
+        # @param ExtractCopyRightWatermarkCompleteEvent: 版权水印提取完成事件，当事件类型为 ExtractCopyRightWatermarkComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractCopyRightWatermarkCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ExtractCopyRightWatermarkTask`
         # @param ReviewAudioVideoCompleteEvent: 音视频审核完成事件，当事件类型为 ReviewAudioVideoComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewAudioVideoCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ReviewAudioVideoTask`
@@ -11976,9 +12017,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DescribeFileAttributesCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.DescribeFileAttributesTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -11999,6 +12040,7 @@ module TencentCloud
           @RestoreMediaCompleteEvent = restoremediacompleteevent
           @RebuildMediaCompleteEvent = rebuildmediacompleteevent
           @ExtractTraceWatermarkCompleteEvent = extracttracewatermarkcompleteevent
+          @ExtractCopyRightWatermarkCompleteEvent = extractcopyrightwatermarkcompleteevent
           @ReviewAudioVideoCompleteEvent = reviewaudiovideocompleteevent
           @ReduceMediaBitrateCompleteEvent = reducemediabitratecompleteevent
           @DescribeFileAttributesCompleteEvent = describefileattributescompleteevent
@@ -12079,6 +12121,10 @@ module TencentCloud
             @ExtractTraceWatermarkCompleteEvent = ExtractTraceWatermarkTask.new
             @ExtractTraceWatermarkCompleteEvent.deserialize(params['ExtractTraceWatermarkCompleteEvent'])
           end
+          unless params['ExtractCopyRightWatermarkCompleteEvent'].nil?
+            @ExtractCopyRightWatermarkCompleteEvent = ExtractCopyRightWatermarkTask.new
+            @ExtractCopyRightWatermarkCompleteEvent.deserialize(params['ExtractCopyRightWatermarkCompleteEvent'])
+          end
           unless params['ReviewAudioVideoCompleteEvent'].nil?
             @ReviewAudioVideoCompleteEvent = ReviewAudioVideoTask.new
             @ReviewAudioVideoCompleteEvent.deserialize(params['ReviewAudioVideoCompleteEvent'])
@@ -12147,6 +12193,99 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 提取版权水印任务。
+      class ExtractCopyRightWatermarkTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败：
+        # <li>40000：输入参数不合法，请检查输入参数；</li>
+        # <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
+        # <li>70000：内部服务错误，建议重试。</li>
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Input: 提取版权水印任务输入信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ExtractCopyRightWatermarkTaskInput`
+        # @param Output: 提取版权水印任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ExtractCopyRightWatermarkTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :ErrCodeExt, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, errcodeext=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @ErrCodeExt = errcodeext
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @ErrCodeExt = params['ErrCodeExt']
+          unless params['Input'].nil?
+            @Input = ExtractCopyRightWatermarkTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = ExtractCopyRightWatermarkTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # 提取版权水印任务输入
+      class ExtractCopyRightWatermarkTaskInput < TencentCloud::Common::AbstractModel
+        # @param Url: 需要提取水印的媒体 URL。
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+        end
+      end
+
+      # 提取版权水印输出信息
+      class ExtractCopyRightWatermarkTaskOutput < TencentCloud::Common::AbstractModel
+        # @param Text: 版权信息。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 
@@ -15618,12 +15757,15 @@ module TencentCloud
         # @type AudioStreamSet: Array
         # @param DigitalWatermarkType: 数字水印类型。可选值：
         # <li>Trace 表示经过溯源水印处理；</li>
+        # <li>CopyRight 表示经过版权水印处理；</li>
         # <li>None 表示没有经过数字水印处理。</li>
         # @type DigitalWatermarkType: String
+        # @param CopyRightWatermarkText: 版权信息。
+        # @type CopyRightWatermarkText: String
 
-        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType
+        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType, :CopyRightWatermarkText
 
-        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil)
+        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil, copyrightwatermarktext=nil)
           @Url = url
           @Definition = definition
           @Bitrate = bitrate
@@ -15636,6 +15778,7 @@ module TencentCloud
           @VideoStreamSet = videostreamset
           @AudioStreamSet = audiostreamset
           @DigitalWatermarkType = digitalwatermarktype
+          @CopyRightWatermarkText = copyrightwatermarktext
         end
 
         def deserialize(params)
@@ -15665,6 +15808,7 @@ module TencentCloud
             end
           end
           @DigitalWatermarkType = params['DigitalWatermarkType']
+          @CopyRightWatermarkText = params['CopyRightWatermarkText']
         end
       end
 
@@ -24118,6 +24262,8 @@ module TencentCloud
         # @type WatermarkSet: Array
         # @param TraceWatermark: 溯源水印。
         # @type TraceWatermark: :class:`Tencentcloud::Vod.v20180717.models.TraceWatermarkInput`
+        # @param CopyRightWatermark: 版权水印。
+        # @type CopyRightWatermark: :class:`Tencentcloud::Vod.v20180717.models.CopyRightWatermarkInput`
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array
         # @param HeadTailSet: 片头片尾列表，支持多片头片尾，最大可支持 10 个。
@@ -24133,12 +24279,13 @@ module TencentCloud
         # <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         # @type EndTimeOffset: Float
 
-        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
+        attr_accessor :Definition, :WatermarkSet, :TraceWatermark, :CopyRightWatermark, :MosaicSet, :HeadTailSet, :StartTimeOffset, :EndTimeOffset
 
-        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
+        def initialize(definition=nil, watermarkset=nil, tracewatermark=nil, copyrightwatermark=nil, mosaicset=nil, headtailset=nil, starttimeoffset=nil, endtimeoffset=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @TraceWatermark = tracewatermark
+          @CopyRightWatermark = copyrightwatermark
           @MosaicSet = mosaicset
           @HeadTailSet = headtailset
           @StartTimeOffset = starttimeoffset
@@ -24158,6 +24305,10 @@ module TencentCloud
           unless params['TraceWatermark'].nil?
             @TraceWatermark = TraceWatermarkInput.new
             @TraceWatermark.deserialize(params['TraceWatermark'])
+          end
+          unless params['CopyRightWatermark'].nil?
+            @CopyRightWatermark = CopyRightWatermarkInput.new
+            @CopyRightWatermark.deserialize(params['CopyRightWatermark'])
           end
           unless params['MosaicSet'].nil?
             @MosaicSet = []

@@ -2046,10 +2046,12 @@ module TencentCloud
         # @type VPort: Integer
         # @param SecurityGroup: 安全组
         # @type SecurityGroup: Array
+        # @param ConnectionPoolType: 连接池类型。可选值 transaction（事务级别连接池），connection（会话级别连接池），ConnectionPool为true时生效。
+        # @type ConnectionPoolType: String
 
-        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :TransSplit, :ProxyAllocation, :UniqVpcId, :UniqSubnetId, :ConnectionPool, :Desc, :Vip, :VPort, :SecurityGroup, :ConnectionPoolType
 
-        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, transsplit=nil, proxyallocation=nil, uniqvpcid=nil, uniqsubnetid=nil, connectionpool=nil, desc=nil, vip=nil, vport=nil, securitygroup=nil)
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, transsplit=nil, proxyallocation=nil, uniqvpcid=nil, uniqsubnetid=nil, connectionpool=nil, desc=nil, vip=nil, vport=nil, securitygroup=nil, connectionpooltype=nil)
           @ProxyGroupId = proxygroupid
           @WeightMode = weightmode
           @IsKickOut = iskickout
@@ -2067,6 +2069,7 @@ module TencentCloud
           @Vip = vip
           @VPort = vport
           @SecurityGroup = securitygroup
+          @ConnectionPoolType = connectionpooltype
         end
 
         def deserialize(params)
@@ -2094,6 +2097,7 @@ module TencentCloud
           @Vip = params['Vip']
           @VPort = params['VPort']
           @SecurityGroup = params['SecurityGroup']
+          @ConnectionPoolType = params['ConnectionPoolType']
         end
       end
 

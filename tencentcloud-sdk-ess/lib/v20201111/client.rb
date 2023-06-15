@@ -441,7 +441,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建员工,如需在此接口提醒员工实名，入参Employees的OpenId不传
+        # 创建员工,此接口会发送提醒员工实名的短信
 
         # @param request: Request instance for CreateIntegrationEmployees.
         # @type request: :class:`Tencentcloud::ess::V20201111::CreateIntegrationEmployeesRequest`
@@ -1264,7 +1264,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新员工信息(姓名，手机号，邮件)，用户实名后无法更改姓名与手机号
+        # 更新员工信息(姓名，手机号，邮件、部门)，用户实名后无法更改姓名与手机号
 
         # @param request: Request instance for UpdateIntegrationEmployees.
         # @type request: :class:`Tencentcloud::ess::V20201111::UpdateIntegrationEmployeesRequest`

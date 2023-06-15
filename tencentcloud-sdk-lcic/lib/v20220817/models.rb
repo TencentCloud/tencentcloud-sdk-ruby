@@ -775,9 +775,9 @@ module TencentCloud
       class CreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param Name: 房间名称。
         # @type Name: String
-        # @param StartTime: 预定的房间开始时间，unix时间戳。
+        # @param StartTime: 预定的房间开始时间，unix时间戳（秒）。
         # @type StartTime: Integer
-        # @param EndTime: 预定的房间结束时间，unix时间戳。
+        # @param EndTime: 预定的房间结束时间，unix时间戳（秒）。
         # @type EndTime: Integer
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
@@ -1861,9 +1861,9 @@ module TencentCloud
       class DescribeRoomResponse < TencentCloud::Common::AbstractModel
         # @param Name: 房间名称。
         # @type Name: String
-        # @param StartTime: 预定的房间开始时间，unix时间戳。
+        # @param StartTime: 预定的房间开始时间，unix时间戳（秒）。
         # @type StartTime: Integer
-        # @param EndTime: 预定的房间结束时间，unix时间戳。
+        # @param EndTime: 预定的房间结束时间，unix时间戳（秒）。
         # @type EndTime: Integer
         # @param TeacherId: 老师的UserId。
         # @type TeacherId: String
@@ -3081,9 +3081,9 @@ module TencentCloud
         # @type RoomId: Integer
         # @param SdkAppId: 低代码互动课堂的SdkAppId
         # @type SdkAppId: Integer
-        # @param StartTime: 预定的房间开始时间，unix时间戳。直播开始后不允许修改。
+        # @param StartTime: 预定的房间开始时间，unix时间戳（秒）。直播开始后不允许修改。
         # @type StartTime: Integer
-        # @param EndTime: 预定的房间结束时间，unix时间戳。直播开始后不允许修改。
+        # @param EndTime: 预定的房间结束时间，unix时间戳（秒）。直播开始后不允许修改。
         # @type EndTime: Integer
         # @param TeacherId: 老师ID。直播开始后不允许修改。
         # @type TeacherId: String

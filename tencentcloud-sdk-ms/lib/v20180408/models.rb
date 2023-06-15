@@ -283,12 +283,17 @@ module TencentCloud
         # @type CosTocken: String
         # @param CosPrefix: 密钥可访问的文件前缀人。例如：CosPrefix=test/123/666，则该密钥只能操作test/123/666为前缀的文件，例如test/123/666/1.txt
         # @type CosPrefix: String
+        # @param CosToken: 密钥TOCKEN信息
+        # @type CosToken: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :RequestId
+        attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
+        extend Gem::Deprecate
+        deprecate :CosTocken, :none, 2023, 6
+        deprecate :CosTocken=, :none, 2023, 6
 
-        def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, requestid=nil)
+        def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
           @CosBucket = cosbucket
           @CosRegion = cosregion
@@ -297,6 +302,7 @@ module TencentCloud
           @CosKey = coskey
           @CosTocken = costocken
           @CosPrefix = cosprefix
+          @CosToken = costoken
           @RequestId = requestid
         end
 
@@ -309,6 +315,7 @@ module TencentCloud
           @CosKey = params['CosKey']
           @CosTocken = params['CosTocken']
           @CosPrefix = params['CosPrefix']
+          @CosToken = params['CosToken']
           @RequestId = params['RequestId']
         end
       end
