@@ -2549,6 +2549,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询etcd数据是否进行加密
+
+        # @param request: Request instance for DescribeEncryptionStatus.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeEncryptionStatusRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeEncryptionStatusResponse`
+        def DescribeEncryptionStatus(request)
+          body = send_request('DescribeEncryptionStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEncryptionStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询已经存在的节点，判断是否可以加入集群
 
         # @param request: Request instance for DescribeExistedInstances.
@@ -3389,6 +3413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭加密信息保护
+
+        # @param request: Request instance for DisableEncryptionProtection.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DisableEncryptionProtectionRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DisableEncryptionProtectionResponse`
+        def DisableEncryptionProtection(request)
+          body = send_request('DisableEncryptionProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableEncryptionProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭事件持久化功能
 
         # @param request: Request instance for DisableEventPersistence.
@@ -3495,6 +3543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableClusterDeletionProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启加密数据保护
+
+        # @param request: Request instance for EnableEncryptionProtection.
+        # @type request: :class:`Tencentcloud::tke::V20180525::EnableEncryptionProtectionRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::EnableEncryptionProtectionResponse`
+        def EnableEncryptionProtection(request)
+          body = send_request('EnableEncryptionProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableEncryptionProtectionResponse.new
             model.deserialize(response['Response'])
             model
           else

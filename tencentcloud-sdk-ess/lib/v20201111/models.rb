@@ -1134,6 +1134,8 @@ module TencentCloud
         # @param Deadline: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         # @type Deadline: Integer
+        # @param RemindedOn: 合同到期提醒时间戳，单位秒。设定该值后，可以提前进行到期通知，方便客户处理合同到期事务，如合同续签等。该值支持的范围是从发起时间起到往后的10年内。仅合同发起方企业的发起人可以编辑修改。
+        # @type RemindedOn: Integer
         # @param Unordered: 发送类型：
         # true：无序签
         # false：有序签
@@ -1164,9 +1166,9 @@ module TencentCloud
         # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # @type AutoSignScene: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent, :CcNotifyType, :AutoSignScene
+        attr_accessor :Operator, :FlowName, :Approvers, :FileIds, :FlowType, :Components, :CcInfos, :NeedPreview, :PreviewType, :Deadline, :RemindedOn, :Unordered, :CustomShowMap, :NeedSignReview, :UserData, :ApproverVerifyType, :FlowDescription, :SignBeanTag, :Agent, :CcNotifyType, :AutoSignScene
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil, ccnotifytype=nil, autosignscene=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, fileids=nil, flowtype=nil, components=nil, ccinfos=nil, needpreview=nil, previewtype=nil, deadline=nil, remindedon=nil, unordered=nil, customshowmap=nil, needsignreview=nil, userdata=nil, approververifytype=nil, flowdescription=nil, signbeantag=nil, agent=nil, ccnotifytype=nil, autosignscene=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
@@ -1177,6 +1179,7 @@ module TencentCloud
           @NeedPreview = needpreview
           @PreviewType = previewtype
           @Deadline = deadline
+          @RemindedOn = remindedon
           @Unordered = unordered
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
@@ -1224,6 +1227,7 @@ module TencentCloud
           @NeedPreview = params['NeedPreview']
           @PreviewType = params['PreviewType']
           @Deadline = params['Deadline']
+          @RemindedOn = params['RemindedOn']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
@@ -1386,11 +1390,11 @@ module TencentCloud
         # @type FlowType: String
         # @param ClientToken: 客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
-        # @param RelatedFlowId: 暂未开放
-        # @type RelatedFlowId: String
         # @param DeadLine: 签署流程的签署截止时间。
         # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         # @type DeadLine: Integer
+        # @param RemindedOn: 合同到期提醒时间戳，单位秒。设定该值后，可以提前进行到期通知，方便客户处理合同到期事务，如合同续签等。该值支持的范围是从发起时间起到往后的10年内。仅合同发起方企业的发起人可以编辑修改。
+        # @type RemindedOn: Integer
         # @param UserData: 用户自定义字段，回调的时候会进行透传，长度需要小于20480
         # @type UserData: String
         # @param FlowDescription: 签署流程描述,最大长度1000个字符
@@ -1407,8 +1411,6 @@ module TencentCloud
 
         # 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         # @type NeedSignReview: Boolean
-        # @param CallbackUrl: 暂未开放
-        # @type CallbackUrl: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param CcInfos: 被抄送人的信息列表。
@@ -1416,31 +1418,36 @@ module TencentCloud
         # @type CcInfos: Array
         # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # @type AutoSignScene: String
+        # @param RelatedFlowId: 暂未开放
+        # @type RelatedFlowId: String
+        # @param CallbackUrl: 暂未开放
+        # @type CallbackUrl: String
 
-        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :RelatedFlowId, :DeadLine, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :CallbackUrl, :Agent, :CcInfos, :AutoSignScene
+        attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl
         extend Gem::Deprecate
         deprecate :RelatedFlowId, :none, 2023, 6
         deprecate :RelatedFlowId=, :none, 2023, 6
         deprecate :CallbackUrl, :none, 2023, 6
         deprecate :CallbackUrl=, :none, 2023, 6
 
-        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, relatedflowid=nil, deadline=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, callbackurl=nil, agent=nil, ccinfos=nil, autosignscene=nil)
+        def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil)
           @Operator = operator
           @FlowName = flowname
           @Approvers = approvers
           @FlowType = flowtype
           @ClientToken = clienttoken
-          @RelatedFlowId = relatedflowid
           @DeadLine = deadline
+          @RemindedOn = remindedon
           @UserData = userdata
           @FlowDescription = flowdescription
           @Unordered = unordered
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
-          @CallbackUrl = callbackurl
           @Agent = agent
           @CcInfos = ccinfos
           @AutoSignScene = autosignscene
+          @RelatedFlowId = relatedflowid
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
@@ -1459,14 +1466,13 @@ module TencentCloud
           end
           @FlowType = params['FlowType']
           @ClientToken = params['ClientToken']
-          @RelatedFlowId = params['RelatedFlowId']
           @DeadLine = params['DeadLine']
+          @RemindedOn = params['RemindedOn']
           @UserData = params['UserData']
           @FlowDescription = params['FlowDescription']
           @Unordered = params['Unordered']
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
-          @CallbackUrl = params['CallbackUrl']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -1480,6 +1486,8 @@ module TencentCloud
             end
           end
           @AutoSignScene = params['AutoSignScene']
+          @RelatedFlowId = params['RelatedFlowId']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -5697,7 +5705,7 @@ module TencentCloud
 
       # UnbindEmployeeUserIdWithClientOpenId请求参数结构体
       class UnbindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定
+        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定(参数用法参考示例)
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param UserId: 电子签系统员工UserId
         # @type UserId: String

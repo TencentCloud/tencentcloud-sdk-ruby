@@ -1662,9 +1662,6 @@ module TencentCloud
         # @param PluginFile: xxx
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PluginFile: String
-        # @param PrebuildFile: xxx
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PrebuildFile: String
         # @param Marked: 是否标记
         # @type Marked: Boolean
         # @param MarkAt: 标记状态
@@ -1691,9 +1688,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorAvatar: String
 
-        attr_accessor :Id, :Category, :Name, :Description, :DescriptionEN, :Tags, :Icon, :VersionControlType, :VersionControlUrl, :VersionControlDesc, :VersionControlOwner, :VersionControlRef, :VersionControlRefType, :UserVersionControlUrl, :UserVersionControlType, :UserVersionControlRef, :UserVersionControlRefType, :DevFile, :PluginFile, :PrebuildFile, :Marked, :MarkAt, :CreateDate, :LastModified, :Sort, :SnapshotUid, :UserId, :Author, :Me, :AuthorAvatar
+        attr_accessor :Id, :Category, :Name, :Description, :DescriptionEN, :Tags, :Icon, :VersionControlType, :VersionControlUrl, :VersionControlDesc, :VersionControlOwner, :VersionControlRef, :VersionControlRefType, :UserVersionControlUrl, :UserVersionControlType, :UserVersionControlRef, :UserVersionControlRefType, :DevFile, :PluginFile, :Marked, :MarkAt, :CreateDate, :LastModified, :Sort, :SnapshotUid, :UserId, :Author, :Me, :AuthorAvatar
 
-        def initialize(id=nil, category=nil, name=nil, description=nil, descriptionen=nil, tags=nil, icon=nil, versioncontroltype=nil, versioncontrolurl=nil, versioncontroldesc=nil, versioncontrolowner=nil, versioncontrolref=nil, versioncontrolreftype=nil, userversioncontrolurl=nil, userversioncontroltype=nil, userversioncontrolref=nil, userversioncontrolreftype=nil, devfile=nil, pluginfile=nil, prebuildfile=nil, marked=nil, markat=nil, createdate=nil, lastmodified=nil, sort=nil, snapshotuid=nil, userid=nil, author=nil, me=nil, authoravatar=nil)
+        def initialize(id=nil, category=nil, name=nil, description=nil, descriptionen=nil, tags=nil, icon=nil, versioncontroltype=nil, versioncontrolurl=nil, versioncontroldesc=nil, versioncontrolowner=nil, versioncontrolref=nil, versioncontrolreftype=nil, userversioncontrolurl=nil, userversioncontroltype=nil, userversioncontrolref=nil, userversioncontrolreftype=nil, devfile=nil, pluginfile=nil, marked=nil, markat=nil, createdate=nil, lastmodified=nil, sort=nil, snapshotuid=nil, userid=nil, author=nil, me=nil, authoravatar=nil)
           @Id = id
           @Category = category
           @Name = name
@@ -1713,7 +1710,6 @@ module TencentCloud
           @UserVersionControlRefType = userversioncontrolreftype
           @DevFile = devfile
           @PluginFile = pluginfile
-          @PrebuildFile = prebuildfile
           @Marked = marked
           @MarkAt = markat
           @CreateDate = createdate
@@ -1746,7 +1742,6 @@ module TencentCloud
           @UserVersionControlRefType = params['UserVersionControlRefType']
           @DevFile = params['DevFile']
           @PluginFile = params['PluginFile']
-          @PrebuildFile = params['PrebuildFile']
           @Marked = params['Marked']
           @MarkAt = params['MarkAt']
           @CreateDate = params['CreateDate']

@@ -7130,6 +7130,33 @@ module TencentCloud
         end
       end
 
+      # DescribeEncryptionStatus请求参数结构体
+      class DescribeEncryptionStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEncryptionStatus返回参数结构体
+      class DescribeEncryptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExistedInstances请求参数结构体
       class DescribeExistedInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID，请填写查询集群列表 接口中返回的 ClusterId 字段（仅通过ClusterId获取需要过滤条件中的VPCID。节点状态比较时会使用该地域下所有集群中的节点进行比较。参数不支持同时指定InstanceIds和ClusterId。
@@ -9149,6 +9176,33 @@ module TencentCloud
         end
       end
 
+      # DisableEncryptionProtection请求参数结构体
+      class DisableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DisableEncryptionProtection返回参数结构体
+      class DisableEncryptionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableEventPersistence请求参数结构体
       class DisableEventPersistenceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -10049,6 +10103,33 @@ module TencentCloud
 
       # EnableClusterDeletionProtection返回参数结构体
       class EnableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableEncryptionProtection请求参数结构体
+      class EnableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # EnableEncryptionProtection返回参数结构体
+      class EnableEncryptionProtectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

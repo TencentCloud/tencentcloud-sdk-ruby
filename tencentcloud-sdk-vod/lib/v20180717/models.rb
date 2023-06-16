@@ -12196,6 +12196,62 @@ module TencentCloud
         end
       end
 
+      # ExtractCopyRightWatermark请求参数结构体
+      class ExtractCopyRightWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param Url: 需要提取水印的媒体 URL。
+        # @type Url: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在 ExtractCopyRightWatermarkComplete 回调和任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param SessionId: 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :Url, :SubAppId, :SessionContext, :SessionId, :TasksPriority, :ExtInfo
+
+        def initialize(url=nil, subappid=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil, extinfo=nil)
+          @Url = url
+          @SubAppId = subappid
+          @SessionContext = sessioncontext
+          @SessionId = sessionid
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @SubAppId = params['SubAppId']
+          @SessionContext = params['SessionContext']
+          @SessionId = params['SessionId']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # ExtractCopyRightWatermark返回参数结构体
+      class ExtractCopyRightWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 提取版权水印任务。
       class ExtractCopyRightWatermarkTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID。
