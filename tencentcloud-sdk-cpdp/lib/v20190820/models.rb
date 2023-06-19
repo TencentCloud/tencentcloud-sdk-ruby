@@ -13891,10 +13891,28 @@ module TencentCloud
         # @param SumSettlementAmount: 累计结算金额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SumSettlementAmount: String
+        # @param PaidIncomeTax: 已缴个税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaidIncomeTax: String
+        # @param InPayIncomeTax: 提现中个税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InPayIncomeTax: String
+        # @param PaidValueAddedTax: 已缴增值税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaidValueAddedTax: String
+        # @param InPayValueAddedTax: 提现中增值税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InPayValueAddedTax: String
+        # @param PaidAttachTax: 已缴附加税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaidAttachTax: String
+        # @param InPayAttachTax: 提现中附加税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InPayAttachTax: String
 
-        attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance, :SumSettlementAmount
+        attr_accessor :AccountId, :IncomeType, :Balance, :SystemFreezeBalance, :ManualFreezeBalance, :PayableBalance, :PaidBalance, :InPayBalance, :SumSettlementAmount, :PaidIncomeTax, :InPayIncomeTax, :PaidValueAddedTax, :InPayValueAddedTax, :PaidAttachTax, :InPayAttachTax
 
-        def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil, sumsettlementamount=nil)
+        def initialize(accountid=nil, incometype=nil, balance=nil, systemfreezebalance=nil, manualfreezebalance=nil, payablebalance=nil, paidbalance=nil, inpaybalance=nil, sumsettlementamount=nil, paidincometax=nil, inpayincometax=nil, paidvalueaddedtax=nil, inpayvalueaddedtax=nil, paidattachtax=nil, inpayattachtax=nil)
           @AccountId = accountid
           @IncomeType = incometype
           @Balance = balance
@@ -13904,6 +13922,12 @@ module TencentCloud
           @PaidBalance = paidbalance
           @InPayBalance = inpaybalance
           @SumSettlementAmount = sumsettlementamount
+          @PaidIncomeTax = paidincometax
+          @InPayIncomeTax = inpayincometax
+          @PaidValueAddedTax = paidvalueaddedtax
+          @InPayValueAddedTax = inpayvalueaddedtax
+          @PaidAttachTax = paidattachtax
+          @InPayAttachTax = inpayattachtax
         end
 
         def deserialize(params)
@@ -13916,6 +13940,12 @@ module TencentCloud
           @PaidBalance = params['PaidBalance']
           @InPayBalance = params['InPayBalance']
           @SumSettlementAmount = params['SumSettlementAmount']
+          @PaidIncomeTax = params['PaidIncomeTax']
+          @InPayIncomeTax = params['InPayIncomeTax']
+          @PaidValueAddedTax = params['PaidValueAddedTax']
+          @InPayValueAddedTax = params['InPayValueAddedTax']
+          @PaidAttachTax = params['PaidAttachTax']
+          @InPayAttachTax = params['InPayAttachTax']
         end
       end
 

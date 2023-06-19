@@ -4374,9 +4374,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，默认值为20，最小值为1，最大值为100。
         # @type Limit: Integer
-        # @param MinStartTime: binlog开始时间，筛选大于等于此值，时间格式：2016-03-17 02:10:37
+        # @param MinStartTime: binlog最早开始时间，时间格式：2016-03-17 02:10:37
         # @type MinStartTime: String
-        # @param MaxStartTime: binlog开始时间，筛选小于等于此值，时间格式：2016-03-17 02:10:37
+        # @param MaxStartTime: binlog最晚开始时间，时间格式：2016-03-17 02:10:37
         # @type MaxStartTime: String
 
         attr_accessor :InstanceId, :Offset, :Limit, :MinStartTime, :MaxStartTime

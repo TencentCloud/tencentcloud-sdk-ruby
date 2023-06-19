@@ -629,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建电子印章
+
+        # @param request: Request instance for CreateSeal.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateSealRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateSealResponse`
+        def CreateSeal(request)
+          body = send_request('CreateSeal', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSealResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对企业员工进行印章授权
 
         # @param request: Request instance for CreateSealPolicy.

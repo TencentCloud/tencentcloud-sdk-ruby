@@ -2743,7 +2743,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询调用监控指标
+        # 废弃
 
         # @param request: Request instance for DescribeInovcationIndicators.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeInovcationIndicatorsRequest`

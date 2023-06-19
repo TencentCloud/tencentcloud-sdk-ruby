@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 授权工作空间列表
+
+        # @param request: Request instance for DescribeWorkSpaces.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeWorkSpacesRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeWorkSpacesResponse`
+        def DescribeWorkSpaces(request)
+          body = send_request('DescribeWorkSpaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkSpacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新作业属性，仅允许以下3种操作，不支持组合操作：
         # (1)	更新作业名称
         # (2)	更新作业备注

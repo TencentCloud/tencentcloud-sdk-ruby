@@ -303,6 +303,94 @@ module TencentCloud
         end
       end
 
+      # 工作空间集群组信息
+      class ClusterGroupSetItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: clusterGroup 的 SerialId
+        # @type ClusterId: String
+        # @param Name: 集群名称
+        # @type Name: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param Zone: 区
+        # @type Zone: String
+        # @param AppId: 账号 APPID
+        # @type AppId: Integer
+        # @param OwnerUin: 主账号 UIN
+        # @type OwnerUin: String
+        # @param CreatorUin: 创建账号 UIN
+        # @type CreatorUin: String
+        # @param CuNum: CU 数量
+        # @type CuNum: Integer
+        # @param CuMem: CU 内存规格
+        # @type CuMem: Integer
+        # @param Status: 集群状态, 1 未初始化,，3 初始化中，2 运行中
+        # @type Status: Integer
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param CreateTime: 集群创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最后一次操作集群的时间
+        # @type UpdateTime: String
+        # @param Remark: 描述
+        # @type Remark: String
+        # @param NetEnvironmentType: 网络
+        # @type NetEnvironmentType: Integer
+        # @param FreeCuNum: 空闲 CU
+        # @type FreeCuNum: Integer
+        # @param FreeCu: 细粒度资源下的空闲CU
+        # @type FreeCu: Float
+        # @param RunningCu: 运行中CU
+        # @type RunningCu: Float
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+
+        attr_accessor :ClusterId, :Name, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :CuNum, :CuMem, :Status, :StatusDesc, :CreateTime, :UpdateTime, :Remark, :NetEnvironmentType, :FreeCuNum, :FreeCu, :RunningCu, :PayMode
+
+        def initialize(clusterid=nil, name=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, cunum=nil, cumem=nil, status=nil, statusdesc=nil, createtime=nil, updatetime=nil, remark=nil, netenvironmenttype=nil, freecunum=nil, freecu=nil, runningcu=nil, paymode=nil)
+          @ClusterId = clusterid
+          @Name = name
+          @Region = region
+          @Zone = zone
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @CuNum = cunum
+          @CuMem = cumem
+          @Status = status
+          @StatusDesc = statusdesc
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Remark = remark
+          @NetEnvironmentType = netenvironmenttype
+          @FreeCuNum = freecunum
+          @FreeCu = freecu
+          @RunningCu = runningcu
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @CuNum = params['CuNum']
+          @CuMem = params['CuMem']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Remark = params['Remark']
+          @NetEnvironmentType = params['NetEnvironmentType']
+          @FreeCuNum = params['FreeCuNum']
+          @FreeCu = params['FreeCu']
+          @RunningCu = params['RunningCu']
+          @PayMode = params['PayMode']
+        end
+      end
+
       # session集群信息
       class ClusterSession < TencentCloud::Common::AbstractModel
 
@@ -1765,6 +1853,73 @@ module TencentCloud
         end
       end
 
+      # DescribeWorkSpaces请求参数结构体
+      class DescribeWorkSpacesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认 0
+        # @type Offset: Integer
+        # @param OrderType: 1 按照创建时间降序排序(默认) 2.按照创建时间升序排序，3. 按照状态降序排序 4. 按照状态升序排序 默认为0
+        # @type OrderType: Integer
+        # @param Limit: 请求的集群数量，默认 20
+        # @type Limit: Integer
+        # @param Filters: 过滤规则
+        # @type Filters: Array
+
+        attr_accessor :Offset, :OrderType, :Limit, :Filters
+
+        def initialize(offset=nil, ordertype=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @OrderType = ordertype
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @OrderType = params['OrderType']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeWorkSpaces返回参数结构体
+      class DescribeWorkSpacesResponse < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceSetItem: 空间详情列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceSetItem: Array
+        # @param TotalCount: 空间总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkSpaceSetItem, :TotalCount, :RequestId
+
+        def initialize(workspacesetitem=nil, totalcount=nil, requestid=nil)
+          @WorkSpaceSetItem = workspacesetitem
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WorkSpaceSetItem'].nil?
+            @WorkSpaceSetItem = []
+            params['WorkSpaceSetItem'].each do |i|
+              workspacesetitem_tmp = WorkSpaceSetItem.new
+              workspacesetitem_tmp.deserialize(i)
+              @WorkSpaceSetItem << workspacesetitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询作业列表时的过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段
@@ -2488,6 +2643,69 @@ module TencentCloud
         end
       end
 
+      # 角色授权信息
+      class RoleAuth < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户 AppID
+        # @type AppId: Integer
+        # @param WorkSpaceSerialId: 工作空间 SerialId
+        # @type WorkSpaceSerialId: String
+        # @param OwnerUin: 主账号 UIN
+        # @type OwnerUin: String
+        # @param CreatorUin: 创建者 UIN
+        # @type CreatorUin: String
+        # @param AuthSubAccountUin: 绑定授权的 UIN
+        # @type AuthSubAccountUin: String
+        # @param Permission: 对应 role表的id
+        # @type Permission: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最后一次操作时间
+        # @type UpdateTime: String
+        # @param Status: 2 启用 1 停用
+        # @type Status: Integer
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param WorkSpaceId: 工作空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceId: Integer
+        # @param RoleName: 权限名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+
+        attr_accessor :AppId, :WorkSpaceSerialId, :OwnerUin, :CreatorUin, :AuthSubAccountUin, :Permission, :CreateTime, :UpdateTime, :Status, :Id, :WorkSpaceId, :RoleName
+
+        def initialize(appid=nil, workspaceserialid=nil, owneruin=nil, creatoruin=nil, authsubaccountuin=nil, permission=nil, createtime=nil, updatetime=nil, status=nil, id=nil, workspaceid=nil, rolename=nil)
+          @AppId = appid
+          @WorkSpaceSerialId = workspaceserialid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @AuthSubAccountUin = authsubaccountuin
+          @Permission = permission
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @Id = id
+          @WorkSpaceId = workspaceid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @WorkSpaceSerialId = params['WorkSpaceSerialId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @AuthSubAccountUin = params['AuthSubAccountUin']
+          @Permission = params['Permission']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @Id = params['Id']
+          @WorkSpaceId = params['WorkSpaceId']
+          @RoleName = params['RoleName']
+        end
+      end
+
       # 作业启动详情
       class RunJobDescription < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -2927,6 +3145,93 @@ module TencentCloud
           @Status = params['Status']
           @ProjectId = params['ProjectId']
           @ProjectIdStr = params['ProjectIdStr']
+        end
+      end
+
+      # 工作空间详情
+      class WorkSpaceSetItem < TencentCloud::Common::AbstractModel
+        # @param SerialId: 工作空间 SerialId
+        # @type SerialId: String
+        # @param AppId: 用户 APPID
+        # @type AppId: Integer
+        # @param OwnerUin: 主账号 UIN
+        # @type OwnerUin: String
+        # @param CreatorUin: 创建者 UIN
+        # @type CreatorUin: String
+        # @param WorkSpaceName: 工作空间名称
+        # @type WorkSpaceName: String
+        # @param Region: 区域
+        # @type Region: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Status: 1 未初始化 2 可用  -1 已删除
+        # @type Status: Integer
+        # @param Description: 工作空间描述
+        # @type Description: String
+        # @param ClusterGroupSetItem: 工作空间包含集群信息
+        # @type ClusterGroupSetItem: Array
+        # @param RoleAuth: 工作空间角色的信息
+        # @type RoleAuth: Array
+        # @param RoleAuthCount: 工作空间成员数量
+        # @type RoleAuthCount: Integer
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+        # @param JobsCount: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobsCount: Integer
+
+        attr_accessor :SerialId, :AppId, :OwnerUin, :CreatorUin, :WorkSpaceName, :Region, :CreateTime, :UpdateTime, :Status, :Description, :ClusterGroupSetItem, :RoleAuth, :RoleAuthCount, :WorkSpaceId, :JobsCount
+
+        def initialize(serialid=nil, appid=nil, owneruin=nil, creatoruin=nil, workspacename=nil, region=nil, createtime=nil, updatetime=nil, status=nil, description=nil, clustergroupsetitem=nil, roleauth=nil, roleauthcount=nil, workspaceid=nil, jobscount=nil)
+          @SerialId = serialid
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @WorkSpaceName = workspacename
+          @Region = region
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @Description = description
+          @ClusterGroupSetItem = clustergroupsetitem
+          @RoleAuth = roleauth
+          @RoleAuthCount = roleauthcount
+          @WorkSpaceId = workspaceid
+          @JobsCount = jobscount
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @WorkSpaceName = params['WorkSpaceName']
+          @Region = params['Region']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @Description = params['Description']
+          unless params['ClusterGroupSetItem'].nil?
+            @ClusterGroupSetItem = []
+            params['ClusterGroupSetItem'].each do |i|
+              clustergroupsetitem_tmp = ClusterGroupSetItem.new
+              clustergroupsetitem_tmp.deserialize(i)
+              @ClusterGroupSetItem << clustergroupsetitem_tmp
+            end
+          end
+          unless params['RoleAuth'].nil?
+            @RoleAuth = []
+            params['RoleAuth'].each do |i|
+              roleauth_tmp = RoleAuth.new
+              roleauth_tmp.deserialize(i)
+              @RoleAuth << roleauth_tmp
+            end
+          end
+          @RoleAuthCount = params['RoleAuthCount']
+          @WorkSpaceId = params['WorkSpaceId']
+          @JobsCount = params['JobsCount']
         end
       end
 

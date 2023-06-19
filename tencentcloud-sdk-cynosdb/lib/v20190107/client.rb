@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭数据库代理
+
+        # @param request: Request instance for CloseProxy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CloseProxyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CloseProxyResponse`
+        def CloseProxy(request)
+          body = send_request('CloseProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseWan）用于关闭外网
 
         # @param request: Request instance for CloseWan.
@@ -399,6 +423,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateParamTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建数据库代理
+
+        # @param request: Request instance for CreateProxy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateProxyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateProxyResponse`
+        def CreateProxy(request)
+          body = send_request('CreateProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建数据库代理连接点
+
+        # @param request: Request instance for CreateProxyEndPoint.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateProxyEndPointRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateProxyEndPointResponse`
+        def CreateProxyEndPoint(request)
+          body = send_request('CreateProxyEndPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProxyEndPointResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1349,6 +1421,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据库代理列表
+
+        # @param request: Request instance for DescribeProxies.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxiesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxiesResponse`
+        def DescribeProxies(request)
+          body = send_request('DescribeProxies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeProxyNodes）用于查询代理接口列表。
+
+        # @param request: Request instance for DescribeProxyNodes.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxyNodesRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxyNodesResponse`
+        def DescribeProxyNodes(request)
+          body = send_request('DescribeProxyNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxyNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资源包使用详情
 
         # @param request: Request instance for DescribeResourcePackageDetail.
@@ -2189,6 +2309,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改数据库代理描述
+
+        # @param request: Request instance for ModifyProxyDesc.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyDescRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyDescResponse`
+        def ModifyProxyDesc(request)
+          body = send_request('ModifyProxyDesc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProxyDescResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 配置数据库代理读写分离
+
+        # @param request: Request instance for ModifyProxyRwSplit.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyRwSplitRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifyProxyRwSplitResponse`
+        def ModifyProxyRwSplit(request)
+          body = send_request('ModifyProxyRwSplit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProxyRwSplitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 给资源包绑定集群
 
         # @param request: Request instance for ModifyResourcePackageClusters.
@@ -2439,6 +2607,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RefundResourcePackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 负载均衡数据库代理
+
+        # @param request: Request instance for ReloadBalanceProxyNode.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ReloadBalanceProxyNodeRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ReloadBalanceProxyNodeResponse`
+        def ReloadBalanceProxyNode(request)
+          body = send_request('ReloadBalanceProxyNode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReloadBalanceProxyNodeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2799,6 +2991,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpgradeInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级数据库代理配置
+
+        # @param request: Request instance for UpgradeProxy.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyResponse`
+        def UpgradeProxy(request)
+          body = send_request('UpgradeProxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级数据库代理版本
+
+        # @param request: Request instance for UpgradeProxyVersion.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyVersionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::UpgradeProxyVersionResponse`
+        def UpgradeProxyVersion(request)
+          body = send_request('UpgradeProxyVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeProxyVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
