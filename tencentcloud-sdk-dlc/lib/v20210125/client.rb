@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CancelNotebookSessionStatement）用于取消session statement
+        # 本接口（CancelNotebookSessionStatement）用于取消session中执行的任务
 
         # @param request: Request instance for CancelNotebookSessionStatement.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CancelNotebookSessionStatementRequest`
@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CancelNotebookSessionStatementBatch）用于按批取消Session statement。
+        # 本接口（CancelNotebookSessionStatementBatch）用于批量取消Session 中执行的任务
 
         # @param request: Request instance for CancelNotebookSessionStatementBatch.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CancelNotebookSessionStatementBatchRequest`
@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CancelTask），用于取消任务执行
+        # 本接口（CancelTask），用于取消任务
 
         # @param request: Request instance for CancelTask.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CancelTaskRequest`
@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateNotebookSession）用于创建notebook livy session
+        # 本接口（CreateNotebookSession）用于创建交互式session（notebook）
 
         # @param request: Request instance for CreateNotebookSession.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateNotebookSessionRequest`
@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateNotebookSessionStatement）用于创建session statement
+        # 本接口（CreateNotebookSessionStatement）用于在session中执行代码片段
 
         # @param request: Request instance for CreateNotebookSessionStatement.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateNotebookSessionStatementRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建Statement批量运行SQL任务。
+        # 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建交互式session并执行SQL任务
 
         # @param request: Request instance for CreateNotebookSessionStatementSupportBatchSQL.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateNotebookSessionStatementSupportBatchSQLRequest`
@@ -629,7 +629,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建spark应用
+        # 创建spark作业
 
         # @param request: Request instance for CreateSparkApp.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建spark任务
+        # 启动Spark作业
 
         # @param request: Request instance for CreateSparkAppTask.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkAppTaskRequest`
@@ -749,7 +749,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
+        # 本接口（CreateTask）用于创建并执行SQL任务。（推荐使用CreateTasks接口）
 
         # @param request: Request instance for CreateTask.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTaskRequest`
@@ -773,7 +773,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateTasks），用于批量创建任务
+        # 本接口（CreateTasks），用于批量创建并执行SQL任务
 
         # @param request: Request instance for CreateTasks.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateTasksRequest`
@@ -917,7 +917,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除spark应用
+        # 删除spark作业
 
         # @param request: Request instance for DeleteSparkApp.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteSparkAppRequest`
@@ -1109,7 +1109,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+        # 本接口（DescribeDataEngines）用于查询DataEngines信息列表
 
         # @param request: Request instance for DescribeDataEngines.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataEnginesRequest`
@@ -1157,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口根据引擎ID获取数据引擎资源使用情况
+        # 本接口根据引擎ID查询数据引擎资源使用情况
 
         # @param request: Request instance for DescribeEngineUsageInfo.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeEngineUsageInfoRequest`
@@ -1181,7 +1181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeForbiddenTablePro）用于获取被禁用的表属性列表
+        # 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
 
         # @param request: Request instance for DescribeForbiddenTablePro.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeForbiddenTableProRequest`
@@ -1253,7 +1253,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+        # 本接口（DescribeNotebookSession）用于查询交互式 session详情信息
 
         # @param request: Request instance for DescribeNotebookSession.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionRequest`
@@ -1277,7 +1277,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+        # 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
 
         # @param request: Request instance for DescribeNotebookSessionLog.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionLogRequest`
@@ -1301,7 +1301,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeNotebookSessionStatement）用于获取session statement信息
+        # 本接口（DescribeNotebookSessionStatement）用于查询session 中执行任务的详情
 
         # @param request: Request instance for DescribeNotebookSessionStatement.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionStatementRequest`
@@ -1349,7 +1349,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeNotebookSessionStatements）用于获取Session Statement列表。
+        # 本接口（DescribeNotebookSessionStatements）用于查询Session中执行的任务列表
 
         # @param request: Request instance for DescribeNotebookSessionStatements.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionStatementsRequest`
@@ -1373,7 +1373,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+        # 本接口（DescribeNotebookSessions）用于查询交互式 session列表
 
         # @param request: Request instance for DescribeNotebookSessions.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeNotebookSessionsRequest`
@@ -1421,7 +1421,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口（DescribeScripts）用于获取所有SQL查询。
+        # 该接口（DescribeScripts）用于查询SQL脚本列表
 
         # @param request: Request instance for DescribeScripts.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeScriptsRequest`
@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询具体的spark应用
+        # 查询spark作业信息
 
         # @param request: Request instance for DescribeSparkAppJob.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobRequest`
@@ -1469,7 +1469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取spark应用列表。
+        # 查询spark作业列表
 
         # @param request: Request instance for DescribeSparkAppJobs.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppJobsRequest`
@@ -1493,7 +1493,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询spark应用的运行任务实例列表
+        # 查询Spark作业的运行任务列表
 
         # @param request: Request instance for DescribeSparkAppTasks.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkAppTasksRequest`
@@ -1877,7 +1877,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+        # 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
 
         # @param request: Request instance for ListTaskJobLogDetail.
         # @type request: :class:`Tencentcloud::dlc::V20210125::ListTaskJobLogDetailRequest`
@@ -1949,7 +1949,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新spark应用
+        # 更新spark作业
 
         # @param request: Request instance for ModifySparkApp.
         # @type request: :class:`Tencentcloud::dlc::V20210125::ModifySparkAppRequest`
@@ -2069,7 +2069,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于控制暂停或恢复数据引擎
+        # 本接口用于控制挂起或启动数据引擎
 
         # @param request: Request instance for SuspendResumeDataEngine.
         # @type request: :class:`Tencentcloud::dlc::V20210125::SuspendResumeDataEngineRequest`

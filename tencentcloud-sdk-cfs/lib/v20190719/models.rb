@@ -51,10 +51,12 @@ module TencentCloud
         # @param IntervalDays: 快照定期间隔天数，1-365 天；该参数与DayOfMonth,DayOfWeek互斥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntervalDays: Integer
+        # @param CrossRegionsAliveDays: 跨地域复制的快照保留时间
+        # @type CrossRegionsAliveDays: Integer
 
-        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays
+        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays, :CrossRegionsAliveDays
 
-        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil)
+        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil, crossregionsalivedays=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
           @CreationTime = creationtime
@@ -70,6 +72,7 @@ module TencentCloud
           @FileSystems = filesystems
           @DayOfMonth = dayofmonth
           @IntervalDays = intervaldays
+          @CrossRegionsAliveDays = crossregionsalivedays
         end
 
         def deserialize(params)
@@ -95,6 +98,7 @@ module TencentCloud
           end
           @DayOfMonth = params['DayOfMonth']
           @IntervalDays = params['IntervalDays']
+          @CrossRegionsAliveDays = params['CrossRegionsAliveDays']
         end
       end
 

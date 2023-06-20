@@ -286,6 +286,41 @@ module TencentCloud
         end
       end
 
+      # addon的具体描述
+      class Addon < TencentCloud::Common::AbstractModel
+        # @param AddonName: addon名称
+        # @type AddonName: String
+        # @param AddonVersion: addon的版本
+        # @type AddonVersion: String
+        # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawValues: String
+        # @param Phase: addon的状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phase: String
+        # @param Reason: addon失败的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :AddonName, :AddonVersion, :RawValues, :Phase, :Reason
+
+        def initialize(addonname=nil, addonversion=nil, rawvalues=nil, phase=nil, reason=nil)
+          @AddonName = addonname
+          @AddonVersion = addonversion
+          @RawValues = rawvalues
+          @Phase = phase
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @AddonName = params['AddonName']
+          @AddonVersion = params['AddonVersion']
+          @RawValues = params['RawValues']
+          @Phase = params['Phase']
+          @Reason = params['Reason']
+        end
+      end
+
       # app所支持的chart
       class AppChart < TencentCloud::Common::AbstractModel
         # @param Name: chart名称
@@ -3662,6 +3697,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAddon请求参数结构体
+      class DeleteAddonRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AddonName: addon名称
+        # @type AddonName: String
+
+        attr_accessor :ClusterId, :AddonName
+
+        def initialize(clusterid=nil, addonname=nil)
+          @ClusterId = clusterid
+          @AddonName = addonname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AddonName = params['AddonName']
+        end
+      end
+
+      # DeleteAddon返回参数结构体
+      class DeleteAddonResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteBackupStorageLocation请求参数结构体
       class DeleteBackupStorageLocationRequest < TencentCloud::Common::AbstractModel
         # @param Name: 备份仓库名称
@@ -4693,6 +4764,97 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAddon请求参数结构体
+      class DescribeAddonRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AddonName: addon名称（不传时会返回集群下全部的addon）
+        # @type AddonName: String
+
+        attr_accessor :ClusterId, :AddonName
+
+        def initialize(clusterid=nil, addonname=nil)
+          @ClusterId = clusterid
+          @AddonName = addonname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AddonName = params['AddonName']
+        end
+      end
+
+      # DescribeAddon返回参数结构体
+      class DescribeAddonResponse < TencentCloud::Common::AbstractModel
+        # @param Addons: addon列表
+        # @type Addons: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Addons, :RequestId
+
+        def initialize(addons=nil, requestid=nil)
+          @Addons = addons
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Addons'].nil?
+            @Addons = []
+            params['Addons'].each do |i|
+              addon_tmp = Addon.new
+              addon_tmp.deserialize(i)
+              @Addons << addon_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAddonValues请求参数结构体
+      class DescribeAddonValuesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AddonName: addon名称
+        # @type AddonName: String
+
+        attr_accessor :ClusterId, :AddonName
+
+        def initialize(clusterid=nil, addonname=nil)
+          @ClusterId = clusterid
+          @AddonName = addonname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AddonName = params['AddonName']
+        end
+      end
+
+      # DescribeAddonValues返回参数结构体
+      class DescribeAddonValuesResponse < TencentCloud::Common::AbstractModel
+        # @param Values: 参数列表，如果addon已安装，会使用已设置的的参数做渲染，是一个json格式的字符串
+        # @type Values: String
+        # @param DefaultValues: addon支持的参数列表，使用默认值，是一个json格式的字符串
+        # @type DefaultValues: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Values, :DefaultValues, :RequestId
+
+        def initialize(values=nil, defaultvalues=nil, requestid=nil)
+          @Values = values
+          @DefaultValues = defaultvalues
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+          @DefaultValues = params['DefaultValues']
           @RequestId = params['RequestId']
         end
       end
@@ -11149,6 +11311,50 @@ module TencentCloud
         end
       end
 
+      # InstallAddon请求参数结构体
+      class InstallAddonRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AddonName: addon名称
+        # @type AddonName: String
+        # @param AddonVersion: addon版本（不传默认安装最新版本）
+        # @type AddonVersion: String
+        # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取）
+        # @type RawValues: String
+
+        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues
+
+        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil)
+          @ClusterId = clusterid
+          @AddonName = addonname
+          @AddonVersion = addonversion
+          @RawValues = rawvalues
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AddonName = params['AddonName']
+          @AddonVersion = params['AddonVersion']
+          @RawValues = params['RawValues']
+        end
+      end
+
+      # InstallAddon返回参数结构体
+      class InstallAddonResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InstallEdgeLogAgent请求参数结构体
       class InstallEdgeLogAgentRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -16054,6 +16260,50 @@ module TencentCloud
 
       # UninstallLogAgent返回参数结构体
       class UninstallLogAgentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateAddon请求参数结构体
+      class UpdateAddonRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param AddonName: addon名称
+        # @type AddonName: String
+        # @param AddonVersion: addon版本（不传默认不更新）
+        # @type AddonVersion: String
+        # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取）
+        # @type RawValues: String
+
+        attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues
+
+        def initialize(clusterid=nil, addonname=nil, addonversion=nil, rawvalues=nil)
+          @ClusterId = clusterid
+          @AddonName = addonname
+          @AddonVersion = addonversion
+          @RawValues = rawvalues
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AddonName = params['AddonName']
+          @AddonVersion = params['AddonVersion']
+          @RawValues = params['RawValues']
+        end
+      end
+
+      # UpdateAddon返回参数结构体
+      class UpdateAddonResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

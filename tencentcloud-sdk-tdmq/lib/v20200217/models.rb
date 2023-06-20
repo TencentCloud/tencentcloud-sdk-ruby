@@ -9454,6 +9454,67 @@ module TencentCloud
         end
       end
 
+      # SendRocketMQMessage请求参数结构体
+      class SendRocketMQMessageRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param TopicName: topic名称
+        # @type TopicName: String
+        # @param MsgBody: 信息内容
+        # @type MsgBody: String
+        # @param MsgKey: 消息key信息
+        # @type MsgKey: String
+        # @param MsgTag: 消息tag信息
+        # @type MsgTag: String
+
+        attr_accessor :ClusterId, :NamespaceId, :TopicName, :MsgBody, :MsgKey, :MsgTag
+
+        def initialize(clusterid=nil, namespaceid=nil, topicname=nil, msgbody=nil, msgkey=nil, msgtag=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @TopicName = topicname
+          @MsgBody = msgbody
+          @MsgKey = msgkey
+          @MsgTag = msgtag
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @TopicName = params['TopicName']
+          @MsgBody = params['MsgBody']
+          @MsgKey = params['MsgKey']
+          @MsgTag = params['MsgTag']
+        end
+      end
+
+      # SendRocketMQMessage返回参数结构体
+      class SendRocketMQMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 发送结果
+        # @type Result: Boolean
+        # @param MsgId: 消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :MsgId, :RequestId
+
+        def initialize(result=nil, msgid=nil, requestid=nil)
+          @Result = result
+          @MsgId = msgid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @MsgId = params['MsgId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 排序器
       class Sort < TencentCloud::Common::AbstractModel
         # @param Name: 排序字段

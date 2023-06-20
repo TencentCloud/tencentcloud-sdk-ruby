@@ -101,6 +101,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
+
         # 动态部署并发布Bcos合约
 
         # @param request: Request instance for DeployDynamicBcosContract.
@@ -149,6 +151,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
+
         # 使用块高查询Bcos区块信息
 
         # @param request: Request instance for GetBcosBlockByNumber.
@@ -172,6 +176,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
 
         # Bcos分页查询当前群组下的区块列表
 
@@ -197,6 +203,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
+
         # Bcos根据交易哈希查看交易详细信息
 
         # @param request: Request instance for GetBcosTransByHash.
@@ -220,6 +228,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
 
         # Bcos分页查询当前群组的交易信息列表
 
@@ -461,7 +471,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取最新交易列表
+        # 获取最新交易列表（已废弃）
 
         # @param request: Request instance for GetLatesdTransactionList.
         # @type request: :class:`Tencentcloud::tbaas::V20180416::GetLatesdTransactionListRequest`
@@ -471,6 +481,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetLatesdTransactionListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取fabric最新交易列表
+
+        # @param request: Request instance for GetLatestTransactionList.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetLatestTransactionListRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetLatestTransactionListResponse`
+        def GetLatestTransactionList(request)
+          body = send_request('GetLatestTransactionList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetLatestTransactionListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -580,6 +614,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # Bcos区块链引擎已下线，请选用其他区块链引擎
 
         # 执行Bcos交易，支持动态部署的合约
 

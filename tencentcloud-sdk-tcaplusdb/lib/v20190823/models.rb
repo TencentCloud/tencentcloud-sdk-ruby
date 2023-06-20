@@ -2114,7 +2114,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param TableGroupIds: 待查询表格所属表格组ID列表
         # @type TableGroupIds: Array
-        # @param SelectedTables: 待查询表格信息列表
+        # @param SelectedTables: 待查询表格信息列表，用户不用关注，过滤请使用filter
         # @type SelectedTables: Array
         # @param Filters: 过滤条件，本接口支持：TableName，TableInstanceId
         # @type Filters: Array
@@ -2576,18 +2576,23 @@ module TencentCloud
         # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
+        # @param ApplicationId: ApplicationId由 AppInstanceId-applicationId 组成，以区分不同集群的申请
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :ApplicationId, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, applicationid=nil, requestid=nil)
           @TaskId = taskid
+          @ApplicationId = applicationid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @ApplicationId = params['ApplicationId']
           @RequestId = params['RequestId']
         end
       end

@@ -2871,6 +2871,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发送RocketMQ消息
+
+        # @param request: Request instance for SendRocketMQMessage.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::SendRocketMQMessageRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::SendRocketMQMessageResponse`
+        def SendRocketMQMessage(request)
+          body = send_request('SendRocketMQMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendRocketMQMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑cmq死信队列
 
         # @param request: Request instance for UnbindCmqDeadLetter.

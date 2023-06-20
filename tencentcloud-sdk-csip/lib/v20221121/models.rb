@@ -856,6 +856,84 @@ module TencentCloud
         end
       end
 
+      # CreateRiskCenterScanTask请求参数结构体
+      class CreateRiskCenterScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫，3-手动填写扫；1和2则Assets字段必填，3则SelfDefiningAssets必填
+        # @type ScanAssetType: Integer
+        # @param ScanItem: 扫描项目；port/poc/weakpass/webcontent/configrisk
+        # @type ScanItem: Array
+        # @param ScanPlanType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义；0,2,3则ScanPlanContent必填
+        # @type ScanPlanType: Integer
+        # @param Assets: 扫描资产信息列表
+        # @type Assets: Array
+        # @param ScanPlanContent: 扫描计划详情
+        # @type ScanPlanContent: String
+        # @param SelfDefiningAssets: ip/域名/url数组
+        # @type SelfDefiningAssets: Array
+        # @param TaskAdvanceCFG: 高级配置
+        # @type TaskAdvanceCFG: :class:`Tencentcloud::Csip.v20221121.models.TaskAdvanceCFG`
+        # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
+        # @type TaskMode: Integer
+
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
+
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
+          @TaskName = taskname
+          @ScanAssetType = scanassettype
+          @ScanItem = scanitem
+          @ScanPlanType = scanplantype
+          @Assets = assets
+          @ScanPlanContent = scanplancontent
+          @SelfDefiningAssets = selfdefiningassets
+          @TaskAdvanceCFG = taskadvancecfg
+          @TaskMode = taskmode
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @ScanAssetType = params['ScanAssetType']
+          @ScanItem = params['ScanItem']
+          @ScanPlanType = params['ScanPlanType']
+          unless params['Assets'].nil?
+            @Assets = []
+            params['Assets'].each do |i|
+              taskassetobject_tmp = TaskAssetObject.new
+              taskassetobject_tmp.deserialize(i)
+              @Assets << taskassetobject_tmp
+            end
+          end
+          @ScanPlanContent = params['ScanPlanContent']
+          @SelfDefiningAssets = params['SelfDefiningAssets']
+          unless params['TaskAdvanceCFG'].nil?
+            @TaskAdvanceCFG = TaskAdvanceCFG.new
+            @TaskAdvanceCFG.deserialize(params['TaskAdvanceCFG'])
+          end
+          @TaskMode = params['TaskMode']
+        end
+      end
+
+      # CreateRiskCenterScanTask返回参数结构体
+      class CreateRiskCenterScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # db资产输出字段
       class DBAssetVO < TencentCloud::Common::AbstractModel
         # @param AssetId: 资产id
@@ -2776,6 +2854,151 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 任务高级配置
+      class TaskAdvanceCFG < TencentCloud::Common::AbstractModel
+        # @param VulRisk: 漏洞风险高级配置
+        # @type VulRisk: Array
+        # @param WeakPwdRisk: 弱口令风险高级配置
+        # @type WeakPwdRisk: Array
+        # @param CFGRisk: 配置风险高级配置
+        # @type CFGRisk: Array
+
+        attr_accessor :VulRisk, :WeakPwdRisk, :CFGRisk
+
+        def initialize(vulrisk=nil, weakpwdrisk=nil, cfgrisk=nil)
+          @VulRisk = vulrisk
+          @WeakPwdRisk = weakpwdrisk
+          @CFGRisk = cfgrisk
+        end
+
+        def deserialize(params)
+          unless params['VulRisk'].nil?
+            @VulRisk = []
+            params['VulRisk'].each do |i|
+              taskcentervulriskinputparam_tmp = TaskCenterVulRiskInputParam.new
+              taskcentervulriskinputparam_tmp.deserialize(i)
+              @VulRisk << taskcentervulriskinputparam_tmp
+            end
+          end
+          unless params['WeakPwdRisk'].nil?
+            @WeakPwdRisk = []
+            params['WeakPwdRisk'].each do |i|
+              taskcenterweakpwdriskinputparam_tmp = TaskCenterWeakPwdRiskInputParam.new
+              taskcenterweakpwdriskinputparam_tmp.deserialize(i)
+              @WeakPwdRisk << taskcenterweakpwdriskinputparam_tmp
+            end
+          end
+          unless params['CFGRisk'].nil?
+            @CFGRisk = []
+            params['CFGRisk'].each do |i|
+              taskcentercfgriskinputparam_tmp = TaskCenterCFGRiskInputParam.new
+              taskcentercfgriskinputparam_tmp.deserialize(i)
+              @CFGRisk << taskcentercfgriskinputparam_tmp
+            end
+          end
+        end
+      end
+
+      # 任务资产项
+      class TaskAssetObject < TencentCloud::Common::AbstractModel
+        # @param AssetName: 资产名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetName: String
+        # @param InstanceType: 	资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param AssetType: 资产分类
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetType: String
+        # @param Asset: ip/域名/资产id，数据库id等
+        # @type Asset: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :AssetName, :InstanceType, :AssetType, :Asset, :Region
+
+        def initialize(assetname=nil, instancetype=nil, assettype=nil, asset=nil, region=nil)
+          @AssetName = assetname
+          @InstanceType = instancetype
+          @AssetType = assettype
+          @Asset = asset
+          @Region = region
+        end
+
+        def deserialize(params)
+          @AssetName = params['AssetName']
+          @InstanceType = params['InstanceType']
+          @AssetType = params['AssetType']
+          @Asset = params['Asset']
+          @Region = params['Region']
+        end
+      end
+
+      # 配置风险高级配置
+      class TaskCenterCFGRiskInputParam < TencentCloud::Common::AbstractModel
+        # @param ItemId: 检测项ID
+        # @type ItemId: String
+        # @param Enable: 是否开启，0-不开启，1-开启
+        # @type Enable: Integer
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+
+        attr_accessor :ItemId, :Enable, :ResourceType
+
+        def initialize(itemid=nil, enable=nil, resourcetype=nil)
+          @ItemId = itemid
+          @Enable = enable
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @ItemId = params['ItemId']
+          @Enable = params['Enable']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # 漏洞风险高级配置
+      class TaskCenterVulRiskInputParam < TencentCloud::Common::AbstractModel
+        # @param RiskId: 风险ID
+        # @type RiskId: String
+        # @param Enable: 是否开启，0-不开启，1-开启
+        # @type Enable: Integer
+
+        attr_accessor :RiskId, :Enable
+
+        def initialize(riskid=nil, enable=nil)
+          @RiskId = riskid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @RiskId = params['RiskId']
+          @Enable = params['Enable']
+        end
+      end
+
+      # 弱口令风险高级配置
+      class TaskCenterWeakPwdRiskInputParam < TencentCloud::Common::AbstractModel
+        # @param CheckItemId: 检测项ID
+        # @type CheckItemId: Integer
+        # @param Enable: 是否开启，0-不开启，1-开启
+        # @type Enable: Integer
+
+        attr_accessor :CheckItemId, :Enable
+
+        def initialize(checkitemid=nil, enable=nil)
+          @CheckItemId = checkitemid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @CheckItemId = params['CheckItemId']
+          @Enable = params['Enable']
         end
       end
 

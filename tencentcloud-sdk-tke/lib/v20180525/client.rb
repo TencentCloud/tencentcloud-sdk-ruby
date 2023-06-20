@@ -869,6 +869,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除一个addon
+
+        # @param request: Request instance for DeleteAddon.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteAddonRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteAddonResponse`
+        def DeleteAddon(request)
+          body = send_request('DeleteAddon', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAddonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除备份仓库
 
         # @param request: Request instance for DeleteBackupStorageLocation.
@@ -1503,6 +1527,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteTKEEdgeClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取addon列表
+
+        # @param request: Request instance for DescribeAddon.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeAddonRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeAddonResponse`
+        def DescribeAddon(request)
+          body = send_request('DescribeAddon', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取一个addon的参数
+
+        # @param request: Request instance for DescribeAddonValues.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeAddonValuesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeAddonValuesResponse`
+        def DescribeAddonValues(request)
+          body = send_request('DescribeAddonValues', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddonValuesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3773,6 +3845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为目标集群安装一个addon
+
+        # @param request: Request instance for InstallAddon.
+        # @type request: :class:`Tencentcloud::tke::V20180525::InstallAddonRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::InstallAddonResponse`
+        def InstallAddon(request)
+          body = send_request('InstallAddon', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstallAddonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在tke@edge集群的边缘节点上安装日志采集组件
 
         # @param request: Request instance for InstallEdgeLogAgent.
@@ -4551,6 +4647,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UninstallLogAgentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新一个addon的参数和版本
+
+        # @param request: Request instance for UpdateAddon.
+        # @type request: :class:`Tencentcloud::tke::V20180525::UpdateAddonRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::UpdateAddonResponse`
+        def UpdateAddon(request)
+          body = send_request('UpdateAddon', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAddonResponse.new
             model.deserialize(response['Response'])
             model
           else

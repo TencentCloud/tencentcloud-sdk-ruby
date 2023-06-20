@@ -845,6 +845,73 @@ module TencentCloud
         end
       end
 
+      # 任务公共指标
+      class CommonMetrics < TencentCloud::Common::AbstractModel
+        # @param CreateTaskTime: 创建任务时长，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTaskTime: Float
+        # @param ProcessTime: 预处理总时长，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessTime: Float
+        # @param QueueTime: 排队时长，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueTime: Float
+        # @param ExecutionTime: 执行时长，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionTime: Float
+        # @param IsResultCacheHit: 是否命中结果缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsResultCacheHit: Boolean
+        # @param MatchedMVBytes: 匹配物化视图数据量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchedMVBytes: Integer
+        # @param MatchedMVs: 匹配物化视图列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchedMVs: String
+        # @param AffectedBytes: 结果数据量，单位：byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedBytes: String
+        # @param AffectedRows: 	结果行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedRows: Integer
+        # @param ProcessedBytes: 扫描数据量，单位：byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessedBytes: Integer
+        # @param ProcessedRows: 	扫描行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessedRows: Integer
+
+        attr_accessor :CreateTaskTime, :ProcessTime, :QueueTime, :ExecutionTime, :IsResultCacheHit, :MatchedMVBytes, :MatchedMVs, :AffectedBytes, :AffectedRows, :ProcessedBytes, :ProcessedRows
+
+        def initialize(createtasktime=nil, processtime=nil, queuetime=nil, executiontime=nil, isresultcachehit=nil, matchedmvbytes=nil, matchedmvs=nil, affectedbytes=nil, affectedrows=nil, processedbytes=nil, processedrows=nil)
+          @CreateTaskTime = createtasktime
+          @ProcessTime = processtime
+          @QueueTime = queuetime
+          @ExecutionTime = executiontime
+          @IsResultCacheHit = isresultcachehit
+          @MatchedMVBytes = matchedmvbytes
+          @MatchedMVs = matchedmvs
+          @AffectedBytes = affectedbytes
+          @AffectedRows = affectedrows
+          @ProcessedBytes = processedbytes
+          @ProcessedRows = processedrows
+        end
+
+        def deserialize(params)
+          @CreateTaskTime = params['CreateTaskTime']
+          @ProcessTime = params['ProcessTime']
+          @QueueTime = params['QueueTime']
+          @ExecutionTime = params['ExecutionTime']
+          @IsResultCacheHit = params['IsResultCacheHit']
+          @MatchedMVBytes = params['MatchedMVBytes']
+          @MatchedMVs = params['MatchedMVs']
+          @AffectedBytes = params['AffectedBytes']
+          @AffectedRows = params['AffectedRows']
+          @ProcessedBytes = params['ProcessedBytes']
+          @ProcessedRows = params['ProcessedRows']
+        end
+      end
+
       # CreateDMSDatabase请求参数结构体
       class CreateDMSDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param Asset: 基础元数据对象
@@ -1051,7 +1118,7 @@ module TencentCloud
         # @type CrontabResumeSuspend: Integer
         # @param CrontabResumeSuspendStrategy: 定时启停策略，复杂类型：包含启停时间、挂起集群策略
         # @type CrontabResumeSuspendStrategy: :class:`Tencentcloud::Dlc.v20210125.models.CrontabResumeSuspendStrategy`
-        # @param EngineExecType: 引擎执行任务类型，默认为SQL
+        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH，默认为SQL
         # @type EngineExecType: String
         # @param MaxConcurrency: 单个集群最大并发任务数，默认5
         # @type MaxConcurrency: Integer
@@ -1582,7 +1649,7 @@ module TencentCloud
         # @type SessionId: String
         # @param Code: 执行的代码
         # @type Code: String
-        # @param Kind: 类型，当前支持：spark、pyspark、sparkr、sql
+        # @param Kind: 类型，当前支持：sql
         # @type Kind: String
         # @param SaveResult: 是否保存运行结果
         # @type SaveResult: Boolean
@@ -1717,53 +1784,53 @@ module TencentCloud
 
       # CreateSparkApp请求参数结构体
       class CreateSparkAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: spark应用名
+        # @param AppName: spark作业名
         # @type AppName: String
-        # @param AppType: 1代表spark jar应用，2代表spark streaming应用
+        # @param AppType: spark作业类型，1代表spark jar作业，2代表spark streaming作业
         # @type AppType: Integer
-        # @param DataEngine: 执行spark作业的数据引擎
+        # @param DataEngine: 执行spark作业的数据引擎名称
         # @type DataEngine: String
-        # @param AppFile: spark应用的执行入口
+        # @param AppFile: spark作业程序包文件路径
         # @type AppFile: String
-        # @param RoleArn: 执行spark作业的角色ID
+        # @param RoleArn: 数据访问策略，CAM Role arn
         # @type RoleArn: Integer
-        # @param AppDriverSize: spark作业driver资源规格大小, 可取small,medium,large,xlarge
+        # @param AppDriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         # @type AppDriverSize: String
-        # @param AppExecutorSize: spark作业executor资源规格大小, 可取small,medium,large,xlarge
+        # @param AppExecutorSize: 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         # @type AppExecutorSize: String
         # @param AppExecutorNums: spark作业executor个数
         # @type AppExecutorNums: Integer
         # @param Eni: 该字段已下线，请使用字段Datasource
         # @type Eni: String
-        # @param IsLocal: 是否本地上传，可去cos,lakefs
+        # @param IsLocal: spark作业程序包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocal: String
-        # @param MainClass: spark jar作业时的主类
+        # @param MainClass: spark作业主类
         # @type MainClass: String
         # @param AppConf: spark配置，以换行符分隔
         # @type AppConf: String
-        # @param IsLocalJars: 是否本地上传，包含cos,lakefs
+        # @param IsLocalJars: spark 作业依赖jar包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalJars: String
-        # @param AppJars: spark jar作业依赖jars，以逗号分隔
+        # @param AppJars: spark 作业依赖jar包（--jars），以逗号分隔
         # @type AppJars: String
-        # @param IsLocalFiles: 是否本地上传，包含cos,lakefs
+        # @param IsLocalFiles: spark作业依赖文件资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalFiles: String
-        # @param AppFiles: spark作业依赖资源，以逗号分隔
+        # @param AppFiles: spark作业依赖文件资源（--files）（非jar、zip），以逗号分隔
         # @type AppFiles: String
-        # @param CmdArgs: spark作业命令行参数
+        # @param CmdArgs: spark作业程序入参，空格分割
         # @type CmdArgs: String
-        # @param MaxRetries: 只对spark流任务生效
+        # @param MaxRetries: 最大重试次数，只对spark流任务生效
         # @type MaxRetries: Integer
-        # @param DataSource: 数据源名
+        # @param DataSource: 数据源名称
         # @type DataSource: String
-        # @param IsLocalPythonFiles: pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalPythonFiles: pyspark：依赖上传方式，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalPythonFiles: String
-        # @param AppPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        # @param AppPythonFiles: pyspark作业依赖python资源（--py-files），支持py/zip/egg等归档格式，多文件以逗号分隔
         # @type AppPythonFiles: String
-        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalArchives: spark作业依赖archives资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalArchives: String
-        # @param AppArchives: archives：依赖资源
+        # @param AppArchives: spark作业依赖archives资源（--archives），支持tar.gz/tgz/tar等归档格式，以逗号分隔
         # @type AppArchives: String
-        # @param SparkImage: Spark Image 版本
+        # @param SparkImage: Spark Image 版本号
         # @type SparkImage: String
         # @param SparkImageVersion: Spark Image 版本名称
         # @type SparkImageVersion: String
@@ -1864,7 +1931,7 @@ module TencentCloud
       class CreateSparkAppTaskRequest < TencentCloud::Common::AbstractModel
         # @param JobName: spark作业名
         # @type JobName: String
-        # @param CmdArgs: spark作业的命令行参数，以空格分隔；一般用于周期性调用使用
+        # @param CmdArgs: spark作业程序入参，以空格分隔；一般用于周期性调用使用
         # @type CmdArgs: String
 
         attr_accessor :JobName, :CmdArgs
@@ -3291,7 +3358,7 @@ module TencentCloud
 
       # DeleteSparkApp请求参数结构体
       class DeleteSparkAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: spark应用名
+        # @param AppName: spark作业名
         # @type AppName: String
 
         attr_accessor :AppName
@@ -3848,13 +3915,7 @@ module TencentCloud
       class DescribeDataEnginesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Filters: 滤类型，传参Name应为以下其中一个,
-        # data-engine-name - String
-        # engine-type - String
-        # state - String
-        # mode - String
-        # create-time - String
-        # message - String
+        # @param Filters: 过滤类型，支持如下的过滤类型，传参Name应为以下其中一个, data-engine-name - String（数据引擎名称）：engine-type - String（引擎类型：spark：spark 引擎，presto：presto引擎），state - String (数据引擎状态 -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中) ， mode - String（计费模式 0共享模式 1按量计费 2包年包月） ， create-time - String（创建时间，10位时间戳） message - String （描述信息），cluster-type - String (集群资源类型 spark_private/presto_private/presto_cu/spark_cu)，engine-id - String（数据引擎ID），key-word - String（数据引擎名称或集群资源类型或描述信息模糊搜索），engine-exec-type - String（引擎执行任务类型，SQL/BATCH）
         # @type Filters: Array
         # @param SortBy: 排序字段，支持如下字段类型，create-time
         # @type SortBy: String
@@ -3868,7 +3929,7 @@ module TencentCloud
         # @type ExcludePublicEngine: Boolean
         # @param AccessTypes: 参数应该为引擎权限类型，有效类型："USE", "MODIFY", "OPERATE", "MONITOR", "DELETE"
         # @type AccessTypes: Array
-        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH
+        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH，默认为SQL
         # @type EngineExecType: String
         # @param EngineType: 引擎类型，有效值：spark/presto
         # @type EngineType: String
@@ -3956,7 +4017,7 @@ module TencentCloud
         # @type KeyWord: String
         # @param DatasourceConnectionName: 数据源唯名称，该名称可以通过DescribeDatasourceConnection接口查询到。默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
-        # @param Sort: 排序字段，当前版本仅支持按库名排序
+        # @param Sort: 排序字段，CreateTime：创建时间，Name：数据库名称
         # @type Sort: String
         # @param Asc: 排序类型：false：降序（默认）、true：升序
         # @type Asc: Boolean
@@ -4015,7 +4076,7 @@ module TencentCloud
 
       # DescribeEngineUsageInfo请求参数结构体
       class DescribeEngineUsageInfoRequest < TencentCloud::Common::AbstractModel
-        # @param DataEngineId: House Id
+        # @param DataEngineId: 数据引擎ID
         # @type DataEngineId: String
 
         attr_accessor :DataEngineId
@@ -4398,9 +4459,9 @@ module TencentCloud
         # @type SortFields: Array
         # @param Asc: 排序字段：true：升序、false：降序（默认）
         # @type Asc: Boolean
-        # @param Limit: 分页字段
+        # @param Limit: 分页参数，默认10
         # @type Limit: Integer
-        # @param Offset: 分页字段
+        # @param Offset: 分页参数，默认0
         # @type Offset: Integer
 
         attr_accessor :DataEngineName, :State, :SortFields, :Asc, :Limit, :Offset
@@ -4603,7 +4664,7 @@ module TencentCloud
 
       # DescribeSparkAppJob请求参数结构体
       class DescribeSparkAppJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: spark作业Id，与JobName同时存在时，JobName无效
+        # @param JobId: spark作业Id，与JobName同时存在时，JobName无效，JobId与JobName至少存在一个
         # @type JobId: String
         # @param JobName: spark作业名
         # @type JobName: String
@@ -4655,7 +4716,7 @@ module TencentCloud
         # @type SortBy: String
         # @param Sorting: 正序或者倒序，例如：desc
         # @type Sorting: String
-        # @param Filters: 按照该参数过滤,支持spark-job-name
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为其一:spark-job-name（作业名称），spark-job-id（作业id），spark-app-type（作业类型，1：批任务，2：流任务，4：SQL作业），user-name（创建人），key-word（作业名称或ID关键词模糊搜索）
         # @type Filters: Array
         # @param StartTime: 更新时间起始点，支持格式：yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
@@ -4737,9 +4798,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param TaskId: 执行实例id
         # @type TaskId: String
-        # @param StartTime: 更新时间起始点
+        # @param StartTime: 更新时间起始点，支持格式：yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 更新时间截止点
+        # @param EndTime: 更新时间截止点，支持格式：yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
         # @param Filters: 按照该参数过滤,支持task-state
         # @type Filters: Array
@@ -4955,11 +5016,11 @@ module TencentCloud
         # @type Filters: Array
         # @param DatasourceConnectionName: 指定查询的数据源名称，默认为DataLakeCatalog
         # @type DatasourceConnectionName: String
-        # @param StartTime: 起始时间：用于对更新时间的筛选
+        # @param StartTime: 起始时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
         # @type StartTime: String
-        # @param EndTime: 终止时间：用于对更新时间的筛选
+        # @param EndTime: 终止时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
         # @type EndTime: String
-        # @param Sort: 排序字段，支持：CreateTime、UpdateTime、StorageSize、RecordCount、Name（不传则默认按name升序）
+        # @param Sort: 排序字段，支持：CreateTime（创建时间）、UpdateTime（更新时间）、StorageSize（存储空间）、RecordCount（行数）、Name（表名称）（不传则默认按name升序）
         # @type Sort: String
         # @param Asc: 排序字段，false：降序（默认）；true：升序
         # @type Asc: Boolean
@@ -5106,7 +5167,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
         # @type EndTime: String
-        # @param DataEngineName: 支持计算资源名字筛选
+        # @param DataEngineName: 数据引擎名称，用于筛选
         # @type DataEngineName: String
 
         attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName
@@ -6105,55 +6166,55 @@ module TencentCloud
 
       # ModifySparkApp请求参数结构体
       class ModifySparkAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppName: spark应用名
+        # @param AppName: spark作业名
         # @type AppName: String
-        # @param AppType: 1代表spark jar应用，2代表spark streaming应用
+        # @param AppType: spark作业类型，1代表spark jar作业，2代表spark streaming作业
         # @type AppType: Integer
-        # @param DataEngine: 执行spark作业的数据引擎
+        # @param DataEngine: 执行spark作业的数据引擎名称
         # @type DataEngine: String
-        # @param AppFile: spark应用的执行入口
+        # @param AppFile: spark作业程序包文件路径
         # @type AppFile: String
-        # @param RoleArn: 执行spark作业的角色ID
+        # @param RoleArn: 数据访问策略，CAM Role arn
         # @type RoleArn: Integer
-        # @param AppDriverSize: spark作业driver资源规格大小, 可取small,medium,large,xlarge
+        # @param AppDriverSize: 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         # @type AppDriverSize: String
-        # @param AppExecutorSize: spark作业executor资源规格大小, 可取small,medium,large,xlarge
+        # @param AppExecutorSize: 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         # @type AppExecutorSize: String
         # @param AppExecutorNums: spark作业executor个数
         # @type AppExecutorNums: Integer
-        # @param SparkAppId: spark应用Id
+        # @param SparkAppId: spark作业Id
         # @type SparkAppId: String
         # @param Eni: 该字段已下线，请使用字段Datasource
         # @type Eni: String
-        # @param IsLocal: 是否本地上传，可取cos,lakefs
+        # @param IsLocal: spark作业程序包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocal: String
-        # @param MainClass: spark jar作业时的主类
+        # @param MainClass: spark作业主类
         # @type MainClass: String
         # @param AppConf: spark配置，以换行符分隔
         # @type AppConf: String
-        # @param IsLocalJars: jar资源依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalJars: spark 作业依赖jar包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalJars: String
-        # @param AppJars: spark jar作业依赖jars，以逗号分隔
+        # @param AppJars: spark 作业依赖jar包（--jars），以逗号分隔
         # @type AppJars: String
-        # @param IsLocalFiles: file资源依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalFiles: spark作业依赖文件资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalFiles: String
-        # @param AppFiles: spark作业依赖资源，以逗号分隔
+        # @param AppFiles: spark作业依赖文件资源（--files）（非jar、zip），以逗号分隔
         # @type AppFiles: String
-        # @param IsLocalPythonFiles: pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalPythonFiles: pyspark：依赖上传方式，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalPythonFiles: String
-        # @param AppPythonFiles: pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        # @param AppPythonFiles: pyspark作业依赖python资源（--py-files），支持py/zip/egg等归档格式，多文件以逗号分隔
         # @type AppPythonFiles: String
-        # @param CmdArgs: spark作业命令行参数
+        # @param CmdArgs: spark作业程序入参
         # @type CmdArgs: String
-        # @param MaxRetries: 只对spark流任务生效
+        # @param MaxRetries: 最大重试次数，只对spark流任务生效
         # @type MaxRetries: Integer
         # @param DataSource: 数据源名
         # @type DataSource: String
-        # @param IsLocalArchives: archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        # @param IsLocalArchives: spark作业依赖archives资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         # @type IsLocalArchives: String
-        # @param AppArchives: archives：依赖资源
+        # @param AppArchives: spark作业依赖archives资源（--archives），支持tar.gz/tgz/tar等归档格式，以逗号分隔
         # @type AppArchives: String
-        # @param SparkImage: Spark Image 版本
+        # @param SparkImage: Spark Image 版本号
         # @type SparkImage: String
         # @param SparkImageVersion: Spark Image 版本名称
         # @type SparkImageVersion: String
@@ -6845,6 +6906,28 @@ module TencentCloud
         end
       end
 
+      # Presto监控指标
+      class PrestoMonitorMetrics < TencentCloud::Common::AbstractModel
+        # @param LocalCacheHitRate: 	Alluxio本地缓存命中率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCacheHitRate: Float
+        # @param FragmentCacheHitRate: Fragment缓存命中率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FragmentCacheHitRate: Float
+
+        attr_accessor :LocalCacheHitRate, :FragmentCacheHitRate
+
+        def initialize(localcachehitrate=nil, fragmentcachehitrate=nil)
+          @LocalCacheHitRate = localcachehitrate
+          @FragmentCacheHitRate = fragmentcachehitrate
+        end
+
+        def deserialize(params)
+          @LocalCacheHitRate = params['LocalCacheHitRate']
+          @FragmentCacheHitRate = params['FragmentCacheHitRate']
+        end
+      end
+
       # 数据库和数据表属性信息
       class Property < TencentCloud::Common::AbstractModel
         # @param Key: 属性key名称。
@@ -7194,6 +7277,28 @@ module TencentCloud
           @DataEngineClusterType = params['DataEngineClusterType']
           @DataEngineImageVersion = params['DataEngineImageVersion']
           @IsInherit = params['IsInherit']
+        end
+      end
+
+      # Spark监控数据
+      class SparkMonitorMetrics < TencentCloud::Common::AbstractModel
+        # @param ShuffleWriteBytesCos: shuffle写溢出到COS数据量，单位：byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleWriteBytesCos: Integer
+        # @param ShuffleWriteBytesTotal: shuffle写数据量，单位：byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShuffleWriteBytesTotal: Integer
+
+        attr_accessor :ShuffleWriteBytesCos, :ShuffleWriteBytesTotal
+
+        def initialize(shufflewritebytescos=nil, shufflewritebytestotal=nil)
+          @ShuffleWriteBytesCos = shufflewritebytescos
+          @ShuffleWriteBytesTotal = shufflewritebytestotal
+        end
+
+        def deserialize(params)
+          @ShuffleWriteBytesCos = params['ShuffleWriteBytesCos']
+          @ShuffleWriteBytesTotal = params['ShuffleWriteBytesTotal']
         end
       end
 
@@ -7883,10 +7988,19 @@ module TencentCloud
         # @param ExecutorMaxNumbers: 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorMaxNumbers: Integer
+        # @param CommonMetrics: 任务公共指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonMetrics: :class:`Tencentcloud::Dlc.v20210125.models.CommonMetrics`
+        # @param SparkMonitorMetrics: spark任务指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkMonitorMetrics: :class:`Tencentcloud::Dlc.v20210125.models.SparkMonitorMetrics`
+        # @param PrestoMonitorMetrics: presto任务指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrestoMonitorMetrics: :class:`Tencentcloud::Dlc.v20210125.models.PrestoMonitorMetrics`
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics
 
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -7924,6 +8038,9 @@ module TencentCloud
           @ExecutorSize = executorsize
           @ExecutorNums = executornums
           @ExecutorMaxNumbers = executormaxnumbers
+          @CommonMetrics = commonmetrics
+          @SparkMonitorMetrics = sparkmonitormetrics
+          @PrestoMonitorMetrics = prestomonitormetrics
         end
 
         def deserialize(params)
@@ -7964,6 +8081,18 @@ module TencentCloud
           @ExecutorSize = params['ExecutorSize']
           @ExecutorNums = params['ExecutorNums']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          unless params['CommonMetrics'].nil?
+            @CommonMetrics = CommonMetrics.new
+            @CommonMetrics.deserialize(params['CommonMetrics'])
+          end
+          unless params['SparkMonitorMetrics'].nil?
+            @SparkMonitorMetrics = SparkMonitorMetrics.new
+            @SparkMonitorMetrics.deserialize(params['SparkMonitorMetrics'])
+          end
+          unless params['PrestoMonitorMetrics'].nil?
+            @PrestoMonitorMetrics = PrestoMonitorMetrics.new
+            @PrestoMonitorMetrics.deserialize(params['PrestoMonitorMetrics'])
+          end
         end
       end
 
