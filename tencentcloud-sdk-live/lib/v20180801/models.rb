@@ -4742,6 +4742,45 @@ module TencentCloud
         end
       end
 
+      # DescribeLivePullStreamTaskStatus请求参数结构体
+      class DescribeLivePullStreamTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeLivePullStreamTaskStatus返回参数结构体
+      class DescribeLivePullStreamTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TaskStatusInfo: 任务状态信息。
+        # @type TaskStatusInfo: :class:`Tencentcloud::Live.v20180801.models.TaskStatusInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskStatusInfo, :RequestId
+
+        def initialize(taskstatusinfo=nil, requestid=nil)
+          @TaskStatusInfo = taskstatusinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskStatusInfo'].nil?
+            @TaskStatusInfo = TaskStatusInfo.new
+            @TaskStatusInfo.deserialize(params['TaskStatusInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLivePullStreamTasks请求参数结构体
       class DescribeLivePullStreamTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID。
@@ -11458,14 +11497,20 @@ module TencentCloud
         # @type AppName: String
         # @param DomainName: 推流域名。
         # @type DomainName: String
+        # @param PushToDelay: 流是否推送到延播。
+        # 0 - 无延播，
+        # 1 - 有延播。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PushToDelay: Integer
 
-        attr_accessor :StreamName, :PublishTimeList, :AppName, :DomainName
+        attr_accessor :StreamName, :PublishTimeList, :AppName, :DomainName, :PushToDelay
 
-        def initialize(streamname=nil, publishtimelist=nil, appname=nil, domainname=nil)
+        def initialize(streamname=nil, publishtimelist=nil, appname=nil, domainname=nil, pushtodelay=nil)
           @StreamName = streamname
           @PublishTimeList = publishtimelist
           @AppName = appname
           @DomainName = domainname
+          @PushToDelay = pushtodelay
         end
 
         def deserialize(params)
@@ -11480,6 +11525,51 @@ module TencentCloud
           end
           @AppName = params['AppName']
           @DomainName = params['DomainName']
+          @PushToDelay = params['PushToDelay']
+        end
+      end
+
+      # 直播拉流任务状态信息。
+      class TaskStatusInfo < TencentCloud::Common::AbstractModel
+        # @param FileUrl: 当前使用的源 URL。
+        # @type FileUrl: String
+        # @param LoopedTimes: 点播源任务的轮播次数。
+        # @type LoopedTimes: Integer
+        # @param OffsetTime: 点播源的播放偏移，单位：秒。
+        # @type OffsetTime: Integer
+        # @param ReportTime: 最新心跳上报时间。UTC时间，例如：
+        # 2022-02-11T10:00:00Z。
+        # 注意：UTC时间与北京时间相差八小时。
+        # @type ReportTime: String
+        # @param RunStatus: 实际运行状态：
+        # active - 活跃，
+        # inactive - 不活跃。
+        # @type RunStatus: String
+        # @param FileDuration: 点播源的文件时长，单位：秒。
+        # @type FileDuration: Integer
+        # @param NextFileUrl: 下一进度点播文件 URL。
+        # @type NextFileUrl: String
+
+        attr_accessor :FileUrl, :LoopedTimes, :OffsetTime, :ReportTime, :RunStatus, :FileDuration, :NextFileUrl
+
+        def initialize(fileurl=nil, loopedtimes=nil, offsettime=nil, reporttime=nil, runstatus=nil, fileduration=nil, nextfileurl=nil)
+          @FileUrl = fileurl
+          @LoopedTimes = loopedtimes
+          @OffsetTime = offsettime
+          @ReportTime = reporttime
+          @RunStatus = runstatus
+          @FileDuration = fileduration
+          @NextFileUrl = nextfileurl
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @LoopedTimes = params['LoopedTimes']
+          @OffsetTime = params['OffsetTime']
+          @ReportTime = params['ReportTime']
+          @RunStatus = params['RunStatus']
+          @FileDuration = params['FileDuration']
+          @NextFileUrl = params['NextFileUrl']
         end
       end
 

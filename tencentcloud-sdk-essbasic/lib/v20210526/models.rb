@@ -1708,6 +1708,57 @@ module TencentCloud
         end
       end
 
+      # ChannelDescribeFlowComponents请求参数结构体
+      class ChannelDescribeFlowComponentsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 电子签流程的Id
+        # @type FlowId: String
+
+        attr_accessor :Agent, :FlowId
+
+        def initialize(agent=nil, flowid=nil)
+          @Agent = agent
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+        end
+      end
+
+      # ChannelDescribeFlowComponents返回参数结构体
+      class ChannelDescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
+        # @param RecipientComponentInfos: 流程关联的填写控件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientComponentInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecipientComponentInfos, :RequestId
+
+        def initialize(recipientcomponentinfos=nil, requestid=nil)
+          @RecipientComponentInfos = recipientcomponentinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecipientComponentInfos'].nil?
+            @RecipientComponentInfos = []
+            params['RecipientComponentInfos'].each do |i|
+              recipientcomponentinfo_tmp = RecipientComponentInfo.new
+              recipientcomponentinfo_tmp.deserialize(i)
+              @RecipientComponentInfos << recipientcomponentinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDescribeOrganizationSeals请求参数结构体
       class ChannelDescribeOrganizationSealsRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -2274,7 +2325,38 @@ module TencentCloud
         # @type ComponentPosX: Float
         # @param ComponentPosY: 参数控件Y位置，单位px
         # @type ComponentPosY: Float
-        # @param ComponentExtra: 参数控件样式，json格式表述
+        # @param ComponentExtra: 扩展参数：
+        # 为JSON格式。
+
+        # ComponentType为FILL_IMAGE时，支持以下参数：
+        # NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
+        # FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+
+        # ComponentType为SIGN_SIGNATURE类型可以控制签署方式
+        # {“ComponentTypeLimit”: [“xxx”]}
+        # xxx可以为：
+        # HANDWRITE – 手写签名
+        # OCR_ESIGN -- AI智能识别手写签名
+        # ESIGN -- 个人印章类型
+        # SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
+        # 如：{“ComponentTypeLimit”: [“SYSTEM_ESIGN”]}
+
+        # ComponentType为SIGN_DATE时，支持以下参数：
+        # 1 Font：字符串类型目前只支持"黑体"、"宋体"，如果不填默认为"黑体"
+        # 2 FontSize： 数字类型，范围6-72，默认值为12
+        # 3 FontAlign： 字符串类型，可取Left/Right/Center，对应左对齐/居中/右对齐
+        # 4 Format： 字符串类型，日期格式，必须是以下五种之一 “yyyy m d”，”yyyy年m月d日”，”yyyy/m/d”，”yyyy-m-d”，”yyyy.m.d”。
+        # 5 Gaps:： 字符串类型，仅在Format为“yyyy m d”时起作用，格式为用逗号分开的两个整数，例如”2,2”，两个数字分别是日期格式的前后两个空隙中的空格个数
+        # 如果extra参数为空，默认为”yyyy年m月d日”格式的居中日期
+        # 特别地，如果extra中Format字段为空或无法被识别，则extra参数会被当作默认值处理（Font，FontSize，Gaps和FontAlign都不会起效）
+        # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}"
+
+        # ComponentType为SIGN_SEAL类型时，支持以下参数：
+        # 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
+        # 参数样例： "ComponentExtra":"{\"PageRanges\":[\"PageRange\":{\"BeginPage\":1,\"EndPage\":-1}]}"
+
+
+        # 参数控件样式，json格式表述
 
         # 不同类型的控件会有部分非通用参数
 
@@ -2306,7 +2388,11 @@ module TencentCloud
         # 5 Gaps:： 字符串类型，仅在Format为“yyyy m d”时起作用，格式为用逗号分开的两个整数，例如”2,2”，两个数字分别是日期格式的前后两个空隙钟的空格个数
         # 如果extra参数为空，默认为”yyyy年m月d日”格式的居中日期
         # 特别地，如果extra中Format字段为空或无法被识别，则extra参数会被当作默认值处理（Font，FontSize，Gaps和FontAlign都不会起效）
-        # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}",
+        # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}"
+
+        # ComponentType为SIGN_SEAL类型时，支持以下参数：
+        # 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
+        # 参数样例： "ComponentExtra":"{\"PageRanges\":[\"PageRange\":{\"BeginPage\":1,\"EndPage\":-1}]}"
         # @type ComponentExtra: String
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
         # TEXT - 文本内容
@@ -3463,6 +3549,43 @@ module TencentCloud
         def deserialize(params)
           @UserId = params['UserId']
           @RoleIds = params['RoleIds']
+        end
+      end
+
+      # 文档内的填充控件返回结构体，返回控件的基本信息和填写内容值
+      class FilledComponent < TencentCloud::Common::AbstractModel
+        # @param ComponentId: 控件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentId: String
+        # @param ComponentName: 控件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentName: String
+        # @param ComponentFillStatus: 控件填写状态；0-未填写；1-已填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentFillStatus: String
+        # @param ComponentValue: 控件填写内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentValue: String
+        # @param ImageUrl: 图片填充控件下载链接，如果是图片填充控件时，这里返回图片的下载链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+
+        attr_accessor :ComponentId, :ComponentName, :ComponentFillStatus, :ComponentValue, :ImageUrl
+
+        def initialize(componentid=nil, componentname=nil, componentfillstatus=nil, componentvalue=nil, imageurl=nil)
+          @ComponentId = componentid
+          @ComponentName = componentname
+          @ComponentFillStatus = componentfillstatus
+          @ComponentValue = componentvalue
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ComponentId = params['ComponentId']
+          @ComponentName = params['ComponentName']
+          @ComponentFillStatus = params['ComponentFillStatus']
+          @ComponentValue = params['ComponentValue']
+          @ImageUrl = params['ImageUrl']
         end
       end
 
@@ -4674,6 +4797,45 @@ module TencentCloud
           @SignType = params['SignType']
           @RoutingOrder = params['RoutingOrder']
           @IsPromoter = params['IsPromoter']
+        end
+      end
+
+      # 参与方填写控件信息
+      class RecipientComponentInfo < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 参与方Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param RecipientFillStatus: 参与方填写状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientFillStatus: String
+        # @param IsPromoter: 是否发起方
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPromoter: Boolean
+        # @param Components: 填写控件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Components: Array
+
+        attr_accessor :RecipientId, :RecipientFillStatus, :IsPromoter, :Components
+
+        def initialize(recipientid=nil, recipientfillstatus=nil, ispromoter=nil, components=nil)
+          @RecipientId = recipientid
+          @RecipientFillStatus = recipientfillstatus
+          @IsPromoter = ispromoter
+          @Components = components
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @RecipientFillStatus = params['RecipientFillStatus']
+          @IsPromoter = params['IsPromoter']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              filledcomponent_tmp = FilledComponent.new
+              filledcomponent_tmp.deserialize(i)
+              @Components << filledcomponent_tmp
+            end
+          end
         end
       end
 

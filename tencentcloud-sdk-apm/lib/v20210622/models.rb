@@ -485,14 +485,17 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param DemoInstanceFlag: 是否查询官方demo实例
         # @type DemoInstanceFlag: Integer
+        # @param AllRegionsFlag: 是否查询全地域实例
+        # @type AllRegionsFlag: Integer
 
-        attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag
+        attr_accessor :Tags, :InstanceName, :InstanceIds, :DemoInstanceFlag, :AllRegionsFlag
 
-        def initialize(tags=nil, instancename=nil, instanceids=nil, demoinstanceflag=nil)
+        def initialize(tags=nil, instancename=nil, instanceids=nil, demoinstanceflag=nil, allregionsflag=nil)
           @Tags = tags
           @InstanceName = instancename
           @InstanceIds = instanceids
           @DemoInstanceFlag = demoinstanceflag
+          @AllRegionsFlag = allregionsflag
         end
 
         def deserialize(params)
@@ -507,6 +510,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @InstanceIds = params['InstanceIds']
           @DemoInstanceFlag = params['DemoInstanceFlag']
+          @AllRegionsFlag = params['AllRegionsFlag']
         end
       end
 

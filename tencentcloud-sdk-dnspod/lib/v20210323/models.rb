@@ -109,10 +109,13 @@ module TencentCloud
         # @param Weight: 记录权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
 
-        attr_accessor :RecordId, :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :Status, :Operation, :ErrMsg, :Id, :Enabled, :MX, :Weight
+        attr_accessor :RecordId, :SubDomain, :RecordType, :RecordLine, :Value, :TTL, :Status, :Operation, :ErrMsg, :Id, :Enabled, :MX, :Weight, :Remark
 
-        def initialize(recordid=nil, subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, status=nil, operation=nil, errmsg=nil, id=nil, enabled=nil, mx=nil, weight=nil)
+        def initialize(recordid=nil, subdomain=nil, recordtype=nil, recordline=nil, value=nil, ttl=nil, status=nil, operation=nil, errmsg=nil, id=nil, enabled=nil, mx=nil, weight=nil, remark=nil)
           @RecordId = recordid
           @SubDomain = subdomain
           @RecordType = recordtype
@@ -126,6 +129,7 @@ module TencentCloud
           @Enabled = enabled
           @MX = mx
           @Weight = weight
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -142,6 +146,7 @@ module TencentCloud
           @Enabled = params['Enabled']
           @MX = params['MX']
           @Weight = params['Weight']
+          @Remark = params['Remark']
         end
       end
 

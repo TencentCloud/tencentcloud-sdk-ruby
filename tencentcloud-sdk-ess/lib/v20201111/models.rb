@@ -633,7 +633,11 @@ module TencentCloud
         # 5 Gaps:： 字符串类型，仅在Format为“yyyy m d”时起作用，格式为用逗号分开的两个整数，例如”2,2”，两个数字分别是日期格式的前后两个空隙中的空格个数
         # 如果extra参数为空，默认为”yyyy年m月d日”格式的居中日期
         # 特别地，如果extra中Format字段为空或无法被识别，则extra参数会被当作默认值处理（Font，FontSize，Gaps和FontAlign都不会起效）
-        # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}",
+        # 参数样例：    "ComponentExtra": "{\"Format\":“yyyy m d”,\"FontSize\":12,\"Gaps\":\"2,2\", \"FontAlign\":\"Right\"}"
+
+        # ComponentType为SIGN_SEAL类型时，支持以下参数：
+        # 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
+        # 参数样例： "ComponentExtra":"{\"PageRanges\":[\"PageRange\":{\"BeginPage\":1,\"EndPage\":-1}]}"
         # @type ComponentExtra: String
         # @param IsFormType: 是否是表单域类型，默认不false-不是
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3052,6 +3056,64 @@ module TencentCloud
         end
       end
 
+      # DescribeFlowComponents请求参数结构体
+      class DescribeFlowComponentsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作者信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 电子签流程的Id
+        # @type FlowId: String
+        # @param Agent: 应用相关信息
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :FlowId, :Agent
+
+        def initialize(operator=nil, flowid=nil, agent=nil)
+          @Operator = operator
+          @FlowId = flowid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeFlowComponents返回参数结构体
+      class DescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
+        # @param RecipientComponentInfos: 流程关联的填写控件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientComponentInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecipientComponentInfos, :RequestId
+
+        def initialize(recipientcomponentinfos=nil, requestid=nil)
+          @RecipientComponentInfos = recipientcomponentinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecipientComponentInfos'].nil?
+            @RecipientComponentInfos = []
+            params['RecipientComponentInfos'].each do |i|
+              recipientcomponentinfo_tmp = RecipientComponentInfo.new
+              recipientcomponentinfo_tmp.deserialize(i)
+              @RecipientComponentInfos << recipientcomponentinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowEvidenceReport请求参数结构体
       class DescribeFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -4086,6 +4148,48 @@ module TencentCloud
           @RecipientId = params['RecipientId']
           @ApproverSource = params['ApproverSource']
           @CustomUserId = params['CustomUserId']
+        end
+      end
+
+      # 文档内的填充控件返回结构体，返回控件的基本信息和填写内容值
+      class FilledComponent < TencentCloud::Common::AbstractModel
+        # @param ComponentId: 控件Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentId: String
+        # @param ComponentName: 控件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentName: String
+        # @param ComponentFillStatus: 控件填写状态；0-未填写；1-已填写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentFillStatus: String
+        # @param ComponentValue: 控件填写内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentValue: String
+        # @param ComponentRecipientId: 控件所属参与方Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentRecipientId: String
+        # @param ImageUrl: 图片填充控件下载链接，如果是图片填充控件时，这里返回图片的下载链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+
+        attr_accessor :ComponentId, :ComponentName, :ComponentFillStatus, :ComponentValue, :ComponentRecipientId, :ImageUrl
+
+        def initialize(componentid=nil, componentname=nil, componentfillstatus=nil, componentvalue=nil, componentrecipientid=nil, imageurl=nil)
+          @ComponentId = componentid
+          @ComponentName = componentname
+          @ComponentFillStatus = componentfillstatus
+          @ComponentValue = componentvalue
+          @ComponentRecipientId = componentrecipientid
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ComponentId = params['ComponentId']
+          @ComponentName = params['ComponentName']
+          @ComponentFillStatus = params['ComponentFillStatus']
+          @ComponentValue = params['ComponentValue']
+          @ComponentRecipientId = params['ComponentRecipientId']
+          @ImageUrl = params['ImageUrl']
         end
       end
 
@@ -5243,6 +5347,45 @@ module TencentCloud
           @UserId = params['UserId']
           @DeliveryMethod = params['DeliveryMethod']
           @RecipientExtra = params['RecipientExtra']
+        end
+      end
+
+      # 参与方填写控件信息
+      class RecipientComponentInfo < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 参与方Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param RecipientFillStatus: 参与方填写状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientFillStatus: String
+        # @param IsPromoter: 是否发起方
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPromoter: Boolean
+        # @param Components: 填写控件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Components: Array
+
+        attr_accessor :RecipientId, :RecipientFillStatus, :IsPromoter, :Components
+
+        def initialize(recipientid=nil, recipientfillstatus=nil, ispromoter=nil, components=nil)
+          @RecipientId = recipientid
+          @RecipientFillStatus = recipientfillstatus
+          @IsPromoter = ispromoter
+          @Components = components
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @RecipientFillStatus = params['RecipientFillStatus']
+          @IsPromoter = params['IsPromoter']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              filledcomponent_tmp = FilledComponent.new
+              filledcomponent_tmp.deserialize(i)
+              @Components << filledcomponent_tmp
+            end
+          end
         end
       end
 

@@ -872,6 +872,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询流程填写控件内容，可以根据流程Id查询该流程相关联的填写控件信息
+
+        # @param request: Request instance for DescribeFlowComponents.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeFlowComponentsRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeFlowComponentsResponse`
+        def DescribeFlowComponents(request)
+          body = send_request('DescribeFlowComponents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlowComponentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询出证报告，返回报告 URL。
 
         # @param request: Request instance for DescribeFlowEvidenceReport.

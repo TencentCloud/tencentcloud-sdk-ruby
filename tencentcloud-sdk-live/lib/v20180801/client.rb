@@ -1822,6 +1822,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询直播拉流任务状态信息。
+
+        # @param request: Request instance for DescribeLivePullStreamTaskStatus.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLivePullStreamTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLivePullStreamTaskStatusResponse`
+        def DescribeLivePullStreamTaskStatus(request)
+          body = send_request('DescribeLivePullStreamTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLivePullStreamTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
         # 排序方式：默认按更新时间 倒序排列。
 

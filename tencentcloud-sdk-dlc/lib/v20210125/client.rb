@@ -869,7 +869,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteNotebookSession）用于删除notebook livy session
+        # 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
 
         # @param request: Request instance for DeleteNotebookSession.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteNotebookSessionRequest`

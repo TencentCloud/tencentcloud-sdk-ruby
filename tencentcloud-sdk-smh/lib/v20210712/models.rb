@@ -21,34 +21,34 @@ module TencentCloud
       class CreateLibraryRequest < TencentCloud::Common::AbstractModel
         # @param Name: 媒体库名称，最多 50 个字符
         # @type Name: String
-        # @param BucketName: 存储桶全名，新建后不可更改
+        # @param Remark: 备注，最多 250 个字符
+        # @type Remark: String
+        # @param BucketName: 存储桶全名，新建后不可更改。当前版本不再支持指定存储桶。
         # @type BucketName: String
-        # @param BucketRegion: 存储桶所在地域，新建后不可更改
+        # @param BucketRegion: 存储桶所在地域，新建后不可更改。当前版本不再支持指定存储桶所在地域。
         # @type BucketRegion: String
         # @param LibraryExtension: 媒体库配置项，部分参数新建后不可更改
         # @type LibraryExtension: :class:`Tencentcloud::Smh.v20210712.models.LibraryExtension`
-        # @param Remark: 备注，最多 250 个字符
-        # @type Remark: String
 
-        attr_accessor :Name, :BucketName, :BucketRegion, :LibraryExtension, :Remark
+        attr_accessor :Name, :Remark, :BucketName, :BucketRegion, :LibraryExtension
 
-        def initialize(name=nil, bucketname=nil, bucketregion=nil, libraryextension=nil, remark=nil)
+        def initialize(name=nil, remark=nil, bucketname=nil, bucketregion=nil, libraryextension=nil)
           @Name = name
+          @Remark = remark
           @BucketName = bucketname
           @BucketRegion = bucketregion
           @LibraryExtension = libraryextension
-          @Remark = remark
         end
 
         def deserialize(params)
           @Name = params['Name']
+          @Remark = params['Remark']
           @BucketName = params['BucketName']
           @BucketRegion = params['BucketRegion']
           unless params['LibraryExtension'].nil?
             @LibraryExtension = LibraryExtension.new
             @LibraryExtension.deserialize(params['LibraryExtension'])
           end
-          @Remark = params['Remark']
         end
       end
 

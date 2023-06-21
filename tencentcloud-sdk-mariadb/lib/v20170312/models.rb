@@ -2570,6 +2570,49 @@ module TencentCloud
         end
       end
 
+      # DescribeDBTmpInstances请求参数结构体
+      class DescribeDBTmpInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDBTmpInstances返回参数结构体
+      class DescribeDBTmpInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TmpInstances: 临时实例
+        # @type TmpInstances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TmpInstances, :RequestId
+
+        def initialize(tmpinstances=nil, requestid=nil)
+          @TmpInstances = tmpinstances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TmpInstances'].nil?
+            @TmpInstances = []
+            params['TmpInstances'].each do |i|
+              tmpinstance_tmp = TmpInstance.new
+              tmpinstance_tmp.deserialize(i)
+              @TmpInstances << tmpinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatabaseObjects请求参数结构体
       class DescribeDatabaseObjectsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -5334,6 +5377,93 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 临时实例
+      class TmpInstance < TencentCloud::Common::AbstractModel
+        # @param AppId: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param InstanceRemark: 实例备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRemark: String
+        # @param TempType: 0:非临时实例 ,1:无效临时实例, 2:回档成功的有效临时实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TempType: Integer
+        # @param Status: 实例状态,0:待初始化,1:流程处理中,2:有效状态,-1:已隔离，-2：已下线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Vip: 实例虚IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: 实例虚端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param PeriodEndTime: 有效期结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodEndTime: String
+        # @param SrcInstanceId: 源实例 ID，形如：tdsql-ow728lmc。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInstanceId: String
+        # @param StatusDesc: 实例状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param Region: 实例所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 实例所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Vipv6: 实例虚IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vipv6: String
+        # @param Ipv6Flag: 实例IPv6标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Flag: Integer
+
+        attr_accessor :AppId, :CreateTime, :InstanceRemark, :TempType, :Status, :InstanceId, :Vip, :Vport, :PeriodEndTime, :SrcInstanceId, :StatusDesc, :Region, :Zone, :Vipv6, :Ipv6Flag
+
+        def initialize(appid=nil, createtime=nil, instanceremark=nil, temptype=nil, status=nil, instanceid=nil, vip=nil, vport=nil, periodendtime=nil, srcinstanceid=nil, statusdesc=nil, region=nil, zone=nil, vipv6=nil, ipv6flag=nil)
+          @AppId = appid
+          @CreateTime = createtime
+          @InstanceRemark = instanceremark
+          @TempType = temptype
+          @Status = status
+          @InstanceId = instanceid
+          @Vip = vip
+          @Vport = vport
+          @PeriodEndTime = periodendtime
+          @SrcInstanceId = srcinstanceid
+          @StatusDesc = statusdesc
+          @Region = region
+          @Zone = zone
+          @Vipv6 = vipv6
+          @Ipv6Flag = ipv6flag
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+          @InstanceRemark = params['InstanceRemark']
+          @TempType = params['TempType']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @PeriodEndTime = params['PeriodEndTime']
+          @SrcInstanceId = params['SrcInstanceId']
+          @StatusDesc = params['StatusDesc']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Vipv6 = params['Vipv6']
+          @Ipv6Flag = params['Ipv6Flag']
         end
       end
 

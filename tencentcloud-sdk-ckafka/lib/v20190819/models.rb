@@ -632,6 +632,33 @@ module TencentCloud
         end
       end
 
+      # 主题占用Broker磁盘大小
+      class BrokerTopicData < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param TopicId: 主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param DataSize: 主题占用Broker 容量大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSize: Integer
+
+        attr_accessor :TopicName, :TopicId, :DataSize
+
+        def initialize(topicname=nil, topicid=nil, datasize=nil)
+          @TopicName = topicname
+          @TopicId = topicid
+          @DataSize = datasize
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
+          @DataSize = params['DataSize']
+        end
+      end
+
       # CancelAuthorizationToken请求参数结构体
       class CancelAuthorizationTokenRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5338,14 +5365,17 @@ module TencentCloud
         # @type BeginDate: String
         # @param EndDate: 排行结束日期
         # @type EndDate: String
+        # @param BrokerIp: Broker IP 地址
+        # @type BrokerIp: String
 
-        attr_accessor :InstanceId, :RankingType, :BeginDate, :EndDate
+        attr_accessor :InstanceId, :RankingType, :BeginDate, :EndDate, :BrokerIp
 
-        def initialize(instanceid=nil, rankingtype=nil, begindate=nil, enddate=nil)
+        def initialize(instanceid=nil, rankingtype=nil, begindate=nil, enddate=nil, brokerip=nil)
           @InstanceId = instanceid
           @RankingType = rankingtype
           @BeginDate = begindate
           @EndDate = enddate
+          @BrokerIp = brokerip
         end
 
         def deserialize(params)
@@ -5353,6 +5383,7 @@ module TencentCloud
           @RankingType = params['RankingType']
           @BeginDate = params['BeginDate']
           @EndDate = params['EndDate']
+          @BrokerIp = params['BrokerIp']
         end
       end
 
@@ -10527,13 +10558,21 @@ module TencentCloud
         # @param TopicMessageHeap: Topic 消息堆积/占用磁盘排行
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicMessageHeap: Array
+        # @param BrokerIp: Broker Ip 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerIp: Array
+        # @param BrokerTopicData: 单个broker 节点 Topic占用的数据大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerTopicData: Array
 
-        attr_accessor :TopicFlow, :ConsumeSpeed, :TopicMessageHeap
+        attr_accessor :TopicFlow, :ConsumeSpeed, :TopicMessageHeap, :BrokerIp, :BrokerTopicData
 
-        def initialize(topicflow=nil, consumespeed=nil, topicmessageheap=nil)
+        def initialize(topicflow=nil, consumespeed=nil, topicmessageheap=nil, brokerip=nil, brokertopicdata=nil)
           @TopicFlow = topicflow
           @ConsumeSpeed = consumespeed
           @TopicMessageHeap = topicmessageheap
+          @BrokerIp = brokerip
+          @BrokerTopicData = brokertopicdata
         end
 
         def deserialize(params)
@@ -10559,6 +10598,15 @@ module TencentCloud
               topicmessageheapranking_tmp = TopicMessageHeapRanking.new
               topicmessageheapranking_tmp.deserialize(i)
               @TopicMessageHeap << topicmessageheapranking_tmp
+            end
+          end
+          @BrokerIp = params['BrokerIp']
+          unless params['BrokerTopicData'].nil?
+            @BrokerTopicData = []
+            params['BrokerTopicData'].each do |i|
+              brokertopicdata_tmp = BrokerTopicData.new
+              brokertopicdata_tmp.deserialize(i)
+              @BrokerTopicData << brokertopicdata_tmp
             end
           end
         end

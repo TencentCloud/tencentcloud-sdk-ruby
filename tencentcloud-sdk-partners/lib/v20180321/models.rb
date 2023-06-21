@@ -304,10 +304,13 @@ module TencentCloud
         # @param UpdateTime: 订单更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: Array
 
-        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime
+        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime, :ResourceIds
 
-        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil)
+        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil, resourceids=nil)
           @DealId = dealid
           @DealName = dealname
           @GoodsCategoryId = goodscategoryid
@@ -336,6 +339,7 @@ module TencentCloud
           @ProductInfo = productinfo
           @PaymentMethod = paymentmethod
           @UpdateTime = updatetime
+          @ResourceIds = resourceids
         end
 
         def deserialize(params)
@@ -377,6 +381,7 @@ module TencentCloud
           end
           @PaymentMethod = params['PaymentMethod']
           @UpdateTime = params['UpdateTime']
+          @ResourceIds = params['ResourceIds']
         end
       end
 
