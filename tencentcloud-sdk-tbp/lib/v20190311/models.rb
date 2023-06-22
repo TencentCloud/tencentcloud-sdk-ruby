@@ -186,7 +186,7 @@ module TencentCloud
       class ResponseMessage < TencentCloud::Common::AbstractModel
         # @param GroupList: 消息组列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GroupList: :class:`Tencentcloud::Tbp.v20190311.models.Group`
+        # @type GroupList: Array
 
         attr_accessor :GroupList
 
@@ -196,8 +196,12 @@ module TencentCloud
 
         def deserialize(params)
           unless params['GroupList'].nil?
-            @GroupList = Group.new
-            @GroupList.deserialize(params['GroupList'])
+            @GroupList = []
+            params['GroupList'].each do |i|
+              group_tmp = Group.new
+              group_tmp.deserialize(i)
+              @GroupList << group_tmp
+            end
           end
         end
       end
@@ -279,18 +283,18 @@ module TencentCloud
         # @param ResponseText: 机器人对话的应答文本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseText: String
-        # @param ResponseMessage: 机器人应答。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResponseMessage: :class:`Tencentcloud::Tbp.v20190311.models.ResponseMessage`
         # @param ResultType: 结果类型 {中间逻辑出错:0; 任务型机器人:1; 问答型机器人:2; 闲聊型机器人:3; 未匹配上，返回预设兜底话术:5; 未匹配上，返回相似问题列表:6}。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultType: String
+        # @param ResponseMessage: 机器人应答。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResponseMessage: :class:`Tencentcloud::Tbp.v20190311.models.ResponseMessage`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :ResponseMessage, :ResultType, :RequestId
+        attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :ResultType, :ResponseMessage, :RequestId
 
-        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, responsemessage=nil, resulttype=nil, requestid=nil)
+        def initialize(dialogstatus=nil, botname=nil, intentname=nil, slotinfolist=nil, inputtext=nil, sessionattributes=nil, responsetext=nil, resulttype=nil, responsemessage=nil, requestid=nil)
           @DialogStatus = dialogstatus
           @BotName = botname
           @IntentName = intentname
@@ -298,8 +302,8 @@ module TencentCloud
           @InputText = inputtext
           @SessionAttributes = sessionattributes
           @ResponseText = responsetext
-          @ResponseMessage = responsemessage
           @ResultType = resulttype
+          @ResponseMessage = responsemessage
           @RequestId = requestid
         end
 
@@ -318,11 +322,11 @@ module TencentCloud
           @InputText = params['InputText']
           @SessionAttributes = params['SessionAttributes']
           @ResponseText = params['ResponseText']
+          @ResultType = params['ResultType']
           unless params['ResponseMessage'].nil?
             @ResponseMessage = ResponseMessage.new
             @ResponseMessage.deserialize(params['ResponseMessage'])
           end
-          @ResultType = params['ResultType']
           @RequestId = params['RequestId']
         end
       end

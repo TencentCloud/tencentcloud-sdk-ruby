@@ -317,6 +317,96 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMusicAccompanySegmentUrl请求参数结构体
+      class DescribeKTVMusicAccompanySegmentUrlRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param MusicId: 歌曲 Id 。
+        # @type MusicId: String
+        # @param PlayScene: 播放场景。默认为Chat
+        # <li>Live：直播</li><li>Chat：语聊</li>
+        # @type PlayScene: String
+        # @param RoomId: 房间Id
+        # @type RoomId: String
+
+        attr_accessor :AppName, :UserId, :MusicId, :PlayScene, :RoomId
+
+        def initialize(appname=nil, userid=nil, musicid=nil, playscene=nil, roomid=nil)
+          @AppName = appname
+          @UserId = userid
+          @MusicId = musicid
+          @PlayScene = playscene
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @MusicId = params['MusicId']
+          @PlayScene = params['PlayScene']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeKTVMusicAccompanySegmentUrl返回参数结构体
+      class DescribeKTVMusicAccompanySegmentUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 歌曲状态。
+        # 0：可用
+        # 1：下线
+        # 2：没权限
+        # 3：没伴奏
+        # 当返回2时，其他参数有可能全部为空
+        # @type Status: Integer
+        # @param Url: 伴奏链接
+        # @type Url: String
+        # @param ExtName: 伴奏类型，如mkv，mp3等
+        # @type ExtName: String
+        # @param SegmentBegin: 高潮开始时间
+        # @type SegmentBegin: Integer
+        # @param SegmentEnd: 高潮结束时间
+        # @type SegmentEnd: Integer
+        # @param FileSize: 链接文件大小 单位 字节
+        # @type FileSize: Integer
+        # @param OtherSegments: 其它片段时间（可用于抢唱）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherSegments: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Url, :ExtName, :SegmentBegin, :SegmentEnd, :FileSize, :OtherSegments, :RequestId
+
+        def initialize(status=nil, url=nil, extname=nil, segmentbegin=nil, segmentend=nil, filesize=nil, othersegments=nil, requestid=nil)
+          @Status = status
+          @Url = url
+          @ExtName = extname
+          @SegmentBegin = segmentbegin
+          @SegmentEnd = segmentend
+          @FileSize = filesize
+          @OtherSegments = othersegments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Url = params['Url']
+          @ExtName = params['ExtName']
+          @SegmentBegin = params['SegmentBegin']
+          @SegmentEnd = params['SegmentEnd']
+          @FileSize = params['FileSize']
+          unless params['OtherSegments'].nil?
+            @OtherSegments = []
+            params['OtherSegments'].each do |i|
+              ktvothersegments_tmp = KTVOtherSegments.new
+              ktvothersegments_tmp.deserialize(i)
+              @OtherSegments << ktvothersegments_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKTVMusicsByTag请求参数结构体
       class DescribeKTVMusicsByTagRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -1102,6 +1192,28 @@ module TencentCloud
             @BPMInfo = KTVBPMInfo.new
             @BPMInfo.deserialize(params['BPMInfo'])
           end
+        end
+      end
+
+      # 其它片段时间（可用于抢唱）
+      class KTVOtherSegments < TencentCloud::Common::AbstractModel
+        # @param SegmentBegin: 片段开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentBegin: Integer
+        # @param SegmentEnd: 片段结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentEnd: Integer
+
+        attr_accessor :SegmentBegin, :SegmentEnd
+
+        def initialize(segmentbegin=nil, segmentend=nil)
+          @SegmentBegin = segmentbegin
+          @SegmentEnd = segmentend
+        end
+
+        def deserialize(params)
+          @SegmentBegin = params['SegmentBegin']
+          @SegmentEnd = params['SegmentEnd']
         end
       end
 

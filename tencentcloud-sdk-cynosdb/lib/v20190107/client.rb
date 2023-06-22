@@ -1469,6 +1469,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据库代理规格
+
+        # @param request: Request instance for DescribeProxySpecs.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxySpecsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxySpecsResponse`
+        def DescribeProxySpecs(request)
+          body = send_request('DescribeProxySpecs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProxySpecsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资源包使用详情
 
         # @param request: Request instance for DescribeResourcePackageDetail.

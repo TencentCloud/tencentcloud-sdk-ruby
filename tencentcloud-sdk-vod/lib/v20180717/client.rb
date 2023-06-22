@@ -456,6 +456,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建音画质检测模板。
+
+        # @param request: Request instance for CreateQualityInspectTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateQualityInspectTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateQualityInspectTemplateResponse`
+        def CreateQualityInspectTemplate(request)
+          body = send_request('CreateQualityInspectTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateQualityInspectTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建音画质重生模板。
 
         # @param request: Request instance for CreateRebuildMediaTemplate.
@@ -1055,6 +1079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteProcedureTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除音画质检测模板。
+
+        # @param request: Request instance for DeleteQualityInspectTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteQualityInspectTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteQualityInspectTemplateResponse`
+        def DeleteQualityInspectTemplate(request)
+          body = send_request('DeleteQualityInspectTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteQualityInspectTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2093,6 +2141,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取音画质检测模板列表。
+
+        # @param request: Request instance for DescribeQualityInspectTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeQualityInspectTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeQualityInspectTemplatesResponse`
+        def DescribeQualityInspectTemplates(request)
+          body = send_request('DescribeQualityInspectTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQualityInspectTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取音画质重生模板列表。
 
         # @param request: Request instance for DescribeRebuildMediaTemplates.
@@ -2675,6 +2747,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对点播中的音视频媒体发起音画质检测任务。
+
+        # @param request: Request instance for InspectMediaQuality.
+        # @type request: :class:`Tencentcloud::vod::V20180717::InspectMediaQualityRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::InspectMediaQualityResponse`
+        def InspectMediaQuality(request)
+          body = send_request('InspectMediaQuality', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InspectMediaQualityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播即时剪辑，是指在直播过程中（即直播尚未结束时），客户可以在过往直播内容中选择一段，实时生成一个新的视频（HLS 格式），开发者可以将其立即分享出去，或者长久保存起来。
 
         # 腾讯云点播支持两种即时剪辑模式：
@@ -3088,6 +3184,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改音画质检测模板。
+
+        # @param request: Request instance for ModifyQualityInspectTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyQualityInspectTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyQualityInspectTemplateResponse`
+        def ModifyQualityInspectTemplate(request)
+          body = send_request('ModifyQualityInspectTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyQualityInspectTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

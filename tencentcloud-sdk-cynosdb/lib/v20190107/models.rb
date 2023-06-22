@@ -5482,6 +5482,44 @@ module TencentCloud
         end
       end
 
+      # DescribeProxySpecs请求参数结构体
+      class DescribeProxySpecsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeProxySpecs返回参数结构体
+      class DescribeProxySpecsResponse < TencentCloud::Common::AbstractModel
+        # @param ProxySpecs: 数据库代理规格列表
+        # @type ProxySpecs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxySpecs, :RequestId
+
+        def initialize(proxyspecs=nil, requestid=nil)
+          @ProxySpecs = proxyspecs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProxySpecs'].nil?
+            @ProxySpecs = []
+            params['ProxySpecs'].each do |i|
+              proxyspec_tmp = ProxySpec.new
+              proxyspec_tmp.deserialize(i)
+              @ProxySpecs << proxyspec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourcePackageDetail请求参数结构体
       class DescribeResourcePackageDetailRequest < TencentCloud::Common::AbstractModel
         # @param PackageId: 资源包唯一ID
@@ -9224,6 +9262,26 @@ module TencentCloud
           @AppId = params['AppId']
           @Region = params['Region']
           @Zone = params['Zone']
+        end
+      end
+
+      # 数据库代理规格
+      class ProxySpec < TencentCloud::Common::AbstractModel
+        # @param Cpu: 数据库代理cpu核数
+        # @type Cpu: Integer
+        # @param Mem: 数据库代理内存
+        # @type Mem: Integer
+
+        attr_accessor :Cpu, :Mem
+
+        def initialize(cpu=nil, mem=nil)
+          @Cpu = cpu
+          @Mem = mem
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
         end
       end
 

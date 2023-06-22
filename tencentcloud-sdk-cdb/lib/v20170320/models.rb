@@ -2775,6 +2775,46 @@ module TencentCloud
         end
       end
 
+      # CreateDatabase请求参数结构体
+      class CreateDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param DBName: 数据库名称。
+        # @type DBName: String
+        # @param CharacterSetName: 字符集，可选值：utf8，gbk，latin1，utf8mb4。
+        # @type CharacterSetName: String
+
+        attr_accessor :InstanceId, :DBName, :CharacterSetName
+
+        def initialize(instanceid=nil, dbname=nil, charactersetname=nil)
+          @InstanceId = instanceid
+          @DBName = dbname
+          @CharacterSetName = charactersetname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DBName = params['DBName']
+          @CharacterSetName = params['CharacterSetName']
+        end
+      end
+
+      # CreateDatabase返回参数结构体
+      class CreateDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDeployGroup请求参数结构体
       class CreateDeployGroupRequest < TencentCloud::Common::AbstractModel
         # @param DeployGroupName: 置放群组名称，最长不能超过60个字符。
