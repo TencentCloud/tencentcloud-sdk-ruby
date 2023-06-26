@@ -1637,6 +1637,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询支持的数据库代理版本
+
+        # @param request: Request instance for DescribeSupportProxyVersion.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeSupportProxyVersionRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeSupportProxyVersionResponse`
+        def DescribeSupportProxyVersion(request)
+          body = send_request('DescribeSupportProxyVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSupportProxyVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeZones)用于查询可售卖地域可用区信息。
 
         # @param request: Request instance for DescribeZones.

@@ -507,17 +507,27 @@ module TencentCloud
         # @type Id: String
         # @param Path: 存储的路径
         # @type Path: String
+        # @param MountType: cfs的挂载类型，可选值为：STORAGE、SOURCE 分别表示存储拓展模式和数据源模式，默认为 STORAGE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MountType: String
+        # @param Protocol: 协议 1: NFS, 2: TURBO
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
 
-        attr_accessor :Id, :Path
+        attr_accessor :Id, :Path, :MountType, :Protocol
 
-        def initialize(id=nil, path=nil)
+        def initialize(id=nil, path=nil, mounttype=nil, protocol=nil)
           @Id = id
           @Path = path
+          @MountType = mounttype
+          @Protocol = protocol
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Path = params['Path']
+          @MountType = params['MountType']
+          @Protocol = params['Protocol']
         end
       end
 

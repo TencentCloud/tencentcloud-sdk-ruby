@@ -5900,6 +5900,52 @@ module TencentCloud
         end
       end
 
+      # DescribeSupportProxyVersion请求参数结构体
+      class DescribeSupportProxyVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ProxyGroupId: 数据库代理组ID
+        # @type ProxyGroupId: String
+
+        attr_accessor :ClusterId, :ProxyGroupId
+
+        def initialize(clusterid=nil, proxygroupid=nil)
+          @ClusterId = clusterid
+          @ProxyGroupId = proxygroupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ProxyGroupId = params['ProxyGroupId']
+        end
+      end
+
+      # DescribeSupportProxyVersion返回参数结构体
+      class DescribeSupportProxyVersionResponse < TencentCloud::Common::AbstractModel
+        # @param SupportProxyVersions: 支持的数据库代理版本集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportProxyVersions: Array
+        # @param CurrentProxyVersion: 当前proxy版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentProxyVersion: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SupportProxyVersions, :CurrentProxyVersion, :RequestId
+
+        def initialize(supportproxyversions=nil, currentproxyversion=nil, requestid=nil)
+          @SupportProxyVersions = supportproxyversions
+          @CurrentProxyVersion = currentproxyversion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SupportProxyVersions = params['SupportProxyVersions']
+          @CurrentProxyVersion = params['CurrentProxyVersion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
         # @param IncludeVirtualZones: 是否包含虚拟区

@@ -1940,10 +1940,12 @@ module TencentCloud
         # @type Accounts: Array
         # @param InternalStatus: 内部状态。ONLINE表示运行中
         # @type InternalStatus: String
+        # @param Encryption: 是否已开启TDE加密，enable-已加密，disable-未加密
+        # @type Encryption: String
 
-        attr_accessor :Name, :Charset, :Remark, :CreateTime, :Status, :Accounts, :InternalStatus
+        attr_accessor :Name, :Charset, :Remark, :CreateTime, :Status, :Accounts, :InternalStatus, :Encryption
 
-        def initialize(name=nil, charset=nil, remark=nil, createtime=nil, status=nil, accounts=nil, internalstatus=nil)
+        def initialize(name=nil, charset=nil, remark=nil, createtime=nil, status=nil, accounts=nil, internalstatus=nil, encryption=nil)
           @Name = name
           @Charset = charset
           @Remark = remark
@@ -1951,6 +1953,7 @@ module TencentCloud
           @Status = status
           @Accounts = accounts
           @InternalStatus = internalstatus
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -1968,6 +1971,7 @@ module TencentCloud
             end
           end
           @InternalStatus = params['InternalStatus']
+          @Encryption = params['Encryption']
         end
       end
 
@@ -3553,12 +3557,14 @@ module TencentCloud
         # @type BlockedThreshold: Integer
         # @param EventSaveDays: 慢SQL、阻塞、死锁扩展事件文件保留时长
         # @type EventSaveDays: Integer
+        # @param TDEConfig: TDE透明数据加密配置
+        # @type TDEConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.TDEConfigAttribute`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -3567,6 +3573,7 @@ module TencentCloud
           @RegularBackupStartTime = regularbackupstarttime
           @BlockedThreshold = blockedthreshold
           @EventSaveDays = eventsavedays
+          @TDEConfig = tdeconfig
           @RequestId = requestid
         end
 
@@ -3579,6 +3586,10 @@ module TencentCloud
           @RegularBackupStartTime = params['RegularBackupStartTime']
           @BlockedThreshold = params['BlockedThreshold']
           @EventSaveDays = params['EventSaveDays']
+          unless params['TDEConfig'].nil?
+            @TDEConfig = TDEConfigAttribute.new
+            @TDEConfig.deserialize(params['TDEConfig'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3804,15 +3815,18 @@ module TencentCloud
         # @type Name: String
         # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
         # @type OrderByType: String
+        # @param Encryption: 是否已开启TDE加密，enable-已加密，disable-未加密
+        # @type Encryption: String
 
-        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType
+        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption
 
-        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil)
+        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil)
           @InstanceIdSet = instanceidset
           @Limit = limit
           @Offset = offset
           @Name = name
           @OrderByType = orderbytype
+          @Encryption = encryption
         end
 
         def deserialize(params)
@@ -3821,6 +3835,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Name = params['Name']
           @OrderByType = params['OrderByType']
+          @Encryption = params['Encryption']
         end
       end
 
@@ -8441,6 +8456,31 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # TDE透明数据加密配置
+      class TDEConfigAttribute < TencentCloud::Common::AbstractModel
+        # @param Encryption: 是否已开通TDE加密，enable-已开通，disable-未开通
+        # @type Encryption: String
+        # @param CertificateAttribution: 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，none-表示没有证书
+        # @type CertificateAttribution: String
+        # @param QuoteUin: 开通TDE加密时引用的其他主账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuoteUin: String
+
+        attr_accessor :Encryption, :CertificateAttribution, :QuoteUin
+
+        def initialize(encryption=nil, certificateattribution=nil, quoteuin=nil)
+          @Encryption = encryption
+          @CertificateAttribution = certificateattribution
+          @QuoteUin = quoteuin
+        end
+
+        def deserialize(params)
+          @Encryption = params['Encryption']
+          @CertificateAttribution = params['CertificateAttribution']
+          @QuoteUin = params['QuoteUin']
         end
       end
 

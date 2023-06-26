@@ -9805,6 +9805,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainConfig请求参数结构体
+      class ModifyDomainConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Route: 配置路径
+        # @type Route: String
+        # @param Value: 配置路径值，使用 json 进行序列化，其中固定 update 作为 key
+        # @type Value: String
+
+        attr_accessor :Domain, :Route, :Value
+
+        def initialize(domain=nil, route=nil, value=nil)
+          @Domain = domain
+          @Route = route
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Route = params['Route']
+          @Value = params['Value']
+        end
+      end
+
+      # ModifyDomainConfig返回参数结构体
+      class ModifyDomainConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPurgeFetchTaskStatus请求参数结构体
       class ModifyPurgeFetchTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param ExecutionTime: 执行时间

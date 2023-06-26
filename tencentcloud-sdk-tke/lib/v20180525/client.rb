@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+        # 创建托管集群外网访问端口（不再维护，准备下线）请使用新接口：CreateClusterEndpoint
 
         # @param request: Request instance for CreateClusterEndpointVip.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterEndpointVipRequest`

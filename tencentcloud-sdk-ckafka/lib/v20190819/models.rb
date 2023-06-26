@@ -1943,6 +1943,45 @@ module TencentCloud
         end
       end
 
+      # 创建后付费接口返回的 Data 数据结构
+      class CreateInstancePostData < TencentCloud::Common::AbstractModel
+        # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param DealNames: 订单号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param InstanceId: 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNameInstanceIdMapping: Array
+
+        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping
+
+        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil)
+          @FlowId = flowid
+          @DealNames = dealnames
+          @InstanceId = instanceid
+          @DealNameInstanceIdMapping = dealnameinstanceidmapping
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @DealNames = params['DealNames']
+          @InstanceId = params['InstanceId']
+          unless params['DealNameInstanceIdMapping'].nil?
+            @DealNameInstanceIdMapping = []
+            params['DealNameInstanceIdMapping'].each do |i|
+              dealinstancedto_tmp = DealInstanceDTO.new
+              dealinstancedto_tmp.deserialize(i)
+              @DealNameInstanceIdMapping << dealinstancedto_tmp
+            end
+          end
+        end
+      end
+
       # CreateInstancePost请求参数结构体
       class CreateInstancePostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
@@ -2024,6 +2063,34 @@ module TencentCloud
           @ZoneIds = params['ZoneIds']
           @InstanceNum = params['InstanceNum']
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
+        end
+      end
+
+      # 后付费实例相关接口返回结构
+      class CreateInstancePostResp < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回的code，0为正常，非0为错误
+        # @type ReturnCode: String
+        # @param ReturnMessage: 接口返回消息，当接口报错时提示错误信息
+        # @type ReturnMessage: String
+        # @param Data: 返回的Data数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePostData`
+
+        attr_accessor :ReturnCode, :ReturnMessage, :Data
+
+        def initialize(returncode=nil, returnmessage=nil, data=nil)
+          @ReturnCode = returncode
+          @ReturnMessage = returnmessage
+          @Data = data
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMessage = params['ReturnMessage']
+          unless params['Data'].nil?
+            @Data = CreateInstancePostData.new
+            @Data.deserialize(params['Data'])
+          end
         end
       end
 
@@ -2285,6 +2352,113 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePostPaidInstance请求参数结构体
+      class CreatePostPaidInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @type InstanceName: String
+        # @param VpcId: 创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
+        # @type VpcId: String
+        # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
+        # @type SubnetId: String
+        # @param InstanceType: 实例规格。当创建标准版实例时必填，创建专业版实例时不需要填写。1：入门型；2：标准型；3：进阶型；4：容量型；5：高阶型1；6：高阶性2；7：高阶型3；8：高阶型4；9 ：独占型
+        # @type InstanceType: Integer
+        # @param MsgRetentionTime: 实例日志的默认最长保留时间，单位分钟。不传入该参数时默认为 1440 分钟（1天），最大30天。当 topic 显式设置消息保留时间时，以 topic 保留时间为准
+        # @type MsgRetentionTime: Integer
+        # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数
+        # @type ClusterId: Integer
+        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.2","2.8.1"
+        # @type KafkaVersion: String
+        # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版
+        # @type SpecificationsType: String
+        # @param DiskType: 实例硬盘类型，"CLOUD_BASIC"：云硬盘，"CLOUD_SSD"：高速云硬盘。不传默认为 "CLOUD_BASIC"
+        # @type DiskType: String
+        # @param BandWidth: 实例内网峰值带宽。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格。
+        # @type BandWidth: Integer
+        # @param DiskSize: 实例硬盘大小，需要满足当前实例的计费规格
+        # @type DiskSize: Integer
+        # @param Partition: 实例最大分区数量，需要满足当前实例的计费规格
+        # @type Partition: Integer
+        # @param TopicNum: 实例最大 topic 数量，需要满足当前实例的计费规格
+        # @type TopicNum: Integer
+        # @param ZoneId: 实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在子网的可用区 id
+        # @type ZoneId: Integer
+        # @param MultiZoneFlag: 当前实例是否为多可用区实例。
+        # @type MultiZoneFlag: Boolean
+        # @param ZoneIds: 当实例为多可用区实例时，多可用区 id 列表。注意参数 ZoneId 对应的多可用区需要包含在该参数数组中
+        # @type ZoneIds: Array
+        # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
+        # @type InstanceNum: Integer
+        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 4Mbps 公网带宽，此处传 1
+        # @type PublicNetworkMonthly: Integer
+
+        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
+
+        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil)
+          @InstanceName = instancename
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InstanceType = instancetype
+          @MsgRetentionTime = msgretentiontime
+          @ClusterId = clusterid
+          @KafkaVersion = kafkaversion
+          @SpecificationsType = specificationstype
+          @DiskType = disktype
+          @BandWidth = bandwidth
+          @DiskSize = disksize
+          @Partition = partition
+          @TopicNum = topicnum
+          @ZoneId = zoneid
+          @MultiZoneFlag = multizoneflag
+          @ZoneIds = zoneids
+          @InstanceNum = instancenum
+          @PublicNetworkMonthly = publicnetworkmonthly
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InstanceType = params['InstanceType']
+          @MsgRetentionTime = params['MsgRetentionTime']
+          @ClusterId = params['ClusterId']
+          @KafkaVersion = params['KafkaVersion']
+          @SpecificationsType = params['SpecificationsType']
+          @DiskType = params['DiskType']
+          @BandWidth = params['BandWidth']
+          @DiskSize = params['DiskSize']
+          @Partition = params['Partition']
+          @TopicNum = params['TopicNum']
+          @ZoneId = params['ZoneId']
+          @MultiZoneFlag = params['MultiZoneFlag']
+          @ZoneIds = params['ZoneIds']
+          @InstanceNum = params['InstanceNum']
+          @PublicNetworkMonthly = params['PublicNetworkMonthly']
+        end
+      end
+
+      # CreatePostPaidInstance返回参数结构体
+      class CreatePostPaidInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePostResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateInstancePostResp.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
