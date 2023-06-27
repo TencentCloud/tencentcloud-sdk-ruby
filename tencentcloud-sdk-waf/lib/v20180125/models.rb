@@ -3953,6 +3953,169 @@ module TencentCloud
         end
       end
 
+      # ModifySpartaProtection请求参数结构体
+      class ModifySpartaProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param CertType: 证书类型，0表示没有证书，CertType=1表示自有证书,2 为托管证书
+        # @type CertType: Integer
+        # @param Cert: CertType=1时，需要填次参数，表示证书内容
+        # @type Cert: String
+        # @param PrivateKey: CertType=1时，需要填次参数，表示证书的私钥
+        # @type PrivateKey: String
+        # @param SSLId: CertType=2时，需要填次参数，表示证书的ID
+        # @type SSLId: String
+        # @param IsCdn: 表示是否开启了CDN代理
+        # @type IsCdn: Integer
+        # @param UpstreamScheme: HTTPS回源协议
+        # @type UpstreamScheme: String
+        # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
+        # @type HttpsUpstreamPort: String
+        # @param HttpsRewrite: 表示是否强制跳转到HTTPS，1表示开启，0表示不开启
+        # @type HttpsRewrite: Integer
+        # @param UpstreamType: 回源类型，0表示通过IP回源,1 表示通过域名回源
+        # @type UpstreamType: Integer
+        # @param UpstreamDomain: UpstreamType=1时，填次字段表示回源域名
+        # @type UpstreamDomain: String
+        # @param SrcList: UpstreamType=0时，填次字段表示回源ip
+        # @type SrcList: Array
+        # @param IsHttp2: 是否开启HTTP2，1表示开启，0表示不开启http2。开启HTTP2需要HTTPS支持
+        # @type IsHttp2: Integer
+        # @param IsWebsocket: 是否开启WebSocket， 1：开启WebSocket，0：不开启WebSocket
+        # @type IsWebsocket: Integer
+        # @param LoadBalance: 负载均衡策略，0表示轮徇，1表示IP hash
+        # @type LoadBalance: Integer
+        # @param IsGray: 是否灰度
+        # @type IsGray: Integer
+        # @param Edition: WAF版本
+        # @type Edition: String
+        # @param Ports: 端口信息
+        # @type Ports: Array
+        # @param IsKeepAlive: 长短连接标志，仅IP回源时有效
+        # @type IsKeepAlive: String
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+        # @param Anycast: 是否为Anycast ip类型：1 Anycast 0 普通ip
+        # @type Anycast: Integer
+        # @param Weights: src的权重
+        # @type Weights: Array
+        # @param ActiveCheck: 是否开启源站的主动健康检测，1表示开启，0表示不开启
+        # @type ActiveCheck: Integer
+        # @param TLSVersion: TLS版本信息
+        # @type TLSVersion: Integer
+        # @param Ciphers: 加密套件信息
+        # @type Ciphers: Array
+        # @param CipherTemplate: 0:不支持选择：默认模版  1:通用型模版 2:安全型模版 3:自定义模版
+        # @type CipherTemplate: Integer
+        # @param ProxyReadTimeout: 300s
+        # @type ProxyReadTimeout: Integer
+        # @param ProxySendTimeout: 300s
+        # @type ProxySendTimeout: Integer
+        # @param SniType: 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        # @type SniType: Integer
+        # @param SniHost: SniType=3时，需要填此参数，表示自定义的host；
+        # @type SniHost: String
+        # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
+        # @type IpHeaders: Array
+
+        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders
+
+        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @CertType = certtype
+          @Cert = cert
+          @PrivateKey = privatekey
+          @SSLId = sslid
+          @IsCdn = iscdn
+          @UpstreamScheme = upstreamscheme
+          @HttpsUpstreamPort = httpsupstreamport
+          @HttpsRewrite = httpsrewrite
+          @UpstreamType = upstreamtype
+          @UpstreamDomain = upstreamdomain
+          @SrcList = srclist
+          @IsHttp2 = ishttp2
+          @IsWebsocket = iswebsocket
+          @LoadBalance = loadbalance
+          @IsGray = isgray
+          @Edition = edition
+          @Ports = ports
+          @IsKeepAlive = iskeepalive
+          @InstanceID = instanceid
+          @Anycast = anycast
+          @Weights = weights
+          @ActiveCheck = activecheck
+          @TLSVersion = tlsversion
+          @Ciphers = ciphers
+          @CipherTemplate = ciphertemplate
+          @ProxyReadTimeout = proxyreadtimeout
+          @ProxySendTimeout = proxysendtimeout
+          @SniType = snitype
+          @SniHost = snihost
+          @IpHeaders = ipheaders
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @CertType = params['CertType']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
+          @SSLId = params['SSLId']
+          @IsCdn = params['IsCdn']
+          @UpstreamScheme = params['UpstreamScheme']
+          @HttpsUpstreamPort = params['HttpsUpstreamPort']
+          @HttpsRewrite = params['HttpsRewrite']
+          @UpstreamType = params['UpstreamType']
+          @UpstreamDomain = params['UpstreamDomain']
+          @SrcList = params['SrcList']
+          @IsHttp2 = params['IsHttp2']
+          @IsWebsocket = params['IsWebsocket']
+          @LoadBalance = params['LoadBalance']
+          @IsGray = params['IsGray']
+          @Edition = params['Edition']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              spartaprotectionport_tmp = SpartaProtectionPort.new
+              spartaprotectionport_tmp.deserialize(i)
+              @Ports << spartaprotectionport_tmp
+            end
+          end
+          @IsKeepAlive = params['IsKeepAlive']
+          @InstanceID = params['InstanceID']
+          @Anycast = params['Anycast']
+          @Weights = params['Weights']
+          @ActiveCheck = params['ActiveCheck']
+          @TLSVersion = params['TLSVersion']
+          @Ciphers = params['Ciphers']
+          @CipherTemplate = params['CipherTemplate']
+          @ProxyReadTimeout = params['ProxyReadTimeout']
+          @ProxySendTimeout = params['ProxySendTimeout']
+          @SniType = params['SniType']
+          @SniHost = params['SniHost']
+          @IpHeaders = params['IpHeaders']
+        end
+      end
+
+      # ModifySpartaProtection返回参数结构体
+      class ModifySpartaProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWafAutoDenyRules请求参数结构体
       class ModifyWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -4572,6 +4735,38 @@ module TencentCloud
           @ListOver = params['ListOver']
           @SqlFlag = params['SqlFlag']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # waf斯巴达-编辑防护域名中的端口结构
+      class SpartaProtectionPort < TencentCloud::Common::AbstractModel
+        # @param NginxServerId: nginx Id
+        # @type NginxServerId: Integer
+        # @param Port: 端口
+        # @type Port: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param UpstreamPort: 后端端口
+        # @type UpstreamPort: String
+        # @param UpstreamProtocol: 后端协议
+        # @type UpstreamProtocol: String
+
+        attr_accessor :NginxServerId, :Port, :Protocol, :UpstreamPort, :UpstreamProtocol
+
+        def initialize(nginxserverid=nil, port=nil, protocol=nil, upstreamport=nil, upstreamprotocol=nil)
+          @NginxServerId = nginxserverid
+          @Port = port
+          @Protocol = protocol
+          @UpstreamPort = upstreamport
+          @UpstreamProtocol = upstreamprotocol
+        end
+
+        def deserialize(params)
+          @NginxServerId = params['NginxServerId']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @UpstreamPort = params['UpstreamPort']
+          @UpstreamProtocol = params['UpstreamProtocol']
         end
       end
 

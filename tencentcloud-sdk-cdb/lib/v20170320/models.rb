@@ -10375,9 +10375,9 @@ module TencentCloud
         # @param InstanceName: 实例名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param InstanceType: 实例类型
+        # @param InstanceType: 实例类型：1 master 主实例; 2 ro 只读实例; 3 dr 灾备实例; 4 sdr 小灾备实例
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type InstanceType: String
+        # @type InstanceType: Integer
         # @param Status: 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer

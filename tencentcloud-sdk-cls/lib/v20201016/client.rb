@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除投递规则
+        # 删除投递COS任务
 
         # @param request: Request instance for DeleteShipper.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteShipperRequest`

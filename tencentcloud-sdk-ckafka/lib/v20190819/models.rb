@@ -1998,7 +1998,7 @@ module TencentCloud
         # @type MsgRetentionTime: Integer
         # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数
         # @type ClusterId: Integer
-        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.2","2.8.1"
+        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.1","2.4.2","2.8.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版
         # @type SpecificationsType: String
@@ -2018,7 +2018,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
         # @type InstanceNum: Integer
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 4Mbps 公网带宽，此处传 1
+        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
 
         attr_accessor :InstanceName, :BandWidth, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly
@@ -2167,7 +2167,7 @@ module TencentCloud
         # @param InstanceType: 实例规格说明 专业版实例[所有规格]填写1.
         # 标准版实例 ([入门型(general)]填写1，[标准型(standard)]填写2，[进阶型(advanced)]填写3，[容量型(capacity)]填写4，[高阶型1(specialized-1)]填写5，[高阶性2(specialized-2)]填写6,[高阶型3(specialized-3)]填写7,[高阶型4(specialized-4)]填写8，[独占型(exclusive)]填写9。
         # @type InstanceType: Integer
-        # @param VpcId: vpcId，不填默认基础网络
+        # @param VpcId: vpcId必填
         # @type VpcId: String
         # @param SubnetId: 子网id，vpc网络需要传该参数，基础网络可以不传
         # @type SubnetId: String
@@ -2177,7 +2177,7 @@ module TencentCloud
         # @type ClusterId: Integer
         # @param RenewFlag: 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # @type RenewFlag: Integer
-        # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1], 默认是1.1.1
+        # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型: [标准版实例]填写 standard(默认), [专业版实例]填写 profession
         # @type SpecificationsType: String
@@ -2195,12 +2195,14 @@ module TencentCloud
         # @type MultiZoneFlag: Boolean
         # @param ZoneIds: 可用区列表，购买多可用区实例时为必填项
         # @type ZoneIds: Array
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 4Mbps 公网带宽，此处传 1。默认值为 0
+        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。默认值为 0。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
+        # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
+        # @type InstanceNum: Integer
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum
 
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2220,6 +2222,7 @@ module TencentCloud
           @MultiZoneFlag = multizoneflag
           @ZoneIds = zoneids
           @PublicNetworkMonthly = publicnetworkmonthly
+          @InstanceNum = instancenum
         end
 
         def deserialize(params)
@@ -2249,6 +2252,7 @@ module TencentCloud
           @MultiZoneFlag = params['MultiZoneFlag']
           @ZoneIds = params['ZoneIds']
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
+          @InstanceNum = params['InstanceNum']
         end
       end
 
@@ -2372,7 +2376,7 @@ module TencentCloud
         # @type MsgRetentionTime: Integer
         # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数
         # @type ClusterId: Integer
-        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.2","2.8.1"
+        # @param KafkaVersion: 实例版本。目前支持 "0.10.2","1.1.1","2.4.1","2.4.2","2.8.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版
         # @type SpecificationsType: String
@@ -2394,7 +2398,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
         # @type InstanceNum: Integer
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 4Mbps 公网带宽，此处传 1
+        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
         # @type PublicNetworkMonthly: Integer
 
         attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly

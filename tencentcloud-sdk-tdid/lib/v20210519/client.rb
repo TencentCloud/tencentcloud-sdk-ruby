@@ -55,6 +55,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 检查区块链信息
 
         # @param request: Request instance for CheckChain.
@@ -78,6 +80,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再使用
 
         # 创建凭证
 
@@ -103,6 +107,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 创建选择性批露凭证
 
         # @param request: Request instance for CreateSelectiveCredential.
@@ -126,6 +132,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再使用
 
         # 创建机构DID
 
@@ -151,6 +159,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 新建DID根据私钥生成Tdid
 
         # @param request: Request instance for CreateTDidByPrivateKey.
@@ -174,6 +184,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再使用
 
         #  新建DID根据公钥生成Tdid
 
@@ -224,6 +236,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再使用
 
         # 获取权威机构信息
 
@@ -301,6 +315,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 凭证模版详情
 
         # @param request: Request instance for GetCptInfo.
@@ -351,6 +367,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 获取凭证链上状态信息
 
         # @param request: Request instance for GetCredentialStatus.
@@ -375,57 +393,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # 获取DID区块链网络详情
-
-        # @param request: Request instance for GetDidClusterDetail.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetDidClusterDetailRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetDidClusterDetailResponse`
-        def GetDidClusterDetail(request)
-          body = send_request('GetDidClusterDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetDidClusterDetailResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # 获取用户的DID网络列表
-
-        # @param request: Request instance for GetDidClusterList.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetDidClusterListRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetDidClusterListResponse`
-        def GetDidClusterList(request)
-          body = send_request('GetDidClusterList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetDidClusterListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
+        # 该接口不再使用
 
         # 查看DID文档
 
@@ -451,6 +419,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 凭证模版新建
 
         # @param request: Request instance for RegisterCpt.
@@ -475,6 +445,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口不再使用
+
         # 设置凭证链上状态
 
         # @param request: Request instance for SetCredentialStatus.
@@ -498,6 +470,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 该接口不再使用
 
         # 验证凭证
 

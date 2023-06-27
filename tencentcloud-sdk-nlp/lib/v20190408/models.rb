@@ -17,6 +17,57 @@
 module TencentCloud
   module Nlp
     module V20190408
+      # AnalyzeSentiment请求参数结构体
+      class AnalyzeSentimentRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 待分析的文本（仅支持UTF-8格式，不超过200字）。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # AnalyzeSentiment返回参数结构体
+      class AnalyzeSentimentResponse < TencentCloud::Common::AbstractModel
+        # @param Positive: 正面情感概率。
+        # @type Positive: Float
+        # @param Neutral: 中性情感概率。
+        # @type Neutral: Float
+        # @param Negative: 负面情感概率。
+        # @type Negative: Float
+        # @param Sentiment: 情感分类结果：
+        # positive：正面情感
+        # negative：负面情感
+        # neutral：中性、无情感
+        # @type Sentiment: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Positive, :Neutral, :Negative, :Sentiment, :RequestId
+
+        def initialize(positive=nil, neutral=nil, negative=nil, sentiment=nil, requestid=nil)
+          @Positive = positive
+          @Neutral = neutral
+          @Negative = negative
+          @Sentiment = sentiment
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Positive = params['Positive']
+          @Neutral = params['Neutral']
+          @Negative = params['Negative']
+          @Sentiment = params['Sentiment']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AutoSummarization请求参数结构体
       class AutoSummarizationRequest < TencentCloud::Common::AbstractModel
         # @param Text: 待处理的文本（仅支持UTF-8格式，不超过2000字）
@@ -107,6 +158,38 @@ module TencentCloud
           @Word = params['Word']
           @BeginOffset = params['BeginOffset']
           @CorrectWord = params['CorrectWord']
+        end
+      end
+
+      # 分类详细信息
+      class Category < TencentCloud::Common::AbstractModel
+        # @param Id: 分类id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Label: 分类英文名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Name: 分类中文名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Score: 分类置信度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Float
+
+        attr_accessor :Id, :Label, :Name, :Score
+
+        def initialize(id=nil, label=nil, name=nil, score=nil)
+          @Id = id
+          @Label = label
+          @Name = name
+          @Score = score
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Label = params['Label']
+          @Name = params['Name']
+          @Score = params['Score']
         end
       end
 
@@ -207,6 +290,160 @@ module TencentCloud
           @FourthClassProbability = params['FourthClassProbability']
           @FifthClassName = params['FifthClassName']
           @FifthClassProbability = params['FifthClassProbability']
+        end
+      end
+
+      # ClassifyContent请求参数结构体
+      class ClassifyContentRequest < TencentCloud::Common::AbstractModel
+        # @param Title: 待分类的文章的标题（仅支持UTF-8格式，不超过100字符）。
+        # @type Title: String
+        # @param Content: 待分类文章的内容, 每个元素对应一个段落。（仅支持UTF-8格式，文章内容长度总和不超过2000字符）
+        # @type Content: Array
+
+        attr_accessor :Title, :Content
+
+        def initialize(title=nil, content=nil)
+          @Title = title
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Content = params['Content']
+        end
+      end
+
+      # ClassifyContent返回参数结构体
+      class ClassifyContentResponse < TencentCloud::Common::AbstractModel
+        # @param FirstClassification: 一级分类。分类详情见附录-三级分类体系表。
+        # @type FirstClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
+        # @param SecondClassification: 二级分类。分类详情见附录-三级分类体系表。
+        # @type SecondClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
+        # @param ThirdClassification: 三级分类。分类详情见附录-三级分类体系表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThirdClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FirstClassification, :SecondClassification, :ThirdClassification, :RequestId
+
+        def initialize(firstclassification=nil, secondclassification=nil, thirdclassification=nil, requestid=nil)
+          @FirstClassification = firstclassification
+          @SecondClassification = secondclassification
+          @ThirdClassification = thirdclassification
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FirstClassification'].nil?
+            @FirstClassification = Category.new
+            @FirstClassification.deserialize(params['FirstClassification'])
+          end
+          unless params['SecondClassification'].nil?
+            @SecondClassification = Category.new
+            @SecondClassification.deserialize(params['SecondClassification'])
+          end
+          unless params['ThirdClassification'].nil?
+            @ThirdClassification = Category.new
+            @ThirdClassification.deserialize(params['ThirdClassification'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ComposeCouplet请求参数结构体
+      class ComposeCoupletRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 生成对联的关键词。长度需>=2，当长度>2时，自动截取前两个字作为关键字。内容需为常用汉字（不含有数字、英文、韩语、日语、符号等等其他）。
+        # @type Text: String
+        # @param TargetType: 返回的文本结果为繁体还是简体。0：简体；1：繁体。默认为0。
+        # @type TargetType: Integer
+
+        attr_accessor :Text, :TargetType
+
+        def initialize(text=nil, targettype=nil)
+          @Text = text
+          @TargetType = targettype
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @TargetType = params['TargetType']
+        end
+      end
+
+      # ComposeCouplet返回参数结构体
+      class ComposeCoupletResponse < TencentCloud::Common::AbstractModel
+        # @param TopScroll: 横批。
+        # @type TopScroll: String
+        # @param Content: 上联与下联。
+        # @type Content: Array
+        # @param RandomCause: 当对联随机生成时，展示随机生成原因。
+        # @type RandomCause: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopScroll, :Content, :RandomCause, :RequestId
+
+        def initialize(topscroll=nil, content=nil, randomcause=nil, requestid=nil)
+          @TopScroll = topscroll
+          @Content = content
+          @RandomCause = randomcause
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopScroll = params['TopScroll']
+          @Content = params['Content']
+          @RandomCause = params['RandomCause']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ComposePoetry请求参数结构体
+      class ComposePoetryRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 生成诗词的关键词。
+        # @type Text: String
+        # @param PoetryType: 生成诗词的类型。0：藏头或藏身；1：藏头；2：藏身。默认为0。
+        # @type PoetryType: Integer
+        # @param Genre: 诗的体裁。0：五言律诗或七言律诗；5：五言律诗；7：七言律诗。默认为0。
+        # @type Genre: Integer
+
+        attr_accessor :Text, :PoetryType, :Genre
+
+        def initialize(text=nil, poetrytype=nil, genre=nil)
+          @Text = text
+          @PoetryType = poetrytype
+          @Genre = genre
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @PoetryType = params['PoetryType']
+          @Genre = params['Genre']
+        end
+      end
+
+      # ComposePoetry返回参数结构体
+      class ComposePoetryResponse < TencentCloud::Common::AbstractModel
+        # @param Title: 诗题，即输入的生成诗词的关键词。
+        # @type Title: String
+        # @param Content: 诗的内容。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Title, :Content, :RequestId
+
+        def initialize(title=nil, content=nil, requestid=nil)
+          @Title = title
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Content = params['Content']
+          @RequestId = params['RequestId']
         end
       end
 

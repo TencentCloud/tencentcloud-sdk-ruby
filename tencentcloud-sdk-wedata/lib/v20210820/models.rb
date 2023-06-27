@@ -4624,19 +4624,30 @@ module TencentCloud
         # @type ProjectId: String
         # @param DatasourceId: 数据来源id
         # @type DatasourceId: String
+        # @param Filters: 过滤参数
+        # @type Filters: Array
 
-        attr_accessor :StatisticsDate, :ProjectId, :DatasourceId
+        attr_accessor :StatisticsDate, :ProjectId, :DatasourceId, :Filters
 
-        def initialize(statisticsdate=nil, projectid=nil, datasourceid=nil)
+        def initialize(statisticsdate=nil, projectid=nil, datasourceid=nil, filters=nil)
           @StatisticsDate = statisticsdate
           @ProjectId = projectid
           @DatasourceId = datasourceid
+          @Filters = filters
         end
 
         def deserialize(params)
           @StatisticsDate = params['StatisticsDate']
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -6666,19 +6677,34 @@ module TencentCloud
         # @type ProjectId: String
         # @param DatasourceId: 数据来源id
         # @type DatasourceId: String
+        # @param ScoreType: 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        # @type ScoreType: String
+        # @param Filters: 过滤参数
+        # @type Filters: Array
 
-        attr_accessor :StatisticsDate, :ProjectId, :DatasourceId
+        attr_accessor :StatisticsDate, :ProjectId, :DatasourceId, :ScoreType, :Filters
 
-        def initialize(statisticsdate=nil, projectid=nil, datasourceid=nil)
+        def initialize(statisticsdate=nil, projectid=nil, datasourceid=nil, scoretype=nil, filters=nil)
           @StatisticsDate = statisticsdate
           @ProjectId = projectid
           @DatasourceId = datasourceid
+          @ScoreType = scoretype
+          @Filters = filters
         end
 
         def deserialize(params)
           @StatisticsDate = params['StatisticsDate']
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
+          @ScoreType = params['ScoreType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -6716,14 +6742,20 @@ module TencentCloud
         # @type ProjectId: String
         # @param DatasourceId: 数据来源id
         # @type DatasourceId: String
+        # @param ScoreType: 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        # @type ScoreType: String
+        # @param Filters: 过滤参数
+        # @type Filters: Array
 
-        attr_accessor :StatisticsStartDate, :StatisticsEndDate, :ProjectId, :DatasourceId
+        attr_accessor :StatisticsStartDate, :StatisticsEndDate, :ProjectId, :DatasourceId, :ScoreType, :Filters
 
-        def initialize(statisticsstartdate=nil, statisticsenddate=nil, projectid=nil, datasourceid=nil)
+        def initialize(statisticsstartdate=nil, statisticsenddate=nil, projectid=nil, datasourceid=nil, scoretype=nil, filters=nil)
           @StatisticsStartDate = statisticsstartdate
           @StatisticsEndDate = statisticsenddate
           @ProjectId = projectid
           @DatasourceId = datasourceid
+          @ScoreType = scoretype
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -6731,6 +6763,15 @@ module TencentCloud
           @StatisticsEndDate = params['StatisticsEndDate']
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
+          @ScoreType = params['ScoreType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -8511,10 +8552,12 @@ module TencentCloud
         # @type OrderFields: Array
         # @param DatasourceId: 数据来源id
         # @type DatasourceId: String
+        # @param ScoreType: 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        # @type ScoreType: String
 
-        attr_accessor :StatisticsDate, :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :DatasourceId
+        attr_accessor :StatisticsDate, :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :DatasourceId, :ScoreType
 
-        def initialize(statisticsdate=nil, projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, datasourceid=nil)
+        def initialize(statisticsdate=nil, projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, datasourceid=nil, scoretype=nil)
           @StatisticsDate = statisticsdate
           @ProjectId = projectid
           @PageNumber = pagenumber
@@ -8522,6 +8565,7 @@ module TencentCloud
           @Filters = filters
           @OrderFields = orderfields
           @DatasourceId = datasourceid
+          @ScoreType = scoretype
         end
 
         def deserialize(params)
@@ -8546,6 +8590,7 @@ module TencentCloud
             end
           end
           @DatasourceId = params['DatasourceId']
+          @ScoreType = params['ScoreType']
         end
       end
 
@@ -8647,14 +8692,17 @@ module TencentCloud
         # @type StatisticsEndDate: Integer
         # @param TableId: 表id
         # @type TableId: String
+        # @param ScoreType: 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        # @type ScoreType: String
 
-        attr_accessor :ProjectId, :StatisticsStartDate, :StatisticsEndDate, :TableId
+        attr_accessor :ProjectId, :StatisticsStartDate, :StatisticsEndDate, :TableId, :ScoreType
 
-        def initialize(projectid=nil, statisticsstartdate=nil, statisticsenddate=nil, tableid=nil)
+        def initialize(projectid=nil, statisticsstartdate=nil, statisticsenddate=nil, tableid=nil, scoretype=nil)
           @ProjectId = projectid
           @StatisticsStartDate = statisticsstartdate
           @StatisticsEndDate = statisticsenddate
           @TableId = tableid
+          @ScoreType = scoretype
         end
 
         def deserialize(params)
@@ -8662,6 +8710,7 @@ module TencentCloud
           @StatisticsStartDate = params['StatisticsStartDate']
           @StatisticsEndDate = params['StatisticsEndDate']
           @TableId = params['TableId']
+          @ScoreType = params['ScoreType']
         end
       end
 
@@ -9596,17 +9645,25 @@ module TencentCloud
         # @param Count: 统计值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
+        # @param QualityDim: 维度类型1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityDim: Integer
 
-        attr_accessor :DimType, :Count
+        attr_accessor :DimType, :Count, :QualityDim
+        extend Gem::Deprecate
+        deprecate :DimType, :none, 2023, 6
+        deprecate :DimType=, :none, 2023, 6
 
-        def initialize(dimtype=nil, count=nil)
+        def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
           @Count = count
+          @QualityDim = qualitydim
         end
 
         def deserialize(params)
           @DimType = params['DimType']
           @Count = params['Count']
+          @QualityDim = params['QualityDim']
         end
       end
 
@@ -14721,10 +14778,16 @@ module TencentCloud
         # @param RelConditionExpr: 源字段与目标字段关联条件on表达式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RelConditionExpr: String
+        # @param StartTime: 执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param AlarmLevel: 1/2/3:低/中/高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: Integer
 
-        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr
+        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr, :StartTime, :AlarmLevel
 
-        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil)
+        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil, starttime=nil, alarmlevel=nil)
           @RuleExecId = ruleexecid
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
@@ -14744,6 +14807,8 @@ module TencentCloud
           @TargetObjectDataType = targetobjectdatatype
           @FieldConfig = fieldconfig
           @RelConditionExpr = relconditionexpr
+          @StartTime = starttime
+          @AlarmLevel = alarmlevel
         end
 
         def deserialize(params)
@@ -14772,6 +14837,8 @@ module TencentCloud
             @FieldConfig.deserialize(params['FieldConfig'])
           end
           @RelConditionExpr = params['RelConditionExpr']
+          @StartTime = params['StartTime']
+          @AlarmLevel = params['AlarmLevel']
         end
       end
 
@@ -14804,10 +14871,13 @@ module TencentCloud
         # @param TableOwnerUserId: 表负责人userId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableOwnerUserId: Integer
+        # @param DatasourceType: 2.HIVE 3.DLC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: Integer
 
-        attr_accessor :DatasourceId, :DatasourceName, :DatabaseId, :DatabaseName, :InstanceId, :TableId, :TableName, :RuleExecResult, :TableOwnerUserId
+        attr_accessor :DatasourceId, :DatasourceName, :DatabaseId, :DatabaseName, :InstanceId, :TableId, :TableName, :RuleExecResult, :TableOwnerUserId, :DatasourceType
 
-        def initialize(datasourceid=nil, datasourcename=nil, databaseid=nil, databasename=nil, instanceid=nil, tableid=nil, tablename=nil, ruleexecresult=nil, tableowneruserid=nil)
+        def initialize(datasourceid=nil, datasourcename=nil, databaseid=nil, databasename=nil, instanceid=nil, tableid=nil, tablename=nil, ruleexecresult=nil, tableowneruserid=nil, datasourcetype=nil)
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
           @DatabaseId = databaseid
@@ -14817,6 +14887,7 @@ module TencentCloud
           @TableName = tablename
           @RuleExecResult = ruleexecresult
           @TableOwnerUserId = tableowneruserid
+          @DatasourceType = datasourcetype
         end
 
         def deserialize(params)
@@ -14832,6 +14903,7 @@ module TencentCloud
             @RuleExecResult.deserialize(params['RuleExecResult'])
           end
           @TableOwnerUserId = params['TableOwnerUserId']
+          @DatasourceType = params['DatasourceType']
         end
       end
 
@@ -15036,10 +15108,13 @@ module TencentCloud
         # @param TableOwnerUserId: 表负责人UserId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableOwnerUserId: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId
 
-        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil)
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil)
           @RuleGroupId = rulegroupid
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
@@ -15057,6 +15132,7 @@ module TencentCloud
           @RuleCount = rulecount
           @MonitorStatus = monitorstatus
           @TableOwnerUserId = tableowneruserid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
@@ -15083,6 +15159,7 @@ module TencentCloud
           @RuleCount = params['RuleCount']
           @MonitorStatus = params['MonitorStatus']
           @TableOwnerUserId = params['TableOwnerUserId']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -16476,17 +16553,37 @@ module TencentCloud
         # @param SourceObjectValue: 源字段名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceObjectValue: String
+        # @param ObjectDataTypeName: 源字段详细类型，int、string
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectDataTypeName: String
+        # @param ObjectValue: 源字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectValue: String
+        # @param ObjectType: 对象类型 1.常量  2.离线表级   3.离线字段级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: Integer
 
-        attr_accessor :SourceObjectDataTypeName, :SourceObjectValue
+        attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
+        extend Gem::Deprecate
+        deprecate :SourceObjectDataTypeName, :none, 2023, 6
+        deprecate :SourceObjectDataTypeName=, :none, 2023, 6
+        deprecate :SourceObjectValue, :none, 2023, 6
+        deprecate :SourceObjectValue=, :none, 2023, 6
 
-        def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil)
+        def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename
           @SourceObjectValue = sourceobjectvalue
+          @ObjectDataTypeName = objectdatatypename
+          @ObjectValue = objectvalue
+          @ObjectType = objecttype
         end
 
         def deserialize(params)
           @SourceObjectDataTypeName = params['SourceObjectDataTypeName']
           @SourceObjectValue = params['SourceObjectValue']
+          @ObjectDataTypeName = params['ObjectDataTypeName']
+          @ObjectValue = params['ObjectValue']
+          @ObjectType = params['ObjectType']
         end
       end
 

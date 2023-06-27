@@ -77,6 +77,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃，请通过控制台查询或操作
+
         # 创建并安装合约
 
         # @param request: Request instance for CreateChaincodeAndInstallForUser.
@@ -173,6 +175,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃，请通过控制台查询或操作
+
         # 获取合约编译日志
 
         # @param request: Request instance for GetChaincodeCompileLogForUser.
@@ -196,6 +200,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口已废弃，请通过控制台查询或操作
 
         # 实例化结果查询
 
@@ -221,6 +227,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃，请通过控制台查询或操作
+
         # 获取合约容器日志
 
         # @param request: Request instance for GetChaincodeLogForUser.
@@ -245,6 +253,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃，请通过控制台查询或操作
+
         # 获取通道列表
 
         # @param request: Request instance for GetChannelListForUser.
@@ -268,6 +278,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口已废弃，请通过控制台查询或操作
 
         # 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
 
@@ -389,6 +401,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃，请通过控制台查询或操作
+
         # 获取节点日志
 
         # @param request: Request instance for GetPeerLogForUser.
@@ -436,6 +450,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口已废弃，请通过控制台查询或操作
 
         # 实例化合约
 
