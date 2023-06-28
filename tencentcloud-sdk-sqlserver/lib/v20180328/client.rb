@@ -1805,6 +1805,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBEncryptAttributes）用于开启、关闭数据库的TDE加密功能。
+
+        # @param request: Request instance for ModifyDBEncryptAttributes.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBEncryptAttributesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBEncryptAttributesResponse`
+        def ModifyDBEncryptAttributes(request)
+          body = send_request('ModifyDBEncryptAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBEncryptAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceName）用于修改实例名字。
 
         # @param request: Request instance for ModifyDBInstanceName.
@@ -2055,6 +2079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyIncrementalMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceEncryptAttributes）用于开通实例的TDE加密功能。
+
+        # @param request: Request instance for ModifyInstanceEncryptAttributes.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyInstanceEncryptAttributesRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyInstanceEncryptAttributesResponse`
+        def ModifyInstanceEncryptAttributes(request)
+          body = send_request('ModifyInstanceEncryptAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceEncryptAttributesResponse.new
             model.deserialize(response['Response'])
             model
           else

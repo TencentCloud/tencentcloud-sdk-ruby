@@ -7071,19 +7071,23 @@ module TencentCloud
         # @type ClusterName: String
         # @param Remark: 说明信息，不超过128个字符
         # @type Remark: String
+        # @param PublicAccessEnabled: 是否开启HTTP公网访问
+        # @type PublicAccessEnabled: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Remark
+        attr_accessor :ClusterId, :ClusterName, :Remark, :PublicAccessEnabled
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, publicaccessenabled=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
+          @PublicAccessEnabled = publicaccessenabled
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @Remark = params['Remark']
+          @PublicAccessEnabled = params['PublicAccessEnabled']
         end
       end
 
@@ -7224,15 +7228,18 @@ module TencentCloud
         # @type RetentionTime: Integer
         # @param Remark: 说明，最大128个字符
         # @type Remark: String
+        # @param PublicAccessEnabled: 是否开启公网访问
+        # @type PublicAccessEnabled: Boolean
 
-        attr_accessor :ClusterId, :NamespaceId, :Ttl, :RetentionTime, :Remark
+        attr_accessor :ClusterId, :NamespaceId, :Ttl, :RetentionTime, :Remark, :PublicAccessEnabled
 
-        def initialize(clusterid=nil, namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil)
+        def initialize(clusterid=nil, namespaceid=nil, ttl=nil, retentiontime=nil, remark=nil, publicaccessenabled=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @Ttl = ttl
           @RetentionTime = retentiontime
           @Remark = remark
+          @PublicAccessEnabled = publicaccessenabled
         end
 
         def deserialize(params)
@@ -7241,6 +7248,7 @@ module TencentCloud
           @Ttl = params['Ttl']
           @RetentionTime = params['RetentionTime']
           @Remark = params['Remark']
+          @PublicAccessEnabled = params['PublicAccessEnabled']
         end
       end
 

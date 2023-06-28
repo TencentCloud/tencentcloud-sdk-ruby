@@ -385,27 +385,34 @@ module TencentCloud
 
       # ChangeMasterInstance请求参数结构体
       class ChangeMasterInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。创建复制组时，系统自动分配的 ID，是复制组的唯一标识。例如：crs-rpl-m3zt****，请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。
         # @type GroupId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 指定待提升为主实例的只读实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+
         # @type InstanceId: String
+        # @param ForceSwitch: 标识是否强制提主。
+        # - true：强制提主。
+        # - false：不强制提主。
+        # @type ForceSwitch: Boolean
 
-        attr_accessor :GroupId, :InstanceId
+        attr_accessor :GroupId, :InstanceId, :ForceSwitch
 
-        def initialize(groupid=nil, instanceid=nil)
+        def initialize(groupid=nil, instanceid=nil, forceswitch=nil)
           @GroupId = groupid
           @InstanceId = instanceid
+          @ForceSwitch = forceswitch
         end
 
         def deserialize(params)
           @GroupId = params['GroupId']
           @InstanceId = params['InstanceId']
+          @ForceSwitch = params['ForceSwitch']
         end
       end
 
       # ChangeMasterInstance返回参数结构体
       class ChangeMasterInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 异步流程ID
+        # @param TaskId: 异步流程ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1030,7 +1037,7 @@ module TencentCloud
       class CreateReplicationGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定复制组中的主实例ID。
         # @type InstanceId: String
-        # @param GroupName: 复制组名称。
+        # @param GroupName: 复制组名称。名称只支持长度为2-64个字符的中文、英文、数字、下划线_、分隔符-。
         # @type GroupName: String
         # @param Remark: 备注信息。
         # @type Remark: String
@@ -3233,9 +3240,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
-        # @param GroupId: 复制组ID。
+        # @param GroupId: 指定复制组 ID。例如：crs-rpl-m3zt****。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。
         # @type GroupId: String
-        # @param SearchKey: 模糊查询的关键字，可以设置为复制组ID或复制组名称进行模糊查询。
+        # @param SearchKey: 模糊查询的关键字，可以设置为复制组ID或复制组名称进行模糊查询。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID及名称。
         # @type SearchKey: String
 
         attr_accessor :Limit, :Offset, :GroupId, :SearchKey
@@ -3417,7 +3424,7 @@ module TencentCloud
 
       # DescribeTaskInfo请求参数结构体
       class DescribeTaskInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务 ID。
         # @type TaskId: Integer
 
         attr_accessor :TaskId
@@ -3433,15 +3440,20 @@ module TencentCloud
 
       # DescribeTaskInfo返回参数结构体
       class DescribeTaskInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态preparing:待执行，running：执行中，succeed：成功，failed：失败，error 执行出错
+        # @param Status: 任务状态。
+        # - preparing：待执行。
+        # - running：执行中。
+        # - succeed：成功。
+        # - failed：失败。
+        # - error：执行出错。
         # @type Status: String
-        # @param StartTime: 任务开始时间
+        # @param StartTime: 任务开始时间。
         # @type StartTime: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型。常见的类型包含：新建类型、配置变更、关闭实例、清空实例、重置密码、版本升级、备份实例、改变网络类型、实例可用区迁移、手动提主等。
         # @type TaskType: String
-        # @param InstanceId: 实例的ID
+        # @param InstanceId: 实例的 ID。
         # @type InstanceId: String
-        # @param TaskMessage: 任务信息，错误时显示错误信息。执行中与成功则为空
+        # @param TaskMessage: 任务执行返回的信息，执行错误时显示错误信息。执行中或执行成功则为空。
         # @type TaskMessage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3864,7 +3876,6 @@ module TencentCloud
         # - 21：印度
         # - 22：美东（弗吉尼亚）
         # - 23：泰国
-        # - 24：俄罗斯
         # - 25：日本
         # @type RegionId: Integer
         # @param GroupId: 复制组 ID。格式如：crs-rpl-deind****。
@@ -4976,7 +4987,7 @@ module TencentCloud
         # @type RedisShardNum: Integer
         # @param RedisShardSize: 分片内存大小。
         # @type RedisShardSize: Integer
-        # @param DiskSize: 实例的磁盘大小
+        # @param DiskSize: 实例的磁盘大小。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
         # @param Engine: 引擎：社区版Redis、腾讯云CKV。

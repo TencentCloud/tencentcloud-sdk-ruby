@@ -4418,7 +4418,7 @@ module TencentCloud
         # @type GroupName: String
         # @param TopicName: 可选，用户需要查询的group中的对应的topic名称，如果指定了该参数，而group又未指定则忽略该参数。
         # @type TopicName: String
-        # @param Limit: 本次返回个数限制
+        # @param Limit: 本次返回个数限制，最大支持50
         # @type Limit: Integer
         # @param Offset: 偏移位置
         # @type Offset: Integer
@@ -7051,21 +7051,21 @@ module TencentCloud
 
       # InquireCkafkaPrice请求参数结构体
       class InquireCkafkaPriceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 国内站标准版填写standards2, 专业版填写profession
+        # @param InstanceType: 国内站标准版填写standards2, 国际站标准版填写standard，专业版填写profession
         # @type InstanceType: String
         # @param InstanceChargeParam: 购买/续费付费类型(购买时不填的话, 默认获取购买包年包月一个月的费用)
         # @type InstanceChargeParam: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceChargeParam`
         # @param InstanceNum: 购买/续费时购买的实例数量(不填时, 默认为1个)
         # @type InstanceNum: Integer
-        # @param Bandwidth: 实例内网带宽大小, 单位MB/s (购买时必填)
+        # @param Bandwidth: 实例内网带宽大小, 单位MB/s (购买时必填，专业版询价时带宽信息必填)
         # @type Bandwidth: Integer
-        # @param InquiryDiskParam: 实例的硬盘购买类型以及大小 (购买时必填)
+        # @param InquiryDiskParam: 实例的硬盘购买类型以及大小 (购买时必填，专业版询价时磁盘信息必填)
         # @type InquiryDiskParam: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryDiskParam`
         # @param MessageRetention: 实例消息保留时间大小, 单位小时 (购买时必填)
         # @type MessageRetention: Integer
         # @param Topic: 购买实例topic数, 单位个 (购买时必填)
         # @type Topic: Integer
-        # @param Partition: 购买实例分区数, 单位个 (购买时必填)
+        # @param Partition: 购买实例分区数, 单位个 (购买时必填，专业版询价时带宽信息必填)
         # @type Partition: Integer
         # @param ZoneIds: 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId
         # @type ZoneIds: Array

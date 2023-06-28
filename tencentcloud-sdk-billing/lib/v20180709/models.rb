@@ -1998,10 +1998,12 @@ module TencentCloud
         # @param BusinessCode: 产品名称代码
         # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         # @type BusinessCode: String
+        # @param PayerUin: 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN
+        # @type PayerUin: String
 
-        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode
+        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin
 
-        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil)
+        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil)
           @Offset = offset
           @Limit = limit
           @Month = month
@@ -2011,6 +2013,7 @@ module TencentCloud
           @ResourceId = resourceid
           @PayMode = paymode
           @BusinessCode = businesscode
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
@@ -2023,6 +2026,7 @@ module TencentCloud
           @ResourceId = params['ResourceId']
           @PayMode = params['PayMode']
           @BusinessCode = params['BusinessCode']
+          @PayerUin = params['PayerUin']
         end
       end
 
@@ -2084,8 +2088,7 @@ module TencentCloud
 
       # DescribeBillSummaryByPayMode返回参数结构体
       class DescribeBillSummaryByPayModeResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好。
-        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         # @type Ready: Integer
         # @param SummaryOverview: 各付费模式花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2150,8 +2153,7 @@ module TencentCloud
 
       # DescribeBillSummaryByProduct返回参数结构体
       class DescribeBillSummaryByProductResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好。
-        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         # @type Ready: Integer
         # @param SummaryTotal: 总花费详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2215,8 +2217,7 @@ module TencentCloud
 
       # DescribeBillSummaryByProject返回参数结构体
       class DescribeBillSummaryByProjectResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
-        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         # @type Ready: Integer
         # @param SummaryOverview: 各项目花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2272,8 +2273,7 @@ module TencentCloud
 
       # DescribeBillSummaryByRegion返回参数结构体
       class DescribeBillSummaryByRegionResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
-        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         # @type Ready: Integer
         # @param SummaryOverview: 各地域花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2337,8 +2337,7 @@ module TencentCloud
 
       # DescribeBillSummaryByTag返回参数结构体
       class DescribeBillSummaryByTagResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0未准备好，1准备好
-        # Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟，请于10分钟后重试
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         # @type Ready: Integer
         # @param SummaryOverview: 各标签值花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。

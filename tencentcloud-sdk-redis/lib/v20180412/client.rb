@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 复制组实例切主
+        # 该接口（ChangeMasterInstance）用于将复制组内只读实例设置为主实例。
 
         # @param request: Request instance for ChangeMasterInstance.
         # @type request: :class:`Tencentcloud::redis::V20180412::ChangeMasterInstanceRequest`
@@ -365,7 +365,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建复制组
+        # 该接口（CreateReplicationGroup）用于创建复制组。
 
         # @param request: Request instance for CreateReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateReplicationGroupRequest`
@@ -1229,7 +1229,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeReplicationGroup）查询复制组。
+        # 本接口（DescribeReplicationGroup）用于查询复制组。
 
         # @param request: Request instance for DescribeReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeReplicationGroupRequest`
@@ -1301,7 +1301,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于查询任务结果
+        # 本接口（DescribeTaskInfo）用于获取指定任务的执行情况。
 
         # @param request: Request instance for DescribeTaskInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeTaskInfoRequest`

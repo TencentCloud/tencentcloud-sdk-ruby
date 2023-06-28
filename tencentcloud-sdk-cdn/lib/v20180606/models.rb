@@ -13462,7 +13462,7 @@ module TencentCloud
         # @type FollowRedirect: :class:`Tencentcloud::Cdn.v20180606.models.FollowRedirect`
         # @param ErrorPage: 错误码重定向配置（功能灰度中，尚未全量）
         # @type ErrorPage: :class:`Tencentcloud::Cdn.v20180606.models.ErrorPage`
-        # @param RequestHeader: 请求头部配置
+        # @param RequestHeader: 回源请求头部配置
         # @type RequestHeader: :class:`Tencentcloud::Cdn.v20180606.models.RequestHeader`
         # @param ResponseHeader: 响应头部配置
         # @type ResponseHeader: :class:`Tencentcloud::Cdn.v20180606.models.ResponseHeader`

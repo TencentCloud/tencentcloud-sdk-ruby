@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义账户
+
+        # @param request: Request instance for CreateCustomAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateCustomAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateCustomAccountResponse`
+        def CreateCustomAccount(request)
+          body = send_request('CreateCustomAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建镜像加速服务
 
         # @param request: Request instance for CreateImageAccelerationService.
@@ -641,6 +665,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApplicationTriggerPersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自定义账号
+
+        # @param request: Request instance for DeleteCustomAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteCustomAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteCustomAccountResponse`
+        def DeleteCustomAccount(request)
+          body = send_request('DeleteCustomAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1221,6 +1269,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeChartDownloadInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询自定义账号
+
+        # @param request: Request instance for DescribeCustomAccounts.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeCustomAccountsRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeCustomAccountsResponse`
+        def DescribeCustomAccounts(request)
+          body = send_request('DescribeCustomAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2229,6 +2301,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApplicationTriggerPersonalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自定义账户
+
+        # @param request: Request instance for ModifyCustomAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyCustomAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyCustomAccountResponse`
+        def ModifyCustomAccount(request)
+          body = send_request('ModifyCustomAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomAccountResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2303,6 +2303,26 @@ module TencentCloud
         end
       end
 
+      # 开启、关闭TDE数据库加密
+      class DBTDEEncrypt < TencentCloud::Common::AbstractModel
+        # @param DBName: 数据库名称
+        # @type DBName: String
+        # @param Encryption: enable-开启加密，disable-关闭加密
+        # @type Encryption: String
+
+        attr_accessor :DBName, :Encryption
+
+        def initialize(dbname=nil, encryption=nil)
+          @DBName = dbname
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @DBName = params['DBName']
+          @Encryption = params['Encryption']
+        end
+      end
+
       # 该数据结构表示具有发布订阅关系的两个数据库。
       class DatabaseTuple < TencentCloud::Common::AbstractModel
         # @param PublishDatabase: 发布数据库名称
@@ -6263,6 +6283,53 @@ module TencentCloud
         end
       end
 
+      # ModifyDBEncryptAttributes请求参数结构体
+      class ModifyDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param DBTDEEncrypt: 开启、关闭数据库TDE加密
+        # @type DBTDEEncrypt: Array
+
+        attr_accessor :InstanceId, :DBTDEEncrypt
+
+        def initialize(instanceid=nil, dbtdeencrypt=nil)
+          @InstanceId = instanceid
+          @DBTDEEncrypt = dbtdeencrypt
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['DBTDEEncrypt'].nil?
+            @DBTDEEncrypt = []
+            params['DBTDEEncrypt'].each do |i|
+              dbtdeencrypt_tmp = DBTDEEncrypt.new
+              dbtdeencrypt_tmp.deserialize(i)
+              @DBTDEEncrypt << dbtdeencrypt_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDBEncryptAttributes返回参数结构体
+      class ModifyDBEncryptAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
@@ -6737,6 +6804,50 @@ module TencentCloud
 
         def deserialize(params)
           @IncrementalMigrationId = params['IncrementalMigrationId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceEncryptAttributes请求参数结构体
+      class ModifyInstanceEncryptAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param CertificateAttribution: 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，默认self。
+        # @type CertificateAttribution: String
+        # @param QuoteUin: 引用的其他主账号ID，当CertificateAttribution 为others时必填。
+        # @type QuoteUin: String
+
+        attr_accessor :InstanceId, :CertificateAttribution, :QuoteUin
+
+        def initialize(instanceid=nil, certificateattribution=nil, quoteuin=nil)
+          @InstanceId = instanceid
+          @CertificateAttribution = certificateattribution
+          @QuoteUin = quoteuin
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CertificateAttribution = params['CertificateAttribution']
+          @QuoteUin = params['QuoteUin']
+        end
+      end
+
+      # ModifyInstanceEncryptAttributes返回参数结构体
+      class ModifyInstanceEncryptAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

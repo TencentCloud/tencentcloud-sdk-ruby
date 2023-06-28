@@ -682,6 +682,8 @@ module TencentCloud
         # @type DbVersionId: String
         # @param SecurityGroupId: 安全组ID
         # @type SecurityGroupId: String
+        # @param SecurityGroupIds: 安全组ID列表
+        # @type SecurityGroupIds: Array
         # @param DcnInstanceId: DCN源实例ID
         # @type DcnInstanceId: String
         # @param DcnRegion: DCN源实例地域名
@@ -705,9 +707,9 @@ module TencentCloud
         # @param RollbackTime: 回档时间
         # @type RollbackTime: String
 
-        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime
+        attr_accessor :GoodsNum, :ShardNum, :ShardMemory, :ShardStorage, :ClusterId, :Zone, :ProjectId, :Cpu, :VpcId, :SubnetId, :ShardMachine, :ShardNodeNum, :ShardNodeCpu, :ShardNodeMemory, :ShardNodeStorage, :DbVersionId, :SecurityGroupId, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :Pid, :InitParams, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime
 
-        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil)
+        def initialize(goodsnum=nil, shardnum=nil, shardmemory=nil, shardstorage=nil, clusterid=nil, zone=nil, projectid=nil, cpu=nil, vpcid=nil, subnetid=nil, shardmachine=nil, shardnodenum=nil, shardnodecpu=nil, shardnodememory=nil, shardnodestorage=nil, dbversionid=nil, securitygroupid=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, pid=nil, initparams=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil)
           @GoodsNum = goodsnum
           @ShardNum = shardnum
           @ShardMemory = shardmemory
@@ -725,6 +727,7 @@ module TencentCloud
           @ShardNodeStorage = shardnodestorage
           @DbVersionId = dbversionid
           @SecurityGroupId = securitygroupid
+          @SecurityGroupIds = securitygroupids
           @DcnInstanceId = dcninstanceid
           @DcnRegion = dcnregion
           @InstanceName = instancename
@@ -756,6 +759,7 @@ module TencentCloud
           @ShardNodeStorage = params['ShardNodeStorage']
           @DbVersionId = params['DbVersionId']
           @SecurityGroupId = params['SecurityGroupId']
+          @SecurityGroupIds = params['SecurityGroupIds']
           @DcnInstanceId = params['DcnInstanceId']
           @DcnRegion = params['DcnRegion']
           @InstanceName = params['InstanceName']

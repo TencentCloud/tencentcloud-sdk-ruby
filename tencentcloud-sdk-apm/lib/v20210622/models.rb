@@ -676,10 +676,12 @@ module TencentCloud
         # @type PageIndex: Integer
         # @param PageSize: 页长
         # @type PageSize: Integer
+        # @param OrFilters: Or过滤条件
+        # @type OrFilters: Array
 
-        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize
+        attr_accessor :Filters, :Metrics, :GroupBy, :OrderBy, :InstanceId, :Limit, :StartTime, :Offset, :EndTime, :BusinessName, :PageIndex, :PageSize, :OrFilters
 
-        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil)
+        def initialize(filters=nil, metrics=nil, groupby=nil, orderby=nil, instanceid=nil, limit=nil, starttime=nil, offset=nil, endtime=nil, businessname=nil, pageindex=nil, pagesize=nil, orfilters=nil)
           @Filters = filters
           @Metrics = metrics
           @GroupBy = groupby
@@ -692,6 +694,7 @@ module TencentCloud
           @BusinessName = businessname
           @PageIndex = pageindex
           @PageSize = pagesize
+          @OrFilters = orfilters
         end
 
         def deserialize(params)
@@ -724,6 +727,14 @@ module TencentCloud
           @BusinessName = params['BusinessName']
           @PageIndex = params['PageIndex']
           @PageSize = params['PageSize']
+          unless params['OrFilters'].nil?
+            @OrFilters = []
+            params['OrFilters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @OrFilters << filter_tmp
+            end
+          end
         end
       end
 
