@@ -8646,6 +8646,7 @@ module TencentCloud
         # <li>Bandwidth：带宽，单位为 Bps。</li>
         # <li>Requests：请求数。</li>
         # <li>QUICRequests：QUIC 请求数。</li>
+        # <li>IpVisit：IP 访问数。</li>
         # @type Metric: String
         # @param StartTime: 起始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type StartTime: String

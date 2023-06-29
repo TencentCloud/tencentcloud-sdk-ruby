@@ -1880,9 +1880,7 @@ module TencentCloud
         # @param PackageRegion: 资源包使用地域
         # china-中国内地通用，overseas-港澳台及海外通用
         # @type PackageRegion: String
-        # @param PackageType: 资源包类型
-
-        # 资源包类型：CCU-计算资源包，DISK-存储资源包
+        # @param PackageType: 资源包类型：CCU-计算资源包，DISK-存储资源包
         # @type PackageType: String
         # @param PackageVersion: 资源包版本
         # base-基础版本，common-通用版本，enterprise-企业版本
@@ -3078,7 +3076,7 @@ module TencentCloud
         # @type CharacterSet: String
         # @param Status: 数据库状态
         # @type Status: String
-        # @param CollateRule: 拍讯规则
+        # @param CollateRule: 排序规则
         # @type CollateRule: String
         # @param Description: 数据库备注
         # 注意：此字段可能返回 null，表示取不到有效值。

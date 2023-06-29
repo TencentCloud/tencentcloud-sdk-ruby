@@ -308,16 +308,22 @@ module TencentCloud
         # @type IsUsed: Integer
         # @param Tags: 标签对
         # @type Tags: Array
+        # @param TemplateSource: 经验来源 0-自建 1-专家推荐
+        # @type TemplateSource: Integer
+        # @param TemplateIdList: 经验ID
+        # @type TemplateIdList: Array
 
-        attr_accessor :Limit, :Offset, :Title, :Tag, :IsUsed, :Tags
+        attr_accessor :Limit, :Offset, :Title, :Tag, :IsUsed, :Tags, :TemplateSource, :TemplateIdList
 
-        def initialize(limit=nil, offset=nil, title=nil, tag=nil, isused=nil, tags=nil)
+        def initialize(limit=nil, offset=nil, title=nil, tag=nil, isused=nil, tags=nil, templatesource=nil, templateidlist=nil)
           @Limit = limit
           @Offset = offset
           @Title = title
           @Tag = tag
           @IsUsed = isused
           @Tags = tags
+          @TemplateSource = templatesource
+          @TemplateIdList = templateidlist
         end
 
         def deserialize(params)
@@ -334,6 +340,8 @@ module TencentCloud
               @Tags << tagwithdescribe_tmp
             end
           end
+          @TemplateSource = params['TemplateSource']
+          @TemplateIdList = params['TemplateIdList']
         end
       end
 
@@ -1131,10 +1139,13 @@ module TencentCloud
         # @param TaskPreCheckSuccess: 环境检查是否通过
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPreCheckSuccess: Boolean
+        # @param TaskExpect: 演练是否符合预期 1-符合预期 2-不符合预期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskExpect: Integer
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1144,6 +1155,7 @@ module TencentCloud
           @TaskUpdateTime = taskupdatetime
           @TaskPreCheckStatus = taskprecheckstatus
           @TaskPreCheckSuccess = taskprechecksuccess
+          @TaskExpect = taskexpect
         end
 
         def deserialize(params)
@@ -1156,6 +1168,7 @@ module TencentCloud
           @TaskUpdateTime = params['TaskUpdateTime']
           @TaskPreCheckStatus = params['TaskPreCheckStatus']
           @TaskPreCheckSuccess = params['TaskPreCheckSuccess']
+          @TaskExpect = params['TaskExpect']
         end
       end
 
@@ -1270,10 +1283,13 @@ module TencentCloud
         # @param Tags: 标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param TemplateSource: 经验来源 0-自建 1-专家推荐
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateSource: Integer
 
-        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags
+        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource
 
-        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil)
+        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
           @TemplateDescription = templatedescription
@@ -1289,6 +1305,7 @@ module TencentCloud
           @TemplateMonitors = templatemonitors
           @TemplatePolicy = templatepolicy
           @Tags = tags
+          @TemplateSource = templatesource
         end
 
         def deserialize(params)
@@ -1331,6 +1348,7 @@ module TencentCloud
               @Tags << tagwithdescribe_tmp
             end
           end
+          @TemplateSource = params['TemplateSource']
         end
       end
 
@@ -1485,10 +1503,13 @@ module TencentCloud
         # @type TemplateUpdateTime: String
         # @param TemplateUsedNum: 经验库关联的任务数量
         # @type TemplateUsedNum: Integer
+        # @param TemplateSource: 经验库来源 0-自建经验 1-专家推荐
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateSource: Integer
 
-        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateUsedNum
+        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateUsedNum, :TemplateSource
 
-        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templateusednum=nil)
+        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templateusednum=nil, templatesource=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
           @TemplateDescription = templatedescription
@@ -1497,6 +1518,7 @@ module TencentCloud
           @TemplateCreateTime = templatecreatetime
           @TemplateUpdateTime = templateupdatetime
           @TemplateUsedNum = templateusednum
+          @TemplateSource = templatesource
         end
 
         def deserialize(params)
@@ -1508,6 +1530,7 @@ module TencentCloud
           @TemplateCreateTime = params['TemplateCreateTime']
           @TemplateUpdateTime = params['TemplateUpdateTime']
           @TemplateUsedNum = params['TemplateUsedNum']
+          @TemplateSource = params['TemplateSource']
         end
       end
 

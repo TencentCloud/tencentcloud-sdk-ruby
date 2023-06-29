@@ -1025,7 +1025,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
+        # 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。
 
         # @param request: Request instance for DescribeExclusiveInstanceDetail.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeExclusiveInstanceDetailRequest`

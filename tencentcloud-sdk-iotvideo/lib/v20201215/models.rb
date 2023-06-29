@@ -944,11 +944,11 @@ module TencentCloud
         # @type RoleID: Integer
         # @param QueueRegion: 队列区
         # @type QueueRegion: String
-        # @param QueueType: 消息队列的类型。 0：CMQ，1：CKafaka
+        # @param QueueType: 消息队列的类型。 0：CMQ，1：Ckafka
         # @type QueueType: Integer
-        # @param InstanceId: 实例id， 目前只有Ckafaka会用到
+        # @param InstanceId: 实例id， 目前只有Ckafka会用到
         # @type InstanceId: String
-        # @param InstanceName: 实例名称，目前只有Ckafaka会用到
+        # @param InstanceName: 实例名称，目前只有Ckafka会用到
         # @type InstanceName: String
         # @param ErrMsg: 错误消息
         # @type ErrMsg: String
@@ -3193,9 +3193,9 @@ module TencentCloud
         # @type QueueRegion: String
         # @param QueueType: 队列类型，0：CMQ，1：Ckafka
         # @type QueueType: Integer
-        # @param InstanceId: 实例id， 目前只有Ckafaka会用到
+        # @param InstanceId: 实例id， 目前只有Ckafka会用到
         # @type InstanceId: String
-        # @param InstanceName: 实例名称，目前只有Ckafaka会用到
+        # @param InstanceName: 实例名称，目前只有Ckafka会用到
         # @type InstanceName: String
         # @param ErrMsg: 错误消息
         # @type ErrMsg: String

@@ -1428,6 +1428,50 @@ module TencentCloud
         end
       end
 
+      # DescribeAgentCorps请求参数结构体
+      class DescribeAgentCorpsRequest < TencentCloud::Common::AbstractModel
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param PageNumber: 页数
+        # @type PageNumber: Integer
+        # @param AgentId: 渠道ID
+        # @type AgentId: Integer
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :PageSize, :PageNumber, :AgentId, :CorpId
+
+        def initialize(pagesize=nil, pagenumber=nil, agentid=nil, corpid=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @AgentId = agentid
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @AgentId = params['AgentId']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeAgentCorps返回参数结构体
+      class DescribeAgentCorpsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCodeBatchById请求参数结构体
       class DescribeCodeBatchByIdRequest < TencentCloud::Common::AbstractModel
         # @param CorpId: 企业ID

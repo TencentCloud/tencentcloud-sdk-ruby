@@ -2229,6 +2229,9 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
 
         attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption
+        extend Gem::Deprecate
+        deprecate :NotifyType, :none, 2023, 6
+        deprecate :NotifyType=, :none, 2023, 6
 
         def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil)
           @NotChannelOrganization = notchannelorganization

@@ -121,10 +121,12 @@ module TencentCloud
         # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
         # 合同签署认证方式的优先级 verifyChannel>approverSignTypes
         # @type ApproverSignTypes: Array
+        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
+        # @type ApproverNeedSignReview: Boolean
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -142,6 +144,7 @@ module TencentCloud
           @ApproverOption = approveroption
           @ApproverVerifyTypes = approververifytypes
           @ApproverSignTypes = approversigntypes
+          @ApproverNeedSignReview = approverneedsignreview
         end
 
         def deserialize(params)
@@ -172,6 +175,7 @@ module TencentCloud
           end
           @ApproverVerifyTypes = params['ApproverVerifyTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
+          @ApproverNeedSignReview = params['ApproverNeedSignReview']
         end
       end
 
@@ -547,14 +551,17 @@ module TencentCloud
         # 0--可查看
         # 1--可查看也可下载
         # @type CcPermission: Integer
+        # @param NotifyType: 关注方通知类型：sms--短信，none--不通知
+        # @type NotifyType: String
 
-        attr_accessor :Mobile, :Name, :CcType, :CcPermission
+        attr_accessor :Mobile, :Name, :CcType, :CcPermission, :NotifyType
 
-        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil)
+        def initialize(mobile=nil, name=nil, cctype=nil, ccpermission=nil, notifytype=nil)
           @Mobile = mobile
           @Name = name
           @CcType = cctype
           @CcPermission = ccpermission
+          @NotifyType = notifytype
         end
 
         def deserialize(params)
@@ -562,6 +569,7 @@ module TencentCloud
           @Name = params['Name']
           @CcType = params['CcType']
           @CcPermission = params['CcPermission']
+          @NotifyType = params['NotifyType']
         end
       end
 
@@ -4448,13 +4456,15 @@ module TencentCloud
         # - 发起流程时系统自动补充
         # - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
         # @type SignId: String
+        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
+        # @type ApproverNeedSignReview: Boolean
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview
         extend Gem::Deprecate
         deprecate :JumpUrl, :none, 2023, 6
         deprecate :JumpUrl=, :none, 2023, 6
 
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -4474,6 +4484,7 @@ module TencentCloud
           @ApproverOption = approveroption
           @JumpUrl = jumpurl
           @SignId = signid
+          @ApproverNeedSignReview = approverneedsignreview
         end
 
         def deserialize(params)
@@ -4502,6 +4513,7 @@ module TencentCloud
           end
           @JumpUrl = params['JumpUrl']
           @SignId = params['SignId']
+          @ApproverNeedSignReview = params['ApproverNeedSignReview']
         end
       end
 

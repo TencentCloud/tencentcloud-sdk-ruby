@@ -10822,7 +10822,7 @@ module TencentCloud
       # 异地备份信息
       class RemoteBackupInfo < TencentCloud::Common::AbstractModel
         # @param SubBackupId: 异地备份子任务的ID
-        # @type SubBackupId: Array
+        # @type SubBackupId: Integer
         # @param Region: 异地备份所在地域
         # @type Region: String
         # @param Status: 备份任务状态。可能的值有 "SUCCESS": 备份成功， "FAILED": 备份失败， "RUNNING": 备份进行中。

@@ -7294,27 +7294,40 @@ module TencentCloud
 
       # DescribeEncryptionStatus请求参数结构体
       class DescribeEncryptionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
       # DescribeEncryptionStatus返回参数结构体
       class DescribeEncryptionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 加密状态
+        # @type Status: String
+        # @param ErrorMsg: 加密错误信息
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Status, :ErrorMsg, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(status=nil, errormsg=nil, requestid=nil)
+          @Status = status
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -9340,12 +9353,17 @@ module TencentCloud
 
       # DisableEncryptionProtection请求参数结构体
       class DisableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -10281,12 +10299,24 @@ module TencentCloud
 
       # EnableEncryptionProtection请求参数结构体
       class EnableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param KMSConfiguration: kms加密配置
+        # @type KMSConfiguration: :class:`Tencentcloud::Tke.v20180525.models.KMSConfiguration`
 
+        attr_accessor :ClusterId, :KMSConfiguration
 
-        def initialize()
+        def initialize(clusterid=nil, kmsconfiguration=nil)
+          @ClusterId = clusterid
+          @KMSConfiguration = kmsconfiguration
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['KMSConfiguration'].nil?
+            @KMSConfiguration = KMSConfiguration.new
+            @KMSConfiguration.deserialize(params['KMSConfiguration'])
+          end
         end
       end
 
@@ -11764,6 +11794,17 @@ module TencentCloud
               @Detail << taskstepinfo_tmp
             end
           end
+        end
+      end
+
+      # kms加密参数
+      class KMSConfiguration < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

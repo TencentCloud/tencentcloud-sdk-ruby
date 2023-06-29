@@ -584,7 +584,7 @@ module TencentCloud
         # @param ServiceWebsocketTransportFunctionQualifier: scf websocket传输函数版本。当前端类型是WEBSOCKET且后端类型是SCF时生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceWebsocketTransportFunctionQualifier: String
-        # @param MicroServices: API绑定微服务服务列表。
+        # @param MicroServices: API绑定微服务列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MicroServices: Array
         # @param MicroServicesInfo: 微服务信息详情。
@@ -1873,7 +1873,7 @@ module TencentCloud
         # @type ApiBusinessType: String
         # @param ServiceMockReturnMessage: API 的后端 Mock 返回信息。如果 ServiceType 是 Mock，则此参数必传。
         # @type ServiceMockReturnMessage: String
-        # @param MicroServices: API绑定微服务服务列表。
+        # @param MicroServices: API绑定微服务列表。
         # @type MicroServices: Array
         # @param ServiceTsfLoadBalanceConf: 微服务的负载均衡配置。
         # @type ServiceTsfLoadBalanceConf: :class:`Tencentcloud::Apigateway.v20180808.models.TsfLoadBalanceConfResp`
@@ -2379,13 +2379,11 @@ module TencentCloud
         # @type Protocol: String
         # @param ServiceDesc: 用户自定义的服务描述。
         # @type ServiceDesc: String
-        # @param ExclusiveSetName: 独立集群名称，用于指定创建服务所在的独立集群。
-        # @type ExclusiveSetName: String
         # @param NetTypes: 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         # @type NetTypes: Array
         # @param IpVersion: IP版本号，支持IPv4和IPv6，默认为IPv4。
         # @type IpVersion: String
-        # @param SetServerName: 集群名称。保留字段，tsf serverlss类型使用。
+        # @param SetServerName: 集群名称。保留字段，tsf serverless类型使用。
         # @type SetServerName: String
         # @param AppIdType: 用户类型。保留类型，serverless用户使用。
         # @type AppIdType: String
@@ -2396,13 +2394,12 @@ module TencentCloud
         # @param UniqVpcId: vpc属性
         # @type UniqVpcId: String
 
-        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :ExclusiveSetName, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId, :UniqVpcId
+        attr_accessor :ServiceName, :Protocol, :ServiceDesc, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId, :UniqVpcId
 
-        def initialize(servicename=nil, protocol=nil, servicedesc=nil, exclusivesetname=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil, instanceid=nil, uniqvpcid=nil)
+        def initialize(servicename=nil, protocol=nil, servicedesc=nil, nettypes=nil, ipversion=nil, setservername=nil, appidtype=nil, tags=nil, instanceid=nil, uniqvpcid=nil)
           @ServiceName = servicename
           @Protocol = protocol
           @ServiceDesc = servicedesc
-          @ExclusiveSetName = exclusivesetname
           @NetTypes = nettypes
           @IpVersion = ipversion
           @SetServerName = setservername
@@ -2416,7 +2413,6 @@ module TencentCloud
           @ServiceName = params['ServiceName']
           @Protocol = params['Protocol']
           @ServiceDesc = params['ServiceDesc']
-          @ExclusiveSetName = params['ExclusiveSetName']
           @NetTypes = params['NetTypes']
           @IpVersion = params['IpVersion']
           @SetServerName = params['SetServerName']
@@ -4945,9 +4941,6 @@ module TencentCloud
         # @param ModifiedTime: 服务修改时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: String
-        # @param ExclusiveSetName: 独立集群名称。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExclusiveSetName: String
         # @param NetTypes: 网络类型列表，INNER为内网访问，OUTER为外网访问。
         # @type NetTypes: Array
         # @param InternalSubDomain: 内网访问子域名。
@@ -4985,9 +4978,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :RequestId
 
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -4995,7 +4988,6 @@ module TencentCloud
           @Protocol = protocol
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
-          @ExclusiveSetName = exclusivesetname
           @NetTypes = nettypes
           @InternalSubDomain = internalsubdomain
           @OuterSubDomain = outersubdomain
@@ -5020,7 +5012,6 @@ module TencentCloud
           @Protocol = params['Protocol']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
-          @ExclusiveSetName = params['ExclusiveSetName']
           @NetTypes = params['NetTypes']
           @InternalSubDomain = params['InternalSubDomain']
           @OuterSubDomain = params['OuterSubDomain']
@@ -5162,8 +5153,6 @@ module TencentCloud
         # @type CreatedTime: String
         # @param ModifiedTime: 服务修改时间。
         # @type ModifiedTime: String
-        # @param ExclusiveSetName: 独立集群名称。
-        # @type ExclusiveSetName: String
         # @param NetTypes: 网络类型列表，INNER为内网访问，OUTER为外网访问。
         # @type NetTypes: Array
         # @param InternalSubDomain: 内网访问子域名。
@@ -5214,9 +5203,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :ExclusiveSetName, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :DeploymentType, :SpecialUse, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :DeploymentType, :SpecialUse, :RequestId
 
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, exclusivesetname=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, deploymenttype=nil, specialuse=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, deploymenttype=nil, specialuse=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -5224,7 +5213,6 @@ module TencentCloud
           @Protocol = protocol
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
-          @ExclusiveSetName = exclusivesetname
           @NetTypes = nettypes
           @InternalSubDomain = internalsubdomain
           @OuterSubDomain = outersubdomain
@@ -5254,7 +5242,6 @@ module TencentCloud
           @Protocol = params['Protocol']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
-          @ExclusiveSetName = params['ExclusiveSetName']
           @NetTypes = params['NetTypes']
           @InternalSubDomain = params['InternalSubDomain']
           @OuterSubDomain = params['OuterSubDomain']
@@ -5661,7 +5648,7 @@ module TencentCloud
       class DescribeUsagePlanEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param UsagePlanId: 待查询的使用计划唯一 ID。
         # @type UsagePlanId: String
-        # @param BindType: 定类型，取值为 API、SERVICE，默认值为 SERVICE。
+        # @param BindType: 定义类型，取值为 API、SERVICE，默认值为 SERVICE。
         # @type BindType: String
         # @param Limit: 返回数量，默认为 20，最大值为 100。
         # @type Limit: Integer
@@ -6518,7 +6505,7 @@ module TencentCloud
         # @type CreatedTime: String
         # @param Zones: 可用区列表
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Zones: String
+        # @type Zones: Array
 
         attr_accessor :InstanceId, :Zone, :InstanceName, :InstanceDescription, :InstanceChargeType, :InstanceState, :InstanceChargePrepaid, :InstanceType, :NetworkConfig, :VpcConfig, :Parameters, :IsolationStartedTime, :CreatedTime, :Zones
 
@@ -7041,7 +7028,7 @@ module TencentCloud
         # @type ApiBusinessType: String
         # @param ServiceMockReturnMessage: API 的后端 Mock 返回信息。如果 ServiceType 是 Mock，则此参数必传。
         # @type ServiceMockReturnMessage: String
-        # @param MicroServices: API绑定微服务服务列表。
+        # @param MicroServices: API绑定微服务列表。
         # @type MicroServices: Array
         # @param ServiceTsfLoadBalanceConf: 微服务的负载均衡配置。
         # @type ServiceTsfLoadBalanceConf: :class:`Tencentcloud::Apigateway.v20180808.models.TsfLoadBalanceConfResp`

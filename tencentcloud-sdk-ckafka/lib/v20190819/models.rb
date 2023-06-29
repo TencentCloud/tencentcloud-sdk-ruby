@@ -26,7 +26,7 @@ module TencentCloud
         # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Principal: String
-        # @param Host: 默认为*，表示任何host都可以访问，当前ckafka不支持host为*，但是后面开源kafka的产品化会直接支持
+        # @param Host: 默认为：*，表示任何host都可以访问，当前ckafka不支持host为：*，但是后面开源kafka的产品化会直接支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Operation: Acl操作方式(0:UNKNOWN，1:ANY，2:ALL，3:READ，4:WRITE，5:CREATE，6:DELETE，7:ALTER，8:DESCRIBE，9:CLUSTER_ACTION，10:DESCRIBE_CONFIGS，11:ALTER_CONFIGS，12:IDEMPOTEN_WRITE)
@@ -166,7 +166,7 @@ module TencentCloud
         # @type Operation: String
         # @param PermissionType: 权限类型，(Deny，Allow)
         # @type PermissionType: String
-        # @param Host: 默认为*，表示任何host都可以访问，当前ckafka不支持host为*和ip网段
+        # @param Host: 默认为：*，表示任何host都可以访问，当前ckafka不支持host为：* 和 ip网段
         # @type Host: String
         # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入格式需要带【User:】前缀。例如用户A，传入为User:A。
         # @type Principal: String
@@ -2165,7 +2165,7 @@ module TencentCloud
         # @param Period: 预付费购买时长，例如 "1m",就是一个月
         # @type Period: String
         # @param InstanceType: 实例规格说明 专业版实例[所有规格]填写1.
-        # 标准版实例 ([入门型(general)]填写1，[标准型(standard)]填写2，[进阶型(advanced)]填写3，[容量型(capacity)]填写4，[高阶型1(specialized-1)]填写5，[高阶性2(specialized-2)]填写6,[高阶型3(specialized-3)]填写7,[高阶型4(specialized-4)]填写8，[独占型(exclusive)]填写9。
+        # 标准版实例 ([入门型(general)]填写1，[标准型(standard)]填写2，[进阶型(advanced)]填写3，[容量型(capacity)]填写4，[高阶型1(specialized-1)]填写5，[高阶型2(specialized-2)]填写6,[高阶型3(specialized-3)]填写7,[高阶型4(specialized-4)]填写8，[独占型(exclusive)]填写9。
         # @type InstanceType: Integer
         # @param VpcId: vpcId必填
         # @type VpcId: String
@@ -7700,7 +7700,7 @@ module TencentCloud
         # @type Healthy: Integer
         # @param HealthyMessage: 实例状态信息
         # @type HealthyMessage: String
-        # @param CreateTime: 实例创建时间时间
+        # @param CreateTime: 实例创建时间
         # @type CreateTime: Integer
         # @param ExpireTime: 实例过期时间
         # @type ExpireTime: Integer
@@ -8659,7 +8659,7 @@ module TencentCloud
         # @type AutoCreateTopicEnable: Boolean
         # @param DefaultNumPartitions: 可选，如果auto.create.topic.enable设置为true没有设置该值时，默认设置为3
         # @type DefaultNumPartitions: Integer
-        # @param DefaultReplicationFactor: 如歌auto.create.topic.enable设置为true没有指定该值时默认设置为2
+        # @param DefaultReplicationFactor: 如果auto.create.topic.enable设置为true没有指定该值时默认设置为2
         # @type DefaultReplicationFactor: Integer
 
         attr_accessor :AutoCreateTopicEnable, :DefaultNumPartitions, :DefaultReplicationFactor
@@ -8689,7 +8689,7 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.ModifyInstanceAttributesConfig`
         # @param DynamicRetentionConfig: 动态消息保留策略配置
         # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
-        # @param RebalanceTime: 修改升配置rebalance时间
+        # @param RebalanceTime: 升配Rebalance时间
         # @type RebalanceTime: Integer
         # @param PublicNetwork: 公网带宽
         # @type PublicNetwork: Integer

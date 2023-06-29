@@ -815,7 +815,7 @@ module TencentCloud
         # @type Assistants: Array
         # @param RTCAudienceNumber: rtc人数。
         # @type RTCAudienceNumber: Integer
-        # @param AudienceType: 观看类型，互动直播（默认）。
+        # @param AudienceType: 观看类型。互动观看 （默认）
         # @type AudienceType: Integer
         # @param RecordLayout: 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
@@ -825,10 +825,16 @@ module TencentCloud
         # 0 不允许直接控制（需同意，默认值）
         # 1 允许直接控制（无需同意）
         # @type EnableDirectControl: Integer
+        # @param InteractionMode: 开启专注模式。
+        # 0 收看全部角色音视频(默认)
+        # 1 只看老师和助教
+        # @type InteractionMode: Integer
+        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # @type VideoOrientation: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -847,6 +853,8 @@ module TencentCloud
           @RecordLayout = recordlayout
           @GroupId = groupid
           @EnableDirectControl = enabledirectcontrol
+          @InteractionMode = interactionmode
+          @VideoOrientation = videoorientation
         end
 
         def deserialize(params)
@@ -868,6 +876,8 @@ module TencentCloud
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
           @EnableDirectControl = params['EnableDirectControl']
+          @InteractionMode = params['InteractionMode']
+          @VideoOrientation = params['VideoOrientation']
         end
       end
 
@@ -1907,12 +1917,18 @@ module TencentCloud
         # @type GroupId: String
         # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
         # @type EnableDirectControl: Integer
+        # @param InteractionMode: 开启专注模式。
+        # 0 收看全部角色音视频(默认)
+        # 1 只看老师和助教
+        # @type InteractionMode: Integer
+        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # @type VideoOrientation: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1929,6 +1945,8 @@ module TencentCloud
           @Status = status
           @GroupId = groupid
           @EnableDirectControl = enabledirectcontrol
+          @InteractionMode = interactionmode
+          @VideoOrientation = videoorientation
           @RequestId = requestid
         end
 
@@ -1949,6 +1967,8 @@ module TencentCloud
           @Status = params['Status']
           @GroupId = params['GroupId']
           @EnableDirectControl = params['EnableDirectControl']
+          @InteractionMode = params['InteractionMode']
+          @VideoOrientation = params['VideoOrientation']
           @RequestId = params['RequestId']
         end
       end
@@ -2875,10 +2895,13 @@ module TencentCloud
         # @param Stage: 用户的上台状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stage: Integer
+        # @param CurrentState: 用户状态。0为未到，1为在线，2为离线，3为被踢，4为永久被踢，5为暂时掉线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentState: Integer
 
-        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount, :Role, :GroupId, :SubGroupId, :Stage
+        attr_accessor :UserId, :UserName, :PresentTime, :Camera, :Mic, :Silence, :AnswerQuestions, :HandUps, :FirstJoinTimestamp, :LastQuitTimestamp, :Rewords, :IPAddress, :Location, :Device, :PerMemberMicCount, :PerMemberMessageCount, :Role, :GroupId, :SubGroupId, :Stage, :CurrentState
 
-        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil, permembermiccount=nil, permembermessagecount=nil, role=nil, groupid=nil, subgroupid=nil, stage=nil)
+        def initialize(userid=nil, username=nil, presenttime=nil, camera=nil, mic=nil, silence=nil, answerquestions=nil, handups=nil, firstjointimestamp=nil, lastquittimestamp=nil, rewords=nil, ipaddress=nil, location=nil, device=nil, permembermiccount=nil, permembermessagecount=nil, role=nil, groupid=nil, subgroupid=nil, stage=nil, currentstate=nil)
           @UserId = userid
           @UserName = username
           @PresentTime = presenttime
@@ -2899,6 +2922,7 @@ module TencentCloud
           @GroupId = groupid
           @SubGroupId = subgroupid
           @Stage = stage
+          @CurrentState = currentstate
         end
 
         def deserialize(params)
@@ -2922,6 +2946,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @SubGroupId = params['SubGroupId']
           @Stage = params['Stage']
+          @CurrentState = params['CurrentState']
         end
       end
 
@@ -3111,7 +3136,6 @@ module TencentCloud
         # @param SubType: 房间子类型，可以有以下取值：
         # videodoc 文档+视频
         # video 纯视频
-        # coteaching 双师
         # 直播开始后不允许修改。
         # @type SubType: String
         # @param DisableRecord: 禁止录制。可以有以下取值：
@@ -3121,14 +3145,20 @@ module TencentCloud
         # @type DisableRecord: Integer
         # @param Assistants: 助教Id列表。直播开始后不允许修改。
         # @type Assistants: Array
-        # @param GroupId: 房间绑定的群组ID
+        # @param GroupId: 房间绑定的群组ID。直播开始后不允许修改。
         # @type GroupId: String
-        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
+        # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关。直播开始后不允许修改。
         # @type EnableDirectControl: Integer
+        # @param InteractionMode: 开启专注模式。
+        # 0 收看全部角色音视频(默认)
+        # 1 只看老师和助教
+        # @type InteractionMode: Integer
+        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # @type VideoOrientation: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3144,6 +3174,8 @@ module TencentCloud
           @Assistants = assistants
           @GroupId = groupid
           @EnableDirectControl = enabledirectcontrol
+          @InteractionMode = interactionmode
+          @VideoOrientation = videoorientation
         end
 
         def deserialize(params)
@@ -3162,6 +3194,8 @@ module TencentCloud
           @Assistants = params['Assistants']
           @GroupId = params['GroupId']
           @EnableDirectControl = params['EnableDirectControl']
+          @InteractionMode = params['InteractionMode']
+          @VideoOrientation = params['VideoOrientation']
         end
       end
 
@@ -3349,10 +3383,14 @@ module TencentCloud
         # @type GroupId: String
         # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
         # @type EnableDirectControl: Integer
+        # @param InteractionMode: 开启专注模式。 0 收看全部角色音视频(默认) 1 只看老师和助教
+        # @type InteractionMode: Integer
+        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # @type VideoOrientation: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -3370,6 +3408,8 @@ module TencentCloud
           @RecordLayout = recordlayout
           @GroupId = groupid
           @EnableDirectControl = enabledirectcontrol
+          @InteractionMode = interactionmode
+          @VideoOrientation = videoorientation
         end
 
         def deserialize(params)
@@ -3390,6 +3430,8 @@ module TencentCloud
           @RecordLayout = params['RecordLayout']
           @GroupId = params['GroupId']
           @EnableDirectControl = params['EnableDirectControl']
+          @InteractionMode = params['InteractionMode']
+          @VideoOrientation = params['VideoOrientation']
         end
       end
 

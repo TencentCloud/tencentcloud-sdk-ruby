@@ -677,7 +677,7 @@ module TencentCloud
         # @type StreamConnectProjectInput: :class:`Tencentcloud::Cme.v20191029.models.StreamConnectProjectInput`
         # @param RecordReplayProjectInput: 录制回放项目输入信息，仅当项目类型为 RECORD_REPLAY 时必填。
         # @type RecordReplayProjectInput: :class:`Tencentcloud::Cme.v20191029.models.RecordReplayProjectInput`
-        # @param MediaCastProjectInput: 点播转直播项目输入信息，仅当项目类型为 MEDIA_CAST 时必填。
+        # @param MediaCastProjectInput: 媒体转推项目输入信息，仅当项目类型为 MEDIA_CAST 时必填。
         # @type MediaCastProjectInput: :class:`Tencentcloud::Cme.v20191029.models.MediaCastProjectInput`
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
@@ -2804,7 +2804,7 @@ module TencentCloud
       class HandleMediaCastProjectRequest < TencentCloud::Common::AbstractModel
         # @param Platform: 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         # @type Platform: String
-        # @param ProjectId: 点播转直播项目 Id 。
+        # @param ProjectId: 媒体转推项目 Id 。
         # @type ProjectId: String
         # @param Operation: 请参考 [操作类型](#Operation)。
         # @type Operation: String
@@ -2823,7 +2823,7 @@ module TencentCloud
         # @param Position: 新添加的输入源位于输入源列表的位置，从0开始。默认加在输入源列表的后面。具体操作方式详见 [操作类型](#Operation) 及下文示例。
         # 当 Operation 为 AddSource 时必填。
         # @type Position: Integer
-        # @param Operator: 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以操作所有点播转直播项目。如果指定操作者，则操作者必须为项目所有者。
+        # @param Operator: 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以操作所有媒体转推项目。如果指定操作者，则操作者必须为项目所有者。
         # @type Operator: String
 
         attr_accessor :Platform, :ProjectId, :Operation, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :Position, :Operator
@@ -3987,17 +3987,21 @@ module TencentCloud
         # @type LoopCount: Integer
         # @param EndTime: 结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
+        # @param AutoStartTime: 自动启动时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type AutoStartTime: String
 
-        attr_accessor :LoopCount, :EndTime
+        attr_accessor :LoopCount, :EndTime, :AutoStartTime
 
-        def initialize(loopcount=nil, endtime=nil)
+        def initialize(loopcount=nil, endtime=nil, autostarttime=nil)
           @LoopCount = loopcount
           @EndTime = endtime
+          @AutoStartTime = autostarttime
         end
 
         def deserialize(params)
           @LoopCount = params['LoopCount']
           @EndTime = params['EndTime']
+          @AutoStartTime = params['AutoStartTime']
         end
       end
 
@@ -4119,19 +4123,29 @@ module TencentCloud
         # @param Type: 输入源的媒体类型，取值有：
         # <li>CME：多媒体创作引擎的媒体文件；</li>
         # <li>VOD：云点播的媒资文件。</li>
+        # <li>EXTERNAL：非多媒体创建引擎或者云点播的媒资文件。</li>
         # @type Type: String
         # @param FileId: 云点播媒体文件 ID。当 Type = VOD 时必填。
         # @type FileId: String
         # @param MaterialId: 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
         # @type MaterialId: String
+        # @param Offset: 文件播放的的起始位置，单位：秒。默认为0，从文件头开始播放。当 Type = CME  或者 VOD 时有效。
+        # @type Offset: Float
+        # @param Duration: 播放时长，单位：秒。默认播放整个文件。当 Type = CME  或者 VOD 时有效。
+        # @type Duration: Float
+        # @param Url: 外部文件的 Url， Type=EXTERNAL 时必填，可以是点播文件或者直播文件，支持的 Scheme 包括HTTP、HTTPS、RTMP。
+        # @type Url: String
 
-        attr_accessor :Id, :Type, :FileId, :MaterialId
+        attr_accessor :Id, :Type, :FileId, :MaterialId, :Offset, :Duration, :Url
 
-        def initialize(id=nil, type=nil, fileid=nil, materialid=nil)
+        def initialize(id=nil, type=nil, fileid=nil, materialid=nil, offset=nil, duration=nil, url=nil)
           @Id = id
           @Type = type
           @FileId = fileid
           @MaterialId = materialid
+          @Offset = offset
+          @Duration = duration
+          @Url = url
         end
 
         def deserialize(params)
@@ -4139,6 +4153,9 @@ module TencentCloud
           @Type = params['Type']
           @FileId = params['FileId']
           @MaterialId = params['MaterialId']
+          @Offset = params['Offset']
+          @Duration = params['Duration']
+          @Url = params['Url']
         end
       end
 
