@@ -93,24 +93,37 @@ module TencentCloud
       # 备份表信息
       class BackupTableContent < TencentCloud::Common::AbstractModel
         # @param Database: 数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Database: String
         # @param Table: 表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Table: String
         # @param TotalBytes: 表总字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalBytes: Integer
         # @param VCluster: 虚拟cluster
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VCluster: String
         # @param Ips: 表ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ips: String
+        # @param ZooPath: zk路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZooPath: String
+        # @param Rip: cvm的ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rip: String
 
-        attr_accessor :Database, :Table, :TotalBytes, :VCluster, :Ips
+        attr_accessor :Database, :Table, :TotalBytes, :VCluster, :Ips, :ZooPath, :Rip
 
-        def initialize(database=nil, table=nil, totalbytes=nil, vcluster=nil, ips=nil)
+        def initialize(database=nil, table=nil, totalbytes=nil, vcluster=nil, ips=nil, zoopath=nil, rip=nil)
           @Database = database
           @Table = table
           @TotalBytes = totalbytes
           @VCluster = vcluster
           @Ips = ips
+          @ZooPath = zoopath
+          @Rip = rip
         end
 
         def deserialize(params)
@@ -119,6 +132,8 @@ module TencentCloud
           @TotalBytes = params['TotalBytes']
           @VCluster = params['VCluster']
           @Ips = params['Ips']
+          @ZooPath = params['ZooPath']
+          @Rip = params['Rip']
         end
       end
 
@@ -454,17 +469,21 @@ module TencentCloud
         # @type BackUpContents: Array
         # @param BackUpStatus: 备份的状态
         # @type BackUpStatus: Integer
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackUpOpened, :MetaStrategy, :DataStrategy, :BackUpContents, :BackUpStatus, :RequestId
+        attr_accessor :BackUpOpened, :MetaStrategy, :DataStrategy, :BackUpContents, :BackUpStatus, :ErrorMsg, :RequestId
 
-        def initialize(backupopened=nil, metastrategy=nil, datastrategy=nil, backupcontents=nil, backupstatus=nil, requestid=nil)
+        def initialize(backupopened=nil, metastrategy=nil, datastrategy=nil, backupcontents=nil, backupstatus=nil, errormsg=nil, requestid=nil)
           @BackUpOpened = backupopened
           @MetaStrategy = metastrategy
           @DataStrategy = datastrategy
           @BackUpContents = backupcontents
           @BackUpStatus = backupstatus
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -487,6 +506,7 @@ module TencentCloud
             end
           end
           @BackUpStatus = params['BackUpStatus']
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -866,15 +886,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchTags: 搜索标签列表
         # @type SearchTags: Array
+        # @param IsSimple: 信息详细与否
+        # @type IsSimple: Boolean
 
-        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags
+        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags, :IsSimple
 
-        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil)
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil, issimple=nil)
           @SearchInstanceId = searchinstanceid
           @SearchInstanceName = searchinstancename
           @Offset = offset
           @Limit = limit
           @SearchTags = searchtags
+          @IsSimple = issimple
         end
 
         def deserialize(params)
@@ -890,6 +913,7 @@ module TencentCloud
               @SearchTags << searchtags_tmp
             end
           end
+          @IsSimple = params['IsSimple']
         end
       end
 
@@ -2052,15 +2076,19 @@ module TencentCloud
         # @type ExecuteHour: Integer
         # @param ScheduleId: 策略id
         # @type ScheduleId: Integer
+        # @param NextBackupTime: 下次备份时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextBackupTime: String
 
-        attr_accessor :CosBucketName, :RetainDays, :WeekDays, :ExecuteHour, :ScheduleId
+        attr_accessor :CosBucketName, :RetainDays, :WeekDays, :ExecuteHour, :ScheduleId, :NextBackupTime
 
-        def initialize(cosbucketname=nil, retaindays=nil, weekdays=nil, executehour=nil, scheduleid=nil)
+        def initialize(cosbucketname=nil, retaindays=nil, weekdays=nil, executehour=nil, scheduleid=nil, nextbackuptime=nil)
           @CosBucketName = cosbucketname
           @RetainDays = retaindays
           @WeekDays = weekdays
           @ExecuteHour = executehour
           @ScheduleId = scheduleid
+          @NextBackupTime = nextbackuptime
         end
 
         def deserialize(params)
@@ -2069,6 +2097,7 @@ module TencentCloud
           @WeekDays = params['WeekDays']
           @ExecuteHour = params['ExecuteHour']
           @ScheduleId = params['ScheduleId']
+          @NextBackupTime = params['NextBackupTime']
         end
       end
 

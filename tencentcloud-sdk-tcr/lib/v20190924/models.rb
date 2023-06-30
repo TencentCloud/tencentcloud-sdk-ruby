@@ -480,46 +480,6 @@ module TencentCloud
         end
       end
 
-      # CreateImageLifecyclePersonal请求参数结构体
-      class CreateImageLifecyclePersonalRequest < TencentCloud::Common::AbstractModel
-        # @param RepoName: 仓库名称
-        # @type RepoName: String
-        # @param Type: keep_last_days:保留最近几天的数据;keep_last_nums:保留最近多少个
-        # @type Type: String
-        # @param Val: 策略值
-        # @type Val: Integer
-
-        attr_accessor :RepoName, :Type, :Val
-
-        def initialize(reponame=nil, type=nil, val=nil)
-          @RepoName = reponame
-          @Type = type
-          @Val = val
-        end
-
-        def deserialize(params)
-          @RepoName = params['RepoName']
-          @Type = params['Type']
-          @Val = params['Val']
-        end
-      end
-
-      # CreateImageLifecyclePersonal返回参数结构体
-      class CreateImageLifecyclePersonalResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateImmutableTagRules请求参数结构体
       class CreateImmutableTagRulesRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例 Id
@@ -1578,38 +1538,6 @@ module TencentCloud
 
       # DeleteImageLifecycleGlobalPersonal返回参数结构体
       class DeleteImageLifecycleGlobalPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteImageLifecyclePersonal请求参数结构体
-      class DeleteImageLifecyclePersonalRequest < TencentCloud::Common::AbstractModel
-        # @param RepoName: 仓库名称
-        # @type RepoName: String
-
-        attr_accessor :RepoName
-
-        def initialize(reponame=nil)
-          @RepoName = reponame
-        end
-
-        def deserialize(params)
-          @RepoName = params['RepoName']
-        end
-      end
-
-      # DeleteImageLifecyclePersonal返回参数结构体
-      class DeleteImageLifecyclePersonalResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

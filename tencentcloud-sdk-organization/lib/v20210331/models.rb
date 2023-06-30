@@ -1848,6 +1848,63 @@ module TencentCloud
         end
       end
 
+      # UpdateOrganizationMember请求参数结构体
+      class UpdateOrganizationMemberRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员Uin。
+        # @type MemberUin: Integer
+        # @param Name: 成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
+        # @type Name: String
+        # @param Remark: 备注。最大长度为40个字符
+        # @type Remark: String
+        # @param PolicyType: 关系策略类型。PolicyType不为空，PermissionIds不能为空。取值：Financial
+        # @type PolicyType: String
+        # @param PermissionIds: 成员财务权限ID列表。PermissionIds不为空，PolicyType不能为空。
+        # 取值：1-查看账单、2-查看余额、3-资金划拨、4-合并出账、5-开票、6-优惠继承、7-代付费、8-成本分析，如果有值，1、2 默认必须
+        # @type PermissionIds: Array
+        # @param IsAllowQuit: 是否允许成员退出组织。取值：Allow-允许、Denied-不允许
+        # @type IsAllowQuit: String
+        # @param PayUin: 代付者Uin。成员财务权限有代付费时需要，取值为成员对应主体的主体管理员Uin
+        # @type PayUin: String
+
+        attr_accessor :MemberUin, :Name, :Remark, :PolicyType, :PermissionIds, :IsAllowQuit, :PayUin
+
+        def initialize(memberuin=nil, name=nil, remark=nil, policytype=nil, permissionids=nil, isallowquit=nil, payuin=nil)
+          @MemberUin = memberuin
+          @Name = name
+          @Remark = remark
+          @PolicyType = policytype
+          @PermissionIds = permissionids
+          @IsAllowQuit = isallowquit
+          @PayUin = payuin
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @PolicyType = params['PolicyType']
+          @PermissionIds = params['PermissionIds']
+          @IsAllowQuit = params['IsAllowQuit']
+          @PayUin = params['PayUin']
+        end
+      end
+
+      # UpdateOrganizationMember返回参数结构体
+      class UpdateOrganizationMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateOrganizationNode请求参数结构体
       class UpdateOrganizationNodeRequest < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点ID。

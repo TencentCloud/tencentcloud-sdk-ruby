@@ -816,12 +816,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowIds: 需要执行撤回的签署流程id数组，最多100个
         # @type FlowIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowIds
+        attr_accessor :Operator, :FlowIds, :Agent
 
-        def initialize(operator=nil, flowids=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil)
           @Operator = operator
           @FlowIds = flowids
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -830,6 +833,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @FlowIds = params['FlowIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -1291,12 +1298,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 签署流程编号
         # @type FlowId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowId
+        attr_accessor :Operator, :FlowId, :Agent
 
-        def initialize(operator=nil, flowid=nil)
+        def initialize(operator=nil, flowid=nil, agent=nil)
           @Operator = operator
           @FlowId = flowid
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1305,6 +1315,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @FlowId = params['FlowId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -1346,12 +1360,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowIds: 需要执行催办的签署流程id数组，最多100个
         # @type FlowIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :FlowIds
+        attr_accessor :Operator, :FlowIds, :Agent
 
-        def initialize(operator=nil, flowids=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil)
           @Operator = operator
           @FlowIds = flowids
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1360,6 +1377,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @FlowIds = params['FlowIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -3128,12 +3149,15 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param ReportId: 出证报告编号
         # @type ReportId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :ReportId
+        attr_accessor :Operator, :ReportId, :Agent
 
-        def initialize(operator=nil, reportid=nil)
+        def initialize(operator=nil, reportid=nil, agent=nil)
           @Operator = operator
           @ReportId = reportid
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -3142,6 +3166,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @ReportId = params['ReportId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 

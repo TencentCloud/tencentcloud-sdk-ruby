@@ -646,19 +646,27 @@ module TencentCloud
         # @type ExtensionId: String
         # @param ExtensionName: 分机名称
         # @type ExtensionName: String
+        # @param SkillGroupIds: 绑定的技能组列表
+        # @type SkillGroupIds: Array
+        # @param Relation: 绑定的坐席邮箱
+        # @type Relation: String
 
-        attr_accessor :SdkAppId, :ExtensionId, :ExtensionName
+        attr_accessor :SdkAppId, :ExtensionId, :ExtensionName, :SkillGroupIds, :Relation
 
-        def initialize(sdkappid=nil, extensionid=nil, extensionname=nil)
+        def initialize(sdkappid=nil, extensionid=nil, extensionname=nil, skillgroupids=nil, relation=nil)
           @SdkAppId = sdkappid
           @ExtensionId = extensionid
           @ExtensionName = extensionname
+          @SkillGroupIds = skillgroupids
+          @Relation = relation
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @ExtensionId = params['ExtensionId']
           @ExtensionName = params['ExtensionName']
+          @SkillGroupIds = params['SkillGroupIds']
+          @Relation = params['Relation']
         end
       end
 
@@ -3508,10 +3516,13 @@ module TencentCloud
         # @param VoicemailRecordURL: 通话中语音留言录音URL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoicemailRecordURL: Array
+        # @param VoicemailAsrURL: 通话中语音留言ASR文本信息地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicemailAsrURL: Array
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL
+        attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -3545,6 +3556,7 @@ module TencentCloud
           @Remark = remark
           @QueuedSkillGroupName = queuedskillgroupname
           @VoicemailRecordURL = voicemailrecordurl
+          @VoicemailAsrURL = voicemailasrurl
         end
 
         def deserialize(params)
@@ -3605,6 +3617,7 @@ module TencentCloud
           @Remark = params['Remark']
           @QueuedSkillGroupName = params['QueuedSkillGroupName']
           @VoicemailRecordURL = params['VoicemailRecordURL']
+          @VoicemailAsrURL = params['VoicemailAsrURL']
         end
       end
 

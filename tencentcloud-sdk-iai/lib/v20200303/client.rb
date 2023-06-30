@@ -358,7 +358,6 @@ module TencentCloud
         # >
         # - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
 
-
         # @param request: Request instance for DetectFace.
         # @type request: :class:`Tencentcloud::iai::V20200303::DetectFaceRequest`
         # @rtype: :class:`Tencentcloud::iai::V20200303::DetectFaceResponse`

@@ -1783,16 +1783,19 @@ module TencentCloud
         # @type ReturnCode: Integer
         # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
         # @type ReturnMsg: String
+        # @param SourceList: 安全事件来源下拉框
+        # @type SourceList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :RequestId
+        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :SourceList, :RequestId
 
-        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, requestid=nil)
+        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, sourcelist=nil, requestid=nil)
           @Data = data
           @Total = total
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
+          @SourceList = sourcelist
           @RequestId = requestid
         end
 
@@ -1808,6 +1811,7 @@ module TencentCloud
           @Total = params['Total']
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
+          @SourceList = params['SourceList']
           @RequestId = params['RequestId']
         end
       end
@@ -3435,10 +3439,13 @@ module TencentCloud
         # @param Server: 扫描结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Server: Array
+        # @param RegionKey: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionKey: String
 
-        attr_accessor :AppId, :Region, :VpcId, :VPCName, :SubnetId, :InstanceId, :InstanceName, :InsType, :PublicIp, :PrivateIp, :PortNum, :LeakNum, :InsSource, :ResourcePath, :Server
+        attr_accessor :AppId, :Region, :VpcId, :VPCName, :SubnetId, :InstanceId, :InstanceName, :InsType, :PublicIp, :PrivateIp, :PortNum, :LeakNum, :InsSource, :ResourcePath, :Server, :RegionKey
 
-        def initialize(appid=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, instanceid=nil, instancename=nil, instype=nil, publicip=nil, privateip=nil, portnum=nil, leaknum=nil, inssource=nil, resourcepath=nil, server=nil)
+        def initialize(appid=nil, region=nil, vpcid=nil, vpcname=nil, subnetid=nil, instanceid=nil, instancename=nil, instype=nil, publicip=nil, privateip=nil, portnum=nil, leaknum=nil, inssource=nil, resourcepath=nil, server=nil, regionkey=nil)
           @AppId = appid
           @Region = region
           @VpcId = vpcid
@@ -3454,6 +3461,7 @@ module TencentCloud
           @InsSource = inssource
           @ResourcePath = resourcepath
           @Server = server
+          @RegionKey = regionkey
         end
 
         def deserialize(params)
@@ -3472,6 +3480,7 @@ module TencentCloud
           @InsSource = params['InsSource']
           @ResourcePath = params['ResourcePath']
           @Server = params['Server']
+          @RegionKey = params['RegionKey']
         end
       end
 

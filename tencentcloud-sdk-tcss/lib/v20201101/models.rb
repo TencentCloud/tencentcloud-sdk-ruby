@@ -2997,17 +2997,22 @@ module TencentCloud
         # @param K8SVersion: 主机上的K8S的版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type K8SVersion: String
+        # @param ContainerdVersion: 主机上Containerd版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerdVersion: String
 
-        attr_accessor :DockerVersion, :K8SVersion
+        attr_accessor :DockerVersion, :K8SVersion, :ContainerdVersion
 
-        def initialize(dockerversion=nil, k8sversion=nil)
+        def initialize(dockerversion=nil, k8sversion=nil, containerdversion=nil)
           @DockerVersion = dockerversion
           @K8SVersion = k8sversion
+          @ContainerdVersion = containerdversion
         end
 
         def deserialize(params)
           @DockerVersion = params['DockerVersion']
           @K8SVersion = params['K8SVersion']
+          @ContainerdVersion = params['ContainerdVersion']
         end
       end
 

@@ -11799,12 +11799,21 @@ module TencentCloud
 
       # kms加密参数
       class KMSConfiguration < TencentCloud::Common::AbstractModel
+        # @param KeyId: kms id
+        # @type KeyId: String
+        # @param KmsRegion: kms 地域
+        # @type KmsRegion: String
 
+        attr_accessor :KeyId, :KmsRegion
 
-        def initialize()
+        def initialize(keyid=nil, kmsregion=nil)
+          @KeyId = keyid
+          @KmsRegion = kmsregion
         end
 
         def deserialize(params)
+          @KeyId = params['KeyId']
+          @KmsRegion = params['KmsRegion']
         end
       end
 

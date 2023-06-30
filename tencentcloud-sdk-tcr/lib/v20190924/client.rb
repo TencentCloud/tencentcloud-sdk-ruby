@@ -197,32 +197,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 前端与现有逻辑均不再使用，可下线
-
-        # 用于在个人版中创建清理策略
-
-        # @param request: Request instance for CreateImageLifecyclePersonal.
-        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateImageLifecyclePersonalRequest`
-        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateImageLifecyclePersonalResponse`
-        def CreateImageLifecyclePersonal(request)
-          body = send_request('CreateImageLifecyclePersonal', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateImageLifecyclePersonalResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建镜像不可变规则
 
         # @param request: Request instance for CreateImmutableTagRules.
@@ -761,32 +735,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteImageLifecycleGlobalPersonalResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 前端与后端目前现有逻辑均不再使用，可下线
-
-        # 用于在个人版镜像仓库中删除仓库Tag自动清理策略
-
-        # @param request: Request instance for DeleteImageLifecyclePersonal.
-        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteImageLifecyclePersonalRequest`
-        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteImageLifecyclePersonalResponse`
-        def DeleteImageLifecyclePersonal(request)
-          body = send_request('DeleteImageLifecyclePersonal', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteImageLifecyclePersonalResponse.new
             model.deserialize(response['Response'])
             model
           else

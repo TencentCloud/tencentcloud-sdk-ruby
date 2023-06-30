@@ -489,6 +489,10 @@ module TencentCloud
         # @type AsyncRunEnable: String
         # @param TraceEnable: 是否开启事件追踪，TRUE 为开启，FALSE为关闭
         # @type TraceEnable: String
+        # @param AutoDeployClsTopicIndex: 是否自动创建cls索引，TRUE 为开启，FALSE为关闭
+        # @type AutoDeployClsTopicIndex: String
+        # @param AutoCreateClsTopic: 是否自动创建cls主题，TRUE 为开启，FALSE为关闭
+        # @type AutoCreateClsTopic: String
         # @param ProtocolType: HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
         # @type ProtocolType: String
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
@@ -496,9 +500,9 @@ module TencentCloud
         # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
         # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :AutoDeployClsTopicIndex, :AutoCreateClsTopic, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig
 
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, autodeployclstopicindex=nil, autocreateclstopic=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -523,6 +527,8 @@ module TencentCloud
           @Tags = tags
           @AsyncRunEnable = asyncrunenable
           @TraceEnable = traceenable
+          @AutoDeployClsTopicIndex = autodeployclstopicindex
+          @AutoCreateClsTopic = autocreateclstopic
           @ProtocolType = protocoltype
           @ProtocolParams = protocolparams
           @InstanceConcurrencyConfig = instanceconcurrencyconfig
@@ -585,6 +591,8 @@ module TencentCloud
           end
           @AsyncRunEnable = params['AsyncRunEnable']
           @TraceEnable = params['TraceEnable']
+          @AutoDeployClsTopicIndex = params['AutoDeployClsTopicIndex']
+          @AutoCreateClsTopic = params['AutoCreateClsTopic']
           @ProtocolType = params['ProtocolType']
           unless params['ProtocolParams'].nil?
             @ProtocolParams = ProtocolParams.new

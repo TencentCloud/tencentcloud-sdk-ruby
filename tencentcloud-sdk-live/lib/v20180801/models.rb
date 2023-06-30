@@ -12171,7 +12171,7 @@ module TencentCloud
         end
       end
 
-      # 央视P2P流信息。
+      # P2P流信息。
       class XP2PDetailInfo < TencentCloud::Common::AbstractModel
         # @param CdnBytes: CDN流量。
         # @type CdnBytes: Integer

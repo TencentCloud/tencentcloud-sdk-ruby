@@ -1764,20 +1764,24 @@ module TencentCloud
         # @type FlowId: Integer
         # @param TaskId: 异步任务ID
         # @type TaskId: Integer
+        # @param ProxyGroupId: 数据库代理组ID
+        # @type ProxyGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :TaskId, :RequestId
+        attr_accessor :FlowId, :TaskId, :ProxyGroupId, :RequestId
 
-        def initialize(flowid=nil, taskid=nil, requestid=nil)
+        def initialize(flowid=nil, taskid=nil, proxygroupid=nil, requestid=nil)
           @FlowId = flowid
           @TaskId = taskid
+          @ProxyGroupId = proxygroupid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @TaskId = params['TaskId']
+          @ProxyGroupId = params['ProxyGroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -1855,20 +1859,24 @@ module TencentCloud
         # @type FlowId: Integer
         # @param TaskId: 异步任务ID
         # @type TaskId: Integer
+        # @param ProxyGroupId: 数据库代理组ID
+        # @type ProxyGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :TaskId, :RequestId
+        attr_accessor :FlowId, :TaskId, :ProxyGroupId, :RequestId
 
-        def initialize(flowid=nil, taskid=nil, requestid=nil)
+        def initialize(flowid=nil, taskid=nil, proxygroupid=nil, requestid=nil)
           @FlowId = flowid
           @TaskId = taskid
+          @ProxyGroupId = proxygroupid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @TaskId = params['TaskId']
+          @ProxyGroupId = params['ProxyGroupId']
           @RequestId = params['RequestId']
         end
       end
