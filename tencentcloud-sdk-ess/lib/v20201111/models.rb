@@ -2160,14 +2160,17 @@ module TencentCloud
         # 默认使用原流程的签署人列表,当解除协议的签署人与原流程的签署人不能相同时（例如原流程签署人离职了），需要指定本企业其他已实名员工来替换原流程中的原签署人，注意需要指明原签署人的编号(ReceiptId,通过DescribeFlowInfo接口获取)来代表需要替换哪一个签署人
         # 解除协议的签署人数量不能多于原流程的签署人数量
         # @type ReleasedApprovers: Array
+        # @param Deadline: 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
+        # @type Deadline: Integer
 
-        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers
+        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :Deadline
 
-        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil)
+        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil, deadline=nil)
           @Operator = operator
           @NeedRelievedFlowId = needrelievedflowid
           @ReliveInfo = reliveinfo
           @ReleasedApprovers = releasedapprovers
+          @Deadline = deadline
         end
 
         def deserialize(params)
@@ -2188,6 +2191,7 @@ module TencentCloud
               @ReleasedApprovers << releasedapprover_tmp
             end
           end
+          @Deadline = params['Deadline']
         end
       end
 
@@ -5451,6 +5455,8 @@ module TencentCloud
 
       # 解除协议的签署人，如不指定，默认使用待解除流程（即原流程）中的签署人。
       # 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该C端签署人。
+      # 注意：目前不支持替换C端（个人身份类型）签署人，但是可以指定C端签署人的签署方自定义控件别名，具体见参数ApproverSignRole描述。
+      # 注意：当指定C端签署人的签署方自定义控件别名不空时，除RelievedApproverReceiptId参数外，可以只参数ApproverSignRole。
       class ReleasedApprover < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
@@ -5462,14 +5468,22 @@ module TencentCloud
         # ORGANIZATION-企业
         # ENTERPRISESERVER-企业静默签
         # @type ApproverType: String
+        # @param ApproverSignComponentType: 签署控件类型，支持自定义企业签署方的签署控件为“印章”或“签名”
+        # - SIGN_SEAL-默认为印章控件类型
+        # - SIGN_SIGNATURE-手写签名控件类型
+        # @type ApproverSignComponentType: String
+        # @param ApproverSignRole: 签署方自定义控件别名，最大长度20个字符
+        # @type ApproverSignRole: String
 
-        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType
+        attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole
 
-        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil)
+        def initialize(name=nil, mobile=nil, relievedapproverreceiptid=nil, approvertype=nil, approversigncomponenttype=nil, approversignrole=nil)
           @Name = name
           @Mobile = mobile
           @RelievedApproverReceiptId = relievedapproverreceiptid
           @ApproverType = approvertype
+          @ApproverSignComponentType = approversigncomponenttype
+          @ApproverSignRole = approversignrole
         end
 
         def deserialize(params)
@@ -5477,6 +5491,8 @@ module TencentCloud
           @Mobile = params['Mobile']
           @RelievedApproverReceiptId = params['RelievedApproverReceiptId']
           @ApproverType = params['ApproverType']
+          @ApproverSignComponentType = params['ApproverSignComponentType']
+          @ApproverSignRole = params['ApproverSignRole']
         end
       end
 

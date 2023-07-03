@@ -4648,7 +4648,7 @@ module TencentCloud
         # @type MinBackupStartTime: String
         # @param MaxBackupStartTime: 实例最晚开始备份时间
         # @type MaxBackupStartTime: String
-        # @param BaseBackupRetentionPeriod: 实例备份保留时长，取值范围为3-7，单位是天
+        # @param BaseBackupRetentionPeriod: 实例备份保留时长，取值范围为7-1830，单位是天
         # @type BaseBackupRetentionPeriod: Integer
         # @param BackupPeriod: 实例备份周期，按照星期维度，格式为小写星期英文单词
         # @type BackupPeriod: Array

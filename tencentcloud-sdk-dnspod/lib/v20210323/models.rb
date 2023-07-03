@@ -1170,6 +1170,90 @@ module TencentCloud
         end
       end
 
+      # 批量删除记录详情
+      class DeleteRecordBatchDetail < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名 ID
+        # @type DomainId: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Error: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: String
+        # @param Status: 删除状态
+        # @type Status: String
+        # @param Operation: 操作
+        # @type Operation: String
+        # @param RecordList: 解析记录列表，json 序列化之后的字符串形式
+        # @type RecordList: String
+
+        attr_accessor :DomainId, :Domain, :Error, :Status, :Operation, :RecordList
+
+        def initialize(domainid=nil, domain=nil, error=nil, status=nil, operation=nil, recordlist=nil)
+          @DomainId = domainid
+          @Domain = domain
+          @Error = error
+          @Status = status
+          @Operation = operation
+          @RecordList = recordlist
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Domain = params['Domain']
+          @Error = params['Error']
+          @Status = params['Status']
+          @Operation = params['Operation']
+          @RecordList = params['RecordList']
+        end
+      end
+
+      # DeleteRecordBatch请求参数结构体
+      class DeleteRecordBatchRequest < TencentCloud::Common::AbstractModel
+        # @param RecordIdList: 解析记录 ID 数组
+        # @type RecordIdList: Array
+
+        attr_accessor :RecordIdList
+
+        def initialize(recordidlist=nil)
+          @RecordIdList = recordidlist
+        end
+
+        def deserialize(params)
+          @RecordIdList = params['RecordIdList']
+        end
+      end
+
+      # DeleteRecordBatch返回参数结构体
+      class DeleteRecordBatchResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 批量任务 ID
+        # @type JobId: Integer
+        # @param DetailList: 任务详情
+        # @type DetailList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :DetailList, :RequestId
+
+        def initialize(jobid=nil, detaillist=nil, requestid=nil)
+          @JobId = jobid
+          @DetailList = detaillist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          unless params['DetailList'].nil?
+            @DetailList = []
+            params['DetailList'].each do |i|
+              deleterecordbatchdetail_tmp = DeleteRecordBatchDetail.new
+              deleterecordbatchdetail_tmp.deserialize(i)
+              @DetailList << deleterecordbatchdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRecordGroup请求参数结构体
       class DeleteRecordGroupRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

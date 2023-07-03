@@ -171,6 +171,55 @@ module TencentCloud
         end
       end
 
+      # 发生过到店的潜客到店信息
+      class ArrivalInfo < TencentCloud::Common::AbstractModel
+        # @param ClueId: 线索id
+        # @type ClueId: Integer
+        # @param CustomerId: 客户id
+        # @type CustomerId: Integer
+        # @param UserName: 客户姓名
+        # @type UserName: String
+        # @param Phone: 客户的手机号
+        # @type Phone: String
+        # @param FirstArrival: 是否首次到店，0否，1是
+        # @type FirstArrival: Integer
+        # @param ArrivalTime: 到店时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArrivalTime: Integer
+        # @param EventType: 发生事件
+        # @type EventType: Integer
+        # @param EventTypeName: 发生事件名称
+        # @type EventTypeName: String
+        # @param FollowRecord: 跟进记录
+        # @type FollowRecord: String
+
+        attr_accessor :ClueId, :CustomerId, :UserName, :Phone, :FirstArrival, :ArrivalTime, :EventType, :EventTypeName, :FollowRecord
+
+        def initialize(clueid=nil, customerid=nil, username=nil, phone=nil, firstarrival=nil, arrivaltime=nil, eventtype=nil, eventtypename=nil, followrecord=nil)
+          @ClueId = clueid
+          @CustomerId = customerid
+          @UserName = username
+          @Phone = phone
+          @FirstArrival = firstarrival
+          @ArrivalTime = arrivaltime
+          @EventType = eventtype
+          @EventTypeName = eventtypename
+          @FollowRecord = followrecord
+        end
+
+        def deserialize(params)
+          @ClueId = params['ClueId']
+          @CustomerId = params['CustomerId']
+          @UserName = params['UserName']
+          @Phone = params['Phone']
+          @FirstArrival = params['FirstArrival']
+          @ArrivalTime = params['ArrivalTime']
+          @EventType = params['EventType']
+          @EventTypeName = params['EventTypeName']
+          @FollowRecord = params['FollowRecord']
+        end
+      end
+
       # 渠道活码详情
       class ChannelCodeInnerDetail < TencentCloud::Common::AbstractModel
         # @param Id: 渠道活码id
@@ -365,7 +414,7 @@ module TencentCloud
       class ClueInfoDetail < TencentCloud::Common::AbstractModel
         # @param ClueId: 线索id，线索唯一识别编码
         # @type ClueId: String
-        # @param DealerId: 接待客户经销商顾问所属组织id,多个组织使用逗号分割
+        # @param DealerId: 接待客户经销商顾问所属经销商code
         # @type DealerId: String
         # @param EnquireTime: 线索获取时间，用户添加企业微信时间，单位是秒
         # @type EnquireTime: Integer
@@ -421,10 +470,64 @@ module TencentCloud
         # @type DistributeTime: Integer
         # @param CreateAtTime: 获取线索的时间戳，单位：秒
         # @type CreateAtTime: Integer
+        # @param WxId: 客户微信id
+        # @type WxId: String
+        # @param BrandCode: 意向车型对应品牌code
+        # @type BrandCode: String
+        # @param BuildTime: 建档时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildTime: Integer
+        # @param OrderTime: 下订时间，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderTime: Integer
+        # @param ArrivalTime: 到店时间，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArrivalTime: Integer
+        # @param DeliveryTime: 交车时间，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliveryTime: Integer
+        # @param FollowTime: 上次跟进时间，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowTime: Integer
+        # @param NextFollowTime: 下次跟进时间，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextFollowTime: Integer
+        # @param OrgId: 线索所属组织id
+        # @type OrgId: Integer
+        # @param OrgName: 线索所属组织名称
+        # @type OrgName: String
+        # @param Introducer: 介绍人姓名
+        # @type Introducer: String
+        # @param IntroducerPhone: 介绍人电话
+        # @type IntroducerPhone: String
+        # @param IsBindWx: 是否关联微信 1 是 0 否
+        # @type IsBindWx: Integer
+        # @param IsMerge: 是否经过合并 1 是 0 否
+        # @type IsMerge: Integer
+        # @param IsInvalid: 是否无效  1 是 0 否
+        # @type IsInvalid: Integer
+        # @param InvalidType: 无效类型
+        # @type InvalidType: String
+        # @param InvalidTypeName: 无效类型枚举：
+        # 无意向购买、空错号、未接听、其他
+        # @type InvalidTypeName: String
+        # @param InvalidRemark: 由顾问手动输入的无效原因文字
+        # @type InvalidRemark: String
+        # @param InvalidTime: 无效时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidTime: Integer
+        # @param DealerName: 经销商名称
+        # @type DealerName: String
+        # @param ShopId: 经销商下级门店ID
+        # @type ShopId: Integer
+        # @param ShopName: 经销商下级门店名称
+        # @type ShopName: String
+        # @param Position: 职位
+        # @type Position: String
 
-        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime, :WxId, :BrandCode, :BuildTime, :OrderTime, :ArrivalTime, :DeliveryTime, :FollowTime, :NextFollowTime, :OrgId, :OrgName, :Introducer, :IntroducerPhone, :IsBindWx, :IsMerge, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidRemark, :InvalidTime, :DealerName, :ShopId, :ShopName, :Position
 
-        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil)
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil, wxid=nil, brandcode=nil, buildtime=nil, ordertime=nil, arrivaltime=nil, deliverytime=nil, followtime=nil, nextfollowtime=nil, orgid=nil, orgname=nil, introducer=nil, introducerphone=nil, isbindwx=nil, ismerge=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidremark=nil, invalidtime=nil, dealername=nil, shopid=nil, shopname=nil, position=nil)
           @ClueId = clueid
           @DealerId = dealerid
           @EnquireTime = enquiretime
@@ -452,6 +555,29 @@ module TencentCloud
           @ImportAtTime = importattime
           @DistributeTime = distributetime
           @CreateAtTime = createattime
+          @WxId = wxid
+          @BrandCode = brandcode
+          @BuildTime = buildtime
+          @OrderTime = ordertime
+          @ArrivalTime = arrivaltime
+          @DeliveryTime = deliverytime
+          @FollowTime = followtime
+          @NextFollowTime = nextfollowtime
+          @OrgId = orgid
+          @OrgName = orgname
+          @Introducer = introducer
+          @IntroducerPhone = introducerphone
+          @IsBindWx = isbindwx
+          @IsMerge = ismerge
+          @IsInvalid = isinvalid
+          @InvalidType = invalidtype
+          @InvalidTypeName = invalidtypename
+          @InvalidRemark = invalidremark
+          @InvalidTime = invalidtime
+          @DealerName = dealername
+          @ShopId = shopid
+          @ShopName = shopname
+          @Position = position
         end
 
         def deserialize(params)
@@ -482,6 +608,29 @@ module TencentCloud
           @ImportAtTime = params['ImportAtTime']
           @DistributeTime = params['DistributeTime']
           @CreateAtTime = params['CreateAtTime']
+          @WxId = params['WxId']
+          @BrandCode = params['BrandCode']
+          @BuildTime = params['BuildTime']
+          @OrderTime = params['OrderTime']
+          @ArrivalTime = params['ArrivalTime']
+          @DeliveryTime = params['DeliveryTime']
+          @FollowTime = params['FollowTime']
+          @NextFollowTime = params['NextFollowTime']
+          @OrgId = params['OrgId']
+          @OrgName = params['OrgName']
+          @Introducer = params['Introducer']
+          @IntroducerPhone = params['IntroducerPhone']
+          @IsBindWx = params['IsBindWx']
+          @IsMerge = params['IsMerge']
+          @IsInvalid = params['IsInvalid']
+          @InvalidType = params['InvalidType']
+          @InvalidTypeName = params['InvalidTypeName']
+          @InvalidRemark = params['InvalidRemark']
+          @InvalidTime = params['InvalidTime']
+          @DealerName = params['DealerName']
+          @ShopId = params['ShopId']
+          @ShopName = params['ShopName']
+          @Position = params['Position']
         end
       end
 
@@ -515,10 +664,13 @@ module TencentCloud
         # @type IsLeaderInDept: String
         # @param Status: 激活状态: 0=已激活，1=已禁用，-1=退出企业"
         # @type Status: Integer
+        # @param JobNumber: 工号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobNumber: String
 
-        attr_accessor :UserId, :UserName, :UserOpenId, :DealerId, :ShopId, :Phone, :OrgIds, :MainDepartment, :IsLeaderInDept, :Status
+        attr_accessor :UserId, :UserName, :UserOpenId, :DealerId, :ShopId, :Phone, :OrgIds, :MainDepartment, :IsLeaderInDept, :Status, :JobNumber
 
-        def initialize(userid=nil, username=nil, useropenid=nil, dealerid=nil, shopid=nil, phone=nil, orgids=nil, maindepartment=nil, isleaderindept=nil, status=nil)
+        def initialize(userid=nil, username=nil, useropenid=nil, dealerid=nil, shopid=nil, phone=nil, orgids=nil, maindepartment=nil, isleaderindept=nil, status=nil, jobnumber=nil)
           @UserId = userid
           @UserName = username
           @UserOpenId = useropenid
@@ -529,6 +681,7 @@ module TencentCloud
           @MainDepartment = maindepartment
           @IsLeaderInDept = isleaderindept
           @Status = status
+          @JobNumber = jobnumber
         end
 
         def deserialize(params)
@@ -542,6 +695,7 @@ module TencentCloud
           @MainDepartment = params['MainDepartment']
           @IsLeaderInDept = params['IsLeaderInDept']
           @Status = params['Status']
+          @JobNumber = params['JobNumber']
         end
       end
 
@@ -1313,6 +1467,73 @@ module TencentCloud
         end
       end
 
+      # 发生过跟进的潜客信息
+      class FollowInfo < TencentCloud::Common::AbstractModel
+        # @param ClueId: 线索id
+        # @type ClueId: Integer
+        # @param CustomerId: 客户档案id
+        # @type CustomerId: Integer
+        # @param UserName: 客户姓名
+        # @type UserName: String
+        # @param Phone: 客户的手机号
+        # @type Phone: String
+        # @param IsOverdue: 是否逾期
+        # @type IsOverdue: Integer
+        # @param OverdueTime: 逾期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverdueTime: Integer
+        # @param EventType: 发生事件
+        # @type EventType: Integer
+        # @param EventTypeName: 发生事件名称
+        # @type EventTypeName: String
+        # @param FollowWayType: 跟进方式
+        # @type FollowWayType: String
+        # @param FollowWayName: 跟进方式名称
+        # @type FollowWayName: String
+        # @param FollowTime: 本次跟进时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FollowTime: Integer
+        # @param NextFollowTime: 下次跟进时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextFollowTime: Integer
+        # @param FollowRecord: 跟进记录
+        # @type FollowRecord: String
+
+        attr_accessor :ClueId, :CustomerId, :UserName, :Phone, :IsOverdue, :OverdueTime, :EventType, :EventTypeName, :FollowWayType, :FollowWayName, :FollowTime, :NextFollowTime, :FollowRecord
+
+        def initialize(clueid=nil, customerid=nil, username=nil, phone=nil, isoverdue=nil, overduetime=nil, eventtype=nil, eventtypename=nil, followwaytype=nil, followwayname=nil, followtime=nil, nextfollowtime=nil, followrecord=nil)
+          @ClueId = clueid
+          @CustomerId = customerid
+          @UserName = username
+          @Phone = phone
+          @IsOverdue = isoverdue
+          @OverdueTime = overduetime
+          @EventType = eventtype
+          @EventTypeName = eventtypename
+          @FollowWayType = followwaytype
+          @FollowWayName = followwayname
+          @FollowTime = followtime
+          @NextFollowTime = nextfollowtime
+          @FollowRecord = followrecord
+        end
+
+        def deserialize(params)
+          @ClueId = params['ClueId']
+          @CustomerId = params['CustomerId']
+          @UserName = params['UserName']
+          @Phone = params['Phone']
+          @IsOverdue = params['IsOverdue']
+          @OverdueTime = params['OverdueTime']
+          @EventType = params['EventType']
+          @EventTypeName = params['EventTypeName']
+          @FollowWayType = params['FollowWayType']
+          @FollowWayName = params['FollowWayName']
+          @FollowTime = params['FollowTime']
+          @NextFollowTime = params['NextFollowTime']
+          @FollowRecord = params['FollowRecord']
+        end
+      end
+
       # 添加了此外部联系人的企业成员信息
       class FollowUser < TencentCloud::Common::AbstractModel
         # @param UserId: 添加了此外部联系人的企业成员userid
@@ -1768,6 +1989,72 @@ module TencentCloud
               @PageData << livecodedetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryArrivalList请求参数结构体
+      class QueryArrivalListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页，预期请求的数据量，取值范围 1 ~ 1000
+        # @type Limit: Integer
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+
+        attr_accessor :Limit, :BeginTime, :EndTime, :Cursor
+
+        def initialize(limit=nil, begintime=nil, endtime=nil, cursor=nil)
+          @Limit = limit
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+        end
+      end
+
+      # QueryArrivalList返回参数结构体
+      class QueryArrivalListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 潜客客户存档信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param HasMore: 是否还有更多数据。0-否；1-是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :HasMore, :RequestId
+
+        def initialize(nextcursor=nil, pagedata=nil, hasmore=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              arrivalinfo_tmp = ArrivalInfo.new
+              arrivalinfo_tmp.deserialize(i)
+              @PageData << arrivalinfo_tmp
+            end
+          end
+          @HasMore = params['HasMore']
           @RequestId = params['RequestId']
         end
       end
@@ -2472,6 +2759,72 @@ module TencentCloud
               @ExternalUserIdMapping << externalusermappinginfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryFollowList请求参数结构体
+      class QueryFollowListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页，预期请求的数据量，取值范围 1 ~ 1000
+        # @type Limit: Integer
+        # @param BeginTime: 查询开始时间， 单位秒
+        # @type BeginTime: Integer
+        # @param EndTime: 查询结束时间， 单位秒
+        # @type EndTime: Integer
+        # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
+        # @type Cursor: String
+
+        attr_accessor :Limit, :BeginTime, :EndTime, :Cursor
+
+        def initialize(limit=nil, begintime=nil, endtime=nil, cursor=nil)
+          @Limit = limit
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Cursor = cursor
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Cursor = params['Cursor']
+        end
+      end
+
+      # QueryFollowList返回参数结构体
+      class QueryFollowListResponse < TencentCloud::Common::AbstractModel
+        # @param NextCursor: 分页游标，下次调用带上该值，则从当前的位置继续往后拉，以实现增量拉取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextCursor: String
+        # @param PageData: 潜客客户存档信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageData: Array
+        # @param HasMore: 是否还有更多数据。0-否；1-是。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NextCursor, :PageData, :HasMore, :RequestId
+
+        def initialize(nextcursor=nil, pagedata=nil, hasmore=nil, requestid=nil)
+          @NextCursor = nextcursor
+          @PageData = pagedata
+          @HasMore = hasmore
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NextCursor = params['NextCursor']
+          unless params['PageData'].nil?
+            @PageData = []
+            params['PageData'].each do |i|
+              followinfo_tmp = FollowInfo.new
+              followinfo_tmp.deserialize(i)
+              @PageData << followinfo_tmp
+            end
+          end
+          @HasMore = params['HasMore']
           @RequestId = params['RequestId']
         end
       end

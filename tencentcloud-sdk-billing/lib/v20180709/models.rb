@@ -238,6 +238,12 @@ module TencentCloud
         # @type UsedAmount: String
         # @param UsedAmountUnit: 组件用量单位：组件用量对应的单位
         # @type UsedAmountUnit: String
+        # @param RealTotalMeasure: 原始用量/时长：组件被资源包抵扣前的原始用量/时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealTotalMeasure: String
+        # @param DeductedMeasure: 抵扣用量/时长（含资源包）：组件被资源包抵扣的用量/时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductedMeasure: String
         # @param TimeSpan: 使用时长：资源使用的时长
         # @type TimeSpan: String
         # @param TimeUnitName: 时长单位：资源使用时长的单位
@@ -290,14 +296,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlendedDiscount: String
 
-        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
+        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
         extend Gem::Deprecate
-        deprecate :SpecifiedPrice, :none, 2023, 6
-        deprecate :SpecifiedPrice=, :none, 2023, 6
-        deprecate :SPDeduction, :none, 2023, 6
-        deprecate :SPDeduction=, :none, 2023, 6
+        deprecate :SpecifiedPrice, :none, 2023, 7
+        deprecate :SpecifiedPrice=, :none, 2023, 7
+        deprecate :SPDeduction, :none, 2023, 7
+        deprecate :SPDeduction=, :none, 2023, 7
 
-        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
+        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
           @SinglePrice = singleprice
@@ -305,6 +311,8 @@ module TencentCloud
           @PriceUnit = priceunit
           @UsedAmount = usedamount
           @UsedAmountUnit = usedamountunit
+          @RealTotalMeasure = realtotalmeasure
+          @DeductedMeasure = deductedmeasure
           @TimeSpan = timespan
           @TimeUnitName = timeunitname
           @Cost = cost
@@ -335,6 +343,8 @@ module TencentCloud
           @PriceUnit = params['PriceUnit']
           @UsedAmount = params['UsedAmount']
           @UsedAmountUnit = params['UsedAmountUnit']
+          @RealTotalMeasure = params['RealTotalMeasure']
+          @DeductedMeasure = params['DeductedMeasure']
           @TimeSpan = params['TimeSpan']
           @TimeUnitName = params['TimeUnitName']
           @Cost = params['Cost']
@@ -441,8 +451,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2023, 6
-        deprecate :SPDeduction=, :none, 2023, 6
+        deprecate :SPDeduction, :none, 2023, 7
+        deprecate :SPDeduction=, :none, 2023, 7
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
           @BusinessCodeName = businesscodename

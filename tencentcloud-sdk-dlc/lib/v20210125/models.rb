@@ -1094,7 +1094,7 @@ module TencentCloud
         # @type MinClusters: Integer
         # @param MaxClusters: 最大资源
         # @type MaxClusters: Integer
-        # @param DefaultDataEngine: 是否为默虚拟集群
+        # @param DefaultDataEngine: 是否为默认虚拟集群
         # @type DefaultDataEngine: Boolean
         # @param CidrBlock: VPC网段
         # @type CidrBlock: String
@@ -1132,7 +1132,7 @@ module TencentCloud
         # @type DataEngineConfigPairs: Array
         # @param ImageVersionName: 集群镜像版本名字。如SuperSQL-P 1.1;SuperSQL-S 3.2等,不传，默认创建最新镜像版本的集群
         # @type ImageVersionName: String
-        # @param MainClusterName: 主集群名称
+        # @param MainClusterName: 主集群名称，创建容灾集群时指定
         # @type MainClusterName: String
         # @param ElasticSwitch: spark jar 包年包月集群是否开启弹性
         # @type ElasticSwitch: Boolean
@@ -1142,6 +1142,9 @@ module TencentCloud
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate
+        extend Gem::Deprecate
+        deprecate :DefaultDataEngine, :none, 2023, 7
+        deprecate :DefaultDataEngine=, :none, 2023, 7
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil)
           @EngineType = enginetype

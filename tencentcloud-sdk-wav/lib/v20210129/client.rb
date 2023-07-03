@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定时间范围内发生过到店的潜客到店信息
+
+        # @param request: Request instance for QueryArrivalList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryArrivalListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryArrivalListResponse`
+        def QueryArrivalList(request)
+          body = send_request('QueryArrivalList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryArrivalListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据游标拉取渠道活码列表信息
 
         # @param request: Request instance for QueryChannelCodeList.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryExternalUserMappingInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定时间范围内发生过跟进的潜客信息
+
+        # @param request: Request instance for QueryFollowList.
+        # @type request: :class:`Tencentcloud::wav::V20210129::QueryFollowListRequest`
+        # @rtype: :class:`Tencentcloud::wav::V20210129::QueryFollowListResponse`
+        def QueryFollowList(request)
+          body = send_request('QueryFollowList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFollowListResponse.new
             model.deserialize(response['Response'])
             model
           else
