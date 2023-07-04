@@ -101,6 +101,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户组
+
+        # @param request: Request instance for CreateUserGroup.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::CreateUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::CreateUserGroupResponse`
+        def CreateUserGroup(request)
+          body = send_request('CreateUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建用户目录
+
+        # @param request: Request instance for CreateUserStore.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::CreateUserStoreRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::CreateUserStoreResponse`
+        def CreateUserStore(request)
+          body = send_request('CreateUserStore', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserStoreResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除用户组
+
+        # @param request: Request instance for DeleteUserGroups.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::DeleteUserGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::DeleteUserGroupsResponse`
+        def DeleteUserGroups(request)
+          body = send_request('DeleteUserGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户目录
+
+        # @param request: Request instance for DeleteUserStore.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::DeleteUserStoreRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::DeleteUserStoreResponse`
+        def DeleteUserStore(request)
+          body = send_request('DeleteUserStore', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserStoreResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除用户
 
         # @param request: Request instance for DeleteUsers.
@@ -293,6 +389,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户组列表
+
+        # @param request: Request instance for ListUserGroups.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::ListUserGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::ListUserGroupsResponse`
+        def ListUserGroups(request)
+          body = send_request('ListUserGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListUserGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户目录列表
+
+        # @param request: Request instance for ListUserStore.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::ListUserStoreRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::ListUserStoreResponse`
+        def ListUserStore(request)
+          body = send_request('ListUserStore', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListUserStoreResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重置用户密码
 
         # @param request: Request instance for ResetPassword.
@@ -365,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新用户组
+
+        # @param request: Request instance for UpdateUserGroup.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::UpdateUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::UpdateUserGroupResponse`
+        def UpdateUserGroup(request)
+          body = send_request('UpdateUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新用户状态
 
         # @param request: Request instance for UpdateUserStatus.
@@ -375,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateUserStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新用户目录
+
+        # @param request: Request instance for UpdateUserStore.
+        # @type request: :class:`Tencentcloud::ciam::V20220331::UpdateUserStoreRequest`
+        # @rtype: :class:`Tencentcloud::ciam::V20220331::UpdateUserStoreResponse`
+        def UpdateUserStore(request)
+          body = send_request('UpdateUserStore', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserStoreResponse.new
             model.deserialize(response['Response'])
             model
           else

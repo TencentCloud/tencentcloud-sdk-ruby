@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于校验Kafka服务集群是否可以正常访问
+
+        # @param request: Request instance for CheckRechargeKafkaServer.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CheckRechargeKafkaServerRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CheckRechargeKafkaServerResponse`
+        def CheckRechargeKafkaServer(request)
+          body = send_request('CheckRechargeKafkaServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckRechargeKafkaServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭Kafka协议消费
 
         # @param request: Request instance for CloseKafkaConsumer.
@@ -279,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于创建Kafka数据订阅任务
+
+        # @param request: Request instance for CreateKafkaRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateKafkaRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateKafkaRechargeResponse`
+        def CreateKafkaRecharge(request)
+          body = send_request('CreateKafkaRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateKafkaRechargeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -567,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除Kafka数据订阅任务
+
+        # @param request: Request instance for DeleteKafkaRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteKafkaRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteKafkaRechargeResponse`
+        def DeleteKafkaRecharge(request)
+          body = send_request('DeleteKafkaRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteKafkaRechargeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -927,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取Kafka数据订阅任务
+
+        # @param request: Request instance for DescribeKafkaRecharges.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeKafkaRechargesRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeKafkaRechargesResponse`
+        def DescribeKafkaRecharges(request)
+          body = send_request('DescribeKafkaRecharges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKafkaRechargesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1397,6 +1493,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改Kafka数据订阅任务
+
+        # @param request: Request instance for ModifyKafkaRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyKafkaRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyKafkaRechargeResponse`
+        def ModifyKafkaRecharge(request)
+          body = send_request('ModifyKafkaRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKafkaRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改日志集信息
 
         # @param request: Request instance for ModifyLogset.
@@ -1503,6 +1623,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenKafkaConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于预览Kafka数据订阅任务客户日志信息
+
+        # @param request: Request instance for PreviewKafkaRecharge.
+        # @type request: :class:`Tencentcloud::cls::V20201016::PreviewKafkaRechargeRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::PreviewKafkaRechargeResponse`
+        def PreviewKafkaRecharge(request)
+          body = send_request('PreviewKafkaRecharge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PreviewKafkaRechargeResponse.new
             model.deserialize(response['Response'])
             model
           else

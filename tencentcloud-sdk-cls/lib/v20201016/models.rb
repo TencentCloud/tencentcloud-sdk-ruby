@@ -526,6 +526,62 @@ module TencentCloud
         end
       end
 
+      # CheckRechargeKafkaServer请求参数结构体
+      class CheckRechargeKafkaServerRequest < TencentCloud::Common::AbstractModel
+        # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        # @type KafkaType: Integer
+        # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
+        # @type KafkaInstance: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接
+        # @type IsEncryptionAddr: Boolean
+        # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
+        # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+
+        attr_accessor :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol
+
+        def initialize(kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil)
+          @KafkaType = kafkatype
+          @KafkaInstance = kafkainstance
+          @ServerAddr = serveraddr
+          @IsEncryptionAddr = isencryptionaddr
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @KafkaType = params['KafkaType']
+          @KafkaInstance = params['KafkaInstance']
+          @ServerAddr = params['ServerAddr']
+          @IsEncryptionAddr = params['IsEncryptionAddr']
+          unless params['Protocol'].nil?
+            @Protocol = KafkaProtocolInfo.new
+            @Protocol.deserialize(params['Protocol'])
+          end
+        end
+      end
+
+      # CheckRechargeKafkaServer返回参数结构体
+      class CheckRechargeKafkaServerResponse < TencentCloud::Common::AbstractModel
+        # @param Status: Kafka集群可访问状态，0：可正常访问 ...
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CKafka的描述-需要投递到的kafka信息
       class Ckafka < TencentCloud::Common::AbstractModel
         # @param Vip: Ckafka 的 Vip
@@ -1717,6 +1773,88 @@ module TencentCloud
         end
       end
 
+      # CreateKafkaRecharge请求参数结构体
+      class CreateKafkaRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 导入CLS目标topic ID
+        # @type TopicId: String
+        # @param Name: Kafka导入配置名称
+        # @type Name: String
+        # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        # @type KafkaType: Integer
+        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        # @type UserKafkaTopics: String
+        # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
+        # @type Offset: Integer
+        # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
+        # @type KafkaInstance: String
+        # @param ServerAddr: 服务地址，KafkaType为1时必填
+        # @type ServerAddr: String
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接，KafkaType为1时必填
+        # @type IsEncryptionAddr: Boolean
+        # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
+        # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+        # @param ConsumerGroupName: 用户Kafka消费组名称
+        # @type ConsumerGroupName: String
+        # @param LogRechargeRule: 日志导入规则
+        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+
+        attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :LogRechargeRule
+
+        def initialize(topicid=nil, name=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, logrechargerule=nil)
+          @TopicId = topicid
+          @Name = name
+          @KafkaType = kafkatype
+          @UserKafkaTopics = userkafkatopics
+          @Offset = offset
+          @KafkaInstance = kafkainstance
+          @ServerAddr = serveraddr
+          @IsEncryptionAddr = isencryptionaddr
+          @Protocol = protocol
+          @ConsumerGroupName = consumergroupname
+          @LogRechargeRule = logrechargerule
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @KafkaType = params['KafkaType']
+          @UserKafkaTopics = params['UserKafkaTopics']
+          @Offset = params['Offset']
+          @KafkaInstance = params['KafkaInstance']
+          @ServerAddr = params['ServerAddr']
+          @IsEncryptionAddr = params['IsEncryptionAddr']
+          unless params['Protocol'].nil?
+            @Protocol = KafkaProtocolInfo.new
+            @Protocol.deserialize(params['Protocol'])
+          end
+          @ConsumerGroupName = params['ConsumerGroupName']
+          unless params['LogRechargeRule'].nil?
+            @LogRechargeRule = LogRechargeRuleInfo.new
+            @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+        end
+      end
+
+      # CreateKafkaRecharge返回参数结构体
+      class CreateKafkaRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Kafka导入配置ID
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLogset请求参数结构体
       class CreateLogsetRequest < TencentCloud::Common::AbstractModel
         # @param LogsetName: 日志集名字，不能重名
@@ -2305,6 +2443,42 @@ module TencentCloud
 
       # DeleteIndex返回参数结构体
       class DeleteIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteKafkaRecharge请求参数结构体
+      class DeleteKafkaRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Kafka导入配置ID
+        # @type Id: String
+        # @param TopicId: 导入CLS目标topic ID
+        # @type TopicId: String
+
+        attr_accessor :Id, :TopicId
+
+        def initialize(id=nil, topicid=nil)
+          @Id = id
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteKafkaRecharge返回参数结构体
+      class DeleteKafkaRechargeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3144,6 +3318,61 @@ module TencentCloud
         end
       end
 
+      # DescribeKafkaRecharges请求参数结构体
+      class DescribeKafkaRechargesRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID
+        # @type TopicId: String
+        # @param Id: 导入配置ID
+        # @type Id: String
+        # @param Status: 状态   status 1: 运行中, 2: 暂停...
+        # @type Status: Integer
+
+        attr_accessor :TopicId, :Id, :Status
+
+        def initialize(topicid=nil, id=nil, status=nil)
+          @TopicId = topicid
+          @Id = id
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Id = params['Id']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeKafkaRecharges返回参数结构体
+      class DescribeKafkaRechargesResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: KafkaRechargeInfo 信息列表
+        # @type Infos: Array
+        # @param TotalCount: Kafka导入信息总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :TotalCount, :RequestId
+
+        def initialize(infos=nil, totalcount=nil, requestid=nil)
+          @Infos = infos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              kafkarechargeinfo_tmp = KafkaRechargeInfo.new
+              kafkarechargeinfo_tmp.deserialize(i)
+              @Infos << kafkarechargeinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogContext请求参数结构体
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 要查询的日志主题ID
@@ -3902,7 +4131,7 @@ module TencentCloud
         # @param BeginRegex: 行首匹配规则，只有log_type为multiline_log或fullregex_log时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginRegex: String
-        # @param Keys: 取的每个字段的key名字，为空的key代表丢弃这个字段，只有log_type为delimiter_log时有效，json_log的日志使用json本身的key
+        # @param Keys: 取的每个字段的key名字，为空的key代表丢弃这个字段，只有log_type为delimiter_log时有效，json_log的日志使用json本身的key。限制100个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param FilterKeyRegex: 需要过滤日志的key，及其对应的regex
@@ -4280,6 +4509,170 @@ module TencentCloud
         end
       end
 
+      # kafka协议消费内容
+      class KafkaConsumerContent < TencentCloud::Common::AbstractModel
+        # @param Format: 消费格式 0:全文；1:json
+        # @type Format: Integer
+        # @param EnableTag: 是否投递 TAG 信息
+        # Format为0时，此字段不需要赋值
+        # @type EnableTag: Boolean
+        # @param MetaFields: 元数据信息列表, 可选值为：\_\_SOURCE\_\_、\_\_FILENAME\_\_
+        # 、\_\_TIMESTAMP\_\_、\_\_HOSTNAME\_\_、\_\_PKGID\_\_
+        # Format为0时，此字段不需要赋值
+        # @type MetaFields: Array
+        # @param TagTransaction: tag数据处理方式：
+        # 1:不平铺（默认值）
+        # 2:平铺
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagTransaction: Integer
+        # @param JsonType: 消费数据Json格式：
+        # 1：不转义（默认格式）
+        # 2：转义
+        # @type JsonType: Integer
+
+        attr_accessor :Format, :EnableTag, :MetaFields, :TagTransaction, :JsonType
+
+        def initialize(format=nil, enabletag=nil, metafields=nil, tagtransaction=nil, jsontype=nil)
+          @Format = format
+          @EnableTag = enabletag
+          @MetaFields = metafields
+          @TagTransaction = tagtransaction
+          @JsonType = jsontype
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @EnableTag = params['EnableTag']
+          @MetaFields = params['MetaFields']
+          @TagTransaction = params['TagTransaction']
+          @JsonType = params['JsonType']
+        end
+      end
+
+      # Kafka访问协议
+      class KafkaProtocolInfo < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议类型，支持的协议类型包括 plaintext、sasl_plaintext 或 sasl_ssl。建议使用 sasl_ssl，此协议会进行连接加密同时需要用户认证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Mechanism: 加密类型，支持 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mechanism: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param Password: 用户密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+
+        attr_accessor :Protocol, :Mechanism, :UserName, :Password
+
+        def initialize(protocol=nil, mechanism=nil, username=nil, password=nil)
+          @Protocol = protocol
+          @Mechanism = mechanism
+          @UserName = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Mechanism = params['Mechanism']
+          @UserName = params['UserName']
+          @Password = params['Password']
+        end
+      end
+
+      # Kafka导入配置信息
+      class KafkaRechargeInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param Name: Kafka导入任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaType: Integer
+        # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaInstance: String
+        # @param ServerAddr: 服务地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerAddr: String
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEncryptionAddr: Boolean
+        # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
+        # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserKafkaTopics: String
+        # @param ConsumerGroupName: 用户Kafka消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerGroupName: String
+        # @param Status: 状态   status 1: 运行中, 2: 暂停 ...
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Offset: 导入数据位置，-1:最早（默认），-2：最晚，大于等于0: 指定offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param LogRechargeRule: 日志导入规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+
+        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :Status, :Offset, :CreateTime, :UpdateTime, :LogRechargeRule
+
+        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, status=nil, offset=nil, createtime=nil, updatetime=nil, logrechargerule=nil)
+          @Id = id
+          @TopicId = topicid
+          @Name = name
+          @KafkaType = kafkatype
+          @KafkaInstance = kafkainstance
+          @ServerAddr = serveraddr
+          @IsEncryptionAddr = isencryptionaddr
+          @Protocol = protocol
+          @UserKafkaTopics = userkafkatopics
+          @ConsumerGroupName = consumergroupname
+          @Status = status
+          @Offset = offset
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LogRechargeRule = logrechargerule
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @KafkaType = params['KafkaType']
+          @KafkaInstance = params['KafkaInstance']
+          @ServerAddr = params['ServerAddr']
+          @IsEncryptionAddr = params['IsEncryptionAddr']
+          unless params['Protocol'].nil?
+            @Protocol = KafkaProtocolInfo.new
+            @Protocol.deserialize(params['Protocol'])
+          end
+          @UserKafkaTopics = params['UserKafkaTopics']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['LogRechargeRule'].nil?
+            @LogRechargeRule = LogRechargeRuleInfo.new
+            @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+        end
+      end
+
       # 需要过滤日志的key，及其对应的regex
       class KeyRegexInfo < TencentCloud::Common::AbstractModel
         # @param Key: 需要过滤日志的key
@@ -4480,6 +4873,84 @@ module TencentCloud
               @Data << logitem_tmp
             end
           end
+        end
+      end
+
+      # 日志导入规则
+      class LogRechargeRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RechargeType: 导入类型，支持json_log：json格式日志，minimalist_log: 单行全文，fullregex_log: 单行完全正则
+        # @type RechargeType: String
+        # @param EncodingFormat: 解析编码格式，0: UTF-8（默认值），1: GBK
+        # @type EncodingFormat: Integer
+        # @param DefaultTimeSwitch: 使用默认时间，true：开启（默认值）， flase：关闭
+        # @type DefaultTimeSwitch: Boolean
+        # @param LogRegex: 整条日志匹配规则，只有RechargeType为fullregex_log时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogRegex: String
+        # @param UnMatchLogSwitch: 解析失败日志是否上传，true表示上传，false表示不上传
+        # @type UnMatchLogSwitch: Boolean
+        # @param UnMatchLogKey: 解析失败日志的键名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnMatchLogKey: String
+        # @param UnMatchLogTimeSrc: 解析失败日志时间来源，0: 系统当前时间，1: Kafka消息时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnMatchLogTimeSrc: Integer
+        # @param DefaultTimeSrc: 默认时间来源，0: 系统当前时间，1: Kafka消息时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultTimeSrc: Integer
+        # @param TimeKey: 时间字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeKey: String
+        # @param TimeRegex: 时间提取正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeRegex: String
+        # @param TimeFormat: 时间字段格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeFormat: String
+        # @param TimeZone: 时间字段时区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeZone: String
+        # @param Metadata: 元数据信息，Kafka导入支持kafka_topic,kafka_partition,kafka_offset,kafka_timestamp
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: Array
+        # @param Keys: 日志Key列表，RechargeType为full_regex_log时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+
+        attr_accessor :RechargeType, :EncodingFormat, :DefaultTimeSwitch, :LogRegex, :UnMatchLogSwitch, :UnMatchLogKey, :UnMatchLogTimeSrc, :DefaultTimeSrc, :TimeKey, :TimeRegex, :TimeFormat, :TimeZone, :Metadata, :Keys
+
+        def initialize(rechargetype=nil, encodingformat=nil, defaulttimeswitch=nil, logregex=nil, unmatchlogswitch=nil, unmatchlogkey=nil, unmatchlogtimesrc=nil, defaulttimesrc=nil, timekey=nil, timeregex=nil, timeformat=nil, timezone=nil, metadata=nil, keys=nil)
+          @RechargeType = rechargetype
+          @EncodingFormat = encodingformat
+          @DefaultTimeSwitch = defaulttimeswitch
+          @LogRegex = logregex
+          @UnMatchLogSwitch = unmatchlogswitch
+          @UnMatchLogKey = unmatchlogkey
+          @UnMatchLogTimeSrc = unmatchlogtimesrc
+          @DefaultTimeSrc = defaulttimesrc
+          @TimeKey = timekey
+          @TimeRegex = timeregex
+          @TimeFormat = timeformat
+          @TimeZone = timezone
+          @Metadata = metadata
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @RechargeType = params['RechargeType']
+          @EncodingFormat = params['EncodingFormat']
+          @DefaultTimeSwitch = params['DefaultTimeSwitch']
+          @LogRegex = params['LogRegex']
+          @UnMatchLogSwitch = params['UnMatchLogSwitch']
+          @UnMatchLogKey = params['UnMatchLogKey']
+          @UnMatchLogTimeSrc = params['UnMatchLogTimeSrc']
+          @DefaultTimeSrc = params['DefaultTimeSrc']
+          @TimeKey = params['TimeKey']
+          @TimeRegex = params['TimeRegex']
+          @TimeFormat = params['TimeFormat']
+          @TimeZone = params['TimeZone']
+          @Metadata = params['Metadata']
+          @Keys = params['Keys']
         end
       end
 
@@ -5241,6 +5712,88 @@ module TencentCloud
         end
       end
 
+      # ModifyKafkaRecharge请求参数结构体
+      class ModifyKafkaRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Kafka导入配置ID
+        # @type Id: String
+        # @param TopicId: 导入CLS目标topic ID
+        # @type TopicId: String
+        # @param Name: Kafka导入配置名称
+        # @type Name: String
+        # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        # @type KafkaType: Integer
+        # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
+        # @type KafkaInstance: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接
+        # @type IsEncryptionAddr: Boolean
+        # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
+        # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        # @type UserKafkaTopics: String
+        # @param ConsumerGroupName: 用户Kafka消费组名称
+        # @type ConsumerGroupName: String
+        # @param LogRechargeRule: 日志导入规则
+        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+        # @param StatusControl: 导入控制，1：暂停，2：继续
+        # @type StatusControl: Integer
+
+        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :LogRechargeRule, :StatusControl
+
+        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, logrechargerule=nil, statuscontrol=nil)
+          @Id = id
+          @TopicId = topicid
+          @Name = name
+          @KafkaType = kafkatype
+          @KafkaInstance = kafkainstance
+          @ServerAddr = serveraddr
+          @IsEncryptionAddr = isencryptionaddr
+          @Protocol = protocol
+          @UserKafkaTopics = userkafkatopics
+          @ConsumerGroupName = consumergroupname
+          @LogRechargeRule = logrechargerule
+          @StatusControl = statuscontrol
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @KafkaType = params['KafkaType']
+          @KafkaInstance = params['KafkaInstance']
+          @ServerAddr = params['ServerAddr']
+          @IsEncryptionAddr = params['IsEncryptionAddr']
+          unless params['Protocol'].nil?
+            @Protocol = KafkaProtocolInfo.new
+            @Protocol.deserialize(params['Protocol'])
+          end
+          @UserKafkaTopics = params['UserKafkaTopics']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          unless params['LogRechargeRule'].nil?
+            @LogRechargeRule = LogRechargeRuleInfo.new
+            @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+          @StatusControl = params['StatusControl']
+        end
+      end
+
+      # ModifyKafkaRecharge返回参数结构体
+      class ModifyKafkaRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLogset请求参数结构体
       class ModifyLogsetRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
@@ -5625,17 +6178,24 @@ module TencentCloud
         # @type FromTopicId: String
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         # @type Compression: Integer
+        # @param ConsumerContent: kafka协议消费数据格式
+        # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
 
-        attr_accessor :FromTopicId, :Compression
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent
 
-        def initialize(fromtopicid=nil, compression=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
+          @ConsumerContent = consumercontent
         end
 
         def deserialize(params)
           @FromTopicId = params['FromTopicId']
           @Compression = params['Compression']
+          unless params['ConsumerContent'].nil?
+            @ConsumerContent = KafkaConsumerContent.new
+            @ConsumerContent.deserialize(params['ConsumerContent'])
+          end
         end
       end
 
@@ -5741,6 +6301,89 @@ module TencentCloud
           @ExclusiveEndKey = params['ExclusiveEndKey']
           @CreateTime = params['CreateTime']
           @LastWriteTime = params['LastWriteTime']
+        end
+      end
+
+      # PreviewKafkaRecharge请求参数结构体
+      class PreviewKafkaRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param PreviewType: 预览类型，1:源数据预览，2:导出结果预览
+        # @type PreviewType: Integer
+        # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        # @type KafkaType: Integer
+        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        # @type UserKafkaTopics: String
+        # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
+        # @type Offset: Integer
+        # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
+        # @type KafkaInstance: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接
+        # @type IsEncryptionAddr: Boolean
+        # @param Protocol: 加密访问协议，IsEncryptionAddr参数为true时必填
+        # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+        # @param ConsumerGroupName: 用户Kafka消费组
+        # @type ConsumerGroupName: String
+        # @param LogRechargeRule: 日志导入规则
+        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+
+        attr_accessor :PreviewType, :KafkaType, :UserKafkaTopics, :Offset, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :LogRechargeRule
+
+        def initialize(previewtype=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, logrechargerule=nil)
+          @PreviewType = previewtype
+          @KafkaType = kafkatype
+          @UserKafkaTopics = userkafkatopics
+          @Offset = offset
+          @KafkaInstance = kafkainstance
+          @ServerAddr = serveraddr
+          @IsEncryptionAddr = isencryptionaddr
+          @Protocol = protocol
+          @ConsumerGroupName = consumergroupname
+          @LogRechargeRule = logrechargerule
+        end
+
+        def deserialize(params)
+          @PreviewType = params['PreviewType']
+          @KafkaType = params['KafkaType']
+          @UserKafkaTopics = params['UserKafkaTopics']
+          @Offset = params['Offset']
+          @KafkaInstance = params['KafkaInstance']
+          @ServerAddr = params['ServerAddr']
+          @IsEncryptionAddr = params['IsEncryptionAddr']
+          unless params['Protocol'].nil?
+            @Protocol = KafkaProtocolInfo.new
+            @Protocol.deserialize(params['Protocol'])
+          end
+          @ConsumerGroupName = params['ConsumerGroupName']
+          unless params['LogRechargeRule'].nil?
+            @LogRechargeRule = LogRechargeRuleInfo.new
+            @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+        end
+      end
+
+      # PreviewKafkaRecharge返回参数结构体
+      class PreviewKafkaRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param LogSample: 日志样例，PreviewType为2时返回
+        # @type LogSample: String
+        # @param LogData: 日志预览结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogData: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogSample, :LogData, :RequestId
+
+        def initialize(logsample=nil, logdata=nil, requestid=nil)
+          @LogSample = logsample
+          @LogData = logdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogSample = params['LogSample']
+          @LogData = params['LogData']
+          @RequestId = params['RequestId']
         end
       end
 

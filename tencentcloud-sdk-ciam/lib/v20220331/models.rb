@@ -17,6 +17,33 @@
 module TencentCloud
   module Ciam
     module V20220331
+      # 用户组删除时关联的应用信息
+      class AppAssociatedUserGroupIds < TencentCloud::Common::AbstractModel
+        # @param UserGroupId: 用户组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupId: String
+        # @param ApplicationId: 应用id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+
+        attr_accessor :UserGroupId, :ApplicationId, :ApplicationName
+
+        def initialize(usergroupid=nil, applicationid=nil, applicationname=nil)
+          @UserGroupId = usergroupid
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+        end
+
+        def deserialize(params)
+          @UserGroupId = params['UserGroupId']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+        end
+      end
+
       # CreateApiImportUserJob请求参数结构体
       class CreateApiImportUserJobRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -138,6 +165,46 @@ module TencentCloud
         end
       end
 
+      # CreateUserGroup请求参数结构体
+      class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param DisplayName: 用户组名称
+        # @type DisplayName: String
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param Description: 用户组描述
+        # @type Description: String
+
+        attr_accessor :DisplayName, :UserStoreId, :Description
+
+        def initialize(displayname=nil, userstoreid=nil, description=nil)
+          @DisplayName = displayname
+          @UserStoreId = userstoreid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @DisplayName = params['DisplayName']
+          @UserStoreId = params['UserStoreId']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateUserGroup返回参数结构体
+      class CreateUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -237,6 +304,122 @@ module TencentCloud
             @User = User.new
             @User.deserialize(params['User'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserStore请求参数结构体
+      class CreateUserStoreRequest < TencentCloud::Common::AbstractModel
+        # @param UserPoolName: 用户池名字
+        # @type UserPoolName: String
+        # @param UserPoolDesc: 用户池描述
+        # @type UserPoolDesc: String
+        # @param UserPoolLogo: 用户池logo
+        # @type UserPoolLogo: String
+
+        attr_accessor :UserPoolName, :UserPoolDesc, :UserPoolLogo
+
+        def initialize(userpoolname=nil, userpooldesc=nil, userpoollogo=nil)
+          @UserPoolName = userpoolname
+          @UserPoolDesc = userpooldesc
+          @UserPoolLogo = userpoollogo
+        end
+
+        def deserialize(params)
+          @UserPoolName = params['UserPoolName']
+          @UserPoolDesc = params['UserPoolDesc']
+          @UserPoolLogo = params['UserPoolLogo']
+        end
+      end
+
+      # CreateUserStore返回参数结构体
+      class CreateUserStoreResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserGroups请求参数结构体
+      class DeleteUserGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param UserGroupIds: 用户组ID数组
+        # @type UserGroupIds: Array
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+
+        attr_accessor :UserGroupIds, :UserStoreId
+
+        def initialize(usergroupids=nil, userstoreid=nil)
+          @UserGroupIds = usergroupids
+          @UserStoreId = userstoreid
+        end
+
+        def deserialize(params)
+          @UserGroupIds = params['UserGroupIds']
+          @UserStoreId = params['UserStoreId']
+        end
+      end
+
+      # DeleteUserGroups返回参数结构体
+      class DeleteUserGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param UserGroupDeletedInfo: 删除的用户组关联的应用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroupDeletedInfo: :class:`Tencentcloud::Ciam.v20220331.models.UserGroupDeleteResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserGroupDeletedInfo, :RequestId
+
+        def initialize(usergroupdeletedinfo=nil, requestid=nil)
+          @UserGroupDeletedInfo = usergroupdeletedinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserGroupDeletedInfo'].nil?
+            @UserGroupDeletedInfo = UserGroupDeleteResp.new
+            @UserGroupDeletedInfo.deserialize(params['UserGroupDeletedInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserStore请求参数结构体
+      class DeleteUserStoreRequest < TencentCloud::Common::AbstractModel
+        # @param UserPoolId: 用户池ID
+        # @type UserPoolId: String
+
+        attr_accessor :UserPoolId
+
+        def initialize(userpoolid=nil)
+          @UserPoolId = userpoolid
+        end
+
+        def deserialize(params)
+          @UserPoolId = params['UserPoolId']
+        end
+      end
+
+      # DeleteUserStore返回参数结构体
+      class DeleteUserStoreResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -959,6 +1142,83 @@ module TencentCloud
         end
       end
 
+      # ListUserGroups请求参数结构体
+      class ListUserGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param Pageable: 分页数据
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param Filters: Key可选值为condition
+
+        # <li> **condition** </li>	Values = 查询条件，用户组ID或用户组名称
+        # @type Filters: Array
+
+        attr_accessor :UserStoreId, :Pageable, :Filters
+
+        def initialize(userstoreid=nil, pageable=nil, filters=nil)
+          @UserStoreId = userstoreid
+          @Pageable = pageable
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @UserStoreId = params['UserStoreId']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ListUserGroups返回参数结构体
+      class ListUserGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Content: 用户组列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+        # @param Total: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Pageable: 分页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pageable: :class:`Tencentcloud::Ciam.v20220331.models.Pageable`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Content, :Total, :Pageable, :RequestId
+
+        def initialize(content=nil, total=nil, pageable=nil, requestid=nil)
+          @Content = content
+          @Total = total
+          @Pageable = pageable
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              usergroup_tmp = UserGroup.new
+              usergroup_tmp.deserialize(i)
+              @Content << usergroup_tmp
+            end
+          end
+          @Total = params['Total']
+          unless params['Pageable'].nil?
+            @Pageable = Pageable.new
+            @Pageable.deserialize(params['Pageable'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListUser请求参数结构体
       class ListUserRequest < TencentCloud::Common::AbstractModel
         # @param UserStoreId: 用户目录ID
@@ -1035,6 +1295,45 @@ module TencentCloud
               user_tmp = User.new
               user_tmp.deserialize(i)
               @Content << user_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListUserStore请求参数结构体
+      class ListUserStoreRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ListUserStore返回参数结构体
+      class ListUserStoreResponse < TencentCloud::Common::AbstractModel
+        # @param UserStoreSet: 用户目录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserStoreSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserStoreSet, :RequestId
+
+        def initialize(userstoreset=nil, requestid=nil)
+          @UserStoreSet = userstoreset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserStoreSet'].nil?
+            @UserStoreSet = []
+            params['UserStoreSet'].each do |i|
+              userstore_tmp = UserStore.new
+              userstore_tmp.deserialize(i)
+              @UserStoreSet << userstore_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1375,6 +1674,50 @@ module TencentCloud
         end
       end
 
+      # UpdateUserGroup请求参数结构体
+      class UpdateUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param UserGroupId: 用户组ID
+        # @type UserGroupId: String
+        # @param DisplayName: 用户组名称
+        # @type DisplayName: String
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param Description: 用户组描述
+        # @type Description: String
+
+        attr_accessor :UserGroupId, :DisplayName, :UserStoreId, :Description
+
+        def initialize(usergroupid=nil, displayname=nil, userstoreid=nil, description=nil)
+          @UserGroupId = usergroupid
+          @DisplayName = displayname
+          @UserStoreId = userstoreid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserGroupId = params['UserGroupId']
+          @DisplayName = params['DisplayName']
+          @UserStoreId = params['UserStoreId']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateUserGroup返回参数结构体
+      class UpdateUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateUser请求参数结构体
       class UpdateUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -1508,6 +1851,50 @@ module TencentCloud
 
       # UpdateUserStatus返回参数结构体
       class UpdateUserStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserStore请求参数结构体
+      class UpdateUserStoreRequest < TencentCloud::Common::AbstractModel
+        # @param UserPoolId: 用户池ID
+        # @type UserPoolId: String
+        # @param UserPoolName: 用户池名字
+        # @type UserPoolName: String
+        # @param UserPoolDesc: 用户池描述
+        # @type UserPoolDesc: String
+        # @param UserPoolLogo: 用户池logo
+        # @type UserPoolLogo: String
+
+        attr_accessor :UserPoolId, :UserPoolName, :UserPoolDesc, :UserPoolLogo
+
+        def initialize(userpoolid=nil, userpoolname=nil, userpooldesc=nil, userpoollogo=nil)
+          @UserPoolId = userpoolid
+          @UserPoolName = userpoolname
+          @UserPoolDesc = userpooldesc
+          @UserPoolLogo = userpoollogo
+        end
+
+        def deserialize(params)
+          @UserPoolId = params['UserPoolId']
+          @UserPoolName = params['UserPoolName']
+          @UserPoolDesc = params['UserPoolDesc']
+          @UserPoolLogo = params['UserPoolLogo']
+        end
+      end
+
+      # UpdateUserStore返回参数结构体
+      class UpdateUserStoreResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1739,6 +2126,143 @@ module TencentCloud
           @IndexedAttribute3 = params['IndexedAttribute3']
           @IndexedAttribute4 = params['IndexedAttribute4']
           @IndexedAttribute5 = params['IndexedAttribute5']
+        end
+      end
+
+      # 用户组
+      class UserGroup < TencentCloud::Common::AbstractModel
+        # @param UserGroupId: 用户组ID
+        # @type UserGroupId: String
+        # @param DisplayName: 用户组名称
+        # @type DisplayName: String
+        # @param Description: 用户组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
+        # @param TenantId: 租户ID
+        # @type TenantId: String
+        # @param CreatedDate: 创建时间
+        # @type CreatedDate: Integer
+        # @param LastModifyDate: 最近更新时间
+        # @type LastModifyDate: Integer
+
+        attr_accessor :UserGroupId, :DisplayName, :Description, :UserStoreId, :TenantId, :CreatedDate, :LastModifyDate
+
+        def initialize(usergroupid=nil, displayname=nil, description=nil, userstoreid=nil, tenantid=nil, createddate=nil, lastmodifydate=nil)
+          @UserGroupId = usergroupid
+          @DisplayName = displayname
+          @Description = description
+          @UserStoreId = userstoreid
+          @TenantId = tenantid
+          @CreatedDate = createddate
+          @LastModifyDate = lastmodifydate
+        end
+
+        def deserialize(params)
+          @UserGroupId = params['UserGroupId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @UserStoreId = params['UserStoreId']
+          @TenantId = params['TenantId']
+          @CreatedDate = params['CreatedDate']
+          @LastModifyDate = params['LastModifyDate']
+        end
+      end
+
+      # 删除用户组信息时返回的详情
+      class UserGroupDeleteResp < TencentCloud::Common::AbstractModel
+        # @param ErrorMessage: 错误详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param AppAssociatedUserGroupIds: 用户组关联的应用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppAssociatedUserGroupIds: Array
+
+        attr_accessor :ErrorMessage, :AppAssociatedUserGroupIds
+
+        def initialize(errormessage=nil, appassociatedusergroupids=nil)
+          @ErrorMessage = errormessage
+          @AppAssociatedUserGroupIds = appassociatedusergroupids
+        end
+
+        def deserialize(params)
+          @ErrorMessage = params['ErrorMessage']
+          unless params['AppAssociatedUserGroupIds'].nil?
+            @AppAssociatedUserGroupIds = []
+            params['AppAssociatedUserGroupIds'].each do |i|
+              appassociatedusergroupids_tmp = AppAssociatedUserGroupIds.new
+              appassociatedusergroupids_tmp.deserialize(i)
+              @AppAssociatedUserGroupIds << appassociatedusergroupids_tmp
+            end
+          end
+        end
+      end
+
+      # 用户池
+      class UserStore < TencentCloud::Common::AbstractModel
+        # @param TenantId: 租户ID
+        # @type TenantId: String
+        # @param UserStoreLogo: 用户池logo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserStoreLogo: String
+        # @param UserStoreDesc: 用户池描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserStoreDesc: String
+        # @param UserStoreName: 用户池名称
+        # @type UserStoreName: String
+        # @param UserNum: 用户数量
+        # @type UserNum: Integer
+        # @param UserStoreId: 用户池ID
+        # @type UserStoreId: String
+        # @param AppNum: 应用数量
+        # @type AppNum: Integer
+        # @param LastStatus: 上次切换的用户池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastStatus: Boolean
+        # @param DefaultStatus: 默认用户池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultStatus: Boolean
+        # @param CreateDate: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateDate: Integer
+        # @param LastStatusTime: 上次切换时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastStatusTime: Integer
+        # @param UserStoreProtocolHost: 用户目录域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserStoreProtocolHost: String
+
+        attr_accessor :TenantId, :UserStoreLogo, :UserStoreDesc, :UserStoreName, :UserNum, :UserStoreId, :AppNum, :LastStatus, :DefaultStatus, :CreateDate, :LastStatusTime, :UserStoreProtocolHost
+
+        def initialize(tenantid=nil, userstorelogo=nil, userstoredesc=nil, userstorename=nil, usernum=nil, userstoreid=nil, appnum=nil, laststatus=nil, defaultstatus=nil, createdate=nil, laststatustime=nil, userstoreprotocolhost=nil)
+          @TenantId = tenantid
+          @UserStoreLogo = userstorelogo
+          @UserStoreDesc = userstoredesc
+          @UserStoreName = userstorename
+          @UserNum = usernum
+          @UserStoreId = userstoreid
+          @AppNum = appnum
+          @LastStatus = laststatus
+          @DefaultStatus = defaultstatus
+          @CreateDate = createdate
+          @LastStatusTime = laststatustime
+          @UserStoreProtocolHost = userstoreprotocolhost
+        end
+
+        def deserialize(params)
+          @TenantId = params['TenantId']
+          @UserStoreLogo = params['UserStoreLogo']
+          @UserStoreDesc = params['UserStoreDesc']
+          @UserStoreName = params['UserStoreName']
+          @UserNum = params['UserNum']
+          @UserStoreId = params['UserStoreId']
+          @AppNum = params['AppNum']
+          @LastStatus = params['LastStatus']
+          @DefaultStatus = params['DefaultStatus']
+          @CreateDate = params['CreateDate']
+          @LastStatusTime = params['LastStatusTime']
+          @UserStoreProtocolHost = params['UserStoreProtocolHost']
         end
       end
 
