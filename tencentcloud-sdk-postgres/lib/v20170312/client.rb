@@ -1469,7 +1469,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（IsolateDBInstances）用于隔离实例
+        # 本接口（IsolateDBInstances）用于隔离实例。
 
         # @param request: Request instance for IsolateDBInstances.
         # @type request: :class:`Tencentcloud::postgres::V20170312::IsolateDBInstancesRequest`

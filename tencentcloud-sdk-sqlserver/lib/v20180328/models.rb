@@ -821,7 +821,7 @@ module TencentCloud
         # @type SubnetId: String
         # @param VpcId: VPC网络ID，形如vpc-dsp338hz
         # @type VpcId: String
-        # @param MachineType: 购买实例的宿主机类型, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘
+        # @param MachineType: 购买实例的宿主机类型，CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
         # @type MachineType: String
         # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
         # @type InstanceChargeType: String
@@ -829,7 +829,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param GoodsNum: 本次购买几个实例，默认值为1。取值不超过10
         # @type GoodsNum: Integer
-        # @param DBVersion: sqlserver版本，目前只支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise），2016SP1（SQL Server 2016 Enterprise），201602（SQL Server 2016 Standard），2017（SQL Server 2017 Enterprise），201202（SQL Server 2012 Standard），201402（SQL Server 2014 Standard），2014SP2（SQL Server 2014 Enterprise），201702（SQL Server 2017 Standard）版本。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
+        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
         # @type DBVersion: String
         # @param Period: 购买实例周期，默认取值为1，表示一个月。取值不超过48
         # @type Period: Integer
@@ -1252,7 +1252,7 @@ module TencentCloud
         # @type ReadOnlyGroupMinInGroup: Integer
         # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
         # @type InstanceChargeType: String
-        # @param GoodsNum: 本次购买几个只读实例，默认值为1。
+        # @param GoodsNum: 本次购买几个只读实例，默认值为2。
         # @type GoodsNum: Integer
         # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
         # @type SubnetId: String
@@ -1744,7 +1744,7 @@ module TencentCloud
         # @type ReadOnlyGroupMinInGroup: Integer
         # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
         # @type InstanceChargeType: String
-        # @param GoodsNum: 本次购买几个只读实例，默认值为1。
+        # @param GoodsNum: 本次购买几个只读实例，默认值为2。
         # @type GoodsNum: Integer
         # @param SubnetId: VPC子网ID，形如subnet-bdoe83fa；SubnetId和VpcId需同时设置或者同时不设置
         # @type SubnetId: String
@@ -5353,13 +5353,14 @@ module TencentCloud
         # @type Period: Integer
         # @param GoodsNum: 一次性购买的实例数量。取值1-100，默认取值为1
         # @type GoodsNum: Integer
-        # @param DBVersion: sqlserver版本，目前只支持：2008R2（SQL Server 2008 Enterprise），2012SP3（SQL Server 2012 Enterprise），2016SP1（SQL Server 2016 Enterprise），201602（SQL Server 2016 Standard）2017（SQL Server 2017 Enterprise）版本。默认为2008R2版本
+        # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
         # @type DBVersion: String
         # @param Cpu: 预购买实例的CPU核心数
         # @type Cpu: Integer
-        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本，SI-基础版，默认取值HA
+        # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,cvmHA-新版高可用,cvmRO-新版只读
         # @type InstanceType: String
-        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘，默认取值PM
+        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,
+        # CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
         # @type MachineType: String
 
         attr_accessor :Zone, :Memory, :Storage, :InstanceChargeType, :Period, :GoodsNum, :DBVersion, :Cpu, :InstanceType, :MachineType

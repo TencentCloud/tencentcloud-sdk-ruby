@@ -1517,7 +1517,10 @@ module TencentCloud
         # @type ExecutorSize: String
         # @param ExecutorNumbers: 指定的Executor数量，默认为1
         # @type ExecutorNumbers: Integer
-        # @param Arguments: Session相关配置，当前支持：dlc.eni、dlc.role.arn、dlc.sql.set.config以及用户指定的配置，注：roleArn必填；
+        # @param Arguments: Session相关配置，当前支持：
+        # 1. dlc.eni: 用户配置的eni网关信息，可以通过该字段设置；
+        # 2. dlc.role.arn: 用户配置的roleArn鉴权策略配置信息，可以通过该字段设置；
+        # 3. dlc.sql.set.config: 用户配置的集群配置信息，可以通过该字段设置；
         # @type Arguments: Array
         # @param ProxyUser: 代理用户，默认为root
         # @type ProxyUser: String
@@ -1525,10 +1528,12 @@ module TencentCloud
         # @type TimeoutInSecond: Integer
         # @param ExecutorMaxNumbers: 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
         # @type ExecutorMaxNumbers: Integer
+        # @param SparkImage: 指定spark版本名称，当前任务使用该spark镜像运行
+        # @type SparkImage: String
 
-        attr_accessor :Name, :Kind, :DataEngineName, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :Arguments, :ProxyUser, :TimeoutInSecond, :ExecutorMaxNumbers
+        attr_accessor :Name, :Kind, :DataEngineName, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :Arguments, :ProxyUser, :TimeoutInSecond, :ExecutorMaxNumbers, :SparkImage
 
-        def initialize(name=nil, kind=nil, dataenginename=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, arguments=nil, proxyuser=nil, timeoutinsecond=nil, executormaxnumbers=nil)
+        def initialize(name=nil, kind=nil, dataenginename=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, arguments=nil, proxyuser=nil, timeoutinsecond=nil, executormaxnumbers=nil, sparkimage=nil)
           @Name = name
           @Kind = kind
           @DataEngineName = dataenginename
@@ -1543,6 +1548,7 @@ module TencentCloud
           @ProxyUser = proxyuser
           @TimeoutInSecond = timeoutinsecond
           @ExecutorMaxNumbers = executormaxnumbers
+          @SparkImage = sparkimage
         end
 
         def deserialize(params)
@@ -1567,6 +1573,7 @@ module TencentCloud
           @ProxyUser = params['ProxyUser']
           @TimeoutInSecond = params['TimeoutInSecond']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          @SparkImage = params['SparkImage']
         end
       end
 
@@ -1843,10 +1850,12 @@ module TencentCloud
         # @type SessionId: String
         # @param IsInherit: 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
         # @type IsInherit: Integer
+        # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
+        # @type IsSessionStarted: Boolean
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalPythonFiles, :AppPythonFiles, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted
 
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalpythonfiles=nil, apppythonfiles=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -1875,6 +1884,7 @@ module TencentCloud
           @AppExecutorMaxNumbers = appexecutormaxnumbers
           @SessionId = sessionid
           @IsInherit = isinherit
+          @IsSessionStarted = issessionstarted
         end
 
         def deserialize(params)
@@ -1906,6 +1916,7 @@ module TencentCloud
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
           @SessionId = params['SessionId']
           @IsInherit = params['IsInherit']
+          @IsSessionStarted = params['IsSessionStarted']
         end
       end
 
@@ -1994,7 +2005,9 @@ module TencentCloud
         # @type SessionId: String
         # @param SessionName: 指定要创建的session名称
         # @type SessionName: String
-        # @param Arguments: Session相关配置，当前支持：dlc.eni、dlc.role.arn、dlc.sql.set.config以及用户指定的配置，注：roleArn必填；
+        # @param Arguments: Session相关配置，当前支持：1.dlc.eni：用户配置的eni网关信息，可以用过该字段设置；
+        # 2.dlc.role.arn：用户配置的roleArn鉴权策略配置信息，可以用过该字段设置；
+        # 3.dlc.sql.set.config：用户配置的集群配置信息，可以用过该字段设置；
         # @type Arguments: Array
 
         attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments
@@ -6227,10 +6240,12 @@ module TencentCloud
         # @type SessionId: String
         # @param IsInherit: 任务资源配置是否继承集群配置模板：0（默认）不继承、1：继承
         # @type IsInherit: Integer
+        # @param IsSessionStarted: 是否使用session脚本的sql运行任务：false：否，true：是
+        # @type IsSessionStarted: Boolean
 
-        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit
+        attr_accessor :AppName, :AppType, :DataEngine, :AppFile, :RoleArn, :AppDriverSize, :AppExecutorSize, :AppExecutorNums, :SparkAppId, :Eni, :IsLocal, :MainClass, :AppConf, :IsLocalJars, :AppJars, :IsLocalFiles, :AppFiles, :IsLocalPythonFiles, :AppPythonFiles, :CmdArgs, :MaxRetries, :DataSource, :IsLocalArchives, :AppArchives, :SparkImage, :SparkImageVersion, :AppExecutorMaxNumbers, :SessionId, :IsInherit, :IsSessionStarted
 
-        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil)
+        def initialize(appname=nil, apptype=nil, dataengine=nil, appfile=nil, rolearn=nil, appdriversize=nil, appexecutorsize=nil, appexecutornums=nil, sparkappid=nil, eni=nil, islocal=nil, mainclass=nil, appconf=nil, islocaljars=nil, appjars=nil, islocalfiles=nil, appfiles=nil, islocalpythonfiles=nil, apppythonfiles=nil, cmdargs=nil, maxretries=nil, datasource=nil, islocalarchives=nil, apparchives=nil, sparkimage=nil, sparkimageversion=nil, appexecutormaxnumbers=nil, sessionid=nil, isinherit=nil, issessionstarted=nil)
           @AppName = appname
           @AppType = apptype
           @DataEngine = dataengine
@@ -6260,6 +6275,7 @@ module TencentCloud
           @AppExecutorMaxNumbers = appexecutormaxnumbers
           @SessionId = sessionid
           @IsInherit = isinherit
+          @IsSessionStarted = issessionstarted
         end
 
         def deserialize(params)
@@ -6292,6 +6308,7 @@ module TencentCloud
           @AppExecutorMaxNumbers = params['AppExecutorMaxNumbers']
           @SessionId = params['SessionId']
           @IsInherit = params['IsInherit']
+          @IsSessionStarted = params['IsSessionStarted']
         end
       end
 

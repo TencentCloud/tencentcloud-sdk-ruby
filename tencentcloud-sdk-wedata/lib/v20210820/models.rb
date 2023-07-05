@@ -133,10 +133,16 @@ module TencentCloud
         # @param AlarmIndicatorUnit: 告警指标阈值单位：ms(毫秒)、s(秒)、min(分钟)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmIndicatorUnit: String
+        # @param Duration: 告警周期
+        # @type Duration: Integer
+        # @param DurationUnit: 告警周期单位
+        # @type DurationUnit: String
+        # @param MaxTimes: 周期内最多告警次数
+        # @type MaxTimes: Integer
 
-        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit
+        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit, :Duration, :DurationUnit, :MaxTimes
 
-        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil)
+        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil, duration=nil, durationunit=nil, maxtimes=nil)
           @Id = id
           @AlarmIndicator = alarmindicator
           @AlarmIndicatorDesc = alarmindicatordesc
@@ -144,6 +150,9 @@ module TencentCloud
           @EstimatedTime = estimatedtime
           @Operator = operator
           @AlarmIndicatorUnit = alarmindicatorunit
+          @Duration = duration
+          @DurationUnit = durationunit
+          @MaxTimes = maxtimes
         end
 
         def deserialize(params)
@@ -154,6 +163,9 @@ module TencentCloud
           @EstimatedTime = params['EstimatedTime']
           @Operator = params['Operator']
           @AlarmIndicatorUnit = params['AlarmIndicatorUnit']
+          @Duration = params['Duration']
+          @DurationUnit = params['DurationUnit']
+          @MaxTimes = params['MaxTimes']
         end
       end
 
@@ -1164,8 +1176,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 6
-        deprecate :TaskId=, :none, 2023, 6
+        deprecate :TaskId, :none, 2023, 7
+        deprecate :TaskId=, :none, 2023, 7
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil)
           @ProjectId = projectid
@@ -1505,14 +1517,17 @@ module TencentCloud
         # @type CommitType: Integer
         # @param TaskType: 实时任务 201   离线任务 202  默认实时任务
         # @type TaskType: Integer
+        # @param ExtConfig: 额外参数
+        # @type ExtConfig: Array
 
-        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType
+        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig
 
-        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil)
+        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @CommitType = committype
           @TaskType = tasktype
+          @ExtConfig = extconfig
         end
 
         def deserialize(params)
@@ -1520,6 +1535,14 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @CommitType = params['CommitType']
           @TaskType = params['TaskType']
+          unless params['ExtConfig'].nil?
+            @ExtConfig = []
+            params['ExtConfig'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtConfig << recordfield_tmp
+            end
+          end
         end
       end
 
@@ -9651,8 +9674,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2023, 6
-        deprecate :DimType=, :none, 2023, 6
+        deprecate :DimType, :none, 2023, 7
+        deprecate :DimType=, :none, 2023, 7
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -9733,6 +9756,208 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @JoinTableNumber = params['JoinTableNumber']
           @Score = params['Score']
+        end
+      end
+
+      # 数据治理配置项
+      class DlcDataGovernPolicy < TencentCloud::Common::AbstractModel
+        # @param RewriteDataPolicy: 数据排布治理项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteDataPolicy: :class:`Tencentcloud::Wedata.v20210820.models.DlcRewriteDataInfo`
+        # @param ExpiredSnapshotsPolicy: 快照过期治理项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredSnapshotsPolicy: :class:`Tencentcloud::Wedata.v20210820.models.DlcExpiredSnapshotsInfo`
+        # @param RemoveOrphanFilesPolicy: 移除孤立文件治理项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveOrphanFilesPolicy: :class:`Tencentcloud::Wedata.v20210820.models.DlcRemoveOrphanFilesInfo`
+        # @param MergeManifestsPolicy: 合并元数据Manifests治理项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MergeManifestsPolicy: :class:`Tencentcloud::Wedata.v20210820.models.DlcMergeManifestsInfo`
+        # @param InheritDataBase: 是否集成库规则：default（默认继承）、none（不继承）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InheritDataBase: String
+        # @param RuleType: 治理规则类型，Customize: 自定义；Intelligence: 智能治理
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param GovernEngine: 治理引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernEngine: String
+
+        attr_accessor :RewriteDataPolicy, :ExpiredSnapshotsPolicy, :RemoveOrphanFilesPolicy, :MergeManifestsPolicy, :InheritDataBase, :RuleType, :GovernEngine
+
+        def initialize(rewritedatapolicy=nil, expiredsnapshotspolicy=nil, removeorphanfilespolicy=nil, mergemanifestspolicy=nil, inheritdatabase=nil, ruletype=nil, governengine=nil)
+          @RewriteDataPolicy = rewritedatapolicy
+          @ExpiredSnapshotsPolicy = expiredsnapshotspolicy
+          @RemoveOrphanFilesPolicy = removeorphanfilespolicy
+          @MergeManifestsPolicy = mergemanifestspolicy
+          @InheritDataBase = inheritdatabase
+          @RuleType = ruletype
+          @GovernEngine = governengine
+        end
+
+        def deserialize(params)
+          unless params['RewriteDataPolicy'].nil?
+            @RewriteDataPolicy = DlcRewriteDataInfo.new
+            @RewriteDataPolicy.deserialize(params['RewriteDataPolicy'])
+          end
+          unless params['ExpiredSnapshotsPolicy'].nil?
+            @ExpiredSnapshotsPolicy = DlcExpiredSnapshotsInfo.new
+            @ExpiredSnapshotsPolicy.deserialize(params['ExpiredSnapshotsPolicy'])
+          end
+          unless params['RemoveOrphanFilesPolicy'].nil?
+            @RemoveOrphanFilesPolicy = DlcRemoveOrphanFilesInfo.new
+            @RemoveOrphanFilesPolicy.deserialize(params['RemoveOrphanFilesPolicy'])
+          end
+          unless params['MergeManifestsPolicy'].nil?
+            @MergeManifestsPolicy = DlcMergeManifestsInfo.new
+            @MergeManifestsPolicy.deserialize(params['MergeManifestsPolicy'])
+          end
+          @InheritDataBase = params['InheritDataBase']
+          @RuleType = params['RuleType']
+          @GovernEngine = params['GovernEngine']
+        end
+      end
+
+      # 快照过期治理项
+      class DlcExpiredSnapshotsInfo < TencentCloud::Common::AbstractModel
+        # @param ExpiredSnapshotsEnable: 是否启用快照过期治理项：enable、none
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredSnapshotsEnable: String
+        # @param Engine: 用于运行快照过期治理项的引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param RetainLast: 需要保留的最近快照个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetainLast: Integer
+        # @param BeforeDays: 过期指定天前的快照
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeforeDays: Integer
+        # @param MaxConcurrentDeletes: 清理过期快照的并行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrentDeletes: Integer
+        # @param IntervalMin: 快照过期治理运行周期，单位为分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalMin: Integer
+
+        attr_accessor :ExpiredSnapshotsEnable, :Engine, :RetainLast, :BeforeDays, :MaxConcurrentDeletes, :IntervalMin
+
+        def initialize(expiredsnapshotsenable=nil, engine=nil, retainlast=nil, beforedays=nil, maxconcurrentdeletes=nil, intervalmin=nil)
+          @ExpiredSnapshotsEnable = expiredsnapshotsenable
+          @Engine = engine
+          @RetainLast = retainlast
+          @BeforeDays = beforedays
+          @MaxConcurrentDeletes = maxconcurrentdeletes
+          @IntervalMin = intervalmin
+        end
+
+        def deserialize(params)
+          @ExpiredSnapshotsEnable = params['ExpiredSnapshotsEnable']
+          @Engine = params['Engine']
+          @RetainLast = params['RetainLast']
+          @BeforeDays = params['BeforeDays']
+          @MaxConcurrentDeletes = params['MaxConcurrentDeletes']
+          @IntervalMin = params['IntervalMin']
+        end
+      end
+
+      # 合并元数据Manifests治理项
+      class DlcMergeManifestsInfo < TencentCloud::Common::AbstractModel
+        # @param MergeManifestsEnable: 是否启用合并元数据Manifests文件治理项：enable、none
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MergeManifestsEnable: String
+        # @param Engine: 用于运行合并元数据Manifests文件治理项的引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param IntervalMin: 合并元数据Manifests文件治理运行周期，单位为分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalMin: Integer
+
+        attr_accessor :MergeManifestsEnable, :Engine, :IntervalMin
+
+        def initialize(mergemanifestsenable=nil, engine=nil, intervalmin=nil)
+          @MergeManifestsEnable = mergemanifestsenable
+          @Engine = engine
+          @IntervalMin = intervalmin
+        end
+
+        def deserialize(params)
+          @MergeManifestsEnable = params['MergeManifestsEnable']
+          @Engine = params['Engine']
+          @IntervalMin = params['IntervalMin']
+        end
+      end
+
+      # 移除孤立文件治理项
+      class DlcRemoveOrphanFilesInfo < TencentCloud::Common::AbstractModel
+        # @param RemoveOrphanFilesEnable: 是否启用移除孤立文件治理项：enable、none
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveOrphanFilesEnable: String
+        # @param Engine: 用于运行移除孤立文件治理项的引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param BeforeDays: 移除指定天前的孤立文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeforeDays: Integer
+        # @param MaxConcurrentDeletes: 移除孤立文件的并行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxConcurrentDeletes: Integer
+        # @param IntervalMin: 移除孤立文件治理运行周期，单位为分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalMin: Integer
+
+        attr_accessor :RemoveOrphanFilesEnable, :Engine, :BeforeDays, :MaxConcurrentDeletes, :IntervalMin
+
+        def initialize(removeorphanfilesenable=nil, engine=nil, beforedays=nil, maxconcurrentdeletes=nil, intervalmin=nil)
+          @RemoveOrphanFilesEnable = removeorphanfilesenable
+          @Engine = engine
+          @BeforeDays = beforedays
+          @MaxConcurrentDeletes = maxconcurrentdeletes
+          @IntervalMin = intervalmin
+        end
+
+        def deserialize(params)
+          @RemoveOrphanFilesEnable = params['RemoveOrphanFilesEnable']
+          @Engine = params['Engine']
+          @BeforeDays = params['BeforeDays']
+          @MaxConcurrentDeletes = params['MaxConcurrentDeletes']
+          @IntervalMin = params['IntervalMin']
+        end
+      end
+
+      # 数据排布治理项
+      class DlcRewriteDataInfo < TencentCloud::Common::AbstractModel
+        # @param RewriteDataEnable: 是否启用数据重排布治理项：enable（启动）、disable（不启用，默认）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RewriteDataEnable: String
+        # @param Engine: 用于运行数据重排布治理项的引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Engine: String
+        # @param MinInputFiles: 重排布任务执行的文件个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinInputFiles: Integer
+        # @param TargetFileSizeBytes: 数据重排布写后的数据文件大小，单位为字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetFileSizeBytes: Integer
+        # @param IntervalMin: 数据重排布治理运行周期，单位为分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalMin: Integer
+
+        attr_accessor :RewriteDataEnable, :Engine, :MinInputFiles, :TargetFileSizeBytes, :IntervalMin
+
+        def initialize(rewritedataenable=nil, engine=nil, mininputfiles=nil, targetfilesizebytes=nil, intervalmin=nil)
+          @RewriteDataEnable = rewritedataenable
+          @Engine = engine
+          @MinInputFiles = mininputfiles
+          @TargetFileSizeBytes = targetfilesizebytes
+          @IntervalMin = intervalmin
+        end
+
+        def deserialize(params)
+          @RewriteDataEnable = params['RewriteDataEnable']
+          @Engine = params['Engine']
+          @MinInputFiles = params['MinInputFiles']
+          @TargetFileSizeBytes = params['TargetFileSizeBytes']
+          @IntervalMin = params['IntervalMin']
         end
       end
 
@@ -10221,10 +10446,14 @@ module TencentCloud
         # @type AddDeleteFiles: Integer
         # @param TargetDatasourceId: 下游节点数据源ID
         # @type TargetDatasourceId: String
+        # @param UpsertKeys: dlc upsert主键
+        # @type UpsertKeys: Array
+        # @param TableBaseInfo: dlc表治理信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Wedata.v20210820.models.TableBaseInfo`
 
-        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId
+        attr_accessor :ProjectId, :SinkDatabase, :Id, :MsType, :DatasourceId, :SourceDatabase, :TableName, :SinkType, :SchemaName, :SourceFieldInfoList, :Partitions, :Properties, :TableMode, :TableVersion, :UpsertFlag, :TableComment, :AddDataFiles, :AddEqualityDeletes, :AddPositionDeletes, :AddDeleteFiles, :TargetDatasourceId, :UpsertKeys, :TableBaseInfo
 
-        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil)
+        def initialize(projectid=nil, sinkdatabase=nil, id=nil, mstype=nil, datasourceid=nil, sourcedatabase=nil, tablename=nil, sinktype=nil, schemaname=nil, sourcefieldinfolist=nil, partitions=nil, properties=nil, tablemode=nil, tableversion=nil, upsertflag=nil, tablecomment=nil, adddatafiles=nil, addequalitydeletes=nil, addpositiondeletes=nil, adddeletefiles=nil, targetdatasourceid=nil, upsertkeys=nil, tablebaseinfo=nil)
           @ProjectId = projectid
           @SinkDatabase = sinkdatabase
           @Id = id
@@ -10246,6 +10475,8 @@ module TencentCloud
           @AddPositionDeletes = addpositiondeletes
           @AddDeleteFiles = adddeletefiles
           @TargetDatasourceId = targetdatasourceid
+          @UpsertKeys = upsertkeys
+          @TableBaseInfo = tablebaseinfo
         end
 
         def deserialize(params)
@@ -10291,6 +10522,11 @@ module TencentCloud
           @AddPositionDeletes = params['AddPositionDeletes']
           @AddDeleteFiles = params['AddDeleteFiles']
           @TargetDatasourceId = params['TargetDatasourceId']
+          @UpsertKeys = params['UpsertKeys']
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
         end
       end
 
@@ -14244,17 +14480,32 @@ module TencentCloud
         # @type TaskId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param Event: 事件类型(START, STOP, SUSPEND, RESUME, COMMIT, TIMESTAMP)
+        # @type Event: String
+        # @param ExtConfig: 额外参数
+        # @type ExtConfig: Array
 
-        attr_accessor :TaskId, :ProjectId
+        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig
 
-        def initialize(taskid=nil, projectid=nil)
+        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil)
           @TaskId = taskid
           @ProjectId = projectid
+          @Event = event
+          @ExtConfig = extconfig
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ProjectId = params['ProjectId']
+          @Event = params['Event']
+          unless params['ExtConfig'].nil?
+            @ExtConfig = []
+            params['ExtConfig'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtConfig << recordfield_tmp
+            end
+          end
         end
       end
 
@@ -16529,19 +16780,24 @@ module TencentCloud
         # @type FieldType: String
         # @param Alias: 字段别名
         # @type Alias: String
+        # @param Comment: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
 
-        attr_accessor :FieldName, :FieldType, :Alias
+        attr_accessor :FieldName, :FieldType, :Alias, :Comment
 
-        def initialize(fieldname=nil, fieldtype=nil, _alias=nil)
+        def initialize(fieldname=nil, fieldtype=nil, _alias=nil, comment=nil)
           @FieldName = fieldname
           @FieldType = fieldtype
           @Alias = _alias
+          @Comment = comment
         end
 
         def deserialize(params)
           @FieldName = params['FieldName']
           @FieldType = params['FieldType']
           @Alias = params['Alias']
+          @Comment = params['Comment']
         end
       end
 
@@ -16565,10 +16821,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2023, 6
-        deprecate :SourceObjectDataTypeName=, :none, 2023, 6
-        deprecate :SourceObjectValue, :none, 2023, 6
-        deprecate :SourceObjectValue=, :none, 2023, 6
+        deprecate :SourceObjectDataTypeName, :none, 2023, 7
+        deprecate :SourceObjectDataTypeName=, :none, 2023, 7
+        deprecate :SourceObjectValue, :none, 2023, 7
+        deprecate :SourceObjectValue=, :none, 2023, 7
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename
@@ -16615,17 +16871,32 @@ module TencentCloud
         # @type TaskId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param Event: 事件类型(START, STOP, SUSPEND, RESUME, COMMIT, TIMESTAMP)
+        # @type Event: String
+        # @param ExtConfig: 额外参数
+        # @type ExtConfig: Array
 
-        attr_accessor :TaskId, :ProjectId
+        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig
 
-        def initialize(taskid=nil, projectid=nil)
+        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil)
           @TaskId = taskid
           @ProjectId = projectid
+          @Event = event
+          @ExtConfig = extconfig
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ProjectId = params['ProjectId']
+          @Event = params['Event']
+          unless params['ExtConfig'].nil?
+            @ExtConfig = []
+            params['ExtConfig'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtConfig << recordfield_tmp
+            end
+          end
         end
       end
 
@@ -16954,6 +17225,71 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 建dlc表所需信息
+      class TableBaseInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param DatasourceConnectionName: 数据表所属数据源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionName: String
+        # @param TableComment: 表备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableComment: String
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param TableFormat: 数据格式类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableFormat: String
+        # @param UserAlias: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param UserSubUin: 建表用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSubUin: String
+        # @param GovernPolicy: 数据治理配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GovernPolicy: :class:`Tencentcloud::Wedata.v20210820.models.DlcDataGovernPolicy`
+        # @param DbGovernPolicyIsDisable: 库数据治理是否关闭，关闭：true，开启：false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbGovernPolicyIsDisable: String
+
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable
+
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil)
+          @DatabaseName = databasename
+          @TableName = tablename
+          @DatasourceConnectionName = datasourceconnectionname
+          @TableComment = tablecomment
+          @Type = type
+          @TableFormat = tableformat
+          @UserAlias = useralias
+          @UserSubUin = usersubuin
+          @GovernPolicy = governpolicy
+          @DbGovernPolicyIsDisable = dbgovernpolicyisdisable
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @TableComment = params['TableComment']
+          @Type = params['Type']
+          @TableFormat = params['TableFormat']
+          @UserAlias = params['UserAlias']
+          @UserSubUin = params['UserSubUin']
+          unless params['GovernPolicy'].nil?
+            @GovernPolicy = DlcDataGovernPolicy.new
+            @GovernPolicy.deserialize(params['GovernPolicy'])
+          end
+          @DbGovernPolicyIsDisable = params['DbGovernPolicyIsDisable']
         end
       end
 

@@ -1559,15 +1559,25 @@ module TencentCloud
         # @type ReviewMessage: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param RecipientId: 审核签署节点使用 非必填 如果填写则审核该签署节点。给个人审核时必填。
+        # @type RecipientId: String
+        # @param OperateType: 操作类型：
+        # 操作类型，默认：SignReview；SignReview:签署审核
+        # 注：接口通过该字段区分操作类型
+        # 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
+        # 若发起个人审核，则指定该字段为：SignReview（注意，给个人审核时，需联系客户经理开白使用）
+        # @type OperateType: String
 
-        attr_accessor :Operator, :FlowId, :ReviewType, :ReviewMessage, :Agent
+        attr_accessor :Operator, :FlowId, :ReviewType, :ReviewMessage, :Agent, :RecipientId, :OperateType
 
-        def initialize(operator=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, agent=nil)
+        def initialize(operator=nil, flowid=nil, reviewtype=nil, reviewmessage=nil, agent=nil, recipientid=nil, operatetype=nil)
           @Operator = operator
           @FlowId = flowid
           @ReviewType = reviewtype
           @ReviewMessage = reviewmessage
           @Agent = agent
+          @RecipientId = recipientid
+          @OperateType = operatetype
         end
 
         def deserialize(params)
@@ -1582,6 +1592,8 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @RecipientId = params['RecipientId']
+          @OperateType = params['OperateType']
         end
       end
 
@@ -1743,7 +1755,8 @@ module TencentCloud
         # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 待创建员工的信息，不超过20个。
-        # Mobile和DisplayName必填,OpenId、Email和Department.DepartmentId选填，其他字段暂不支持。
+        # 所有类型的企业支持的入参：Mobile和DisplayName必填,OpenId、Email和Department.DepartmentId选填，其他字段暂不支持。
+        # 企微类型的企业特有支持的入参：WeworkOpenId，传入此字段无需在传入其他信息
         # @type Employees: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -4040,20 +4053,24 @@ module TencentCloud
         # @type DisplayName: String
         # @param Mobile: 员工手机号
         # @type Mobile: String
+        # @param WeworkOpenId: 传入的企微账号id
+        # @type WeworkOpenId: String
         # @param Reason: 失败原因
         # @type Reason: String
 
-        attr_accessor :DisplayName, :Mobile, :Reason
+        attr_accessor :DisplayName, :Mobile, :WeworkOpenId, :Reason
 
-        def initialize(displayname=nil, mobile=nil, reason=nil)
+        def initialize(displayname=nil, mobile=nil, weworkopenid=nil, reason=nil)
           @DisplayName = displayname
           @Mobile = mobile
+          @WeworkOpenId = weworkopenid
           @Reason = reason
         end
 
         def deserialize(params)
           @DisplayName = params['DisplayName']
           @Mobile = params['Mobile']
+          @WeworkOpenId = params['WeworkOpenId']
           @Reason = params['Reason']
         end
       end
@@ -5614,6 +5631,7 @@ module TencentCloud
       # 企业员工信息
       class Staff < TencentCloud::Common::AbstractModel
         # @param UserId: 用户在电子签平台的id
+        # 注：创建和更新场景无需填写
         # @type UserId: String
         # @param DisplayName: 显示的用户名/昵称
         # @type DisplayName: String
@@ -5626,29 +5644,40 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
         # @param Roles: 员工角色
+        # 注：创建和更新场景无需填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Roles: Array
         # @param Department: 员工部门
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Ess.v20201111.models.Department`
         # @param Verified: 员工是否实名
+        # 注：创建和更新场景无需填写
         # @type Verified: Boolean
         # @param CreatedOn: 员工创建时间戳，单位秒
+        # 注：创建和更新场景无需填写
         # @type CreatedOn: Integer
         # @param VerifiedOn: 员工实名时间戳，单位秒
+        # 注：创建和更新场景无需填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifiedOn: Integer
         # @param QuiteJob: 员工是否离职：0-未离职，1-离职
+        # 注：创建和更新场景无需填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuiteJob: Integer
         # @param ReceiveUserId: 员工离职交接人用户id
+        # 注：创建和更新场景无需填写
         # @type ReceiveUserId: String
         # @param ReceiveOpenId: 员工离职交接人用户OpenId
+        # 注：创建和更新场景无需填写
         # @type ReceiveOpenId: String
+        # @param WeworkOpenId: 企业微信用户账号ID
+        # 注：仅企微类型的企业创建员工接口支持该字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeworkOpenId: String
 
-        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob, :ReceiveUserId, :ReceiveOpenId
+        attr_accessor :UserId, :DisplayName, :Mobile, :Email, :OpenId, :Roles, :Department, :Verified, :CreatedOn, :VerifiedOn, :QuiteJob, :ReceiveUserId, :ReceiveOpenId, :WeworkOpenId
 
-        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil, receiveuserid=nil, receiveopenid=nil)
+        def initialize(userid=nil, displayname=nil, mobile=nil, email=nil, openid=nil, roles=nil, department=nil, verified=nil, createdon=nil, verifiedon=nil, quitejob=nil, receiveuserid=nil, receiveopenid=nil, weworkopenid=nil)
           @UserId = userid
           @DisplayName = displayname
           @Mobile = mobile
@@ -5662,6 +5691,7 @@ module TencentCloud
           @QuiteJob = quitejob
           @ReceiveUserId = receiveuserid
           @ReceiveOpenId = receiveopenid
+          @WeworkOpenId = weworkopenid
         end
 
         def deserialize(params)
@@ -5688,6 +5718,7 @@ module TencentCloud
           @QuiteJob = params['QuiteJob']
           @ReceiveUserId = params['ReceiveUserId']
           @ReceiveOpenId = params['ReceiveOpenId']
+          @WeworkOpenId = params['WeworkOpenId']
         end
       end
 
@@ -5782,14 +5813,17 @@ module TencentCloud
         # @param Note: 提示，当创建已存在未实名用户时，该字段有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
+        # @param WeworkOpenId: 传入的企微账号id
+        # @type WeworkOpenId: String
 
-        attr_accessor :DisplayName, :Mobile, :UserId, :Note
+        attr_accessor :DisplayName, :Mobile, :UserId, :Note, :WeworkOpenId
 
-        def initialize(displayname=nil, mobile=nil, userid=nil, note=nil)
+        def initialize(displayname=nil, mobile=nil, userid=nil, note=nil, weworkopenid=nil)
           @DisplayName = displayname
           @Mobile = mobile
           @UserId = userid
           @Note = note
+          @WeworkOpenId = weworkopenid
         end
 
         def deserialize(params)
@@ -5797,6 +5831,7 @@ module TencentCloud
           @Mobile = params['Mobile']
           @UserId = params['UserId']
           @Note = params['Note']
+          @WeworkOpenId = params['WeworkOpenId']
         end
       end
 

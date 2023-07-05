@@ -154,7 +154,7 @@ module TencentCloud
         # @param EngineType: 引擎模型类型。
         # • 16k_zh：中文普通话通用；
         # • 16k_en：英语；
-        # • 16k_ca：粤语；
+        # • 16k_yue：粤语；
         # • 16k_id：印度尼西亚语；
         # • 16k_fil：菲律宾语；
         # • 16k_th：泰语；
@@ -296,7 +296,7 @@ module TencentCloud
         # • 16k_zh-PY：中英粤;
         # • 16k_zh_medical：中文医疗；
         # • 16k_en：英语；
-        # • 16k_ca：粤语；
+        # • 16k_yue：粤语；
         # • 16k_ja：日语；
         # • 16k_ko：韩语；
         # • 16k_vi：越南语；
@@ -310,7 +310,7 @@ module TencentCloud
         # @type EngineModelType: String
         # @param ChannelNum: 识别声道数。1：单声道（非电话场景，直接选择单声道即可，忽略音频声道数）；2：双声道（仅支持8k_zh电话场景，双声道应分别对应通话双方）。注意：双声道的电话音频已物理分离说话人，无需再开启说话人分离功能。
         # @type ChannelNum: Integer
-        # @param ResTextFormat: 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：词级别粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)(不含标点，含语速值)；2：词级别粒度的详细识别结果（包含标点、语速值）；3: 标点符号分段，包含每段时间戳，特别适用于字幕场景（包含词级时间、标点、语速值）。
+        # @param ResTextFormat: 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：词级别粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)(不含标点，含语速值)；2：词级别粒度的详细识别结果（包含标点、语速值）；3: 标点符号分段，包含每段时间戳，特别适用于字幕场景（包含词级时间、标点、语速值）。4：【付费功能】将对ASR结果按照语义分段，并展示词级别粒度的详细识别结果（注意：如果开启后付费，将[自动计费](https://cloud.tencent.com/document/product/1093/35686)）
         # @type ResTextFormat: Integer
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
         # @type SourceType: Integer
@@ -1149,12 +1149,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2023, 6
-        deprecate :ProjectId=, :none, 2023, 6
-        deprecate :SubServiceType, :none, 2023, 6
-        deprecate :SubServiceType=, :none, 2023, 6
-        deprecate :UsrAudioKey, :none, 2023, 6
-        deprecate :UsrAudioKey=, :none, 2023, 6
+        deprecate :ProjectId, :none, 2023, 7
+        deprecate :ProjectId=, :none, 2023, 7
+        deprecate :SubServiceType, :none, 2023, 7
+        deprecate :SubServiceType=, :none, 2023, 7
+        deprecate :UsrAudioKey, :none, 2023, 7
+        deprecate :UsrAudioKey=, :none, 2023, 7
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil)
           @EngSerViceType = engservicetype
@@ -1505,6 +1505,251 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @State = params['State']
           @TagInfos = params['TagInfos']
+        end
+      end
+
+      # 说话人基础数据，包括说话人id和说话人昵称
+      class VoicePrintBaseData < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 说话人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicePrintId: String
+        # @param SpeakerNick: 说话人昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeakerNick: String
+
+        attr_accessor :VoicePrintId, :SpeakerNick
+
+        def initialize(voiceprintid=nil, speakernick=nil)
+          @VoicePrintId = voiceprintid
+          @SpeakerNick = speakernick
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @SpeakerNick = params['SpeakerNick']
+        end
+      end
+
+      # VoicePrintDelete请求参数结构体
+      class VoicePrintDeleteRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 说话人id，说话人唯一标识
+        # @type VoicePrintId: String
+
+        attr_accessor :VoicePrintId
+
+        def initialize(voiceprintid=nil)
+          @VoicePrintId = voiceprintid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+        end
+      end
+
+      # VoicePrintDelete返回参数结构体
+      class VoicePrintDeleteResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 说话人基本信息
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintBaseData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VoicePrintEnroll请求参数结构体
+      class VoicePrintEnrollRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @type VoiceFormat: Integer
+        # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
+        # @type SampleRate: Integer
+        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @type Data: String
+        # @param SpeakerNick: 说话人昵称  不超过32字节
+        # @type SpeakerNick: String
+
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick
+
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil)
+          @VoiceFormat = voiceformat
+          @SampleRate = samplerate
+          @Data = data
+          @SpeakerNick = speakernick
+        end
+
+        def deserialize(params)
+          @VoiceFormat = params['VoiceFormat']
+          @SampleRate = params['SampleRate']
+          @Data = params['Data']
+          @SpeakerNick = params['SpeakerNick']
+        end
+      end
+
+      # VoicePrintEnroll返回参数结构体
+      class VoicePrintEnrollResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 说话人基本数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintBaseData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VoicePrintUpdate请求参数结构体
+      class VoicePrintUpdateRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @type VoiceFormat: Integer
+        # @param SampleRate: 音频采样率 目前仅支持16000 单位Hz
+        # @type SampleRate: Integer
+        # @param VoicePrintId: 说话人id， 说话人唯一标识
+        # @type VoicePrintId: String
+        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @type Data: String
+        # @param SpeakerNick: 说话人昵称  不超过32字节
+        # @type SpeakerNick: String
+
+        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data, :SpeakerNick
+
+        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil, speakernick=nil)
+          @VoiceFormat = voiceformat
+          @SampleRate = samplerate
+          @VoicePrintId = voiceprintid
+          @Data = data
+          @SpeakerNick = speakernick
+        end
+
+        def deserialize(params)
+          @VoiceFormat = params['VoiceFormat']
+          @SampleRate = params['SampleRate']
+          @VoicePrintId = params['VoicePrintId']
+          @Data = params['Data']
+          @SpeakerNick = params['SpeakerNick']
+        end
+      end
+
+      # VoicePrintUpdate返回参数结构体
+      class VoicePrintUpdateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 说话人基础数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintBaseData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 说话人验证数据
+      class VoicePrintVerifyData < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 说话人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoicePrintId: String
+        # @param Score: 匹配度 取值范围(0.0 - 100.0)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: String
+        # @param Decision: 验证结果 0: 未通过 1: 通过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Decision: Integer
+
+        attr_accessor :VoicePrintId, :Score, :Decision
+
+        def initialize(voiceprintid=nil, score=nil, decision=nil)
+          @VoicePrintId = voiceprintid
+          @Score = score
+          @Decision = decision
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @Score = params['Score']
+          @Decision = params['Decision']
+        end
+      end
+
+      # VoicePrintVerify请求参数结构体
+      class VoicePrintVerifyRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @type VoiceFormat: Integer
+        # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
+        # @type SampleRate: Integer
+        # @param VoicePrintId: 说话人id, 说话人唯一标识
+        # @type VoicePrintId: String
+        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @type Data: String
+
+        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data
+
+        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil)
+          @VoiceFormat = voiceformat
+          @SampleRate = samplerate
+          @VoicePrintId = voiceprintid
+          @Data = data
+        end
+
+        def deserialize(params)
+          @VoiceFormat = params['VoiceFormat']
+          @SampleRate = params['SampleRate']
+          @VoicePrintId = params['VoicePrintId']
+          @Data = params['Data']
+        end
+      end
+
+      # VoicePrintVerify返回参数结构体
+      class VoicePrintVerifyResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 说话人验证数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintVerifyData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintVerifyData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

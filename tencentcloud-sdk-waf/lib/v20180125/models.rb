@@ -2662,7 +2662,7 @@ module TencentCloud
         end
       end
 
-      # 域名的详细信息
+      # domain列表
       class DomainInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
@@ -2672,7 +2672,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Cname: cname地址
         # @type Cname: String
-        # @param Edition: 实例类型
+        # @param Edition: 实例类型,sparta-waf表示saaswaf实例域名,clb-waf表示clbwaf实例域名,cdc-clb-waf表示CDC环境下clbwaf实例域名,cdn-waf表示cdnwaf实例域名
         # @type Edition: String
         # @param Region: 地域
         # @type Region: String
@@ -2680,13 +2680,13 @@ module TencentCloud
         # @type InstanceName: String
         # @param ClsStatus: 日志包
         # @type ClsStatus: Integer
-        # @param FlowMode: clb模式
+        # @param FlowMode: clbwaf使用模式,0镜像模式 1清洗模式
         # @type FlowMode: Integer
-        # @param Status: waf开关
+        # @param Status: waf开关,0关闭 1开启
         # @type Status: Integer
-        # @param Mode: 防御模式
+        # @param Mode: 规则防御模式,0观察模式 1拦截模式
         # @type Mode: Integer
-        # @param Engine: AI防御模式
+        # @param Engine: AI防御模式,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
         # @param CCList: CC列表
         # @type CCList: Array
@@ -2698,27 +2698,39 @@ module TencentCloud
         # @type LoadBalancerSet: Array
         # @param AppId: 用户id
         # @type AppId: Integer
-        # @param State: clb状态
+        # @param State: clbwaf域名监听器状态,0操作成功 4正在绑定LB 6正在解绑LB 7解绑LB失败 8绑定LB失败 10内部错误
         # @type State: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param Ipv6Status: 0关闭 1开启
+        # @param Ipv6Status: Ipv6开关状态,0关闭 1开启
         # @type Ipv6Status: Integer
-        # @param BotStatus: 0关闭 1开启
+        # @param BotStatus: BOT开关状态,0关闭 1开启
         # @type BotStatus: Integer
         # @param Level: 版本信息
         # @type Level: Integer
-        # @param PostCLSStatus: 是否开启投递CLS功能
+        # @param PostCLSStatus: 是否开启投递CLS功能,0关闭 1开启
         # @type PostCLSStatus: Integer
-        # @param PostCKafkaStatus: 是否开启投递CKafka功能
+        # @param PostCKafkaStatus: 是否开启投递CKafka功能,0关闭 1开启
         # @type PostCKafkaStatus: Integer
-        # @param AlbType: 应用型负载均衡类型: clb或者apisix，默认clb
+        # @param CdcClusters: cdc实例域名接入的集群信息,非cdc实例忽略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcClusters: String
+        # @param ApiStatus: api安全开关状态,0关闭 1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiStatus: Integer
+        # @param AlbType: 应用型负载均衡类型,clb或者apisix，默认clb
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
+        # @param SgState: 安全组状态,0不展示 1非腾讯云源站 2安全组绑定失败 3安全组发生变更
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SgState: Integer
+        # @param SgDetail: 安全组状态的详细解释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SgDetail: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :AlbType
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, albtype=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -2743,7 +2755,11 @@ module TencentCloud
           @Level = level
           @PostCLSStatus = postclsstatus
           @PostCKafkaStatus = postckafkastatus
+          @CdcClusters = cdcclusters
+          @ApiStatus = apistatus
           @AlbType = albtype
+          @SgState = sgstate
+          @SgDetail = sgdetail
         end
 
         def deserialize(params)
@@ -2785,7 +2801,11 @@ module TencentCloud
           @Level = params['Level']
           @PostCLSStatus = params['PostCLSStatus']
           @PostCKafkaStatus = params['PostCKafkaStatus']
+          @CdcClusters = params['CdcClusters']
+          @ApiStatus = params['ApiStatus']
           @AlbType = params['AlbType']
+          @SgState = params['SgState']
+          @SgDetail = params['SgDetail']
         end
       end
 
@@ -3641,7 +3661,7 @@ module TencentCloud
         end
       end
 
-      # 负载均衡算法
+      # 负载均衡器
       class LoadBalancerPackageNew < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听id
         # 注意：此字段可能返回 null，表示取不到有效值。

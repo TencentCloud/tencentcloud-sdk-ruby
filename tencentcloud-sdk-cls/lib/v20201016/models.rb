@@ -3953,19 +3953,31 @@ module TencentCloud
 
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <br><li> topicName按照【日志主题名称】进行过滤。类型：String必选：否<br><li> logsetName按照【日志集名称】进行过滤。类型：String必选：否<br><li> topicId按照【日志主题ID】进行过滤。类型：String必选：否<br><li> logsetId按照【日志集ID】进行过滤，可通过调用DescribeLogsets查询已创建的日志集列表或登录控制台进行查看；也可以调用CreateLogset创建新的日志集。类型：String必选：否<br><li> tagKey按照【标签键】进行过滤。类型：String必选：否<br><li> tag:tagKey按照【标签键值对】进行过滤。tagKey使用具体的标签键进行替换，例如tag:exampleKey。类型：String必选：否<br><li> storageType按照【日志主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String必选：否每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @param Filters: <li> topicName按照【日志主题名称】进行过滤，默认为模糊匹配，可使用PreciseSearch参数设置为精确匹配。类型：String必选：否<br><li> logsetName按照【日志集名称】进行过滤，默认为模糊匹配，可使用PreciseSearch参数设置为精确匹配。类型：String必选：否<br><li> topicId按照【日志主题ID】进行过滤。类型：String必选：否<br><li> logsetId按照【日志集ID】进行过滤，可通过调用DescribeLogsets查询已创建的日志集列表或登录控制台进行查看；也可以调用CreateLogset创建新的日志集。类型：String必选：否<br><li> tagKey按照【标签键】进行过滤。类型：String必选：否<br><li> tag:tagKey按照【标签键值对】进行过滤。tagKey使用具体的标签键进行替换，例如tag:exampleKey。类型：String必选：否<br><li> storageType按照【日志主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String必选：否每次请求的Filters的上限为10，Filter.Values的上限为100。
         # @type Filters: Array
         # @param Offset: 分页的偏移量，默认值为0。
         # @type Offset: Integer
         # @param Limit: 分页单页限制数目，默认值为20，最大值100。
         # @type Limit: Integer
+        # @param PreciseSearch: 控制Filters相关字段是否为精确匹配。
+        # - 0: 默认值，topicName和logsetName模糊匹配
+        # - 1: topicName精确匹配
+        # - 2: logsetName精确匹配
+        # - 3: topicName和logsetName都精确匹配
+        # @type PreciseSearch: Integer
+        # @param BizType: 主题类型
+        # - 0:日志主题，默认值
+        # - 1:指标主题
+        # @type BizType: Integer
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :PreciseSearch, :BizType
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, precisesearch=nil, biztype=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @PreciseSearch = precisesearch
+          @BizType = biztype
         end
 
         def deserialize(params)
@@ -3979,6 +3991,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @PreciseSearch = params['PreciseSearch']
+          @BizType = params['BizType']
         end
       end
 
@@ -4168,7 +4182,7 @@ module TencentCloud
         # @type ParseProtocol: String
         # @param MetadataType: 元数据类型，0: 不使用元数据信息，1:使用机器组元数据，2:使用用户自定义元数据，3:使用采集配置路径，
         # @type MetadataType: Integer
-        # @param PathRegex: 采集配置路径正则表达式，MetadataType为1时必填
+        # @param PathRegex: 采集配置路径正则表达式，MetadataType为3时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PathRegex: String
         # @param MetaTags: 用户自定义元数据信息，MetadataType为2时必填

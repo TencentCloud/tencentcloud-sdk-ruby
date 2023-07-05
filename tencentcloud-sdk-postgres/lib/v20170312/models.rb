@@ -3996,13 +3996,18 @@ module TencentCloud
 
       # DisIsolateDBInstances请求参数结构体
       class DisIsolateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceIdSet: 资源ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
+        # @param DBInstanceIdSet: 实例ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
         # @type DBInstanceIdSet: Array
-        # @param Period: 包年包月实例解隔离时购买时常 以月为单位
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # <li>后付费：只支持1
         # @type Period: Integer
-        # @param AutoVoucher: 是否使用代金券：true-使用,false-不使用，默认不使用
+        # @param AutoVoucher: 是否使用代金券：
+        # <li>true：使用
+        # <li>false：不使用
+        # 默认值：false
         # @type AutoVoucher: Boolean
-        # @param VoucherIds: 代金券id列表
+        # @param VoucherIds: 代金券id列表。
         # @type VoucherIds: Array
 
         attr_accessor :DBInstanceIdSet, :Period, :AutoVoucher, :VoucherIds
@@ -4732,13 +4737,24 @@ module TencentCloud
       class ModifyDBInstanceChargeTypeRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
-        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。
+        # @param InstanceChargeType: 实例计费类型，目前支持：
+        # <li>PREPAID：预付费，即包年包月
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费
+        # 默认值：PREPAID
         # @type InstanceChargeType: String
-        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # <li>后付费：只支持1
         # @type Period: Integer
-        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
+        # @param AutoRenewFlag: 续费标记：
+        # <li>0：手动续费
+        # <li>1：自动续费
+        # 默认值：0
         # @type AutoRenewFlag: Integer
-        # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
         # @type AutoVoucher: Integer
 
         attr_accessor :DBInstanceId, :InstanceChargeType, :Period, :AutoRenewFlag, :AutoVoucher
@@ -4784,9 +4800,14 @@ module TencentCloud
       class ModifyDBInstanceDeploymentRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param DBNodeSet: 实例节点信息。
+        # @param DBNodeSet: 实例节点部署信息，支持多可用区部署时需要指定每个节点的部署可用区信息。
+        # 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
         # @type DBNodeSet: Array
-        # @param SwitchTag: 切换时间。默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。2：维护时间窗口内切换
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间。
+        # <li>0：立即切换
+        # <li>1：指定时间切换
+        # <li>2：维护时间窗口内切换
+        # 默认值：0
         # @type SwitchTag: Integer
         # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
         # @type SwitchStartTime: String
@@ -4839,7 +4860,7 @@ module TencentCloud
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 数据库实例ID，形如postgres-6fego161
         # @type DBInstanceId: String
-        # @param InstanceName: 新的数据库实例名字
+        # @param InstanceName: 实例名称，仅支持长度小于60的中文/英文/数字/"_"/"-"，不指定实例名称则默认显示"未命名"。
         # @type InstanceName: String
 
         attr_accessor :DBInstanceId, :InstanceName
@@ -4960,7 +4981,8 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表
+        # @param SecurityGroupIdSet: 实例或只读组要绑定的安全组列表。
+        # 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
         # @type SecurityGroupIdSet: Array
         # @param DBInstanceId: 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
         # @type DBInstanceId: String
@@ -5006,13 +5028,20 @@ module TencentCloud
         # @type Memory: Integer
         # @param Storage: 修改后的实例磁盘大小，单位GiB。
         # @type Storage: Integer
-        # @param AutoVoucher: 是否自动使用代金券,1是,0否，默认不使用。
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
         # @param ActivityId: 活动ID。
         # @type ActivityId: Integer
-        # @param SwitchTag: 指定实例配置完成变更后的切换时间，默认为 立即切换，入参为 0 ：立即切换 。1：指定时间切换。2：维护时间窗口内切换。
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间。
+        # <li>0：立即切换
+        # <li>1：指定时间切换
+        # <li>2：维护时间窗口内切换
+        # 默认值：0
         # @type SwitchTag: Integer
         # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
         # @type SwitchStartTime: String
@@ -6613,22 +6642,24 @@ module TencentCloud
 
       # UpgradeDBInstanceKernelVersion请求参数结构体
       class UpgradeDBInstanceKernelVersionRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID
+        # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param TargetDBKernelVersion: 升级的目标内核版本号。可以通过接口DescribeDBVersions的返回字段AvailableUpgradeTarget获取。
+        # @param TargetDBKernelVersion: 升级的目标内核版本号。可以通过接口[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)的返回字段AvailableUpgradeTarget获取。
         # @type TargetDBKernelVersion: String
-        # @param SwitchTag: 指定实例升级内核版本号完成后的切换时间。可选值，
-        # 0：立即切换（默认值）。
-        # 1：指定时间切换。
-        # 2：维护时间窗口内切换。
+        # @param SwitchTag: 指定实例升级内核版本号完成后的切换时间。可选值:
+        # <li>0：立即切换
+        # <li>1：指定时间切换
+        # <li>2：维护时间窗口内切换
+        # 默认值：0
         # @type SwitchTag: Integer
         # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
         # @type SwitchStartTime: String
         # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。SwitchStartTime和SwitchEndTime时间窗口不能小于30分钟。
         # @type SwitchEndTime: String
-        # @param DryRun: 是否对本次升级实例内核版本号操作执行预检查。可选值，
-        # true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
-        # false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        # @param DryRun: 是否对本次升级实例内核版本号操作执行预检查。
+        # <li>true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
+        # <li>false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        # 默认值：false
         # @type DryRun: Boolean
 
         attr_accessor :DBInstanceId, :TargetDBKernelVersion, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :DryRun

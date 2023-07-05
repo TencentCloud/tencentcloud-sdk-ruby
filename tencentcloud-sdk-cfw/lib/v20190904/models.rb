@@ -3890,7 +3890,7 @@ module TencentCloud
 
         # 1：关闭立即下发开关；
 
-        # 2：关闭立即下发开关下，触发开始下发
+        # 2：关闭立即下发开关情况下，触发开始下发
         # @type Status: Integer
 
         attr_accessor :Status

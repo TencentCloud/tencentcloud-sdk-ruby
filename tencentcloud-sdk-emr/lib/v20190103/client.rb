@@ -198,6 +198,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取hive查询信息
+
+        # @param request: Request instance for DescribeHiveQueries.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeHiveQueriesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeHiveQueriesResponse`
+        def DescribeHiveQueries(request)
+          body = send_request('DescribeHiveQueries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHiveQueriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeImpalaQueries
+
+        # @param request: Request instance for DescribeImpalaQueries.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeImpalaQueriesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeImpalaQueriesResponse`
+        def DescribeImpalaQueries(request)
+          body = send_request('DescribeImpalaQueries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImpalaQueriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询待续费节点信息
 
         # @param request: Request instance for DescribeInstanceRenewNodes.
@@ -329,6 +377,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUsersForUserManagerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # DescribeYarnApplications
+
+        # @param request: Request instance for DescribeYarnApplications.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeYarnApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeYarnApplicationsResponse`
+        def DescribeYarnApplications(request)
+          body = send_request('DescribeYarnApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeYarnApplicationsResponse.new
             model.deserialize(response['Response'])
             model
           else

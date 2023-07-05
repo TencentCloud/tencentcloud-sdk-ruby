@@ -1595,6 +1595,132 @@ module TencentCloud
         end
       end
 
+      # DescribeHiveQueries请求参数结构体
+      class DescribeHiveQueriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 起始时间秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31*24*3600
+        # @type EndTime: Integer
+        # @param Offset: 分页起始偏移，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页大小，合法范围[1,100]
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHiveQueries返回参数结构体
+      class DescribeHiveQueriesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param Results: 结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Results, :RequestId
+
+        def initialize(total=nil, results=nil, requestid=nil)
+          @Total = total
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              hivequery_tmp = HiveQuery.new
+              hivequery_tmp.deserialize(i)
+              @Results << hivequery_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeImpalaQueries请求参数结构体
+      class DescribeImpalaQueriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 起始时间秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31243600
+        # @type EndTime: Integer
+        # @param Offset: 分页起始偏移，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页大小，合法范围[1,100]
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeImpalaQueries返回参数结构体
+      class DescribeImpalaQueriesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Results: 结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Results, :RequestId
+
+        def initialize(total=nil, results=nil, requestid=nil)
+          @Total = total
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              impalaquery_tmp = ImpalaQuery.new
+              impalaquery_tmp.deserialize(i)
+              @Results << impalaquery_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceRenewNodes请求参数结构体
       class DescribeInstanceRenewNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -1972,6 +2098,69 @@ module TencentCloud
               usermanageruserbriefinfo_tmp = UserManagerUserBriefInfo.new
               usermanageruserbriefinfo_tmp.deserialize(i)
               @UserManagerUserList << usermanageruserbriefinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeYarnApplications请求参数结构体
+      class DescribeYarnApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 起始时间秒
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31243600
+        # @type EndTime: Integer
+        # @param Offset: 分页起始偏移，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页大小，合法范围[1,100]
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeYarnApplications返回参数结构体
+      class DescribeYarnApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Results: 结果列表
+        # @type Results: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Results, :RequestId
+
+        def initialize(total=nil, results=nil, requestid=nil)
+          @Total = total
+          @Results = results
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              yarnapplication_tmp = YarnApplication.new
+              yarnapplication_tmp.deserialize(i)
+              @Results << yarnapplication_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2500,6 +2689,63 @@ module TencentCloud
         end
       end
 
+      # Hive查询详情
+      class HiveQuery < TencentCloud::Common::AbstractModel
+        # @param Statement: 查询语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statement: String
+        # @param Duration: 执行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param StartTime: 开始时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param JobIds: appId列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobIds: Array
+        # @param ExecutionEngine: 执行引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionEngine: String
+        # @param Id: 查询ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+
+        attr_accessor :Statement, :Duration, :StartTime, :EndTime, :State, :User, :JobIds, :ExecutionEngine, :Id
+
+        def initialize(statement=nil, duration=nil, starttime=nil, endtime=nil, state=nil, user=nil, jobids=nil, executionengine=nil, id=nil)
+          @Statement = statement
+          @Duration = duration
+          @StartTime = starttime
+          @EndTime = endtime
+          @State = state
+          @User = user
+          @JobIds = jobids
+          @ExecutionEngine = executionengine
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Statement = params['Statement']
+          @Duration = params['Duration']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @State = params['State']
+          @User = params['User']
+          @JobIds = params['JobIds']
+          @ExecutionEngine = params['ExecutionEngine']
+          @Id = params['Id']
+        end
+      end
+
       # Pod HostPath挂载方式描述
       class HostVolumeContext < TencentCloud::Common::AbstractModel
         # @param VolumePath: Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
@@ -2514,6 +2760,128 @@ module TencentCloud
 
         def deserialize(params)
           @VolumePath = params['VolumePath']
+        end
+      end
+
+      # Impala查询详情
+      class ImpalaQuery < TencentCloud::Common::AbstractModel
+        # @param Statement: 执行语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statement: String
+        # @param Id: 查询ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param Duration: 运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: Integer
+        # @param State: 执行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param RowsFetched: 获取行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowsFetched: Integer
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param DefaultDB: 默认DB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDB: String
+        # @param Coordinator: 执行的Coordinator节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coordinator: String
+        # @param MaxNodePeakMemoryUsage: 单节点内存峰值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxNodePeakMemoryUsage: String
+        # @param QueryType: 查询类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryType: String
+        # @param ScanHDFSRows: 扫描的HDFS行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanHDFSRows: Integer
+        # @param ScanKUDURows: 扫描的Kudu行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanKUDURows: Integer
+        # @param ScanRowsTotal: 扫描的总行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanRowsTotal: Integer
+        # @param TotalBytesRead: 读取的总字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalBytesRead: Integer
+        # @param TotalBytesSent: 发送的总字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalBytesSent: Integer
+        # @param TotalCpuTime: CPU总时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCpuTime: Integer
+        # @param TotalInnerBytesSent: 内部数据发送总量(Bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalInnerBytesSent: Integer
+        # @param TotalScanBytesSent: 内部扫描数据发送总量(Bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalScanBytesSent: Integer
+        # @param EstimatedPerHostMemBytes: 预估单节点内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EstimatedPerHostMemBytes: Integer
+        # @param NumRowsFetchedFromCache: 从缓存中获取的数据行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumRowsFetchedFromCache: Integer
+
+        attr_accessor :Statement, :Id, :StartTime, :Duration, :EndTime, :State, :RowsFetched, :User, :DefaultDB, :Coordinator, :MaxNodePeakMemoryUsage, :QueryType, :ScanHDFSRows, :ScanKUDURows, :ScanRowsTotal, :TotalBytesRead, :TotalBytesSent, :TotalCpuTime, :TotalInnerBytesSent, :TotalScanBytesSent, :EstimatedPerHostMemBytes, :NumRowsFetchedFromCache
+
+        def initialize(statement=nil, id=nil, starttime=nil, duration=nil, endtime=nil, state=nil, rowsfetched=nil, user=nil, defaultdb=nil, coordinator=nil, maxnodepeakmemoryusage=nil, querytype=nil, scanhdfsrows=nil, scankudurows=nil, scanrowstotal=nil, totalbytesread=nil, totalbytessent=nil, totalcputime=nil, totalinnerbytessent=nil, totalscanbytessent=nil, estimatedperhostmembytes=nil, numrowsfetchedfromcache=nil)
+          @Statement = statement
+          @Id = id
+          @StartTime = starttime
+          @Duration = duration
+          @EndTime = endtime
+          @State = state
+          @RowsFetched = rowsfetched
+          @User = user
+          @DefaultDB = defaultdb
+          @Coordinator = coordinator
+          @MaxNodePeakMemoryUsage = maxnodepeakmemoryusage
+          @QueryType = querytype
+          @ScanHDFSRows = scanhdfsrows
+          @ScanKUDURows = scankudurows
+          @ScanRowsTotal = scanrowstotal
+          @TotalBytesRead = totalbytesread
+          @TotalBytesSent = totalbytessent
+          @TotalCpuTime = totalcputime
+          @TotalInnerBytesSent = totalinnerbytessent
+          @TotalScanBytesSent = totalscanbytessent
+          @EstimatedPerHostMemBytes = estimatedperhostmembytes
+          @NumRowsFetchedFromCache = numrowsfetchedfromcache
+        end
+
+        def deserialize(params)
+          @Statement = params['Statement']
+          @Id = params['Id']
+          @StartTime = params['StartTime']
+          @Duration = params['Duration']
+          @EndTime = params['EndTime']
+          @State = params['State']
+          @RowsFetched = params['RowsFetched']
+          @User = params['User']
+          @DefaultDB = params['DefaultDB']
+          @Coordinator = params['Coordinator']
+          @MaxNodePeakMemoryUsage = params['MaxNodePeakMemoryUsage']
+          @QueryType = params['QueryType']
+          @ScanHDFSRows = params['ScanHDFSRows']
+          @ScanKUDURows = params['ScanKUDURows']
+          @ScanRowsTotal = params['ScanRowsTotal']
+          @TotalBytesRead = params['TotalBytesRead']
+          @TotalBytesSent = params['TotalBytesSent']
+          @TotalCpuTime = params['TotalCpuTime']
+          @TotalInnerBytesSent = params['TotalInnerBytesSent']
+          @TotalScanBytesSent = params['TotalScanBytesSent']
+          @EstimatedPerHostMemBytes = params['EstimatedPerHostMemBytes']
+          @NumRowsFetchedFromCache = params['NumRowsFetchedFromCache']
         end
       end
 
@@ -6180,6 +6548,263 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # Yarn 运行的Application信息
+      class YarnApplication < TencentCloud::Common::AbstractModel
+        # @param Id: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Name: 应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Queue: 队列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Queue: String
+        # @param ApplicationType: 应用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationType: String
+        # @param ElapsedTime: 运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElapsedTime: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param FinalStatus: 最终状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalStatus: String
+        # @param Progress: 进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param StartedTime: 开始时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartedTime: Integer
+        # @param FinishedTime: 结束时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedTime: Integer
+        # @param AllocatedMB: 申请内存MB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllocatedMB: Integer
+        # @param AllocatedVCores: 申请VCores
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllocatedVCores: Integer
+        # @param RunningContainers: 运行的Containers数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningContainers: Integer
+        # @param MemorySeconds: 内存MB*时间秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemorySeconds: Integer
+        # @param VCoreSeconds: VCores*时间秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VCoreSeconds: Integer
+        # @param QueueUsagePercentage: 队列资源占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueUsagePercentage: Float
+        # @param ClusterUsagePercentage: 集群资源占比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterUsagePercentage: Float
+        # @param PreemptedResourceMB: 预占用的内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreemptedResourceMB: Integer
+        # @param PreemptedResourceVCores: 预占用的VCore
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreemptedResourceVCores: Integer
+        # @param NumNonAMContainerPreempted: 预占的非应用程序主节点容器数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumNonAMContainerPreempted: Integer
+        # @param NumAMContainerPreempted: AM预占用的容器数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumAMContainerPreempted: Integer
+        # @param MapsTotal: Map总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MapsTotal: Integer
+        # @param MapsCompleted: 完成的Map数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MapsCompleted: Integer
+        # @param ReducesTotal: Reduce总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReducesTotal: Integer
+        # @param ReducesCompleted: 完成的Reduce数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReducesCompleted: Integer
+        # @param AvgMapTime: 平均Map时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgMapTime: Integer
+        # @param AvgReduceTime: 平均Reduce时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgReduceTime: Integer
+        # @param AvgShuffleTime: 平均Shuffle时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgShuffleTime: Integer
+        # @param AvgMergeTime: 平均Merge时间毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgMergeTime: Integer
+        # @param FailedReduceAttempts: 失败的Reduce执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReduceAttempts: Integer
+        # @param KilledReduceAttempts: Kill的Reduce执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KilledReduceAttempts: Integer
+        # @param SuccessfulReduceAttempts: 成功的Reduce执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessfulReduceAttempts: Integer
+        # @param FailedMapAttempts: 失败的Map执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMapAttempts: Integer
+        # @param KilledMapAttempts: Kill的Map执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KilledMapAttempts: Integer
+        # @param SuccessfulMapAttempts: 成功的Map执行次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessfulMapAttempts: Integer
+        # @param GcTimeMillis: GC毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GcTimeMillis: Integer
+        # @param VCoreMillisMaps: Map使用的VCore毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VCoreMillisMaps: Integer
+        # @param MbMillisMaps: Map使用的内存毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MbMillisMaps: Integer
+        # @param VCoreMillisReduces: Reduce使用的VCore毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VCoreMillisReduces: Integer
+        # @param MbMillisReduces: Reduce使用的内存毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MbMillisReduces: Integer
+        # @param TotalLaunchedMaps: 启动Map的总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalLaunchedMaps: Integer
+        # @param TotalLaunchedReduces: 启动Reduce的总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalLaunchedReduces: Integer
+        # @param MapInputRecords: Map输入记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MapInputRecords: Integer
+        # @param MapOutputRecords: Map输出记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MapOutputRecords: Integer
+        # @param ReduceInputRecords: Reduce输入记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReduceInputRecords: Integer
+        # @param ReduceOutputRecords: Reduce输出记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReduceOutputRecords: Integer
+        # @param HDFSBytesWritten: HDFS写入字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HDFSBytesWritten: Integer
+        # @param HDFSBytesRead: HDFS读取字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HDFSBytesRead: Integer
+
+        attr_accessor :Id, :User, :Name, :Queue, :ApplicationType, :ElapsedTime, :State, :FinalStatus, :Progress, :StartedTime, :FinishedTime, :AllocatedMB, :AllocatedVCores, :RunningContainers, :MemorySeconds, :VCoreSeconds, :QueueUsagePercentage, :ClusterUsagePercentage, :PreemptedResourceMB, :PreemptedResourceVCores, :NumNonAMContainerPreempted, :NumAMContainerPreempted, :MapsTotal, :MapsCompleted, :ReducesTotal, :ReducesCompleted, :AvgMapTime, :AvgReduceTime, :AvgShuffleTime, :AvgMergeTime, :FailedReduceAttempts, :KilledReduceAttempts, :SuccessfulReduceAttempts, :FailedMapAttempts, :KilledMapAttempts, :SuccessfulMapAttempts, :GcTimeMillis, :VCoreMillisMaps, :MbMillisMaps, :VCoreMillisReduces, :MbMillisReduces, :TotalLaunchedMaps, :TotalLaunchedReduces, :MapInputRecords, :MapOutputRecords, :ReduceInputRecords, :ReduceOutputRecords, :HDFSBytesWritten, :HDFSBytesRead
+
+        def initialize(id=nil, user=nil, name=nil, queue=nil, applicationtype=nil, elapsedtime=nil, state=nil, finalstatus=nil, progress=nil, startedtime=nil, finishedtime=nil, allocatedmb=nil, allocatedvcores=nil, runningcontainers=nil, memoryseconds=nil, vcoreseconds=nil, queueusagepercentage=nil, clusterusagepercentage=nil, preemptedresourcemb=nil, preemptedresourcevcores=nil, numnonamcontainerpreempted=nil, numamcontainerpreempted=nil, mapstotal=nil, mapscompleted=nil, reducestotal=nil, reducescompleted=nil, avgmaptime=nil, avgreducetime=nil, avgshuffletime=nil, avgmergetime=nil, failedreduceattempts=nil, killedreduceattempts=nil, successfulreduceattempts=nil, failedmapattempts=nil, killedmapattempts=nil, successfulmapattempts=nil, gctimemillis=nil, vcoremillismaps=nil, mbmillismaps=nil, vcoremillisreduces=nil, mbmillisreduces=nil, totallaunchedmaps=nil, totallaunchedreduces=nil, mapinputrecords=nil, mapoutputrecords=nil, reduceinputrecords=nil, reduceoutputrecords=nil, hdfsbyteswritten=nil, hdfsbytesread=nil)
+          @Id = id
+          @User = user
+          @Name = name
+          @Queue = queue
+          @ApplicationType = applicationtype
+          @ElapsedTime = elapsedtime
+          @State = state
+          @FinalStatus = finalstatus
+          @Progress = progress
+          @StartedTime = startedtime
+          @FinishedTime = finishedtime
+          @AllocatedMB = allocatedmb
+          @AllocatedVCores = allocatedvcores
+          @RunningContainers = runningcontainers
+          @MemorySeconds = memoryseconds
+          @VCoreSeconds = vcoreseconds
+          @QueueUsagePercentage = queueusagepercentage
+          @ClusterUsagePercentage = clusterusagepercentage
+          @PreemptedResourceMB = preemptedresourcemb
+          @PreemptedResourceVCores = preemptedresourcevcores
+          @NumNonAMContainerPreempted = numnonamcontainerpreempted
+          @NumAMContainerPreempted = numamcontainerpreempted
+          @MapsTotal = mapstotal
+          @MapsCompleted = mapscompleted
+          @ReducesTotal = reducestotal
+          @ReducesCompleted = reducescompleted
+          @AvgMapTime = avgmaptime
+          @AvgReduceTime = avgreducetime
+          @AvgShuffleTime = avgshuffletime
+          @AvgMergeTime = avgmergetime
+          @FailedReduceAttempts = failedreduceattempts
+          @KilledReduceAttempts = killedreduceattempts
+          @SuccessfulReduceAttempts = successfulreduceattempts
+          @FailedMapAttempts = failedmapattempts
+          @KilledMapAttempts = killedmapattempts
+          @SuccessfulMapAttempts = successfulmapattempts
+          @GcTimeMillis = gctimemillis
+          @VCoreMillisMaps = vcoremillismaps
+          @MbMillisMaps = mbmillismaps
+          @VCoreMillisReduces = vcoremillisreduces
+          @MbMillisReduces = mbmillisreduces
+          @TotalLaunchedMaps = totallaunchedmaps
+          @TotalLaunchedReduces = totallaunchedreduces
+          @MapInputRecords = mapinputrecords
+          @MapOutputRecords = mapoutputrecords
+          @ReduceInputRecords = reduceinputrecords
+          @ReduceOutputRecords = reduceoutputrecords
+          @HDFSBytesWritten = hdfsbyteswritten
+          @HDFSBytesRead = hdfsbytesread
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @User = params['User']
+          @Name = params['Name']
+          @Queue = params['Queue']
+          @ApplicationType = params['ApplicationType']
+          @ElapsedTime = params['ElapsedTime']
+          @State = params['State']
+          @FinalStatus = params['FinalStatus']
+          @Progress = params['Progress']
+          @StartedTime = params['StartedTime']
+          @FinishedTime = params['FinishedTime']
+          @AllocatedMB = params['AllocatedMB']
+          @AllocatedVCores = params['AllocatedVCores']
+          @RunningContainers = params['RunningContainers']
+          @MemorySeconds = params['MemorySeconds']
+          @VCoreSeconds = params['VCoreSeconds']
+          @QueueUsagePercentage = params['QueueUsagePercentage']
+          @ClusterUsagePercentage = params['ClusterUsagePercentage']
+          @PreemptedResourceMB = params['PreemptedResourceMB']
+          @PreemptedResourceVCores = params['PreemptedResourceVCores']
+          @NumNonAMContainerPreempted = params['NumNonAMContainerPreempted']
+          @NumAMContainerPreempted = params['NumAMContainerPreempted']
+          @MapsTotal = params['MapsTotal']
+          @MapsCompleted = params['MapsCompleted']
+          @ReducesTotal = params['ReducesTotal']
+          @ReducesCompleted = params['ReducesCompleted']
+          @AvgMapTime = params['AvgMapTime']
+          @AvgReduceTime = params['AvgReduceTime']
+          @AvgShuffleTime = params['AvgShuffleTime']
+          @AvgMergeTime = params['AvgMergeTime']
+          @FailedReduceAttempts = params['FailedReduceAttempts']
+          @KilledReduceAttempts = params['KilledReduceAttempts']
+          @SuccessfulReduceAttempts = params['SuccessfulReduceAttempts']
+          @FailedMapAttempts = params['FailedMapAttempts']
+          @KilledMapAttempts = params['KilledMapAttempts']
+          @SuccessfulMapAttempts = params['SuccessfulMapAttempts']
+          @GcTimeMillis = params['GcTimeMillis']
+          @VCoreMillisMaps = params['VCoreMillisMaps']
+          @MbMillisMaps = params['MbMillisMaps']
+          @VCoreMillisReduces = params['VCoreMillisReduces']
+          @MbMillisReduces = params['MbMillisReduces']
+          @TotalLaunchedMaps = params['TotalLaunchedMaps']
+          @TotalLaunchedReduces = params['TotalLaunchedReduces']
+          @MapInputRecords = params['MapInputRecords']
+          @MapOutputRecords = params['MapOutputRecords']
+          @ReduceInputRecords = params['ReduceInputRecords']
+          @ReduceOutputRecords = params['ReduceOutputRecords']
+          @HDFSBytesWritten = params['HDFSBytesWritten']
+          @HDFSBytesRead = params['HDFSBytesRead']
         end
       end
 

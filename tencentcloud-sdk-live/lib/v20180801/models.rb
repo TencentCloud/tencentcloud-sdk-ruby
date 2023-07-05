@@ -1822,10 +1822,12 @@ module TencentCloud
         # @type CheckStreamLowFrameRate: Integer
         # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告。
         # @type AllowMonitorReport: Integer
+        # @param AiFormatDiagnose: 是否开启格式诊断。
+        # @type AiFormatDiagnose: Integer
 
-        attr_accessor :OutputInfo, :InputList, :MonitorName, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport
+        attr_accessor :OutputInfo, :InputList, :MonitorName, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport, :AiFormatDiagnose
 
-        def initialize(outputinfo=nil, inputlist=nil, monitorname=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil)
+        def initialize(outputinfo=nil, inputlist=nil, monitorname=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil, aiformatdiagnose=nil)
           @OutputInfo = outputinfo
           @InputList = inputlist
           @MonitorName = monitorname
@@ -1837,6 +1839,7 @@ module TencentCloud
           @CheckStreamBroken = checkstreambroken
           @CheckStreamLowFrameRate = checkstreamlowframerate
           @AllowMonitorReport = allowmonitorreport
+          @AiFormatDiagnose = aiformatdiagnose
         end
 
         def deserialize(params)
@@ -1864,6 +1867,7 @@ module TencentCloud
           @CheckStreamBroken = params['CheckStreamBroken']
           @CheckStreamLowFrameRate = params['CheckStreamLowFrameRate']
           @AllowMonitorReport = params['AllowMonitorReport']
+          @AiFormatDiagnose = params['AiFormatDiagnose']
         end
       end
 
@@ -7735,17 +7739,22 @@ module TencentCloud
         # @param LowFrameRateResults: 低帧率信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowFrameRateResults: Array
+        # @param StreamFormatResults: 流格式诊断信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamFormatResults: Array
 
-        attr_accessor :StreamBrokenResults, :LowFrameRateResults
+        attr_accessor :StreamBrokenResults, :LowFrameRateResults, :StreamFormatResults
 
-        def initialize(streambrokenresults=nil, lowframerateresults=nil)
+        def initialize(streambrokenresults=nil, lowframerateresults=nil, streamformatresults=nil)
           @StreamBrokenResults = streambrokenresults
           @LowFrameRateResults = lowframerateresults
+          @StreamFormatResults = streamformatresults
         end
 
         def deserialize(params)
           @StreamBrokenResults = params['StreamBrokenResults']
           @LowFrameRateResults = params['LowFrameRateResults']
+          @StreamFormatResults = params['StreamFormatResults']
         end
       end
 
@@ -8516,10 +8525,13 @@ module TencentCloud
         # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowMonitorReport: Integer
+        # @param AiFormatDiagnose: 是否开启格式诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AiFormatDiagnose: Integer
 
-        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :Status, :StartTime, :StopTime, :CreateTime, :UpdateTime, :NotifyPolicy, :AudibleInputIndexList, :AiAsrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AsrLanguage, :OcrLanguage, :AiOcrInputIndexList, :AllowMonitorReport
+        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :Status, :StartTime, :StopTime, :CreateTime, :UpdateTime, :NotifyPolicy, :AudibleInputIndexList, :AiAsrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AsrLanguage, :OcrLanguage, :AiOcrInputIndexList, :AllowMonitorReport, :AiFormatDiagnose
 
-        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, status=nil, starttime=nil, stoptime=nil, createtime=nil, updatetime=nil, notifypolicy=nil, audibleinputindexlist=nil, aiasrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, asrlanguage=nil, ocrlanguage=nil, aiocrinputindexlist=nil, allowmonitorreport=nil)
+        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, status=nil, starttime=nil, stoptime=nil, createtime=nil, updatetime=nil, notifypolicy=nil, audibleinputindexlist=nil, aiasrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, asrlanguage=nil, ocrlanguage=nil, aiocrinputindexlist=nil, allowmonitorreport=nil, aiformatdiagnose=nil)
           @MonitorId = monitorid
           @MonitorName = monitorname
           @OutputInfo = outputinfo
@@ -8538,6 +8550,7 @@ module TencentCloud
           @OcrLanguage = ocrlanguage
           @AiOcrInputIndexList = aiocrinputindexlist
           @AllowMonitorReport = allowmonitorreport
+          @AiFormatDiagnose = aiformatdiagnose
         end
 
         def deserialize(params)
@@ -8572,6 +8585,7 @@ module TencentCloud
           @OcrLanguage = params['OcrLanguage']
           @AiOcrInputIndexList = params['AiOcrInputIndexList']
           @AllowMonitorReport = params['AllowMonitorReport']
+          @AiFormatDiagnose = params['AiFormatDiagnose']
         end
       end
 
@@ -9483,10 +9497,12 @@ module TencentCloud
         # @type CheckStreamLowFrameRate: Integer
         # @param AllowMonitorReport: 是否存储监播事件到监播报告，以及是否允许查询监播报告。
         # @type AllowMonitorReport: Integer
+        # @param AiFormatDiagnose: 是否开启格式诊断。
+        # @type AiFormatDiagnose: Integer
 
-        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport
+        attr_accessor :MonitorId, :MonitorName, :OutputInfo, :InputList, :NotifyPolicy, :AsrLanguage, :OcrLanguage, :AiAsrInputIndexList, :AiOcrInputIndexList, :CheckStreamBroken, :CheckStreamLowFrameRate, :AllowMonitorReport, :AiFormatDiagnose
 
-        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil)
+        def initialize(monitorid=nil, monitorname=nil, outputinfo=nil, inputlist=nil, notifypolicy=nil, asrlanguage=nil, ocrlanguage=nil, aiasrinputindexlist=nil, aiocrinputindexlist=nil, checkstreambroken=nil, checkstreamlowframerate=nil, allowmonitorreport=nil, aiformatdiagnose=nil)
           @MonitorId = monitorid
           @MonitorName = monitorname
           @OutputInfo = outputinfo
@@ -9499,6 +9515,7 @@ module TencentCloud
           @CheckStreamBroken = checkstreambroken
           @CheckStreamLowFrameRate = checkstreamlowframerate
           @AllowMonitorReport = allowmonitorreport
+          @AiFormatDiagnose = aiformatdiagnose
         end
 
         def deserialize(params)
@@ -9527,6 +9544,7 @@ module TencentCloud
           @CheckStreamBroken = params['CheckStreamBroken']
           @CheckStreamLowFrameRate = params['CheckStreamLowFrameRate']
           @AllowMonitorReport = params['AllowMonitorReport']
+          @AiFormatDiagnose = params['AiFormatDiagnose']
         end
       end
 

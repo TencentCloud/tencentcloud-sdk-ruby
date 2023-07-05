@@ -318,10 +318,12 @@ module TencentCloud
         # @param InstanceType: EIP绑定的实例类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
+        # @param AntiDDoSPackageId: 高防包ID,当EIP类型为高防EIP时，返回EIP绑定的高防包ID.
+        # @type AntiDDoSPackageId: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :AntiDDoSPackageId
 
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, antiddospackageid=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -343,6 +345,7 @@ module TencentCloud
           @TagSet = tagset
           @DeadlineDate = deadlinedate
           @InstanceType = instancetype
+          @AntiDDoSPackageId = antiddospackageid
         end
 
         def deserialize(params)
@@ -377,6 +380,7 @@ module TencentCloud
           end
           @DeadlineDate = params['DeadlineDate']
           @InstanceType = params['InstanceType']
+          @AntiDDoSPackageId = params['AntiDDoSPackageId']
         end
       end
 
@@ -654,10 +658,14 @@ module TencentCloud
         # @type AddressName: String
         # @param Egress: 网络出口，默认是：center_egress1
         # @type Egress: String
+        # @param AntiDDoSPackageId: 高防包ID， 申请高防IP时，该字段必传。
+        # @type AntiDDoSPackageId: String
+        # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
+        # @type ClientToken: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :Egress
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :Egress, :AntiDDoSPackageId, :ClientToken
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, egress=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -670,6 +678,8 @@ module TencentCloud
           @BandwidthPackageId = bandwidthpackageid
           @AddressName = addressname
           @Egress = egress
+          @AntiDDoSPackageId = antiddospackageid
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -695,6 +705,8 @@ module TencentCloud
           @BandwidthPackageId = params['BandwidthPackageId']
           @AddressName = params['AddressName']
           @Egress = params['Egress']
+          @AntiDDoSPackageId = params['AntiDDoSPackageId']
+          @ClientToken = params['ClientToken']
         end
       end
 
@@ -7224,7 +7236,7 @@ module TencentCloud
         # <li>ccn-id - String -（过滤条件）CCN实例ID。</li>
         # <li>instance-type - String -（过滤条件）关联实例类型。</li>
         # <li>instance-region - String -（过滤条件）关联实例所属地域。</li>
-        # <li>instance-id - String -（过滤条件）关联实例实例ID。</li>
+        # <li>instance-id - String -（过滤条件）关联实例ID。</li>
         # @type Filters: Array
         # @param CcnId: 云联网实例ID
         # @type CcnId: String

@@ -677,7 +677,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateSparkSessionBatchSQL）用于提交Spark SQL批任务。
+        # 本接口（CreateSparkSessionBatchSQL）用于向Spark作业引擎提交Spark SQL批任务。
 
         # @param request: Request instance for CreateSparkSessionBatchSQL.
         # @type request: :class:`Tencentcloud::dlc::V20210125::CreateSparkSessionBatchSQLRequest`
