@@ -53,16 +53,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 校验证书
+        # 校验域名 CNAME 状态
 
-        # @param request: Request instance for CheckCertificate.
-        # @type request: :class:`Tencentcloud::teo::V20220901::CheckCertificateRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::CheckCertificateResponse`
-        def CheckCertificate(request)
-          body = send_request('CheckCertificate', request.serialize)
+        # @param request: Request instance for CheckCnameStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CheckCnameStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CheckCnameStatusResponse`
+        def CheckCnameStatus(request)
+          body = send_request('CheckCnameStatus', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CheckCertificateResponse.new
+            model = CheckCnameStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,30 +173,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于创建COS回源私有凭证
-
-        # @param request: Request instance for CreateCredential.
-        # @type request: :class:`Tencentcloud::teo::V20220901::CreateCredentialRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateCredentialResponse`
-        def CreateCredential(request)
-          body = send_request('CreateCredential', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateCredentialResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建源站组
 
         # @param request: Request instance for CreateOriginGroup.
@@ -269,7 +245,9 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建清除缓存任务
+        # 当源站资源更新，但节点缓存 TTL 未过期时，用户仍会访问到旧的资源，此时可以通过该接口实现节点资源更新。触发更新的方法有以下两种：<li>直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；</li><li>标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
+
+        # 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
 
         # @param request: Request instance for CreatePurgeTask.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreatePurgeTaskRequest`
@@ -279,30 +257,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePurgeTaskResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建刷新/预热重放任务
-
-        # @param request: Request instance for CreateReplayTask.
-        # @type request: :class:`Tencentcloud::teo::V20220901::CreateReplayTaskRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateReplayTaskResponse`
-        def CreateReplayTask(request)
-          body = send_request('CreateReplayTask', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateReplayTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -351,30 +305,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateSecurityIPGroupResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 对用户指定的域名进行一次站点拨测
-
-        # @param request: Request instance for CreateSpeedTesting.
-        # @type request: :class:`Tencentcloud::teo::V20220901::CreateSpeedTestingRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateSpeedTestingResponse`
-        def CreateSpeedTesting(request)
-          body = send_request('CreateSpeedTesting', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateSpeedTestingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,30 +559,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
-
-        # @param request: Request instance for DescribeAddableEntityList.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeAddableEntityListRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeAddableEntityListResponse`
-        def DescribeAddableEntityList(request)
-          body = send_request('DescribeAddableEntityList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAddableEntityListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询别称域名信息列表。
 
         # @param request: Request instance for DescribeAliasDomains.
@@ -711,30 +617,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAvailablePlansResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
-
-        # @param request: Request instance for DescribeClientRuleList.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeClientRuleListRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeClientRuleListResponse`
-        def DescribeClientRuleList(request)
-          body = send_request('DescribeClientRuleList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClientRuleListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -869,30 +751,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取DNS请求数统计曲线
-
-        # @param request: Request instance for DescribeDnsData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDnsDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDnsDataResponse`
-        def DescribeDnsData(request)
-          body = send_request('DescribeDnsData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDnsDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于查询域名配置信息
 
         # @param request: Request instance for DescribeHostsSetting.
@@ -927,54 +785,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIdentificationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeLogSets）用于获取日志集列表。
-
-        # @param request: Request instance for DescribeLogSets.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLogSetsRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLogSetsResponse`
-        def DescribeLogSets(request)
-          body = send_request('DescribeLogSets', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLogSetsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
-
-        # @param request: Request instance for DescribeLogTopicTasks.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeLogTopicTasksRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeLogTopicTasksResponse`
-        def DescribeLogTopicTasks(request)
-          body = send_request('DescribeLogTopicTasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLogTopicTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1157,102 +967,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeSingleL7AnalysisData）用于查询七层流量数据分析单值数据列表，单值数据表示：指标在查询时间范围内的单个统计数据，通常表现为接口仅返回一个统计数值。
-
-        # @param request: Request instance for DescribeSingleL7AnalysisData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSingleL7AnalysisDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSingleL7AnalysisDataResponse`
-        def DescribeSingleL7AnalysisData(request)
-          body = send_request('DescribeSingleL7AnalysisData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSingleL7AnalysisDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 用于查询拨测分地区数据
-
-        # @param request: Request instance for DescribeSpeedTestingDetails.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingDetailsRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingDetailsResponse`
-        def DescribeSpeedTestingDetails(request)
-          body = send_request('DescribeSpeedTestingDetails', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSpeedTestingDetailsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询站点拨测结果
-
-        # @param request: Request instance for DescribeSpeedTestingMetricData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingMetricDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingMetricDataResponse`
-        def DescribeSpeedTestingMetricData(request)
-          body = send_request('DescribeSpeedTestingMetricData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSpeedTestingMetricDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询站点拨测配额
-
-        # @param request: Request instance for DescribeSpeedTestingQuota.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingQuotaRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSpeedTestingQuotaResponse`
-        def DescribeSpeedTestingQuota(request)
-          body = send_request('DescribeSpeedTestingQuota', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSpeedTestingQuotaResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
 
         # @param request: Request instance for DescribeTimingL4Data.
@@ -1325,30 +1039,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeTimingL7SourceData）查询七层回源分析时序数据。
-
-        # @param request: Request instance for DescribeTimingL7SourceData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7SourceDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7SourceDataResponse`
-        def DescribeTimingL7SourceData(request)
-          body = send_request('DescribeTimingL7SourceData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTimingL7SourceDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
 
         # @param request: Request instance for DescribeTopL7AnalysisData.
@@ -1383,174 +1073,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopL7CacheDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
-
-        # @param request: Request instance for DescribeWebManagedRulesData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesDataResponse`
-        def DescribeWebManagedRulesData(request)
-          body = send_request('DescribeWebManagedRulesData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebManagedRulesDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
-
-        # @param request: Request instance for DescribeWebManagedRulesHitRuleDetail.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesHitRuleDetailRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesHitRuleDetailResponse`
-        def DescribeWebManagedRulesHitRuleDetail(request)
-          body = send_request('DescribeWebManagedRulesHitRuleDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebManagedRulesHitRuleDetailResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
-
-        # @param request: Request instance for DescribeWebManagedRulesLog.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesLogRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebManagedRulesLogResponse`
-        def DescribeWebManagedRulesLog(request)
-          body = send_request('DescribeWebManagedRulesLog', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebManagedRulesLogResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
-
-        # @param request: Request instance for DescribeWebProtectionClientIpList.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionClientIpListRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionClientIpListResponse`
-        def DescribeWebProtectionClientIpList(request)
-          body = send_request('DescribeWebProtectionClientIpList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebProtectionClientIpListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebProtectionData）用于查询CC防护时序数据。
-
-        # @param request: Request instance for DescribeWebProtectionData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionDataResponse`
-        def DescribeWebProtectionData(request)
-          body = send_request('DescribeWebProtectionData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebProtectionDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
-
-        # @param request: Request instance for DescribeWebProtectionHitRuleDetail.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionHitRuleDetailRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionHitRuleDetailResponse`
-        def DescribeWebProtectionHitRuleDetail(request)
-          body = send_request('DescribeWebProtectionHitRuleDetail', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebProtectionHitRuleDetailResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
-
-        # @param request: Request instance for DescribeWebProtectionTopData.
-        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionTopDataRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeWebProtectionTopDataResponse`
-        def DescribeWebProtectionTopData(request)
-          body = send_request('DescribeWebProtectionTopData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWebProtectionTopDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1877,30 +1399,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改默认证书状态
-
-        # @param request: Request instance for ModifyDefaultCertificate.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyDefaultCertificateRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyDefaultCertificateResponse`
-        def ModifyDefaultCertificate(request)
-          body = send_request('ModifyDefaultCertificate', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyDefaultCertificateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于修改域名证书
 
         # @param request: Request instance for ModifyHostsCertificate.
@@ -1973,30 +1471,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改规则引擎规则优先级
-
-        # @param request: Request instance for ModifyRulePriority.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyRulePriorityRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyRulePriorityResponse`
-        def ModifyRulePriority(request)
-          body = send_request('ModifyRulePriority', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyRulePriorityResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 修改安全 IP 组。
 
         # @param request: Request instance for ModifySecurityIPGroup.
@@ -2031,30 +1505,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySecurityPolicyResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改安全配置托管规则
-
-        # @param request: Request instance for ModifySecurityWafGroupPolicy.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ModifySecurityWafGroupPolicyRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifySecurityWafGroupPolicyResponse`
-        def ModifySecurityWafGroupPolicy(request)
-          body = send_request('ModifySecurityWafGroupPolicy', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifySecurityWafGroupPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2127,78 +1577,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyZoneStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 当客户取回站定的同时会取回此站点下关联的别称域名，此时入参为ZoneId；当客户接入站点发现已被别称域名接入时通过验证之后可取回域名，此时入参为ZoneName。
-
-        # @param request: Request instance for ReclaimAliasDomain.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ReclaimAliasDomainRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ReclaimAliasDomainResponse`
-        def ReclaimAliasDomain(request)
-          body = send_request('ReclaimAliasDomain', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReclaimAliasDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点。
-
-        # @param request: Request instance for ReclaimZone.
-        # @type request: :class:`Tencentcloud::teo::V20220901::ReclaimZoneRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::ReclaimZoneResponse`
-        def ReclaimZone(request)
-          body = send_request('ReclaimZone', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ReclaimZoneResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 更新源站防护IP白名单
-
-        # @param request: Request instance for UpdateOriginProtectionIPWhitelist.
-        # @type request: :class:`Tencentcloud::teo::V20220901::UpdateOriginProtectionIPWhitelistRequest`
-        # @rtype: :class:`Tencentcloud::teo::V20220901::UpdateOriginProtectionIPWhitelistResponse`
-        def UpdateOriginProtectionIPWhitelist(request)
-          body = send_request('UpdateOriginProtectionIPWhitelist', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UpdateOriginProtectionIPWhitelistResponse.new
             model.deserialize(response['Response'])
             model
           else

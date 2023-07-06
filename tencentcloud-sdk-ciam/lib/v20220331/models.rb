@@ -191,16 +191,20 @@ module TencentCloud
 
       # CreateUserGroup返回参数结构体
       class CreateUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param UserGroupId: 用户组ID
+        # @type UserGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UserGroupId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(usergroupid=nil, requestid=nil)
+          @UserGroupId = usergroupid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UserGroupId = params['UserGroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -334,16 +338,20 @@ module TencentCloud
 
       # CreateUserStore返回参数结构体
       class CreateUserStoreResponse < TencentCloud::Common::AbstractModel
+        # @param UserStoreId: 用户目录ID
+        # @type UserStoreId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UserStoreId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(userstoreid=nil, requestid=nil)
+          @UserStoreId = userstoreid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UserStoreId = params['UserStoreId']
           @RequestId = params['RequestId']
         end
       end

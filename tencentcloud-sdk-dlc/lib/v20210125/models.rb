@@ -6368,7 +6368,7 @@ module TencentCloud
       class ModifyWorkGroupRequest < TencentCloud::Common::AbstractModel
         # @param WorkGroupId: 工作组Id
         # @type WorkGroupId: Integer
-        # @param WorkGroupDescription: 工作组描述
+        # @param WorkGroupDescription: 工作组描述，最大字符数限制50
         # @type WorkGroupDescription: String
 
         attr_accessor :WorkGroupId, :WorkGroupDescription

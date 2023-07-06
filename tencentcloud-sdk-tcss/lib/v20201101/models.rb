@@ -3386,8 +3386,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2023, 6
-        deprecate :Component=, :none, 2023, 6
+        deprecate :Component, :none, 2023, 7
+        deprecate :Component=, :none, 2023, 7
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component

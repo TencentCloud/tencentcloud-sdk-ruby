@@ -579,10 +579,12 @@ module TencentCloud
         # @type SyncTag: Boolean
         # @param EnableCosMAZ: 是否开启Cos桶多AZ特性
         # @type EnableCosMAZ: Boolean
+        # @param DeletionProtection: 是否开启实例删除保护
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag, :EnableCosMAZ
+        attr_accessor :RegistryName, :RegistryType, :TagSpecification, :RegistryChargeType, :RegistryChargePrepaid, :SyncTag, :EnableCosMAZ, :DeletionProtection
 
-        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil, enablecosmaz=nil)
+        def initialize(registryname=nil, registrytype=nil, tagspecification=nil, registrychargetype=nil, registrychargeprepaid=nil, synctag=nil, enablecosmaz=nil, deletionprotection=nil)
           @RegistryName = registryname
           @RegistryType = registrytype
           @TagSpecification = tagspecification
@@ -590,6 +592,7 @@ module TencentCloud
           @RegistryChargePrepaid = registrychargeprepaid
           @SyncTag = synctag
           @EnableCosMAZ = enablecosmaz
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -606,6 +609,7 @@ module TencentCloud
           end
           @SyncTag = params['SyncTag']
           @EnableCosMAZ = params['EnableCosMAZ']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -5123,19 +5127,26 @@ module TencentCloud
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例ID
         # @type RegistryId: String
-        # @param RegistryType: 实例的规格
+        # @param RegistryType: 实例的规格,
+        # 基础版：basic
+        # 标准版：standard
+        # 高级版：premium
         # @type RegistryType: String
+        # @param DeletionProtection: 实例删除保护，false为关闭
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :RegistryId, :RegistryType
+        attr_accessor :RegistryId, :RegistryType, :DeletionProtection
 
-        def initialize(registryid=nil, registrytype=nil)
+        def initialize(registryid=nil, registrytype=nil, deletionprotection=nil)
           @RegistryId = registryid
           @RegistryType = registrytype
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @RegistryType = params['RegistryType']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
