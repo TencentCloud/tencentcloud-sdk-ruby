@@ -1335,6 +1335,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量操作任务列表
+
+        # @param request: Request instance for DescribeBatchOperateTask.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeBatchOperateTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeBatchOperateTaskResponse`
+        def DescribeBatchOperateTask(request)
+          body = send_request('DescribeBatchOperateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchOperateTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群命名空间列表
 
         # @param request: Request instance for DescribeClusterNamespaceList.

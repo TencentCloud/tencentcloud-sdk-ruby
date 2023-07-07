@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 即时创建redis实例大key分析任务，限制正在运行的即时分析任务数量默认为5。
+
+        # @param request: Request instance for CreateRedisBigKeyAnalysisTask.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateRedisBigKeyAnalysisTaskRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateRedisBigKeyAnalysisTaskResponse`
+        def CreateRedisBigKeyAnalysisTask(request)
+          body = send_request('CreateRedisBigKeyAnalysisTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRedisBigKeyAnalysisTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
 
         # @param request: Request instance for CreateSchedulerMailProfile.

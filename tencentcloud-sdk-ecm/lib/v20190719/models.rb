@@ -263,19 +263,28 @@ module TencentCloud
         # @type Ipv6Addresses: Array
         # @param Ipv6AddressCount: 自动分配IPv6地址个数，内网IP地址个数总和不能超过配数。与入参Ipv6Addresses合并计算配额。与Ipv6Addresses必填一个。
         # @type Ipv6AddressCount: Integer
-        # @param Ipv6ISP: ipv6运营商如下：
+        # @param ISPType: ipv6运营商如下：
         # CTCC：中国电信
         # CUCC：中国联通
         # CMCC：中国移动
+        # @type ISPType: String
+        # @param SkipCheckIPv6Address: 是否跳过校验一个网卡只能分配一个IPv6 CIDR。该字段通常为true（用于兼容存量子机只有一个地址的情形）。
+        # @type SkipCheckIPv6Address: Boolean
+        # @param SkipAllocateBandwidth: 是否跳过自动开通公网带宽。通常为true(根据运营系统的用户配置来决定是否自动开通，以支持当前子机购买时的行为）。
+        # @type SkipAllocateBandwidth: Boolean
+        # @param Ipv6ISP: 该字段没有使用（已过期）。
         # @type Ipv6ISP: String
 
-        attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :Ipv6ISP
+        attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ISPType, :SkipCheckIPv6Address, :SkipAllocateBandwidth, :Ipv6ISP
 
-        def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, ipv6isp=nil)
+        def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, isptype=nil, skipcheckipv6address=nil, skipallocatebandwidth=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
           @NetworkInterfaceId = networkinterfaceid
           @Ipv6Addresses = ipv6addresses
           @Ipv6AddressCount = ipv6addresscount
+          @ISPType = isptype
+          @SkipCheckIPv6Address = skipcheckipv6address
+          @SkipAllocateBandwidth = skipallocatebandwidth
           @Ipv6ISP = ipv6isp
         end
 
@@ -291,6 +300,9 @@ module TencentCloud
             end
           end
           @Ipv6AddressCount = params['Ipv6AddressCount']
+          @ISPType = params['ISPType']
+          @SkipCheckIPv6Address = params['SkipCheckIPv6Address']
+          @SkipAllocateBandwidth = params['SkipAllocateBandwidth']
           @Ipv6ISP = params['Ipv6ISP']
         end
       end
@@ -4288,7 +4300,8 @@ module TencentCloud
         # region - String - ECM地域
         # zone - String - 可用区。
         # tag-key - String -是否必填：否- 按照标签键进行过滤。
-        # tag:tag-key - String - 是否必填：否 - 按照标签键值对进行过滤。
+        # ipv6-cidr-block- String - 是否必填：否 - 按照IPv6 CIDR进行过滤。
+        # isp-type - String - 是否必填：否 - 按照运营商类型( 如CMCC，CUCC， CTCC)进行过滤。
         # @type Filters: Array
         # @param Offset: 偏移量
         # @type Offset: String
@@ -4564,6 +4577,8 @@ module TencentCloud
         # region - String - vpc的region。
         # tag-key - String -是否必填：否- 按照标签键进行过滤。
         # tag:tag-key - String - 是否必填：否 - 按照标签键值对进行过滤。
+        # ipv6-cidr-block - String - 是否必填：否 - 按照IPv6 CIDR block进行过滤。
+        # isp-type - String - 是否必填：否 - 按照运营商（如CMCC, CUCC, CTCC）进行过滤。
         # @type Filters: Array
         # @param Offset: 偏移量
         # @type Offset: Integer
@@ -5403,6 +5418,28 @@ module TencentCloud
               @ZoneInstanceInfoSet << zoneinstanceinfo_tmp
             end
           end
+        end
+      end
+
+      # 多运营商IPv6 Cidr Block
+      class ISPIPv6CidrBlock < TencentCloud::Common::AbstractModel
+        # @param IPv6CidrBlock: IPv6 CIdr Block。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6CidrBlock: String
+        # @param ISPType: 网络运营商类型 取值范围:'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ISPType: String
+
+        attr_accessor :IPv6CidrBlock, :ISPType
+
+        def initialize(ipv6cidrblock=nil, isptype=nil)
+          @IPv6CidrBlock = ipv6cidrblock
+          @ISPType = isptype
+        end
+
+        def deserialize(params)
+          @IPv6CidrBlock = params['IPv6CidrBlock']
+          @ISPType = params['ISPType']
         end
       end
 
@@ -10355,10 +10392,13 @@ module TencentCloud
         # @param Region: 地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param ISPType: 运营商类型。'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ISPType: String
 
-        attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :IsDefault, :EnableBroadcast, :RouteTableId, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :NetworkAclId, :IsRemoteVpcSnat, :TagSet, :Zone, :ZoneName, :InstanceCount, :VpcCidrBlock, :VpcIpv6CidrBlock, :Region
+        attr_accessor :VpcId, :SubnetId, :SubnetName, :CidrBlock, :IsDefault, :EnableBroadcast, :RouteTableId, :CreatedTime, :AvailableIpAddressCount, :Ipv6CidrBlock, :NetworkAclId, :IsRemoteVpcSnat, :TagSet, :Zone, :ZoneName, :InstanceCount, :VpcCidrBlock, :VpcIpv6CidrBlock, :Region, :ISPType
 
-        def initialize(vpcid=nil, subnetid=nil, subnetname=nil, cidrblock=nil, isdefault=nil, enablebroadcast=nil, routetableid=nil, createdtime=nil, availableipaddresscount=nil, ipv6cidrblock=nil, networkaclid=nil, isremotevpcsnat=nil, tagset=nil, zone=nil, zonename=nil, instancecount=nil, vpccidrblock=nil, vpcipv6cidrblock=nil, region=nil)
+        def initialize(vpcid=nil, subnetid=nil, subnetname=nil, cidrblock=nil, isdefault=nil, enablebroadcast=nil, routetableid=nil, createdtime=nil, availableipaddresscount=nil, ipv6cidrblock=nil, networkaclid=nil, isremotevpcsnat=nil, tagset=nil, zone=nil, zonename=nil, instancecount=nil, vpccidrblock=nil, vpcipv6cidrblock=nil, region=nil, isptype=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @SubnetName = subnetname
@@ -10378,6 +10418,7 @@ module TencentCloud
           @VpcCidrBlock = vpccidrblock
           @VpcIpv6CidrBlock = vpcipv6cidrblock
           @Region = region
+          @ISPType = isptype
         end
 
         def deserialize(params)
@@ -10407,6 +10448,7 @@ module TencentCloud
           @VpcCidrBlock = params['VpcCidrBlock']
           @VpcIpv6CidrBlock = params['VpcIpv6CidrBlock']
           @Region = params['Region']
+          @ISPType = params['ISPType']
         end
       end
 
@@ -10772,7 +10814,7 @@ module TencentCloud
         end
       end
 
-      # 私有网络(VPC)对象。
+      # 私有网络(VPC) 对象。
       class VpcInfo < TencentCloud::Common::AbstractModel
         # @param VpcName: VPC名称。
         # @type VpcName: String
@@ -10813,10 +10855,16 @@ module TencentCloud
         # @type SubnetCount: Integer
         # @param InstanceCount: 包含实例数量
         # @type InstanceCount: Integer
+        # @param Ipv6ISP: ipv6运营商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6ISP: String
+        # @param Ipv6CidrBlockSet: 多运营商IPv6 Cidr Block。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6CidrBlockSet: Array
 
-        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :Region, :Description, :RegionName, :SubnetCount, :InstanceCount
+        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :Region, :Description, :RegionName, :SubnetCount, :InstanceCount, :Ipv6ISP, :Ipv6CidrBlockSet
 
-        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, region=nil, description=nil, regionname=nil, subnetcount=nil, instancecount=nil)
+        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, region=nil, description=nil, regionname=nil, subnetcount=nil, instancecount=nil, ipv6isp=nil, ipv6cidrblockset=nil)
           @VpcName = vpcname
           @VpcId = vpcid
           @CidrBlock = cidrblock
@@ -10835,6 +10883,8 @@ module TencentCloud
           @RegionName = regionname
           @SubnetCount = subnetcount
           @InstanceCount = instancecount
+          @Ipv6ISP = ipv6isp
+          @Ipv6CidrBlockSet = ipv6cidrblockset
         end
 
         def deserialize(params)
@@ -10870,6 +10920,15 @@ module TencentCloud
           @RegionName = params['RegionName']
           @SubnetCount = params['SubnetCount']
           @InstanceCount = params['InstanceCount']
+          @Ipv6ISP = params['Ipv6ISP']
+          unless params['Ipv6CidrBlockSet'].nil?
+            @Ipv6CidrBlockSet = []
+            params['Ipv6CidrBlockSet'].each do |i|
+              ispipv6cidrblock_tmp = ISPIPv6CidrBlock.new
+              ispipv6cidrblock_tmp.deserialize(i)
+              @Ipv6CidrBlockSet << ispipv6cidrblock_tmp
+            end
+          end
         end
       end
 

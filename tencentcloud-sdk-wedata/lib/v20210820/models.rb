@@ -4035,6 +4035,238 @@ module TencentCloud
         end
       end
 
+      # 批量操作任务列表
+      class DescribeBatchOperateTaskDTO < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param WorkflowId: 工作流Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowId: String
+        # @param WorkflowName: 工作流名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowName: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param TaskTypeId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypeId: Integer
+        # @param TaskTypeDesc: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypeDesc: String
+        # @param FolderName: 文件夹名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderName: String
+        # @param FolderId: 文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: String
+        # @param InCharge: 负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InCharge: String
+        # @param Submit: 是否提交
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Submit: Integer
+        # @param DataEngine: 引擎：
+        # presto\SparkJob\SparkSql
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngine: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param CreateTime: 创造时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime
+
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @WorkflowId = workflowid
+          @WorkflowName = workflowname
+          @Status = status
+          @TaskTypeId = tasktypeid
+          @TaskTypeDesc = tasktypedesc
+          @FolderName = foldername
+          @FolderId = folderid
+          @InCharge = incharge
+          @Submit = submit
+          @DataEngine = dataengine
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @WorkflowId = params['WorkflowId']
+          @WorkflowName = params['WorkflowName']
+          @Status = params['Status']
+          @TaskTypeId = params['TaskTypeId']
+          @TaskTypeDesc = params['TaskTypeDesc']
+          @FolderName = params['FolderName']
+          @FolderId = params['FolderId']
+          @InCharge = params['InCharge']
+          @Submit = params['Submit']
+          @DataEngine = params['DataEngine']
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 批量操作任务列表分页
+      class DescribeBatchOperateTaskPage < TencentCloud::Common::AbstractModel
+        # @param PageCount: 总页码数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageCount: Integer
+        # @param Items: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :PageCount, :Items, :TotalCount
+
+        def initialize(pagecount=nil, items=nil, totalcount=nil)
+          @PageCount = pagecount
+          @Items = items
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @PageCount = params['PageCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describebatchoperatetaskdto_tmp = DescribeBatchOperateTaskDTO.new
+              describebatchoperatetaskdto_tmp.deserialize(i)
+              @Items << describebatchoperatetaskdto_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # DescribeBatchOperateTask请求参数结构体
+      class DescribeBatchOperateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param Page: 页码
+        # @type Page: String
+        # @param Size: 页号
+        # @type Size: String
+        # @param StatusList: 状态列表
+        # 草稿：'NS'，'N','P','R'
+        # 运行：''Y'
+        # 停止：'F'
+        # 冻结：'O'
+        # 停止中：'T'
+        # @type StatusList: Array
+        # @param OwnerNameList: 责任人名列表
+        # @type OwnerNameList: Array
+        # @param WorkflowIdList: 工作流列表
+        # @type WorkflowIdList: Array
+        # @param TaskNameFilter: 任务名称搜索
+        # @type TaskNameFilter: String
+        # @param TaskTypeList: 任务类型列表
+        # @type TaskTypeList: Array
+        # @param FordIdList: 文件夹列表
+        # @type FordIdList: Array
+        # @param TaskIdFilter: 任务Id搜索
+        # @type TaskIdFilter: String
+        # @param OwnerNameFilter: 责任人搜索
+        # @type OwnerNameFilter: String
+        # @param SortItem: 排序字段：
+        # UpdateTime
+        # CreateTime
+        # @type SortItem: String
+        # @param SortType: asc:升序
+        # desc:降序
+        # @type SortType: String
+        # @param DataEngineList: 引擎类型列表：三种
+        # SparkJob
+        # SparkSql
+        # presto
+        # @type DataEngineList: Array
+        # @param UserId: 操作人名
+        # @type UserId: String
+        # @param OwnerId: 1
+        # @type OwnerId: String
+        # @param TenantId: 1
+        # @type TenantId: String
+
+        attr_accessor :ProjectId, :Page, :Size, :StatusList, :OwnerNameList, :WorkflowIdList, :TaskNameFilter, :TaskTypeList, :FordIdList, :TaskIdFilter, :OwnerNameFilter, :SortItem, :SortType, :DataEngineList, :UserId, :OwnerId, :TenantId
+
+        def initialize(projectid=nil, page=nil, size=nil, statuslist=nil, ownernamelist=nil, workflowidlist=nil, tasknamefilter=nil, tasktypelist=nil, fordidlist=nil, taskidfilter=nil, ownernamefilter=nil, sortitem=nil, sorttype=nil, dataenginelist=nil, userid=nil, ownerid=nil, tenantid=nil)
+          @ProjectId = projectid
+          @Page = page
+          @Size = size
+          @StatusList = statuslist
+          @OwnerNameList = ownernamelist
+          @WorkflowIdList = workflowidlist
+          @TaskNameFilter = tasknamefilter
+          @TaskTypeList = tasktypelist
+          @FordIdList = fordidlist
+          @TaskIdFilter = taskidfilter
+          @OwnerNameFilter = ownernamefilter
+          @SortItem = sortitem
+          @SortType = sorttype
+          @DataEngineList = dataenginelist
+          @UserId = userid
+          @OwnerId = ownerid
+          @TenantId = tenantid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Page = params['Page']
+          @Size = params['Size']
+          @StatusList = params['StatusList']
+          @OwnerNameList = params['OwnerNameList']
+          @WorkflowIdList = params['WorkflowIdList']
+          @TaskNameFilter = params['TaskNameFilter']
+          @TaskTypeList = params['TaskTypeList']
+          @FordIdList = params['FordIdList']
+          @TaskIdFilter = params['TaskIdFilter']
+          @OwnerNameFilter = params['OwnerNameFilter']
+          @SortItem = params['SortItem']
+          @SortType = params['SortType']
+          @DataEngineList = params['DataEngineList']
+          @UserId = params['UserId']
+          @OwnerId = params['OwnerId']
+          @TenantId = params['TenantId']
+        end
+      end
+
+      # DescribeBatchOperateTask返回参数结构体
+      class DescribeBatchOperateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.DescribeBatchOperateTaskPage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeBatchOperateTaskPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterNamespaceList请求参数结构体
       class DescribeClusterNamespaceListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

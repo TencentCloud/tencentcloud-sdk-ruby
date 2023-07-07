@@ -7079,7 +7079,7 @@ module TencentCloud
         # @type TranscodeDefinition: Integer
         # @param ImageSpriteDefinition: 允许输出的雪碧图模板 ID。
         # @type ImageSpriteDefinition: Integer
-        # @param ResolutionNames: 播放器对不于不同分辨率的子流展示名字，不填或者填空数组则使用默认配置：
+        # @param ResolutionNames: 播放器对于不同分辨率的子流展示名字，不填或者填空数组则使用默认配置：
         # <li>MinEdgeLength：240，Name：流畅；</li>
         # <li>MinEdgeLength：480，Name：标清；</li>
         # <li>MinEdgeLength：720，Name：高清；</li>
@@ -11424,7 +11424,7 @@ module TencentCloud
 
       # DescribeVodDomains请求参数结构体
       class DescribeVodDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param Domains: 域名列表。当该字段不填时，则默认列出所有域名信息。本字段字段限制如下：
+        # @param Domains: 域名列表。当该字段不填时，则默认列出所有域名信息。本字段限制如下：
         # <li>域名个数度最大为 20。</li>
         # @type Domains: Array
         # @param Limit: 分页拉取的最大返回结果数。默认值：20。
@@ -18100,7 +18100,7 @@ module TencentCloud
         # @type TranscodeDefinition: Integer
         # @param ImageSpriteDefinition: 允许输出的雪碧图模板 ID。
         # @type ImageSpriteDefinition: Integer
-        # @param ResolutionNames: 播放器对不于不同分辨率的子流展示名字。
+        # @param ResolutionNames: 播放器对于不同分辨率的子流展示名字。
         # @type ResolutionNames: Array
         # @param Domain: 播放时使用的域名。填 Default 表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的域名。
         # @type Domain: String

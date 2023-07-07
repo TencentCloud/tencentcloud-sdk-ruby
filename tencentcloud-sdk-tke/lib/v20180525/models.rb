@@ -1338,6 +1338,8 @@ module TencentCloud
         # @type PodCount: Integer
         # @param ConfigMapCount: Configmap数量
         # @type ConfigMapCount: Integer
+        # @param RSCount: ReplicaSets数量
+        # @type RSCount: Integer
         # @param CRDCount: CRD数量
         # @type CRDCount: Integer
         # @param Enable: 是否启用
@@ -1346,14 +1348,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherCount: Integer
 
-        attr_accessor :Name, :Alias, :NodeCount, :PodCount, :ConfigMapCount, :CRDCount, :Enable, :OtherCount
+        attr_accessor :Name, :Alias, :NodeCount, :PodCount, :ConfigMapCount, :RSCount, :CRDCount, :Enable, :OtherCount
 
-        def initialize(name=nil, _alias=nil, nodecount=nil, podcount=nil, configmapcount=nil, crdcount=nil, enable=nil, othercount=nil)
+        def initialize(name=nil, _alias=nil, nodecount=nil, podcount=nil, configmapcount=nil, rscount=nil, crdcount=nil, enable=nil, othercount=nil)
           @Name = name
           @Alias = _alias
           @NodeCount = nodecount
           @PodCount = podcount
           @ConfigMapCount = configmapcount
+          @RSCount = rscount
           @CRDCount = crdcount
           @Enable = enable
           @OtherCount = othercount
@@ -1365,6 +1368,7 @@ module TencentCloud
           @NodeCount = params['NodeCount']
           @PodCount = params['PodCount']
           @ConfigMapCount = params['ConfigMapCount']
+          @RSCount = params['RSCount']
           @CRDCount = params['CRDCount']
           @Enable = params['Enable']
           @OtherCount = params['OtherCount']
@@ -8798,6 +8802,8 @@ module TencentCloud
         # @type CRDUsage: :class:`Tencentcloud::Tke.v20180525.models.ResourceUsage`
         # @param PodUsage: Pod使用量
         # @type PodUsage: Integer
+        # @param RSUsage: ReplicaSet使用量
+        # @type RSUsage: Integer
         # @param ConfigMapUsage: ConfigMap使用量
         # @type ConfigMapUsage: Integer
         # @param OtherUsage: 其他资源使用量
@@ -8805,11 +8811,12 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CRDUsage, :PodUsage, :ConfigMapUsage, :OtherUsage, :RequestId
+        attr_accessor :CRDUsage, :PodUsage, :RSUsage, :ConfigMapUsage, :OtherUsage, :RequestId
 
-        def initialize(crdusage=nil, podusage=nil, configmapusage=nil, otherusage=nil, requestid=nil)
+        def initialize(crdusage=nil, podusage=nil, rsusage=nil, configmapusage=nil, otherusage=nil, requestid=nil)
           @CRDUsage = crdusage
           @PodUsage = podusage
+          @RSUsage = rsusage
           @ConfigMapUsage = configmapusage
           @OtherUsage = otherusage
           @RequestId = requestid
@@ -8821,6 +8828,7 @@ module TencentCloud
             @CRDUsage.deserialize(params['CRDUsage'])
           end
           @PodUsage = params['PodUsage']
+          @RSUsage = params['RSUsage']
           @ConfigMapUsage = params['ConfigMapUsage']
           unless params['OtherUsage'].nil?
             @OtherUsage = ResourceUsage.new
@@ -12793,6 +12801,8 @@ module TencentCloud
         # @type NodePoolId: String
         # @param Name: 节点池名称
         # @type Name: String
+        # @param SecurityGroupIds: 安全组ID列表
+        # @type SecurityGroupIds: Array
         # @param Labels: 虚拟节点label
         # @type Labels: Array
         # @param Taints: 虚拟节点taint
@@ -12800,12 +12810,13 @@ module TencentCloud
         # @param DeletionProtection: 删除保护开关
         # @type DeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :Labels, :Taints, :DeletionProtection
+        attr_accessor :ClusterId, :NodePoolId, :Name, :SecurityGroupIds, :Labels, :Taints, :DeletionProtection
 
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, labels=nil, taints=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, securitygroupids=nil, labels=nil, taints=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
+          @SecurityGroupIds = securitygroupids
           @Labels = labels
           @Taints = taints
           @DeletionProtection = deletionprotection
@@ -12815,6 +12826,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @NodePoolId = params['NodePoolId']
           @Name = params['Name']
+          @SecurityGroupIds = params['SecurityGroupIds']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|

@@ -1074,6 +1074,85 @@ module TencentCloud
         end
       end
 
+      # CreateServiceAccount请求参数结构体
+      class CreateServiceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Name: 服务级账号名
+        # @type Name: String
+        # @param Permissions: 策略列表
+        # @type Permissions: Array
+        # @param Description: 服务级账号描述
+        # @type Description: String
+        # @param Duration: 有效期(单位：天)，从当前时间开始计算，优先级高于ExpiresAt
+        # @type Duration: Integer
+        # @param ExpiresAt: 过期时间（时间戳，单位:毫秒）
+        # @type ExpiresAt: Integer
+        # @param Disable: 是否禁用服务级账号
+        # @type Disable: Boolean
+
+        attr_accessor :RegistryId, :Name, :Permissions, :Description, :Duration, :ExpiresAt, :Disable
+
+        def initialize(registryid=nil, name=nil, permissions=nil, description=nil, duration=nil, expiresat=nil, disable=nil)
+          @RegistryId = registryid
+          @Name = name
+          @Permissions = permissions
+          @Description = description
+          @Duration = duration
+          @ExpiresAt = expiresat
+          @Disable = disable
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Permissions << permission_tmp
+            end
+          end
+          @Description = params['Description']
+          @Duration = params['Duration']
+          @ExpiresAt = params['ExpiresAt']
+          @Disable = params['Disable']
+        end
+      end
+
+      # CreateServiceAccount返回参数结构体
+      class CreateServiceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 服务级账号名（会自动加上前缀tcr$）
+        # @type Name: String
+        # @param Password: 服务级账号密码，仅展示一次，请注意留存
+        # @type Password: String
+        # @param ExpiresAt: 服务级账号失效时间（时间戳）
+        # @type ExpiresAt: Integer
+        # @param CreateTime: 服务级账号创建时间
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :Password, :ExpiresAt, :CreateTime, :RequestId
+
+        def initialize(name=nil, password=nil, expiresat=nil, createtime=nil, requestid=nil)
+          @Name = name
+          @Password = password
+          @ExpiresAt = expiresat
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Password = params['Password']
+          @ExpiresAt = params['ExpiresAt']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSignaturePolicy请求参数结构体
       class CreateSignaturePolicyRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例 Id
@@ -2156,6 +2235,42 @@ module TencentCloud
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteServiceAccount请求参数结构体
+      class DeleteServiceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Name: 服务级账号名
+        # @type Name: String
+
+        attr_accessor :RegistryId, :Name
+
+        def initialize(registryid=nil, name=nil)
+          @RegistryId = registryid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteServiceAccount返回参数结构体
+      class DeleteServiceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4034,6 +4149,81 @@ module TencentCloud
         end
       end
 
+      # DescribeServiceAccounts请求参数结构体
+      class DescribeServiceAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param All: 列出所有服务级账号
+        # @type All: Boolean
+        # @param EmbedPermission: 是否填充策略
+        # @type EmbedPermission: Boolean
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20，最大为100（超出最大值，调整到最大值）
+        # @type Limit: Integer
+
+        attr_accessor :RegistryId, :All, :EmbedPermission, :Filters, :Offset, :Limit
+
+        def initialize(registryid=nil, all=nil, embedpermission=nil, filters=nil, offset=nil, limit=nil)
+          @RegistryId = registryid
+          @All = all
+          @EmbedPermission = embedpermission
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @All = params['All']
+          @EmbedPermission = params['EmbedPermission']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeServiceAccounts返回参数结构体
+      class DescribeServiceAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceAccounts: 服务级账号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceAccounts: Array
+        # @param TotalCount: 自定义账户数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceAccounts, :TotalCount, :RequestId
+
+        def initialize(serviceaccounts=nil, totalcount=nil, requestid=nil)
+          @ServiceAccounts = serviceaccounts
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceAccounts'].nil?
+            @ServiceAccounts = []
+            params['ServiceAccounts'].each do |i|
+              serviceaccount_tmp = ServiceAccount.new
+              serviceaccount_tmp.deserialize(i)
+              @ServiceAccounts << serviceaccount_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTagRetentionExecution请求参数结构体
       class DescribeTagRetentionExecutionRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 主实例iD
@@ -5445,6 +5635,69 @@ module TencentCloud
         end
       end
 
+      # ModifyServiceAccount请求参数结构体
+      class ModifyServiceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Name: 服务级账号名
+        # @type Name: String
+        # @param Description: 服务级账号描述
+        # @type Description: String
+        # @param Duration: 有效期(单位：天)，从当前时间开始计算，优先级高于ExpiresAt
+        # @type Duration: Integer
+        # @param ExpiresAt: 过期时间（时间戳，单位:毫秒）
+        # @type ExpiresAt: Integer
+        # @param Disable: 是否禁用服务级账号
+        # @type Disable: Boolean
+        # @param Permissions: 策略列表
+        # @type Permissions: Array
+
+        attr_accessor :RegistryId, :Name, :Description, :Duration, :ExpiresAt, :Disable, :Permissions
+
+        def initialize(registryid=nil, name=nil, description=nil, duration=nil, expiresat=nil, disable=nil, permissions=nil)
+          @RegistryId = registryid
+          @Name = name
+          @Description = description
+          @Duration = duration
+          @ExpiresAt = expiresat
+          @Disable = disable
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Duration = params['Duration']
+          @ExpiresAt = params['ExpiresAt']
+          @Disable = params['Disable']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Permissions << permission_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyServiceAccount返回参数结构体
+      class ModifyServiceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTagRetentionRule请求参数结构体
       class ModifyTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 主实例iD
@@ -6483,6 +6736,60 @@ module TencentCloud
           @Description = params['Description']
           @CidrBlock = params['CidrBlock']
           @PolicyVersion = params['PolicyVersion']
+        end
+      end
+
+      # 服务级账号
+      class ServiceAccount < TencentCloud::Common::AbstractModel
+        # @param Name: 服务级账号名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Disable: 是否禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disable: Boolean
+        # @param ExpiresAt: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiresAt: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Permissions: 策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :Name, :Description, :Disable, :ExpiresAt, :CreateTime, :UpdateTime, :Permissions
+
+        def initialize(name=nil, description=nil, disable=nil, expiresat=nil, createtime=nil, updatetime=nil, permissions=nil)
+          @Name = name
+          @Description = description
+          @Disable = disable
+          @ExpiresAt = expiresat
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Disable = params['Disable']
+          @ExpiresAt = params['ExpiresAt']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Permissions << permission_tmp
+            end
+          end
         end
       end
 

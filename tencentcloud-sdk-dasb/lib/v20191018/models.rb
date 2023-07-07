@@ -2228,6 +2228,8 @@ module TencentCloud
         # @param Phone: 精确查询，IdSet、UserName为空时才生效。
         # 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         # @type Phone: String
+        # @param Email: 邮箱，精确查询
+        # @type Email: String
         # @param AuthorizedDeviceIdSet: 查询具有指定资产ID访问权限的用户
         # @type AuthorizedDeviceIdSet: Array
         # @param AuthTypeSet: 认证方式，0 - 本地, 1 - LDAP, 2 - OAuth, 不传为全部
@@ -2235,15 +2237,16 @@ module TencentCloud
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户
         # @type DepartmentId: String
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
           @Limit = limit
           @UserName = username
           @Phone = phone
+          @Email = email
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @AuthTypeSet = authtypeset
           @DepartmentId = departmentid
@@ -2256,6 +2259,7 @@ module TencentCloud
           @Limit = params['Limit']
           @UserName = params['UserName']
           @Phone = params['Phone']
+          @Email = params['Email']
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @AuthTypeSet = params['AuthTypeSet']
           @DepartmentId = params['DepartmentId']
@@ -4087,10 +4091,10 @@ module TencentCloud
         # @type UserName: String
         # @param RealName: 用户姓名， 最大20个字符，不能包含空白字符
         # @type RealName: String
-        # @param Phone: 手机号码， 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
-        # @type Phone: String
         # @param Id: 用户ID
         # @type Id: Integer
+        # @param Phone: 手机号码， 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
+        # @type Phone: String
         # @param Email: 电子邮件
         # @type Email: String
         # @param ValidateFrom: 用户生效时间，如:"2021-09-22T00:00:00+00:00"
@@ -4112,13 +4116,13 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
 
-        attr_accessor :UserName, :RealName, :Phone, :Id, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId
 
-        def initialize(username=nil, realname=nil, phone=nil, id=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil)
           @UserName = username
           @RealName = realname
-          @Phone = phone
           @Id = id
+          @Phone = phone
           @Email = email
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
@@ -4132,8 +4136,8 @@ module TencentCloud
         def deserialize(params)
           @UserName = params['UserName']
           @RealName = params['RealName']
-          @Phone = params['Phone']
           @Id = params['Id']
+          @Phone = params['Phone']
           @Email = params['Email']
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']

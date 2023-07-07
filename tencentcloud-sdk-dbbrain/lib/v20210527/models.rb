@@ -546,6 +546,55 @@ module TencentCloud
         end
       end
 
+      # CreateRedisBigKeyAnalysisTask请求参数结构体
+      class CreateRedisBigKeyAnalysisTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param ShardIds: 分片节点序号列表。当列表为空时，选择所有分片节点。
+        # @type ShardIds: Array
+        # @param KeyDelimiterList: Top Key前缀的分隔符列表。
+        # 目前仅支持以下分割符：[",", ";", ":", "_", "-", "+", "@", "=", "|", "#", "."]，当列表为空时，默认选择所有分隔符。
+        # @type KeyDelimiterList: Array
+
+        attr_accessor :InstanceId, :Product, :ShardIds, :KeyDelimiterList
+
+        def initialize(instanceid=nil, product=nil, shardids=nil, keydelimiterlist=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @ShardIds = shardids
+          @KeyDelimiterList = keydelimiterlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @ShardIds = params['ShardIds']
+          @KeyDelimiterList = params['KeyDelimiterList']
+        end
+      end
+
+      # CreateRedisBigKeyAnalysisTask返回参数结构体
+      class CreateRedisBigKeyAnalysisTaskResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务ID。
+        # @type AsyncRequestId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSchedulerMailProfile请求参数结构体
       class CreateSchedulerMailProfileRequest < TencentCloud::Common::AbstractModel
         # @param WeekConfiguration: 取值范围1-7，分别代表周一至周日。

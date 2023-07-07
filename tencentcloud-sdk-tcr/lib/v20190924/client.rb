@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义账户
+
+        # @param request: Request instance for CreateServiceAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::CreateServiceAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::CreateServiceAccountResponse`
+        def CreateServiceAccount(request)
+          body = send_request('CreateServiceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateServiceAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为一个镜像版本创建签名
 
         # @param request: Request instance for CreateSignature.
@@ -1073,6 +1097,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除服务级账号
+
+        # @param request: Request instance for DeleteServiceAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteServiceAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteServiceAccountResponse`
+        def DeleteServiceAccount(request)
+          body = send_request('DeleteServiceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteServiceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1951,6 +1999,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询服务级账号
+
+        # @param request: Request instance for DescribeServiceAccounts.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeServiceAccountsRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeServiceAccountsResponse`
+        def DescribeServiceAccounts(request)
+          body = send_request('DescribeServiceAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询版本保留执行记录
 
         # @param request: Request instance for DescribeTagRetentionExecution.
@@ -2465,6 +2537,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySecurityPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新服务级账号
+
+        # @param request: Request instance for ModifyServiceAccount.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyServiceAccountRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyServiceAccountResponse`
+        def ModifyServiceAccount(request)
+          body = send_request('ModifyServiceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
