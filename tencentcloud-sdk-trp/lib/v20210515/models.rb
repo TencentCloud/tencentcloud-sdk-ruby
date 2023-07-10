@@ -2231,21 +2231,27 @@ module TencentCloud
         # @param CorpId: 企业ID, 默认为当前企业
         # 如果有渠道权限，可以传 0 会查渠道下所有的企业
         # @type CorpId: Integer
-        # @param PageSize: 分页数量，默认为 100，最大为 1000
+        # @param PageSize: 分页数量，默认为 20，最大为 1000
         # @type PageSize: Integer
         # @param PageNumber: 当前分页，默认为 1
         # @type PageNumber: Integer
         # @param AfterLogId: 从哪个日志后查询
         # 即: LogId > $AfterLogId
         # @type AfterLogId: Integer
+        # @param StartTime: 开始时间 >= StartTime
+        # @type StartTime: String
+        # @param EndTime: 结束时间 < EndTime
+        # @type EndTime: String
 
-        attr_accessor :CorpId, :PageSize, :PageNumber, :AfterLogId
+        attr_accessor :CorpId, :PageSize, :PageNumber, :AfterLogId, :StartTime, :EndTime
 
-        def initialize(corpid=nil, pagesize=nil, pagenumber=nil, afterlogid=nil)
+        def initialize(corpid=nil, pagesize=nil, pagenumber=nil, afterlogid=nil, starttime=nil, endtime=nil)
           @CorpId = corpid
           @PageSize = pagesize
           @PageNumber = pagenumber
           @AfterLogId = afterlogid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -2253,6 +2259,8 @@ module TencentCloud
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
           @AfterLogId = params['AfterLogId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

@@ -913,6 +913,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除RabbitMQ专享版实例
+
+        # @param request: Request instance for DeleteRabbitMQVipInstance.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQVipInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRabbitMQVipInstanceResponse`
+        def DeleteRabbitMQVipInstance(request)
+          body = send_request('DeleteRabbitMQVipInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRabbitMQVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除RabbitMQ的vhost
 
         # @param request: Request instance for DeleteRabbitMQVirtualHost.

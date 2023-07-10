@@ -86,6 +86,170 @@ module TencentCloud
         end
       end
 
+      # 灰度规则列表
+      class CloudAPIGatewayCanaryRuleList < TencentCloud::Common::AbstractModel
+        # @param CanaryRuleList: 灰度规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanaryRuleList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :CanaryRuleList, :TotalCount
+
+        def initialize(canaryrulelist=nil, totalcount=nil)
+          @CanaryRuleList = canaryrulelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['CanaryRuleList'].nil?
+            @CanaryRuleList = []
+            params['CanaryRuleList'].each do |i|
+              cloudnativeapigatewaycanaryrule_tmp = CloudNativeAPIGatewayCanaryRule.new
+              cloudnativeapigatewaycanaryrule_tmp.deserialize(i)
+              @CanaryRuleList << cloudnativeapigatewaycanaryrule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 含百分比流量配置的服务
+      class CloudNativeAPIGatewayBalancedService < TencentCloud::Common::AbstractModel
+        # @param ServiceID: 服务 ID，作为入参时，必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceID: String
+        # @param ServiceName: 服务名称，作为入参时，无意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param UpstreamName: Upstream 名称，作为入参时，无意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamName: String
+        # @param Percent: 百分比，10 即 10%，范围0-100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Float
+
+        attr_accessor :ServiceID, :ServiceName, :UpstreamName, :Percent
+
+        def initialize(serviceid=nil, servicename=nil, upstreamname=nil, percent=nil)
+          @ServiceID = serviceid
+          @ServiceName = servicename
+          @UpstreamName = upstreamname
+          @Percent = percent
+        end
+
+        def deserialize(params)
+          @ServiceID = params['ServiceID']
+          @ServiceName = params['ServiceName']
+          @UpstreamName = params['UpstreamName']
+          @Percent = params['Percent']
+        end
+      end
+
+      # 灰度规则
+      class CloudNativeAPIGatewayCanaryRule < TencentCloud::Common::AbstractModel
+        # @param Priority: 优先级，值范围为 0 到 100；值越大，优先级越高；不同规则间优先级不可重复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Enabled: 是否启用规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param ConditionList: 参数匹配条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionList: Array
+        # @param BalancedServiceList: 服务的流量百分比配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BalancedServiceList: Array
+        # @param ServiceId: 归属服务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param ServiceName: 归属服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+
+        attr_accessor :Priority, :Enabled, :ConditionList, :BalancedServiceList, :ServiceId, :ServiceName
+
+        def initialize(priority=nil, enabled=nil, conditionlist=nil, balancedservicelist=nil, serviceid=nil, servicename=nil)
+          @Priority = priority
+          @Enabled = enabled
+          @ConditionList = conditionlist
+          @BalancedServiceList = balancedservicelist
+          @ServiceId = serviceid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @Priority = params['Priority']
+          @Enabled = params['Enabled']
+          unless params['ConditionList'].nil?
+            @ConditionList = []
+            params['ConditionList'].each do |i|
+              cloudnativeapigatewaycanaryrulecondition_tmp = CloudNativeAPIGatewayCanaryRuleCondition.new
+              cloudnativeapigatewaycanaryrulecondition_tmp.deserialize(i)
+              @ConditionList << cloudnativeapigatewaycanaryrulecondition_tmp
+            end
+          end
+          unless params['BalancedServiceList'].nil?
+            @BalancedServiceList = []
+            params['BalancedServiceList'].each do |i|
+              cloudnativeapigatewaybalancedservice_tmp = CloudNativeAPIGatewayBalancedService.new
+              cloudnativeapigatewaybalancedservice_tmp.deserialize(i)
+              @BalancedServiceList << cloudnativeapigatewaybalancedservice_tmp
+            end
+          end
+          @ServiceId = params['ServiceId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # 灰度规则中的条件配置
+      class CloudNativeAPIGatewayCanaryRuleCondition < TencentCloud::Common::AbstractModel
+        # @param Type: 条件类型，支持 path, method, query, header, cookie, body 和 system。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Key: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Operator: 操作符，支持 "le", "eq", "lt", "ne", "ge", "gt", "regex", "exists", "in", "not in",  "prefix" ,"exact", "regex" 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param Value: 目标参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Delimiter: 分隔符，当 Operator 为 in 或者 not in 时生效。支持值为英文逗号，英文分号，空格，换行符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Delimiter: String
+        # @param GlobalConfigId: 全局配置 Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalConfigId: String
+        # @param GlobalConfigName: 全局配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalConfigName: String
+
+        attr_accessor :Type, :Key, :Operator, :Value, :Delimiter, :GlobalConfigId, :GlobalConfigName
+
+        def initialize(type=nil, key=nil, operator=nil, value=nil, delimiter=nil, globalconfigid=nil, globalconfigname=nil)
+          @Type = type
+          @Key = key
+          @Operator = operator
+          @Value = value
+          @Delimiter = delimiter
+          @GlobalConfigId = globalconfigid
+          @GlobalConfigName = globalconfigname
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Value = params['Value']
+          @Delimiter = params['Delimiter']
+          @GlobalConfigId = params['GlobalConfigId']
+          @GlobalConfigName = params['GlobalConfigName']
+        end
+      end
+
       # 云原生API网关节点信息。
       class CloudNativeAPIGatewayNode < TencentCloud::Common::AbstractModel
         # @param NodeId: 云原生网关节点 id
@@ -128,6 +292,408 @@ module TencentCloud
           @GroupId = params['GroupId']
           @GroupName = params['GroupName']
           @Status = params['Status']
+        end
+      end
+
+      # 云原生网关Tse 限流插件配置
+      class CloudNativeAPIGatewayRateLimitDetail < TencentCloud::Common::AbstractModel
+        # @param Enabled: 插件启用状态
+        # @type Enabled: Boolean
+        # @param QpsThresholds: qps阈值
+        # @type QpsThresholds: Array
+        # @param LimitBy: 限流依据
+        # ip service consumer credential path header
+        # @type LimitBy: String
+        # @param ResponseType: 响应策略
+        # url请求转发
+        # text 响应配置
+        # default 直接返回
+        # @type ResponseType: String
+        # @param HideClientHeaders: 是否隐藏限流客户端响应头
+        # @type HideClientHeaders: Boolean
+        # @param IsDelay: 是否开启请求排队
+        # @type IsDelay: Boolean
+        # @param Path: 需要进行流量控制的请求路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Header: 需要进行流量控制的请求头Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Header: String
+        # @param ExternalRedis: 外部redis配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalRedis: :class:`Tencentcloud::Tse.v20201207.models.ExternalRedis`
+        # @param Policy: 计数器策略
+        # local 单机
+        # redis  默认redis
+        # external_redis 外部redis
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: String
+        # @param RateLimitResponse: 响应配置，响应策略为text
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitResponse: :class:`Tencentcloud::Tse.v20201207.models.RateLimitResponse`
+        # @param RateLimitResponseUrl: 请求转发地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitResponseUrl: String
+        # @param LineUpTime: 排队时间
+        # @type LineUpTime: Integer
+
+        attr_accessor :Enabled, :QpsThresholds, :LimitBy, :ResponseType, :HideClientHeaders, :IsDelay, :Path, :Header, :ExternalRedis, :Policy, :RateLimitResponse, :RateLimitResponseUrl, :LineUpTime
+
+        def initialize(enabled=nil, qpsthresholds=nil, limitby=nil, responsetype=nil, hideclientheaders=nil, isdelay=nil, path=nil, header=nil, externalredis=nil, policy=nil, ratelimitresponse=nil, ratelimitresponseurl=nil, lineuptime=nil)
+          @Enabled = enabled
+          @QpsThresholds = qpsthresholds
+          @LimitBy = limitby
+          @ResponseType = responsetype
+          @HideClientHeaders = hideclientheaders
+          @IsDelay = isdelay
+          @Path = path
+          @Header = header
+          @ExternalRedis = externalredis
+          @Policy = policy
+          @RateLimitResponse = ratelimitresponse
+          @RateLimitResponseUrl = ratelimitresponseurl
+          @LineUpTime = lineuptime
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['QpsThresholds'].nil?
+            @QpsThresholds = []
+            params['QpsThresholds'].each do |i|
+              qpsthreshold_tmp = QpsThreshold.new
+              qpsthreshold_tmp.deserialize(i)
+              @QpsThresholds << qpsthreshold_tmp
+            end
+          end
+          @LimitBy = params['LimitBy']
+          @ResponseType = params['ResponseType']
+          @HideClientHeaders = params['HideClientHeaders']
+          @IsDelay = params['IsDelay']
+          @Path = params['Path']
+          @Header = params['Header']
+          unless params['ExternalRedis'].nil?
+            @ExternalRedis = ExternalRedis.new
+            @ExternalRedis.deserialize(params['ExternalRedis'])
+          end
+          @Policy = params['Policy']
+          unless params['RateLimitResponse'].nil?
+            @RateLimitResponse = RateLimitResponse.new
+            @RateLimitResponse.deserialize(params['RateLimitResponse'])
+          end
+          @RateLimitResponseUrl = params['RateLimitResponseUrl']
+          @LineUpTime = params['LineUpTime']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayCanaryRule请求参数结构体
+      class CreateCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID
+        # @type GatewayId: String
+        # @param ServiceId: 服务 ID
+        # @type ServiceId: String
+        # @param CanaryRule: 灰度规则配置
+        # @type CanaryRule: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayCanaryRule`
+
+        attr_accessor :GatewayId, :ServiceId, :CanaryRule
+
+        def initialize(gatewayid=nil, serviceid=nil, canaryrule=nil)
+          @GatewayId = gatewayid
+          @ServiceId = serviceid
+          @CanaryRule = canaryrule
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceId = params['ServiceId']
+          unless params['CanaryRule'].nil?
+            @CanaryRule = CloudNativeAPIGatewayCanaryRule.new
+            @CanaryRule.deserialize(params['CanaryRule'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayCanaryRule返回参数结构体
+      class CreateCloudNativeAPIGatewayCanaryRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayRouteRateLimit请求参数结构体
+      class CreateCloudNativeAPIGatewayRouteRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Id: 路由id，或路由名称。
+        # 不支持“未命名”
+        # @type Id: String
+        # @param LimitDetail: 限流配置
+        # @type LimitDetail: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+
+        attr_accessor :GatewayId, :Id, :LimitDetail
+
+        def initialize(gatewayid=nil, id=nil, limitdetail=nil)
+          @GatewayId = gatewayid
+          @Id = id
+          @LimitDetail = limitdetail
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+          unless params['LimitDetail'].nil?
+            @LimitDetail = CloudNativeAPIGatewayRateLimitDetail.new
+            @LimitDetail.deserialize(params['LimitDetail'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayRouteRateLimit返回参数结构体
+      class CreateCloudNativeAPIGatewayRouteRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayRoute请求参数结构体
+      class CreateCloudNativeAPIGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param ServiceID: 所属服务的ID
+        # @type ServiceID: String
+        # @param RouteName: 路由的名字，实例级别唯一，可以不提供
+        # @type RouteName: String
+        # @param Methods: 路由的方法，其中方法可选值：
+        # - GET
+        # - POST
+        # - DELETE
+        # - PUT
+        # - OPTIONS
+        # - PATCH
+        # - HEAD
+        # - ANY
+        # - TRACE
+        # - COPY
+        # - MOVE
+        # - PROPFIND
+        # - PROPPATCH
+        # - MKCOL
+        # - LOCK
+        # - UNLOCK
+        # @type Methods: Array
+        # @param Hosts: 路由的域名
+        # @type Hosts: Array
+        # @param Paths: 路由的路径
+        # @type Paths: Array
+        # @param Protocols: 路由的协议，可选
+        # - https
+        # - http
+        # @type Protocols: Array
+        # @param PreserveHost: 转发到后端时是否保留Host
+        # @type PreserveHost: Boolean
+        # @param HttpsRedirectStatusCode: https重定向状态码
+        # @type HttpsRedirectStatusCode: Integer
+        # @param StripPath: 转发到后端时是否StripPath
+        # @type StripPath: Boolean
+        # @param ForceHttps: 是否开启强制HTTPS
+        # @type ForceHttps: Boolean
+        # @param DestinationPorts: 四层匹配的目的端口
+        # @type DestinationPorts: Array
+        # @param Headers: 路由的Headers
+        # @type Headers: Array
+
+        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
+        extend Gem::Deprecate
+        deprecate :ForceHttps, :none, 2023, 7
+        deprecate :ForceHttps=, :none, 2023, 7
+
+        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
+          @GatewayId = gatewayid
+          @ServiceID = serviceid
+          @RouteName = routename
+          @Methods = methods
+          @Hosts = hosts
+          @Paths = paths
+          @Protocols = protocols
+          @PreserveHost = preservehost
+          @HttpsRedirectStatusCode = httpsredirectstatuscode
+          @StripPath = strippath
+          @ForceHttps = forcehttps
+          @DestinationPorts = destinationports
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceID = params['ServiceID']
+          @RouteName = params['RouteName']
+          @Methods = params['Methods']
+          @Hosts = params['Hosts']
+          @Paths = params['Paths']
+          @Protocols = params['Protocols']
+          @PreserveHost = params['PreserveHost']
+          @HttpsRedirectStatusCode = params['HttpsRedirectStatusCode']
+          @StripPath = params['StripPath']
+          @ForceHttps = params['ForceHttps']
+          @DestinationPorts = params['DestinationPorts']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @Headers << kvmapping_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayRoute返回参数结构体
+      class CreateCloudNativeAPIGatewayRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayServiceRateLimit请求参数结构体
+      class CreateCloudNativeAPIGatewayServiceRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名称，或服务ID
+        # @type Name: String
+        # @param LimitDetail: 限流配置
+        # @type LimitDetail: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+
+        attr_accessor :GatewayId, :Name, :LimitDetail
+
+        def initialize(gatewayid=nil, name=nil, limitdetail=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @LimitDetail = limitdetail
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['LimitDetail'].nil?
+            @LimitDetail = CloudNativeAPIGatewayRateLimitDetail.new
+            @LimitDetail.deserialize(params['LimitDetail'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayServiceRateLimit返回参数结构体
+      class CreateCloudNativeAPIGatewayServiceRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayService请求参数结构体
+      class CreateCloudNativeAPIGatewayServiceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名称
+        # @type Name: String
+        # @param Protocol: 请求协议：
+        # - https
+        # - http
+        # - tcp
+        # - udp
+        # @type Protocol: String
+        # @param Path: 请求路径
+        # @type Path: String
+        # @param Timeout: 超时时间，单位ms
+        # @type Timeout: Integer
+        # @param Retries: 重试次数
+        # @type Retries: Integer
+        # @param UpstreamType: 服务类型:
+        # - Kubernetes
+        # - Registry
+        # - IPList
+        # - HostIP
+        # - Scf
+        # @type UpstreamType: String
+        # @param UpstreamInfo: 服务配置信息
+        # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
+
+        attr_accessor :GatewayId, :Name, :Protocol, :Path, :Timeout, :Retries, :UpstreamType, :UpstreamInfo
+
+        def initialize(gatewayid=nil, name=nil, protocol=nil, path=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @Protocol = protocol
+          @Path = path
+          @Timeout = timeout
+          @Retries = retries
+          @UpstreamType = upstreamtype
+          @UpstreamInfo = upstreaminfo
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          @Protocol = params['Protocol']
+          @Path = params['Path']
+          @Timeout = params['Timeout']
+          @Retries = params['Retries']
+          @UpstreamType = params['UpstreamType']
+          unless params['UpstreamInfo'].nil?
+            @UpstreamInfo = KongUpstreamInfo.new
+            @UpstreamInfo.deserialize(params['UpstreamInfo'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayService返回参数结构体
+      class CreateCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -307,6 +873,191 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudNativeAPIGatewayCanaryRule请求参数结构体
+      class DeleteCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID
+        # @type GatewayId: String
+        # @param ServiceId: 服务 ID
+        # @type ServiceId: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+
+        attr_accessor :GatewayId, :ServiceId, :Priority
+
+        def initialize(gatewayid=nil, serviceid=nil, priority=nil)
+          @GatewayId = gatewayid
+          @ServiceId = serviceid
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceId = params['ServiceId']
+          @Priority = params['Priority']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayCanaryRule返回参数结构体
+      class DeleteCloudNativeAPIGatewayCanaryRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayRouteRateLimit请求参数结构体
+      class DeleteCloudNativeAPIGatewayRouteRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关Id
+        # @type GatewayId: String
+        # @param Id: 路由Id，或路由名称。
+        # 不支持“未命名”
+        # @type Id: String
+
+        attr_accessor :GatewayId, :Id
+
+        def initialize(gatewayid=nil, id=nil)
+          @GatewayId = gatewayid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayRouteRateLimit返回参数结构体
+      class DeleteCloudNativeAPIGatewayRouteRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayRoute请求参数结构体
+      class DeleteCloudNativeAPIGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 路由的ID或名字，不支持名称“未命名”
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayRoute返回参数结构体
+      class DeleteCloudNativeAPIGatewayRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayServiceRateLimit请求参数结构体
+      class DeleteCloudNativeAPIGatewayServiceRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关Id
+        # @type GatewayId: String
+        # @param Name: 服务名称，或服务ID
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayServiceRateLimit返回参数结构体
+      class DeleteCloudNativeAPIGatewayServiceRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayService请求参数结构体
+      class DeleteCloudNativeAPIGatewayServiceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名字，服务ID
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayService返回参数结构体
+      class DeleteCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEngine请求参数结构体
       class DeleteEngineRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 引擎实例 ID
@@ -335,6 +1086,57 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCanaryRules请求参数结构体
+      class DescribeCloudNativeAPIGatewayCanaryRulesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param ServiceId: 服务 ID
+        # @type ServiceId: String
+        # @param Limit: 列表数量
+        # @type Limit: Integer
+        # @param Offset: 列表offset
+        # @type Offset: Integer
+
+        attr_accessor :GatewayId, :ServiceId, :Limit, :Offset
+
+        def initialize(gatewayid=nil, serviceid=nil, limit=nil, offset=nil)
+          @GatewayId = gatewayid
+          @ServiceId = serviceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceId = params['ServiceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCanaryRules返回参数结构体
+      class DescribeCloudNativeAPIGatewayCanaryRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 灰度规则列表
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CloudAPIGatewayCanaryRuleList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CloudAPIGatewayCanaryRuleList.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -414,6 +1216,219 @@ module TencentCloud
               @NodeList << cloudnativeapigatewaynode_tmp
             end
           end
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayRouteRateLimit请求参数结构体
+      class DescribeCloudNativeAPIGatewayRouteRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关Id
+        # @type GatewayId: String
+        # @param Id: 路由Id，或路由名称。
+        # 不支持“未命名”
+        # @type Id: String
+
+        attr_accessor :GatewayId, :Id
+
+        def initialize(gatewayid=nil, id=nil)
+          @GatewayId = gatewayid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayRouteRateLimit返回参数结构体
+      class DescribeCloudNativeAPIGatewayRouteRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生网关限流插件(路由)
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CloudNativeAPIGatewayRateLimitDetail.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayRoutes请求参数结构体
+      class DescribeCloudNativeAPIGatewayRoutesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Limit: 翻页单页查询限制数量[0,1000], 默认值0
+        # @type Limit: Integer
+        # @param Offset: 翻页单页偏移量，默认值0
+        # @type Offset: Integer
+        # @param ServiceName: 服务的名字，精确匹配
+        # @type ServiceName: String
+        # @param RouteName: 路由的名字，精确匹配
+        # @type RouteName: String
+        # @param Filters: 过滤条件，多个过滤条件之间是与的关系，支持 name, path, host, method, service, protocol
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @ServiceName = servicename
+          @RouteName = routename
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ServiceName = params['ServiceName']
+          @RouteName = params['RouteName']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              listfilter_tmp = ListFilter.new
+              listfilter_tmp.deserialize(i)
+              @Filters << listfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayRoutes返回参数结构体
+      class DescribeCloudNativeAPIGatewayRoutesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServiceRouteList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongServiceRouteList.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayServiceRateLimit请求参数结构体
+      class DescribeCloudNativeAPIGatewayServiceRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关Id
+        # @type GatewayId: String
+        # @param Name: 服务名称，或服务ID。
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayServiceRateLimit返回参数结构体
+      class DescribeCloudNativeAPIGatewayServiceRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生网关限流插件(服务)
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CloudNativeAPIGatewayRateLimitDetail.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayServices请求参数结构体
+      class DescribeCloudNativeAPIGatewayServicesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Limit: 列表数量
+        # @type Limit: Integer
+        # @param Offset: 列表 offset
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，多个过滤条件之间是与的关系，支持 name,upstreamType
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              listfilter_tmp = ListFilter.new
+              listfilter_tmp.deserialize(i)
+              @Filters << listfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayServices返回参数结构体
+      class DescribeCloudNativeAPIGatewayServicesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServices`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongServices.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -567,6 +1582,49 @@ module TencentCloud
               nacosserverinterface_tmp.deserialize(i)
               @Content << nacosserverinterface_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOneCloudNativeAPIGatewayService请求参数结构体
+      class DescribeOneCloudNativeAPIGatewayServiceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名字，或服务ID
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeOneCloudNativeAPIGatewayService返回参数结构体
+      class DescribeOneCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongServiceDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongServiceDetail.new
+            @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
         end
@@ -1026,6 +2084,38 @@ module TencentCloud
         end
       end
 
+      # 云原生网关限流插件外部redis配置
+      class ExternalRedis < TencentCloud::Common::AbstractModel
+        # @param RedisHost: redis ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedisHost: String
+        # @param RedisPassword: redis密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedisPassword: String
+        # @param RedisPort: redis端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedisPort: Integer
+        # @param RedisTimeout: 超时时间  ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedisTimeout: Integer
+
+        attr_accessor :RedisHost, :RedisPassword, :RedisPort, :RedisTimeout
+
+        def initialize(redishost=nil, redispassword=nil, redisport=nil, redistimeout=nil)
+          @RedisHost = redishost
+          @RedisPassword = redispassword
+          @RedisPort = redisport
+          @RedisTimeout = redistimeout
+        end
+
+        def deserialize(params)
+          @RedisHost = params['RedisHost']
+          @RedisPassword = params['RedisPassword']
+          @RedisPort = params['RedisPort']
+          @RedisTimeout = params['RedisTimeout']
+        end
+      end
+
       # 查询过滤通用对象
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤参数名
@@ -1067,6 +2157,28 @@ module TencentCloud
       end
 
       # 键值对
+      class KVMapping < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 键值对
       class KVPair < TencentCloud::Common::AbstractModel
         # @param Key: 键
         # @type Key: String
@@ -1083,6 +2195,747 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 云原生网关路由信息
+      class KongRoutePreview < TencentCloud::Common::AbstractModel
+        # @param ID: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Methods: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Methods: Array
+        # @param Paths: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paths: Array
+        # @param Hosts: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hosts: Array
+        # @param Protocols: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocols: Array
+        # @param PreserveHost: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreserveHost: Boolean
+        # @param HttpsRedirectStatusCode: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsRedirectStatusCode: Integer
+        # @param StripPath: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StripPath: Boolean
+        # @param CreatedTime: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ForceHttps: 是否开启了强制HTTPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceHttps: Boolean
+        # @param ServiceName: 服务名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ServiceID: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceID: String
+        # @param DestinationPorts: 目的端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestinationPorts: Array
+        # @param Headers: 路由的Headers
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: :class:`Tencentcloud::Tse.v20201207.models.KVMapping`
+
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
+
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
+          @ID = id
+          @Name = name
+          @Methods = methods
+          @Paths = paths
+          @Hosts = hosts
+          @Protocols = protocols
+          @PreserveHost = preservehost
+          @HttpsRedirectStatusCode = httpsredirectstatuscode
+          @StripPath = strippath
+          @CreatedTime = createdtime
+          @ForceHttps = forcehttps
+          @ServiceName = servicename
+          @ServiceID = serviceid
+          @DestinationPorts = destinationports
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Methods = params['Methods']
+          @Paths = params['Paths']
+          @Hosts = params['Hosts']
+          @Protocols = params['Protocols']
+          @PreserveHost = params['PreserveHost']
+          @HttpsRedirectStatusCode = params['HttpsRedirectStatusCode']
+          @StripPath = params['StripPath']
+          @CreatedTime = params['CreatedTime']
+          @ForceHttps = params['ForceHttps']
+          @ServiceName = params['ServiceName']
+          @ServiceID = params['ServiceID']
+          @DestinationPorts = params['DestinationPorts']
+          unless params['Headers'].nil?
+            @Headers = KVMapping.new
+            @Headers.deserialize(params['Headers'])
+          end
+        end
+      end
+
+      # 云原生网关服务详细信息
+      class KongServiceDetail < TencentCloud::Common::AbstractModel
+        # @param ID: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Protocol: 后端协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Path: 后端路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Timeout: 后端延时，单位ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+        # @param Retries: 重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Retries: Integer
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param UpstreamInfo: 后端配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
+        # @param UpstreamType: 后端类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamType: String
+        # @param Editable: 是否可编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :ID, :Name, :Protocol, :Path, :Timeout, :Retries, :Tags, :UpstreamInfo, :UpstreamType, :Editable, :CreatedTime
+
+        def initialize(id=nil, name=nil, protocol=nil, path=nil, timeout=nil, retries=nil, tags=nil, upstreaminfo=nil, upstreamtype=nil, editable=nil, createdtime=nil)
+          @ID = id
+          @Name = name
+          @Protocol = protocol
+          @Path = path
+          @Timeout = timeout
+          @Retries = retries
+          @Tags = tags
+          @UpstreamInfo = upstreaminfo
+          @UpstreamType = upstreamtype
+          @Editable = editable
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Protocol = params['Protocol']
+          @Path = params['Path']
+          @Timeout = params['Timeout']
+          @Retries = params['Retries']
+          @Tags = params['Tags']
+          unless params['UpstreamInfo'].nil?
+            @UpstreamInfo = KongUpstreamInfo.new
+            @UpstreamInfo.deserialize(params['UpstreamInfo'])
+          end
+          @UpstreamType = params['UpstreamType']
+          @Editable = params['Editable']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 云原生网关服务预览信息
+      class KongServicePreview < TencentCloud::Common::AbstractModel
+        # @param ID: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param UpstreamInfo: 后端配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
+        # @param UpstreamType: 后端类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamType: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param Editable: 是否可编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+
+        attr_accessor :ID, :Name, :Tags, :UpstreamInfo, :UpstreamType, :CreatedTime, :Editable
+
+        def initialize(id=nil, name=nil, tags=nil, upstreaminfo=nil, upstreamtype=nil, createdtime=nil, editable=nil)
+          @ID = id
+          @Name = name
+          @Tags = tags
+          @UpstreamInfo = upstreaminfo
+          @UpstreamType = upstreamtype
+          @CreatedTime = createdtime
+          @Editable = editable
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Tags = params['Tags']
+          unless params['UpstreamInfo'].nil?
+            @UpstreamInfo = KongUpstreamInfo.new
+            @UpstreamInfo.deserialize(params['UpstreamInfo'])
+          end
+          @UpstreamType = params['UpstreamType']
+          @CreatedTime = params['CreatedTime']
+          @Editable = params['Editable']
+        end
+      end
+
+      # kong服务路由列表
+      class KongServiceRouteList < TencentCloud::Common::AbstractModel
+        # @param RouteList: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :RouteList, :TotalCount
+
+        def initialize(routelist=nil, totalcount=nil)
+          @RouteList = routelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['RouteList'].nil?
+            @RouteList = []
+            params['RouteList'].each do |i|
+              kongroutepreview_tmp = KongRoutePreview.new
+              kongroutepreview_tmp.deserialize(i)
+              @RouteList << kongroutepreview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # kong实例的服务列表
+      class KongServices < TencentCloud::Common::AbstractModel
+        # @param ServiceList: kong实例的服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceList: Array
+        # @param TotalCount: 列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :ServiceList, :TotalCount
+
+        def initialize(servicelist=nil, totalcount=nil)
+          @ServiceList = servicelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['ServiceList'].nil?
+            @ServiceList = []
+            params['ServiceList'].each do |i|
+              kongservicepreview_tmp = KongServicePreview.new
+              kongservicepreview_tmp.deserialize(i)
+              @ServiceList << kongservicepreview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # Kong Upstream中的Target
+      class KongTarget < TencentCloud::Common::AbstractModel
+        # @param Host: Host
+        # @type Host: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Weight: 权重
+        # @type Weight: Integer
+        # @param Health: 健康状态
+        # @type Health: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param Source: Target的来源
+        # @type Source: String
+
+        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source
+
+        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil)
+          @Host = host
+          @Port = port
+          @Weight = weight
+          @Health = health
+          @CreatedTime = createdtime
+          @Source = source
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @Weight = params['Weight']
+          @Health = params['Health']
+          @CreatedTime = params['CreatedTime']
+          @Source = params['Source']
+        end
+      end
+
+      # 服务的后端配置
+      class KongUpstreamInfo < TencentCloud::Common::AbstractModel
+        # @param Host: IP或域名
+        # @type Host: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param SourceID: 服务来源ID
+        # @type SourceID: String
+        # @param Namespace: 名字空间
+        # @type Namespace: String
+        # @param ServiceName: 服务（注册中心或Kubernetes中的服务）名字
+        # @type ServiceName: String
+        # @param Targets: 服务后端类型是IPList时提供
+        # @type Targets: Array
+        # @param SourceType: 服务来源类型
+        # @type SourceType: String
+        # @param ScfType: SCF函数类型
+        # @type ScfType: String
+        # @param ScfNamespace: SCF函数命名空间
+        # @type ScfNamespace: String
+        # @param ScfLambdaName: SCF函数名
+        # @type ScfLambdaName: String
+        # @param ScfLambdaQualifier: SCF函数版本
+        # @type ScfLambdaQualifier: String
+        # @param SlowStart: 冷启动时间，单位秒
+        # @type SlowStart: Integer
+        # @param Algorithm: 负载均衡算法，默认为 round-robin，还支持 least-connections，consisten_hashing
+        # @type Algorithm: String
+        # @param AutoScalingGroupID: CVM弹性伸缩组ID
+        # @type AutoScalingGroupID: String
+        # @param AutoScalingCvmPort: CVM弹性伸缩组端口
+        # @type AutoScalingCvmPort: Integer
+        # @param AutoScalingTatCmdStatus: CVM弹性伸缩组使用的CVM TAT命令状态
+        # @type AutoScalingTatCmdStatus: String
+        # @param AutoScalingHookStatus: CVM弹性伸缩组生命周期挂钩状态
+        # @type AutoScalingHookStatus: String
+        # @param SourceName: 服务来源的名字
+        # @type SourceName: String
+        # @param RealSourceType: 精确的服务来源类型，新建服务来源时候传入的类型
+        # @type RealSourceType: String
+
+        attr_accessor :Host, :Port, :SourceID, :Namespace, :ServiceName, :Targets, :SourceType, :ScfType, :ScfNamespace, :ScfLambdaName, :ScfLambdaQualifier, :SlowStart, :Algorithm, :AutoScalingGroupID, :AutoScalingCvmPort, :AutoScalingTatCmdStatus, :AutoScalingHookStatus, :SourceName, :RealSourceType
+
+        def initialize(host=nil, port=nil, sourceid=nil, namespace=nil, servicename=nil, targets=nil, sourcetype=nil, scftype=nil, scfnamespace=nil, scflambdaname=nil, scflambdaqualifier=nil, slowstart=nil, algorithm=nil, autoscalinggroupid=nil, autoscalingcvmport=nil, autoscalingtatcmdstatus=nil, autoscalinghookstatus=nil, sourcename=nil, realsourcetype=nil)
+          @Host = host
+          @Port = port
+          @SourceID = sourceid
+          @Namespace = namespace
+          @ServiceName = servicename
+          @Targets = targets
+          @SourceType = sourcetype
+          @ScfType = scftype
+          @ScfNamespace = scfnamespace
+          @ScfLambdaName = scflambdaname
+          @ScfLambdaQualifier = scflambdaqualifier
+          @SlowStart = slowstart
+          @Algorithm = algorithm
+          @AutoScalingGroupID = autoscalinggroupid
+          @AutoScalingCvmPort = autoscalingcvmport
+          @AutoScalingTatCmdStatus = autoscalingtatcmdstatus
+          @AutoScalingHookStatus = autoscalinghookstatus
+          @SourceName = sourcename
+          @RealSourceType = realsourcetype
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @SourceID = params['SourceID']
+          @Namespace = params['Namespace']
+          @ServiceName = params['ServiceName']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              kongtarget_tmp = KongTarget.new
+              kongtarget_tmp.deserialize(i)
+              @Targets << kongtarget_tmp
+            end
+          end
+          @SourceType = params['SourceType']
+          @ScfType = params['ScfType']
+          @ScfNamespace = params['ScfNamespace']
+          @ScfLambdaName = params['ScfLambdaName']
+          @ScfLambdaQualifier = params['ScfLambdaQualifier']
+          @SlowStart = params['SlowStart']
+          @Algorithm = params['Algorithm']
+          @AutoScalingGroupID = params['AutoScalingGroupID']
+          @AutoScalingCvmPort = params['AutoScalingCvmPort']
+          @AutoScalingTatCmdStatus = params['AutoScalingTatCmdStatus']
+          @AutoScalingHookStatus = params['AutoScalingHookStatus']
+          @SourceName = params['SourceName']
+          @RealSourceType = params['RealSourceType']
+        end
+      end
+
+      # 列表过滤条件，模糊匹配
+      class ListFilter < TencentCloud::Common::AbstractModel
+        # @param Key: 过滤字段
+        # @type Key: String
+        # @param Value: 过滤值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayCanaryRule请求参数结构体
+      class ModifyCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID
+        # @type GatewayId: String
+        # @param ServiceId: 服务 ID
+        # @type ServiceId: String
+        # @param Priority: 优先级，同一个服务的灰度规则优先级是唯一的
+        # @type Priority: Integer
+        # @param CanaryRule: 灰度规则配置
+        # @type CanaryRule: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayCanaryRule`
+
+        attr_accessor :GatewayId, :ServiceId, :Priority, :CanaryRule
+
+        def initialize(gatewayid=nil, serviceid=nil, priority=nil, canaryrule=nil)
+          @GatewayId = gatewayid
+          @ServiceId = serviceid
+          @Priority = priority
+          @CanaryRule = canaryrule
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceId = params['ServiceId']
+          @Priority = params['Priority']
+          unless params['CanaryRule'].nil?
+            @CanaryRule = CloudNativeAPIGatewayCanaryRule.new
+            @CanaryRule.deserialize(params['CanaryRule'])
+          end
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayCanaryRule返回参数结构体
+      class ModifyCloudNativeAPIGatewayCanaryRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayRouteRateLimit请求参数结构体
+      class ModifyCloudNativeAPIGatewayRouteRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Id: 路由id，或路由名称。
+        # 不支持“未命名”
+        # @type Id: String
+        # @param LimitDetail: 限流配置
+        # @type LimitDetail: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+
+        attr_accessor :GatewayId, :Id, :LimitDetail
+
+        def initialize(gatewayid=nil, id=nil, limitdetail=nil)
+          @GatewayId = gatewayid
+          @Id = id
+          @LimitDetail = limitdetail
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+          unless params['LimitDetail'].nil?
+            @LimitDetail = CloudNativeAPIGatewayRateLimitDetail.new
+            @LimitDetail.deserialize(params['LimitDetail'])
+          end
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayRouteRateLimit返回参数结构体
+      class ModifyCloudNativeAPIGatewayRouteRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayRoute请求参数结构体
+      class ModifyCloudNativeAPIGatewayRouteRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param ServiceID: 所属服务的ID
+        # @type ServiceID: String
+        # @param RouteID: 路由的ID，实例级别唯一
+        # @type RouteID: String
+        # @param RouteName: 路由的名字，实例级别唯一，可以不提供
+        # @type RouteName: String
+        # @param Methods: 路由的方法，其中方法可选值：
+        # - GET
+        # - POST
+        # - DELETE
+        # - PUT
+        # - OPTIONS
+        # - PATCH
+        # - HEAD
+        # - ANY
+        # - TRACE
+        # - COPY
+        # - MOVE
+        # - PROPFIND
+        # - PROPPATCH
+        # - MKCOL
+        # - LOCK
+        # - UNLOCK
+        # @type Methods: Array
+        # @param Hosts: 路由的域名
+        # @type Hosts: Array
+        # @param Paths: 路由的路径
+        # @type Paths: Array
+        # @param Protocols: 路由的协议，可选
+        # - https
+        # - http
+        # @type Protocols: Array
+        # @param PreserveHost: 转发到后端时是否保留Host
+        # @type PreserveHost: Boolean
+        # @param HttpsRedirectStatusCode: https重定向状态码
+        # @type HttpsRedirectStatusCode: Integer
+        # @param StripPath: 转发到后端时是否StripPath
+        # @type StripPath: Boolean
+        # @param ForceHttps: 是否开启强制HTTPS
+        # @type ForceHttps: Boolean
+        # @param DestinationPorts: 四层匹配的目的端口
+        # @type DestinationPorts: Array
+        # @param Headers: 路由的Headers
+        # @type Headers: Array
+
+        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
+        extend Gem::Deprecate
+        deprecate :ForceHttps, :none, 2023, 7
+        deprecate :ForceHttps=, :none, 2023, 7
+
+        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
+          @GatewayId = gatewayid
+          @ServiceID = serviceid
+          @RouteID = routeid
+          @RouteName = routename
+          @Methods = methods
+          @Hosts = hosts
+          @Paths = paths
+          @Protocols = protocols
+          @PreserveHost = preservehost
+          @HttpsRedirectStatusCode = httpsredirectstatuscode
+          @StripPath = strippath
+          @ForceHttps = forcehttps
+          @DestinationPorts = destinationports
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceID = params['ServiceID']
+          @RouteID = params['RouteID']
+          @RouteName = params['RouteName']
+          @Methods = params['Methods']
+          @Hosts = params['Hosts']
+          @Paths = params['Paths']
+          @Protocols = params['Protocols']
+          @PreserveHost = params['PreserveHost']
+          @HttpsRedirectStatusCode = params['HttpsRedirectStatusCode']
+          @StripPath = params['StripPath']
+          @ForceHttps = params['ForceHttps']
+          @DestinationPorts = params['DestinationPorts']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @Headers << kvmapping_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayRoute返回参数结构体
+      class ModifyCloudNativeAPIGatewayRouteResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayServiceRateLimit请求参数结构体
+      class ModifyCloudNativeAPIGatewayServiceRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名称，或服务ID
+        # @type Name: String
+        # @param LimitDetail: 限流配置
+        # @type LimitDetail: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayRateLimitDetail`
+
+        attr_accessor :GatewayId, :Name, :LimitDetail
+
+        def initialize(gatewayid=nil, name=nil, limitdetail=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @LimitDetail = limitdetail
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['LimitDetail'].nil?
+            @LimitDetail = CloudNativeAPIGatewayRateLimitDetail.new
+            @LimitDetail.deserialize(params['LimitDetail'])
+          end
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayServiceRateLimit返回参数结构体
+      class ModifyCloudNativeAPIGatewayServiceRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayService请求参数结构体
+      class ModifyCloudNativeAPIGatewayServiceRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 服务名称
+        # @type Name: String
+        # @param Protocol: 请求协议：
+        # - https
+        # - http
+        # - tcp
+        # - udp
+        # @type Protocol: String
+        # @param Path: 请求路径
+        # @type Path: String
+        # @param Timeout: 超时时间，单位ms
+        # @type Timeout: Integer
+        # @param Retries: 重试次数
+        # @type Retries: Integer
+        # @param UpstreamType: 服务类型:
+        # - Kubernetes
+        # - Registry
+        # - IPList
+        # - HostIP
+        # - Scf
+        # @type UpstreamType: String
+        # @param UpstreamInfo: 服务配置
+        # @type UpstreamInfo: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamInfo`
+        # @param ID: 服务ID
+        # @type ID: String
+
+        attr_accessor :GatewayId, :Name, :Protocol, :Path, :Timeout, :Retries, :UpstreamType, :UpstreamInfo, :ID
+
+        def initialize(gatewayid=nil, name=nil, protocol=nil, path=nil, timeout=nil, retries=nil, upstreamtype=nil, upstreaminfo=nil, id=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @Protocol = protocol
+          @Path = path
+          @Timeout = timeout
+          @Retries = retries
+          @UpstreamType = upstreamtype
+          @UpstreamInfo = upstreaminfo
+          @ID = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          @Protocol = params['Protocol']
+          @Path = params['Path']
+          @Timeout = params['Timeout']
+          @Retries = params['Retries']
+          @UpstreamType = params['UpstreamType']
+          unless params['UpstreamInfo'].nil?
+            @UpstreamInfo = KongUpstreamInfo.new
+            @UpstreamInfo.deserialize(params['UpstreamInfo'])
+          end
+          @ID = params['ID']
+        end
+      end
+
+      # ModifyCloudNativeAPIGatewayService返回参数结构体
+      class ModifyCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1161,6 +3014,60 @@ module TencentCloud
 
         def deserialize(params)
           @IntranetAddress = params['IntranetAddress']
+        end
+      end
+
+      # 云原生网关限流插件Qps阈值
+      class QpsThreshold < TencentCloud::Common::AbstractModel
+        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
+        # @type Unit: String
+        # @param Max: 阈值
+        # @type Max: Integer
+
+        attr_accessor :Unit, :Max
+
+        def initialize(unit=nil, max=nil)
+          @Unit = unit
+          @Max = max
+        end
+
+        def deserialize(params)
+          @Unit = params['Unit']
+          @Max = params['Max']
+        end
+      end
+
+      # 云原生网关限流插件自定义响应
+      class RateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Body: 自定义响应体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Body: String
+        # @param Headers: headrs
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Headers: Array
+        # @param HttpStatus: http状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpStatus: Integer
+
+        attr_accessor :Body, :Headers, :HttpStatus
+
+        def initialize(body=nil, headers=nil, httpstatus=nil)
+          @Body = body
+          @Headers = headers
+          @HttpStatus = httpstatus
+        end
+
+        def deserialize(params)
+          @Body = params['Body']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @Headers << kvmapping_tmp
+            end
+          end
+          @HttpStatus = params['HttpStatus']
         end
       end
 

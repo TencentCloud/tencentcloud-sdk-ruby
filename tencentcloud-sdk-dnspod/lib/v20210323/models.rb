@@ -617,19 +617,34 @@ module TencentCloud
         # @type GroupId: Integer
         # @param IsMark: 是否星标域名，”yes”、”no” 分别代表是和否。
         # @type IsMark: String
+        # @param TransferSubDomain: 添加子域名时，是否迁移相关父域名的解析记录。不传默认为 true
+        # @type TransferSubDomain: Boolean
+        # @param Tags: 域名绑定的标签
+        # @type Tags: Array
 
-        attr_accessor :Domain, :GroupId, :IsMark
+        attr_accessor :Domain, :GroupId, :IsMark, :TransferSubDomain, :Tags
 
-        def initialize(domain=nil, groupid=nil, ismark=nil)
+        def initialize(domain=nil, groupid=nil, ismark=nil, transfersubdomain=nil, tags=nil)
           @Domain = domain
           @GroupId = groupid
           @IsMark = ismark
+          @TransferSubDomain = transfersubdomain
+          @Tags = tags
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @GroupId = params['GroupId']
           @IsMark = params['IsMark']
+          @TransferSubDomain = params['TransferSubDomain']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
+            end
+          end
         end
       end
 
@@ -1704,10 +1719,12 @@ module TencentCloud
         # @type RecordCountEnd: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
+        # @param Tags: 标签过滤
+        # @type Tags: Array
 
-        attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword, :SortField, :SortType, :Status, :Package, :Remark, :UpdatedAtBegin, :UpdatedAtEnd, :RecordCountBegin, :RecordCountEnd, :ProjectId
+        attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword, :SortField, :SortType, :Status, :Package, :Remark, :UpdatedAtBegin, :UpdatedAtEnd, :RecordCountBegin, :RecordCountEnd, :ProjectId, :Tags
 
-        def initialize(type=nil, offset=nil, limit=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, status=nil, package=nil, remark=nil, updatedatbegin=nil, updatedatend=nil, recordcountbegin=nil, recordcountend=nil, projectid=nil)
+        def initialize(type=nil, offset=nil, limit=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, status=nil, package=nil, remark=nil, updatedatbegin=nil, updatedatend=nil, recordcountbegin=nil, recordcountend=nil, projectid=nil, tags=nil)
           @Type = type
           @Offset = offset
           @Limit = limit
@@ -1723,6 +1740,7 @@ module TencentCloud
           @RecordCountBegin = recordcountbegin
           @RecordCountEnd = recordcountend
           @ProjectId = projectid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1741,6 +1759,14 @@ module TencentCloud
           @RecordCountBegin = params['RecordCountBegin']
           @RecordCountEnd = params['RecordCountEnd']
           @ProjectId = params['ProjectId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitemfilter_tmp = TagItemFilter.new
+              tagitemfilter_tmp.deserialize(i)
+              @Tags << tagitemfilter_tmp
+            end
+          end
         end
       end
 
@@ -1828,15 +1854,18 @@ module TencentCloud
         # @type GroupId: Integer
         # @param Keyword: 根据关键字搜索域名
         # @type Keyword: String
+        # @param Tags: 标签过滤
+        # @type Tags: Array
 
-        attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword
+        attr_accessor :Type, :Offset, :Limit, :GroupId, :Keyword, :Tags
 
-        def initialize(type=nil, offset=nil, limit=nil, groupid=nil, keyword=nil)
+        def initialize(type=nil, offset=nil, limit=nil, groupid=nil, keyword=nil, tags=nil)
           @Type = type
           @Offset = offset
           @Limit = limit
           @GroupId = groupid
           @Keyword = keyword
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1845,6 +1874,14 @@ module TencentCloud
           @Limit = params['Limit']
           @GroupId = params['GroupId']
           @Keyword = params['Keyword']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitemfilter_tmp = TagItemFilter.new
+              tagitemfilter_tmp.deserialize(i)
+              @Tags << tagitemfilter_tmp
+            end
+          end
         end
       end
 
@@ -3319,10 +3356,13 @@ module TencentCloud
         # @param IsSubDomain: 是否是子域名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSubDomain: Boolean
+        # @param TagList: 域名关联的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain
+        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList
 
-        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil)
+        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil)
           @DomainId = domainid
           @Status = status
           @Grade = grade
@@ -3353,6 +3393,7 @@ module TencentCloud
           @VipAutoRenew = vipautorenew
           @VipResourceId = vipresourceid
           @IsSubDomain = issubdomain
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -3386,6 +3427,14 @@ module TencentCloud
           @VipAutoRenew = params['VipAutoRenew']
           @VipResourceId = params['VipResourceId']
           @IsSubDomain = params['IsSubDomain']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @TagList << tagitem_tmp
+            end
+          end
         end
       end
 
@@ -3435,10 +3484,13 @@ module TencentCloud
         # @type UpdatedOn: String
         # @param Owner: 域名所属账号
         # @type Owner: String
+        # @param TagList: 域名关联的标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
 
-        attr_accessor :DomainId, :Name, :Status, :TTL, :CNAMESpeedup, :DNSStatus, :Grade, :GroupId, :SearchEnginePush, :Remark, :Punycode, :EffectiveDNS, :GradeLevel, :GradeTitle, :IsVip, :VipStartAt, :VipEndAt, :VipAutoRenew, :RecordCount, :CreatedOn, :UpdatedOn, :Owner
+        attr_accessor :DomainId, :Name, :Status, :TTL, :CNAMESpeedup, :DNSStatus, :Grade, :GroupId, :SearchEnginePush, :Remark, :Punycode, :EffectiveDNS, :GradeLevel, :GradeTitle, :IsVip, :VipStartAt, :VipEndAt, :VipAutoRenew, :RecordCount, :CreatedOn, :UpdatedOn, :Owner, :TagList
 
-        def initialize(domainid=nil, name=nil, status=nil, ttl=nil, cnamespeedup=nil, dnsstatus=nil, grade=nil, groupid=nil, searchenginepush=nil, remark=nil, punycode=nil, effectivedns=nil, gradelevel=nil, gradetitle=nil, isvip=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, recordcount=nil, createdon=nil, updatedon=nil, owner=nil)
+        def initialize(domainid=nil, name=nil, status=nil, ttl=nil, cnamespeedup=nil, dnsstatus=nil, grade=nil, groupid=nil, searchenginepush=nil, remark=nil, punycode=nil, effectivedns=nil, gradelevel=nil, gradetitle=nil, isvip=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, recordcount=nil, createdon=nil, updatedon=nil, owner=nil, taglist=nil)
           @DomainId = domainid
           @Name = name
           @Status = status
@@ -3461,6 +3513,7 @@ module TencentCloud
           @CreatedOn = createdon
           @UpdatedOn = updatedon
           @Owner = owner
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -3486,6 +3539,14 @@ module TencentCloud
           @CreatedOn = params['CreatedOn']
           @UpdatedOn = params['UpdatedOn']
           @Owner = params['Owner']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @TagList << tagitem_tmp
+            end
+          end
         end
       end
 
@@ -5241,6 +5302,47 @@ module TencentCloud
           @StartDate = params['StartDate']
           @EndDate = params['EndDate']
           @Subdomain = params['Subdomain']
+        end
+      end
+
+      # 标签项
+      class TagItem < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签过滤条件
+      class TagItemFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签键
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

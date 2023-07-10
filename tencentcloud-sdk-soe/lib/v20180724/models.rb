@@ -408,6 +408,33 @@ module TencentCloud
         end
       end
 
+      # 中文声调检测结果
+      class Tone < TencentCloud::Common::AbstractModel
+        # @param Valid: 检测结果是否有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Valid: Boolean
+        # @param RefTone: 文本标准声调，数值范围[-1,1,2,3,4]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RefTone: Integer
+        # @param HypothesisTone: 实际发音声调，数值范围[-1,1,2,3,4]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HypothesisTone: Integer
+
+        attr_accessor :Valid, :RefTone, :HypothesisTone
+
+        def initialize(valid=nil, reftone=nil, hypothesistone=nil)
+          @Valid = valid
+          @RefTone = reftone
+          @HypothesisTone = hypothesistone
+        end
+
+        def deserialize(params)
+          @Valid = params['Valid']
+          @RefTone = params['RefTone']
+          @HypothesisTone = params['HypothesisTone']
+        end
+      end
+
       # TransmitOralProcess请求参数结构体
       class TransmitOralProcessRequest < TencentCloud::Common::AbstractModel
         # @param SeqId: 流式数据包的序号，从1开始，当IsEnd字段为1后后续序号无意义，当IsLongLifeSession不为1且为非流式模式时无意义。
@@ -771,10 +798,13 @@ module TencentCloud
         # @param KeywordTag: 主题词命中标志，0表示没命中，1表示命中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeywordTag: Integer
+        # @param Tone: 声调检测结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tone: :class:`Tencentcloud::Soe.v20180724.models.Tone`
 
-        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :PronFluency, :Word, :MatchTag, :PhoneInfos, :ReferenceWord, :KeywordTag
+        attr_accessor :MemBeginTime, :MemEndTime, :PronAccuracy, :PronFluency, :Word, :MatchTag, :PhoneInfos, :ReferenceWord, :KeywordTag, :Tone
 
-        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, pronfluency=nil, word=nil, matchtag=nil, phoneinfos=nil, referenceword=nil, keywordtag=nil)
+        def initialize(membegintime=nil, memendtime=nil, pronaccuracy=nil, pronfluency=nil, word=nil, matchtag=nil, phoneinfos=nil, referenceword=nil, keywordtag=nil, tone=nil)
           @MemBeginTime = membegintime
           @MemEndTime = memendtime
           @PronAccuracy = pronaccuracy
@@ -784,6 +814,7 @@ module TencentCloud
           @PhoneInfos = phoneinfos
           @ReferenceWord = referenceword
           @KeywordTag = keywordtag
+          @Tone = tone
         end
 
         def deserialize(params)
@@ -803,6 +834,10 @@ module TencentCloud
           end
           @ReferenceWord = params['ReferenceWord']
           @KeywordTag = params['KeywordTag']
+          unless params['Tone'].nil?
+            @Tone = Tone.new
+            @Tone.deserialize(params['Tone'])
+          end
         end
       end
 

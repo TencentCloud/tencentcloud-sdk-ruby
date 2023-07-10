@@ -25,7 +25,7 @@ module TencentCloud
         # @type ProxyOrganizationOpenId: String
         # @param ProxyOperator: 第三方平台子客企业中的员工/经办人，通过第三方应用平台进入电子签完成实名、且被赋予相关权限后，可以参与到企业资源的管理或签署流程中。
         # @type ProxyOperator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param ProxyAppId: 在第三方平台子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
+        # @param ProxyAppId: 非必需参数，在第三方平台子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
         # @type ProxyAppId: String
         # @param ProxyOrganizationId: 内部参数，暂未开放使用
         # @type ProxyOrganizationId: String
@@ -1193,9 +1193,9 @@ module TencentCloud
         # @type FlowInfo: :class:`Tencentcloud::Essbasic.v20210526.models.BaseFlowInfo`
         # @param FlowApproverList: 合同签署人信息
         # @type FlowApproverList: Array
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowOption: 合同流程配置信息
+        # @param FlowOption: 合同流程配置信息，用于配置发起合同时定制化
         # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
         # @param FlowId: 通过flowid快速获得之前成功通过页面发起的合同生成链接
         # @type FlowId: String
@@ -1208,6 +1208,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ResourceType, :FlowInfo, :FlowApproverList, :Agent, :FlowOption, :FlowId, :NeedPreview, :Organization, :Operator
         extend Gem::Deprecate
+        deprecate :NeedPreview, :none, 2023, 7
+        deprecate :NeedPreview=, :none, 2023, 7
         deprecate :Organization, :none, 2023, 7
         deprecate :Organization=, :none, 2023, 7
         deprecate :Operator, :none, 2023, 7

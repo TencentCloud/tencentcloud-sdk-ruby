@@ -29,6 +29,126 @@ module TencentCloud
         end
 
 
+        # 创建云原生网关的灰度规则
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayCanaryRule.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayCanaryRuleRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayCanaryRuleResponse`
+        def CreateCloudNativeAPIGatewayCanaryRule(request)
+          body = send_request('CreateCloudNativeAPIGatewayCanaryRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayCanaryRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建云原生网关路由
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayRoute.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayRouteRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayRouteResponse`
+        def CreateCloudNativeAPIGatewayRoute(request)
+          body = send_request('CreateCloudNativeAPIGatewayRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建云原生网关限流插件(路由)
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayRouteRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayRouteRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayRouteRateLimitResponse`
+        def CreateCloudNativeAPIGatewayRouteRateLimit(request)
+          body = send_request('CreateCloudNativeAPIGatewayRouteRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayRouteRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建云原生网关服务
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayService.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayServiceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayServiceResponse`
+        def CreateCloudNativeAPIGatewayService(request)
+          body = send_request('CreateCloudNativeAPIGatewayService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建云原生网关限流插件(服务)
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayServiceRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayServiceRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayServiceRateLimitResponse`
+        def CreateCloudNativeAPIGatewayServiceRateLimit(request)
+          body = send_request('CreateCloudNativeAPIGatewayServiceRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayServiceRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建引擎实例
 
         # @param request: Request instance for CreateEngine.
@@ -39,6 +159,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关的灰度规则
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayCanaryRule.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCanaryRuleRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCanaryRuleResponse`
+        def DeleteCloudNativeAPIGatewayCanaryRule(request)
+          body = send_request('DeleteCloudNativeAPIGatewayCanaryRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayCanaryRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关路由
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayRoute.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayRouteRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayRouteResponse`
+        def DeleteCloudNativeAPIGatewayRoute(request)
+          body = send_request('DeleteCloudNativeAPIGatewayRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关的限流插件(路由)
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayRouteRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayRouteRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayRouteRateLimitResponse`
+        def DeleteCloudNativeAPIGatewayRouteRateLimit(request)
+          body = send_request('DeleteCloudNativeAPIGatewayRouteRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayRouteRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关服务
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayService.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayServiceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayServiceResponse`
+        def DeleteCloudNativeAPIGatewayService(request)
+          body = send_request('DeleteCloudNativeAPIGatewayService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关的限流插件(服务)
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayServiceRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayServiceRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayServiceRateLimitResponse`
+        def DeleteCloudNativeAPIGatewayServiceRateLimit(request)
+          body = send_request('DeleteCloudNativeAPIGatewayServiceRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayServiceRateLimitResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -77,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云原生网关灰度规则列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayCanaryRules.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCanaryRulesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCanaryRulesResponse`
+        def DescribeCloudNativeAPIGatewayCanaryRules(request)
+          body = send_request('DescribeCloudNativeAPIGatewayCanaryRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayCanaryRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云原生网关节点列表
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayNodes.
@@ -87,6 +351,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayNodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关的限流插件(路由)
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayRouteRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayRouteRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayRouteRateLimitResponse`
+        def DescribeCloudNativeAPIGatewayRouteRateLimit(request)
+          body = send_request('DescribeCloudNativeAPIGatewayRouteRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayRouteRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关路由列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayRoutes.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayRoutesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayRoutesResponse`
+        def DescribeCloudNativeAPIGatewayRoutes(request)
+          body = send_request('DescribeCloudNativeAPIGatewayRoutes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayRoutesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关的限流插件(服务)
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayServiceRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServiceRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServiceRateLimitResponse`
+        def DescribeCloudNativeAPIGatewayServiceRateLimit(request)
+          body = send_request('DescribeCloudNativeAPIGatewayServiceRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayServiceRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关服务列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayServices.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServicesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayServicesResponse`
+        def DescribeCloudNativeAPIGatewayServices(request)
+          body = send_request('DescribeCloudNativeAPIGatewayServices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayServicesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -135,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNacosServerInterfacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云原生网关服务详情
+
+        # @param request: Request instance for DescribeOneCloudNativeAPIGatewayService.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeOneCloudNativeAPIGatewayServiceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeOneCloudNativeAPIGatewayServiceResponse`
+        def DescribeOneCloudNativeAPIGatewayService(request)
+          body = send_request('DescribeOneCloudNativeAPIGatewayService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOneCloudNativeAPIGatewayServiceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -231,6 +615,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeZookeeperServerInterfacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关的灰度规则
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayCanaryRule.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayCanaryRuleRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayCanaryRuleResponse`
+        def ModifyCloudNativeAPIGatewayCanaryRule(request)
+          body = send_request('ModifyCloudNativeAPIGatewayCanaryRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayCanaryRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关路由
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayRoute.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayRouteRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayRouteResponse`
+        def ModifyCloudNativeAPIGatewayRoute(request)
+          body = send_request('ModifyCloudNativeAPIGatewayRoute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayRouteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关限流插件(路由)
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayRouteRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayRouteRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayRouteRateLimitResponse`
+        def ModifyCloudNativeAPIGatewayRouteRateLimit(request)
+          body = send_request('ModifyCloudNativeAPIGatewayRouteRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayRouteRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关服务
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayService.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayServiceRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayServiceResponse`
+        def ModifyCloudNativeAPIGatewayService(request)
+          body = send_request('ModifyCloudNativeAPIGatewayService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关限流插件(服务)
+
+        # @param request: Request instance for ModifyCloudNativeAPIGatewayServiceRateLimit.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayServiceRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyCloudNativeAPIGatewayServiceRateLimitResponse`
+        def ModifyCloudNativeAPIGatewayServiceRateLimit(request)
+          body = send_request('ModifyCloudNativeAPIGatewayServiceRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCloudNativeAPIGatewayServiceRateLimitResponse.new
             model.deserialize(response['Response'])
             model
           else

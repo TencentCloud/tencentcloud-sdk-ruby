@@ -2543,15 +2543,18 @@ module TencentCloud
         # @type Page: Integer
         # @param Limit: 默认是10条
         # @type Limit: Integer
+        # @param Status: 课堂状态。默认展示所有课堂，0为未开始，1为正在上课，2为已结束，3为已过期
+        # @type Status: Array
 
-        attr_accessor :SdkAppId, :StartTime, :EndTime, :Page, :Limit
+        attr_accessor :SdkAppId, :StartTime, :EndTime, :Page, :Limit, :Status
 
-        def initialize(sdkappid=nil, starttime=nil, endtime=nil, page=nil, limit=nil)
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil, page=nil, limit=nil, status=nil)
           @SdkAppId = sdkappid
           @StartTime = starttime
           @EndTime = endtime
           @Page = page
           @Limit = limit
+          @Status = status
         end
 
         def deserialize(params)
@@ -2560,6 +2563,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Page = params['Page']
           @Limit = params['Limit']
+          @Status = params['Status']
         end
       end
 
@@ -3478,10 +3482,16 @@ module TencentCloud
         # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableDirectControl: Integer
+        # @param InteractionMode: 开启专注模式。 0 收看全部角色音视频(默认) 1 只看老师和助教
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InteractionMode: Integer
+        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoOrientation: Integer
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -3495,6 +3505,8 @@ module TencentCloud
           @RecordUrl = recordurl
           @MaxMicNumber = maxmicnumber
           @EnableDirectControl = enabledirectcontrol
+          @InteractionMode = interactionmode
+          @VideoOrientation = videoorientation
         end
 
         def deserialize(params)
@@ -3511,6 +3523,8 @@ module TencentCloud
           @RecordUrl = params['RecordUrl']
           @MaxMicNumber = params['MaxMicNumber']
           @EnableDirectControl = params['EnableDirectControl']
+          @InteractionMode = params['InteractionMode']
+          @VideoOrientation = params['VideoOrientation']
         end
       end
 

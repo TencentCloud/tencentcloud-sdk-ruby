@@ -1657,6 +1657,84 @@ module TencentCloud
         end
       end
 
+      # CreateDataTransform请求参数结构体
+      class CreateDataTransformRequest < TencentCloud::Common::AbstractModel
+        # @param FuncType: 任务类型. 1: 指定主题；2:动态创建
+        # @type FuncType: Integer
+        # @param SrcTopicId: 源日志主题
+        # @type SrcTopicId: String
+        # @param Name: 加工任务名称
+        # @type Name: String
+        # @param EtlContent: 加工语句
+        # @type EtlContent: String
+        # @param TaskType: 加工类型  1 使用源日志主题中的随机数据，进行加工预览 :2 使用用户自定义测试数据，进行加工预览 3 创建真实加工任务
+        # @type TaskType: Integer
+        # @param EnableFlag: 任务启动状态.   默认为1:开启,  2:关闭
+        # @type EnableFlag: Integer
+        # @param DstResources: 加工任务目的topic_id以及别名
+        # @type DstResources: Array
+        # @param PreviewLogStatistics: 用于预览加工结果的测试数据
+        # @type PreviewLogStatistics: Array
+
+        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :EnableFlag, :DstResources, :PreviewLogStatistics
+
+        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, enableflag=nil, dstresources=nil, previewlogstatistics=nil)
+          @FuncType = functype
+          @SrcTopicId = srctopicid
+          @Name = name
+          @EtlContent = etlcontent
+          @TaskType = tasktype
+          @EnableFlag = enableflag
+          @DstResources = dstresources
+          @PreviewLogStatistics = previewlogstatistics
+        end
+
+        def deserialize(params)
+          @FuncType = params['FuncType']
+          @SrcTopicId = params['SrcTopicId']
+          @Name = params['Name']
+          @EtlContent = params['EtlContent']
+          @TaskType = params['TaskType']
+          @EnableFlag = params['EnableFlag']
+          unless params['DstResources'].nil?
+            @DstResources = []
+            params['DstResources'].each do |i|
+              datatransformresouceinfo_tmp = DataTransformResouceInfo.new
+              datatransformresouceinfo_tmp.deserialize(i)
+              @DstResources << datatransformresouceinfo_tmp
+            end
+          end
+          unless params['PreviewLogStatistics'].nil?
+            @PreviewLogStatistics = []
+            params['PreviewLogStatistics'].each do |i|
+              previewlogstatistic_tmp = PreviewLogStatistic.new
+              previewlogstatistic_tmp.deserialize(i)
+              @PreviewLogStatistics << previewlogstatistic_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDataTransform返回参数结构体
+      class CreateDataTransformResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
@@ -2197,6 +2275,97 @@ module TencentCloud
         end
       end
 
+      # 数据加工的资源信息
+      class DataTransformResouceInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: 目标主题id
+        # @type TopicId: String
+        # @param Alias: 别名
+        # @type Alias: String
+
+        attr_accessor :TopicId, :Alias
+
+        def initialize(topicid=nil, _alias=nil)
+          @TopicId = topicid
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Alias = params['Alias']
+        end
+      end
+
+      # 数据加工任务基本详情
+      class DataTransformTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 数据加工任务名称
+        # @type Name: String
+        # @param TaskId: 数据加工任务id
+        # @type TaskId: String
+        # @param EnableFlag: 任务启用状态，默认为1，正常开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param Type: 加工任务类型，1： DSL， 2：SQL
+        # @type Type: Integer
+        # @param SrcTopicId: 源日志主题
+        # @type SrcTopicId: String
+        # @param Status: 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
+        # @type Status: Integer
+        # @param CreateTime: 加工任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 最近修改时间
+        # @type UpdateTime: String
+        # @param LastEnableTime: 最后启用时间，如果需要重建集群，修改该时间
+        # @type LastEnableTime: String
+        # @param SrcTopicName: 日志主题名称
+        # @type SrcTopicName: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param DstResources: 加工任务目的topic_id以及别名
+        # @type DstResources: Array
+        # @param EtlContent: 加工逻辑函数
+        # @type EtlContent: String
+
+        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent
+
+        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil)
+          @Name = name
+          @TaskId = taskid
+          @EnableFlag = enableflag
+          @Type = type
+          @SrcTopicId = srctopicid
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LastEnableTime = lastenabletime
+          @SrcTopicName = srctopicname
+          @LogsetId = logsetid
+          @DstResources = dstresources
+          @EtlContent = etlcontent
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TaskId = params['TaskId']
+          @EnableFlag = params['EnableFlag']
+          @Type = params['Type']
+          @SrcTopicId = params['SrcTopicId']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LastEnableTime = params['LastEnableTime']
+          @SrcTopicName = params['SrcTopicName']
+          @LogsetId = params['LogsetId']
+          unless params['DstResources'].nil?
+            @DstResources = []
+            params['DstResources'].each do |i|
+              datatransformresouceinfo_tmp = DataTransformResouceInfo.new
+              datatransformresouceinfo_tmp.deserialize(i)
+              @DstResources << datatransformresouceinfo_tmp
+            end
+          end
+          @EtlContent = params['EtlContent']
+        end
+      end
+
       # DeleteAlarmNotice请求参数结构体
       class DeleteAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param AlarmNoticeId: 通知渠道组ID
@@ -2379,6 +2548,38 @@ module TencentCloud
 
       # DeleteConsumer返回参数结构体
       class DeleteConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDataTransform请求参数结构体
+      class DeleteDataTransformRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 数据加工任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteDataTransform返回参数结构体
+      class DeleteDataTransformResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3192,6 +3393,97 @@ module TencentCloud
               @Data << cosrechargeinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataTransformInfo请求参数结构体
+      class DescribeDataTransformInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <br><li> taskName
+
+        # 按照【加工任务名称】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> taskId
+
+        # 按照【加工任务id】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> srctopicId
+
+        # 按照【源topicId】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+        # @param Type: 默认值为2.   1: 获取单个任务的详细信息 2：获取任务列表
+        # @type Type: Integer
+        # @param TaskId: Type为1， 此参数必填
+        # @type TaskId: String
+
+        attr_accessor :Filters, :Offset, :Limit, :Type, :TaskId
+
+        def initialize(filters=nil, offset=nil, limit=nil, type=nil, taskid=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeDataTransformInfo返回参数结构体
+      class DescribeDataTransformInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DataTransformTaskInfos: 数据加工任务列表信息
+        # @type DataTransformTaskInfos: Array
+        # @param TotalCount: 任务总次数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataTransformTaskInfos, :TotalCount, :RequestId
+
+        def initialize(datatransformtaskinfos=nil, totalcount=nil, requestid=nil)
+          @DataTransformTaskInfos = datatransformtaskinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataTransformTaskInfos'].nil?
+            @DataTransformTaskInfos = []
+            params['DataTransformTaskInfos'].each do |i|
+              datatransformtaskinfo_tmp = DataTransformTaskInfo.new
+              datatransformtaskinfo_tmp.deserialize(i)
+              @DataTransformTaskInfos << datatransformtaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5670,6 +5962,61 @@ module TencentCloud
         end
       end
 
+      # ModifyDataTransform请求参数结构体
+      class ModifyDataTransformRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 加工任务id
+        # @type TaskId: String
+        # @param Name: 加工任务名称
+        # @type Name: String
+        # @param EtlContent: 加工语句
+        # @type EtlContent: String
+        # @param EnableFlag: 任务启动状态. 默认为1，开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param DstResources: 加工任务目的topic_id以及别名
+        # @type DstResources: Array
+
+        attr_accessor :TaskId, :Name, :EtlContent, :EnableFlag, :DstResources
+
+        def initialize(taskid=nil, name=nil, etlcontent=nil, enableflag=nil, dstresources=nil)
+          @TaskId = taskid
+          @Name = name
+          @EtlContent = etlcontent
+          @EnableFlag = enableflag
+          @DstResources = dstresources
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @EtlContent = params['EtlContent']
+          @EnableFlag = params['EnableFlag']
+          unless params['DstResources'].nil?
+            @DstResources = []
+            params['DstResources'].each do |i|
+              datatransformresouceinfo_tmp = DataTransformResouceInfo.new
+              datatransformresouceinfo_tmp.deserialize(i)
+              @DstResources << datatransformresouceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDataTransform返回参数结构体
+      class ModifyDataTransformResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIndex请求参数结构体
       class ModifyIndexRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
@@ -6398,6 +6745,43 @@ module TencentCloud
           @LogSample = params['LogSample']
           @LogData = params['LogData']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 预览数据详情
+      class PreviewLogStatistic < TencentCloud::Common::AbstractModel
+        # @param LogContent: 日志内容
+        # @type LogContent: String
+        # @param LineNum: 行号
+        # @type LineNum: Integer
+        # @param DstTopicId: 目标日志主题
+        # @type DstTopicId: String
+        # @param FailReason: 失败错误码， 空字符串""表示正常
+        # @type FailReason: String
+        # @param Time: 日志时间戳
+        # @type Time: String
+        # @param DstTopicName: 目标topic-name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstTopicName: String
+
+        attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
+
+        def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
+          @LogContent = logcontent
+          @LineNum = linenum
+          @DstTopicId = dsttopicid
+          @FailReason = failreason
+          @Time = time
+          @DstTopicName = dsttopicname
+        end
+
+        def deserialize(params)
+          @LogContent = params['LogContent']
+          @LineNum = params['LineNum']
+          @DstTopicId = params['DstTopicId']
+          @FailReason = params['FailReason']
+          @Time = params['Time']
+          @DstTopicName = params['DstTopicName']
         end
       end
 

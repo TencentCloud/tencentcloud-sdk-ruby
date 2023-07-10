@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建数据加工任务。
+
+        # @param request: Request instance for CreateDataTransform.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateDataTransformRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateDataTransformResponse`
+        def CreateDataTransform(request)
+          body = send_request('CreateDataTransform', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataTransformResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
 
         # @param request: Request instance for CreateExport.
@@ -567,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除数据加工任务
+
+        # @param request: Request instance for DeleteDataTransform.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteDataTransformRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteDataTransformResponse`
+        def DeleteDataTransform(request)
+          body = send_request('DeleteDataTransform', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataTransformResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -951,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCosRechargesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取数据加工任务列表基本信息
+
+        # @param request: Request instance for DescribeDataTransformInfo.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeDataTransformInfoRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeDataTransformInfoResponse`
+        def DescribeDataTransformInfo(request)
+          body = send_request('DescribeDataTransformInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataTransformInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1455,6 +1527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCosRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改数据加工任务
+
+        # @param request: Request instance for ModifyDataTransform.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyDataTransformRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyDataTransformResponse`
+        def ModifyDataTransform(request)
+          body = send_request('ModifyDataTransform', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataTransformResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2899,6 +2899,48 @@ module TencentCloud
         end
       end
 
+      # DeleteRabbitMQVipInstance请求参数结构体
+      class DeleteRabbitMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteRabbitMQVipInstance返回参数结构体
+      class DeleteRabbitMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: 订单号Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranId: String
+        # @param InstanceId: 实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :InstanceId, :RequestId
+
+        def initialize(tranid=nil, instanceid=nil, requestid=nil)
+          @TranId = tranid
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRabbitMQVirtualHost请求参数结构体
       class DeleteRabbitMQVirtualHostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
