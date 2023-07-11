@@ -1043,10 +1043,10 @@ module TencentCloud
         # @param ScaleDownUtilizationThreshold: 节点资源使用量低于多少(百分比)时认为空闲(默认: 50(百分比))
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleDownUtilizationThreshold: Integer
-        # @param SkipNodesWithLocalStorage: 含有本地存储Pod的节点是否不缩容(默认： FALSE)
+        # @param SkipNodesWithLocalStorage: 含有本地存储Pod的节点是否不缩容(默认： true)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkipNodesWithLocalStorage: Boolean
-        # @param SkipNodesWithSystemPods: 含有kube-system namespace下非DaemonSet管理的Pod的节点是否不缩容 (默认： FALSE)
+        # @param SkipNodesWithSystemPods: 含有kube-system namespace下非DaemonSet管理的Pod的节点是否不缩容 (默认： true)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkipNodesWithSystemPods: Boolean
         # @param IgnoreDaemonSetsUtilization: 计算资源使用量时是否默认忽略DaemonSet的实例(默认值: False，不忽略)

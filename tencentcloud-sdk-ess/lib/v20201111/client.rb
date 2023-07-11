@@ -334,6 +334,57 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。<br/>
+        # PDF资源Id 通过上传文件接口获取
+        # 此接口合同组中的子合同必须都是文件发起的合同
+
+        # @param request: Request instance for CreateFlowGroupByFiles.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupByFilesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupByFilesResponse`
+        def CreateFlowGroupByFiles(request)
+          body = send_request('CreateFlowGroupByFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlowGroupByFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。<br/>
+        # 此接口合同组中的子合同必须都是模板发起的合同。 <br/>目前最大仅支持50个子合同
+
+        # @param request: Request instance for CreateFlowGroupByTemplates.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupByTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupByTemplatesResponse`
+        def CreateFlowGroupByTemplates(request)
+          body = send_request('CreateFlowGroupByTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlowGroupByTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
         # 注意:
         # 该接口不可直接调用，请联系客户经理申请使用

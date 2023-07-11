@@ -233,6 +233,59 @@ module TencentCloud
         end
       end
 
+      # AllocateIpv6AddressesBandwidth请求参数结构体
+      class AllocateIpv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param EcmRegion: ECM 地域。
+        # @type EcmRegion: String
+        # @param Ipv6Addresses: 需要开通公网访问能力的IPV6地址。
+        # @type Ipv6Addresses: Array
+        # @param InternetMaxBandwidthOut: 带宽，单位Mbps，默认是1Mbps。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param InternetChargeType: 网络计费模式，当前支持 BANDWIDTH_PACKAGE。
+        # @type InternetChargeType: String
+
+        attr_accessor :EcmRegion, :Ipv6Addresses, :InternetMaxBandwidthOut, :InternetChargeType
+
+        def initialize(ecmregion=nil, ipv6addresses=nil, internetmaxbandwidthout=nil, internetchargetype=nil)
+          @EcmRegion = ecmregion
+          @Ipv6Addresses = ipv6addresses
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @InternetChargeType = internetchargetype
+        end
+
+        def deserialize(params)
+          @EcmRegion = params['EcmRegion']
+          @Ipv6Addresses = params['Ipv6Addresses']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @InternetChargeType = params['InternetChargeType']
+        end
+      end
+
+      # AllocateIpv6AddressesBandwidth返回参数结构体
+      class AllocateIpv6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param AddressSet: 弹性公网 IPV6 的唯一 ID 列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressSet: Array
+        # @param TaskId: 异步任务TaskId。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AddressSet, :TaskId, :RequestId
+
+        def initialize(addressset=nil, taskid=nil, requestid=nil)
+          @AddressSet = addressset
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AddressSet = params['AddressSet']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 区域信息
       class Area < TencentCloud::Common::AbstractModel
         # @param AreaId: 区域ID
@@ -328,6 +381,166 @@ module TencentCloud
               ipv6address_tmp = Ipv6Address.new
               ipv6address_tmp.deserialize(i)
               @Ipv6AddressSet << ipv6address_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssignIpv6CidrBlock请求参数结构体
+      class AssignIpv6CidrBlockRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
+        # @type VpcId: String
+        # @param ISPType: 网络运营商类型 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # @type ISPType: String
+        # @param EcmRegion: ECM地域。
+        # @type EcmRegion: String
+
+        attr_accessor :VpcId, :ISPType, :EcmRegion
+
+        def initialize(vpcid=nil, isptype=nil, ecmregion=nil)
+          @VpcId = vpcid
+          @ISPType = isptype
+          @EcmRegion = ecmregion
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @ISPType = params['ISPType']
+          @EcmRegion = params['EcmRegion']
+        end
+      end
+
+      # AssignIpv6CidrBlock返回参数结构体
+      class AssignIpv6CidrBlockResponse < TencentCloud::Common::AbstractModel
+        # @param Ipv6CidrBlock: 分配的 `IPv6` 网段。形如：`3402:4e00:20:1000::/56`。
+        # @type Ipv6CidrBlock: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ipv6CidrBlock, :RequestId
+
+        def initialize(ipv6cidrblock=nil, requestid=nil)
+          @Ipv6CidrBlock = ipv6cidrblock
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ipv6CidrBlock = params['Ipv6CidrBlock']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssignIpv6CidrBlocks请求参数结构体
+      class AssignIpv6CidrBlocksRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
+        # @type VpcId: String
+        # @param ISPTypes: 网络运营商类型 取值范围:'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # @type ISPTypes: Array
+        # @param EcmRegion: ECM地域。
+        # @type EcmRegion: String
+
+        attr_accessor :VpcId, :ISPTypes, :EcmRegion
+
+        def initialize(vpcid=nil, isptypes=nil, ecmregion=nil)
+          @VpcId = vpcid
+          @ISPTypes = isptypes
+          @EcmRegion = ecmregion
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          unless params['ISPTypes'].nil?
+            @ISPTypes = []
+            params['ISPTypes'].each do |i|
+              isptypeitem_tmp = ISPTypeItem.new
+              isptypeitem_tmp.deserialize(i)
+              @ISPTypes << isptypeitem_tmp
+            end
+          end
+          @EcmRegion = params['EcmRegion']
+        end
+      end
+
+      # AssignIpv6CidrBlocks返回参数结构体
+      class AssignIpv6CidrBlocksResponse < TencentCloud::Common::AbstractModel
+        # @param IPv6CidrBlockSet: IPv6网段和所属运营商。
+        # @type IPv6CidrBlockSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IPv6CidrBlockSet, :RequestId
+
+        def initialize(ipv6cidrblockset=nil, requestid=nil)
+          @IPv6CidrBlockSet = ipv6cidrblockset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IPv6CidrBlockSet'].nil?
+            @IPv6CidrBlockSet = []
+            params['IPv6CidrBlockSet'].each do |i|
+              ispipv6cidrblock_tmp = ISPIPv6CidrBlock.new
+              ispipv6cidrblock_tmp.deserialize(i)
+              @IPv6CidrBlockSet << ispipv6cidrblock_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AssignIpv6SubnetCidrBlock请求参数结构体
+      class AssignIpv6SubnetCidrBlockRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 子网所在私有网络`ID`。形如：`vpc-f49l6u0z`。
+        # @type VpcId: String
+        # @param Ipv6SubnetCidrBlocks: 分配 `IPv6` 子网段列表。
+        # @type Ipv6SubnetCidrBlocks: Array
+        # @param EcmRegion: ECM地域。
+        # @type EcmRegion: String
+
+        attr_accessor :VpcId, :Ipv6SubnetCidrBlocks, :EcmRegion
+
+        def initialize(vpcid=nil, ipv6subnetcidrblocks=nil, ecmregion=nil)
+          @VpcId = vpcid
+          @Ipv6SubnetCidrBlocks = ipv6subnetcidrblocks
+          @EcmRegion = ecmregion
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          unless params['Ipv6SubnetCidrBlocks'].nil?
+            @Ipv6SubnetCidrBlocks = []
+            params['Ipv6SubnetCidrBlocks'].each do |i|
+              ipv6subnetcidrblock_tmp = Ipv6SubnetCidrBlock.new
+              ipv6subnetcidrblock_tmp.deserialize(i)
+              @Ipv6SubnetCidrBlocks << ipv6subnetcidrblock_tmp
+            end
+          end
+          @EcmRegion = params['EcmRegion']
+        end
+      end
+
+      # AssignIpv6SubnetCidrBlock返回参数结构体
+      class AssignIpv6SubnetCidrBlockResponse < TencentCloud::Common::AbstractModel
+        # @param Ipv6SubnetCidrBlockSet: 分配 `IPv6` 子网段列表。
+        # @type Ipv6SubnetCidrBlockSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ipv6SubnetCidrBlockSet, :RequestId
+
+        def initialize(ipv6subnetcidrblockset=nil, requestid=nil)
+          @Ipv6SubnetCidrBlockSet = ipv6subnetcidrblockset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Ipv6SubnetCidrBlockSet'].nil?
+            @Ipv6SubnetCidrBlockSet = []
+            params['Ipv6SubnetCidrBlockSet'].each do |i|
+              ipv6subnetcidrblock_tmp = Ipv6SubnetCidrBlock.new
+              ipv6subnetcidrblock_tmp.deserialize(i)
+              @Ipv6SubnetCidrBlockSet << ipv6subnetcidrblock_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3902,6 +4115,79 @@ module TencentCloud
         end
       end
 
+      # DescribeRegionIpv6Addresses请求参数结构体
+      class DescribeRegionIpv6AddressesRequest < TencentCloud::Common::AbstractModel
+        # @param EcmRegion: ECM 地域，为空时返回所有地域的IPv6地址。
+        # @type EcmRegion: String
+        # @param Filters: 详细的过滤条件如下：
+        # address-id - String - 是否必填：否 - （过滤条件）按照 EIP 的 ID 过滤。
+        # address-ip - String - 是否必填：否 - （过滤条件）按照 EIP 的 IP 地址过滤。
+        # network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。
+        # instance-id - String - 是否必填：否 - （过滤条件）按照 EIP 所绑定的实例 ID 过滤。
+        # vpc-id - String - 是否必填：否 - （过滤条件）按照 EIP 所在 VPC 的 ID 进行过滤。
+        # address-isp - String - 是否必填：否 - （过滤条件）按照 EIP 的运营商进行过滤。
+        # address-status  - String - 是否必填：否 - （过滤条件）按照 EIP  的状态信息进行过滤。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :EcmRegion, :Filters, :Offset, :Limit
+
+        def initialize(ecmregion=nil, filters=nil, offset=nil, limit=nil)
+          @EcmRegion = ecmregion
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @EcmRegion = params['EcmRegion']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRegionIpv6Addresses返回参数结构体
+      class DescribeRegionIpv6AddressesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的 IPV6 数量。
+        # @type TotalCount: Integer
+        # @param AddressSet: IPV6 详细信息列表。
+        # @type AddressSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AddressSet, :RequestId
+
+        def initialize(totalcount=nil, addressset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AddressSet = addressset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AddressSet'].nil?
+            @AddressSet = []
+            params['AddressSet'].each do |i|
+              address_tmp = Address.new
+              address_tmp.deserialize(i)
+              @AddressSet << address_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRouteConflicts请求参数结构体
       class DescribeRouteConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -5443,6 +5729,26 @@ module TencentCloud
         end
       end
 
+      # 申请ipv6 cidr block的信息
+      class ISPTypeItem < TencentCloud::Common::AbstractModel
+        # @param ISPType: IPv6 Cidr所属运营商类型，支持的类型有 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。作为入参数时为必选。
+        # @type ISPType: String
+        # @param Count: 申请IPv6 Cidr Block的个数。作为入参数时为必选。
+        # @type Count: Integer
+
+        attr_accessor :ISPType, :Count
+
+        def initialize(isptype=nil, count=nil)
+          @ISPType = isptype
+          @Count = count
+        end
+
+        def deserialize(params)
+          @ISPType = params['ISPType']
+          @Count = params['Count']
+        end
+      end
+
       # 镜像信息
       class Image < TencentCloud::Common::AbstractModel
         # @param ImageId: 镜像ID
@@ -6293,6 +6599,28 @@ module TencentCloud
         end
       end
 
+      # IPv6子网段对象。
+      class Ipv6SubnetCidrBlock < TencentCloud::Common::AbstractModel
+        # @param SubnetId: 子网实例`ID`。形如：`subnet-pxir56ns`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Ipv6CidrBlock: `IPv6`子网段。形如：`3402:4e00:20:1001::/64`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6CidrBlock: String
+
+        attr_accessor :SubnetId, :Ipv6CidrBlock
+
+        def initialize(subnetid=nil, ipv6cidrblock=nil)
+          @SubnetId = subnetid
+          @Ipv6CidrBlock = ipv6cidrblock
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @Ipv6CidrBlock = params['Ipv6CidrBlock']
+        end
+      end
+
       # 描述密钥对信息
       class KeyPair < TencentCloud::Common::AbstractModel
         # @param KeyId: 密钥对的ID，是密钥对的唯一标识。
@@ -7021,6 +7349,57 @@ module TencentCloud
 
       # ModifyIpv6AddressesAttribute返回参数结构体
       class ModifyIpv6AddressesAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIpv6AddressesBandwidth请求参数结构体
+      class ModifyIpv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param EcmRegion: ECM 地域
+        # @type EcmRegion: String
+        # @param InternetMaxBandwidthOut: 修改的目标带宽，单位Mbps
+        # @type InternetMaxBandwidthOut: Integer
+        # @param Ipv6Addresses: IPV6地址。Ipv6Addresses和Ipv6AddressId必须且只能传一个
+        # @type Ipv6Addresses: Array
+        # @param Ipv6AddressIds: IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ipv6Addresses和Ipv6AddressId必须且只能传一个
+        # @type Ipv6AddressIds: Array
+
+        attr_accessor :EcmRegion, :InternetMaxBandwidthOut, :Ipv6Addresses, :Ipv6AddressIds
+
+        def initialize(ecmregion=nil, internetmaxbandwidthout=nil, ipv6addresses=nil, ipv6addressids=nil)
+          @EcmRegion = ecmregion
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @Ipv6Addresses = ipv6addresses
+          @Ipv6AddressIds = ipv6addressids
+        end
+
+        def deserialize(params)
+          @EcmRegion = params['EcmRegion']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          unless params['Ipv6Addresses'].nil?
+            @Ipv6Addresses = []
+            params['Ipv6Addresses'].each do |i|
+              ipv6address_tmp = Ipv6Address.new
+              ipv6address_tmp.deserialize(i)
+              @Ipv6Addresses << ipv6address_tmp
+            end
+          end
+          @Ipv6AddressIds = params['Ipv6AddressIds']
+        end
+      end
+
+      # ModifyIpv6AddressesBandwidth返回参数结构体
+      class ModifyIpv6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8831,6 +9210,46 @@ module TencentCloud
         end
       end
 
+      # QueryVpcTaskResult请求参数结构体
+      class QueryVpcTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 无
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # QueryVpcTaskResult返回参数结构体
+      class QueryVpcTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 执行结果，包括"SUCCESS", "FAILED", "RUNNING"
+        # @type Status: String
+        # @param Output: 异步任务执行输出。
+        # @type Output: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Output, :RequestId
+
+        def initialize(status=nil, output=nil, requestid=nil)
+          @Status = status
+          @Output = output
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Output = params['Output']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RebootInstances请求参数结构体
       class RebootInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIdSet: 待重启的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
@@ -8926,6 +9345,50 @@ module TencentCloud
       # ReleaseAddresses返回参数结构体
       class ReleaseAddressesResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 异步任务TaskId。可以使用DescribeTaskResult接口查询任务状态。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReleaseIpv6AddressesBandwidth请求参数结构体
+      class ReleaseIpv6AddressesBandwidthRequest < TencentCloud::Common::AbstractModel
+        # @param EcmRegion: ECM 地域。
+        # @type EcmRegion: String
+        # @param Ipv6Addresses: IPV6地址。Ipv6Addresses和Ipv6AddressIds必须且只能传一个。
+        # @type Ipv6Addresses: Array
+        # @param Ipv6AddressIds: IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ipv6Addresses和Ipv6AddressIds必须且只能传一个。
+        # @type Ipv6AddressIds: Array
+
+        attr_accessor :EcmRegion, :Ipv6Addresses, :Ipv6AddressIds
+
+        def initialize(ecmregion=nil, ipv6addresses=nil, ipv6addressids=nil)
+          @EcmRegion = ecmregion
+          @Ipv6Addresses = ipv6addresses
+          @Ipv6AddressIds = ipv6addressids
+        end
+
+        def deserialize(params)
+          @EcmRegion = params['EcmRegion']
+          @Ipv6Addresses = params['Ipv6Addresses']
+          @Ipv6AddressIds = params['Ipv6AddressIds']
+        end
+      end
+
+      # ReleaseIpv6AddressesBandwidth返回参数结构体
+      class ReleaseIpv6AddressesBandwidthResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务TaskId。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10778,6 +11241,53 @@ module TencentCloud
         end
       end
 
+      # UnassignIpv6SubnetCidrBlock请求参数结构体
+      class UnassignIpv6SubnetCidrBlockRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 子网所在私有网络`ID`。形如：`vpc-f49l6u0z`。
+        # @type VpcId: String
+        # @param Ipv6SubnetCidrBlocks: `IPv6` 子网段列表。
+        # @type Ipv6SubnetCidrBlocks: Array
+        # @param EcmRegion: ECM地域。
+        # @type EcmRegion: String
+
+        attr_accessor :VpcId, :Ipv6SubnetCidrBlocks, :EcmRegion
+
+        def initialize(vpcid=nil, ipv6subnetcidrblocks=nil, ecmregion=nil)
+          @VpcId = vpcid
+          @Ipv6SubnetCidrBlocks = ipv6subnetcidrblocks
+          @EcmRegion = ecmregion
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          unless params['Ipv6SubnetCidrBlocks'].nil?
+            @Ipv6SubnetCidrBlocks = []
+            params['Ipv6SubnetCidrBlocks'].each do |i|
+              ipv6subnetcidrblock_tmp = Ipv6SubnetCidrBlock.new
+              ipv6subnetcidrblock_tmp.deserialize(i)
+              @Ipv6SubnetCidrBlocks << ipv6subnetcidrblock_tmp
+            end
+          end
+          @EcmRegion = params['EcmRegion']
+        end
+      end
+
+      # UnassignIpv6SubnetCidrBlock返回参数结构体
+      class UnassignIpv6SubnetCidrBlockResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 私有网络相关信息配置。
       class VirtualPrivateCloud < TencentCloud::Common::AbstractModel
         # @param VpcId: 私有网络ID，形如vpc-xxx。
@@ -10960,7 +11470,7 @@ module TencentCloud
       class ZoneInstanceCountISP < TencentCloud::Common::AbstractModel
         # @param Zone: 创建实例的可用区。
         # @type Zone: String
-        # @param InstanceCount: 在当前可用区欲创建的实例数目。
+        # @param InstanceCount: 在当前可用区创建的实例数目。
         # @type InstanceCount: Integer
         # @param ISP: 运营商如下：
         # CTCC：中国电信

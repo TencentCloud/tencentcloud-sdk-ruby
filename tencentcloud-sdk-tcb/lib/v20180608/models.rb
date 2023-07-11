@@ -6893,8 +6893,10 @@ module TencentCloud
       # 安全网关版本路由信息限额配置
       class FrequencyLimitConfig < TencentCloud::Common::AbstractModel
         # @param LimitObject: 限额对象 "ConnectionsLimit" 或 "QPSLimit"
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitObject: String
         # @param LimitConfig: 限额配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitConfig: String
 
         attr_accessor :LimitObject, :LimitConfig
@@ -8736,10 +8738,13 @@ module TencentCloud
         # @param GatewayRoutePort: 4层端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRoutePort: Integer
+        # @param GatewayRouteEnvId: 路由环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayRouteEnvId: String
 
-        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort
+        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId
 
-        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil)
+        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil, gatewayrouteenvid=nil)
           @GatewayRouteName = gatewayroutename
           @GatewayRouteProtocol = gatewayrouteprotocol
           @GatewayRouteAddr = gatewayrouteaddr
@@ -8754,6 +8759,7 @@ module TencentCloud
           @GatewayRoutePath = gatewayroutepath
           @GatewayRouteMethod = gatewayroutemethod
           @GatewayRoutePort = gatewayrouteport
+          @GatewayRouteEnvId = gatewayrouteenvid
         end
 
         def deserialize(params)
@@ -8778,6 +8784,7 @@ module TencentCloud
           @GatewayRoutePath = params['GatewayRoutePath']
           @GatewayRouteMethod = params['GatewayRouteMethod']
           @GatewayRoutePort = params['GatewayRoutePort']
+          @GatewayRouteEnvId = params['GatewayRouteEnvId']
         end
       end
 

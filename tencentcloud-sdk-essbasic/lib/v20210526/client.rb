@@ -262,6 +262,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口（ChannelCreateFlowGroupByTemplates）用于通过多模板创建合同组签署流程。
+
+        # @param request: Request instance for ChannelCreateFlowGroupByTemplates.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowGroupByTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowGroupByTemplatesResponse`
+        def ChannelCreateFlowGroupByTemplates(request)
+          body = send_request('ChannelCreateFlowGroupByTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowGroupByTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
         # 注意:
         # 该接口不可直接调用，请联系客户经理申请使用
@@ -599,7 +623,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户角色
+        # 查询角色列表，支持根据类型和状态过滤角色列表
 
         # @param request: Request instance for ChannelDescribeRoles.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeRolesRequest`

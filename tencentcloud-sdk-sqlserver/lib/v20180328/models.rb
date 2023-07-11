@@ -5394,9 +5394,15 @@ module TencentCloud
 
       # InquiryPriceCreateDBInstances返回参数结构体
       class InquiryPriceCreateDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 未打折前价格，其值除以100表示多少钱。例如10010表示100.10元
+        # @param OriginalPrice: 未打折前价格，其值除以100表示最终的价格。
+        # InstanceChargeType=PREPAID时，单位是"每月"。
+        # InstanceChargeType=POSTPAID时，单位是"每小时"。
+        # 例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。
         # @type OriginalPrice: Integer
-        # @param Price: 实际需要支付的价格，其值除以100表示多少钱。例如10010表示100.10元
+        # @param Price: 实际需要支付的价格，其值除以100表示最终的价格。
+        # InstanceChargeType=PREPAID时，单位是"每月"。
+        # InstanceChargeType=POSTPAID时，单位是"每小时"。
+        # 例如10010，在InstanceChargeType=PREPAID情况下，表示每月100.10元。
         # @type Price: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

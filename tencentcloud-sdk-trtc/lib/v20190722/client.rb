@@ -188,33 +188,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口内部调用计量接口，计量接口迁通用集群后不可用。目前已有新的对外接口可以供用户使用。
-
-        # 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
-        # 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
-
-        # @param request: Request instance for DescribeExternalTrtcMeasure.
-        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeExternalTrtcMeasureRequest`
-        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeExternalTrtcMeasureResponse`
-        def DescribeExternalTrtcMeasure(request)
-          body = send_request('DescribeExternalTrtcMeasure', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeExternalTrtcMeasureResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取TRTC混流转码的用量明细。
         # - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
         # - 单次查询统计区间最多不能超过31天。

@@ -4320,6 +4320,8 @@ module TencentCloud
       end
 
       # 动态更新索引配置
+
+      # 注意：该功能尚处于内测阶段，如需使用请联系技术支持
       class DynamicIndex < TencentCloud::Common::AbstractModel
         # @param Status: 动态索引配置开关
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6833,6 +6835,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: :class:`Tencentcloud::Cls.v20201016.models.RuleTagInfo`
         # @param DynamicIndex: 动态索引配置，如果为空时代表未开启动态段索引
+
+        # 注意：该功能尚处于内测阶段，如需使用请联系技术支持
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicIndex: :class:`Tencentcloud::Cls.v20201016.models.DynamicIndex`
 

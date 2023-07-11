@@ -212,7 +212,7 @@ module TencentCloud
         # @type OrderSource: String
         # @param DealMode: 交易模式 0-下单并支付 1-下单
         # @type DealMode: Integer
-        # @param ParamTemplateId: 参数模版ID
+        # @param ParamTemplateId: 参数模板ID
         # @type ParamTemplateId: Integer
         # @param InstanceParams: 参数列表，ParamTemplateId 传入时InstanceParams才有效
         # @type InstanceParams: Array
@@ -1602,13 +1602,13 @@ module TencentCloud
 
       # CreateParamTemplate请求参数结构体
       class CreateParamTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # @type TemplateName: String
         # @param EngineVersion: mysql版本号
         # @type EngineVersion: String
-        # @param TemplateDescription: 模版描述
+        # @param TemplateDescription: 模板描述
         # @type TemplateDescription: String
-        # @param TemplateId: 可选参数，需要复制的模版ID
+        # @param TemplateId: 可选参数，需要复制的模板ID
         # @type TemplateId: Integer
         # @param DbMode: 数据库类型，可选值：NORMAL（默认值），SERVERLESS
         # @type DbMode: String
@@ -1645,7 +1645,7 @@ module TencentCloud
 
       # CreateParamTemplate返回参数结构体
       class CreateParamTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1675,7 +1675,7 @@ module TencentCloud
         # @type ConnectionPoolType: String
         # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阀值：单位（秒）
+        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
         # @type ConnectionPoolTimeOut: Integer
         # @param SecurityGroupIds: 安全组ID数组
         # @type SecurityGroupIds: Array
@@ -1804,7 +1804,7 @@ module TencentCloud
         # @type ConnectionPoolType: String
         # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阀值：单位（秒）
+        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
         # @type ConnectionPoolTimeOut: Integer
         # @param SecurityGroupIds: 安全组ID数组
         # @type SecurityGroupIds: Array
@@ -3360,7 +3360,7 @@ module TencentCloud
 
       # DeleteParamTemplate请求参数结构体
       class DeleteParamTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模版ID
+        # @param TemplateId: 参数模板ID
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
@@ -5181,9 +5181,9 @@ module TencentCloud
       class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param EngineVersions: 数据库引擎版本号
         # @type EngineVersions: Array
-        # @param TemplateNames: 模版名称
+        # @param TemplateNames: 模板名称
         # @type TemplateNames: Array
-        # @param TemplateIds: 模版ID
+        # @param TemplateIds: 模板ID
         # @type TemplateIds: Array
         # @param DbModes: 数据库类型，可选值：NORMAL，SERVERLESS
         # @type DbModes: Array
@@ -5193,7 +5193,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Products: 查询的模板对应的产品类型
         # @type Products: Array
-        # @param TemplateTypes: 模版类型
+        # @param TemplateTypes: 模板类型
         # @type TemplateTypes: Array
         # @param EngineTypes: 版本类型
         # @type EngineTypes: Array
@@ -7724,11 +7724,11 @@ module TencentCloud
 
       # ModifyParamTemplate请求参数结构体
       class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: Integer
-        # @param TemplateName: 模版名
+        # @param TemplateName: 模板名
         # @type TemplateName: String
-        # @param TemplateDescription: 模版描述
+        # @param TemplateDescription: 模板描述
         # @type TemplateDescription: String
         # @param ParamList: 参数列表
         # @type ParamList: Array
@@ -8995,7 +8995,7 @@ module TencentCloud
       class PolicyRule < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP
         # @type Action: String
-        # @param CidrIp: 来源Ip或Ip段，例如192.168.0.0/16
+        # @param CidrIp: 来源IP或IP段，例如192.168.0.0/16
         # @type CidrIp: String
         # @param PortRange: 端口
         # @type PortRange: String
@@ -9043,7 +9043,7 @@ module TencentCloud
         # @param OpenConnectionPool: 是否开启了连接池
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool（会话级别连接池
+        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool（会话级别连接池）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConnectionPoolType: String
 
@@ -10279,7 +10279,7 @@ module TencentCloud
         # @type RowsExamined: Integer
         # @param RowsSent: 返回行数
         # @type RowsSent: Integer
-        # @param SqlTemplate: sql模版
+        # @param SqlTemplate: sql模板
         # @type SqlTemplate: String
         # @param SqlMd5: sql语句md5
         # @type SqlMd5: String

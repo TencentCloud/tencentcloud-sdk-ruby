@@ -608,65 +608,6 @@ module TencentCloud
         end
       end
 
-      # DescribeExternalTrtcMeasure请求参数结构体
-      class DescribeExternalTrtcMeasureRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始日期。
-        # @type StartTime: String
-        # @param EndTime: 查询结束日期。
-        # @type EndTime: String
-        # @param SdkAppId: 对应的应用。如果没有这个参数，表示获取用户名下全部实时音视频应用的汇总。
-        # @type SdkAppId: Integer
-
-        attr_accessor :StartTime, :EndTime, :SdkAppId
-
-        def initialize(starttime=nil, endtime=nil, sdkappid=nil)
-          @StartTime = starttime
-          @EndTime = endtime
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
-      # DescribeExternalTrtcMeasure返回参数结构体
-      class DescribeExternalTrtcMeasureResponse < TencentCloud::Common::AbstractModel
-        # @param SdkAppIdTrtrTimeUsages: 每个SdkAppId的时长使用信息
-        # @type SdkAppIdTrtrTimeUsages: Array
-        # @param AnchorUsageMode: 主播的用量统计方式。取值"InRoomTime":房间时长,"SubscribeTime":"订阅时长","Bandwidth":带宽
-        # @type AnchorUsageMode: String
-        # @param AudienceUsageMode: 观众的用量统计方式。取值"InRoomTime":在房间时长,"SubscribeTime":"订阅时长","Bandwidth":带宽,"MergeWithAnchor":"不区分麦上麦下"
-        # @type AudienceUsageMode: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :SdkAppIdTrtrTimeUsages, :AnchorUsageMode, :AudienceUsageMode, :RequestId
-
-        def initialize(sdkappidtrtrtimeusages=nil, anchorusagemode=nil, audienceusagemode=nil, requestid=nil)
-          @SdkAppIdTrtrTimeUsages = sdkappidtrtrtimeusages
-          @AnchorUsageMode = anchorusagemode
-          @AudienceUsageMode = audienceusagemode
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['SdkAppIdTrtrTimeUsages'].nil?
-            @SdkAppIdTrtrTimeUsages = []
-            params['SdkAppIdTrtrTimeUsages'].each do |i|
-              sdkappidnewtrtctimeusage_tmp = SdkAppIdNewTrtcTimeUsage.new
-              sdkappidnewtrtctimeusage_tmp.deserialize(i)
-              @SdkAppIdTrtrTimeUsages << sdkappidnewtrtctimeusage_tmp
-            end
-          end
-          @AnchorUsageMode = params['AnchorUsageMode']
-          @AudienceUsageMode = params['AudienceUsageMode']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeMixTranscodingUsage请求参数结构体
       class DescribeMixTranscodingUsageRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
@@ -3171,44 +3112,6 @@ module TencentCloud
         end
       end
 
-      # SdkAppId级别实时音视频的用量数据
-      class SdkAppIdNewTrtcTimeUsage < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: SdkAppId的值。
-        # @type SdkAppId: String
-        # @param TrtcTimeUsages: 统计的时间点数据。
-        # @type TrtcTimeUsages: Array
-        # @param AudienceTrtcTimeUsages: 统计的麦下用量的时间点数据。
-        # @type AudienceTrtcTimeUsages: Array
-
-        attr_accessor :SdkAppId, :TrtcTimeUsages, :AudienceTrtcTimeUsages
-
-        def initialize(sdkappid=nil, trtctimeusages=nil, audiencetrtctimeusages=nil)
-          @SdkAppId = sdkappid
-          @TrtcTimeUsages = trtctimeusages
-          @AudienceTrtcTimeUsages = audiencetrtctimeusages
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          unless params['TrtcTimeUsages'].nil?
-            @TrtcTimeUsages = []
-            params['TrtcTimeUsages'].each do |i|
-              trtctimenewusage_tmp = TrtcTimeNewUsage.new
-              trtctimenewusage_tmp.deserialize(i)
-              @TrtcTimeUsages << trtctimenewusage_tmp
-            end
-          end
-          unless params['AudienceTrtcTimeUsages'].nil?
-            @AudienceTrtcTimeUsages = []
-            params['AudienceTrtcTimeUsages'].each do |i|
-              trtctimenewusage_tmp = TrtcTimeNewUsage.new
-              trtctimenewusage_tmp.deserialize(i)
-              @AudienceTrtcTimeUsages << trtctimenewusage_tmp
-            end
-          end
-        end
-      end
-
       # SdkAppId级别录制时长数据。
       class SdkAppIdRecordUsage < TencentCloud::Common::AbstractModel
         # @param SdkAppId: SdkAppId的值。
@@ -3882,58 +3785,6 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Value = params['Value']
-        end
-      end
-
-      # 实时音视频用量的某一时间段的统计信息.
-      class TrtcTimeNewUsage < TencentCloud::Common::AbstractModel
-        # @param TimeKey: 时间点。
-        # @type TimeKey: String
-        # @param VoiceUserNum: 通话人数。仅供参考。在线人数以仪表盘查询结果为准。
-        # @type VoiceUserNum: Integer
-        # @param VideoTime: 音视频通话收费时长。单位：秒。
-        # @type VideoTime: Integer
-        # @param Class1VideoTime: 标清视频通话收费时长。单位：秒。
-        # @type Class1VideoTime: Integer
-        # @param Class2VideoTime: 高清视频通话收费时长。单位：秒。
-        # @type Class2VideoTime: Integer
-        # @param Class3VideoTime: 超高清视频通话收费时长。单位：秒。
-        # @type Class3VideoTime: Integer
-        # @param AudioTime: 音频通话收费时长。单位：秒。
-        # @type AudioTime: Integer
-        # @param Bandwidth: 带宽。单位：Mbps。
-        # @type Bandwidth: Float
-        # @param Video2KTime: 2k视频通话收费时长。单位：秒。
-        # @type Video2KTime: Integer
-        # @param Video4KTime: 4k视频通话收费时长。单位：秒。
-        # @type Video4KTime: Integer
-
-        attr_accessor :TimeKey, :VoiceUserNum, :VideoTime, :Class1VideoTime, :Class2VideoTime, :Class3VideoTime, :AudioTime, :Bandwidth, :Video2KTime, :Video4KTime
-
-        def initialize(timekey=nil, voiceusernum=nil, videotime=nil, class1videotime=nil, class2videotime=nil, class3videotime=nil, audiotime=nil, bandwidth=nil, video2ktime=nil, video4ktime=nil)
-          @TimeKey = timekey
-          @VoiceUserNum = voiceusernum
-          @VideoTime = videotime
-          @Class1VideoTime = class1videotime
-          @Class2VideoTime = class2videotime
-          @Class3VideoTime = class3videotime
-          @AudioTime = audiotime
-          @Bandwidth = bandwidth
-          @Video2KTime = video2ktime
-          @Video4KTime = video4ktime
-        end
-
-        def deserialize(params)
-          @TimeKey = params['TimeKey']
-          @VoiceUserNum = params['VoiceUserNum']
-          @VideoTime = params['VideoTime']
-          @Class1VideoTime = params['Class1VideoTime']
-          @Class2VideoTime = params['Class2VideoTime']
-          @Class3VideoTime = params['Class3VideoTime']
-          @AudioTime = params['AudioTime']
-          @Bandwidth = params['Bandwidth']
-          @Video2KTime = params['Video2KTime']
-          @Video4KTime = params['Video4KTime']
         end
       end
 

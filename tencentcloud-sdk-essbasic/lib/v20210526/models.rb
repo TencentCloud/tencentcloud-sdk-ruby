@@ -809,7 +809,7 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByFiles请求参数结构体
       class ChannelCreateFlowGroupByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param FlowFileInfos: 每个子合同的发起所需的信息，数量限制2-100
+        # @param FlowFileInfos: 每个子合同的发起所需的信息，数量限制2-50
         # @type FlowFileInfos: Array
         # @param FlowGroupName: 合同组名称，长度不超过200个字符
         # @type FlowGroupName: String
@@ -880,6 +880,76 @@ module TencentCloud
         def deserialize(params)
           @FlowGroupId = params['FlowGroupId']
           @FlowIds = params['FlowIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelCreateFlowGroupByTemplates请求参数结构体
+      class ChannelCreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowInfos: 每个子合同的发起所需的信息，数量限制2-50（合同组暂不支持抄送功能）
+        # @type FlowInfos: Array
+        # @param FlowGroupName: 合同组名称，长度不超过200个字符
+        # @type FlowGroupName: String
+
+        attr_accessor :Agent, :FlowInfos, :FlowGroupName
+
+        def initialize(agent=nil, flowinfos=nil, flowgroupname=nil)
+          @Agent = agent
+          @FlowInfos = flowinfos
+          @FlowGroupName = flowgroupname
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['FlowInfos'].nil?
+            @FlowInfos = []
+            params['FlowInfos'].each do |i|
+              flowinfo_tmp = FlowInfo.new
+              flowinfo_tmp.deserialize(i)
+              @FlowInfos << flowinfo_tmp
+            end
+          end
+          @FlowGroupName = params['FlowGroupName']
+        end
+      end
+
+      # ChannelCreateFlowGroupByTemplates返回参数结构体
+      class ChannelCreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowGroupId: 合同组ID
+        # @type FlowGroupId: String
+        # @param FlowIds: 子合同ID列表
+        # @type FlowIds: Array
+        # @param TaskInfos: 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
+        # 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
+        # @type TaskInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowGroupId, :FlowIds, :TaskInfos, :RequestId
+
+        def initialize(flowgroupid=nil, flowids=nil, taskinfos=nil, requestid=nil)
+          @FlowGroupId = flowgroupid
+          @FlowIds = flowids
+          @TaskInfos = taskinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowGroupId = params['FlowGroupId']
+          @FlowIds = params['FlowIds']
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              taskinfo_tmp = TaskInfo.new
+              taskinfo_tmp.deserialize(i)
+              @TaskInfos << taskinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3939,14 +4009,16 @@ module TencentCloud
         # @type CustomerData: String
         # @param Unordered: 合同签署顺序类型(无序签,顺序签)，默认为false，即有序签署
         # @type Unordered: Boolean
+        # @param Components: 签署文件中的发起方的填写控件，需要在发起的时候进行填充
+        # @type Components: Array
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
         # @param NeedSignReview: 本企业(发起方企业)是否需要签署审批
         # @type NeedSignReview: Boolean
 
-        attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :CustomShowMap, :NeedSignReview
+        attr_accessor :FileIds, :FlowName, :FlowApprovers, :Deadline, :FlowDescription, :FlowType, :CallbackUrl, :CustomerData, :Unordered, :Components, :CustomShowMap, :NeedSignReview
 
-        def initialize(fileids=nil, flowname=nil, flowapprovers=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, customerdata=nil, unordered=nil, customshowmap=nil, needsignreview=nil)
+        def initialize(fileids=nil, flowname=nil, flowapprovers=nil, deadline=nil, flowdescription=nil, flowtype=nil, callbackurl=nil, customerdata=nil, unordered=nil, components=nil, customshowmap=nil, needsignreview=nil)
           @FileIds = fileids
           @FlowName = flowname
           @FlowApprovers = flowapprovers
@@ -3956,6 +4028,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @CustomerData = customerdata
           @Unordered = unordered
+          @Components = components
           @CustomShowMap = customshowmap
           @NeedSignReview = needsignreview
         end
@@ -3977,6 +4050,14 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @CustomerData = params['CustomerData']
           @Unordered = params['Unordered']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
         end

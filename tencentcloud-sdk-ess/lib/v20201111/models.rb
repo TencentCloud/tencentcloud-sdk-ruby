@@ -86,10 +86,10 @@ module TencentCloud
         # @type ApproverName: String
         # @param ApproverMobile: 签署人的手机号，11位数字
         # @type ApproverMobile: String
-        # @param SignComponents: 签署人的签署控件列表
-        # @type SignComponents: Array
         # @param OrganizationName: 如果签署方是企业签署方，则为企业名
         # @type OrganizationName: String
+        # @param SignComponents: 签署人的签署控件列表
+        # @type SignComponents: Array
         # @param ApproverIdCardNumber: 签署人的身份证号
         # @type ApproverIdCardNumber: String
         # @param ApproverIdCardType: 签署人的身份证件类型
@@ -124,14 +124,14 @@ module TencentCloud
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
         # @type ApproverNeedSignReview: Boolean
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :SignComponents, :OrganizationName, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, signcomponents=nil, organizationname=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
-          @SignComponents = signcomponents
           @OrganizationName = organizationname
+          @SignComponents = signcomponents
           @ApproverIdCardNumber = approveridcardnumber
           @ApproverIdCardType = approveridcardtype
           @NotifyType = notifytype
@@ -151,6 +151,7 @@ module TencentCloud
           @ApproverType = params['ApproverType']
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
+          @OrganizationName = params['OrganizationName']
           unless params['SignComponents'].nil?
             @SignComponents = []
             params['SignComponents'].each do |i|
@@ -159,7 +160,6 @@ module TencentCloud
               @SignComponents << component_tmp
             end
           end
-          @OrganizationName = params['OrganizationName']
           @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @ApproverIdCardType = params['ApproverIdCardType']
           @NotifyType = params['NotifyType']
@@ -1354,6 +1354,154 @@ module TencentCloud
         end
       end
 
+      # CreateFlowGroupByFiles请求参数结构体
+      class CreateFlowGroupByFilesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowGroupName: 合同（流程）组名称,最大长度200个字符
+        # @type FlowGroupName: String
+        # @param FlowGroupInfos: 合同（流程）组的子合同信息，支持2-50个子合同
+        # @type FlowGroupInfos: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowGroupOptions: 合同（流程）组的配置项信息。包括是否通知本企业签署方，是否通知其他签署方
+        # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
+
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions
+
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil)
+          @Operator = operator
+          @FlowGroupName = flowgroupname
+          @FlowGroupInfos = flowgroupinfos
+          @Agent = agent
+          @FlowGroupOptions = flowgroupoptions
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowGroupName = params['FlowGroupName']
+          unless params['FlowGroupInfos'].nil?
+            @FlowGroupInfos = []
+            params['FlowGroupInfos'].each do |i|
+              flowgroupinfo_tmp = FlowGroupInfo.new
+              flowgroupinfo_tmp.deserialize(i)
+              @FlowGroupInfos << flowgroupinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['FlowGroupOptions'].nil?
+            @FlowGroupOptions = FlowGroupOptions.new
+            @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
+          end
+        end
+      end
+
+      # CreateFlowGroupByFiles返回参数结构体
+      class CreateFlowGroupByFilesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowGroupId: String
+        # @param FlowIds: 合同(流程)组中子合同列表.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowGroupId, :FlowIds, :RequestId
+
+        def initialize(flowgroupid=nil, flowids=nil, requestid=nil)
+          @FlowGroupId = flowgroupid
+          @FlowIds = flowids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowGroupId = params['FlowGroupId']
+          @FlowIds = params['FlowIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFlowGroupByTemplates请求参数结构体
+      class CreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowGroupName: 合同组名称,最大长度200个字符
+        # @type FlowGroupName: String
+        # @param FlowGroupInfos: 合同组的子合同信息，支持2-50个子合同
+        # @type FlowGroupInfos: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowGroupOptions: 合同组的配置信息。包括是否通知本企业签署方，是否通知其他签署方
+        # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
+
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions
+
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil)
+          @Operator = operator
+          @FlowGroupName = flowgroupname
+          @FlowGroupInfos = flowgroupinfos
+          @Agent = agent
+          @FlowGroupOptions = flowgroupoptions
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowGroupName = params['FlowGroupName']
+          unless params['FlowGroupInfos'].nil?
+            @FlowGroupInfos = []
+            params['FlowGroupInfos'].each do |i|
+              flowgroupinfo_tmp = FlowGroupInfo.new
+              flowgroupinfo_tmp.deserialize(i)
+              @FlowGroupInfos << flowgroupinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['FlowGroupOptions'].nil?
+            @FlowGroupOptions = FlowGroupOptions.new
+            @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
+          end
+        end
+      end
+
+      # CreateFlowGroupByTemplates返回参数结构体
+      class CreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param FlowGroupId: 合同(流程)组的合同组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowGroupId: String
+        # @param FlowIds: 合同(流程)组中子合同列表.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowGroupId, :FlowIds, :RequestId
+
+        def initialize(flowgroupid=nil, flowids=nil, requestid=nil)
+          @FlowGroupId = flowgroupid
+          @FlowIds = flowids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowGroupId = params['FlowGroupId']
+          @FlowIds = params['FlowIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowReminds请求参数结构体
       class CreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -2245,6 +2393,8 @@ module TencentCloud
         # @type EndPoint: String
         # @param FlowId: 签署流程编号 (PathType=1时必传)
         # @type FlowId: String
+        # @param FlowGroupId: 合同组ID
+        # @type FlowGroupId: String
         # @param PathType: 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
         # @type PathType: Integer
         # @param AutoJumpBack: 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
@@ -2252,15 +2402,16 @@ module TencentCloud
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :PathType, :AutoJumpBack, :Agent
+        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent
 
-        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, pathtype=nil, autojumpback=nil, agent=nil)
+        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @Name = name
           @Mobile = mobile
           @EndPoint = endpoint
           @FlowId = flowid
+          @FlowGroupId = flowgroupid
           @PathType = pathtype
           @AutoJumpBack = autojumpback
           @Agent = agent
@@ -2276,6 +2427,7 @@ module TencentCloud
           @Mobile = params['Mobile']
           @EndPoint = params['EndPoint']
           @FlowId = params['FlowId']
+          @FlowGroupId = params['FlowGroupId']
           @PathType = params['PathType']
           @AutoJumpBack = params['AutoJumpBack']
           unless params['Agent'].nil?
@@ -3219,31 +3371,35 @@ module TencentCloud
 
       # DescribeFlowInfo请求参数结构体
       class DescribeFlowInfoRequest < TencentCloud::Common::AbstractModel
-        # @param FlowIds: 需要查询的流程ID列表，限制最大100个
-        # @type FlowIds: Array
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowIds: 需要查询的流程ID列表，限制最大100个
+        # @type FlowIds: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FlowGroupId: 合同组ID
+        # @type FlowGroupId: String
 
-        attr_accessor :FlowIds, :Operator, :Agent
+        attr_accessor :Operator, :FlowIds, :Agent, :FlowGroupId
 
-        def initialize(flowids=nil, operator=nil, agent=nil)
-          @FlowIds = flowids
+        def initialize(operator=nil, flowids=nil, agent=nil, flowgroupid=nil)
           @Operator = operator
+          @FlowIds = flowids
           @Agent = agent
+          @FlowGroupId = flowgroupid
         end
 
         def deserialize(params)
-          @FlowIds = params['FlowIds']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @FlowIds = params['FlowIds']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @FlowGroupId = params['FlowGroupId']
         end
       end
 
@@ -3251,13 +3407,19 @@ module TencentCloud
       class DescribeFlowInfoResponse < TencentCloud::Common::AbstractModel
         # @param FlowDetailInfos: 签署流程信息
         # @type FlowDetailInfos: Array
+        # @param FlowGroupId: 合同组ID
+        # @type FlowGroupId: String
+        # @param FlowGroupName: 合同组名称
+        # @type FlowGroupName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowDetailInfos, :RequestId
+        attr_accessor :FlowDetailInfos, :FlowGroupId, :FlowGroupName, :RequestId
 
-        def initialize(flowdetailinfos=nil, requestid=nil)
+        def initialize(flowdetailinfos=nil, flowgroupid=nil, flowgroupname=nil, requestid=nil)
           @FlowDetailInfos = flowdetailinfos
+          @FlowGroupId = flowgroupid
+          @FlowGroupName = flowgroupname
           @RequestId = requestid
         end
 
@@ -3270,6 +3432,8 @@ module TencentCloud
               @FlowDetailInfos << flowdetailinfo_tmp
             end
           end
+          @FlowGroupId = params['FlowGroupId']
+          @FlowGroupName = params['FlowGroupName']
           @RequestId = params['RequestId']
         end
       end
@@ -4645,6 +4809,113 @@ module TencentCloud
             end
           end
           @Creator = params['Creator']
+        end
+      end
+
+      # 此结构体(FlowGroupInfo)描述的是合同组(流程组)的单个合同(流程)信息
+      class FlowGroupInfo < TencentCloud::Common::AbstractModel
+        # @param FlowName: 合同（流程）的名称
+        # @type FlowName: String
+        # @param Approvers: 合同（流程）的签署方信息
+        # @type Approvers: Array
+        # @param FileIds: 发起合同（流程）的资源Id,此资源必须是PDF文件,来自UploadFiles,使用文件发起合同(流程)组时必传
+        # @type FileIds: Array
+        # @param TemplateId: 发起合同（流程）的模板Id,用模板发起合同（流程）组时必填
+        # @type TemplateId: String
+        # @param FlowType: 合同（流程）的类型
+        # @type FlowType: String
+        # @param FlowDescription: 合同（流程）的描述
+        # @type FlowDescription: String
+        # @param Deadline: 合同（流程）的截止时间戳，单位秒。默认是一年
+        # @type Deadline: Integer
+        # @param CallbackUrl: 合同（流程）的回调地址
+        # @type CallbackUrl: String
+        # @param UserData: 第三方平台传递过来的信息, 限制1024字符 格式必须是base64的
+        # @type UserData: String
+        # @param Unordered: 合同（流程）的签署是否是无序签, true - 无序。 false - 有序, 默认
+        # @type Unordered: Boolean
+        # @param Components: 合同（流程）发起方的填写控件，用户
+        # @type Components: Array
+        # @param NeedSignReview: 本企业（发起方）是否需要签署审批，若需要审批则只允许查看不允许签署，需要您调用接口CreateFlowSignReview提交审批结果。
+        # @type NeedSignReview: Boolean
+        # @param AutoSignScene: 本企业（发起方）自动签署，需要您在发起合同时给印章控件指定自动签的印章。
+        # @type AutoSignScene: String
+
+        attr_accessor :FlowName, :Approvers, :FileIds, :TemplateId, :FlowType, :FlowDescription, :Deadline, :CallbackUrl, :UserData, :Unordered, :Components, :NeedSignReview, :AutoSignScene
+
+        def initialize(flowname=nil, approvers=nil, fileids=nil, templateid=nil, flowtype=nil, flowdescription=nil, deadline=nil, callbackurl=nil, userdata=nil, unordered=nil, components=nil, needsignreview=nil, autosignscene=nil)
+          @FlowName = flowname
+          @Approvers = approvers
+          @FileIds = fileids
+          @TemplateId = templateid
+          @FlowType = flowtype
+          @FlowDescription = flowdescription
+          @Deadline = deadline
+          @CallbackUrl = callbackurl
+          @UserData = userdata
+          @Unordered = unordered
+          @Components = components
+          @NeedSignReview = needsignreview
+          @AutoSignScene = autosignscene
+        end
+
+        def deserialize(params)
+          @FlowName = params['FlowName']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approverinfo_tmp = ApproverInfo.new
+              approverinfo_tmp.deserialize(i)
+              @Approvers << approverinfo_tmp
+            end
+          end
+          @FileIds = params['FileIds']
+          @TemplateId = params['TemplateId']
+          @FlowType = params['FlowType']
+          @FlowDescription = params['FlowDescription']
+          @Deadline = params['Deadline']
+          @CallbackUrl = params['CallbackUrl']
+          @UserData = params['UserData']
+          @Unordered = params['Unordered']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
+          @NeedSignReview = params['NeedSignReview']
+          @AutoSignScene = params['AutoSignScene']
+        end
+      end
+
+      # 此结构体(FlowGroupOptions)描述的是合同组的个性化配置，支持控制是否发送短信、未实名个人签署方查看合同组时是否需要实名认证（仅在合同组文件发起配置时生效）
+      class FlowGroupOptions < TencentCloud::Common::AbstractModel
+        # @param ApproverVerifyType: 发起合同（流程）组的合同（流程）签署人校验方式
+        # VerifyCheck: 人脸识别（默认）
+        # MobileCheck：手机号验证
+        # 参数说明：此参数仅在合同组文件发起有效，可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
+        # @type ApproverVerifyType: String
+        # @param SelfOrganizationApproverNotifyType: 发起合同（流程）组本方企业经办人通知方式
+        # 签署通知类型：sms--短信，none--不通知
+        # @type SelfOrganizationApproverNotifyType: String
+        # @param OtherApproverNotifyType: 发起合同（流程）组他方经办人通知方式
+        # 签署通知类型：sms--短信，none--不通知
+        # @type OtherApproverNotifyType: String
+
+        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType
+
+        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil)
+          @ApproverVerifyType = approververifytype
+          @SelfOrganizationApproverNotifyType = selforganizationapprovernotifytype
+          @OtherApproverNotifyType = otherapprovernotifytype
+        end
+
+        def deserialize(params)
+          @ApproverVerifyType = params['ApproverVerifyType']
+          @SelfOrganizationApproverNotifyType = params['SelfOrganizationApproverNotifyType']
+          @OtherApproverNotifyType = params['OtherApproverNotifyType']
         end
       end
 

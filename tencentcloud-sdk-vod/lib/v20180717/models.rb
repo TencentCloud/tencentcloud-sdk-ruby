@@ -6651,7 +6651,7 @@ module TencentCloud
 
       # CreateRebuildMediaTemplate返回参数结构体
       class CreateRebuildMediaTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模板 ID。
+        # @param Definition: 视频重生模板 ID。
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7989,7 +7989,7 @@ module TencentCloud
 
       # DeleteRebuildMediaTemplate请求参数结构体
       class DeleteRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 音画质重生模板号。
+        # @param Definition: 视频重生模板号。
         # @type Definition: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer

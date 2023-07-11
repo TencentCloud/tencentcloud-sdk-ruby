@@ -524,10 +524,12 @@ module TencentCloud
         # @type ShopName: String
         # @param Position: 职位
         # @type Position: String
+        # @param CorpShopId: 自定义的门店id
+        # @type CorpShopId: String
 
-        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime, :WxId, :BrandCode, :BuildTime, :OrderTime, :ArrivalTime, :DeliveryTime, :FollowTime, :NextFollowTime, :OrgId, :OrgName, :Introducer, :IntroducerPhone, :IsBindWx, :IsMerge, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidRemark, :InvalidTime, :DealerName, :ShopId, :ShopName, :Position
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime, :WxId, :BrandCode, :BuildTime, :OrderTime, :ArrivalTime, :DeliveryTime, :FollowTime, :NextFollowTime, :OrgId, :OrgName, :Introducer, :IntroducerPhone, :IsBindWx, :IsMerge, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidRemark, :InvalidTime, :DealerName, :ShopId, :ShopName, :Position, :CorpShopId
 
-        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil, wxid=nil, brandcode=nil, buildtime=nil, ordertime=nil, arrivaltime=nil, deliverytime=nil, followtime=nil, nextfollowtime=nil, orgid=nil, orgname=nil, introducer=nil, introducerphone=nil, isbindwx=nil, ismerge=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidremark=nil, invalidtime=nil, dealername=nil, shopid=nil, shopname=nil, position=nil)
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil, wxid=nil, brandcode=nil, buildtime=nil, ordertime=nil, arrivaltime=nil, deliverytime=nil, followtime=nil, nextfollowtime=nil, orgid=nil, orgname=nil, introducer=nil, introducerphone=nil, isbindwx=nil, ismerge=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidremark=nil, invalidtime=nil, dealername=nil, shopid=nil, shopname=nil, position=nil, corpshopid=nil)
           @ClueId = clueid
           @DealerId = dealerid
           @EnquireTime = enquiretime
@@ -578,6 +580,7 @@ module TencentCloud
           @ShopId = shopid
           @ShopName = shopname
           @Position = position
+          @CorpShopId = corpshopid
         end
 
         def deserialize(params)
@@ -631,6 +634,7 @@ module TencentCloud
           @ShopId = params['ShopId']
           @ShopName = params['ShopName']
           @Position = params['Position']
+          @CorpShopId = params['CorpShopId']
         end
       end
 

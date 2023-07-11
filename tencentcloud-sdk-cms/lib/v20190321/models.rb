@@ -198,6 +198,8 @@ module TencentCloud
         # @param SampleIDs: 添加成功的关键词ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleIDs: Array
+        # @param SuccessInfos: 成功入库关键词列表
+        # @type SuccessInfos: Array
         # @param DupInfos: 重复关键词列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DupInfos: Array
@@ -207,10 +209,11 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SampleIDs, :DupInfos, :InvalidSamples, :RequestId
+        attr_accessor :SampleIDs, :SuccessInfos, :DupInfos, :InvalidSamples, :RequestId
 
-        def initialize(sampleids=nil, dupinfos=nil, invalidsamples=nil, requestid=nil)
+        def initialize(sampleids=nil, successinfos=nil, dupinfos=nil, invalidsamples=nil, requestid=nil)
           @SampleIDs = sampleids
+          @SuccessInfos = successinfos
           @DupInfos = dupinfos
           @InvalidSamples = invalidsamples
           @RequestId = requestid
@@ -218,6 +221,14 @@ module TencentCloud
 
         def deserialize(params)
           @SampleIDs = params['SampleIDs']
+          unless params['SuccessInfos'].nil?
+            @SuccessInfos = []
+            params['SuccessInfos'].each do |i|
+              userkeywordinfo_tmp = UserKeywordInfo.new
+              userkeywordinfo_tmp.deserialize(i)
+              @SuccessInfos << userkeywordinfo_tmp
+            end
+          end
           unless params['DupInfos'].nil?
             @DupInfos = []
             params['DupInfos'].each do |i|
@@ -268,21 +279,25 @@ module TencentCloud
 
       # DeleteLibSamples请求参数结构体
       class DeleteLibSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param SampleIDs: 关键词ID
+        # @param SampleIDs: 关键词ID列表
         # @type SampleIDs: Array
         # @param LibID: 词库ID
         # @type LibID: String
+        # @param SampleContents: 关键词内容列表
+        # @type SampleContents: Array
 
-        attr_accessor :SampleIDs, :LibID
+        attr_accessor :SampleIDs, :LibID, :SampleContents
 
-        def initialize(sampleids=nil, libid=nil)
+        def initialize(sampleids=nil, libid=nil, samplecontents=nil)
           @SampleIDs = sampleids
           @LibID = libid
+          @SampleContents = samplecontents
         end
 
         def deserialize(params)
           @SampleIDs = params['SampleIDs']
           @LibID = params['LibID']
+          @SampleContents = params['SampleContents']
         end
       end
 
@@ -419,15 +434,18 @@ module TencentCloud
         # @type Content: String
         # @param EvilTypeList: 违规类型列表过滤
         # @type EvilTypeList: Array
+        # @param SampleIDs: 样本词ID列表过滤
+        # @type SampleIDs: Array
 
-        attr_accessor :Limit, :Offset, :LibID, :Content, :EvilTypeList
+        attr_accessor :Limit, :Offset, :LibID, :Content, :EvilTypeList, :SampleIDs
 
-        def initialize(limit=nil, offset=nil, libid=nil, content=nil, eviltypelist=nil)
+        def initialize(limit=nil, offset=nil, libid=nil, content=nil, eviltypelist=nil, sampleids=nil)
           @Limit = limit
           @Offset = offset
           @LibID = libid
           @Content = content
           @EvilTypeList = eviltypelist
+          @SampleIDs = sampleids
         end
 
         def deserialize(params)
@@ -436,6 +454,7 @@ module TencentCloud
           @LibID = params['LibID']
           @Content = params['Content']
           @EvilTypeList = params['EvilTypeList']
+          @SampleIDs = params['SampleIDs']
         end
       end
 
