@@ -9918,7 +9918,7 @@ module TencentCloud
 
       # DescribeSecurityGroups请求参数结构体
       class DescribeSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
+        # @param SecurityGroupIds: 安全组实例ID，例如：sg-33ocnj9n。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
         # @type SecurityGroupIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定SecurityGroupIds和Filters。
         # <li>security-group-id - String - （过滤条件）安全组ID。</li>
@@ -9931,14 +9931,20 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param OrderField: 排序字段。支持：`CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。升序：`ASC`，倒序：`DESC`。默认值：`ASC`
+        # @type OrderDirection: String
 
-        attr_accessor :SecurityGroupIds, :Filters, :Offset, :Limit
+        attr_accessor :SecurityGroupIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
 
-        def initialize(securitygroupids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(securitygroupids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @SecurityGroupIds = securitygroupids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
         end
 
         def deserialize(params)
@@ -9953,6 +9959,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
         end
       end
 

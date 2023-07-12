@@ -1431,12 +1431,14 @@ module TencentCloud
         # @type DocumentSize: Integer
         # @param UpdateTime: 更新的UNIX时间戳
         # @type UpdateTime: Integer
+        # @param Pages: 课件页数
+        # @type Pages: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :RequestId
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :RequestId
 
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, requestid=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, requestid=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -1451,6 +1453,7 @@ module TencentCloud
           @DocumentType = documenttype
           @DocumentSize = documentsize
           @UpdateTime = updatetime
+          @Pages = pages
           @RequestId = requestid
         end
 
@@ -1469,6 +1472,7 @@ module TencentCloud
           @DocumentType = params['DocumentType']
           @DocumentSize = params['DocumentSize']
           @UpdateTime = params['UpdateTime']
+          @Pages = params['Pages']
           @RequestId = params['RequestId']
         end
       end

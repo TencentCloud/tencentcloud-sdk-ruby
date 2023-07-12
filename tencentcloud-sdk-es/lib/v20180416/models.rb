@@ -2850,6 +2850,42 @@ module TencentCloud
         end
       end
 
+      # ModifyEsVipSecurityGroup请求参数结构体
+      class ModifyEsVipSecurityGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: es集群的实例id
+        # @type InstanceId: String
+        # @param SecurityGroupIds: 安全组id列表
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :InstanceId, :SecurityGroupIds
+
+        def initialize(instanceid=nil, securitygroupids=nil)
+          @InstanceId = instanceid
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # ModifyEsVipSecurityGroup返回参数结构体
+      class ModifyEsVipSecurityGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群中一种节点类型（如热数据节点，冷数据节点，专用主节点等）的规格描述信息，包括节点类型，节点个数，节点规格，磁盘类型，磁盘大小等, Type不指定时默认为热数据节点；如果节点为master节点，则DiskType和DiskSize参数会被忽略（主节点无数据盘）
       class NodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeNum: 节点数量

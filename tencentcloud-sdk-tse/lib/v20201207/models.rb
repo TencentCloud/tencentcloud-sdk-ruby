@@ -2510,7 +2510,7 @@ module TencentCloud
         # @type Port: Integer
         # @param SourceID: 服务来源ID
         # @type SourceID: String
-        # @param Namespace: 名字空间
+        # @param Namespace: 命名空间
         # @type Namespace: String
         # @param ServiceName: 服务（注册中心或Kubernetes中的服务）名字
         # @type ServiceName: String

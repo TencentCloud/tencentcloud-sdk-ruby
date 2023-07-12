@@ -378,10 +378,16 @@ module TencentCloud
         # @type CidrBlock: String
         # @param Capacity: 文件系统容量，turbo系列必填，单位为GiB。 turbo标准型单位GB，起售40TiB，即40960 GiB；扩容步长20TiB，即20480 GiB。turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，10240 GiB。
         # @type Capacity: Integer
+        # @param SnapshotId: 文件系统快照ID
+        # @type SnapshotId: String
+        # @param AutoSnapshotPolicyId: 定期快照策略ID
+        # @type AutoSnapshotPolicyId: String
+        # @param EnableAutoScaleUp: 是否开启默认扩容，仅Turbo类型文件存储支持
+        # @type EnableAutoScaleUp: Boolean
 
-        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity
+        attr_accessor :Zone, :NetInterface, :PGroupId, :Protocol, :StorageType, :VpcId, :SubnetId, :MountIP, :FsName, :ResourceTags, :ClientToken, :CcnId, :CidrBlock, :Capacity, :SnapshotId, :AutoSnapshotPolicyId, :EnableAutoScaleUp
 
-        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil)
+        def initialize(zone=nil, netinterface=nil, pgroupid=nil, protocol=nil, storagetype=nil, vpcid=nil, subnetid=nil, mountip=nil, fsname=nil, resourcetags=nil, clienttoken=nil, ccnid=nil, cidrblock=nil, capacity=nil, snapshotid=nil, autosnapshotpolicyid=nil, enableautoscaleup=nil)
           @Zone = zone
           @NetInterface = netinterface
           @PGroupId = pgroupid
@@ -396,6 +402,9 @@ module TencentCloud
           @CcnId = ccnid
           @CidrBlock = cidrblock
           @Capacity = capacity
+          @SnapshotId = snapshotid
+          @AutoSnapshotPolicyId = autosnapshotpolicyid
+          @EnableAutoScaleUp = enableautoscaleup
         end
 
         def deserialize(params)
@@ -420,6 +429,9 @@ module TencentCloud
           @CcnId = params['CcnId']
           @CidrBlock = params['CidrBlock']
           @Capacity = params['Capacity']
+          @SnapshotId = params['SnapshotId']
+          @AutoSnapshotPolicyId = params['AutoSnapshotPolicyId']
+          @EnableAutoScaleUp = params['EnableAutoScaleUp']
         end
       end
 
@@ -2487,10 +2499,13 @@ module TencentCloud
         # @param SnapshotType: 快照类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotType: String
+        # @param SnapshotTime: 实际快照时间，这里主要是为了标识跨地域复制快照的时间快照时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotTime: String
 
-        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType
+        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType, :SnapshotTime
 
-        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil)
+        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil, snapshottime=nil)
           @CreationTime = creationtime
           @SnapshotName = snapshotname
           @SnapshotId = snapshotid
@@ -2505,6 +2520,7 @@ module TencentCloud
           @FsName = fsname
           @Tags = tags
           @SnapshotType = snapshottype
+          @SnapshotTime = snapshottime
         end
 
         def deserialize(params)
@@ -2529,6 +2545,7 @@ module TencentCloud
             end
           end
           @SnapshotType = params['SnapshotType']
+          @SnapshotTime = params['SnapshotTime']
         end
       end
 
@@ -2903,7 +2920,7 @@ module TencentCloud
         # @type PGroupId: String
         # @param Name: 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
         # @type Name: String
-        # @param DescInfo: 权限组描述信息，1-255个字符
+        # @param DescInfo: 权限组描述信息，1-255个字符。 Name和Descinfo不能同时为空
         # @type DescInfo: String
 
         attr_accessor :PGroupId, :Name, :DescInfo

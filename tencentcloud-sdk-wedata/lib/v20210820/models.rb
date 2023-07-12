@@ -1454,6 +1454,189 @@ module TencentCloud
         end
       end
 
+      # 列血缘聚合信息
+      class ColumnAggregationLineage < TencentCloud::Common::AbstractModel
+        # @param TableName: 表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param ParentId: 父节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param MetastoreType: 元数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param ParentSet: 字符串类型的父节点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: String
+        # @param ChildSet: 字符串类型的子节点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: String
+        # @param ColumnInfoSet: 列信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnInfoSet: Array
+
+        attr_accessor :TableName, :ParentId, :MetastoreType, :ParentSet, :ChildSet, :ColumnInfoSet
+
+        def initialize(tablename=nil, parentid=nil, metastoretype=nil, parentset=nil, childset=nil, columninfoset=nil)
+          @TableName = tablename
+          @ParentId = parentid
+          @MetastoreType = metastoretype
+          @ParentSet = parentset
+          @ChildSet = childset
+          @ColumnInfoSet = columninfoset
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @ParentId = params['ParentId']
+          @MetastoreType = params['MetastoreType']
+          @ParentSet = params['ParentSet']
+          @ChildSet = params['ChildSet']
+          unless params['ColumnInfoSet'].nil?
+            @ColumnInfoSet = []
+            params['ColumnInfoSet'].each do |i|
+              simplecolumninfo_tmp = SimpleColumnInfo.new
+              simplecolumninfo_tmp.deserialize(i)
+              @ColumnInfoSet << simplecolumninfo_tmp
+            end
+          end
+        end
+      end
+
+      # 血缘字段信息
+      class ColumnLineageInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 血缘id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param PrefixPath: 由中心节点出发的路径信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param TableId: 表ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param ColumnName: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param ColumnNameCn: 字段中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnNameCn: String
+        # @param ColumnType: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+        # @param RelationParams: 关系参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationParams: String
+        # @param Params: 参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param ParentId: 父id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param MetastoreType: 元数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param MetastoreTypeName: 元数据类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreTypeName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param QualifiedName: 字段全名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedName: String
+        # @param DownStreamCount: 下游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 上游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Tasks: 任务id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param ParentSet: 父节点列表字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: String
+        # @param ChildSet: 子节点列表字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: String
+        # @param ExtParams: 额外参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtParams: Array
+
+        attr_accessor :Id, :PrefixPath, :DatasourceId, :TableId, :ColumnName, :ColumnNameCn, :ColumnType, :RelationParams, :Params, :ParentId, :MetastoreType, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :CreateTime, :ModifyTime, :Tasks, :ParentSet, :ChildSet, :ExtParams
+
+        def initialize(id=nil, prefixpath=nil, datasourceid=nil, tableid=nil, columnname=nil, columnnamecn=nil, columntype=nil, relationparams=nil, params=nil, parentid=nil, metastoretype=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, createtime=nil, modifytime=nil, tasks=nil, parentset=nil, childset=nil, extparams=nil)
+          @Id = id
+          @PrefixPath = prefixpath
+          @DatasourceId = datasourceid
+          @TableId = tableid
+          @ColumnName = columnname
+          @ColumnNameCn = columnnamecn
+          @ColumnType = columntype
+          @RelationParams = relationparams
+          @Params = params
+          @ParentId = parentid
+          @MetastoreType = metastoretype
+          @MetastoreTypeName = metastoretypename
+          @TableName = tablename
+          @QualifiedName = qualifiedname
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @Description = description
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Tasks = tasks
+          @ParentSet = parentset
+          @ChildSet = childset
+          @ExtParams = extparams
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PrefixPath = params['PrefixPath']
+          @DatasourceId = params['DatasourceId']
+          @TableId = params['TableId']
+          @ColumnName = params['ColumnName']
+          @ColumnNameCn = params['ColumnNameCn']
+          @ColumnType = params['ColumnType']
+          @RelationParams = params['RelationParams']
+          @Params = params['Params']
+          @ParentId = params['ParentId']
+          @MetastoreType = params['MetastoreType']
+          @MetastoreTypeName = params['MetastoreTypeName']
+          @TableName = params['TableName']
+          @QualifiedName = params['QualifiedName']
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Tasks = params['Tasks']
+          @ParentSet = params['ParentSet']
+          @ChildSet = params['ChildSet']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              lineageparamrecord_tmp = LineageParamRecord.new
+              lineageparamrecord_tmp.deserialize(i)
+              @ExtParams << lineageparamrecord_tmp
+            end
+          end
+        end
+      end
+
       # CommitExportTask请求参数结构体
       class CommitExportTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -4309,6 +4492,76 @@ module TencentCloud
               namespace_tmp.deserialize(i)
               @Namespaces << namespace_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeColumnLineage请求参数结构体
+      class DescribeColumnLineageRequest < TencentCloud::Common::AbstractModel
+        # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
+        # @type Direction: String
+        # @param Data: 字段信息
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.ColumnLineageInfo`
+        # @param InputDepth: 单次查询入度
+        # @type InputDepth: Integer
+        # @param OutputDepth: 单次查询出度
+        # @type OutputDepth: Integer
+        # @param ExtParams: 额外参数（传递调用方信息）
+        # @type ExtParams: Array
+        # @param IgnoreTemp: 是否过滤临时表 默认值为true
+        # @type IgnoreTemp: Boolean
+
+        attr_accessor :Direction, :Data, :InputDepth, :OutputDepth, :ExtParams, :IgnoreTemp
+
+        def initialize(direction=nil, data=nil, inputdepth=nil, outputdepth=nil, extparams=nil, ignoretemp=nil)
+          @Direction = direction
+          @Data = data
+          @InputDepth = inputdepth
+          @OutputDepth = outputdepth
+          @ExtParams = extparams
+          @IgnoreTemp = ignoretemp
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          unless params['Data'].nil?
+            @Data = ColumnLineageInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @InputDepth = params['InputDepth']
+          @OutputDepth = params['OutputDepth']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtParams << recordfield_tmp
+            end
+          end
+          @IgnoreTemp = params['IgnoreTemp']
+        end
+      end
+
+      # DescribeColumnLineage返回参数结构体
+      class DescribeColumnLineageResponse < TencentCloud::Common::AbstractModel
+        # @param ColumnAggregationLineage: 字段血缘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnAggregationLineage: :class:`Tencentcloud::Wedata.v20210820.models.ColumnAggregationLineage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ColumnAggregationLineage, :RequestId
+
+        def initialize(columnaggregationlineage=nil, requestid=nil)
+          @ColumnAggregationLineage = columnaggregationlineage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ColumnAggregationLineage'].nil?
+            @ColumnAggregationLineage = ColumnAggregationLineage.new
+            @ColumnAggregationLineage.deserialize(params['ColumnAggregationLineage'])
           end
           @RequestId = params['RequestId']
         end
@@ -8791,6 +9044,76 @@ module TencentCloud
         end
       end
 
+      # DescribeTableLineage请求参数结构体
+      class DescribeTableLineageRequest < TencentCloud::Common::AbstractModel
+        # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
+        # @type Direction: String
+        # @param Data: 表信息
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TableLineageInfo`
+        # @param InputDepth: 单次查询入度,默认 1
+        # @type InputDepth: Integer
+        # @param OutputDepth: 单次查询出度,默认 1
+        # @type OutputDepth: Integer
+        # @param ExtParams: 额外参数（传递调用方信息）
+        # @type ExtParams: Array
+        # @param IgnoreTemp: 是否过滤临时表,默认true
+        # @type IgnoreTemp: Boolean
+
+        attr_accessor :Direction, :Data, :InputDepth, :OutputDepth, :ExtParams, :IgnoreTemp
+
+        def initialize(direction=nil, data=nil, inputdepth=nil, outputdepth=nil, extparams=nil, ignoretemp=nil)
+          @Direction = direction
+          @Data = data
+          @InputDepth = inputdepth
+          @OutputDepth = outputdepth
+          @ExtParams = extparams
+          @IgnoreTemp = ignoretemp
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          unless params['Data'].nil?
+            @Data = TableLineageInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @InputDepth = params['InputDepth']
+          @OutputDepth = params['OutputDepth']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              lineageparamrecord_tmp = LineageParamRecord.new
+              lineageparamrecord_tmp.deserialize(i)
+              @ExtParams << lineageparamrecord_tmp
+            end
+          end
+          @IgnoreTemp = params['IgnoreTemp']
+        end
+      end
+
+      # DescribeTableLineage返回参数结构体
+      class DescribeTableLineageResponse < TencentCloud::Common::AbstractModel
+        # @param TableLineage: 表血缘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableLineage: :class:`Tencentcloud::Wedata.v20210820.models.TableLineageInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableLineage, :RequestId
+
+        def initialize(tablelineage=nil, requestid=nil)
+          @TableLineage = tablelineage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableLineage'].nil?
+            @TableLineage = TableLineageInfo.new
+            @TableLineage.deserialize(params['TableLineage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableQualityDetails请求参数结构体
       class DescribeTableQualityDetailsRequest < TencentCloud::Common::AbstractModel
         # @param StatisticsDate: 统计日期
@@ -12202,6 +12525,27 @@ module TencentCloud
         def deserialize(params)
           @Value = params['Value']
           @Text = params['Text']
+        end
+      end
+
+      # 血缘参数记录
+      class LineageParamRecord < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名
+        # @type Name: String
+        # @param Value: 字段值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -16984,6 +17328,93 @@ module TencentCloud
         end
       end
 
+      # 血缘列描述
+      class SimpleColumnInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 列ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param QualifiedName: 限定名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedName: String
+        # @param ColumnName: 列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param ColumnNameCn: 列中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnNameCn: String
+        # @param ColumnType: 列类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+        # @param Description: 列描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param PrefixPath: 前缀路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DownStreamCount: 下游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 上游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param RelationParams: 关系参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationParams: String
+        # @param Params: 参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param Tasks: 任务集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+
+        attr_accessor :Id, :QualifiedName, :ColumnName, :ColumnNameCn, :ColumnType, :Description, :PrefixPath, :CreateTime, :ModifyTime, :DatasourceId, :DownStreamCount, :UpStreamCount, :RelationParams, :Params, :Tasks
+
+        def initialize(id=nil, qualifiedname=nil, columnname=nil, columnnamecn=nil, columntype=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, datasourceid=nil, downstreamcount=nil, upstreamcount=nil, relationparams=nil, params=nil, tasks=nil)
+          @Id = id
+          @QualifiedName = qualifiedname
+          @ColumnName = columnname
+          @ColumnNameCn = columnnamecn
+          @ColumnType = columntype
+          @Description = description
+          @PrefixPath = prefixpath
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @DatasourceId = datasourceid
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @RelationParams = relationparams
+          @Params = params
+          @Tasks = tasks
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @QualifiedName = params['QualifiedName']
+          @ColumnName = params['ColumnName']
+          @ColumnNameCn = params['ColumnNameCn']
+          @ColumnType = params['ColumnType']
+          @Description = params['Description']
+          @PrefixPath = params['PrefixPath']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @DatasourceId = params['DatasourceId']
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          @RelationParams = params['RelationParams']
+          @Params = params['Params']
+          @Tasks = params['Tasks']
+        end
+      end
+
       # 简单Task信息
       class SimpleTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -17603,6 +18034,127 @@ module TencentCloud
           @TableName = params['TableName']
           @OriginDatabaseName = params['OriginDatabaseName']
           @OriginSchemaName = params['OriginSchemaName']
+        end
+      end
+
+      # 表血缘详细信息
+      class TableLineageInfo < TencentCloud::Common::AbstractModel
+        # @param MetastoreType: 元数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param PrefixPath: 由中心节点到该节点的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
+        # @param ProjectId: 空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param DatasourceId: 数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param TableId: 表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param Params: 表血缘参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param ParentSet: 父节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: String
+        # @param ChildSet: 子节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: String
+        # @param ExtParams: 额外参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtParams: Array
+        # @param Id: 血缘id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param MetastoreTypeName: 元数据类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreTypeName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param QualifiedName: 表全称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedName: String
+        # @param DownStreamCount: 血缘下游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 血缘上游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param Description: 血缘描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 血缘创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 血缘更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Tasks: 修改血缘的任务id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+
+        attr_accessor :MetastoreType, :PrefixPath, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :CreateTime, :ModifyTime, :Tasks
+
+        def initialize(metastoretype=nil, prefixpath=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, createtime=nil, modifytime=nil, tasks=nil)
+          @MetastoreType = metastoretype
+          @PrefixPath = prefixpath
+          @ProjectId = projectid
+          @DatasourceId = datasourceid
+          @TableId = tableid
+          @Params = params
+          @ParentSet = parentset
+          @ChildSet = childset
+          @ExtParams = extparams
+          @Id = id
+          @MetastoreTypeName = metastoretypename
+          @TableName = tablename
+          @QualifiedName = qualifiedname
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @Description = description
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Tasks = tasks
+        end
+
+        def deserialize(params)
+          @MetastoreType = params['MetastoreType']
+          @PrefixPath = params['PrefixPath']
+          @ProjectId = params['ProjectId']
+          @DatasourceId = params['DatasourceId']
+          @TableId = params['TableId']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              lineageparamrecord_tmp = LineageParamRecord.new
+              lineageparamrecord_tmp.deserialize(i)
+              @Params << lineageparamrecord_tmp
+            end
+          end
+          @ParentSet = params['ParentSet']
+          @ChildSet = params['ChildSet']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtParams << recordfield_tmp
+            end
+          end
+          @Id = params['Id']
+          @MetastoreTypeName = params['MetastoreTypeName']
+          @TableName = params['TableName']
+          @QualifiedName = params['QualifiedName']
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Tasks = params['Tasks']
         end
       end
 

@@ -1320,6 +1320,9 @@ module TencentCloud
         # @param ToUrl: 完整目标 URL 地址。
         # 用法注意：如果使用该参数来传完整目标地址，则 DomainName, AppName, StreamName 需要传入空字符串，任务将会使用该 ToUrl 参数指定的目标地址。
 
+        # 使用该方式传入目标地址支持的协议有：
+        # rtmp、rtmps、rtsp、rtp、srt。
+
         # 注意：签名时间需要超过任务结束时间，避免因签名过期造成任务失败。
         # @type ToUrl: String
         # @param BackupSourceType: 备源的类型：
@@ -3103,7 +3106,7 @@ module TencentCloud
       class DeleteLiveTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板 ID。
         # 1. 在创建转码模板接口 [CreateLiveTranscodeTemplate](/document/product/267/32646) 调用的返回值中获取模板 ID。
-        # 2. 可以从接口 [DescribeLiveTranscodeTemplates](/document/product/267/32641) 查询已经创建的过的模板列表。
+        # 2. 可以从接口 [DescribeLiveTranscodeTemplates](/document/product/267/32641) 查询已经创建过的模板列表。
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId

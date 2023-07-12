@@ -3812,13 +3812,16 @@ module TencentCloud
         # - 发起流程时系统自动补充
         # - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
         # @type SignId: String
+        # @param NotifyType: SMS: 短信; NONE: 不发信息
+        # 默认为SMS(该字段对子客无效)
+        # @type NotifyType: String
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 7
         deprecate :CallbackUrl=, :none, 2023, 7
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -3840,6 +3843,7 @@ module TencentCloud
           @ApproverVerifyTypes = approververifytypes
           @ApproverSignTypes = approversigntypes
           @SignId = signid
+          @NotifyType = notifytype
         end
 
         def deserialize(params)
@@ -3874,6 +3878,7 @@ module TencentCloud
           @ApproverVerifyTypes = params['ApproverVerifyTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
           @SignId = params['SignId']
+          @NotifyType = params['NotifyType']
         end
       end
 

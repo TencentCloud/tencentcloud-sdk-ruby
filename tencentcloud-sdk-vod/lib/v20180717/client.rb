@@ -2165,7 +2165,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取音画质重生模板列表。
+        # 获取视频重生模板列表。
 
         # @param request: Request instance for DescribeRebuildMediaTemplates.
         # @type request: :class:`Tencentcloud::vod::V20180717::DescribeRebuildMediaTemplatesRequest`
@@ -3222,7 +3222,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改音画质重生模板。
+        # 修改视频重生模板。
 
         # @param request: Request instance for ModifyRebuildMediaTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::ModifyRebuildMediaTemplateRequest`
@@ -3764,7 +3764,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发起音画质重生
+        # 发起视频重生
 
         # @param request: Request instance for RebuildMedia.
         # @type request: :class:`Tencentcloud::vod::V20180717::RebuildMediaRequest`
@@ -3788,7 +3788,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用模板发起音画质重生。
+        # 使用模板发起视频重生。
 
         # @param request: Request instance for RebuildMediaByTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::RebuildMediaByTemplateRequest`
