@@ -2284,15 +2284,19 @@ module TencentCloud
         # @param Remark: 备注说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Remark: String
+        # @param EnvironmentRoleSets: 批量绑定名字空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentRoleSets: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RoleName, :Token, :Remark, :RequestId
+        attr_accessor :RoleName, :Token, :Remark, :EnvironmentRoleSets, :RequestId
 
-        def initialize(rolename=nil, token=nil, remark=nil, requestid=nil)
+        def initialize(rolename=nil, token=nil, remark=nil, environmentrolesets=nil, requestid=nil)
           @RoleName = rolename
           @Token = token
           @Remark = remark
+          @EnvironmentRoleSets = environmentrolesets
           @RequestId = requestid
         end
 
@@ -2300,6 +2304,14 @@ module TencentCloud
           @RoleName = params['RoleName']
           @Token = params['Token']
           @Remark = params['Remark']
+          unless params['EnvironmentRoleSets'].nil?
+            @EnvironmentRoleSets = []
+            params['EnvironmentRoleSets'].each do |i|
+              environmentroleset_tmp = EnvironmentRoleSet.new
+              environmentroleset_tmp.deserialize(i)
+              @EnvironmentRoleSets << environmentroleset_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6265,6 +6277,29 @@ module TencentCloud
           @RoleDescribe = params['RoleDescribe']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 批量绑定名字空间和角色权限关系
+      class EnvironmentRoleSet < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 需要绑定的命名空间Id，不重复且存在资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentId: String
+        # @param Permissions: 名字空间需要绑定的权限，枚举为 "consume" "produce" 组合，但是不为空
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :EnvironmentId, :Permissions
+
+        def initialize(environmentid=nil, permissions=nil)
+          @EnvironmentId = environmentid
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Permissions = params['Permissions']
         end
       end
 

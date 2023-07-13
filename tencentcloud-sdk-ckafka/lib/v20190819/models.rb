@@ -9882,10 +9882,19 @@ module TencentCloud
         # @param DeleteTimestamp: 时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTimestamp: String
+        # @param Subnet: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subnet: String
+        # @param BrokerVipList: 虚拟IP列表(1对1 broker节点)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerVipList: Array
+        # @param VpcId: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
 
-        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort, :DeleteTimestamp
+        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort, :DeleteTimestamp, :Subnet, :BrokerVipList, :VpcId
 
-        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil, deletetimestamp=nil)
+        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil, deletetimestamp=nil, subnet=nil, brokerviplist=nil, vpcid=nil)
           @AccessType = accesstype
           @RouteId = routeid
           @VipType = viptype
@@ -9893,6 +9902,9 @@ module TencentCloud
           @Domain = domain
           @DomainPort = domainport
           @DeleteTimestamp = deletetimestamp
+          @Subnet = subnet
+          @BrokerVipList = brokerviplist
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -9910,6 +9922,16 @@ module TencentCloud
           @Domain = params['Domain']
           @DomainPort = params['DomainPort']
           @DeleteTimestamp = params['DeleteTimestamp']
+          @Subnet = params['Subnet']
+          unless params['BrokerVipList'].nil?
+            @BrokerVipList = []
+            params['BrokerVipList'].each do |i|
+              vipentity_tmp = VipEntity.new
+              vipentity_tmp.deserialize(i)
+              @BrokerVipList << vipentity_tmp
+            end
+          end
+          @VpcId = params['VpcId']
         end
       end
 

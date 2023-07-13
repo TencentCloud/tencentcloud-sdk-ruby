@@ -14845,7 +14845,10 @@ module TencentCloud
         # <li>OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）；</li>
         # <li>TranscodeFiles（删除转码文件）；</li>
         # <li>AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；</li>
-        # <li>WechatPublishFiles（删除微信发布文件）。</li>
+        # <li>WechatPublishFiles（删除微信发布文件）；</li>
+        # <li>WechatMiniProgramPublishFiles（删除微信小程序发布文件）。</li>
+        # <font color=red>注意：</font> <li>取值为OriginalFiles时，文件上传时携带的封面文件会被删除；</li>
+        # <li>取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。</li>
         # @type Type: String
         # @param Definition: 删除由Type参数指定的种类下的视频模板号，模板定义参见[转码模板](https://cloud.tencent.com/document/product/266/33478#.3Cspan-id-.3D-.22zm.22-.3E.3C.2Fspan.3E.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
         # 默认值为0，表示删除参数Type指定种类下所有的视频。
@@ -23431,28 +23434,6 @@ module TencentCloud
         # @param ExpireTime: 匹配过期时间在此时间段内的文件，无法检索到已过期文件。
         # <li>包含所指定的头尾时间点。</li>
         # @type ExpireTime: :class:`Tencentcloud::Vod.v20180717.models.TimeRange`
-        # @param Sort: 排序方式。
-        # <li>Sort.Field 可选 CreateTime 。</li>
-        # <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
-        # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
-        # @param Offset: <div id="p_offset">分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
-        # <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
-        # @type Offset: Integer
-        # @param Limit: <div id="p_limit">分页返回的记录条数，默认值：10。将返回第 Offset 到第 Offset+Limit-1 条。
-        # <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
-        # @type Limit: Integer
-        # @param Filters: 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
-        # <li>basicInfo（视频基础信息）。</li>
-        # <li>metaData（视频元信息）。</li>
-        # <li>transcodeInfo（视频转码结果信息）。</li>
-        # <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
-        # <li>imageSpriteInfo（视频雪碧图信息）。</li>
-        # <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
-        # <li>sampleSnapshotInfo（采样截图信息）。</li>
-        # <li>keyFrameDescInfo（打点信息）。</li>
-        # <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
-        # <li>miniProgramReviewInfo（小程序审核信息）。</li>
-        # @type Filters: Array
         # @param StorageRegions: 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
         # <li>单个存储地区长度限制：20个字符。</li>
         # <li>数组长度限制：20。</li>
@@ -23484,6 +23465,28 @@ module TencentCloud
         # <li>单个房间 ID 长度限制：64个字符；</li>
         # <li>数组长度限制：10。</li>
         # @type TrtcRoomIds: Array
+        # @param Filters: 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
+        # <li>basicInfo（视频基础信息）。</li>
+        # <li>metaData（视频元信息）。</li>
+        # <li>transcodeInfo（视频转码结果信息）。</li>
+        # <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
+        # <li>imageSpriteInfo（视频雪碧图信息）。</li>
+        # <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
+        # <li>sampleSnapshotInfo（采样截图信息）。</li>
+        # <li>keyFrameDescInfo（打点信息）。</li>
+        # <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
+        # <li>miniProgramReviewInfo（小程序审核信息）。</li>
+        # @type Filters: Array
+        # @param Sort: 排序方式。
+        # <li>Sort.Field 可选 CreateTime 。</li>
+        # <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+        # @type Sort: :class:`Tencentcloud::Vod.v20180717.models.SortBy`
+        # @param Offset: <div id="p_offset">分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
+        # <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
+        # @type Offset: Integer
+        # @param Limit: <div id="p_limit">分页返回的记录条数，默认值：10。将返回第 Offset 到第 Offset+Limit-1 条。
+        # <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
+        # @type Limit: Integer
         # @param Text: （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
         # 搜索文本，模糊匹配媒体文件名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：64个字符。
         # @type Text: String
@@ -23510,9 +23513,9 @@ module TencentCloud
         # @param Vid: 该字段已无效。
         # @type Vid: String
 
-        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :Sort, :Offset, :Limit, :Filters, :StorageRegions, :StorageClasses, :MediaTypes, :Status, :ReviewResults, :TrtcSdkAppIds, :TrtcRoomIds, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
+        attr_accessor :SubAppId, :FileIds, :Names, :NamePrefixes, :Descriptions, :ClassIds, :Tags, :Categories, :SourceTypes, :StreamIds, :CreateTime, :ExpireTime, :StorageRegions, :StorageClasses, :MediaTypes, :Status, :ReviewResults, :TrtcSdkAppIds, :TrtcRoomIds, :Filters, :Sort, :Offset, :Limit, :Text, :SourceType, :StreamId, :StartTime, :EndTime, :Vids, :Vid
 
-        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, sort=nil, offset=nil, limit=nil, filters=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, status=nil, reviewresults=nil, trtcsdkappids=nil, trtcroomids=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
+        def initialize(subappid=nil, fileids=nil, names=nil, nameprefixes=nil, descriptions=nil, classids=nil, tags=nil, categories=nil, sourcetypes=nil, streamids=nil, createtime=nil, expiretime=nil, storageregions=nil, storageclasses=nil, mediatypes=nil, status=nil, reviewresults=nil, trtcsdkappids=nil, trtcroomids=nil, filters=nil, sort=nil, offset=nil, limit=nil, text=nil, sourcetype=nil, streamid=nil, starttime=nil, endtime=nil, vids=nil, vid=nil)
           @SubAppId = subappid
           @FileIds = fileids
           @Names = names
@@ -23525,10 +23528,6 @@ module TencentCloud
           @StreamIds = streamids
           @CreateTime = createtime
           @ExpireTime = expiretime
-          @Sort = sort
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
           @StorageRegions = storageregions
           @StorageClasses = storageclasses
           @MediaTypes = mediatypes
@@ -23536,6 +23535,10 @@ module TencentCloud
           @ReviewResults = reviewresults
           @TrtcSdkAppIds = trtcsdkappids
           @TrtcRoomIds = trtcroomids
+          @Filters = filters
+          @Sort = sort
+          @Offset = offset
+          @Limit = limit
           @Text = text
           @SourceType = sourcetype
           @StreamId = streamid
@@ -23564,13 +23567,6 @@ module TencentCloud
             @ExpireTime = TimeRange.new
             @ExpireTime.deserialize(params['ExpireTime'])
           end
-          unless params['Sort'].nil?
-            @Sort = SortBy.new
-            @Sort.deserialize(params['Sort'])
-          end
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @Filters = params['Filters']
           @StorageRegions = params['StorageRegions']
           @StorageClasses = params['StorageClasses']
           @MediaTypes = params['MediaTypes']
@@ -23578,6 +23574,13 @@ module TencentCloud
           @ReviewResults = params['ReviewResults']
           @TrtcSdkAppIds = params['TrtcSdkAppIds']
           @TrtcRoomIds = params['TrtcRoomIds']
+          @Filters = params['Filters']
+          unless params['Sort'].nil?
+            @Sort = SortBy.new
+            @Sort.deserialize(params['Sort'])
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           @Text = params['Text']
           @SourceType = params['SourceType']
           @StreamId = params['StreamId']

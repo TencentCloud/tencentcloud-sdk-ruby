@@ -4442,6 +4442,9 @@ module TencentCloud
         # @type LogQuerys: Array
 
         attr_accessor :StartTime, :EndTime, :ServiceId, :Filters, :Limit, :ConText, :Sort, :Query, :LogQuerys
+        extend Gem::Deprecate
+        deprecate :LogQuerys, :none, 2023, 7
+        deprecate :LogQuerys=, :none, 2023, 7
 
         def initialize(starttime=nil, endtime=nil, serviceid=nil, filters=nil, limit=nil, context=nil, sort=nil, query=nil, logquerys=nil)
           @StartTime = starttime

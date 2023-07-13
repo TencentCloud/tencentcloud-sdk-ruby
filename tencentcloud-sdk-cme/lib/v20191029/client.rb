@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建媒体链接或分类路径链接，将源资源信息链接到目标。
+        # 创建媒体链接或分类路径链接，将资源信息链接到目标。
 
         # @param request: Request instance for CreateLink.
         # @type request: :class:`Tencentcloud::cme::V20191029::CreateLinkRequest`

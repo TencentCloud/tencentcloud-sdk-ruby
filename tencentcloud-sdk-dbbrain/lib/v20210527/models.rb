@@ -61,6 +61,126 @@ module TencentCloud
         end
       end
 
+      # 实例详细信息
+      class AuditInstance < TencentCloud::Common::AbstractModel
+        # @param AuditStatus: 审计状态，已开通审计为：YES，未开通审计为：ON。
+        # @type AuditStatus: String
+        # @param BillingAmount: 审计日志大小，为兼容老版本用。
+        # @type BillingAmount: Integer
+        # @param BillingConfirmed: 计费确认状态，0-未确认；1-已确认。
+        # @type BillingConfirmed: Integer
+        # @param ColdLogExpireDay: 低频存储时长。
+        # @type ColdLogExpireDay: Integer
+        # @param ColdLogSize: 低频日志存储量单位MB。
+        # @type ColdLogSize: Integer
+        # @param HotLogExpireDay: 高频日志存储天数。
+        # @type HotLogExpireDay: Integer
+        # @param HotLogSize: 高频日志存储量，单位MB。
+        # @type HotLogSize: Integer
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param LogExpireDay: 日志保存总天数，为高频存储时长+低频存储时长。
+        # @type LogExpireDay: Integer
+        # @param CreateTime: 实例创建时间。
+        # @type CreateTime: String
+        # @param InstanceInfo: 实例详细信息。
+        # @type InstanceInfo: :class:`Tencentcloud::Dbbrain.v20210527.models.AuditInstanceInfo`
+
+        attr_accessor :AuditStatus, :BillingAmount, :BillingConfirmed, :ColdLogExpireDay, :ColdLogSize, :HotLogExpireDay, :HotLogSize, :InstanceId, :LogExpireDay, :CreateTime, :InstanceInfo
+
+        def initialize(auditstatus=nil, billingamount=nil, billingconfirmed=nil, coldlogexpireday=nil, coldlogsize=nil, hotlogexpireday=nil, hotlogsize=nil, instanceid=nil, logexpireday=nil, createtime=nil, instanceinfo=nil)
+          @AuditStatus = auditstatus
+          @BillingAmount = billingamount
+          @BillingConfirmed = billingconfirmed
+          @ColdLogExpireDay = coldlogexpireday
+          @ColdLogSize = coldlogsize
+          @HotLogExpireDay = hotlogexpireday
+          @HotLogSize = hotlogsize
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @CreateTime = createtime
+          @InstanceInfo = instanceinfo
+        end
+
+        def deserialize(params)
+          @AuditStatus = params['AuditStatus']
+          @BillingAmount = params['BillingAmount']
+          @BillingConfirmed = params['BillingConfirmed']
+          @ColdLogExpireDay = params['ColdLogExpireDay']
+          @ColdLogSize = params['ColdLogSize']
+          @HotLogExpireDay = params['HotLogExpireDay']
+          @HotLogSize = params['HotLogSize']
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @CreateTime = params['CreateTime']
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = AuditInstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+        end
+      end
+
+      # 实例列表查询条件
+      class AuditInstanceFilter < TencentCloud::Common::AbstractModel
+        # @param Name: 搜索条件名称
+        # @type Name: String
+        # @param Values: 要搜索的条件的值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # 实例详情
+      class AuditInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param AppId: appId。
+        # @type AppId: Integer
+        # @param AuditStatus: 审计状态，0-未开通审计；1-已开通审计。
+        # @type AuditStatus: Integer
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param ProjectId: 项目Id。
+        # @type ProjectId: Integer
+        # @param Region: 实例所在地域。
+        # @type Region: String
+        # @param ResourceTags: 资源Tags。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
+
+        attr_accessor :AppId, :AuditStatus, :InstanceId, :InstanceName, :ProjectId, :Region, :ResourceTags
+
+        def initialize(appid=nil, auditstatus=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, resourcetags=nil)
+          @AppId = appid
+          @AuditStatus = auditstatus
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @ProjectId = projectid
+          @Region = region
+          @ResourceTags = resourcetags
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AuditStatus = params['AuditStatus']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
+          @Region = params['Region']
+          @ResourceTags = params['ResourceTags']
+        end
+      end
+
       # 审计日志文件
       class AuditLogFile < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 审计日志文件生成异步任务ID。
@@ -187,6 +307,50 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CloseAuditService请求参数结构体
+      class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例Id。
+        # @type InstanceId: String
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId
+
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CloseAuditService返回参数结构体
+      class CloseAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 0-关闭审计成功，非0关闭审计失败。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -1028,6 +1192,81 @@ module TencentCloud
               groupitem_tmp = GroupItem.new
               groupitem_tmp.deserialize(i)
               @Groups << groupitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditInstanceList请求参数结构体
+      class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @type NodeRequestType: String
+        # @param AuditSwitch: 审计状态标识，0-未开通审计；1-已开通审计，默认为0。
+        # @type AuditSwitch: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 查询数目，默认为20，最大为100。
+        # @type Limit: Integer
+        # @param Filters: 查询实例的搜索条件。
+        # @type Filters: Array
+
+        attr_accessor :Product, :NodeRequestType, :AuditSwitch, :Offset, :Limit, :Filters
+
+        def initialize(product=nil, noderequesttype=nil, auditswitch=nil, offset=nil, limit=nil, filters=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @AuditSwitch = auditswitch
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @AuditSwitch = params['AuditSwitch']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              auditinstancefilter_tmp = AuditInstanceFilter.new
+              auditinstancefilter_tmp.deserialize(i)
+              @Filters << auditinstancefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAuditInstanceList返回参数结构体
+      class DescribeAuditInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例个数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 实例详情。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditinstance_tmp = AuditInstance.new
+              auditinstance_tmp.deserialize(i)
+              @Items << auditinstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3487,6 +3726,58 @@ module TencentCloud
         end
       end
 
+      # ModifyAuditService请求参数结构体
+      class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825
+        # @type LogExpireDay: Integer
+        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825
+        # @type HotLogExpireDay: Integer
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId, :LogExpireDay, :HotLogExpireDay
+
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil, logexpireday=nil, hotlogexpireday=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @HotLogExpireDay = hotlogexpireday
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @HotLogExpireDay = params['HotLogExpireDay']
+        end
+      end
+
+      # ModifyAuditService返回参数结构体
+      class ModifyAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 审计配置修改结果，0-修改成功,非0-修改失败。
+        # @type Success: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDiagDBInstanceConf请求参数结构体
       class ModifyDiagDBInstanceConfRequest < TencentCloud::Common::AbstractModel
         # @param InstanceConfs: 实例配置，包括巡检、概览开关等。
@@ -3727,6 +4018,58 @@ module TencentCloud
           @Command = params['Command']
           @Time = params['Time']
           @Info = params['Info']
+        end
+      end
+
+      # OpenAuditService请求参数结构体
+      class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @type Product: String
+        # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @type NodeRequestType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825
+        # @type LogExpireDay: Integer
+        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825
+        # @type HotLogExpireDay: Integer
+
+        attr_accessor :Product, :NodeRequestType, :InstanceId, :LogExpireDay, :HotLogExpireDay
+
+        def initialize(product=nil, noderequesttype=nil, instanceid=nil, logexpireday=nil, hotlogexpireday=nil)
+          @Product = product
+          @NodeRequestType = noderequesttype
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @HotLogExpireDay = hotlogexpireday
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @NodeRequestType = params['NodeRequestType']
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @HotLogExpireDay = params['HotLogExpireDay']
+        end
+      end
+
+      # OpenAuditService返回参数结构体
+      class OpenAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: taskId 为0表示开通审计成功，否则开通失败
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

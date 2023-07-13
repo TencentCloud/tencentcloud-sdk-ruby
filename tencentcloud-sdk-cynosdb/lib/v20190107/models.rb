@@ -385,18 +385,36 @@ module TencentCloud
         # @type Host: String
         # @param User: 用户名。
         # @type User: String
-        # @param ExecTime: 执行时间。
+        # @param ExecTime: 执行时间，微秒。
         # @type ExecTime: Integer
-        # @param Timestamp: 时间戳。
+        # @param Timestamp: 时间。
         # @type Timestamp: String
-        # @param SentRows: 发送行数。
+        # @param SentRows: 返回行数。
         # @type SentRows: Integer
         # @param ThreadId: 执行线程ID。
         # @type ThreadId: Integer
+        # @param CheckRows: 扫描行数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRows: Integer
+        # @param CpuTime: cpu执行时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Float
+        # @param IoWaitTime: IO等待时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTime: Integer
+        # @param LockWaitTime: 锁等待时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTime: Integer
+        # @param TrxLivingTime: 事物持续等待时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrxLivingTime: Integer
+        # @param NsTime: 开始时间，与timestamp构成一个精确到纳秒的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NsTime: Integer
 
-        attr_accessor :AffectRows, :ErrCode, :SqlType, :TableName, :InstanceName, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId
+        attr_accessor :AffectRows, :ErrCode, :SqlType, :TableName, :InstanceName, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :TrxLivingTime, :NsTime
 
-        def initialize(affectrows=nil, errcode=nil, sqltype=nil, tablename=nil, instancename=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil)
+        def initialize(affectrows=nil, errcode=nil, sqltype=nil, tablename=nil, instancename=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, trxlivingtime=nil, nstime=nil)
           @AffectRows = affectrows
           @ErrCode = errcode
           @SqlType = sqltype
@@ -411,6 +429,12 @@ module TencentCloud
           @Timestamp = timestamp
           @SentRows = sentrows
           @ThreadId = threadid
+          @CheckRows = checkrows
+          @CpuTime = cputime
+          @IoWaitTime = iowaittime
+          @LockWaitTime = lockwaittime
+          @TrxLivingTime = trxlivingtime
+          @NsTime = nstime
         end
 
         def deserialize(params)
@@ -428,6 +452,12 @@ module TencentCloud
           @Timestamp = params['Timestamp']
           @SentRows = params['SentRows']
           @ThreadId = params['ThreadId']
+          @CheckRows = params['CheckRows']
+          @CpuTime = params['CpuTime']
+          @IoWaitTime = params['IoWaitTime']
+          @LockWaitTime = params['LockWaitTime']
+          @TrxLivingTime = params['TrxLivingTime']
+          @NsTime = params['NsTime']
         end
       end
 
@@ -1124,18 +1154,21 @@ module TencentCloud
         # "affectRows" - 影响行数；
         # "execTime" - 执行时间。
         # @type OrderBy: String
-        # @param Filter: 过滤条件。可按设置的过滤条件过滤日志。
+        # @param Filter: 已废弃。
         # @type Filter: :class:`Tencentcloud::Cynosdb.v20190107.models.AuditLogFilter`
+        # @param LogFilter: 审计日志过滤条件
+        # @type LogFilter: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Order = order
           @OrderBy = orderby
           @Filter = filter
+          @LogFilter = logfilter
         end
 
         def deserialize(params)
@@ -1147,6 +1180,14 @@ module TencentCloud
           unless params['Filter'].nil?
             @Filter = AuditLogFilter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              instanceauditlogfilter_tmp = InstanceAuditLogFilter.new
+              instanceauditlogfilter_tmp.deserialize(i)
+              @LogFilter << instanceauditlogfilter_tmp
+            end
           end
         end
       end
@@ -3663,16 +3704,18 @@ module TencentCloud
         # "affectRows" - 影响行数；
         # "execTime" - 执行时间。
         # @type OrderBy: String
-        # @param Filter: 过滤条件。可按设置的过滤条件过滤日志。
+        # @param Filter: 已废弃。
         # @type Filter: :class:`Tencentcloud::Cynosdb.v20190107.models.AuditLogFilter`
         # @param Limit: 分页参数，单次返回的数据条数。默认值为100，最大值为100。
         # @type Limit: Integer
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
+        # @param LogFilter: 审计日志过滤条件。
+        # @type LogFilter: Array
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -3681,6 +3724,7 @@ module TencentCloud
           @Filter = filter
           @Limit = limit
           @Offset = offset
+          @LogFilter = logfilter
         end
 
         def deserialize(params)
@@ -3695,6 +3739,14 @@ module TencentCloud
           end
           @Limit = params['Limit']
           @Offset = params['Offset']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              instanceauditlogfilter_tmp = InstanceAuditLogFilter.new
+              instanceauditlogfilter_tmp.deserialize(i)
+              @LogFilter << instanceauditlogfilter_tmp
+            end
+          end
         end
       end
 
@@ -6434,6 +6486,58 @@ module TencentCloud
           @InstanceRealTotalPrice = params['InstanceRealTotalPrice']
           @StorageRealTotalPrice = params['StorageRealTotalPrice']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 审计日志搜索条件
+      class InstanceAuditLogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤项。支持以下搜索条件:
+
+        # 分词搜索：
+        # sql - SQL语句；
+
+        # 等于、不等于、包含、不包含：
+        # host - 客户端地址；
+        # user - 用户名；
+        # dbName - 数据库名称；
+
+        # 等于、不等于：
+        # sqlType - SQL类型；
+        # errCode - 错误码；
+        # threadId - 线程ID；
+
+        # 范围搜索（时间类型统一为微妙）：
+        # execTime - 执行时间；
+        # lockWaitTime - 执行时间；
+        # ioWaitTime - IO等待时间；
+        # trxLivingTime - 事物持续时间；
+        # cpuTime - cpu时间；
+        # checkRows - 扫描行数；
+        # affectRows - 影响行数；
+        # sentRows - 返回行数。
+        # @type Type: String
+        # @param Compare: 过滤条件。支持以下选项:
+        # INC - 包含,
+        # EXC - 不包含,
+        # EQS - 等于,
+        # NEQ - 不等于,
+        # RA - 范围.
+        # @type Compare: String
+        # @param Value: 过滤的值。
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
         end
       end
 

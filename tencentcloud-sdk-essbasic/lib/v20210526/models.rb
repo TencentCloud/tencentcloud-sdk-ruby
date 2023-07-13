@@ -2786,15 +2786,35 @@ module TencentCloud
       class CreateFlowOption < TencentCloud::Common::AbstractModel
         # @param CanEditFlow: 是否允许修改合同信息，true-是，false-否
         # @type CanEditFlow: Boolean
+        # @param HideShowFlowName: 是否允许发起合同弹窗隐藏合同名称
+        # @type HideShowFlowName: Boolean
+        # @param HideShowFlowType: 是否允许发起合同弹窗隐藏合同类型
+        # @type HideShowFlowType: Boolean
+        # @param HideShowDeadline: 是否允许发起合同弹窗隐藏合同到期时间
+        # @type HideShowDeadline: Boolean
+        # @param CanSkipAddApprover: 是否允许发起合同步骤跳过指定签署方步骤
+        # @type CanSkipAddApprover: Boolean
+        # @param CustomCreateFlowDescription: 定制化发起合同页合同描述信息
+        # @type CustomCreateFlowDescription: String
 
-        attr_accessor :CanEditFlow
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription
 
-        def initialize(caneditflow=nil)
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil)
           @CanEditFlow = caneditflow
+          @HideShowFlowName = hideshowflowname
+          @HideShowFlowType = hideshowflowtype
+          @HideShowDeadline = hideshowdeadline
+          @CanSkipAddApprover = canskipaddapprover
+          @CustomCreateFlowDescription = customcreateflowdescription
         end
 
         def deserialize(params)
           @CanEditFlow = params['CanEditFlow']
+          @HideShowFlowName = params['HideShowFlowName']
+          @HideShowFlowType = params['HideShowFlowType']
+          @HideShowDeadline = params['HideShowDeadline']
+          @CanSkipAddApprover = params['CanSkipAddApprover']
+          @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
         end
       end
 
@@ -4319,19 +4339,24 @@ module TencentCloud
         # @param ComponentName: 控件的名字，跟ComponentId二选一，不能全为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentName: String
+        # @param LockComponentValue: 是否锁定模版控件值，锁定后无法修改（用于嵌入式发起合同）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockComponentValue: Boolean
 
-        attr_accessor :ComponentValue, :ComponentId, :ComponentName
+        attr_accessor :ComponentValue, :ComponentId, :ComponentName, :LockComponentValue
 
-        def initialize(componentvalue=nil, componentid=nil, componentname=nil)
+        def initialize(componentvalue=nil, componentid=nil, componentname=nil, lockcomponentvalue=nil)
           @ComponentValue = componentvalue
           @ComponentId = componentid
           @ComponentName = componentname
+          @LockComponentValue = lockcomponentvalue
         end
 
         def deserialize(params)
           @ComponentValue = params['ComponentValue']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
+          @LockComponentValue = params['LockComponentValue']
         end
       end
 
