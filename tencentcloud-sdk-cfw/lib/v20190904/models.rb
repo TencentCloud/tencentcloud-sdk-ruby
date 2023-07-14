@@ -683,6 +683,56 @@ module TencentCloud
         end
       end
 
+      # CreateAddressTemplate请求参数结构体
+      class CreateAddressTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名称
+        # @type Name: String
+        # @param Detail: 模板描述
+        # @type Detail: String
+        # @param IpString: Type为1，ip模板eg：1.1.1.1,2.2.2.2；
+        # Type为5，域名模板eg：www.qq.com,www.tencent.com
+        # @type IpString: String
+        # @param Type: 1 ip模板
+        # 5 域名模板
+        # @type Type: Integer
+
+        attr_accessor :Name, :Detail, :IpString, :Type
+
+        def initialize(name=nil, detail=nil, ipstring=nil, type=nil)
+          @Name = name
+          @Detail = detail
+          @IpString = ipstring
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Detail = params['Detail']
+          @IpString = params['IpString']
+          @Type = params['Type']
+        end
+      end
+
+      # CreateAddressTemplate返回参数结构体
+      class CreateAddressTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 创建结果,0成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateChooseVpcs请求参数结构体
       class CreateChooseVpcsRequest < TencentCloud::Common::AbstractModel
         # @param VpcList: vpc列表
@@ -1154,6 +1204,42 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @Info = params['Info']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAddressTemplate请求参数结构体
+      class DeleteAddressTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 模板id
+        # @type Uuid: String
+
+        attr_accessor :Uuid
+
+        def initialize(uuid=nil)
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+        end
+      end
+
+      # DeleteAddressTemplate返回参数结构体
+      class DeleteAddressTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 删除结果,0成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

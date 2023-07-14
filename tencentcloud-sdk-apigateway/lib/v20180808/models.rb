@@ -329,7 +329,7 @@ module TencentCloud
       end
 
       # API绑定策略列表
-      class ApiEnvironmentStrategyStataus < TencentCloud::Common::AbstractModel
+      class ApiEnvironmentStrategyStatus < TencentCloud::Common::AbstractModel
         # @param TotalCount: API绑定的限流策略数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
@@ -3569,7 +3569,7 @@ module TencentCloud
       class DescribeApiEnvironmentStrategyResponse < TencentCloud::Common::AbstractModel
         # @param Result: api绑定策略详情
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiEnvironmentStrategyStataus`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.ApiEnvironmentStrategyStatus`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3582,7 +3582,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = ApiEnvironmentStrategyStataus.new
+            @Result = ApiEnvironmentStrategyStatus.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -4390,7 +4390,7 @@ module TencentCloud
       class DescribeIPStrategysStatusResponse < TencentCloud::Common::AbstractModel
         # @param Result: 符合条件的策略列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.IPStrategysStatus`
+        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.IPStrategiesStatus`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4403,7 +4403,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Result'].nil?
-            @Result = IPStrategysStatus.new
+            @Result = IPStrategiesStatus.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -6242,6 +6242,35 @@ module TencentCloud
         end
       end
 
+      # 策略列表
+      class IPStrategiesStatus < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 策略数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param StrategySet: 策略列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategySet: Array
+
+        attr_accessor :TotalCount, :StrategySet
+
+        def initialize(totalcount=nil, strategyset=nil)
+          @TotalCount = totalcount
+          @StrategySet = strategyset
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['StrategySet'].nil?
+            @StrategySet = []
+            params['StrategySet'].each do |i|
+              ipstrategy_tmp = IPStrategy.new
+              ipstrategy_tmp.deserialize(i)
+              @StrategySet << ipstrategy_tmp
+            end
+          end
+        end
+      end
+
       # ip策略
       class IPStrategy < TencentCloud::Common::AbstractModel
         # @param StrategyId: 策略唯一ID。
@@ -6370,35 +6399,6 @@ module TencentCloud
               ipstrategyapi_tmp = IPStrategyApi.new
               ipstrategyapi_tmp.deserialize(i)
               @ApiIdStatusSet << ipstrategyapi_tmp
-            end
-          end
-        end
-      end
-
-      # 策略列表
-      class IPStrategysStatus < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 策略数量。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param StrategySet: 策略列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StrategySet: Array
-
-        attr_accessor :TotalCount, :StrategySet
-
-        def initialize(totalcount=nil, strategyset=nil)
-          @TotalCount = totalcount
-          @StrategySet = strategyset
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['StrategySet'].nil?
-            @StrategySet = []
-            params['StrategySet'].each do |i|
-              ipstrategy_tmp = IPStrategy.new
-              ipstrategy_tmp.deserialize(i)
-              @StrategySet << ipstrategy_tmp
             end
           end
         end

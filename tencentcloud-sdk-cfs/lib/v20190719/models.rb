@@ -31,11 +31,11 @@ module TencentCloud
         # @type DayOfWeek: String
         # @param Hour: 快照定期备份在一天的哪一小时
         # @type Hour: String
-        # @param IsActivated: 是否激活定期快照功能
+        # @param IsActivated: 是否激活定期快照功能,1代表已激活，0代表未激活
         # @type IsActivated: Integer
         # @param NextActiveTime: 下一次触发快照时间
         # @type NextActiveTime: String
-        # @param Status: 快照策略状态
+        # @param Status: 快照策略状态，1代表快照策略状态正常。这里只有一种状态
         # @type Status: String
         # @param AppId: 帐号ID
         # @type AppId: Integer
@@ -51,7 +51,7 @@ module TencentCloud
         # @param IntervalDays: 快照定期间隔天数，1-365 天；该参数与DayOfMonth,DayOfWeek互斥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntervalDays: Integer
-        # @param CrossRegionsAliveDays: 跨地域复制的快照保留时间
+        # @param CrossRegionsAliveDays: 跨地域复制的快照保留时间，单位天
         # @type CrossRegionsAliveDays: Integer
 
         attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays, :CrossRegionsAliveDays
@@ -294,13 +294,13 @@ module TencentCloud
 
       # CreateAutoSnapshotPolicy请求参数结构体
       class CreateAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Hour: 快照重复时间点
+        # @param Hour: 快照重复时间点,0-23
         # @type Hour: String
         # @param PolicyName: 策略名称
         # @type PolicyName: String
-        # @param DayOfWeek: 快照重复日期，星期一到星期日
+        # @param DayOfWeek: 快照重复日期，星期一到星期日。 1代表星期一、7代表星期天
         # @type DayOfWeek: String
-        # @param AliveDays: 快照保留时长
+        # @param AliveDays: 快照保留时长，单位天
         # @type AliveDays: Integer
         # @param DayOfMonth: 快照按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照。
         # @type DayOfMonth: String
@@ -1739,7 +1739,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: Offset 分页码
         # @type Offset: Integer
-        # @param Limit: Limit 页面大小
+        # @param Limit: Limit 页面大小，可填范围为大于0的整数
         # @type Limit: Integer
 
         attr_accessor :FileSystemId, :Filters, :Offset, :Limit
@@ -1803,11 +1803,11 @@ module TencentCloud
         # @type CreationToken: String
         # @param FileSystemId: 文件系统ID
         # @type FileSystemId: String
-        # @param SizeByte: 文件系统大小
+        # @param SizeByte: 文件系统大小，单位Byte
         # @type SizeByte: Integer
-        # @param StorageType: 存储类型
+        # @param StorageType: 存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型
         # @type StorageType: String
-        # @param TotalSnapshotSize: 快照总大小
+        # @param TotalSnapshotSize: 快照总大小，单位GiB
         # @type TotalSnapshotSize: Integer
         # @param CreationTime: 文件系统创建时间
         # @type CreationTime: String
@@ -1889,17 +1889,17 @@ module TencentCloud
         # - unserviced:停服中
         # - upgrading:升级中
         # @type LifeCycleState: String
-        # @param SizeByte: 文件系统已使用容量
+        # @param SizeByte: 文件系统已使用容量,单位Byte
         # @type SizeByte: Integer
-        # @param SizeLimit: 文件系统最大空间限制
+        # @param SizeLimit: 文件系统最大空间限制,GiB
         # @type SizeLimit: Integer
         # @param ZoneId: 区域 ID
         # @type ZoneId: Integer
         # @param Zone: 区域名称
         # @type Zone: String
-        # @param Protocol: 文件系统协议类型
+        # @param Protocol: 文件系统协议类型, 支持 NFS,CIFS,TURBO
         # @type Protocol: String
-        # @param StorageType: 文件系统存储类型
+        # @param StorageType: 存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型
         # @type StorageType: String
         # @param StorageResourcePkg: 文件系统绑定的预付费存储包
         # @type StorageResourcePkg: String
@@ -1909,19 +1909,21 @@ module TencentCloud
         # @type PGroup: :class:`Tencentcloud::Cfs.v20190719.models.PGroup`
         # @param FsName: 用户自定义名称
         # @type FsName: String
-        # @param Encrypted: 文件系统是否加密
+        # @param Encrypted: 文件系统是否加密,true：代表加密，false：非加密
         # @type Encrypted: Boolean
         # @param KmsKeyId: 加密所使用的密钥，可以为密钥的 ID 或者 ARN
         # @type KmsKeyId: String
         # @param AppId: 应用ID
         # @type AppId: Integer
-        # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定
+        # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s
         # @type BandwidthLimit: Float
         # @param Capacity: 文件系统总容量
         # @type Capacity: Integer
         # @param Tags: 文件系统标签列表
         # @type Tags: Array
         # @param TieringState: 文件系统生命周期管理状态
+        # NotAvailable：不可用
+        # Available:可用
         # @type TieringState: String
         # @param TieringDetail: 分层存储详情
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -2476,7 +2478,7 @@ module TencentCloud
         # @type SnapshotName: String
         # @param SnapshotId: 快照ID
         # @type SnapshotId: String
-        # @param Status: 快照状态
+        # @param Status: 快照状态，createing-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败
         # @type Status: String
         # @param RegionName: 地域名称
         # @type RegionName: String
@@ -2486,7 +2488,7 @@ module TencentCloud
         # @type Size: Integer
         # @param AliveDay: 保留时长天
         # @type AliveDay: Integer
-        # @param Percent: 快照进度
+        # @param Percent: 快照进度百分比，1表示1%
         # @type Percent: Integer
         # @param AppId: 帐号ID
         # @type AppId: Integer
@@ -2496,10 +2498,10 @@ module TencentCloud
         # @type FsName: String
         # @param Tags: 快照标签
         # @type Tags: Array
-        # @param SnapshotType: 快照类型
+        # @param SnapshotType: 快照类型, general为通用系列快照，turbo为Turbo系列快照
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotType: String
-        # @param SnapshotTime: 实际快照时间，这里主要是为了标识跨地域复制快照的时间快照时间
+        # @param SnapshotTime: 实际快照时间，反应快照对应文件系统某个时刻的数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotTime: String
 
@@ -2552,14 +2554,22 @@ module TencentCloud
       # 快照操作日志
       class SnapshotOperateLog < TencentCloud::Common::AbstractModel
         # @param Action: 操作类型
+        # CreateCfsSnapshot：创建快照
+        # DeleteCfsSnapshot：删除快照
+        # CreateCfsFileSystem：创建文件系统
+        # UpdateCfsSnapshotAttribute：更新快照
         # @type Action: String
         # @param ActionTime: 操作时间
         # @type ActionTime: String
         # @param ActionName: 操作名称
+        # CreateCfsSnapshot
+        # DeleteCfsSnapshot
+        # CreateCfsFileSystem
+        # UpdateCfsSnapshotAttribute
         # @type ActionName: String
-        # @param Operator: 操作者
+        # @param Operator: 操作者uin
         # @type Operator: String
-        # @param Result: 结果
+        # @param Result: 1-任务进行中；2-任务成功；3-任务失败
         # @type Result: Integer
 
         attr_accessor :Action, :ActionTime, :ActionName, :Operator, :Result
@@ -2728,13 +2738,13 @@ module TencentCloud
         # @type AutoSnapshotPolicyId: String
         # @param PolicyName: 快照策略名称
         # @type PolicyName: String
-        # @param DayOfWeek: 快照定期备份在一星期哪一天
+        # @param DayOfWeek: 快照定期备份，按照星期一到星期日。 1代表星期一，7代表星期日
         # @type DayOfWeek: String
         # @param Hour: 快照定期备份在一天的哪一小时
         # @type Hour: String
         # @param AliveDays: 快照保留日期
         # @type AliveDays: Integer
-        # @param IsActivated: 是否激活定期快照功能
+        # @param IsActivated: 是否激活定期快照功能；1代表激活，0代表未激活
         # @type IsActivated: Integer
         # @param DayOfMonth: 定期快照在每月的第几天创建快照，该参数与DayOfWeek互斥
         # @type DayOfMonth: String

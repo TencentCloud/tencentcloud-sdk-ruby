@@ -2204,10 +2204,10 @@ module TencentCloud
 
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterCIDRSettings: 集群容器网络配置信息
-        # @type ClusterCIDRSettings: :class:`Tencentcloud::Tke.v20180525.models.ClusterCIDRSettings`
         # @param ClusterType: 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
         # @type ClusterType: String
+        # @param ClusterCIDRSettings: 集群容器网络配置信息
+        # @type ClusterCIDRSettings: :class:`Tencentcloud::Tke.v20180525.models.ClusterCIDRSettings`
         # @param RunInstancesForNode: CVM创建透传参数，json化字符串格式，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。总机型(包括地域)数量不超过10个，相同机型(地域)购买多台机器可以通过设置参数中RunInstances中InstanceCount来实现。
         # @type RunInstancesForNode: Array
         # @param ClusterBasicSettings: 集群的基本配置信息
@@ -2223,11 +2223,11 @@ module TencentCloud
         # @param ExtensionAddons: 需要安装的扩展组件信息
         # @type ExtensionAddons: Array
 
-        attr_accessor :ClusterCIDRSettings, :ClusterType, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons
+        attr_accessor :ClusterType, :ClusterCIDRSettings, :RunInstancesForNode, :ClusterBasicSettings, :ClusterAdvancedSettings, :InstanceAdvancedSettings, :ExistedInstancesForNode, :InstanceDataDiskMountSettings, :ExtensionAddons
 
-        def initialize(clustercidrsettings=nil, clustertype=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil)
-          @ClusterCIDRSettings = clustercidrsettings
+        def initialize(clustertype=nil, clustercidrsettings=nil, runinstancesfornode=nil, clusterbasicsettings=nil, clusteradvancedsettings=nil, instanceadvancedsettings=nil, existedinstancesfornode=nil, instancedatadiskmountsettings=nil, extensionaddons=nil)
           @ClusterType = clustertype
+          @ClusterCIDRSettings = clustercidrsettings
           @RunInstancesForNode = runinstancesfornode
           @ClusterBasicSettings = clusterbasicsettings
           @ClusterAdvancedSettings = clusteradvancedsettings
@@ -2238,11 +2238,11 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ClusterType = params['ClusterType']
           unless params['ClusterCIDRSettings'].nil?
             @ClusterCIDRSettings = ClusterCIDRSettings.new
             @ClusterCIDRSettings.deserialize(params['ClusterCIDRSettings'])
           end
-          @ClusterType = params['ClusterType']
           unless params['RunInstancesForNode'].nil?
             @RunInstancesForNode = []
             params['RunInstancesForNode'].each do |i|

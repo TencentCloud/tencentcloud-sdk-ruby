@@ -936,6 +936,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+
+        # @param request: Request instance for DescribeAuditLogs.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeAuditLogsRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeAuditLogsResponse`
+        def DescribeAuditLogs(request)
+          body = send_request('DescribeAuditLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
 
         # @param request: Request instance for DescribeAuditPolicies.

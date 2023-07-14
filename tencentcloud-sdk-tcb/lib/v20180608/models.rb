@@ -3963,9 +3963,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildDir: String
         # @param Cpu: 请使用CPUSize
-        # @type Cpu: Integer
+        # @type Cpu: Float
         # @param Mem: 请使用MemSize
-        # @type Mem: Integer
+        # @type Mem: Float
         # @param MinNum: 副本最小值
         # @type MinNum: Integer
         # @param MaxNum: 副本最大值
@@ -4528,7 +4528,7 @@ module TencentCloud
         # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的.
         # @type Time: Array
         # @param NewValues: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
-        # @type NewValues: Float
+        # @type NewValues: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -1145,7 +1145,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
+        # 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表，因为接口名拼写错误，已不推荐使用，请优先使用DescribeIPStrategiesStatus接口。
 
         # @param request: Request instance for DescribeIPStrategysStatus.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeIPStrategysStatusRequest`

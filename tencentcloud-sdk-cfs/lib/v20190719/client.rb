@@ -705,7 +705,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询文件系统配额
+        # 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
 
         # @param request: Request instance for DescribeUserQuota.
         # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeUserQuotaRequest`

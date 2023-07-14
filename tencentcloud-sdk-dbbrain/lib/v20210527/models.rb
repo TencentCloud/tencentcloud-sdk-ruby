@@ -313,7 +313,7 @@ module TencentCloud
 
       # CloseAuditService请求参数结构体
       class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
         # @type Product: String
         # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
         # @type NodeRequestType: String
@@ -1200,7 +1200,7 @@ module TencentCloud
 
       # DescribeAuditInstanceList请求参数结构体
       class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
         # @type Product: String
         # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
         # @type NodeRequestType: String
@@ -3728,15 +3728,15 @@ module TencentCloud
 
       # ModifyAuditService请求参数结构体
       class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
         # @type Product: String
         # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
         # @type NodeRequestType: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825
+        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825。
         # @type LogExpireDay: Integer
-        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825
+        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825。
         # @type HotLogExpireDay: Integer
 
         attr_accessor :Product, :NodeRequestType, :InstanceId, :LogExpireDay, :HotLogExpireDay
@@ -4023,15 +4023,15 @@ module TencentCloud
 
       # OpenAuditService请求参数结构体
       class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 与Product保持一致。如："dcdb" ,"mariadb"。
+        # @param Product: 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB。
         # @type Product: String
         # @param NodeRequestType: 与Product保持一致。如："dcdb" ,"mariadb"。
         # @type NodeRequestType: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825
+        # @param LogExpireDay: 日志保存总时长，只能是7,30,90,180,365,1095,1825。
         # @type LogExpireDay: Integer
-        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825
+        # @param HotLogExpireDay: 高频日志保存时长，只能是7,30,90,180,365,1095,1825。
         # @type HotLogExpireDay: Integer
 
         attr_accessor :Product, :NodeRequestType, :InstanceId, :LogExpireDay, :HotLogExpireDay

@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建地址模板规则
+
+        # @param request: Request instance for CreateAddressTemplate.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAddressTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateAddressTemplateResponse`
+        def CreateAddressTemplate(request)
+          body = send_request('CreateAddressTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAddressTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建、选择vpc
 
         # @param request: Request instance for CreateChooseVpcs.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除地址模板规则
+
+        # @param request: Request instance for DeleteAddressTemplate.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteAddressTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteAddressTemplateResponse`
+        def DeleteAddressTemplate(request)
+          body = send_request('DeleteAddressTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAddressTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

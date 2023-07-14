@@ -508,6 +508,96 @@ module TencentCloud
         end
       end
 
+      # 审计日志详细信息
+      class AuditLog < TencentCloud::Common::AbstractModel
+        # @param AffectRows: 影响行数。
+        # @type AffectRows: Integer
+        # @param ErrCode: 错误码。
+        # @type ErrCode: Integer
+        # @param SqlType: SQL 类型。
+        # @type SqlType: String
+        # @param PolicyName: 审计策略名称，逐步下线。
+        # @type PolicyName: String
+        # @param DBName: 数据库名称。
+        # @type DBName: String
+        # @param Sql: SQL 语句。
+        # @type Sql: String
+        # @param Host: 客户端地址。
+        # @type Host: String
+        # @param User: 用户名。
+        # @type User: String
+        # @param ExecTime: 执行时间，微秒。
+        # @type ExecTime: Integer
+        # @param Timestamp: 时间。
+        # @type Timestamp: String
+        # @param SentRows: 返回行数。
+        # @type SentRows: Integer
+        # @param ThreadId: 线程ID。
+        # @type ThreadId: Integer
+        # @param CheckRows: 扫描行数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckRows: Integer
+        # @param CpuTime: cpu执行时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTime: Float
+        # @param IoWaitTime: IO等待时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoWaitTime: Integer
+        # @param LockWaitTime: 锁等待时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockWaitTime: Integer
+        # @param NsTime: 开始时间，与timestamp构成一个精确到纳秒的时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NsTime: Integer
+        # @param TrxLivingTime: 事物持续时间，微秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrxLivingTime: Integer
+
+        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime
+
+        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil)
+          @AffectRows = affectrows
+          @ErrCode = errcode
+          @SqlType = sqltype
+          @PolicyName = policyname
+          @DBName = dbname
+          @Sql = sql
+          @Host = host
+          @User = user
+          @ExecTime = exectime
+          @Timestamp = timestamp
+          @SentRows = sentrows
+          @ThreadId = threadid
+          @CheckRows = checkrows
+          @CpuTime = cputime
+          @IoWaitTime = iowaittime
+          @LockWaitTime = lockwaittime
+          @NsTime = nstime
+          @TrxLivingTime = trxlivingtime
+        end
+
+        def deserialize(params)
+          @AffectRows = params['AffectRows']
+          @ErrCode = params['ErrCode']
+          @SqlType = params['SqlType']
+          @PolicyName = params['PolicyName']
+          @DBName = params['DBName']
+          @Sql = params['Sql']
+          @Host = params['Host']
+          @User = params['User']
+          @ExecTime = params['ExecTime']
+          @Timestamp = params['Timestamp']
+          @SentRows = params['SentRows']
+          @ThreadId = params['ThreadId']
+          @CheckRows = params['CheckRows']
+          @CpuTime = params['CpuTime']
+          @IoWaitTime = params['IoWaitTime']
+          @LockWaitTime = params['LockWaitTime']
+          @NsTime = params['NsTime']
+          @TrxLivingTime = params['TrxLivingTime']
+        end
+      end
+
       # 审计日志分析结果
       class AuditLogAggregationResult < TencentCloud::Common::AbstractModel
         # @param AggregationField: 聚合维度
@@ -3740,6 +3830,92 @@ module TencentCloud
               auditlogfile_tmp = AuditLogFile.new
               auditlogfile_tmp.deserialize(i)
               @Items << auditlogfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditLogs请求参数结构体
+      class DescribeAuditLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param Limit: 分页参数，单次返回的数据条数。默认值为100，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+        # @param Order: 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序。
+        # @type Order: String
+        # @param OrderBy: 排序字段。支持值包括：
+        # "timestamp" - 时间戳；
+        # "affectRows" - 影响行数；
+        # "execTime" - 执行时间。
+        # @type OrderBy: String
+        # @param LogFilter: 过滤条件。可按设置的过滤条件过滤日志。
+        # @type LogFilter: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Order, :OrderBy, :LogFilter
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, order=nil, orderby=nil, logfilter=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+          @LogFilter = logfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              instanceauditlogfilters_tmp = InstanceAuditLogFilters.new
+              instanceauditlogfilters_tmp.deserialize(i)
+              @LogFilter << instanceauditlogfilters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAuditLogs返回参数结构体
+      class DescribeAuditLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的审计日志条数。
+        # @type TotalCount: Integer
+        # @param Items: 审计日志详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditlog_tmp = AuditLog.new
+              auditlog_tmp.deserialize(i)
+              @Items << auditlog_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -1433,12 +1433,14 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param Pages: 课件页数
         # @type Pages: Integer
+        # @param Preview: 课件预览地址
+        # @type Preview: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :RequestId
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Preview, :RequestId
 
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, requestid=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, preview=nil, requestid=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -1454,6 +1456,7 @@ module TencentCloud
           @DocumentSize = documentsize
           @UpdateTime = updatetime
           @Pages = pages
+          @Preview = preview
           @RequestId = requestid
         end
 
@@ -1473,6 +1476,7 @@ module TencentCloud
           @DocumentSize = params['DocumentSize']
           @UpdateTime = params['UpdateTime']
           @Pages = params['Pages']
+          @Preview = params['Preview']
           @RequestId = params['RequestId']
         end
       end

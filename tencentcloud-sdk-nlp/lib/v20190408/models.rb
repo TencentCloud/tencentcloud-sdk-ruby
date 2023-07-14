@@ -315,11 +315,11 @@ module TencentCloud
 
       # ClassifyContent返回参数结构体
       class ClassifyContentResponse < TencentCloud::Common::AbstractModel
-        # @param FirstClassification: 一级分类。分类详情见附录-三级分类体系表。
+        # @param FirstClassification: 一级分类。（请参见附录[三级分类体系表](https://cloud.tencent.com/document/product/271/94286)）
         # @type FirstClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
-        # @param SecondClassification: 二级分类。分类详情见附录-三级分类体系表。
+        # @param SecondClassification: 二级分类。（请参见附录[三级分类体系表](https://cloud.tencent.com/document/product/271/94286)）
         # @type SecondClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
-        # @param ThirdClassification: 三级分类。分类详情见附录-三级分类体系表。
+        # @param ThirdClassification: 三级分类。（请参见附录[三级分类体系表](https://cloud.tencent.com/document/product/271/94286)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1458,11 +1458,11 @@ module TencentCloud
       class ParseWordsResponse < TencentCloud::Common::AbstractModel
         # @param NormalText: 输入文本正则化的结果。（包括对英文文本中的开头和实体进行大写等）
         # @type NormalText: String
-        # @param BasicParticiples: 基础粒度分词和词性标注的结果。（词性表请参见附录）
+        # @param BasicParticiples: 基础粒度分词和词性标注的结果。（请参见附录[词性表](https://cloud.tencent.com/document/product/271/36460)）
         # @type BasicParticiples: Array
-        # @param CompoundParticiples: 复合粒度分词和词性标注的结果。（词性表请参见附录）
+        # @param CompoundParticiples: 复合粒度分词和词性标注的结果。（请参见附录[词性表](https://cloud.tencent.com/document/product/271/36460)）
         # @type CompoundParticiples: Array
-        # @param Entities: 实体识别结果。（实体类型数据请参见附录）
+        # @param Entities: 实体识别结果。（请参见附录[实体类型数据](https://cloud.tencent.com/document/product/271/90592)）
         # @type Entities: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

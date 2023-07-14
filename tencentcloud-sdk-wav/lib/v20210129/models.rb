@@ -1117,10 +1117,37 @@ module TencentCloud
         # @param ChannelTags: 已为该客户添加的渠道标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChannelTags: Array
+        # @param LeadId: 关联线索id
+        # @type LeadId: Integer
+        # @param WxId: 客户微信id
+        # @type WxId: String
+        # @param Position: 顾问职位
+        # @type Position: String
+        # @param IsBindWx: 是否关联微信 1 是 0 否
+        # @type IsBindWx: Integer
+        # @param IsInvalid: 是否无效
+        # @type IsInvalid: Integer
+        # @param InvalidType: 无效类型
+        # @type InvalidType: String
+        # @param InvalidTypeName: 无效类型名称
+        # @type InvalidTypeName: String
+        # @param InvalidTime: 无效时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InvalidTime: Integer
+        # @param InvalidRemark: 由顾问手动输入的无效原因文字
+        # @type InvalidRemark: String
+        # @param IsLose: 线索是否战败
+        # @type IsLose: Integer
+        # @param LoseType: 战败类型
+        # @type LoseType: String
+        # @param LoseTypeName: 战败类型名称
+        # @type LoseTypeName: String
+        # @param LoseRemark: 战败申请原因
+        # @type LoseRemark: String
 
-        attr_accessor :CustomerId, :DealerCode, :UnionId, :CreateTime, :UserName, :Gender, :Phone, :AgeRangeName, :JobTypeName, :Address, :LeadsProcessStatus, :LeadType, :SourceName, :LeadsLevelCode, :VehicleBrandCode, :VehicleSeriesCode, :VehicleTypeCode, :VehiclePurpose, :PurchaseConcern, :SalesName, :SalesPhone, :RealArrivalTime, :CompleteTestDriveTime, :OrderTime, :DeliveryTime, :InvoiceTime, :LoseTime, :CreatedAtTime, :ImportAtTime, :DistributeTime, :LeadCreateTime, :Nickname, :OrgIdList, :Introducer, :IntroducerPhone, :FollowTime, :NextFollowTime, :EnterpriseTags, :ChannelTags
+        attr_accessor :CustomerId, :DealerCode, :UnionId, :CreateTime, :UserName, :Gender, :Phone, :AgeRangeName, :JobTypeName, :Address, :LeadsProcessStatus, :LeadType, :SourceName, :LeadsLevelCode, :VehicleBrandCode, :VehicleSeriesCode, :VehicleTypeCode, :VehiclePurpose, :PurchaseConcern, :SalesName, :SalesPhone, :RealArrivalTime, :CompleteTestDriveTime, :OrderTime, :DeliveryTime, :InvoiceTime, :LoseTime, :CreatedAtTime, :ImportAtTime, :DistributeTime, :LeadCreateTime, :Nickname, :OrgIdList, :Introducer, :IntroducerPhone, :FollowTime, :NextFollowTime, :EnterpriseTags, :ChannelTags, :LeadId, :WxId, :Position, :IsBindWx, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidTime, :InvalidRemark, :IsLose, :LoseType, :LoseTypeName, :LoseRemark
 
-        def initialize(customerid=nil, dealercode=nil, unionid=nil, createtime=nil, username=nil, gender=nil, phone=nil, agerangename=nil, jobtypename=nil, address=nil, leadsprocessstatus=nil, leadtype=nil, sourcename=nil, leadslevelcode=nil, vehiclebrandcode=nil, vehicleseriescode=nil, vehicletypecode=nil, vehiclepurpose=nil, purchaseconcern=nil, salesname=nil, salesphone=nil, realarrivaltime=nil, completetestdrivetime=nil, ordertime=nil, deliverytime=nil, invoicetime=nil, losetime=nil, createdattime=nil, importattime=nil, distributetime=nil, leadcreatetime=nil, nickname=nil, orgidlist=nil, introducer=nil, introducerphone=nil, followtime=nil, nextfollowtime=nil, enterprisetags=nil, channeltags=nil)
+        def initialize(customerid=nil, dealercode=nil, unionid=nil, createtime=nil, username=nil, gender=nil, phone=nil, agerangename=nil, jobtypename=nil, address=nil, leadsprocessstatus=nil, leadtype=nil, sourcename=nil, leadslevelcode=nil, vehiclebrandcode=nil, vehicleseriescode=nil, vehicletypecode=nil, vehiclepurpose=nil, purchaseconcern=nil, salesname=nil, salesphone=nil, realarrivaltime=nil, completetestdrivetime=nil, ordertime=nil, deliverytime=nil, invoicetime=nil, losetime=nil, createdattime=nil, importattime=nil, distributetime=nil, leadcreatetime=nil, nickname=nil, orgidlist=nil, introducer=nil, introducerphone=nil, followtime=nil, nextfollowtime=nil, enterprisetags=nil, channeltags=nil, leadid=nil, wxid=nil, position=nil, isbindwx=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidtime=nil, invalidremark=nil, islose=nil, losetype=nil, losetypename=nil, loseremark=nil)
           @CustomerId = customerid
           @DealerCode = dealercode
           @UnionId = unionid
@@ -1160,6 +1187,19 @@ module TencentCloud
           @NextFollowTime = nextfollowtime
           @EnterpriseTags = enterprisetags
           @ChannelTags = channeltags
+          @LeadId = leadid
+          @WxId = wxid
+          @Position = position
+          @IsBindWx = isbindwx
+          @IsInvalid = isinvalid
+          @InvalidType = invalidtype
+          @InvalidTypeName = invalidtypename
+          @InvalidTime = invalidtime
+          @InvalidRemark = invalidremark
+          @IsLose = islose
+          @LoseType = losetype
+          @LoseTypeName = losetypename
+          @LoseRemark = loseremark
         end
 
         def deserialize(params)
@@ -1226,6 +1266,19 @@ module TencentCloud
               @ChannelTags << channeltag_tmp
             end
           end
+          @LeadId = params['LeadId']
+          @WxId = params['WxId']
+          @Position = params['Position']
+          @IsBindWx = params['IsBindWx']
+          @IsInvalid = params['IsInvalid']
+          @InvalidType = params['InvalidType']
+          @InvalidTypeName = params['InvalidTypeName']
+          @InvalidTime = params['InvalidTime']
+          @InvalidRemark = params['InvalidRemark']
+          @IsLose = params['IsLose']
+          @LoseType = params['LoseType']
+          @LoseTypeName = params['LoseTypeName']
+          @LoseRemark = params['LoseRemark']
         end
       end
 
