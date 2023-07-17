@@ -181,7 +181,7 @@ module TencentCloud
         # @type UserName: String
         # @param DBPrivileges: 账号权限变更信息
         # @type DBPrivileges: Array
-        # @param IsAdmin: 是否为管理员账户,当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false时，表示删除管理员权限，默认false
+        # @param IsAdmin: 表示是否为管理员账户，当值为true，表示是 管理员。若实例 是 单节点，则管理员所在的 账号类型为超级权限账号 ，即AccountType=L0；若实例 是 双节点，则管理员所在的 账号类型为高级权限账号，即AccountType=L1；当值为false，表示 不是管理员，则账号类型为普通账号，即AccountType=L3
         # @type IsAdmin: Boolean
         # @param AccountType: 账号类型，IsAdmin字段的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
         # @type AccountType: String
@@ -765,7 +765,7 @@ module TencentCloud
         # @type Strategy: Integer
         # @param DBNames: 需要备份库名的列表(多库备份才填写)
         # @type DBNames: Array
-        # @param InstanceId: 实例ID，形如mssql-i1z41iwd
+        # @param InstanceId: 实例ID（必填），形如mssql-i1z41iwd
         # @type InstanceId: String
         # @param BackupName: 备份名称，若不填则自动生成“实例ID_备份开始时间戳”
         # @type BackupName: String
@@ -3029,7 +3029,7 @@ module TencentCloud
       class DescribeBackupFilesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，形如mssql-njj2mtpl
         # @type InstanceId: String
-        # @param GroupId: 聚合ID, 可通过接口DescribeBackups获取
+        # @param GroupId: 单库备份的聚合ID, 可通过接口DescribeBackups获取（不支持查询打包备份记录）
         # @type GroupId: String
         # @param Limit: 分页返回，每页返回的数目，取值为1-100，默认值为20
         # @type Limit: Integer

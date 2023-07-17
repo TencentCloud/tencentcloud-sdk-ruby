@@ -485,14 +485,17 @@ module TencentCloud
         # @param BeautifyVideoOutput: 视频美颜输出的结果信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeautifyVideoOutput: :class:`Tencentcloud::Fmu.v20191213.models.BeautifyVideoOutput`
+        # @param JobStatusCode: 当前任务状态码：1：排队中、3: 处理中、5: 处理失败、7:处理完成
+        # @type JobStatusCode: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobStatus, :BeautifyVideoOutput, :RequestId
+        attr_accessor :JobStatus, :BeautifyVideoOutput, :JobStatusCode, :RequestId
 
-        def initialize(jobstatus=nil, beautifyvideooutput=nil, requestid=nil)
+        def initialize(jobstatus=nil, beautifyvideooutput=nil, jobstatuscode=nil, requestid=nil)
           @JobStatus = jobstatus
           @BeautifyVideoOutput = beautifyvideooutput
+          @JobStatusCode = jobstatuscode
           @RequestId = requestid
         end
 
@@ -502,6 +505,7 @@ module TencentCloud
             @BeautifyVideoOutput = BeautifyVideoOutput.new
             @BeautifyVideoOutput.deserialize(params['BeautifyVideoOutput'])
           end
+          @JobStatusCode = params['JobStatusCode']
           @RequestId = params['RequestId']
         end
       end

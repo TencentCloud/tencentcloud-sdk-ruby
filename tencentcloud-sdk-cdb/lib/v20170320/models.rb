@@ -7802,10 +7802,7 @@ module TencentCloud
 
       # 审计日志搜索过滤器
       class InstanceAuditLogFilters < TencentCloud::Common::AbstractModel
-        # @param Type: 过滤项。目前支持以下搜索条件：
-
-        # 分词搜索：
-        # sql - SQL语句；
+        # @param Type: 过滤项。sql 暂时不支持搜索。目前支持以下搜索条件：
 
         # 等于、不等于、包含、不包含：
         # host - 客户端地址；

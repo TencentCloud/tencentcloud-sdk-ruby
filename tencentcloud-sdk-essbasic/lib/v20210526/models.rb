@@ -1253,6 +1253,49 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateOrganizationModifyQrCode请求参数结构体
+      class ChannelCreateOrganizationModifyQrCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.AppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :Agent
+
+        def initialize(agent=nil)
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ChannelCreateOrganizationModifyQrCode返回参数结构体
+      class ChannelCreateOrganizationModifyQrCodeResponse < TencentCloud::Common::AbstractModel
+        # @param QrCodeUrl: 二维码下载链接
+        # @type QrCodeUrl: String
+        # @param ExpiredTime: 二维码失效时间 UNIX 时间戳 精确到秒
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QrCodeUrl, :ExpiredTime, :RequestId
+
+        def initialize(qrcodeurl=nil, expiredtime=nil, requestid=nil)
+          @QrCodeUrl = qrcodeurl
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @QrCodeUrl = params['QrCodeUrl']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreatePrepareFlow请求参数结构体
       class ChannelCreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源id，与ResourceType对应
@@ -3811,8 +3854,11 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param SignComponents: 使用PDF文件直接发起合同时，签署人指定的签署控件
         # @type SignComponents: Array
-        # @param ComponentLimitType: 个人签署方指定签署控件类型，目前支持：OCR_ESIGN -AI智慧手写签名
-        # HANDWRITE -手写签名
+        # @param ComponentLimitType: 	签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
+        # 	HANDWRITE – 手写签名
+        # 	OCR_ESIGN -- AI智能识别手写签名
+        # 	ESIGN -- 个人印章类型
+        # 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
         # @type ComponentLimitType: Array
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer

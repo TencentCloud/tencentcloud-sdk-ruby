@@ -1540,12 +1540,15 @@ module TencentCloud
         # @param EncryptAlgorithm: 证书算法
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
+        # @param DvRevokeAuthDetail: DV证书吊销验证值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DvRevokeAuthDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :RequestId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1586,6 +1589,7 @@ module TencentCloud
           @CertFingerprint = certfingerprint
           @EncryptCertFingerprint = encryptcertfingerprint
           @EncryptAlgorithm = encryptalgorithm
+          @DvRevokeAuthDetail = dvrevokeauthdetail
           @RequestId = requestid
         end
 
@@ -1649,6 +1653,14 @@ module TencentCloud
           @CertFingerprint = params['CertFingerprint']
           @EncryptCertFingerprint = params['EncryptCertFingerprint']
           @EncryptAlgorithm = params['EncryptAlgorithm']
+          unless params['DvRevokeAuthDetail'].nil?
+            @DvRevokeAuthDetail = []
+            params['DvRevokeAuthDetail'].each do |i|
+              dvauths_tmp = DvAuths.new
+              dvauths_tmp.deserialize(i)
+              @DvRevokeAuthDetail << dvauths_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1840,12 +1852,15 @@ module TencentCloud
         # @param CAEndTimes: CA证书所有的到期时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEndTimes: Array
+        # @param DvRevokeAuthDetail: DV证书吊销验证值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DvRevokeAuthDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :CAEncryptAlgorithms, :CACommonNames, :CAEndTimes, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :PackageTypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :RenewAble, :SubmittedData, :Deployable, :Tags, :CAEncryptAlgorithms, :CACommonNames, :CAEndTimes, :DvRevokeAuthDetail, :RequestId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, caencryptalgorithms=nil, cacommonnames=nil, caendtimes=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, packagetypename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, renewable=nil, submitteddata=nil, deployable=nil, tags=nil, caencryptalgorithms=nil, cacommonnames=nil, caendtimes=nil, dvrevokeauthdetail=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -1881,6 +1896,7 @@ module TencentCloud
           @CAEncryptAlgorithms = caencryptalgorithms
           @CACommonNames = cacommonnames
           @CAEndTimes = caendtimes
+          @DvRevokeAuthDetail = dvrevokeauthdetail
           @RequestId = requestid
         end
 
@@ -1936,6 +1952,14 @@ module TencentCloud
           @CAEncryptAlgorithms = params['CAEncryptAlgorithms']
           @CACommonNames = params['CACommonNames']
           @CAEndTimes = params['CAEndTimes']
+          unless params['DvRevokeAuthDetail'].nil?
+            @DvRevokeAuthDetail = []
+            params['DvRevokeAuthDetail'].each do |i|
+              dvauths_tmp = DvAuths.new
+              dvauths_tmp.deserialize(i)
+              @DvRevokeAuthDetail << dvauths_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -1784,7 +1784,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param OrderField: 排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li>
         # @type OrderField: String
-        # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：<li>0：表示降序。</li><li>1：表示升序。</li>默认值为0。
+        # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：<li>0：表示降序。</li><li>1：表示升序。</li>默认值为0。
         # @type Asc: Integer
         # @param Filters: 自定义查询
         # @type Filters: Array
@@ -1863,7 +1863,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param ProjectId: 建议必填-1，表示拉取所有项目下的集群。
         # 不填默认值为0，表示拉取默认项目下的集群。
-        # 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/378/4400) 的返回值中的 projectId 字段来获取。
+        # 实例所属项目ID。该参数可以通过调用 [DescribeProjects](https://cloud.tencent.com/document/product/651/78725) 的返回值中的 projectId 字段来获取。
         # @type ProjectId: Integer
         # @param OrderField: 排序字段。取值范围：
         # <li>clusterId：表示按照实例ID排序。</li>
@@ -1872,7 +1872,7 @@ module TencentCloud
         # @type OrderField: String
         # @param Asc: 按照OrderField升序或者降序进行排序。取值范围：
         # <li>0：表示降序。</li>
-        # <li>1：表示升序。</li>默认值为0。
+        # <li>1：表示升序。</li>默认值为0。
         # @type Asc: Integer
 
         attr_accessor :DisplayStrategy, :InstanceIds, :Offset, :Limit, :ProjectId, :OrderField, :Asc
@@ -2899,7 +2899,7 @@ module TencentCloud
         # <li>m：表示月份。</li>
         # @type TimeUnit: String
         # @param Currency: 货币种类。取值范围：
-        # <li>CNY：表示人民币。</li>
+        # <li>CNY：表示人民币。</li>
         # @type Currency: String
 
         attr_accessor :TimeSpan, :InstanceId, :Placement, :PayMode, :TimeUnit, :Currency
@@ -2935,7 +2935,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 实例续费的时间单位。取值范围：
-        # <li>m：表示月份。</li>
+        # <li>m：表示月份。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 实例续费的时长。
@@ -2974,7 +2974,7 @@ module TencentCloud
         # <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
         # @type TimeSpan: Integer
         # @param Currency: 货币种类。取值范围：
-        # <li>CNY：表示人民币。</li>
+        # <li>CNY：表示人民币。</li>
         # @type Currency: String
         # @param PayMode: 实例计费模式。取值范围：
         # <li>0：表示按量计费。</li>
@@ -3103,7 +3103,7 @@ module TencentCloud
         # @type DiscountCost: Float
         # @param TimeUnit: 购买实例的时间单位。取值范围：
         # <li>s：表示秒。</li>
-        # <li>m：表示月份。</li>
+        # <li>m：表示月份。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 购买实例的时长。
@@ -3147,7 +3147,7 @@ module TencentCloud
       class InquiryPriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 实例续费的时长。需要结合TimeUnit一起使用。1表示续费一个月
         # @type TimeSpan: Integer
-        # @param ResourceIds: 待续费节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr/static/hardware)查询。
+        # @param ResourceIds: 待续费节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
         # @type ResourceIds: Array
         # @param Placement: 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
         # @type Placement: :class:`Tencentcloud::Emr.v20190103.models.Placement`
@@ -3157,7 +3157,7 @@ module TencentCloud
         # <li>m：表示月份。</li>
         # @type TimeUnit: String
         # @param Currency: 货币种类。取值范围：
-        # <li>CNY：表示人民币。</li>
+        # <li>CNY：表示人民币。</li>
         # @type Currency: String
         # @param ModifyPayMode: 是否按量转包年包月。0：否，1：是。
         # @type ModifyPayMode: Integer
@@ -3197,7 +3197,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiscountCost: Float
         # @param TimeUnit: 实例续费的时间单位。取值范围：
-        # <li>m：表示月份。</li>
+        # <li>m：表示月份。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param TimeSpan: 实例续费的时长。
@@ -3248,7 +3248,7 @@ module TencentCloud
         # @param TaskCount: 扩容的Task节点数量。
         # @type TaskCount: Integer
         # @param Currency: 货币种类。取值范围：
-        # <li>CNY：表示人民币。</li>
+        # <li>CNY：表示人民币。</li>
         # @type Currency: String
         # @param RouterCount: 扩容的Router节点数量。
         # @type RouterCount: Integer
@@ -3294,7 +3294,7 @@ module TencentCloud
         # @type DiscountCost: String
         # @param Unit: 扩容的时间单位。取值范围：
         # <li>s：表示秒。</li>
-        # <li>m：表示月份。</li>
+        # <li>m：表示月份。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
         # @param PriceSpec: 询价的节点规格。
@@ -3794,10 +3794,13 @@ module TencentCloud
         # <li>CLOUD_SSD：表示云SSD。</li>
         # <li>CLOUD_PREMIUM：表示高效云盘。</li>
         # <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskType: String
         # @param Volume: 云盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Volume: Integer
         # @param Count: 该类型云盘个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
 
         attr_accessor :DiskType, :Volume, :Count
@@ -6300,7 +6303,7 @@ module TencentCloud
       class TerminateTasksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param ResourceIds: 待销毁节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr/static/hardware)查询。
+        # @param ResourceIds: 待销毁节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
         # @type ResourceIds: Array
 
         attr_accessor :InstanceId, :ResourceIds

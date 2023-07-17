@@ -1339,6 +1339,108 @@ module TencentCloud
         end
       end
 
+      # DescribeJobSubmissionLog请求参数结构体
+      class DescribeJobSubmissionLogRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业ID，例如：cql-6v1jkxrn
+        # @type JobId: String
+        # @param StartTime: 起始时间，unix时间戳，毫秒级，例如：1611754219108
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，unix时间戳，毫秒级，例如：1611754219108
+        # @type EndTime: Integer
+        # @param RunningOrderId: 作业运行的实例ID, 例如：1,2,3。默认为0，表示未选中任何实例，搜索该时间段内最近的一个实例的日志
+        # @type RunningOrderId: Integer
+        # @param Keyword: 日志搜索的关键词，默认为空
+        # @type Keyword: String
+        # @param Cursor: 日志搜索的游标，可透传上次返回的值，默认为空
+        # @type Cursor: String
+        # @param OrderType: 时间戳排序规则，asc - 升序，desc - 降序。默认为升序
+        # @type OrderType: String
+        # @param Limit: 搜索的日志条数上限值，最大为100
+        # @type Limit: Integer
+
+        attr_accessor :JobId, :StartTime, :EndTime, :RunningOrderId, :Keyword, :Cursor, :OrderType, :Limit
+
+        def initialize(jobid=nil, starttime=nil, endtime=nil, runningorderid=nil, keyword=nil, cursor=nil, ordertype=nil, limit=nil)
+          @JobId = jobid
+          @StartTime = starttime
+          @EndTime = endtime
+          @RunningOrderId = runningorderid
+          @Keyword = keyword
+          @Cursor = cursor
+          @OrderType = ordertype
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RunningOrderId = params['RunningOrderId']
+          @Keyword = params['Keyword']
+          @Cursor = params['Cursor']
+          @OrderType = params['OrderType']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeJobSubmissionLog返回参数结构体
+      class DescribeJobSubmissionLogResponse < TencentCloud::Common::AbstractModel
+        # @param Cursor: 日志搜索的游标，需要搜索更多时透传这个值
+        # @type Cursor: String
+        # @param ListOver: 是否返回了所有的日志记录
+        # @type ListOver: Boolean
+        # @param JobRequestId: 作业启动的requestId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobRequestId: String
+        # @param JobInstanceList: 该时间段内符合关键字的所有的作业实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobInstanceList: Array
+        # @param LogList: 废弃，请使用LogContentList
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogList: Array
+        # @param LogContentList: 日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogContentList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Cursor, :ListOver, :JobRequestId, :JobInstanceList, :LogList, :LogContentList, :RequestId
+
+        def initialize(cursor=nil, listover=nil, jobrequestid=nil, jobinstancelist=nil, loglist=nil, logcontentlist=nil, requestid=nil)
+          @Cursor = cursor
+          @ListOver = listover
+          @JobRequestId = jobrequestid
+          @JobInstanceList = jobinstancelist
+          @LogList = loglist
+          @LogContentList = logcontentlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Cursor = params['Cursor']
+          @ListOver = params['ListOver']
+          @JobRequestId = params['JobRequestId']
+          unless params['JobInstanceList'].nil?
+            @JobInstanceList = []
+            params['JobInstanceList'].each do |i|
+              jobinstanceforsubmissionlog_tmp = JobInstanceForSubmissionLog.new
+              jobinstanceforsubmissionlog_tmp.deserialize(i)
+              @JobInstanceList << jobinstanceforsubmissionlog_tmp
+            end
+          end
+          @LogList = params['LogList']
+          unless params['LogContentList'].nil?
+            @LogContentList = []
+            params['LogContentList'].each do |i|
+              logcontent_tmp = LogContent.new
+              logcontent_tmp.deserialize(i)
+              @LogContentList << logcontent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobs请求参数结构体
       class DescribeJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobIds: 按照一个或者多个作业ID查询。作业ID形如：cql-11112222，每次请求的作业上限为100。参数不支持同时指定JobIds和Filters。
@@ -2068,6 +2170,30 @@ module TencentCloud
         end
       end
 
+      # 搜索启动日志时返回的作业实例
+      class JobInstanceForSubmissionLog < TencentCloud::Common::AbstractModel
+        # @param RunningOrderId: 实例的Id, 按照启动的时间顺序，从1开始
+        # @type RunningOrderId: Integer
+        # @param JobInstanceStartTime: 作业实例的启动时间
+        # @type JobInstanceStartTime: String
+        # @param StartingMillis: 作业实例启动的时间（毫秒）
+        # @type StartingMillis: Integer
+
+        attr_accessor :RunningOrderId, :JobInstanceStartTime, :StartingMillis
+
+        def initialize(runningorderid=nil, jobinstancestarttime=nil, startingmillis=nil)
+          @RunningOrderId = runningorderid
+          @JobInstanceStartTime = jobinstancestarttime
+          @StartingMillis = startingmillis
+        end
+
+        def deserialize(params)
+          @RunningOrderId = params['RunningOrderId']
+          @JobInstanceStartTime = params['JobInstanceStartTime']
+          @StartingMillis = params['StartingMillis']
+        end
+      end
+
       # Job详细信息
       class JobV1 < TencentCloud::Common::AbstractModel
         # @param JobId: 作业ID
@@ -2244,6 +2370,42 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # 日志查询的每行日志信息
+      class LogContent < TencentCloud::Common::AbstractModel
+        # @param Log: 日志内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: String
+        # @param Time: 毫秒级时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: Integer
+        # @param PkgId: 日志组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PkgId: String
+        # @param PkgLogId: 日志Id，在日志组范围里唯一
+        # @type PkgLogId: Integer
+        # @param ContainerName: 日志所属的容器名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+
+        attr_accessor :Log, :Time, :PkgId, :PkgLogId, :ContainerName
+
+        def initialize(log=nil, time=nil, pkgid=nil, pkglogid=nil, containername=nil)
+          @Log = log
+          @Time = time
+          @PkgId = pkgid
+          @PkgLogId = pkglogid
+          @ContainerName = containername
+        end
+
+        def deserialize(params)
+          @Log = params['Log']
+          @Time = params['Time']
+          @PkgId = params['PkgId']
+          @PkgLogId = params['PkgLogId']
+          @ContainerName = params['ContainerName']
         end
       end
 

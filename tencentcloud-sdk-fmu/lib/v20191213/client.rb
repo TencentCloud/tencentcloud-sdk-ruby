@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 视频美颜
+        # 视频美颜(此接口目前已下线)
 
         # @param request: Request instance for BeautifyVideo.
         # @type request: :class:`Tencentcloud::fmu::V20191213::BeautifyVideoRequest`

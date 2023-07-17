@@ -4675,13 +4675,23 @@ module TencentCloud
         # @type SignId: String
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
         # @type ApproverNeedSignReview: Boolean
+        # @param SignComponents: 签署人签署控件
+        # @type SignComponents: Array
+        # @param Components: 签署人填写控件
+        # @type Components: Array
+        # @param ComponentLimitType: 签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
+        # 	HANDWRITE – 手写签名
+        # 	OCR_ESIGN -- AI智能识别手写签名
+        # 	ESIGN -- 个人印章类型
+        # 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
+        # @type ComponentLimitType: Array
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType
         extend Gem::Deprecate
         deprecate :JumpUrl, :none, 2023, 7
         deprecate :JumpUrl=, :none, 2023, 7
 
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -4702,6 +4712,9 @@ module TencentCloud
           @JumpUrl = jumpurl
           @SignId = signid
           @ApproverNeedSignReview = approverneedsignreview
+          @SignComponents = signcomponents
+          @Components = components
+          @ComponentLimitType = componentlimittype
         end
 
         def deserialize(params)
@@ -4731,6 +4744,23 @@ module TencentCloud
           @JumpUrl = params['JumpUrl']
           @SignId = params['SignId']
           @ApproverNeedSignReview = params['ApproverNeedSignReview']
+          unless params['SignComponents'].nil?
+            @SignComponents = []
+            params['SignComponents'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @SignComponents << component_tmp
+            end
+          end
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
+          @ComponentLimitType = params['ComponentLimitType']
         end
       end
 

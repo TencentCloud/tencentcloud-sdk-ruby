@@ -2104,12 +2104,18 @@ module TencentCloud
         # @param OriginalVersion: 原始固件版本号，在UpgradeMode是originalVersion升级模式下会返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginalVersion: String
+        # @param CreateUserId: 创建账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
+        # @param CreatorNickName: 创建账号ID昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :RequestId
+        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :RequestId
 
-        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @CreateTime = createtime
@@ -2118,6 +2124,8 @@ module TencentCloud
           @UpgradeMode = upgrademode
           @ProductId = productid
           @OriginalVersion = originalversion
+          @CreateUserId = createuserid
+          @CreatorNickName = creatornickname
           @RequestId = requestid
         end
 
@@ -2130,6 +2138,8 @@ module TencentCloud
           @UpgradeMode = params['UpgradeMode']
           @ProductId = params['ProductId']
           @OriginalVersion = params['OriginalVersion']
+          @CreateUserId = params['CreateUserId']
+          @CreatorNickName = params['CreatorNickName']
           @RequestId = params['RequestId']
         end
       end

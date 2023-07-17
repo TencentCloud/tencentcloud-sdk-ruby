@@ -401,6 +401,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成渠道子客编辑企业信息二维码
+
+        # @param request: Request instance for ChannelCreateOrganizationModifyQrCode.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateOrganizationModifyQrCodeRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateOrganizationModifyQrCodeResponse`
+        def ChannelCreateOrganizationModifyQrCode(request)
+          body = send_request('ChannelCreateOrganizationModifyQrCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateOrganizationModifyQrCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建预发起合同
         # 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
         # 可指定合同信息不可更改，签署人信息不可更改

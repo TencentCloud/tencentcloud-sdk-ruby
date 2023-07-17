@@ -4767,6 +4767,9 @@ module TencentCloud
         # @param RdmaIpAddresses: 高性能计算集群`IP`列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RdmaIpAddresses: Array
+        # @param DedicatedClusterId: 实例所在的专用集群`ID`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
         # @param IsolatedSource: 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedSource: String
@@ -4785,9 +4788,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationErrorMsg: String
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -4821,6 +4824,7 @@ module TencentCloud
           @CamRoleName = camrolename
           @HpcClusterId = hpcclusterid
           @RdmaIpAddresses = rdmaipaddresses
+          @DedicatedClusterId = dedicatedclusterid
           @IsolatedSource = isolatedsource
           @GPUInfo = gpuinfo
           @LicenseType = licensetype
@@ -4893,6 +4897,7 @@ module TencentCloud
           @CamRoleName = params['CamRoleName']
           @HpcClusterId = params['HpcClusterId']
           @RdmaIpAddresses = params['RdmaIpAddresses']
+          @DedicatedClusterId = params['DedicatedClusterId']
           @IsolatedSource = params['IsolatedSource']
           unless params['GPUInfo'].nil?
             @GPUInfo = GPUInfo.new
