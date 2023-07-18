@@ -17,6 +17,56 @@
 module TencentCloud
   module Vrs
     module V20200824
+      # CancelVRSTask请求参数结构体
+      class CancelVRSTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CancelVRSTask返回参数结构体
+      class CancelVRSTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务ID
+        # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.CancelVRSTaskRsp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CancelVRSTaskRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 取消任务响应
+      class CancelVRSTaskRsp < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # CreateVRSTask请求参数结构体
       class CreateVRSTaskRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 唯一请求 ID
@@ -44,10 +94,12 @@ module TencentCloud
         # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。
         # 回调采用POST请求方式，Content-Type为application/json，回调数据格式如下:{"TaskId":"xxxxxxxxxxxxxx","Status":2,"StatusStr":"success","VoiceType":xxxxx,"ErrorMsg":""}
         # @type CallbackUrl: String
+        # @param ModelType: 任务类型 1:在线 2:离线  默认为1
+        # @type ModelType: Integer
 
-        attr_accessor :SessionId, :VoiceName, :SampleRate, :VoiceGender, :VoiceLanguage, :Codec, :AudioIdList, :CallbackUrl
+        attr_accessor :SessionId, :VoiceName, :SampleRate, :VoiceGender, :VoiceLanguage, :Codec, :AudioIdList, :CallbackUrl, :ModelType
 
-        def initialize(sessionid=nil, voicename=nil, samplerate=nil, voicegender=nil, voicelanguage=nil, codec=nil, audioidlist=nil, callbackurl=nil)
+        def initialize(sessionid=nil, voicename=nil, samplerate=nil, voicegender=nil, voicelanguage=nil, codec=nil, audioidlist=nil, callbackurl=nil, modeltype=nil)
           @SessionId = sessionid
           @VoiceName = voicename
           @SampleRate = samplerate
@@ -56,6 +108,7 @@ module TencentCloud
           @Codec = codec
           @AudioIdList = audioidlist
           @CallbackUrl = callbackurl
+          @ModelType = modeltype
         end
 
         def deserialize(params)
@@ -67,6 +120,7 @@ module TencentCloud
           @Codec = params['Codec']
           @AudioIdList = params['AudioIdList']
           @CallbackUrl = params['CallbackUrl']
+          @ModelType = params['ModelType']
         end
       end
 
@@ -284,6 +338,84 @@ module TencentCloud
               @DetectionTip << words_tmp
             end
           end
+        end
+      end
+
+      # DownloadVRSModel请求参数结构体
+      class DownloadVRSModelRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DownloadVRSModel返回参数结构体
+      class DownloadVRSModelResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 响应
+        # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.DownloadVRSModelRsp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DownloadVRSModelRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 离线声音复刻模型下载响应
+      class DownloadVRSModelRsp < TencentCloud::Common::AbstractModel
+        # @param Model: 模型cos地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: String
+        # @param VoiceName: 音色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceName: String
+        # @param VoiceGender: 音色性别:
+        # 1-male
+        # 2-female
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceGender: Integer
+        # @param VoiceLanguage: 语言类型：
+        # 1-中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceLanguage: Integer
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :Model, :VoiceName, :VoiceGender, :VoiceLanguage, :TaskId
+
+        def initialize(model=nil, voicename=nil, voicegender=nil, voicelanguage=nil, taskid=nil)
+          @Model = model
+          @VoiceName = voicename
+          @VoiceGender = voicegender
+          @VoiceLanguage = voicelanguage
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @VoiceName = params['VoiceName']
+          @VoiceGender = params['VoiceGender']
+          @VoiceLanguage = params['VoiceLanguage']
+          @TaskId = params['TaskId']
         end
       end
 

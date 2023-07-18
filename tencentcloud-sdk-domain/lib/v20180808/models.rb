@@ -1384,6 +1384,8 @@ module TencentCloud
         # clientTransferProhibited：注册商禁止转移
         # clientUpdateProhibited：注册商禁止更新
         # clientDeleteProhibited：注册商禁止删除
+        # serverRenewProhibited: 注册局禁止续费
+        # clientRenewProhobited: 注册商禁止续费
         # @type DomainStatus: Array
         # @param BuyStatus: 域名购买状态。
         # ok：正常
@@ -1723,7 +1725,7 @@ module TencentCloud
 
       # SetDomainAutoRenew请求参数结构体
       class SetDomainAutoRenewRequest < TencentCloud::Common::AbstractModel
-        # @param DomainId: 域名ID。
+        # @param DomainId: 域名ID 例如：domain-123abc
         # @type DomainId: String
         # @param AutoRenew: AutoRenew 有三个可选值：
         #  0：不设置自动续费

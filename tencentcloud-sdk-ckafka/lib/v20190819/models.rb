@@ -6333,10 +6333,14 @@ module TencentCloud
         # @type DatabasePrimaryKey: String
         # @param DropDlq: 死信队列
         # @type DropDlq: :class:`Tencentcloud::Ckafka.v20190819.models.FailureParam`
+        # @param RecordMappingList: 使用数据订阅格式导入 es 时，消息与 es 索引字段映射关系。不填默认为默认字段匹配
+        # @type RecordMappingList: Array
+        # @param DateField: 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
+        # @type DateField: String
 
-        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq
+        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField
 
-        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil)
+        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil)
           @Resource = resource
           @Port = port
           @UserName = username
@@ -6354,6 +6358,8 @@ module TencentCloud
           @DropCls = dropcls
           @DatabasePrimaryKey = databaseprimarykey
           @DropDlq = dropdlq
+          @RecordMappingList = recordmappinglist
+          @DateField = datefield
         end
 
         def deserialize(params)
@@ -6380,6 +6386,35 @@ module TencentCloud
             @DropDlq = FailureParam.new
             @DropDlq.deserialize(params['DropDlq'])
           end
+          unless params['RecordMappingList'].nil?
+            @RecordMappingList = []
+            params['RecordMappingList'].each do |i|
+              esrecordmapping_tmp = EsRecordMapping.new
+              esrecordmapping_tmp.deserialize(i)
+              @RecordMappingList << esrecordmapping_tmp
+            end
+          end
+          @DateField = params['DateField']
+        end
+      end
+
+      # 消息字段与 es 索引的映射关系
+      class EsRecordMapping < TencentCloud::Common::AbstractModel
+        # @param ColumnName: es 索引成员名称
+        # @type ColumnName: String
+        # @param JsonKey: 消息字段名称
+        # @type JsonKey: String
+
+        attr_accessor :ColumnName, :JsonKey
+
+        def initialize(columnname=nil, jsonkey=nil)
+          @ColumnName = columnname
+          @JsonKey = jsonkey
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @JsonKey = params['JsonKey']
         end
       end
 

@@ -1079,20 +1079,23 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Organization: 机构信息，暂未开放
         # @type Organization: :class:`Tencentcloud::Essbasic.v20210526.models.OrganizationInfo`
+        # @param JumpUrl: 签署完之后的H5页面的跳转链接，此链接支持http://和https://，最大长度1000个字符。
+        # @type JumpUrl: String
 
-        attr_accessor :Agent, :FlowId, :FlowApproverInfos, :Operator, :Organization
+        attr_accessor :Agent, :FlowId, :FlowApproverInfos, :Operator, :Organization, :JumpUrl
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 7
         deprecate :Operator=, :none, 2023, 7
         deprecate :Organization, :none, 2023, 7
         deprecate :Organization=, :none, 2023, 7
 
-        def initialize(agent=nil, flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil)
+        def initialize(agent=nil, flowid=nil, flowapproverinfos=nil, operator=nil, organization=nil, jumpurl=nil)
           @Agent = agent
           @FlowId = flowid
           @FlowApproverInfos = flowapproverinfos
           @Operator = operator
           @Organization = organization
+          @JumpUrl = jumpurl
         end
 
         def deserialize(params)
@@ -1117,6 +1120,7 @@ module TencentCloud
             @Organization = OrganizationInfo.new
             @Organization.deserialize(params['Organization'])
           end
+          @JumpUrl = params['JumpUrl']
         end
       end
 

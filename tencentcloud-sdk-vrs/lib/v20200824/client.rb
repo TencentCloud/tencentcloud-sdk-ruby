@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 声音复刻取消任务接口
+
+        # @param request: Request instance for CancelVRSTask.
+        # @type request: :class:`Tencentcloud::vrs::V20200824::CancelVRSTaskRequest`
+        # @rtype: :class:`Tencentcloud::vrs::V20200824::CancelVRSTaskResponse`
+        def CancelVRSTask(request)
+          body = send_request('CancelVRSTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelVRSTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口服务对提交音频进行声音复刻任务创建接口，异步返回复刻结果。
         # • 请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
         # • 签名方法参考 公共参数 中签名方法v3。
@@ -95,6 +119,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DetectEnvAndSoundQualityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 下载声音复刻离线模型
+
+        # @param request: Request instance for DownloadVRSModel.
+        # @type request: :class:`Tencentcloud::vrs::V20200824::DownloadVRSModelRequest`
+        # @rtype: :class:`Tencentcloud::vrs::V20200824::DownloadVRSModelResponse`
+        def DownloadVRSModel(request)
+          body = send_request('DownloadVRSModel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DownloadVRSModelResponse.new
             model.deserialize(response['Response'])
             model
           else

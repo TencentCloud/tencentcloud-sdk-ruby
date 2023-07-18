@@ -7924,7 +7924,7 @@ module TencentCloud
         # @type OutputPath: String
         # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
-        # @param State: 任务状态：0 初始化， 1 执行中， 2 执行成功，-1 执行失败，-3 已取消。
+        # @param State: 任务状态：0 初始化， 1 执行中， 2 执行成功，3 数据写入中，4 排队中。-1 执行失败，-3 已取消。
         # @type State: Integer
         # @param SQLType: 任务SQL类型，DDL|DML等
         # @type SQLType: String

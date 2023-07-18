@@ -458,6 +458,8 @@ module TencentCloud
         # @type Gender: Integer
         # @param CreateTime: 线索创建时间戳，单位：秒
         # @type CreateTime: String
+        # @param UpdateTime: 线索创建时间戳，单位：秒
+        # @type UpdateTime: String
         # @param LeadStatus: 线索所处状态，101-待分配 201-待建档 301-已建档 401-已邀约 501-跟进中 601-已下订单 701-已成交 801-战败申请中 901-已战败 1001-未知状态 1101-转移申请中 1201-已完成
         # @type LeadStatus: Integer
         # @param LevelCode: 线索意向等级
@@ -527,9 +529,9 @@ module TencentCloud
         # @param CorpShopId: 自定义的门店id
         # @type CorpShopId: String
 
-        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime, :WxId, :BrandCode, :BuildTime, :OrderTime, :ArrivalTime, :DeliveryTime, :FollowTime, :NextFollowTime, :OrgId, :OrgName, :Introducer, :IntroducerPhone, :IsBindWx, :IsMerge, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidRemark, :InvalidTime, :DealerName, :ShopId, :ShopName, :Position, :CorpShopId
+        attr_accessor :ClueId, :DealerId, :EnquireTime, :UnionId, :Name, :Phone, :SeriesCode, :ModelCode, :ProvinceCode, :CityCode, :SalesName, :SalesPhone, :Remark, :TagList, :UserName, :LeadUserType, :LeadType, :ChannelId, :ChannelName, :SourceChannelName, :Gender, :CreateTime, :UpdateTime, :LeadStatus, :LevelCode, :ImportAtTime, :DistributeTime, :CreateAtTime, :WxId, :BrandCode, :BuildTime, :OrderTime, :ArrivalTime, :DeliveryTime, :FollowTime, :NextFollowTime, :OrgId, :OrgName, :Introducer, :IntroducerPhone, :IsBindWx, :IsMerge, :IsInvalid, :InvalidType, :InvalidTypeName, :InvalidRemark, :InvalidTime, :DealerName, :ShopId, :ShopName, :Position, :CorpShopId
 
-        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil, wxid=nil, brandcode=nil, buildtime=nil, ordertime=nil, arrivaltime=nil, deliverytime=nil, followtime=nil, nextfollowtime=nil, orgid=nil, orgname=nil, introducer=nil, introducerphone=nil, isbindwx=nil, ismerge=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidremark=nil, invalidtime=nil, dealername=nil, shopid=nil, shopname=nil, position=nil, corpshopid=nil)
+        def initialize(clueid=nil, dealerid=nil, enquiretime=nil, unionid=nil, name=nil, phone=nil, seriescode=nil, modelcode=nil, provincecode=nil, citycode=nil, salesname=nil, salesphone=nil, remark=nil, taglist=nil, username=nil, leadusertype=nil, leadtype=nil, channelid=nil, channelname=nil, sourcechannelname=nil, gender=nil, createtime=nil, updatetime=nil, leadstatus=nil, levelcode=nil, importattime=nil, distributetime=nil, createattime=nil, wxid=nil, brandcode=nil, buildtime=nil, ordertime=nil, arrivaltime=nil, deliverytime=nil, followtime=nil, nextfollowtime=nil, orgid=nil, orgname=nil, introducer=nil, introducerphone=nil, isbindwx=nil, ismerge=nil, isinvalid=nil, invalidtype=nil, invalidtypename=nil, invalidremark=nil, invalidtime=nil, dealername=nil, shopid=nil, shopname=nil, position=nil, corpshopid=nil)
           @ClueId = clueid
           @DealerId = dealerid
           @EnquireTime = enquiretime
@@ -552,6 +554,7 @@ module TencentCloud
           @SourceChannelName = sourcechannelname
           @Gender = gender
           @CreateTime = createtime
+          @UpdateTime = updatetime
           @LeadStatus = leadstatus
           @LevelCode = levelcode
           @ImportAtTime = importattime
@@ -606,6 +609,7 @@ module TencentCloud
           @SourceChannelName = params['SourceChannelName']
           @Gender = params['Gender']
           @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @LeadStatus = params['LeadStatus']
           @LevelCode = params['LevelCode']
           @ImportAtTime = params['ImportAtTime']

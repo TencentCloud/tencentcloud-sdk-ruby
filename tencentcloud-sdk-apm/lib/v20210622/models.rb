@@ -236,10 +236,13 @@ module TencentCloud
         # @param MetricDuration: Metric数据保存时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricDuration: Integer
+        # @param CustomShowTags: 用户自定义展示标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomShowTags: Array
 
-        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration
+        attr_accessor :AmountOfUsedStorage, :Name, :Tags, :InstanceId, :CreateUin, :ServiceCount, :CountOfReportSpanPerDay, :AppId, :TraceDuration, :Description, :Status, :Region, :SpanDailyCounters, :BillingInstance, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :LogRegion, :LogSource, :IsRelatedLog, :LogTopicID, :ClientCount, :TotalCount, :LogSet, :MetricDuration, :CustomShowTags
 
-        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil)
+        def initialize(amountofusedstorage=nil, name=nil, tags=nil, instanceid=nil, createuin=nil, servicecount=nil, countofreportspanperday=nil, appid=nil, traceduration=nil, description=nil, status=nil, region=nil, spandailycounters=nil, billinginstance=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, logregion=nil, logsource=nil, isrelatedlog=nil, logtopicid=nil, clientcount=nil, totalcount=nil, logset=nil, metricduration=nil, customshowtags=nil)
           @AmountOfUsedStorage = amountofusedstorage
           @Name = name
           @Tags = tags
@@ -266,6 +269,7 @@ module TencentCloud
           @TotalCount = totalcount
           @LogSet = logset
           @MetricDuration = metricduration
+          @CustomShowTags = customshowtags
         end
 
         def deserialize(params)
@@ -302,6 +306,7 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @LogSet = params['LogSet']
           @MetricDuration = params['MetricDuration']
+          @CustomShowTags = params['CustomShowTags']
         end
       end
 
@@ -983,10 +988,12 @@ module TencentCloud
         # @type LogSet: String
         # @param LogSource: CLS | ES
         # @type LogSource: String
+        # @param CustomShowTags: 用户自定义展示标签列表
+        # @type CustomShowTags: Array
 
-        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource
+        attr_accessor :InstanceId, :Name, :Tags, :Description, :TraceDuration, :OpenBilling, :SpanDailyCounters, :ErrRateThreshold, :SampleRate, :ErrorSample, :SlowRequestSavedThreshold, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :CustomShowTags
 
-        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil)
+        def initialize(instanceid=nil, name=nil, tags=nil, description=nil, traceduration=nil, openbilling=nil, spandailycounters=nil, errratethreshold=nil, samplerate=nil, errorsample=nil, slowrequestsavedthreshold=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, customshowtags=nil)
           @InstanceId = instanceid
           @Name = name
           @Tags = tags
@@ -1003,6 +1010,7 @@ module TencentCloud
           @LogTopicID = logtopicid
           @LogSet = logset
           @LogSource = logsource
+          @CustomShowTags = customshowtags
         end
 
         def deserialize(params)
@@ -1029,6 +1037,7 @@ module TencentCloud
           @LogTopicID = params['LogTopicID']
           @LogSet = params['LogSet']
           @LogSource = params['LogSource']
+          @CustomShowTags = params['CustomShowTags']
         end
       end
 

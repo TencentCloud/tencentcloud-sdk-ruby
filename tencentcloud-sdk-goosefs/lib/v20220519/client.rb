@@ -53,6 +53,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询GooseFS集群客户端凭证
+
+        # @param request: Request instance for DescribeClusterClientToken.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterClientTokenRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterClientTokenResponse`
+        def DescribeClusterClientToken(request)
+          body = send_request('DescribeClusterClientToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterClientTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询GooseFS集群角色凭证
+
+        # @param request: Request instance for DescribeClusterRoleToken.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRoleTokenRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRoleTokenResponse`
+        def DescribeClusterRoleToken(request)
+          body = send_request('DescribeClusterRoleToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterRoleTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询GooseFS集群角色
+
+        # @param request: Request instance for DescribeClusterRoles.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRolesRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRolesResponse`
+        def DescribeClusterRoles(request)
+          body = send_request('DescribeClusterRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取数据流通任务实时状态，用作客户端控制
 
         # @param request: Request instance for DescribeDataRepositoryTaskStatus.

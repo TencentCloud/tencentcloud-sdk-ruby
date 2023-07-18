@@ -1477,10 +1477,46 @@ module TencentCloud
         # @type ProjectId: String
         # @param DeviceId: 设备ID
         # @type DeviceId: String
+        # @param Ver: sdk版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ver: String
+        # @param SdkMode: 模式(p2p/server)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SdkMode: String
+        # @param DecodeCost: 解码耗时，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DecodeCost: Array
+        # @param RenderConst: 渲染耗时，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenderConst: Array
+        # @param K100: 卡顿k100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type K100: Array
+        # @param K150: 卡顿k150
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type K150: Array
+        # @param NACK: nack请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NACK: Array
+        # @param BitRateEstimate: 服务端调控码率,单位：kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitRateEstimate: Array
+        # @param Width: 宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param EncodeCost: 编码耗时，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncodeCost: Array
+        # @param CaptureCost: 采集耗时，单位：ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptureCost: Array
 
-        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId
+        attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost
 
-        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil)
+        def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil)
           @DeviceType = devicetype
           @StartTime = starttime
           @EndTime = endtime
@@ -1495,6 +1531,18 @@ module TencentCloud
           @TimeOffset = timeoffset
           @ProjectId = projectid
           @DeviceId = deviceid
+          @Ver = ver
+          @SdkMode = sdkmode
+          @DecodeCost = decodecost
+          @RenderConst = renderconst
+          @K100 = k100
+          @K150 = k150
+          @NACK = nack
+          @BitRateEstimate = bitrateestimate
+          @Width = width
+          @Height = height
+          @EncodeCost = encodecost
+          @CaptureCost = capturecost
         end
 
         def deserialize(params)
@@ -1512,6 +1560,18 @@ module TencentCloud
           @TimeOffset = params['TimeOffset']
           @ProjectId = params['ProjectId']
           @DeviceId = params['DeviceId']
+          @Ver = params['Ver']
+          @SdkMode = params['SdkMode']
+          @DecodeCost = params['DecodeCost']
+          @RenderConst = params['RenderConst']
+          @K100 = params['K100']
+          @K150 = params['K150']
+          @NACK = params['NACK']
+          @BitRateEstimate = params['BitRateEstimate']
+          @Width = params['Width']
+          @Height = params['Height']
+          @EncodeCost = params['EncodeCost']
+          @CaptureCost = params['CaptureCost']
         end
       end
 

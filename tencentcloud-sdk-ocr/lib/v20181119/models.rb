@@ -2915,7 +2915,7 @@ module TencentCloud
         # CopyWarn，复印件告警
         # BorderCheckWarn，边框和框内遮挡告警
         # ReshootWarn，翻拍告警
-        # DetectPsWarn，PS检测告警
+        # DetectPsWarn，疑似存在PS痕迹告警
         # TempIdWarn，临时身份证告警
         # InvalidDateWarn，身份证有效日期不合法告警
         # Quality，图片质量分数（评价图片的模糊程度）
@@ -2977,7 +2977,7 @@ module TencentCloud
         # -9103	身份证翻拍告警，
         # -9105	身份证框内遮挡告警，
         # -9104	临时身份证告警，
-        # -9106	身份证 PS 告警，
+        # -9106	身份证疑似存在PS痕迹告警，
         # -9107       身份证反光告警。
         # @type AdvancedInfo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -17,6 +17,51 @@
 module TencentCloud
   module Goosefs
     module V20220519
+      # 查询Client Token
+      class ClientToken < TencentCloud::Common::AbstractModel
+        # @param LocalDirectory: 挂载点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalDirectory: String
+
+        attr_accessor :LocalDirectory
+
+        def initialize(localdirectory=nil)
+          @LocalDirectory = localdirectory
+        end
+
+        def deserialize(params)
+          @LocalDirectory = params['LocalDirectory']
+        end
+      end
+
+      # ClusterRole
+      class ClusterRole < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RoleName: 角色名
+        # @type RoleName: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param DirectoryList: 目录列表
+        # @type DirectoryList: Array
+
+        attr_accessor :ClusterId, :RoleName, :Description, :DirectoryList
+
+        def initialize(clusterid=nil, rolename=nil, description=nil, directorylist=nil)
+          @ClusterId = clusterid
+          @RoleName = rolename
+          @Description = description
+          @DirectoryList = directorylist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RoleName = params['RoleName']
+          @Description = params['Description']
+          @DirectoryList = params['DirectoryList']
+        end
+      end
+
       # CreateDataRepositoryTask请求参数结构体
       class CreateDataRepositoryTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)
@@ -77,6 +122,139 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterClientToken请求参数结构体
+      class DescribeClusterClientTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterClientToken返回参数结构体
+      class DescribeClusterClientTokenResponse < TencentCloud::Common::AbstractModel
+        # @param ClientTokens: 客户端凭证
+        # @type ClientTokens: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientTokens, :RequestId
+
+        def initialize(clienttokens=nil, requestid=nil)
+          @ClientTokens = clienttokens
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClientTokens'].nil?
+            @ClientTokens = []
+            params['ClientTokens'].each do |i|
+              clienttoken_tmp = ClientToken.new
+              clienttoken_tmp.deserialize(i)
+              @ClientTokens << clienttoken_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterRoleToken请求参数结构体
+      class DescribeClusterRoleTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RoleName: 角色名
+        # @type RoleName: String
+
+        attr_accessor :ClusterId, :RoleName
+
+        def initialize(clusterid=nil, rolename=nil)
+          @ClusterId = clusterid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RoleName = params['RoleName']
+        end
+      end
+
+      # DescribeClusterRoleToken返回参数结构体
+      class DescribeClusterRoleTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RoleTokens: 角色凭证
+        # @type RoleTokens: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleTokens, :RequestId
+
+        def initialize(roletokens=nil, requestid=nil)
+          @RoleTokens = roletokens
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoleTokens'].nil?
+            @RoleTokens = []
+            params['RoleTokens'].each do |i|
+              roletoken_tmp = RoleToken.new
+              roletoken_tmp.deserialize(i)
+              @RoleTokens << roletoken_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterRoles请求参数结构体
+      class DescribeClusterRolesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterRoles返回参数结构体
+      class DescribeClusterRolesResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterRoles: 集群角色
+        # @type ClusterRoles: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterRoles, :RequestId
+
+        def initialize(clusterroles=nil, requestid=nil)
+          @ClusterRoles = clusterroles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterRoles'].nil?
+            @ClusterRoles = []
+            params['ClusterRoles'].each do |i|
+              clusterrole_tmp = ClusterRole.new
+              clusterrole_tmp.deserialize(i)
+              @ClusterRoles << clusterrole_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataRepositoryTaskStatus请求参数结构体
       class DescribeDataRepositoryTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: task id
@@ -126,6 +304,27 @@ module TencentCloud
           @FinishedFileNumber = params['FinishedFileNumber']
           @FinishedCapacity = params['FinishedCapacity']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 角色凭证
+      class RoleToken < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名
+        # @type RoleName: String
+        # @param Token: 用于goosefs client/sdk等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+
+        attr_accessor :RoleName, :Token
+
+        def initialize(rolename=nil, token=nil)
+          @RoleName = rolename
+          @Token = token
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @Token = params['Token']
         end
       end
 

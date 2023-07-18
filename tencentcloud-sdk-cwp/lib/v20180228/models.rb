@@ -14891,46 +14891,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSearchExportList请求参数结构体
-      class DescribeSearchExportListRequest < TencentCloud::Common::AbstractModel
-        # @param Query: ES查询条件JSON
-        # @type Query: String
-
-        attr_accessor :Query
-
-        def initialize(query=nil)
-          @Query = query
-        end
-
-        def deserialize(params)
-          @Query = params['Query']
-        end
-      end
-
-      # DescribeSearchExportList返回参数结构体
-      class DescribeSearchExportListResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
-        # @type TaskId: Integer
-        # @param DownloadUrl: 该参数作废
-        # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TaskId, :DownloadUrl, :RequestId
-
-        def initialize(taskid=nil, downloadurl=nil, requestid=nil)
-          @TaskId = taskid
-          @DownloadUrl = downloadurl
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @DownloadUrl = params['DownloadUrl']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeSearchLogs请求参数结构体
       class DescribeSearchLogsRequest < TencentCloud::Common::AbstractModel
 

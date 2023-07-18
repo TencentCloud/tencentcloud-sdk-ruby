@@ -233,13 +233,13 @@ module TencentCloud
 
       # 备份文件下载信息
       class BackupDownloadInfo < TencentCloud::Common::AbstractModel
-        # @param FileName: 备份文件名称
+        # @param FileName: 备份文件名称。
         # @type FileName: String
-        # @param FileSize: 备份文件大小，单位B，如果为0，表示无效
+        # @param FileSize: 备份文件大小，单位B，如果为0，表示无效。
         # @type FileSize: Integer
-        # @param DownloadUrl: 备份文件外网下载地址（6小时）
+        # @param DownloadUrl: 备份文件外网下载地址。下载地址的有效时长为6小时，过期后请重新获取。
         # @type DownloadUrl: String
-        # @param InnerDownloadUrl: 备份文件内网下载地址（6小时）
+        # @param InnerDownloadUrl: 备份文件内网下载地址。下载地址的有效时长为6小时，过期后请重新获取。
         # @type InnerDownloadUrl: String
 
         attr_accessor :FileName, :FileSize, :DownloadUrl, :InnerDownloadUrl
