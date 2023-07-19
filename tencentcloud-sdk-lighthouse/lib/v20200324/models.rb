@@ -3563,16 +3563,19 @@ module TencentCloud
         # @type Volumes: Array
         # @param Command: 运行的命令
         # @type Command: String
+        # @param RestartPolicy: 容器重启策略
+        # @type RestartPolicy: String
 
-        attr_accessor :ContainerImage, :ContainerName, :Envs, :PublishPorts, :Volumes, :Command
+        attr_accessor :ContainerImage, :ContainerName, :Envs, :PublishPorts, :Volumes, :Command, :RestartPolicy
 
-        def initialize(containerimage=nil, containername=nil, envs=nil, publishports=nil, volumes=nil, command=nil)
+        def initialize(containerimage=nil, containername=nil, envs=nil, publishports=nil, volumes=nil, command=nil, restartpolicy=nil)
           @ContainerImage = containerimage
           @ContainerName = containername
           @Envs = envs
           @PublishPorts = publishports
           @Volumes = volumes
           @Command = command
+          @RestartPolicy = restartpolicy
         end
 
         def deserialize(params)
@@ -3603,6 +3606,7 @@ module TencentCloud
             end
           end
           @Command = params['Command']
+          @RestartPolicy = params['RestartPolicy']
         end
       end
 

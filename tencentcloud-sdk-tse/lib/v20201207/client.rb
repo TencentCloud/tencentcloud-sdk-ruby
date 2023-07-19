@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云原生API网关实例端口信息
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayPorts.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayPortsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayPortsResponse`
+        def DescribeCloudNativeAPIGatewayPorts(request)
+          body = send_request('DescribeCloudNativeAPIGatewayPorts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayPortsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云原生网关的限流插件(路由)
 
         # @param request: Request instance for DescribeCloudNativeAPIGatewayRouteRateLimit.

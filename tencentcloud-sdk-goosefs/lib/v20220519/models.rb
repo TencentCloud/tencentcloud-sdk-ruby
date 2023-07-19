@@ -19,18 +19,33 @@ module TencentCloud
     module V20220519
       # 查询Client Token
       class ClientToken < TencentCloud::Common::AbstractModel
+        # @param NodeIp: 节点 IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeIp: String
         # @param LocalDirectory: 挂载点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalDirectory: String
+        # @param GooseFSDirectory: 可以访问的 GooseFS 目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GooseFSDirectory: String
+        # @param Token: token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
 
-        attr_accessor :LocalDirectory
+        attr_accessor :NodeIp, :LocalDirectory, :GooseFSDirectory, :Token
 
-        def initialize(localdirectory=nil)
+        def initialize(nodeip=nil, localdirectory=nil, goosefsdirectory=nil, token=nil)
+          @NodeIp = nodeip
           @LocalDirectory = localdirectory
+          @GooseFSDirectory = goosefsdirectory
+          @Token = token
         end
 
         def deserialize(params)
+          @NodeIp = params['NodeIp']
           @LocalDirectory = params['LocalDirectory']
+          @GooseFSDirectory = params['GooseFSDirectory']
+          @Token = params['Token']
         end
       end
 
@@ -216,15 +231,19 @@ module TencentCloud
       class DescribeClusterRolesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param RoleName: 角色名
+        # @type RoleName: String
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :RoleName
 
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, rolename=nil)
           @ClusterId = clusterid
+          @RoleName = rolename
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @RoleName = params['RoleName']
         end
       end
 

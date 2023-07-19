@@ -2829,7 +2829,7 @@ module TencentCloud
         end
       end
 
-      # 创建合同配置信息
+      # 创建合同个性化参数
       class CreateFlowOption < TencentCloud::Common::AbstractModel
         # @param CanEditFlow: 是否允许修改合同信息，true-是，false-否
         # @type CanEditFlow: Boolean

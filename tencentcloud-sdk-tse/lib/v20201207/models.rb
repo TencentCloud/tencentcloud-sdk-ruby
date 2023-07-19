@@ -1219,6 +1219,46 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayPorts请求参数结构体
+      class DescribeCloudNativeAPIGatewayPortsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayPorts返回参数结构体
+      class DescribeCloudNativeAPIGatewayPortsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 云原生API网关实例协议端口列表响应结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeGatewayInstancePortResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeGatewayInstancePortResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayRouteRateLimit请求参数结构体
       class DescribeCloudNativeAPIGatewayRouteRateLimitRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关Id
@@ -1429,6 +1469,35 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取云原生API网关实例协议端口列表响应结果
+      class DescribeGatewayInstancePortResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GatewayInstancePortList: 网关实例协议端口列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayInstancePortList: Array
+
+        attr_accessor :GatewayId, :GatewayInstancePortList
+
+        def initialize(gatewayid=nil, gatewayinstanceportlist=nil)
+          @GatewayId = gatewayid
+          @GatewayInstancePortList = gatewayinstanceportlist
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          unless params['GatewayInstancePortList'].nil?
+            @GatewayInstancePortList = []
+            params['GatewayInstancePortList'].each do |i|
+              gatewayinstanceschemeandports_tmp = GatewayInstanceSchemeAndPorts.new
+              gatewayinstanceschemeandports_tmp.deserialize(i)
+              @GatewayInstancePortList << gatewayinstanceschemeandports_tmp
+            end
+          end
         end
       end
 
@@ -2133,6 +2202,28 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 网关实例协议端口列表
+      class GatewayInstanceSchemeAndPorts < TencentCloud::Common::AbstractModel
+        # @param Scheme: 端口协议，可选HTTP、HTTPS、TCP和UDP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scheme: String
+        # @param PortList: 端口列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PortList: Array
+
+        attr_accessor :Scheme, :PortList
+
+        def initialize(scheme=nil, portlist=nil)
+          @Scheme = scheme
+          @PortList = portlist
+        end
+
+        def deserialize(params)
+          @Scheme = params['Scheme']
+          @PortList = params['PortList']
         end
       end
 

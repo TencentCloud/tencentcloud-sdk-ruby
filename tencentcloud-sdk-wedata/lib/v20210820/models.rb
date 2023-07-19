@@ -17,6 +17,81 @@
 module TencentCloud
   module Wedata
     module V20210820
+      # 子任务记录
+      class AdhocDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 子任务记录Id
+        # @type Id: Integer
+        # @param ScriptContent: 脚本内容
+        # @type ScriptContent: String
+        # @param StartTime: 任务启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Status: 当前任务状态
+        # @type Status: String
+        # @param RecordId: 提交任务id
+        # @type RecordId: Integer
+
+        attr_accessor :Id, :ScriptContent, :StartTime, :EndTime, :Status, :RecordId
+
+        def initialize(id=nil, scriptcontent=nil, starttime=nil, endtime=nil, status=nil, recordid=nil)
+          @Id = id
+          @ScriptContent = scriptcontent
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ScriptContent = params['ScriptContent']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # 任务提交记录
+      class AdhocRecord < TencentCloud::Common::AbstractModel
+        # @param Id: 任务提交记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param ScriptContent: 脚本内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScriptContent: String
+        # @param CreateTime: 任务提交时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :Id, :ScriptContent, :CreateTime, :Status, :InstanceId
+
+        def initialize(id=nil, scriptcontent=nil, createtime=nil, status=nil, instanceid=nil)
+          @Id = id
+          @ScriptContent = scriptcontent
+          @CreateTime = createtime
+          @Status = status
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ScriptContent = params['ScriptContent']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 告警事件详情
       class AlarmEventInfo < TencentCloud::Common::AbstractModel
         # @param AlarmId: 告警ID
@@ -379,6 +454,64 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BatchDeleteTasksDs请求参数结构体
+      class BatchDeleteTasksDsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: 批量删除的任务TaskId
+        # @type TaskIdList: Array
+        # @param DeleteMode: true : 删除后下游任务可正常运行
+        # false：删除后下游任务不可运行
+        # @type DeleteMode: Boolean
+        # @param OperateInform: true：通知下游任务责任人
+        # false:  不通知下游任务责任人
+        # @type OperateInform: Boolean
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param DeleteScript: true: 删除任务引用的脚本
+        # false: 不删除任务引用的脚本
+        # @type DeleteScript: Boolean
+
+        attr_accessor :TaskIdList, :DeleteMode, :OperateInform, :ProjectId, :DeleteScript
+
+        def initialize(taskidlist=nil, deletemode=nil, operateinform=nil, projectid=nil, deletescript=nil)
+          @TaskIdList = taskidlist
+          @DeleteMode = deletemode
+          @OperateInform = operateinform
+          @ProjectId = projectid
+          @DeleteScript = deletescript
+        end
+
+        def deserialize(params)
+          @TaskIdList = params['TaskIdList']
+          @DeleteMode = params['DeleteMode']
+          @OperateInform = params['OperateInform']
+          @ProjectId = params['ProjectId']
+          @DeleteScript = params['DeleteScript']
+        end
+      end
+
+      # BatchDeleteTasksDs返回参数结构体
+      class BatchDeleteTasksDsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回批量操作成功个数、失败个数、操作总数
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOperateResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BatchOperateResult.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3578,6 +3711,62 @@ module TencentCloud
         end
       end
 
+      # DeleteFilePath请求参数结构体
+      class DeleteFilePathRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param ResourceIds: 资源ID
+        # @type ResourceIds: Array
+        # @param UseStatus: 使用状态
+        # @type UseStatus: String
+        # @param FilePaths: 文件路径
+        # @type FilePaths: Array
+
+        attr_accessor :ProjectId, :ResourceIds, :UseStatus, :FilePaths
+
+        def initialize(projectid=nil, resourceids=nil, usestatus=nil, filepaths=nil)
+          @ProjectId = projectid
+          @ResourceIds = resourceids
+          @UseStatus = usestatus
+          @FilePaths = filepaths
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ResourceIds = params['ResourceIds']
+          @UseStatus = params['UseStatus']
+          @FilePaths = params['FilePaths']
+        end
+      end
+
+      # DeleteFilePath返回参数结构体
+      class DeleteFilePathResponse < TencentCloud::Common::AbstractModel
+        # @param UserFileList: 文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserFileList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserFileList, :RequestId
+
+        def initialize(userfilelist=nil, requestid=nil)
+          @UserFileList = userfilelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserFileList'].nil?
+            @UserFileList = []
+            params['UserFileList'].each do |i|
+              userfileinfo_tmp = UserFileInfo.new
+              userfileinfo_tmp.deserialize(i)
+              @UserFileList << userfileinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteFolder请求参数结构体
       class DeleteFolderRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -3782,6 +3971,94 @@ module TencentCloud
         end
       end
 
+      # DeleteProjectParamDs请求参数结构体
+      class DeleteProjectParamDsRequest < TencentCloud::Common::AbstractModel
+        # @param ParamKey: 参数名
+        # @type ParamKey: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :ParamKey, :ProjectId
+
+        def initialize(paramkey=nil, projectid=nil)
+          @ParamKey = paramkey
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ParamKey = params['ParamKey']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DeleteProjectParamDs返回参数结构体
+      class DeleteProjectParamDsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteResourceFiles请求参数结构体
+      class DeleteResourceFilesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UseStatus: 使用状态
+        # @type UseStatus: Boolean
+        # @param ResourceIds: 资源id列表
+        # @type ResourceIds: Array
+        # @param FilePaths: 资源路径列表
+        # @type FilePaths: Array
+
+        attr_accessor :ProjectId, :UseStatus, :ResourceIds, :FilePaths
+
+        def initialize(projectid=nil, usestatus=nil, resourceids=nil, filepaths=nil)
+          @ProjectId = projectid
+          @UseStatus = usestatus
+          @ResourceIds = resourceids
+          @FilePaths = filepaths
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UseStatus = params['UseStatus']
+          @ResourceIds = params['ResourceIds']
+          @FilePaths = params['FilePaths']
+        end
+      end
+
+      # DeleteResourceFiles返回参数结构体
+      class DeleteResourceFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 资源批量删除结果
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteResource请求参数结构体
       class DeleteResourceRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -3936,6 +4213,67 @@ module TencentCloud
       # DeleteTaskAlarmRegular返回参数结构体
       class DeleteTaskAlarmRegularResponse < TencentCloud::Common::AbstractModel
         # @param Data: 删除结果(true表示删除成功，false表示删除失败)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTaskDs请求参数结构体
+      class DeleteTaskDsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param DeleteScript: 是否删除脚本
+        # @type DeleteScript: Boolean
+        # @param OperateInform: 任务操作是否消息通知下游任务责任人
+        # @type OperateInform: Boolean
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param VirtualTaskId: 虚拟任务id
+        # @type VirtualTaskId: String
+        # @param VirtualFlag: 虚拟任务标记
+        # @type VirtualFlag: Boolean
+        # @param DeleteMode: 任务删除方式
+        # @type DeleteMode: Boolean
+
+        attr_accessor :ProjectId, :DeleteScript, :OperateInform, :TaskId, :VirtualTaskId, :VirtualFlag, :DeleteMode
+
+        def initialize(projectid=nil, deletescript=nil, operateinform=nil, taskid=nil, virtualtaskid=nil, virtualflag=nil, deletemode=nil)
+          @ProjectId = projectid
+          @DeleteScript = deletescript
+          @OperateInform = operateinform
+          @TaskId = taskid
+          @VirtualTaskId = virtualtaskid
+          @VirtualFlag = virtualflag
+          @DeleteMode = deletemode
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DeleteScript = params['DeleteScript']
+          @OperateInform = params['OperateInform']
+          @TaskId = params['TaskId']
+          @VirtualTaskId = params['VirtualTaskId']
+          @VirtualFlag = params['VirtualFlag']
+          @DeleteMode = params['DeleteMode']
+        end
+      end
+
+      # DeleteTaskDs返回参数结构体
+      class DeleteTaskDsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -14852,6 +15190,46 @@ module TencentCloud
         end
       end
 
+      # RemoveWorkflowDs请求参数结构体
+      class RemoveWorkflowDsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
+
+        attr_accessor :ProjectId, :WorkflowId
+
+        def initialize(projectid=nil, workflowid=nil)
+          @ProjectId = projectid
+          @WorkflowId = workflowid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @WorkflowId = params['WorkflowId']
+        end
+      end
+
+      # RemoveWorkflowDs返回参数结构体
+      class RemoveWorkflowDsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 工作流ID
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RerunInstances请求参数结构体
       class RerunInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -17528,6 +17906,81 @@ module TencentCloud
         end
       end
 
+      # 无
+      class StageCloudApiRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 无
+        # @type ClusterId: String
+        # @param StageId: 无
+        # @type StageId: String
+        # @param JobId: 无
+        # @type JobId: String
+        # @param StageName: 无
+        # @type StageName: String
+        # @param Type: 无
+        # @type Type: String
+        # @param Mode: 无
+        # @type Mode: String
+        # @param Version: 无
+        # @type Version: String
+        # @param Queue: 无
+        # @type Queue: String
+        # @param Content: 无
+        # @type Content: String
+        # @param Parameters: 无
+        # @type Parameters: Array
+        # @param Description: 无
+        # @type Description: String
+        # @param ProjectId: 无
+        # @type ProjectId: String
+        # @param JobType: 无
+        # @type JobType: String
+        # @param WorkFlowId: 无
+        # @type WorkFlowId: String
+
+        attr_accessor :ClusterId, :StageId, :JobId, :StageName, :Type, :Mode, :Version, :Queue, :Content, :Parameters, :Description, :ProjectId, :JobType, :WorkFlowId
+
+        def initialize(clusterid=nil, stageid=nil, jobid=nil, stagename=nil, type=nil, mode=nil, version=nil, queue=nil, content=nil, parameters=nil, description=nil, projectid=nil, jobtype=nil, workflowid=nil)
+          @ClusterId = clusterid
+          @StageId = stageid
+          @JobId = jobid
+          @StageName = stagename
+          @Type = type
+          @Mode = mode
+          @Version = version
+          @Queue = queue
+          @Content = content
+          @Parameters = parameters
+          @Description = description
+          @ProjectId = projectid
+          @JobType = jobtype
+          @WorkFlowId = workflowid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @StageId = params['StageId']
+          @JobId = params['JobId']
+          @StageName = params['StageName']
+          @Type = params['Type']
+          @Mode = params['Mode']
+          @Version = params['Version']
+          @Queue = params['Queue']
+          @Content = params['Content']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Parameters << property_tmp
+            end
+          end
+          @Description = params['Description']
+          @ProjectId = params['ProjectId']
+          @JobType = params['JobType']
+          @WorkFlowId = params['WorkFlowId']
+        end
+      end
+
       # StartIntegrationTask请求参数结构体
       class StartIntegrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -17677,6 +18130,104 @@ module TencentCloud
         end
       end
 
+      # SubmitSqlTask请求参数结构体
+      class SubmitSqlTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseType: 数据库类型
+        # @type DatabaseType: String
+        # @param DatasourceId: 数据源Id
+        # @type DatasourceId: Integer
+        # @param GroupId: 资源组Id
+        # @type GroupId: String
+        # @param ScriptId: 脚本文件id
+        # @type ScriptId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param EngineId: 执行引擎实例ID
+        # @type EngineId: String
+        # @param ScriptContent: 脚本内容
+        # @type ScriptContent: String
+        # @param ResourceQueue: 资源队列
+        # @type ResourceQueue: String
+        # @param DatasourceType: 数据库类型
+        # @type DatasourceType: String
+        # @param ComputeResource: 计算资源名称
+        # @type ComputeResource: String
+        # @param RunParams: 高级运行参数
+        # @type RunParams: String
+        # @param ConfParams: 高级设置
+        # @type ConfParams: String
+
+        attr_accessor :DatabaseType, :DatasourceId, :GroupId, :ScriptId, :ProjectId, :DatabaseName, :EngineId, :ScriptContent, :ResourceQueue, :DatasourceType, :ComputeResource, :RunParams, :ConfParams
+
+        def initialize(databasetype=nil, datasourceid=nil, groupid=nil, scriptid=nil, projectid=nil, databasename=nil, engineid=nil, scriptcontent=nil, resourcequeue=nil, datasourcetype=nil, computeresource=nil, runparams=nil, confparams=nil)
+          @DatabaseType = databasetype
+          @DatasourceId = datasourceid
+          @GroupId = groupid
+          @ScriptId = scriptid
+          @ProjectId = projectid
+          @DatabaseName = databasename
+          @EngineId = engineid
+          @ScriptContent = scriptcontent
+          @ResourceQueue = resourcequeue
+          @DatasourceType = datasourcetype
+          @ComputeResource = computeresource
+          @RunParams = runparams
+          @ConfParams = confparams
+        end
+
+        def deserialize(params)
+          @DatabaseType = params['DatabaseType']
+          @DatasourceId = params['DatasourceId']
+          @GroupId = params['GroupId']
+          @ScriptId = params['ScriptId']
+          @ProjectId = params['ProjectId']
+          @DatabaseName = params['DatabaseName']
+          @EngineId = params['EngineId']
+          @ScriptContent = params['ScriptContent']
+          @ResourceQueue = params['ResourceQueue']
+          @DatasourceType = params['DatasourceType']
+          @ComputeResource = params['ComputeResource']
+          @RunParams = params['RunParams']
+          @ConfParams = params['ConfParams']
+        end
+      end
+
+      # SubmitSqlTask返回参数结构体
+      class SubmitSqlTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Record: 任务提交记录
+        # @type Record: :class:`Tencentcloud::Wedata.v20210820.models.AdhocRecord`
+        # @param Details: 子任务记录列表
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Record, :Details, :RequestId
+
+        def initialize(record=nil, details=nil, requestid=nil)
+          @Record = record
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Record'].nil?
+            @Record = AdhocRecord.new
+            @Record.deserialize(params['Record'])
+          end
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              adhocdetail_tmp = AdhocDetail.new
+              adhocdetail_tmp.deserialize(i)
+              @Details << adhocdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SubmitTask请求参数结构体
       class SubmitTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -17721,6 +18272,85 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitTaskTestRun请求参数结构体
+      class SubmitTaskTestRunRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 无
+        # @type TaskIds: String
+        # @param ProjectId: 无
+        # @type ProjectId: String
+        # @param WorkFlowId: 无
+        # @type WorkFlowId: String
+        # @param Name: 无
+        # @type Name: String
+        # @param Tasks: 无
+        # @type Tasks: Array
+        # @param Description: 无
+        # @type Description: String
+        # @param RunParams: 无
+        # @type RunParams: String
+        # @param ScriptContent: 无
+        # @type ScriptContent: String
+        # @param VersionId: 无
+        # @type VersionId: String
+
+        attr_accessor :TaskIds, :ProjectId, :WorkFlowId, :Name, :Tasks, :Description, :RunParams, :ScriptContent, :VersionId
+
+        def initialize(taskids=nil, projectid=nil, workflowid=nil, name=nil, tasks=nil, description=nil, runparams=nil, scriptcontent=nil, versionid=nil)
+          @TaskIds = taskids
+          @ProjectId = projectid
+          @WorkFlowId = workflowid
+          @Name = name
+          @Tasks = tasks
+          @Description = description
+          @RunParams = runparams
+          @ScriptContent = scriptcontent
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @ProjectId = params['ProjectId']
+          @WorkFlowId = params['WorkFlowId']
+          @Name = params['Name']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              stagecloudapirequest_tmp = StageCloudApiRequest.new
+              stagecloudapirequest_tmp.deserialize(i)
+              @Tasks << stagecloudapirequest_tmp
+            end
+          end
+          @Description = params['Description']
+          @RunParams = params['RunParams']
+          @ScriptContent = params['ScriptContent']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # SubmitTaskTestRun返回参数结构体
+      class SubmitTaskTestRunResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 无
+        # @type JobId: Integer
+        # @param RecordId: 无
+        # @type RecordId: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RecordId, :RequestId
+
+        def initialize(jobid=nil, recordid=nil, requestid=nil)
+          @JobId = jobid
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RecordId = params['RecordId']
           @RequestId = params['RequestId']
         end
       end
@@ -18577,10 +19207,20 @@ module TencentCloud
         # @param CreateTime: 任务创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param UserId: UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param OwnerId: OwnerId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerId: String
+        # @param TenantId: TenantId
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil)
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :ProjectName, :ProjectIdent, :Status, :TaskTypeId, :TaskTypeDesc, :ProjectId, :FolderName, :FolderId, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :InCharge, :CycleUnit, :LeftCoordinate, :TopCoordinate, :VirtualFlag, :TaskAction, :DelayTime, :ExecutionStartTime, :ExecutionEndTime, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :CreateTime, :UserId, :OwnerId, :TenantId
+
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, projectname=nil, projectident=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, projectid=nil, foldername=nil, folderid=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, incharge=nil, cycleunit=nil, leftcoordinate=nil, topcoordinate=nil, virtualflag=nil, taskaction=nil, delaytime=nil, executionstarttime=nil, executionendtime=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, createtime=nil, userid=nil, ownerid=nil, tenantid=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -18612,6 +19252,9 @@ module TencentCloud
           @TargetServiceType = targetservicetype
           @AlarmType = alarmtype
           @CreateTime = createtime
+          @UserId = userid
+          @OwnerId = ownerid
+          @TenantId = tenantid
         end
 
         def deserialize(params)
@@ -18646,6 +19289,9 @@ module TencentCloud
           @TargetServiceType = params['TargetServiceType']
           @AlarmType = params['AlarmType']
           @CreateTime = params['CreateTime']
+          @UserId = params['UserId']
+          @OwnerId = params['OwnerId']
+          @TenantId = params['TenantId']
         end
       end
 
@@ -19885,6 +20531,145 @@ module TencentCloud
           @ZipPath = params['ZipPath']
           @Bucket = params['Bucket']
           @Region = params['Region']
+        end
+      end
+
+      # 开发空间-获取数据开发脚本信息响应体
+      class UserFileInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param FileName: 文件名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param FileExtensionType: 文件类型，如 jar zip 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileExtensionType: String
+        # @param Type: 文件上传类型，资源管理为 resource
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Md5Value: 文件MD5值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5Value: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Size: 文件大小，单位为字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param LocalPath: 本地路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalPath: String
+        # @param LocalTempPath: 本地临时路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalTempPath: String
+        # @param RemotePath: 远程路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemotePath: String
+        # @param OwnerName: 文件拥有者名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerName: String
+        # @param Owner: 文件拥有者uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param PathDepth: 文件深度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathDepth: Integer
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ExtraInfo: 附加信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: Array
+        # @param ZipPath: 本地临时压缩文件绝对路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZipPath: String
+        # @param Bucket: 文件所属存储桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param Region: 文件所属存储桶的地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param DeleteName: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteName: String
+        # @param DeleteOwner: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteOwner: String
+        # @param Operator: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param OperatorName: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorName: String
+        # @param EncodeExtraInfo: 附加信息 base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncodeExtraInfo: String
+
+        attr_accessor :ResourceId, :FileName, :FileExtensionType, :Type, :Md5Value, :CreateTime, :UpdateTime, :Size, :LocalPath, :LocalTempPath, :RemotePath, :OwnerName, :Owner, :PathDepth, :ProjectId, :ExtraInfo, :ZipPath, :Bucket, :Region, :DeleteName, :DeleteOwner, :Operator, :OperatorName, :EncodeExtraInfo
+
+        def initialize(resourceid=nil, filename=nil, fileextensiontype=nil, type=nil, md5value=nil, createtime=nil, updatetime=nil, size=nil, localpath=nil, localtemppath=nil, remotepath=nil, ownername=nil, owner=nil, pathdepth=nil, projectid=nil, extrainfo=nil, zippath=nil, bucket=nil, region=nil, deletename=nil, deleteowner=nil, operator=nil, operatorname=nil, encodeextrainfo=nil)
+          @ResourceId = resourceid
+          @FileName = filename
+          @FileExtensionType = fileextensiontype
+          @Type = type
+          @Md5Value = md5value
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Size = size
+          @LocalPath = localpath
+          @LocalTempPath = localtemppath
+          @RemotePath = remotepath
+          @OwnerName = ownername
+          @Owner = owner
+          @PathDepth = pathdepth
+          @ProjectId = projectid
+          @ExtraInfo = extrainfo
+          @ZipPath = zippath
+          @Bucket = bucket
+          @Region = region
+          @DeleteName = deletename
+          @DeleteOwner = deleteowner
+          @Operator = operator
+          @OperatorName = operatorname
+          @EncodeExtraInfo = encodeextrainfo
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @FileName = params['FileName']
+          @FileExtensionType = params['FileExtensionType']
+          @Type = params['Type']
+          @Md5Value = params['Md5Value']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Size = params['Size']
+          @LocalPath = params['LocalPath']
+          @LocalTempPath = params['LocalTempPath']
+          @RemotePath = params['RemotePath']
+          @OwnerName = params['OwnerName']
+          @Owner = params['Owner']
+          @PathDepth = params['PathDepth']
+          @ProjectId = params['ProjectId']
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = []
+            params['ExtraInfo'].each do |i|
+              paraminfo_tmp = ParamInfo.new
+              paraminfo_tmp.deserialize(i)
+              @ExtraInfo << paraminfo_tmp
+            end
+          end
+          @ZipPath = params['ZipPath']
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @DeleteName = params['DeleteName']
+          @DeleteOwner = params['DeleteOwner']
+          @Operator = params['Operator']
+          @OperatorName = params['OperatorName']
+          @EncodeExtraInfo = params['EncodeExtraInfo']
         end
       end
 

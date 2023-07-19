@@ -49,7 +49,7 @@ module TencentCloud
         # @type EndTime: String
         # @param CreatedTime: 伸缩活动创建时间。
         # @type CreatedTime: String
-        # @param ActivityRelatedInstanceSet: 伸缩活动相关实例信息集合。
+        # @param ActivityRelatedInstanceSet: 该参数已废弃，请勿使用。
         # @type ActivityRelatedInstanceSet: Array
         # @param StatusMessageSimplified: 伸缩活动状态简要描述。
         # @type StatusMessageSimplified: String
@@ -59,10 +59,15 @@ module TencentCloud
         # @type DetailedStatusMessageSet: Array
         # @param InvocationResultSet: 执行命令结果。
         # @type InvocationResultSet: Array
+        # @param RelatedInstanceSet: 伸缩活动相关实例信息集合。
+        # @type RelatedInstanceSet: Array
 
-        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet
+        attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
+        extend Gem::Deprecate
+        deprecate :ActivityRelatedInstanceSet, :none, 2023, 7
+        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 7
 
-        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil)
+        def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ActivityId = activityid
           @ActivityType = activitytype
@@ -78,6 +83,7 @@ module TencentCloud
           @LifecycleActionResultSet = lifecycleactionresultset
           @DetailedStatusMessageSet = detailedstatusmessageset
           @InvocationResultSet = invocationresultset
+          @RelatedInstanceSet = relatedinstanceset
         end
 
         def deserialize(params)
@@ -122,6 +128,14 @@ module TencentCloud
               invocationresult_tmp = InvocationResult.new
               invocationresult_tmp.deserialize(i)
               @InvocationResultSet << invocationresult_tmp
+            end
+          end
+          unless params['RelatedInstanceSet'].nil?
+            @RelatedInstanceSet = []
+            params['RelatedInstanceSet'].each do |i|
+              relatedinstance_tmp = RelatedInstance.new
+              relatedinstance_tmp.deserialize(i)
+              @RelatedInstanceSet << relatedinstance_tmp
             end
           end
         end
@@ -4154,6 +4168,30 @@ module TencentCloud
           @TargetType = params['TargetType']
           @QueueName = params['QueueName']
           @TopicName = params['TopicName']
+        end
+      end
+
+      # 与本次伸缩活动相关的实例信息。
+      class RelatedInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceStatus: 实例在伸缩活动中的状态。取值如下：
+        # INIT：初始化中
+        # RUNNING：实例操作中
+        # SUCCESSFUL：活动成功
+        # FAILED：活动失败
+        # @type InstanceStatus: String
+
+        attr_accessor :InstanceId, :InstanceStatus
+
+        def initialize(instanceid=nil, instancestatus=nil)
+          @InstanceId = instanceid
+          @InstanceStatus = instancestatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceStatus = params['InstanceStatus']
         end
       end
 

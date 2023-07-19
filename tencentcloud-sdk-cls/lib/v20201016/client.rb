@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建ScheduledSql任务
+
+        # @param request: Request instance for CreateScheduledSql.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateScheduledSqlRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateScheduledSqlResponse`
+        def CreateScheduledSql(request)
+          body = send_request('CreateScheduledSql', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateScheduledSqlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
 
         # @param request: Request instance for CreateShipper.

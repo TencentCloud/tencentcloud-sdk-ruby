@@ -308,8 +308,6 @@ module TencentCloud
         # @type ShardNum: Integer
         # @param ReplicasNum: 副本数。当前仅支持设置1个副本节点，即每一个分片仅包含1个主节点与1个副本节点，数据主从实时热备。
         # @type ReplicasNum: Integer
-        # @param MachineCpu: 计算cpu核心数。
-        # @type MachineCpu: Integer
         # @param MachineMemory: 实例内存容量，单位：GB。
         # KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         # @type MachineMemory: Integer
@@ -339,12 +337,16 @@ module TencentCloud
         # @param DiskSize: 每个分片硬盘的容量。单位：GB。
         # 每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         # @type DiskSize: Integer
+        # @param MachineCpu: 计算 CPU 核数，可忽略不传。CPU 核数与内存为固定搭配，具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        # @type MachineCpu: Integer
         # @param ProjectId: 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
         # @type ProjectId: Integer
+        # @param Compression: 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li>
+        # @type Compression: String
 
-        attr_accessor :TypeId, :UniqVpcId, :UniqSubnetId, :BillingMode, :GoodsNum, :Period, :ShardNum, :ReplicasNum, :MachineCpu, :MachineMemory, :ZoneId, :ZoneName, :InstanceName, :NoAuth, :Password, :VPort, :AutoRenew, :SecurityGroupIdList, :ResourceTags, :MemSize, :DiskSize, :ProjectId
+        attr_accessor :TypeId, :UniqVpcId, :UniqSubnetId, :BillingMode, :GoodsNum, :Period, :ShardNum, :ReplicasNum, :MachineMemory, :ZoneId, :ZoneName, :InstanceName, :NoAuth, :Password, :VPort, :AutoRenew, :SecurityGroupIdList, :ResourceTags, :MemSize, :DiskSize, :MachineCpu, :ProjectId, :Compression
 
-        def initialize(typeid=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, goodsnum=nil, period=nil, shardnum=nil, replicasnum=nil, machinecpu=nil, machinememory=nil, zoneid=nil, zonename=nil, instancename=nil, noauth=nil, password=nil, vport=nil, autorenew=nil, securitygroupidlist=nil, resourcetags=nil, memsize=nil, disksize=nil, projectid=nil)
+        def initialize(typeid=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, goodsnum=nil, period=nil, shardnum=nil, replicasnum=nil, machinememory=nil, zoneid=nil, zonename=nil, instancename=nil, noauth=nil, password=nil, vport=nil, autorenew=nil, securitygroupidlist=nil, resourcetags=nil, memsize=nil, disksize=nil, machinecpu=nil, projectid=nil, compression=nil)
           @TypeId = typeid
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
@@ -353,7 +355,6 @@ module TencentCloud
           @Period = period
           @ShardNum = shardnum
           @ReplicasNum = replicasnum
-          @MachineCpu = machinecpu
           @MachineMemory = machinememory
           @ZoneId = zoneid
           @ZoneName = zonename
@@ -366,7 +367,9 @@ module TencentCloud
           @ResourceTags = resourcetags
           @MemSize = memsize
           @DiskSize = disksize
+          @MachineCpu = machinecpu
           @ProjectId = projectid
+          @Compression = compression
         end
 
         def deserialize(params)
@@ -378,7 +381,6 @@ module TencentCloud
           @Period = params['Period']
           @ShardNum = params['ShardNum']
           @ReplicasNum = params['ReplicasNum']
-          @MachineCpu = params['MachineCpu']
           @MachineMemory = params['MachineMemory']
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
@@ -398,7 +400,9 @@ module TencentCloud
           end
           @MemSize = params['MemSize']
           @DiskSize = params['DiskSize']
+          @MachineCpu = params['MachineCpu']
           @ProjectId = params['ProjectId']
+          @Compression = params['Compression']
         end
       end
 
@@ -3275,7 +3279,7 @@ module TencentCloud
         # @param MemSize: 配置变更后，每个分片持久化内存容量，单位：GB。
         # <ul><li>KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。</li><li>变更实例内存、持久化内存与磁盘、变更实例的分片数量，每次只能变更一项。</li></ul>
         # @type MemSize: Integer
-        # @param MachineCpu: CPU 核数。
+        # @param MachineCpu: CPU 核数，可忽略不传
         # @type MachineCpu: Integer
         # @param MachineMemory: 实例内存容量，单位：GB。
         # <ul><li>KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。</li><li>变更实例内存、持久化内存与磁盘、变更实例的分片数量，每次只能变更一项。</li></ul>

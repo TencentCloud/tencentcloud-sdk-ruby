@@ -2030,18 +2030,24 @@ module TencentCloud
         # @type Group: Integer
         # @param Member: 分组用户总数
         # @type Member: Integer
+        # @param IdentityProviders: 身份提供商数。
+        # @type IdentityProviders: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :RequestId
+        attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
+        extend Gem::Deprecate
+        deprecate :Idps, :none, 2023, 7
+        deprecate :Idps=, :none, 2023, 7
 
-        def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, requestid=nil)
+        def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
           @Roles = roles
           @Idps = idps
           @User = user
           @Group = group
           @Member = member
+          @IdentityProviders = identityproviders
           @RequestId = requestid
         end
 
@@ -2052,6 +2058,7 @@ module TencentCloud
           @User = params['User']
           @Group = params['Group']
           @Member = params['Member']
+          @IdentityProviders = params['IdentityProviders']
           @RequestId = params['RequestId']
         end
       end

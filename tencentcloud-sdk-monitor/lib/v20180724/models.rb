@@ -9632,26 +9632,6 @@ module TencentCloud
         end
       end
 
-      # 指标名称和值的封装
-      class MetricDatum < TencentCloud::Common::AbstractModel
-        # @param MetricName: 指标名称
-        # @type MetricName: String
-        # @param Value: 指标的值
-        # @type Value: Integer
-
-        attr_accessor :MetricName, :Value
-
-        def initialize(metricname=nil, value=nil)
-          @MetricName = metricname
-          @Value = value
-        end
-
-        def deserialize(params)
-          @MetricName = params['MetricName']
-          @Value = params['Value']
-        end
-      end
-
       # 指标数据的解释
       class MetricObjectMeaning < TencentCloud::Common::AbstractModel
         # @param En: 指标英文解释
@@ -12358,57 +12338,6 @@ module TencentCloud
           @ZoneState = params['ZoneState']
           @RegionId = params['RegionId']
           @ZoneName = params['ZoneName']
-        end
-      end
-
-      # PutMonitorData请求参数结构体
-      class PutMonitorDataRequest < TencentCloud::Common::AbstractModel
-        # @param Metrics: 一组指标和数据
-        # @type Metrics: Array
-        # @param AnnounceIp: 上报时自行指定的 IP
-        # @type AnnounceIp: String
-        # @param AnnounceTimestamp: 上报时自行指定的时间戳
-        # @type AnnounceTimestamp: Integer
-        # @param AnnounceInstance: 上报时自行指定的 IP 或 产品实例ID
-        # @type AnnounceInstance: String
-
-        attr_accessor :Metrics, :AnnounceIp, :AnnounceTimestamp, :AnnounceInstance
-
-        def initialize(metrics=nil, announceip=nil, announcetimestamp=nil, announceinstance=nil)
-          @Metrics = metrics
-          @AnnounceIp = announceip
-          @AnnounceTimestamp = announcetimestamp
-          @AnnounceInstance = announceinstance
-        end
-
-        def deserialize(params)
-          unless params['Metrics'].nil?
-            @Metrics = []
-            params['Metrics'].each do |i|
-              metricdatum_tmp = MetricDatum.new
-              metricdatum_tmp.deserialize(i)
-              @Metrics << metricdatum_tmp
-            end
-          end
-          @AnnounceIp = params['AnnounceIp']
-          @AnnounceTimestamp = params['AnnounceTimestamp']
-          @AnnounceInstance = params['AnnounceInstance']
-        end
-      end
-
-      # PutMonitorData返回参数结构体
-      class PutMonitorDataResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 

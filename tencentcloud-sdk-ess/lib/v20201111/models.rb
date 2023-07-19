@@ -2333,15 +2333,18 @@ module TencentCloud
         # @type ReleasedApprovers: Array
         # @param Deadline: 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
         # @type Deadline: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :Deadline
+        attr_accessor :Operator, :NeedRelievedFlowId, :ReliveInfo, :ReleasedApprovers, :Deadline, :Agent
 
-        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil, deadline=nil)
+        def initialize(operator=nil, needrelievedflowid=nil, reliveinfo=nil, releasedapprovers=nil, deadline=nil, agent=nil)
           @Operator = operator
           @NeedRelievedFlowId = needrelievedflowid
           @ReliveInfo = reliveinfo
           @ReleasedApprovers = releasedapprovers
           @Deadline = deadline
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2363,6 +2366,10 @@ module TencentCloud
             end
           end
           @Deadline = params['Deadline']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
