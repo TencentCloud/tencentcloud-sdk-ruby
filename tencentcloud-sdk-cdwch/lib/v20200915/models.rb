@@ -1306,10 +1306,22 @@ module TencentCloud
         # @param UpgradeVersions: 可升级的内核版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeVersions: String
+        # @param EsIndexId: ex-index
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsIndexId: String
+        # @param EsIndexUsername: username
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsIndexUsername: String
+        # @param EsIndexPassword: password
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsIndexPassword: String
+        # @param HasEsIndex: true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasEsIndex: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -1352,6 +1364,10 @@ module TencentCloud
           @CanAttachCos = canattachcos
           @Components = components
           @UpgradeVersions = upgradeversions
+          @EsIndexId = esindexid
+          @EsIndexUsername = esindexusername
+          @EsIndexPassword = esindexpassword
+          @HasEsIndex = hasesindex
         end
 
         def deserialize(params)
@@ -1420,6 +1436,10 @@ module TencentCloud
             end
           end
           @UpgradeVersions = params['UpgradeVersions']
+          @EsIndexId = params['EsIndexId']
+          @EsIndexUsername = params['EsIndexUsername']
+          @EsIndexPassword = params['EsIndexPassword']
+          @HasEsIndex = params['HasEsIndex']
         end
       end
 
@@ -1449,10 +1469,13 @@ module TencentCloud
         # @param RequestId: 请求id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
+        # @param ProcessSubName: 流程的二级名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessSubName: String
 
-        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :RequestId, :ProcessSubName
 
-        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, requestid=nil)
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, requestid=nil, processsubname=nil)
           @InstanceState = instancestate
           @FlowCreateTime = flowcreatetime
           @FlowName = flowname
@@ -1461,6 +1484,7 @@ module TencentCloud
           @FlowMsg = flowmsg
           @ProcessName = processname
           @RequestId = requestid
+          @ProcessSubName = processsubname
         end
 
         def deserialize(params)
@@ -1472,6 +1496,7 @@ module TencentCloud
           @FlowMsg = params['FlowMsg']
           @ProcessName = params['ProcessName']
           @RequestId = params['RequestId']
+          @ProcessSubName = params['ProcessSubName']
         end
       end
 

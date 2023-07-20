@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 为工作空间创建临时访问凭证，重复调用会创建新的 Token，旧的 Token 将会自动失效
+        # 创建工作空间临时访问凭证，重复调用会创建新的 Token，旧的 Token 将会自动失效
 
         # @param request: Request instance for CreateWorkspaceToken.
         # @type request: :class:`Tencentcloud::cloudstudio::V20230508::CreateWorkspaceTokenRequest`

@@ -782,7 +782,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+        # 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
 
         # @param request: Request instance for DescribeApiApp.
         # @type request: :class:`Tencentcloud::apigateway::V20180808::DescribeApiAppRequest`

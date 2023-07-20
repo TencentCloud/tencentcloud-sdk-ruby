@@ -77,32 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 创建并安装合约
-
-        # @param request: Request instance for CreateChaincodeAndInstallForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::CreateChaincodeAndInstallForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::CreateChaincodeAndInstallForUserResponse`
-        def CreateChaincodeAndInstallForUser(request)
-          body = send_request('CreateChaincodeAndInstallForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateChaincodeAndInstallForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 下载用户证书
 
         # @param request: Request instance for DownloadUserCert.
@@ -161,136 +135,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetBlockTransactionListForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 获取合约编译日志
-
-        # @param request: Request instance for GetChaincodeCompileLogForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeCompileLogForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeCompileLogForUserResponse`
-        def GetChaincodeCompileLogForUser(request)
-          body = send_request('GetChaincodeCompileLogForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetChaincodeCompileLogForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 实例化结果查询
-
-        # @param request: Request instance for GetChaincodeInitializeResultForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeInitializeResultForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeInitializeResultForUserResponse`
-        def GetChaincodeInitializeResultForUser(request)
-          body = send_request('GetChaincodeInitializeResultForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetChaincodeInitializeResultForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 获取合约容器日志
-
-        # @param request: Request instance for GetChaincodeLogForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeLogForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetChaincodeLogForUserResponse`
-        def GetChaincodeLogForUser(request)
-          body = send_request('GetChaincodeLogForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetChaincodeLogForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 获取通道列表
-
-        # @param request: Request instance for GetChannelListForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetChannelListForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetChannelListForUserResponse`
-        def GetChannelListForUser(request)
-          body = send_request('GetChannelListForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetChannelListForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
-
-        # @param request: Request instance for GetClusterListForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetClusterListForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetClusterListForUserResponse`
-        def GetClusterListForUser(request)
-          body = send_request('GetClusterListForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetClusterListForUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -401,32 +245,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 获取节点日志
-
-        # @param request: Request instance for GetPeerLogForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::GetPeerLogForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::GetPeerLogForUserResponse`
-        def GetPeerLogForUser(request)
-          body = send_request('GetPeerLogForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetPeerLogForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取交易详情
 
         # @param request: Request instance for GetTransactionDetailForUser.
@@ -437,32 +255,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTransactionDetailForUserResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，请通过控制台查询或操作
-
-        # 实例化合约
-
-        # @param request: Request instance for InitializeChaincodeForUser.
-        # @type request: :class:`Tencentcloud::tbaas::V20180416::InitializeChaincodeForUserRequest`
-        # @rtype: :class:`Tencentcloud::tbaas::V20180416::InitializeChaincodeForUserResponse`
-        def InitializeChaincodeForUser(request)
-          body = send_request('InitializeChaincodeForUser', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = InitializeChaincodeForUserResponse.new
             model.deserialize(response['Response'])
             model
           else

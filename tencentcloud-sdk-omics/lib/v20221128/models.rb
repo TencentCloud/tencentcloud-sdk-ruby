@@ -1013,10 +1013,12 @@ module TencentCloud
         # @type TableId: String
         # @param TableRowUuids: 批量投递表格行UUID。不填表示表格全部行。
         # @type TableRowUuids: Array
+        # @param ApplicationVersionId: 应用版本ID。不填表示使用当前最新版本。
+        # @type ApplicationVersionId: String
 
-        attr_accessor :ApplicationId, :ProjectId, :Name, :EnvironmentId, :InputBase64, :CacheClearDelay, :Option, :Description, :TableId, :TableRowUuids
+        attr_accessor :ApplicationId, :ProjectId, :Name, :EnvironmentId, :InputBase64, :CacheClearDelay, :Option, :Description, :TableId, :TableRowUuids, :ApplicationVersionId
 
-        def initialize(applicationid=nil, projectid=nil, name=nil, environmentid=nil, inputbase64=nil, cachecleardelay=nil, option=nil, description=nil, tableid=nil, tablerowuuids=nil)
+        def initialize(applicationid=nil, projectid=nil, name=nil, environmentid=nil, inputbase64=nil, cachecleardelay=nil, option=nil, description=nil, tableid=nil, tablerowuuids=nil, applicationversionid=nil)
           @ApplicationId = applicationid
           @ProjectId = projectid
           @Name = name
@@ -1027,6 +1029,7 @@ module TencentCloud
           @Description = description
           @TableId = tableid
           @TableRowUuids = tablerowuuids
+          @ApplicationVersionId = applicationversionid
         end
 
         def deserialize(params)
@@ -1043,6 +1046,7 @@ module TencentCloud
           @Description = params['Description']
           @TableId = params['TableId']
           @TableRowUuids = params['TableRowUuids']
+          @ApplicationVersionId = params['ApplicationVersionId']
         end
       end
 

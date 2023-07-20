@@ -5010,7 +5010,7 @@ module TencentCloud
         # @param Status: 状态   status 1: 运行中, 2: 暂停 ...
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Offset: 导入数据位置，-1:最早（默认），-2：最晚，大于等于0: 指定offset
+        # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
         # @param CreateTime: 创建时间

@@ -223,6 +223,7 @@ module TencentCloud
         # @param ApiAppId: 应用ID
         # @type ApiAppId: String
         # @param ApiAppSecret: 应用SECRET
+        # 注意:此字段可能返回null，表示取不到有效值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAppSecret: String
         # @param ApiAppDesc: 应用描述
@@ -235,6 +236,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: String
         # @param ApiAppKey: 应用KEY
+        # 注意:此字段可能返回null，表示取不到有效值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAppKey: String
 

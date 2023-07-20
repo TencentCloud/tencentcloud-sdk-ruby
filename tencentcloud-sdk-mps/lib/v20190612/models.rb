@@ -14337,8 +14337,10 @@ module TencentCloud
         # @param AudioTemplate: 音频流配置参数。
         # @type AudioTemplate: :class:`Tencentcloud::Mps.v20190612.models.AudioTemplateInfoForUpdate`
         # @param TEHDConfig: 极速高清转码参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Mps.v20190612.models.TEHDConfigForUpdate`
         # @param SubtitleTemplate: 字幕流配置参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
         # @param AddonAudioStream: 外挂音轨参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -18150,7 +18152,7 @@ module TencentCloud
         # 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         # 注意：av1 编码容器目前只支持 mp4 。
         # @type Codec: String
-        # @param Fps: 视频帧率，取值范围：[0, 100]，单位：Hz。
+        # @param Fps: 视频帧率，取值范围：[0, 120]，单位：Hz。
         # 当取值为 0，表示帧率和原始视频保持一致。
         # @type Fps: Integer
         # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。

@@ -6487,14 +6487,14 @@ module TencentCloud
         # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfo`
         # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
         # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfo`
-        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
-        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
         # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
         # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfo`
+        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
+        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfo`
 
-        attr_accessor :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :QualityEvaluationConfigure, :VoiceConfigure
+        attr_accessor :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
 
-        def initialize(subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, qualityevaluationconfigure=nil, voiceconfigure=nil)
+        def initialize(subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
           @SubAppId = subappid
           @Name = name
           @Comment = comment
@@ -6507,8 +6507,8 @@ module TencentCloud
           @NoiseConfigure = noiseconfigure
           @MosaicConfigure = mosaicconfigure
           @QRCodeConfigure = qrcodeconfigure
-          @QualityEvaluationConfigure = qualityevaluationconfigure
           @VoiceConfigure = voiceconfigure
+          @QualityEvaluationConfigure = qualityevaluationconfigure
         end
 
         def deserialize(params)
@@ -6548,13 +6548,13 @@ module TencentCloud
             @QRCodeConfigure = QRCodeConfigureInfo.new
             @QRCodeConfigure.deserialize(params['QRCodeConfigure'])
           end
-          unless params['QualityEvaluationConfigure'].nil?
-            @QualityEvaluationConfigure = QualityEvaluationConfigureInfo.new
-            @QualityEvaluationConfigure.deserialize(params['QualityEvaluationConfigure'])
-          end
           unless params['VoiceConfigure'].nil?
             @VoiceConfigure = VoiceConfigureInfo.new
             @VoiceConfigure.deserialize(params['VoiceConfigure'])
+          end
+          unless params['QualityEvaluationConfigure'].nil?
+            @QualityEvaluationConfigure = QualityEvaluationConfigureInfo.new
+            @QualityEvaluationConfigure.deserialize(params['QualityEvaluationConfigure'])
           end
         end
       end
@@ -17518,14 +17518,14 @@ module TencentCloud
         # @type MosaicConfigure: :class:`Tencentcloud::Vod.v20180717.models.MosaicConfigureInfoForUpdate`
         # @param QRCodeConfigure: 视频画面二维码检测的控制参数。
         # @type QRCodeConfigure: :class:`Tencentcloud::Vod.v20180717.models.QRCodeConfigureInfoForUpdate`
-        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
-        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfoForUpdate`
         # @param VoiceConfigure: 音频（静音、低音、爆音）检测的控制参数。
         # @type VoiceConfigure: :class:`Tencentcloud::Vod.v20180717.models.VoiceConfigureInfoForUpdate`
+        # @param QualityEvaluationConfigure: 视频画面质量评价的控制参数。
+        # @type QualityEvaluationConfigure: :class:`Tencentcloud::Vod.v20180717.models.QualityEvaluationConfigureInfoForUpdate`
 
-        attr_accessor :Definition, :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :QualityEvaluationConfigure, :VoiceConfigure
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :ScreenshotInterval, :JitterConfigure, :BlurConfigure, :AbnormalLightingConfigure, :CrashScreenConfigure, :BlackWhiteEdgeConfigure, :NoiseConfigure, :MosaicConfigure, :QRCodeConfigure, :VoiceConfigure, :QualityEvaluationConfigure
 
-        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, qualityevaluationconfigure=nil, voiceconfigure=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, screenshotinterval=nil, jitterconfigure=nil, blurconfigure=nil, abnormallightingconfigure=nil, crashscreenconfigure=nil, blackwhiteedgeconfigure=nil, noiseconfigure=nil, mosaicconfigure=nil, qrcodeconfigure=nil, voiceconfigure=nil, qualityevaluationconfigure=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -17539,8 +17539,8 @@ module TencentCloud
           @NoiseConfigure = noiseconfigure
           @MosaicConfigure = mosaicconfigure
           @QRCodeConfigure = qrcodeconfigure
-          @QualityEvaluationConfigure = qualityevaluationconfigure
           @VoiceConfigure = voiceconfigure
+          @QualityEvaluationConfigure = qualityevaluationconfigure
         end
 
         def deserialize(params)
@@ -17581,13 +17581,13 @@ module TencentCloud
             @QRCodeConfigure = QRCodeConfigureInfoForUpdate.new
             @QRCodeConfigure.deserialize(params['QRCodeConfigure'])
           end
-          unless params['QualityEvaluationConfigure'].nil?
-            @QualityEvaluationConfigure = QualityEvaluationConfigureInfoForUpdate.new
-            @QualityEvaluationConfigure.deserialize(params['QualityEvaluationConfigure'])
-          end
           unless params['VoiceConfigure'].nil?
             @VoiceConfigure = VoiceConfigureInfoForUpdate.new
             @VoiceConfigure.deserialize(params['VoiceConfigure'])
+          end
+          unless params['QualityEvaluationConfigure'].nil?
+            @QualityEvaluationConfigure = QualityEvaluationConfigureInfoForUpdate.new
+            @QualityEvaluationConfigure.deserialize(params['QualityEvaluationConfigure'])
           end
         end
       end
@@ -20714,13 +20714,6 @@ module TencentCloud
 
       # 音画质检测异常片段信息。
       class QualityInspectItem < TencentCloud::Common::AbstractModel
-        # @param Confidence: 置信度，取值范围：[0, 100]。
-        # <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
-        # <li>Mosaic：马赛克；</li>
-        # <li>QRCode：二维码；</li>
-        # <li>AppletCode：小程序码；</li>
-        # <li>BarCode：条形码。</li>
-        # @type Confidence: Integer
         # @param StartTimeOffset: 异常片段起始的偏移时间，单位：秒。
         # @type StartTimeOffset: Float
         # @param EndTimeOffset: 异常片段终止的偏移时间，单位：秒。
@@ -20733,21 +20726,28 @@ module TencentCloud
         # <li>AppletCode：小程序码；</li>
         # <li>BarCode：条形码。</li>
         # @type AreaCoordSet: Array
+        # @param Confidence: 置信度，取值范围：[0, 100]。
+        # <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
+        # <li>Mosaic：马赛克；</li>
+        # <li>QRCode：二维码；</li>
+        # <li>AppletCode：小程序码；</li>
+        # <li>BarCode：条形码。</li>
+        # @type Confidence: Integer
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :AreaCoordSet
+        attr_accessor :StartTimeOffset, :EndTimeOffset, :AreaCoordSet, :Confidence
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, areacoordset=nil)
-          @Confidence = confidence
+        def initialize(starttimeoffset=nil, endtimeoffset=nil, areacoordset=nil, confidence=nil)
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @AreaCoordSet = areacoordset
+          @Confidence = confidence
         end
 
         def deserialize(params)
-          @Confidence = params['Confidence']
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
           @AreaCoordSet = params['AreaCoordSet']
+          @Confidence = params['Confidence']
         end
       end
 

@@ -8997,46 +8997,6 @@ module TencentCloud
         end
       end
 
-      # ModifyCDBProxyDesc请求参数结构体
-      class ModifyCDBProxyDescRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
-        # @type InstanceId: String
-        # @param ProxyGroupId: 数据库代理ID
-        # @type ProxyGroupId: String
-        # @param Desc: 数据库代理描述
-        # @type Desc: String
-
-        attr_accessor :InstanceId, :ProxyGroupId, :Desc
-
-        def initialize(instanceid=nil, proxygroupid=nil, desc=nil)
-          @InstanceId = instanceid
-          @ProxyGroupId = proxygroupid
-          @Desc = desc
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @ProxyGroupId = params['ProxyGroupId']
-          @Desc = params['Desc']
-        end
-      end
-
-      # ModifyCDBProxyDesc返回参数结构体
-      class ModifyCDBProxyDescResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyCDBProxyVipVPort请求参数结构体
       class ModifyCDBProxyVipVPortRequest < TencentCloud::Common::AbstractModel
         # @param ProxyGroupId: 代理组ID
@@ -12670,7 +12630,7 @@ module TencentCloud
         # @type InstanceRole: String
         # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。
         # @type DeviceType: String
-        # @param Cpu: 升级后的实例cpu核数，如果不传将根据 Memory 指定的内存值自动填充对应的cpu值。
+        # @param Cpu: 升级后的实例cpu核数，如果不传将根据 Memory 指定的内存值自动填充最小允许规格的cpu值。
         # @type Cpu: Integer
         # @param FastUpgrade: 是否极速变配。0-普通升级，1-极速变配，2 极速优先。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
         # @type FastUpgrade: Integer

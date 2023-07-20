@@ -627,17 +627,24 @@ module TencentCloud
         # @type Namespace: String
         # @param Description: 命名空间描述
         # @type Description: String
+        # @param ResourceEnv: 资源池配置
+        # @type ResourceEnv: :class:`Tencentcloud::Scf.v20180416.models.NamespaceResourceEnv`
 
-        attr_accessor :Namespace, :Description
+        attr_accessor :Namespace, :Description, :ResourceEnv
 
-        def initialize(namespace=nil, description=nil)
+        def initialize(namespace=nil, description=nil, resourceenv=nil)
           @Namespace = namespace
           @Description = description
+          @ResourceEnv = resourceenv
         end
 
         def deserialize(params)
           @Namespace = params['Namespace']
           @Description = params['Description']
+          unless params['ResourceEnv'].nil?
+            @ResourceEnv = NamespaceResourceEnv.new
+            @ResourceEnv.deserialize(params['ResourceEnv'])
+          end
         end
       end
 
@@ -2392,6 +2399,63 @@ module TencentCloud
         end
       end
 
+      # k8s label
+      class K8SLabel < TencentCloud::Common::AbstractModel
+        # @param Key: label的名称
+        # @type Key: String
+        # @param Value: label的值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # Kubernetes污点容忍，使用时请注意您的Kubernetes版本所支持的字段情况。
+      # 可参考 https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/
+      class K8SToleration < TencentCloud::Common::AbstractModel
+        # @param Key: 匹配的污点名
+        # @type Key: String
+        # @param Operator: 匹配方式，默认值为: Equal
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param Effect: 执行策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Effect: String
+        # @param Value: 匹配的污点值，当Operator为Equal时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param TolerationSeconds: 当污点不被容忍时，Pod还能在节点上运行多久
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TolerationSeconds: Integer
+
+        attr_accessor :Key, :Operator, :Effect, :Value, :TolerationSeconds
+
+        def initialize(key=nil, operator=nil, effect=nil, value=nil, tolerationseconds=nil)
+          @Key = key
+          @Operator = operator
+          @Effect = effect
+          @Value = value
+          @TolerationSeconds = tolerationseconds
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operator = params['Operator']
+          @Effect = params['Effect']
+          @Value = params['Value']
+          @TolerationSeconds = params['TolerationSeconds']
+        end
+      end
+
       # 层版本信息
       class LayerVersionInfo < TencentCloud::Common::AbstractModel
         # @param CompatibleRuntimes: 版本适用的运行时
@@ -3197,6 +3261,84 @@ module TencentCloud
           @RetryNumLimit = params['RetryNumLimit']
           @MinMsgTTL = params['MinMsgTTL']
           @MaxMsgTTL = params['MaxMsgTTL']
+        end
+      end
+
+      # 命名空间资源池配置
+      class NamespaceResourceEnv < TencentCloud::Common::AbstractModel
+        # @param TKE: 基于TKE集群的资源池
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKE: :class:`Tencentcloud::Scf.v20180416.models.NamespaceResourceEnvTKE`
+
+        attr_accessor :TKE
+
+        def initialize(tke=nil)
+          @TKE = tke
+        end
+
+        def deserialize(params)
+          unless params['TKE'].nil?
+            @TKE = NamespaceResourceEnvTKE.new
+            @TKE.deserialize(params['TKE'])
+          end
+        end
+      end
+
+      # 基于TKE的资源池选项
+      class NamespaceResourceEnvTKE < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param SubnetID: 子网ID
+        # @type SubnetID: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param DataPath: 数据存储地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPath: String
+        # @param NodeSelector: node选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeSelector: Array
+        # @param Tolerations: 污点容忍
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tolerations: Array
+        # @param Port: scf组件将占用的节点端口起始号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+
+        attr_accessor :ClusterID, :SubnetID, :Namespace, :DataPath, :NodeSelector, :Tolerations, :Port
+
+        def initialize(clusterid=nil, subnetid=nil, namespace=nil, datapath=nil, nodeselector=nil, tolerations=nil, port=nil)
+          @ClusterID = clusterid
+          @SubnetID = subnetid
+          @Namespace = namespace
+          @DataPath = datapath
+          @NodeSelector = nodeselector
+          @Tolerations = tolerations
+          @Port = port
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @SubnetID = params['SubnetID']
+          @Namespace = params['Namespace']
+          @DataPath = params['DataPath']
+          unless params['NodeSelector'].nil?
+            @NodeSelector = []
+            params['NodeSelector'].each do |i|
+              k8slabel_tmp = K8SLabel.new
+              k8slabel_tmp.deserialize(i)
+              @NodeSelector << k8slabel_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              k8stoleration_tmp = K8SToleration.new
+              k8stoleration_tmp.deserialize(i)
+              @Tolerations << k8stoleration_tmp
+            end
+          end
+          @Port = params['Port']
         end
       end
 
