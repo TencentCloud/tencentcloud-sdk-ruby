@@ -4023,10 +4023,12 @@ module TencentCloud
         # @type StartTime: String
         # @param StopTime: 项目结束时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如果项目还在运行中，该字段为空。
         # @type StopTime: String
+        # @param Duration: 推流时长，单位：秒。项目结束后，返回上次项目运行时的推流时长。如果项目是 Working 状态，返回的时长是0。
+        # @type Duration: Float
 
-        attr_accessor :Status, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :StartTime, :StopTime
+        attr_accessor :Status, :SourceInfos, :DestinationInfos, :OutputMediaSetting, :PlaySetting, :StartTime, :StopTime, :Duration
 
-        def initialize(status=nil, sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil, starttime=nil, stoptime=nil)
+        def initialize(status=nil, sourceinfos=nil, destinationinfos=nil, outputmediasetting=nil, playsetting=nil, starttime=nil, stoptime=nil, duration=nil)
           @Status = status
           @SourceInfos = sourceinfos
           @DestinationInfos = destinationinfos
@@ -4034,6 +4036,7 @@ module TencentCloud
           @PlaySetting = playsetting
           @StartTime = starttime
           @StopTime = stoptime
+          @Duration = duration
         end
 
         def deserialize(params)
@@ -4064,6 +4067,7 @@ module TencentCloud
           end
           @StartTime = params['StartTime']
           @StopTime = params['StopTime']
+          @Duration = params['Duration']
         end
       end
 

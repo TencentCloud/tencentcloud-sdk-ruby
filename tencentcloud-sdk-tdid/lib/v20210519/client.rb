@@ -263,58 +263,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # 获取联盟bcos网络列表
-
-        # @param request: Request instance for GetConsortiumClusterList.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetConsortiumClusterListRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetConsortiumClusterListResponse`
-        def GetConsortiumClusterList(request)
-          body = send_request('GetConsortiumClusterList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetConsortiumClusterListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # 获取联盟列表
-
-        # @param request: Request instance for GetConsortiumList.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetConsortiumListRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetConsortiumListResponse`
-        def GetConsortiumList(request)
-          body = send_request('GetConsortiumList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetConsortiumListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 该接口不再使用
 
         # 凭证模版详情
@@ -327,32 +275,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetCptInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # 凭证颁发按机构排行
-
-        # @param request: Request instance for GetCredentialCptRank.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetCredentialCptRankRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetCredentialCptRankResponse`
-        def GetCredentialCptRank(request)
-          body = send_request('GetCredentialCptRank', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetCredentialCptRankResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2418,10 +2418,17 @@ module TencentCloud
         # @type AutoJumpBack: Boolean
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Hides: 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
 
-        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent
+        # 0:合同签署页面更多操作按钮
+        # 1:合同签署页面更多操作的拒绝签署按钮
+        # 2:合同签署页面更多操作的转他人处理按钮
+        # 3:签署成功页的查看详情按钮
+        # @type Hides: Array
 
-        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil)
+        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides
+
+        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @Name = name
@@ -2432,6 +2439,7 @@ module TencentCloud
           @PathType = pathtype
           @AutoJumpBack = autojumpback
           @Agent = agent
+          @Hides = hides
         end
 
         def deserialize(params)
@@ -2451,6 +2459,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @Hides = params['Hides']
         end
       end
 
@@ -4674,7 +4683,7 @@ module TencentCloud
         # @type Required: Boolean
         # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
-        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一。非企微场景不使用此字段
+        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一。用于发起含有或签签署人的合同。或签参与人必须有此字段。不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
         # @type CustomApproverTag: String
         # @param RegisterInfo: 快速注册相关信息，目前暂未开放！
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
@@ -5774,17 +5783,24 @@ module TencentCloud
         # @type LegalName: String
         # @param Uscc: 社会统一信用代码
         # @type Uscc: String
+        # @param UnifiedSocialCreditCode: 社会统一信用代码
+        # @type UnifiedSocialCreditCode: String
 
-        attr_accessor :LegalName, :Uscc
+        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode
+        extend Gem::Deprecate
+        deprecate :Uscc, :none, 2023, 7
+        deprecate :Uscc=, :none, 2023, 7
 
-        def initialize(legalname=nil, uscc=nil)
+        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil)
           @LegalName = legalname
           @Uscc = uscc
+          @UnifiedSocialCreditCode = unifiedsocialcreditcode
         end
 
         def deserialize(params)
           @LegalName = params['LegalName']
           @Uscc = params['Uscc']
+          @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
         end
       end
 

@@ -419,7 +419,7 @@ module TencentCloud
         # CopyWarn，复印件告警
         # BorderCheckWarn，边框和框内遮挡告警
         # ReshootWarn，翻拍告警
-        # DetectPsWarn，PS检测告警
+        # DetectPsWarn，PS检测告警（疑似存在PS痕迹）
         # TempIdWarn，临时身份证告警
         # Quality，图片质量告警（评价图片模糊程度）
 
@@ -478,7 +478,7 @@ module TencentCloud
         # -9103 身份证翻拍告警，
         # -9105 身份证框内遮挡告警，
         # -9104 临时身份证告警，
-        # -9106 身份证 PS 告警。
+        # -9106 身份证 PS 告警（疑似存在PS痕迹）。
         # -8001 图片模糊告警
         # 多个会 |  隔开如 "-9101|-9106|-9104"
         # @type Warnings: String
@@ -890,7 +890,7 @@ module TencentCloud
         # -9103 身份证翻拍告警，
         # -9105 身份证框内遮挡告警，
         # -9104 临时身份证告警，
-        # -9106 身份证 PS 告警，
+        # -9106 身份证 PS 告警（疑似存在PS痕迹），
         # -9107 身份证反光告警。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarnInfos: Array
@@ -901,7 +901,7 @@ module TencentCloud
         # -9103 身份证翻拍告警，
         # -9105 身份证框内遮挡告警，
         # -9104 临时身份证告警，
-        # -9106 身份证 PS 告警，
+        # -9106 身份证 PS 告警（疑似存在PS痕迹），
         # -9107 身份证反光告警。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackWarnInfos: Array
@@ -1224,14 +1224,19 @@ module TencentCloud
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
         # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptList: Array
         # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CiphertextBlob: String
         # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Iv: String
         # @param Algorithm: 加密使用的算法（支持'AES-256-CBC'、'SM4-GCM'），不传默认为'AES-256-CBC'
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Algorithm: String
         # @param TagList: SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
 
         attr_accessor :EncryptList, :CiphertextBlob, :Iv, :Algorithm, :TagList

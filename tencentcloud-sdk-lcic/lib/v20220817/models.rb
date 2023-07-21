@@ -831,10 +831,12 @@ module TencentCloud
         # @type InteractionMode: Integer
         # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
         # @type VideoOrientation: Integer
+        # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
+        # @type IsGradingRequiredPostClass: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -855,6 +857,7 @@ module TencentCloud
           @EnableDirectControl = enabledirectcontrol
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
+          @IsGradingRequiredPostClass = isgradingrequiredpostclass
         end
 
         def deserialize(params)
@@ -878,6 +881,7 @@ module TencentCloud
           @EnableDirectControl = params['EnableDirectControl']
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
+          @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
         end
       end
 
@@ -1931,12 +1935,14 @@ module TencentCloud
         # @type InteractionMode: Integer
         # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
         # @type VideoOrientation: Integer
+        # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
+        # @type IsGradingRequiredPostClass: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1955,6 +1961,7 @@ module TencentCloud
           @EnableDirectControl = enabledirectcontrol
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
+          @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RequestId = requestid
         end
 
@@ -1977,6 +1984,7 @@ module TencentCloud
           @EnableDirectControl = params['EnableDirectControl']
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
+          @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RequestId = params['RequestId']
         end
       end
@@ -3167,10 +3175,12 @@ module TencentCloud
         # @type InteractionMode: Integer
         # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
         # @type VideoOrientation: Integer
+        # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
+        # @type IsGradingRequiredPostClass: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3188,6 +3198,7 @@ module TencentCloud
           @EnableDirectControl = enabledirectcontrol
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
+          @IsGradingRequiredPostClass = isgradingrequiredpostclass
         end
 
         def deserialize(params)
@@ -3208,6 +3219,7 @@ module TencentCloud
           @EnableDirectControl = params['EnableDirectControl']
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
+          @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
         end
       end
 

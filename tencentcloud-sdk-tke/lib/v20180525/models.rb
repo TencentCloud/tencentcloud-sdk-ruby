@@ -11526,7 +11526,7 @@ module TencentCloud
         # @param DesiredPodNumber: 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DesiredPodNumber: Integer
-        # @param GPUArgs: GPU驱动相关参数
+        # @param GPUArgs: GPU驱动相关参数,相关的GPU参数获取:https://cloud.tencent.com/document/api/213/15715
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
         # @param PreStartUserScript: base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效

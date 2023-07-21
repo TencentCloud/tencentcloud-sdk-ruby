@@ -1784,12 +1784,21 @@ module TencentCloud
         # @param Ext: 文档制作方式(内测体验)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ext: String
+        # @param CreateTime: 文档转码任务创建时间，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param AssignTime: 文档转码任务分配时间，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssignTime: Integer
+        # @param FinishedTime: 文档转码任务完成时间，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Pages, :Progress, :Resolution, :ResultUrl, :Status, :TaskId, :Title, :ThumbnailUrl, :ThumbnailResolution, :CompressFileUrl, :ResourceListUrl, :Ext, :RequestId
+        attr_accessor :Pages, :Progress, :Resolution, :ResultUrl, :Status, :TaskId, :Title, :ThumbnailUrl, :ThumbnailResolution, :CompressFileUrl, :ResourceListUrl, :Ext, :CreateTime, :AssignTime, :FinishedTime, :RequestId
 
-        def initialize(pages=nil, progress=nil, resolution=nil, resulturl=nil, status=nil, taskid=nil, title=nil, thumbnailurl=nil, thumbnailresolution=nil, compressfileurl=nil, resourcelisturl=nil, ext=nil, requestid=nil)
+        def initialize(pages=nil, progress=nil, resolution=nil, resulturl=nil, status=nil, taskid=nil, title=nil, thumbnailurl=nil, thumbnailresolution=nil, compressfileurl=nil, resourcelisturl=nil, ext=nil, createtime=nil, assigntime=nil, finishedtime=nil, requestid=nil)
           @Pages = pages
           @Progress = progress
           @Resolution = resolution
@@ -1802,6 +1811,9 @@ module TencentCloud
           @CompressFileUrl = compressfileurl
           @ResourceListUrl = resourcelisturl
           @Ext = ext
+          @CreateTime = createtime
+          @AssignTime = assigntime
+          @FinishedTime = finishedtime
           @RequestId = requestid
         end
 
@@ -1818,6 +1830,9 @@ module TencentCloud
           @CompressFileUrl = params['CompressFileUrl']
           @ResourceListUrl = params['ResourceListUrl']
           @Ext = params['Ext']
+          @CreateTime = params['CreateTime']
+          @AssignTime = params['AssignTime']
+          @FinishedTime = params['FinishedTime']
           @RequestId = params['RequestId']
         end
       end

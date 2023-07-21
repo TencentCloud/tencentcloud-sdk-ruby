@@ -467,7 +467,7 @@ module TencentCloud
         # @type Url: String
         # @param Function: 规则的方法
         # @type Function: String
-        # @param Status: 规则的开关
+        # @param Status: 规则的开关，0表示规则关闭，1表示规则打开
         # @type Status: Integer
 
         attr_accessor :Domain, :Rules, :Url, :Function, :Status
@@ -1668,7 +1668,7 @@ module TencentCloud
       class DescribeCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Offset: 偏移
+        # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 容量
         # @type Limit: Integer
@@ -4146,7 +4146,7 @@ module TencentCloud
         # @type TimeThreshold: Integer
         # @param DenyTimeThreshold: 触发IP封禁后的封禁时间，范围为5~360分钟
         # @type DenyTimeThreshold: Integer
-        # @param DefenseStatus: 自动封禁状态
+        # @param DefenseStatus: 自动封禁状态，0表示关闭，1表示打开
         # @type DefenseStatus: Integer
 
         attr_accessor :Domain, :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus
@@ -4828,9 +4828,10 @@ module TencentCloud
         # @type Domain: String
         # @param Ids: 规则列表
         # @type Ids: Array
-        # @param Status: 开关状态
+        # @param Status: 开关状态，0表示关闭，1表示开启，2表示只观察
         # @type Status: Integer
-        # @param Reason: 设置为观察模式原因
+        # @param Reason: 设置为观察模式原因，
+        # 1表示业务自身原因观察，2表示系统规则误报上报，3表示核心业务灰度观察，4表示其他
         # @type Reason: Integer
 
         attr_accessor :Domain, :Ids, :Status, :Reason

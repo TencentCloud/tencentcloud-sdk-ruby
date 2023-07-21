@@ -3051,13 +3051,20 @@ module TencentCloud
         # @type JumpUrl: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Hides: 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
 
-        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator
+        # 0:合同签署页面更多操作按钮
+        # 1:合同签署页面更多操作的拒绝签署按钮
+        # 2:合同签署页面更多操作的转他人处理按钮
+        # 3:签署成功页的查看详情按钮
+        # @type Hides: Array
+
+        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 7
         deprecate :Operator=, :none, 2023, 7
 
-        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil)
+        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, hides=nil)
           @Agent = agent
           @FlowIds = flowids
           @FlowGroupId = flowgroupid
@@ -3071,6 +3078,7 @@ module TencentCloud
           @AutoJumpBack = autojumpback
           @JumpUrl = jumpurl
           @Operator = operator
+          @Hides = hides
         end
 
         def deserialize(params)
@@ -3093,6 +3101,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @Hides = params['Hides']
         end
       end
 

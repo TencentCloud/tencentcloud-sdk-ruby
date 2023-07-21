@@ -357,31 +357,43 @@ module TencentCloud
       class CloneDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 克隆的源实例ID。
         # @type DBInstanceId: String
-        # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
+        # @param SpecCode: 售卖规格码。该参数可以通过调用[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
-        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # <li>后付费：只支持1
         # @type Period: Integer
-        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
+        # @param AutoRenewFlag: 续费标记：
+        # <li>0：手动续费
+        # <li>1：自动续费
+        # 默认值：0
         # @type AutoRenewFlag: Integer
-        # @param VpcId: 私有网络ID。
+        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
         # @type VpcId: String
-        # @param SubnetId: 已配置的私有网络中的子网ID。
+        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
         # @type SubnetId: String
-        # @param Name: 新购实例的实例名称。
+        # @param Name: 新购的实例名称，仅支持长度小于60的中文/英文/数字/"_"/"-"，不指定实例名称则默认显示"未命名"。
         # @type Name: String
-        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
+        # @param InstanceChargeType: 实例计费类型，目前支持：
+        # <li>PREPAID：预付费，即包年包月
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费
+        # 默认值：PREPAID
         # @type InstanceChargeType: String
-        # @param SecurityGroupIds: 安全组ID。
+        # @param SecurityGroupIds: 实例所属安全组，该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         # @type SecurityGroupIds: Array
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
-        # @param TagList: 实例需要绑定的Tag信息，默认为空。
+        # @param TagList: 实例需要绑定的Tag信息，默认为空；可以通过调用 [DescribeTags](https://cloud.tencent.com/document/api/651/35316) 返回值中的 Tags 字段来获取。
         # @type TagList: Array
-        # @param DBNodeSet: 购买多可用区实例时填写。
+        # @param DBNodeSet: 实例节点部署信息，支持多可用区部署时需要指定每个节点的部署可用区信息。
+        # 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
         # @type DBNodeSet: Array
-        # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表。
         # @type VoucherIds: String
@@ -391,10 +403,16 @@ module TencentCloud
         # @type BackupSetId: String
         # @param RecoveryTargetTime: 恢复时间点。
         # @type RecoveryTargetTime: String
+        # @param SyncMode: 主从同步方式，支持：
+        # <li>Semi-sync：半同步
+        # <li>Async：异步
+        # 主实例默认值：Semi-sync
+        # 只读实例默认值：Async
+        # @type SyncMode: String
 
-        attr_accessor :DBInstanceId, :SpecCode, :Storage, :Period, :AutoRenewFlag, :VpcId, :SubnetId, :Name, :InstanceChargeType, :SecurityGroupIds, :ProjectId, :TagList, :DBNodeSet, :AutoVoucher, :VoucherIds, :ActivityId, :BackupSetId, :RecoveryTargetTime
+        attr_accessor :DBInstanceId, :SpecCode, :Storage, :Period, :AutoRenewFlag, :VpcId, :SubnetId, :Name, :InstanceChargeType, :SecurityGroupIds, :ProjectId, :TagList, :DBNodeSet, :AutoVoucher, :VoucherIds, :ActivityId, :BackupSetId, :RecoveryTargetTime, :SyncMode
 
-        def initialize(dbinstanceid=nil, speccode=nil, storage=nil, period=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, name=nil, instancechargetype=nil, securitygroupids=nil, projectid=nil, taglist=nil, dbnodeset=nil, autovoucher=nil, voucherids=nil, activityid=nil, backupsetid=nil, recoverytargettime=nil)
+        def initialize(dbinstanceid=nil, speccode=nil, storage=nil, period=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, name=nil, instancechargetype=nil, securitygroupids=nil, projectid=nil, taglist=nil, dbnodeset=nil, autovoucher=nil, voucherids=nil, activityid=nil, backupsetid=nil, recoverytargettime=nil, syncmode=nil)
           @DBInstanceId = dbinstanceid
           @SpecCode = speccode
           @Storage = storage
@@ -413,6 +431,7 @@ module TencentCloud
           @ActivityId = activityid
           @BackupSetId = backupsetid
           @RecoveryTargetTime = recoverytargettime
+          @SyncMode = syncmode
         end
 
         def deserialize(params)
@@ -448,6 +467,7 @@ module TencentCloud
           @ActivityId = params['ActivityId']
           @BackupSetId = params['BackupSetId']
           @RecoveryTargetTime = params['RecoveryTargetTime']
+          @SyncMode = params['SyncMode']
         end
       end
 
@@ -776,137 +796,183 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeClasses的返回值中的SpecCode字段来获取。
+        # @param Zone: 实例所属主可用区， 如：ap-guangzhou-3；若需要支持多可用区，在DBNodeSet.N字段中进行添加主可用区和备可用区信息；
+        # 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
+        # @type Zone: String
+        # @param SpecCode: 售卖规格码。该参数可以通过调用[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
-        # @param InstanceCount: 一次性购买的实例数量。取值1-10。
+        # @param InstanceCount: 购买实例数量，取值范围：[1-10]。一次性购买支持最大数量10个，若超过该数量，可进行多次调用进行购买。
         # @type InstanceCount: Integer
-        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # <li>后付费：只支持1
         # @type Period: Integer
-        # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
-        # @type Zone: String
-        # @param Charset: 实例字符集，目前只支持：UTF8、LATIN1。
+        # @param Charset: 实例字符集，目前只支持：
+        # <li> UTF8
+        # <li> LATIN1
         # @type Charset: String
-        # @param AdminName: 实例根账号用户名。
+        # @param AdminName: 实例根账号用户名，具体规范如下：
+        # <li>用户名需要1-16个字符，只能由字母、数字或下划线组成
+        # <li>不能为postgres
+        # <li>不能由数字和pg_开头
+        # <li>所有规则均不区分大小写
         # @type AdminName: String
-        # @param AdminPassword: 实例根账号用户名对应的密码。
+        # @param AdminPassword: 实例根账号用户名对应的密码，长度8 ~ 32位，推荐使用12位以上的密码;不能以" / "开头;
+        # 必须包含以下四项，字符种类:
+        # <li>小写字母： [a ~ z]
+        # <li>大写字母：[A ～ Z]
+        # <li>数字：0 - 9
+        # <li>特殊字符：()`~!@#$%^&*-+=_|{}[]:;'<>,.?/
         # @type AdminPassword: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: Integer
-        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBMajorVersion、DBKernelVersion至少需要传递一个。
+        # @param DBMajorVersion: PostgreSQL大版本号，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取，目前支持10，11，12，13，14，15这几个大版本。
+        # 当只输入该参数时，会基于此大版本号创建对应的最新小版本的最新内核版本号实例。
+        # 该参数和DBVersion、DBKernelVersion需要至少指定一个，如无指定购买内核小版本需求时，只传入该参数即可。
+        # @type DBMajorVersion: String
+        # @param DBVersion: PostgreSQL社区大版本+小版本号，如12.4，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # 当只输入该参数时，会基于此社区小版本号创建对应的最新内核版本实例。
+        # 该参数和DBMajorVersion、DBKernelVersion需要至少指定一个。
         # @type DBVersion: String
-        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。
+        # @param DBKernelVersion: PostgreSQL内核版本号，如v12.7_r1.8，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # 当只输入该参数时，会创建指定的内核版本实例。只针对内核版本需要指定时使用，一般场景不推荐传入该参数。
+        # @type DBKernelVersion: String
+        # @param InstanceChargeType: 实例计费类型，目前支持：
+        # <li>PREPAID：预付费，即包年包月
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费
+        # 默认值：PREPAID
         # @type InstanceChargeType: String
-        # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
+        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
+        # @type VpcId: String
+        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
+        # @type SubnetId: String
+        # @param DBNodeSet: 实例节点部署信息，支持多可用区部署时需要指定每个节点的部署可用区信息。
+        # 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
+        # @type DBNodeSet: Array
+        # @param AutoRenewFlag: 续费标记：
+        # <li>0：手动续费
+        # <li>1：自动续费
+        # 默认值：0
+        # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
-        # @param VpcId: 私有网络ID。
-        # @type VpcId: String
-        # @param SubnetId: 已配置的私有网络中的子网ID。
-        # @type SubnetId: String
-        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费。
-        # @type AutoRenewFlag: Integer
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
         # @param ActivityId: 活动ID。
         # @type ActivityId: Integer
-        # @param Name: 实例名。
+        # @param Name: 实例名称，仅支持长度小于60的中文/英文/数字/"_"/"-"，不指定实例名称则默认显示"未命名"。
         # @type Name: String
-        # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否（默认）。
-        # @type NeedSupportIpv6: Integer
-        # @param TagList: 实例需要绑定的Tag信息，默认为空。
+        # @param TagList: 实例需要绑定的Tag信息，默认为空；可以通过调用 [DescribeTags](https://cloud.tencent.com/document/api/651/35316) 返回值中的 Tags 字段来获取。
         # @type TagList: Array
-        # @param SecurityGroupIds: 安全组ID。
+        # @param SecurityGroupIds: 实例所属安全组，该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         # @type SecurityGroupIds: Array
-        # @param DBMajorVersion: PostgreSQL主要版本。目前支持10，11，12，13这几个版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBVersion、DBKernelVersion至少需要传递一个。
-        # @type DBMajorVersion: String
-        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。该参数和DBVersion、DBMajorVersion至少需要传递一个。
-        # @type DBKernelVersion: String
-        # @param DBNodeSet: 实例节点信息，购买跨可用区实例时填写。
-        # @type DBNodeSet: Array
-        # @param NeedSupportTDE: 是否需要支持数据透明加密，1：是，0：否（默认）。
+        # @param NeedSupportTDE: 是否需要支持数据透明加密：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
+        # 参考[数据透明加密概述](https://cloud.tencent.com/document/product/409/71748)
         # @type NeedSupportTDE: Integer
         # @param KMSKeyId: 自定义密钥的KeyId，若选择自定义密匙加密，则需要传入自定义密匙的KeyId，KeyId是CMK的唯一标识。
+        # KeyId创建获取相关参考[开启透明数据加密](https://cloud.tencent.com/document/product/409/71749)
         # @type KMSKeyId: String
         # @param KMSRegion: 使用KMS服务的地域，KMSRegion为空默认使用本地域的KMS，本地域不支持的情况下需自选其他KMS支持的地域。
+        # KMSRegion相关介绍参考[开启透明数据加密](https://cloud.tencent.com/document/product/409/71749)
         # @type KMSRegion: String
         # @param DBEngine: 数据库引擎，支持：
-        # 1、postgresql（云数据库PostgreSQL）；
-        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
-        # 如不指定默认使用postgresql。
+        # <li>postgresql：云数据库PostgreSQL
+        # <li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL
+        # 默认值：postgresql
         # @type DBEngine: String
         # @param DBEngineConfig: 数据库引擎的配置信息，配置格式如下：
         # {"$key1":"$value1", "$key2":"$value2"}
-
         # 各引擎支持如下：
-        # 1、mssql_compatible引擎：
-        # migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。
-        # defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
+        # mssql_compatible引擎：
+        # <li>migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。
+        # <li>defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
         # "af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。
-        # serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下：
-        # "bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
+        # <li>serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下："bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
         # @type DBEngineConfig: String
-        # @param SyncMode: 主从同步方式，可取值：
-        # 1、Semi-sync：半同步
-        # 2、Async：异步
-        # 当前只支持Semi-sync
+        # @param SyncMode: 主从同步方式，支持：
+        # <li>Semi-sync：半同步
+        # <li>Async：异步
+        # 主实例默认值：Semi-sync
+        # 只读实例默认值：Async
         # @type SyncMode: String
+        # @param NeedSupportIpv6: 是否需要支持Ipv6：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
+        # @type NeedSupportIpv6: Integer
 
-        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :Charset, :AdminName, :AdminPassword, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion, :DBNodeSet, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :DBEngine, :DBEngineConfig, :SyncMode
+        attr_accessor :Zone, :SpecCode, :Storage, :InstanceCount, :Period, :Charset, :AdminName, :AdminPassword, :DBMajorVersion, :DBVersion, :DBKernelVersion, :InstanceChargeType, :VpcId, :SubnetId, :DBNodeSet, :AutoRenewFlag, :AutoVoucher, :VoucherIds, :ProjectId, :ActivityId, :Name, :TagList, :SecurityGroupIds, :NeedSupportTDE, :KMSKeyId, :KMSRegion, :DBEngine, :DBEngineConfig, :SyncMode, :NeedSupportIpv6
 
-        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, zone=nil, charset=nil, adminname=nil, adminpassword=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, autorenewflag=nil, activityid=nil, name=nil, needsupportipv6=nil, taglist=nil, securitygroupids=nil, dbmajorversion=nil, dbkernelversion=nil, dbnodeset=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil)
+        def initialize(zone=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, charset=nil, adminname=nil, adminpassword=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, instancechargetype=nil, vpcid=nil, subnetid=nil, dbnodeset=nil, autorenewflag=nil, autovoucher=nil, voucherids=nil, projectid=nil, activityid=nil, name=nil, taglist=nil, securitygroupids=nil, needsupporttde=nil, kmskeyid=nil, kmsregion=nil, dbengine=nil, dbengineconfig=nil, syncmode=nil, needsupportipv6=nil)
+          @Zone = zone
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
           @Period = period
-          @Zone = zone
           @Charset = charset
           @AdminName = adminname
           @AdminPassword = adminpassword
-          @ProjectId = projectid
+          @DBMajorVersion = dbmajorversion
           @DBVersion = dbversion
+          @DBKernelVersion = dbkernelversion
           @InstanceChargeType = instancechargetype
-          @AutoVoucher = autovoucher
-          @VoucherIds = voucherids
           @VpcId = vpcid
           @SubnetId = subnetid
+          @DBNodeSet = dbnodeset
           @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
+          @ProjectId = projectid
           @ActivityId = activityid
           @Name = name
-          @NeedSupportIpv6 = needsupportipv6
           @TagList = taglist
           @SecurityGroupIds = securitygroupids
-          @DBMajorVersion = dbmajorversion
-          @DBKernelVersion = dbkernelversion
-          @DBNodeSet = dbnodeset
           @NeedSupportTDE = needsupporttde
           @KMSKeyId = kmskeyid
           @KMSRegion = kmsregion
           @DBEngine = dbengine
           @DBEngineConfig = dbengineconfig
           @SyncMode = syncmode
+          @NeedSupportIpv6 = needsupportipv6
         end
 
         def deserialize(params)
+          @Zone = params['Zone']
           @SpecCode = params['SpecCode']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
-          @Zone = params['Zone']
           @Charset = params['Charset']
           @AdminName = params['AdminName']
           @AdminPassword = params['AdminPassword']
-          @ProjectId = params['ProjectId']
+          @DBMajorVersion = params['DBMajorVersion']
           @DBVersion = params['DBVersion']
+          @DBKernelVersion = params['DBKernelVersion']
           @InstanceChargeType = params['InstanceChargeType']
-          @AutoVoucher = params['AutoVoucher']
-          @VoucherIds = params['VoucherIds']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          unless params['DBNodeSet'].nil?
+            @DBNodeSet = []
+            params['DBNodeSet'].each do |i|
+              dbnode_tmp = DBNode.new
+              dbnode_tmp.deserialize(i)
+              @DBNodeSet << dbnode_tmp
+            end
+          end
           @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
+          @ProjectId = params['ProjectId']
           @ActivityId = params['ActivityId']
           @Name = params['Name']
-          @NeedSupportIpv6 = params['NeedSupportIpv6']
           unless params['TagList'].nil?
             @TagList = []
             params['TagList'].each do |i|
@@ -916,22 +982,13 @@ module TencentCloud
             end
           end
           @SecurityGroupIds = params['SecurityGroupIds']
-          @DBMajorVersion = params['DBMajorVersion']
-          @DBKernelVersion = params['DBKernelVersion']
-          unless params['DBNodeSet'].nil?
-            @DBNodeSet = []
-            params['DBNodeSet'].each do |i|
-              dbnode_tmp = DBNode.new
-              dbnode_tmp.deserialize(i)
-              @DBNodeSet << dbnode_tmp
-            end
-          end
           @NeedSupportTDE = params['NeedSupportTDE']
           @KMSKeyId = params['KMSKeyId']
           @KMSRegion = params['KMSRegion']
           @DBEngine = params['DBEngine']
           @DBEngineConfig = params['DBEngineConfig']
           @SyncMode = params['SyncMode']
+          @NeedSupportIpv6 = params['NeedSupportIpv6']
         end
       end
 
@@ -1402,21 +1459,19 @@ module TencentCloud
 
       # 描述实例的详细信息
       class DBInstance < TencentCloud::Common::AbstractModel
-        # @param Region: 实例所属地域，如: ap-guangzhou，对应RegionSet的Region字段
+        # @param Region: 实例所属地域，如: ap-guangzhou，对应RegionSet的Region字段。
         # @type Region: String
-        # @param Zone: 实例所属可用区， 如：ap-guangzhou-3，对应ZoneSet的Zone字段
+        # @param Zone: 实例所属可用区， 如：ap-guangzhou-3，对应ZoneSet的Zone字段。
         # @type Zone: String
-        # @param ProjectId: 项目ID
-        # @type ProjectId: Integer
-        # @param VpcId: 私有网络ID
+        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
         # @type VpcId: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
         # @type SubnetId: String
-        # @param DBInstanceId: 实例ID
+        # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param DBInstanceName: 实例名称
+        # @param DBInstanceName: 实例名称。
         # @type DBInstanceName: String
-        # @param DBInstanceStatus: 实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolating（隔离中）、isolated（已隔离）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）、upgrading（内核版本升级中）
+        # @param DBInstanceStatus: 实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolating（隔离中）、isolated（已隔离）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）、upgrading（内核版本升级中）、audit-switching（审计状态变更中）、primary-switching（主备切换中）
         # @type DBInstanceStatus: String
         # @param DBInstanceMemory: 实例分配的内存大小，单位：GB
         # @type DBInstanceMemory: Integer
@@ -1426,81 +1481,108 @@ module TencentCloud
         # @type DBInstanceCpu: Integer
         # @param DBInstanceClass: 售卖规格ID
         # @type DBInstanceClass: String
-        # @param DBInstanceType: 实例类型，类型有：1、primary（主实例）；2、readonly（只读实例）；3、guard（灾备实例）；4、temp（临时实例）
-        # @type DBInstanceType: String
-        # @param DBInstanceVersion: 实例版本，目前只支持standard（双机高可用版, 一主一从）
-        # @type DBInstanceVersion: String
-        # @param DBCharset: 实例DB字符集
-        # @type DBCharset: String
-        # @param DBVersion: PostgreSQL版本
-        # @type DBVersion: String
-        # @param CreateTime: 实例创建时间
-        # @type CreateTime: String
-        # @param UpdateTime: 实例执行最后一次更新的时间
-        # @type UpdateTime: String
-        # @param ExpireTime: 实例到期时间
-        # @type ExpireTime: String
-        # @param IsolatedTime: 实例隔离时间
-        # @type IsolatedTime: String
-        # @param PayType: 计费模式，1、prepaid（包年包月,预付费）；2、postpaid（按量计费，后付费）
-        # @type PayType: String
-        # @param AutoRenew: 是否自动续费，1：自动续费，0：不自动续费
-        # @type AutoRenew: Integer
-        # @param DBInstanceNetInfo: 实例网络连接信息
-        # @type DBInstanceNetInfo: Array
-        # @param Type: 机器类型
-        # @type Type: String
-        # @param AppId: 用户的AppId
-        # @type AppId: Integer
-        # @param Uid: 实例的Uid
-        # @type Uid: Integer
-        # @param SupportIpv6: 实例是否支持Ipv6，1：支持，0：不支持
-        # @type SupportIpv6: Integer
-        # @param TagList: 实例绑定的标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TagList: Array
-        # @param MasterDBInstanceId: 主实例信息，仅在实例为只读实例时返回
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MasterDBInstanceId: String
-        # @param ReadOnlyInstanceNum: 只读实例数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReadOnlyInstanceNum: Integer
-        # @param StatusInReadonlyGroup: 只读实例在只读组中的状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StatusInReadonlyGroup: String
-        # @param OfflineTime: 下线时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OfflineTime: String
-        # @param DBKernelVersion: 数据库内核版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DBKernelVersion: String
-        # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type NetworkAccessList: Array
-        # @param DBMajorVersion: PostgreSQL主要版本
+        # @param DBMajorVersion: PostgreSQL大版本号，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取，目前支持10，11，12，13，14，15这几个大版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBMajorVersion: String
-        # @param DBNodeSet: 实例的节点信息
+        # @param DBVersion: PostgreSQL社区大版本+小版本号，如12.4，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # @type DBVersion: String
+        # @param DBKernelVersion: PostgreSQL内核版本号，如v12.7_r1.8，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DBKernelVersion: String
+        # @param DBInstanceType: 实例类型，类型有：
+        # <li>primary：主实例
+        # <li>readonly：只读实例
+        # <li>guard：灾备实例
+        # <li>temp：临时实例
+        # @type DBInstanceType: String
+        # @param DBInstanceVersion: 实例版本，目前只支持standard（双机高可用版, 一主一从）。
+        # @type DBInstanceVersion: String
+        # @param DBCharset: 实例字符集，目前只支持：
+        # <li> UTF8
+        # <li> LATIN1
+        # @type DBCharset: String
+        # @param CreateTime: 实例创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 实例执行最后一次更新的时间。
+        # @type UpdateTime: String
+        # @param ExpireTime: 实例到期时间。
+        # @type ExpireTime: String
+        # @param IsolatedTime: 实例隔离时间。
+        # @type IsolatedTime: String
+        # @param PayType: 计费模式：
+        # <li>prepaid：包年包月,预付费
+        # <li>postpaid：按量计费，后付费
+        # @type PayType: String
+        # @param AutoRenew: 是否自动续费：
+        # <li>0：手动续费
+        # <li>1：自动续费
+        # 默认值：0
+        # @type AutoRenew: Integer
+        # @param DBInstanceNetInfo: 实例网络连接信息。
+        # @type DBInstanceNetInfo: Array
+        # @param Type: 机器类型。
+        # @type Type: String
+        # @param AppId: 用户的AppId。
+        # @type AppId: Integer
+        # @param Uid: 实例的Uid。
+        # @type Uid: Integer
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+        # @param TagList: 实例绑定的标签信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param MasterDBInstanceId: 主实例信息，仅在实例为只读实例时返回。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterDBInstanceId: String
+        # @param ReadOnlyInstanceNum: 只读实例数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadOnlyInstanceNum: Integer
+        # @param StatusInReadonlyGroup: 只读实例在只读组中的状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusInReadonlyGroup: String
+        # @param OfflineTime: 下线时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
+        # @param DBNodeSet: 实例的节点信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBNodeSet: Array
-        # @param IsSupportTDE: 实例是否支持TDE数据加密  0：不支持，1：支持
+        # @param IsSupportTDE: 实例是否支持TDE数据加密：
+        # <li>0：不支持
+        # <li>1：支持
+        # 默认值：0
+        # TDE数据加密可参考[数据透明加密概述](https://cloud.tencent.com/document/product/409/71748)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportTDE: Integer
         # @param DBEngine: 数据库引擎，支持：
-        # 1、postgresql（云数据库PostgreSQL）；
-        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # <li>postgresql：云数据库PostgreSQL
+        # <li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL
+        # 默认值：postgresql
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBEngine: String
-        # @param DBEngineConfig: 数据库引擎的配置信息
+        # @param DBEngineConfig: 数据库引擎的配置信息，配置格式如下：
+        # {"$key1":"$value1", "$key2":"$value2"}
+        # 各引擎支持如下：
+        # mssql_compatible引擎：
+        # <li>migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。
+        # <li>defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
+        # "af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。
+        # <li>serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下："bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBEngineConfig: String
+        # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAccessList: Array
+        # @param SupportIpv6: 实例是否支持Ipv6：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
+        # @type SupportIpv6: Integer
 
-        attr_accessor :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBInstanceType, :DBInstanceVersion, :DBCharset, :DBVersion, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :SupportIpv6, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBKernelVersion, :NetworkAccessList, :DBMajorVersion, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig
+        attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6
 
-        def initialize(region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, dbversion=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, supportipv6=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbkernelversion=nil, networkaccesslist=nil, dbmajorversion=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil)
+        def initialize(region=nil, zone=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, projectid=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil, networkaccesslist=nil, supportipv6=nil)
           @Region = region
           @Zone = zone
-          @ProjectId = projectid
           @VpcId = vpcid
           @SubnetId = subnetid
           @DBInstanceId = dbinstanceid
@@ -1510,10 +1592,12 @@ module TencentCloud
           @DBInstanceStorage = dbinstancestorage
           @DBInstanceCpu = dbinstancecpu
           @DBInstanceClass = dbinstanceclass
+          @DBMajorVersion = dbmajorversion
+          @DBVersion = dbversion
+          @DBKernelVersion = dbkernelversion
           @DBInstanceType = dbinstancetype
           @DBInstanceVersion = dbinstanceversion
           @DBCharset = dbcharset
-          @DBVersion = dbversion
           @CreateTime = createtime
           @UpdateTime = updatetime
           @ExpireTime = expiretime
@@ -1524,25 +1608,23 @@ module TencentCloud
           @Type = type
           @AppId = appid
           @Uid = uid
-          @SupportIpv6 = supportipv6
+          @ProjectId = projectid
           @TagList = taglist
           @MasterDBInstanceId = masterdbinstanceid
           @ReadOnlyInstanceNum = readonlyinstancenum
           @StatusInReadonlyGroup = statusinreadonlygroup
           @OfflineTime = offlinetime
-          @DBKernelVersion = dbkernelversion
-          @NetworkAccessList = networkaccesslist
-          @DBMajorVersion = dbmajorversion
           @DBNodeSet = dbnodeset
           @IsSupportTDE = issupporttde
           @DBEngine = dbengine
           @DBEngineConfig = dbengineconfig
+          @NetworkAccessList = networkaccesslist
+          @SupportIpv6 = supportipv6
         end
 
         def deserialize(params)
           @Region = params['Region']
           @Zone = params['Zone']
-          @ProjectId = params['ProjectId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @DBInstanceId = params['DBInstanceId']
@@ -1552,10 +1634,12 @@ module TencentCloud
           @DBInstanceStorage = params['DBInstanceStorage']
           @DBInstanceCpu = params['DBInstanceCpu']
           @DBInstanceClass = params['DBInstanceClass']
+          @DBMajorVersion = params['DBMajorVersion']
+          @DBVersion = params['DBVersion']
+          @DBKernelVersion = params['DBKernelVersion']
           @DBInstanceType = params['DBInstanceType']
           @DBInstanceVersion = params['DBInstanceVersion']
           @DBCharset = params['DBCharset']
-          @DBVersion = params['DBVersion']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ExpireTime = params['ExpireTime']
@@ -1573,7 +1657,7 @@ module TencentCloud
           @Type = params['Type']
           @AppId = params['AppId']
           @Uid = params['Uid']
-          @SupportIpv6 = params['SupportIpv6']
+          @ProjectId = params['ProjectId']
           unless params['TagList'].nil?
             @TagList = []
             params['TagList'].each do |i|
@@ -1586,16 +1670,6 @@ module TencentCloud
           @ReadOnlyInstanceNum = params['ReadOnlyInstanceNum']
           @StatusInReadonlyGroup = params['StatusInReadonlyGroup']
           @OfflineTime = params['OfflineTime']
-          @DBKernelVersion = params['DBKernelVersion']
-          unless params['NetworkAccessList'].nil?
-            @NetworkAccessList = []
-            params['NetworkAccessList'].each do |i|
-              networkaccess_tmp = NetworkAccess.new
-              networkaccess_tmp.deserialize(i)
-              @NetworkAccessList << networkaccess_tmp
-            end
-          end
-          @DBMajorVersion = params['DBMajorVersion']
           unless params['DBNodeSet'].nil?
             @DBNodeSet = []
             params['DBNodeSet'].each do |i|
@@ -1607,6 +1681,15 @@ module TencentCloud
           @IsSupportTDE = params['IsSupportTDE']
           @DBEngine = params['DBEngine']
           @DBEngineConfig = params['DBEngineConfig']
+          unless params['NetworkAccessList'].nil?
+            @NetworkAccessList = []
+            params['NetworkAccessList'].each do |i|
+              networkaccess_tmp = NetworkAccess.new
+              networkaccess_tmp.deserialize(i)
+              @NetworkAccessList << networkaccess_tmp
+            end
+          end
+          @SupportIpv6 = params['SupportIpv6']
         end
       end
 
