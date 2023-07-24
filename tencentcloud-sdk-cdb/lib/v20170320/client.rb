@@ -1252,32 +1252,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已经废弃，请使用+DescribeCdbProxyInfo+进行替换。
-
-        # 查询数据库代理（待下线，替换接口QueryCDBProxy）
-
-        # @param request: Request instance for DescribeCDBProxy.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeCDBProxyRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeCDBProxyResponse`
-        def DescribeCDBProxy(request)
-          body = send_request('DescribeCDBProxy', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCDBProxyResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询数据库代理详情信息
 
         # @param request: Request instance for DescribeCdbProxyInfo.
@@ -1891,32 +1865,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProjectSecurityGroupsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 当前接口已经废弃，请使用+DescribeCdbProxyInfo+替代。
-
-        # 获取数据库代理连接池相关规格配置
-
-        # @param request: Request instance for DescribeProxyConnectionPoolConf.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeProxyConnectionPoolConfRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeProxyConnectionPoolConfResponse`
-        def DescribeProxyConnectionPoolConf(request)
-          body = send_request('DescribeProxyConnectionPoolConf', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeProxyConnectionPoolConfResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2657,58 +2605,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 当前接口已经废弃，请使用+AdjustCdbProxyAddress+进行替代。
-
-        # 请求该接口配置数据库连接池；支持的连接池配置请求DescribeProxyConnectionPoolConf接口获取。
-
-        # @param request: Request instance for ModifyCDBProxyConnectionPool.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyCDBProxyConnectionPoolRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyCDBProxyConnectionPoolResponse`
-        def ModifyCDBProxyConnectionPool(request)
-          body = send_request('ModifyCDBProxyConnectionPool', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyCDBProxyConnectionPoolResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 当前接口已经废弃，请使用+ModifyCdbProxyAddressVipAndVPort+进行替代。
-
-        # 修改数据库代理VIP或端口
-
-        # @param request: Request instance for ModifyCDBProxyVipVPort.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyCDBProxyVipVPortRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyCDBProxyVipVPortResponse`
-        def ModifyCDBProxyVipVPort(request)
-          body = send_request('ModifyCDBProxyVipVPort', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyCDBProxyVipVPortResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 修改代理地址描述信息
 
         # @param request: Request instance for ModifyCdbProxyAddressDesc.
@@ -3215,32 +3111,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenWanServiceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 当前接口已经废弃，请使用+DescribeCdbProxyInfo+进行替代。
-
-        # 查询代理详情
-
-        # @param request: Request instance for QueryCDBProxy.
-        # @type request: :class:`Tencentcloud::cdb::V20170320::QueryCDBProxyRequest`
-        # @rtype: :class:`Tencentcloud::cdb::V20170320::QueryCDBProxyResponse`
-        def QueryCDBProxy(request)
-          body = send_request('QueryCDBProxy', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QueryCDBProxyResponse.new
             model.deserialize(response['Response'])
             model
           else

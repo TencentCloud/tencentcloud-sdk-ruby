@@ -17,42 +17,6 @@
 module TencentCloud
   module Tdid
     module V20210519
-      # AddLabel请求参数结构体
-      class AddLabelRequest < TencentCloud::Common::AbstractModel
-        # @param LabelId: 标签ID
-        # @type LabelId: Integer
-        # @param Did: tdid
-        # @type Did: String
-
-        attr_accessor :LabelId, :Did
-
-        def initialize(labelid=nil, did=nil)
-          @LabelId = labelid
-          @Did = did
-        end
-
-        def deserialize(params)
-          @LabelId = params['LabelId']
-          @Did = params['Did']
-        end
-      end
-
-      # AddLabel返回参数结构体
-      class AddLabelResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CheckChain请求参数结构体
       class CheckChainRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 群组ID
@@ -405,53 +369,6 @@ module TencentCloud
         end
       end
 
-      # GetAgencyTDid请求参数结构体
-      class GetAgencyTDidRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-
-        attr_accessor :ClusterId
-
-        def initialize(clusterid=nil)
-          @ClusterId = clusterid
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-        end
-      end
-
-      # GetAgencyTDid返回参数结构体
-      class GetAgencyTDidResponse < TencentCloud::Common::AbstractModel
-        # @param Prefix: 固定前缀
-        # @type Prefix: String
-        # @param Identity: did详情
-        # @type Identity: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Prefix, :Identity, :RequestId
-
-        def initialize(prefix=nil, identity=nil, requestid=nil)
-          @Prefix = prefix
-          @Identity = identity
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Prefix = params['Prefix']
-          unless params['Identity'].nil?
-            @Identity = []
-            params['Identity'].each do |i|
-              identity_tmp = Identity.new
-              identity_tmp.deserialize(i)
-              @Identity << identity_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # GetAuthorityIssuer请求参数结构体
       class GetAuthorityIssuerRequest < TencentCloud::Common::AbstractModel
         # @param Did: tdid
@@ -624,38 +541,6 @@ module TencentCloud
           @Name = params['Name']
           @Document = params['Document']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # did详情
-      class Identity < TencentCloud::Common::AbstractModel
-        # @param AccountIdentifier: 账户标识符
-        # @type AccountIdentifier: String
-        # @param ChainID: 链ID
-        # @type ChainID: String
-        # @param Did: 完整tdid
-        # @type Did: String
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param GroupName: 群组名称
-        # @type GroupName: String
-
-        attr_accessor :AccountIdentifier, :ChainID, :Did, :GroupId, :GroupName
-
-        def initialize(accountidentifier=nil, chainid=nil, did=nil, groupid=nil, groupname=nil)
-          @AccountIdentifier = accountidentifier
-          @ChainID = chainid
-          @Did = did
-          @GroupId = groupid
-          @GroupName = groupname
-        end
-
-        def deserialize(params)
-          @AccountIdentifier = params['AccountIdentifier']
-          @ChainID = params['ChainID']
-          @Did = params['Did']
-          @GroupId = params['GroupId']
-          @GroupName = params['GroupName']
         end
       end
 

@@ -292,13 +292,16 @@ module TencentCloud
         # @type UserId: String
         # @param OpenId: 客户系统OpenId
         # @type OpenId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :UserId, :OpenId
+        attr_accessor :Operator, :UserId, :OpenId, :Agent
 
-        def initialize(operator=nil, userid=nil, openid=nil)
+        def initialize(operator=nil, userid=nil, openid=nil, agent=nil)
           @Operator = operator
           @UserId = userid
           @OpenId = openid
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -308,6 +311,10 @@ module TencentCloud
           end
           @UserId = params['UserId']
           @OpenId = params['OpenId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -1084,14 +1091,18 @@ module TencentCloud
         # @type Approvers: Array
         # @param Initiator: 企微消息中的发起人
         # @type Initiator: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作
 
-        attr_accessor :Operator, :FlowId, :Approvers, :Initiator
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        def initialize(operator=nil, flowid=nil, approvers=nil, initiator=nil)
+        attr_accessor :Operator, :FlowId, :Approvers, :Initiator, :Agent
+
+        def initialize(operator=nil, flowid=nil, approvers=nil, initiator=nil, agent=nil)
           @Operator = operator
           @FlowId = flowid
           @Approvers = approvers
           @Initiator = initiator
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -1109,6 +1120,10 @@ module TencentCloud
             end
           end
           @Initiator = params['Initiator']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -2711,10 +2726,12 @@ module TencentCloud
         # @type NotifyAddress: String
         # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为30天。如果不传，默认有效期为7天。
         # @type ExpiredTime: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime
+        attr_accessor :Operator, :SceneKey, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime, :Agent
 
-        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil)
+        def initialize(operator=nil, scenekey=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil, agent=nil)
           @Operator = operator
           @SceneKey = scenekey
           @AutoSignConfig = autosignconfig
@@ -2722,6 +2739,7 @@ module TencentCloud
           @NotifyType = notifytype
           @NotifyAddress = notifyaddress
           @ExpiredTime = expiredtime
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2738,6 +2756,10 @@ module TencentCloud
           @NotifyType = params['NotifyType']
           @NotifyAddress = params['NotifyAddress']
           @ExpiredTime = params['ExpiredTime']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -4025,15 +4047,29 @@ module TencentCloud
       class DescribeThirdPartyAuthCodeRequest < TencentCloud::Common::AbstractModel
         # @param AuthCode: 电子签小程序跳转客户小程序时携带的授权查看码
         # @type AuthCode: String
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :AuthCode
+        attr_accessor :AuthCode, :Operator, :Agent
 
-        def initialize(authcode=nil)
+        def initialize(authcode=nil, operator=nil, agent=nil)
           @AuthCode = authcode
+          @Operator = operator
+          @Agent = agent
         end
 
         def deserialize(params)
           @AuthCode = params['AuthCode']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -4066,13 +4102,16 @@ module TencentCloud
         # @type SceneKey: String
         # @param UserInfo: 查询开启状态的用户信息
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :SceneKey, :UserInfo
+        attr_accessor :Operator, :SceneKey, :UserInfo, :Agent
 
-        def initialize(operator=nil, scenekey=nil, userinfo=nil)
+        def initialize(operator=nil, scenekey=nil, userinfo=nil, agent=nil)
           @Operator = operator
           @SceneKey = scenekey
           @UserInfo = userinfo
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -4084,6 +4123,10 @@ module TencentCloud
           unless params['UserInfo'].nil?
             @UserInfo = UserThreeFactor.new
             @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -4125,13 +4168,16 @@ module TencentCloud
         # @type SceneKey: String
         # @param UserInfo: 关闭自动签的个人的三要素
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :SceneKey, :UserInfo
+        attr_accessor :Operator, :SceneKey, :UserInfo, :Agent
 
-        def initialize(operator=nil, scenekey=nil, userinfo=nil)
+        def initialize(operator=nil, scenekey=nil, userinfo=nil, agent=nil)
           @Operator = operator
           @SceneKey = scenekey
           @UserInfo = userinfo
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -4143,6 +4189,10 @@ module TencentCloud
           unless params['UserInfo'].nil?
             @UserInfo = UserThreeFactor.new
             @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -4373,6 +4423,9 @@ module TencentCloud
       end
 
       # 补充签署人信息
+      # - RecipientId 必须指定
+      # -  通过企业自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填
+      # - 通过二要素（姓名/手机号）补充签署人时，ApproverName 和 ApproverMobile 必填
       class FillApproverInfo < TencentCloud::Common::AbstractModel
         # @param RecipientId: 对应模板中的参与方ID
         # @type RecipientId: String
@@ -4382,19 +4435,27 @@ module TencentCloud
         # @param CustomUserId: 企业自定义账号ID
         # WEWORKAPP场景下指企业自有应用获取企微明文的userid
         # @type CustomUserId: String
+        # @param ApproverName: 补充签署人姓名
+        # @type ApproverName: String
+        # @param ApproverMobile: 补充签署人手机号
+        # @type ApproverMobile: String
 
-        attr_accessor :RecipientId, :ApproverSource, :CustomUserId
+        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile
 
-        def initialize(recipientid=nil, approversource=nil, customuserid=nil)
+        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil)
           @RecipientId = recipientid
           @ApproverSource = approversource
           @CustomUserId = customuserid
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
         end
 
         def deserialize(params)
           @RecipientId = params['RecipientId']
           @ApproverSource = params['ApproverSource']
           @CustomUserId = params['CustomUserId']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
         end
       end
 
@@ -6381,13 +6442,16 @@ module TencentCloud
         # @type UserId: String
         # @param OpenId: 客户系统OpenId
         # @type OpenId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :UserId, :OpenId
+        attr_accessor :Operator, :UserId, :OpenId, :Agent
 
-        def initialize(operator=nil, userid=nil, openid=nil)
+        def initialize(operator=nil, userid=nil, openid=nil, agent=nil)
           @Operator = operator
           @UserId = userid
           @OpenId = openid
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -6397,6 +6461,10 @@ module TencentCloud
           end
           @UserId = params['UserId']
           @OpenId = params['OpenId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 

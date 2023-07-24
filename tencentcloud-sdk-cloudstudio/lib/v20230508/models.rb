@@ -104,17 +104,21 @@ module TencentCloud
         # @type SpaceKey: String
         # @param TokenExpiredLimitSec: token过期时间，单位是秒，默认 3600
         # @type TokenExpiredLimitSec: Integer
+        # @param Policies: token 授权策略，可选值为 workspace-run-only, all。默认为 all
+        # @type Policies: Array
 
-        attr_accessor :SpaceKey, :TokenExpiredLimitSec
+        attr_accessor :SpaceKey, :TokenExpiredLimitSec, :Policies
 
-        def initialize(spacekey=nil, tokenexpiredlimitsec=nil)
+        def initialize(spacekey=nil, tokenexpiredlimitsec=nil, policies=nil)
           @SpaceKey = spacekey
           @TokenExpiredLimitSec = tokenexpiredlimitsec
+          @Policies = policies
         end
 
         def deserialize(params)
           @SpaceKey = params['SpaceKey']
           @TokenExpiredLimitSec = params['TokenExpiredLimitSec']
+          @Policies = params['Policies']
         end
       end
 

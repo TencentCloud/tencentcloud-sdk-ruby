@@ -452,32 +452,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007
-
-        # 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
-
-        # @param request: Request instance for DescribeDiskOperationLogs.
-        # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeDiskOperationLogsRequest`
-        # @rtype: :class:`Tencentcloud::cbs::V20170312::DescribeDiskOperationLogsResponse`
-        def DescribeDiskOperationLogs(request)
-          body = send_request('DescribeDiskOperationLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDiskOperationLogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeDiskStoragePool）查询用户的云硬盘独享集群列表。
 
         # * 可以根据独享集群ID(CdcId)、可用区(zone)等信息来查询和过滤云硬盘独享集群详细信息，不同的过滤条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
@@ -544,32 +518,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDiskNumResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口已废弃，切换至云审计接口。见https://tapd.woa.com/pro/prong/stories/view/1010114221880719007
-
-        # 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
-
-        # @param request: Request instance for DescribeSnapshotOperationLogs.
-        # @type request: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotOperationLogsRequest`
-        # @rtype: :class:`Tencentcloud::cbs::V20170312::DescribeSnapshotOperationLogsResponse`
-        def DescribeSnapshotOperationLogs(request)
-          body = send_request('DescribeSnapshotOperationLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSnapshotOperationLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

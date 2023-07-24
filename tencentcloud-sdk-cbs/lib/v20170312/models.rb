@@ -1147,65 +1147,6 @@ module TencentCloud
         end
       end
 
-      # DescribeDiskOperationLogs请求参数结构体
-      class DescribeDiskOperationLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。支持以下条件：
-        # <li>disk-id - Array of String - 是否必填：是 - 按云盘ID过滤，每个请求最多可指定10个云盘ID。
-        # @type Filters: Array
-        # @param EndTime: 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
-        # @type EndTime: String
-        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
-        # @type BeginTime: String
-
-        attr_accessor :Filters, :EndTime, :BeginTime
-
-        def initialize(filters=nil, endtime=nil, begintime=nil)
-          @Filters = filters
-          @EndTime = endtime
-          @BeginTime = begintime
-        end
-
-        def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @EndTime = params['EndTime']
-          @BeginTime = params['BeginTime']
-        end
-      end
-
-      # DescribeDiskOperationLogs返回参数结构体
-      class DescribeDiskOperationLogsResponse < TencentCloud::Common::AbstractModel
-        # @param DiskOperationLogSet: 云盘的操作日志列表。
-        # @type DiskOperationLogSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DiskOperationLogSet, :RequestId
-
-        def initialize(diskoperationlogset=nil, requestid=nil)
-          @DiskOperationLogSet = diskoperationlogset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['DiskOperationLogSet'].nil?
-            @DiskOperationLogSet = []
-            params['DiskOperationLogSet'].each do |i|
-              diskoperationlog_tmp = DiskOperationLog.new
-              diskoperationlog_tmp.deserialize(i)
-              @DiskOperationLogSet << diskoperationlog_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDiskStoragePool请求参数结构体
       class DescribeDiskStoragePoolRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
@@ -1398,65 +1339,6 @@ module TencentCloud
               attachdetail_tmp = AttachDetail.new
               attachdetail_tmp.deserialize(i)
               @AttachDetail << attachdetail_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeSnapshotOperationLogs请求参数结构体
-      class DescribeSnapshotOperationLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。支持以下条件：
-        # <li>snapshot-id - Array of String - 是否必填：是 - 按快照ID过滤，每个请求最多可指定10个快照ID。
-        # @type Filters: Array
-        # @param EndTime: 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
-        # @type EndTime: String
-        # @param BeginTime: 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
-        # @type BeginTime: String
-
-        attr_accessor :Filters, :EndTime, :BeginTime
-
-        def initialize(filters=nil, endtime=nil, begintime=nil)
-          @Filters = filters
-          @EndTime = endtime
-          @BeginTime = begintime
-        end
-
-        def deserialize(params)
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-          @EndTime = params['EndTime']
-          @BeginTime = params['BeginTime']
-        end
-      end
-
-      # DescribeSnapshotOperationLogs返回参数结构体
-      class DescribeSnapshotOperationLogsResponse < TencentCloud::Common::AbstractModel
-        # @param SnapshotOperationLogSet: 快照操作日志列表。
-        # @type SnapshotOperationLogSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :SnapshotOperationLogSet, :RequestId
-
-        def initialize(snapshotoperationlogset=nil, requestid=nil)
-          @SnapshotOperationLogSet = snapshotoperationlogset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['SnapshotOperationLogSet'].nil?
-            @SnapshotOperationLogSet = []
-            params['SnapshotOperationLogSet'].each do |i|
-              snapshotoperationlog_tmp = SnapshotOperationLog.new
-              snapshotoperationlog_tmp.deserialize(i)
-              @SnapshotOperationLogSet << snapshotoperationlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2027,54 +1909,6 @@ module TencentCloud
             @Price = Price.new
             @Price.deserialize(params['Price'])
           end
-        end
-      end
-
-      # 云盘操作日志。
-      class DiskOperationLog < TencentCloud::Common::AbstractModel
-        # @param OperationState: 操作的状态。取值范围：
-        # SUCCESS :表示操作成功
-        # FAILED :表示操作失败
-        # PROCESSING :表示操作中。
-        # @type OperationState: String
-        # @param StartTime: 开始时间。
-        # @type StartTime: String
-        # @param Operator: 操作者的UIN。
-        # @type Operator: String
-        # @param Operation: 操作类型。取值范围：
-        # CBS_OPERATION_ATTACH：挂载云硬盘
-        # CBS_OPERATION_DETACH：解挂云硬盘
-        # CBS_OPERATION_RENEW：续费
-        # CBS_OPERATION_EXPAND：扩容
-        # CBS_OPERATION_CREATE：创建
-        # CBS_OPERATION_ISOLATE：隔离
-        # CBS_OPERATION_MODIFY：修改云硬盘属性
-        # ASP_OPERATION_BIND：关联定期快照策略
-        # ASP_OPERATION_UNBIND：取消关联定期快照策略
-        # @type Operation: String
-        # @param EndTime: 结束时间。
-        # @type EndTime: String
-        # @param DiskId: 操作的云盘ID。
-        # @type DiskId: String
-
-        attr_accessor :OperationState, :StartTime, :Operator, :Operation, :EndTime, :DiskId
-
-        def initialize(operationstate=nil, starttime=nil, operator=nil, operation=nil, endtime=nil, diskid=nil)
-          @OperationState = operationstate
-          @StartTime = starttime
-          @Operator = operator
-          @Operation = operation
-          @EndTime = endtime
-          @DiskId = diskid
-        end
-
-        def deserialize(params)
-          @OperationState = params['OperationState']
-          @StartTime = params['StartTime']
-          @Operator = params['Operator']
-          @Operation = params['Operation']
-          @EndTime = params['EndTime']
-          @DiskId = params['DiskId']
         end
       end
 
@@ -3231,53 +3065,6 @@ module TencentCloud
           @Message = params['Message']
           @Code = params['Code']
           @DestinationRegion = params['DestinationRegion']
-        end
-      end
-
-      # 快照操作日志，已废弃。
-      class SnapshotOperationLog < TencentCloud::Common::AbstractModel
-        # @param OperationState: 操作的状态。取值范围：
-        # SUCCESS :表示操作成功
-        # FAILED :表示操作失败
-        # PROCESSING :表示操作中。
-        # @type OperationState: String
-        # @param StartTime: 开始时间。
-        # @type StartTime: String
-        # @param Operator: 操作者的UIN。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Operator: String
-        # @param SnapshotId: 操作的快照ID。
-        # @type SnapshotId: String
-        # @param Operation: 操作类型。取值范围：
-        # SNAP_OPERATION_DELETE：删除快照
-        # SNAP_OPERATION_ROLLBACK：回滚快照
-        # SNAP_OPERATION_MODIFY：修改快照属性
-        # SNAP_OPERATION_CREATE：创建快照
-        # SNAP_OPERATION_COPY：跨地域复制快照
-        # ASP_OPERATION_CREATE_SNAP：由定期快照策略创建快照
-        # ASP_OPERATION_DELETE_SNAP：由定期快照策略删除快照
-        # @type Operation: String
-        # @param EndTime: 结束时间。
-        # @type EndTime: String
-
-        attr_accessor :OperationState, :StartTime, :Operator, :SnapshotId, :Operation, :EndTime
-
-        def initialize(operationstate=nil, starttime=nil, operator=nil, snapshotid=nil, operation=nil, endtime=nil)
-          @OperationState = operationstate
-          @StartTime = starttime
-          @Operator = operator
-          @SnapshotId = snapshotid
-          @Operation = operation
-          @EndTime = endtime
-        end
-
-        def deserialize(params)
-          @OperationState = params['OperationState']
-          @StartTime = params['StartTime']
-          @Operator = params['Operator']
-          @SnapshotId = params['SnapshotId']
-          @Operation = params['Operation']
-          @EndTime = params['EndTime']
         end
       end
 

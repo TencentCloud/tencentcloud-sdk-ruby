@@ -477,6 +477,38 @@ module TencentCloud
         end
       end
 
+      # CreateDomainRedemption请求参数结构体
+      class CreateDomainRedemptionRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名 ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateDomainRedemption返回参数结构体
+      class CreateDomainRedemptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePhoneEmail请求参数结构体
       class CreatePhoneEmailRequest < TencentCloud::Common::AbstractModel
         # @param Code: 手机号或者邮箱

@@ -29,32 +29,6 @@ module TencentCloud
         end
 
 
-        # 下线已有内测接口，待上线正式版本的接口
-
-        # DID添加标签
-
-        # @param request: Request instance for AddLabel.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::AddLabelRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::AddLabelResponse`
-        def AddLabel(request)
-          body = send_request('AddLabel', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddLabelResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 该接口不再使用
 
         # 检查区块链信息
@@ -197,32 +171,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTDidByPublicKeyResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 该接口已废弃
-
-        # 本机构DID详情
-
-        # @param request: Request instance for GetAgencyTDid.
-        # @type request: :class:`Tencentcloud::tdid::V20210519::GetAgencyTDidRequest`
-        # @rtype: :class:`Tencentcloud::tdid::V20210519::GetAgencyTDidResponse`
-        def GetAgencyTDid(request)
-          body = send_request('GetAgencyTDid', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetAgencyTDidResponse.new
             model.deserialize(response['Response'])
             model
           else

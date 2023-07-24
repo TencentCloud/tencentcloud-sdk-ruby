@@ -1687,6 +1687,58 @@ module TencentCloud
         end
       end
 
+      # DescribeTranscodeByUrl请求参数结构体
+      class DescribeTranscodeByUrlRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 客户的SdkAppId
+        # @type SdkAppId: Integer
+        # @param Url: 经过URL编码后的转码文件地址。URL 编码会将字符转换为可通过因特网传输的格式，比如文档地址为http://example.com/测试.pdf，经过URL编码之后为http://example.com/%E6%B5%8B%E8%AF%95.pdf。为了提高URL解析的成功率，请对URL进行编码。
+        # @type Url: String
+
+        attr_accessor :SdkAppId, :Url
+
+        def initialize(sdkappid=nil, url=nil)
+          @SdkAppId = sdkappid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Url = params['Url']
+        end
+      end
+
+      # DescribeTranscodeByUrl返回参数结构体
+      class DescribeTranscodeByUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Progress: 转码的当前进度,取值范围为0~100
+        # @type Progress: Integer
+        # @param Status: 任务的当前状态
+        # - QUEUED: 正在排队等待转换
+        # - PROCESSING: 转换中
+        # - FINISHED: 转换完成
+        # - EXCEPTION: 转换异常
+        # @type Status: String
+        # @param TaskId: 转码任务的唯一标识Id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Progress, :Status, :TaskId, :RequestId
+
+        def initialize(progress=nil, status=nil, taskid=nil, requestid=nil)
+          @Progress = progress
+          @Status = status
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Progress = params['Progress']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTranscodeCallback请求参数结构体
       class DescribeTranscodeCallbackRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用的SdkAppId

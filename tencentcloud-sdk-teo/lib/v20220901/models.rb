@@ -6364,7 +6364,7 @@ module TencentCloud
         # @type ServerCertInfo: Array
         # @param ApplyType: 托管类型，取值有：
         # <li>apply：托管EO；</li>
-        # <li>none：不托管EO；</li>不填，默认取值为apply。
+        # <li>none：不托管EO；</li>不填，默认取值为none。
         # @type ApplyType: String
 
         attr_accessor :ZoneId, :Hosts, :ServerCertInfo, :ApplyType
