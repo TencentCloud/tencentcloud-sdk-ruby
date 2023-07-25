@@ -1601,7 +1601,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param StartTime: 起始时间秒
         # @type StartTime: Integer
-        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31*24*3600
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过1天秒数86400
         # @type EndTime: Integer
         # @param Offset: 分页起始偏移，从0开始
         # @type Offset: Integer
@@ -1664,7 +1664,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param StartTime: 起始时间秒
         # @type StartTime: Integer
-        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31243600
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过1天秒数86400
         # @type EndTime: Integer
         # @param Offset: 分页起始偏移，从0开始
         # @type Offset: Integer
@@ -2110,7 +2110,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param StartTime: 起始时间秒
         # @type StartTime: Integer
-        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过31天秒数31243600
+        # @param EndTime: 结束时间秒，EndTime-StartTime不得超过1天秒数86400
         # @type EndTime: Integer
         # @param Offset: 分页起始偏移，从0开始
         # @type Offset: Integer
@@ -2887,7 +2887,7 @@ module TencentCloud
 
       # InquirePriceRenewEmr请求参数结构体
       class InquirePriceRenewEmrRequest < TencentCloud::Common::AbstractModel
-        # @param TimeSpan: 实例续费的时长。需要结合TimeUnit一起使用。1表示续费1一个月
+        # @param TimeSpan: 实例续费的时长。需要结合TimeUnit一起使用。1表示续费一个月
         # @type TimeSpan: Integer
         # @param InstanceId: 待续费集群ID列表。
         # @type InstanceId: String

@@ -4578,8 +4578,7 @@ module TencentCloud
         # @type Query: String
         # @param Limit: 单次查询返回的日志条数，最大值为100
         # @type Limit: Integer
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容。
-        # 新版本此字段填空填
+        # @param Context: 新版本此字段失效，填空字符串，翻页使用Page
         # @type Context: String
         # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
@@ -4613,7 +4612,7 @@ module TencentCloud
 
       # SearchAccessLog返回参数结构体
       class SearchAccessLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 加载后续内容的Context
+        # @param Context: 新接口此字段失效，默认返回空字符串
         # @type Context: String
         # @param ListOver: 日志查询结果是否全部返回，其中，“true”表示结果返回，“false”表示结果为返回
         # @type ListOver: Boolean
@@ -4679,7 +4678,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 查询结束时间
         # @type EndTime: String
-        # @param Context: 查询的游标。第一次请求使用空字符串即可，后续请求使用上一次请求返回的最后一条记录的context的值即可。
+        # @param Context: 接口升级，这个字段传空字符串,翻页使用Page字段
         # @type Context: String
         # @param QueryString: Lucene语法
         # @type QueryString: String
@@ -4719,7 +4718,7 @@ module TencentCloud
       class SearchAttackLogResponse < TencentCloud::Common::AbstractModel
         # @param Count: 当前返回的攻击日志条数
         # @type Count: Integer
-        # @param Context: 翻页游标，如果没有下一页了，这个参数为空""
+        # @param Context: 接口升级，此字段无效，默认返回空字符串
         # @type Context: String
         # @param Data: 攻击日志数组条目内容
         # @type Data: Array

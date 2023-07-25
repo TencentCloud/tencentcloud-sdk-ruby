@@ -437,6 +437,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口已废弃
+
         # 描述WAF自动封禁IP详情,对齐自动封堵状态
 
         # @param request: Request instance for DescribeAutoDenyIP.

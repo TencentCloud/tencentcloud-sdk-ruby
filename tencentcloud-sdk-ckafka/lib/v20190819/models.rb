@@ -7949,6 +7949,63 @@ module TencentCloud
         end
       end
 
+      # InstanceScalingDown请求参数结构体
+      class InstanceScalingDownRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param UpgradeStrategy: 缩容模式  1:稳定变配
+        # 2.高速变配
+        # @type UpgradeStrategy: Integer
+        # @param DiskSize: 磁盘大小 单位 GB
+        # @type DiskSize: Integer
+        # @param BandWidth: 峰值带宽 单位 MB/s
+        # @type BandWidth: Integer
+        # @param Partition: 分区上限
+        # @type Partition: Integer
+
+        attr_accessor :InstanceId, :UpgradeStrategy, :DiskSize, :BandWidth, :Partition
+
+        def initialize(instanceid=nil, upgradestrategy=nil, disksize=nil, bandwidth=nil, partition=nil)
+          @InstanceId = instanceid
+          @UpgradeStrategy = upgradestrategy
+          @DiskSize = disksize
+          @BandWidth = bandwidth
+          @Partition = partition
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UpgradeStrategy = params['UpgradeStrategy']
+          @DiskSize = params['DiskSize']
+          @BandWidth = params['BandWidth']
+          @Partition = params['Partition']
+        end
+      end
+
+      # InstanceScalingDown返回参数结构体
+      class InstanceScalingDownResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 缩容应答
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ScalingDownResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ScalingDownResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 操作型结果返回值
       class JgwOperateResponse < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 返回的code，0为正常，非0为错误
@@ -10242,6 +10299,23 @@ module TencentCloud
           @Version = params['Version']
           @Platform = params['Platform']
           @SoldOut = params['SoldOut']
+        end
+      end
+
+      # 实例缩容应答
+      class ScalingDownResp < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+
+        attr_accessor :DealNames
+
+        def initialize(dealnames=nil)
+          @DealNames = dealnames
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
         end
       end
 

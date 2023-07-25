@@ -116,12 +116,12 @@ module TencentCloud
         # @param ApproverVerifyTypes: 签署人查看合同时认证方式,
         # 1-实名查看 2-短信验证码查看(企业签署方不支持该方式)
         # 如果不传默认为1
-        # 模板发起的时候,认证方式以模版配置为主
+        # 模板发起的时候,认证方式以模板配置为主
         # @type ApproverVerifyTypes: Array
         # @param ApproverSignTypes: 签署人签署合同时的认证方式
         # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
         # 合同签署认证方式的优先级 verifyChannel>approverSignTypes
-        # 模板发起的时候,认证方式以模版配置为主
+        # 模板发起的时候,认证方式以模板配置为主
         # @type ApproverSignTypes: Array
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
         # @type ApproverNeedSignReview: Boolean
@@ -5470,13 +5470,16 @@ module TencentCloud
         # @type OperateType: Integer
         # @param CallbackInfo: 回调信息
         # @type CallbackInfo: :class:`Tencentcloud::Ess.v20201111.models.CallbackInfo`
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :OperateType, :CallbackInfo
+        attr_accessor :Operator, :OperateType, :CallbackInfo, :Agent
 
-        def initialize(operator=nil, operatetype=nil, callbackinfo=nil)
+        def initialize(operator=nil, operatetype=nil, callbackinfo=nil, agent=nil)
           @Operator = operator
           @OperateType = operatetype
           @CallbackInfo = callbackinfo
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -5488,6 +5491,10 @@ module TencentCloud
           unless params['CallbackInfo'].nil?
             @CallbackInfo = CallbackInfo.new
             @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end

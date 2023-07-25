@@ -30,17 +30,16 @@ module TencentCloud
         # 图片限制：单边分辨率小于2000，转成 Base64 字符串后小于 5MB。
         # @type InputUrl: String
         # @param Prompt: 文本描述。
-        # 用于在输入图的基础上引导生成图效果，建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。推荐使用中文。最多支持512个 utf-8 字符。
-        # 注意：如果不输入任何文本描述，可能导致较差的效果，建议根据期望的效果输入相应的文本描述。
+        # 用于在输入图的基础上引导生成图效果，增加生成结果中出现描述内容的可能。
+        # 推荐使用中文。最多支持256个 utf-8 字符。
         # @type Prompt: String
         # @param NegativePrompt: 反向文本描述。
         # 用于一定程度上从反面引导模型生成的走向，减少生成结果中出现描述内容的可能，但不能完全杜绝。
-        # 推荐使用中文。最多可传512个 utf-8 字符。
+        # 推荐使用中文。最多可传256个 utf-8 字符。
         # @type NegativePrompt: String
         # @param Styles: 绘画风格。
         # 请在  [智能图生图风格列表](https://cloud.tencent.com/document/product/1668/86250) 中选择期望的风格，传入风格编号。
         # 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
-        # 如果想要探索风格列表之外的风格，也可以尝试在 Prompt 中输入其他的风格描述。
         # @type Styles: Array
         # @param ResultConfig: 生成图结果的配置，包括输出图片分辨率和尺寸等。
         # @type ResultConfig: :class:`Tencentcloud::Aiart.v20221229.models.ResultConfig`
@@ -54,12 +53,14 @@ module TencentCloud
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
         # @param Strength: 生成自由度。
-        # Strength 值越小，生成图和原图越接近。取值范围0~1，不传默认为0.65。
+        # Strength 值越小，生成图和原图越接近。取值范围0~1，不传默认为0.75。
         # @type Strength: Float
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
 
-        attr_accessor :InputImage, :InputUrl, :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :Strength
+        attr_accessor :InputImage, :InputUrl, :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :Strength, :RspImgType
 
-        def initialize(inputimage=nil, inputurl=nil, prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, strength=nil)
+        def initialize(inputimage=nil, inputurl=nil, prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, strength=nil, rspimgtype=nil)
           @InputImage = inputimage
           @InputUrl = inputurl
           @Prompt = prompt
@@ -69,6 +70,7 @@ module TencentCloud
           @LogoAdd = logoadd
           @LogoParam = logoparam
           @Strength = strength
+          @RspImgType = rspimgtype
         end
 
         def deserialize(params)
@@ -87,12 +89,15 @@ module TencentCloud
             @LogoParam.deserialize(params['LogoParam'])
           end
           @Strength = params['Strength']
+          @RspImgType = params['RspImgType']
         end
       end
 
       # ImageToImage返回参数结构体
       class ImageToImageResponse < TencentCloud::Common::AbstractModel
-        # @param ResultImage: 返回的生成图 Base64 编码。
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
         # @type ResultImage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -190,16 +195,15 @@ module TencentCloud
       class TextToImageRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: 文本描述。
         # 算法将根据输入的文本智能生成与之相关的图像。建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。
-        # 不能为空，推荐使用中文。最多可传512个 utf-8 字符。
+        # 不能为空，推荐使用中文。最多可传256个 utf-8 字符。
         # @type Prompt: String
         # @param NegativePrompt: 反向文本描述。
         # 用于一定程度上从反面引导模型生成的走向，减少生成结果中出现描述内容的可能，但不能完全杜绝。
-        # 推荐使用中文。最多可传512个 utf-8 字符。
+        # 推荐使用中文。最多可传256个 utf-8 字符。
         # @type NegativePrompt: String
         # @param Styles: 绘画风格。
         # 请在 [智能文生图风格列表](https://cloud.tencent.com/document/product/1668/86249) 中选择期望的风格，传入风格编号。
         # 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
-        # 如果想要探索风格列表之外的风格，也可以尝试在 Prompt 中输入其他的风格描述。
         # @type Styles: Array
         # @param ResultConfig: 生成图结果的配置，包括输出图片分辨率和尺寸等。
         # @type ResultConfig: :class:`Tencentcloud::Aiart.v20221229.models.ResultConfig`
@@ -212,16 +216,19 @@ module TencentCloud
         # @param LogoParam: 标识内容设置。
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param RspImgType: 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        # @type RspImgType: String
 
-        attr_accessor :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam
+        attr_accessor :Prompt, :NegativePrompt, :Styles, :ResultConfig, :LogoAdd, :LogoParam, :RspImgType
 
-        def initialize(prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil)
+        def initialize(prompt=nil, negativeprompt=nil, styles=nil, resultconfig=nil, logoadd=nil, logoparam=nil, rspimgtype=nil)
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @Styles = styles
           @ResultConfig = resultconfig
           @LogoAdd = logoadd
           @LogoParam = logoparam
+          @RspImgType = rspimgtype
         end
 
         def deserialize(params)
@@ -237,12 +244,15 @@ module TencentCloud
             @LogoParam = LogoParam.new
             @LogoParam.deserialize(params['LogoParam'])
           end
+          @RspImgType = params['RspImgType']
         end
       end
 
       # TextToImage返回参数结构体
       class TextToImageResponse < TencentCloud::Common::AbstractModel
-        # @param ResultImage: 返回的生成图 Base64 编码。
+        # @param ResultImage: 根据入参 RspImgType 填入不同，返回不同的内容。
+        # 如果传入 base64 则返回生成图 Base64 编码。
+        # 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
         # @type ResultImage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

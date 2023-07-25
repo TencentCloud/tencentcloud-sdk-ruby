@@ -1662,6 +1662,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 按量实例缩容
+
+        # @param request: Request instance for InstanceScalingDown.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::InstanceScalingDownRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::InstanceScalingDownResponse`
+        def InstanceScalingDown(request)
+          body = send_request('InstanceScalingDown', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InstanceScalingDownResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改AC策略，目前只支持预设规则的是否应用到新增topic这一项的修改
 
         # @param request: Request instance for ModifyAclRule.

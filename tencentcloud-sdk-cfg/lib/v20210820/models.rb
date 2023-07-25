@@ -17,6 +17,26 @@
 module TencentCloud
   module Cfg
     module V20210820
+      # 动作库筛选栏位
+      class ActionFilter < TencentCloud::Common::AbstractModel
+        # @param Keyword: 关键字
+        # @type Keyword: String
+        # @param Values: 搜索内容值
+        # @type Values: Array
+
+        attr_accessor :Keyword, :Values
+
+        def initialize(keyword=nil, values=nil)
+          @Keyword = keyword
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Keyword = params['Keyword']
+          @Values = params['Values']
+        end
+      end
+
       # CreateTaskFromTemplate请求参数结构体
       class CreateTaskFromTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 从经验库中查询到的经验模板ID
@@ -183,10 +203,12 @@ module TencentCloud
         # @type TaskEndTime: String
         # @param Tags: 标签对
         # @type Tags: Array
+        # @param Filters: 筛选条件
+        # @type Filters: Array
 
-        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags
+        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags, :Filters
 
-        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil)
+        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil, filters=nil)
           @Limit = limit
           @Offset = offset
           @TaskTitle = tasktitle
@@ -195,6 +217,7 @@ module TencentCloud
           @TaskStartTime = taskstarttime
           @TaskEndTime = taskendtime
           @Tags = tags
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -211,6 +234,14 @@ module TencentCloud
               tagwithdescribe_tmp = TagWithDescribe.new
               tagwithdescribe_tmp.deserialize(i)
               @Tags << tagwithdescribe_tmp
+            end
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              actionfilter_tmp = ActionFilter.new
+              actionfilter_tmp.deserialize(i)
+              @Filters << actionfilter_tmp
             end
           end
         end
@@ -312,10 +343,12 @@ module TencentCloud
         # @type TemplateSource: Integer
         # @param TemplateIdList: 经验ID
         # @type TemplateIdList: Array
+        # @param Filters: 过滤参数
+        # @type Filters: Array
 
-        attr_accessor :Limit, :Offset, :Title, :Tag, :IsUsed, :Tags, :TemplateSource, :TemplateIdList
+        attr_accessor :Limit, :Offset, :Title, :Tag, :IsUsed, :Tags, :TemplateSource, :TemplateIdList, :Filters
 
-        def initialize(limit=nil, offset=nil, title=nil, tag=nil, isused=nil, tags=nil, templatesource=nil, templateidlist=nil)
+        def initialize(limit=nil, offset=nil, title=nil, tag=nil, isused=nil, tags=nil, templatesource=nil, templateidlist=nil, filters=nil)
           @Limit = limit
           @Offset = offset
           @Title = title
@@ -324,6 +357,7 @@ module TencentCloud
           @Tags = tags
           @TemplateSource = templatesource
           @TemplateIdList = templateidlist
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -342,6 +376,14 @@ module TencentCloud
           end
           @TemplateSource = params['TemplateSource']
           @TemplateIdList = params['TemplateIdList']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              actionfilter_tmp = ActionFilter.new
+              actionfilter_tmp.deserialize(i)
+              @Filters << actionfilter_tmp
+            end
+          end
         end
       end
 

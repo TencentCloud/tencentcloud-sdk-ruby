@@ -1982,6 +1982,233 @@ module TencentCloud
         end
       end
 
+      # DescribeDockerActivities请求参数结构体
+      class DescribeDockerActivitiesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ActivityIds: Docker活动ID列表。
+        # @type ActivityIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param CreatedTimeBegin: 活动创建时间的起始值，时间戳秒数。
+        # @type CreatedTimeBegin: Integer
+        # @param CreatedTimeEnd: 活动创建时间的结束值，时间戳秒数。
+        # @type CreatedTimeEnd: Integer
+
+        attr_accessor :InstanceId, :ActivityIds, :Offset, :Limit, :CreatedTimeBegin, :CreatedTimeEnd
+
+        def initialize(instanceid=nil, activityids=nil, offset=nil, limit=nil, createdtimebegin=nil, createdtimeend=nil)
+          @InstanceId = instanceid
+          @ActivityIds = activityids
+          @Offset = offset
+          @Limit = limit
+          @CreatedTimeBegin = createdtimebegin
+          @CreatedTimeEnd = createdtimeend
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ActivityIds = params['ActivityIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @CreatedTimeBegin = params['CreatedTimeBegin']
+          @CreatedTimeEnd = params['CreatedTimeEnd']
+        end
+      end
+
+      # DescribeDockerActivities返回参数结构体
+      class DescribeDockerActivitiesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量。
+        # @type TotalCount: Integer
+        # @param DockerActivitySet: Docker活动列表。
+        # @type DockerActivitySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DockerActivitySet, :RequestId
+
+        def initialize(totalcount=nil, dockeractivityset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DockerActivitySet = dockeractivityset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DockerActivitySet'].nil?
+            @DockerActivitySet = []
+            params['DockerActivitySet'].each do |i|
+              dockeractivity_tmp = DockerActivity.new
+              dockeractivity_tmp.deserialize(i)
+              @DockerActivitySet << dockeractivity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDockerContainerConfiguration请求参数结构体
+      class DescribeDockerContainerConfigurationRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerId: 容器ID。
+        # @type ContainerId: String
+
+        attr_accessor :InstanceId, :ContainerId
+
+        def initialize(instanceid=nil, containerid=nil)
+          @InstanceId = instanceid
+          @ContainerId = containerid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerId = params['ContainerId']
+        end
+      end
+
+      # DescribeDockerContainerConfiguration返回参数结构体
+      class DescribeDockerContainerConfigurationResponse < TencentCloud::Common::AbstractModel
+        # @param ContainerConfiguration: Docker容器配置信息。
+        # @type ContainerConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.DockerContainerConfiguration`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContainerConfiguration, :RequestId
+
+        def initialize(containerconfiguration=nil, requestid=nil)
+          @ContainerConfiguration = containerconfiguration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ContainerConfiguration'].nil?
+            @ContainerConfiguration = DockerContainerConfiguration.new
+            @ContainerConfiguration.deserialize(params['ContainerConfiguration'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDockerContainerDetail请求参数结构体
+      class DescribeDockerContainerDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerId: 容器ID。
+        # @type ContainerId: String
+
+        attr_accessor :InstanceId, :ContainerId
+
+        def initialize(instanceid=nil, containerid=nil)
+          @InstanceId = instanceid
+          @ContainerId = containerid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerId = params['ContainerId']
+        end
+      end
+
+      # DescribeDockerContainerDetail返回参数结构体
+      class DescribeDockerContainerDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ContainerDetail: Docker容器详情，json字符串base64编码。
+        # @type ContainerDetail: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContainerDetail, :RequestId
+
+        def initialize(containerdetail=nil, requestid=nil)
+          @ContainerDetail = containerdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContainerDetail = params['ContainerDetail']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDockerContainers请求参数结构体
+      class DescribeDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器列表。
+        # <li>container-id</li>按照【容器ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>container-name</li>按照【容器名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 ContainerIds 和 Filters。
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :ContainerIds, :Limit, :Offset, :Filters
+
+        def initialize(instanceid=nil, containerids=nil, limit=nil, offset=nil, filters=nil)
+          @InstanceId = instanceid
+          @ContainerIds = containerids
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerIds = params['ContainerIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDockerContainers返回参数结构体
+      class DescribeDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量。
+        # @type TotalCount: Integer
+        # @param DockerContainerSet: 容器列表。
+        # @type DockerContainerSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DockerContainerSet, :RequestId
+
+        def initialize(totalcount=nil, dockercontainerset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DockerContainerSet = dockercontainerset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DockerContainerSet'].nil?
+            @DockerContainerSet = []
+            params['DockerContainerSet'].each do |i|
+              dockercontainer_tmp = DockerContainer.new
+              dockercontainer_tmp.deserialize(i)
+              @DockerContainerSet << dockercontainer_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFirewallRules请求参数结构体
       class DescribeFirewallRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -3549,6 +3776,113 @@ module TencentCloud
         end
       end
 
+      # Docker活动信息
+      class DockerActivity < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 活动ID。
+        # @type ActivityId: String
+        # @param ActivityName: 活动名称。
+        # @type ActivityName: String
+        # @param ActivityState: 活动状态。取值范围：
+        # <li>INIT：表示初始化，活动尚未执行</li>
+        # <li>OPERATING：表示活动执行中</li>
+        # <li>SUCCESS：表示活动执行成功</li>
+        # <li>FAILED：表示活动执行失败</li>
+        # @type ActivityState: String
+        # @param ActivityCommandOutput: 活动执行的命令输出，以base64编码。
+        # @type ActivityCommandOutput: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # @type CreatedTime: String
+        # @param EndTime: 结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :ActivityId, :ActivityName, :ActivityState, :ActivityCommandOutput, :ContainerIds, :CreatedTime, :EndTime
+
+        def initialize(activityid=nil, activityname=nil, activitystate=nil, activitycommandoutput=nil, containerids=nil, createdtime=nil, endtime=nil)
+          @ActivityId = activityid
+          @ActivityName = activityname
+          @ActivityState = activitystate
+          @ActivityCommandOutput = activitycommandoutput
+          @ContainerIds = containerids
+          @CreatedTime = createdtime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @ActivityName = params['ActivityName']
+          @ActivityState = params['ActivityState']
+          @ActivityCommandOutput = params['ActivityCommandOutput']
+          @ContainerIds = params['ContainerIds']
+          @CreatedTime = params['CreatedTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # Docker容器信息
+      class DockerContainer < TencentCloud::Common::AbstractModel
+        # @param ContainerId: 容器ID
+        # @type ContainerId: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param ContainerImage: 容器镜像地址
+        # @type ContainerImage: String
+        # @param Command: 容器Command
+        # @type Command: String
+        # @param Status: 容器状态描述
+        # @type Status: String
+        # @param State: 容器状态，和docker的容器状态保持一致，当前取值有：created, restarting, running, removing, paused, exited, or dead
+        # @type State: String
+        # @param PublishPortSet: 容器端口主机端口映射列表
+        # @type PublishPortSet: Array
+        # @param VolumeSet: 容器挂载本地卷列表
+        # @type VolumeSet: Array
+        # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # @type CreatedTime: String
+
+        attr_accessor :ContainerId, :ContainerName, :ContainerImage, :Command, :Status, :State, :PublishPortSet, :VolumeSet, :CreatedTime
+
+        def initialize(containerid=nil, containername=nil, containerimage=nil, command=nil, status=nil, state=nil, publishportset=nil, volumeset=nil, createdtime=nil)
+          @ContainerId = containerid
+          @ContainerName = containername
+          @ContainerImage = containerimage
+          @Command = command
+          @Status = status
+          @State = state
+          @PublishPortSet = publishportset
+          @VolumeSet = volumeset
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @ContainerId = params['ContainerId']
+          @ContainerName = params['ContainerName']
+          @ContainerImage = params['ContainerImage']
+          @Command = params['Command']
+          @Status = params['Status']
+          @State = params['State']
+          unless params['PublishPortSet'].nil?
+            @PublishPortSet = []
+            params['PublishPortSet'].each do |i|
+              dockercontainerpublishport_tmp = DockerContainerPublishPort.new
+              dockercontainerpublishport_tmp.deserialize(i)
+              @PublishPortSet << dockercontainerpublishport_tmp
+            end
+          end
+          unless params['VolumeSet'].nil?
+            @VolumeSet = []
+            params['VolumeSet'].each do |i|
+              dockercontainervolume_tmp = DockerContainerVolume.new
+              dockercontainervolume_tmp.deserialize(i)
+              @VolumeSet << dockercontainervolume_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
       # Docker容器创建时的配置
       class DockerContainerConfiguration < TencentCloud::Common::AbstractModel
         # @param ContainerImage: 容器镜像地址
@@ -4577,17 +4911,21 @@ module TencentCloud
         # `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能包含空格, 不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字：0-9<br><li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
         # `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字： 0-9<br><li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
         # @type Password: String
+        # @param KeyIds: 密钥ID列表，最多同时指定5个密钥。关联密钥后，就可以通过对应的私钥来访问实例。密钥与密码不能同时指定，同时WINDOWS操作系统不支持指定密钥。密钥ID列表可以通过[DescribeKeyPairs](https://cloud.tencent.com/document/product/1207/55540)接口获取。
+        # @type KeyIds: Array
 
-        attr_accessor :AutoGeneratePassword, :Password
+        attr_accessor :AutoGeneratePassword, :Password, :KeyIds
 
-        def initialize(autogeneratepassword=nil, password=nil)
+        def initialize(autogeneratepassword=nil, password=nil, keyids=nil)
           @AutoGeneratePassword = autogeneratepassword
           @Password = password
+          @KeyIds = keyids
         end
 
         def deserialize(params)
           @AutoGeneratePassword = params['AutoGeneratePassword']
           @Password = params['Password']
+          @KeyIds = params['KeyIds']
         end
       end
 
@@ -4789,6 +5127,93 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDockerContainer请求参数结构体
+      class ModifyDockerContainerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerId: 容器ID。
+        # @type ContainerId: String
+        # @param Envs: 环境变量列表
+        # @type Envs: Array
+        # @param PublishPorts: 容器端口主机端口映射列表
+        # @type PublishPorts: Array
+        # @param Volumes: 容器加载本地卷列表
+        # @type Volumes: Array
+        # @param Command: 运行的命令
+        # @type Command: String
+        # @param RestartPolicy: 容器重启策略，对应docker "--restart"参数。
+
+        # 枚举值:
+        # no: 不自动重启。默认策略。
+        # on-failure[:max-retries]: 当容器退出码非0时重启容器。使用max-retries限制重启次数，比如on-failure:10，限制最多重启10次。
+        # always: 只要容器退出就重启。
+        # unless-stopped: 始终重新启动容器，包括在守护进程启动时，除非容器在 Docker 守护进程停止之前进入停止状态。
+        # @type RestartPolicy: String
+
+        attr_accessor :InstanceId, :ContainerId, :Envs, :PublishPorts, :Volumes, :Command, :RestartPolicy
+
+        def initialize(instanceid=nil, containerid=nil, envs=nil, publishports=nil, volumes=nil, command=nil, restartpolicy=nil)
+          @InstanceId = instanceid
+          @ContainerId = containerid
+          @Envs = envs
+          @PublishPorts = publishports
+          @Volumes = volumes
+          @Command = command
+          @RestartPolicy = restartpolicy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerId = params['ContainerId']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              containerenv_tmp = ContainerEnv.new
+              containerenv_tmp.deserialize(i)
+              @Envs << containerenv_tmp
+            end
+          end
+          unless params['PublishPorts'].nil?
+            @PublishPorts = []
+            params['PublishPorts'].each do |i|
+              dockercontainerpublishport_tmp = DockerContainerPublishPort.new
+              dockercontainerpublishport_tmp.deserialize(i)
+              @PublishPorts << dockercontainerpublishport_tmp
+            end
+          end
+          unless params['Volumes'].nil?
+            @Volumes = []
+            params['Volumes'].each do |i|
+              dockercontainervolume_tmp = DockerContainerVolume.new
+              dockercontainervolume_tmp.deserialize(i)
+              @Volumes << dockercontainervolume_tmp
+            end
+          end
+          @Command = params['Command']
+          @RestartPolicy = params['RestartPolicy']
+        end
+      end
+
+      # ModifyDockerContainer返回参数结构体
+      class ModifyDockerContainerResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
           @RequestId = params['RequestId']
         end
       end
@@ -5184,6 +5609,90 @@ module TencentCloud
         end
       end
 
+      # RemoveDockerContainers请求参数结构体
+      class RemoveDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+
+        attr_accessor :InstanceId, :ContainerIds
+
+        def initialize(instanceid=nil, containerids=nil)
+          @InstanceId = instanceid
+          @ContainerIds = containerids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerIds = params['ContainerIds']
+        end
+      end
+
+      # RemoveDockerContainers返回参数结构体
+      class RemoveDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RenameDockerContainer请求参数结构体
+      class RenameDockerContainerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerId: 容器ID。
+        # @type ContainerId: String
+        # @param ContainerName: 容器新的名称。
+        # @type ContainerName: String
+
+        attr_accessor :InstanceId, :ContainerId, :ContainerName
+
+        def initialize(instanceid=nil, containerid=nil, containername=nil)
+          @InstanceId = instanceid
+          @ContainerId = containerid
+          @ContainerName = containername
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerId = params['ContainerId']
+          @ContainerName = params['ContainerName']
+        end
+      end
+
+      # RenameDockerContainer返回参数结构体
+      class RenameDockerContainerResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 续费云硬盘包年包月相关参数设置
       class RenewDiskChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 续费周期。
@@ -5308,6 +5817,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RerunDockerContainer请求参数结构体
+      class RerunDockerContainerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerConfiguration: 重新创建的容器配置。
+        # @type ContainerConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.DockerContainerConfiguration`
+        # @param ContainerId: 容器ID。
+        # @type ContainerId: String
+
+        attr_accessor :InstanceId, :ContainerConfiguration, :ContainerId
+
+        def initialize(instanceid=nil, containerconfiguration=nil, containerid=nil)
+          @InstanceId = instanceid
+          @ContainerConfiguration = containerconfiguration
+          @ContainerId = containerid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ContainerConfiguration'].nil?
+            @ContainerConfiguration = DockerContainerConfiguration.new
+            @ContainerConfiguration.deserialize(params['ContainerConfiguration'])
+          end
+          @ContainerId = params['ContainerId']
+        end
+      end
+
+      # RerunDockerContainer返回参数结构体
+      class RerunDockerContainerResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
           @RequestId = params['RequestId']
         end
       end
@@ -5445,6 +6001,93 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartDockerContainers请求参数结构体
+      class RestartDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+
+        attr_accessor :InstanceId, :ContainerIds
+
+        def initialize(instanceid=nil, containerids=nil)
+          @InstanceId = instanceid
+          @ContainerIds = containerids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerIds = params['ContainerIds']
+        end
+      end
+
+      # RestartDockerContainers返回参数结构体
+      class RestartDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunDockerContainers请求参数结构体
+      class RunDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Containers: 要创建的容器列表。
+        # @type Containers: Array
+
+        attr_accessor :InstanceId, :Containers
+
+        def initialize(instanceid=nil, containers=nil)
+          @InstanceId = instanceid
+          @Containers = containers
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              dockercontainerconfiguration_tmp = DockerContainerConfiguration.new
+              dockercontainerconfiguration_tmp.deserialize(i)
+              @Containers << dockercontainerconfiguration_tmp
+            end
+          end
+        end
+      end
+
+      # RunDockerContainers返回参数结构体
+      class RunDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivitySet: Docker活动ID列表。
+        # @type DockerActivitySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivitySet, :RequestId
+
+        def initialize(dockeractivityset=nil, requestid=nil)
+          @DockerActivitySet = dockeractivityset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivitySet = params['DockerActivitySet']
           @RequestId = params['RequestId']
         end
       end
@@ -5655,6 +6298,46 @@ module TencentCloud
         end
       end
 
+      # StartDockerContainers请求参数结构体
+      class StartDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+
+        attr_accessor :InstanceId, :ContainerIds
+
+        def initialize(instanceid=nil, containerids=nil)
+          @InstanceId = instanceid
+          @ContainerIds = containerids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerIds = params['ContainerIds']
+        end
+      end
+
+      # StartDockerContainers返回参数结构体
+      class StartDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartInstances请求参数结构体
       class StartInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -5683,6 +6366,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopDockerContainers请求参数结构体
+      class StopDockerContainersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param ContainerIds: 容器ID列表。
+        # @type ContainerIds: Array
+
+        attr_accessor :InstanceId, :ContainerIds
+
+        def initialize(instanceid=nil, containerids=nil)
+          @InstanceId = instanceid
+          @ContainerIds = containerids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ContainerIds = params['ContainerIds']
+        end
+      end
+
+      # StopDockerContainers返回参数结构体
+      class StopDockerContainersResponse < TencentCloud::Common::AbstractModel
+        # @param DockerActivityId: Docker活动ID。
+        # @type DockerActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DockerActivityId, :RequestId
+
+        def initialize(dockeractivityid=nil, requestid=nil)
+          @DockerActivityId = dockeractivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DockerActivityId = params['DockerActivityId']
           @RequestId = params['RequestId']
         end
       end

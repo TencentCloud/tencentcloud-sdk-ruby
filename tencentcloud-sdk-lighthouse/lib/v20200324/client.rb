@@ -785,6 +785,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询实例内的Docker活动列表。
+
+        # @param request: Request instance for DescribeDockerActivities.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerActivitiesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerActivitiesResponse`
+        def DescribeDockerActivities(request)
+          body = send_request('DescribeDockerActivities', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDockerActivitiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例内的Docker容器配置信息
+
+        # @param request: Request instance for DescribeDockerContainerConfiguration.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainerConfigurationRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainerConfigurationResponse`
+        def DescribeDockerContainerConfiguration(request)
+          body = send_request('DescribeDockerContainerConfiguration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDockerContainerConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例内的Docker容器详情
+
+        # @param request: Request instance for DescribeDockerContainerDetail.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainerDetailRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainerDetailResponse`
+        def DescribeDockerContainerDetail(request)
+          body = send_request('DescribeDockerContainerDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDockerContainerDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例内的容器列表。
+
+        # @param request: Request instance for DescribeDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeDockerContainersResponse`
+        def DescribeDockerContainers(request)
+          body = send_request('DescribeDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
 
         # @param request: Request instance for DescribeFirewallRules.
@@ -1609,6 +1705,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重建情况。
+        # 请注意：本接口会重新创建并运行实例内的Docker容器。
+
+        # @param request: Request instance for ModifyDockerContainer.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyDockerContainerRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyDockerContainerResponse`
+        def ModifyDockerContainer(request)
+          body = send_request('ModifyDockerContainer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDockerContainerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyFirewallRuleDescription）用于修改单条防火墙规则描述。
 
         # * FirewallVersion 用于指定要操作的防火墙的版本。传入 FirewallVersion 版本号若不等于当前防火墙的最新版本，将返回失败；若不传 FirewallVersion 则直接修改防火墙规则备注。
@@ -1836,6 +1957,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询删除情况。
+
+        # @param request: Request instance for RemoveDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RemoveDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RemoveDockerContainersResponse`
+        def RemoveDockerContainers(request)
+          body = send_request('RemoveDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重命名实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重命名情况。
+
+        # @param request: Request instance for RenameDockerContainer.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RenameDockerContainerRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RenameDockerContainerResponse`
+        def RenameDockerContainer(request)
+          body = send_request('RenameDockerContainer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenameDockerContainerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(RenewDisks)用于续费一个或多个轻量应用服务器云硬盘。
 
         # 只有状态为 ATTACHED，UNATTACHED 或 SHUTDOWN 的数据盘才可以进行此操作。
@@ -1877,6 +2046,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重新创建并运行实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重建情况。
+
+        # @param request: Request instance for RerunDockerContainer.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RerunDockerContainerRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RerunDockerContainerResponse`
+        def RerunDockerContainer(request)
+          body = send_request('RerunDockerContainer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RerunDockerContainerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1973,6 +2166,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重启情况。
+
+        # @param request: Request instance for RestartDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RestartDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RestartDockerContainersResponse`
+        def RestartDockerContainers(request)
+          body = send_request('RestartDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建并运行多个Docker容器，之后可以通过返回的ActivityIds调用DescribeDockerActivities接口查询创建情况。
+
+        # @param request: Request instance for RunDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::RunDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::RunDockerContainersResponse`
+        def RunDockerContainers(request)
+          body = send_request('RunDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启动实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询启动情况。
+
+        # @param request: Request instance for StartDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::StartDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::StartDockerContainersResponse`
+        def StartDockerContainers(request)
+          body = send_request('StartDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（StartInstances）用于启动一个或多个实例。
 
         # * 只有状态为 STOPPED 的实例才可以进行此操作。
@@ -1988,6 +2253,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询停止情况。
+
+        # @param request: Request instance for StopDockerContainers.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::StopDockerContainersRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::StopDockerContainersResponse`
+        def StopDockerContainers(request)
+          body = send_request('StopDockerContainers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopDockerContainersResponse.new
             model.deserialize(response['Response'])
             model
           else
