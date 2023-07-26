@@ -6855,6 +6855,9 @@ module TencentCloud
         # @type Remark: String
         # @param Vpcs: VPC及网络信息
         # @type Vpcs: Array
+        # @param ZoneIds: 可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: Array
         # @param VirtualHostNumber: 虚拟主机数量
         # @type VirtualHostNumber: Integer
         # @param QueueNumber: 队列数量
@@ -6877,18 +6880,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionInformation: String
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
           @CreateTime = createtime
           @Remark = remark
           @Vpcs = vpcs
+          @ZoneIds = zoneids
           @VirtualHostNumber = virtualhostnumber
           @QueueNumber = queuenumber
           @MessagePublishRate = messagepublishrate
@@ -6916,6 +6919,7 @@ module TencentCloud
               @Vpcs << vpcendpointinfo_tmp
             end
           end
+          @ZoneIds = params['ZoneIds']
           @VirtualHostNumber = params['VirtualHostNumber']
           @QueueNumber = params['QueueNumber']
           @MessagePublishRate = params['MessagePublishRate']

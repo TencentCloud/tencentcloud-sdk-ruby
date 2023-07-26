@@ -989,6 +989,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取高防IP业务监控流量曲线
+
+        # @param request: Request instance for DescribeBizMonitorTrend.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBizMonitorTrendRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBizMonitorTrendResponse`
+        def DescribeBizMonitorTrend(request)
+          body = send_request('DescribeBizMonitorTrend', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBizMonitorTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取业务流量曲线
 
         # @param request: Request instance for DescribeBizTrend.

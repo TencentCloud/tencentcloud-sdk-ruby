@@ -865,8 +865,10 @@ module TencentCloud
       # 热词的词和权重
       class HotWord < TencentCloud::Common::AbstractModel
         # @param Word: 热词
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Word: String
         # @param Weight: 权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
 
         attr_accessor :Word, :Weight

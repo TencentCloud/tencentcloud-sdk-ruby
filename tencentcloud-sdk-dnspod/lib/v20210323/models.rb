@@ -2281,6 +2281,158 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordFilterList请求参数结构体
+      class DescribeRecordFilterListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要获取的解析记录所属的域名。
+        # @type Domain: String
+        # @param DomainId: 要获取的解析记录所属的域名 Id，如果传了 DomainId，系统将会忽略 Domain 参数。 可以通过接口 DescribeDomainList 查到所有的 Domain 以及 DomainId。
+        # @type DomainId: Integer
+        # @param SubDomain: 根据解析记录的主机头获取解析记录。默认模糊匹配。可以通过设置 IsExactSubdomain 参数为 true 进行精确查找。
+        # @type SubDomain: String
+        # @param RecordType: 获取某些类型的解析记录，如 A，CNAME，NS，AAAA，显性URL，隐性URL，CAA，SPF等。
+        # @type RecordType: Array
+        # @param RecordLine: 获取某些线路ID的解析记录。可以通过接口 DescribeRecordLineList 查看当前域名允许的线路信息。
+        # @type RecordLine: Array
+        # @param GroupId: 获取某些分组下的解析记录时，传这个分组 Id。可以通过接口 DescribeRecordGroupList 接口 GroupId 字段获取。
+        # @type GroupId: Array
+        # @param Keyword: 通过关键字搜索解析记录，当前支持搜索主机头和记录值
+        # @type Keyword: String
+        # @param SortField: 排序字段，支持 NAME，LINE，TYPE，VALUE，WEIGHT，MX，TTL，UPDATED_ON 几个字段。
+        # NAME：解析记录的主机头
+        # LINE：解析记录线路
+        # TYPE：解析记录类型
+        # VALUE：解析记录值
+        # WEIGHT：权重
+        # MX：MX 优先级
+        # TTL：解析记录缓存时间
+        # UPDATED_ON：解析记录更新时间
+        # @type SortField: String
+        # @param SortType: 排序方式，升序：ASC，降序：DESC。默认值为ASC。
+        # @type SortType: String
+        # @param Offset: 偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 限制数量，当前Limit最大支持3000。默认值为100。
+        # @type Limit: Integer
+        # @param RecordValue: 根据解析记录的值获取解析记录
+        # @type RecordValue: String
+        # @param RecordStatus: 根据解析记录的状态获取解析记录。可取值为 ENABLE，DISABLE。
+        # ENABLE：正常
+        # DISABLE：暂停
+        # @type RecordStatus: Array
+        # @param WeightBegin: 要获取解析记录权重查询区间起点。
+        # @type WeightBegin: Integer
+        # @param WeightEnd: 要获取解析记录权重查询区间终点。
+        # @type WeightEnd: Integer
+        # @param MXBegin: 要获取解析记录 MX 优先级查询区间起点。
+        # @type MXBegin: Integer
+        # @param MXEnd: 要获取解析记录 MX 优先级查询区间终点。
+        # @type MXEnd: Integer
+        # @param TTLBegin: 要获取解析记录 TTL 查询区间起点。
+        # @type TTLBegin: Integer
+        # @param TTLEnd: 要获取解析记录 TTL 查询区间终点。
+        # @type TTLEnd: Integer
+        # @param UpdatedAtBegin: 要获取解析记录更新时间查询区间起点。
+        # @type UpdatedAtBegin: String
+        # @param UpdatedAtEnd: 要获取解析记录更新时间查询区间终点。
+        # @type UpdatedAtEnd: String
+        # @param Remark: 根据解析记录的备注获取解析记录。
+        # @type Remark: String
+        # @param IsExactSubDomain: 是否根据 Subdomain 参数进行精确查找。
+        # @type IsExactSubDomain: Boolean
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+
+        attr_accessor :Domain, :DomainId, :SubDomain, :RecordType, :RecordLine, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit, :RecordValue, :RecordStatus, :WeightBegin, :WeightEnd, :MXBegin, :MXEnd, :TTLBegin, :TTLEnd, :UpdatedAtBegin, :UpdatedAtEnd, :Remark, :IsExactSubDomain, :ProjectId
+
+        def initialize(domain=nil, domainid=nil, subdomain=nil, recordtype=nil, recordline=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil, recordvalue=nil, recordstatus=nil, weightbegin=nil, weightend=nil, mxbegin=nil, mxend=nil, ttlbegin=nil, ttlend=nil, updatedatbegin=nil, updatedatend=nil, remark=nil, isexactsubdomain=nil, projectid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @SubDomain = subdomain
+          @RecordType = recordtype
+          @RecordLine = recordline
+          @GroupId = groupid
+          @Keyword = keyword
+          @SortField = sortfield
+          @SortType = sorttype
+          @Offset = offset
+          @Limit = limit
+          @RecordValue = recordvalue
+          @RecordStatus = recordstatus
+          @WeightBegin = weightbegin
+          @WeightEnd = weightend
+          @MXBegin = mxbegin
+          @MXEnd = mxend
+          @TTLBegin = ttlbegin
+          @TTLEnd = ttlend
+          @UpdatedAtBegin = updatedatbegin
+          @UpdatedAtEnd = updatedatend
+          @Remark = remark
+          @IsExactSubDomain = isexactsubdomain
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @SubDomain = params['SubDomain']
+          @RecordType = params['RecordType']
+          @RecordLine = params['RecordLine']
+          @GroupId = params['GroupId']
+          @Keyword = params['Keyword']
+          @SortField = params['SortField']
+          @SortType = params['SortType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RecordValue = params['RecordValue']
+          @RecordStatus = params['RecordStatus']
+          @WeightBegin = params['WeightBegin']
+          @WeightEnd = params['WeightEnd']
+          @MXBegin = params['MXBegin']
+          @MXEnd = params['MXEnd']
+          @TTLBegin = params['TTLBegin']
+          @TTLEnd = params['TTLEnd']
+          @UpdatedAtBegin = params['UpdatedAtBegin']
+          @UpdatedAtEnd = params['UpdatedAtEnd']
+          @Remark = params['Remark']
+          @IsExactSubDomain = params['IsExactSubDomain']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeRecordFilterList返回参数结构体
+      class DescribeRecordFilterListResponse < TencentCloud::Common::AbstractModel
+        # @param RecordCountInfo: 记录的数量统计信息
+        # @type RecordCountInfo: :class:`Tencentcloud::Dnspod.v20210323.models.RecordCountInfo`
+        # @param RecordList: 获取的记录列表
+        # @type RecordList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordCountInfo, :RecordList, :RequestId
+
+        def initialize(recordcountinfo=nil, recordlist=nil, requestid=nil)
+          @RecordCountInfo = recordcountinfo
+          @RecordList = recordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordCountInfo'].nil?
+            @RecordCountInfo = RecordCountInfo.new
+            @RecordCountInfo.deserialize(params['RecordCountInfo'])
+          end
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              recordlistitem_tmp = RecordListItem.new
+              recordlistitem_tmp.deserialize(i)
+              @RecordList << recordlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordGroupList请求参数结构体
       class DescribeRecordGroupListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

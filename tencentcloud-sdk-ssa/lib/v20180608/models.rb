@@ -1071,7 +1071,7 @@ module TencentCloud
         # @param ConcernType: 关注点类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConcernType: Integer
-        # @param EntityType: 实体类型
+        # @param EntityType: 实体类型 1: 非云上IP，2: 云上IP，3: 域名，4: IP，5: 文件，6: 进程
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntityType: Integer
         # @param Concern: 关注点

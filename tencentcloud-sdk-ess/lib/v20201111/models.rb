@@ -109,7 +109,7 @@ module TencentCloud
         # @type UserId: String
         # @param ApproverSource: 签署人用户来源，企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
-        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一，非企微场景不使用此字段
+        # @param CustomApproverTag: 企业签署方或签标识，客户自定义，64位长度。用于发起含有或签签署人的合同。或签参与人必须有此字段。合同内不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
         # @type CustomApproverTag: String
         # @param ApproverOption: 签署人个性化能力值
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
@@ -2579,7 +2579,9 @@ module TencentCloud
         # @type SealName: String
         # @param Agent: 应用相关信息
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param SealType: 电子印章类型，PERSONAL-个人私章,OFFICIAL-公章,SPECIAL_FINANCIAL-财务专用章,CONTRACT-合同专用章,LEGAL_REPRESENTATIVE-法定代表人章,SPECIAL_NATIONWIDE_INVOICE-发票专用章
+        # @param GenerateSource: 本接口支持上传图片印章及系统直接生成印章；如果要使用系统生成印章，此值传：SealGenerateSourceSystem；如果要使用图片上传请传字段 Image
+        # @type GenerateSource: String
+        # @param SealType: 电子印章类型，OFFICIAL-公章,CONTRACT-合同专用章
         # @type SealType: String
         # @param FileName: 电子印章图片文件名称
         # @type FileName: String
@@ -2596,26 +2598,22 @@ module TencentCloud
 
         # 系统目前只支持红色印章创建。
         # @type Color: String
-        # @param SealHorizontalText: 电子印章生成时的横向文字。
+        # @param SealHorizontalText: 暂时不支持横向文字设置
         # @type SealHorizontalText: String
-        # @param SealChordText: 电子印章下弦文字
+        # @param SealChordText: 暂时不支持下弦文字设置
         # @type SealChordText: String
-        # @param SealCentralType: 电子印章中心图案类型,STAR-圆形有五角星,NONE-圆形无五角星
-        # 系统生成的印章只支持STAR
+        # @param SealCentralType: 系统生成的印章只支持STAR
         # @type SealCentralType: String
         # @param FileToken: 通过文件上传时，服务端生成的电子印章上传图片的token
         # @type FileToken: String
-        # @param GenerateSource: 印章生成来源方式
-        # 取值：
-        # SealGenerateSourceSystem 表示系统生成企业印章
-        # @type GenerateSource: String
 
-        attr_accessor :Operator, :SealName, :Agent, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken, :GenerateSource
+        attr_accessor :Operator, :SealName, :Agent, :GenerateSource, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken
 
-        def initialize(operator=nil, sealname=nil, agent=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil, generatesource=nil)
+        def initialize(operator=nil, sealname=nil, agent=nil, generatesource=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil)
           @Operator = operator
           @SealName = sealname
           @Agent = agent
+          @GenerateSource = generatesource
           @SealType = sealtype
           @FileName = filename
           @Image = image
@@ -2626,7 +2624,6 @@ module TencentCloud
           @SealChordText = sealchordtext
           @SealCentralType = sealcentraltype
           @FileToken = filetoken
-          @GenerateSource = generatesource
         end
 
         def deserialize(params)
@@ -2639,6 +2636,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @GenerateSource = params['GenerateSource']
           @SealType = params['SealType']
           @FileName = params['FileName']
           @Image = params['Image']
@@ -2649,7 +2647,6 @@ module TencentCloud
           @SealChordText = params['SealChordText']
           @SealCentralType = params['SealCentralType']
           @FileToken = params['FileToken']
-          @GenerateSource = params['GenerateSource']
         end
       end
 
@@ -4744,7 +4741,7 @@ module TencentCloud
         # @type Required: Boolean
         # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
-        # @param CustomApproverTag: 客户自定义签署人标识，64位长度，保证唯一。用于发起含有或签签署人的合同。或签参与人必须有此字段。不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
+        # @param CustomApproverTag: 企业签署方或签标识，客户自定义，64位长度。用于发起含有或签签署人的合同。或签参与人必须有此字段。合同内不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
         # @type CustomApproverTag: String
         # @param RegisterInfo: 快速注册相关信息，目前暂未开放！
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`

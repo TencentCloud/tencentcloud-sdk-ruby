@@ -797,6 +797,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于删除ScheduledSql任务
+
+        # @param request: Request instance for DeleteScheduledSql.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteScheduledSqlRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteScheduledSqlResponse`
+        def DeleteScheduledSql(request)
+          body = send_request('DeleteScheduledSql', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteScheduledSqlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除投递COS任务
 
         # @param request: Request instance for DeleteShipper.
@@ -1301,6 +1325,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取ScheduledSql任务列表
+
+        # @param request: Request instance for DescribeScheduledSqlInfo.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeScheduledSqlInfoRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeScheduledSqlInfoResponse`
+        def DescribeScheduledSqlInfo(request)
+          body = send_request('DescribeScheduledSqlInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScheduledSqlInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取投递任务列表
 
         # @param request: Request instance for DescribeShipperTasks.
@@ -1671,6 +1719,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMachineGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改ScheduledSql任务
+
+        # @param request: Request instance for ModifyScheduledSql.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyScheduledSqlRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyScheduledSqlResponse`
+        def ModifyScheduledSql(request)
+          body = send_request('ModifyScheduledSql', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyScheduledSqlResponse.new
             model.deserialize(response['Response'])
             model
           else

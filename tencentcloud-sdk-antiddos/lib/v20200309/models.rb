@@ -3183,6 +3183,71 @@ module TencentCloud
         end
       end
 
+      # DescribeBizMonitorTrend请求参数结构体
+      class DescribeBizMonitorTrendRequest < TencentCloud::Common::AbstractModel
+        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
+        # @type StartTime: String
+        # @param EndTime: 统计结束时间。 例：“2020-09-22 00:00:00”
+        # @type EndTime: String
+        # @param Id: 资源实例ID
+        # @type Id: String
+        # @param MetricName: 统计纬度，可取值intraffic outtraffic inpkg outpkg
+        # @type MetricName: String
+        # @param Period: 时间粒度 60 300 3600 21600 86400
+        # @type Period: Integer
+
+        attr_accessor :Business, :StartTime, :EndTime, :Id, :MetricName, :Period
+
+        def initialize(business=nil, starttime=nil, endtime=nil, id=nil, metricname=nil, period=nil)
+          @Business = business
+          @StartTime = starttime
+          @EndTime = endtime
+          @Id = id
+          @MetricName = metricname
+          @Period = period
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Id = params['Id']
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeBizMonitorTrend返回参数结构体
+      class DescribeBizMonitorTrendResponse < TencentCloud::Common::AbstractModel
+        # @param DataList: 曲线图各个时间点的值
+        # @type DataList: Array
+        # @param MetricName: 统计纬度
+        # @type MetricName: String
+        # @param MaxData: 返回DataList中的最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxData: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataList, :MetricName, :MaxData, :RequestId
+
+        def initialize(datalist=nil, metricname=nil, maxdata=nil, requestid=nil)
+          @DataList = datalist
+          @MetricName = metricname
+          @MaxData = maxdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataList = params['DataList']
+          @MetricName = params['MetricName']
+          @MaxData = params['MaxData']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBizTrend请求参数结构体
       class DescribeBizTrendRequest < TencentCloud::Common::AbstractModel
         # @param Statistics: 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max

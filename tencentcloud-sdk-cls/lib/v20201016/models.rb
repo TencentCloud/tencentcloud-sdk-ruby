@@ -2069,9 +2069,9 @@ module TencentCloud
         # @type Name: String
         # @param EnableFlag: 任务启动状态.  1正常开启,  2关闭
         # @type EnableFlag: Integer
-        # @param DstResource: 加工任务目的topic_id以及别名
+        # @param DstResource: 定时SQL分析目标日志主题
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
-        # @param ScheduledSqlContent: ScheduledSQL语句
+        # @param ScheduledSqlContent: 查询语句
         # @type ScheduledSqlContent: String
         # @param ProcessStartTime: 调度开始时间,Unix时间戳，单位ms
         # @type ProcessStartTime: Integer
@@ -2079,7 +2079,7 @@ module TencentCloud
         # @type ProcessType: Integer
         # @param ProcessPeriod: 调度周期(分钟)
         # @type ProcessPeriod: Integer
-        # @param ProcessTimeWindow: 调度时间窗口
+        # @param ProcessTimeWindow: 单次查询的时间窗口
         # @type ProcessTimeWindow: String
         # @param ProcessDelay: 执行延迟(秒)
         # @type ProcessDelay: Integer
@@ -2871,6 +2871,42 @@ module TencentCloud
 
       # DeleteMachineGroup返回参数结构体
       class DeleteMachineGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScheduledSql请求参数结构体
+      class DeleteScheduledSqlRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param SrcTopicId: 源日志主题ID
+        # @type SrcTopicId: String
+
+        attr_accessor :TaskId, :SrcTopicId
+
+        def initialize(taskid=nil, srctopicid=nil)
+          @TaskId = taskid
+          @SrcTopicId = srctopicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SrcTopicId = params['SrcTopicId']
+        end
+      end
+
+      # DeleteScheduledSql返回参数结构体
+      class DeleteScheduledSqlResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4207,6 +4243,65 @@ module TencentCloud
               @Partitions << partitioninfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScheduledSqlInfo请求参数结构体
+      class DescribeScheduledSqlInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :Offset, :Limit, :Name, :TaskId
+
+        def initialize(offset=nil, limit=nil, name=nil, taskid=nil)
+          @Offset = offset
+          @Limit = limit
+          @Name = name
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeScheduledSqlInfo返回参数结构体
+      class DescribeScheduledSqlInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ScheduledSqlTaskInfos: ScheduledSQL任务列表信息
+        # @type ScheduledSqlTaskInfos: Array
+        # @param TotalCount: 任务总次数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ScheduledSqlTaskInfos, :TotalCount, :RequestId
+
+        def initialize(scheduledsqltaskinfos=nil, totalcount=nil, requestid=nil)
+          @ScheduledSqlTaskInfos = scheduledsqltaskinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ScheduledSqlTaskInfos'].nil?
+            @ScheduledSqlTaskInfos = []
+            params['ScheduledSqlTaskInfos'].each do |i|
+              scheduledsqltaskinfo_tmp = ScheduledSqlTaskInfo.new
+              scheduledsqltaskinfo_tmp.deserialize(i)
+              @ScheduledSqlTaskInfos << scheduledsqltaskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6372,6 +6467,81 @@ module TencentCloud
         end
       end
 
+      # ModifyScheduledSql请求参数结构体
+      class ModifyScheduledSqlRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param SrcTopicId: 源日志主题
+        # @type SrcTopicId: String
+        # @param EnableFlag: 任务启动状态.   1正常开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param DstResource: 定时SQL分析的目标日志主题
+        # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
+        # @param ScheduledSqlContent: 查询语句
+        # @type ScheduledSqlContent: String
+        # @param ProcessPeriod: 调度周期(分钟)
+        # @type ProcessPeriod: Integer
+        # @param ProcessTimeWindow: 单次查询的时间窗口. 例子中为近15分钟
+        # @type ProcessTimeWindow: String
+        # @param ProcessDelay: 执行延迟(秒)
+        # @type ProcessDelay: Integer
+        # @param SrcTopicRegion: 源topicId的地域信息
+        # @type SrcTopicRegion: String
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param SyntaxRule: 语法规则。 默认值为0。 0：Lucene语法，1：CQL语法
+        # @type SyntaxRule: Integer
+
+        attr_accessor :TaskId, :SrcTopicId, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :Name, :SyntaxRule
+
+        def initialize(taskid=nil, srctopicid=nil, enableflag=nil, dstresource=nil, scheduledsqlcontent=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, name=nil, syntaxrule=nil)
+          @TaskId = taskid
+          @SrcTopicId = srctopicid
+          @EnableFlag = enableflag
+          @DstResource = dstresource
+          @ScheduledSqlContent = scheduledsqlcontent
+          @ProcessPeriod = processperiod
+          @ProcessTimeWindow = processtimewindow
+          @ProcessDelay = processdelay
+          @SrcTopicRegion = srctopicregion
+          @Name = name
+          @SyntaxRule = syntaxrule
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SrcTopicId = params['SrcTopicId']
+          @EnableFlag = params['EnableFlag']
+          unless params['DstResource'].nil?
+            @DstResource = ScheduledSqlResouceInfo.new
+            @DstResource.deserialize(params['DstResource'])
+          end
+          @ScheduledSqlContent = params['ScheduledSqlContent']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessTimeWindow = params['ProcessTimeWindow']
+          @ProcessDelay = params['ProcessDelay']
+          @SrcTopicRegion = params['SrcTopicRegion']
+          @Name = params['Name']
+          @SyntaxRule = params['SyntaxRule']
+        end
+      end
+
+      # ModifyScheduledSql返回参数结构体
+      class ModifyScheduledSqlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyShipper请求参数结构体
       class ModifyShipperRequest < TencentCloud::Common::AbstractModel
         # @param ShipperId: 投递规则ID
@@ -7027,6 +7197,96 @@ module TencentCloud
         def deserialize(params)
           @TopicId = params['TopicId']
           @Region = params['Region']
+        end
+      end
+
+      # ScheduledSql任务详情
+      class ScheduledSqlTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: ScheduledSql任务id
+        # @type TaskId: String
+        # @param Name: ScheduledSql任务名称
+        # @type Name: String
+        # @param SrcTopicId: 源日志主题id
+        # @type SrcTopicId: String
+        # @param SrcTopicName: 源日志主题名称
+        # @type SrcTopicName: String
+        # @param DstResource: 定时SQL分析目标主题
+        # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # @type UpdateTime: String
+        # @param Status: 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
+
+        # 5: 访问权限问题 6:内部故障 7:其他故障
+        # @type Status: Integer
+        # @param EnableFlag: 任务启用状态，1开启,  2关闭
+        # @type EnableFlag: Integer
+        # @param ScheduledSqlContent: 查询语句
+        # @type ScheduledSqlContent: String
+        # @param ProcessStartTime: 调度开始时间
+        # @type ProcessStartTime: String
+        # @param ProcessType: 调度类型，1:持续运行 2:指定调度结束时间
+        # @type ProcessType: Integer
+        # @param ProcessEndTime: 调度结束时间，当process_type=2时为必传字段
+        # @type ProcessEndTime: String
+        # @param ProcessPeriod: 调度周期(分钟)
+        # @type ProcessPeriod: Integer
+        # @param ProcessTimeWindow: 查询的时间窗口. @m-15m, @m，意为近15分钟
+        # @type ProcessTimeWindow: String
+        # @param ProcessDelay: 执行延迟(秒)
+        # @type ProcessDelay: Integer
+        # @param SrcTopicRegion: 源topicId的地域信息
+        # @type SrcTopicRegion: String
+        # @param SyntaxRule: 语法规则，0：Lucene语法，1：CQL语法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyntaxRule: Integer
+
+        attr_accessor :TaskId, :Name, :SrcTopicId, :SrcTopicName, :DstResource, :CreateTime, :UpdateTime, :Status, :EnableFlag, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessEndTime, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :SyntaxRule
+
+        def initialize(taskid=nil, name=nil, srctopicid=nil, srctopicname=nil, dstresource=nil, createtime=nil, updatetime=nil, status=nil, enableflag=nil, scheduledsqlcontent=nil, processstarttime=nil, processtype=nil, processendtime=nil, processperiod=nil, processtimewindow=nil, processdelay=nil, srctopicregion=nil, syntaxrule=nil)
+          @TaskId = taskid
+          @Name = name
+          @SrcTopicId = srctopicid
+          @SrcTopicName = srctopicname
+          @DstResource = dstresource
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @EnableFlag = enableflag
+          @ScheduledSqlContent = scheduledsqlcontent
+          @ProcessStartTime = processstarttime
+          @ProcessType = processtype
+          @ProcessEndTime = processendtime
+          @ProcessPeriod = processperiod
+          @ProcessTimeWindow = processtimewindow
+          @ProcessDelay = processdelay
+          @SrcTopicRegion = srctopicregion
+          @SyntaxRule = syntaxrule
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @SrcTopicId = params['SrcTopicId']
+          @SrcTopicName = params['SrcTopicName']
+          unless params['DstResource'].nil?
+            @DstResource = ScheduledSqlResouceInfo.new
+            @DstResource.deserialize(params['DstResource'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @EnableFlag = params['EnableFlag']
+          @ScheduledSqlContent = params['ScheduledSqlContent']
+          @ProcessStartTime = params['ProcessStartTime']
+          @ProcessType = params['ProcessType']
+          @ProcessEndTime = params['ProcessEndTime']
+          @ProcessPeriod = params['ProcessPeriod']
+          @ProcessTimeWindow = params['ProcessTimeWindow']
+          @ProcessDelay = params['ProcessDelay']
+          @SrcTopicRegion = params['SrcTopicRegion']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 

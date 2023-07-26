@@ -833,10 +833,12 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
+        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # @type RoomType: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -858,6 +860,7 @@ module TencentCloud
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
+          @RoomType = roomtype
         end
 
         def deserialize(params)
@@ -882,6 +885,7 @@ module TencentCloud
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
+          @RoomType = params['RoomType']
         end
       end
 
@@ -1937,12 +1941,14 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
+        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # @type RoomType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1962,6 +1968,7 @@ module TencentCloud
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
+          @RoomType = roomtype
           @RequestId = requestid
         end
 
@@ -1985,6 +1992,7 @@ module TencentCloud
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
+          @RoomType = params['RoomType']
           @RequestId = params['RequestId']
         end
       end
@@ -3177,10 +3185,12 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
+        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # @type RoomType: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3199,6 +3209,7 @@ module TencentCloud
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
+          @RoomType = roomtype
         end
 
         def deserialize(params)
@@ -3220,6 +3231,7 @@ module TencentCloud
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
+          @RoomType = params['RoomType']
         end
       end
 
@@ -3411,10 +3423,14 @@ module TencentCloud
         # @type InteractionMode: Integer
         # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
         # @type VideoOrientation: Integer
+        # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
+        # @type IsGradingRequiredPostClass: Integer
+        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # @type RoomType: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -3434,6 +3450,8 @@ module TencentCloud
           @EnableDirectControl = enabledirectcontrol
           @InteractionMode = interactionmode
           @VideoOrientation = videoorientation
+          @IsGradingRequiredPostClass = isgradingrequiredpostclass
+          @RoomType = roomtype
         end
 
         def deserialize(params)
@@ -3456,6 +3474,8 @@ module TencentCloud
           @EnableDirectControl = params['EnableDirectControl']
           @InteractionMode = params['InteractionMode']
           @VideoOrientation = params['VideoOrientation']
+          @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
+          @RoomType = params['RoomType']
         end
       end
 

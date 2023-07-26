@@ -1076,6 +1076,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 集团企业统一使用主代子进行操作，无需根据子企业账号进行转化查询，该接口需要屏蔽下线
+
         # 通过子企业影子账号查询主企业员工账号
 
         # @param request: Request instance for DescribeIntegrationMainOrganizationUser.

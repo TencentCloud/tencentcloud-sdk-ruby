@@ -4877,14 +4877,17 @@ module TencentCloud
         # @type OtherInvoiceListItems: Array
         # @param OtherInvoiceTableItems: 表格
         # @type OtherInvoiceTableItems: Array
+        # @param Date: 发票日期
+        # @type Date: String
 
-        attr_accessor :Title, :Total, :OtherInvoiceListItems, :OtherInvoiceTableItems
+        attr_accessor :Title, :Total, :OtherInvoiceListItems, :OtherInvoiceTableItems, :Date
 
-        def initialize(title=nil, total=nil, otherinvoicelistitems=nil, otherinvoicetableitems=nil)
+        def initialize(title=nil, total=nil, otherinvoicelistitems=nil, otherinvoicetableitems=nil, date=nil)
           @Title = title
           @Total = total
           @OtherInvoiceListItems = otherinvoicelistitems
           @OtherInvoiceTableItems = otherinvoicetableitems
+          @Date = date
         end
 
         def deserialize(params)
@@ -4906,6 +4909,7 @@ module TencentCloud
               @OtherInvoiceTableItems << otherinvoicelist_tmp
             end
           end
+          @Date = params['Date']
         end
       end
 
@@ -7767,10 +7771,13 @@ module TencentCloud
         # @param MedicalHospitalizedInvoice: 医疗住院收费票据（电子）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MedicalHospitalizedInvoice: :class:`Tencentcloud::Ocr.v20181119.models.MedicalInvoice`
+        # @param VatSalesList: 增值税销货清单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VatSalesList: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -7795,6 +7802,7 @@ module TencentCloud
           @TrainTicket = trainticket
           @MedicalOutpatientInvoice = medicaloutpatientinvoice
           @MedicalHospitalizedInvoice = medicalhospitalizedinvoice
+          @VatSalesList = vatsaleslist
         end
 
         def deserialize(params)
@@ -7893,6 +7901,10 @@ module TencentCloud
           unless params['MedicalHospitalizedInvoice'].nil?
             @MedicalHospitalizedInvoice = MedicalInvoice.new
             @MedicalHospitalizedInvoice.deserialize(params['MedicalHospitalizedInvoice'])
+          end
+          unless params['VatSalesList'].nil?
+            @VatSalesList = VatInvoiceInfo.new
+            @VatSalesList.deserialize(params['VatSalesList'])
           end
         end
       end
@@ -10345,10 +10357,18 @@ module TencentCloud
         # @type ElectronicFullNumber: String
         # @param FormName: 发票联名
         # @type FormName: String
+        # @param BlockChainMark: 是否有区块链标记（0：没有，1：有）
+        # @type BlockChainMark: Integer
+        # @param AcquisitionMark: 是否有收购标记（0：没有，1：有）
+        # @type AcquisitionMark: Integer
+        # @param SubTotal: 小计金额
+        # @type SubTotal: String
+        # @param SubTax: 小计税额
+        # @type SubTax: String
 
-        attr_accessor :CheckCode, :FormType, :TravelTax, :BuyerAddrTel, :BuyerBankAccount, :CompanySealContent, :TaxSealContent, :ServiceName, :City, :QRCodeMark, :AgentMark, :TransitMark, :OilMark, :Title, :Kind, :Code, :Number, :NumberConfirm, :Date, :Total, :TotalCn, :PretaxAmount, :Tax, :MachineCode, :Ciphertext, :Remark, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :CompanySealMark, :Issuer, :Reviewer, :Province, :VatInvoiceItemInfos, :CodeConfirm, :Receiptor, :ElectronicFullMark, :ElectronicFullNumber, :FormName
+        attr_accessor :CheckCode, :FormType, :TravelTax, :BuyerAddrTel, :BuyerBankAccount, :CompanySealContent, :TaxSealContent, :ServiceName, :City, :QRCodeMark, :AgentMark, :TransitMark, :OilMark, :Title, :Kind, :Code, :Number, :NumberConfirm, :Date, :Total, :TotalCn, :PretaxAmount, :Tax, :MachineCode, :Ciphertext, :Remark, :Seller, :SellerTaxID, :SellerAddrTel, :SellerBankAccount, :Buyer, :BuyerTaxID, :CompanySealMark, :Issuer, :Reviewer, :Province, :VatInvoiceItemInfos, :CodeConfirm, :Receiptor, :ElectronicFullMark, :ElectronicFullNumber, :FormName, :BlockChainMark, :AcquisitionMark, :SubTotal, :SubTax
 
-        def initialize(checkcode=nil, formtype=nil, traveltax=nil, buyeraddrtel=nil, buyerbankaccount=nil, companysealcontent=nil, taxsealcontent=nil, servicename=nil, city=nil, qrcodemark=nil, agentmark=nil, transitmark=nil, oilmark=nil, title=nil, kind=nil, code=nil, number=nil, numberconfirm=nil, date=nil, total=nil, totalcn=nil, pretaxamount=nil, tax=nil, machinecode=nil, ciphertext=nil, remark=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, companysealmark=nil, issuer=nil, reviewer=nil, province=nil, vatinvoiceiteminfos=nil, codeconfirm=nil, receiptor=nil, electronicfullmark=nil, electronicfullnumber=nil, formname=nil)
+        def initialize(checkcode=nil, formtype=nil, traveltax=nil, buyeraddrtel=nil, buyerbankaccount=nil, companysealcontent=nil, taxsealcontent=nil, servicename=nil, city=nil, qrcodemark=nil, agentmark=nil, transitmark=nil, oilmark=nil, title=nil, kind=nil, code=nil, number=nil, numberconfirm=nil, date=nil, total=nil, totalcn=nil, pretaxamount=nil, tax=nil, machinecode=nil, ciphertext=nil, remark=nil, seller=nil, sellertaxid=nil, selleraddrtel=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, companysealmark=nil, issuer=nil, reviewer=nil, province=nil, vatinvoiceiteminfos=nil, codeconfirm=nil, receiptor=nil, electronicfullmark=nil, electronicfullnumber=nil, formname=nil, blockchainmark=nil, acquisitionmark=nil, subtotal=nil, subtax=nil)
           @CheckCode = checkcode
           @FormType = formtype
           @TravelTax = traveltax
@@ -10391,6 +10411,10 @@ module TencentCloud
           @ElectronicFullMark = electronicfullmark
           @ElectronicFullNumber = electronicfullnumber
           @FormName = formname
+          @BlockChainMark = blockchainmark
+          @AcquisitionMark = acquisitionmark
+          @SubTotal = subtotal
+          @SubTax = subtax
         end
 
         def deserialize(params)
@@ -10443,6 +10467,10 @@ module TencentCloud
           @ElectronicFullMark = params['ElectronicFullMark']
           @ElectronicFullNumber = params['ElectronicFullNumber']
           @FormName = params['FormName']
+          @BlockChainMark = params['BlockChainMark']
+          @AcquisitionMark = params['AcquisitionMark']
+          @SubTotal = params['SubTotal']
+          @SubTax = params['SubTax']
         end
       end
 
@@ -10552,10 +10580,12 @@ module TencentCloud
         # @type LicensePlate: String
         # @param VehicleType: 车辆类型
         # @type VehicleType: String
+        # @param SerialNumber: 序号
+        # @type SerialNumber: String
 
-        attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax, :DateStart, :DateEnd, :LicensePlate, :VehicleType
+        attr_accessor :Name, :Specification, :Unit, :Quantity, :Price, :Total, :TaxRate, :Tax, :DateStart, :DateEnd, :LicensePlate, :VehicleType, :SerialNumber
 
-        def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil, datestart=nil, dateend=nil, licenseplate=nil, vehicletype=nil)
+        def initialize(name=nil, specification=nil, unit=nil, quantity=nil, price=nil, total=nil, taxrate=nil, tax=nil, datestart=nil, dateend=nil, licenseplate=nil, vehicletype=nil, serialnumber=nil)
           @Name = name
           @Specification = specification
           @Unit = unit
@@ -10568,6 +10598,7 @@ module TencentCloud
           @DateEnd = dateend
           @LicensePlate = licenseplate
           @VehicleType = vehicletype
+          @SerialNumber = serialnumber
         end
 
         def deserialize(params)
@@ -10583,6 +10614,7 @@ module TencentCloud
           @DateEnd = params['DateEnd']
           @LicensePlate = params['LicensePlate']
           @VehicleType = params['VehicleType']
+          @SerialNumber = params['SerialNumber']
         end
       end
 

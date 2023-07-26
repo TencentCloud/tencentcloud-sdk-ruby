@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，取消渠道合作加固中的任务。
+
+        # @param request: Request instance for CancelEncryptTask.
+        # @type request: :class:`Tencentcloud::ms::V20180408::CancelEncryptTaskRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::CancelEncryptTaskResponse`
+        def CancelEncryptTask(request)
+          body = send_request('CancelEncryptTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelEncryptTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
 
         # @param request: Request instance for CreateBindInstance.
@@ -63,6 +87,56 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateCosSecKeyInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于创建加固任务。
+
+        # @param request: Request instance for CreateEncryptInstance.
+        # @type request: :class:`Tencentcloud::ms::V20180408::CreateEncryptInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::CreateEncryptInstanceResponse`
+        def CreateEncryptInstance(request)
+          body = send_request('CreateEncryptInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEncryptInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。
+        # 订单类型有：免费试用、按年收费、按次收费。
+        # 应用加固支持的平台类型有：android安卓加固 、ios源码混淆 、sdk加固、applet小程序加固。
+
+        # @param request: Request instance for CreateOrderInstance.
+        # @type request: :class:`Tencentcloud::ms::V20180408::CreateOrderInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::CreateOrderInstanceResponse`
+        def CreateOrderInstance(request)
+          body = send_request('CreateOrderInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrderInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -183,6 +257,82 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApkDetectionResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制，用于查询加固任务，入参中的条件过滤字段均为精准匹配。支持功能点：1. 多任务分页查询  2.根据任务Id唯一值查询单记录
+
+        # @param request: Request instance for DescribeEncryptInstances.
+        # @type request: :class:`Tencentcloud::ms::V20180408::DescribeEncryptInstancesRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::DescribeEncryptInstancesResponse`
+        def DescribeEncryptInstances(request)
+          body = send_request('DescribeEncryptInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEncryptInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。入参中的条件过滤字段均为精准匹配。
+
+        # @param request: Request instance for DescribeEncryptPlan.
+        # @type request: :class:`Tencentcloud::ms::V20180408::DescribeEncryptPlanRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::DescribeEncryptPlanResponse`
+        def DescribeEncryptPlan(request)
+          body = send_request('DescribeEncryptPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEncryptPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口供渠道合作应用加固使用，接口调用有白名单用户限制。 接口返回的结果为：创建订单后，订单审批状态信息，以及与订单关联的资源状态等信息，入参中的条件过滤字段均为精准匹配。
+        # 接口功能点：
+        # 1.支持多订单分页查询；
+        # 2.支持唯一订单号精准匹配查询；
+        # 3.支持唯一资源号精准匹配查询；
+
+        # @param request: Request instance for DescribeOrderInstances.
+        # @type request: :class:`Tencentcloud::ms::V20180408::DescribeOrderInstancesRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::DescribeOrderInstancesResponse`
+        def DescribeOrderInstances(request)
+          body = send_request('DescribeOrderInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOrderInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -16272,6 +16272,7 @@ module TencentCloud
         # @param Url: 转码后的视频文件地址。
         # @type Url: String
         # @param Definition: 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/266/33476)。
+        # <font color=red>注意：取值 0 表示原始文件。</font>
         # @type Definition: Integer
         # @param Bitrate: 视频流码率平均值与音频流码率平均值之和， 单位：bps。
         # @type Bitrate: Integer
@@ -22503,9 +22504,9 @@ module TencentCloud
 
       # RestoreMedia请求参数结构体
       class RestoreMediaRequest < TencentCloud::Common::AbstractModel
-        # @param FileIds: 媒体文件唯一标识列表。
+        # @param FileIds: 媒体文件唯一标识列表，最大长度：100。
         # @type FileIds: Array
-        # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，单位为“天”。
+        # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         # @type RestoreDay: Integer
         # @param RestoreTier: 解冻模式。当媒体文件当前的存储类型为归档存储时，有以下取值：
         # <li>极速模式：Expedited，解冻任务在5分钟后完成。</li>
@@ -23195,7 +23196,7 @@ module TencentCloud
         end
       end
 
-      # 加权轮播媒体文件信息
+      # 轮播媒体文件信息
       class RoundPlayListItemInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件标识。
         # @type FileId: String

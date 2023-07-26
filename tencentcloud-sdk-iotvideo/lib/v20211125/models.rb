@@ -1363,6 +1363,58 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudStorageEvent请求参数结构体
+      class DeleteCloudStorageEventRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param EventId: 事件id
+        # @type EventId: String
+        # @param StartTime: 开始时间，unix时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间，unix时间
+        # @type EndTime: Integer
+        # @param UserId: 用户ID
+        # @type UserId: String
+
+        attr_accessor :ProductId, :DeviceName, :EventId, :StartTime, :EndTime, :UserId
+
+        def initialize(productid=nil, devicename=nil, eventid=nil, starttime=nil, endtime=nil, userid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @EventId = eventid
+          @StartTime = starttime
+          @EndTime = endtime
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @EventId = params['EventId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteCloudStorageEvent返回参数结构体
+      class DeleteCloudStorageEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteDevice请求参数结构体
       class DeleteDeviceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID。
@@ -2451,18 +2503,22 @@ module TencentCloud
       class DescribeCloudStorageThumbnailResponse < TencentCloud::Common::AbstractModel
         # @param ThumbnailURL: 缩略图访问地址
         # @type ThumbnailURL: String
+        # @param ExpireTime: 缩略图访问地址的过期时间
+        # @type ExpireTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ThumbnailURL, :RequestId
+        attr_accessor :ThumbnailURL, :ExpireTime, :RequestId
 
-        def initialize(thumbnailurl=nil, requestid=nil)
+        def initialize(thumbnailurl=nil, expiretime=nil, requestid=nil)
           @ThumbnailURL = thumbnailurl
+          @ExpireTime = expiretime
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ThumbnailURL = params['ThumbnailURL']
+          @ExpireTime = params['ExpireTime']
           @RequestId = params['RequestId']
         end
       end
@@ -3052,6 +3108,66 @@ module TencentCloud
               eventhistoryitem_tmp = EventHistoryItem.new
               eventhistoryitem_tmp.deserialize(i)
               @EventHistory << eventhistoryitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDevicePackages请求参数结构体
+      class DescribeDevicePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param Limit: 分页拉取数量
+        # @type Limit: Integer
+        # @param Offset: 分页拉取偏移
+        # @type Offset: Integer
+
+        attr_accessor :ProductId, :DeviceName, :Limit, :Offset
+
+        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDevicePackages返回参数结构体
+      class DescribeDevicePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 有效云存套餐数量
+        # @type TotalCount: Integer
+        # @param Packages: 有效云存套餐列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Packages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Packages, :RequestId
+
+        def initialize(totalcount=nil, packages=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Packages = packages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Packages'].nil?
+            @Packages = []
+            params['Packages'].each do |i|
+              packageinfo_tmp = PackageInfo.new
+              packageinfo_tmp.deserialize(i)
+              @Packages << packageinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5422,6 +5538,35 @@ module TencentCloud
           @TaskId = params['TaskId']
           @CreateTime = params['CreateTime']
           @State = params['State']
+        end
+      end
+
+      # 结构体（PackageInfo）记录了设备拥有的有效套餐信息，包括云存开启状态、云存类型、云存回看时长、云存套餐过期时间
+      class PackageInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 云存开启状态，0为未开启，2为正在生效，1为已过期
+        # 注：这里只返回状态为0的数据
+        # @type Status: Integer
+        # @param CSType: 云存类型，1为全时云存，2为事件云存
+        # @type CSType: Integer
+        # @param CSShiftDuration: 云存回看时长
+        # @type CSShiftDuration: Integer
+        # @param CSExpiredTime: 云存套餐过期时间
+        # @type CSExpiredTime: Integer
+
+        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime
+
+        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil)
+          @Status = status
+          @CSType = cstype
+          @CSShiftDuration = csshiftduration
+          @CSExpiredTime = csexpiredtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @CSType = params['CSType']
+          @CSShiftDuration = params['CSShiftDuration']
+          @CSExpiredTime = params['CSExpiredTime']
         end
       end
 

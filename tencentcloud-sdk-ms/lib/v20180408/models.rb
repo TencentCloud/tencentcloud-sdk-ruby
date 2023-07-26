@@ -17,6 +17,335 @@
 module TencentCloud
   module Ms
     module V20180408
+      # 渠道合作安卓加固App信息
+      class AndroidAppInfo < TencentCloud::Common::AbstractModel
+        # @param AppMd5: app文件的md5算法值，需要正确传递，在线加固必输。
+        # 例如linux环境下执行算法命令md5sum ：
+        # #md5sum test.apk
+        # d40cc11e4bddd643ecdf29cde729a12b
+        # @type AppMd5: String
+        # @param AppSize: app的大小，非必输。
+        # @type AppSize: Integer
+        # @param AppUrl: app下载链接，在线加固必输。
+        # @type AppUrl: String
+        # @param AppName: app名称，非必输
+        # @type AppName: String
+        # @param AppPkgName: app的包名，本次操作的包名。
+        # 当安卓是按年收费、免费试用加固时，在线加固和输出工具要求该字段必输，且与AndroidPlan.AppPkgName值相等。
+        # @type AppPkgName: String
+        # @param AppFileName: app的文件名，非必输。
+        # @type AppFileName: String
+        # @param AppVersion: app版本号，非必输。
+        # @type AppVersion: String
+        # @param AppType: 安卓app的文件类型，本次加固操作的应用类型 。
+        # 安卓在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        # @type AppType: String
+
+        attr_accessor :AppMd5, :AppSize, :AppUrl, :AppName, :AppPkgName, :AppFileName, :AppVersion, :AppType
+
+        def initialize(appmd5=nil, appsize=nil, appurl=nil, appname=nil, apppkgname=nil, appfilename=nil, appversion=nil, apptype=nil)
+          @AppMd5 = appmd5
+          @AppSize = appsize
+          @AppUrl = appurl
+          @AppName = appname
+          @AppPkgName = apppkgname
+          @AppFileName = appfilename
+          @AppVersion = appversion
+          @AppType = apptype
+        end
+
+        def deserialize(params)
+          @AppMd5 = params['AppMd5']
+          @AppSize = params['AppSize']
+          @AppUrl = params['AppUrl']
+          @AppName = params['AppName']
+          @AppPkgName = params['AppPkgName']
+          @AppFileName = params['AppFileName']
+          @AppVersion = params['AppVersion']
+          @AppType = params['AppType']
+        end
+      end
+
+      # 渠道合作安卓加固策略信息
+      class AndroidPlan < TencentCloud::Common::AbstractModel
+        # @param PlanId: 非必输字段，PlanId 是指本次加固使用的配置策略Id，可通过载入上次配置接口获取。其值非0时，代表引用对应的策略。
+        # @type PlanId: Integer
+        # @param AppPkgName: 本次操作的包名。
+        # 当收费模式是安卓按年收费和安卓免费试用的在线加固和输出工具加固时，要求该字段必输，且与AndroidAppInfo.AppPkgName值相等。
+        # @type AppPkgName: String
+        # @param AppType: 安卓app的文件类型，本次加固操作的应用类型 。
+        # 安卓在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        # @type AppType: String
+        # @param EncryptParam: 安卓加固必输字段。
+        # 加固策略，json格式字符串。
+        # 字段说明（0-关闭，1-开启）：
+        #         "enable"=1 #DEX整体加固;
+        #         "antiprotect"=1 #反调试;
+        #         "antirepack"=1 #防重打包、防篡改;
+        #         "dexsig"=1       #签名校验;
+        #         "antimonitor"=1 #防模拟器运行保护;
+        #         "ptrace"=1 #防动态注入、动态调试;
+        #         "so"."enable" = 1 #文件加密;
+        #         "vmp"."enable" = 1 #VMP虚拟化保护;
+        #         "respro"."assets"."enable" = 1 #assets资源文件加密
+        #        "respro"."res"."enable" = 1 #res资源文件加密
+
+        # so文件加密：
+        # 支持5种架构:
+        # apk 格式: /lib/armeabi/libxxx.so,/lib/arm64-v8a/libxxx.so,/lib/armeabi-v7a/libxxx.so,/lib/x86/libxxx.so,/lib/x86_64/libxxx.so
+        # aab格式: /base/lib/armeabi/libxxx.so,/base/lib/arm64-v8a/libxxx.so,/base/lib/armeabi-v7a/libxxx.so,/base/lib/x86/libxxx.so,/base/lib/x86_64/libxxx.so
+        # 请列举 SO 库在 apk 文件解压后的完整有效路径，如:/lib/armeabi/libxxx.so；
+        # 需要加固的 SO 库需确认为自研的 SO 库，不要加固第三方 SO 库，否则会增加 crash 风险
+
+        # res资源文件加密注意事项：
+        # 请指定需要加密的文件全路径，如：res/layout/1.xml;
+        # res资源文件加密不能加密APP图标
+        # res目录文件，不能加密以下后缀规则的文件".wav", ".mp2", ".mp3", ".ogg", ".aac", ".mpg",".mpeg", ".mid", ".midi", ".smf", ".jet", ".rtttl", ".imy", ".xmf", ".mp4", ".m4a", ".m4v", ".3gp",".3gpp", ".3g2", ".3gpp2", ".amr", ".awb", ".wma", ".wmv"
+
+        # assets资源文件加密注意事项:
+        # 请指定需要加密的文件全路径，如：assets/main.js；可以完整路径，也可以相对路径。
+        # 如果有通配符需要完整路径 ":all"或者"*"代表所有文件
+        # assets资源文件加密不能加密APP图标
+        # assets目录文件，不能加密以下后缀规则的文件".wav", ".mp2", ".mp3", ".ogg", ".aac", ".mpg",".mpeg", ".mid", ".midi", ".smf", ".jet", ".rtttl", ".imy", ".xmf", ".mp4", ".m4a", ".m4v", ".3gp",".3gpp", ".3g2", ".3gpp2", ".amr", ".awb", ".wma", ".wmv"
+
+
+        # apk[dex+so+vmp+res+assets]加固参数示例：
+        # ‘{
+        #     "dex": {
+        #         "enable": 1,
+        #         "antiprotect": 1,
+        #         "antirepack": 1,
+        #         "dexsig": 1,
+        #         "antimonitor": 1,
+        #         "ptrace": 1
+        #     },
+        #     "so": {
+        #         "enable": 1,
+        #         "ver": "1.3.3",
+        #         "file": [
+        #             "/lib/armeabi/libtest.so"
+        #         ]
+        #     },
+        #     "vmp": {
+        #         "enable": 1,
+        #         "ndkpath": "/xxx/android-ndk-r10e",
+        #         "profile": "/xxx/vmpprofile.txt",
+        #         "mapping": "/xxx/mapping.txt"
+        #     },
+        #     "respro": {
+        #         "assets": {
+        #             "enable": 1,
+        #             "file": [
+        #                 "assets/1.js",
+        #                 "assets/2.jpg"
+        #             ]
+        #         },
+        #         "res": {
+        #             "enable": 1,
+        #             "file": [
+        #                 "res/layout/1.xml",
+        #                 "res/layout/2.xml"
+        #             ]
+        #         }
+        #     }
+        # }’
+
+        # aab加固方案一
+        # [dex+res+assets]加固json字符串：
+        # ‘{
+        #     "dex": {
+        #         "enable": 1,
+        #         "antiprotect": 1,
+        #         "antimonitor": 1
+        #     },
+        #     "respro": {
+        #         "assets": {
+        #             "enable": 1,
+        #             "file": [
+        #                 "assets/1.js",
+        #                 "assets/2.jpg"
+        #             ]
+        #         },
+        #         "res": {
+        #             "enable": 1,
+        #             "file": [
+        #                 "res/layout/1.xml",
+        #                 "res/layout/2.xml"
+        #             ]
+        #         }
+        #     }
+        # }’
+
+        # aab加固方案二
+        # 单独vmp加固：
+        # ‘{
+        #     "vmp": {
+        #         "enable": 1,
+        #         "ndkpath": "/xxx/android-ndk-r10e",
+        #         "profile": "/xxx/vmpprofile.txt",
+        #         "mapping": "/xxx/mapping.txt",
+        #         "antiprotect": 1,
+        #         "antimonitor": 1
+        #     }
+        # }’
+        # @type EncryptParam: String
+
+        attr_accessor :PlanId, :AppPkgName, :AppType, :EncryptParam
+
+        def initialize(planid=nil, apppkgname=nil, apptype=nil, encryptparam=nil)
+          @PlanId = planid
+          @AppPkgName = apppkgname
+          @AppType = apptype
+          @EncryptParam = encryptparam
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @AppPkgName = params['AppPkgName']
+          @AppType = params['AppType']
+          @EncryptParam = params['EncryptParam']
+        end
+      end
+
+      # 安卓加固结果
+      class AndroidResult < TencentCloud::Common::AbstractModel
+        # @param ResultId: 结果Id,用于查询加固结果
+        # @type ResultId: String
+        # @param OrderId: 与当前任务关联的订单id
+        # @type OrderId: String
+        # @param ResourceId: 与当前任务关联的资源Id
+        # @type ResourceId: String
+        # @param OpUin: 本次任务发起者
+        # @type OpUin: Integer
+        # @param AppType: 应用类型：安卓-apk; 安卓-aab;
+        # @type AppType: String
+        # @param AppPkgName: 应用包名
+        # @type AppPkgName: String
+        # @param BindAppPkgName: 后台资源绑定的包名
+        # @type BindAppPkgName: String
+        # @param EncryptState: 加固结果
+        # @type EncryptState: Integer
+        # @param EncryptStateDesc: 加固结果描述
+        # @type EncryptStateDesc: String
+        # @param EncryptErrCode: 加固失败错误码
+        # @type EncryptErrCode: Integer
+        # @param EncryptErrDesc: 加固失败原因
+        # @type EncryptErrDesc: String
+        # @param EncryptErrRef: 加固失败解决方案
+        # @type EncryptErrRef: String
+        # @param CreatTime: 任务创建时间
+        # @type CreatTime: String
+        # @param StartTime: 任务开始处理时间
+        # @type StartTime: String
+        # @param EndTime: 任务处理结束时间
+        # @type EndTime: String
+        # @param CostTime: 加固耗时（秒单位）
+        # @type CostTime: Integer
+        # @param AppUrl: 在线加固-安卓应用原包下载链接
+        # @type AppUrl: String
+        # @param AppMd5: 在线加固-安卓应用文件MD5算法值
+        # @type AppMd5: String
+        # @param AppName: 在线加固-安卓应用应用名称
+        # @type AppName: String
+        # @param AppVersion: 在线加固-安卓应用版本；
+        # @type AppVersion: String
+        # @param AppSize: 在线加固-安卓应用大小
+        # @type AppSize: Integer
+        # @param OnlineToolVersion: 在线加固-安卓加固-腾讯云应用加固工具版本
+        # @type OnlineToolVersion: String
+        # @param EncryptAppMd5: 在线加固-安卓加固，加固成功后文件md5算法值
+        # @type EncryptAppMd5: String
+        # @param EncryptAppSize: 在线加固-安卓加固，加固成功后应用大小
+        # @type EncryptAppSize: Integer
+        # @param EncryptPkgUrl: 在线加固-安卓加固，加固包下载链接。
+        # @type EncryptPkgUrl: String
+        # @param OutputToolVersion: 输出工具-安卓加固-腾讯云输出工具版本
+        # @type OutputToolVersion: String
+        # @param OutputToolSize: 输出工具-安卓加固-工具大小
+        # @type OutputToolSize: Integer
+        # @param ToolOutputTime: 输出工具-安卓加固-工具输出时间
+        # @type ToolOutputTime: String
+        # @param ToolExpireTime: 输出工具-安卓加固-工具到期时间
+        # @type ToolExpireTime: String
+        # @param OutputToolUrl: 输出工具-安卓加固-输出工具下载链接
+        # @type OutputToolUrl: String
+        # @param AndroidPlan: 本次安卓加固策略信息
+        # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
+
+        attr_accessor :ResultId, :OrderId, :ResourceId, :OpUin, :AppType, :AppPkgName, :BindAppPkgName, :EncryptState, :EncryptStateDesc, :EncryptErrCode, :EncryptErrDesc, :EncryptErrRef, :CreatTime, :StartTime, :EndTime, :CostTime, :AppUrl, :AppMd5, :AppName, :AppVersion, :AppSize, :OnlineToolVersion, :EncryptAppMd5, :EncryptAppSize, :EncryptPkgUrl, :OutputToolVersion, :OutputToolSize, :ToolOutputTime, :ToolExpireTime, :OutputToolUrl, :AndroidPlan
+
+        def initialize(resultid=nil, orderid=nil, resourceid=nil, opuin=nil, apptype=nil, apppkgname=nil, bindapppkgname=nil, encryptstate=nil, encryptstatedesc=nil, encrypterrcode=nil, encrypterrdesc=nil, encrypterrref=nil, creattime=nil, starttime=nil, endtime=nil, costtime=nil, appurl=nil, appmd5=nil, appname=nil, appversion=nil, appsize=nil, onlinetoolversion=nil, encryptappmd5=nil, encryptappsize=nil, encryptpkgurl=nil, outputtoolversion=nil, outputtoolsize=nil, tooloutputtime=nil, toolexpiretime=nil, outputtoolurl=nil, androidplan=nil)
+          @ResultId = resultid
+          @OrderId = orderid
+          @ResourceId = resourceid
+          @OpUin = opuin
+          @AppType = apptype
+          @AppPkgName = apppkgname
+          @BindAppPkgName = bindapppkgname
+          @EncryptState = encryptstate
+          @EncryptStateDesc = encryptstatedesc
+          @EncryptErrCode = encrypterrcode
+          @EncryptErrDesc = encrypterrdesc
+          @EncryptErrRef = encrypterrref
+          @CreatTime = creattime
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @AppUrl = appurl
+          @AppMd5 = appmd5
+          @AppName = appname
+          @AppVersion = appversion
+          @AppSize = appsize
+          @OnlineToolVersion = onlinetoolversion
+          @EncryptAppMd5 = encryptappmd5
+          @EncryptAppSize = encryptappsize
+          @EncryptPkgUrl = encryptpkgurl
+          @OutputToolVersion = outputtoolversion
+          @OutputToolSize = outputtoolsize
+          @ToolOutputTime = tooloutputtime
+          @ToolExpireTime = toolexpiretime
+          @OutputToolUrl = outputtoolurl
+          @AndroidPlan = androidplan
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
+          @OrderId = params['OrderId']
+          @ResourceId = params['ResourceId']
+          @OpUin = params['OpUin']
+          @AppType = params['AppType']
+          @AppPkgName = params['AppPkgName']
+          @BindAppPkgName = params['BindAppPkgName']
+          @EncryptState = params['EncryptState']
+          @EncryptStateDesc = params['EncryptStateDesc']
+          @EncryptErrCode = params['EncryptErrCode']
+          @EncryptErrDesc = params['EncryptErrDesc']
+          @EncryptErrRef = params['EncryptErrRef']
+          @CreatTime = params['CreatTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @AppUrl = params['AppUrl']
+          @AppMd5 = params['AppMd5']
+          @AppName = params['AppName']
+          @AppVersion = params['AppVersion']
+          @AppSize = params['AppSize']
+          @OnlineToolVersion = params['OnlineToolVersion']
+          @EncryptAppMd5 = params['EncryptAppMd5']
+          @EncryptAppSize = params['EncryptAppSize']
+          @EncryptPkgUrl = params['EncryptPkgUrl']
+          @OutputToolVersion = params['OutputToolVersion']
+          @OutputToolSize = params['OutputToolSize']
+          @ToolOutputTime = params['ToolOutputTime']
+          @ToolExpireTime = params['ToolExpireTime']
+          @OutputToolUrl = params['OutputToolUrl']
+          unless params['AndroidPlan'].nil?
+            @AndroidPlan = AndroidPlan.new
+            @AndroidPlan.deserialize(params['AndroidPlan'])
+          end
+        end
+      end
+
       # app的详细基础信息
       class AppDetailInfo < TencentCloud::Common::AbstractModel
         # @param AppName: app的名称
@@ -173,6 +502,128 @@ module TencentCloud
         end
       end
 
+      # 小程序加固信息
+      class AppletInfo < TencentCloud::Common::AbstractModel
+        # @param AppletJsUrl: 客户JS包
+        # @type AppletJsUrl: String
+        # @param AppletLevel: 小程序加固等级配置
+        # 1 - 开启代码混淆、代码压缩、代码反调试保护。 2 - 开启字符串编码和代码变换，代码膨胀，随机插入冗余代码，开启代码控制流平坦化，保证业务逻辑正常前提下，扁平化代码逻辑分支，破坏代码简单的线性结构。 3 - 开启代码加密，对字符串、函数、变量、属性、类、数组等结构进行加密保护，更多得代码控制流平坦化，扁平化逻辑分支。
+        # @type AppletLevel: Integer
+        # @param Name: 本次加固输出产物名称，如”test.zip“,非空必须是 ”.zip“结尾
+        # @type Name: String
+
+        attr_accessor :AppletJsUrl, :AppletLevel, :Name
+
+        def initialize(appletjsurl=nil, appletlevel=nil, name=nil)
+          @AppletJsUrl = appletjsurl
+          @AppletLevel = appletlevel
+          @Name = name
+        end
+
+        def deserialize(params)
+          @AppletJsUrl = params['AppletJsUrl']
+          @AppletLevel = params['AppletLevel']
+          @Name = params['Name']
+        end
+      end
+
+      # 小程序加固配置
+      class AppletPlan < TencentCloud::Common::AbstractModel
+        # @param PlanId: 策略Id
+        # @type PlanId: Integer
+        # @param AppletLevel: 1 - 开启代码混淆、代码压缩、代码反调试保护。
+        # 2 - 开启字符串编码和代码变换，代码膨胀，随机插入冗余代码，开启代码控制流平坦化，保证业务逻辑正常前提下，扁平化代码逻辑分支，破坏代码简单的线性结构。
+        # 3 - 开启代码加密，对字符串、函数、变量、属性、类、数组等结构进行加密保护，更多得代码控制流平坦化，扁平化逻辑分支。
+        # @type AppletLevel: Integer
+
+        attr_accessor :PlanId, :AppletLevel
+
+        def initialize(planid=nil, appletlevel=nil)
+          @PlanId = planid
+          @AppletLevel = appletlevel
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @AppletLevel = params['AppletLevel']
+        end
+      end
+
+      # 渠道合作加固小程序加固结果
+      class AppletResult < TencentCloud::Common::AbstractModel
+        # @param ResultId: 加固任务结果id
+        # @type ResultId: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param OrderId: 订单id
+        # @type OrderId: String
+        # @param OpUin: 操作账号
+        # @type OpUin: Integer
+        # @param EncryptState: 加固结果
+        # @type EncryptState: Integer
+        # @param EncryptStateDesc: 加固结果描述
+        # @type EncryptStateDesc: String
+        # @param EncryptErrCode: 失败错误码
+        # @type EncryptErrCode: Integer
+        # @param EncryptErrDesc: 失败原因
+        # @type EncryptErrDesc: String
+        # @param EncryptErrRef: 解决方案
+        # @type EncryptErrRef: String
+        # @param CreatTime: 任务创建时间
+        # @type CreatTime: String
+        # @param StartTime: 任务开始处理时间
+        # @type StartTime: String
+        # @param EndTime: 任务处理结束时间
+        # @type EndTime: String
+        # @param CostTime: 加固耗时（秒单位）
+        # @type CostTime: Integer
+        # @param EncryptPkgUrl: 在线加固成功下载包
+        # @type EncryptPkgUrl: String
+        # @param AppletInfo: 本次加固配置
+        # @type AppletInfo: :class:`Tencentcloud::Ms.v20180408.models.AppletInfo`
+
+        attr_accessor :ResultId, :ResourceId, :OrderId, :OpUin, :EncryptState, :EncryptStateDesc, :EncryptErrCode, :EncryptErrDesc, :EncryptErrRef, :CreatTime, :StartTime, :EndTime, :CostTime, :EncryptPkgUrl, :AppletInfo
+
+        def initialize(resultid=nil, resourceid=nil, orderid=nil, opuin=nil, encryptstate=nil, encryptstatedesc=nil, encrypterrcode=nil, encrypterrdesc=nil, encrypterrref=nil, creattime=nil, starttime=nil, endtime=nil, costtime=nil, encryptpkgurl=nil, appletinfo=nil)
+          @ResultId = resultid
+          @ResourceId = resourceid
+          @OrderId = orderid
+          @OpUin = opuin
+          @EncryptState = encryptstate
+          @EncryptStateDesc = encryptstatedesc
+          @EncryptErrCode = encrypterrcode
+          @EncryptErrDesc = encrypterrdesc
+          @EncryptErrRef = encrypterrref
+          @CreatTime = creattime
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @EncryptPkgUrl = encryptpkgurl
+          @AppletInfo = appletinfo
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
+          @ResourceId = params['ResourceId']
+          @OrderId = params['OrderId']
+          @OpUin = params['OpUin']
+          @EncryptState = params['EncryptState']
+          @EncryptStateDesc = params['EncryptStateDesc']
+          @EncryptErrCode = params['EncryptErrCode']
+          @EncryptErrDesc = params['EncryptErrDesc']
+          @EncryptErrRef = params['EncryptErrRef']
+          @CreatTime = params['CreatTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @EncryptPkgUrl = params['EncryptPkgUrl']
+          unless params['AppletInfo'].nil?
+            @AppletInfo = AppletInfo.new
+            @AppletInfo.deserialize(params['AppletInfo'])
+          end
+        end
+      end
+
       # 用户绑定app的基本信息
       class BindInfo < TencentCloud::Common::AbstractModel
         # @param AppIconUrl: app的icon的url
@@ -194,6 +645,42 @@ module TencentCloud
           @AppIconUrl = params['AppIconUrl']
           @AppName = params['AppName']
           @AppPkgName = params['AppPkgName']
+        end
+      end
+
+      # CancelEncryptTask请求参数结构体
+      class CancelEncryptTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ResultId: 加固任务结果Id
+        # @type ResultId: String
+
+        attr_accessor :ResultId
+
+        def initialize(resultid=nil)
+          @ResultId = resultid
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
+        end
+      end
+
+      # CancelEncryptTask返回参数结构体
+      class CancelEncryptTaskResponse < TencentCloud::Common::AbstractModel
+        # @param State: 1: 取消任务成功 ； -1 ：取消任务失败，原因为任务进程已结束，不能取消。
+        # @type State: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :State, :RequestId
+
+        def initialize(state=nil, requestid=nil)
+          @State = state
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -290,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2023, 6
-        deprecate :CosTocken=, :none, 2023, 6
+        deprecate :CosTocken, :none, 2023, 7
+        deprecate :CosTocken=, :none, 2023, 7
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -316,6 +803,124 @@ module TencentCloud
           @CosTocken = params['CosTocken']
           @CosPrefix = params['CosPrefix']
           @CosToken = params['CosToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEncryptInstance请求参数结构体
+      class CreateEncryptInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformType: 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: 订单采购类型 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param EncryptOpType: 1-在线加固、  2-输出工具加固
+        # @type EncryptOpType: Integer
+        # @param ResourceId: 本次加固使用的资源id
+        # @type ResourceId: String
+        # @param AndroidAppInfo: 渠道合作安卓加固App信息
+        # @type AndroidAppInfo: :class:`Tencentcloud::Ms.v20180408.models.AndroidAppInfo`
+        # @param AndroidPlan: 渠道合作安卓加固策略信息
+        # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
+        # @param AppletInfo: 小程序加固信息
+        # @type AppletInfo: :class:`Tencentcloud::Ms.v20180408.models.AppletInfo`
+
+        attr_accessor :PlatformType, :OrderType, :EncryptOpType, :ResourceId, :AndroidAppInfo, :AndroidPlan, :AppletInfo
+
+        def initialize(platformtype=nil, ordertype=nil, encryptoptype=nil, resourceid=nil, androidappinfo=nil, androidplan=nil, appletinfo=nil)
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @EncryptOpType = encryptoptype
+          @ResourceId = resourceid
+          @AndroidAppInfo = androidappinfo
+          @AndroidPlan = androidplan
+          @AppletInfo = appletinfo
+        end
+
+        def deserialize(params)
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @EncryptOpType = params['EncryptOpType']
+          @ResourceId = params['ResourceId']
+          unless params['AndroidAppInfo'].nil?
+            @AndroidAppInfo = AndroidAppInfo.new
+            @AndroidAppInfo.deserialize(params['AndroidAppInfo'])
+          end
+          unless params['AndroidPlan'].nil?
+            @AndroidPlan = AndroidPlan.new
+            @AndroidPlan.deserialize(params['AndroidPlan'])
+          end
+          unless params['AppletInfo'].nil?
+            @AppletInfo = AppletInfo.new
+            @AppletInfo.deserialize(params['AppletInfo'])
+          end
+        end
+      end
+
+      # CreateEncryptInstance返回参数结构体
+      class CreateEncryptInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ResultId: 加固任务Id
+        # @type ResultId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultId, :RequestId
+
+        def initialize(resultid=nil, requestid=nil)
+          @ResultId = resultid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOrderInstance请求参数结构体
+      class CreateOrderInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformType: 平台类型枚举值：1-android安卓加固  ；2-ios源码混淆 ； 3-sdk加固 ； 4-applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: 订单采购类型 1-免费试用 ；2-按年收费 ；3-按次收费
+        # @type OrderType: Integer
+        # @param AppPkgNameList: 代表应用包名列表，值为单个包名（例如：“a.b.xxx”）或多个包名用逗号隔开(例如：“a.b.xxx,b.c.xxx”)。
+        # 当安卓按年收费加固或安卓免费试用加固时，该字段要求非空，即PlatformType=1 并且 OrderType=2时，AppPkgNameList必传值。
+        # @type AppPkgNameList: String
+
+        attr_accessor :PlatformType, :OrderType, :AppPkgNameList
+
+        def initialize(platformtype=nil, ordertype=nil, apppkgnamelist=nil)
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @AppPkgNameList = apppkgnamelist
+        end
+
+        def deserialize(params)
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @AppPkgNameList = params['AppPkgNameList']
+        end
+      end
+
+      # CreateOrderInstance返回参数结构体
+      class CreateOrderInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单Id
+        # @type OrderId: String
+        # @param ResourceId: 与订单关联的资源id
+        # @type ResourceId: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :ResourceId, :RequestId
+
+        def initialize(orderid=nil, resourceid=nil, requestid=nil)
+          @OrderId = orderid
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
         end
       end
@@ -554,6 +1159,306 @@ module TencentCloud
               resultlistitem_tmp = ResultListItem.new
               resultlistitem_tmp.deserialize(i)
               @ResultList << resultlistitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEncryptInstances请求参数结构体
+      class DescribeEncryptInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 多记录查询时使用，页码
+        # @type PageNumber: Integer
+        # @param PageSize: 多记录每页展示数量
+        # @type PageSize: Integer
+        # @param OrderField: 多记录查询时排序使用  仅支持CreateTime 任务创建时间排序
+        # @type OrderField: String
+        # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc。
+        # @type OrderDirection: String
+        # @param PlatformType: (条件过滤字段) 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: (条件过滤字段) 订单采购类型 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param EncryptOpType: (条件过滤字段) 1-在线加固 或 2-输出工具加固
+        # @type EncryptOpType: Integer
+        # @param ResultId: (条件过滤字段) 单记录查询时使用，结果ID该字段非空时，结构会根据结果ID进行单记录查询，符合查询条件时，只返回一条记录。
+        # @type ResultId: String
+        # @param OrderId: (条件过滤字段) 查询与订单Id关联的任务
+        # @type OrderId: String
+        # @param ResourceId: (条件过滤字段) 查询与资源Id关联的任务
+        # @type ResourceId: String
+        # @param AppType: (条件过滤字段) 安卓应用类型：安卓-apk; 安卓-aab;
+        # @type AppType: String
+        # @param AppPkgName: （条件过滤字段）安卓应用的包名
+        # @type AppPkgName: String
+        # @param EncryptState: 加固结果，
+        # 0：正在排队；
+        # 1：加固成功；
+        # 2：加固中；
+        # 3：加固失败；
+        # 5：重试；
+        # 多记录查询时，根据查询结果进行检索使用。
+        # @type EncryptState: Array
+
+        attr_accessor :PageNumber, :PageSize, :OrderField, :OrderDirection, :PlatformType, :OrderType, :EncryptOpType, :ResultId, :OrderId, :ResourceId, :AppType, :AppPkgName, :EncryptState
+
+        def initialize(pagenumber=nil, pagesize=nil, orderfield=nil, orderdirection=nil, platformtype=nil, ordertype=nil, encryptoptype=nil, resultid=nil, orderid=nil, resourceid=nil, apptype=nil, apppkgname=nil, encryptstate=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @EncryptOpType = encryptoptype
+          @ResultId = resultid
+          @OrderId = orderid
+          @ResourceId = resourceid
+          @AppType = apptype
+          @AppPkgName = apppkgname
+          @EncryptState = encryptstate
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @EncryptOpType = params['EncryptOpType']
+          @ResultId = params['ResultId']
+          @OrderId = params['OrderId']
+          @ResourceId = params['ResourceId']
+          @AppType = params['AppType']
+          @AppPkgName = params['AppPkgName']
+          @EncryptState = params['EncryptState']
+        end
+      end
+
+      # DescribeEncryptInstances返回参数结构体
+      class DescribeEncryptInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param EncryptResults: 渠道合作加固信息数组
+        # @type EncryptResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EncryptResults, :RequestId
+
+        def initialize(totalcount=nil, encryptresults=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EncryptResults = encryptresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['EncryptResults'].nil?
+            @EncryptResults = []
+            params['EncryptResults'].each do |i|
+              encryptresults_tmp = EncryptResults.new
+              encryptresults_tmp.deserialize(i)
+              @EncryptResults << encryptresults_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEncryptPlan请求参数结构体
+      class DescribeEncryptPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlatformType: 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: 订单采购类型 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param EncryptOpType: 1-在线加固；2-输出工具
+        # @type EncryptOpType: Integer
+        # @param ResourceId: 本次加固使用的资源id
+        # @type ResourceId: String
+        # @param AppPkgName: （条件过滤字段）安卓加固查询时，根据包名查询
+        # @type AppPkgName: String
+        # @param AppType: （条件过滤字段）安卓加固查询时，根据应用格式查询，枚举值：“apk”、“aab”
+        # @type AppType: String
+
+        attr_accessor :PlatformType, :OrderType, :EncryptOpType, :ResourceId, :AppPkgName, :AppType
+
+        def initialize(platformtype=nil, ordertype=nil, encryptoptype=nil, resourceid=nil, apppkgname=nil, apptype=nil)
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @EncryptOpType = encryptoptype
+          @ResourceId = resourceid
+          @AppPkgName = apppkgname
+          @AppType = apptype
+        end
+
+        def deserialize(params)
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @EncryptOpType = params['EncryptOpType']
+          @ResourceId = params['ResourceId']
+          @AppPkgName = params['AppPkgName']
+          @AppType = params['AppType']
+        end
+      end
+
+      # DescribeEncryptPlan返回参数结构体
+      class DescribeEncryptPlanResponse < TencentCloud::Common::AbstractModel
+        # @param PlatformType: 平台类型整型值
+        # @type PlatformType: Integer
+        # @param PlatformTypeDesc: 平台类型描述 1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformTypeDesc: String
+        # @param EncryptOpType: 1- 在线加固 2-输出工具加固
+        # @type EncryptOpType: Integer
+        # @param EncryptOpTypeDesc: 1- 在线加固 2-输出工具加固
+        # @type EncryptOpTypeDesc: String
+        # @param OrderType: 订单收费类型枚举值
+        # @type OrderType: Integer
+        # @param OrderTypeDesc: 订单收费类型描述
+        # @type OrderTypeDesc: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param AndroidPlan: 上次安卓加固策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
+        # @param AppletPlan: 上次小程序加固策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppletPlan: :class:`Tencentcloud::Ms.v20180408.models.AppletPlan`
+        # @param IOSPlan: 上次ios源码混淆加固配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IOSPlan: :class:`Tencentcloud::Ms.v20180408.models.IOSPlan`
+        # @param SDKPlan: 上次sdk加固配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SDKPlan: :class:`Tencentcloud::Ms.v20180408.models.SDKPlan`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlatformType, :PlatformTypeDesc, :EncryptOpType, :EncryptOpTypeDesc, :OrderType, :OrderTypeDesc, :ResourceId, :AndroidPlan, :AppletPlan, :IOSPlan, :SDKPlan, :RequestId
+
+        def initialize(platformtype=nil, platformtypedesc=nil, encryptoptype=nil, encryptoptypedesc=nil, ordertype=nil, ordertypedesc=nil, resourceid=nil, androidplan=nil, appletplan=nil, iosplan=nil, sdkplan=nil, requestid=nil)
+          @PlatformType = platformtype
+          @PlatformTypeDesc = platformtypedesc
+          @EncryptOpType = encryptoptype
+          @EncryptOpTypeDesc = encryptoptypedesc
+          @OrderType = ordertype
+          @OrderTypeDesc = ordertypedesc
+          @ResourceId = resourceid
+          @AndroidPlan = androidplan
+          @AppletPlan = appletplan
+          @IOSPlan = iosplan
+          @SDKPlan = sdkplan
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PlatformType = params['PlatformType']
+          @PlatformTypeDesc = params['PlatformTypeDesc']
+          @EncryptOpType = params['EncryptOpType']
+          @EncryptOpTypeDesc = params['EncryptOpTypeDesc']
+          @OrderType = params['OrderType']
+          @OrderTypeDesc = params['OrderTypeDesc']
+          @ResourceId = params['ResourceId']
+          unless params['AndroidPlan'].nil?
+            @AndroidPlan = AndroidPlan.new
+            @AndroidPlan.deserialize(params['AndroidPlan'])
+          end
+          unless params['AppletPlan'].nil?
+            @AppletPlan = AppletPlan.new
+            @AppletPlan.deserialize(params['AppletPlan'])
+          end
+          unless params['IOSPlan'].nil?
+            @IOSPlan = IOSPlan.new
+            @IOSPlan.deserialize(params['IOSPlan'])
+          end
+          unless params['SDKPlan'].nil?
+            @SDKPlan = SDKPlan.new
+            @SDKPlan.deserialize(params['SDKPlan'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOrderInstances请求参数结构体
+      class DescribeOrderInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页展示数量
+        # @type PageSize: Integer
+        # @param OrderField: 按某个字段排序，目前仅支持CreateTime排序。
+        # @type OrderField: String
+        # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc。
+        # @type OrderDirection: String
+        # @param PlatformType: （条件过滤字段）平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: （条件过滤字段）订单采购类型 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param ApprovalStatus: （条件过滤字段）订单审批状态：
+        # @type ApprovalStatus: Integer
+        # @param ResourceStatus: （条件过滤字段）资源状态：
+        # @type ResourceStatus: Integer
+        # @param OrderId: （条件过滤字段）订单ID
+        # @type OrderId: String
+        # @param ResourceId: （条件过滤字段）资源ID
+        # @type ResourceId: String
+        # @param AppPkgName: （条件过滤字段）安卓包名，查询android安卓加固订单时使用
+        # @type AppPkgName: String
+
+        attr_accessor :PageNumber, :PageSize, :OrderField, :OrderDirection, :PlatformType, :OrderType, :ApprovalStatus, :ResourceStatus, :OrderId, :ResourceId, :AppPkgName
+
+        def initialize(pagenumber=nil, pagesize=nil, orderfield=nil, orderdirection=nil, platformtype=nil, ordertype=nil, approvalstatus=nil, resourcestatus=nil, orderid=nil, resourceid=nil, apppkgname=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @ApprovalStatus = approvalstatus
+          @ResourceStatus = resourcestatus
+          @OrderId = orderid
+          @ResourceId = resourceid
+          @AppPkgName = apppkgname
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @ApprovalStatus = params['ApprovalStatus']
+          @ResourceStatus = params['ResourceStatus']
+          @OrderId = params['OrderId']
+          @ResourceId = params['ResourceId']
+          @AppPkgName = params['AppPkgName']
+        end
+      end
+
+      # DescribeOrderInstances返回参数结构体
+      class DescribeOrderInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param Orders: 订单信息
+        # @type Orders: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Orders, :RequestId
+
+        def initialize(totalcount=nil, orders=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Orders = orders
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Orders'].nil?
+            @Orders = []
+            params['Orders'].each do |i|
+              orders_tmp = Orders.new
+              orders_tmp.deserialize(i)
+              @Orders << orders_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -959,6 +1864,82 @@ module TencentCloud
         end
       end
 
+      # 渠道合作加固结果信息
+      class EncryptResults < TencentCloud::Common::AbstractModel
+        # @param PlatformType: 平台类型枚举值  1-android安卓加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        # @type PlatformType: Integer
+        # @param PlatformDesc: 平台类型描述  1-android安卓加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        # @type PlatformDesc: String
+        # @param OrderType: 订单采购类型枚举值， 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param OrderTypeDesc: 订单采购类型 描述：1-免费试用 2-按年收费 3-按次收费
+        # @type OrderTypeDesc: String
+        # @param EncryptOpType: 枚举值：1-在线加固 或 2-输出工具加固
+        # @type EncryptOpType: Integer
+        # @param EncryptOpTypeDesc: 描述：1-在线加固 或 2-输出工具加固
+        # @type EncryptOpTypeDesc: String
+        # @param ResourceId: 与当前任务关联的资源Id
+        # @type ResourceId: String
+        # @param OrderId: 与当前任务关联的订单Id
+        # @type OrderId: String
+        # @param AndroidResult: 对应PlatformType平台类型值   1-android安卓加固结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AndroidResult: :class:`Tencentcloud::Ms.v20180408.models.AndroidResult`
+        # @param IOSResult: 对应PlatformType平台类型值   2-ios源码混淆加固结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IOSResult: :class:`Tencentcloud::Ms.v20180408.models.IOSResult`
+        # @param SDKResult: 对应PlatformType平台类型值   3-sdk加固结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SDKResult: :class:`Tencentcloud::Ms.v20180408.models.SDKResult`
+        # @param AppletResult: 对应PlatformType平台类型值   4-applet小程序加固结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppletResult: :class:`Tencentcloud::Ms.v20180408.models.AppletResult`
+
+        attr_accessor :PlatformType, :PlatformDesc, :OrderType, :OrderTypeDesc, :EncryptOpType, :EncryptOpTypeDesc, :ResourceId, :OrderId, :AndroidResult, :IOSResult, :SDKResult, :AppletResult
+
+        def initialize(platformtype=nil, platformdesc=nil, ordertype=nil, ordertypedesc=nil, encryptoptype=nil, encryptoptypedesc=nil, resourceid=nil, orderid=nil, androidresult=nil, iosresult=nil, sdkresult=nil, appletresult=nil)
+          @PlatformType = platformtype
+          @PlatformDesc = platformdesc
+          @OrderType = ordertype
+          @OrderTypeDesc = ordertypedesc
+          @EncryptOpType = encryptoptype
+          @EncryptOpTypeDesc = encryptoptypedesc
+          @ResourceId = resourceid
+          @OrderId = orderid
+          @AndroidResult = androidresult
+          @IOSResult = iosresult
+          @SDKResult = sdkresult
+          @AppletResult = appletresult
+        end
+
+        def deserialize(params)
+          @PlatformType = params['PlatformType']
+          @PlatformDesc = params['PlatformDesc']
+          @OrderType = params['OrderType']
+          @OrderTypeDesc = params['OrderTypeDesc']
+          @EncryptOpType = params['EncryptOpType']
+          @EncryptOpTypeDesc = params['EncryptOpTypeDesc']
+          @ResourceId = params['ResourceId']
+          @OrderId = params['OrderId']
+          unless params['AndroidResult'].nil?
+            @AndroidResult = AndroidResult.new
+            @AndroidResult.deserialize(params['AndroidResult'])
+          end
+          unless params['IOSResult'].nil?
+            @IOSResult = IOSResult.new
+            @IOSResult.deserialize(params['IOSResult'])
+          end
+          unless params['SDKResult'].nil?
+            @SDKResult = SDKResult.new
+            @SDKResult.deserialize(params['SDKResult'])
+          end
+          unless params['AppletResult'].nil?
+            @AppletResult = AppletResult.new
+            @AppletResult.deserialize(params['AppletResult'])
+          end
+        end
+      end
+
       # 筛选数据结构
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 需要过滤的字段
@@ -976,6 +1957,38 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 渠道合作IOS源码混淆配置
+      class IOSPlan < TencentCloud::Common::AbstractModel
+        # @param PlanId: 策略id
+        # @type PlanId: Integer
+
+        attr_accessor :PlanId
+
+        def initialize(planid=nil)
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # 渠道合作ios源码混淆加固结果
+      class IOSResult < TencentCloud::Common::AbstractModel
+        # @param ResultId: 加固任务结果Id
+        # @type ResultId: String
+
+        attr_accessor :ResultId
+
+        def initialize(resultid=nil)
+          @ResultId = resultid
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
         end
       end
 
@@ -1000,6 +2013,99 @@ module TencentCloud
           @PluginType = params['PluginType']
           @PluginName = params['PluginName']
           @PluginDesc = params['PluginDesc']
+        end
+      end
+
+      # 渠道合作加固订单资源信息
+      class Orders < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param PlatformType: 平台类型整型值
+        # @type PlatformType: Integer
+        # @param PlatformTypeDesc: 平台类型描述：  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformTypeDesc: String
+        # @param OrderType: 订单采购类型整型值
+        # @type OrderType: Integer
+        # @param OrderTypeDesc: 订单采购类型描述： 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderTypeDesc: String
+        # @param AppPkgName: 安卓包年收费加固的包名
+        # @type AppPkgName: String
+        # @param ResourceId: 资源号
+        # @type ResourceId: String
+        # @param ResourceStatus: 资源状态整型值
+        # @type ResourceStatus: Integer
+        # @param ResourceStatusDesc: 资源状态描述
+        # 0-未生效、1-生效中、2-已失效。
+        # @type ResourceStatusDesc: String
+        # @param TestTimes: 订单类型为免费试用时的免费加固次数。
+        # @type TestTimes: Integer
+        # @param ValidTime: 资源生效时间
+        # @type ValidTime: String
+        # @param ExpireTime: 资源过期时间
+        # @type ExpireTime: String
+        # @param CreateTime: 资源创建时间
+        # @type CreateTime: String
+        # @param Approver: 订单审批人
+        # @type Approver: String
+        # @param ApprovalStatus: 订单审批状态整型值
+        # @type ApprovalStatus: Integer
+        # @param ApprovalStatusDesc: 订单审批状态整型值描述：0-未审批、1-审批通过、2-驳回。
+        # @type ApprovalStatusDesc: String
+        # @param ApprovalTime: 订单审批时间
+        # @type ApprovalTime: String
+        # @param TimesTaskTotalCount: 按次收费加固资源，其关联的总任务数
+        # @type TimesTaskTotalCount: Integer
+        # @param TimesTaskSuccessCount: 按次收费加固资源，其关联的任务成功数
+        # @type TimesTaskSuccessCount: Integer
+        # @param TimesTaskFailCount: 按次收费加固资源，其关联的任务失败数
+        # @type TimesTaskFailCount: Integer
+
+        attr_accessor :OrderId, :PlatformType, :PlatformTypeDesc, :OrderType, :OrderTypeDesc, :AppPkgName, :ResourceId, :ResourceStatus, :ResourceStatusDesc, :TestTimes, :ValidTime, :ExpireTime, :CreateTime, :Approver, :ApprovalStatus, :ApprovalStatusDesc, :ApprovalTime, :TimesTaskTotalCount, :TimesTaskSuccessCount, :TimesTaskFailCount
+
+        def initialize(orderid=nil, platformtype=nil, platformtypedesc=nil, ordertype=nil, ordertypedesc=nil, apppkgname=nil, resourceid=nil, resourcestatus=nil, resourcestatusdesc=nil, testtimes=nil, validtime=nil, expiretime=nil, createtime=nil, approver=nil, approvalstatus=nil, approvalstatusdesc=nil, approvaltime=nil, timestasktotalcount=nil, timestasksuccesscount=nil, timestaskfailcount=nil)
+          @OrderId = orderid
+          @PlatformType = platformtype
+          @PlatformTypeDesc = platformtypedesc
+          @OrderType = ordertype
+          @OrderTypeDesc = ordertypedesc
+          @AppPkgName = apppkgname
+          @ResourceId = resourceid
+          @ResourceStatus = resourcestatus
+          @ResourceStatusDesc = resourcestatusdesc
+          @TestTimes = testtimes
+          @ValidTime = validtime
+          @ExpireTime = expiretime
+          @CreateTime = createtime
+          @Approver = approver
+          @ApprovalStatus = approvalstatus
+          @ApprovalStatusDesc = approvalstatusdesc
+          @ApprovalTime = approvaltime
+          @TimesTaskTotalCount = timestasktotalcount
+          @TimesTaskSuccessCount = timestasksuccesscount
+          @TimesTaskFailCount = timestaskfailcount
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @PlatformType = params['PlatformType']
+          @PlatformTypeDesc = params['PlatformTypeDesc']
+          @OrderType = params['OrderType']
+          @OrderTypeDesc = params['OrderTypeDesc']
+          @AppPkgName = params['AppPkgName']
+          @ResourceId = params['ResourceId']
+          @ResourceStatus = params['ResourceStatus']
+          @ResourceStatusDesc = params['ResourceStatusDesc']
+          @TestTimes = params['TestTimes']
+          @ValidTime = params['ValidTime']
+          @ExpireTime = params['ExpireTime']
+          @CreateTime = params['CreateTime']
+          @Approver = params['Approver']
+          @ApprovalStatus = params['ApprovalStatus']
+          @ApprovalStatusDesc = params['ApprovalStatusDesc']
+          @ApprovalTime = params['ApprovalTime']
+          @TimesTaskTotalCount = params['TimesTaskTotalCount']
+          @TimesTaskSuccessCount = params['TimesTaskSuccessCount']
+          @TimesTaskFailCount = params['TimesTaskFailCount']
         end
       end
 
@@ -1321,6 +2427,38 @@ module TencentCloud
           @RepackageStatus = params['RepackageStatus']
           @Errno = params['Errno']
           @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 渠道合作sdk加固策略配置
+      class SDKPlan < TencentCloud::Common::AbstractModel
+        # @param PlanId: 策略id
+        # @type PlanId: Integer
+
+        attr_accessor :PlanId
+
+        def initialize(planid=nil)
+          @PlanId = planid
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # 渠道合作加固sdk加固结果
+      class SDKResult < TencentCloud::Common::AbstractModel
+        # @param ResultId: 加固任务结果Id
+        # @type ResultId: String
+
+        attr_accessor :ResultId
+
+        def initialize(resultid=nil)
+          @ResultId = resultid
+        end
+
+        def deserialize(params)
+          @ResultId = params['ResultId']
         end
       end
 

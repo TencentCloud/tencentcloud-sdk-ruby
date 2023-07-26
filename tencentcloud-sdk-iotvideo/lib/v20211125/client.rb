@@ -461,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除云存事件
+
+        # @param request: Request instance for DeleteCloudStorageEvent.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DeleteCloudStorageEventRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DeleteCloudStorageEventResponse`
+        def DeleteCloudStorageEvent(request)
+          body = send_request('DeleteCloudStorageEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudStorageEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除设备
 
         # @param request: Request instance for DeleteDevice.
@@ -1215,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceEventHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据设备信息拉取有效套餐列表
+
+        # @param request: Request instance for DescribeDevicePackages.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DescribeDevicePackagesRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DescribeDevicePackagesResponse`
+        def DescribeDevicePackages(request)
+          body = send_request('DescribeDevicePackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDevicePackagesResponse.new
             model.deserialize(response['Response'])
             model
           else
