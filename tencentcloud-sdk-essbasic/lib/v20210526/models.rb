@@ -1629,6 +1629,53 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateWebThemeConfig请求参数结构体
+      class ChannelCreateWebThemeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ThemeType: 主题类型<br/>EMBED_WEB_THEME：嵌入式主题
+        # <br/>目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
+        # @type ThemeType: String
+        # @param WebThemeConfig: 主题配置
+        # @type WebThemeConfig: :class:`Tencentcloud::Essbasic.v20210526.models.WebThemeConfig`
+
+        attr_accessor :Agent, :ThemeType, :WebThemeConfig
+
+        def initialize(agent=nil, themetype=nil, webthemeconfig=nil)
+          @Agent = agent
+          @ThemeType = themetype
+          @WebThemeConfig = webthemeconfig
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ThemeType = params['ThemeType']
+          unless params['WebThemeConfig'].nil?
+            @WebThemeConfig = WebThemeConfig.new
+            @WebThemeConfig.deserialize(params['WebThemeConfig'])
+          end
+        end
+      end
+
+      # ChannelCreateWebThemeConfig返回参数结构体
+      class ChannelCreateWebThemeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDeleteRoleUsers请求参数结构体
       class ChannelDeleteRoleUsersRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 代理信息此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
@@ -5849,6 +5896,29 @@ module TencentCloud
           @CustomUserId = params['CustomUserId']
           @ClientIp = params['ClientIp']
           @ProxyIp = params['ProxyIp']
+        end
+      end
+
+      # 主题配置
+      class WebThemeConfig < TencentCloud::Common::AbstractModel
+        # @param DisplaySignBrandLogo: 页面底部是否显示电子签logo
+        # <br/>true：允许在页面底部隐藏电子签logo
+        # <br/>默认false，不允许允许在页面底部隐藏电子签logo
+        # @type DisplaySignBrandLogo: Boolean
+        # @param WebEmbedThemeColor: 嵌入式主题颜色
+        # <br/>支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        # @type WebEmbedThemeColor: String
+
+        attr_accessor :DisplaySignBrandLogo, :WebEmbedThemeColor
+
+        def initialize(displaysignbrandlogo=nil, webembedthemecolor=nil)
+          @DisplaySignBrandLogo = displaysignbrandlogo
+          @WebEmbedThemeColor = webembedthemecolor
+        end
+
+        def deserialize(params)
+          @DisplaySignBrandLogo = params['DisplaySignBrandLogo']
+          @WebEmbedThemeColor = params['WebEmbedThemeColor']
         end
       end
 

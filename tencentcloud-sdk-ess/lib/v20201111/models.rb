@@ -1081,6 +1081,73 @@ module TencentCloud
         end
       end
 
+      # CreateEmbedWebUrl请求参数结构体
+      class CreateEmbedWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作者信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param EmbedType: WEB嵌入资源类型。
+        # <br/>CREATE_SEAL: 创建印章
+        # <br/>PREVIEW_SEAL_LIST：预览印章列表
+        # <br/>PREVIEW_SEAL_DETAIL：预览印章详情
+        # <br/>EXTEND_SERVICE：拓展服务
+        # @type EmbedType: String
+        # @param BusinessId: WEB嵌入的业务资源ID
+        # <br/>PREVIEW_SEAL_DETAIL，必填，取值为印章id
+        # @type BusinessId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Reviewer: 抄送方信息
+        # @type Reviewer: :class:`Tencentcloud::Ess.v20201111.models.ReviewerInfo`
+
+        attr_accessor :Operator, :EmbedType, :BusinessId, :Agent, :Reviewer
+
+        def initialize(operator=nil, embedtype=nil, businessid=nil, agent=nil, reviewer=nil)
+          @Operator = operator
+          @EmbedType = embedtype
+          @BusinessId = businessid
+          @Agent = agent
+          @Reviewer = reviewer
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @EmbedType = params['EmbedType']
+          @BusinessId = params['BusinessId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Reviewer'].nil?
+            @Reviewer = ReviewerInfo.new
+            @Reviewer.deserialize(params['Reviewer'])
+          end
+        end
+      end
+
+      # CreateEmbedWebUrl返回参数结构体
+      class CreateEmbedWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入的web链接，有效期：5分钟
+        # EmbedType=PREVIEW_CC_FLOW，该url为h5链接
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateFlowApprovers请求参数结构体
       class CreateFlowApproversRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -2156,6 +2223,72 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationBatchSignUrl请求参数结构体
+      class CreateOrganizationBatchSignUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 调用方用户信息，UserId 必填，支持填入集团子公司经办人UserId。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowIds: 指定需要进行批量签署的流程id，数量1-100，填写后用户将通过链接对这些合同进行批量签署。
+        # @type FlowIds: Array
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param UserId: 员工的UserId，该UserId对应的员工必须已经加入企业并实名，Name和Mobile为空时该字段不能为空。（优先使用UserId对应的员工）
+        # @type UserId: String
+        # @param Name: 员工姓名，该字段需要与Mobile组合使用，UserId为空时该字段不能为空。（UserId为空时，使用Name和Mbile对应的员工）
+        # @type Name: String
+        # @param Mobile: 员工手机号码，该字段需要与Name组合使用，UserId为空时该字段不能为空。（UserId为空时，使用Name和Mbile对应的员工）
+        # @type Mobile: String
+
+        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile
+
+        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil)
+          @Operator = operator
+          @FlowIds = flowids
+          @Agent = agent
+          @UserId = userid
+          @Name = name
+          @Mobile = mobile
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowIds = params['FlowIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @UserId = params['UserId']
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+        end
+      end
+
+      # CreateOrganizationBatchSignUrl返回参数结构体
+      class CreateOrganizationBatchSignUrlResponse < TencentCloud::Common::AbstractModel
+        # @param SignUrl: 批量签署入口链接
+        # @type SignUrl: String
+        # @param ExpiredTime: 链接过期时间戳
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignUrl, :ExpiredTime, :RequestId
+
+        def initialize(signurl=nil, expiredtime=nil, requestid=nil)
+          @SignUrl = signurl
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignUrl = params['SignUrl']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrepareFlow请求参数结构体
       class CreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -2175,10 +2308,12 @@ module TencentCloud
         # @type Approvers: Array
         # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
         # @type IntelligentStatus: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus
+        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus, :Agent
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil, agent=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
@@ -2187,6 +2322,7 @@ module TencentCloud
           @UserFlowTypeId = userflowtypeid
           @Approvers = approvers
           @IntelligentStatus = intelligentstatus
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2208,6 +2344,10 @@ module TencentCloud
             end
           end
           @IntelligentStatus = params['IntelligentStatus']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -2796,6 +2936,54 @@ module TencentCloud
           @Path = params['Path']
           @QrCode = params['QrCode']
           @UrlType = params['UrlType']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWebThemeConfig请求参数结构体
+      class CreateWebThemeConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ThemeType: 主题类型
+        # <br/>EMBED_WEB_THEME：嵌入式主题
+        # <br/>目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
+        # @type ThemeType: String
+        # @param WebThemeConfig: 主题配置
+        # @type WebThemeConfig: :class:`Tencentcloud::Ess.v20201111.models.WebThemeConfig`
+
+        attr_accessor :Operator, :ThemeType, :WebThemeConfig
+
+        def initialize(operator=nil, themetype=nil, webthemeconfig=nil)
+          @Operator = operator
+          @ThemeType = themetype
+          @WebThemeConfig = webthemeconfig
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ThemeType = params['ThemeType']
+          unless params['WebThemeConfig'].nil?
+            @WebThemeConfig = WebThemeConfig.new
+            @WebThemeConfig.deserialize(params['WebThemeConfig'])
+          end
+        end
+      end
+
+      # CreateWebThemeConfig返回参数结构体
+      class CreateWebThemeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4765,13 +4953,17 @@ module TencentCloud
         # 	ESIGN -- 个人印章类型
         # 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
         # @type ComponentLimitType: Array
+        # @param ApproverVerifyTypes: 合同查看方式<br/>默认1 -实名查看 <br/>2-短信验证码查看(企业签署方暂不支持该方式)
+        # @type ApproverVerifyTypes: Array
+        # @param ApproverSignTypes: 合同签署方式(默认1,2) <br/>1-人脸认证 <br/>2-签署密码 <br/>3-运营商三要素
+        # @type ApproverSignTypes: Array
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes
         extend Gem::Deprecate
         deprecate :JumpUrl, :none, 2023, 7
         deprecate :JumpUrl=, :none, 2023, 7
 
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -4795,6 +4987,8 @@ module TencentCloud
           @SignComponents = signcomponents
           @Components = components
           @ComponentLimitType = componentlimittype
+          @ApproverVerifyTypes = approververifytypes
+          @ApproverSignTypes = approversigntypes
         end
 
         def deserialize(params)
@@ -4841,6 +5035,8 @@ module TencentCloud
             end
           end
           @ComponentLimitType = params['ComponentLimitType']
+          @ApproverVerifyTypes = params['ApproverVerifyTypes']
+          @ApproverSignTypes = params['ApproverSignTypes']
         end
       end
 
@@ -5968,6 +6164,26 @@ module TencentCloud
         end
       end
 
+      # 关注方信息
+      class ReviewerInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param Mobile: 手机号
+        # @type Mobile: String
+
+        attr_accessor :Name, :Mobile
+
+        def initialize(name=nil, mobile=nil)
+          @Name = name
+          @Mobile = mobile
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+        end
+      end
+
       # 模板结构体中的印章信息
       class SealInfo < TencentCloud::Common::AbstractModel
 
@@ -6795,6 +7011,30 @@ module TencentCloud
           end
           @VerifySerialNo = params['VerifySerialNo']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 页面主题配置
+      class WebThemeConfig < TencentCloud::Common::AbstractModel
+        # @param DisplaySignBrandLogo: 是否页面底部显示电子签logo
+        # <br/>true：允许在页面底部隐藏电子签logo
+        # <br/>false：不允许允许在页面底部隐藏电子签logo
+        # <br/>默认false，不隐藏logo
+        # @type DisplaySignBrandLogo: Boolean
+        # @param WebEmbedThemeColor: 主题颜色
+        # <br/>支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        # @type WebEmbedThemeColor: String
+
+        attr_accessor :DisplaySignBrandLogo, :WebEmbedThemeColor
+
+        def initialize(displaysignbrandlogo=nil, webembedthemecolor=nil)
+          @DisplaySignBrandLogo = displaysignbrandlogo
+          @WebEmbedThemeColor = webembedthemecolor
+        end
+
+        def deserialize(params)
+          @DisplaySignBrandLogo = params['DisplaySignBrandLogo']
+          @WebEmbedThemeColor = params['WebEmbedThemeColor']
         end
       end
 

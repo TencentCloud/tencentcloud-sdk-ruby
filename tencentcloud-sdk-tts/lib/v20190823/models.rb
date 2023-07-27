@@ -31,7 +31,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param VoiceType: 音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
         # @type VoiceType: Integer
-        # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li>
+        # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
         # @type PrimaryLanguage: Integer
         # @param SampleRate: 音频采样率：<li>16000：16k（默认）</li><li>8000：8k</li>
         # @type SampleRate: Integer
@@ -237,7 +237,7 @@ module TencentCloud
         # @type ModelType: Integer
         # @param VoiceType: 音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
         # @type VoiceType: Integer
-        # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li>
+        # @param PrimaryLanguage: 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
         # @type PrimaryLanguage: Integer
         # @param SampleRate: 音频采样率：
         # <li>24000：24k（部分音色支持，请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)）</li>

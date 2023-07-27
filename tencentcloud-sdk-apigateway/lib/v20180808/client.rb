@@ -1752,32 +1752,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口已废弃
-
-        # 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
-
-        # @param request: Request instance for GenerateApiDocument.
-        # @type request: :class:`Tencentcloud::apigateway::V20180808::GenerateApiDocumentRequest`
-        # @rtype: :class:`Tencentcloud::apigateway::V20180808::GenerateApiDocumentResponse`
-        def GenerateApiDocument(request)
-          body = send_request('GenerateApiDocument', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GenerateApiDocumentResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
 
         # @param request: Request instance for ImportOpenApi.

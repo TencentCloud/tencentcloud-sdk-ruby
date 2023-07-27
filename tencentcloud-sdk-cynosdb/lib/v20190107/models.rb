@@ -6218,10 +6218,14 @@ module TencentCloud
         # @type Database: String
         # @param FileType: 文件类型，可选值：csv, original
         # @type FileType: String
+        # @param OrderBy: 排序字段，可选值： QueryTime,LockTime,RowsExamined,RowsSent
+        # @type OrderBy: String
+        # @param OrderByType: 排序类型，可选值：asc,desc
+        # @type OrderByType: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :FileType
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Username, :Host, :Database, :FileType, :OrderBy, :OrderByType
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, filetype=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, username=nil, host=nil, database=nil, filetype=nil, orderby=nil, orderbytype=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -6231,6 +6235,8 @@ module TencentCloud
           @Host = host
           @Database = database
           @FileType = filetype
+          @OrderBy = orderby
+          @OrderByType = orderbytype
         end
 
         def deserialize(params)
@@ -6243,6 +6249,8 @@ module TencentCloud
           @Host = params['Host']
           @Database = params['Database']
           @FileType = params['FileType']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
         end
       end
 

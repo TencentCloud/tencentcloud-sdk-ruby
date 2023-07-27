@@ -157,10 +157,12 @@ module TencentCloud
         # @param LogoParam: 标识内容设置。
         # 默认在融合结果图右下角添加“本图片为AI合成图片”字样，您可根据自身需要替换为其他的Logo图片。
         # @type LogoParam: :class:`Tencentcloud::Facefusion.v20220927.models.LogoParam`
+        # @param FuseParam: 融合参数。
+        # @type FuseParam: :class:`Tencentcloud::Facefusion.v20220927.models.FuseParam`
 
-        attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :LogoAdd, :LogoParam
+        attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :LogoAdd, :LogoParam, :FuseParam
 
-        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, mergeinfos=nil, fuseprofiledegree=nil, fusefacedegree=nil, logoadd=nil, logoparam=nil)
+        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, mergeinfos=nil, fuseprofiledegree=nil, fusefacedegree=nil, logoadd=nil, logoparam=nil, fuseparam=nil)
           @ProjectId = projectid
           @ModelId = modelid
           @RspImgType = rspimgtype
@@ -169,6 +171,7 @@ module TencentCloud
           @FuseFaceDegree = fusefacedegree
           @LogoAdd = logoadd
           @LogoParam = logoparam
+          @FuseParam = fuseparam
         end
 
         def deserialize(params)
@@ -190,6 +193,10 @@ module TencentCloud
             @LogoParam = LogoParam.new
             @LogoParam.deserialize(params['LogoParam'])
           end
+          unless params['FuseParam'].nil?
+            @FuseParam = FuseParam.new
+            @FuseParam.deserialize(params['FuseParam'])
+          end
         end
       end
 
@@ -210,6 +217,48 @@ module TencentCloud
         def deserialize(params)
           @FusedImage = params['FusedImage']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 融合参数
+      class FuseParam < TencentCloud::Common::AbstractModel
+        # @param ImageCodecParam: 图片编码参数
+        # @type ImageCodecParam: :class:`Tencentcloud::Facefusion.v20220927.models.ImageCodecParam`
+
+        attr_accessor :ImageCodecParam
+
+        def initialize(imagecodecparam=nil)
+          @ImageCodecParam = imagecodecparam
+        end
+
+        def deserialize(params)
+          unless params['ImageCodecParam'].nil?
+            @ImageCodecParam = ImageCodecParam.new
+            @ImageCodecParam.deserialize(params['ImageCodecParam'])
+          end
+        end
+      end
+
+      # 图片编码参数
+      class ImageCodecParam < TencentCloud::Common::AbstractModel
+        # @param MetaData: 元数据
+        # @type MetaData: Array
+
+        attr_accessor :MetaData
+
+        def initialize(metadata=nil)
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          unless params['MetaData'].nil?
+            @MetaData = []
+            params['MetaData'].each do |i|
+              metadata_tmp = MetaData.new
+              metadata_tmp.deserialize(i)
+              @MetaData << metadata_tmp
+            end
+          end
         end
       end
 
@@ -291,6 +340,26 @@ module TencentCloud
             @InputImageFaceRect.deserialize(params['InputImageFaceRect'])
           end
           @TemplateFaceID = params['TemplateFaceID']
+        end
+      end
+
+      # MetaData数据结构，Key/Value格式
+      class MetaData < TencentCloud::Common::AbstractModel
+        # @param MetaKey: MetaData的Key
+        # @type MetaKey: String
+        # @param MetaValue: MetaData的Value
+        # @type MetaValue: String
+
+        attr_accessor :MetaKey, :MetaValue
+
+        def initialize(metakey=nil, metavalue=nil)
+          @MetaKey = metakey
+          @MetaValue = metavalue
+        end
+
+        def deserialize(params)
+          @MetaKey = params['MetaKey']
+          @MetaValue = params['MetaValue']
         end
       end
 

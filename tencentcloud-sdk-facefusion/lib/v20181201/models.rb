@@ -168,10 +168,12 @@ module TencentCloud
         # @type CelebrityIdentify: Integer
         # @param Url: 图片Url地址
         # @type Url: String
+        # @param FuseParam: 融合参数
+        # @type FuseParam: :class:`Tencentcloud::Facefusion.v20181201.models.FuseParam`
 
-        attr_accessor :ProjectId, :ModelId, :RspImgType, :Image, :PornDetect, :CelebrityIdentify, :Url
+        attr_accessor :ProjectId, :ModelId, :RspImgType, :Image, :PornDetect, :CelebrityIdentify, :Url, :FuseParam
 
-        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, image=nil, porndetect=nil, celebrityidentify=nil, url=nil)
+        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, image=nil, porndetect=nil, celebrityidentify=nil, url=nil, fuseparam=nil)
           @ProjectId = projectid
           @ModelId = modelid
           @RspImgType = rspimgtype
@@ -179,6 +181,7 @@ module TencentCloud
           @PornDetect = porndetect
           @CelebrityIdentify = celebrityidentify
           @Url = url
+          @FuseParam = fuseparam
         end
 
         def deserialize(params)
@@ -189,6 +192,10 @@ module TencentCloud
           @PornDetect = params['PornDetect']
           @CelebrityIdentify = params['CelebrityIdentify']
           @Url = params['Url']
+          unless params['FuseParam'].nil?
+            @FuseParam = FuseParam.new
+            @FuseParam.deserialize(params['FuseParam'])
+          end
         end
       end
 
@@ -298,10 +305,12 @@ module TencentCloud
         # @param CelebrityIdentify: 0表示不需要不适宜内容识别，1表示需要不适宜内容识别。默认值为0。
         # 请注意，不适宜内容识别服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
         # @type CelebrityIdentify: Integer
+        # @param FuseParam: 融合参数
+        # @type FuseParam: :class:`Tencentcloud::Facefusion.v20181201.models.FuseParam`
 
-        attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :CelebrityIdentify
+        attr_accessor :ProjectId, :ModelId, :RspImgType, :MergeInfos, :FuseProfileDegree, :FuseFaceDegree, :CelebrityIdentify, :FuseParam
 
-        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, mergeinfos=nil, fuseprofiledegree=nil, fusefacedegree=nil, celebrityidentify=nil)
+        def initialize(projectid=nil, modelid=nil, rspimgtype=nil, mergeinfos=nil, fuseprofiledegree=nil, fusefacedegree=nil, celebrityidentify=nil, fuseparam=nil)
           @ProjectId = projectid
           @ModelId = modelid
           @RspImgType = rspimgtype
@@ -309,6 +318,7 @@ module TencentCloud
           @FuseProfileDegree = fuseprofiledegree
           @FuseFaceDegree = fusefacedegree
           @CelebrityIdentify = celebrityidentify
+          @FuseParam = fuseparam
         end
 
         def deserialize(params)
@@ -326,6 +336,10 @@ module TencentCloud
           @FuseProfileDegree = params['FuseProfileDegree']
           @FuseFaceDegree = params['FuseFaceDegree']
           @CelebrityIdentify = params['CelebrityIdentify']
+          unless params['FuseParam'].nil?
+            @FuseParam = FuseParam.new
+            @FuseParam.deserialize(params['FuseParam'])
+          end
         end
       end
 
@@ -438,6 +452,48 @@ module TencentCloud
         end
       end
 
+      # 融合参数
+      class FuseParam < TencentCloud::Common::AbstractModel
+        # @param ImageCodecParam: 图片编码参数
+        # @type ImageCodecParam: :class:`Tencentcloud::Facefusion.v20181201.models.ImageCodecParam`
+
+        attr_accessor :ImageCodecParam
+
+        def initialize(imagecodecparam=nil)
+          @ImageCodecParam = imagecodecparam
+        end
+
+        def deserialize(params)
+          unless params['ImageCodecParam'].nil?
+            @ImageCodecParam = ImageCodecParam.new
+            @ImageCodecParam.deserialize(params['ImageCodecParam'])
+          end
+        end
+      end
+
+      # 图片编码参数
+      class ImageCodecParam < TencentCloud::Common::AbstractModel
+        # @param MetaData: 元数据
+        # @type MetaData: Array
+
+        attr_accessor :MetaData
+
+        def initialize(metadata=nil)
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          unless params['MetaData'].nil?
+            @MetaData = []
+            params['MetaData'].each do |i|
+              metadata_tmp = MetaData.new
+              metadata_tmp.deserialize(i)
+              @MetaData << metadata_tmp
+            end
+          end
+        end
+      end
+
       # 人脸信息
       class MaterialFaceList < TencentCloud::Common::AbstractModel
         # @param FaceId: 人脸序号
@@ -489,6 +545,26 @@ module TencentCloud
             @InputImageFaceRect.deserialize(params['InputImageFaceRect'])
           end
           @TemplateFaceID = params['TemplateFaceID']
+        end
+      end
+
+      # MetaData数据结构，Key/Value格式
+      class MetaData < TencentCloud::Common::AbstractModel
+        # @param MetaKey: MetaData的Key
+        # @type MetaKey: String
+        # @param MetaValue: MetaData的Value
+        # @type MetaValue: String
+
+        attr_accessor :MetaKey, :MetaValue
+
+        def initialize(metakey=nil, metavalue=nil)
+          @MetaKey = metakey
+          @MetaValue = metavalue
+        end
+
+        def deserialize(params)
+          @MetaKey = params['MetaKey']
+          @MetaValue = params['MetaValue']
         end
       end
 

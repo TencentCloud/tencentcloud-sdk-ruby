@@ -526,6 +526,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成页面主题配置
+
+        # @param request: Request instance for ChannelCreateWebThemeConfig.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateWebThemeConfigRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateWebThemeConfigResponse`
+        def ChannelCreateWebThemeConfig(request)
+          body = send_request('ChannelCreateWebThemeConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateWebThemeConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
 
         # @param request: Request instance for ChannelDeleteRoleUsers.

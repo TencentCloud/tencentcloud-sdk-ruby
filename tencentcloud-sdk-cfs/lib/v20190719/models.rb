@@ -1272,19 +1272,27 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网 ID
         # @type SubnetId: String
+        # @param Offset: Offset 分页码
+        # @type Offset: Integer
+        # @param Limit: Limit 页面大小
+        # @type Limit: Integer
 
-        attr_accessor :FileSystemId, :VpcId, :SubnetId
+        attr_accessor :FileSystemId, :VpcId, :SubnetId, :Offset, :Limit
 
-        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil)
+        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, offset=nil, limit=nil)
           @FileSystemId = filesystemid
           @VpcId = vpcid
           @SubnetId = subnetid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 

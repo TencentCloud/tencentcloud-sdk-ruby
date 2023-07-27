@@ -5929,26 +5929,6 @@ module TencentCloud
         end
       end
 
-      # api文档下载
-      class DocumentSDK < TencentCloud::Common::AbstractModel
-        # @param DocumentURL: 生成的 document 会存放到 COS 中，此出参返回产生文件的下载链接。
-        # @type DocumentURL: String
-        # @param SdkURL: 生成的 SDK 会存放到 COS 中，此出参返回产生 SDK 文件的下载链接。
-        # @type SdkURL: String
-
-        attr_accessor :DocumentURL, :SdkURL
-
-        def initialize(documenturl=nil, sdkurl=nil)
-          @DocumentURL = documenturl
-          @SdkURL = sdkurl
-        end
-
-        def deserialize(params)
-          @DocumentURL = params['DocumentURL']
-          @SdkURL = params['SdkURL']
-        end
-      end
-
       # 服务自定义域名列表
       class DomainSetList < TencentCloud::Common::AbstractModel
         # @param DomainName: 域名名称。
@@ -6162,53 +6142,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
-        end
-      end
-
-      # GenerateApiDocument请求参数结构体
-      class GenerateApiDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: 待创建文档的服务唯一 ID。
-        # @type ServiceId: String
-        # @param GenEnvironment: 待创建 SDK 的服务所在环境。
-        # @type GenEnvironment: String
-        # @param GenLanguage: 待创建 SDK 的语言。当前只支持 Python 和 JavaScript。
-        # @type GenLanguage: String
-
-        attr_accessor :ServiceId, :GenEnvironment, :GenLanguage
-
-        def initialize(serviceid=nil, genenvironment=nil, genlanguage=nil)
-          @ServiceId = serviceid
-          @GenEnvironment = genenvironment
-          @GenLanguage = genlanguage
-        end
-
-        def deserialize(params)
-          @ServiceId = params['ServiceId']
-          @GenEnvironment = params['GenEnvironment']
-          @GenLanguage = params['GenLanguage']
-        end
-      end
-
-      # GenerateApiDocument返回参数结构体
-      class GenerateApiDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param Result: api文档&sdk链接。
-        # @type Result: :class:`Tencentcloud::Apigateway.v20180808.models.DocumentSDK`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = DocumentSDK.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
         end
       end
 

@@ -2934,14 +2934,17 @@ module TencentCloud
         # API 3.0 Explorer 设置方式参考：
         # Config = {"CropIdCard":true,"CropPortrait":true}
         # @type Config: String
+        # @param EnableRecognitionRectify: 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
+        # @type EnableRecognitionRectify: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config
+        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify
 
-        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardSide = cardside
           @Config = config
+          @EnableRecognitionRectify = enablerecognitionrectify
         end
 
         def deserialize(params)
@@ -2949,6 +2952,7 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @CardSide = params['CardSide']
           @Config = params['Config']
+          @EnableRecognitionRectify = params['EnableRecognitionRectify']
         end
       end
 

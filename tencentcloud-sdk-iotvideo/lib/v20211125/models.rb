@@ -5552,14 +5552,22 @@ module TencentCloud
         # @type CSShiftDuration: Integer
         # @param CSExpiredTime: 云存套餐过期时间
         # @type CSExpiredTime: Integer
+        # @param CreatedAt: 云存套餐创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: Integer
+        # @param UpdatedAt: 云存套餐更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: Integer
 
-        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime
+        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt
 
-        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil)
+        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil)
           @Status = status
           @CSType = cstype
           @CSShiftDuration = csshiftduration
           @CSExpiredTime = csexpiredtime
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
         end
 
         def deserialize(params)
@@ -5567,6 +5575,8 @@ module TencentCloud
           @CSType = params['CSType']
           @CSShiftDuration = params['CSShiftDuration']
           @CSExpiredTime = params['CSExpiredTime']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
         end
       end
 

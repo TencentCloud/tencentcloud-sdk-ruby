@@ -1070,96 +1070,111 @@ module TencentCloud
 
       # CreateReadOnlyDBInstance请求参数结构体
       class CreateReadOnlyDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param SpecCode: 售卖规格ID。该参数可以通过调用DescribeClasses的返回值中的SpecCode字段来获取。
+        # @param Zone: 实例所属主可用区， 如：ap-guangzhou-3；
+        # 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
+        # @type Zone: String
+        # @param MasterDBInstanceId: 只读实例的主实例ID。
+        # @type MasterDBInstanceId: String
+        # @param SpecCode: 售卖规格码。该参数可以通过调用[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)的返回值中的SpecCode字段来获取。
         # @type SpecCode: String
         # @param Storage: 实例容量大小，单位：GB。
         # @type Storage: Integer
-        # @param InstanceCount: 一次性购买的实例数量。取值1-100
+        # @param InstanceCount: 购买实例数量，取值范围：[1-10]。一次性购买支持最大数量10个，若超过该数量，可进行多次调用进行购买。
         # @type InstanceCount: Integer
-        # @param Period: 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        # @param Period: 购买时长，单位：月。
+        # <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        # <li>后付费：只支持1
         # @type Period: Integer
-        # @param MasterDBInstanceId: 只读实例的主实例ID
-        # @type MasterDBInstanceId: String
-        # @param Zone: 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
-        # @type Zone: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: Integer
-        # @param DBVersion: 【废弃】不再需要指定，内核版本号与主实例保持一致
-        # @type DBVersion: String
-        # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
+        # @param VpcId: 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
+        # @type VpcId: String
+        # @param SubnetId: 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
+        # @type SubnetId: String
+        # @param InstanceChargeType: 实例计费类型，目前支持：
+        # <li>PREPAID：预付费，即包年包月。
+        # <li>POSTPAID_BY_HOUR：后付费，即按量计费。
+        # 默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
         # @type InstanceChargeType: String
-        # @param AutoVoucher: 是否自动使用代金券。1（是），0（否），默认不使用。
+        # @param AutoVoucher: 是否自动使用代金券：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表，目前仅支持指定一张代金券。
         # @type VoucherIds: Array
-        # @param AutoRenewFlag: 续费标记：0-正常续费（默认）；1-自动续费；
+        # @param AutoRenewFlag: 续费标记：
+        # <li>0：手动续费
+        # <li>1：自动续费
+        # 默认值：0
         # @type AutoRenewFlag: Integer
-        # @param VpcId: 私有网络ID。
-        # @type VpcId: String
-        # @param SubnetId: 私有网络子网ID。
-        # @type SubnetId: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
         # @param ActivityId: 优惠活动ID
         # @type ActivityId: Integer
-        # @param Name: 实例名(后续支持)
-        # @type Name: String
-        # @param NeedSupportIpv6: 是否需要支持Ipv6，1：是，0：否
-        # @type NeedSupportIpv6: Integer
         # @param ReadOnlyGroupId: 只读组ID。
         # @type ReadOnlyGroupId: String
-        # @param TagList: 实例需要绑定的Tag信息，默认为空（该类型为Tag数组类型）
+        # @param TagList: 实例需要绑定的Tag信息，默认为空；可以通过调用 [DescribeTags](https://cloud.tencent.com/document/api/651/35316) 返回值中的 Tags 字段来获取。
         # @type TagList: :class:`Tencentcloud::Postgres.v20170312.models.Tag`
-        # @param SecurityGroupIds: 安全组id
+        # @param SecurityGroupIds: 实例所属安全组，该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         # @type SecurityGroupIds: Array
+        # @param NeedSupportIpv6: 是否需要支持Ipv6：
+        # <li>0：否
+        # <li>1：是
+        # 默认值：0
+        # @type NeedSupportIpv6: Integer
+        # @param Name: 实例名(后续支持)
+        # @type Name: String
+        # @param DBVersion: 【废弃】不再需要指定，内核版本号与主实例保持一致
+        # @type DBVersion: String
 
-        attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :MasterDBInstanceId, :Zone, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :VpcId, :SubnetId, :ActivityId, :Name, :NeedSupportIpv6, :ReadOnlyGroupId, :TagList, :SecurityGroupIds
+        attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion
 
-        def initialize(speccode=nil, storage=nil, instancecount=nil, period=nil, masterdbinstanceid=nil, zone=nil, projectid=nil, dbversion=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, vpcid=nil, subnetid=nil, activityid=nil, name=nil, needsupportipv6=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil)
+        def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil)
+          @Zone = zone
+          @MasterDBInstanceId = masterdbinstanceid
           @SpecCode = speccode
           @Storage = storage
           @InstanceCount = instancecount
           @Period = period
-          @MasterDBInstanceId = masterdbinstanceid
-          @Zone = zone
-          @ProjectId = projectid
-          @DBVersion = dbversion
+          @VpcId = vpcid
+          @SubnetId = subnetid
           @InstanceChargeType = instancechargetype
           @AutoVoucher = autovoucher
           @VoucherIds = voucherids
           @AutoRenewFlag = autorenewflag
-          @VpcId = vpcid
-          @SubnetId = subnetid
+          @ProjectId = projectid
           @ActivityId = activityid
-          @Name = name
-          @NeedSupportIpv6 = needsupportipv6
           @ReadOnlyGroupId = readonlygroupid
           @TagList = taglist
           @SecurityGroupIds = securitygroupids
+          @NeedSupportIpv6 = needsupportipv6
+          @Name = name
+          @DBVersion = dbversion
         end
 
         def deserialize(params)
+          @Zone = params['Zone']
+          @MasterDBInstanceId = params['MasterDBInstanceId']
           @SpecCode = params['SpecCode']
           @Storage = params['Storage']
           @InstanceCount = params['InstanceCount']
           @Period = params['Period']
-          @MasterDBInstanceId = params['MasterDBInstanceId']
-          @Zone = params['Zone']
-          @ProjectId = params['ProjectId']
-          @DBVersion = params['DBVersion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
           @InstanceChargeType = params['InstanceChargeType']
           @AutoVoucher = params['AutoVoucher']
           @VoucherIds = params['VoucherIds']
           @AutoRenewFlag = params['AutoRenewFlag']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
+          @ProjectId = params['ProjectId']
           @ActivityId = params['ActivityId']
-          @Name = params['Name']
-          @NeedSupportIpv6 = params['NeedSupportIpv6']
           @ReadOnlyGroupId = params['ReadOnlyGroupId']
           unless params['TagList'].nil?
             @TagList = Tag.new
             @TagList.deserialize(params['TagList'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          @NeedSupportIpv6 = params['NeedSupportIpv6']
+          @Name = params['Name']
+          @DBVersion = params['DBVersion']
         end
       end
 
