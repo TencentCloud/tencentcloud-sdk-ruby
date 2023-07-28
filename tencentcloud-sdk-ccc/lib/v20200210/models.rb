@@ -2874,15 +2874,19 @@ module TencentCloud
         # @type StaffBuyList: Array
         # @param PhoneNumBuyList: 号码购买列表
         # @type PhoneNumBuyList: Array
+        # @param SipBuyNum: 办公电话购买数（还在有效期内）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SipBuyNum: Integer
 
-        attr_accessor :SdkAppId, :Name, :StaffBuyNum, :StaffBuyList, :PhoneNumBuyList
+        attr_accessor :SdkAppId, :Name, :StaffBuyNum, :StaffBuyList, :PhoneNumBuyList, :SipBuyNum
 
-        def initialize(sdkappid=nil, name=nil, staffbuynum=nil, staffbuylist=nil, phonenumbuylist=nil)
+        def initialize(sdkappid=nil, name=nil, staffbuynum=nil, staffbuylist=nil, phonenumbuylist=nil, sipbuynum=nil)
           @SdkAppId = sdkappid
           @Name = name
           @StaffBuyNum = staffbuynum
           @StaffBuyList = staffbuylist
           @PhoneNumBuyList = phonenumbuylist
+          @SipBuyNum = sipbuynum
         end
 
         def deserialize(params)
@@ -2905,6 +2909,7 @@ module TencentCloud
               @PhoneNumBuyList << phonenumbuyinfo_tmp
             end
           end
+          @SipBuyNum = params['SipBuyNum']
         end
       end
 
@@ -3137,19 +3142,24 @@ module TencentCloud
         # @type BuyTime: Integer
         # @param EndTime: 截止时间戳
         # @type EndTime: Integer
+        # @param SipNum: 购买办公电话数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SipNum: Integer
 
-        attr_accessor :Num, :BuyTime, :EndTime
+        attr_accessor :Num, :BuyTime, :EndTime, :SipNum
 
-        def initialize(num=nil, buytime=nil, endtime=nil)
+        def initialize(num=nil, buytime=nil, endtime=nil, sipnum=nil)
           @Num = num
           @BuyTime = buytime
           @EndTime = endtime
+          @SipNum = sipnum
         end
 
         def deserialize(params)
           @Num = params['Num']
           @BuyTime = params['BuyTime']
           @EndTime = params['EndTime']
+          @SipNum = params['SipNum']
         end
       end
 

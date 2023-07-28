@@ -1853,7 +1853,9 @@ module TencentCloud
       class CreateFlowSignUrlRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程编号
         # @type FlowId: String
-        # @param FlowApproverInfos: 流程签署人，其中ApproverName，ApproverMobile和ApproverType必传，其他可不传，ApproverType目前只支持个人类型的签署人。还需注意签署人只能有手写签名和时间类型的签署控件，其他类型的填写控件和签署控件暂时都未支持。
+        # @param FlowApproverInfos: 流程签署人列表，其中结构体的ApproverName，ApproverMobile和ApproverType必传，其他可不传，ApproverType目前只支持个人类型的签署人。
+
+        # 签署人只能有手写签名和时间类型的签署控件，其他类型的填写控件和签署控件暂时都未支持。
         # @type FlowApproverInfos: Array
         # @param Operator: 用户信息，此结构体UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
@@ -3673,19 +3675,27 @@ module TencentCloud
 
       # DescribeFlowTemplates请求参数结构体
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 调用方员工/经办人信息
+        # UserId 必填，在企业控制台组织架构中可以查到员工的UserId
+        # 注：请保证对应
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: 代理相关应用信息
+        # 如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ContentType: 查询内容：0-模板列表及详情（默认），1-仅模板列表
+        # @param ContentType: 查询内容类型
+        # 0-模板列表及详情（默认）
+        # 1-仅模板列表
         # @type ContentType: Integer
-        # @param Filters: 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
+        # @param Filters: 搜索条件，本字段用于指定模板Id进行查询。
+        # Key：template-id
+        # Values：需要查询的模板Id列表
         # @type Filters: Array
-        # @param Offset: 查询偏移位置，默认0
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默从第一页返回。页码从0开始，即首页为0。
         # @type Offset: Integer
-        # @param Limit: 查询个数，默认20，最大200
+        # @param Limit: 指定每页多少条数据，如果不传默认为20，单页最大200。
         # @type Limit: Integer
-        # @param ApplicationId: ApplicationId不为空，查询指定应用下的模板列表
+        # @param ApplicationId: 用于查询指定应用号下单模板列表。
+        # ApplicationId不为空，查询指定应用下的模板列表
         # ApplicationId为空，查询所有应用下的模板列表
         # @type ApplicationId: String
         # @param IsChannel: 默认为false，查询SaaS模板库列表；

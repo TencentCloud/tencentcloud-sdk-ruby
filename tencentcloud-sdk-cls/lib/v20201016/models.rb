@@ -2362,6 +2362,104 @@ module TencentCloud
         end
       end
 
+      # 仪表盘信息
+      class DashboardInfo < TencentCloud::Common::AbstractModel
+        # @param DashboardId: 仪表盘id
+        # @type DashboardId: String
+        # @param DashboardName: 仪表盘名字
+        # @type DashboardName: String
+        # @param Data: 仪表盘数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param CreateTime: 创建仪表盘的时间
+        # @type CreateTime: String
+        # @param AssumerUin: AssumerUin非空则表示创建该日志主题的服务方Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssumerUin: Integer
+        # @param RoleName: RoleName非空则表示创建该日志主题的服务方使用的角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param AssumerName: AssumerName非空则表示创建该日志主题的服务方名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssumerName: String
+        # @param Tags: 日志主题绑定的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param DashboardRegion: 仪表盘所在地域： 为了兼容老的地域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DashboardRegion: String
+        # @param UpdateTime: 修改仪表盘的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param DashboardTopicInfos: 仪表盘对应的topic相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DashboardTopicInfos: Array
+
+        attr_accessor :DashboardId, :DashboardName, :Data, :CreateTime, :AssumerUin, :RoleName, :AssumerName, :Tags, :DashboardRegion, :UpdateTime, :DashboardTopicInfos
+
+        def initialize(dashboardid=nil, dashboardname=nil, data=nil, createtime=nil, assumeruin=nil, rolename=nil, assumername=nil, tags=nil, dashboardregion=nil, updatetime=nil, dashboardtopicinfos=nil)
+          @DashboardId = dashboardid
+          @DashboardName = dashboardname
+          @Data = data
+          @CreateTime = createtime
+          @AssumerUin = assumeruin
+          @RoleName = rolename
+          @AssumerName = assumername
+          @Tags = tags
+          @DashboardRegion = dashboardregion
+          @UpdateTime = updatetime
+          @DashboardTopicInfos = dashboardtopicinfos
+        end
+
+        def deserialize(params)
+          @DashboardId = params['DashboardId']
+          @DashboardName = params['DashboardName']
+          @Data = params['Data']
+          @CreateTime = params['CreateTime']
+          @AssumerUin = params['AssumerUin']
+          @RoleName = params['RoleName']
+          @AssumerName = params['AssumerName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DashboardRegion = params['DashboardRegion']
+          @UpdateTime = params['UpdateTime']
+          unless params['DashboardTopicInfos'].nil?
+            @DashboardTopicInfos = []
+            params['DashboardTopicInfos'].each do |i|
+              dashboardtopicinfo_tmp = DashboardTopicInfo.new
+              dashboardtopicinfo_tmp.deserialize(i)
+              @DashboardTopicInfos << dashboardtopicinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 仪表盘关联的topic信息
+      class DashboardTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: 主题id
+        # @type TopicId: String
+        # @param Region: topic所在的地域
+        # @type Region: String
+
+        attr_accessor :TopicId, :Region
+
+        def initialize(topicid=nil, region=nil)
+          @TopicId = topicid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Region = params['Region']
+        end
+      end
+
       # 数据加工的资源信息
       class DataTransformResouceInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 目标主题id
@@ -3514,6 +3612,116 @@ module TencentCloud
               cosrechargeinfo_tmp = CosRechargeInfo.new
               cosrechargeinfo_tmp.deserialize(i)
               @Data << cosrechargeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDashboards请求参数结构体
+      class DescribeDashboardsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+        # @param Filters: <br><li> dashboardId
+
+        # 按照【仪表盘id】进行过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> dashboardName
+
+        # 按照【仪表盘名字】进行模糊搜索过滤。
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> dashboardRegion
+
+        # 按照【仪表盘地域】进行过滤，为了兼容老的仪表盘，通过云API创建的仪表盘没有地域属性
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> tagKey
+
+        # 按照【标签键】进行过滤。
+
+        # 类型：String
+
+        # 必选：否
+
+        # <br><li> tag:tagKey
+
+        # 按照【标签键值对】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。
+
+        # 类型：String
+
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param TopicIdRegionFilter: 按照topicId和regionId过滤。
+        # @type TopicIdRegionFilter: Array
+
+        attr_accessor :Offset, :Limit, :Filters, :TopicIdRegionFilter
+
+        def initialize(offset=nil, limit=nil, filters=nil, topicidregionfilter=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @TopicIdRegionFilter = topicidregionfilter
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TopicIdRegionFilter'].nil?
+            @TopicIdRegionFilter = []
+            params['TopicIdRegionFilter'].each do |i|
+              topicidandregion_tmp = TopicIdAndRegion.new
+              topicidandregion_tmp.deserialize(i)
+              @TopicIdRegionFilter << topicidandregion_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDashboards返回参数结构体
+      class DescribeDashboardsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 仪表盘的数量
+        # @type TotalCount: Integer
+        # @param DashboardInfos: 仪表盘详细明细
+        # @type DashboardInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DashboardInfos, :RequestId
+
+        def initialize(totalcount=nil, dashboardinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DashboardInfos = dashboardinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DashboardInfos'].nil?
+            @DashboardInfos = []
+            params['DashboardInfos'].each do |i|
+              dashboardinfo_tmp = DashboardInfo.new
+              dashboardinfo_tmp.deserialize(i)
+              @DashboardInfos << dashboardinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7184,19 +7392,27 @@ module TencentCloud
       class ScheduledSqlResouceInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 目标主题id
         # @type TopicId: String
-        # @param Region: topic的地域信息
+        # @param Region: 主题的的地域信息
         # @type Region: String
+        # @param BizType: 主题类型：0为日志主题，1为指标主题
+        # @type BizType: Integer
+        # @param MetricName: 指标名称
+        # @type MetricName: String
 
-        attr_accessor :TopicId, :Region
+        attr_accessor :TopicId, :Region, :BizType, :MetricName
 
-        def initialize(topicid=nil, region=nil)
+        def initialize(topicid=nil, region=nil, biztype=nil, metricname=nil)
           @TopicId = topicid
           @Region = region
+          @BizType = biztype
+          @MetricName = metricname
         end
 
         def deserialize(params)
           @TopicId = params['TopicId']
           @Region = params['Region']
+          @BizType = params['BizType']
+          @MetricName = params['MetricName']
         end
       end
 
@@ -7697,6 +7913,27 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 仪表盘 topic与地域信息
+      class TopicIdAndRegion < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param RegionId: 日志主题id 所在的地域id
+        # 地域ID - 访问链接查看详情：https://iwiki.woa.com/pages/viewpage.action?pageId=780556968#id-地域码表-一.region大区（标准地域）
+        # @type RegionId: Integer
+
+        attr_accessor :TopicId, :RegionId
+
+        def initialize(topicid=nil, regionid=nil)
+          @TopicId = topicid
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @RegionId = params['RegionId']
         end
       end
 

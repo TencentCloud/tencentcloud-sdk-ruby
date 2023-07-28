@@ -45,6 +45,26 @@ module TencentCloud
         end
       end
 
+      # 用于接口DescribeAccessHistogram 的出参
+      class AccessHistogramItem < TencentCloud::Common::AbstractModel
+        # @param BTime: 时间，单位ms
+        # @type BTime: Integer
+        # @param Count: 日志条数
+        # @type Count: Integer
+
+        attr_accessor :BTime, :Count
+
+        def initialize(btime=nil, count=nil)
+          @BTime = btime
+          @Count = count
+        end
+
+        def deserialize(params)
+          @BTime = params['BTime']
+          @Count = params['Count']
+        end
+      end
+
       # 用于 DescribeAccessIndex 的出参
       class AccessKeyValueInfo < TencentCloud::Common::AbstractModel
         # @param Key: 需要配置键值或者元字段索引的字段
@@ -1393,6 +1413,74 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessHistogram请求参数结构体
+      class DescribeAccessHistogramRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 老版本查询的日志主题ID，新版本传空字符串即可
+        # @type TopicId: String
+        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @type From: Integer
+        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @type To: Integer
+        # @param Query: 查询语句，语句长度最大为4096
+        # @type Query: String
+        # @param Interval: 柱状图间隔时间差，单位ms
+        # @type Interval: Integer
+
+        attr_accessor :TopicId, :From, :To, :Query, :Interval
+
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, interval=nil)
+          @TopicId = topicid
+          @From = from
+          @To = to
+          @Query = query
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @From = params['From']
+          @To = params['To']
+          @Query = params['Query']
+          @Interval = params['Interval']
+        end
+      end
+
+      # DescribeAccessHistogram返回参数结构体
+      class DescribeAccessHistogramResponse < TencentCloud::Common::AbstractModel
+        # @param Interval: 柱状图间隔时间差，单位ms
+        # @type Interval: Integer
+        # @param TotalCount: 满足条件的日志条数
+        # @type TotalCount: Integer
+        # @param HistogramInfos: 注意：此字段可能返回 null，表示取不到有效值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HistogramInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Interval, :TotalCount, :HistogramInfos, :RequestId
+
+        def initialize(interval=nil, totalcount=nil, histograminfos=nil, requestid=nil)
+          @Interval = interval
+          @TotalCount = totalcount
+          @HistogramInfos = histograminfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Interval = params['Interval']
+          @TotalCount = params['TotalCount']
+          unless params['HistogramInfos'].nil?
+            @HistogramInfos = []
+            params['HistogramInfos'].each do |i|
+              accesshistogramitem_tmp = AccessHistogramItem.new
+              accesshistogramitem_tmp.deserialize(i)
+              @HistogramInfos << accesshistogramitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

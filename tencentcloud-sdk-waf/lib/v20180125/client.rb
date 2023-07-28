@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于访问日志柱状趋势图
+
+        # @param request: Request instance for DescribeAccessHistogram.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAccessHistogramRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAccessHistogramResponse`
+        def DescribeAccessHistogram(request)
+          body = send_request('DescribeAccessHistogram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAccessHistogramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取访问日志索引配置信息
 
         # @param request: Request instance for DescribeAccessIndex.

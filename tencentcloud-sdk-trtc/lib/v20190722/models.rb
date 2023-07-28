@@ -1990,7 +1990,7 @@ module TencentCloud
         # @type LocationY: Integer
         # @param ZOrder: 子画面在输出时的层级，不填默认为0。
         # @type ZOrder: Integer
-        # @param RenderMode: 子画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
+        # @param RenderMode: 子画面在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底。不填默认为0。
         # @type RenderMode: Integer
         # @param BackGroundColor: 【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：
         # 红色：0xcc0033。
@@ -2005,10 +2005,12 @@ module TencentCloud
         # @type BackgroundImageUrl: String
         # @param CustomCrop: 客户自定义裁剪，针对原始输入流裁剪
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
+        # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩。不填默认为3。
+        # @type BackgroundRenderMode: Integer
 
-        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode
 
-        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil)
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -2019,6 +2021,7 @@ module TencentCloud
           @BackGroundColor = backgroundcolor
           @BackgroundImageUrl = backgroundimageurl
           @CustomCrop = customcrop
+          @BackgroundRenderMode = backgroundrendermode
         end
 
         def deserialize(params)
@@ -2038,6 +2041,7 @@ module TencentCloud
             @CustomCrop = McuCustomCrop.new
             @CustomCrop.deserialize(params['CustomCrop'])
           end
+          @BackgroundRenderMode = params['BackgroundRenderMode']
         end
       end
 
@@ -2228,15 +2232,18 @@ module TencentCloud
         # @type BackgroundImageUrl: String
         # @param WaterMarkList: 混流布局的水印参数。
         # @type WaterMarkList: Array
+        # @param BackgroundRenderMode: 背景图在输出时的显示模式：0为裁剪，1为缩放并显示黑底，2为变比例伸缩。后台默认为变比例伸缩。
+        # @type BackgroundRenderMode: Integer
 
-        attr_accessor :VideoEncode, :LayoutParams, :BackGroundColor, :BackgroundImageUrl, :WaterMarkList
+        attr_accessor :VideoEncode, :LayoutParams, :BackGroundColor, :BackgroundImageUrl, :WaterMarkList, :BackgroundRenderMode
 
-        def initialize(videoencode=nil, layoutparams=nil, backgroundcolor=nil, backgroundimageurl=nil, watermarklist=nil)
+        def initialize(videoencode=nil, layoutparams=nil, backgroundcolor=nil, backgroundimageurl=nil, watermarklist=nil, backgroundrendermode=nil)
           @VideoEncode = videoencode
           @LayoutParams = layoutparams
           @BackGroundColor = backgroundcolor
           @BackgroundImageUrl = backgroundimageurl
           @WaterMarkList = watermarklist
+          @BackgroundRenderMode = backgroundrendermode
         end
 
         def deserialize(params)
@@ -2258,6 +2265,7 @@ module TencentCloud
               @WaterMarkList << mcuwatermarkparams_tmp
             end
           end
+          @BackgroundRenderMode = params['BackgroundRenderMode']
         end
       end
 

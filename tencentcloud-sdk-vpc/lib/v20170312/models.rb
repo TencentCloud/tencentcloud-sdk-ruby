@@ -10411,6 +10411,88 @@ module TencentCloud
         end
       end
 
+      # DescribeSpecificTrafficPackageUsedDetails请求参数结构体
+      class DescribeSpecificTrafficPackageUsedDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageId: 共享流量包唯一ID
+        # @type TrafficPackageId: String
+        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。详细的过滤条件如下：<li> resource-id - String - 是否必填：否 - （过滤条件）按照抵扣流量资源的唯一 ID 过滤。</li><li> resource-type - String - 是否必填：否 - （过滤条件）按照资源类型过滤，资源类型包括 CVM 和 EIP </li>
+        # @type Filters: Array
+        # @param OrderField: 排序条件。该参数仅支持根据抵扣量排序，传值为 deduction
+        # @type OrderField: String
+        # @param OrderType: 排序类型，仅支持0和1，0-降序，1-升序。不传默认为0
+        # @type OrderType: Integer
+        # @param StartTime: 开始时间。不传默认为当前时间往前推30天
+        # @type StartTime: String
+        # @param EndTime: 结束时间。不传默认为当前时间
+        # @type EndTime: String
+        # @param Offset: 分页参数
+        # @type Offset: Integer
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+
+        attr_accessor :TrafficPackageId, :Filters, :OrderField, :OrderType, :StartTime, :EndTime, :Offset, :Limit
+
+        def initialize(trafficpackageid=nil, filters=nil, orderfield=nil, ordertype=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+          @TrafficPackageId = trafficpackageid
+          @Filters = filters
+          @OrderField = orderfield
+          @OrderType = ordertype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TrafficPackageId = params['TrafficPackageId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @OrderField = params['OrderField']
+          @OrderType = params['OrderType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSpecificTrafficPackageUsedDetails返回参数结构体
+      class DescribeSpecificTrafficPackageUsedDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的共享流量包用量明细的总数
+        # @type TotalCount: Integer
+        # @param UsedDetailSet: 共享流量包用量明细列表
+        # @type UsedDetailSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :UsedDetailSet, :RequestId
+
+        def initialize(totalcount=nil, useddetailset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @UsedDetailSet = useddetailset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['UsedDetailSet'].nil?
+            @UsedDetailSet = []
+            params['UsedDetailSet'].each do |i|
+              useddetail_tmp = UsedDetail.new
+              useddetail_tmp.deserialize(i)
+              @UsedDetailSet << useddetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubnetResourceDashboard请求参数结构体
       class DescribeSubnetResourceDashboardRequest < TencentCloud::Common::AbstractModel
         # @param SubnetIds: Subnet实例ID，例如：subnet-f1xjkw1b。
@@ -10894,14 +10976,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param EndPointServiceIds: 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         # @type EndPointServiceIds: Array
+        # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
+        # @type IsListAuthorizedEndPointService: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds
+        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService
 
-        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil, islistauthorizedendpointservice=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @EndPointServiceIds = endpointserviceids
+          @IsListAuthorizedEndPointService = islistauthorizedendpointservice
         end
 
         def deserialize(params)
@@ -10916,6 +11001,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @EndPointServiceIds = params['EndPointServiceIds']
+          @IsListAuthorizedEndPointService = params['IsListAuthorizedEndPointService']
         end
       end
 
@@ -19923,6 +20009,32 @@ module TencentCloud
         end
       end
 
+      # 流量描述。
+      class TrafficFlow < TencentCloud::Common::AbstractModel
+        # @param Value: 实际流量，单位为 字节
+        # @type Value: Integer
+        # @param FormatValue: 格式化后的流量，单位见参数 FormatUnit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormatValue: Float
+        # @param FormatUnit: 格式化后流量的单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormatUnit: String
+
+        attr_accessor :Value, :FormatValue, :FormatUnit
+
+        def initialize(value=nil, formatvalue=nil, formatunit=nil)
+          @Value = value
+          @FormatValue = formatvalue
+          @FormatUnit = formatunit
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @FormatValue = params['FormatValue']
+          @FormatUnit = params['FormatUnit']
+        end
+      end
+
       # 流量包信息描述类型
       class TrafficPackage < TencentCloud::Common::AbstractModel
         # @param TrafficPackageId: 流量包唯一ID
@@ -20256,6 +20368,68 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 共享流量包用量明细
+      class UsedDetail < TencentCloud::Common::AbstractModel
+        # @param TrafficPackageId: 流量包唯一ID
+        # @type TrafficPackageId: String
+        # @param TrafficPackageName: 流量包名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficPackageName: String
+        # @param TotalAmount: 流量包总量
+        # @type TotalAmount: :class:`Tencentcloud::Vpc.v20170312.models.TrafficFlow`
+        # @param Deduction: 本次抵扣
+        # @type Deduction: :class:`Tencentcloud::Vpc.v20170312.models.TrafficFlow`
+        # @param RemainingAmount: 本次抵扣后剩余量
+        # @type RemainingAmount: :class:`Tencentcloud::Vpc.v20170312.models.TrafficFlow`
+        # @param Time: 抵扣时间
+        # @type Time: String
+        # @param ResourceType: 资源类型。可能的值: CVM, LB, NAT, HAVIP, EIP
+        # @type ResourceType: String
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param ResourceName: 资源名称
+        # @type ResourceName: String
+        # @param Deadline: 流量包到期时间
+        # @type Deadline: String
+
+        attr_accessor :TrafficPackageId, :TrafficPackageName, :TotalAmount, :Deduction, :RemainingAmount, :Time, :ResourceType, :ResourceId, :ResourceName, :Deadline
+
+        def initialize(trafficpackageid=nil, trafficpackagename=nil, totalamount=nil, deduction=nil, remainingamount=nil, time=nil, resourcetype=nil, resourceid=nil, resourcename=nil, deadline=nil)
+          @TrafficPackageId = trafficpackageid
+          @TrafficPackageName = trafficpackagename
+          @TotalAmount = totalamount
+          @Deduction = deduction
+          @RemainingAmount = remainingamount
+          @Time = time
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @Deadline = deadline
+        end
+
+        def deserialize(params)
+          @TrafficPackageId = params['TrafficPackageId']
+          @TrafficPackageName = params['TrafficPackageName']
+          unless params['TotalAmount'].nil?
+            @TotalAmount = TrafficFlow.new
+            @TotalAmount.deserialize(params['TotalAmount'])
+          end
+          unless params['Deduction'].nil?
+            @Deduction = TrafficFlow.new
+            @Deduction.deserialize(params['Deduction'])
+          end
+          unless params['RemainingAmount'].nil?
+            @RemainingAmount = TrafficFlow.new
+            @RemainingAmount.deserialize(params['RemainingAmount'])
+          end
+          @Time = params['Time']
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @Deadline = params['Deadline']
         end
       end
 

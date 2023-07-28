@@ -2876,7 +2876,7 @@ module TencentCloud
 
       # ListAttachedGroupPolicies返回参数结构体
       class ListAttachedGroupPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalNum: 策略总数
+        # @param TotalNum: 策略总数。取值范围大于等于0。
         # @type TotalNum: Integer
         # @param List: 策略列表
         # @type List: Array
@@ -4921,23 +4921,23 @@ module TencentCloud
       # UpdateUserOIDCConfig请求参数结构体
       class UpdateUserOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
-        # 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
+        # 对应企业IdP提供的Openid-configuration中"issuer"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
         # @type IdentityUrl: String
-        # @param IdentityKey: 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的帐号安全，建议您定期轮换签名公钥。
+        # @param IdentityKey: RSA签名公钥，JWKS格式，需要进行base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的账号安全，建议您定期轮换签名公钥。
         # @type IdentityKey: String
-        # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID。
+        # @param ClientId: 客户端ID，在OpenID Connect身份提供商注册的客户端ID，允许英文字母、数字、特殊字符.-_:/，不能以特殊字符.-_:/开头，单个客户端ID最大64个字符。
         # @type ClientId: String
-        # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值。
+        # @param AuthorizationEndpoint: 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
         # @type AuthorizationEndpoint: String
-        # @param ResponseType: 授权请求Response type，固定值id_token。
+        # @param ResponseType: 授权请求Response type，有code，id_token，固定值id_token。
         # @type ResponseType: String
-        # @param ResponseMode: 授权请求Response mode。授权请求返回模式，form_post和fragment两种可选模式，推荐选择form_post模式。
+        # @param ResponseMode: 授权请求Response mode。授权请求返回模式，有form_post和fragment两种可选模式，推荐选择form_post模式。
         # @type ResponseMode: String
-        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段
+        # @param MappingFiled: 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段,仅支持英文字母、数宇、汉字、符号@、＆_[]-的组合，1-255个中文或英文字符
         # @type MappingFiled: String
-        # @param Scope: 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
+        # @param Scope: 授权请求Scope。有openid; email;profile三种。代表授权请求信息范围openid表示请求访问用户的身份信息，email表示请求访问用户的电子邮件地址，profile表示请求访问用户的基本信息。默认必选openid。
         # @type Scope: Array
-        # @param Description: 描述
+        # @param Description: 描述，长度为1~255个英文或中文字符，默认值为空。
         # @type Description: String
 
         attr_accessor :IdentityUrl, :IdentityKey, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :Scope, :Description

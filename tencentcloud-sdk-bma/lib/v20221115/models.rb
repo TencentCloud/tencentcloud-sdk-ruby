@@ -767,10 +767,10 @@ module TencentCloud
         # @param Heat: 热度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Heat: Integer
-        # @param BlockStatus: 协助处置状态：0-未处置 1-处置中 2-处置成功 3-处置失败
+        # @param BlockStatus: 拦截处置状态：0-未处置 1-处置中 2-处置成功 3-处置失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockStatus: Integer
-        # @param BlockNote: 协助处置状态说明
+        # @param BlockNote: 拦截处置状态说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlockNote: String
         # @param OfflineStatus: 关停状态：0-未关停 1-关停中 2-关停成功 3-关停失败 4-重复上架
@@ -815,10 +815,13 @@ module TencentCloud
         # @param AccountStatus: 账户资源状态：0-不可用 1-可用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountStatus: Integer
+        # @param AuditStatus: 审核状态：0-未审核 1-审核中 2-审核成功 3-审核失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditStatus: Integer
 
-        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus, :AuditStatus
 
-        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil)
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil, auditstatus=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
           @Origin = origin
@@ -841,6 +844,7 @@ module TencentCloud
           @CertificationStatus = certificationstatus
           @Snapshot = snapshot
           @AccountStatus = accountstatus
+          @AuditStatus = auditstatus
         end
 
         def deserialize(params)
@@ -866,6 +870,7 @@ module TencentCloud
           @CertificationStatus = params['CertificationStatus']
           @Snapshot = params['Snapshot']
           @AccountStatus = params['AccountStatus']
+          @AuditStatus = params['AuditStatus']
         end
       end
 

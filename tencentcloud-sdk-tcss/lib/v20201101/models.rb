@@ -974,10 +974,12 @@ module TencentCloud
         # @type SpeedLimit: Integer
         # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         # @type Insecure: Integer
+        # @param ConnDetectConfig: 联通性检测的记录ID
+        # @type ConnDetectConfig: Array
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -988,6 +990,7 @@ module TencentCloud
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
           @Insecure = insecure
+          @ConnDetectConfig = conndetectconfig
         end
 
         def deserialize(params)
@@ -1001,6 +1004,14 @@ module TencentCloud
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
           @Insecure = params['Insecure']
+          unless params['ConnDetectConfig'].nil?
+            @ConnDetectConfig = []
+            params['ConnDetectConfig'].each do |i|
+              conndetectconfig_tmp = ConnDetectConfig.new
+              conndetectconfig_tmp.deserialize(i)
+              @ConnDetectConfig << conndetectconfig_tmp
+            end
+          end
         end
       end
 
@@ -3452,6 +3463,26 @@ module TencentCloud
         end
       end
 
+      # 联通性检测配置
+      class ConnDetectConfig < TencentCloud::Common::AbstractModel
+        # @param Quuid: 主机quuid
+        # @type Quuid: String
+        # @param Uuid: 主机uuid
+        # @type Uuid: String
+
+        attr_accessor :Quuid, :Uuid
+
+        def initialize(quuid=nil, uuid=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+        end
+      end
+
       # 容器列表集合
       class ContainerInfo < TencentCloud::Common::AbstractModel
         # @param ContainerID: 容器id
@@ -3819,16 +3850,20 @@ module TencentCloud
 
       # CreateAssetImageRegistryScanTaskOneKey返回参数结构体
       class CreateAssetImageRegistryScanTaskOneKeyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 扫描任务id
+        # @type TaskID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskID, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskID = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskID = params['TaskID']
           @RequestId = params['RequestId']
         end
       end
@@ -3889,16 +3924,20 @@ module TencentCloud
 
       # CreateAssetImageRegistryScanTask返回参数结构体
       class CreateAssetImageRegistryScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 返回的任务ID
+        # @type TaskID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskID, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskID = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskID = params['TaskID']
           @RequestId = params['RequestId']
         end
       end
@@ -9349,7 +9388,7 @@ module TencentCloud
         # @param RegistryVersion: 仓库版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryVersion: String
-        # @param NetType: 网络类型，列表：public（公网）
+        # @param NetType: 网络类型，列表：public（公网）,private（私网）
         # @type NetType: String
         # @param RegistryRegion: 区域，列表:default（默认）
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9360,12 +9399,16 @@ module TencentCloud
         # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Insecure: Integer
+        # @param ConnDetectDetail: 联通性检测结果详情
+        # @type ConnDetectDetail: Array
+        # @param InstanceID: tcr情况下instance_id
+        # @type InstanceID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :Insecure, :RequestId
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :RegistryVersion, :NetType, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectDetail, :InstanceID, :RequestId
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, insecure=nil, requestid=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, registryversion=nil, nettype=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectdetail=nil, instanceid=nil, requestid=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -9376,6 +9419,8 @@ module TencentCloud
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
           @Insecure = insecure
+          @ConnDetectDetail = conndetectdetail
+          @InstanceID = instanceid
           @RequestId = requestid
         end
 
@@ -9390,6 +9435,15 @@ module TencentCloud
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
           @Insecure = params['Insecure']
+          unless params['ConnDetectDetail'].nil?
+            @ConnDetectDetail = []
+            params['ConnDetectDetail'].each do |i|
+              registryconndetectresult_tmp = RegistryConnDetectResult.new
+              registryconndetectresult_tmp.deserialize(i)
+              @ConnDetectDetail << registryconndetectresult_tmp
+            end
+          end
+          @InstanceID = params['InstanceID']
           @RequestId = params['RequestId']
         end
       end
@@ -9583,13 +9637,16 @@ module TencentCloud
         # @type All: Boolean
         # @param Id: 需要获取进度的镜像列表Id
         # @type Id: Array
+        # @param TaskID: 获取进度的任务ID
+        # @type TaskID: Integer
 
-        attr_accessor :Images, :All, :Id
+        attr_accessor :Images, :All, :Id, :TaskID
 
-        def initialize(images=nil, all=nil, id=nil)
+        def initialize(images=nil, all=nil, id=nil, taskid=nil)
           @Images = images
           @All = all
           @Id = id
+          @TaskID = taskid
         end
 
         def deserialize(params)
@@ -9603,6 +9660,7 @@ module TencentCloud
           end
           @All = params['All']
           @Id = params['Id']
+          @TaskID = params['TaskID']
         end
       end
 
@@ -21898,13 +21956,16 @@ module TencentCloud
         # @type Images: Array
         # @param Id: 扫描的镜像列表Id
         # @type Id: Array
+        # @param TaskID: 停止的任务ID
+        # @type TaskID: Integer
 
-        attr_accessor :All, :Images, :Id
+        attr_accessor :All, :Images, :Id, :TaskID
 
-        def initialize(all=nil, images=nil, id=nil)
+        def initialize(all=nil, images=nil, id=nil, taskid=nil)
           @All = all
           @Images = images
           @Id = id
+          @TaskID = taskid
         end
 
         def deserialize(params)
@@ -21918,6 +21979,7 @@ module TencentCloud
             end
           end
           @Id = params['Id']
+          @TaskID = params['TaskID']
         end
       end
 
@@ -21951,16 +22013,19 @@ module TencentCloud
         # @type ExcludeImageList: Array
         # @param OnlyScanLatest: 是否仅扫描各repository最新版本的镜像
         # @type OnlyScanLatest: Boolean
+        # @param TaskID: 停止的任务ID
+        # @type TaskID: Integer
 
-        attr_accessor :All, :Images, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest
+        attr_accessor :All, :Images, :Id, :Filters, :ExcludeImageList, :OnlyScanLatest, :TaskID
 
-        def initialize(all=nil, images=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil)
+        def initialize(all=nil, images=nil, id=nil, filters=nil, excludeimagelist=nil, onlyscanlatest=nil, taskid=nil)
           @All = all
           @Images = images
           @Id = id
           @Filters = filters
           @ExcludeImageList = excludeimagelist
           @OnlyScanLatest = onlyscanlatest
+          @TaskID = taskid
         end
 
         def deserialize(params)
@@ -21984,6 +22049,7 @@ module TencentCloud
           end
           @ExcludeImageList = params['ExcludeImageList']
           @OnlyScanLatest = params['OnlyScanLatest']
+          @TaskID = params['TaskID']
         end
       end
 
@@ -24087,6 +24153,42 @@ module TencentCloud
         end
       end
 
+      # 镜像仓库联通性检测结果
+      class RegistryConnDetectResult < TencentCloud::Common::AbstractModel
+        # @param Quuid: 联通性检测的主机quuid 或者 backend
+        # @type Quuid: String
+        # @param Uuid: 联通性检测的主机uuid 或者 backend
+        # @type Uuid: String
+        # @param ConnDetectStatus: 检测结果状态
+        # @type ConnDetectStatus: String
+        # @param ConnDetectMessage: 检测结果信息
+        # @type ConnDetectMessage: String
+        # @param Solution: 失败的解决方案
+        # @type Solution: String
+        # @param FailReason: 失败原因
+        # @type FailReason: String
+
+        attr_accessor :Quuid, :Uuid, :ConnDetectStatus, :ConnDetectMessage, :Solution, :FailReason
+
+        def initialize(quuid=nil, uuid=nil, conndetectstatus=nil, conndetectmessage=nil, solution=nil, failreason=nil)
+          @Quuid = quuid
+          @Uuid = uuid
+          @ConnDetectStatus = conndetectstatus
+          @ConnDetectMessage = conndetectmessage
+          @Solution = solution
+          @FailReason = failreason
+        end
+
+        def deserialize(params)
+          @Quuid = params['Quuid']
+          @Uuid = params['Uuid']
+          @ConnDetectStatus = params['ConnDetectStatus']
+          @ConnDetectMessage = params['ConnDetectMessage']
+          @Solution = params['Solution']
+          @FailReason = params['FailReason']
+        end
+      end
+
       # RemoveAssetImageRegistryRegistryDetail请求参数结构体
       class RemoveAssetImageRegistryRegistryDetailRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 仓库唯一id
@@ -25974,10 +26076,12 @@ module TencentCloud
         # @type SpeedLimit: Integer
         # @param Insecure: 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         # @type Insecure: Integer
+        # @param ConnDetectConfig: 联通性检测的配置
+        # @type ConnDetectConfig: Array
 
-        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure
+        attr_accessor :Name, :Username, :Password, :Url, :RegistryType, :NetType, :RegistryVersion, :RegistryRegion, :SpeedLimit, :Insecure, :ConnDetectConfig
 
-        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil)
+        def initialize(name=nil, username=nil, password=nil, url=nil, registrytype=nil, nettype=nil, registryversion=nil, registryregion=nil, speedlimit=nil, insecure=nil, conndetectconfig=nil)
           @Name = name
           @Username = username
           @Password = password
@@ -25988,6 +26092,7 @@ module TencentCloud
           @RegistryRegion = registryregion
           @SpeedLimit = speedlimit
           @Insecure = insecure
+          @ConnDetectConfig = conndetectconfig
         end
 
         def deserialize(params)
@@ -26001,6 +26106,14 @@ module TencentCloud
           @RegistryRegion = params['RegistryRegion']
           @SpeedLimit = params['SpeedLimit']
           @Insecure = params['Insecure']
+          unless params['ConnDetectConfig'].nil?
+            @ConnDetectConfig = []
+            params['ConnDetectConfig'].each do |i|
+              conndetectconfig_tmp = ConnDetectConfig.new
+              conndetectconfig_tmp.deserialize(i)
+              @ConnDetectConfig << conndetectconfig_tmp
+            end
+          end
         end
       end
 

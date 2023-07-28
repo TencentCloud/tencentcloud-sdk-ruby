@@ -19645,10 +19645,13 @@ module TencentCloud
         # @param Tags: 平台标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param FreezeNum: 冻结数,当为0时 为未冻结,非0 则表示冻结授权数额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreezeNum: Integer
 
-        attr_accessor :LicenseId, :LicenseType, :LicenseStatus, :LicenseCnt, :UsedLicenseCnt, :OrderStatus, :Deadline, :ResourceId, :AutoRenewFlag, :ProjectId, :TaskId, :BuyTime, :SourceType, :Alias, :Tags
+        attr_accessor :LicenseId, :LicenseType, :LicenseStatus, :LicenseCnt, :UsedLicenseCnt, :OrderStatus, :Deadline, :ResourceId, :AutoRenewFlag, :ProjectId, :TaskId, :BuyTime, :SourceType, :Alias, :Tags, :FreezeNum
 
-        def initialize(licenseid=nil, licensetype=nil, licensestatus=nil, licensecnt=nil, usedlicensecnt=nil, orderstatus=nil, deadline=nil, resourceid=nil, autorenewflag=nil, projectid=nil, taskid=nil, buytime=nil, sourcetype=nil, _alias=nil, tags=nil)
+        def initialize(licenseid=nil, licensetype=nil, licensestatus=nil, licensecnt=nil, usedlicensecnt=nil, orderstatus=nil, deadline=nil, resourceid=nil, autorenewflag=nil, projectid=nil, taskid=nil, buytime=nil, sourcetype=nil, _alias=nil, tags=nil, freezenum=nil)
           @LicenseId = licenseid
           @LicenseType = licensetype
           @LicenseStatus = licensestatus
@@ -19664,6 +19667,7 @@ module TencentCloud
           @SourceType = sourcetype
           @Alias = _alias
           @Tags = tags
+          @FreezeNum = freezenum
         end
 
         def deserialize(params)
@@ -19689,6 +19693,7 @@ module TencentCloud
               @Tags << tags_tmp
             end
           end
+          @FreezeNum = params['FreezeNum']
         end
       end
 
