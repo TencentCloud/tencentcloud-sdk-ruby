@@ -1211,6 +1211,201 @@ module TencentCloud
         end
       end
 
+      # CreateNotebookImage请求参数结构体
+      class CreateNotebookImageRequest < TencentCloud::Common::AbstractModel
+        # @param Kernels: 要保存的kernel数组
+        # @type Kernels: Array
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param NotebookId: notebook id
+        # @type NotebookId: String
+
+        attr_accessor :Kernels, :ImageInfo, :NotebookId
+
+        def initialize(kernels=nil, imageinfo=nil, notebookid=nil)
+          @Kernels = kernels
+          @ImageInfo = imageinfo
+          @NotebookId = notebookid
+        end
+
+        def deserialize(params)
+          @Kernels = params['Kernels']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @NotebookId = params['NotebookId']
+        end
+      end
+
+      # CreateNotebookImage返回参数结构体
+      class CreateNotebookImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNotebook请求参数结构体
+      class CreateNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称。不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @type Name: String
+        # @param ChargeType: 计算资源付费模式 ，可选值为：
+        # PREPAID：预付费，即包年包月
+        # POSTPAID_BY_HOUR：按小时后付费
+        # @type ChargeType: String
+        # @param ResourceConf: 计算资源配置
+        # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param RootAccess: 是否ROOT权限
+        # @type RootAccess: Boolean
+        # @param AutoStopping: 是否自动停止
+        # @type AutoStopping: Boolean
+        # @param DirectInternetAccess: 是否访问公网
+        # @type DirectInternetAccess: Boolean
+        # @param ResourceGroupId: 资源组ID(for预付费)
+        # @type ResourceGroupId: String
+        # @param VpcId: Vpc-Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param VolumeSourceType: 存储的类型。取值包含：
+        #     FREE:    预付费的免费存储
+        #     CLOUD_PREMIUM： 高性能云硬盘
+        #     CLOUD_SSD： SSD云硬盘
+        #     CFS:     CFS存储，包含NFS和turbo
+        # @type VolumeSourceType: String
+        # @param VolumeSizeInGB: 存储卷大小，单位GB
+        # @type VolumeSizeInGB: Integer
+        # @param VolumeSourceCFS: CFS存储的配置
+        # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param LogConfig: 日志配置
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param LifecycleScriptId: 生命周期脚本的ID
+        # @type LifecycleScriptId: String
+        # @param DefaultCodeRepoId: 默认GIT存储库的ID
+        # @type DefaultCodeRepoId: String
+        # @param AdditionalCodeRepoIds: 其他GIT存储库的ID，最多3个
+        # @type AdditionalCodeRepoIds: Array
+        # @param AutomaticStopTime: 自动停止时间，单位小时
+        # @type AutomaticStopTime: Integer
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param DataConfigs: 数据配置
+        # @type DataConfigs: Array
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ImageType: 镜像类型
+        # @type ImageType: String
+
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType
+
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil)
+          @Name = name
+          @ChargeType = chargetype
+          @ResourceConf = resourceconf
+          @LogEnable = logenable
+          @RootAccess = rootaccess
+          @AutoStopping = autostopping
+          @DirectInternetAccess = directinternetaccess
+          @ResourceGroupId = resourcegroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VolumeSourceType = volumesourcetype
+          @VolumeSizeInGB = volumesizeingb
+          @VolumeSourceCFS = volumesourcecfs
+          @LogConfig = logconfig
+          @LifecycleScriptId = lifecyclescriptid
+          @DefaultCodeRepoId = defaultcoderepoid
+          @AdditionalCodeRepoIds = additionalcoderepoids
+          @AutomaticStopTime = automaticstoptime
+          @Tags = tags
+          @DataConfigs = dataconfigs
+          @ImageInfo = imageinfo
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
+          @LogEnable = params['LogEnable']
+          @RootAccess = params['RootAccess']
+          @AutoStopping = params['AutoStopping']
+          @DirectInternetAccess = params['DirectInternetAccess']
+          @ResourceGroupId = params['ResourceGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VolumeSourceType = params['VolumeSourceType']
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+          unless params['VolumeSourceCFS'].nil?
+            @VolumeSourceCFS = CFSConfig.new
+            @VolumeSourceCFS.deserialize(params['VolumeSourceCFS'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @LifecycleScriptId = params['LifecycleScriptId']
+          @DefaultCodeRepoId = params['DefaultCodeRepoId']
+          @AdditionalCodeRepoIds = params['AdditionalCodeRepoIds']
+          @AutomaticStopTime = params['AutomaticStopTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @ImageType = params['ImageType']
+        end
+      end
+
+      # CreateNotebook返回参数结构体
+      class CreateNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param Id: notebook标志
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOptimizedModel请求参数结构体
       class CreateOptimizedModelRequest < TencentCloud::Common::AbstractModel
         # @param ModelAccTaskId: 模型加速任务ID
@@ -2309,6 +2504,70 @@ module TencentCloud
 
       # DeleteModelService返回参数结构体
       class DeleteModelServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNotebookImageRecord请求参数结构体
+      class DeleteNotebookImageRecordRequest < TencentCloud::Common::AbstractModel
+        # @param RecordId: 记录id
+        # @type RecordId: String
+
+        attr_accessor :RecordId
+
+        def initialize(recordid=nil)
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # DeleteNotebookImageRecord返回参数结构体
+      class DeleteNotebookImageRecordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNotebook请求参数结构体
+      class DeleteNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteNotebook返回参数结构体
+      class DeleteNotebookResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3890,6 +4149,240 @@ module TencentCloud
               @Services << service_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookImageKernels请求参数结构体
+      class DescribeNotebookImageKernelsRequest < TencentCloud::Common::AbstractModel
+        # @param NotebookId: notebook id
+        # @type NotebookId: String
+
+        attr_accessor :NotebookId
+
+        def initialize(notebookid=nil)
+          @NotebookId = notebookid
+        end
+
+        def deserialize(params)
+          @NotebookId = params['NotebookId']
+        end
+      end
+
+      # DescribeNotebookImageKernels返回参数结构体
+      class DescribeNotebookImageKernelsResponse < TencentCloud::Common::AbstractModel
+        # @param Kernels: 镜像kernel数组
+        # @type Kernels: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Kernels, :RequestId
+
+        def initialize(kernels=nil, requestid=nil)
+          @Kernels = kernels
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Kernels = params['Kernels']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebookImageRecords请求参数结构体
+      class DescribeNotebookImageRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param NotebookId: notebook id
+        # @type NotebookId: String
+        # @param Offset: 位移值
+        # @type Offset: Integer
+        # @param Limit: 日志限制
+        # @type Limit: Integer
+        # @param Filters: 状态筛选
+        # @type Filters: Array
+
+        attr_accessor :NotebookId, :Offset, :Limit, :Filters
+
+        def initialize(notebookid=nil, offset=nil, limit=nil, filters=nil)
+          @NotebookId = notebookid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @NotebookId = params['NotebookId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNotebookImageRecords返回参数结构体
+      class DescribeNotebookImageRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param NotebookImageRecords: 镜像保存记录
+        # @type NotebookImageRecords: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NotebookImageRecords, :RequestId
+
+        def initialize(totalcount=nil, notebookimagerecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NotebookImageRecords = notebookimagerecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NotebookImageRecords'].nil?
+            @NotebookImageRecords = []
+            params['NotebookImageRecords'].each do |i|
+              notebookimagerecord_tmp = NotebookImageRecord.new
+              notebookimagerecord_tmp.deserialize(i)
+              @NotebookImageRecords << notebookimagerecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebook请求参数结构体
+      class DescribeNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeNotebook返回参数结构体
+      class DescribeNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookDetail: 详情
+        # @type NotebookDetail: :class:`Tencentcloud::Tione.v20211111.models.NotebookDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookDetail, :RequestId
+
+        def initialize(notebookdetail=nil, requestid=nil)
+          @NotebookDetail = notebookdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookDetail'].nil?
+            @NotebookDetail = NotebookDetail.new
+            @NotebookDetail.deserialize(params['NotebookDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNotebooks请求参数结构体
+      class DescribeNotebooksRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 每页返回的实例数，默认为10
+        # @type Limit: Integer
+        # @param Order: 输出列表的排列顺序。取值范围：ASC：升序排列 DESC：降序排列。默认为DESC
+        # @type Order: String
+        # @param OrderField: 根据哪个字段排序，如：CreateTime、UpdateTime，默认为UpdateTime
+        # @type OrderField: String
+        # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["nb-123456789"] }]
+
+        # 取值范围
+        # Name（名称）：notebook1
+        # Id（notebook ID）：nb-123456789
+        # Status（状态）：Starting / Running / Stopped / Stopping / Failed / SubmitFailed
+        # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
+        # ChargeStatus（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ BILLING_STORAGE（存储计费中）/ARREARS_STOP（欠费停止）
+        # DefaultCodeRepoId（默认代码仓库ID）：cr-123456789
+        # AdditionalCodeRepoId（关联代码仓库ID）：cr-123456789
+        # LifecycleScriptId（生命周期ID）：ls-12312312311312
+        # @type Filters: Array
+        # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
+        # @type TagFilters: Array
+
+        attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters
+
+        def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @OrderField = orderfield
+          @Filters = filters
+          @TagFilters = tagfilters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNotebooks返回参数结构体
+      class DescribeNotebooksResponse < TencentCloud::Common::AbstractModel
+        # @param NotebookSet: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotebookSet: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NotebookSet, :TotalCount, :RequestId
+
+        def initialize(notebookset=nil, totalcount=nil, requestid=nil)
+          @NotebookSet = notebookset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NotebookSet'].nil?
+            @NotebookSet = []
+            params['NotebookSet'].each do |i|
+              notebooksetitem_tmp = NotebookSetItem.new
+              notebooksetitem_tmp.deserialize(i)
+              @NotebookSet << notebooksetitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5656,6 +6149,201 @@ module TencentCloud
         end
       end
 
+      # ModifyNotebook请求参数结构体
+      class ModifyNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param ChargeType: 计算资源付费模式 ，可选值为：
+        # PREPAID：预付费，即包年包月
+        # POSTPAID_BY_HOUR：按小时后付费
+        # @type ChargeType: String
+        # @param ResourceConf: 计算资源配置
+        # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param AutoStopping: 是否自动停止
+        # @type AutoStopping: Boolean
+        # @param DirectInternetAccess: 是否访问公网
+        # @type DirectInternetAccess: Boolean
+        # @param RootAccess: 是否ROOT权限
+        # @type RootAccess: Boolean
+        # @param ResourceGroupId: 资源组ID(for预付费)
+        # @type ResourceGroupId: String
+        # @param VpcId: Vpc-Id
+        # @type VpcId: String
+        # @param SubnetId: 子网Id
+        # @type SubnetId: String
+        # @param VolumeSizeInGB: 存储卷大小，单位GB
+        # @type VolumeSizeInGB: Integer
+        # @param VolumeSourceType: 存储的类型。取值包含：
+        #     FREE:    预付费的免费存储
+        #     CLOUD_PREMIUM： 高性能云硬盘
+        #     CLOUD_SSD： SSD云硬盘
+        #     CFS:     CFS存储，包含NFS和turbo
+        # @type VolumeSourceType: String
+        # @param VolumeSourceCFS: CFS存储的配置
+        # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param LogConfig: 日志配置
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param LifecycleScriptId: 生命周期脚本的ID
+        # @type LifecycleScriptId: String
+        # @param DefaultCodeRepoId: 默认GIT存储库的ID
+        # @type DefaultCodeRepoId: String
+        # @param AdditionalCodeRepoIds: 其他GIT存储库的ID，最多3个
+        # @type AdditionalCodeRepoIds: Array
+        # @param AutomaticStopTime: 自动停止时间，单位小时
+        # @type AutomaticStopTime: Integer
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param DataConfigs: 数据配置
+        # @type DataConfigs: Array
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ImageType: 镜像类型
+        # @type ImageType: String
+
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :LogEnable, :AutoStopping, :DirectInternetAccess, :RootAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType
+
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, logenable=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil)
+          @Id = id
+          @Name = name
+          @ChargeType = chargetype
+          @ResourceConf = resourceconf
+          @LogEnable = logenable
+          @AutoStopping = autostopping
+          @DirectInternetAccess = directinternetaccess
+          @RootAccess = rootaccess
+          @ResourceGroupId = resourcegroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VolumeSizeInGB = volumesizeingb
+          @VolumeSourceType = volumesourcetype
+          @VolumeSourceCFS = volumesourcecfs
+          @LogConfig = logconfig
+          @LifecycleScriptId = lifecyclescriptid
+          @DefaultCodeRepoId = defaultcoderepoid
+          @AdditionalCodeRepoIds = additionalcoderepoids
+          @AutomaticStopTime = automaticstoptime
+          @Tags = tags
+          @DataConfigs = dataconfigs
+          @ImageInfo = imageinfo
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
+          @LogEnable = params['LogEnable']
+          @AutoStopping = params['AutoStopping']
+          @DirectInternetAccess = params['DirectInternetAccess']
+          @RootAccess = params['RootAccess']
+          @ResourceGroupId = params['ResourceGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+          @VolumeSourceType = params['VolumeSourceType']
+          unless params['VolumeSourceCFS'].nil?
+            @VolumeSourceCFS = CFSConfig.new
+            @VolumeSourceCFS.deserialize(params['VolumeSourceCFS'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @LifecycleScriptId = params['LifecycleScriptId']
+          @DefaultCodeRepoId = params['DefaultCodeRepoId']
+          @AdditionalCodeRepoIds = params['AdditionalCodeRepoIds']
+          @AutomaticStopTime = params['AutomaticStopTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @ImageType = params['ImageType']
+        end
+      end
+
+      # ModifyNotebook返回参数结构体
+      class ModifyNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNotebookTags请求参数结构体
+      class ModifyNotebookTagsRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Notebook Id
+        # @type Id: String
+        # @param Tags: Notebook修改标签集合
+        # @type Tags: Array
+
+        attr_accessor :Id, :Tags
+
+        def initialize(id=nil, tags=nil)
+          @Id = id
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNotebookTags返回参数结构体
+      class ModifyNotebookTagsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyServiceGroupWeights请求参数结构体
       class ModifyServiceGroupWeightsRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -5704,6 +6392,414 @@ module TencentCloud
             @ServiceGroup.deserialize(params['ServiceGroup'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 类型NotebookDetail
+      class NotebookDetail < TencentCloud::Common::AbstractModel
+        # @param Id: notebook  ID
+        # @type Id: String
+        # @param Name: notebook 名称
+        # @type Name: String
+        # @param LifecycleScriptId: 生命周期脚本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifecycleScriptId: String
+        # @param PodName: Pod-Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+        # @param UpdateTime: Update-Time
+        # @type UpdateTime: String
+        # @param DirectInternetAccess: 是否访问公网
+        # @type DirectInternetAccess: Boolean
+        # @param ResourceGroupId: 预付费专用资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param Tags: 标签配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AutoStopping: 是否自动停止
+        # @type AutoStopping: Boolean
+        # @param AdditionalCodeRepoIds: 其他GIT存储库，最多3个，单个
+        # 长度不超过512字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalCodeRepoIds: Array
+        # @param AutomaticStopTime: 自动停止时间，单位小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutomaticStopTime: Integer
+        # @param ResourceConf: 资源配置
+        # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
+        # @param DefaultCodeRepoId: 默认GIT存储库，长度不超过512字符
+        # @type DefaultCodeRepoId: String
+        # @param EndTime: 训练输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param LogConfig: 日志配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param VpcId: VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param RuntimeInSeconds: 运行时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeInSeconds: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param StartTime: 训练开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeStatus: String
+        # @param RootAccess: 是否ROOT权限
+        # @type RootAccess: Boolean
+        # @param BillingInfos: 计贺金额信息，eg:2.00元/小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingInfos: Array
+        # @param VolumeSizeInGB: 存储卷大小 （单位时GB，最小10GB，必须是10G的倍数）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSizeInGB: Integer
+        # @param FailureReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureReason: String
+        # @param ChargeType: 计算资源付费模式 (- PREPAID：预付费，即包年包月 - POSTPAID_BY_HOUR：按小时后付费)
+        # @type ChargeType: String
+        # @param InstanceTypeAlias: 后付费资源规格说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypeAlias: String
+        # @param ResourceGroupName: 预付费资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param VolumeSourceType: 存储的类型。取值包含：
+        #     FREE:        预付费的免费存储
+        #     CLOUD_PREMIUM： 高性能云硬盘
+        #     CLOUD_SSD： SSD云硬盘
+        #     CFS:     CFS存储，包含NFS和turbo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceType: String
+        # @param VolumeSourceCFS: CFS存储的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param DataConfigs: 数据配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataConfigs: Array
+        # @param Message: notebook 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param DataSource: 数据源来源，eg：WeData_HDFS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSource: String
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ImageType: 镜像类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageType: String
+
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType
+
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil)
+          @Id = id
+          @Name = name
+          @LifecycleScriptId = lifecyclescriptid
+          @PodName = podname
+          @UpdateTime = updatetime
+          @DirectInternetAccess = directinternetaccess
+          @ResourceGroupId = resourcegroupid
+          @Tags = tags
+          @AutoStopping = autostopping
+          @AdditionalCodeRepoIds = additionalcoderepoids
+          @AutomaticStopTime = automaticstoptime
+          @ResourceConf = resourceconf
+          @DefaultCodeRepoId = defaultcoderepoid
+          @EndTime = endtime
+          @LogEnable = logenable
+          @LogConfig = logconfig
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Status = status
+          @RuntimeInSeconds = runtimeinseconds
+          @CreateTime = createtime
+          @StartTime = starttime
+          @ChargeStatus = chargestatus
+          @RootAccess = rootaccess
+          @BillingInfos = billinginfos
+          @VolumeSizeInGB = volumesizeingb
+          @FailureReason = failurereason
+          @ChargeType = chargetype
+          @InstanceTypeAlias = instancetypealias
+          @ResourceGroupName = resourcegroupname
+          @VolumeSourceType = volumesourcetype
+          @VolumeSourceCFS = volumesourcecfs
+          @DataConfigs = dataconfigs
+          @Message = message
+          @DataSource = datasource
+          @ImageInfo = imageinfo
+          @ImageType = imagetype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @LifecycleScriptId = params['LifecycleScriptId']
+          @PodName = params['PodName']
+          @UpdateTime = params['UpdateTime']
+          @DirectInternetAccess = params['DirectInternetAccess']
+          @ResourceGroupId = params['ResourceGroupId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @AutoStopping = params['AutoStopping']
+          @AdditionalCodeRepoIds = params['AdditionalCodeRepoIds']
+          @AutomaticStopTime = params['AutomaticStopTime']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
+          @DefaultCodeRepoId = params['DefaultCodeRepoId']
+          @EndTime = params['EndTime']
+          @LogEnable = params['LogEnable']
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Status = params['Status']
+          @RuntimeInSeconds = params['RuntimeInSeconds']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @ChargeStatus = params['ChargeStatus']
+          @RootAccess = params['RootAccess']
+          @BillingInfos = params['BillingInfos']
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+          @FailureReason = params['FailureReason']
+          @ChargeType = params['ChargeType']
+          @InstanceTypeAlias = params['InstanceTypeAlias']
+          @ResourceGroupName = params['ResourceGroupName']
+          @VolumeSourceType = params['VolumeSourceType']
+          unless params['VolumeSourceCFS'].nil?
+            @VolumeSourceCFS = CFSConfig.new
+            @VolumeSourceCFS.deserialize(params['VolumeSourceCFS'])
+          end
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          @Message = params['Message']
+          @DataSource = params['DataSource']
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @ImageType = params['ImageType']
+        end
+      end
+
+      # 镜像保存记录
+      class NotebookImageRecord < TencentCloud::Common::AbstractModel
+        # @param RecordId: 保存记录ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param ImageUrl: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Message: 状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Kernels: kernel数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kernels: Array
+
+        attr_accessor :RecordId, :ImageUrl, :Status, :CreateTime, :Message, :InstanceId, :Kernels
+
+        def initialize(recordid=nil, imageurl=nil, status=nil, createtime=nil, message=nil, instanceid=nil, kernels=nil)
+          @RecordId = recordid
+          @ImageUrl = imageurl
+          @Status = status
+          @CreateTime = createtime
+          @Message = message
+          @InstanceId = instanceid
+          @Kernels = kernels
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @ImageUrl = params['ImageUrl']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @Message = params['Message']
+          @InstanceId = params['InstanceId']
+          @Kernels = params['Kernels']
+        end
+      end
+
+      # Notebook列表元素
+      class NotebookSetItem < TencentCloud::Common::AbstractModel
+        # @param Id: notebook ID
+        # @type Id: String
+        # @param Name: notebook 名称
+        # @type Name: String
+        # @param ChargeType: 计费模式
+        # @type ChargeType: String
+        # @param ResourceConf: 资源配置
+        # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
+        # @param ResourceGroupId: 预付费资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+        # @param VolumeSizeInGB: 存储卷大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSizeInGB: Integer
+        # @param BillingInfos: 计费金额信息，eg：2.00元/小时 (for后付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingInfos: Array
+        # @param Tags: 标签配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param StartTime: 启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param RuntimeInSeconds: 运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuntimeInSeconds: Integer
+        # @param ChargeStatus: 计费状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeStatus: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param FailureReason: 错误原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailureReason: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param PodName: Pod名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+        # @param InstanceTypeAlias: 后付费资源规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypeAlias: String
+        # @param ResourceGroupName: 预付费资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param AutoStopping: 是否自动终止
+        # @type AutoStopping: Boolean
+        # @param AutomaticStopTime: 自动停止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutomaticStopTime: Integer
+        # @param VolumeSourceType: 存储的类型。取值包含：
+        #     FREE:        预付费的免费存储
+        #     CLOUD_PREMIUM： 高性能云硬盘
+        #     CLOUD_SSD： SSD云硬盘
+        #     CFS:     CFS存储，包含NFS和turbo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceType: String
+        # @param VolumeSourceCFS: CFS存储的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param Message: notebook 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param UserTypes: notebook用户类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserTypes: Array
+
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes
+
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil)
+          @Id = id
+          @Name = name
+          @ChargeType = chargetype
+          @ResourceConf = resourceconf
+          @ResourceGroupId = resourcegroupid
+          @VolumeSizeInGB = volumesizeingb
+          @BillingInfos = billinginfos
+          @Tags = tags
+          @CreateTime = createtime
+          @StartTime = starttime
+          @UpdateTime = updatetime
+          @RuntimeInSeconds = runtimeinseconds
+          @ChargeStatus = chargestatus
+          @Status = status
+          @FailureReason = failurereason
+          @EndTime = endtime
+          @PodName = podname
+          @InstanceTypeAlias = instancetypealias
+          @ResourceGroupName = resourcegroupname
+          @AutoStopping = autostopping
+          @AutomaticStopTime = automaticstoptime
+          @VolumeSourceType = volumesourcetype
+          @VolumeSourceCFS = volumesourcecfs
+          @Message = message
+          @UserTypes = usertypes
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
+          @ResourceGroupId = params['ResourceGroupId']
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+          @BillingInfos = params['BillingInfos']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @UpdateTime = params['UpdateTime']
+          @RuntimeInSeconds = params['RuntimeInSeconds']
+          @ChargeStatus = params['ChargeStatus']
+          @Status = params['Status']
+          @FailureReason = params['FailureReason']
+          @EndTime = params['EndTime']
+          @PodName = params['PodName']
+          @InstanceTypeAlias = params['InstanceTypeAlias']
+          @ResourceGroupName = params['ResourceGroupName']
+          @AutoStopping = params['AutoStopping']
+          @AutomaticStopTime = params['AutomaticStopTime']
+          @VolumeSourceType = params['VolumeSourceType']
+          unless params['VolumeSourceCFS'].nil?
+            @VolumeSourceCFS = CFSConfig.new
+            @VolumeSourceCFS.deserialize(params['VolumeSourceCFS'])
+          end
+          @Message = params['Message']
+          @UserTypes = params['UserTypes']
         end
       end
 
@@ -5945,6 +7041,59 @@ module TencentCloud
 
         def deserialize(params)
           @Enable = params['Enable']
+        end
+      end
+
+      # Notebook资源参数
+      class ResourceConf < TencentCloud::Common::AbstractModel
+        # @param Cpu: cpu 处理器资源, 单位为1/1000核 (for预付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: memory 内存资源, 单位为1M (for预付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Gpu: gpu Gpu卡资源，单位为1单位的GpuType，例如GpuType=T4时，1 Gpu = 1/100 T4卡，GpuType=vcuda时，1 Gpu = 1/100 vcuda-core (for预付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gpu: Integer
+        # @param GpuType: GpuType 卡类型 vcuda, T4,P4,V100等 (for预付费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuType: String
+        # @param InstanceType: 计算规格 (for后付费)，可选值如下：
+        # TI.S.LARGE.POST: 4C8G
+        # TI.S.2XLARGE16.POST:  8C16G
+        # TI.S.2XLARGE32.POST:  8C32G
+        # TI.S.4XLARGE32.POST:  16C32G
+        # TI.S.4XLARGE64.POST:  16C64G
+        # TI.S.6XLARGE48.POST:  24C48G
+        # TI.S.6XLARGE96.POST:  24C96G
+        # TI.S.8XLARGE64.POST:  32C64G
+        # TI.S.8XLARGE128.POST : 32C128G
+        # TI.GN10.2XLARGE40.POST: 8C40G V100*1
+        # TI.GN10.5XLARGE80.POST:  18C80G V100*2
+        # TI.GN10.10XLARGE160.POST :  32C160G V100*4
+        # TI.GN10.20XLARGE320.POST :  72C320G V100*8
+        # TI.GN7.8XLARGE128.POST: 32C128G T4*1
+        # TI.GN7.10XLARGE160.POST: 40C160G T4*2
+        # TI.GN7.20XLARGE320.POST: 80C320G T4*4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+
+        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :InstanceType
+
+        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, instancetype=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @Gpu = gpu
+          @GpuType = gputype
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Gpu = params['Gpu']
+          @GpuType = params['GpuType']
+          @InstanceType = params['InstanceType']
         end
       end
 
@@ -7112,6 +8261,38 @@ module TencentCloud
         end
       end
 
+      # StartNotebook请求参数结构体
+      class StartNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StartNotebook返回参数结构体
+      class StartNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartTrainingTask请求参数结构体
       class StartTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
@@ -7213,6 +8394,38 @@ module TencentCloud
         end
       end
 
+      # StopCreatingImage请求参数结构体
+      class StopCreatingImageRequest < TencentCloud::Common::AbstractModel
+        # @param RecordId: 镜像保存记录ID
+        # @type RecordId: String
+
+        attr_accessor :RecordId
+
+        def initialize(recordid=nil)
+          @RecordId = recordid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+        end
+      end
+
+      # StopCreatingImage返回参数结构体
+      class StopCreatingImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopModelAccelerateTask请求参数结构体
       class StopModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelAccTaskId: 模型加速任务ID
@@ -7251,6 +8464,38 @@ module TencentCloud
         def deserialize(params)
           @ModelAccTaskId = params['ModelAccTaskId']
           @AsyncTaskId = params['AsyncTaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopNotebook请求参数结构体
+      class StopNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # StopNotebook返回参数结构体
+      class StopNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -3310,6 +3310,69 @@ module TencentCloud
         end
       end
 
+      # GetAttackHistogram请求参数结构体
+      class GetAttackHistogramRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 查询的域名，所有域名使用all
+        # @type Domain: String
+        # @param StartTime: 查询起始时间
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间
+        # @type EndTime: String
+        # @param QueryString: Lucene语法
+        # @type QueryString: String
+
+        attr_accessor :Domain, :StartTime, :EndTime, :QueryString
+
+        def initialize(domain=nil, starttime=nil, endtime=nil, querystring=nil)
+          @Domain = domain
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryString = querystring
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryString = params['QueryString']
+        end
+      end
+
+      # GetAttackHistogram返回参数结构体
+      class GetAttackHistogramResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 统计详情
+        # @type Data: Array
+        # @param Period: 时间段大小
+        # @type Period: Integer
+        # @param TotalCount: 统计的条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Period, :TotalCount, :RequestId
+
+        def initialize(data=nil, period=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @Period = period
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              loghistograminfo_tmp = LogHistogramInfo.new
+              loghistograminfo_tmp.deserialize(i)
+              @Data << loghistograminfo_tmp
+            end
+          end
+          @Period = params['Period']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # clb-waf防护域名
       class HostRecord < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3813,6 +3876,26 @@ module TencentCloud
           @Zone = params['Zone']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
+        end
+      end
+
+      # 攻击日志统计详情
+      class LogHistogramInfo < TencentCloud::Common::AbstractModel
+        # @param Count: 日志条数
+        # @type Count: Integer
+        # @param TimeStamp: 时间戳
+        # @type TimeStamp: Integer
+
+        attr_accessor :Count, :TimeStamp
+
+        def initialize(count=nil, timestamp=nil)
+          @Count = count
+          @TimeStamp = timestamp
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @TimeStamp = params['TimeStamp']
         end
       end
 

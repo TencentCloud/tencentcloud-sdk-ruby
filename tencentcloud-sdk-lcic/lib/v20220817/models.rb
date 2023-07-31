@@ -1895,6 +1895,8 @@ module TencentCloud
         # @type TeacherId: String
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
+        # @param AudienceType: 观看类型。互动观看 （默认）
+        # @type AudienceType: Integer
         # @param Resolution: 分辨率。可以有如下取值：
         # 1 标清
         # 2 高清
@@ -1946,14 +1948,15 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
           @TeacherId = teacherid
           @SdkAppId = sdkappid
+          @AudienceType = audiencetype
           @Resolution = resolution
           @MaxMicNumber = maxmicnumber
           @AutoMic = automic
@@ -1978,6 +1981,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @TeacherId = params['TeacherId']
           @SdkAppId = params['SdkAppId']
+          @AudienceType = params['AudienceType']
           @Resolution = params['Resolution']
           @MaxMicNumber = params['MaxMicNumber']
           @AutoMic = params['AutoMic']

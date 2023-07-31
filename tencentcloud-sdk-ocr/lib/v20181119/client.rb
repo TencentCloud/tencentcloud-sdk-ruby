@@ -1404,34 +1404,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 库源服务调整，该接口在2023年6月1日将正式下线。
-
-        # 本接口支持条形码备案信息查询，返回条形码查询结果的相关信息，包括产品名称、产品英文名称、品牌名称、规格型号、宽度、高度、深度、关键字、产品描述、厂家名称、厂家地址、企业社会信用代码13个字段信息。
-
-        # 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
-
-        # @param request: Request instance for QueryBarCode.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::QueryBarCodeRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::QueryBarCodeResponse`
-        def QueryBarCode(request)
-          body = send_request('QueryBarCode', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QueryBarCodeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口支持定额发票的发票号码、发票代码、金额(大小写)、发票消费类型、地区及是否有公司印章等关键字段的识别。
 
         # 默认接口请求频率限制：5次/秒。
@@ -2497,32 +2469,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = VerifyBizLicenseResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 库源服务调整，该接口在2023年6月1日将正式下线。
-
-        # 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
-
-        # @param request: Request instance for VerifyEnterpriseFourFactors.
-        # @type request: :class:`Tencentcloud::ocr::V20181119::VerifyEnterpriseFourFactorsRequest`
-        # @rtype: :class:`Tencentcloud::ocr::V20181119::VerifyEnterpriseFourFactorsResponse`
-        def VerifyEnterpriseFourFactors(request)
-          body = send_request('VerifyEnterpriseFourFactors', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = VerifyEnterpriseFourFactorsResponse.new
             model.deserialize(response['Response'])
             model
           else

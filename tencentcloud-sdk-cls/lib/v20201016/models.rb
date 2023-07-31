@@ -2067,7 +2067,7 @@ module TencentCloud
         # @type SrcTopicId: String
         # @param Name: 任务名称
         # @type Name: String
-        # @param EnableFlag: 任务启动状态.  1正常开启,  2关闭
+        # @param EnableFlag: 任务启动状态.  1开启,  2关闭
         # @type EnableFlag: Integer
         # @param DstResource: 定时SQL分析目标日志主题
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
@@ -2075,7 +2075,7 @@ module TencentCloud
         # @type ScheduledSqlContent: String
         # @param ProcessStartTime: 调度开始时间,Unix时间戳，单位ms
         # @type ProcessStartTime: Integer
-        # @param ProcessType: 调度类型，1:持续运行 2:指定调度结束时间
+        # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
         # @type ProcessType: Integer
         # @param ProcessPeriod: 调度周期(分钟)
         # @type ProcessPeriod: Integer
@@ -2087,7 +2087,7 @@ module TencentCloud
         # @type SrcTopicRegion: String
         # @param ProcessEndTime: 调度结束时间，当ProcessType=2时为必传字段, Unix时间戳，单位ms
         # @type ProcessEndTime: Integer
-        # @param SyntaxRule: 语法规则。 默认值为0。0：Lucene语法，1：CQL语法
+        # @param SyntaxRule: 查询语法规则。 默认值为0。0：Lucene语法，1：CQL语法
         # @type SyntaxRule: Integer
 
         attr_accessor :SrcTopicId, :Name, :EnableFlag, :DstResource, :ScheduledSqlContent, :ProcessStartTime, :ProcessType, :ProcessPeriod, :ProcessTimeWindow, :ProcessDelay, :SrcTopicRegion, :ProcessEndTime, :SyntaxRule
@@ -6681,7 +6681,7 @@ module TencentCloud
         # @type TaskId: String
         # @param SrcTopicId: 源日志主题
         # @type SrcTopicId: String
-        # @param EnableFlag: 任务启动状态.   1正常开启,  2关闭
+        # @param EnableFlag: 任务启动状态.   1开启,  2关闭
         # @type EnableFlag: Integer
         # @param DstResource: 定时SQL分析的目标日志主题
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
@@ -7442,7 +7442,7 @@ module TencentCloud
         # @type ScheduledSqlContent: String
         # @param ProcessStartTime: 调度开始时间
         # @type ProcessStartTime: String
-        # @param ProcessType: 调度类型，1:持续运行 2:指定调度结束时间
+        # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
         # @type ProcessType: Integer
         # @param ProcessEndTime: 调度结束时间，当process_type=2时为必传字段
         # @type ProcessEndTime: String

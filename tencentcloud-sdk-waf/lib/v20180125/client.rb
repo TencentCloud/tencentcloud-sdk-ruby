@@ -943,6 +943,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成攻击日志的产生时间柱状图
+
+        # @param request: Request instance for GetAttackHistogram.
+        # @type request: :class:`Tencentcloud::waf::V20180125::GetAttackHistogramRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::GetAttackHistogramResponse`
+        def GetAttackHistogram(request)
+          body = send_request('GetAttackHistogram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetAttackHistogramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于修改访问日志保存期限及大字段是否存储
 
         # @param request: Request instance for ModifyAccessPeriod.

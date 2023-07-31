@@ -1253,26 +1253,6 @@ module TencentCloud
         end
       end
 
-      # 企业四要素核验结果
-      class Detail < TencentCloud::Common::AbstractModel
-        # @param Result: 企业四要素核验结果状态码
-        # @type Result: Integer
-        # @param Desc: 企业四要素核验结果描述
-        # @type Desc: String
-
-        attr_accessor :Result, :Desc
-
-        def initialize(result=nil, desc=nil)
-          @Result = result
-          @Desc = desc
-        end
-
-        def deserialize(params)
-          @Result = params['Result']
-          @Desc = params['Desc']
-        end
-      end
-
       # 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
       class DetectedWordCoordPoint < TencentCloud::Common::AbstractModel
         # @param WordCoordinate: 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
@@ -5211,97 +5191,6 @@ module TencentCloud
         end
       end
 
-      # 商品码信息
-      class ProductDataRecord < TencentCloud::Common::AbstractModel
-        # @param ProductName: 产品名称
-        # @type ProductName: String
-        # @param EnName: 产品名称(英文)
-        # @type EnName: String
-        # @param BrandName: 品牌名称
-        # @type BrandName: String
-        # @param Type: 规格型号
-        # @type Type: String
-        # @param Width: 宽度，单位毫米
-        # @type Width: String
-        # @param Height: 高度，单位毫米
-        # @type Height: String
-        # @param Depth: 深度，单位毫米
-        # @type Depth: String
-        # @param KeyWord: 关键字
-        # @type KeyWord: String
-        # @param Description: 简短描述
-        # @type Description: String
-        # @param ImageLink: 图片链接
-        # @type ImageLink: Array
-        # @param ManufacturerName: 厂家名称
-        # @type ManufacturerName: String
-        # @param ManufacturerAddress: 厂家地址
-        # @type ManufacturerAddress: String
-        # @param FirmCode: 企业社会信用代码
-        # @type FirmCode: String
-        # @param CheckResult: 表示数据查询状态
-        # checkResult	状态说明
-        # 1	 经查，该商品条码已在中国物品编码中心注册
-        # 2	经查，该厂商识别代码已在中国物品编码中心注册，但编码信息未按规定通报。
-        # 3	经查，该厂商识别代码已于xxxxx注销，请关注产品生产日期。
-        # 4	经查，该企业以及条码未经条码中心注册，属于违法使用
-        # -1	经查，该商品条码被冒用
-        # -2	经查，该厂商识别代码已在中国物品编码中心注册，但该产品已经下市
-        # S001                未找到该厂商识别代码的注册信息。
-        # S002		该厂商识别代码已经在GS1注册，但编码信息未通报
-        # S003		该商品条码已在GS1通报
-        # S004		该商品条码已注销
-        # S005		数字不正确。GS1前缀（3位国家/地区代码）用于特殊用途。
-        # E001		完整性失败：此GTIN的长度无效。
-        # E002		完整性失败：校验位不正确。
-        # E003		完整性失败：字符串包含字母数字字符。
-        # E004		数字不正确。GS1前缀（3位国家/地区代码）不存在。
-        # E005		数字不正确。GS1前缀（3位国家/地区代码）用于特殊用途。
-        # E006		数字不正确。尚未分配该GS1公司前缀。
-        # E008	        经查，该企业厂商识别代码以及条码尚未通报
-        # @type CheckResult: String
-        # @param CategoryCode: UNSPSC分类码
-        # @type CategoryCode: String
-
-        attr_accessor :ProductName, :EnName, :BrandName, :Type, :Width, :Height, :Depth, :KeyWord, :Description, :ImageLink, :ManufacturerName, :ManufacturerAddress, :FirmCode, :CheckResult, :CategoryCode
-
-        def initialize(productname=nil, enname=nil, brandname=nil, type=nil, width=nil, height=nil, depth=nil, keyword=nil, description=nil, imagelink=nil, manufacturername=nil, manufactureraddress=nil, firmcode=nil, checkresult=nil, categorycode=nil)
-          @ProductName = productname
-          @EnName = enname
-          @BrandName = brandname
-          @Type = type
-          @Width = width
-          @Height = height
-          @Depth = depth
-          @KeyWord = keyword
-          @Description = description
-          @ImageLink = imagelink
-          @ManufacturerName = manufacturername
-          @ManufacturerAddress = manufactureraddress
-          @FirmCode = firmcode
-          @CheckResult = checkresult
-          @CategoryCode = categorycode
-        end
-
-        def deserialize(params)
-          @ProductName = params['ProductName']
-          @EnName = params['EnName']
-          @BrandName = params['BrandName']
-          @Type = params['Type']
-          @Width = params['Width']
-          @Height = params['Height']
-          @Depth = params['Depth']
-          @KeyWord = params['KeyWord']
-          @Description = params['Description']
-          @ImageLink = params['ImageLink']
-          @ManufacturerName = params['ManufacturerName']
-          @ManufacturerAddress = params['ManufacturerAddress']
-          @FirmCode = params['FirmCode']
-          @CheckResult = params['CheckResult']
-          @CategoryCode = params['CategoryCode']
-        end
-      end
-
       # PropOwnerCertOCR请求参数结构体
       class PropOwnerCertOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -5509,53 +5398,6 @@ module TencentCloud
             @Position = QrcodePositionObj.new
             @Position.deserialize(params['Position'])
           end
-        end
-      end
-
-      # QueryBarCode请求参数结构体
-      class QueryBarCodeRequest < TencentCloud::Common::AbstractModel
-        # @param BarCode: 条形码
-        # @type BarCode: String
-
-        attr_accessor :BarCode
-
-        def initialize(barcode=nil)
-          @BarCode = barcode
-        end
-
-        def deserialize(params)
-          @BarCode = params['BarCode']
-        end
-      end
-
-      # QueryBarCode返回参数结构体
-      class QueryBarCodeResponse < TencentCloud::Common::AbstractModel
-        # @param BarCode: 条码
-        # @type BarCode: String
-        # @param ProductDataRecords: 条码信息数组
-        # @type ProductDataRecords: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BarCode, :ProductDataRecords, :RequestId
-
-        def initialize(barcode=nil, productdatarecords=nil, requestid=nil)
-          @BarCode = barcode
-          @ProductDataRecords = productdatarecords
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @BarCode = params['BarCode']
-          unless params['ProductDataRecords'].nil?
-            @ProductDataRecords = []
-            params['ProductDataRecords'].each do |i|
-              productdatarecord_tmp = ProductDataRecord.new
-              productdatarecord_tmp.deserialize(i)
-              @ProductDataRecords << productdatarecord_tmp
-            end
-          end
-          @RequestId = params['RequestId']
         end
       end
 
@@ -11726,63 +11568,6 @@ module TencentCloud
           unless params['RegNumResult'].nil?
             @RegNumResult = BizLicenseVerifyResult.new
             @RegNumResult.deserialize(params['RegNumResult'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # VerifyEnterpriseFourFactors请求参数结构体
-      class VerifyEnterpriseFourFactorsRequest < TencentCloud::Common::AbstractModel
-        # @param RealName: 姓名
-        # @type RealName: String
-        # @param IdCard: 证件号码（公司注册证件号）
-        # @type IdCard: String
-        # @param EnterpriseName: 企业全称
-        # @type EnterpriseName: String
-        # @param EnterpriseMark: 企业标识（注册号，统一社会信用代码）
-        # @type EnterpriseMark: String
-
-        attr_accessor :RealName, :IdCard, :EnterpriseName, :EnterpriseMark
-
-        def initialize(realname=nil, idcard=nil, enterprisename=nil, enterprisemark=nil)
-          @RealName = realname
-          @IdCard = idcard
-          @EnterpriseName = enterprisename
-          @EnterpriseMark = enterprisemark
-        end
-
-        def deserialize(params)
-          @RealName = params['RealName']
-          @IdCard = params['IdCard']
-          @EnterpriseName = params['EnterpriseName']
-          @EnterpriseMark = params['EnterpriseMark']
-        end
-      end
-
-      # VerifyEnterpriseFourFactors返回参数结构体
-      class VerifyEnterpriseFourFactorsResponse < TencentCloud::Common::AbstractModel
-        # @param State: 核验一致性（1:一致，2:不一致，3:查询无记录）
-        # @type State: Integer
-        # @param Detail: 核验结果明细，7：企业法人/负责人，6：企业股东，5：企
-        # 业管理人员，-21：企业名称与企业标识不符，-22：姓名不一致，-23：证件号码不一致，-24：企业名称不一致，-25：企业标识不一致
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Detail: :class:`Tencentcloud::Ocr.v20181119.models.Detail`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :State, :Detail, :RequestId
-
-        def initialize(state=nil, detail=nil, requestid=nil)
-          @State = state
-          @Detail = detail
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @State = params['State']
-          unless params['Detail'].nil?
-            @Detail = Detail.new
-            @Detail.deserialize(params['Detail'])
           end
           @RequestId = params['RequestId']
         end

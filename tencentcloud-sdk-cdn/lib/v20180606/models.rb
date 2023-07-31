@@ -1112,7 +1112,6 @@ module TencentCloud
         # 安圭拉：AI
         # 梵蒂冈：VA
         # 斯洛伐克：SK
-        # 俄罗斯：RU
         # 英国：GB
         # 捷克共和国：CZ
         # 乌克兰：UA
