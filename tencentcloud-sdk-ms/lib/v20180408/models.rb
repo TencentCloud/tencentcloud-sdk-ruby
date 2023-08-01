@@ -17,7 +17,7 @@
 module TencentCloud
   module Ms
     module V20180408
-      # 渠道合作安卓加固App信息
+      # 渠道合作Android加固App信息
       class AndroidAppInfo < TencentCloud::Common::AbstractModel
         # @param AppMd5: app文件的md5算法值，需要正确传递，在线加固必输。
         # 例如linux环境下执行算法命令md5sum ：
@@ -31,14 +31,14 @@ module TencentCloud
         # @param AppName: app名称，非必输
         # @type AppName: String
         # @param AppPkgName: app的包名，本次操作的包名。
-        # 当安卓是按年收费、免费试用加固时，在线加固和输出工具要求该字段必输，且与AndroidPlan.AppPkgName值相等。
+        # 当Android是按年收费、免费试用加固时，在线加固和输出工具要求该字段必输，且与AndroidPlan.AppPkgName值相等。
         # @type AppPkgName: String
         # @param AppFileName: app的文件名，非必输。
         # @type AppFileName: String
         # @param AppVersion: app版本号，非必输。
         # @type AppVersion: String
-        # @param AppType: 安卓app的文件类型，本次加固操作的应用类型 。
-        # 安卓在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        # @param AppType: Android app的文件类型，本次加固操作的应用类型 。
+        # Android在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
         # @type AppType: String
 
         attr_accessor :AppMd5, :AppSize, :AppUrl, :AppName, :AppPkgName, :AppFileName, :AppVersion, :AppType
@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2023, 7
-        deprecate :CosTocken=, :none, 2023, 7
+        deprecate :CosTocken, :none, 2023, 8
+        deprecate :CosTocken=, :none, 2023, 8
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -809,7 +809,7 @@ module TencentCloud
 
       # CreateEncryptInstance请求参数结构体
       class CreateEncryptInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param PlatformType: 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformType: 平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformType: Integer
         # @param OrderType: 订单采购类型 1-免费试用 2-按年收费 3-按次收费
         # @type OrderType: Integer
@@ -817,9 +817,9 @@ module TencentCloud
         # @type EncryptOpType: Integer
         # @param ResourceId: 本次加固使用的资源id
         # @type ResourceId: String
-        # @param AndroidAppInfo: 渠道合作安卓加固App信息
+        # @param AndroidAppInfo: 渠道合作android加固App信息
         # @type AndroidAppInfo: :class:`Tencentcloud::Ms.v20180408.models.AndroidAppInfo`
-        # @param AndroidPlan: 渠道合作安卓加固策略信息
+        # @param AndroidPlan: 渠道合作android加固策略信息
         # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
         # @param AppletInfo: 小程序加固信息
         # @type AppletInfo: :class:`Tencentcloud::Ms.v20180408.models.AppletInfo`
@@ -878,12 +878,12 @@ module TencentCloud
 
       # CreateOrderInstance请求参数结构体
       class CreateOrderInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param PlatformType: 平台类型枚举值：1-android安卓加固  ；2-ios源码混淆 ； 3-sdk加固 ； 4-applet小程序加固
+        # @param PlatformType: 平台类型枚举值：1-android加固  ；2-ios源码混淆 ； 3-sdk加固 ； 4-applet小程序加固
         # @type PlatformType: Integer
         # @param OrderType: 订单采购类型 1-免费试用 ；2-按年收费 ；3-按次收费
         # @type OrderType: Integer
         # @param AppPkgNameList: 代表应用包名列表，值为单个包名（例如：“a.b.xxx”）或多个包名用逗号隔开(例如：“a.b.xxx,b.c.xxx”)。
-        # 当安卓按年收费加固或安卓免费试用加固时，该字段要求非空，即PlatformType=1 并且 OrderType=2时，AppPkgNameList必传值。
+        # 当android按年收费加固或android免费试用加固时，该字段要求非空，即PlatformType=1 并且 OrderType=2时，AppPkgNameList必传值。
         # @type AppPkgNameList: String
 
         attr_accessor :PlatformType, :OrderType, :AppPkgNameList
@@ -1175,7 +1175,7 @@ module TencentCloud
         # @type OrderField: String
         # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc。
         # @type OrderDirection: String
-        # @param PlatformType: (条件过滤字段) 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformType: (条件过滤字段) 平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformType: Integer
         # @param OrderType: (条件过滤字段) 订单采购类型 1-免费试用 2-按年收费 3-按次收费
         # @type OrderType: Integer
@@ -1187,9 +1187,9 @@ module TencentCloud
         # @type OrderId: String
         # @param ResourceId: (条件过滤字段) 查询与资源Id关联的任务
         # @type ResourceId: String
-        # @param AppType: (条件过滤字段) 安卓应用类型：安卓-apk; 安卓-aab;
+        # @param AppType: (条件过滤字段) 应用类型：android-apk; android-aab;
         # @type AppType: String
-        # @param AppPkgName: （条件过滤字段）安卓应用的包名
+        # @param AppPkgName: （条件过滤字段）应用的包名
         # @type AppPkgName: String
         # @param EncryptState: 加固结果，
         # 0：正在排队；
@@ -1268,7 +1268,7 @@ module TencentCloud
 
       # DescribeEncryptPlan请求参数结构体
       class DescribeEncryptPlanRequest < TencentCloud::Common::AbstractModel
-        # @param PlatformType: 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformType: 平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformType: Integer
         # @param OrderType: 订单采购类型 1-免费试用 2-按年收费 3-按次收费
         # @type OrderType: Integer
@@ -1276,9 +1276,9 @@ module TencentCloud
         # @type EncryptOpType: Integer
         # @param ResourceId: 本次加固使用的资源id
         # @type ResourceId: String
-        # @param AppPkgName: （条件过滤字段）安卓加固查询时，根据包名查询
+        # @param AppPkgName: （条件过滤字段）加固查询时，根据包名查询
         # @type AppPkgName: String
-        # @param AppType: （条件过滤字段）安卓加固查询时，根据应用格式查询，枚举值：“apk”、“aab”
+        # @param AppType: （条件过滤字段）加固查询时，根据应用格式查询，枚举值：“apk”、“aab”
         # @type AppType: String
 
         attr_accessor :PlatformType, :OrderType, :EncryptOpType, :ResourceId, :AppPkgName, :AppType
@@ -1306,7 +1306,7 @@ module TencentCloud
       class DescribeEncryptPlanResponse < TencentCloud::Common::AbstractModel
         # @param PlatformType: 平台类型整型值
         # @type PlatformType: Integer
-        # @param PlatformTypeDesc: 平台类型描述 1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformTypeDesc: 平台类型描述 1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformTypeDesc: String
         # @param EncryptOpType: 1- 在线加固 2-输出工具加固
         # @type EncryptOpType: Integer
@@ -1318,7 +1318,7 @@ module TencentCloud
         # @type OrderTypeDesc: String
         # @param ResourceId: 资源id
         # @type ResourceId: String
-        # @param AndroidPlan: 上次安卓加固策略
+        # @param AndroidPlan: 上次加固策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
         # @param AppletPlan: 上次小程序加固策略
@@ -1388,7 +1388,7 @@ module TencentCloud
         # @type OrderField: String
         # @param OrderDirection: 升序（asc）还是降序（desc），默认：desc。
         # @type OrderDirection: String
-        # @param PlatformType: （条件过滤字段）平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformType: （条件过滤字段）平台类型  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformType: Integer
         # @param OrderType: （条件过滤字段）订单采购类型 1-免费试用 2-按年收费 3-按次收费
         # @type OrderType: Integer
@@ -1400,7 +1400,7 @@ module TencentCloud
         # @type OrderId: String
         # @param ResourceId: （条件过滤字段）资源ID
         # @type ResourceId: String
-        # @param AppPkgName: （条件过滤字段）安卓包名，查询android安卓加固订单时使用
+        # @param AppPkgName: （条件过滤字段）包名，查询android加固订单时使用
         # @type AppPkgName: String
 
         attr_accessor :PageNumber, :PageSize, :OrderField, :OrderDirection, :PlatformType, :OrderType, :ApprovalStatus, :ResourceStatus, :OrderId, :ResourceId, :AppPkgName

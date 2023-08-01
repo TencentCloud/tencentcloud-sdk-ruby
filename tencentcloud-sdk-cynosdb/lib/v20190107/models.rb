@@ -984,10 +984,19 @@ module TencentCloud
         # @type InstanceStorage: Integer
         # @param InstanceRole: 实例角色
         # @type InstanceRole: String
+        # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainStartTime: Integer
+        # @param MaintainDuration: 持续的时间(单位：秒)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainDuration: Integer
+        # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainWeekDays: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -997,6 +1006,9 @@ module TencentCloud
           @InstanceMemory = instancememory
           @InstanceStorage = instancestorage
           @InstanceRole = instancerole
+          @MaintainStartTime = maintainstarttime
+          @MaintainDuration = maintainduration
+          @MaintainWeekDays = maintainweekdays
         end
 
         def deserialize(params)
@@ -1009,6 +1021,9 @@ module TencentCloud
           @InstanceMemory = params['InstanceMemory']
           @InstanceStorage = params['InstanceStorage']
           @InstanceRole = params['InstanceRole']
+          @MaintainStartTime = params['MaintainStartTime']
+          @MaintainDuration = params['MaintainDuration']
+          @MaintainWeekDays = params['MaintainWeekDays']
         end
       end
 
@@ -3576,16 +3591,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
+        # @param AccountRegular: 模糊匹配关键字(同时匹配AccountName和AccountHost，返回并集结果，支持正则)
+        # @type AccountRegular: String
 
-        attr_accessor :ClusterId, :AccountNames, :DbType, :Hosts, :Limit, :Offset
+        attr_accessor :ClusterId, :AccountNames, :DbType, :Hosts, :Limit, :Offset, :AccountRegular
 
-        def initialize(clusterid=nil, accountnames=nil, dbtype=nil, hosts=nil, limit=nil, offset=nil)
+        def initialize(clusterid=nil, accountnames=nil, dbtype=nil, hosts=nil, limit=nil, offset=nil, accountregular=nil)
           @ClusterId = clusterid
           @AccountNames = accountnames
           @DbType = dbtype
           @Hosts = hosts
           @Limit = limit
           @Offset = offset
+          @AccountRegular = accountregular
         end
 
         def deserialize(params)
@@ -3595,6 +3613,7 @@ module TencentCloud
           @Hosts = params['Hosts']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @AccountRegular = params['AccountRegular']
         end
       end
 
@@ -9963,8 +9982,10 @@ module TencentCloud
       # 回档表信息
       class RollbackTableInfo < TencentCloud::Common::AbstractModel
         # @param OldTable: 旧表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldTable: String
         # @param NewTable: 新表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewTable: String
 
         attr_accessor :OldTable, :NewTable

@@ -97,6 +97,31 @@ module TencentCloud
         end
       end
 
+      # {
+      # "Clazz": "c1", // java类全路径
+      # "Level": "WARN" // 日志级别  TRACE，DEBUG、INFO、WARN、ERROR
+      # }
+      class ClazzLevel < TencentCloud::Common::AbstractModel
+        # @param Clazz: java类全路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Clazz: String
+        # @param Level: 日志级别  TRACE，DEBUG、INFO、WARN、ERROR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+
+        attr_accessor :Clazz, :Level
+
+        def initialize(clazz=nil, level=nil)
+          @Clazz = clazz
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Clazz = params['Clazz']
+          @Level = params['Level']
+        end
+      end
+
       # 描述用户创建的集群信息
       class Cluster < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -670,10 +695,16 @@ module TencentCloud
         # @type LogLevel: String
         # @param AutoRecover: Oceanus 平台恢复作业开关 1:开启 -1: 关闭
         # @type AutoRecover: Integer
+        # @param ClazzLevels: 类日志级别
+        # @type ClazzLevels: Array
+        # @param ExpertModeOn: 是否打开专家模式
+        # @type ExpertModeOn: Boolean
+        # @param ExpertModeConfiguration: 专家模式的配置
+        # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -693,6 +724,9 @@ module TencentCloud
           @WorkSpaceId = workspaceid
           @LogLevel = loglevel
           @AutoRecover = autorecover
+          @ClazzLevels = clazzlevels
+          @ExpertModeOn = expertmodeon
+          @ExpertModeConfiguration = expertmodeconfiguration
         end
 
         def deserialize(params)
@@ -729,6 +763,19 @@ module TencentCloud
           @WorkSpaceId = params['WorkSpaceId']
           @LogLevel = params['LogLevel']
           @AutoRecover = params['AutoRecover']
+          unless params['ClazzLevels'].nil?
+            @ClazzLevels = []
+            params['ClazzLevels'].each do |i|
+              clazzlevel_tmp = ClazzLevel.new
+              clazzlevel_tmp.deserialize(i)
+              @ClazzLevels << clazzlevel_tmp
+            end
+          end
+          @ExpertModeOn = params['ExpertModeOn']
+          unless params['ExpertModeConfiguration'].nil?
+            @ExpertModeConfiguration = ExpertModeConfiguration.new
+            @ExpertModeConfiguration.deserialize(params['ExpertModeConfiguration'])
+          end
         end
       end
 
@@ -2022,6 +2069,50 @@ module TencentCloud
         end
       end
 
+      # 作业配置 -- 专家模式的详细配置
+      class ExpertModeConfiguration < TencentCloud::Common::AbstractModel
+        # @param JobGraph: Job graph
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
+        # @param NodeConfig: Node configuration
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeConfig: Array
+        # @param SlotSharingGroups: Slot sharing groups
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlotSharingGroups: Array
+
+        attr_accessor :JobGraph, :NodeConfig, :SlotSharingGroups
+
+        def initialize(jobgraph=nil, nodeconfig=nil, slotsharinggroups=nil)
+          @JobGraph = jobgraph
+          @NodeConfig = nodeconfig
+          @SlotSharingGroups = slotsharinggroups
+        end
+
+        def deserialize(params)
+          unless params['JobGraph'].nil?
+            @JobGraph = JobGraph.new
+            @JobGraph.deserialize(params['JobGraph'])
+          end
+          unless params['NodeConfig'].nil?
+            @NodeConfig = []
+            params['NodeConfig'].each do |i|
+              nodeconfig_tmp = NodeConfig.new
+              nodeconfig_tmp.deserialize(i)
+              @NodeConfig << nodeconfig_tmp
+            end
+          end
+          unless params['SlotSharingGroups'].nil?
+            @SlotSharingGroups = []
+            params['SlotSharingGroups'].each do |i|
+              slotsharinggroup_tmp = SlotSharingGroup.new
+              slotsharinggroup_tmp.deserialize(i)
+              @SlotSharingGroups << slotsharinggroup_tmp
+            end
+          end
+        end
+      end
+
       # 查询作业列表时的过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段
@@ -2104,10 +2195,19 @@ module TencentCloud
         # @param LogLevel: 日志级别
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogLevel: String
+        # @param ClazzLevels: 类日志级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClazzLevels: Array
+        # @param ExpertModeOn: 是否开启专家模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpertModeOn: Boolean
+        # @param ExpertModeConfiguration: 专家模式的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -2129,6 +2229,9 @@ module TencentCloud
           @PythonVersion = pythonversion
           @AutoRecover = autorecover
           @LogLevel = loglevel
+          @ClazzLevels = clazzlevels
+          @ExpertModeOn = expertmodeon
+          @ExpertModeConfiguration = expertmodeconfiguration
         end
 
         def deserialize(params)
@@ -2167,6 +2270,109 @@ module TencentCloud
           @PythonVersion = params['PythonVersion']
           @AutoRecover = params['AutoRecover']
           @LogLevel = params['LogLevel']
+          unless params['ClazzLevels'].nil?
+            @ClazzLevels = []
+            params['ClazzLevels'].each do |i|
+              clazzlevel_tmp = ClazzLevel.new
+              clazzlevel_tmp.deserialize(i)
+              @ClazzLevels << clazzlevel_tmp
+            end
+          end
+          @ExpertModeOn = params['ExpertModeOn']
+          unless params['ExpertModeConfiguration'].nil?
+            @ExpertModeConfiguration = ExpertModeConfiguration.new
+            @ExpertModeConfiguration.deserialize(params['ExpertModeConfiguration'])
+          end
+        end
+      end
+
+      # 作业运行图
+      class JobGraph < TencentCloud::Common::AbstractModel
+        # @param Nodes: 运行图的点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+        # @param Edges: 运行图的边集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Edges: Array
+
+        attr_accessor :Nodes, :Edges
+
+        def initialize(nodes=nil, edges=nil)
+          @Nodes = nodes
+          @Edges = edges
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              jobgraphnode_tmp = JobGraphNode.new
+              jobgraphnode_tmp.deserialize(i)
+              @Nodes << jobgraphnode_tmp
+            end
+          end
+          unless params['Edges'].nil?
+            @Edges = []
+            params['Edges'].each do |i|
+              jobgraphedge_tmp = JobGraphEdge.new
+              jobgraphedge_tmp.deserialize(i)
+              @Edges << jobgraphedge_tmp
+            end
+          end
+        end
+      end
+
+      # Flink Job 运行图的边信息
+      class JobGraphEdge < TencentCloud::Common::AbstractModel
+        # @param Source: 边的起始节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: Integer
+        # @param Target: 边的目标节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Target: Integer
+
+        attr_accessor :Source, :Target
+
+        def initialize(source=nil, target=nil)
+          @Source = source
+          @Target = target
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Target = params['Target']
+        end
+      end
+
+      # Flink Job 运行图的点信息
+      class JobGraphNode < TencentCloud::Common::AbstractModel
+        # @param Id: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Description: 节点描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Name: 节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Parallelism: 节点并行度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parallelism: Integer
+
+        attr_accessor :Id, :Description, :Name, :Parallelism
+
+        def initialize(id=nil, description=nil, name=nil, parallelism=nil)
+          @Id = id
+          @Description = description
+          @Name = name
+          @Parallelism = parallelism
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Description = params['Description']
+          @Name = params['Name']
+          @Parallelism = params['Parallelism']
         end
       end
 
@@ -2454,6 +2660,50 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 专家模式  计算节点的配置信息
+      class NodeConfig < TencentCloud::Common::AbstractModel
+        # @param Id: Node ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Parallelism: Node parallelism
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Parallelism: Integer
+        # @param SlotSharingGroup: Slot sharing group
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlotSharingGroup: String
+        # @param Configuration: Configuration properties
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configuration: Array
+        # @param StateTTL: 节点的状态ttl配置, 多个用 ; 分割
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateTTL: String
+
+        attr_accessor :Id, :Parallelism, :SlotSharingGroup, :Configuration, :StateTTL
+
+        def initialize(id=nil, parallelism=nil, slotsharinggroup=nil, configuration=nil, statettl=nil)
+          @Id = id
+          @Parallelism = parallelism
+          @SlotSharingGroup = slotsharinggroup
+          @Configuration = configuration
+          @StateTTL = statettl
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Parallelism = params['Parallelism']
+          @SlotSharingGroup = params['SlotSharingGroup']
+          unless params['Configuration'].nil?
+            @Configuration = []
+            params['Configuration'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Configuration << property_tmp
+            end
+          end
+          @StateTTL = params['StateTTL']
         end
       end
 
@@ -3030,6 +3280,68 @@ module TencentCloud
           @SerialId = params['SerialId']
           @TimeConsuming = params['TimeConsuming']
           @PathStatus = params['PathStatus']
+        end
+      end
+
+      # SlotSharingGroup 描述
+      class SlotSharingGroup < TencentCloud::Common::AbstractModel
+        # @param Name: SlotSharingGroup的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Spec: SlotSharingGroup的规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: :class:`Tencentcloud::Oceanus.v20190422.models.SlotSharingGroupSpec`
+        # @param Description: SlotSharingGroup的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Name, :Spec, :Description
+
+        def initialize(name=nil, spec=nil, description=nil)
+          @Name = name
+          @Spec = spec
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Spec'].nil?
+            @Spec = SlotSharingGroupSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # SlotSharingGroup的规格描述
+      class SlotSharingGroupSpec < TencentCloud::Common::AbstractModel
+        # @param CPU: 适用的cpu
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPU: Float
+        # @param HeapMemory: 默认为b, 支持单位有 b, kb, mb, gb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeapMemory: String
+        # @param OffHeapMemory: 默认为b, 支持单位有 b, kb, mb, gb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffHeapMemory: String
+        # @param ManagedMemory: 默认为b, 支持单位有 b, kb, mb, gb
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagedMemory: String
+
+        attr_accessor :CPU, :HeapMemory, :OffHeapMemory, :ManagedMemory
+
+        def initialize(cpu=nil, heapmemory=nil, offheapmemory=nil, managedmemory=nil)
+          @CPU = cpu
+          @HeapMemory = heapmemory
+          @OffHeapMemory = offheapmemory
+          @ManagedMemory = managedmemory
+        end
+
+        def deserialize(params)
+          @CPU = params['CPU']
+          @HeapMemory = params['HeapMemory']
+          @OffHeapMemory = params['OffHeapMemory']
+          @ManagedMemory = params['ManagedMemory']
         end
       end
 

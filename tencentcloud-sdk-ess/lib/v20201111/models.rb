@@ -52,12 +52,12 @@ module TencentCloud
 
         attr_accessor :AppId, :ProxyAppId, :ProxyOrganizationId, :ProxyOperator
         extend Gem::Deprecate
-        deprecate :AppId, :none, 2023, 7
-        deprecate :AppId=, :none, 2023, 7
-        deprecate :ProxyAppId, :none, 2023, 7
-        deprecate :ProxyAppId=, :none, 2023, 7
-        deprecate :ProxyOperator, :none, 2023, 7
-        deprecate :ProxyOperator=, :none, 2023, 7
+        deprecate :AppId, :none, 2023, 8
+        deprecate :AppId=, :none, 2023, 8
+        deprecate :ProxyAppId, :none, 2023, 8
+        deprecate :ProxyAppId=, :none, 2023, 8
+        deprecate :ProxyOperator, :none, 2023, 8
+        deprecate :ProxyOperator=, :none, 2023, 8
 
         def initialize(appid=nil, proxyappid=nil, proxyorganizationid=nil, proxyoperator=nil)
           @AppId = appid
@@ -368,8 +368,8 @@ module TencentCloud
 
         attr_accessor :CallbackUrl, :Token, :CallbackKey, :CallbackToken
         extend Gem::Deprecate
-        deprecate :Token, :none, 2023, 7
-        deprecate :Token=, :none, 2023, 7
+        deprecate :Token, :none, 2023, 8
+        deprecate :Token=, :none, 2023, 8
 
         def initialize(callbackurl=nil, token=nil, callbackkey=nil, callbacktoken=nil)
           @CallbackUrl = callbackurl
@@ -399,12 +399,12 @@ module TencentCloud
 
         attr_accessor :ApplicationId, :OrganizationId, :OperatorId, :SubOrganizationId
         extend Gem::Deprecate
-        deprecate :ApplicationId, :none, 2023, 7
-        deprecate :ApplicationId=, :none, 2023, 7
-        deprecate :OrganizationId, :none, 2023, 7
-        deprecate :OrganizationId=, :none, 2023, 7
-        deprecate :SubOrganizationId, :none, 2023, 7
-        deprecate :SubOrganizationId=, :none, 2023, 7
+        deprecate :ApplicationId, :none, 2023, 8
+        deprecate :ApplicationId=, :none, 2023, 8
+        deprecate :OrganizationId, :none, 2023, 8
+        deprecate :OrganizationId=, :none, 2023, 8
+        deprecate :SubOrganizationId, :none, 2023, 8
+        deprecate :SubOrganizationId=, :none, 2023, 8
 
         def initialize(applicationid=nil, organizationid=nil, operatorid=nil, suborganizationid=nil)
           @ApplicationId = applicationid
@@ -599,7 +599,7 @@ module TencentCloud
         end
       end
 
-      # 模板控件信息
+      # 模板/流程中控件信息，可以是填充控件或签署控件
       class Component < TencentCloud::Common::AbstractModel
         # @param ComponentType: 如果是Component填写控件类型，则可选的字段为：
         # TEXT - 普通文本控件，输入文本字符串；
@@ -623,7 +623,8 @@ module TencentCloud
 
         # 表单域的控件不能作为印章和签名控件
         # @type ComponentType: String
-        # @param FileIndex: 控件所属文件的序号（取值为：0-N）。目前单文件的情况下，值是0
+        # @param FileIndex: 控件所属文件的序号（取值为：0-N）。
+        # 目前单文件的情况下，值是0
         # @type FileIndex: Integer
         # @param ComponentHeight: 参数控件高度，单位pt
         # @type ComponentHeight: Float
@@ -635,13 +636,15 @@ module TencentCloud
         # @type ComponentPosX: Float
         # @param ComponentPosY: 参数控件Y位置，单位pt
         # @type ComponentPosY: Float
-        # @param ComponentId: 查询时返回控件唯一Id。使用文件发起合同时用于GenerateMode==KEYWORD 指定关键字
+        # @param ComponentId: 控件唯一ID。
+        # 或使用文件发起合同时用于GenerateMode==KEYWORD 指定关键字
         # @type ComponentId: String
-        # @param ComponentName: 查询时返回控件名。使用文件发起合同时用于GenerateMode==FIELD 指定表单域名称
+        # @param ComponentName: 控件名。
+        # 或使用文件发起合同时用于GenerateMode==FIELD 指定表单域名称
         # @type ComponentName: String
-        # @param ComponentRequired: 是否必选，默认为false
+        # @param ComponentRequired: 是否必选，默认为false-非必选
         # @type ComponentRequired: Boolean
-        # @param ComponentRecipientId: 控件关联的签署人ID
+        # @param ComponentRecipientId: 控件关联的参与方ID，对应Recipient结构体中的RecipientId
         # @type ComponentRecipientId: String
         # @param ComponentExtra: 扩展参数：
         # 为JSON格式。
@@ -673,7 +676,7 @@ module TencentCloud
         # 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
         # 参数样例："ComponentExtra":"{\"PageRanges\":[{\"BeginPage\":1,\"EndPage\":-1}]}"
         # @type ComponentExtra: String
-        # @param IsFormType: 是否是表单域类型，默认不false-不是
+        # @param IsFormType: 是否是表单域类型，默认false-不是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsFormType: Boolean
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
@@ -759,7 +762,7 @@ module TencentCloud
         # @type GenerateMode: String
         # @param ComponentDateFontSize: 日期签署控件的字号，默认为 12
         # @type ComponentDateFontSize: Integer
-        # @param ChannelComponentId: 第三方应用集成平台模板控件 id 标识
+        # @param ChannelComponentId: 第三方应用集成平台模板控件 ID 标识
         # @type ChannelComponentId: String
         # @param OffsetX: 指定关键字时横坐标偏移量，单位pt
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -767,21 +770,41 @@ module TencentCloud
         # @param OffsetY: 指定关键字时纵坐标偏移量，单位pt
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetY: Float
-        # @param ChannelComponentSource: 第三方应用集成中子客企业控件来源。0-平台指定；1-用户自定义
+        # @param ChannelComponentSource: 第三方应用集成中子客企业控件来源。
+        # 0-平台指定；
+        # 1-用户自定义
         # @type ChannelComponentSource: Integer
-        # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
+        # @param KeywordOrder: 指定关键字排序规则，Positive-正序，Reverse-倒序。
+        # 传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
         # 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
         # @type KeywordOrder: String
-        # @param KeywordPage: 指定关键字页码，可选参数，指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
+        # @param KeywordPage: 指定关键字页码。
+        # 指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
         # @type KeywordPage: Integer
-        # @param RelativeLocation: 关键字位置模式，Middle-居中，Below-正下方，Right-正右方，LowerRight-右上角，UpperRight-右下角。示例：如果设置Middle的关键字盖章，则印章的中心会和关键字的中心重合，如果设置Below，则印章在关键字的正下方
+        # @param RelativeLocation: 关键字位置模式，
+        # Middle-居中，
+        # Below-正下方，
+        # Right-正右方，
+        # LowerRight-右上角，
+        # UpperRight-右下角。
+        # 示例：如果设置Middle的关键字盖章，则印章的中心会和关键字的中心重合，如果设置Below，则印章在关键字的正下方
         # @type RelativeLocation: String
-        # @param KeywordIndexes: 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例：[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
+        # @param KeywordIndexes: 关键字索引。
+        # 如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。
+        # 示例：[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         # @type KeywordIndexes: Array
+        # @param LockComponentValue: 是否锁定控件值不允许编辑（嵌入式发起使用）
+        # <br/>默认false：不锁定控件值，允许在页面编辑控件值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockComponentValue: Boolean
+        # @param ForbidMoveAndDelete: 是否禁止移动和删除控件
+        # <br/>默认false，不禁止移动和删除控件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForbidMoveAndDelete: Boolean
 
-        attr_accessor :ComponentType, :FileIndex, :ComponentHeight, :ComponentWidth, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentId, :ComponentName, :ComponentRequired, :ComponentRecipientId, :ComponentExtra, :IsFormType, :ComponentValue, :GenerateMode, :ComponentDateFontSize, :ChannelComponentId, :OffsetX, :OffsetY, :ChannelComponentSource, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes
+        attr_accessor :ComponentType, :FileIndex, :ComponentHeight, :ComponentWidth, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentId, :ComponentName, :ComponentRequired, :ComponentRecipientId, :ComponentExtra, :IsFormType, :ComponentValue, :GenerateMode, :ComponentDateFontSize, :ChannelComponentId, :OffsetX, :OffsetY, :ChannelComponentSource, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :LockComponentValue, :ForbidMoveAndDelete
 
-        def initialize(componenttype=nil, fileindex=nil, componentheight=nil, componentwidth=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentid=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, componentextra=nil, isformtype=nil, componentvalue=nil, generatemode=nil, componentdatefontsize=nil, channelcomponentid=nil, offsetx=nil, offsety=nil, channelcomponentsource=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil)
+        def initialize(componenttype=nil, fileindex=nil, componentheight=nil, componentwidth=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentid=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, componentextra=nil, isformtype=nil, componentvalue=nil, generatemode=nil, componentdatefontsize=nil, channelcomponentid=nil, offsetx=nil, offsety=nil, channelcomponentsource=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, lockcomponentvalue=nil, forbidmoveanddelete=nil)
           @ComponentType = componenttype
           @FileIndex = fileindex
           @ComponentHeight = componentheight
@@ -806,6 +829,8 @@ module TencentCloud
           @KeywordPage = keywordpage
           @RelativeLocation = relativelocation
           @KeywordIndexes = keywordindexes
+          @LockComponentValue = lockcomponentvalue
+          @ForbidMoveAndDelete = forbidmoveanddelete
         end
 
         def deserialize(params)
@@ -833,6 +858,8 @@ module TencentCloud
           @KeywordPage = params['KeywordPage']
           @RelativeLocation = params['RelativeLocation']
           @KeywordIndexes = params['KeywordIndexes']
+          @LockComponentValue = params['LockComponentValue']
+          @ForbidMoveAndDelete = params['ForbidMoveAndDelete']
         end
       end
 
@@ -962,10 +989,10 @@ module TencentCloud
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 7
-        deprecate :Agent=, :none, 2023, 7
-        deprecate :Organization, :none, 2023, 7
-        deprecate :Organization=, :none, 2023, 7
+        deprecate :Agent, :none, 2023, 8
+        deprecate :Agent=, :none, 2023, 8
+        deprecate :Organization, :none, 2023, 8
+        deprecate :Organization=, :none, 2023, 8
 
         def initialize(resourcetype=nil, resourcename=nil, resourceid=nil, operator=nil, agent=nil, organization=nil)
           @ResourceType = resourcetype
@@ -1111,6 +1138,8 @@ module TencentCloud
         # <br/>PREVIEW_SEAL_LIST：预览印章列表
         # <br/>PREVIEW_SEAL_DETAIL：预览印章详情
         # <br/>EXTEND_SERVICE：拓展服务
+        # <br/>PREVIEW_FLOW：预览合同
+        # <br/>PREVIEW_FLOW_DETAIL：查看合同详情
         # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID
         # <br/>PREVIEW_SEAL_DETAIL，必填，取值为印章id
@@ -1119,15 +1148,18 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Reviewer: 抄送方信息
         # @type Reviewer: :class:`Tencentcloud::Ess.v20201111.models.ReviewerInfo`
+        # @param Option: 个性化参数
+        # @type Option: :class:`Tencentcloud::Ess.v20201111.models.EmbedUrlOption`
 
-        attr_accessor :Operator, :EmbedType, :BusinessId, :Agent, :Reviewer
+        attr_accessor :Operator, :EmbedType, :BusinessId, :Agent, :Reviewer, :Option
 
-        def initialize(operator=nil, embedtype=nil, businessid=nil, agent=nil, reviewer=nil)
+        def initialize(operator=nil, embedtype=nil, businessid=nil, agent=nil, reviewer=nil, option=nil)
           @Operator = operator
           @EmbedType = embedtype
           @BusinessId = businessid
           @Agent = agent
           @Reviewer = reviewer
+          @Option = option
         end
 
         def deserialize(params)
@@ -1144,6 +1176,10 @@ module TencentCloud
           unless params['Reviewer'].nil?
             @Reviewer = ReviewerInfo.new
             @Reviewer.deserialize(params['Reviewer'])
+          end
+          unless params['Option'].nil?
+            @Option = EmbedUrlOption.new
+            @Option.deserialize(params['Option'])
           end
         end
       end
@@ -1607,6 +1643,76 @@ module TencentCloud
         end
       end
 
+      # 创建合同个性化参数
+      class CreateFlowOption < TencentCloud::Common::AbstractModel
+        # @param CanEditFlow: 是否允许修改发起合同时确认弹窗的合同信息（合同名称、合同类型、签署截止时间），若不允许编辑，则表单字段将被禁止输入。
+        # <br/>true：允许编辑（默认），<br/>false：不允许编辑<br/>默认：false：不允许编辑
+        # @type CanEditFlow: Boolean
+        # @param CanEditFormField: 是否允许编辑模版控件
+        # <br/>true:允许编辑模版控件信息
+        # <br/>false:不允许编辑模版控件信息
+        # <br/>默认false:不允许编辑模版控件信息
+        # @type CanEditFormField: Boolean
+        # @param HideShowFlowName: 发起页面隐藏合同名称展示
+        # <br/>true:发起页面隐藏合同名称展示
+        # <br/>false:发起页面不隐藏合同名称展示
+        # <br/>默认false:发起页面不隐藏合同名称展示
+        # @type HideShowFlowName: Boolean
+        # @param HideShowFlowType: 发起页面隐藏合同类型展示
+        # <br/>true:发起页面隐藏合同类型展示
+        # <br/>false:发起页面不隐藏合同类型展示
+        # <br/>默认false:发起页面不隐藏合同类型展示
+        # @type HideShowFlowType: Boolean
+        # @param HideShowDeadline: 发起页面隐藏合同截止日期展示
+        # <br/>true:发起页面隐藏合同截止日期展示
+        # <br/>false:发起页面不隐藏合同截止日期展示
+        # <br/>默认false:发起页面不隐藏合同截止日期展示
+        # @type HideShowDeadline: Boolean
+        # @param CanSkipAddApprover: 发起页面允许跳过添加签署人环节
+        # <br/>true:发起页面允许跳过添加签署人环节
+        # <br/>false:发起页面不允许跳过添加签署人环节
+        # <br/>默认false:发起页面不允许跳过添加签署人环节
+        # @type CanSkipAddApprover: Boolean
+        # @param SkipUploadFile: 文件发起页面跳过文件上传步骤
+        # <br/>true:文件发起页面跳过文件上传步骤
+        # <br/>false:文件发起页面不跳过文件上传步骤
+        # <br/>默认false:文件发起页面不跳过文件上传步骤
+        # @type SkipUploadFile: Boolean
+        # @param ForbidEditFillComponent: 禁止编辑填写控件
+        # <br/>true:禁止编辑填写控件
+        # <br/>false:允许编辑填写控件
+        # <br/>默认false:允许编辑填写控件
+        # @type ForbidEditFillComponent: Boolean
+        # @param CustomCreateFlowDescription: 定制化发起合同弹窗的描述信息，描述信息最长500
+        # @type CustomCreateFlowDescription: String
+
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription
+
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil)
+          @CanEditFlow = caneditflow
+          @CanEditFormField = caneditformfield
+          @HideShowFlowName = hideshowflowname
+          @HideShowFlowType = hideshowflowtype
+          @HideShowDeadline = hideshowdeadline
+          @CanSkipAddApprover = canskipaddapprover
+          @SkipUploadFile = skipuploadfile
+          @ForbidEditFillComponent = forbideditfillcomponent
+          @CustomCreateFlowDescription = customcreateflowdescription
+        end
+
+        def deserialize(params)
+          @CanEditFlow = params['CanEditFlow']
+          @CanEditFormField = params['CanEditFormField']
+          @HideShowFlowName = params['HideShowFlowName']
+          @HideShowFlowType = params['HideShowFlowType']
+          @HideShowDeadline = params['HideShowDeadline']
+          @CanSkipAddApprover = params['CanSkipAddApprover']
+          @SkipUploadFile = params['SkipUploadFile']
+          @ForbidEditFillComponent = params['ForbidEditFillComponent']
+          @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
+        end
+      end
+
       # CreateFlowReminds请求参数结构体
       class CreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
@@ -1711,10 +1817,10 @@ module TencentCloud
 
         attr_accessor :Operator, :FlowName, :Approvers, :FlowType, :ClientToken, :DeadLine, :RemindedOn, :UserData, :FlowDescription, :Unordered, :CustomShowMap, :NeedSignReview, :Agent, :CcInfos, :AutoSignScene, :RelatedFlowId, :CallbackUrl
         extend Gem::Deprecate
-        deprecate :RelatedFlowId, :none, 2023, 7
-        deprecate :RelatedFlowId=, :none, 2023, 7
-        deprecate :CallbackUrl, :none, 2023, 7
-        deprecate :CallbackUrl=, :none, 2023, 7
+        deprecate :RelatedFlowId, :none, 2023, 8
+        deprecate :RelatedFlowId=, :none, 2023, 8
+        deprecate :CallbackUrl, :none, 2023, 8
+        deprecate :CallbackUrl=, :none, 2023, 8
 
         def initialize(operator=nil, flowname=nil, approvers=nil, flowtype=nil, clienttoken=nil, deadline=nil, remindedon=nil, userdata=nil, flowdescription=nil, unordered=nil, customshowmap=nil, needsignreview=nil, agent=nil, ccinfos=nil, autosignscene=nil, relatedflowid=nil, callbackurl=nil)
           @Operator = operator
@@ -1889,8 +1995,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :FlowApproverInfos, :Operator, :Agent, :Organization, :JumpUrl
         extend Gem::Deprecate
-        deprecate :Organization, :none, 2023, 7
-        deprecate :Organization=, :none, 2023, 7
+        deprecate :Organization, :none, 2023, 8
+        deprecate :Organization=, :none, 2023, 8
 
         def initialize(flowid=nil, flowapproverinfos=nil, operator=nil, agent=nil, organization=nil, jumpurl=nil)
           @FlowId = flowid
@@ -2166,10 +2272,10 @@ module TencentCloud
 
         attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 7
-        deprecate :Agent=, :none, 2023, 7
-        deprecate :ApproverRestrictions, :none, 2023, 7
-        deprecate :ApproverRestrictions=, :none, 2023, 7
+        deprecate :Agent, :none, 2023, 8
+        deprecate :Agent=, :none, 2023, 8
+        deprecate :ApproverRestrictions, :none, 2023, 8
+        deprecate :ApproverRestrictions=, :none, 2023, 8
 
         def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil)
           @Operator = operator
@@ -2320,23 +2426,60 @@ module TencentCloud
         # @type ResourceId: String
         # @param FlowName: 合同名称
         # @type FlowName: String
-        # @param Unordered: 是否顺序签署(true:无序签,false:顺序签)
+        # @param Unordered: 是否顺序签署
+        # true:无序签
+        # false:顺序签
         # @type Unordered: Boolean
         # @param Deadline: 签署流程的签署截止时间。
-        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        # 值为unix时间戳,精确到秒
+        # 不传默认为当前时间一年后
         # @type Deadline: Integer
-        # @param UserFlowTypeId: 用户自定义合同类型
+        # @param UserFlowTypeId: 用户自定义合同类型Id
+        # 该id为电子签企业内的合同类型id
         # @type UserFlowTypeId: String
         # @param Approvers: 签署流程参与者信息，最大限制50方
         # @type Approvers: Array
-        # @param IntelligentStatus: 打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
+        # @param IntelligentStatus: 打开智能添加填写区
+        # (默认开启，打开:"OPEN"
+        #  关闭："CLOSE"
         # @type IntelligentStatus: String
+        # @param ResourceType: 资源类型，
+        # 1：文件，
+        # 2：模板
+        # 不传默认为1：文件
+        # 目前仅支持文件
+        # @type ResourceType: Integer
+        # @param Components: 发起方填写控件
+        # 该类型控件由发起方完成填写
+        # @type Components: :class:`Tencentcloud::Ess.v20201111.models.Component`
+        # @param FlowOption: 发起合同个性化参数
+        # 用于满足创建及页面操作过程中的个性化要求
+        # 具体定制化内容详见数据接口说明
+        # @type FlowOption: :class:`Tencentcloud::Ess.v20201111.models.CreateFlowOption`
+        # @param NeedSignReview: 是否开启发起方签署审核
+        # true:开启发起方签署审核
+        # false:不开启发起方签署审核
+        # 默认false:不开启发起方签署审核
+        # @type NeedSignReview: Boolean
+        # @param NeedCreateReview: 开启发起方发起合同审核
+        # true:开启发起方发起合同审核
+        # false:不开启发起方发起合同审核
+        # 默认false:不开启发起方发起合同审核
+        # @type NeedCreateReview: Boolean
+        # @param UserData: 用户自定义参数
+        # @type UserData: String
+        # @param FlowId: 合同id,用于通过已web页面发起的合同id快速生成一个web发起合同链接
+        # @type FlowId: String
+        # @param FlowType: 合同类型名称
+        # 该字段用于客户自定义合同类型
+        # 建议使用时指定合同类型，便于之后合同分类以及查看
+        # @type FlowType: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus, :Agent
+        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :FlowId, :FlowType, :Agent
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil, agent=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, flowid=nil, flowtype=nil, agent=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
@@ -2345,6 +2488,14 @@ module TencentCloud
           @UserFlowTypeId = userflowtypeid
           @Approvers = approvers
           @IntelligentStatus = intelligentstatus
+          @ResourceType = resourcetype
+          @Components = components
+          @FlowOption = flowoption
+          @NeedSignReview = needsignreview
+          @NeedCreateReview = needcreatereview
+          @UserData = userdata
+          @FlowId = flowid
+          @FlowType = flowtype
           @Agent = agent
         end
 
@@ -2367,6 +2518,20 @@ module TencentCloud
             end
           end
           @IntelligentStatus = params['IntelligentStatus']
+          @ResourceType = params['ResourceType']
+          unless params['Components'].nil?
+            @Components = Component.new
+            @Components.deserialize(params['Components'])
+          end
+          unless params['FlowOption'].nil?
+            @FlowOption = CreateFlowOption.new
+            @FlowOption.deserialize(params['FlowOption'])
+          end
+          @NeedSignReview = params['NeedSignReview']
+          @NeedCreateReview = params['NeedCreateReview']
+          @UserData = params['UserData']
+          @FlowId = params['FlowId']
+          @FlowType = params['FlowType']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -2440,8 +2605,8 @@ module TencentCloud
 
         attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId
         extend Gem::Deprecate
-        deprecate :SealImage, :none, 2023, 7
-        deprecate :SealImage=, :none, 2023, 7
+        deprecate :SealImage, :none, 2023, 8
+        deprecate :SealImage=, :none, 2023, 8
 
         def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil)
           @UserName = username
@@ -3387,12 +3552,12 @@ module TencentCloud
 
         attr_accessor :Operator, :BusinessType, :BusinessIds, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :CcToken, :Scene, :Agent
         extend Gem::Deprecate
-        deprecate :CcToken, :none, 2023, 7
-        deprecate :CcToken=, :none, 2023, 7
-        deprecate :Scene, :none, 2023, 7
-        deprecate :Scene=, :none, 2023, 7
-        deprecate :Agent, :none, 2023, 7
-        deprecate :Agent=, :none, 2023, 7
+        deprecate :CcToken, :none, 2023, 8
+        deprecate :CcToken=, :none, 2023, 8
+        deprecate :Scene, :none, 2023, 8
+        deprecate :Scene=, :none, 2023, 8
+        deprecate :Agent, :none, 2023, 8
+        deprecate :Agent=, :none, 2023, 8
 
         def initialize(operator=nil, businesstype=nil, businessids=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, cctoken=nil, scene=nil, agent=nil)
           @Operator = operator
@@ -3711,7 +3876,7 @@ module TencentCloud
       class DescribeFlowTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方员工/经办人信息
         # UserId 必填，在企业控制台组织架构中可以查到员工的UserId
-        # 注：请保证对应
+        # 注：请保证员工有相关的角色权限
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Agent: 代理相关应用信息
         # 如集团主企业代子企业操作的场景中ProxyOrganizationId必填
@@ -3742,12 +3907,12 @@ module TencentCloud
 
         attr_accessor :Operator, :Agent, :ContentType, :Filters, :Offset, :Limit, :ApplicationId, :IsChannel, :Organization, :GenerateSource
         extend Gem::Deprecate
-        deprecate :IsChannel, :none, 2023, 7
-        deprecate :IsChannel=, :none, 2023, 7
-        deprecate :Organization, :none, 2023, 7
-        deprecate :Organization=, :none, 2023, 7
-        deprecate :GenerateSource, :none, 2023, 7
-        deprecate :GenerateSource=, :none, 2023, 7
+        deprecate :IsChannel, :none, 2023, 8
+        deprecate :IsChannel=, :none, 2023, 8
+        deprecate :Organization, :none, 2023, 8
+        deprecate :Organization=, :none, 2023, 8
+        deprecate :GenerateSource, :none, 2023, 8
+        deprecate :GenerateSource=, :none, 2023, 8
 
         def initialize(operator=nil, agent=nil, contenttype=nil, filters=nil, offset=nil, limit=nil, applicationid=nil, ischannel=nil, organization=nil, generatesource=nil)
           @Operator = operator
@@ -4445,6 +4610,32 @@ module TencentCloud
         end
       end
 
+      # 个性化参数
+      class EmbedUrlOption < TencentCloud::Common::AbstractModel
+        # @param ShowFlowDetailComponent: 合同详情预览，允许展示控件信息
+        # <br/>true：允许在合同详情页展示控件
+        # <br/>false：不允许在合同详情页展示控件
+        # <br/>默认false，合同详情页不展示控件
+        # @type ShowFlowDetailComponent: Boolean
+        # @param ShowTemplateComponent: 模版预览，允许展示模版控件信息
+        # <br/>true：允许在模版预览页展示控件
+        # <br/>false：不允许在模版预览页展示控件
+        # <br/>默认false，模版预览页不展示控件
+        # @type ShowTemplateComponent: Boolean
+
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent
+
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil)
+          @ShowFlowDetailComponent = showflowdetailcomponent
+          @ShowTemplateComponent = showtemplatecomponent
+        end
+
+        def deserialize(params)
+          @ShowFlowDetailComponent = params['ShowFlowDetailComponent']
+          @ShowTemplateComponent = params['ShowTemplateComponent']
+        end
+      end
+
       # 授权服务信息
       class ExtendAuthInfo < TencentCloud::Common::AbstractModel
         # @param Type: 授权服务类型
@@ -4607,13 +4798,13 @@ module TencentCloud
 
       # 模板中文件的信息结构
       class FileInfo < TencentCloud::Common::AbstractModel
-        # @param FileId: 文件Id
+        # @param FileId: 文件ID
         # @type FileId: String
         # @param FileName: 文件名
         # @type FileName: String
         # @param FileSize: 文件大小，单位为Byte
         # @type FileSize: Integer
-        # @param CreatedOn: 文件上传时间，10位时间戳（精确到秒）
+        # @param CreatedOn: 文件上传时间，格式为Unix标准时间戳（秒）
         # @type CreatedOn: Integer
 
         attr_accessor :FileId, :FileName, :FileSize, :CreatedOn
@@ -4656,16 +4847,17 @@ module TencentCloud
 
       # 补充签署人信息
       # - RecipientId 必须指定
-      # -  通过企业自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填
-      # - 通过二要素（姓名/手机号）补充签署人时，ApproverName 和 ApproverMobile 必填
+      # -  通过企业自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填，ApproverSource取值：WEWORKAPP
+      # - 通过二要素（姓名/手机号）补充签署人时，ApproverName 和 ApproverMobile 必填，ApproverSource设置为空
       class FillApproverInfo < TencentCloud::Common::AbstractModel
         # @param RecipientId: 对应模板中的参与方ID
         # @type RecipientId: String
         # @param ApproverSource: 签署人来源
         # WEWORKAPP: 企业微信
+        # <br/>仅【企微或签】时指定WEWORKAPP
         # @type ApproverSource: String
         # @param CustomUserId: 企业自定义账号ID
-        # WEWORKAPP场景下指企业自有应用获取企微明文的userid
+        # <br/>当ApproverSource为WEWORKAPP的企微或签场景下，必须指企业自有应用获取企微明文的userid
         # @type CustomUserId: String
         # @param ApproverName: 补充签署人姓名
         # @type ApproverName: String
@@ -4950,11 +5142,15 @@ module TencentCloud
         # 3：企业静默签署
         # 注：类型为3（企业静默签署）时，会默认完成该签署方的签署。静默签署仅进行盖章操作，不能是手写签名。
         # @type ApproverType: Integer
-        # @param OrganizationName: 如果签署方为企业，需要填入企业全称
+        # @param OrganizationName: 签署人企业名称
+        # <br/>当approverType=1 或 approverType=3时，必须指定
+
         # @type OrganizationName: String
         # @param ApproverName: 签署方经办人姓名
+        # <br/>在未指定签署人电子签UserId情况下，为必填参数
         # @type ApproverName: String
         # @param ApproverMobile: 签署方经办人手机号码
+        # <br/>在未指定签署人电子签UserId情况下，为必填参数
         # @type ApproverMobile: String
         # @param ApproverIdCardType: 签署方经办人证件类型ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
@@ -4963,22 +5159,33 @@ module TencentCloud
         # @param ApproverIdCardNumber: 签署方经办人证件号码
         # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中的参与方ID
+        # <br/>模版发起合同时，该参数为必填项
+        # <br/>文件发起合同是，该参数无序传值
         # @type RecipientId: String
         # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
         # @type VerifyChannel: Array
-        # @param NotifyType: 是否发送短信，sms--短信通知，none--不通知，默认为sms；发起方=签署方时不发送短信
+        # @param NotifyType: 是否发送短信
+        # <br/>sms--短信通知
+        # <br/>none--不通知
+        # <br/>默认为sms
+        # <br/>发起方=签署方时不发送短信
         # @type NotifyType: String
         # @param IsFullText: 合同强制需要阅读全文，无需传此参数
         # @type IsFullText: Boolean
         # @param PreReadTime: 合同的强制预览时间：3~300s，未指定则按合同页数计算
         # @type PreReadTime: Integer
-        # @param UserId: 签署方经办人的用户ID,和签署方经办人姓名+手机号+证件必须有一个。
+        # @param UserId: 签署方经办人的电子签用户ID
+        # <br/>当未指定签署人姓名+手机号的情况下，该字段毕传
         # @type UserId: String
         # @param Required: 当前只支持true，默认为true
         # @type Required: Boolean
-        # @param ApproverSource: 签署人用户来源,企微侧用户请传入：WEWORKAPP
+        # @param ApproverSource: 签署人用户来源
+        # <br/>企微侧用户请传入：WEWORKAPP
         # @type ApproverSource: String
-        # @param CustomApproverTag: 企业签署方或签标识，客户自定义，64位长度。用于发起含有或签签署人的合同。或签参与人必须有此字段。合同内不同或签参与人CustomApproverTag需要保证唯一。如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
+        # @param CustomApproverTag: 企业签署方或签标识，客户自定义，64位长度
+        # <br>用于发起含有或签签署人的合同。或签参与人必须有此字段。
+        # <br/>合同内不同或签参与人CustomApproverTag需要保证唯一。
+        # <br/>如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
         # @type CustomApproverTag: String
         # @param RegisterInfo: 快速注册相关信息，目前暂未开放！
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
@@ -4990,11 +5197,16 @@ module TencentCloud
         # - 发起流程时系统自动补充
         # - 创建签署链接时，可以通过查询详情接口获得签署人的SignId，然后可传入此值为该签署人创建签署链接，无需再传姓名、手机号、证件号等其他信息
         # @type SignId: String
-        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
+        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批
+        # <br>true 则为需要
+        # <br/>false,无序企业内部审批（默认）
+        # <br/>为个人签署方时则由发起方企业审核。
         # @type ApproverNeedSignReview: Boolean
         # @param SignComponents: 签署人签署控件
+        # <br/>文件发起时，可通过该参数为签署人指定签署控件类型以及位置
         # @type SignComponents: Array
         # @param Components: 签署人填写控件
+        # <br/>文件发起时，可通过该参数为签署人指定填写控件类型以及位置
         # @type Components: Array
         # @param ComponentLimitType: 签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
         # 	HANDWRITE – 手写签名
@@ -5009,8 +5221,8 @@ module TencentCloud
 
         attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes
         extend Gem::Deprecate
-        deprecate :JumpUrl, :none, 2023, 7
-        deprecate :JumpUrl=, :none, 2023, 7
+        deprecate :JumpUrl, :none, 2023, 8
+        deprecate :JumpUrl=, :none, 2023, 8
 
         def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil)
           @ApproverType = approvertype
@@ -5431,10 +5643,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 7
-        deprecate :Agent=, :none, 2023, 7
-        deprecate :Organization, :none, 2023, 7
-        deprecate :Organization=, :none, 2023, 7
+        deprecate :Agent, :none, 2023, 8
+        deprecate :Agent=, :none, 2023, 8
+        deprecate :Organization, :none, 2023, 8
+        deprecate :Organization=, :none, 2023, 8
 
         def initialize(taskid=nil, operator=nil, agent=nil, organization=nil)
           @TaskId = taskid
@@ -5892,16 +6104,16 @@ module TencentCloud
 
         attr_accessor :OrganizationId, :Channel, :OrganizationOpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :OrganizationId, :none, 2023, 7
-        deprecate :OrganizationId=, :none, 2023, 7
-        deprecate :Channel, :none, 2023, 7
-        deprecate :Channel=, :none, 2023, 7
-        deprecate :OrganizationOpenId, :none, 2023, 7
-        deprecate :OrganizationOpenId=, :none, 2023, 7
-        deprecate :ClientIp, :none, 2023, 7
-        deprecate :ClientIp=, :none, 2023, 7
-        deprecate :ProxyIp, :none, 2023, 7
-        deprecate :ProxyIp=, :none, 2023, 7
+        deprecate :OrganizationId, :none, 2023, 8
+        deprecate :OrganizationId=, :none, 2023, 8
+        deprecate :Channel, :none, 2023, 8
+        deprecate :Channel=, :none, 2023, 8
+        deprecate :OrganizationOpenId, :none, 2023, 8
+        deprecate :OrganizationOpenId=, :none, 2023, 8
+        deprecate :ClientIp, :none, 2023, 8
+        deprecate :ClientIp=, :none, 2023, 8
+        deprecate :ProxyIp, :none, 2023, 8
+        deprecate :ProxyIp=, :none, 2023, 8
 
         def initialize(organizationid=nil, channel=nil, organizationopenid=nil, clientip=nil, proxyip=nil)
           @OrganizationId = organizationid
@@ -5934,9 +6146,9 @@ module TencentCloud
         # @type SignAlgorithm: String
         # @param CertSn: 签名证书序列号
         # @type CertSn: String
-        # @param CertNotBefore: 证书起始时间戳，单位秒
+        # @param CertNotBefore: 证书起始时间戳，单位毫秒
         # @type CertNotBefore: Integer
-        # @param CertNotAfter: 证书过期时间戳，单位秒
+        # @param CertNotAfter: 证书过期时间戳，单位毫秒
         # @type CertNotAfter: Integer
         # @param ComponentPosX: 签名域横坐标，单位pt
         # @type ComponentPosX: Float
@@ -5984,33 +6196,43 @@ module TencentCloud
         end
       end
 
-      # 签署参与者信息
+      # 流程中参与方的信息结构
       class Recipient < TencentCloud::Common::AbstractModel
-        # @param RecipientId: 签署参与者ID
+        # @param RecipientId: 签署参与者ID，唯一标识
         # @type RecipientId: String
-        # @param RecipientType: 参与者类型。默认为空。ENTERPRISE-企业；INDIVIDUAL-个人；PROMOTER-发起方
+        # @param RecipientType: 参与者类型。
+        # 默认为空。
+        # ENTERPRISE-企业；
+        # INDIVIDUAL-个人；
+        # PROMOTER-发起方
         # @type RecipientType: String
         # @param Description: 描述信息
         # @type Description: String
         # @param RoleName: 角色名称
         # @type RoleName: String
-        # @param RequireValidation: 是否需要验证，默认为false
+        # @param RequireValidation: 是否需要验证，
+        # 默认为false-不需要验证
         # @type RequireValidation: Boolean
-        # @param RequireSign: 是否需要签署，默认为true
+        # @param RequireSign: 是否需要签署，
+        # 默认为true-需要签署
         # @type RequireSign: Boolean
-        # @param RoutingOrder: 添加序列，0～N
+        # @param RoutingOrder: 此参与方添加的顺序，从0～N
         # @type RoutingOrder: Integer
-        # @param RequireDelivery: 是否需要发送，默认为true
+        # @param RequireDelivery: 是否需要发送，
+        # 默认为true-需要发送
         # @type RequireDelivery: Boolean
         # @param Email: 邮箱地址
         # @type Email: String
         # @param Mobile: 电话号码
         # @type Mobile: String
-        # @param UserId: 关联的用户ID
+        # @param UserId: 关联的用户ID，电子签系统的用户ID
         # @type UserId: String
-        # @param DeliveryMethod: 发送方式。默认为EMAIL。EMAIL-邮件；MOBILE-手机短信；WECHAT-微信通知
+        # @param DeliveryMethod: 发送方式，默认为EMAIL。
+        # EMAIL-邮件；
+        # MOBILE-手机短信；
+        # WECHAT-微信通知
         # @type DeliveryMethod: String
-        # @param RecipientExtra: 附属信息
+        # @param RecipientExtra: 参与方的一些附属信息，json格式
         # @type RecipientExtra: String
 
         attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :RoutingOrder, :RequireDelivery, :Email, :Mobile, :UserId, :DeliveryMethod, :RecipientExtra
@@ -6098,8 +6320,8 @@ module TencentCloud
 
         attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode
         extend Gem::Deprecate
-        deprecate :Uscc, :none, 2023, 7
-        deprecate :Uscc=, :none, 2023, 7
+        deprecate :Uscc, :none, 2023, 8
+        deprecate :Uscc=, :none, 2023, 8
 
         def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil)
           @LegalName = legalname
@@ -6233,14 +6455,33 @@ module TencentCloud
         end
       end
 
-      # 模板结构体中的印章信息
+      # 模板中指定的印章信息
       class SealInfo < TencentCloud::Common::AbstractModel
+        # @param SealId: 印章ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SealId: String
+        # @param SealType: 印章类型。LEGAL_PERSON_SEAL: 法定代表人章；
+        # ORGANIZATIONSEAL：企业印章；
+        # OFFICIAL：企业公章；
+        # CONTRACT：合同专用章
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SealType: String
+        # @param SealName: 印章名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SealName: String
 
+        attr_accessor :SealId, :SealType, :SealName
 
-        def initialize()
+        def initialize(sealid=nil, sealtype=nil, sealname=nil)
+          @SealId = sealid
+          @SealType = sealtype
+          @SealName = sealname
         end
 
         def deserialize(params)
+          @SealId = params['SealId']
+          @SealType = params['SealType']
+          @SealName = params['SealName']
         end
       end
 
@@ -6547,44 +6788,59 @@ module TencentCloud
         end
       end
 
-      # 企业模板的信息结构
+      # 此结构体 (TemplateInfo) 用于描述模板的信息。
+
+      # > **模板组成**
+      # >
+      # >  一个模板通常会包含以下结构信息
+      # >- 模板基本信息
+      # >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+      # >- 填写控件 Components
+      # >- 签署控件 SignComponents
+      # >- 生成模板的文件基础信息 FileInfos
       class TemplateInfo < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
+        # @param TemplateId: 模板ID，模板的唯一标识
         # @type TemplateId: String
-        # @param TemplateName: 模板名字
+        # @param TemplateName: 模板名
         # @type TemplateName: String
         # @param Description: 模板描述信息
         # @type Description: String
         # @param DocumentResourceIds: 模板关联的资源ID列表
         # @type DocumentResourceIds: Array
-        # @param FileInfos: 返回的文件信息结构
+        # @param FileInfos: 生成模板的文件基础信息
         # @type FileInfos: Array
         # @param AttachmentResourceIds: 附件关联的资源ID
         # @type AttachmentResourceIds: Array
         # @param SignOrder: 签署顺序
+        # 无序 -1
+        # 有序为序列数字 0,1,2
         # @type SignOrder: Array
-        # @param Recipients: 签署参与者的信息
+        # @param Recipients: 模板中的签署参与方列表
         # @type Recipients: Array
-        # @param Components: 模板信息结构
+        # @param Components: 模板的填充控件列表
         # @type Components: Array
-        # @param SignComponents: 签署区模板信息结构
+        # @param SignComponents: 模板中的签署控件列表
         # @type SignComponents: Array
-        # @param Status: 模板状态(-1:不可用；0:草稿态；1:正式态)
+        # @param Status: 模板状态
+        # -1:不可用
+        # 0:草稿态
+        # 1:正式态，可以正常使用
         # @type Status: Integer
-        # @param Creator: 模板的创建人UserId
+        # @param Creator: 模板的创建者信息，电子签系统用户ID
         # @type Creator: String
-        # @param CreatedOn: 模板创建的时间戳，单位秒
+        # @param CreatedOn: 模板创建的时间戳，格式为Unix标准时间戳（秒）
         # @type CreatedOn: Integer
-        # @param Promoter: 发起人角色信息
+        # @param Promoter: 发起方参与信息Promoter
         # @type Promoter: :class:`Tencentcloud::Ess.v20201111.models.Recipient`
-        # @param TemplateType: 模板类型
-        # 取值：
+        # @param TemplateType: 模板类型：
         # 1  静默签,
         # 3  普通模板
         # @type TemplateType: Integer
-        # @param Available: 模板可用状态，取值：1启用（默认），2停用
+        # @param Available: 模板可用状态：
+        # 1 启用（默认）
+        # 2 停用
         # @type Available: Integer
-        # @param OrganizationId: 创建模板的机构id
+        # @param OrganizationId: 创建模板的企业ID，电子签的机构ID
         # @type OrganizationId: String
         # @param PreviewUrl: 模板预览链接，有效时间5分钟
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6592,7 +6848,9 @@ module TencentCloud
         # @param TemplateVersion: 模板版本。默认为空时，全数字字符，初始版本为yyyyMMdd001。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateVersion: String
-        # @param Published: 模板是否已发布。true-已发布；false-未发布
+        # @param Published: 模板是否已发布：
+        # true-已发布
+        # false-未发布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Published: Boolean
         # @param TemplateSeals: 模板内部指定的印章列表
@@ -6604,8 +6862,8 @@ module TencentCloud
 
         attr_accessor :TemplateId, :TemplateName, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Recipients, :Components, :SignComponents, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :PreviewUrl, :TemplateVersion, :Published, :TemplateSeals, :Seals
         extend Gem::Deprecate
-        deprecate :Seals, :none, 2023, 7
-        deprecate :Seals=, :none, 2023, 7
+        deprecate :Seals, :none, 2023, 8
+        deprecate :Seals=, :none, 2023, 8
 
         def initialize(templateid=nil, templatename=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, recipients=nil, components=nil, signcomponents=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, previewurl=nil, templateversion=nil, published=nil, templateseals=nil, seals=nil)
           @TemplateId = templateid
@@ -6759,7 +7017,7 @@ module TencentCloud
 
       # UpdateIntegrationEmployees请求参数结构体
       class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，userId必填
+        # @param Operator: 当前用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为YUFU；
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 员工信息，不超过100个。
         # 根据UserId或OpenId更新员工，必填一个，优先UserId。
@@ -6879,8 +7137,8 @@ module TencentCloud
 
         attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls
         extend Gem::Deprecate
-        deprecate :FileUrls, :none, 2023, 7
-        deprecate :FileUrls=, :none, 2023, 7
+        deprecate :FileUrls, :none, 2023, 8
+        deprecate :FileUrls=, :none, 2023, 8
 
         def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil)
           @BusinessType = businesstype
@@ -6952,14 +7210,14 @@ module TencentCloud
 
         attr_accessor :UserId, :Channel, :OpenId, :ClientIp, :ProxyIp
         extend Gem::Deprecate
-        deprecate :Channel, :none, 2023, 7
-        deprecate :Channel=, :none, 2023, 7
-        deprecate :OpenId, :none, 2023, 7
-        deprecate :OpenId=, :none, 2023, 7
-        deprecate :ClientIp, :none, 2023, 7
-        deprecate :ClientIp=, :none, 2023, 7
-        deprecate :ProxyIp, :none, 2023, 7
-        deprecate :ProxyIp=, :none, 2023, 7
+        deprecate :Channel, :none, 2023, 8
+        deprecate :Channel=, :none, 2023, 8
+        deprecate :OpenId, :none, 2023, 8
+        deprecate :OpenId=, :none, 2023, 8
+        deprecate :ClientIp, :none, 2023, 8
+        deprecate :ClientIp=, :none, 2023, 8
+        deprecate :ProxyIp, :none, 2023, 8
+        deprecate :ProxyIp=, :none, 2023, 8
 
         def initialize(userid=nil, channel=nil, openid=nil, clientip=nil, proxyip=nil)
           @UserId = userid

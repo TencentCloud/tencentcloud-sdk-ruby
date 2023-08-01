@@ -620,7 +620,7 @@ module TencentCloud
 
       # CloseKafkaConsumer请求参数结构体
       class CloseKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: CLS对应的topic标识
+        # @param FromTopicId: 日志主题ID
         # @type FromTopicId: String
 
         attr_accessor :FromTopicId
@@ -738,10 +738,17 @@ module TencentCloud
         # @param TopicName: 日志主题name
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedConfig: String
 
-        attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName
+        attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
 
-        def initialize(configextraid=nil, name=nil, topicid=nil, type=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, logtype=nil, extractrule=nil, excludepaths=nil, updatetime=nil, createtime=nil, userdefinerule=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil)
+        def initialize(configextraid=nil, name=nil, topicid=nil, type=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, logtype=nil, extractrule=nil, excludepaths=nil, updatetime=nil, createtime=nil, userdefinerule=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
           @Name = name
           @TopicId = topicid
@@ -761,6 +768,7 @@ module TencentCloud
           @LogsetId = logsetid
           @LogsetName = logsetname
           @TopicName = topicname
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -802,6 +810,7 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @TopicName = params['TopicName']
+          @AdvancedConfig = params['AdvancedConfig']
         end
       end
 
@@ -837,10 +846,17 @@ module TencentCloud
         # @param UserDefineRule: 用户自定义解析字符串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineRule: String
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedConfig: String
 
-        attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule
+        attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule, :AdvancedConfig
 
-        def initialize(configid=nil, name=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil)
+        def initialize(configid=nil, name=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil, advancedconfig=nil)
           @ConfigId = configid
           @Name = name
           @LogFormat = logformat
@@ -852,6 +868,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @CreateTime = createtime
           @UserDefineRule = userdefinerule
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -876,6 +893,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
           @UserDefineRule = params['UserDefineRule']
+          @AdvancedConfig = params['AdvancedConfig']
         end
       end
 
@@ -1373,10 +1391,16 @@ module TencentCloud
         # @type GroupId: String
         # @param GroupIds: 绑定的机器组id列表
         # @type GroupIds: Array
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # @type AdvancedConfig: String
 
-        attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds
+        attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :AdvancedConfig
 
-        def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil)
+        def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, advancedconfig=nil)
           @Name = name
           @TopicId = topicid
           @Type = type
@@ -1394,6 +1418,7 @@ module TencentCloud
           @UserDefineRule = userdefinerule
           @GroupId = groupid
           @GroupIds = groupids
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -1433,6 +1458,7 @@ module TencentCloud
           @UserDefineRule = params['UserDefineRule']
           @GroupId = params['GroupId']
           @GroupIds = params['GroupIds']
+          @AdvancedConfig = params['AdvancedConfig']
         end
       end
 
@@ -1472,7 +1498,11 @@ module TencentCloud
         # @type ExcludePaths: Array
         # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串
         # @type UserDefineRule: String
-        # @param AdvancedConfig: 高级采集配置
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
         # @type AdvancedConfig: String
 
         attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule, :AdvancedConfig
@@ -3941,6 +3971,50 @@ module TencentCloud
         end
       end
 
+      # DescribeKafkaConsumer请求参数结构体
+      class DescribeKafkaConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param FromTopicId: 日志主题ID
+        # @type FromTopicId: String
+
+        attr_accessor :FromTopicId
+
+        def initialize(fromtopicid=nil)
+          @FromTopicId = fromtopicid
+        end
+
+        def deserialize(params)
+          @FromTopicId = params['FromTopicId']
+        end
+      end
+
+      # DescribeKafkaConsumer返回参数结构体
+      class DescribeKafkaConsumerResponse < TencentCloud::Common::AbstractModel
+        # @param Status: Kafka协议消费是否打开
+        # @type Status: Boolean
+        # @param TopicID: KafkaConsumer 消费时使用的Topic参数
+        # @type TopicID: String
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @type Compression: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :TopicID, :Compression, :RequestId
+
+        def initialize(status=nil, topicid=nil, compression=nil, requestid=nil)
+          @Status = status
+          @TopicID = topicid
+          @Compression = compression
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @TopicID = params['TopicID']
+          @Compression = params['Compression']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKafkaRecharges请求参数结构体
       class DescribeKafkaRechargesRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题 ID
@@ -6103,10 +6177,16 @@ module TencentCloud
         # @type LogsetName: String
         # @param TopicName: 日志主题name
         # @type TopicName: String
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # @type AdvancedConfig: String
 
-        attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName
+        attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
 
-        def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil)
+        def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
           @Name = name
           @TopicId = topicid
@@ -6124,6 +6204,7 @@ module TencentCloud
           @LogsetId = logsetid
           @LogsetName = logsetname
           @TopicName = topicname
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -6163,6 +6244,7 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @TopicName = params['TopicName']
+          @AdvancedConfig = params['AdvancedConfig']
         end
       end
 
@@ -6200,10 +6282,16 @@ module TencentCloud
         # @type Output: String
         # @param UserDefineRule: 用户自定义解析字符串，Json格式序列化的字符串
         # @type UserDefineRule: String
+        # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
+        # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # @type AdvancedConfig: String
 
-        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule
+        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule, :AdvancedConfig
 
-        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, userdefinerule=nil)
+        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, userdefinerule=nil, advancedconfig=nil)
           @ConfigId = configid
           @Name = name
           @Path = path
@@ -6212,6 +6300,7 @@ module TencentCloud
           @ExcludePaths = excludepaths
           @Output = output
           @UserDefineRule = userdefinerule
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -6233,6 +6322,7 @@ module TencentCloud
           end
           @Output = params['Output']
           @UserDefineRule = params['UserDefineRule']
+          @AdvancedConfig = params['AdvancedConfig']
         end
       end
 
@@ -6451,6 +6541,42 @@ module TencentCloud
 
       # ModifyIndex返回参数结构体
       class ModifyIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyKafkaConsumer请求参数结构体
+      class ModifyKafkaConsumerRequest < TencentCloud::Common::AbstractModel
+        # @param FromTopicId: 日志主题ID
+        # @type FromTopicId: String
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @type Compression: Integer
+
+        attr_accessor :FromTopicId, :Compression
+
+        def initialize(fromtopicid=nil, compression=nil)
+          @FromTopicId = fromtopicid
+          @Compression = compression
+        end
+
+        def deserialize(params)
+          @FromTopicId = params['FromTopicId']
+          @Compression = params['Compression']
+        end
+      end
+
+      # ModifyKafkaConsumer返回参数结构体
+      class ModifyKafkaConsumerResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7002,7 +7128,7 @@ module TencentCloud
 
       # OpenKafkaConsumer请求参数结构体
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: CLS控制台创建的TopicId
+        # @param FromTopicId: 日志主题ID
         # @type FromTopicId: String
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         # @type Compression: Integer
@@ -7029,7 +7155,7 @@ module TencentCloud
 
       # OpenKafkaConsumer返回参数结构体
       class OpenKafkaConsumerResponse < TencentCloud::Common::AbstractModel
-        # @param TopicID: 待消费TopicId
+        # @param TopicID: KafkaConsumer 消费时使用的Topic参数
         # @type TopicID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

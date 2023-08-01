@@ -741,19 +741,26 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param Keyword: 搜索设备的关键字（ID或者设备名），为空时匹配所有设备
         # @type Keyword: String
+        # @param DeviceType: DeviceType
+        # 不传：返回所有设备；
+        # 1:自有设备；
+        # 2:三方设备
+        # @type DeviceType: Integer
 
-        attr_accessor :PageSize, :PageNumber, :Keyword
+        attr_accessor :PageSize, :PageNumber, :Keyword, :DeviceType
 
-        def initialize(pagesize=nil, pagenumber=nil, keyword=nil)
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, devicetype=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Keyword = keyword
+          @DeviceType = devicetype
         end
 
         def deserialize(params)
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
           @Keyword = params['Keyword']
+          @DeviceType = params['DeviceType']
         end
       end
 

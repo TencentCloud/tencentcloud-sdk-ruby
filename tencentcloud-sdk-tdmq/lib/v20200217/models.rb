@@ -1745,6 +1745,73 @@ module TencentCloud
         end
       end
 
+      # CreateRocketMQVipInstance请求参数结构体
+      class CreateRocketMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param Spec: 实例规格：
+        # 基础型，rocket-vip-basic-1
+        # 标准型，rocket-vip-basic-2
+        # 高阶Ⅰ型，rocket-vip-basic-3
+        # 高阶Ⅱ型，rocket-vip-basic-4
+        # @type Spec: String
+        # @param NodeCount: 节点数量，最小2，最大20
+        # @type NodeCount: Integer
+        # @param StorageSize: 单节点存储空间，GB为单位，最低200GB
+        # @type StorageSize: Integer
+        # @param ZoneIds: 节点部署的区域ID列表，如广州一区，则是100001，具体可查询腾讯云官网
+        # @type ZoneIds: Array
+        # @param VpcInfo: VPC信息
+        # @type VpcInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
+        # @param TimeSpan: 购买时长，月为单位
+        # @type TimeSpan: Integer
+
+        attr_accessor :Name, :Spec, :NodeCount, :StorageSize, :ZoneIds, :VpcInfo, :TimeSpan
+
+        def initialize(name=nil, spec=nil, nodecount=nil, storagesize=nil, zoneids=nil, vpcinfo=nil, timespan=nil)
+          @Name = name
+          @Spec = spec
+          @NodeCount = nodecount
+          @StorageSize = storagesize
+          @ZoneIds = zoneids
+          @VpcInfo = vpcinfo
+          @TimeSpan = timespan
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Spec = params['Spec']
+          @NodeCount = params['NodeCount']
+          @StorageSize = params['StorageSize']
+          @ZoneIds = params['ZoneIds']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = VpcInfo.new
+            @VpcInfo.deserialize(params['VpcInfo'])
+          end
+          @TimeSpan = params['TimeSpan']
+        end
+      end
+
+      # CreateRocketMQVipInstance返回参数结构体
+      class CreateRocketMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :RequestId
+
+        def initialize(clusterid=nil, requestid=nil)
+          @ClusterId = clusterid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRole请求参数结构体
       class CreateRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
@@ -8912,6 +8979,26 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @VpcEndpoint = params['VpcEndpoint']
           @VpcDataStreamEndpointStatus = params['VpcDataStreamEndpointStatus']
+        end
+      end
+
+      # vpc信息（由UniqVpcId和UniqSubnetId组成）
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc信息
+        # @type VpcId: String
+        # @param SubnetId: 子网信息
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 

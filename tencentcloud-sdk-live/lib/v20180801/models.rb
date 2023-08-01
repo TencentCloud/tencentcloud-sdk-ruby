@@ -750,13 +750,16 @@ module TencentCloud
         # @type LayoutParams: :class:`Tencentcloud::Live.v20180801.models.CommonMixLayoutParams`
         # @param CropParams: 输入流裁剪参数。
         # @type CropParams: :class:`Tencentcloud::Live.v20180801.models.CommonMixCropParams`
+        # @param PortraitSegmentParams: 抠图参数。
+        # @type PortraitSegmentParams: :class:`Tencentcloud::Live.v20180801.models.MixPortraitSegmentParams`
 
-        attr_accessor :InputStreamName, :LayoutParams, :CropParams
+        attr_accessor :InputStreamName, :LayoutParams, :CropParams, :PortraitSegmentParams
 
-        def initialize(inputstreamname=nil, layoutparams=nil, cropparams=nil)
+        def initialize(inputstreamname=nil, layoutparams=nil, cropparams=nil, portraitsegmentparams=nil)
           @InputStreamName = inputstreamname
           @LayoutParams = layoutparams
           @CropParams = cropparams
+          @PortraitSegmentParams = portraitsegmentparams
         end
 
         def deserialize(params)
@@ -768,6 +771,10 @@ module TencentCloud
           unless params['CropParams'].nil?
             @CropParams = CommonMixCropParams.new
             @CropParams.deserialize(params['CropParams'])
+          end
+          unless params['PortraitSegmentParams'].nil?
+            @PortraitSegmentParams = MixPortraitSegmentParams.new
+            @PortraitSegmentParams.deserialize(params['PortraitSegmentParams'])
           end
         end
       end
@@ -1586,6 +1593,7 @@ module TencentCloud
         # @param Mp3Param: Mp3录制参数，开启Mp3录制时设置。
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
         # @param RemoveWatermark: 是否去除水印，类型为慢直播时此参数无效。
+        # 如果为false，则录制水印流或转码流；如果为true，则录制原始流。
         # @type RemoveWatermark: Boolean
         # @param FlvSpecialParam: FLV 录制特殊参数。
         # @type FlvSpecialParam: :class:`Tencentcloud::Live.v20180801.models.FlvSpecialParam`
@@ -8742,6 +8750,30 @@ module TencentCloud
         def deserialize(params)
           @AiAsrResults = params['AiAsrResults']
           @AiOcrResults = params['AiOcrResults']
+        end
+      end
+
+      # 混流抠图参数
+      class MixPortraitSegmentParams < TencentCloud::Common::AbstractModel
+        # @param Color: 抠图背景颜色，
+        # 常用的颜色有：
+        # 红色：0xcc0033。
+        # 黄色：0xcc9900。
+        # 绿色：0xcccc33。
+        # 蓝色：0x99CCFF。
+        # 黑色：0x000000。
+        # 白色：0xFFFFFF。
+        # 灰色：0x999999。
+        # @type Color: String
+
+        attr_accessor :Color
+
+        def initialize(color=nil)
+          @Color = color
+        end
+
+        def deserialize(params)
+          @Color = params['Color']
         end
       end
 
