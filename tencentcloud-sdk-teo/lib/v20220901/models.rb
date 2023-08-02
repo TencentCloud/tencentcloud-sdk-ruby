@@ -1224,8 +1224,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2023, 7
-        deprecate :IgnoreCacheControl=, :none, 2023, 7
+        deprecate :IgnoreCacheControl, :none, 2023, 8
+        deprecate :IgnoreCacheControl=, :none, 2023, 8
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2000,8 +2000,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2023, 7
-        deprecate :EncodeUrl=, :none, 2023, 7
+        deprecate :EncodeUrl, :none, 2023, 8
+        deprecate :EncodeUrl=, :none, 2023, 8
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid

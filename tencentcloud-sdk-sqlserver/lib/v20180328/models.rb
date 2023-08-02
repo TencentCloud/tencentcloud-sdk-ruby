@@ -2519,6 +2519,26 @@ module TencentCloud
         end
       end
 
+      # 订单号对应的资源ID列表
+      class DealInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: Array
+        # @param DealName: 订单号
+        # @type DealName: String
+
+        attr_accessor :InstanceId, :DealName
+
+        def initialize(instanceid=nil, dealname=nil)
+          @InstanceId = instanceid
+          @DealName = dealname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DealName = params['DealName']
+        end
+      end
+
       # DeleteAccount请求参数结构体
       class DeleteAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据库实例ID，形如mssql-njj2mtpl
@@ -3999,6 +4019,49 @@ module TencentCloud
               migration_tmp = Migration.new
               migration_tmp.deserialize(i)
               @IncrementalMigrationSet << migration_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceByOrders请求参数结构体
+      class DescribeInstanceByOrdersRequest < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号集合
+        # @type DealNames: Array
+
+        attr_accessor :DealNames
+
+        def initialize(dealnames=nil)
+          @DealNames = dealnames
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+        end
+      end
+
+      # DescribeInstanceByOrders返回参数结构体
+      class DescribeInstanceByOrdersResponse < TencentCloud::Common::AbstractModel
+        # @param DealInstance: 资源ID集合
+        # @type DealInstance: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealInstance, :RequestId
+
+        def initialize(dealinstance=nil, requestid=nil)
+          @DealInstance = dealinstance
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DealInstance'].nil?
+            @DealInstance = []
+            params['DealInstance'].each do |i|
+              dealinstance_tmp = DealInstance.new
+              dealinstance_tmp.deserialize(i)
+              @DealInstance << dealinstance_tmp
             end
           end
           @RequestId = params['RequestId']

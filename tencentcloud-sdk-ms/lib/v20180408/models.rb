@@ -66,17 +66,17 @@ module TencentCloud
         end
       end
 
-      # 渠道合作安卓加固策略信息
+      # 渠道合作Android加固策略信息
       class AndroidPlan < TencentCloud::Common::AbstractModel
         # @param PlanId: 非必输字段，PlanId 是指本次加固使用的配置策略Id，可通过载入上次配置接口获取。其值非0时，代表引用对应的策略。
         # @type PlanId: Integer
         # @param AppPkgName: 本次操作的包名。
-        # 当收费模式是安卓按年收费和安卓免费试用的在线加固和输出工具加固时，要求该字段必输，且与AndroidAppInfo.AppPkgName值相等。
+        # 当收费模式是android按年收费和android免费试用的在线加固和输出工具加固时，要求该字段必输，且与AndroidAppInfo.AppPkgName值相等。
         # @type AppPkgName: String
-        # @param AppType: 安卓app的文件类型，本次加固操作的应用类型 。
-        # 安卓在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        # @param AppType: android app的文件类型，本次加固操作的应用类型 。
+        # android在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
         # @type AppType: String
-        # @param EncryptParam: 安卓加固必输字段。
+        # @param EncryptParam: android加固必输字段。
         # 加固策略，json格式字符串。
         # 字段说明（0-关闭，1-开启）：
         #         "enable"=1 #DEX整体加固;
@@ -207,7 +207,7 @@ module TencentCloud
         end
       end
 
-      # 安卓加固结果
+      # Android加固结果
       class AndroidResult < TencentCloud::Common::AbstractModel
         # @param ResultId: 结果Id,用于查询加固结果
         # @type ResultId: String
@@ -217,7 +217,7 @@ module TencentCloud
         # @type ResourceId: String
         # @param OpUin: 本次任务发起者
         # @type OpUin: Integer
-        # @param AppType: 应用类型：安卓-apk; 安卓-aab;
+        # @param AppType: 应用类型：android-apk; android-aab;
         # @type AppType: String
         # @param AppPkgName: 应用包名
         # @type AppPkgName: String
@@ -241,35 +241,35 @@ module TencentCloud
         # @type EndTime: String
         # @param CostTime: 加固耗时（秒单位）
         # @type CostTime: Integer
-        # @param AppUrl: 在线加固-安卓应用原包下载链接
+        # @param AppUrl: 在线加固-android应用原包下载链接
         # @type AppUrl: String
-        # @param AppMd5: 在线加固-安卓应用文件MD5算法值
+        # @param AppMd5: 在线加固-android应用文件MD5算法值
         # @type AppMd5: String
-        # @param AppName: 在线加固-安卓应用应用名称
+        # @param AppName: 在线加固-android应用应用名称
         # @type AppName: String
-        # @param AppVersion: 在线加固-安卓应用版本；
+        # @param AppVersion: 在线加固-android应用版本；
         # @type AppVersion: String
-        # @param AppSize: 在线加固-安卓应用大小
+        # @param AppSize: 在线加固-android应用大小
         # @type AppSize: Integer
-        # @param OnlineToolVersion: 在线加固-安卓加固-腾讯云应用加固工具版本
+        # @param OnlineToolVersion: 在线加固-android加固-腾讯云应用加固工具版本
         # @type OnlineToolVersion: String
-        # @param EncryptAppMd5: 在线加固-安卓加固，加固成功后文件md5算法值
+        # @param EncryptAppMd5: 在线加固-android加固，加固成功后文件md5算法值
         # @type EncryptAppMd5: String
-        # @param EncryptAppSize: 在线加固-安卓加固，加固成功后应用大小
+        # @param EncryptAppSize: 在线加固-android加固，加固成功后应用大小
         # @type EncryptAppSize: Integer
-        # @param EncryptPkgUrl: 在线加固-安卓加固，加固包下载链接。
+        # @param EncryptPkgUrl: 在线加固-android加固，加固包下载链接。
         # @type EncryptPkgUrl: String
-        # @param OutputToolVersion: 输出工具-安卓加固-腾讯云输出工具版本
+        # @param OutputToolVersion: 输出工具-android加固-腾讯云输出工具版本
         # @type OutputToolVersion: String
-        # @param OutputToolSize: 输出工具-安卓加固-工具大小
+        # @param OutputToolSize: 输出工具-android加固-工具大小
         # @type OutputToolSize: Integer
-        # @param ToolOutputTime: 输出工具-安卓加固-工具输出时间
+        # @param ToolOutputTime: 输出工具-android加固-工具输出时间
         # @type ToolOutputTime: String
-        # @param ToolExpireTime: 输出工具-安卓加固-工具到期时间
+        # @param ToolExpireTime: 输出工具-android加固-工具到期时间
         # @type ToolExpireTime: String
-        # @param OutputToolUrl: 输出工具-安卓加固-输出工具下载链接
+        # @param OutputToolUrl: 输出工具-android加固-输出工具下载链接
         # @type OutputToolUrl: String
-        # @param AndroidPlan: 本次安卓加固策略信息
+        # @param AndroidPlan: 本次android加固策略信息
         # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
 
         attr_accessor :ResultId, :OrderId, :ResourceId, :OpUin, :AppType, :AppPkgName, :BindAppPkgName, :EncryptState, :EncryptStateDesc, :EncryptErrCode, :EncryptErrDesc, :EncryptErrRef, :CreatTime, :StartTime, :EndTime, :CostTime, :AppUrl, :AppMd5, :AppName, :AppVersion, :AppSize, :OnlineToolVersion, :EncryptAppMd5, :EncryptAppSize, :EncryptPkgUrl, :OutputToolVersion, :OutputToolSize, :ToolOutputTime, :ToolExpireTime, :OutputToolUrl, :AndroidPlan
@@ -1866,9 +1866,9 @@ module TencentCloud
 
       # 渠道合作加固结果信息
       class EncryptResults < TencentCloud::Common::AbstractModel
-        # @param PlatformType: 平台类型枚举值  1-android安卓加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        # @param PlatformType: 平台类型枚举值  1-android加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
         # @type PlatformType: Integer
-        # @param PlatformDesc: 平台类型描述  1-android安卓加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        # @param PlatformDesc: 平台类型描述  1-android加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
         # @type PlatformDesc: String
         # @param OrderType: 订单采购类型枚举值， 1-免费试用 2-按年收费 3-按次收费
         # @type OrderType: Integer
@@ -1882,7 +1882,7 @@ module TencentCloud
         # @type ResourceId: String
         # @param OrderId: 与当前任务关联的订单Id
         # @type OrderId: String
-        # @param AndroidResult: 对应PlatformType平台类型值   1-android安卓加固结果
+        # @param AndroidResult: 对应PlatformType平台类型值   1-android加固结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AndroidResult: :class:`Tencentcloud::Ms.v20180408.models.AndroidResult`
         # @param IOSResult: 对应PlatformType平台类型值   2-ios源码混淆加固结果
@@ -2022,13 +2022,13 @@ module TencentCloud
         # @type OrderId: String
         # @param PlatformType: 平台类型整型值
         # @type PlatformType: Integer
-        # @param PlatformTypeDesc: 平台类型描述：  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @param PlatformTypeDesc: 平台类型描述：  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
         # @type PlatformTypeDesc: String
         # @param OrderType: 订单采购类型整型值
         # @type OrderType: Integer
         # @param OrderTypeDesc: 订单采购类型描述： 1-免费试用 2-按年收费 3-按次收费
         # @type OrderTypeDesc: String
-        # @param AppPkgName: 安卓包年收费加固的包名
+        # @param AppPkgName: android包年收费加固的包名
         # @type AppPkgName: String
         # @param ResourceId: 资源号
         # @type ResourceId: String

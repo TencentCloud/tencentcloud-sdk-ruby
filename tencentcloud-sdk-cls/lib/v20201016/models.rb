@@ -4070,6 +4070,42 @@ module TencentCloud
         end
       end
 
+      # DescribeKafkaUser请求参数结构体
+      class DescribeKafkaUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserName: kafka消费用户名
+        # @type UserName: String
+
+        attr_accessor :UserName
+
+        def initialize(username=nil)
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+        end
+      end
+
+      # DescribeKafkaUser返回参数结构体
+      class DescribeKafkaUserResponse < TencentCloud::Common::AbstractModel
+        # @param UserName: kafka消费用户名
+        # @type UserName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserName, :RequestId
+
+        def initialize(username=nil, requestid=nil)
+          @UserName = username
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogContext请求参数结构体
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 要查询的日志主题ID

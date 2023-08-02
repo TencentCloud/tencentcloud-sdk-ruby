@@ -2331,10 +2331,13 @@ module TencentCloud
         # @param Department: 资产所属部门
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
+        # @param IpPortSet: 数据库资产的多节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpPortSet: Array
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -2350,6 +2353,7 @@ module TencentCloud
           @SubnetId = subnetid
           @Resource = resource
           @Department = department
+          @IpPortSet = ipportset
         end
 
         def deserialize(params)
@@ -2381,6 +2385,7 @@ module TencentCloud
             @Department = Department.new
             @Department.deserialize(params['Department'])
           end
+          @IpPortSet = params['IpPortSet']
         end
       end
 
@@ -2428,15 +2433,18 @@ module TencentCloud
         # @type Name: String
         # @param DepartmentId: 资产所属的部门ID
         # @type DepartmentId: String
+        # @param IpPortSet: 资产多节点：字段ip和端口
+        # @type IpPortSet: Array
 
-        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId
+        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId, :IpPortSet
 
-        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil)
+        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil, ipportset=nil)
           @OsName = osname
           @Ip = ip
           @Port = port
           @Name = name
           @DepartmentId = departmentid
+          @IpPortSet = ipportset
         end
 
         def deserialize(params)
@@ -2445,6 +2453,7 @@ module TencentCloud
           @Port = params['Port']
           @Name = params['Name']
           @DepartmentId = params['DepartmentId']
+          @IpPortSet = params['IpPortSet']
         end
       end
 

@@ -523,8 +523,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 7
-        deprecate :ForceHttps=, :none, 2023, 7
+        deprecate :ForceHttps, :none, 2023, 8
+        deprecate :ForceHttps=, :none, 2023, 8
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -2850,8 +2850,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 7
-        deprecate :ForceHttps=, :none, 2023, 7
+        deprecate :ForceHttps, :none, 2023, 8
+        deprecate :ForceHttps=, :none, 2023, 8
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid

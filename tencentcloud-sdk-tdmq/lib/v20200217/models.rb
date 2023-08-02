@@ -715,10 +715,13 @@ module TencentCloud
         # @param NotifyContentFormat: 推送内容的格式。取值：（1）JSON；（2）SIMPLIFIED，即 raw 格式。如果 protocol 是 queue，则取值必须为 SIMPLIFIED。如果 protocol 是 HTTP，两个值均可以，默认值是 JSON。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotifyContentFormat: String
+        # @param TopicName: 订阅所属的主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
 
-        attr_accessor :SubscriptionName, :SubscriptionId, :TopicOwner, :MsgCount, :LastModifyTime, :CreateTime, :BindingKey, :Endpoint, :FilterTags, :Protocol, :NotifyStrategy, :NotifyContentFormat
+        attr_accessor :SubscriptionName, :SubscriptionId, :TopicOwner, :MsgCount, :LastModifyTime, :CreateTime, :BindingKey, :Endpoint, :FilterTags, :Protocol, :NotifyStrategy, :NotifyContentFormat, :TopicName
 
-        def initialize(subscriptionname=nil, subscriptionid=nil, topicowner=nil, msgcount=nil, lastmodifytime=nil, createtime=nil, bindingkey=nil, endpoint=nil, filtertags=nil, protocol=nil, notifystrategy=nil, notifycontentformat=nil)
+        def initialize(subscriptionname=nil, subscriptionid=nil, topicowner=nil, msgcount=nil, lastmodifytime=nil, createtime=nil, bindingkey=nil, endpoint=nil, filtertags=nil, protocol=nil, notifystrategy=nil, notifycontentformat=nil, topicname=nil)
           @SubscriptionName = subscriptionname
           @SubscriptionId = subscriptionid
           @TopicOwner = topicowner
@@ -731,6 +734,7 @@ module TencentCloud
           @Protocol = protocol
           @NotifyStrategy = notifystrategy
           @NotifyContentFormat = notifycontentformat
+          @TopicName = topicname
         end
 
         def deserialize(params)
@@ -746,6 +750,7 @@ module TencentCloud
           @Protocol = params['Protocol']
           @NotifyStrategy = params['NotifyStrategy']
           @NotifyContentFormat = params['NotifyContentFormat']
+          @TopicName = params['TopicName']
         end
       end
 
@@ -801,10 +806,13 @@ module TencentCloud
         # @param BrokerType: 0表示pulsar，1表示rocketmq
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerType: Integer
+        # @param SubscriptionCount: 订阅数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionCount: Integer
 
-        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :BrokerType
+        attr_accessor :TopicId, :TopicName, :MsgRetentionSeconds, :MaxMsgSize, :Qps, :FilterType, :CreateTime, :LastModifyTime, :MsgCount, :CreateUin, :Tags, :Trace, :TenantId, :NamespaceName, :Status, :BrokerType, :SubscriptionCount
 
-        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, brokertype=nil)
+        def initialize(topicid=nil, topicname=nil, msgretentionseconds=nil, maxmsgsize=nil, qps=nil, filtertype=nil, createtime=nil, lastmodifytime=nil, msgcount=nil, createuin=nil, tags=nil, trace=nil, tenantid=nil, namespacename=nil, status=nil, brokertype=nil, subscriptioncount=nil)
           @TopicId = topicid
           @TopicName = topicname
           @MsgRetentionSeconds = msgretentionseconds
@@ -821,6 +829,7 @@ module TencentCloud
           @NamespaceName = namespacename
           @Status = status
           @BrokerType = brokertype
+          @SubscriptionCount = subscriptioncount
         end
 
         def deserialize(params)
@@ -847,6 +856,7 @@ module TencentCloud
           @NamespaceName = params['NamespaceName']
           @Status = params['Status']
           @BrokerType = params['BrokerType']
+          @SubscriptionCount = params['SubscriptionCount']
         end
       end
 
@@ -2510,6 +2520,38 @@ module TencentCloud
         end
       end
 
+      # DeleteRocketMQVipInstance请求参数结构体
+      class DeleteRocketMQVipInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 实例的集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteRocketMQVipInstance返回参数结构体
+      class DeleteRocketMQVipInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRoles请求参数结构体
       class DeleteRolesRequest < TencentCloud::Common::AbstractModel
         # @param RoleNames: 角色名称数组。
@@ -3217,14 +3259,21 @@ module TencentCloud
         # @type Limit: Integer
         # @param SubscriptionName: 根据SubscriptionName进行模糊搜索
         # @type SubscriptionName: String
+        # @param QueueName: 队列名称，订阅绑定的endpoint
+        # @type QueueName: String
+        # @param QueryType: 查询类型。取值：（1）topic；（2）queue。
+        # 默认值是topic。如果 queryType 是 topic，则查询主题下的订阅列表；如果 queryType 是 queue，则查询队列绑定的订阅列表。
+        # @type QueryType: String
 
-        attr_accessor :TopicName, :Offset, :Limit, :SubscriptionName
+        attr_accessor :TopicName, :Offset, :Limit, :SubscriptionName, :QueueName, :QueryType
 
-        def initialize(topicname=nil, offset=nil, limit=nil, subscriptionname=nil)
+        def initialize(topicname=nil, offset=nil, limit=nil, subscriptionname=nil, queuename=nil, querytype=nil)
           @TopicName = topicname
           @Offset = offset
           @Limit = limit
           @SubscriptionName = subscriptionname
+          @QueueName = queuename
+          @QueryType = querytype
         end
 
         def deserialize(params)
@@ -3232,6 +3281,8 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SubscriptionName = params['SubscriptionName']
+          @QueueName = params['QueueName']
+          @QueryType = params['QueryType']
         end
       end
 

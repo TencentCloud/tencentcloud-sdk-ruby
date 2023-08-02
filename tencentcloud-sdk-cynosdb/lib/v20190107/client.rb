@@ -2573,6 +2573,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开启只读实例组接入
+
+        # @param request: Request instance for OpenClusterReadOnlyInstanceGroupAccess.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenClusterReadOnlyInstanceGroupAccessRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::OpenClusterReadOnlyInstanceGroupAccessResponse`
+        def OpenClusterReadOnlyInstanceGroupAccess(request)
+          body = send_request('OpenClusterReadOnlyInstanceGroupAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenClusterReadOnlyInstanceGroupAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通只读实例独有访问接入组
 
         # @param request: Request instance for OpenReadOnlyInstanceExclusiveAccess.

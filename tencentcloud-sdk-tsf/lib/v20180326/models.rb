@@ -6167,10 +6167,12 @@ module TencentCloud
         # @type AgentProfileList: Array
         # @param WarmupSetting: 预热参数配置
         # @type WarmupSetting: :class:`Tencentcloud::Tsf.v20180326.models.WarmupSetting`
+        # @param EnableBatchHealthCheck: 开启分批健康检查
+        # @type EnableBatchHealthCheck: Boolean
 
-        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment, :JdkName, :JdkVersion, :AgentProfileList, :WarmupSetting
+        attr_accessor :GroupId, :PkgId, :StartupParameters, :DeployDesc, :ForceStart, :EnableHealthCheck, :HealthCheckSettings, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :StartScript, :StopScript, :IncrementalDeployment, :JdkName, :JdkVersion, :AgentProfileList, :WarmupSetting, :EnableBatchHealthCheck
 
-        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil, jdkname=nil, jdkversion=nil, agentprofilelist=nil, warmupsetting=nil)
+        def initialize(groupid=nil, pkgid=nil, startupparameters=nil, deploydesc=nil, forcestart=nil, enablehealthcheck=nil, healthchecksettings=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, startscript=nil, stopscript=nil, incrementaldeployment=nil, jdkname=nil, jdkversion=nil, agentprofilelist=nil, warmupsetting=nil, enablebatchhealthcheck=nil)
           @GroupId = groupid
           @PkgId = pkgid
           @StartupParameters = startupparameters
@@ -6190,6 +6192,7 @@ module TencentCloud
           @JdkVersion = jdkversion
           @AgentProfileList = agentprofilelist
           @WarmupSetting = warmupsetting
+          @EnableBatchHealthCheck = enablebatchhealthcheck
         end
 
         def deserialize(params)
@@ -6225,6 +6228,7 @@ module TencentCloud
             @WarmupSetting = WarmupSetting.new
             @WarmupSetting.deserialize(params['WarmupSetting'])
           end
+          @EnableBatchHealthCheck = params['EnableBatchHealthCheck']
         end
       end
 
@@ -20124,10 +20128,13 @@ module TencentCloud
         # @param GatewayConfig: Envoy网关配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayConfig: :class:`Tencentcloud::Tsf.v20180326.models.GatewayConfig`
+        # @param EnableBatchHealthCheck: 批次是否开启健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableBatchHealthCheck: Boolean
 
-        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig
+        attr_accessor :GroupId, :GroupName, :GroupStatus, :PackageId, :PackageName, :PackageVersion, :ClusterId, :ClusterName, :NamespaceId, :NamespaceName, :ApplicationId, :ApplicationName, :InstanceCount, :RunInstanceCount, :StartupParameters, :CreateTime, :UpdateTime, :OffInstanceCount, :GroupDesc, :MicroserviceType, :ApplicationType, :GroupResourceType, :UpdatedTime, :DeployDesc, :UpdateType, :DeployBetaEnable, :DeployBatch, :DeployExeMode, :DeployWaitTime, :EnableHealthCheck, :HealthCheckSettings, :PackageType, :StartScript, :StopScript, :Alias, :AgentProfileList, :WarmupSetting, :GatewayConfig, :EnableBatchHealthCheck
 
-        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil)
+        def initialize(groupid=nil, groupname=nil, groupstatus=nil, packageid=nil, packagename=nil, packageversion=nil, clusterid=nil, clustername=nil, namespaceid=nil, namespacename=nil, applicationid=nil, applicationname=nil, instancecount=nil, runinstancecount=nil, startupparameters=nil, createtime=nil, updatetime=nil, offinstancecount=nil, groupdesc=nil, microservicetype=nil, applicationtype=nil, groupresourcetype=nil, updatedtime=nil, deploydesc=nil, updatetype=nil, deploybetaenable=nil, deploybatch=nil, deployexemode=nil, deploywaittime=nil, enablehealthcheck=nil, healthchecksettings=nil, packagetype=nil, startscript=nil, stopscript=nil, _alias=nil, agentprofilelist=nil, warmupsetting=nil, gatewayconfig=nil, enablebatchhealthcheck=nil)
           @GroupId = groupid
           @GroupName = groupname
           @GroupStatus = groupstatus
@@ -20166,6 +20173,7 @@ module TencentCloud
           @AgentProfileList = agentprofilelist
           @WarmupSetting = warmupsetting
           @GatewayConfig = gatewayconfig
+          @EnableBatchHealthCheck = enablebatchhealthcheck
         end
 
         def deserialize(params)
@@ -20223,6 +20231,7 @@ module TencentCloud
             @GatewayConfig = GatewayConfig.new
             @GatewayConfig.deserialize(params['GatewayConfig'])
           end
+          @EnableBatchHealthCheck = params['EnableBatchHealthCheck']
         end
       end
 

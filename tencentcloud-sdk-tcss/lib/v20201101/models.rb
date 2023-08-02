@@ -3397,8 +3397,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2023, 7
-        deprecate :Component=, :none, 2023, 7
+        deprecate :Component, :none, 2023, 8
+        deprecate :Component=, :none, 2023, 8
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -25676,7 +25676,7 @@ module TencentCloud
       class SoftQuotaDayInfo < TencentCloud::Common::AbstractModel
         # @param PayTime: 扣费时间
         # @type PayTime: String
-        # @param CoresCnt: 计费核数
+        # @param CoresCnt: 计费核数(已废弃)
         # @type CoresCnt: Integer
 
         attr_accessor :PayTime, :CoresCnt

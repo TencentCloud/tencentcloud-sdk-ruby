@@ -1310,7 +1310,7 @@ module TencentCloud
 
       # DescribeTrtcRoomUsage返回参数结构体
       class DescribeTrtcRoomUsageResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 房间维度用量数据，csv文件格式。
+        # @param Data: 房间维度用量数据，csv文件格式，单位：秒。
         # @type Data: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

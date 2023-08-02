@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除RocketMQ专享实例
+
+        # @param request: Request instance for DeleteRocketMQVipInstance.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRocketMQVipInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteRocketMQVipInstanceResponse`
+        def DeleteRocketMQVipInstance(request)
+          body = send_request('DeleteRocketMQVipInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRocketMQVipInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除角色，支持批量。
 
         # @param request: Request instance for DeleteRoles.
