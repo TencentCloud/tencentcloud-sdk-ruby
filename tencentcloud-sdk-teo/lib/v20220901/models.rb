@@ -1335,9 +1335,9 @@ module TencentCloud
 
       # CheckCnameStatus请求参数结构体
       class CheckCnameStatusRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param RecordNames: 记录名称列表。
+        # @param RecordNames: 加速域名列表。
         # @type RecordNames: Array
 
         attr_accessor :ZoneId, :RecordNames
@@ -1355,7 +1355,7 @@ module TencentCloud
 
       # CheckCnameStatus返回参数结构体
       class CheckCnameStatusResponse < TencentCloud::Common::AbstractModel
-        # @param CnameStatus: 域名Cname状态信息列表。
+        # @param CnameStatus: 加速域名 CNAME 状态信息列表。
         # @type CnameStatus: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

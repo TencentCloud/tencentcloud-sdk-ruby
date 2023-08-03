@@ -2343,8 +2343,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 7
-        deprecate :Angel=, :none, 2023, 7
+        deprecate :Angel, :none, 2023, 8
+        deprecate :Angel=, :none, 2023, 8
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections

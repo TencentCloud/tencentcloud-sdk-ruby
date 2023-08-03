@@ -3716,7 +3716,7 @@ module TencentCloud
 
       # 板书文件存储cos参数
       class SnapshotCOS < TencentCloud::Common::AbstractModel
-        # @param Uin: cos所在腾讯云帐号uin
+        # @param Uin: cos所在腾讯云账号uin
         # @type Uin: Integer
         # @param Region: cos所在地区
         # @type Region: String

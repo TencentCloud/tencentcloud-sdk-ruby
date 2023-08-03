@@ -1309,7 +1309,7 @@ module TencentCloud
 
       # CreateBoundIP请求参数结构体
       class CreateBoundIPRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
+        # @param Business: DDoS防护子产品代号（bgp表示独享包；bgp-multip表示共享包）
         # @type Business: String
         # @param Id: 资源实例ID
         # @type Id: String
@@ -1942,7 +1942,7 @@ module TencentCloud
       class CreateNewL7RulesRequest < TencentCloud::Common::AbstractModel
         # @param Rules: 规则列表
         # @type Rules: Array
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param IdList: 资源ID列表
         # @type IdList: Array
@@ -3043,7 +3043,7 @@ module TencentCloud
 
       # DescribeBgpBizTrend请求参数结构体
       class DescribeBgpBizTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip表示高防包）
+        # @param Business: DDoS防护子产品代号（bgp-multip表示高防包）
         # @type Business: String
         # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
         # @type StartTime: String
@@ -3113,7 +3113,7 @@ module TencentCloud
       class DescribeBizHttpStatusRequest < TencentCloud::Common::AbstractModel
         # @param Statistics: 统计方式，仅支持sum
         # @type Statistics: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param Period: 统计周期，可取值60，300，1800，3600， 21600，86400，单位秒
         # @type Period: Integer
@@ -3185,7 +3185,7 @@ module TencentCloud
 
       # DescribeBizMonitorTrend请求参数结构体
       class DescribeBizMonitorTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param StartTime: 统计开始时间。 例：“2020-09-22 00:00:00”
         # @type StartTime: String
@@ -3252,7 +3252,7 @@ module TencentCloud
       class DescribeBizTrendRequest < TencentCloud::Common::AbstractModel
         # @param Statistics: 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
         # @type Statistics: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param Period: 统计周期，可取值60，300，1800，3600，21600，86400，单位秒
         # @type Period: Integer
@@ -3380,7 +3380,7 @@ module TencentCloud
 
       # DescribeCCLevelList请求参数结构体
       class DescribeCCLevelListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip表示高防包）
+        # @param Business: DDoS防护子产品代号（bgp-multip表示高防包）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3487,7 +3487,7 @@ module TencentCloud
 
       # DescribeCCPrecisionPlyList请求参数结构体
       class DescribeCCPrecisionPlyListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3558,7 +3558,7 @@ module TencentCloud
 
       # DescribeCCReqLimitPolicyList请求参数结构体
       class DescribeCCReqLimitPolicyListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3629,7 +3629,7 @@ module TencentCloud
 
       # DescribeCCThresholdList请求参数结构体
       class DescribeCCThresholdListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip表示高防包）
+        # @param Business: DDoS防护子产品代号（bgp-multip表示高防包）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -3688,7 +3688,7 @@ module TencentCloud
 
       # DescribeCCTrend请求参数结构体
       class DescribeCCTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         # @type Business: String
         # @param Ip: 资源的IP
         # @type Ip: String
@@ -3785,7 +3785,7 @@ module TencentCloud
 
       # DescribeCcBlackWhiteIpList请求参数结构体
       class DescribeCcBlackWhiteIpListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param InstanceId: 指定特定实例Id
         # @type InstanceId: String
@@ -3864,7 +3864,7 @@ module TencentCloud
 
       # DescribeCcGeoIPBlockConfigList请求参数结构体
       class DescribeCcGeoIPBlockConfigListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer
@@ -5196,7 +5196,7 @@ module TencentCloud
 
       # DescribeNewL7RulesErrHealth请求参数结构体
       class DescribeNewL7RulesErrHealthRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号(bgpip表示高防IP)
+        # @param Business: DDoS防护子产品代号(bgpip表示高防IP)
         # @type Business: String
         # @param RuleIdList: 规则Id列表
         # @type RuleIdList: Array
@@ -5247,7 +5247,7 @@ module TencentCloud
 
       # DescribeNewL7Rules请求参数结构体
       class DescribeNewL7RulesRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param StatusList: 状态搜索，选填，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
         # @type StatusList: Array
@@ -5417,7 +5417,7 @@ module TencentCloud
         # @type EndTime: String
         # @param MetricName: 指标，取值[inqps(总请求峰值，dropqps(攻击请求峰值))，incount(请求次数), dropcount(攻击次数)]
         # @type MetricName: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
         # @type Business: String
         # @param IpList: 资源的IP
         # @type IpList: Array
@@ -5544,7 +5544,7 @@ module TencentCloud
         # @type EndTime: String
         # @param MetricName: 指标，取值[bps(攻击流量带宽，pps(攻击包速率))]
         # @type MetricName: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
         # @type Business: String
         # @param IpList: 资源实例的IP列表
         # @type IpList: Array
@@ -6823,7 +6823,7 @@ module TencentCloud
       class ModifyDDoSLevelRequest < TencentCloud::Common::AbstractModel
         # @param Id: 资源ID
         # @type Id: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         # @type Business: String
         # @param Method: =get表示读取防护等级；=set表示修改防护等级
         # @type Method: String
@@ -6917,7 +6917,7 @@ module TencentCloud
         # @type Threshold: Integer
         # @param Id: 资源ID
         # @type Id: String
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         # @type Business: String
         # @param OtherThresholdFlag: 配置其他阈值标志位，1表示配置其他阈值
         # @type OtherThresholdFlag: Integer
@@ -7040,7 +7040,7 @@ module TencentCloud
 
       # ModifyNewDomainRules请求参数结构体
       class ModifyNewDomainRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
         # @type Business: String
         # @param Id: 资源ID
         # @type Id: String

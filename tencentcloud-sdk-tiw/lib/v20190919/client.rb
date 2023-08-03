@@ -681,7 +681,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 通过文档URL查询转码任务，返回最近的一次转码结果
+        # 通过文档URL查询转码任务，返回最近一次的转码任务状态
 
         # @param request: Request instance for DescribeTranscodeByUrl.
         # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeTranscodeByUrlRequest`

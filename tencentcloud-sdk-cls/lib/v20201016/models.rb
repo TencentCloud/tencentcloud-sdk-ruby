@@ -3995,15 +3995,18 @@ module TencentCloud
         # @type TopicID: String
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         # @type Compression: Integer
+        # @param ConsumerContent: kafka协议消费数据格式
+        # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :TopicID, :Compression, :RequestId
+        attr_accessor :Status, :TopicID, :Compression, :ConsumerContent, :RequestId
 
-        def initialize(status=nil, topicid=nil, compression=nil, requestid=nil)
+        def initialize(status=nil, topicid=nil, compression=nil, consumercontent=nil, requestid=nil)
           @Status = status
           @TopicID = topicid
           @Compression = compression
+          @ConsumerContent = consumercontent
           @RequestId = requestid
         end
 
@@ -4011,6 +4014,10 @@ module TencentCloud
           @Status = params['Status']
           @TopicID = params['TopicID']
           @Compression = params['Compression']
+          unless params['ConsumerContent'].nil?
+            @ConsumerContent = KafkaConsumerContent.new
+            @ConsumerContent.deserialize(params['ConsumerContent'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6597,17 +6604,24 @@ module TencentCloud
         # @type FromTopicId: String
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         # @type Compression: Integer
+        # @param ConsumerContent: kafka协议消费数据格式
+        # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
 
-        attr_accessor :FromTopicId, :Compression
+        attr_accessor :FromTopicId, :Compression, :ConsumerContent
 
-        def initialize(fromtopicid=nil, compression=nil)
+        def initialize(fromtopicid=nil, compression=nil, consumercontent=nil)
           @FromTopicId = fromtopicid
           @Compression = compression
+          @ConsumerContent = consumercontent
         end
 
         def deserialize(params)
           @FromTopicId = params['FromTopicId']
           @Compression = params['Compression']
+          unless params['ConsumerContent'].nil?
+            @ConsumerContent = KafkaConsumerContent.new
+            @ConsumerContent.deserialize(params['ConsumerContent'])
+          end
         end
       end
 
@@ -7554,7 +7568,7 @@ module TencentCloud
       class ScheduledSqlResouceInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 目标主题id
         # @type TopicId: String
-        # @param Region: 主题的的地域信息
+        # @param Region: 主题的地域信息
         # @type Region: String
         # @param BizType: 主题类型：0为日志主题，1为指标主题
         # @type BizType: Integer

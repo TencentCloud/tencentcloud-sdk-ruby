@@ -7167,7 +7167,7 @@ module TencentCloud
         end
       end
 
-      # RabbitMQ专享版虚拟机
+      # RabbitMQ专享版云服务器
       class RabbitMQPrivateVirtualHost < TencentCloud::Common::AbstractModel
         # @param VirtualHostName: 虚拟主机的名字
         # 注意：此字段可能返回 null，表示取不到有效值。

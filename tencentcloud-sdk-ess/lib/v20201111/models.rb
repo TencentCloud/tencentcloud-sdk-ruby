@@ -251,7 +251,7 @@ module TencentCloud
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
         # @param CallbackUrl: 接受回调URL地址。支持http://或者https://协议
 
-        # Post数据到此地址后后返回httpcode200表示接受回调成功, 返回其他httpcode表示接受回调失败
+        # Post数据到此地址后返回httpcode200表示接受回调成功, 返回其他httpcode表示接受回调失败
         # @type CallbackUrl: String
         # @param CertInfoCallback: 是否回调证书信息
         # false-不需要 (默认值)
@@ -264,7 +264,7 @@ module TencentCloud
         # @param SealImgCallback: 是否需要回调的时候返回印章(签名) 图片的 base64
 
         # false-不需要(默认)
-        # true-需要(
+        # true-需要
         # @type SealImgCallback: Boolean
         # @param VerifyChannels: 开通时候的验证方式, 分布为
 
@@ -1134,15 +1134,20 @@ module TencentCloud
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param EmbedType: WEB嵌入资源类型。
-        # <br/>CREATE_SEAL: 创建印章
-        # <br/>PREVIEW_SEAL_LIST：预览印章列表
-        # <br/>PREVIEW_SEAL_DETAIL：预览印章详情
-        # <br/>EXTEND_SERVICE：拓展服务
-        # <br/>PREVIEW_FLOW：预览合同
-        # <br/>PREVIEW_FLOW_DETAIL：查看合同详情
+        # <br/>CREATE_SEAL: 生成创建印章的嵌入页面
+        # <br/>CREATE_TEMPLATE：生成创建模板的嵌入页面
+        # <br/>MODIFY_TEMPLATE：生成编辑模板的嵌入页面
+        # <br/>PREVIEW_TEMPLATE：生成预览模板的嵌入页面
+        # <br/>PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面
+        # <br/>PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面
+        # <br/>EXTEND_SERVICE：生成拓展服务的嵌入页面
+        # <br/>PREVIEW_FLOW：生成预览合同的嵌入页面
+        # <br/>PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面
         # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID
         # <br/>PREVIEW_SEAL_DETAIL，必填，取值为印章id
+        # <br/>MODIFY_TEMPLATE，PREVIEW_TEMPLATE，必填，取值为模版id
+        # <br/>PREVIEW_FLOW，PREVIEW_FLOW_DETAIL，必填，取值为合同id
         # @type BusinessId: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -1648,10 +1653,10 @@ module TencentCloud
         # @param CanEditFlow: 是否允许修改发起合同时确认弹窗的合同信息（合同名称、合同类型、签署截止时间），若不允许编辑，则表单字段将被禁止输入。
         # <br/>true：允许编辑（默认），<br/>false：不允许编辑<br/>默认：false：不允许编辑
         # @type CanEditFlow: Boolean
-        # @param CanEditFormField: 是否允许编辑模版控件
-        # <br/>true:允许编辑模版控件信息
-        # <br/>false:不允许编辑模版控件信息
-        # <br/>默认false:不允许编辑模版控件信息
+        # @param CanEditFormField: 是否允许编辑模板控件
+        # <br/>true:允许编辑模板控件信息
+        # <br/>false:不允许编辑模板控件信息
+        # <br/>默认false:不允许编辑模板控件信息
         # @type CanEditFormField: Boolean
         # @param HideShowFlowName: 发起页面隐藏合同名称展示
         # <br/>true:发起页面隐藏合同名称展示
@@ -3840,7 +3845,7 @@ module TencentCloud
 
         # EvidenceStatusExecuting  出证任务在执行中
         # EvidenceStatusSuccess  出证任务执行成功
-        # EvidenceStatusFailed  出征任务执行失败
+        # EvidenceStatusFailed  出证任务执行失败
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4374,7 +4379,7 @@ module TencentCloud
         # @param JoinedTotal: 已授权待激活的企业数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinedTotal: Integer
-        # @param ActivedTotal: 已加入的企业数量
+        # @param ActivedTotal: 已加入的企业数量(废弃,请使用ActivatedTotal)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivedTotal: Integer
         # @param ExportUrl: 导出文件的url
@@ -4383,17 +4388,24 @@ module TencentCloud
         # @param List: 成员企业信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
+        # @param ActivatedTotal: 已加入的企业数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivatedTotal: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :RequestId
+        attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :ActivatedTotal, :RequestId
+        extend Gem::Deprecate
+        deprecate :ActivedTotal, :none, 2023, 8
+        deprecate :ActivedTotal=, :none, 2023, 8
 
-        def initialize(total=nil, joinedtotal=nil, activedtotal=nil, exporturl=nil, list=nil, requestid=nil)
+        def initialize(total=nil, joinedtotal=nil, activedtotal=nil, exporturl=nil, list=nil, activatedtotal=nil, requestid=nil)
           @Total = total
           @JoinedTotal = joinedtotal
           @ActivedTotal = activedtotal
           @ExportUrl = exporturl
           @List = list
+          @ActivatedTotal = activatedtotal
           @RequestId = requestid
         end
 
@@ -4410,6 +4422,7 @@ module TencentCloud
               @List << grouporganization_tmp
             end
           end
+          @ActivatedTotal = params['ActivatedTotal']
           @RequestId = params['RequestId']
         end
       end
@@ -4677,10 +4690,10 @@ module TencentCloud
         # <br/>false：不允许在合同详情页展示控件
         # <br/>默认false，合同详情页不展示控件
         # @type ShowFlowDetailComponent: Boolean
-        # @param ShowTemplateComponent: 模版预览，允许展示模版控件信息
-        # <br/>true：允许在模版预览页展示控件
-        # <br/>false：不允许在模版预览页展示控件
-        # <br/>默认false，模版预览页不展示控件
+        # @param ShowTemplateComponent: 模板预览，允许展示模板控件信息
+        # <br/>true：允许在模板预览页展示控件
+        # <br/>false：不允许在模板预览页展示控件
+        # <br/>默认false，模板预览页不展示控件
         # @type ShowTemplateComponent: Boolean
 
         attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent
@@ -5222,7 +5235,7 @@ module TencentCloud
         # @param ApproverIdCardNumber: 签署方经办人证件号码
         # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中的参与方ID
-        # <br/>模版发起合同时，该参数为必填项
+        # <br/>模板发起合同时，该参数为必填项
         # <br/>文件发起合同是，该参数无序传值
         # @type RecipientId: String
         # @param VerifyChannel: 签署意愿确认渠道,WEIXINAPP:人脸识别
@@ -6482,7 +6495,7 @@ module TencentCloud
         # - SIGN_SEAL-默认为印章控件类型
         # - SIGN_SIGNATURE-手写签名控件类型
         # @type ApproverSignComponentType: String
-        # @param ApproverSignRole: 参与方在合同中的角色是按照创建合同的时候来排序的; 解除协议会将第一个参与人叫甲方, 第二个叫乙方,第三个叫丙方, 依次类推.  如果想改动参与人的角色名字, 可以设置此签署方自定义控件别名字段，最大20个字符
+        # @param ApproverSignRole: 参与方在合同中的角色是按照创建合同的时候来排序的; 解除协议会将第一个参与人叫甲方, 第二个叫乙方,第三个叫丙方，以此类推。  如果想改动参与人的角色名字, 可以设置此签署方自定义控件别名字段，最大20个字符
         # @type ApproverSignRole: String
 
         attr_accessor :Name, :Mobile, :RelievedApproverReceiptId, :ApproverType, :ApproverSignComponentType, :ApproverSignRole

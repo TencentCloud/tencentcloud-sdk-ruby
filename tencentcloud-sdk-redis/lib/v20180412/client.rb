@@ -797,7 +797,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例访问来源信息
+        # 该接口已下线，请使用数据库智能管家 DBbrain 接口 [DescribeProxyProcessStatistics] (https://cloud.tencent.com/document/product/1130/84544) 获取实例访问来源。
 
         # @param request: Request instance for DescribeInstanceMonitorSIP.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceMonitorSIPRequest`

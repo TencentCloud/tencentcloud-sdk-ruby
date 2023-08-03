@@ -6806,9 +6806,9 @@ module TencentCloud
 
       # 访问来源信息
       class SourceInfo < TencentCloud::Common::AbstractModel
-        # @param Ip: 来源IP
+        # @param Ip: 来源 IP 地址。
         # @type Ip: String
-        # @param Conn: 连接数
+        # @param Conn: 客户端连接数量。
         # @type Conn: Integer
         # @param Cmd: 命令
         # @type Cmd: Integer
