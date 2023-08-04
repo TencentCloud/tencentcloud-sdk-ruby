@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2023, 7
-        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 7
+        deprecate :ActivityRelatedInstanceSet, :none, 2023, 8
+        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 8
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2510,8 +2510,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2023, 7
-        deprecate :AutomationService=, :none, 2023, 7
+        deprecate :AutomationService, :none, 2023, 8
+        deprecate :AutomationService=, :none, 2023, 8
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -4818,7 +4818,7 @@ module TencentCloud
         # @type InstanceTypesCheckPolicy: String
         # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
-        # @param LoginSettings: 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
+        # @param LoginSettings: 该参数已失效，请勿使用。升级启动配置接口无法修改或覆盖 LoginSettings 参数，升级后 LoginSettings 不会发生变化。
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LoginSettings`
         # @param ProjectId: 实例所属项目ID。不填为默认项目。
         # @type ProjectId: Integer

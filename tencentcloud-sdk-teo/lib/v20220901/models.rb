@@ -126,7 +126,8 @@ module TencentCloud
         # <li>idcid：IDC 规则，仅bot自定义规则可用；</li>
         # <li>sipbot：搜索引擎规则，仅bot自定义规则可用；</li>
         # <li>portrait：画像分析，仅bot自定义规则可用；</li>
-        # <li>header_seq：请求头顺序，仅bot自定义规则可用。</li>
+        # <li>header_seq：请求头顺序，仅bot自定义规则可用；</li>
+        # <li>hdr：请求正文，仅Web防护自定义规则可用。</li>
         # @type MatchFrom: String
         # @param MatchParam: 匹配字符串。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
         # @type MatchParam: String
@@ -4818,13 +4819,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
         # @type ZoneIds: Array
-        # @param ProxyIds: 四层实例ID集合。
+        # @param ProxyIds: 四层实例 ID 集合。
         # @type ProxyIds: Array
-        # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
+        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
         # @type Limit: Integer
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: 分页的偏移量，默认值为 0。
         # @type Offset: Integer
 
         attr_accessor :StartTime, :EndTime, :ZoneIds, :ProxyIds, :Limit, :Offset
@@ -4850,23 +4851,23 @@ module TencentCloud
 
       # DownloadL4Logs返回参数结构体
       class DownloadL4LogsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 四层离线日志数据列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
         # @param TotalCount: 查询结果的总条数。
         # @type TotalCount: Integer
+        # @param Data: 四层离线日志数据列表。
+        # @type Data: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
 
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -4875,7 +4876,6 @@ module TencentCloud
               @Data << l4offlinelog_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4886,13 +4886,13 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
         # @type ZoneIds: Array
         # @param Domains: 子域名集合，不填默认选择全部子域名。
         # @type Domains: Array
-        # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
+        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
         # @type Limit: Integer
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: 分页的偏移量，默认值为 0。
         # @type Offset: Integer
 
         attr_accessor :StartTime, :EndTime, :ZoneIds, :Domains, :Limit, :Offset
@@ -4918,23 +4918,23 @@ module TencentCloud
 
       # DownloadL7Logs返回参数结构体
       class DownloadL7LogsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 七层离线日志数据列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: Array
         # @param TotalCount: 查询结果的总条数。
         # @type TotalCount: Integer
+        # @param Data: 七层离线日志数据列表。
+        # @type Data: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
 
-        def initialize(data=nil, totalcount=nil, requestid=nil)
-          @Data = data
+        def initialize(totalcount=nil, data=nil, requestid=nil)
           @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
@@ -4943,7 +4943,6 @@ module TencentCloud
               @Data << l7offlinelog_tmp
             end
           end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5828,78 +5827,93 @@ module TencentCloud
 
       # 离线日志详细信息
       class L4OfflineLog < TencentCloud::Common::AbstractModel
-        # @param LogTime: 日志打包开始时间。
-        # @type LogTime: Integer
-        # @param ProxyId: 四层实例ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ProxyId: 四层代理实例 ID。
         # @type ProxyId: String
-        # @param Size: 原始大小 单位byte。
-        # @type Size: Integer
-        # @param Url: 下载地址。
-        # @type Url: String
-        # @param LogPacketName: 日志数据包名。
-        # @type LogPacketName: String
-        # @param Area: 加速区域，取值有：
+        # @param Area: 日志所属区域，取值有：
         # <li>mainland：中国大陆境内;</li>
         # <li>overseas：全球（不含中国大陆）。</li>
         # @type Area: String
+        # @param LogPacketName: 离线日志数据包名。
+        # @type LogPacketName: String
+        # @param Url: 离线日志下载地址。
+        # @type Url: String
+        # @param LogTime: 日志打包时间，此参数已经废弃。
+        # @type LogTime: Integer
+        # @param LogStartTime: 日志打包开始时间。
+        # @type LogStartTime: String
+        # @param LogEndTime: 日志打包结束时间。
+        # @type LogEndTime: String
+        # @param Size: 日志大小，单位为 Byte。
+        # @type Size: Integer
 
-        attr_accessor :LogTime, :ProxyId, :Size, :Url, :LogPacketName, :Area
+        attr_accessor :ProxyId, :Area, :LogPacketName, :Url, :LogTime, :LogStartTime, :LogEndTime, :Size
 
-        def initialize(logtime=nil, proxyid=nil, size=nil, url=nil, logpacketname=nil, area=nil)
-          @LogTime = logtime
+        def initialize(proxyid=nil, area=nil, logpacketname=nil, url=nil, logtime=nil, logstarttime=nil, logendtime=nil, size=nil)
           @ProxyId = proxyid
-          @Size = size
-          @Url = url
-          @LogPacketName = logpacketname
           @Area = area
+          @LogPacketName = logpacketname
+          @Url = url
+          @LogTime = logtime
+          @LogStartTime = logstarttime
+          @LogEndTime = logendtime
+          @Size = size
         end
 
         def deserialize(params)
-          @LogTime = params['LogTime']
           @ProxyId = params['ProxyId']
-          @Size = params['Size']
-          @Url = params['Url']
-          @LogPacketName = params['LogPacketName']
           @Area = params['Area']
+          @LogPacketName = params['LogPacketName']
+          @Url = params['Url']
+          @LogTime = params['LogTime']
+          @LogStartTime = params['LogStartTime']
+          @LogEndTime = params['LogEndTime']
+          @Size = params['Size']
         end
       end
 
-      # 离线日志详细信息
+      # 七层离线日志详细信息。
       class L7OfflineLog < TencentCloud::Common::AbstractModel
-        # @param LogTime: 日志打包开始时间。
-        # @type LogTime: Integer
-        # @param Domain: 子域名。
+        # @param Domain: 离线日志域名。
         # @type Domain: String
-        # @param Size: 原始大小，单位byte。
-        # @type Size: Integer
-        # @param Url: 下载地址。
-        # @type Url: String
-        # @param LogPacketName: 日志数据包名。
-        # @type LogPacketName: String
-        # @param Area: 加速区域，取值有：
+        # @param Area: 日志所属区域，取值有：
         # <li>mainland：中国大陆境内; </li>
         # <li>overseas：全球（不含中国大陆）。</li>
         # @type Area: String
+        # @param LogPacketName: 离线日志数据包名。
+        # @type LogPacketName: String
+        # @param Url: 离线日志下载地址。
+        # @type Url: String
+        # @param LogTime: 日志打包时间，此参数已经废弃。
+        # @type LogTime: Integer
+        # @param LogStartTime: 日志打包开始时间。
+        # @type LogStartTime: String
+        # @param LogEndTime: 日志打包结束时间。
+        # @type LogEndTime: String
+        # @param Size: 日志原始大小，单位 Byte。
+        # @type Size: Integer
 
-        attr_accessor :LogTime, :Domain, :Size, :Url, :LogPacketName, :Area
+        attr_accessor :Domain, :Area, :LogPacketName, :Url, :LogTime, :LogStartTime, :LogEndTime, :Size
 
-        def initialize(logtime=nil, domain=nil, size=nil, url=nil, logpacketname=nil, area=nil)
-          @LogTime = logtime
+        def initialize(domain=nil, area=nil, logpacketname=nil, url=nil, logtime=nil, logstarttime=nil, logendtime=nil, size=nil)
           @Domain = domain
-          @Size = size
-          @Url = url
-          @LogPacketName = logpacketname
           @Area = area
+          @LogPacketName = logpacketname
+          @Url = url
+          @LogTime = logtime
+          @LogStartTime = logstarttime
+          @LogEndTime = logendtime
+          @Size = size
         end
 
         def deserialize(params)
-          @LogTime = params['LogTime']
           @Domain = params['Domain']
-          @Size = params['Size']
-          @Url = params['Url']
-          @LogPacketName = params['LogPacketName']
           @Area = params['Area']
+          @LogPacketName = params['LogPacketName']
+          @Url = params['Url']
+          @LogTime = params['LogTime']
+          @LogStartTime = params['LogStartTime']
+          @LogEndTime = params['LogEndTime']
+          @Size = params['Size']
         end
       end
 
@@ -7733,10 +7747,7 @@ module TencentCloud
         # @type Period: Integer
         # @param RuleName: 规则名，只能以英文字符，数字，下划线组合，且不能以下划线开头。
         # @type RuleName: String
-        # @param Action: 处置动作，取值有：
-        # <li>monitor：观察；</li>
-        # <li>drop：拦截；</li>
-        # <li>alg：JavaScript挑战。</li>
+        # @param Action: 处置动作，取值有： <li>monitor：观察；</li> <li>drop：拦截；</li> <li>alg：JavaScript挑战。</li>
         # @type Action: String
         # @param PunishTime: 惩罚时长，0-2天。
         # @type PunishTime: Integer
@@ -7753,7 +7764,7 @@ module TencentCloud
         # @type AclConditions: Array
         # @param RulePriority: 规则权重，取值范围0-100。
         # @type RulePriority: Integer
-        # @param RuleID: 规则id。仅出参使用。
+        # @param RuleID: 规则 Id。仅出参使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleID: Integer
         # @param FreqFields: 过滤词，取值有：
@@ -7763,7 +7774,7 @@ module TencentCloud
         # @param UpdateTime: 更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param FreqScope: 统计范围，字段为null时，代表source_to_eo。取值有：
+        # @param FreqScope: 统计范围，字段为 null 时，代表 source_to_eo。取值有：
         # <li>source_to_eo：（响应）源站到EdgeOne。</li>
         # <li>client_to_eo：（请求）客户端到EdgeOne；</li>
         # 注意：此字段可能返回 null，表示取不到有效值。

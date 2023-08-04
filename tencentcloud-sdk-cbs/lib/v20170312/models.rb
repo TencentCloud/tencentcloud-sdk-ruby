@@ -1914,21 +1914,21 @@ module TencentCloud
 
       # 描述键值对过滤器，用于条件过滤查询。
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Values: 一个或者多个过滤值。
-        # @type Values: Array
         # @param Name: 过滤键的名称。
         # @type Name: String
+        # @param Values: 一个或者多个过滤值。
+        # @type Values: Array
 
-        attr_accessor :Values, :Name
+        attr_accessor :Name, :Values
 
-        def initialize(values=nil, name=nil)
-          @Values = values
+        def initialize(name=nil, values=nil)
           @Name = name
+          @Values = values
         end
 
         def deserialize(params)
-          @Values = params['Values']
           @Name = params['Name']
+          @Values = params['Values']
         end
       end
 

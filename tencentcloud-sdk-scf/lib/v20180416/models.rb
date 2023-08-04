@@ -3304,10 +3304,16 @@ module TencentCloud
         # @param Port: scf组件将占用的节点端口起始号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
+        # @param PodTemplatePatch: yaml格式的pod patch内容，例如
+        # metadata:
+        #   labels:
+        #     key: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodTemplatePatch: String
 
-        attr_accessor :ClusterID, :SubnetID, :Namespace, :DataPath, :NodeSelector, :Tolerations, :Port
+        attr_accessor :ClusterID, :SubnetID, :Namespace, :DataPath, :NodeSelector, :Tolerations, :Port, :PodTemplatePatch
 
-        def initialize(clusterid=nil, subnetid=nil, namespace=nil, datapath=nil, nodeselector=nil, tolerations=nil, port=nil)
+        def initialize(clusterid=nil, subnetid=nil, namespace=nil, datapath=nil, nodeselector=nil, tolerations=nil, port=nil, podtemplatepatch=nil)
           @ClusterID = clusterid
           @SubnetID = subnetid
           @Namespace = namespace
@@ -3315,6 +3321,7 @@ module TencentCloud
           @NodeSelector = nodeselector
           @Tolerations = tolerations
           @Port = port
+          @PodTemplatePatch = podtemplatepatch
         end
 
         def deserialize(params)
@@ -3339,6 +3346,7 @@ module TencentCloud
             end
           end
           @Port = params['Port']
+          @PodTemplatePatch = params['PodTemplatePatch']
         end
       end
 

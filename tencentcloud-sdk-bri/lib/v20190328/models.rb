@@ -36,7 +36,6 @@ module TencentCloud
         # @param Scene: 业务场景 (1-注册, 2-登录, 3-发消息)
         # @type Scene: String
         # @param PhoneNumber: 电话号码 (业务名为bri_num时必填)
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PhoneNumber: String
         # @param FileSize: Apk文件大小  (业务名为bri_apk时必填，除非已填FileMd5)
         # @type FileSize: Integer
@@ -48,10 +47,12 @@ module TencentCloud
         # @type Wechat: String
         # @param WechatTag: 微信号的可疑标签
         # @type WechatTag: String
+        # @param SubAppid: 子客户ID
+        # @type SubAppid: String
 
-        attr_accessor :Service, :QQ, :QQTag, :Url, :CertMd5, :PackageName, :FileMd5, :Scene, :PhoneNumber, :FileSize, :Ip, :Imei, :Wechat, :WechatTag
+        attr_accessor :Service, :QQ, :QQTag, :Url, :CertMd5, :PackageName, :FileMd5, :Scene, :PhoneNumber, :FileSize, :Ip, :Imei, :Wechat, :WechatTag, :SubAppid
 
-        def initialize(service=nil, qq=nil, qqtag=nil, url=nil, certmd5=nil, packagename=nil, filemd5=nil, scene=nil, phonenumber=nil, filesize=nil, ip=nil, imei=nil, wechat=nil, wechattag=nil)
+        def initialize(service=nil, qq=nil, qqtag=nil, url=nil, certmd5=nil, packagename=nil, filemd5=nil, scene=nil, phonenumber=nil, filesize=nil, ip=nil, imei=nil, wechat=nil, wechattag=nil, subappid=nil)
           @Service = service
           @QQ = qq
           @QQTag = qqtag
@@ -66,6 +67,7 @@ module TencentCloud
           @Imei = imei
           @Wechat = wechat
           @WechatTag = wechattag
+          @SubAppid = subappid
         end
 
         def deserialize(params)
@@ -83,6 +85,7 @@ module TencentCloud
           @Imei = params['Imei']
           @Wechat = params['Wechat']
           @WechatTag = params['WechatTag']
+          @SubAppid = params['SubAppid']
         end
       end
 

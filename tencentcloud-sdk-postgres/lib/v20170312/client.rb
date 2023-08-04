@@ -823,6 +823,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBInstanceHAConfig）用于查询实例HA配置信息。其中HA配置信息包括：
+        # <li>允许备节点切换为主节点的条件配置
+        # <li>半同步实例使用同步复制或异步复制的条件配置
+
+        # @param request: Request instance for DescribeDBInstanceHAConfig.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceHAConfigRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBInstanceHAConfigResponse`
+        def DescribeDBInstanceHAConfig(request)
+          body = send_request('DescribeDBInstanceHAConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceHAConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeDBInstanceAttribute）用于查询实例的参数信息。
 
         # @param request: Request instance for DescribeDBInstanceParameters.
@@ -1639,6 +1665,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDBInstanceHAConfig）用于修改实例HA配置信息。其中HA配置信息包括：
+        # <li>允许备节点切换为主节点的条件配置
+        # <li>半同步实例使用同步复制或异步复制的条件配置
+
+        # @param request: Request instance for ModifyDBInstanceHAConfig.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceHAConfigRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceHAConfigResponse`
+        def ModifyDBInstanceHAConfig(request)
+          body = send_request('ModifyDBInstanceHAConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceHAConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
 
         # @param request: Request instance for ModifyDBInstanceName.
@@ -2033,6 +2085,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAutoRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（SwitchDBInstancePrimary）用于切换实例主备关系。
+        # <li>通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
+        # <li>通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
+        # <li>只有主实例可以执行该操作
+
+        # @param request: Request instance for SwitchDBInstancePrimary.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::SwitchDBInstancePrimaryRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::SwitchDBInstancePrimaryResponse`
+        def SwitchDBInstancePrimary(request)
+          body = send_request('SwitchDBInstancePrimary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchDBInstancePrimaryResponse.new
             model.deserialize(response['Response'])
             model
           else

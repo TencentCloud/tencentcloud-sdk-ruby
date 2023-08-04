@@ -2800,6 +2800,72 @@ module TencentCloud
         end
       end
 
+      # DescribeDBInstanceHAConfig请求参数结构体
+      class DescribeDBInstanceHAConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+
+        attr_accessor :DBInstanceId
+
+        def initialize(dbinstanceid=nil)
+          @DBInstanceId = dbinstanceid
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+        end
+      end
+
+      # DescribeDBInstanceHAConfig返回参数结构体
+      class DescribeDBInstanceHAConfigResponse < TencentCloud::Common::AbstractModel
+        # @param SyncMode: 主从同步方式：
+        # <li>Semi-sync：半同步
+        # <li>Async：异步
+        # @type SyncMode: String
+        # @param MaxStandbyLatency: 高可用备机最大延迟数据量。备节点延迟数据量小于等于该值，且备节点延迟时间小于等于MaxStandbyLag时，可以切换为主节点。
+        # <li>单位：byte
+        # <li>参数范围：[1073741824, 322122547200]
+        # @type MaxStandbyLatency: Integer
+        # @param MaxStandbyLag: 高可用备机最大延迟时间。备节点延迟时间小于等于该值，且备节点延迟数据量小于等于MaxStandbyLatency时，可以切换为主节点。
+        # <li>单位：s
+        # <li>参数范围：[5, 10]
+        # @type MaxStandbyLag: Integer
+        # @param MaxSyncStandbyLatency: 同步备机最大延迟数据量。备机延迟数据量小于等于该值，且该备机延迟时间小于等于MaxSyncStandbyLag时，则该备机采用同步复制；否则，采用异步复制。
+        # 该参数值针对SyncMode设置为Semi-sync的实例有效。
+        # 异步实例该字段返回null。
+        # 半同步实例禁止退化为异步复制时，该字段返回null。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSyncStandbyLatency: Integer
+        # @param MaxSyncStandbyLag: 同步备机最大延迟时间。备机延迟时间小于等于该值，且该备机延迟数据量小于等于MaxSyncStandbyLatency时，则该备机采用同步复制；否则，采用异步复制。
+        # 该参数值针对SyncMode设置为Semi-sync的实例有效。
+        # 异步实例不返回该字段。
+        # 半同步实例禁止退化为异步复制时，不返回该字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSyncStandbyLag: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SyncMode, :MaxStandbyLatency, :MaxStandbyLag, :MaxSyncStandbyLatency, :MaxSyncStandbyLag, :RequestId
+
+        def initialize(syncmode=nil, maxstandbylatency=nil, maxstandbylag=nil, maxsyncstandbylatency=nil, maxsyncstandbylag=nil, requestid=nil)
+          @SyncMode = syncmode
+          @MaxStandbyLatency = maxstandbylatency
+          @MaxStandbyLag = maxstandbylag
+          @MaxSyncStandbyLatency = maxsyncstandbylatency
+          @MaxSyncStandbyLag = maxsyncstandbylag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SyncMode = params['SyncMode']
+          @MaxStandbyLatency = params['MaxStandbyLatency']
+          @MaxStandbyLag = params['MaxStandbyLag']
+          @MaxSyncStandbyLatency = params['MaxSyncStandbyLatency']
+          @MaxSyncStandbyLag = params['MaxSyncStandbyLag']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDBInstanceParameters请求参数结构体
       class DescribeDBInstanceParametersRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID
@@ -4954,6 +5020,70 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceHAConfig请求参数结构体
+      class ModifyDBInstanceHAConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param SyncMode: 主从同步方式：
+        # <li>Semi-sync：半同步
+        # <li>Async：异步
+        # @type SyncMode: String
+        # @param MaxStandbyLatency: 高可用备机最大延迟数据量。备节点延迟数据量小于等于该值，且备节点延迟时间小于等于MaxStandbyLag时，可以切换为主节点。
+        # <li>单位：byte
+        # <li>参数范围：[1073741824, 322122547200]
+        # @type MaxStandbyLatency: Integer
+        # @param MaxStandbyLag: 高可用备机最大延迟时间。备节点延迟时间小于等于该值，且备节点延迟数据量小于等于MaxStandbyLatency时，可以切换为主节点。
+        # <li>单位：s
+        # <li>参数范围：[5, 10]
+        # @type MaxStandbyLag: Integer
+        # @param MaxSyncStandbyLatency: 同步备机最大延迟数据量。备机延迟数据量小于等于该值，且该备机延迟时间小于等于MaxSyncStandbyLag时，则该备机采用同步复制；否则，采用异步复制。
+        # 该参数值针对SyncMode设置为Semi-sync的实例有效。
+        # 半同步实例禁止退化为异步复制时，不设置MaxSyncStandbyLatency、MaxSyncStandbyLag。
+        # 半同步实例允许退化异步复制时，PostgreSQL 9版本的实例须设置MaxSyncStandbyLatency且不设置MaxSyncStandbyLag，PostgreSQL 10及以上版本的实例须设置MaxSyncStandbyLatency、MaxSyncStandbyLag。
+        # @type MaxSyncStandbyLatency: Integer
+        # @param MaxSyncStandbyLag: 同步备机最大延迟时间。备机延迟时间小于等于该值，且该备机延迟数据量小于等于MaxSyncStandbyLatency时，则该备机采用同步复制；否则，采用异步复制。
+        # 该参数值针对SyncMode设置为Semi-sync的实例有效。
+        # 半同步实例禁止退化为异步复制时，不设置MaxSyncStandbyLatency、MaxSyncStandbyLag。
+        # 半同步实例允许退化异步复制时，PostgreSQL 9版本的实例须设置MaxSyncStandbyLatency且不设置MaxSyncStandbyLag，PostgreSQL 10及以上版本的实例须设置MaxSyncStandbyLatency、MaxSyncStandbyLag，
+        # @type MaxSyncStandbyLag: Integer
+
+        attr_accessor :DBInstanceId, :SyncMode, :MaxStandbyLatency, :MaxStandbyLag, :MaxSyncStandbyLatency, :MaxSyncStandbyLag
+
+        def initialize(dbinstanceid=nil, syncmode=nil, maxstandbylatency=nil, maxstandbylag=nil, maxsyncstandbylatency=nil, maxsyncstandbylag=nil)
+          @DBInstanceId = dbinstanceid
+          @SyncMode = syncmode
+          @MaxStandbyLatency = maxstandbylatency
+          @MaxStandbyLag = maxstandbylag
+          @MaxSyncStandbyLatency = maxsyncstandbylatency
+          @MaxSyncStandbyLag = maxsyncstandbylag
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @SyncMode = params['SyncMode']
+          @MaxStandbyLatency = params['MaxStandbyLatency']
+          @MaxStandbyLag = params['MaxStandbyLag']
+          @MaxSyncStandbyLatency = params['MaxSyncStandbyLatency']
+          @MaxSyncStandbyLag = params['MaxSyncStandbyLag']
+        end
+      end
+
+      # ModifyDBInstanceHAConfig返回参数结构体
+      class ModifyDBInstanceHAConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 数据库实例ID，形如postgres-6fego161
@@ -6715,6 +6845,59 @@ module TencentCloud
           @MajorVersion = params['MajorVersion']
           @KernelVersion = params['KernelVersion']
           @IsSupportTDE = params['IsSupportTDE']
+        end
+      end
+
+      # SwitchDBInstancePrimary请求参数结构体
+      class SwitchDBInstancePrimaryRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param Force: 是否强制切换。强制切换时只要备节点可访问，无论主备延迟多大都会发起切换。只有SwitchTag为0时，才可使用立即切换。
+        # <li>默认：false
+        # @type Force: Boolean
+        # @param SwitchTag: 指定实例配置完成变更后的切换时间。
+        # <li>0：立即切换
+        # <li>1：指定时间切换
+        # <li>2：维护时间窗口内切换
+        # <li>默认值：0
+        # @type SwitchTag: Integer
+        # @param SwitchStartTime: 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
+        # @type SwitchStartTime: String
+        # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。SwitchStartTime和SwitchEndTime时间窗口不能小于30分钟。
+        # @type SwitchEndTime: String
+
+        attr_accessor :DBInstanceId, :Force, :SwitchTag, :SwitchStartTime, :SwitchEndTime
+
+        def initialize(dbinstanceid=nil, force=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil)
+          @DBInstanceId = dbinstanceid
+          @Force = force
+          @SwitchTag = switchtag
+          @SwitchStartTime = switchstarttime
+          @SwitchEndTime = switchendtime
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @Force = params['Force']
+          @SwitchTag = params['SwitchTag']
+          @SwitchStartTime = params['SwitchStartTime']
+          @SwitchEndTime = params['SwitchEndTime']
+        end
+      end
+
+      # SwitchDBInstancePrimary返回参数结构体
+      class SwitchDBInstancePrimaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

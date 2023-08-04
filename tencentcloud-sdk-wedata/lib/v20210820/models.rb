@@ -92,6 +92,33 @@ module TencentCloud
         end
       end
 
+      # Agent采集器状态统计
+      class AgentStatus < TencentCloud::Common::AbstractModel
+        # @param Running: 运行中的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Running: Integer
+        # @param Abnormal: 异常的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abnormal: Integer
+        # @param InOperation: 操作中的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InOperation: Integer
+
+        attr_accessor :Running, :Abnormal, :InOperation
+
+        def initialize(running=nil, abnormal=nil, inoperation=nil)
+          @Running = running
+          @Abnormal = abnormal
+          @InOperation = inoperation
+        end
+
+        def deserialize(params)
+          @Running = params['Running']
+          @Abnormal = params['Abnormal']
+          @InOperation = params['InOperation']
+        end
+      end
+
       # 告警事件详情
       class AlarmEventInfo < TencentCloud::Common::AbstractModel
         # @param AlarmId: 告警ID
@@ -1044,19 +1071,23 @@ module TencentCloud
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param DeleteKFFlag: 是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
+        # @type DeleteKFFlag: Integer
 
-        attr_accessor :TaskIds, :TaskType, :ProjectId
+        attr_accessor :TaskIds, :TaskType, :ProjectId, :DeleteKFFlag
 
-        def initialize(taskids=nil, tasktype=nil, projectid=nil)
+        def initialize(taskids=nil, tasktype=nil, projectid=nil, deletekfflag=nil)
           @TaskIds = taskids
           @TaskType = tasktype
           @ProjectId = projectid
+          @DeleteKFFlag = deletekfflag
         end
 
         def deserialize(params)
           @TaskIds = params['TaskIds']
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
+          @DeleteKFFlag = params['DeleteKFFlag']
         end
       end
 
@@ -2250,8 +2281,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 7
-        deprecate :TaskId=, :none, 2023, 7
+        deprecate :TaskId, :none, 2023, 8
+        deprecate :TaskId=, :none, 2023, 8
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil)
           @ProjectId = projectid
@@ -2923,15 +2954,21 @@ module TencentCloud
         # @type TaskType: Integer
         # @param ExtConfig: 额外参数
         # @type ExtConfig: Array
+        # @param VersionDesc: 提交版本描述
+        # @type VersionDesc: String
+        # @param InstanceVersion: 提交版本号
+        # @type InstanceVersion: Integer
 
-        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig
+        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig, :VersionDesc, :InstanceVersion
 
-        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil)
+        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil, versiondesc=nil, instanceversion=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @CommitType = committype
           @TaskType = tasktype
           @ExtConfig = extconfig
+          @VersionDesc = versiondesc
+          @InstanceVersion = instanceversion
         end
 
         def deserialize(params)
@@ -2947,6 +2984,8 @@ module TencentCloud
               @ExtConfig << recordfield_tmp
             end
           end
+          @VersionDesc = params['VersionDesc']
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
@@ -5640,18 +5679,31 @@ module TencentCloud
       class DeleteIntegrationTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 任务删除成功与否标识
         # @type Data: Boolean
+        # @param DeleteFlag: 任务删除成功与否标识
+        # 0表示删除成功
+        # 1 表示失败，失败原因见 DeleteErrInfo
+        # 100 表示running or suspend task can't be deleted失败，失败原因也会写到DeleteErrInfo里面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteFlag: Integer
+        # @param DeleteErrInfo: 删除失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeleteErrInfo: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :DeleteFlag, :DeleteErrInfo, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, deleteflag=nil, deleteerrinfo=nil, requestid=nil)
           @Data = data
+          @DeleteFlag = deleteflag
+          @DeleteErrInfo = deleteerrinfo
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @DeleteFlag = params['DeleteFlag']
+          @DeleteErrInfo = params['DeleteErrInfo']
           @RequestId = params['RequestId']
         end
       end
@@ -10551,19 +10603,23 @@ module TencentCloud
         # @type ProjectId: String
         # @param TaskType: 任务类型：201. stream,   202. offline
         # @type TaskType: Integer
+        # @param InstanceVersion: 提交版本号
+        # @type InstanceVersion: Integer
 
-        attr_accessor :TaskId, :ProjectId, :TaskType
+        attr_accessor :TaskId, :ProjectId, :TaskType, :InstanceVersion
 
-        def initialize(taskid=nil, projectid=nil, tasktype=nil)
+        def initialize(taskid=nil, projectid=nil, tasktype=nil, instanceversion=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @TaskType = tasktype
+          @InstanceVersion = instanceversion
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ProjectId = params['ProjectId']
           @TaskType = params['TaskType']
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
@@ -10572,13 +10628,21 @@ module TencentCloud
         # @param TaskInfo: 任务信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskInfo: :class:`Tencentcloud::Wedata.v20210820.models.IntegrationTaskInfo`
+        # @param AgentStatus: 采集器统计信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentStatus: :class:`Tencentcloud::Wedata.v20210820.models.AgentStatus`
+        # @param TaskVersion: 任务版本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskVersion: :class:`Tencentcloud::Wedata.v20210820.models.TaskVersionInstance`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskInfo, :RequestId
+        attr_accessor :TaskInfo, :AgentStatus, :TaskVersion, :RequestId
 
-        def initialize(taskinfo=nil, requestid=nil)
+        def initialize(taskinfo=nil, agentstatus=nil, taskversion=nil, requestid=nil)
           @TaskInfo = taskinfo
+          @AgentStatus = agentstatus
+          @TaskVersion = taskversion
           @RequestId = requestid
         end
 
@@ -10586,6 +10650,14 @@ module TencentCloud
           unless params['TaskInfo'].nil?
             @TaskInfo = IntegrationTaskInfo.new
             @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          unless params['AgentStatus'].nil?
+            @AgentStatus = AgentStatus.new
+            @AgentStatus.deserialize(params['AgentStatus'])
+          end
+          unless params['TaskVersion'].nil?
+            @TaskVersion = TaskVersionInstance.new
+            @TaskVersion.deserialize(params['TaskVersion'])
           end
           @RequestId = params['RequestId']
         end
@@ -16049,8 +16121,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2023, 7
-        deprecate :DimType=, :none, 2023, 7
+        deprecate :DimType, :none, 2023, 8
+        deprecate :DimType=, :none, 2023, 8
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -19830,10 +19902,19 @@ module TencentCloud
         # @param TaskAlarmRegularList: 该任务关联的告警规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskAlarmRegularList: Array
+        # @param SwitchResource: 资源分层情况： 0：进行中,1：成功 ,2：失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchResource: Integer
+        # @param ReadPhase: 读取阶段：0：全部全量,1：部分全量,2：全部增量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadPhase: Integer
+        # @param InstanceVersion: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: Integer
 
-        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList
+        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList, :SwitchResource, :ReadPhase, :InstanceVersion
 
-        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil)
+        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil, switchresource=nil, readphase=nil, instanceversion=nil)
           @TaskName = taskname
           @Description = description
           @SyncType = synctype
@@ -19878,6 +19959,9 @@ module TencentCloud
           @Locker = locker
           @RunningCu = runningcu
           @TaskAlarmRegularList = taskalarmregularlist
+          @SwitchResource = switchresource
+          @ReadPhase = readphase
+          @InstanceVersion = instanceversion
         end
 
         def deserialize(params)
@@ -19963,6 +20047,9 @@ module TencentCloud
           @Locker = params['Locker']
           @RunningCu = params['RunningCu']
           @TaskAlarmRegularList = params['TaskAlarmRegularList']
+          @SwitchResource = params['SwitchResource']
+          @ReadPhase = params['ReadPhase']
+          @InstanceVersion = params['InstanceVersion']
         end
       end
 
@@ -26770,10 +26857,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2023, 7
-        deprecate :SourceObjectDataTypeName=, :none, 2023, 7
-        deprecate :SourceObjectValue, :none, 2023, 7
-        deprecate :SourceObjectValue=, :none, 2023, 7
+        deprecate :SourceObjectDataTypeName, :none, 2023, 8
+        deprecate :SourceObjectDataTypeName=, :none, 2023, 8
+        deprecate :SourceObjectValue, :none, 2023, 8
+        deprecate :SourceObjectValue=, :none, 2023, 8
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename
@@ -29784,6 +29871,48 @@ module TencentCloud
           @TypeDesc = params['TypeDesc']
           @TypeId = params['TypeId']
           @TypeSort = params['TypeSort']
+        end
+      end
+
+      # 任务实例基本信息
+      class TaskVersionInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceVersion: 实例版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: Integer
+        # @param VersionDesc: 实例描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionDesc: String
+        # @param ChangeType: 0, "新增"，1, "修改"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeType: Integer
+        # @param SubmitterUin: 版本提交人UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubmitterUin: String
+        # @param InstanceDate: 提交日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceDate: String
+        # @param InstanceStatus: 0, "未启用"，1, "启用(生产态)"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatus: Integer
+
+        attr_accessor :InstanceVersion, :VersionDesc, :ChangeType, :SubmitterUin, :InstanceDate, :InstanceStatus
+
+        def initialize(instanceversion=nil, versiondesc=nil, changetype=nil, submitteruin=nil, instancedate=nil, instancestatus=nil)
+          @InstanceVersion = instanceversion
+          @VersionDesc = versiondesc
+          @ChangeType = changetype
+          @SubmitterUin = submitteruin
+          @InstanceDate = instancedate
+          @InstanceStatus = instancestatus
+        end
+
+        def deserialize(params)
+          @InstanceVersion = params['InstanceVersion']
+          @VersionDesc = params['VersionDesc']
+          @ChangeType = params['ChangeType']
+          @SubmitterUin = params['SubmitterUin']
+          @InstanceDate = params['InstanceDate']
+          @InstanceStatus = params['InstanceStatus']
         end
       end
 
