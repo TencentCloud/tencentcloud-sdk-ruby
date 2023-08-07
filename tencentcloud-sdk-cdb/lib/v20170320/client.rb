@@ -1324,6 +1324,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过该 API 可以查询实例的 CPU 弹性扩容策略
+
+        # @param request: Request instance for DescribeCpuExpandStrategy.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeCpuExpandStrategyRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeCpuExpandStrategyResponse`
+        def DescribeCpuExpandStrategy(request)
+          body = send_request('DescribeCpuExpandStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCpuExpandStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBFeatures)用于查询云数据库版本属性，包括是否支持数据库加密、数据库审计等功能。
 
         # @param request: Request instance for DescribeDBFeatures.
@@ -3273,6 +3297,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过该API，可以开启CPU弹性扩容，包括一次性的手动扩容以及自动弹性扩容。
+
+        # @param request: Request instance for StartCpuExpand.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StartCpuExpandRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StartCpuExpandResponse`
+        def StartCpuExpand(request)
+          body = send_request('StartCpuExpand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartCpuExpandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开启 RO 复制，从主实例同步数据。
 
         # @param request: Request instance for StartReplication.
@@ -3283,6 +3331,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartReplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过该API，可以关闭 CPU 弹性扩容。
+
+        # @param request: Request instance for StopCpuExpand.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::StopCpuExpandRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::StopCpuExpandResponse`
+        def StopCpuExpand(request)
+          body = send_request('StopCpuExpand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopCpuExpandResponse.new
             model.deserialize(response['Response'])
             model
           else

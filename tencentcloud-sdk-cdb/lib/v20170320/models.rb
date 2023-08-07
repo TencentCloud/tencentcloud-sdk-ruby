@@ -2592,7 +2592,7 @@ module TencentCloud
         # @type MasterInstanceId: String
         # @param EngineVersion: MySQL 版本，值包括：5.5、5.6 、5.7和8.0，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的实例版本。
         # @type EngineVersion: String
-        # @param Password: 设置 root 帐号密码，密码规则：8 - 64 个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()）中的两种，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
+        # @param Password: 设置 root 账号密码，密码规则：8 - 64 个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()）中的两种，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
         # @type Password: String
         # @param ProtectMode: 数据复制方式，默认为 0，支持值包括：0 - 表示异步复制，1 - 表示半同步复制，2 - 表示强同步复制。
         # @type ProtectMode: Integer
@@ -2624,7 +2624,7 @@ module TencentCloud
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板id。
         # @type ParamTemplateId: Integer
-        # @param AlarmPolicyList: 告警策略id数组。云监控DescribeAlarmPolicy接口返回的OriginId。
+        # @param AlarmPolicyList: 告警策略id数组。腾讯云可观测平台DescribeAlarmPolicy接口返回的OriginId。
         # @type AlarmPolicyList: Array
         # @param InstanceNodes: 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要购买三节点实例， 请将该值设置为3 或指定 BackupZone 参数。当购买主实例，且未指定该参数和 BackupZone 参数时，该值默认是 2， 即购买两节点实例。
         # @type InstanceNodes: Integer
@@ -4689,6 +4689,53 @@ module TencentCloud
               @Items << cloneitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCpuExpandStrategy请求参数结构体
+      class DescribeCpuExpandStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCpuExpandStrategy返回参数结构体
+      class DescribeCpuExpandStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Type: 策略类型。可选值 auto、manual。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ExpandCpu: 手动扩容的 CPU 。Type为 manual 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpandCpu: String
+        # @param AutoStrategy: 自动扩容策略。Type 为 auto 时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoStrategy: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Type, :ExpandCpu, :AutoStrategy, :RequestId
+
+        def initialize(type=nil, expandcpu=nil, autostrategy=nil, requestid=nil)
+          @Type = type
+          @ExpandCpu = expandcpu
+          @AutoStrategy = autostrategy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ExpandCpu = params['ExpandCpu']
+          @AutoStrategy = params['AutoStrategy']
           @RequestId = params['RequestId']
         end
       end
@@ -11265,6 +11312,37 @@ module TencentCloud
         end
       end
 
+      # StartCpuExpand请求参数结构体
+      class StartCpuExpandRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # StartCpuExpand返回参数结构体
+      class StartCpuExpandResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID 。可以调用DescribeAsyncRequest 传入该 ID ，进行任务执行进度的查询
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartReplication请求参数结构体
       class StartReplicationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。仅支持只读实例。
@@ -11285,6 +11363,42 @@ module TencentCloud
       class StartReplicationResponse < TencentCloud::Common::AbstractModel
         # @param AsyncRequestId: 异步任务 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopCpuExpand请求参数结构体
+      class StopCpuExpandRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # StopCpuExpand返回参数结构体
+      class StopCpuExpandResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务 ID 。可以调用DescribeAsyncRequest 传入该 ID ，进行任务执行进度的查询
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

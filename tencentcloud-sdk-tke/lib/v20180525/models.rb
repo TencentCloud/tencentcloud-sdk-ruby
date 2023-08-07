@@ -1503,6 +1503,23 @@ module TencentCloud
         end
       end
 
+      # 集群属性
+      class ClusterProperty < TencentCloud::Common::AbstractModel
+        # @param NodeNameType: 节点hostname命名模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeNameType: String
+
+        attr_accessor :NodeNameType
+
+        def initialize(nodenametype=nil)
+          @NodeNameType = nodenametype
+        end
+
+        def deserialize(params)
+          @NodeNameType = params['NodeNameType']
+        end
+      end
+
       # 弹性容器集群公网访问负载均衡信息
       class ClusterPublicLB < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启公网访问LB
@@ -12504,10 +12521,12 @@ module TencentCloud
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
         # @param QGPUShareEnable: 是否开启QGPU共享
         # @type QGPUShareEnable: Boolean
+        # @param ClusterProperty: 集群属性
+        # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
 
-        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable
+        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty
 
-        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil)
+        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil)
           @ClusterId = clusterid
           @ProjectId = projectid
           @ClusterName = clustername
@@ -12515,6 +12534,7 @@ module TencentCloud
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
+          @ClusterProperty = clusterproperty
         end
 
         def deserialize(params)
@@ -12528,6 +12548,10 @@ module TencentCloud
             @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
           end
           @QGPUShareEnable = params['QGPUShareEnable']
+          unless params['ClusterProperty'].nil?
+            @ClusterProperty = ClusterProperty.new
+            @ClusterProperty.deserialize(params['ClusterProperty'])
+          end
         end
       end
 
@@ -12551,18 +12575,22 @@ module TencentCloud
         # @param QGPUShareEnable: 是否开启QGPU共享
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QGPUShareEnable: Boolean
+        # @param ClusterProperty: 集群属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RequestId
+        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :RequestId
 
-        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, requestid=nil)
+        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, requestid=nil)
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
           @ClusterLevel = clusterlevel
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
+          @ClusterProperty = clusterproperty
           @RequestId = requestid
         end
 
@@ -12576,6 +12604,10 @@ module TencentCloud
             @AutoUpgradeClusterLevel.deserialize(params['AutoUpgradeClusterLevel'])
           end
           @QGPUShareEnable = params['QGPUShareEnable']
+          unless params['ClusterProperty'].nil?
+            @ClusterProperty = ClusterProperty.new
+            @ClusterProperty.deserialize(params['ClusterProperty'])
+          end
           @RequestId = params['RequestId']
         end
       end

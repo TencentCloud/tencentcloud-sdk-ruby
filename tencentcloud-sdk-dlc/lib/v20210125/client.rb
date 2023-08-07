@@ -1661,6 +1661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 列举用户角色信息
+
+        # @param request: Request instance for DescribeUserRoles.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUserRolesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUserRolesResponse`
+        def DescribeUserRoles(request)
+          body = send_request('DescribeUserRoles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户列表信息
 
         # @param request: Request instance for DescribeUsers.

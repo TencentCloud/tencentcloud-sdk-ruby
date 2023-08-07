@@ -2338,6 +2338,9 @@ module TencentCloud
         # @type Headers: :class:`Tencentcloud::Tse.v20201207.models.KVMapping`
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
+        extend Gem::Deprecate
+        deprecate :ForceHttps, :none, 2023, 8
+        deprecate :ForceHttps=, :none, 2023, 8
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id

@@ -60,6 +60,33 @@ module TencentCloud
         end
       end
 
+      # AcceptVpcPeeringConnection请求参数结构体
+      class AcceptVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # AcceptVpcPeeringConnection返回参数结构体
+      class AcceptVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 策略信息
       class AccessPolicy < TencentCloud::Common::AbstractModel
         # @param TargetCidr: 目的CIDR
@@ -4561,6 +4588,33 @@ module TencentCloud
         end
       end
 
+      # CreateVpcPeeringConnection请求参数结构体
+      class CreateVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateVpcPeeringConnection返回参数结构体
+      class CreateVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateVpc请求参数结构体
       class CreateVpcRequest < TencentCloud::Common::AbstractModel
         # @param VpcName: vpc名称，最大长度不能超过60个字节。
@@ -6422,6 +6476,33 @@ module TencentCloud
 
       # DeleteVpcEndPointServiceWhiteList返回参数结构体
       class DeleteVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVpcPeeringConnection请求参数结构体
+      class DeleteVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteVpcPeeringConnection返回参数结构体
+      class DeleteVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11267,6 +11348,68 @@ module TencentCloud
               @VpcLimitSet << vpclimit_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpcPeeringConnections请求参数结构体
+      class DescribeVpcPeeringConnectionsRequest < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionIds: 对等连接唯一ID数组。
+        # @type PeeringConnectionIds: Array
+        # @param Filters: 过滤条件，参数不支持同时指定PeeringConnectionIds和Filters。
+        # <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        # <li>state String - （过滤条件）对等连接状态，可选值有：PENDING，投放中；ACTIVE，使用中；EXPIRED，已过期；REJECTED，拒绝。</li>
+        # <li>peering-connection-name - String - （过滤条件）对等连接名称。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+        # @param OrderField: 排序字段，可选值有：CreatedTime，PeeringConnectionName。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方式：DESC，降序；ASC，升序。
+        # @type OrderDirection: String
+
+        attr_accessor :PeeringConnectionIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
+
+        def initialize(peeringconnectionids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
+          @PeeringConnectionIds = peeringconnectionids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @PeeringConnectionIds = params['PeeringConnectionIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribeVpcPeeringConnections返回参数结构体
+      class DescribeVpcPeeringConnectionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -16489,6 +16632,33 @@ module TencentCloud
         end
       end
 
+      # ModifyVpcPeeringConnection请求参数结构体
+      class ModifyVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyVpcPeeringConnection返回参数结构体
+      class ModifyVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyVpnConnectionAttribute请求参数结构体
       class ModifyVpnConnectionAttributeRequest < TencentCloud::Common::AbstractModel
         # @param VpnConnectionId: VPN通道实例ID。形如：vpnx-f49l6u0z。
@@ -17772,6 +17942,33 @@ module TencentCloud
 
       # RejectAttachCcnInstances返回参数结构体
       class RejectAttachCcnInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RejectVpcPeeringConnection请求参数结构体
+      class RejectVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RejectVpcPeeringConnection返回参数结构体
+      class RejectVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -912,6 +912,28 @@ module TencentCloud
         end
       end
 
+      # cos权限描述
+      class CosPermission < TencentCloud::Common::AbstractModel
+        # @param CosPath: cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosPath: String
+        # @param Permissions: 权限【"read","write"】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :CosPath, :Permissions
+
+        def initialize(cospath=nil, permissions=nil)
+          @CosPath = cospath
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @CosPath = params['CosPath']
+          @Permissions = params['Permissions']
+        end
+      end
+
       # CreateDMSDatabase请求参数结构体
       class CreateDMSDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param Asset: 基础元数据对象
@@ -5257,6 +5279,69 @@ module TencentCloud
         end
       end
 
+      # DescribeUserRoles请求参数结构体
+      class DescribeUserRolesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 列举的数量限制
+        # @type Limit: Integer
+        # @param Offset: 列举的偏移位置
+        # @type Offset: Integer
+        # @param Fuzzy: 按照arn模糊列举
+        # @type Fuzzy: String
+        # @param SortBy: 返回结果按照该字段排序
+        # @type SortBy: String
+        # @param Sorting: 正序或者倒序，例如：desc
+        # @type Sorting: String
+
+        attr_accessor :Limit, :Offset, :Fuzzy, :SortBy, :Sorting
+
+        def initialize(limit=nil, offset=nil, fuzzy=nil, sortby=nil, sorting=nil)
+          @Limit = limit
+          @Offset = offset
+          @Fuzzy = fuzzy
+          @SortBy = sortby
+          @Sorting = sorting
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Fuzzy = params['Fuzzy']
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+        end
+      end
+
+      # DescribeUserRoles返回参数结构体
+      class DescribeUserRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 符合列举条件的总数量
+        # @type Total: Integer
+        # @param UserRoles: 用户角色信息
+        # @type UserRoles: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :UserRoles, :RequestId
+
+        def initialize(total=nil, userroles=nil, requestid=nil)
+          @Total = total
+          @UserRoles = userroles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['UserRoles'].nil?
+            @UserRoles = []
+            params['UserRoles'].each do |i|
+              userrole_tmp = UserRole.new
+              userrole_tmp.deserialize(i)
+              @UserRoles << userrole_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsers请求参数结构体
       class DescribeUsersRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 指定查询的子用户uin，用户需要通过CreateUser接口创建。
@@ -8543,6 +8628,69 @@ module TencentCloud
           @Creator = params['Creator']
           @CreateTime = params['CreateTime']
           @UserAlias = params['UserAlias']
+        end
+      end
+
+      # 用户角色
+      class UserRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色ID
+        # @type RoleId: Integer
+        # @param AppId: 用户app ID
+        # @type AppId: String
+        # @param Uin: 用户ID
+        # @type Uin: String
+        # @param Arn: 角色权限
+        # @type Arn: String
+        # @param ModifyTime: 最近修改时间戳
+        # @type ModifyTime: Integer
+        # @param Desc: 角色描述信息
+        # @type Desc: String
+        # @param RoleName: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param Creator: 创建者UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param CosPermissionList: cos授权路径列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosPermissionList: Array
+        # @param PermissionJson: cam策略json
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermissionJson: String
+
+        attr_accessor :RoleId, :AppId, :Uin, :Arn, :ModifyTime, :Desc, :RoleName, :Creator, :CosPermissionList, :PermissionJson
+
+        def initialize(roleid=nil, appid=nil, uin=nil, arn=nil, modifytime=nil, desc=nil, rolename=nil, creator=nil, cospermissionlist=nil, permissionjson=nil)
+          @RoleId = roleid
+          @AppId = appid
+          @Uin = uin
+          @Arn = arn
+          @ModifyTime = modifytime
+          @Desc = desc
+          @RoleName = rolename
+          @Creator = creator
+          @CosPermissionList = cospermissionlist
+          @PermissionJson = permissionjson
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @Arn = params['Arn']
+          @ModifyTime = params['ModifyTime']
+          @Desc = params['Desc']
+          @RoleName = params['RoleName']
+          @Creator = params['Creator']
+          unless params['CosPermissionList'].nil?
+            @CosPermissionList = []
+            params['CosPermissionList'].each do |i|
+              cospermission_tmp = CosPermission.new
+              cospermission_tmp.deserialize(i)
+              @CosPermissionList << cospermission_tmp
+            end
+          end
+          @PermissionJson = params['PermissionJson']
         end
       end
 
