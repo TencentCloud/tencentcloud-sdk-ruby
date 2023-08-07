@@ -103,6 +103,34 @@ module TencentCloud
         end
       end
 
+      # AI识别结果
+      class AITaskResultData < TencentCloud::Common::AbstractModel
+        # @param TaskId: AI 任务 ID
+        # @type TaskId: String
+        # @param AIResultCount: 在 BeginTime 和 EndTime 时间之内，有识别结果的 AI 调用次数（分页依据此数值）
+        # @type AIResultCount: Integer
+        # @param AIResults: AI 任务执行结果详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AIResults: :class:`Tencentcloud::Iss.v20230517.models.AITaskResultInfo`
+
+        attr_accessor :TaskId, :AIResultCount, :AIResults
+
+        def initialize(taskid=nil, airesultcount=nil, airesults=nil)
+          @TaskId = taskid
+          @AIResultCount = airesultcount
+          @AIResults = airesults
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @AIResultCount = params['AIResultCount']
+          unless params['AIResults'].nil?
+            @AIResults = AITaskResultInfo.new
+            @AIResults.deserialize(params['AIResults'])
+          end
+        end
+      end
+
       # AI分析结果详情
       class AITaskResultInfo < TencentCloud::Common::AbstractModel
         # @param Body: 人体识别结果列表
@@ -211,34 +239,6 @@ module TencentCloud
         end
       end
 
-      # AI识别结果
-      class AITaskResultResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: AI 任务 ID
-        # @type TaskId: String
-        # @param AIResultCount: 在 BeginTime 和 EndTime 时间之内，有识别结果的 AI 调用次数（分页依据此数值）
-        # @type AIResultCount: Integer
-        # @param AIResults: AI 任务执行结果详情
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AIResults: :class:`Tencentcloud::Iss.v20230517.models.AITaskResultInfo`
-
-        attr_accessor :TaskId, :AIResultCount, :AIResults
-
-        def initialize(taskid=nil, airesultcount=nil, airesults=nil)
-          @TaskId = taskid
-          @AIResultCount = airesultcount
-          @AIResults = airesults
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @AIResultCount = params['AIResultCount']
-          unless params['AIResults'].nil?
-            @AIResults = AITaskResultInfo.new
-            @AIResults.deserialize(params['AIResults'])
-          end
-        end
-      end
-
       # AI模板信息
       class AITemplates < TencentCloud::Common::AbstractModel
         # @param Tag: AI 类别。可选值 AI(AI 分析)和 Snapshot(截图)，Templates 列表中只能出现一种类型。
@@ -337,7 +337,7 @@ module TencentCloud
       end
 
       # 增加设备接口返回数据
-      class AddDeviceResponse < TencentCloud::Common::AbstractModel
+      class AddDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备iD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
@@ -440,7 +440,7 @@ module TencentCloud
       end
 
       # 增加组织接口返回数据
-      class AddOrgResponse < TencentCloud::Common::AbstractModel
+      class AddOrgData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
@@ -514,7 +514,7 @@ module TencentCloud
       # AddOrganization返回参数结构体
       class AddOrganizationResponse < TencentCloud::Common::AbstractModel
         # @param Data: 增加组织接口返回数据
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddOrgResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddOrgData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -527,61 +527,15 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AddOrgResponse.new
+            @Data = AddOrgData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
       end
 
-      # AddRecordBackupPlan请求参数结构体
-      class AddRecordBackupPlanRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 录制模板ID（录像计划关联的模板ID，从查询录像上云模板列表接口ListRecordBackupTemplates中获取）
-        # @type TemplateId: String
-        # @param PlanName: 录像计划名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复）
-        # @type PlanName: String
-        # @param Describe: 录像计划描述（仅支持中文、英文、数字、_、-，长度不超过128个字符）
-        # @type Describe: String
-        # @param LifeCycle: 生命周期（录像文件生命周期设置，管理文件冷、热存储的时间）
-        # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
-        # @param Channels: 通道及通道所属设备（添加录像的设备的通道信息，一次添加通道总数不超过5000个，包括组织目录下的通道数量）
-        # @type Channels: Array
-        # @param OrganizationId: 添加组织目录下所有设备通道（Json数组，可以为空，通道总数量不超过5000个（包括Channel字段的数量））
-        # @type OrganizationId: Array
-
-        attr_accessor :TemplateId, :PlanName, :Describe, :LifeCycle, :Channels, :OrganizationId
-
-        def initialize(templateid=nil, planname=nil, describe=nil, lifecycle=nil, channels=nil, organizationid=nil)
-          @TemplateId = templateid
-          @PlanName = planname
-          @Describe = describe
-          @LifeCycle = lifecycle
-          @Channels = channels
-          @OrganizationId = organizationid
-        end
-
-        def deserialize(params)
-          @TemplateId = params['TemplateId']
-          @PlanName = params['PlanName']
-          @Describe = params['Describe']
-          unless params['LifeCycle'].nil?
-            @LifeCycle = LifeCycleData.new
-            @LifeCycle.deserialize(params['LifeCycle'])
-          end
-          unless params['Channels'].nil?
-            @Channels = []
-            params['Channels'].each do |i|
-              channelinfo_tmp = ChannelInfo.new
-              channelinfo_tmp.deserialize(i)
-              @Channels << channelinfo_tmp
-            end
-          end
-          @OrganizationId = params['OrganizationId']
-        end
-      end
-
       # 新增录像上云计划返回数据
-      class AddRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
+      class AddRecordBackupPlanData < TencentCloud::Common::AbstractModel
         # @param PlanId: 录像上云计划ID
         # @type PlanId: String
         # @param PlanName: 录像上云计划名称
@@ -631,50 +585,77 @@ module TencentCloud
         end
       end
 
-      # AddRecordBackupTemplate请求参数结构体
-      class AddRecordBackupTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复）
-        # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
-        # @type Scale: Integer
+      # AddRecordBackupPlan请求参数结构体
+      class AddRecordBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 录制模板ID（录像计划关联的模板ID，从查询录像上云模板列表接口ListRecordBackupTemplates中获取）
+        # @type TemplateId: String
+        # @param PlanName: 录像计划名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复）
+        # @type PlanName: String
+        # @param Describe: 录像计划描述（仅支持中文、英文、数字、_、-，长度不超过128个字符）
+        # @type Describe: String
+        # @param LifeCycle: 生命周期（录像文件生命周期设置，管理文件冷、热存储的时间）
+        # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
+        # @param Channels: 通道及通道所属设备（添加录像的设备的通道信息，一次添加通道总数不超过5000个，包括组织目录下的通道数量）
+        # @type Channels: Array
+        # @param OrganizationId: 添加组织目录下所有设备通道（Json数组，可以为空，通道总数量不超过5000个（包括Channel字段的数量））
+        # @type OrganizationId: Array
 
-        attr_accessor :TemplateName, :TimeSections, :DevTimeSections, :Scale
+        attr_accessor :TemplateId, :PlanName, :Describe, :LifeCycle, :Channels, :OrganizationId
 
-        def initialize(templatename=nil, timesections=nil, devtimesections=nil, scale=nil)
-          @TemplateName = templatename
-          @TimeSections = timesections
-          @DevTimeSections = devtimesections
-          @Scale = scale
+        def initialize(templateid=nil, planname=nil, describe=nil, lifecycle=nil, channels=nil, organizationid=nil)
+          @TemplateId = templateid
+          @PlanName = planname
+          @Describe = describe
+          @LifeCycle = lifecycle
+          @Channels = channels
+          @OrganizationId = organizationid
         end
 
         def deserialize(params)
-          @TemplateName = params['TemplateName']
-          unless params['TimeSections'].nil?
-            @TimeSections = []
-            params['TimeSections'].each do |i|
-              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
-              recordtemplatetimesections_tmp.deserialize(i)
-              @TimeSections << recordtemplatetimesections_tmp
+          @TemplateId = params['TemplateId']
+          @PlanName = params['PlanName']
+          @Describe = params['Describe']
+          unless params['LifeCycle'].nil?
+            @LifeCycle = LifeCycleData.new
+            @LifeCycle.deserialize(params['LifeCycle'])
+          end
+          unless params['Channels'].nil?
+            @Channels = []
+            params['Channels'].each do |i|
+              channelinfo_tmp = ChannelInfo.new
+              channelinfo_tmp.deserialize(i)
+              @Channels << channelinfo_tmp
             end
           end
-          unless params['DevTimeSections'].nil?
-            @DevTimeSections = []
-            params['DevTimeSections'].each do |i|
-              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
-              recordtemplatetimesections_tmp.deserialize(i)
-              @DevTimeSections << recordtemplatetimesections_tmp
-            end
+          @OrganizationId = params['OrganizationId']
+        end
+      end
+
+      # AddRecordBackupPlan返回参数结构体
+      class AddRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddRecordBackupPlanData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AddRecordBackupPlanData.new
+            @Data.deserialize(params['Data'])
           end
-          @Scale = params['Scale']
+          @RequestId = params['RequestId']
         end
       end
 
       # 新增录像上云模版返回数据
-      class AddRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
+      class AddRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
@@ -734,6 +715,71 @@ module TencentCloud
         end
       end
 
+      # AddRecordBackupTemplate请求参数结构体
+      class AddRecordBackupTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复）
+        # @type TemplateName: String
+        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @type TimeSections: Array
+        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # @type DevTimeSections: Array
+        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # @type Scale: Integer
+
+        attr_accessor :TemplateName, :TimeSections, :DevTimeSections, :Scale
+
+        def initialize(templatename=nil, timesections=nil, devtimesections=nil, scale=nil)
+          @TemplateName = templatename
+          @TimeSections = timesections
+          @DevTimeSections = devtimesections
+          @Scale = scale
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          unless params['TimeSections'].nil?
+            @TimeSections = []
+            params['TimeSections'].each do |i|
+              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
+              recordtemplatetimesections_tmp.deserialize(i)
+              @TimeSections << recordtemplatetimesections_tmp
+            end
+          end
+          unless params['DevTimeSections'].nil?
+            @DevTimeSections = []
+            params['DevTimeSections'].each do |i|
+              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
+              recordtemplatetimesections_tmp.deserialize(i)
+              @DevTimeSections << recordtemplatetimesections_tmp
+            end
+          end
+          @Scale = params['Scale']
+        end
+      end
+
+      # AddRecordBackupTemplate返回参数结构体
+      class AddRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddRecordBackupTemplateData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AddRecordBackupTemplateData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddRecordPlan请求参数结构体
       class AddRecordPlanRequest < TencentCloud::Common::AbstractModel
         # @param PlanName: 实时上云计划名称，仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复
@@ -787,7 +833,7 @@ module TencentCloud
       # AddRecordPlan返回参数结构体
       class AddRecordPlanResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanOptResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanOptData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -800,10 +846,59 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RecordPlanOptResponse.new
+            @Data = RecordPlanOptData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询取回任务详情返回数据
+      class AddRecordRetrieveTaskData < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param StartTime: 取回录像的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 取回录像的结束时间
+        # @type EndTime: Integer
+        # @param Mode: 取回模式，1:极速模式，其他暂不支持
+        # @type Mode: Integer
+        # @param Expiration: 副本有效期
+        # @type Expiration: Integer
+        # @param Status: 任务状态，0:已取回，1:取回中，2:待取回
+        # @type Status: Integer
+        # @param Capacity: 取回容量，单位MB
+        # @type Capacity: Float
+        # @param Describe: 任务描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Describe: String
+
+        attr_accessor :TaskId, :TaskName, :StartTime, :EndTime, :Mode, :Expiration, :Status, :Capacity, :Describe
+
+        def initialize(taskid=nil, taskname=nil, starttime=nil, endtime=nil, mode=nil, expiration=nil, status=nil, capacity=nil, describe=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Mode = mode
+          @Expiration = expiration
+          @Status = status
+          @Capacity = capacity
+          @Describe = describe
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Mode = params['Mode']
+          @Expiration = params['Expiration']
+          @Status = params['Status']
+          @Capacity = params['Capacity']
+          @Describe = params['Describe']
         end
       end
 
@@ -854,52 +949,26 @@ module TencentCloud
         end
       end
 
-      # 查询取回任务详情返回数据
+      # AddRecordRetrieveTask返回参数结构体
       class AddRecordRetrieveTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param TaskName: 任务名称
-        # @type TaskName: String
-        # @param StartTime: 取回录像的开始时间
-        # @type StartTime: Integer
-        # @param EndTime: 取回录像的结束时间
-        # @type EndTime: Integer
-        # @param Mode: 取回模式，1:极速模式，其他暂不支持
-        # @type Mode: Integer
-        # @param Expiration: 副本有效期
-        # @type Expiration: Integer
-        # @param Status: 任务状态，0:已取回，1:取回中，2:待取回
-        # @type Status: Integer
-        # @param Capacity: 取回容量，单位MB
-        # @type Capacity: Float
-        # @param Describe: 任务描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Describe: String
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddRecordRetrieveTaskData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskName, :StartTime, :EndTime, :Mode, :Expiration, :Status, :Capacity, :Describe
+        attr_accessor :Data, :RequestId
 
-        def initialize(taskid=nil, taskname=nil, starttime=nil, endtime=nil, mode=nil, expiration=nil, status=nil, capacity=nil, describe=nil)
-          @TaskId = taskid
-          @TaskName = taskname
-          @StartTime = starttime
-          @EndTime = endtime
-          @Mode = mode
-          @Expiration = expiration
-          @Status = status
-          @Capacity = capacity
-          @Describe = describe
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Mode = params['Mode']
-          @Expiration = params['Expiration']
-          @Status = params['Status']
-          @Capacity = params['Capacity']
-          @Describe = params['Describe']
+          unless params['Data'].nil?
+            @Data = AddRecordRetrieveTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -953,48 +1022,8 @@ module TencentCloud
         end
       end
 
-      # AddStreamAuth请求参数结构体
-      class AddStreamAuthRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 鉴权配置ID（uuid）
-        # @type Id: String
-        # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
-        # @type PullState: Integer
-        # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
-        # @type PullSecret: String
-        # @param PullExpired: 播放过期时间（单位：分钟）
-        # @type PullExpired: Integer
-        # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
-        # @type PushState: Integer
-        # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
-        # @type PushSecret: String
-        # @param PushExpired: 推流过期时间（单位：分钟）
-        # @type PushExpired: Integer
-
-        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired
-
-        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil)
-          @Id = id
-          @PullState = pullstate
-          @PullSecret = pullsecret
-          @PullExpired = pullexpired
-          @PushState = pushstate
-          @PushSecret = pushsecret
-          @PushExpired = pushexpired
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @PullState = params['PullState']
-          @PullSecret = params['PullSecret']
-          @PullExpired = params['PullExpired']
-          @PushState = params['PushState']
-          @PushSecret = params['PushSecret']
-          @PushExpired = params['PushExpired']
-        end
-      end
-
       # 设置推拉流鉴权返回数据结构
-      class AddStreamAuthResponse < TencentCloud::Common::AbstractModel
+      class AddStreamAuthData < TencentCloud::Common::AbstractModel
         # @param Id: 鉴权配置ID（uuid）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
@@ -1042,6 +1071,69 @@ module TencentCloud
           @PushSecret = params['PushSecret']
           @PushExpired = params['PushExpired']
           @AppId = params['AppId']
+        end
+      end
+
+      # AddStreamAuth请求参数结构体
+      class AddStreamAuthRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 鉴权配置ID（uuid）
+        # @type Id: String
+        # @param PullState: 是否开播放鉴权（1:开启,0:关闭）
+        # @type PullState: Integer
+        # @param PullSecret: 播放密钥（仅支持字母数字，长度0-10位）
+        # @type PullSecret: String
+        # @param PullExpired: 播放过期时间（单位：分钟）
+        # @type PullExpired: Integer
+        # @param PushState: 是否开启推流鉴权（1:开启,0:关闭）
+        # @type PushState: Integer
+        # @param PushSecret: 推流密钥（仅支持字母数字，长度0-10位）
+        # @type PushSecret: String
+        # @param PushExpired: 推流过期时间（单位：分钟）
+        # @type PushExpired: Integer
+
+        attr_accessor :Id, :PullState, :PullSecret, :PullExpired, :PushState, :PushSecret, :PushExpired
+
+        def initialize(id=nil, pullstate=nil, pullsecret=nil, pullexpired=nil, pushstate=nil, pushsecret=nil, pushexpired=nil)
+          @Id = id
+          @PullState = pullstate
+          @PullSecret = pullsecret
+          @PullExpired = pullexpired
+          @PushState = pushstate
+          @PushSecret = pushsecret
+          @PushExpired = pushexpired
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PullState = params['PullState']
+          @PullSecret = params['PullSecret']
+          @PullExpired = params['PullExpired']
+          @PushState = params['PushState']
+          @PushSecret = params['PushSecret']
+          @PushExpired = params['PushExpired']
+        end
+      end
+
+      # AddStreamAuth返回参数结构体
+      class AddStreamAuthResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 设置推拉流鉴权返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddStreamAuthData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AddStreamAuthData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1112,7 +1204,7 @@ module TencentCloud
       # AddUserDevice返回参数结构体
       class AddUserDeviceResponse < TencentCloud::Common::AbstractModel
         # @param Data: 增加设备返回数据
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddDeviceResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AddDeviceData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1125,7 +1217,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AddDeviceResponse.new
+            @Data = AddDeviceData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -1448,6 +1540,33 @@ module TencentCloud
         end
       end
 
+      # 获取开流地址返回数据
+      class ControlDeviceStreamData < TencentCloud::Common::AbstractModel
+        # @param Flv: flv 流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flv: String
+        # @param Hls: hls 流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hls: String
+        # @param Rtmp: rtmp 流地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rtmp: String
+
+        attr_accessor :Flv, :Hls, :Rtmp
+
+        def initialize(flv=nil, hls=nil, rtmp=nil)
+          @Flv = flv
+          @Hls = hls
+          @Rtmp = rtmp
+        end
+
+        def deserialize(params)
+          @Flv = params['Flv']
+          @Hls = params['Hls']
+          @Rtmp = params['Rtmp']
+        end
+      end
+
       # ControlDeviceStream请求参数结构体
       class ControlDeviceStreamRequest < TencentCloud::Common::AbstractModel
         # @param ChannelId: 通道 ID（从通道查询接口DescribeDeviceChannel中获取）
@@ -1479,30 +1598,26 @@ module TencentCloud
         end
       end
 
-      # 获取开流地址返回数据
+      # ControlDeviceStream返回参数结构体
       class ControlDeviceStreamResponse < TencentCloud::Common::AbstractModel
-        # @param Flv: flv 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Flv: String
-        # @param Hls: hls 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Hls: String
-        # @param Rtmp: rtmp 流地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Rtmp: String
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ControlDeviceStreamData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :Flv, :Hls, :Rtmp
+        attr_accessor :Data, :RequestId
 
-        def initialize(flv=nil, hls=nil, rtmp=nil)
-          @Flv = flv
-          @Hls = hls
-          @Rtmp = rtmp
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @Flv = params['Flv']
-          @Hls = params['Hls']
-          @Rtmp = params['Rtmp']
+          unless params['Data'].nil?
+            @Data = ControlDeviceStreamData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2014,7 +2129,7 @@ module TencentCloud
       class DescribeAITaskResultResponse < TencentCloud::Common::AbstractModel
         # @param Data: AI识别结果
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AITaskResultResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.AITaskResultData`
         # @param TotalCount: AI识别结果数量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2030,7 +2145,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = AITaskResultResponse.new
+            @Data = AITaskResultData.new
             @Data.deserialize(params['Data'])
           end
           @TotalCount = params['TotalCount']
@@ -2074,24 +2189,8 @@ module TencentCloud
         end
       end
 
-      # DescribeDeviceChannel请求参数结构体
-      class DescribeDeviceChannelRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
-        # @type DeviceId: String
-
-        attr_accessor :DeviceId
-
-        def initialize(deviceid=nil)
-          @DeviceId = deviceid
-        end
-
-        def deserialize(params)
-          @DeviceId = params['DeviceId']
-        end
-      end
-
       # 查询设备通道信息返回结果
-      class DescribeDeviceChannelResponse < TencentCloud::Common::AbstractModel
+      class DescribeDeviceChannelData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
@@ -2152,85 +2251,25 @@ module TencentCloud
         end
       end
 
-      # DescribeDevicePreset请求参数结构体
-      class DescribeDevicePresetRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelId: 通道ID（从通道查询接口DescribeDeviceChannel中获取）
-        # @type ChannelId: String
+      # DescribeDeviceChannel请求参数结构体
+      class DescribeDeviceChannelRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
+        # @type DeviceId: String
 
-        attr_accessor :ChannelId
+        attr_accessor :DeviceId
 
-        def initialize(channelid=nil)
-          @ChannelId = channelid
+        def initialize(deviceid=nil)
+          @DeviceId = deviceid
         end
 
         def deserialize(params)
-          @ChannelId = params['ChannelId']
+          @DeviceId = params['DeviceId']
         end
       end
 
-      # 查询设备预置位返回数据
-      class DescribeDevicePresetResponse < TencentCloud::Common::AbstractModel
-        # @param Index: 预置位索引    只支持1-10的索引
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Index: Integer
-        # @param Name: 预置位名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-
-        attr_accessor :Index, :Name
-
-        def initialize(index=nil, name=nil)
-          @Index = index
-          @Name = name
-        end
-
-        def deserialize(params)
-          @Index = params['Index']
-          @Name = params['Name']
-        end
-      end
-
-      # 查询设备可接入集群信息
-      class DescribeDeviceRegion < TencentCloud::Common::AbstractModel
-        # @param Label: 服务节点描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Label: String
-        # @param Value: 服务节点 ID（对应为其他接口中所需的 ClusterId）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: String
-        # @param Region: 地域信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
-
-        attr_accessor :Label, :Value, :Region
-
-        def initialize(label=nil, value=nil, region=nil)
-          @Label = label
-          @Value = value
-          @Region = region
-        end
-
-        def deserialize(params)
-          @Label = params['Label']
-          @Value = params['Value']
-          @Region = params['Region']
-        end
-      end
-
-      # DescribeDeviceRegion请求参数结构体
-      class DescribeDeviceRegionRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # DescribeDeviceRegion返回参数结构体
-      class DescribeDeviceRegionResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回数据
+      # DescribeDeviceChannel返回参数结构体
+      class DescribeDeviceChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2246,9 +2285,9 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              describedeviceregion_tmp = DescribeDeviceRegion.new
-              describedeviceregion_tmp.deserialize(i)
-              @Data << describedeviceregion_tmp
+              describedevicechanneldata_tmp = DescribeDeviceChannelData.new
+              describedevicechanneldata_tmp.deserialize(i)
+              @Data << describedevicechanneldata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2256,7 +2295,7 @@ module TencentCloud
       end
 
       # 查询设备接口返回数据
-      class DescribeDeviceResponse < TencentCloud::Common::AbstractModel
+      class DescribeDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
@@ -2398,19 +2437,73 @@ module TencentCloud
         end
       end
 
-      # DescribeDomainRegion请求参数结构体
-      class DescribeDomainRegionRequest < TencentCloud::Common::AbstractModel
+      # 查询设备预置位返回数据
+      class DescribeDevicePresetData < TencentCloud::Common::AbstractModel
+        # @param Index: 预置位索引    只支持1-10的索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+        # @param Name: 预置位名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
 
+        attr_accessor :Index, :Name
 
-        def initialize()
+        def initialize(index=nil, name=nil)
+          @Index = index
+          @Name = name
         end
 
         def deserialize(params)
+          @Index = params['Index']
+          @Name = params['Name']
         end
       end
 
-      # 查询域名可绑定集群数据
-      class DescribeDomainRegionResponse < TencentCloud::Common::AbstractModel
+      # DescribeDevicePreset请求参数结构体
+      class DescribeDevicePresetRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道ID（从通道查询接口DescribeDeviceChannel中获取）
+        # @type ChannelId: String
+
+        attr_accessor :ChannelId
+
+        def initialize(channelid=nil)
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeDevicePreset返回参数结构体
+      class DescribeDevicePresetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describedevicepresetdata_tmp = DescribeDevicePresetData.new
+              describedevicepresetdata_tmp.deserialize(i)
+              @Data << describedevicepresetdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询设备可接入集群信息
+      class DescribeDeviceRegion < TencentCloud::Common::AbstractModel
         # @param Label: 服务节点描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
@@ -2436,8 +2529,8 @@ module TencentCloud
         end
       end
 
-      # DescribeDomain请求参数结构体
-      class DescribeDomainRequest < TencentCloud::Common::AbstractModel
+      # DescribeDeviceRegion请求参数结构体
+      class DescribeDeviceRegionRequest < TencentCloud::Common::AbstractModel
 
 
         def initialize()
@@ -2447,8 +2540,35 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceRegion返回参数结构体
+      class DescribeDeviceRegionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describedeviceregion_tmp = DescribeDeviceRegion.new
+              describedeviceregion_tmp.deserialize(i)
+              @Data << describedeviceregion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询域名详情数据
-      class DescribeDomainResponse < TencentCloud::Common::AbstractModel
+      class DescribeDomainData < TencentCloud::Common::AbstractModel
         # @param Id: 域名ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
@@ -2491,6 +2611,183 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
           @AppId = params['AppId']
+        end
+      end
+
+      # 查询域名可绑定集群数据
+      class DescribeDomainRegionData < TencentCloud::Common::AbstractModel
+        # @param Label: 服务节点描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Value: 服务节点 ID（对应为其他接口中所需的 ClusterId）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Region: 地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :Label, :Value, :Region
+
+        def initialize(label=nil, value=nil, region=nil)
+          @Label = label
+          @Value = value
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Value = params['Value']
+          @Region = params['Region']
+        end
+      end
+
+      # DescribeDomainRegion请求参数结构体
+      class DescribeDomainRegionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDomainRegion返回参数结构体
+      class DescribeDomainRegionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describedomainregiondata_tmp = DescribeDomainRegionData.new
+              describedomainregiondata_tmp.deserialize(i)
+              @Data << describedomainregiondata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomain请求参数结构体
+      class DescribeDomainRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDomain返回参数结构体
+      class DescribeDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describedomaindata_tmp = DescribeDomainData.new
+              describedomaindata_tmp.deserialize(i)
+              @Data << describedomaindata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询网关信息返回结果
+      class DescribeGatewayData < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关索引ID，用于网关查询，更新，删除操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GwId: 网关编码，由网关设备生成的唯一编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GwId: String
+        # @param Name: 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ClusterId: 服务节点id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 服务节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param Status: 网关状态，0：离线，1:在线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Version: 网关版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Array
+        # @param DeviceNum: 网关下挂设备数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceNum: Integer
+        # @param CreatedAt: 激活时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param Region: 所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :GatewayId, :GwId, :Name, :Description, :ClusterId, :ClusterName, :Status, :Version, :DeviceNum, :CreatedAt, :Region
+
+        def initialize(gatewayid=nil, gwid=nil, name=nil, description=nil, clusterid=nil, clustername=nil, status=nil, version=nil, devicenum=nil, createdat=nil, region=nil)
+          @GatewayId = gatewayid
+          @GwId = gwid
+          @Name = name
+          @Description = description
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Status = status
+          @Version = version
+          @DeviceNum = devicenum
+          @CreatedAt = createdat
+          @Region = region
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GwId = params['GwId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Status = params['Status']
+          unless params['Version'].nil?
+            @Version = []
+            params['Version'].each do |i|
+              gatewayversion_tmp = GatewayVersion.new
+              gatewayversion_tmp.deserialize(i)
+              @Version << gatewayversion_tmp
+            end
+          end
+          @DeviceNum = params['DeviceNum']
+          @CreatedAt = params['CreatedAt']
+          @Region = params['Region']
         end
       end
 
@@ -2590,19 +2887,8 @@ module TencentCloud
         end
       end
 
-      # DescribeGatewayProtocol请求参数结构体
-      class DescribeGatewayProtocolRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
       # 查询网关所支持的接入协议
-      class DescribeGatewayProtocolResponse < TencentCloud::Common::AbstractModel
+      class DescribeGatewayProtocolData < TencentCloud::Common::AbstractModel
         # @param TypeCode: 接入协议的字典码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TypeCode: String
@@ -2628,6 +2914,44 @@ module TencentCloud
         end
       end
 
+      # DescribeGatewayProtocol请求参数结构体
+      class DescribeGatewayProtocolRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeGatewayProtocol返回参数结构体
+      class DescribeGatewayProtocolResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describegatewayprotocoldata_tmp = DescribeGatewayProtocolData.new
+              describegatewayprotocoldata_tmp.deserialize(i)
+              @Data << describegatewayprotocoldata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGateway请求参数结构体
       class DescribeGatewayRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID（从获取网关列表接口ListGateways中获取）
@@ -2644,77 +2968,26 @@ module TencentCloud
         end
       end
 
-      # 查询网关信息返回结果
+      # DescribeGateway返回参数结构体
       class DescribeGatewayResponse < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关索引ID，用于网关查询，更新，删除操作
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GatewayId: String
-        # @param GwId: 网关编码，由网关设备生成的唯一编码
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GwId: String
-        # @param Name: 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Description: String
-        # @param ClusterId: 服务节点id
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterId: String
-        # @param ClusterName: 服务节点名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterName: String
-        # @param Status: 网关状态，0：离线，1:在线
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param Version: 网关版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Version: Array
-        # @param DeviceNum: 网关下挂设备数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DeviceNum: Integer
-        # @param CreatedAt: 激活时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreatedAt: String
-        # @param Region: 所属地域
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Region: String
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeGatewayData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :GatewayId, :GwId, :Name, :Description, :ClusterId, :ClusterName, :Status, :Version, :DeviceNum, :CreatedAt, :Region
+        attr_accessor :Data, :RequestId
 
-        def initialize(gatewayid=nil, gwid=nil, name=nil, description=nil, clusterid=nil, clustername=nil, status=nil, version=nil, devicenum=nil, createdat=nil, region=nil)
-          @GatewayId = gatewayid
-          @GwId = gwid
-          @Name = name
-          @Description = description
-          @ClusterId = clusterid
-          @ClusterName = clustername
-          @Status = status
-          @Version = version
-          @DeviceNum = devicenum
-          @CreatedAt = createdat
-          @Region = region
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @GatewayId = params['GatewayId']
-          @GwId = params['GwId']
-          @Name = params['Name']
-          @Description = params['Description']
-          @ClusterId = params['ClusterId']
-          @ClusterName = params['ClusterName']
-          @Status = params['Status']
-          unless params['Version'].nil?
-            @Version = []
-            params['Version'].each do |i|
-              gatewayversion_tmp = GatewayVersion.new
-              gatewayversion_tmp.deserialize(i)
-              @Version << gatewayversion_tmp
-            end
+          unless params['Data'].nil?
+            @Data = DescribeGatewayData.new
+            @Data.deserialize(params['Data'])
           end
-          @DeviceNum = params['DeviceNum']
-          @CreatedAt = params['CreatedAt']
-          @Region = params['Region']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2755,24 +3028,8 @@ module TencentCloud
         end
       end
 
-      # DescribeGatewayVersion请求参数结构体
-      class DescribeGatewayVersionRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关索引ID（从获取网关列表接口ListGateways中获取）
-        # @type GatewayId: String
-
-        attr_accessor :GatewayId
-
-        def initialize(gatewayid=nil)
-          @GatewayId = gatewayid
-        end
-
-        def deserialize(params)
-          @GatewayId = params['GatewayId']
-        end
-      end
-
       # 查询网关服务版本信息返回数据
-      class DescribeGatewayVersionResponse < TencentCloud::Common::AbstractModel
+      class DescribeGatewayVersionData < TencentCloud::Common::AbstractModel
         # @param Services: 网关服务列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Services: Array
@@ -2795,19 +3052,47 @@ module TencentCloud
         end
       end
 
-      # DescribeOrganization请求参数结构体
-      class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
+      # DescribeGatewayVersion请求参数结构体
+      class DescribeGatewayVersionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关索引ID（从获取网关列表接口ListGateways中获取）
+        # @type GatewayId: String
 
+        attr_accessor :GatewayId
 
-        def initialize()
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
         end
 
         def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeGatewayVersion返回参数结构体
+      class DescribeGatewayVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeGatewayVersionData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeGatewayVersionData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
       # 查询组织数据返回结果
-      class DescribeOrganizationResponse < TencentCloud::Common::AbstractModel
+      class DescribeOrganizationData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
@@ -2858,24 +3143,46 @@ module TencentCloud
         end
       end
 
-      # DescribeRecordBackupPlan请求参数结构体
-      class DescribeRecordBackupPlanRequest < TencentCloud::Common::AbstractModel
-        # @param PlanId: 录像上云计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
-        # @type PlanId: String
+      # DescribeOrganization请求参数结构体
+      class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
 
-        attr_accessor :PlanId
 
-        def initialize(planid=nil)
-          @PlanId = planid
+        def initialize()
         end
 
         def deserialize(params)
-          @PlanId = params['PlanId']
+        end
+      end
+
+      # DescribeOrganization返回参数结构体
+      class DescribeOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describeorganizationdata_tmp = DescribeOrganizationData.new
+              describeorganizationdata_tmp.deserialize(i)
+              @Data << describeorganizationdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
       # 查询录像上云计划返回数据
-      class DescribeRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
+      class DescribeRecordBackupPlanData < TencentCloud::Common::AbstractModel
         # @param PlanId: 录像上云计划ID
         # @type PlanId: String
         # @param PlanName: 录像上云计划名称
@@ -2925,24 +3232,47 @@ module TencentCloud
         end
       end
 
-      # DescribeRecordBackupTemplate请求参数结构体
-      class DescribeRecordBackupTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID（从查询录像上云模板列表接口ListRecordBackupTemplates中获取）
-        # @type TemplateId: String
+      # DescribeRecordBackupPlan请求参数结构体
+      class DescribeRecordBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录像上云计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
+        # @type PlanId: String
 
-        attr_accessor :TemplateId
+        attr_accessor :PlanId
 
-        def initialize(templateid=nil)
-          @TemplateId = templateid
+        def initialize(planid=nil)
+          @PlanId = planid
         end
 
         def deserialize(params)
-          @TemplateId = params['TemplateId']
+          @PlanId = params['PlanId']
+        end
+      end
+
+      # DescribeRecordBackupPlan返回参数结构体
+      class DescribeRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeRecordBackupPlanData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeRecordBackupPlanData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
       # 查询录像上云模版返回数据
-      class DescribeRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
+      class DescribeRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
@@ -3002,6 +3332,73 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordBackupTemplate请求参数结构体
+      class DescribeRecordBackupTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID（从查询录像上云模板列表接口ListRecordBackupTemplates中获取）
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeRecordBackupTemplate返回参数结构体
+      class DescribeRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeRecordBackupTemplateData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeRecordBackupTemplateData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用于查询设备云端录像时间轴信息返回数据
+      class DescribeRecordFileData < TencentCloud::Common::AbstractModel
+        # @param Tips: 提示类型，0:时间段内无归档录像，1:时间段内有归档录像
+        # @type Tips: Integer
+        # @param List: 存在为数组格式，不存在字段内容为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :Tips, :List
+
+        def initialize(tips=nil, list=nil)
+          @Tips = tips
+          @List = list
+        end
+
+        def deserialize(params)
+          @Tips = params['Tips']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              recordtimeline_tmp = RecordTimeLine.new
+              recordtimeline_tmp.deserialize(i)
+              @List << recordtimeline_tmp
+            end
+          end
+        end
+      end
+
       # DescribeRecordFile请求参数结构体
       class DescribeRecordFileRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 通道所属设备ID
@@ -3030,31 +3427,26 @@ module TencentCloud
         end
       end
 
-      # 用于查询设备云端录像时间轴信息返回数据
+      # DescribeRecordFile返回参数结构体
       class DescribeRecordFileResponse < TencentCloud::Common::AbstractModel
-        # @param Tips: 提示类型，0:时间段内无归档录像，1:时间段内有归档录像
-        # @type Tips: Integer
-        # @param List: 存在为数组格式，不存在字段内容为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: Array
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeRecordFileData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :Tips, :List
+        attr_accessor :Data, :RequestId
 
-        def initialize(tips=nil, list=nil)
-          @Tips = tips
-          @List = list
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @Tips = params['Tips']
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              recordtimeline_tmp = RecordTimeLine.new
-              recordtimeline_tmp.deserialize(i)
-              @List << recordtimeline_tmp
-            end
+          unless params['Data'].nil?
+            @Data = DescribeRecordFileData.new
+            @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3144,24 +3536,8 @@ module TencentCloud
         end
       end
 
-      # DescribeRecordRetrieveTask请求参数结构体
-      class DescribeRecordRetrieveTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 云录像取回任务ID
-        # @type TaskId: String
-
-        attr_accessor :TaskId
-
-        def initialize(taskid=nil)
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-        end
-      end
-
       # 查询云录像取回任务详情返回数据
-      class DescribeRecordRetrieveTaskResponse < TencentCloud::Common::AbstractModel
+      class DescribeRecordRetrieveTaskData < TencentCloud::Common::AbstractModel
         # @param TaskId: 取回任务ID
         # @type TaskId: String
         # @param TaskName: 取回任务名称
@@ -3224,6 +3600,45 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordRetrieveTask请求参数结构体
+      class DescribeRecordRetrieveTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 云录像取回任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeRecordRetrieveTask返回参数结构体
+      class DescribeRecordRetrieveTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeRecordRetrieveTaskData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeRecordRetrieveTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordTemplate请求参数结构体
       class DescribeRecordTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -3263,19 +3678,8 @@ module TencentCloud
         end
       end
 
-      # DescribeStreamAuth请求参数结构体
-      class DescribeStreamAuthRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
       # 查询推拉流鉴权返回数据结构
-      class DescribeStreamAuthResponse < TencentCloud::Common::AbstractModel
+      class DescribeStreamAuthData < TencentCloud::Common::AbstractModel
         # @param Id: 鉴权配置ID（uuid）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
@@ -3326,6 +3730,40 @@ module TencentCloud
         end
       end
 
+      # DescribeStreamAuth请求参数结构体
+      class DescribeStreamAuthRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeStreamAuth返回参数结构体
+      class DescribeStreamAuthResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeStreamAuthData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeStreamAuthData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserDevice请求参数结构体
       class DescribeUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
@@ -3345,7 +3783,7 @@ module TencentCloud
       # DescribeUserDevice返回参数结构体
       class DescribeUserDeviceResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeDeviceResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeDeviceData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3358,10 +3796,40 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = DescribeDeviceResponse.new
+            @Data = DescribeDeviceData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取云录像下载URL返回的数据
+      class DescribeVideoDownloadUrlData < TencentCloud::Common::AbstractModel
+        # @param Url: 录像文件下载 URL
+        # 注意：
+        # URL 有效期是10分钟，过期后将拒绝访问，若需再用请重新获取
+        # 录像文件下载采用分块传输编码，响应头Transfer-Encoding:chunked
+        # 下载文件命名格式为{ChannelId}-{BeginTime}-{EndTime}.{FileType}
+        # @type Url: String
+        # @param ActualBeginTime: 实际下载录像的开始时间
+        # 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
+        # @type ActualBeginTime: String
+        # @param ActualEndTime: 实际下载录像的结束时间
+        # 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
+        # @type ActualEndTime: String
+
+        attr_accessor :Url, :ActualBeginTime, :ActualEndTime
+
+        def initialize(url=nil, actualbegintime=nil, actualendtime=nil)
+          @Url = url
+          @ActualBeginTime = actualbegintime
+          @ActualEndTime = actualendtime
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ActualBeginTime = params['ActualBeginTime']
+          @ActualEndTime = params['ActualEndTime']
         end
       end
 
@@ -3397,33 +3865,26 @@ module TencentCloud
         end
       end
 
-      # 获取云录像下载URL返回的数据
+      # DescribeVideoDownloadUrl返回参数结构体
       class DescribeVideoDownloadUrlResponse < TencentCloud::Common::AbstractModel
-        # @param Url: 录像文件下载 URL
-        # 注意：
-        # URL 有效期是10分钟，过期后将拒绝访问，若需再用请重新获取
-        # 录像文件下载采用分块传输编码，响应头Transfer-Encoding:chunked
-        # 下载文件命名格式为{ChannelId}-{BeginTime}-{EndTime}.{FileType}
-        # @type Url: String
-        # @param ActualBeginTime: 实际下载录像的开始时间
-        # 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
-        # @type ActualBeginTime: String
-        # @param ActualEndTime: 实际下载录像的结束时间
-        # 注意：当请求中指定IsRespActualTime参数为true时，才有该字段
-        # @type ActualEndTime: String
+        # @param Data: 返回的数据结构
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeVideoDownloadUrlData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :Url, :ActualBeginTime, :ActualEndTime
+        attr_accessor :Data, :RequestId
 
-        def initialize(url=nil, actualbegintime=nil, actualendtime=nil)
-          @Url = url
-          @ActualBeginTime = actualbegintime
-          @ActualEndTime = actualendtime
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @Url = params['Url']
-          @ActualBeginTime = params['ActualBeginTime']
-          @ActualEndTime = params['ActualEndTime']
+          unless params['Data'].nil?
+            @Data = DescribeVideoDownloadUrlData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3790,6 +4251,35 @@ module TencentCloud
         end
       end
 
+      # 查询网关列表返回结果
+      class ListGatewaysData < TencentCloud::Common::AbstractModel
+        # @param List: 网关列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 网关数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :List, :TotalCount
+
+        def initialize(list=nil, totalcount=nil)
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              gatewaysdata_tmp = GatewaysData.new
+              gatewaysdata_tmp.deserialize(i)
+              @List << gatewaysdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # ListGateways请求参数结构体
       class ListGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码，默认为1
@@ -3822,32 +4312,46 @@ module TencentCloud
         end
       end
 
-      # 查询网关列表返回结果
+      # ListGateways返回参数结构体
       class ListGatewaysResponse < TencentCloud::Common::AbstractModel
-        # @param List: 网关列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: Array
-        # @param TotalCount: 网关数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListGatewaysData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :List, :TotalCount
+        attr_accessor :Data, :RequestId
 
-        def initialize(list=nil, totalcount=nil)
-          @List = list
-          @TotalCount = totalcount
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              gatewaysdata_tmp = GatewaysData.new
-              gatewaysdata_tmp.deserialize(i)
-              @List << gatewaysdata_tmp
-            end
+          unless params['Data'].nil?
+            @Data = ListGatewaysData.new
+            @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 组织目录下的未添加到实时上云计划中的通道数量返回数据
+      class ListOrganizationChannelNumbersData < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 组织下通道总数
+        # @type TotalCount: Integer
+        # @param NotInPlanCount: 组织下未添加到计划的通道总数
+        # @type NotInPlanCount: Integer
+
+        attr_accessor :TotalCount, :NotInPlanCount
+
+        def initialize(totalcount=nil, notinplancount=nil)
+          @TotalCount = totalcount
+          @NotInPlanCount = notinplancount
+        end
+
+        def deserialize(params)
           @TotalCount = params['TotalCount']
+          @NotInPlanCount = params['NotInPlanCount']
         end
       end
 
@@ -3867,23 +4371,62 @@ module TencentCloud
         end
       end
 
-      # 组织目录下的未添加到实时上云计划中的通道数量返回数据
+      # ListOrganizationChannelNumbers返回参数结构体
       class ListOrganizationChannelNumbersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 组织下通道总数
-        # @type TotalCount: Integer
-        # @param NotInPlanCount: 组织下未添加到计划的通道总数
-        # @type NotInPlanCount: Integer
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListOrganizationChannelNumbersData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :TotalCount, :NotInPlanCount
+        attr_accessor :Data, :RequestId
 
-        def initialize(totalcount=nil, notinplancount=nil)
-          @TotalCount = totalcount
-          @NotInPlanCount = notinplancount
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListOrganizationChannelNumbersData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询组织目录下的通道列表返回数据
+      class ListOrganizationChannelsData < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # @type PageNumber: Integer
+        # @param PageSize: 当前页的设备数量
+        # @type PageSize: Integer
+        # @param TotalCount: 本次查询的设备通道总数
+        # @type TotalCount: Integer
+        # @param List: 设备通道信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @List = list
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
           @TotalCount = params['TotalCount']
-          @NotInPlanCount = params['NotInPlanCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              organizationchannelinfo_tmp = OrganizationChannelInfo.new
+              organizationchannelinfo_tmp.deserialize(i)
+              @List << organizationchannelinfo_tmp
+            end
+          end
         end
       end
 
@@ -3921,115 +4464,31 @@ module TencentCloud
         end
       end
 
-      # 查询组织目录下的通道列表返回数据
+      # ListOrganizationChannels返回参数结构体
       class ListOrganizationChannelsResponse < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 第几页
-        # @type PageNumber: Integer
-        # @param PageSize: 当前页的设备数量
-        # @type PageSize: Integer
-        # @param TotalCount: 本次查询的设备通道总数
-        # @type TotalCount: Integer
-        # @param List: 设备通道信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: Array
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListOrganizationChannelsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+        attr_accessor :Data, :RequestId
 
-        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @TotalCount = totalcount
-          @List = list
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          @TotalCount = params['TotalCount']
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              organizationchannelinfo_tmp = OrganizationChannelInfo.new
-              organizationchannelinfo_tmp.deserialize(i)
-              @List << organizationchannelinfo_tmp
-            end
+          unless params['Data'].nil?
+            @Data = ListOrganizationChannelsData.new
+            @Data.deserialize(params['Data'])
           end
-        end
-      end
-
-      # ListRecordBackupPlanDevices请求参数结构体
-      class ListRecordBackupPlanDevicesRequest < TencentCloud::Common::AbstractModel
-        # @param PlanId: 录像计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
-        # @type PlanId: String
-        # @param DeviceName: 按照设备名称查询（为空时，不参考该参数）
-        # @type DeviceName: String
-        # @param ChannelName: 按照通道名称查询（为空时，不参考该参数）
-        # @type ChannelName: String
-        # @param OrganizationName: 按照组织名称查询（为空时，不参考该参数）
-        # @type OrganizationName: String
-        # @param PageSize: 每页最大数量
-        # @type PageSize: String
-        # @param PageNumber: 第几页
-        # @type PageNumber: String
-
-        attr_accessor :PlanId, :DeviceName, :ChannelName, :OrganizationName, :PageSize, :PageNumber
-
-        def initialize(planid=nil, devicename=nil, channelname=nil, organizationname=nil, pagesize=nil, pagenumber=nil)
-          @PlanId = planid
-          @DeviceName = devicename
-          @ChannelName = channelname
-          @OrganizationName = organizationname
-          @PageSize = pagesize
-          @PageNumber = pagenumber
-        end
-
-        def deserialize(params)
-          @PlanId = params['PlanId']
-          @DeviceName = params['DeviceName']
-          @ChannelName = params['ChannelName']
-          @OrganizationName = params['OrganizationName']
-          @PageSize = params['PageSize']
-          @PageNumber = params['PageNumber']
-        end
-      end
-
-      # 查询录像上云计划关联通道的返回数据
-      class ListRecordBackupPlanDevicesResponse < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 第几页
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageNumber: Integer
-        # @param PageSize: 当前页的设备数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PageSize: Integer
-        # @param TotalCount: 本次查询的设备通道总数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TotalCount: Integer
-        # @param List: 设备通道信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanChannelInfo`
-
-        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
-
-        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @TotalCount = totalcount
-          @List = list
-        end
-
-        def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          @TotalCount = params['TotalCount']
-          unless params['List'].nil?
-            @List = RecordPlanChannelInfo.new
-            @List.deserialize(params['List'])
-          end
+          @RequestId = params['RequestId']
         end
       end
 
       # 查询录像上云计划列表返回数据
-      class ListRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
+      class ListRecordBackupPlanData < TencentCloud::Common::AbstractModel
         # @param PlanId: 录像上云计划ID
         # @type PlanId: String
         # @param PlanName: 录像上云计划名称
@@ -4079,6 +4538,100 @@ module TencentCloud
         end
       end
 
+      # 查询录像上云计划关联通道的返回数据
+      class ListRecordBackupPlanDevicesData < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 当前页的设备数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalCount: 本次查询的设备通道总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param List: 设备通道信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanChannelInfo`
+
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @List = list
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = RecordPlanChannelInfo.new
+            @List.deserialize(params['List'])
+          end
+        end
+      end
+
+      # ListRecordBackupPlanDevices请求参数结构体
+      class ListRecordBackupPlanDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录像计划ID（从查询录像上云计划列表接口ListRecordBackupPlans中获取）
+        # @type PlanId: String
+        # @param DeviceName: 按照设备名称查询（为空时，不参考该参数）
+        # @type DeviceName: String
+        # @param ChannelName: 按照通道名称查询（为空时，不参考该参数）
+        # @type ChannelName: String
+        # @param OrganizationName: 按照组织名称查询（为空时，不参考该参数）
+        # @type OrganizationName: String
+        # @param PageSize: 每页最大数量
+        # @type PageSize: String
+        # @param PageNumber: 第几页
+        # @type PageNumber: String
+
+        attr_accessor :PlanId, :DeviceName, :ChannelName, :OrganizationName, :PageSize, :PageNumber
+
+        def initialize(planid=nil, devicename=nil, channelname=nil, organizationname=nil, pagesize=nil, pagenumber=nil)
+          @PlanId = planid
+          @DeviceName = devicename
+          @ChannelName = channelname
+          @OrganizationName = organizationname
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @DeviceName = params['DeviceName']
+          @ChannelName = params['ChannelName']
+          @OrganizationName = params['OrganizationName']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # ListRecordBackupPlanDevices返回参数结构体
+      class ListRecordBackupPlanDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListRecordBackupPlanDevicesData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListRecordBackupPlanDevicesData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListRecordBackupPlans请求参数结构体
       class ListRecordBackupPlansRequest < TencentCloud::Common::AbstractModel
 
@@ -4108,28 +4661,17 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = []
             params['Data'].each do |i|
-              listrecordbackupplanresponse_tmp = ListRecordBackupPlanResponse.new
-              listrecordbackupplanresponse_tmp.deserialize(i)
-              @Data << listrecordbackupplanresponse_tmp
+              listrecordbackupplandata_tmp = ListRecordBackupPlanData.new
+              listrecordbackupplandata_tmp.deserialize(i)
+              @Data << listrecordbackupplandata_tmp
             end
           end
           @RequestId = params['RequestId']
         end
       end
 
-      # ListRecordBackupTemplates请求参数结构体
-      class ListRecordBackupTemplatesRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
       # 查询录像上云模板列表返回数据
-      class ListRecordBackupTemplatesResponse < TencentCloud::Common::AbstractModel
+      class ListRecordBackupTemplatesData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
@@ -4189,8 +4731,8 @@ module TencentCloud
         end
       end
 
-      # ListRecordPlanChannels请求参数结构体
-      class ListRecordPlanChannelsRequest < TencentCloud::Common::AbstractModel
+      # ListRecordBackupTemplates请求参数结构体
+      class ListRecordBackupTemplatesRequest < TencentCloud::Common::AbstractModel
 
 
         def initialize()
@@ -4200,8 +4742,35 @@ module TencentCloud
         end
       end
 
+      # ListRecordBackupTemplates返回参数结构体
+      class ListRecordBackupTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              listrecordbackuptemplatesdata_tmp = ListRecordBackupTemplatesData.new
+              listrecordbackuptemplatesdata_tmp.deserialize(i)
+              @Data << listrecordbackuptemplatesdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用户下所有实时上云计划中的通道id列表返回数据
-      class ListRecordPlanChannelsResponse < TencentCloud::Common::AbstractModel
+      class ListRecordPlanChannelsData < TencentCloud::Common::AbstractModel
         # @param List: 用户所有计划下通道id，存在通道是为数组格式，不存在时，字段数据为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
@@ -4214,6 +4783,76 @@ module TencentCloud
 
         def deserialize(params)
           @List = params['List']
+        end
+      end
+
+      # ListRecordPlanChannels请求参数结构体
+      class ListRecordPlanChannelsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ListRecordPlanChannels返回参数结构体
+      class ListRecordPlanChannelsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListRecordPlanChannelsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListRecordPlanChannelsData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 云计划下的设备通道列表返回数据
+      class ListRecordPlanDevicesData < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # @type PageNumber: Integer
+        # @param PageSize: 当前页的设备数量
+        # @type PageSize: Integer
+        # @param TotalCount: 本次查询的设备通道总数
+        # @type TotalCount: Integer
+        # @param List: 设备通道信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @List = list
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              recordplanchannelinfo_tmp = RecordPlanChannelInfo.new
+              recordplanchannelinfo_tmp.deserialize(i)
+              @List << recordplanchannelinfo_tmp
+            end
+          end
         end
       end
 
@@ -4256,39 +4895,26 @@ module TencentCloud
         end
       end
 
-      # 云计划下的设备通道列表返回数据
+      # ListRecordPlanDevices返回参数结构体
       class ListRecordPlanDevicesResponse < TencentCloud::Common::AbstractModel
-        # @param PageNumber: 第几页
-        # @type PageNumber: Integer
-        # @param PageSize: 当前页的设备数量
-        # @type PageSize: Integer
-        # @param TotalCount: 本次查询的设备通道总数
-        # @type TotalCount: Integer
-        # @param List: 设备通道信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: Array
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListRecordPlanDevicesData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :PageNumber, :PageSize, :TotalCount, :List
+        attr_accessor :Data, :RequestId
 
-        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, list=nil)
-          @PageNumber = pagenumber
-          @PageSize = pagesize
-          @TotalCount = totalcount
-          @List = list
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
-          @TotalCount = params['TotalCount']
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              recordplanchannelinfo_tmp = RecordPlanChannelInfo.new
-              recordplanchannelinfo_tmp.deserialize(i)
-              @List << recordplanchannelinfo_tmp
-            end
+          unless params['Data'].nil?
+            @Data = ListRecordPlanDevicesData.new
+            @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4584,6 +5210,23 @@ module TencentCloud
         end
       end
 
+      # 本地录像播放url数据结构
+      class PlayRecordData < TencentCloud::Common::AbstractModel
+        # @param Flv: 录像播放地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Flv: String
+
+        attr_accessor :Flv
+
+        def initialize(flv=nil)
+          @Flv = flv
+        end
+
+        def deserialize(params)
+          @Flv = params['Flv']
+        end
+      end
+
       # PlayRecord请求参数结构体
       class PlayRecordRequest < TencentCloud::Common::AbstractModel
         # @param ChannelId: 通道 ID（从查询通道DescribeDeviceChannel接口中获取）
@@ -4616,20 +5259,26 @@ module TencentCloud
         end
       end
 
-      # 本地录像播放url数据结构
+      # PlayRecord返回参数结构体
       class PlayRecordResponse < TencentCloud::Common::AbstractModel
-        # @param Flv: 录像播放地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Flv: String
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.PlayRecordData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :Flv
+        attr_accessor :Data, :RequestId
 
-        def initialize(flv=nil)
-          @Flv = flv
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @Flv = params['Flv']
+          unless params['Data'].nil?
+            @Data = PlayRecordData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4718,7 +5367,7 @@ module TencentCloud
       end
 
       # 实时上云计划添加和修改的返回数据
-      class RecordPlanOptResponse < TencentCloud::Common::AbstractModel
+      class RecordPlanOptData < TencentCloud::Common::AbstractModel
         # @param PlanId: 上云计划ID
         # @type PlanId: String
         # @param PlanName: 上云计划名称
@@ -5153,44 +5802,8 @@ module TencentCloud
         end
       end
 
-      # UpdateDeviceOrganization请求参数结构体
-      class UpdateDeviceOrganizationRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
-        # @type DeviceIds: Array
-        # @param OrganizationId: 组织 ID（从查询组织接口DescribeOrganization中获取）
-        # @type OrganizationId: String
-
-        attr_accessor :DeviceIds, :OrganizationId
-
-        def initialize(deviceids=nil, organizationid=nil)
-          @DeviceIds = deviceids
-          @OrganizationId = organizationid
-        end
-
-        def deserialize(params)
-          @DeviceIds = params['DeviceIds']
-          @OrganizationId = params['OrganizationId']
-        end
-      end
-
-      # UpdateDeviceOrganization返回参数结构体
-      class UpdateDeviceOrganizationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 修改设备接口返回数据
-      class UpdateDeviceResponse < TencentCloud::Common::AbstractModel
+      class UpdateDeviceData < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
@@ -5292,6 +5905,42 @@ module TencentCloud
         end
       end
 
+      # UpdateDeviceOrganization请求参数结构体
+      class UpdateDeviceOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
+        # @type DeviceIds: Array
+        # @param OrganizationId: 组织 ID（从查询组织接口DescribeOrganization中获取）
+        # @type OrganizationId: String
+
+        attr_accessor :DeviceIds, :OrganizationId
+
+        def initialize(deviceids=nil, organizationid=nil)
+          @DeviceIds = deviceids
+          @OrganizationId = organizationid
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+          @OrganizationId = params['OrganizationId']
+        end
+      end
+
+      # UpdateDeviceOrganization返回参数结构体
+      class UpdateDeviceOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateDeviceStatus请求参数结构体
       class UpdateDeviceStatusRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备 ID（从获取设备列表接口ListDevices中获取）
@@ -5328,32 +5977,8 @@ module TencentCloud
         end
       end
 
-      # UpdateGateway请求参数结构体
-      class UpdateGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关索引ID（从获取网关列表ListGateways接口中获取）
-        # @type GatewayId: String
-        # @param Name: 仅支持中文、英文、数网关名称，字、_、-，长度不超过32个字符
-        # @type Name: String
-        # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
-        # @type Description: String
-
-        attr_accessor :GatewayId, :Name, :Description
-
-        def initialize(gatewayid=nil, name=nil, description=nil)
-          @GatewayId = gatewayid
-          @Name = name
-          @Description = description
-        end
-
-        def deserialize(params)
-          @GatewayId = params['GatewayId']
-          @Name = params['Name']
-          @Description = params['Description']
-        end
-      end
-
       # 修改网关信息返回结果
-      class UpdateGatewayResponse < TencentCloud::Common::AbstractModel
+      class UpdateGatewayData < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayId: String
@@ -5414,8 +6039,55 @@ module TencentCloud
         end
       end
 
+      # UpdateGateway请求参数结构体
+      class UpdateGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关索引ID（从获取网关列表ListGateways接口中获取）
+        # @type GatewayId: String
+        # @param Name: 仅支持中文、英文、数网关名称，字、_、-，长度不超过32个字符
+        # @type Name: String
+        # @param Description: 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
+        # @type Description: String
+
+        attr_accessor :GatewayId, :Name, :Description
+
+        def initialize(gatewayid=nil, name=nil, description=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateGateway返回参数结构体
+      class UpdateGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateGatewayData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateGatewayData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 修改组织接口返回数据
-      class UpdateOrgResponse < TencentCloud::Common::AbstractModel
+      class UpdateOrgData < TencentCloud::Common::AbstractModel
         # @param OrganizationId: 组织 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
@@ -5489,7 +6161,7 @@ module TencentCloud
       # UpdateOrganization返回参数结构体
       class UpdateOrganizationResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateOrgResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateOrgData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5502,10 +6174,61 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = UpdateOrgResponse.new
+            @Data = UpdateOrgData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改录像上云计划返回数据
+      class UpdateRecordBackupPlanData < TencentCloud::Common::AbstractModel
+        # @param PlanId: 录像上云计划ID
+        # @type PlanId: String
+        # @param PlanName: 录像上云计划名称
+        # @type PlanName: String
+        # @param TemplateId: 录像上云模板ID
+        # @type TemplateId: String
+        # @param Describe: 录像上云计划描述
+        # @type Describe: String
+        # @param LifeCycle: 云文件生命周期
+        # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
+        # @param Status: 录像上云计划状态，1:正常使用中，0:删除中，无法使用
+        # @type Status: Integer
+        # @param ChannelCount: 通道数量
+        # @type ChannelCount: Integer
+        # @param CreateAt: 创建时间
+        # @type CreateAt: String
+        # @param UpdateAt: 修改时间
+        # @type UpdateAt: String
+
+        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :LifeCycle, :Status, :ChannelCount, :CreateAt, :UpdateAt
+
+        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, lifecycle=nil, status=nil, channelcount=nil, createat=nil, updateat=nil)
+          @PlanId = planid
+          @PlanName = planname
+          @TemplateId = templateid
+          @Describe = describe
+          @LifeCycle = lifecycle
+          @Status = status
+          @ChannelCount = channelcount
+          @CreateAt = createat
+          @UpdateAt = updateat
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @PlanName = params['PlanName']
+          @TemplateId = params['TemplateId']
+          @Describe = params['Describe']
+          unless params['LifeCycle'].nil?
+            @LifeCycle = LifeCycleData.new
+            @LifeCycle.deserialize(params['LifeCycle'])
+          end
+          @Status = params['Status']
+          @ChannelCount = params['ChannelCount']
+          @CreateAt = params['CreateAt']
+          @UpdateAt = params['UpdateAt']
         end
       end
 
@@ -5575,52 +6298,85 @@ module TencentCloud
         end
       end
 
-      # 修改录像上云计划返回数据
+      # UpdateRecordBackupPlan返回参数结构体
       class UpdateRecordBackupPlanResponse < TencentCloud::Common::AbstractModel
-        # @param PlanId: 录像上云计划ID
-        # @type PlanId: String
-        # @param PlanName: 录像上云计划名称
-        # @type PlanName: String
-        # @param TemplateId: 录像上云模板ID
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateRecordBackupPlanData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = UpdateRecordBackupPlanData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改录像上云模版返回数据
+      class UpdateRecordBackupTemplateData < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
-        # @param Describe: 录像上云计划描述
-        # @type Describe: String
-        # @param LifeCycle: 云文件生命周期
-        # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
-        # @param Status: 录像上云计划状态，1:正常使用中，0:删除中，无法使用
-        # @type Status: Integer
-        # @param ChannelCount: 通道数量
-        # @type ChannelCount: Integer
+        # @param TemplateName: 模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSections: Array
+        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DevTimeSections: Array
+        # @param Scale: 上云倍速（支持1，2，4倍速）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scale: Integer
         # @param CreateAt: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateAt: String
-        # @param UpdateAt: 修改时间
+        # @param UpdateAt: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: String
 
-        attr_accessor :PlanId, :PlanName, :TemplateId, :Describe, :LifeCycle, :Status, :ChannelCount, :CreateAt, :UpdateAt
+        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
 
-        def initialize(planid=nil, planname=nil, templateid=nil, describe=nil, lifecycle=nil, status=nil, channelcount=nil, createat=nil, updateat=nil)
-          @PlanId = planid
-          @PlanName = planname
+        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
           @TemplateId = templateid
-          @Describe = describe
-          @LifeCycle = lifecycle
-          @Status = status
-          @ChannelCount = channelcount
+          @TemplateName = templatename
+          @TimeSections = timesections
+          @DevTimeSections = devtimesections
+          @Scale = scale
           @CreateAt = createat
           @UpdateAt = updateat
         end
 
         def deserialize(params)
-          @PlanId = params['PlanId']
-          @PlanName = params['PlanName']
           @TemplateId = params['TemplateId']
-          @Describe = params['Describe']
-          unless params['LifeCycle'].nil?
-            @LifeCycle = LifeCycleData.new
-            @LifeCycle.deserialize(params['LifeCycle'])
+          @TemplateName = params['TemplateName']
+          unless params['TimeSections'].nil?
+            @TimeSections = []
+            params['TimeSections'].each do |i|
+              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
+              recordtemplatetimesections_tmp.deserialize(i)
+              @TimeSections << recordtemplatetimesections_tmp
+            end
           end
-          @Status = params['Status']
-          @ChannelCount = params['ChannelCount']
+          unless params['DevTimeSections'].nil?
+            @DevTimeSections = []
+            params['DevTimeSections'].each do |i|
+              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
+              recordtemplatetimesections_tmp.deserialize(i)
+              @DevTimeSections << recordtemplatetimesections_tmp
+            end
+          end
+          @Scale = params['Scale']
           @CreateAt = params['CreateAt']
           @UpdateAt = params['UpdateAt']
         end
@@ -5691,64 +6447,26 @@ module TencentCloud
         end
       end
 
-      # 修改录像上云模版返回数据
+      # UpdateRecordBackupTemplate返回参数结构体
       class UpdateRecordBackupTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TemplateId: String
-        # @param TemplateName: 模板名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TemplateName: String
-        # @param TimeSections: 上云时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TimeSections: Array
-        # @param DevTimeSections: 录像时间段（按周进行设置，支持一天设置多个时间段，每个时间段不小于10分钟）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DevTimeSections: Array
-        # @param Scale: 上云倍速（支持1，2，4倍速）
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Scale: Integer
-        # @param CreateAt: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateAt: String
-        # @param UpdateAt: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateAt: String
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateRecordBackupTemplateData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :TemplateId, :TemplateName, :TimeSections, :DevTimeSections, :Scale, :CreateAt, :UpdateAt
+        attr_accessor :Data, :RequestId
 
-        def initialize(templateid=nil, templatename=nil, timesections=nil, devtimesections=nil, scale=nil, createat=nil, updateat=nil)
-          @TemplateId = templateid
-          @TemplateName = templatename
-          @TimeSections = timesections
-          @DevTimeSections = devtimesections
-          @Scale = scale
-          @CreateAt = createat
-          @UpdateAt = updateat
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          @TemplateId = params['TemplateId']
-          @TemplateName = params['TemplateName']
-          unless params['TimeSections'].nil?
-            @TimeSections = []
-            params['TimeSections'].each do |i|
-              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
-              recordtemplatetimesections_tmp.deserialize(i)
-              @TimeSections << recordtemplatetimesections_tmp
-            end
+          unless params['Data'].nil?
+            @Data = UpdateRecordBackupTemplateData.new
+            @Data.deserialize(params['Data'])
           end
-          unless params['DevTimeSections'].nil?
-            @DevTimeSections = []
-            params['DevTimeSections'].each do |i|
-              recordtemplatetimesections_tmp = RecordTemplateTimeSections.new
-              recordtemplatetimesections_tmp.deserialize(i)
-              @DevTimeSections << recordtemplatetimesections_tmp
-            end
-          end
-          @Scale = params['Scale']
-          @CreateAt = params['CreateAt']
-          @UpdateAt = params['UpdateAt']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5832,7 +6550,7 @@ module TencentCloud
       # UpdateRecordPlan返回参数结构体
       class UpdateRecordPlanResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回结果
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanOptResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanOptData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5845,7 +6563,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = RecordPlanOptResponse.new
+            @Data = RecordPlanOptData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -5972,7 +6690,7 @@ module TencentCloud
       # UpdateUserDevice返回参数结构体
       class UpdateUserDeviceResponse < TencentCloud::Common::AbstractModel
         # @param Data: 返回数据
-        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateDeviceResponse`
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.UpdateDeviceData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5985,7 +6703,7 @@ module TencentCloud
 
         def deserialize(params)
           unless params['Data'].nil?
-            @Data = UpdateDeviceResponse.new
+            @Data = UpdateDeviceData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
