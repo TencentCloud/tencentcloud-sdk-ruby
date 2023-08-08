@@ -266,10 +266,13 @@ module TencentCloud
         # @param IsCore: 是否核心：1:核心，2:非核心
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
 
-        attr_accessor :AppId, :Uin, :Nick, :Region, :AssetId, :AssetName, :InstanceCreateTime, :Namespace, :Status, :ClusterId, :ClusterName, :MachineId, :MachineName, :PodIp, :ServiceCount, :ContainerCount, :PublicIp, :PrivateIp, :IsCore
+        attr_accessor :AppId, :Uin, :Nick, :Region, :AssetId, :AssetName, :InstanceCreateTime, :Namespace, :Status, :ClusterId, :ClusterName, :MachineId, :MachineName, :PodIp, :ServiceCount, :ContainerCount, :PublicIp, :PrivateIp, :IsCore, :IsNewAsset
 
-        def initialize(appid=nil, uin=nil, nick=nil, region=nil, assetid=nil, assetname=nil, instancecreatetime=nil, namespace=nil, status=nil, clusterid=nil, clustername=nil, machineid=nil, machinename=nil, podip=nil, servicecount=nil, containercount=nil, publicip=nil, privateip=nil, iscore=nil)
+        def initialize(appid=nil, uin=nil, nick=nil, region=nil, assetid=nil, assetname=nil, instancecreatetime=nil, namespace=nil, status=nil, clusterid=nil, clustername=nil, machineid=nil, machinename=nil, podip=nil, servicecount=nil, containercount=nil, publicip=nil, privateip=nil, iscore=nil, isnewasset=nil)
           @AppId = appid
           @Uin = uin
           @Nick = nick
@@ -289,6 +292,7 @@ module TencentCloud
           @PublicIp = publicip
           @PrivateIp = privateip
           @IsCore = iscore
+          @IsNewAsset = isnewasset
         end
 
         def deserialize(params)
@@ -311,6 +315,7 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @PrivateIp = params['PrivateIp']
           @IsCore = params['IsCore']
+          @IsNewAsset = params['IsNewAsset']
         end
       end
 
@@ -703,10 +708,13 @@ module TencentCloud
         # @param BASAgentStatus: 模拟攻击工具状态。0代表未安装，1代表已安装，2代表已离线
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BASAgentStatus: Integer
+        # @param IsNewAsset: 1新资产；0 非新资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -757,6 +765,7 @@ module TencentCloud
           @Os = os
           @RiskExposure = riskexposure
           @BASAgentStatus = basagentstatus
+          @IsNewAsset = isnewasset
         end
 
         def deserialize(params)
@@ -817,6 +826,7 @@ module TencentCloud
           @Os = params['Os']
           @RiskExposure = params['RiskExposure']
           @BASAgentStatus = params['BASAgentStatus']
+          @IsNewAsset = params['IsNewAsset']
         end
       end
 
@@ -862,7 +872,7 @@ module TencentCloud
         # @type TaskName: String
         # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫，3-手动填写扫；1和2则Assets字段必填，3则SelfDefiningAssets必填
         # @type ScanAssetType: Integer
-        # @param ScanItem: 扫描项目；port/poc/weakpass/webcontent/configrisk
+        # @param ScanItem: 扫描项目；port/poc/weakpass/webcontent/configrisk/exposedserver
         # @type ScanItem: Array
         # @param ScanPlanType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义；0,2,3则ScanPlanContent必填
         # @type ScanPlanType: Integer
@@ -918,18 +928,26 @@ module TencentCloud
       class CreateRiskCenterScanTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
         # @type TaskId: String
+        # @param Status: 0,任务创建成功；小于0失败；-1为存在资产未认证
+        # @type Status: Integer
+        # @param UnAuthAsset: 未认证资产列表
+        # @type UnAuthAsset: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :Status, :UnAuthAsset, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, unauthasset=nil, requestid=nil)
           @TaskId = taskid
+          @Status = status
+          @UnAuthAsset = unauthasset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @Status = params['Status']
+          @UnAuthAsset = params['UnAuthAsset']
           @RequestId = params['RequestId']
         end
       end
@@ -1002,10 +1020,13 @@ module TencentCloud
         # @param IsCore: 是否核心
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
+        # @param IsNewAsset: 是否新资产: 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :VpcId, :VpcName, :Region, :Domain, :AssetCreateTime, :LastScanTime, :ConfigurationRisk, :Attack, :Access, :ScanTask, :AppId, :Uin, :NickName, :Port, :Tag, :PrivateIp, :PublicIp, :Status, :IsCore
+        attr_accessor :AssetId, :AssetName, :AssetType, :VpcId, :VpcName, :Region, :Domain, :AssetCreateTime, :LastScanTime, :ConfigurationRisk, :Attack, :Access, :ScanTask, :AppId, :Uin, :NickName, :Port, :Tag, :PrivateIp, :PublicIp, :Status, :IsCore, :IsNewAsset
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, vpcid=nil, vpcname=nil, region=nil, domain=nil, assetcreatetime=nil, lastscantime=nil, configurationrisk=nil, attack=nil, access=nil, scantask=nil, appid=nil, uin=nil, nickname=nil, port=nil, tag=nil, privateip=nil, publicip=nil, status=nil, iscore=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, vpcid=nil, vpcname=nil, region=nil, domain=nil, assetcreatetime=nil, lastscantime=nil, configurationrisk=nil, attack=nil, access=nil, scantask=nil, appid=nil, uin=nil, nickname=nil, port=nil, tag=nil, privateip=nil, publicip=nil, status=nil, iscore=nil, isnewasset=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -1028,6 +1049,7 @@ module TencentCloud
           @PublicIp = publicip
           @Status = status
           @IsCore = iscore
+          @IsNewAsset = isnewasset
         end
 
         def deserialize(params)
@@ -1060,6 +1082,7 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @Status = params['Status']
           @IsCore = params['IsCore']
+          @IsNewAsset = params['IsNewAsset']
         end
       end
 
@@ -2341,10 +2364,22 @@ module TencentCloud
         # @param ServiceRisk: 风险服务暴露数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceRisk: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
+        # @param VerifyDomain: 待确认资产的随机三级域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyDomain: String
+        # @param VerifyTXTRecord: 待确认资产的TXT记录内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyTXTRecord: String
+        # @param VerifyStatus: 待确认资产的认证状态，0-待认证，1-认证成功，2-认证中，3-txt认证失败，4-人工认证失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyStatus: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :WAFStatus, :AssetCreateTime, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :SubDomain, :SeverIp, :BotCount, :WeakPassword, :WebContentRisk, :Tag, :SourceType, :MemberId, :CCAttack, :WebAttack, :ServiceRisk
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :WAFStatus, :AssetCreateTime, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :SubDomain, :SeverIp, :BotCount, :WeakPassword, :WebContentRisk, :Tag, :SourceType, :MemberId, :CCAttack, :WebAttack, :ServiceRisk, :IsNewAsset, :VerifyDomain, :VerifyTXTRecord, :VerifyStatus
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, wafstatus=nil, assetcreatetime=nil, appid=nil, uin=nil, nickname=nil, iscore=nil, iscloud=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, subdomain=nil, severip=nil, botcount=nil, weakpassword=nil, webcontentrisk=nil, tag=nil, sourcetype=nil, memberid=nil, ccattack=nil, webattack=nil, servicerisk=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, wafstatus=nil, assetcreatetime=nil, appid=nil, uin=nil, nickname=nil, iscore=nil, iscloud=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, subdomain=nil, severip=nil, botcount=nil, weakpassword=nil, webcontentrisk=nil, tag=nil, sourcetype=nil, memberid=nil, ccattack=nil, webattack=nil, servicerisk=nil, isnewasset=nil, verifydomain=nil, verifytxtrecord=nil, verifystatus=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -2379,6 +2414,10 @@ module TencentCloud
           @CCAttack = ccattack
           @WebAttack = webattack
           @ServiceRisk = servicerisk
+          @IsNewAsset = isnewasset
+          @VerifyDomain = verifydomain
+          @VerifyTXTRecord = verifytxtrecord
+          @VerifyStatus = verifystatus
         end
 
         def deserialize(params)
@@ -2423,6 +2462,10 @@ module TencentCloud
           @CCAttack = params['CCAttack']
           @WebAttack = params['WebAttack']
           @ServiceRisk = params['ServiceRisk']
+          @IsNewAsset = params['IsNewAsset']
+          @VerifyDomain = params['VerifyDomain']
+          @VerifyTXTRecord = params['VerifyTXTRecord']
+          @VerifyStatus = params['VerifyStatus']
         end
       end
 
@@ -2594,10 +2637,16 @@ module TencentCloud
         # @param RiskExposure: 风险服务暴露
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskExposure: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
+        # @param VerifyStatus: 资产认证状态，0-待认证，1-认证成功，2-认证中，3+-认证失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyStatus: Integer
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CFWStatus, :AssetCreateTime, :PublicIp, :PublicIpType, :VpcId, :VpcName, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :WeakPassword, :WebContentRisk, :Tag, :AddressId, :MemberId, :RiskExposure
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CFWStatus, :AssetCreateTime, :PublicIp, :PublicIpType, :VpcId, :VpcName, :AppId, :Uin, :NickName, :IsCore, :IsCloud, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :WeakPassword, :WebContentRisk, :Tag, :AddressId, :MemberId, :RiskExposure, :IsNewAsset, :VerifyStatus
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cfwstatus=nil, assetcreatetime=nil, publicip=nil, publiciptype=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, iscore=nil, iscloud=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, weakpassword=nil, webcontentrisk=nil, tag=nil, addressid=nil, memberid=nil, riskexposure=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cfwstatus=nil, assetcreatetime=nil, publicip=nil, publiciptype=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, iscore=nil, iscloud=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, weakpassword=nil, webcontentrisk=nil, tag=nil, addressid=nil, memberid=nil, riskexposure=nil, isnewasset=nil, verifystatus=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -2631,6 +2680,8 @@ module TencentCloud
           @AddressId = addressid
           @MemberId = memberid
           @RiskExposure = riskexposure
+          @IsNewAsset = isnewasset
+          @VerifyStatus = verifystatus
         end
 
         def deserialize(params)
@@ -2674,6 +2725,8 @@ module TencentCloud
           @AddressId = params['AddressId']
           @MemberId = params['MemberId']
           @RiskExposure = params['RiskExposure']
+          @IsNewAsset = params['IsNewAsset']
+          @VerifyStatus = params['VerifyStatus']
         end
       end
 
@@ -2789,10 +2842,13 @@ module TencentCloud
         # @param IsCore: 是否核心
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCore: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
 
-        attr_accessor :AppId, :Uin, :AssetId, :AssetName, :Region, :VpcId, :VpcName, :Tag, :Nick, :CIDR, :Zone, :CVM, :AvailableIp, :CreateTime, :ConfigureRisk, :ScanTask, :LastScanTime, :IsCore
+        attr_accessor :AppId, :Uin, :AssetId, :AssetName, :Region, :VpcId, :VpcName, :Tag, :Nick, :CIDR, :Zone, :CVM, :AvailableIp, :CreateTime, :ConfigureRisk, :ScanTask, :LastScanTime, :IsCore, :IsNewAsset
 
-        def initialize(appid=nil, uin=nil, assetid=nil, assetname=nil, region=nil, vpcid=nil, vpcname=nil, tag=nil, nick=nil, cidr=nil, zone=nil, cvm=nil, availableip=nil, createtime=nil, configurerisk=nil, scantask=nil, lastscantime=nil, iscore=nil)
+        def initialize(appid=nil, uin=nil, assetid=nil, assetname=nil, region=nil, vpcid=nil, vpcname=nil, tag=nil, nick=nil, cidr=nil, zone=nil, cvm=nil, availableip=nil, createtime=nil, configurerisk=nil, scantask=nil, lastscantime=nil, iscore=nil, isnewasset=nil)
           @AppId = appid
           @Uin = uin
           @AssetId = assetid
@@ -2811,6 +2867,7 @@ module TencentCloud
           @ScanTask = scantask
           @LastScanTime = lastscantime
           @IsCore = iscore
+          @IsNewAsset = isnewasset
         end
 
         def deserialize(params)
@@ -2839,6 +2896,7 @@ module TencentCloud
           @ScanTask = params['ScanTask']
           @LastScanTime = params['LastScanTime']
           @IsCore = params['IsCore']
+          @IsNewAsset = params['IsNewAsset']
         end
       end
 
@@ -3037,10 +3095,16 @@ module TencentCloud
         # @type Uin: String
         # @param Nick: 昵称
         # @type Nick: String
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
+        # @param IsCore: 是否核心资产1是 2不是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCore: Integer
 
-        attr_accessor :Subnet, :ConnectedVpc, :AssetId, :Region, :CVM, :Tag, :DNS, :AssetName, :CIDR, :CreateTime, :AppId, :Uin, :Nick
+        attr_accessor :Subnet, :ConnectedVpc, :AssetId, :Region, :CVM, :Tag, :DNS, :AssetName, :CIDR, :CreateTime, :AppId, :Uin, :Nick, :IsNewAsset, :IsCore
 
-        def initialize(subnet=nil, connectedvpc=nil, assetid=nil, region=nil, cvm=nil, tag=nil, dns=nil, assetname=nil, cidr=nil, createtime=nil, appid=nil, uin=nil, nick=nil)
+        def initialize(subnet=nil, connectedvpc=nil, assetid=nil, region=nil, cvm=nil, tag=nil, dns=nil, assetname=nil, cidr=nil, createtime=nil, appid=nil, uin=nil, nick=nil, isnewasset=nil, iscore=nil)
           @Subnet = subnet
           @ConnectedVpc = connectedvpc
           @AssetId = assetid
@@ -3054,6 +3118,8 @@ module TencentCloud
           @AppId = appid
           @Uin = uin
           @Nick = nick
+          @IsNewAsset = isnewasset
+          @IsCore = iscore
         end
 
         def deserialize(params)
@@ -3077,6 +3143,8 @@ module TencentCloud
           @AppId = params['AppId']
           @Uin = params['Uin']
           @Nick = params['Nick']
+          @IsNewAsset = params['IsNewAsset']
+          @IsCore = params['IsCore']
         end
       end
 
@@ -3086,7 +3154,9 @@ module TencentCloud
         # @type Name: String
         # @param Values: 过滤的值
         # @type Values: Array
-        # @param OperatorType: 精确匹配填 7 模糊匹配填9 ， 兼容 中台定的结构
+        # @param OperatorType: 中台定义：
+        # 1等于 2大于 3小于 4大于等于 5小于等于 6不等于 9模糊匹配 13非模糊匹配 14按位与
+        # 精确匹配填 7 模糊匹配填9 兼容 中台定的结构
         # @type OperatorType: Integer
 
         attr_accessor :Name, :Values, :OperatorType

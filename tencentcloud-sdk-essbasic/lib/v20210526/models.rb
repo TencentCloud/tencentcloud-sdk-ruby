@@ -1579,11 +1579,11 @@ module TencentCloud
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param RoleIds: 绑定角色的角色id列表
+        # @param RoleIds: 绑定角色的角色id列表，最多 100 个
         # @type RoleIds: Array
-        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数，最多 100 个
         # @type UserIds: Array
-        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数，最多 100 个
         # @type OpenIds: Array
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1696,11 +1696,11 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param RoleId: 角色Id（非超管或法人角色Id）
         # @type RoleId: String
-        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        # @param UserIds: 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数，最多两百
         # @type UserIds: Array
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        # @param OpenIds: 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数，最多两百
         # @type OpenIds: Array
 
         attr_accessor :Agent, :RoleId, :UserIds, :Operator, :OpenIds
@@ -1816,38 +1816,38 @@ module TencentCloud
 
       # ChannelDescribeEmployees请求参数结构体
       class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回最大数量，最大为20
-        # @type Limit: Integer
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Limit: 指定每页多少条数据，单页最大20
+        # @type Limit: Integer
         # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         # 查询离职员工时，Key为Status，Values为["QuiteJob"]
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0，最大为20000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0,最大为20000
         # @type Offset: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Limit, :Agent, :Filters, :Offset, :Operator
+        attr_accessor :Agent, :Limit, :Filters, :Offset, :Operator
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 8
         deprecate :Operator=, :none, 2023, 8
 
-        def initialize(limit=nil, agent=nil, filters=nil, offset=nil, operator=nil)
-          @Limit = limit
+        def initialize(agent=nil, limit=nil, filters=nil, offset=nil, operator=nil)
           @Agent = agent
+          @Limit = limit
           @Filters = filters
           @Offset = offset
           @Operator = operator
         end
 
         def deserialize(params)
-          @Limit = params['Limit']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1869,10 +1869,10 @@ module TencentCloud
         # @param Employees: 员工数据列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Employees: Array
-        # @param Offset: 偏移量，默认为0，最大为20000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
-        # @param Limit: 返回最大数量，最大为20
+        # @param Limit: 指定每页多少条数据，单页最大20
         # @type Limit: Integer
         # @param TotalCount: 符合条件的员工数量
         # @type TotalCount: Integer
@@ -1930,7 +1930,7 @@ module TencentCloud
 
       # ChannelDescribeFlowComponents返回参数结构体
       class ChannelDescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
-        # @param RecipientComponentInfos: 流程关联的填写控件信息
+        # @param RecipientComponentInfos: 流程关联的填写控件信息，控件会按照参与方进行分类。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientComponentInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2036,9 +2036,9 @@ module TencentCloud
       class ChannelDescribeRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Offset: 查询起始偏移，最大2000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         # @type Offset: Integer
-        # @param Limit: 查询数量，最大200
+        # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: String
         # @param Filters: 查询的关键字段:
         # Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
@@ -2084,9 +2084,9 @@ module TencentCloud
 
       # ChannelDescribeRoles返回参数结构体
       class ChannelDescribeRolesResponse < TencentCloud::Common::AbstractModel
-        # @param Offset: 页面偏移量，最大2000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         # @type Offset: Integer
-        # @param Limit: 查询数量，最大200
+        # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: Integer
         # @param TotalCount: 查询角色的总数量
         # @type TotalCount: Integer

@@ -40,10 +40,13 @@ module TencentCloud
         # @param Deployed: 是否已在当前环境发布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deployed: Boolean
+        # @param MatchExtensions: 环境扩展组件是否满足应用要求：0=true, 1=false 表示该应用需要扩展组件0(cdc)以及1(java)，但是独立环境有cdc无java，不满足发布要求
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MatchExtensions: String
 
-        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr, :Status, :ExpiredAt, :RuntimeClass, :Deployed
+        attr_accessor :RuntimeId, :DisplayName, :Type, :Zone, :Area, :Addr, :Status, :ExpiredAt, :RuntimeClass, :Deployed, :MatchExtensions
 
-        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil, status=nil, expiredat=nil, runtimeclass=nil, deployed=nil)
+        def initialize(runtimeid=nil, displayname=nil, type=nil, zone=nil, area=nil, addr=nil, status=nil, expiredat=nil, runtimeclass=nil, deployed=nil, matchextensions=nil)
           @RuntimeId = runtimeid
           @DisplayName = displayname
           @Type = type
@@ -54,6 +57,7 @@ module TencentCloud
           @ExpiredAt = expiredat
           @RuntimeClass = runtimeclass
           @Deployed = deployed
+          @MatchExtensions = matchextensions
         end
 
         def deserialize(params)
@@ -67,6 +71,7 @@ module TencentCloud
           @ExpiredAt = params['ExpiredAt']
           @RuntimeClass = params['RuntimeClass']
           @Deployed = params['Deployed']
+          @MatchExtensions = params['MatchExtensions']
         end
       end
 
@@ -196,19 +201,23 @@ module TencentCloud
         # @type InstanceId: Integer
         # @param PlanType: 版本类型 0-pro 1-lite
         # @type PlanType: Integer
+        # @param RuntimeClass: 0：应用集成，1：API，2：ETL
+        # @type RuntimeClass: Integer
 
-        attr_accessor :ProjectId, :InstanceId, :PlanType
+        attr_accessor :ProjectId, :InstanceId, :PlanType, :RuntimeClass
 
-        def initialize(projectid=nil, instanceid=nil, plantype=nil)
+        def initialize(projectid=nil, instanceid=nil, plantype=nil, runtimeclass=nil)
           @ProjectId = projectid
           @InstanceId = instanceid
           @PlanType = plantype
+          @RuntimeClass = runtimeclass
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @InstanceId = params['InstanceId']
           @PlanType = params['PlanType']
+          @RuntimeClass = params['RuntimeClass']
         end
       end
 
@@ -452,7 +461,7 @@ module TencentCloud
 
       # 运行环境扩展组件
       class RuntimeExtensionMC < TencentCloud::Common::AbstractModel
-        # @param Type: 扩展组件类型：0:cdc
+        # @param Type: 扩展组件类型：0:cdc 1:dataway-java
         # @type Type: Integer
         # @param Size: 部署规格vcore数
         # @type Size: Float
@@ -540,7 +549,7 @@ module TencentCloud
         # @param RuntimeType: 环境类型：0: sandbox, 1:shared, 2:private 3: trial
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeType: Integer
-        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
+        # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型、2:etl环境
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeClass: Integer
         # @param BandwidthOutUsed: 已使用出带宽 Mbps

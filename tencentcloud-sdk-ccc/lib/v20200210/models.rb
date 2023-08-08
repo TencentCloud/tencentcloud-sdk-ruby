@@ -387,6 +387,46 @@ module TencentCloud
         end
       end
 
+      # CreateAdminURL请求参数结构体
+      class CreateAdminURLRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SeatUserId: 管理员账号
+        # @type SeatUserId: String
+
+        attr_accessor :SdkAppId, :SeatUserId
+
+        def initialize(sdkappid=nil, seatuserid=nil)
+          @SdkAppId = sdkappid
+          @SeatUserId = seatuserid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SeatUserId = params['SeatUserId']
+        end
+      end
+
+      # CreateAdminURL返回参数结构体
+      class CreateAdminURLResponse < TencentCloud::Common::AbstractModel
+        # @param URL: 登录链接
+        # @type URL: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :URL, :RequestId
+
+        def initialize(url=nil, requestid=nil)
+          @URL = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAutoCalloutTask请求参数结构体
       class CreateAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc

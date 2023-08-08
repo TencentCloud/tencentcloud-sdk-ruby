@@ -535,6 +535,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 统计并返回注册的说话人id总数
+
+        # @param request: Request instance for VoicePrintCount.
+        # @type request: :class:`Tencentcloud::asr::V20190614::VoicePrintCountRequest`
+        # @rtype: :class:`Tencentcloud::asr::V20190614::VoicePrintCountResponse`
+        def VoicePrintCount(request)
+          body = send_request('VoicePrintCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VoicePrintCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于以删除已经注册的说话人信息（删除之后，原有的说话人ID和说话人音频数据都会失效）
 
         # @param request: Request instance for VoicePrintDelete.

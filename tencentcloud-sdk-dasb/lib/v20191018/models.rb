@@ -1786,6 +1786,8 @@ module TencentCloud
         # @type ResourceIdSet: Array
         # @param KindSet: 可提供按照多种类型过滤, 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
         # @type KindSet: Array
+        # @param ManagedAccount: 资产是否包含托管账号。1，包含；0，不包含
+        # @type ManagedAccount: String
         # @param DepartmentId: 过滤条件，可按照部门ID进行过滤
         # @type DepartmentId: String
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
@@ -1794,9 +1796,9 @@ module TencentCloud
         # BindingStatus 绑定状态
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :DepartmentId, :TagFilters, :Filters
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :ManagedAccount, :DepartmentId, :TagFilters, :Filters
 
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, departmentid=nil, tagfilters=nil, filters=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, managedaccount=nil, departmentid=nil, tagfilters=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -1807,6 +1809,7 @@ module TencentCloud
           @AuthorizedUserIdSet = authorizeduseridset
           @ResourceIdSet = resourceidset
           @KindSet = kindset
+          @ManagedAccount = managedaccount
           @DepartmentId = departmentid
           @TagFilters = tagfilters
           @Filters = filters
@@ -1823,6 +1826,7 @@ module TencentCloud
           @AuthorizedUserIdSet = params['AuthorizedUserIdSet']
           @ResourceIdSet = params['ResourceIdSet']
           @KindSet = params['KindSet']
+          @ManagedAccount = params['ManagedAccount']
           @DepartmentId = params['DepartmentId']
           unless params['TagFilters'].nil?
             @TagFilters = []

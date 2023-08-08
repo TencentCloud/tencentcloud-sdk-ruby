@@ -2028,10 +2028,12 @@ module TencentCloud
         # @type ServiceLogging: Boolean
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
+        # @param OSType: 系统类型，默认0，0：Linux，1: windows
+        # @type OSType: Integer
 
-        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
+        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags, :OSType
 
-        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
+        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil, ostype=nil)
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
           @Tags = tags
@@ -2040,6 +2042,7 @@ module TencentCloud
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
           @MetaTags = metatags
+          @OSType = ostype
         end
 
         def deserialize(params)
@@ -2068,6 +2071,7 @@ module TencentCloud
               @MetaTags << metataginfo_tmp
             end
           end
+          @OSType = params['OSType']
         end
       end
 
@@ -4395,6 +4399,11 @@ module TencentCloud
         # - 类型：String
         # - 必选：否
 
+        # osType
+        # - 按照【操作系统类型】进行过滤。
+        # - 类型：Int
+        # - 必选：否
+
         # tagKey
         # - 按照【标签键】进行过滤。
         # - 类型：String
@@ -4845,6 +4854,34 @@ module TencentCloud
         end
       end
 
+      # Windows事件日志采集配置
+      class EventLog < TencentCloud::Common::AbstractModel
+        # @param EventChannel: 事件通道，支持Application，Security，Setup，System，ALL
+        # @type EventChannel: String
+        # @param TimeType: 时间类型，1:用户自定义，2:当前时间
+        # @type TimeType: Integer
+        # @param Timestamp: 时间，用户选择自定义时间类型时，需要指定时间
+        # @type Timestamp: Integer
+        # @param EventIDs: 事件ID过滤列表
+        # @type EventIDs: Array
+
+        attr_accessor :EventChannel, :TimeType, :Timestamp, :EventIDs
+
+        def initialize(eventchannel=nil, timetype=nil, timestamp=nil, eventids=nil)
+          @EventChannel = eventchannel
+          @TimeType = timetype
+          @Timestamp = timestamp
+          @EventIDs = eventids
+        end
+
+        def deserialize(params)
+          @EventChannel = params['EventChannel']
+          @TimeType = params['TimeType']
+          @Timestamp = params['Timestamp']
+          @EventIDs = params['EventIDs']
+        end
+      end
+
       # 黑名单path信息
       class ExcludePathInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型，选填File或Path
@@ -4988,10 +5025,12 @@ module TencentCloud
         # @type PathRegex: String
         # @param MetaTags: 用户自定义元数据信息，MetadataType为2时必填
         # @type MetaTags: Array
+        # @param EventLogRules: windows事件日志采集
+        # @type EventLogRules: Array
 
-        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags
+        attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules
 
-        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil, metadatatype=nil, pathregex=nil, metatags=nil)
+        def initialize(timekey=nil, timeformat=nil, delimiter=nil, logregex=nil, beginregex=nil, keys=nil, filterkeyregex=nil, unmatchuploadswitch=nil, unmatchlogkey=nil, backtracking=nil, isgbk=nil, jsonstandard=nil, protocol=nil, address=nil, parseprotocol=nil, metadatatype=nil, pathregex=nil, metatags=nil, eventlogrules=nil)
           @TimeKey = timekey
           @TimeFormat = timeformat
           @Delimiter = delimiter
@@ -5010,6 +5049,7 @@ module TencentCloud
           @MetadataType = metadatatype
           @PathRegex = pathregex
           @MetaTags = metatags
+          @EventLogRules = eventlogrules
         end
 
         def deserialize(params)
@@ -5043,6 +5083,14 @@ module TencentCloud
               metataginfo_tmp = MetaTagInfo.new
               metataginfo_tmp.deserialize(i)
               @MetaTags << metataginfo_tmp
+            end
+          end
+          unless params['EventLogRules'].nil?
+            @EventLogRules = []
+            params['EventLogRules'].each do |i|
+              eventlog_tmp = EventLog.new
+              eventlog_tmp.deserialize(i)
+              @EventLogRules << eventlog_tmp
             end
           end
         end
@@ -5845,10 +5893,12 @@ module TencentCloud
         # @type ServiceLogging: Boolean
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
+        # @param OSType: 操作系统类型，0: Linux，1: windows
+        # @type OSType: Integer
 
-        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
+        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags, :OSType
 
-        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
+        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil, ostype=nil)
           @GroupId = groupid
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
@@ -5859,6 +5909,7 @@ module TencentCloud
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
           @MetaTags = metatags
+          @OSType = ostype
         end
 
         def deserialize(params)
@@ -5889,6 +5940,7 @@ module TencentCloud
               @MetaTags << metataginfo_tmp
             end
           end
+          @OSType = params['OSType']
         end
       end
 

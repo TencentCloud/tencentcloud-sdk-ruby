@@ -2191,9 +2191,9 @@ module TencentCloud
       class CreateIntegrationUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserIds: 绑定角色的用户id列表
+        # @param UserIds: 绑定角色的用户id列表，不能重复，不能大于 100 个
         # @type UserIds: Array
-        # @param RoleIds: 绑定角色的角色id列表
+        # @param RoleIds: 绑定角色的角色id列表，不能重复，不能大于 100，可以通过DescribeIntegrationRoles接口获取
         # @type RoleIds: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -2667,13 +2667,15 @@ module TencentCloud
         # 取值：
         # 填写的FileId通过UploadFiles接口上传文件获取。
         # @type FileId: String
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId
+        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent
         extend Gem::Deprecate
         deprecate :SealImage, :none, 2023, 8
         deprecate :SealImage=, :none, 2023, 8
 
-        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil)
+        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil)
           @UserName = username
           @IdCardNumber = idcardnumber
           @SealName = sealname
@@ -2686,6 +2688,7 @@ module TencentCloud
           @SealColor = sealcolor
           @ProcessSeal = processseal
           @FileId = fileid
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2704,6 +2707,10 @@ module TencentCloud
           @SealColor = params['SealColor']
           @ProcessSeal = params['ProcessSeal']
           @FileId = params['FileId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -2811,16 +2818,20 @@ module TencentCloud
         # @type Name: String
         # @param Mobile: 手机号，大陆手机号11位
         # @type Mobile: String
-        # @param EndPoint: 链接类型
-        # HTTP：跳转电子签小程序的http_url，
-        # APP：第三方APP或小程序跳转电子签小程序的path。
-        # 默认为HTTP类型
+        # @param EndPoint: 要跳转的链接类型
+
+        # - HTTP：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  (默认)
+        # - APP： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型
         # @type EndPoint: String
         # @param FlowId: 签署流程编号 (PathType=1时必传)
         # @type FlowId: String
         # @param FlowGroupId: 合同组ID
         # @type FlowGroupId: String
-        # @param PathType: 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
+        # @param PathType: 要跳转到的页面类型
+
+        # - 0: 不传, 主页 (默认)
+        # - 1: 小程序合同详情
+        # - 2: 小程序合同列表页
         # @type PathType: Integer
         # @param AutoJumpBack: 是否自动回跳
         # true：是，
@@ -2831,10 +2842,10 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Hides: 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
 
-        # 0:合同签署页面更多操作按钮
-        # 1:合同签署页面更多操作的拒绝签署按钮
-        # 2:合同签署页面更多操作的转他人处理按钮
-        # 3:签署成功页的查看详情按钮
+        # - 0:合同签署页面更多操作按钮
+        # - 1:合同签署页面更多操作的拒绝签署按钮
+        # - 2:合同签署页面更多操作的转他人处理按钮
+        # - 3:签署成功页的查看详情按钮
         # @type Hides: Array
 
         attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides
@@ -3253,7 +3264,7 @@ module TencentCloud
       class DeleteIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param DeptId: 电子签中的部门id
+        # @param DeptId: 电子签中的部门id,通过DescribeIntegrationDepartments接口可获得
         # @type DeptId: String
         # @param ReceiveDeptId: 交接部门ID。待删除部门中的合同、印章和模板数据，交接至该部门ID下，未填写交接至公司根部门。
         # @type ReceiveDeptId: String
@@ -3296,7 +3307,7 @@ module TencentCloud
       class DeleteIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个
+        # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个，如果需要指定交接人的话，ReceiveUserId或者ReceiveOpenId字段二选一
         # @type Employees: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -3358,7 +3369,7 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param RoleId: 角色id
         # @type RoleId: String
-        # @param Users: 用户信息
+        # @param Users: 用户信息,最多 200 个用户，并且 UserId 和 OpenId 二选一，其他字段不需要传
         # @type Users: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -3752,9 +3763,9 @@ module TencentCloud
       class DescribeFlowComponentsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowId: 电子签流程的Id
+        # @param FlowId: 流程(合同)的编号
         # @type FlowId: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :FlowId, :Agent
@@ -3780,7 +3791,7 @@ module TencentCloud
 
       # DescribeFlowComponents返回参数结构体
       class DescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
-        # @param RecipientComponentInfos: 流程关联的填写控件信息
+        # @param RecipientComponentInfos: 流程关联的填写控件信息，按照参与方进行分类返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientComponentInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -4115,14 +4126,14 @@ module TencentCloud
       class DescribeIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Limit: 返回最大数量，最大为20
+        # @param Limit: 指定每页多少条数据，单页最大20
         # @type Limit: Integer
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0，最大为20000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
@@ -4162,10 +4173,10 @@ module TencentCloud
         # @param Employees: 员工数据列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Employees: Array
-        # @param Offset: 偏移量，默认为0，最大为20000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
-        # @param Limit: 返回最大数量，最大为20
+        # @param Limit: 指定每页多少条数据，单页最大20
         # @type Limit: Integer
         # @param TotalCount: 符合条件的员工数量
         # @type TotalCount: Integer
@@ -4245,7 +4256,7 @@ module TencentCloud
       class DescribeIntegrationRolesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Limit: 返回最大数量，最大为200
+        # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: Integer
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
@@ -4254,7 +4265,7 @@ module TencentCloud
         # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
         # Key:"IsGroupRole"，Values:["0"],查询非集团角色，Values:["1"]表示查询集团角色
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0，最大为2000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
@@ -4291,9 +4302,9 @@ module TencentCloud
 
       # DescribeIntegrationRoles返回参数结构体
       class DescribeIntegrationRolesResponse < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认为0，最大为2000
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         # @type Offset: Integer
-        # @param Limit: 返回最大数量，最大为200
+        # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: Integer
         # @param TotalCount: 符合查询条件的总的角色数
         # @type TotalCount: Integer
@@ -4332,9 +4343,9 @@ module TencentCloud
       class DescribeOrganizationGroupOrganizationsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，userId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Limit: 单次查询成员企业最大返回数量
+        # @param Limit: 指定每页多少条数据，单页最大1000
         # @type Limit: Integer
-        # @param Offset: 页面偏移量
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0
         # @type Offset: Integer
         # @param Name: 查询成员企业的企业名，模糊匹配
         # @type Name: String
@@ -4342,7 +4353,7 @@ module TencentCloud
         # @type Status: Integer
         # @param Export: 是否导出当前成员企业数据
         # @type Export: Boolean
-        # @param Id: 成员企业id
+        # @param Id: 成员企业机构 ID，在PC控制台 集团管理可获取
         # @type Id: String
 
         attr_accessor :Operator, :Limit, :Offset, :Name, :Status, :Export, :Id
@@ -4382,7 +4393,7 @@ module TencentCloud
         # @param ActivedTotal: 已加入的企业数量(废弃,请使用ActivatedTotal)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivedTotal: Integer
-        # @param ExportUrl: 导出文件的url
+        # @param ExportUrl: 如果入参Export为 true 时使用，表示导出Excel的url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExportUrl: String
         # @param List: 成员企业信息列表
@@ -5891,7 +5902,7 @@ module TencentCloud
         # @param JoinTime: 成员企业加入集团时间，时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTime: Integer
-        # @param FlowEngineEnable: 是否使用审批流引擎，true-是，false-否
+        # @param FlowEngineEnable: 是否使用自建审批流引擎（即不是企微审批流引擎），true-是，false-否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowEngineEnable: Boolean
 
@@ -6113,9 +6124,9 @@ module TencentCloud
       class ModifyIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param DeptId: 电子签部门ID
+        # @param DeptId: 电子签部门ID,通过DescribeIntegrationDepartments接口可以获取
         # @type DeptId: String
-        # @param ParentDeptId: 电子签父部门ID
+        # @param ParentDeptId: 电子签父部门ID，通过DescribeIntegrationDepartments接口可以获取
         # @type ParentDeptId: String
         # @param DeptName: 部门名称，不超过50个字符
         # @type DeptName: String
@@ -6416,12 +6427,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientId: String
         # @param RecipientFillStatus: 参与方填写状态
+        # 0-未填写
+        # 1-已填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientFillStatus: String
-        # @param IsPromoter: 是否发起方
+        # @param IsPromoter: 是否为发起方
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPromoter: Boolean
-        # @param Components: 填写控件内容
+        # @param Components: 填写控件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
 
@@ -7157,7 +7170,7 @@ module TencentCloud
 
       # UpdateIntegrationEmployees请求参数结构体
       class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 当前用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为YUFU；
+        # @param Operator: 当前用户信息，UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 员工信息，不超过100个。
         # 根据UserId或OpenId更新员工，必填一个，优先UserId。

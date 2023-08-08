@@ -1547,6 +1547,57 @@ module TencentCloud
         end
       end
 
+      # 统计返回注册数量结构
+      class VoicePrintCountData < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+
+        attr_accessor :Total
+
+        def initialize(total=nil)
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+        end
+      end
+
+      # VoicePrintCount请求参数结构体
+      class VoicePrintCountRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # VoicePrintCount返回参数结构体
+      class VoicePrintCountResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 统计数据
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintCountData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintCountData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # VoicePrintDelete请求参数结构体
       class VoicePrintDeleteRequest < TencentCloud::Common::AbstractModel
         # @param VoicePrintId: 说话人id，说话人唯一标识

@@ -7055,10 +7055,22 @@ module TencentCloud
         # @param CreateTime: 创造时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param CycleUnit: 周期类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleUnit: String
+        # @param ScheduleDesc: 调度计划
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleDesc: String
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatasourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime, :CycleUnit, :ScheduleDesc, :DatasourceId, :DatasourceType
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil, cycleunit=nil, scheduledesc=nil, datasourceid=nil, datasourcetype=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -7073,6 +7085,10 @@ module TencentCloud
           @DataEngine = dataengine
           @UpdateTime = updatetime
           @CreateTime = createtime
+          @CycleUnit = cycleunit
+          @ScheduleDesc = scheduledesc
+          @DatasourceId = datasourceid
+          @DatasourceType = datasourcetype
         end
 
         def deserialize(params)
@@ -7090,6 +7106,10 @@ module TencentCloud
           @DataEngine = params['DataEngine']
           @UpdateTime = params['UpdateTime']
           @CreateTime = params['CreateTime']
+          @CycleUnit = params['CycleUnit']
+          @ScheduleDesc = params['ScheduleDesc']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceType = params['DatasourceType']
         end
       end
 
@@ -7174,10 +7194,18 @@ module TencentCloud
         # @type OwnerId: String
         # @param TenantId: 1
         # @type TenantId: String
+        # @param DatasourceIdList: 数据源ID列表
+        # @type DatasourceIdList: Array
+        # @param DatasourceTypeList: 数据源类型列表
+        # @type DatasourceTypeList: Array
+        # @param CycleUnitList: 调度单位类型列表
+        # @type CycleUnitList: Array
+        # @param CanSubmit: 是否筛选出可提交的任务
+        # @type CanSubmit: Boolean
 
-        attr_accessor :ProjectId, :Page, :Size, :StatusList, :OwnerNameList, :WorkflowIdList, :TaskNameFilter, :TaskTypeList, :FordIdList, :TaskIdFilter, :OwnerNameFilter, :SortItem, :SortType, :DataEngineList, :UserId, :OwnerId, :TenantId
+        attr_accessor :ProjectId, :Page, :Size, :StatusList, :OwnerNameList, :WorkflowIdList, :TaskNameFilter, :TaskTypeList, :FordIdList, :TaskIdFilter, :OwnerNameFilter, :SortItem, :SortType, :DataEngineList, :UserId, :OwnerId, :TenantId, :DatasourceIdList, :DatasourceTypeList, :CycleUnitList, :CanSubmit
 
-        def initialize(projectid=nil, page=nil, size=nil, statuslist=nil, ownernamelist=nil, workflowidlist=nil, tasknamefilter=nil, tasktypelist=nil, fordidlist=nil, taskidfilter=nil, ownernamefilter=nil, sortitem=nil, sorttype=nil, dataenginelist=nil, userid=nil, ownerid=nil, tenantid=nil)
+        def initialize(projectid=nil, page=nil, size=nil, statuslist=nil, ownernamelist=nil, workflowidlist=nil, tasknamefilter=nil, tasktypelist=nil, fordidlist=nil, taskidfilter=nil, ownernamefilter=nil, sortitem=nil, sorttype=nil, dataenginelist=nil, userid=nil, ownerid=nil, tenantid=nil, datasourceidlist=nil, datasourcetypelist=nil, cycleunitlist=nil, cansubmit=nil)
           @ProjectId = projectid
           @Page = page
           @Size = size
@@ -7195,6 +7223,10 @@ module TencentCloud
           @UserId = userid
           @OwnerId = ownerid
           @TenantId = tenantid
+          @DatasourceIdList = datasourceidlist
+          @DatasourceTypeList = datasourcetypelist
+          @CycleUnitList = cycleunitlist
+          @CanSubmit = cansubmit
         end
 
         def deserialize(params)
@@ -7215,6 +7247,10 @@ module TencentCloud
           @UserId = params['UserId']
           @OwnerId = params['OwnerId']
           @TenantId = params['TenantId']
+          @DatasourceIdList = params['DatasourceIdList']
+          @DatasourceTypeList = params['DatasourceTypeList']
+          @CycleUnitList = params['CycleUnitList']
+          @CanSubmit = params['CanSubmit']
         end
       end
 
