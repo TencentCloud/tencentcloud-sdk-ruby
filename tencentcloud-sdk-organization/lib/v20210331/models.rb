@@ -215,6 +215,42 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationMemberAuthIdentity请求参数结构体
+      class CreateOrganizationMemberAuthIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUins: 成员uin列表。最多10个
+        # @type MemberUins: Array
+        # @param IdentityIds: 身份Id列表。最多5个
+        # @type IdentityIds: Array
+
+        attr_accessor :MemberUins, :IdentityIds
+
+        def initialize(memberuins=nil, identityids=nil)
+          @MemberUins = memberuins
+          @IdentityIds = identityids
+        end
+
+        def deserialize(params)
+          @MemberUins = params['MemberUins']
+          @IdentityIds = params['IdentityIds']
+        end
+      end
+
+      # CreateOrganizationMemberAuthIdentity返回参数结构体
+      class CreateOrganizationMemberAuthIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationMemberPolicy请求参数结构体
       class CreateOrganizationMemberPolicyRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin。
@@ -333,6 +369,38 @@ module TencentCloud
 
         def deserialize(params)
           @Uin = params['Uin']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOrganizationMembersPolicy请求参数结构体
+      class DeleteOrganizationMembersPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 访问策略ID。
+        # @type PolicyId: Integer
+
+        attr_accessor :PolicyId
+
+        def initialize(policyid=nil)
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteOrganizationMembersPolicy返回参数结构体
+      class DeleteOrganizationMembersPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

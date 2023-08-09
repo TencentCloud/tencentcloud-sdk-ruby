@@ -830,6 +830,78 @@ module TencentCloud
         end
       end
 
+      # clb实例和监听器信息
+      class ClbListenerListInfo < TencentCloud::Common::AbstractModel
+        # @param ListenerId: 监听器id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerId: String
+        # @param ListenerName: 监听器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ListenerName: String
+        # @param LoadBalancerId: 负载均衡Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerId: String
+        # @param LoadBalancerName: 负载均衡名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerName: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Vip: 负载均衡ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param VPort: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VPort: Integer
+        # @param Zone: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param NumericalVpcId: 私有网络id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumericalVpcId: Integer
+        # @param LoadBalancerType: 负载均衡类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+        # @param Domain: 监听器域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :VPort, :Zone, :NumericalVpcId, :LoadBalancerType, :Domain
+
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, domain=nil)
+          @ListenerId = listenerid
+          @ListenerName = listenername
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerName = loadbalancername
+          @Protocol = protocol
+          @Region = region
+          @Vip = vip
+          @VPort = vport
+          @Zone = zone
+          @NumericalVpcId = numericalvpcid
+          @LoadBalancerType = loadbalancertype
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @ListenerId = params['ListenerId']
+          @ListenerName = params['ListenerName']
+          @LoadBalancerId = params['LoadBalancerId']
+          @LoadBalancerName = params['LoadBalancerName']
+          @Protocol = params['Protocol']
+          @Region = params['Region']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @Zone = params['Zone']
+          @NumericalVpcId = params['NumericalVpcId']
+          @LoadBalancerType = params['LoadBalancerType']
+          @Domain = params['Domain']
+        end
+      end
+
       # CreateDomainAndIp请求参数结构体
       class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
         # @param Content: -
@@ -1688,6 +1760,58 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @RegionList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeListenerList请求参数结构体
+      class DescribeListenerListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: -
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeListenerList返回参数结构体
+      class DescribeListenerListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Data: 监听器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              clblistenerlistinfo_tmp = ClbListenerListInfo.new
+              clblistenerlistinfo_tmp.deserialize(i)
+              @Data << clblistenerlistinfo_tmp
             end
           end
           @RequestId = params['RequestId']

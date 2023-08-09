@@ -13702,14 +13702,23 @@ module TencentCloud
         # @type ExecutionGroupId: String
         # @param ExecutionGroupName: 执行资源组名字
         # @type ExecutionGroupName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param InCharge: 责任人
+        # @type InCharge: String
 
-        attr_accessor :ProjectId, :TaskTypeId, :ExecutionGroupId, :ExecutionGroupName
+        attr_accessor :ProjectId, :TaskTypeId, :ExecutionGroupId, :ExecutionGroupName, :StartTime, :EndTime, :InCharge
 
-        def initialize(projectid=nil, tasktypeid=nil, executiongroupid=nil, executiongroupname=nil)
+        def initialize(projectid=nil, tasktypeid=nil, executiongroupid=nil, executiongroupname=nil, starttime=nil, endtime=nil, incharge=nil)
           @ProjectId = projectid
           @TaskTypeId = tasktypeid
           @ExecutionGroupId = executiongroupid
           @ExecutionGroupName = executiongroupname
+          @StartTime = starttime
+          @EndTime = endtime
+          @InCharge = incharge
         end
 
         def deserialize(params)
@@ -13717,6 +13726,9 @@ module TencentCloud
           @TaskTypeId = params['TaskTypeId']
           @ExecutionGroupId = params['ExecutionGroupId']
           @ExecutionGroupName = params['ExecutionGroupName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -13760,15 +13772,21 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日前：2023-03-20
         # @type EndTime: String
+        # @param TaskType: 1
+        # @type TaskType: Integer
+        # @param InCharge: 1
+        # @type InCharge: String
 
-        attr_accessor :ProjectId, :CycleUnit, :TimeUnit, :StartTime, :EndTime
+        attr_accessor :ProjectId, :CycleUnit, :TimeUnit, :StartTime, :EndTime, :TaskType, :InCharge
 
-        def initialize(projectid=nil, cycleunit=nil, timeunit=nil, starttime=nil, endtime=nil)
+        def initialize(projectid=nil, cycleunit=nil, timeunit=nil, starttime=nil, endtime=nil, tasktype=nil, incharge=nil)
           @ProjectId = projectid
           @CycleUnit = cycleunit
           @TimeUnit = timeunit
           @StartTime = starttime
           @EndTime = endtime
+          @TaskType = tasktype
+          @InCharge = incharge
         end
 
         def deserialize(params)
@@ -13777,6 +13795,8 @@ module TencentCloud
           @TimeUnit = params['TimeUnit']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @TaskType = params['TaskType']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -13816,19 +13836,23 @@ module TencentCloud
         # @type TypeName: String
         # @param ProjectId: 111
         # @type ProjectId: String
+        # @param InCharge: 1
+        # @type InCharge: String
 
-        attr_accessor :TaskType, :TypeName, :ProjectId
+        attr_accessor :TaskType, :TypeName, :ProjectId, :InCharge
 
-        def initialize(tasktype=nil, typename=nil, projectid=nil)
+        def initialize(tasktype=nil, typename=nil, projectid=nil, incharge=nil)
           @TaskType = tasktype
           @TypeName = typename
           @ProjectId = projectid
+          @InCharge = incharge
         end
 
         def deserialize(params)
           @TaskType = params['TaskType']
           @TypeName = params['TypeName']
           @ProjectId = params['ProjectId']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -13864,15 +13888,19 @@ module TencentCloud
       class DescribeSchedulerTaskTypeCntRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
+        # @param InCharge: 1
+        # @type InCharge: String
 
-        attr_accessor :ProjectId
+        attr_accessor :ProjectId, :InCharge
 
-        def initialize(projectid=nil)
+        def initialize(projectid=nil, incharge=nil)
           @ProjectId = projectid
+          @InCharge = incharge
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -14083,10 +14111,20 @@ module TencentCloud
         # @type ExecutionGroupId: String
         # @param ExecutionGroupName: 资源组名称
         # @type ExecutionGroupName: String
+        # @param InCharge: 1
+        # @type InCharge: String
+        # @param TaskType: 1
+        # @type TaskType: Integer
+        # @param StateList: 1
+        # @type StateList: Array
+        # @param AggregationUnit: D代表天，H代表小时
+        # @type AggregationUnit: String
+        # @param AverageWindowSize: 1
+        # @type AverageWindowSize: Integer
 
-        attr_accessor :ProjectId, :TaskTypeId, :TimeType, :TypeName, :StartTime, :EndTime, :ExecutionGroupId, :ExecutionGroupName
+        attr_accessor :ProjectId, :TaskTypeId, :TimeType, :TypeName, :StartTime, :EndTime, :ExecutionGroupId, :ExecutionGroupName, :InCharge, :TaskType, :StateList, :AggregationUnit, :AverageWindowSize
 
-        def initialize(projectid=nil, tasktypeid=nil, timetype=nil, typename=nil, starttime=nil, endtime=nil, executiongroupid=nil, executiongroupname=nil)
+        def initialize(projectid=nil, tasktypeid=nil, timetype=nil, typename=nil, starttime=nil, endtime=nil, executiongroupid=nil, executiongroupname=nil, incharge=nil, tasktype=nil, statelist=nil, aggregationunit=nil, averagewindowsize=nil)
           @ProjectId = projectid
           @TaskTypeId = tasktypeid
           @TimeType = timetype
@@ -14095,6 +14133,11 @@ module TencentCloud
           @EndTime = endtime
           @ExecutionGroupId = executiongroupid
           @ExecutionGroupName = executiongroupname
+          @InCharge = incharge
+          @TaskType = tasktype
+          @StateList = statelist
+          @AggregationUnit = aggregationunit
+          @AverageWindowSize = averagewindowsize
         end
 
         def deserialize(params)
@@ -14106,6 +14149,11 @@ module TencentCloud
           @EndTime = params['EndTime']
           @ExecutionGroupId = params['ExecutionGroupId']
           @ExecutionGroupName = params['ExecutionGroupName']
+          @InCharge = params['InCharge']
+          @TaskType = params['TaskType']
+          @StateList = params['StateList']
+          @AggregationUnit = params['AggregationUnit']
+          @AverageWindowSize = params['AverageWindowSize']
         end
       end
 
@@ -14743,15 +14791,19 @@ module TencentCloud
       class DescribeTaskByCycleRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
+        # @param InCharge: 1
+        # @type InCharge: String
 
-        attr_accessor :ProjectId
+        attr_accessor :ProjectId, :InCharge
 
-        def initialize(projectid=nil)
+        def initialize(projectid=nil, incharge=nil)
           @ProjectId = projectid
+          @InCharge = incharge
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -14796,16 +14848,28 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
+        # @param AggregationUnit: 无
+        # @type AggregationUnit: String
+        # @param CycleUnit: 无
+        # @type CycleUnit: String
+        # @param Status: 无
+        # @type Status: String
+        # @param InCharge: 无
+        # @type InCharge: String
 
-        attr_accessor :ProjectId, :Type, :TaskType, :TypeName, :StartTime, :EndTime
+        attr_accessor :ProjectId, :Type, :TaskType, :TypeName, :StartTime, :EndTime, :AggregationUnit, :CycleUnit, :Status, :InCharge
 
-        def initialize(projectid=nil, type=nil, tasktype=nil, typename=nil, starttime=nil, endtime=nil)
+        def initialize(projectid=nil, type=nil, tasktype=nil, typename=nil, starttime=nil, endtime=nil, aggregationunit=nil, cycleunit=nil, status=nil, incharge=nil)
           @ProjectId = projectid
           @Type = type
           @TaskType = tasktype
           @TypeName = typename
           @StartTime = starttime
           @EndTime = endtime
+          @AggregationUnit = aggregationunit
+          @CycleUnit = cycleunit
+          @Status = status
+          @InCharge = incharge
         end
 
         def deserialize(params)
@@ -14815,6 +14879,10 @@ module TencentCloud
           @TypeName = params['TypeName']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @AggregationUnit = params['AggregationUnit']
+          @CycleUnit = params['CycleUnit']
+          @Status = params['Status']
+          @InCharge = params['InCharge']
         end
       end
 
@@ -19420,15 +19488,23 @@ module TencentCloud
         # @param ShowTime: 当前展示时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowTime: String
+        # @param ReportTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTime: String
+        # @param Count: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
 
-        attr_accessor :CountList, :TimeList, :InstanceStatus, :InstanceCount, :ShowTime
+        attr_accessor :CountList, :TimeList, :InstanceStatus, :InstanceCount, :ShowTime, :ReportTime, :Count
 
-        def initialize(countlist=nil, timelist=nil, instancestatus=nil, instancecount=nil, showtime=nil)
+        def initialize(countlist=nil, timelist=nil, instancestatus=nil, instancecount=nil, showtime=nil, reporttime=nil, count=nil)
           @CountList = countlist
           @TimeList = timelist
           @InstanceStatus = instancestatus
           @InstanceCount = instancecount
           @ShowTime = showtime
+          @ReportTime = reporttime
+          @Count = count
         end
 
         def deserialize(params)
@@ -19437,6 +19513,8 @@ module TencentCloud
           @InstanceStatus = params['InstanceStatus']
           @InstanceCount = params['InstanceCount']
           @ShowTime = params['ShowTime']
+          @ReportTime = params['ReportTime']
+          @Count = params['Count']
         end
       end
 
@@ -28259,14 +28337,20 @@ module TencentCloud
         # @param CycleUnit: 周期单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleUnit: String
+        # @param ReportTime: 1
+        # @type ReportTime: String
+        # @param Count: 1
+        # @type Count: Integer
 
-        attr_accessor :CountGroup, :ShowTimeGroup, :Status, :CycleUnit
+        attr_accessor :CountGroup, :ShowTimeGroup, :Status, :CycleUnit, :ReportTime, :Count
 
-        def initialize(countgroup=nil, showtimegroup=nil, status=nil, cycleunit=nil)
+        def initialize(countgroup=nil, showtimegroup=nil, status=nil, cycleunit=nil, reporttime=nil, count=nil)
           @CountGroup = countgroup
           @ShowTimeGroup = showtimegroup
           @Status = status
           @CycleUnit = cycleunit
+          @ReportTime = reporttime
+          @Count = count
         end
 
         def deserialize(params)
@@ -28274,6 +28358,8 @@ module TencentCloud
           @ShowTimeGroup = params['ShowTimeGroup']
           @Status = params['Status']
           @CycleUnit = params['CycleUnit']
+          @ReportTime = params['ReportTime']
+          @Count = params['Count']
         end
       end
 

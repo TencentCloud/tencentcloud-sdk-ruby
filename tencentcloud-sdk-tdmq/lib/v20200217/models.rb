@@ -4392,15 +4392,25 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: search-virtual-host：vhost名称模糊查询，之前前缀和后缀匹配
         # @type Filters: :class:`Tencentcloud::Tdmq.v20200217.models.Filter`
+        # @param SortElement: 排序依据的字段：
+        # MessageHeapCount - 消息堆积数；
+        # MessageRateInOut - 生产消费速率之和；
+        # MessageRateIn - 生产速率；
+        # MessageRateOut - 消费速率；
+        # @type SortElement: String
+        # @param SortOrder: 排序顺序，ascend 或 descend
+        # @type SortOrder: String
 
-        attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :Filters
+        attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :Filters, :SortElement, :SortOrder
 
-        def initialize(instanceid=nil, virtualhost=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(instanceid=nil, virtualhost=nil, offset=nil, limit=nil, filters=nil, sortelement=nil, sortorder=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @SortElement = sortelement
+          @SortOrder = sortorder
         end
 
         def deserialize(params)
@@ -4412,6 +4422,8 @@ module TencentCloud
             @Filters = Filter.new
             @Filters.deserialize(params['Filters'])
           end
+          @SortElement = params['SortElement']
+          @SortOrder = params['SortOrder']
         end
       end
 
@@ -7336,10 +7348,22 @@ module TencentCloud
         # @param VirtualHostStatistics: vhost概览统计信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHostStatistics: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQVirtualHostStatistics`
+        # @param Status: vhost状态，与原生控制台对应，有running、partial、stopped、unknown
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param MessageHeapCount: 消息堆积数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageHeapCount: Integer
+        # @param MessageRateIn: 输入消息速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateIn: Float
+        # @param MessageRateOut: 输出消息速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateOut: Float
 
-        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics
+        attr_accessor :InstanceId, :VirtualHost, :Description, :Tags, :CreateTime, :ModifyTime, :VirtualHostStatistics, :Status, :MessageHeapCount, :MessageRateIn, :MessageRateOut
 
-        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil)
+        def initialize(instanceid=nil, virtualhost=nil, description=nil, tags=nil, createtime=nil, modifytime=nil, virtualhoststatistics=nil, status=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @Description = description
@@ -7347,6 +7371,10 @@ module TencentCloud
           @CreateTime = createtime
           @ModifyTime = modifytime
           @VirtualHostStatistics = virtualhoststatistics
+          @Status = status
+          @MessageHeapCount = messageheapcount
+          @MessageRateIn = messageratein
+          @MessageRateOut = messagerateout
         end
 
         def deserialize(params)
@@ -7360,6 +7388,10 @@ module TencentCloud
             @VirtualHostStatistics = RabbitMQVirtualHostStatistics.new
             @VirtualHostStatistics.deserialize(params['VirtualHostStatistics'])
           end
+          @Status = params['Status']
+          @MessageHeapCount = params['MessageHeapCount']
+          @MessageRateIn = params['MessageRateIn']
+          @MessageRateOut = params['MessageRateOut']
         end
       end
 

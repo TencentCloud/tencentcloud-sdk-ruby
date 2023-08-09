@@ -62,12 +62,17 @@ module TencentCloud
 
       # AcceptVpcPeeringConnection请求参数结构体
       class AcceptVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionId: 对等连接唯一ID。
+        # @type PeeringConnectionId: String
 
+        attr_accessor :PeeringConnectionId
 
-        def initialize()
+        def initialize(peeringconnectionid=nil)
+          @PeeringConnectionId = peeringconnectionid
         end
 
         def deserialize(params)
+          @PeeringConnectionId = params['PeeringConnectionId']
         end
       end
 
@@ -6492,12 +6497,17 @@ module TencentCloud
 
       # DeleteVpcPeeringConnection请求参数结构体
       class DeleteVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionId: 对等连接唯一ID。
+        # @type PeeringConnectionId: String
 
+        attr_accessor :PeeringConnectionId
 
-        def initialize()
+        def initialize(peeringconnectionid=nil)
+          @PeeringConnectionId = peeringconnectionid
         end
 
         def deserialize(params)
+          @PeeringConnectionId = params['PeeringConnectionId']
         end
       end
 

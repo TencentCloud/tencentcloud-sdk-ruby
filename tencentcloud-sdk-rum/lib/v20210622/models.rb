@@ -2202,10 +2202,13 @@ module TencentCloud
         # @type Browser: String
         # @param Env: 环境
         # @type Env: String
+        # @param GroupByType: group by 参数值枚举1:1m  2:5m  3:30m  4:1h
+        #  5:1d
+        # @type GroupByType: Integer
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType
 
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, groupbytype=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -2227,6 +2230,7 @@ module TencentCloud
           @Os = os
           @Browser = browser
           @Env = env
+          @GroupByType = groupbytype
         end
 
         def deserialize(params)
@@ -2251,6 +2255,7 @@ module TencentCloud
           @Os = params['Os']
           @Browser = params['Browser']
           @Env = params['Env']
+          @GroupByType = params['GroupByType']
         end
       end
 

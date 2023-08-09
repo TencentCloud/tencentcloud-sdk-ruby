@@ -3921,11 +3921,14 @@ module TencentCloud
       class MediaCastOutputMediaSetting < TencentCloud::Common::AbstractModel
         # @param VideoSetting: 视频配置。
         # @type VideoSetting: :class:`Tencentcloud::Cme.v20191029.models.MediaCastVideoSetting`
+        # @param FollowSourceInfo: 视频配置是否和第一个输入源的视频配置相同，默认值：false。如果 FollowSourceInfo 的值为 true，忽略 VideoSetting 参数。
+        # @type FollowSourceInfo: Boolean
 
-        attr_accessor :VideoSetting
+        attr_accessor :VideoSetting, :FollowSourceInfo
 
-        def initialize(videosetting=nil)
+        def initialize(videosetting=nil, followsourceinfo=nil)
           @VideoSetting = videosetting
+          @FollowSourceInfo = followsourceinfo
         end
 
         def deserialize(params)
@@ -3933,6 +3936,7 @@ module TencentCloud
             @VideoSetting = MediaCastVideoSetting.new
             @VideoSetting.deserialize(params['VideoSetting'])
           end
+          @FollowSourceInfo = params['FollowSourceInfo']
         end
       end
 

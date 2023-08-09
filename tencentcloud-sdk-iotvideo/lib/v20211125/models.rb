@@ -5753,6 +5753,46 @@ module TencentCloud
         end
       end
 
+      # ResetCloudStorageEvent请求参数结构体
+      class ResetCloudStorageEventRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param UserId: 用户ID
+        # @type UserId: String
+
+        attr_accessor :ProductId, :DeviceName, :UserId
+
+        def initialize(productid=nil, devicename=nil, userid=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # ResetCloudStorageEvent返回参数结构体
+      class ResetCloudStorageEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetCloudStorage请求参数结构体
       class ResetCloudStorageRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

@@ -250,10 +250,15 @@ module TencentCloud
         # @type Time: String
         # @param Userid: 腾讯云账号
         # @type Userid: String
+        # @param UserId: 腾讯云账号
+        # @type UserId: String
 
-        attr_accessor :Content, :DeviceName, :ProductId, :RequestId, :Result, :Scene, :Time, :Userid
+        attr_accessor :Content, :DeviceName, :ProductId, :RequestId, :Result, :Scene, :Time, :Userid, :UserId
+        extend Gem::Deprecate
+        deprecate :Userid, :none, 2023, 8
+        deprecate :Userid=, :none, 2023, 8
 
-        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil)
+        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil, userid=nil)
           @Content = content
           @DeviceName = devicename
           @ProductId = productid
@@ -262,6 +267,7 @@ module TencentCloud
           @Scene = scene
           @Time = time
           @Userid = userid
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -273,6 +279,7 @@ module TencentCloud
           @Scene = params['Scene']
           @Time = params['Time']
           @Userid = params['Userid']
+          @UserId = params['UserId']
         end
       end
 
@@ -1178,7 +1185,7 @@ module TencentCloud
       class DescribeDeviceResponse < TencentCloud::Common::AbstractModel
         # @param DeviceName: 设备名
         # @type DeviceName: String
-        # @param Online: 设备是否在线，0不在线，1在线
+        # @param Online: 设备是否在线，0不在线，1在线，3未激活
         # @type Online: Integer
         # @param LoginTime: 设备登录时间
         # @type LoginTime: Integer
@@ -1236,12 +1243,17 @@ module TencentCloud
         # @param CreateUserId: 创建者账号ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserId: Integer
+        # @param NBIoTDeviceID: NB IoT运营商处的DeviceID
+        # @type NBIoTDeviceID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :RequestId
+        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :NBIoTDeviceID, :RequestId
+        extend Gem::Deprecate
+        deprecate :NbiotDeviceID, :none, 2023, 8
+        deprecate :NbiotDeviceID=, :none, 2023, 8
 
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, requestid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil, requestid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -1267,6 +1279,7 @@ module TencentCloud
           @ClientIP = clientip
           @FirmwareUpdateTime = firmwareupdatetime
           @CreateUserId = createuserid
+          @NBIoTDeviceID = nbiotdeviceid
           @RequestId = requestid
         end
 
@@ -1310,6 +1323,7 @@ module TencentCloud
           @ClientIP = params['ClientIP']
           @FirmwareUpdateTime = params['FirmwareUpdateTime']
           @CreateUserId = params['CreateUserId']
+          @NBIoTDeviceID = params['NBIoTDeviceID']
           @RequestId = params['RequestId']
         end
       end
@@ -2549,10 +2563,15 @@ module TencentCloud
         # @param CreateUserId: 创建者 Uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserId: Integer
+        # @param NBIoTDeviceID: NB IOT运营商处的DeviceID
+        # @type NBIoTDeviceID: String
 
-        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId
+        attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :NBIoTDeviceID
+        extend Gem::Deprecate
+        deprecate :NbiotDeviceID, :none, 2023, 8
+        deprecate :NbiotDeviceID=, :none, 2023, 8
 
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -2578,6 +2597,7 @@ module TencentCloud
           @ClientIP = clientip
           @FirmwareUpdateTime = firmwareupdatetime
           @CreateUserId = createuserid
+          @NBIoTDeviceID = nbiotdeviceid
         end
 
         def deserialize(params)
@@ -2620,6 +2640,7 @@ module TencentCloud
           @ClientIP = params['ClientIP']
           @FirmwareUpdateTime = params['FirmwareUpdateTime']
           @CreateUserId = params['CreateUserId']
+          @NBIoTDeviceID = params['NBIoTDeviceID']
         end
       end
 
@@ -3601,10 +3622,15 @@ module TencentCloud
         # @type DeviceLimit: Integer
         # @param ForbiddenStatus: 产品禁用状态
         # @type ForbiddenStatus: Integer
+        # @param AppEUI: LoRa产品运营侧APPEUI，只有LoRa产品需要填写
+        # @type AppEUI: String
 
-        attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit, :OriginProductId, :PrivateCAName, :OriginUserId, :DeviceLimit, :ForbiddenStatus
+        attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit, :OriginProductId, :PrivateCAName, :OriginUserId, :DeviceLimit, :ForbiddenStatus, :AppEUI
+        extend Gem::Deprecate
+        deprecate :Appeui, :none, 2023, 8
+        deprecate :Appeui=, :none, 2023, 8
 
-        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil)
+        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil, appeui=nil)
           @ProductDescription = productdescription
           @EncryptionType = encryptiontype
           @Region = region
@@ -3623,6 +3649,7 @@ module TencentCloud
           @OriginUserId = originuserid
           @DeviceLimit = devicelimit
           @ForbiddenStatus = forbiddenstatus
+          @AppEUI = appeui
         end
 
         def deserialize(params)
@@ -3644,6 +3671,7 @@ module TencentCloud
           @OriginUserId = params['OriginUserId']
           @DeviceLimit = params['DeviceLimit']
           @ForbiddenStatus = params['ForbiddenStatus']
+          @AppEUI = params['AppEUI']
         end
       end
 

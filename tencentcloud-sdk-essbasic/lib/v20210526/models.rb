@@ -3923,12 +3923,13 @@ module TencentCloud
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
-        # @param IdCardType: 签署人身份证件类型
+        # @param IdCardType: 签署人的证件类型
         # 1.ID_CARD 居民身份证
         # 2.HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证
         # 3.HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        # 4.OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
         # @type IdCardType: String
-        # @param IdCardNumber: 签署人证件号
+        # @param IdCardNumber: 签署人证件号（长度不超过18位）
         # @type IdCardNumber: String
         # @param Mobile: 签署人手机号，脱敏显示。大陆手机号为11位，暂不支持海外手机号。
         # @type Mobile: String

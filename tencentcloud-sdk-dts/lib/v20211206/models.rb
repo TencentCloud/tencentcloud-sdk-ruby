@@ -555,7 +555,7 @@ module TencentCloud
         # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
         # @type DstNodeType: String
-        # @param Options: 同步任务选项
+        # @param Options: 同步任务选项；该字段下的RateLimitOption暂时无法生效、如果需要修改限速、可通过ModifySyncRateLimit接口完成限速
         # @type Options: :class:`Tencentcloud::Dts.v20211206.models.Options`
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
         # @type AutoRetryTimeRangeMinutes: Integer
@@ -2008,12 +2008,17 @@ module TencentCloud
         # @param ErrorInfo: 任务错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: Array
+        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # @type DumperResumeCtrl: String
+        # @param RateLimitOption: 任务的限速信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :Tags, :RunMode, :ExpectRunTime, :MigrateOption, :CheckStepInfo, :TradeInfo, :ErrorInfo, :RequestId
+        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :Tags, :RunMode, :ExpectRunTime, :MigrateOption, :CheckStepInfo, :TradeInfo, :ErrorInfo, :DumperResumeCtrl, :RateLimitOption, :RequestId
 
-        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tags=nil, runmode=nil, expectruntime=nil, migrateoption=nil, checkstepinfo=nil, tradeinfo=nil, errorinfo=nil, requestid=nil)
+        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tags=nil, runmode=nil, expectruntime=nil, migrateoption=nil, checkstepinfo=nil, tradeinfo=nil, errorinfo=nil, dumperresumectrl=nil, ratelimitoption=nil, requestid=nil)
           @JobId = jobid
           @JobName = jobname
           @CreateTime = createtime
@@ -2034,6 +2039,8 @@ module TencentCloud
           @CheckStepInfo = checkstepinfo
           @TradeInfo = tradeinfo
           @ErrorInfo = errorinfo
+          @DumperResumeCtrl = dumperresumectrl
+          @RateLimitOption = ratelimitoption
           @RequestId = requestid
         end
 
@@ -2095,6 +2102,11 @@ module TencentCloud
               errorinfoitem_tmp.deserialize(i)
               @ErrorInfo << errorinfoitem_tmp
             end
+          end
+          @DumperResumeCtrl = params['DumperResumeCtrl']
+          unless params['RateLimitOption'].nil?
+            @RateLimitOption = RateLimitOption.new
+            @RateLimitOption.deserialize(params['RateLimitOption'])
           end
           @RequestId = params['RequestId']
         end
@@ -2704,10 +2716,13 @@ module TencentCloud
         # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatabaseNetEnv: String
+        # @param CcnOwnerUin: 数据库为跨账号云联网下的实例时、表示云联网所属主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnOwnerUin: String
 
-        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv
+        attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin
 
-        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil)
+        def initialize(region=nil, role=nil, dbkernel=nil, instanceid=nil, ip=nil, port=nil, user=nil, password=nil, dbname=nil, vpcid=nil, subnetid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, ccnid=nil, supplier=nil, engineversion=nil, account=nil, accountmode=nil, accountrole=nil, roleexternalid=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil)
           @Region = region
           @Role = role
           @DbKernel = dbkernel
@@ -2734,6 +2749,7 @@ module TencentCloud
           @TmpToken = tmptoken
           @EncryptConn = encryptconn
           @DatabaseNetEnv = databasenetenv
+          @CcnOwnerUin = ccnowneruin
         end
 
         def deserialize(params)
@@ -2763,6 +2779,33 @@ module TencentCloud
           @TmpToken = params['TmpToken']
           @EncryptConn = params['EncryptConn']
           @DatabaseNetEnv = params['DatabaseNetEnv']
+          @CcnOwnerUin = params['CcnOwnerUin']
+        end
+      end
+
+      # 错误信息及其解决方案
+      class ErrInfo < TencentCloud::Common::AbstractModel
+        # @param Reason: 错误原因
+        # @type Reason: String
+        # @param Message: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Solution: 解决方案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Solution: String
+
+        attr_accessor :Reason, :Message, :Solution
+
+        def initialize(reason=nil, message=nil, solution=nil)
+          @Reason = reason
+          @Message = message
+          @Solution = solution
+        end
+
+        def deserialize(params)
+          @Reason = params['Reason']
+          @Message = params['Message']
+          @Solution = params['Solution']
         end
       end
 
@@ -2920,10 +2963,13 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试时间段信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
+        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DumperResumeCtrl: String
 
-        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :RunMode, :ExpectRunTime, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :TradeInfo, :Tags, :AutoRetryTimeRangeMinutes
+        attr_accessor :JobId, :JobName, :CreateTime, :UpdateTime, :StartTime, :EndTime, :BriefMsg, :Status, :RunMode, :ExpectRunTime, :Action, :StepInfo, :SrcInfo, :DstInfo, :CompareTask, :TradeInfo, :Tags, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
 
-        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, runmode=nil, expectruntime=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tradeinfo=nil, tags=nil, autoretrytimerangeminutes=nil)
+        def initialize(jobid=nil, jobname=nil, createtime=nil, updatetime=nil, starttime=nil, endtime=nil, briefmsg=nil, status=nil, runmode=nil, expectruntime=nil, action=nil, stepinfo=nil, srcinfo=nil, dstinfo=nil, comparetask=nil, tradeinfo=nil, tags=nil, autoretrytimerangeminutes=nil, dumperresumectrl=nil)
           @JobId = jobid
           @JobName = jobname
           @CreateTime = createtime
@@ -2942,6 +2988,7 @@ module TencentCloud
           @TradeInfo = tradeinfo
           @Tags = tags
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
+          @DumperResumeCtrl = dumperresumectrl
         end
 
         def deserialize(params)
@@ -2988,6 +3035,7 @@ module TencentCloud
             end
           end
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
+          @DumperResumeCtrl = params['DumperResumeCtrl']
         end
       end
 
@@ -3387,7 +3435,7 @@ module TencentCloud
         # @type JobId: String
         # @param RunMode: 运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)
         # @type RunMode: String
-        # @param MigrateOption: 迁移任务配置选项，描述任务如何执行迁移等一系列配置信息
+        # @param MigrateOption: 迁移任务配置选项，描述任务如何执行迁移等一系列配置信息；字段下的RateLimitOption不可配置、如果需要修改任务的限速信息、请在任务运行后通过ModifyMigrateRateLimit接口修改
         # @type MigrateOption: :class:`Tencentcloud::Dts.v20211206.models.MigrateOption`
         # @param SrcInfo: 源实例信息
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
@@ -3592,10 +3640,16 @@ module TencentCloud
         # @param KafkaOption: kafka同步选项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
+        # @param RateLimitOption: 任务限速信息、该字段仅用作出参、入参该字段无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
+        # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRetryTimeRangeMinutes: Integer
 
-        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption
+        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes
 
-        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil)
+        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil)
           @InitType = inittype
           @DealOfExistSameTable = dealofexistsametable
           @ConflictHandleType = conflicthandletype
@@ -3604,6 +3658,8 @@ module TencentCloud
           @ConflictHandleOption = conflicthandleoption
           @DdlOptions = ddloptions
           @KafkaOption = kafkaoption
+          @RateLimitOption = ratelimitoption
+          @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
         end
 
         def deserialize(params)
@@ -3628,6 +3684,11 @@ module TencentCloud
             @KafkaOption = KafkaOption.new
             @KafkaOption.deserialize(params['KafkaOption'])
           end
+          unless params['RateLimitOption'].nil?
+            @RateLimitOption = RateLimitOption.new
+            @RateLimitOption.deserialize(params['RateLimitOption'])
+          end
+          @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
         end
       end
 
@@ -3768,6 +3829,73 @@ module TencentCloud
           @Message = params['Message']
           @Solution = params['Solution']
           @HelpDoc = params['HelpDoc']
+        end
+      end
+
+      # 迁移和同步任务限速的详细信息
+      class RateLimitOption < TencentCloud::Common::AbstractModel
+        # @param CurrentDumpThread: 当前生效的全量导出线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentDumpThread: Integer
+        # @param DefaultDumpThread: 默认的全量导出线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDumpThread: Integer
+        # @param CurrentDumpRps: 当前生效的全量导出Rps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentDumpRps: Integer
+        # @param DefaultDumpRps: 默认的全量导出Rps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDumpRps: Integer
+        # @param CurrentLoadThread: 当前生效的全量导入线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentLoadThread: Integer
+        # @param DefaultLoadThread: 默认的全量导入线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultLoadThread: Integer
+        # @param CurrentLoadRps: 当前生效的全量导入Rps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentLoadRps: Integer
+        # @param DefaultLoadRps: 默认的全量导入Rps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultLoadRps: Integer
+        # @param CurrentSinkerThread: 当前生效的增量导入线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentSinkerThread: Integer
+        # @param DefaultSinkerThread: 默认的增量导入线程数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultSinkerThread: Integer
+        # @param HasUserSetRateLimit: enum:"no"/"yes"、no表示用户未设置过限速、yes表示设置过限速
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasUserSetRateLimit: String
+
+        attr_accessor :CurrentDumpThread, :DefaultDumpThread, :CurrentDumpRps, :DefaultDumpRps, :CurrentLoadThread, :DefaultLoadThread, :CurrentLoadRps, :DefaultLoadRps, :CurrentSinkerThread, :DefaultSinkerThread, :HasUserSetRateLimit
+
+        def initialize(currentdumpthread=nil, defaultdumpthread=nil, currentdumprps=nil, defaultdumprps=nil, currentloadthread=nil, defaultloadthread=nil, currentloadrps=nil, defaultloadrps=nil, currentsinkerthread=nil, defaultsinkerthread=nil, hasusersetratelimit=nil)
+          @CurrentDumpThread = currentdumpthread
+          @DefaultDumpThread = defaultdumpthread
+          @CurrentDumpRps = currentdumprps
+          @DefaultDumpRps = defaultdumprps
+          @CurrentLoadThread = currentloadthread
+          @DefaultLoadThread = defaultloadthread
+          @CurrentLoadRps = currentloadrps
+          @DefaultLoadRps = defaultloadrps
+          @CurrentSinkerThread = currentsinkerthread
+          @DefaultSinkerThread = defaultsinkerthread
+          @HasUserSetRateLimit = hasusersetratelimit
+        end
+
+        def deserialize(params)
+          @CurrentDumpThread = params['CurrentDumpThread']
+          @DefaultDumpThread = params['DefaultDumpThread']
+          @CurrentDumpRps = params['CurrentDumpRps']
+          @DefaultDumpRps = params['DefaultDumpRps']
+          @CurrentLoadThread = params['CurrentLoadThread']
+          @DefaultLoadThread = params['DefaultLoadThread']
+          @CurrentLoadRps = params['CurrentLoadRps']
+          @DefaultLoadRps = params['DefaultLoadRps']
+          @CurrentSinkerThread = params['CurrentSinkerThread']
+          @DefaultSinkerThread = params['DefaultSinkerThread']
+          @HasUserSetRateLimit = params['HasUserSetRateLimit']
         end
       end
 
@@ -4554,7 +4682,7 @@ module TencentCloud
         # @param Progress: 总体进度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
-        # @param CurrentStepProgress: 当前步骤进度
+        # @param CurrentStepProgress: 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentStepProgress: Integer
         # @param MasterSlaveDistance: 同步两端数据量差距
@@ -4572,10 +4700,13 @@ module TencentCloud
         # @param CauseOfCompareDisable: 不能发起一致性校验的原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CauseOfCompareDisable: String
+        # @param ErrInfo: 任务的错误和解决方案信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrInfo: :class:`Tencentcloud::Dts.v20211206.models.ErrInfo`
 
-        attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos, :CauseOfCompareDisable
+        attr_accessor :StepAll, :StepNow, :Progress, :CurrentStepProgress, :MasterSlaveDistance, :SecondsBehindMaster, :Message, :StepInfos, :CauseOfCompareDisable, :ErrInfo
 
-        def initialize(stepall=nil, stepnow=nil, progress=nil, currentstepprogress=nil, masterslavedistance=nil, secondsbehindmaster=nil, message=nil, stepinfos=nil, causeofcomparedisable=nil)
+        def initialize(stepall=nil, stepnow=nil, progress=nil, currentstepprogress=nil, masterslavedistance=nil, secondsbehindmaster=nil, message=nil, stepinfos=nil, causeofcomparedisable=nil, errinfo=nil)
           @StepAll = stepall
           @StepNow = stepnow
           @Progress = progress
@@ -4585,6 +4716,7 @@ module TencentCloud
           @Message = message
           @StepInfos = stepinfos
           @CauseOfCompareDisable = causeofcomparedisable
+          @ErrInfo = errinfo
         end
 
         def deserialize(params)
@@ -4604,6 +4736,10 @@ module TencentCloud
             end
           end
           @CauseOfCompareDisable = params['CauseOfCompareDisable']
+          unless params['ErrInfo'].nil?
+            @ErrInfo = ErrInfo.new
+            @ErrInfo.deserialize(params['ErrInfo'])
+          end
         end
       end
 
@@ -4654,6 +4790,12 @@ module TencentCloud
         # @param SrcInfo: 源端信息，单节点数据库使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param SrcNodeType: 枚举值：cluster、single。源库为单节点数据库使用single，多节点使用cluster
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcNodeType: String
+        # @param SrcInfos: 源端信息，多节点数据库使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param DstRegion: 目标端地域，如：ap-guangzhou等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstRegion: String
@@ -4666,6 +4808,12 @@ module TencentCloud
         # @param DstInfo: 目标端信息，单节点数据库使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.Endpoint`
+        # @param DstNodeType: 枚举值：cluster、single。目标库为单节点数据库使用single，多节点使用cluster
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstNodeType: String
+        # @param DstInfos: 目标端信息，多节点数据库使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstInfos: :class:`Tencentcloud::Dts.v20211206.models.SyncDBEndpointInfos`
         # @param CreateTime: 创建时间，格式为 yyyy-mm-dd hh:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
@@ -4699,10 +4847,13 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试时间段设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
+        # @param DumperResumeCtrl: 全量导出可重入标识：enum::"yes"/"no"。yes表示当前任务可重入、no表示当前任务处于全量导出且不可重入阶段；如果在该值为no时重启任务导出流程不支持断点续传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DumperResumeCtrl: String
 
-        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :AutoRetryTimeRangeMinutes
+        attr_accessor :JobId, :JobName, :PayMode, :RunMode, :ExpectRunTime, :AllActions, :Actions, :Options, :Objects, :Specification, :ExpireTime, :SrcRegion, :SrcDatabaseType, :SrcAccessType, :SrcInfo, :SrcNodeType, :SrcInfos, :DstRegion, :DstDatabaseType, :DstAccessType, :DstInfo, :DstNodeType, :DstInfos, :CreateTime, :StartTime, :Status, :EndTime, :Tags, :Detail, :TradeStatus, :InstanceClass, :AutoRenew, :OfflineTime, :AutoRetryTimeRangeMinutes, :DumperResumeCtrl
 
-        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil, autoretrytimerangeminutes=nil)
+        def initialize(jobid=nil, jobname=nil, paymode=nil, runmode=nil, expectruntime=nil, allactions=nil, actions=nil, options=nil, objects=nil, specification=nil, expiretime=nil, srcregion=nil, srcdatabasetype=nil, srcaccesstype=nil, srcinfo=nil, srcnodetype=nil, srcinfos=nil, dstregion=nil, dstdatabasetype=nil, dstaccesstype=nil, dstinfo=nil, dstnodetype=nil, dstinfos=nil, createtime=nil, starttime=nil, status=nil, endtime=nil, tags=nil, detail=nil, tradestatus=nil, instanceclass=nil, autorenew=nil, offlinetime=nil, autoretrytimerangeminutes=nil, dumperresumectrl=nil)
           @JobId = jobid
           @JobName = jobname
           @PayMode = paymode
@@ -4718,10 +4869,14 @@ module TencentCloud
           @SrcDatabaseType = srcdatabasetype
           @SrcAccessType = srcaccesstype
           @SrcInfo = srcinfo
+          @SrcNodeType = srcnodetype
+          @SrcInfos = srcinfos
           @DstRegion = dstregion
           @DstDatabaseType = dstdatabasetype
           @DstAccessType = dstaccesstype
           @DstInfo = dstinfo
+          @DstNodeType = dstnodetype
+          @DstInfos = dstinfos
           @CreateTime = createtime
           @StartTime = starttime
           @Status = status
@@ -4733,6 +4888,7 @@ module TencentCloud
           @AutoRenew = autorenew
           @OfflineTime = offlinetime
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
+          @DumperResumeCtrl = dumperresumectrl
         end
 
         def deserialize(params)
@@ -4760,12 +4916,22 @@ module TencentCloud
             @SrcInfo = Endpoint.new
             @SrcInfo.deserialize(params['SrcInfo'])
           end
+          @SrcNodeType = params['SrcNodeType']
+          unless params['SrcInfos'].nil?
+            @SrcInfos = SyncDBEndpointInfos.new
+            @SrcInfos.deserialize(params['SrcInfos'])
+          end
           @DstRegion = params['DstRegion']
           @DstDatabaseType = params['DstDatabaseType']
           @DstAccessType = params['DstAccessType']
           unless params['DstInfo'].nil?
             @DstInfo = Endpoint.new
             @DstInfo.deserialize(params['DstInfo'])
+          end
+          @DstNodeType = params['DstNodeType']
+          unless params['DstInfos'].nil?
+            @DstInfos = SyncDBEndpointInfos.new
+            @DstInfos.deserialize(params['DstInfos'])
           end
           @CreateTime = params['CreateTime']
           @StartTime = params['StartTime']
@@ -4788,6 +4954,7 @@ module TencentCloud
           @AutoRenew = params['AutoRenew']
           @OfflineTime = params['OfflineTime']
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
+          @DumperResumeCtrl = params['DumperResumeCtrl']
         end
       end
 

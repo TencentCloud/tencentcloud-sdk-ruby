@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加组织成员访问授权
+
+        # @param request: Request instance for CreateOrganizationMemberAuthIdentity.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CreateOrganizationMemberAuthIdentityRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CreateOrganizationMemberAuthIdentityResponse`
+        def CreateOrganizationMemberAuthIdentity(request)
+          body = send_request('CreateOrganizationMemberAuthIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrganizationMemberAuthIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建组织成员访问授权策略
 
         # @param request: Request instance for CreateOrganizationMemberPolicy.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOrganizationMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除组织成员访问策略
+
+        # @param request: Request instance for DeleteOrganizationMembersPolicy.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteOrganizationMembersPolicyRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteOrganizationMembersPolicyResponse`
+        def DeleteOrganizationMembersPolicy(request)
+          body = send_request('DeleteOrganizationMembersPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOrganizationMembersPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

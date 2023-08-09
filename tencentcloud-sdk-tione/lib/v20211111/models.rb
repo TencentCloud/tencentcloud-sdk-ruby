@@ -553,6 +553,117 @@ module TencentCloud
         end
       end
 
+      # ChatCompletion请求参数结构体
+      class ChatCompletionRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 部署好的模型服务Id。
+        # @type Model: String
+        # @param Messages: 输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。
+        # @type Messages: Array
+        # @param Temperature: 采样随机值，默认值为1.0，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
+        # @type Temperature: Float
+        # @param TopP: 核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。
+        # @type TopP: Float
+        # @param MaxTokens: 最大生成的token数目。默认为无限大。
+        # @type MaxTokens: Integer
+
+        attr_accessor :Model, :Messages, :Temperature, :TopP, :MaxTokens
+
+        def initialize(model=nil, messages=nil, temperature=nil, topp=nil, maxtokens=nil)
+          @Model = model
+          @Messages = messages
+          @Temperature = temperature
+          @TopP = topp
+          @MaxTokens = maxtokens
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              message_tmp = Message.new
+              message_tmp.deserialize(i)
+              @Messages << message_tmp
+            end
+          end
+          @Temperature = params['Temperature']
+          @TopP = params['TopP']
+          @MaxTokens = params['MaxTokens']
+        end
+      end
+
+      # ChatCompletion返回参数结构体
+      class ChatCompletionResponse < TencentCloud::Common::AbstractModel
+        # @param Model: 部署好的服务Id
+        # @type Model: String
+        # @param Choices: 本次问答的答案。
+        # @type Choices: Array
+        # @param Id: 会话Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Usage: token统计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Usage: :class:`Tencentcloud::Tione.v20211111.models.Usage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Model, :Choices, :Id, :Usage, :RequestId
+
+        def initialize(model=nil, choices=nil, id=nil, usage=nil, requestid=nil)
+          @Model = model
+          @Choices = choices
+          @Id = id
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              choice_tmp = Choice.new
+              choice_tmp.deserialize(i)
+              @Choices << choice_tmp
+            end
+          end
+          @Id = params['Id']
+          unless params['Usage'].nil?
+            @Usage = Usage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 对话结果
+      class Choice < TencentCloud::Common::AbstractModel
+        # @param Message: 对话结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: :class:`Tencentcloud::Tione.v20211111.models.Message`
+        # @param FinishReason: 结束理由: stop, length, content_filter, null
+        # @type FinishReason: String
+        # @param Index: 序号
+        # @type Index: Integer
+
+        attr_accessor :Message, :FinishReason, :Index
+
+        def initialize(message=nil, finishreason=nil, index=nil)
+          @Message = message
+          @FinishReason = finishreason
+          @Index = index
+        end
+
+        def deserialize(params)
+          unless params['Message'].nil?
+            @Message = Message.new
+            @Message.deserialize(params['Message'])
+          end
+          @FinishReason = params['FinishReason']
+          @Index = params['Index']
+        end
+      end
+
       # 容器信息
       class Container < TencentCloud::Common::AbstractModel
         # @param Name: 名字
@@ -5574,6 +5685,28 @@ module TencentCloud
         end
       end
 
+      # 对话输入内容
+      class Message < TencentCloud::Common::AbstractModel
+        # @param Role: 角色名。支持三个角色：system、user、assistant，其中system仅开头可出现一次，也可忽略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param Content: 对话输入内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
       # 指标数据
       class MetricData < TencentCloud::Common::AbstractModel
         # @param TaskId: 训练任务id
@@ -9437,6 +9570,33 @@ module TencentCloud
             end
           end
           @CallbackUrl = params['CallbackUrl']
+        end
+      end
+
+      # 大模型生成Token统计
+      class Usage < TencentCloud::Common::AbstractModel
+        # @param CompletionTokens: 生成的token数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompletionTokens: Integer
+        # @param PromptTokens: 输入的token数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTokens: Integer
+        # @param TotalTokens: 总共token数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTokens: Integer
+
+        attr_accessor :CompletionTokens, :PromptTokens, :TotalTokens
+
+        def initialize(completiontokens=nil, prompttokens=nil, totaltokens=nil)
+          @CompletionTokens = completiontokens
+          @PromptTokens = prompttokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @CompletionTokens = params['CompletionTokens']
+          @PromptTokens = params['PromptTokens']
+          @TotalTokens = params['TotalTokens']
         end
       end
 

@@ -1282,10 +1282,19 @@ module TencentCloud
         # @param Port: 端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
+        # @param EnvId: TCB环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param TCBType: 部署的TCB类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TCBType: String
+        # @param Region: 部署的TCB地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port
+        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -1304,6 +1313,9 @@ module TencentCloud
           @Namespace = namespace
           @SecretName = secretname
           @Port = port
+          @EnvId = envid
+          @TCBType = tcbtype
+          @Region = region
         end
 
         def deserialize(params)
@@ -1325,6 +1337,9 @@ module TencentCloud
           @Namespace = params['Namespace']
           @SecretName = params['SecretName']
           @Port = params['Port']
+          @EnvId = params['EnvId']
+          @TCBType = params['TCBType']
+          @Region = params['Region']
         end
       end
 
@@ -1992,10 +2007,12 @@ module TencentCloud
         # @type IsSM: Integer
         # @param FilterExpiring: 筛选证书是否即将过期，传1是筛选，0不筛选
         # @type FilterExpiring: Integer
+        # @param Hostable: 是否可托管，可选值：1 = 可托管，0 =  不可托管。
+        # @type Hostable: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable
 
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil, hostable=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -2009,6 +2026,7 @@ module TencentCloud
           @FilterSource = filtersource
           @IsSM = issm
           @FilterExpiring = filterexpiring
+          @Hostable = hostable
         end
 
         def deserialize(params)
@@ -2025,6 +2043,7 @@ module TencentCloud
           @FilterSource = params['FilterSource']
           @IsSM = params['IsSM']
           @FilterExpiring = params['FilterExpiring']
+          @Hostable = params['Hostable']
         end
       end
 
@@ -2580,7 +2599,7 @@ module TencentCloud
 
       # DescribeHostDeployRecordDetail请求参数结构体
       class DescribeHostDeployRecordDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待部署的证书ID
+        # @param DeployRecordId: 部署记录ID
         # @type DeployRecordId: String
         # @param Offset: 分页偏移量，从0开始。
         # @type Offset: Integer
@@ -3014,7 +3033,7 @@ module TencentCloud
 
       # DescribeHostUpdateRecordDetail请求参数结构体
       class DescribeHostUpdateRecordDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRecordId: 待部署的证书ID
+        # @param DeployRecordId: 一键更新记录ID
         # @type DeployRecordId: String
         # @param Limit: 每页数量，默认10。
         # @type Limit: String
@@ -4911,7 +4930,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param OldCertificateId: 一键更新原证书ID
         # @type OldCertificateId: String
-        # @param ResourceTypes: 需要部署的资源类型
+        # @param ResourceTypes: 需要部署的资源类型，参数值可选：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb
         # @type ResourceTypes: Array
         # @param Regions: 需要部署的地域列表（废弃）
         # @type Regions: Array
@@ -4919,6 +4938,9 @@ module TencentCloud
         # @type ResourceTypesRegions: Array
 
         attr_accessor :CertificateId, :OldCertificateId, :ResourceTypes, :Regions, :ResourceTypesRegions
+        extend Gem::Deprecate
+        deprecate :Regions, :none, 2023, 8
+        deprecate :Regions=, :none, 2023, 8
 
         def initialize(certificateid=nil, oldcertificateid=nil, resourcetypes=nil, regions=nil, resourcetypesregions=nil)
           @CertificateId = certificateid
@@ -5096,10 +5118,16 @@ module TencentCloud
         # @param SecretName: secret名称（TKE专用）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretName: String
+        # @param EnvId: 环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param TCBType: TCB部署类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TCBType: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName
+        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -5120,6 +5148,8 @@ module TencentCloud
           @Port = port
           @Namespace = namespace
           @SecretName = secretname
+          @EnvId = envid
+          @TCBType = tcbtype
         end
 
         def deserialize(params)
@@ -5143,6 +5173,8 @@ module TencentCloud
           @Port = params['Port']
           @Namespace = params['Namespace']
           @SecretName = params['SecretName']
+          @EnvId = params['EnvId']
+          @TCBType = params['TCBType']
         end
       end
 
@@ -5236,18 +5268,21 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param CertificateUse: 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         # @type CertificateUse: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
         # @param Repeatable: 相同的证书是否允许重复上传
         # @type Repeatable: Boolean
 
-        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Repeatable
+        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Tags, :Repeatable
 
-        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, repeatable=nil)
+        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, tags=nil, repeatable=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @CertificateType = certificatetype
           @Alias = _alias
           @ProjectId = projectid
           @CertificateUse = certificateuse
+          @Tags = tags
           @Repeatable = repeatable
         end
 
@@ -5258,6 +5293,14 @@ module TencentCloud
           @Alias = params['Alias']
           @ProjectId = params['ProjectId']
           @CertificateUse = params['CertificateUse']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
           @Repeatable = params['Repeatable']
         end
       end

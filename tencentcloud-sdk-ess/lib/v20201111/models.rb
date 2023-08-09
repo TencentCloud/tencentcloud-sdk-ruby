@@ -90,13 +90,14 @@ module TencentCloud
         # @type OrganizationName: String
         # @param SignComponents: 签署人的签署控件列表
         # @type SignComponents: Array
-        # @param ApproverIdCardNumber: 签署人的身份证号
-        # @type ApproverIdCardNumber: String
-        # @param ApproverIdCardType: 签署人的身份证件类型
+        # @param ApproverIdCardType: 签署人的证件类型
         # ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        # OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
         # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: 签署人证件号（长度不超过18位）
+        # @type ApproverIdCardNumber: String
         # @param NotifyType: 签署通知类型：sms--短信，none--不通知
         # @type NotifyType: String
         # @param ApproverRole: 签署人角色类型：1--收款人、2--开具人、3--见证人
@@ -126,16 +127,16 @@ module TencentCloud
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要。为个人签署方时则由发起方企业审核。
         # @type ApproverNeedSignReview: Boolean
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardNumber, :ApproverIdCardType, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardnumber=nil, approveridcardtype=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
           @OrganizationName = organizationname
           @SignComponents = signcomponents
-          @ApproverIdCardNumber = approveridcardnumber
           @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
           @NotifyType = notifytype
           @ApproverRole = approverrole
           @VerifyChannel = verifychannel
@@ -162,8 +163,8 @@ module TencentCloud
               @SignComponents << component_tmp
             end
           end
-          @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @NotifyType = params['NotifyType']
           @ApproverRole = params['ApproverRole']
           @VerifyChannel = params['VerifyChannel']
@@ -5239,11 +5240,13 @@ module TencentCloud
         # @param ApproverMobile: 签署方经办人手机号码
         # <br/>在未指定签署人电子签UserId情况下，为必填参数
         # @type ApproverMobile: String
-        # @param ApproverIdCardType: 签署方经办人证件类型ID_CARD 身份证
+        # @param ApproverIdCardType: 签署人的证件类型
+        # ID_CARD 身份证
         # HONGKONG_AND_MACAO 港澳居民来往内地通行证
         # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        # OTHER_CARD_TYPE 其他（需要使用该类型请先联系运营经理）
         # @type ApproverIdCardType: String
-        # @param ApproverIdCardNumber: 签署方经办人证件号码
+        # @param ApproverIdCardNumber: 签署人证件号（长度不超过18位）
         # @type ApproverIdCardNumber: String
         # @param RecipientId: 签署方经办人在模板中的参与方ID
         # <br/>模板发起合同时，该参数为必填项

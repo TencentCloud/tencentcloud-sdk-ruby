@@ -1552,10 +1552,12 @@ module TencentCloud
         # @type ExecutorMaxNumbers: Integer
         # @param SparkImage: 指定spark版本名称，当前任务使用该spark镜像运行
         # @type SparkImage: String
+        # @param IsInherit: 是否继承集群的资源类配置：0：自定义（默认），1：继承集群；
+        # @type IsInherit: Integer
 
-        attr_accessor :Name, :Kind, :DataEngineName, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :Arguments, :ProxyUser, :TimeoutInSecond, :ExecutorMaxNumbers, :SparkImage
+        attr_accessor :Name, :Kind, :DataEngineName, :ProgramDependentFiles, :ProgramDependentJars, :ProgramDependentPython, :ProgramArchives, :DriverSize, :ExecutorSize, :ExecutorNumbers, :Arguments, :ProxyUser, :TimeoutInSecond, :ExecutorMaxNumbers, :SparkImage, :IsInherit
 
-        def initialize(name=nil, kind=nil, dataenginename=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, arguments=nil, proxyuser=nil, timeoutinsecond=nil, executormaxnumbers=nil, sparkimage=nil)
+        def initialize(name=nil, kind=nil, dataenginename=nil, programdependentfiles=nil, programdependentjars=nil, programdependentpython=nil, programarchives=nil, driversize=nil, executorsize=nil, executornumbers=nil, arguments=nil, proxyuser=nil, timeoutinsecond=nil, executormaxnumbers=nil, sparkimage=nil, isinherit=nil)
           @Name = name
           @Kind = kind
           @DataEngineName = dataenginename
@@ -1571,6 +1573,7 @@ module TencentCloud
           @TimeoutInSecond = timeoutinsecond
           @ExecutorMaxNumbers = executormaxnumbers
           @SparkImage = sparkimage
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -1596,6 +1599,7 @@ module TencentCloud
           @TimeoutInSecond = params['TimeoutInSecond']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
           @SparkImage = params['SparkImage']
+          @IsInherit = params['IsInherit']
         end
       end
 
@@ -2031,10 +2035,12 @@ module TencentCloud
         # 2.dlc.role.arn：用户配置的roleArn鉴权策略配置信息，可以用过该字段设置；
         # 3.dlc.sql.set.config：用户配置的集群配置信息，可以用过该字段设置；
         # @type Arguments: Array
+        # @param IsInherit: 是否继承集群的资源类配置：0：自定义（默认），1：继承集群；
+        # @type IsInherit: Integer
 
-        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments
+        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments, :IsInherit
 
-        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil)
+        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil, isinherit=nil)
           @DataEngineName = dataenginename
           @ExecuteSQL = executesql
           @DriverSize = driversize
@@ -2045,6 +2051,7 @@ module TencentCloud
           @SessionId = sessionid
           @SessionName = sessionname
           @Arguments = arguments
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -2065,6 +2072,7 @@ module TencentCloud
               @Arguments << kvpair_tmp
             end
           end
+          @IsInherit = params['IsInherit']
         end
       end
 

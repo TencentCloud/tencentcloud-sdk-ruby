@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 与大模型聊天
+
+        # @param request: Request instance for ChatCompletion.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ChatCompletionRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ChatCompletionResponse`
+        def ChatCompletion(request)
+          body = send_request('ChatCompletion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChatCompletionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量创建模型加速任务
 
         # @param request: Request instance for CreateBatchModelAccTasks.
