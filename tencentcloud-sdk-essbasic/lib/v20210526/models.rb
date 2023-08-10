@@ -135,6 +135,45 @@ module TencentCloud
         end
       end
 
+      # 自动签开启、签署相关配置
+      class AutoSignConfig < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 自动签开通个人用户的三要素
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+        # @param CertInfoCallback: 是否回调证书信息
+        # @type CertInfoCallback: Boolean
+        # @param UserDefineSeal: 是否支持用户自定义签名印章
+        # @type UserDefineSeal: Boolean
+        # @param SealImgCallback: 是否需要回调的时候返回印章(签名) 图片的 base64
+        # @type SealImgCallback: Boolean
+        # @param CallbackUrl: 回调链接，如果渠道已经配置了，可以不传
+        # @type CallbackUrl: String
+        # @param VerifyChannels: 开通时候的验证方式，取值：WEIXINAPP（微信人脸识别），INSIGHT（慧眼人脸认别），TELECOM（运营商三要素验证）。如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
+        # @type VerifyChannels: Array
+
+        attr_accessor :UserInfo, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :CallbackUrl, :VerifyChannels
+
+        def initialize(userinfo=nil, certinfocallback=nil, userdefineseal=nil, sealimgcallback=nil, callbackurl=nil, verifychannels=nil)
+          @UserInfo = userinfo
+          @CertInfoCallback = certinfocallback
+          @UserDefineSeal = userdefineseal
+          @SealImgCallback = sealimgcallback
+          @CallbackUrl = callbackurl
+          @VerifyChannels = verifychannels
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @CertInfoCallback = params['CertInfoCallback']
+          @UserDefineSeal = params['UserDefineSeal']
+          @SealImgCallback = params['SealImgCallback']
+          @CallbackUrl = params['CallbackUrl']
+          @VerifyChannels = params['VerifyChannels']
+        end
+      end
+
       # 基础流程信息
       class BaseFlowInfo < TencentCloud::Common::AbstractModel
         # @param FlowName: 合同流程名称
@@ -420,6 +459,59 @@ module TencentCloud
         end
       end
 
+      # ChannelCancelUserAutoSignEnableUrl请求参数结构体
+      class ChannelCancelUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param SceneKey: 自动签场景: E_PRESCRIPTION_AUTO_SIGN 电子处方
+        # @type SceneKey: String
+        # @param UserInfo: 指定撤销链接的用户信息，包含姓名、证件类型、证件号码。
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+
+        attr_accessor :Agent, :Operator, :SceneKey, :UserInfo
+
+        def initialize(agent=nil, operator=nil, scenekey=nil, userinfo=nil)
+          @Agent = agent
+          @Operator = operator
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+        end
+      end
+
+      # ChannelCancelUserAutoSignEnableUrl返回参数结构体
+      class ChannelCancelUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateBatchCancelFlowUrl请求参数结构体
       class ChannelCreateBatchCancelFlowUrlRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
@@ -682,22 +774,29 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowName: 签署流程名称，长度不超过200个字符
         # @type FlowName: String
+        # @param FlowDescription: 签署流程的描述，长度不超过1000个字符
+        # @type FlowDescription: String
         # @param FlowApprovers: 签署流程签约方列表，最多不超过50个参与方
         # @type FlowApprovers: Array
         # @param FileIds: 签署文件资源Id列表，目前仅支持单个文件
         # @type FileIds: Array
         # @param Components: 签署文件中的发起方的填写控件，需要在发起的时候进行填充
         # @type Components: Array
-        # @param Deadline: 签署流程截止时间，十位数时间戳，最大值为33162419560，即3020年
+        # @param Deadline: 签署流程的签署截止时间。
+        # 值为unix时间戳,精确到秒,不传默认为当前时间一年后
+        # 不能早于当前时间
         # @type Deadline: Integer
         # @param CallbackUrl: 签署流程回调地址，长度不超过255个字符
+        # 如果不传递回调地址， 则默认是配置应用号时候使用的回调地址
         # @type CallbackUrl: String
-        # @param Unordered: 合同签署顺序类型(无序签,顺序签)，默认为false，即有序签署。有序签署时以传入FlowApprovers数组的顺序作为签署顺序
+        # @param Unordered: 合同签署顺序类型
+        # true - 无序签,
+        # false - 顺序签，
+        # 默认为false，即有序签署。
+        # 有序签署时以传入FlowApprovers数组的顺序作为签署顺序
         # @type Unordered: Boolean
         # @param FlowType: 签署流程的类型，长度不超过255个字符
         # @type FlowType: String
-        # @param FlowDescription: 签署流程的描述，长度不超过1000个字符
-        # @type FlowDescription: String
         # @param CustomShowMap: 合同显示的页卡模板，说明：只支持{合同名称}, {发起方企业}, {发起方姓名}, {签署方N企业}, {签署方N姓名}，且N不能超过签署人的数量，N从1开始
         # @type CustomShowMap: String
         # @param CustomerData: 业务信息，最大长度1000个字符。
@@ -709,25 +808,31 @@ module TencentCloud
         # MobileCheck：手机号验证
         # 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
-        # @param SignBeanTag: 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
+        # @param SignBeanTag: 标识是否允许发起后添加控件。
+        # 0为不允许
+        # 1为允许。
+        # 如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         # @type SignBeanTag: Integer
         # @param CcInfos: 被抄送人信息列表
         # @type CcInfos: Array
-        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @param CcNotifyType: 给关注人发送短信通知的类型，
+        # 0-合同发起时通知
+        # 1-签署完成后通知
         # @type CcNotifyType: Integer
         # @param AutoSignScene: 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
         # @type AutoSignScene: String
         # @param Operator: 操作者的信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowName, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :FlowDescription, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator
+        attr_accessor :Agent, :FlowName, :FlowDescription, :FlowApprovers, :FileIds, :Components, :Deadline, :CallbackUrl, :Unordered, :FlowType, :CustomShowMap, :CustomerData, :NeedSignReview, :ApproverVerifyType, :SignBeanTag, :CcInfos, :CcNotifyType, :AutoSignScene, :Operator
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 8
         deprecate :Operator=, :none, 2023, 8
 
-        def initialize(agent=nil, flowname=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, flowdescription=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil)
+        def initialize(agent=nil, flowname=nil, flowdescription=nil, flowapprovers=nil, fileids=nil, components=nil, deadline=nil, callbackurl=nil, unordered=nil, flowtype=nil, customshowmap=nil, customerdata=nil, needsignreview=nil, approververifytype=nil, signbeantag=nil, ccinfos=nil, ccnotifytype=nil, autosignscene=nil, operator=nil)
           @Agent = agent
           @FlowName = flowname
+          @FlowDescription = flowdescription
           @FlowApprovers = flowapprovers
           @FileIds = fileids
           @Components = components
@@ -735,7 +840,6 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @Unordered = unordered
           @FlowType = flowtype
-          @FlowDescription = flowdescription
           @CustomShowMap = customshowmap
           @CustomerData = customerdata
           @NeedSignReview = needsignreview
@@ -753,6 +857,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @FlowName = params['FlowName']
+          @FlowDescription = params['FlowDescription']
           unless params['FlowApprovers'].nil?
             @FlowApprovers = []
             params['FlowApprovers'].each do |i|
@@ -774,7 +879,6 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @Unordered = params['Unordered']
           @FlowType = params['FlowType']
-          @FlowDescription = params['FlowDescription']
           @CustomShowMap = params['CustomShowMap']
           @CustomerData = params['CustomerData']
           @NeedSignReview = params['NeedSignReview']
@@ -1575,6 +1679,100 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateUserAutoSignEnableUrl请求参数结构体
+      class ChannelCreateUserAutoSignEnableUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SceneKey: 自动签场景:
+        # E_PRESCRIPTION_AUTO_SIGN 电子处方
+        # @type SceneKey: String
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param AutoSignConfig: 自动签开通，签署相关配置
+        # @type AutoSignConfig: :class:`Tencentcloud::Essbasic.v20210526.models.AutoSignConfig`
+        # @param UrlType: 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
+        # @type UrlType: String
+        # @param NotifyType: 通知类型，默认不填为不通知开通方，填写 SMS 为短信通知。
+        # @type NotifyType: String
+        # @param NotifyAddress: 若上方填写为 SMS，则此处为手机号
+        # @type NotifyAddress: String
+        # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为30天。如果不传，默认有效期为7天。
+        # @type ExpiredTime: Integer
+
+        attr_accessor :Agent, :SceneKey, :Operator, :AutoSignConfig, :UrlType, :NotifyType, :NotifyAddress, :ExpiredTime
+
+        def initialize(agent=nil, scenekey=nil, operator=nil, autosignconfig=nil, urltype=nil, notifytype=nil, notifyaddress=nil, expiredtime=nil)
+          @Agent = agent
+          @SceneKey = scenekey
+          @Operator = operator
+          @AutoSignConfig = autosignconfig
+          @UrlType = urltype
+          @NotifyType = notifytype
+          @NotifyAddress = notifyaddress
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['AutoSignConfig'].nil?
+            @AutoSignConfig = AutoSignConfig.new
+            @AutoSignConfig.deserialize(params['AutoSignConfig'])
+          end
+          @UrlType = params['UrlType']
+          @NotifyType = params['NotifyType']
+          @NotifyAddress = params['NotifyAddress']
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # ChannelCreateUserAutoSignEnableUrl返回参数结构体
+      class ChannelCreateUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 跳转短链
+        # @type Url: String
+        # @param AppId: 小程序AppId
+        # @type AppId: String
+        # @param AppOriginalId: 小程序 原始 Id
+        # @type AppOriginalId: String
+        # @param Path: 跳转路径
+        # @type Path: String
+        # @param QrCode: base64格式跳转二维码
+        # @type QrCode: String
+        # @param UrlType: 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
+        # @type UrlType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :AppId, :AppOriginalId, :Path, :QrCode, :UrlType, :RequestId
+
+        def initialize(url=nil, appid=nil, apporiginalid=nil, path=nil, qrcode=nil, urltype=nil, requestid=nil)
+          @Url = url
+          @AppId = appid
+          @AppOriginalId = apporiginalid
+          @Path = path
+          @QrCode = qrcode
+          @UrlType = urltype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @AppId = params['AppId']
+          @AppOriginalId = params['AppOriginalId']
+          @Path = params['Path']
+          @QrCode = params['QrCode']
+          @UrlType = params['UrlType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateUserRoles请求参数结构体
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
@@ -2118,6 +2316,126 @@ module TencentCloud
               @ChannelRoles << channelrole_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDescribeUserAutoSignStatus请求参数结构体
+      class ChannelDescribeUserAutoSignStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SceneKey: 自动签场景:
+        # E_PRESCRIPTION_AUTO_SIGN 电子处方
+        # @type SceneKey: String
+        # @param UserInfo: 查询开启状态的用户信息
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :SceneKey, :UserInfo, :Operator
+
+        def initialize(agent=nil, scenekey=nil, userinfo=nil, operator=nil)
+          @Agent = agent
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelDescribeUserAutoSignStatus返回参数结构体
+      class ChannelDescribeUserAutoSignStatusResponse < TencentCloud::Common::AbstractModel
+        # @param IsOpen: 是否开通
+        # @type IsOpen: Boolean
+        # @param LicenseFrom: 自动签许可生效时间。当且仅当已开通自动签时有值。
+        # @type LicenseFrom: Integer
+        # @param LicenseTo: 自动签许可到期时间。当且仅当已开通自动签时有值。
+        # @type LicenseTo: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :RequestId
+
+        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, requestid=nil)
+          @IsOpen = isopen
+          @LicenseFrom = licensefrom
+          @LicenseTo = licenseto
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsOpen = params['IsOpen']
+          @LicenseFrom = params['LicenseFrom']
+          @LicenseTo = params['LicenseTo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDisableUserAutoSign请求参数结构体
+      class ChannelDisableUserAutoSignRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SceneKey: 自动签场景:
+        # E_PRESCRIPTION_AUTO_SIGN 电子处方
+        # @type SceneKey: String
+        # @param UserInfo: 关闭自动签的个人的三要素
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :SceneKey, :UserInfo, :Operator
+
+        def initialize(agent=nil, scenekey=nil, userinfo=nil, operator=nil)
+          @Agent = agent
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelDisableUserAutoSign返回参数结构体
+      class ChannelDisableUserAutoSignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5979,6 +6297,33 @@ module TencentCloud
           @CustomUserId = params['CustomUserId']
           @ClientIp = params['ClientIp']
           @ProxyIp = params['ProxyIp']
+        end
+      end
+
+      # 用户的三要素：姓名，证件号，证件类型
+      class UserThreeFactor < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名
+        # @type Name: String
+        # @param IdCardType: 证件类型:
+        # ID_CARD 身份证
+        # HONGKONG_AND_MACAO 港澳居民来往内地通行证
+        # HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)
+        # @type IdCardType: String
+        # @param IdCardNumber: 证件号，如果有 X 请大写
+        # @type IdCardNumber: String
+
+        attr_accessor :Name, :IdCardType, :IdCardNumber
+
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil)
+          @Name = name
+          @IdCardType = idcardtype
+          @IdCardNumber = idcardnumber
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IdCardType = params['IdCardType']
+          @IdCardNumber = params['IdCardNumber']
         end
       end
 

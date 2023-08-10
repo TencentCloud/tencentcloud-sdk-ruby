@@ -373,6 +373,42 @@ module TencentCloud
         end
       end
 
+      # DeleteOrganizationMemberAuthIdentity请求参数结构体
+      class DeleteOrganizationMemberAuthIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员uin。
+        # @type MemberUin: Integer
+        # @param IdentityId: 身份Id。
+        # @type IdentityId: Integer
+
+        attr_accessor :MemberUin, :IdentityId
+
+        def initialize(memberuin=nil, identityid=nil)
+          @MemberUin = memberuin
+          @IdentityId = identityid
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+          @IdentityId = params['IdentityId']
+        end
+      end
+
+      # DeleteOrganizationMemberAuthIdentity返回参数结构体
+      class DeleteOrganizationMemberAuthIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOrganizationMembersPolicy请求参数结构体
       class DeleteOrganizationMembersPolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 访问策略ID。

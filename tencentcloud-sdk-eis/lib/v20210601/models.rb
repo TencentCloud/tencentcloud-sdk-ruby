@@ -138,10 +138,12 @@ module TencentCloud
         # @type Interval: Integer
         # @param RuntimeClass: 环境运行类型：0:运行时类型、1:api类型
         # @type RuntimeClass: Integer
+        # @param AggregationType: 资源指标聚合类型：0: 环境维度 1:执行引擎维度 2:datatwaypy维度 3.datawayjava维度
+        # @type AggregationType: Integer
 
-        attr_accessor :RuntimeId, :StartTime, :EndTime, :MetricType, :RateType, :Interval, :RuntimeClass
+        attr_accessor :RuntimeId, :StartTime, :EndTime, :MetricType, :RateType, :Interval, :RuntimeClass, :AggregationType
 
-        def initialize(runtimeid=nil, starttime=nil, endtime=nil, metrictype=nil, ratetype=nil, interval=nil, runtimeclass=nil)
+        def initialize(runtimeid=nil, starttime=nil, endtime=nil, metrictype=nil, ratetype=nil, interval=nil, runtimeclass=nil, aggregationtype=nil)
           @RuntimeId = runtimeid
           @StartTime = starttime
           @EndTime = endtime
@@ -149,6 +151,7 @@ module TencentCloud
           @RateType = ratetype
           @Interval = interval
           @RuntimeClass = runtimeclass
+          @AggregationType = aggregationtype
         end
 
         def deserialize(params)
@@ -159,6 +162,7 @@ module TencentCloud
           @RateType = params['RateType']
           @Interval = params['Interval']
           @RuntimeClass = params['RuntimeClass']
+          @AggregationType = params['AggregationType']
         end
       end
 
@@ -271,10 +275,14 @@ module TencentCloud
         # 0: 运行中
         # 2: 已停止
         # @type Status: Integer
+        # @param RuntimeClass: 0: 应用集成
+        # 1: API管理
+        # 2: ETL
+        # @type RuntimeClass: Integer
 
-        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone, :ApiVersion, :GroupId, :Status
+        attr_accessor :RuntimeId, :Limit, :Offset, :SortType, :Sort, :Zone, :ApiVersion, :GroupId, :Status, :RuntimeClass
 
-        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil, apiversion=nil, groupid=nil, status=nil)
+        def initialize(runtimeid=nil, limit=nil, offset=nil, sorttype=nil, sort=nil, zone=nil, apiversion=nil, groupid=nil, status=nil, runtimeclass=nil)
           @RuntimeId = runtimeid
           @Limit = limit
           @Offset = offset
@@ -284,6 +292,7 @@ module TencentCloud
           @ApiVersion = apiversion
           @GroupId = groupid
           @Status = status
+          @RuntimeClass = runtimeclass
         end
 
         def deserialize(params)
@@ -296,6 +305,7 @@ module TencentCloud
           @ApiVersion = params['ApiVersion']
           @GroupId = params['GroupId']
           @Status = params['Status']
+          @RuntimeClass = params['RuntimeClass']
         end
       end
 

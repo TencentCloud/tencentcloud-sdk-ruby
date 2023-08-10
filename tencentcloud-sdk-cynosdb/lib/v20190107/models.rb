@@ -3729,7 +3729,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
-        # @param LogFilter: 审计日志过滤条件。
+        # @param LogFilter: 过滤条件。多个值之前是且的关系。
         # @type LogFilter: Array
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
@@ -6518,7 +6518,10 @@ module TencentCloud
 
       # 审计日志搜索条件
       class InstanceAuditLogFilter < TencentCloud::Common::AbstractModel
-        # @param Type: 过滤项。支持以下搜索条件:
+        # @param Type: 过滤项。目前支持以下搜索条件：
+
+        # 包含、不包含、包含（分词维度）、不包含（分词维度）:
+        # sql - SQL详情
 
         # 等于、不等于、包含、不包含：
         # host - 客户端地址；
@@ -6532,7 +6535,7 @@ module TencentCloud
 
         # 范围搜索（时间类型统一为微妙）：
         # execTime - 执行时间；
-        # lockWaitTime - 执行时间；
+        # lockWaitTime - 锁等待时间；
         # ioWaitTime - IO等待时间；
         # trxLivingTime - 事物持续时间；
         # cpuTime - cpu时间；
@@ -6540,14 +6543,16 @@ module TencentCloud
         # affectRows - 影响行数；
         # sentRows - 返回行数。
         # @type Type: String
-        # @param Compare: 过滤条件。支持以下选项:
+        # @param Compare: 过滤条件。支持以下条件：
+        # WINC-包含（分词维度），
+        # WEXC-不包含（分词维度）,
         # INC - 包含,
         # EXC - 不包含,
         # EQS - 等于,
         # NEQ - 不等于,
-        # RA - 范围.
+        # RA - 范围。
         # @type Compare: String
-        # @param Value: 过滤的值。
+        # @param Value: 过滤的值。反向查询时，多个值之前是且的关系，正向查询多个值是或的关系。
         # @type Value: Array
 
         attr_accessor :Type, :Compare, :Value

@@ -1921,14 +1921,22 @@ module TencentCloud
         # @type SdkAppId: String
         # @param UserId: 用户唯一标识。
         # @type UserId: String
+        # @param RoomIdType: TRTC房间号的类型：
 
-        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId
+        # Integer：数字类型
+        # String：字符串类型
+        # 默认为：Integer 。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomIdType: String
 
-        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil)
+        attr_accessor :Sign, :RoomId, :SdkAppId, :UserId, :RoomIdType
+
+        def initialize(sign=nil, roomid=nil, sdkappid=nil, userid=nil, roomidtype=nil)
           @Sign = sign
           @RoomId = roomid
           @SdkAppId = sdkappid
           @UserId = userid
+          @RoomIdType = roomidtype
         end
 
         def deserialize(params)
@@ -1936,6 +1944,7 @@ module TencentCloud
           @RoomId = params['RoomId']
           @SdkAppId = params['SdkAppId']
           @UserId = params['UserId']
+          @RoomIdType = params['RoomIdType']
         end
       end
 

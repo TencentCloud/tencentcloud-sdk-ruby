@@ -6815,7 +6815,11 @@ module TencentCloud
         # @type ClientToken: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param CcNotifyType: 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        # @param CcNotifyType: 给关注人发送短信通知的类型，
+
+        # 0-合同发起时通知
+
+        # 1-签署完成后通知
         # @type CcNotifyType: Integer
 
         attr_accessor :Operator, :FlowId, :ClientToken, :Agent, :CcNotifyType
@@ -6845,7 +6849,13 @@ module TencentCloud
 
       # StartFlow返回参数结构体
       class StartFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 返回描述，START-发起成功， REVIEW-提交审核成功，EXECUTING-已提交发起任务
+        # @param Status: 发起成功之后返回状态，
+
+        # START-发起成功，
+
+        # REVIEW-提交审核成功，
+
+        # EXECUTING-已提交发起任务
         # @type Status: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

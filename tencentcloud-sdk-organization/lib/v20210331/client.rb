@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除组织成员访问授权
+
+        # @param request: Request instance for DeleteOrganizationMemberAuthIdentity.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteOrganizationMemberAuthIdentityRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteOrganizationMemberAuthIdentityResponse`
+        def DeleteOrganizationMemberAuthIdentity(request)
+          body = send_request('DeleteOrganizationMemberAuthIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOrganizationMemberAuthIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除企业组织成员
 
         # @param request: Request instance for DeleteOrganizationMembers.
