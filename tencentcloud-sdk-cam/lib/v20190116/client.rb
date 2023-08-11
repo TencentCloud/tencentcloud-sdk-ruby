@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建消息接收人接口：仅允许已完成实名认证的用户访问消息接收人接口，并对每个用户限制每天最多请求10次。
+
+        # @param request: Request instance for CreateMessageReceiver.
+        # @type request: :class:`Tencentcloud::cam::V20190116::CreateMessageReceiverRequest`
+        # @rtype: :class:`Tencentcloud::cam::V20190116::CreateMessageReceiverResponse`
+        def CreateMessageReceiver(request)
+          body = send_request('CreateMessageReceiver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMessageReceiverResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建角色OIDC配置
 
         # @param request: Request instance for CreateOIDCConfig.

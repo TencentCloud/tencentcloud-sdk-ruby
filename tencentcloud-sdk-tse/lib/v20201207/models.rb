@@ -2335,7 +2335,7 @@ module TencentCloud
         # @type DestinationPorts: Array
         # @param Headers: 路由的Headers
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Headers: :class:`Tencentcloud::Tse.v20201207.models.KVMapping`
+        # @type Headers: Array
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
@@ -2376,8 +2376,12 @@ module TencentCloud
           @ServiceID = params['ServiceID']
           @DestinationPorts = params['DestinationPorts']
           unless params['Headers'].nil?
-            @Headers = KVMapping.new
-            @Headers.deserialize(params['Headers'])
+            @Headers = []
+            params['Headers'].each do |i|
+              kvmapping_tmp = KVMapping.new
+              kvmapping_tmp.deserialize(i)
+              @Headers << kvmapping_tmp
+            end
           end
         end
       end

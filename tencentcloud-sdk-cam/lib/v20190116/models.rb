@@ -651,6 +651,54 @@ module TencentCloud
         end
       end
 
+      # CreateMessageReceiver请求参数结构体
+      class CreateMessageReceiverRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 消息接收人的用户名
+        # @type Name: String
+        # @param CountryCode: 手机号国际区号，国内为86
+        # @type CountryCode: String
+        # @param PhoneNumber: 手机号码, 例如：132****2492
+        # @type PhoneNumber: String
+        # @param Email: 邮箱，例如：57*****@qq.com
+        # @type Email: String
+        # @param Remark: 消息接收人的备注，选填
+        # @type Remark: String
+
+        attr_accessor :Name, :CountryCode, :PhoneNumber, :Email, :Remark
+
+        def initialize(name=nil, countrycode=nil, phonenumber=nil, email=nil, remark=nil)
+          @Name = name
+          @CountryCode = countrycode
+          @PhoneNumber = phonenumber
+          @Email = email
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CountryCode = params['CountryCode']
+          @PhoneNumber = params['PhoneNumber']
+          @Email = params['Email']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateMessageReceiver返回参数结构体
+      class CreateMessageReceiverResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOIDCConfig请求参数结构体
       class CreateOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param IdentityUrl: 身份提供商URL

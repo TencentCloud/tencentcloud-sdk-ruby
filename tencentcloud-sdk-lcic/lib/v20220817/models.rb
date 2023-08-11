@@ -817,7 +817,7 @@ module TencentCloud
         # @type RTCAudienceNumber: Integer
         # @param AudienceType: 观看类型。互动观看 （默认）
         # @type AudienceType: Integer
-        # @param RecordLayout: 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        # @param RecordLayout: 录制模板。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
         # @type GroupId: String
@@ -1945,12 +1945,14 @@ module TencentCloud
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         # @type RoomType: Integer
+        # @param VideoDuration: 录制时长
+        # @type VideoDuration: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -1972,6 +1974,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @VideoDuration = videoduration
           @RequestId = requestid
         end
 
@@ -1997,6 +2000,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @VideoDuration = params['VideoDuration']
           @RequestId = params['RequestId']
         end
       end

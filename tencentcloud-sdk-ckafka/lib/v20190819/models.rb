@@ -2270,8 +2270,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2023, 7
-        deprecate :DeleteRouteTimestamp=, :none, 2023, 7
+        deprecate :DeleteRouteTimestamp, :none, 2023, 8
+        deprecate :DeleteRouteTimestamp=, :none, 2023, 8
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -6337,10 +6337,12 @@ module TencentCloud
         # @type RecordMappingList: Array
         # @param DateField: 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
         # @type DateField: String
+        # @param RecordMappingMode: 用来区分当前索引映射，属于新建索引还是存量索引。"EXIST_MAPPING"：从存量索引中选择；"NEW_MAPPING"：新建索引
+        # @type RecordMappingMode: String
 
-        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField
+        attr_accessor :Resource, :Port, :UserName, :Password, :SelfBuilt, :ServiceVip, :UniqVpcId, :DropInvalidMessage, :Index, :DateFormat, :ContentKey, :DropInvalidJsonMessage, :DocumentIdField, :IndexType, :DropCls, :DatabasePrimaryKey, :DropDlq, :RecordMappingList, :DateField, :RecordMappingMode
 
-        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil)
+        def initialize(resource=nil, port=nil, username=nil, password=nil, selfbuilt=nil, servicevip=nil, uniqvpcid=nil, dropinvalidmessage=nil, index=nil, dateformat=nil, contentkey=nil, dropinvalidjsonmessage=nil, documentidfield=nil, indextype=nil, dropcls=nil, databaseprimarykey=nil, dropdlq=nil, recordmappinglist=nil, datefield=nil, recordmappingmode=nil)
           @Resource = resource
           @Port = port
           @UserName = username
@@ -6360,6 +6362,7 @@ module TencentCloud
           @DropDlq = dropdlq
           @RecordMappingList = recordmappinglist
           @DateField = datefield
+          @RecordMappingMode = recordmappingmode
         end
 
         def deserialize(params)
@@ -6395,6 +6398,7 @@ module TencentCloud
             end
           end
           @DateField = params['DateField']
+          @RecordMappingMode = params['RecordMappingMode']
         end
       end
 
@@ -7557,10 +7561,13 @@ module TencentCloud
         # @param DynamicDiskConfig: 动态硬盘扩容策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
+        # @param InstanceChargeType: 实例计费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargeType: String
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -7596,6 +7603,7 @@ module TencentCloud
           @RemainingPartitions = remainingpartitions
           @RemainingTopics = remainingtopics
           @DynamicDiskConfig = dynamicdiskconfig
+          @InstanceChargeType = instancechargetype
         end
 
         def deserialize(params)
@@ -7657,6 +7665,7 @@ module TencentCloud
             @DynamicDiskConfig = DynamicDiskConfig.new
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
+          @InstanceChargeType = params['InstanceChargeType']
         end
       end
 
@@ -9910,7 +9919,7 @@ module TencentCloud
       end
 
       # RenewCkafkaInstance接口出参bigDealIds
-      class RenewCkafkaInstanceResponse < TencentCloud::Common::AbstractModel
+      class RenewCkafkaInstanceResp < TencentCloud::Common::AbstractModel
         # @param BigDealId: 订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BigDealId: String
@@ -9928,6 +9937,29 @@ module TencentCloud
         def deserialize(params)
           @BigDealId = params['BigDealId']
           @DealName = params['DealName']
+        end
+      end
+
+      # RenewCkafkaInstance返回参数结构体
+      class RenewCkafkaInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.RenewCkafkaInstanceResp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = RenewCkafkaInstanceResp.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
