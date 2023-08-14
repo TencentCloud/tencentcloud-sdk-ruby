@@ -7734,6 +7734,58 @@ module TencentCloud
         end
       end
 
+      # 多日志主题检索错误信息
+      class SearchLogErrors < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param ErrorCodeStr: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCodeStr: String
+
+        attr_accessor :TopicId, :ErrorMsg, :ErrorCodeStr
+
+        def initialize(topicid=nil, errormsg=nil, errorcodestr=nil)
+          @TopicId = topicid
+          @ErrorMsg = errormsg
+          @ErrorCodeStr = errorcodestr
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ErrorMsg = params['ErrorMsg']
+          @ErrorCodeStr = params['ErrorCodeStr']
+        end
+      end
+
+      # 多日志主题检索topic信息
+      class SearchLogInfos < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param Period: 日志存储生命周期
+        # @type Period: Integer
+        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+
+        attr_accessor :TopicId, :Period, :Context
+
+        def initialize(topicid=nil, period=nil, context=nil)
+          @TopicId = topicid
+          @Period = period
+          @Context = context
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Period = params['Period']
+          @Context = params['Context']
+        end
+      end
+
       # SearchLog请求参数结构体
       class SearchLogRequest < TencentCloud::Common::AbstractModel
         # @param From: 要检索分析的日志的起始时间，Unix时间戳（毫秒）
@@ -7752,11 +7804,11 @@ module TencentCloud
         # * 仅当检索分析语句(Query)不包含SQL时有效
         # * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Limit: Integer
-        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+        # @param Context: 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时。
         # 注意：
         # * 透传该参数时，请勿修改除该参数外的其它参数
-        # * 仅当检索分析语句(Query)不包含SQL时有效
-        # * SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
+        # * 仅当检索分析语句(Query)不包含SQL时有效，SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
         # @type Context: String
         # @param Sort: 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # 注意：
@@ -7822,7 +7874,9 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时
+        # @param Context: 透传本次接口返回的Context值，可获取后续更多日志，过期时间1小时。
+        # 注意：
+        # * 仅适用于单日志主题检索，检索多个日志主题时，请使用Topics中的Context
         # @type Context: String
         # @param ListOver: 符合检索条件的日志是否已全部返回，如未全部返回可使用Context参数获取后续更多日志
         # 注意：仅当检索分析语句(Query)不包含SQL时有效
@@ -7851,12 +7905,15 @@ module TencentCloud
         # @param SamplingRate: 本次统计分析使用的采样率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SamplingRate: Float
+        # @param Topics: 使用多日志主题检索时，各个日志主题的基本信息，例如报错信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topics: :class:`Tencentcloud::Cls.v20201016.models.SearchLogTopics`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :SamplingRate, :RequestId
+        attr_accessor :Context, :ListOver, :Analysis, :Results, :ColNames, :AnalysisResults, :AnalysisRecords, :Columns, :SamplingRate, :Topics, :RequestId
 
-        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, samplingrate=nil, requestid=nil)
+        def initialize(context=nil, listover=nil, analysis=nil, results=nil, colnames=nil, analysisresults=nil, analysisrecords=nil, columns=nil, samplingrate=nil, topics=nil, requestid=nil)
           @Context = context
           @ListOver = listover
           @Analysis = analysis
@@ -7866,6 +7923,7 @@ module TencentCloud
           @AnalysisRecords = analysisrecords
           @Columns = columns
           @SamplingRate = samplingrate
+          @Topics = topics
           @RequestId = requestid
         end
 
@@ -7900,7 +7958,47 @@ module TencentCloud
             end
           end
           @SamplingRate = params['SamplingRate']
+          unless params['Topics'].nil?
+            @Topics = SearchLogTopics.new
+            @Topics.deserialize(params['Topics'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 多主题检索返回信息
+      class SearchLogTopics < TencentCloud::Common::AbstractModel
+        # @param Errors: 多日志主题检索对应的错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
+        # @param Infos: 多日志主题检索各日志主题信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Infos: Array
+
+        attr_accessor :Errors, :Infos
+
+        def initialize(errors=nil, infos=nil)
+          @Errors = errors
+          @Infos = infos
+        end
+
+        def deserialize(params)
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              searchlogerrors_tmp = SearchLogErrors.new
+              searchlogerrors_tmp.deserialize(i)
+              @Errors << searchlogerrors_tmp
+            end
+          end
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              searchloginfos_tmp = SearchLogInfos.new
+              searchloginfos_tmp.deserialize(i)
+              @Infos << searchloginfos_tmp
+            end
+          end
         end
       end
 

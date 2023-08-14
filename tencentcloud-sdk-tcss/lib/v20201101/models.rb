@@ -15400,6 +15400,367 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskDnsEventDetail请求参数结构体
+      class DescribeRiskDnsEventDetailRequest < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+
+        attr_accessor :EventID
+
+        def initialize(eventid=nil)
+          @EventID = eventid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+        end
+      end
+
+      # DescribeRiskDnsEventDetail返回参数结构体
+      class DescribeRiskDnsEventDetailResponse < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param EventType: 事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP
+        # @type EventType: String
+        # @param EventCount: 恶意请求次数
+        # @type EventCount: Integer
+        # @param FoundTime: 首次发现时间
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近生成时间
+        # @type LatestFoundTime: String
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param ContainerNetStatus: 隔离状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostIP: 内网IP
+        # @type HostIP: String
+        # @param PublicIP: 外网IP
+        # @type PublicIP: String
+        # @param PodName: 节点名称
+        # @type PodName: String
+        # @param Description: 事件描述
+        # @type Description: String
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param Reference: 参考链接
+        # @type Reference: Array
+        # @param Address: 恶意域名或IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param City: 恶意IP所属城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+        # @param MatchRuleType: 命中规则类型
+        # SYSTEM：系统规则
+        #  USER：用户自定义
+        # @type MatchRuleType: String
+        # @param FeatureLabel: 标签特征
+        # @type FeatureLabel: String
+        # @param ProcessAuthority: 进程权限
+        # @type ProcessAuthority: String
+        # @param ProcessMd5: 进程md5
+        # @type ProcessMd5: String
+        # @param ProcessStartUser: 进程启动用户
+        # @type ProcessStartUser: String
+        # @param ProcessUserGroup: 进程用户组
+        # @type ProcessUserGroup: String
+        # @param ProcessPath: 进程路径
+        # @type ProcessPath: String
+        # @param ProcessTree: 进程树
+        # @type ProcessTree: String
+        # @param ProcessParam: 进程命令行参数
+        # @type ProcessParam: String
+        # @param ParentProcessStartUser: 父进程启动用户
+        # @type ParentProcessStartUser: String
+        # @param ParentProcessUserGroup: 父进程用户组
+        # @type ParentProcessUserGroup: String
+        # @param ParentProcessPath: 父进程路径
+        # @type ParentProcessPath: String
+        # @param ParentProcessParam: 父进程命令行参数
+        # @type ParentProcessParam: String
+        # @param AncestorProcessStartUser: 祖先进程启动用户
+        # @type AncestorProcessStartUser: String
+        # @param AncestorProcessUserGroup: 祖先进程用户组
+        # @type AncestorProcessUserGroup: String
+        # @param AncestorProcessPath: 祖先进程路径
+        # @type AncestorProcessPath: String
+        # @param AncestorProcessParam: 祖先进程命令行参数
+        # @type AncestorProcessParam: String
+        # @param HostID: 主机ID
+        # @type HostID: String
+        # @param EventStatus: 事件状态
+        # EVENT_UNDEAL： 待处理
+        # EVENT_DEALED：已处理
+        # EVENT_IGNORE： 已忽略
+        # EVENT_ADD_WHITE：已加白
+        # @type EventStatus: String
+        # @param OperationTime: 操作时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationTime: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param NodeType: 节点类型
+        # @type NodeType: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param NodeSubNetID: 节点子网ID
+        # @type NodeSubNetID: String
+        # @param NodeSubNetName: 节点子网名称
+        # @type NodeSubNetName: String
+        # @param NodeSubNetCIDR: 节点子网网段
+        # @type NodeSubNetCIDR: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param PodIP: podip
+        # @type PodIP: String
+        # @param PodStatus: pod状态
+        # @type PodStatus: String
+        # @param NodeUniqueID: 节点唯一id
+        # @type NodeUniqueID: String
+        # @param NodeID: 节点ID名称
+        # @type NodeID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventID, :EventType, :EventCount, :FoundTime, :LatestFoundTime, :ContainerID, :ContainerName, :ContainerNetStatus, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ImageID, :ImageName, :HostName, :HostIP, :PublicIP, :PodName, :Description, :Solution, :Reference, :Address, :City, :MatchRuleType, :FeatureLabel, :ProcessAuthority, :ProcessMd5, :ProcessStartUser, :ProcessUserGroup, :ProcessPath, :ProcessTree, :ProcessParam, :ParentProcessStartUser, :ParentProcessUserGroup, :ParentProcessPath, :ParentProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :HostID, :EventStatus, :OperationTime, :Remark, :NodeType, :NodeName, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterID, :PodIP, :PodStatus, :NodeUniqueID, :NodeID, :ClusterName, :RequestId
+
+        def initialize(eventid=nil, eventtype=nil, eventcount=nil, foundtime=nil, latestfoundtime=nil, containerid=nil, containername=nil, containernetstatus=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, imageid=nil, imagename=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, solution=nil, reference=nil, address=nil, city=nil, matchruletype=nil, featurelabel=nil, processauthority=nil, processmd5=nil, processstartuser=nil, processusergroup=nil, processpath=nil, processtree=nil, processparam=nil, parentprocessstartuser=nil, parentprocessusergroup=nil, parentprocesspath=nil, parentprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, hostid=nil, eventstatus=nil, operationtime=nil, remark=nil, nodetype=nil, nodename=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clusterid=nil, podip=nil, podstatus=nil, nodeuniqueid=nil, nodeid=nil, clustername=nil, requestid=nil)
+          @EventID = eventid
+          @EventType = eventtype
+          @EventCount = eventcount
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @ContainerID = containerid
+          @ContainerName = containername
+          @ContainerNetStatus = containernetstatus
+          @ContainerStatus = containerstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ImageID = imageid
+          @ImageName = imagename
+          @HostName = hostname
+          @HostIP = hostip
+          @PublicIP = publicip
+          @PodName = podname
+          @Description = description
+          @Solution = solution
+          @Reference = reference
+          @Address = address
+          @City = city
+          @MatchRuleType = matchruletype
+          @FeatureLabel = featurelabel
+          @ProcessAuthority = processauthority
+          @ProcessMd5 = processmd5
+          @ProcessStartUser = processstartuser
+          @ProcessUserGroup = processusergroup
+          @ProcessPath = processpath
+          @ProcessTree = processtree
+          @ProcessParam = processparam
+          @ParentProcessStartUser = parentprocessstartuser
+          @ParentProcessUserGroup = parentprocessusergroup
+          @ParentProcessPath = parentprocesspath
+          @ParentProcessParam = parentprocessparam
+          @AncestorProcessStartUser = ancestorprocessstartuser
+          @AncestorProcessUserGroup = ancestorprocessusergroup
+          @AncestorProcessPath = ancestorprocesspath
+          @AncestorProcessParam = ancestorprocessparam
+          @HostID = hostid
+          @EventStatus = eventstatus
+          @OperationTime = operationtime
+          @Remark = remark
+          @NodeType = nodetype
+          @NodeName = nodename
+          @NodeSubNetID = nodesubnetid
+          @NodeSubNetName = nodesubnetname
+          @NodeSubNetCIDR = nodesubnetcidr
+          @ClusterID = clusterid
+          @PodIP = podip
+          @PodStatus = podstatus
+          @NodeUniqueID = nodeuniqueid
+          @NodeID = nodeid
+          @ClusterName = clustername
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @EventType = params['EventType']
+          @EventCount = params['EventCount']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @ContainerID = params['ContainerID']
+          @ContainerName = params['ContainerName']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerStatus = params['ContainerStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @HostName = params['HostName']
+          @HostIP = params['HostIP']
+          @PublicIP = params['PublicIP']
+          @PodName = params['PodName']
+          @Description = params['Description']
+          @Solution = params['Solution']
+          @Reference = params['Reference']
+          @Address = params['Address']
+          @City = params['City']
+          @MatchRuleType = params['MatchRuleType']
+          @FeatureLabel = params['FeatureLabel']
+          @ProcessAuthority = params['ProcessAuthority']
+          @ProcessMd5 = params['ProcessMd5']
+          @ProcessStartUser = params['ProcessStartUser']
+          @ProcessUserGroup = params['ProcessUserGroup']
+          @ProcessPath = params['ProcessPath']
+          @ProcessTree = params['ProcessTree']
+          @ProcessParam = params['ProcessParam']
+          @ParentProcessStartUser = params['ParentProcessStartUser']
+          @ParentProcessUserGroup = params['ParentProcessUserGroup']
+          @ParentProcessPath = params['ParentProcessPath']
+          @ParentProcessParam = params['ParentProcessParam']
+          @AncestorProcessStartUser = params['AncestorProcessStartUser']
+          @AncestorProcessUserGroup = params['AncestorProcessUserGroup']
+          @AncestorProcessPath = params['AncestorProcessPath']
+          @AncestorProcessParam = params['AncestorProcessParam']
+          @HostID = params['HostID']
+          @EventStatus = params['EventStatus']
+          @OperationTime = params['OperationTime']
+          @Remark = params['Remark']
+          @NodeType = params['NodeType']
+          @NodeName = params['NodeName']
+          @NodeSubNetID = params['NodeSubNetID']
+          @NodeSubNetName = params['NodeSubNetName']
+          @NodeSubNetCIDR = params['NodeSubNetCIDR']
+          @ClusterID = params['ClusterID']
+          @PodIP = params['PodIP']
+          @PodStatus = params['PodStatus']
+          @NodeUniqueID = params['NodeUniqueID']
+          @NodeID = params['NodeID']
+          @ClusterName = params['ClusterName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskDnsList请求参数结构体
+      class DescribeRiskDnsListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 需要返回的数量，默认为10，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。
+        # <li>EventStatus- String - 是否必填：否 - 事件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_ADD_WHITE：已加白</li>
+        # <li>ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED </li>
+        # <li>ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING</li>
+        # <li>EventType - String -是否必填: 否 -  事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP</li>
+        # <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
+        # <li>RiskDns- string - 是否必填：否 - 恶意域名。</li>
+        # <li>RiskIP- string - 是否必填：否 - 恶意IP。</li>
+        # <li>ContainerName- string - 是否必填：否 - 容器名称。</li>
+        # <li>ContainerID- string - 是否必填：否 - 容器ID。</li>
+        # <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
+        # <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        # <li>HostName- string - 是否必填：否 - 主机名称。</li>
+        # <li>HostIP- string - 是否必填：否 - 内网IP。</li>
+        # <li>PublicIP- string - 是否必填：否 - 外网IP。</li>
+        # @type Filters: Array
+        # @param Order: 排序方式：asc/desc
+        # @type Order: String
+        # @param By: 排序字段：告警数量：EventCount，最近生成时间：LatestFoundTime
+        # @type By: String
+
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
+
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeRiskDnsList返回参数结构体
+      class DescribeRiskDnsListResponse < TencentCloud::Common::AbstractModel
+        # @param List: 恶意请求事件列表
+        # @type List: Array
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              riskdnseventinfo_tmp = RiskDnsEventInfo.new
+              riskdnseventinfo_tmp.deserialize(i)
+              @List << riskdnseventinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskList请求参数结构体
       class DescribeRiskListRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 要查询的集群ID，如果不指定，则查询用户所有的风险项
@@ -24519,6 +24880,162 @@ module TencentCloud
           @ProcessName = params['ProcessName']
           @ImageIds = params['ImageIds']
           @Id = params['Id']
+        end
+      end
+
+      # 恶意请求事件信息
+      class RiskDnsEventInfo < TencentCloud::Common::AbstractModel
+        # @param EventID: 事件ID
+        # @type EventID: Integer
+        # @param EventType: 事件类型，恶意域名请求：DOMAIN，恶意IP请求：IP
+        # @type EventType: String
+        # @param Address: 恶意请求域名/IP
+        # @type Address: String
+        # @param ContainerID: 容器ID
+        # @type ContainerID: String
+        # @param ContainerName: 容器名称
+        # @type ContainerName: String
+        # @param ContainerNetStatus: 隔离状态
+        # 未隔离  	NORMAL
+        # 已隔离		ISOLATED
+        # 隔离中		ISOLATING
+        # 隔离失败	ISOLATE_FAILED
+        # 解除隔离中  RESTORING
+        # 解除隔离失败 RESTORE_FAILED
+        # @type ContainerNetStatus: String
+        # @param ContainerStatus: 容器状态
+        # 正在运行: RUNNING
+        # 暂停: PAUSED
+        # 停止: STOPPED
+        # 已经创建: CREATED
+        # 已经销毁: DESTROYED
+        # 正在重启中: RESTARTING
+        # 迁移中: REMOVING
+        # @type ContainerStatus: String
+        # @param ContainerNetSubStatus: 容器子状态
+        # "AGENT_OFFLINE"       //Agent离线
+        # "NODE_DESTROYED"      //节点已销毁
+        # "CONTAINER_EXITED"    //容器已退出
+        # "CONTAINER_DESTROYED" //容器已销毁
+        # "SHARED_HOST"         // 容器与主机共享网络
+        # "RESOURCE_LIMIT"      //隔离操作资源超限
+        # "UNKNOW"              // 原因未知
+        # @type ContainerNetSubStatus: String
+        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @type ContainerIsolateOperationSrc: String
+        # @param ImageID: 镜像ID
+        # @type ImageID: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param FoundTime: 首次发现时间
+        # @type FoundTime: String
+        # @param LatestFoundTime: 最近生成时间
+        # @type LatestFoundTime: String
+        # @param EventStatus: 事件状态
+        # EVENT_UNDEAL： 待处理
+        # EVENT_DEALED：已处理
+        # EVENT_IGNORE： 已忽略
+        # EVENT_ADD_WHITE：已加白
+        # @type EventStatus: String
+        # @param EventCount: 恶意请求次数
+        # @type EventCount: Integer
+        # @param Description: 事件描述
+        # @type Description: String
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param City: 恶意IP所属城市
+        # @type City: String
+        # @param HostName: 主机名称
+        # @type HostName: String
+        # @param HostID: 主机ID
+        # @type HostID: String
+        # @param HostIP: 内网IP
+        # @type HostIP: String
+        # @param PublicIP: 外网IP
+        # @type PublicIP: String
+        # @param NodeType: 节点类型：NORMAL普通节点、SUPER超级节点
+        # @type NodeType: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
+        # @param PodName: pod 名称
+        # @type PodName: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param NodeID: 节点id
+        # @type NodeID: String
+        # @param NodeUniqueID: 节点唯一id
+        # @type NodeUniqueID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+
+        attr_accessor :EventID, :EventType, :Address, :ContainerID, :ContainerName, :ContainerNetStatus, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ImageID, :ImageName, :FoundTime, :LatestFoundTime, :EventStatus, :EventCount, :Description, :Solution, :City, :HostName, :HostID, :HostIP, :PublicIP, :NodeType, :NodeName, :PodIP, :PodName, :ClusterID, :NodeID, :NodeUniqueID, :ClusterName
+
+        def initialize(eventid=nil, eventtype=nil, address=nil, containerid=nil, containername=nil, containernetstatus=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, imageid=nil, imagename=nil, foundtime=nil, latestfoundtime=nil, eventstatus=nil, eventcount=nil, description=nil, solution=nil, city=nil, hostname=nil, hostid=nil, hostip=nil, publicip=nil, nodetype=nil, nodename=nil, podip=nil, podname=nil, clusterid=nil, nodeid=nil, nodeuniqueid=nil, clustername=nil)
+          @EventID = eventid
+          @EventType = eventtype
+          @Address = address
+          @ContainerID = containerid
+          @ContainerName = containername
+          @ContainerNetStatus = containernetstatus
+          @ContainerStatus = containerstatus
+          @ContainerNetSubStatus = containernetsubstatus
+          @ContainerIsolateOperationSrc = containerisolateoperationsrc
+          @ImageID = imageid
+          @ImageName = imagename
+          @FoundTime = foundtime
+          @LatestFoundTime = latestfoundtime
+          @EventStatus = eventstatus
+          @EventCount = eventcount
+          @Description = description
+          @Solution = solution
+          @City = city
+          @HostName = hostname
+          @HostID = hostid
+          @HostIP = hostip
+          @PublicIP = publicip
+          @NodeType = nodetype
+          @NodeName = nodename
+          @PodIP = podip
+          @PodName = podname
+          @ClusterID = clusterid
+          @NodeID = nodeid
+          @NodeUniqueID = nodeuniqueid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @EventID = params['EventID']
+          @EventType = params['EventType']
+          @Address = params['Address']
+          @ContainerID = params['ContainerID']
+          @ContainerName = params['ContainerName']
+          @ContainerNetStatus = params['ContainerNetStatus']
+          @ContainerStatus = params['ContainerStatus']
+          @ContainerNetSubStatus = params['ContainerNetSubStatus']
+          @ContainerIsolateOperationSrc = params['ContainerIsolateOperationSrc']
+          @ImageID = params['ImageID']
+          @ImageName = params['ImageName']
+          @FoundTime = params['FoundTime']
+          @LatestFoundTime = params['LatestFoundTime']
+          @EventStatus = params['EventStatus']
+          @EventCount = params['EventCount']
+          @Description = params['Description']
+          @Solution = params['Solution']
+          @City = params['City']
+          @HostName = params['HostName']
+          @HostID = params['HostID']
+          @HostIP = params['HostIP']
+          @PublicIP = params['PublicIP']
+          @NodeType = params['NodeType']
+          @NodeName = params['NodeName']
+          @PodIP = params['PodIP']
+          @PodName = params['PodName']
+          @ClusterID = params['ClusterID']
+          @NodeID = params['NodeID']
+          @NodeUniqueID = params['NodeUniqueID']
+          @ClusterName = params['ClusterName']
         end
       end
 

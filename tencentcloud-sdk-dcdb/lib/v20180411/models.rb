@@ -3382,6 +3382,46 @@ module TencentCloud
         end
       end
 
+      # DescribeLogFileRetentionPeriod请求参数结构体
+      class DescribeLogFileRetentionPeriodRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLogFileRetentionPeriod返回参数结构体
+      class DescribeLogFileRetentionPeriodResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
+        # @type InstanceId: String
+        # @param Days: 日志备份天数
+        # @type Days: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Days, :RequestId
+
+        def initialize(instanceid=nil, days=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Days = days
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Days = params['Days']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrders请求参数结构体
       class DescribeOrdersRequest < TencentCloud::Common::AbstractModel
         # @param DealNames: 待查询的长订单号列表，创建实例、续费实例、扩容实例接口返回。

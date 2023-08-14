@@ -1523,6 +1523,80 @@ module TencentCloud
         end
       end
 
+      # ChannelCreatePreparedPersonalEsign请求参数结构体
+      class ChannelCreatePreparedPersonalEsignRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param UserName: 个人用户名称
+        # @type UserName: String
+        # @param IdCardNumber: 身份证件号码
+        # @type IdCardNumber: String
+        # @param SealImage: 印章图片的base64
+        # @type SealImage: String
+        # @param SealName: 印章名称
+        # @type SealName: String
+        # @param Operator: 操作者信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param IdCardType: 身份证件类型
+        # @type IdCardType: String
+        # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
+        # @type Mobile: String
+        # @param EnableAutoSign: 是否开通自动签，该功能需联系运营工作人员开通后使用
+        # @type EnableAutoSign: Boolean
+
+        attr_accessor :Agent, :UserName, :IdCardNumber, :SealImage, :SealName, :Operator, :IdCardType, :Mobile, :EnableAutoSign
+
+        def initialize(agent=nil, username=nil, idcardnumber=nil, sealimage=nil, sealname=nil, operator=nil, idcardtype=nil, mobile=nil, enableautosign=nil)
+          @Agent = agent
+          @UserName = username
+          @IdCardNumber = idcardnumber
+          @SealImage = sealimage
+          @SealName = sealname
+          @Operator = operator
+          @IdCardType = idcardtype
+          @Mobile = mobile
+          @EnableAutoSign = enableautosign
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @UserName = params['UserName']
+          @IdCardNumber = params['IdCardNumber']
+          @SealImage = params['SealImage']
+          @SealName = params['SealName']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @IdCardType = params['IdCardType']
+          @Mobile = params['Mobile']
+          @EnableAutoSign = params['EnableAutoSign']
+        end
+      end
+
+      # ChannelCreatePreparedPersonalEsign返回参数结构体
+      class ChannelCreatePreparedPersonalEsignResponse < TencentCloud::Common::AbstractModel
+        # @param SealId: 导入的印章 ID
+        # @type SealId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SealId, :RequestId
+
+        def initialize(sealid=nil, requestid=nil)
+          @SealId = sealid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SealId = params['SealId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateReleaseFlow请求参数结构体
       class ChannelCreateReleaseFlowRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
