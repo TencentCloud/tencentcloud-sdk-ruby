@@ -7691,6 +7691,63 @@ module TencentCloud
         end
       end
 
+      # SendChatMessage请求参数结构体
+      class SendChatMessageRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话id，标识一组对话的唯一id，id变更则重置会话
+        # @type SessionId: String
+        # @param Question: 问题描述
+        # @type Question: String
+        # @param ModelVersion: 会话模型版本，不同的会话模型调用到不同的模型后台。
+        # 注: 多行业多场景大模型填写 tj_llm_clm-v1
+        # @type ModelVersion: String
+        # @param Mode: 使用模式(仅部分模型支持)。General 通用问答；WithSearchPlugin 搜索增强问答
+        # @type Mode: String
+        # @param SearchSource: 搜索来源。仅当Mode未WithSearchPlugin时生效。Preset 预置文稿库；Custom 自定义。
+        # @type SearchSource: String
+
+        attr_accessor :SessionId, :Question, :ModelVersion, :Mode, :SearchSource
+
+        def initialize(sessionid=nil, question=nil, modelversion=nil, mode=nil, searchsource=nil)
+          @SessionId = sessionid
+          @Question = question
+          @ModelVersion = modelversion
+          @Mode = mode
+          @SearchSource = searchsource
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @Question = params['Question']
+          @ModelVersion = params['ModelVersion']
+          @Mode = params['Mode']
+          @SearchSource = params['SearchSource']
+        end
+      end
+
+      # SendChatMessage返回参数结构体
+      class SendChatMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Answer: 答案
+        # @type Answer: String
+        # @param SessionId: 会话id,返回请求的会话id
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Answer, :SessionId, :RequestId
+
+        def initialize(answer=nil, sessionid=nil, requestid=nil)
+          @Answer = answer
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Answer = params['Answer']
+          @SessionId = params['SessionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述在线服务
       class Service < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id

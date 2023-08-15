@@ -1692,15 +1692,21 @@ module TencentCloud
         # @type CorpId: Integer
         # @param SerialType: 是否有流水码 0:无 1:有
         # @type SerialType: Integer
+        # @param ResType: 资源类型 batch:批次, order_in 入库, order_out: 出入
+        # @type ResType: String
+        # @param ResId: 资源ID ResType是 batch 时对应是批次ID, 是 order_in, order_out时，则是订单ID
+        # @type ResId: String
 
-        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType
+        attr_accessor :PageSize, :PageNumber, :Keyword, :CorpId, :SerialType, :ResType, :ResId
 
-        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil)
+        def initialize(pagesize=nil, pagenumber=nil, keyword=nil, corpid=nil, serialtype=nil, restype=nil, resid=nil)
           @PageSize = pagesize
           @PageNumber = pagenumber
           @Keyword = keyword
           @CorpId = corpid
           @SerialType = serialtype
+          @ResType = restype
+          @ResId = resid
         end
 
         def deserialize(params)
@@ -1709,6 +1715,8 @@ module TencentCloud
           @Keyword = params['Keyword']
           @CorpId = params['CorpId']
           @SerialType = params['SerialType']
+          @ResType = params['ResType']
+          @ResId = params['ResId']
         end
       end
 
@@ -2336,8 +2344,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2023, 7
-        deprecate :Products=, :none, 2023, 7
+        deprecate :Products, :none, 2023, 8
+        deprecate :Products=, :none, 2023, 8
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3477,16 +3485,22 @@ module TencentCloud
       # 环节数据
       class PhaseData < TencentCloud::Common::AbstractModel
         # @param HeadEnabled: 启用头
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadEnabled: Boolean
         # @param HeadTitle: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTitle: String
         # @param Key: 标识符
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param AppId: 小程序AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
         # @param AppPath: 小程序AppPath
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppPath: String
         # @param AppName: 小程序名称AppName
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppName: String
 
         attr_accessor :HeadEnabled, :HeadTitle, :Key, :AppId, :AppPath, :AppName

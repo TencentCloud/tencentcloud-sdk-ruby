@@ -1701,7 +1701,7 @@ module TencentCloud
         # @type TaskType: Integer
         # @param EnableFlag: 任务启动状态.   默认为1:开启,  2:关闭
         # @type EnableFlag: Integer
-        # @param DstResources: 加工任务目的topic_id以及别名
+        # @param DstResources: 加工任务目的topic_id以及别名,当FuncType=1时，该参数必填，当FuncType=2时，无需填写
         # @type DstResources: Array
         # @param PreviewLogStatistics: 用于预览加工结果的测试数据
         # @type PreviewLogStatistics: Array

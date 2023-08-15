@@ -541,9 +541,9 @@ module TencentCloud
         # @type UpstreamType: Integer
         # @param IsWebsocket: 是否开启WebSocket支持，1表示开启，0不开启
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 负载均衡策略，0表示轮徇，1表示IP hash
+        # @param LoadBalance: 负载均衡策略，0表示轮询，1表示IP hash
         # @type LoadBalance: String
-        # @param Cert: CertType=1时，需要填次参数，表示证书内容
+        # @param Cert: 值为1时，需要填次参数，表示证书内容
         # @type Cert: String
         # @param PrivateKey: CertType=1时，需要填次参数，表示证书的私钥
         # @type PrivateKey: String
@@ -597,10 +597,12 @@ module TencentCloud
         # @type SniHost: String
         # @param IpHeaders: is_cdn=3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
+        # @param XFFReset: 0:关闭xff重置；1:开启xff重置
+        # @type XFFReset: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :IsHttp2, :HttpsRewrite, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, httpsrewrite=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -634,6 +636,7 @@ module TencentCloud
           @SniType = snitype
           @SniHost = snihost
           @IpHeaders = ipheaders
+          @XFFReset = xffreset
         end
 
         def deserialize(params)
@@ -677,6 +680,7 @@ module TencentCloud
           @SniType = params['SniType']
           @SniHost = params['SniHost']
           @IpHeaders = params['IpHeaders']
+          @XFFReset = params['XFFReset']
         end
       end
 
@@ -2056,7 +2060,7 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移
+        # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 容量
         # @type Limit: Integer
@@ -2900,14 +2904,19 @@ module TencentCloud
       # clb-waf 域名扩展套餐
       class DomainPackageNew < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param ValidTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTime: String
         # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Count: 套餐购买个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Region: 套餐购买地域，clb-waf暂时没有用到
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
 
         attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region
@@ -2999,10 +3008,13 @@ module TencentCloud
         # @param IpHeaders: IsCdn=3时，表示自定义header
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
+        # @param XFFReset: 0:关闭xff重置；1:开启xff重置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type XFFReset: Integer
 
-        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders
+        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset
 
-        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil)
+        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil)
           @HttpsRewrite = httpsrewrite
           @HttpsUpstreamPort = httpsupstreamport
           @IsCdn = iscdn
@@ -3032,6 +3044,7 @@ module TencentCloud
           @SniHost = snihost
           @Weights = weights
           @IpHeaders = ipheaders
+          @XFFReset = xffreset
         end
 
         def deserialize(params)
@@ -3071,6 +3084,7 @@ module TencentCloud
           @SniHost = params['SniHost']
           @Weights = params['Weights']
           @IpHeaders = params['IpHeaders']
+          @XFFReset = params['XFFReset']
         end
       end
 
@@ -3524,7 +3538,7 @@ module TencentCloud
         # @param AttackLogPost: 攻击日志投递开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AttackLogPost: Integer
-        # @param MaxBandwidth: 带宽峰值
+        # @param MaxBandwidth: 带宽峰值，单位为B/s(字节每秒)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxBandwidth: Integer
         # @param APISecurity: api安全是否购买
@@ -3541,10 +3555,13 @@ module TencentCloud
         # @param SandboxQps: 实例沙箱值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SandboxQps: Integer
+        # @param IsAPISecurityTrial: 是否api 安全试用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAPISecurityTrial: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -3575,6 +3592,7 @@ module TencentCloud
           @BandwidthStandard = bandwidthstandard
           @Status = status
           @SandboxQps = sandboxqps
+          @IsAPISecurityTrial = isapisecuritytrial
         end
 
         def deserialize(params)
@@ -3623,6 +3641,7 @@ module TencentCloud
           @BandwidthStandard = params['BandwidthStandard']
           @Status = params['Status']
           @SandboxQps = params['SandboxQps']
+          @IsAPISecurityTrial = params['IsAPISecurityTrial']
         end
       end
 
@@ -4198,7 +4217,7 @@ module TencentCloud
         # @type TLSVersion: Integer
         # @param Ciphers: 加密套件信息
         # @type Ciphers: Array
-        # @param CipherTemplate: 0:不支持选择：默认模版  1:通用型模版 2:安全型模版 3:自定义模版
+        # @param CipherTemplate: 0:不支持选择：默认模板  1:通用型模板 2:安全型模板 3:自定义模板
         # @type CipherTemplate: Integer
         # @param ProxyReadTimeout: 300s
         # @type ProxyReadTimeout: Integer
@@ -4210,10 +4229,12 @@ module TencentCloud
         # @type SniHost: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
+        # @param XFFReset: 0:关闭xff重置；1:开启xff重置
+        # @type XFFReset: Integer
 
-        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders
+        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset
 
-        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil)
+        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil)
           @Domain = domain
           @DomainId = domainid
           @CertType = certtype
@@ -4246,6 +4267,7 @@ module TencentCloud
           @SniType = snitype
           @SniHost = snihost
           @IpHeaders = ipheaders
+          @XFFReset = xffreset
         end
 
         def deserialize(params)
@@ -4288,6 +4310,7 @@ module TencentCloud
           @SniType = params['SniType']
           @SniHost = params['SniHost']
           @IpHeaders = params['IpHeaders']
+          @XFFReset = params['XFFReset']
         end
       end
 
@@ -4648,16 +4671,22 @@ module TencentCloud
       # clb-waf QPS套餐 New
       class QPSPackageNew < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceIds: String
         # @param ValidTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTime: String
         # @param RenewFlag: 是否自动续费，1：自动续费，0：不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param Count: 套餐购买个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Count: Integer
         # @param Region: 套餐购买地域，clb-waf暂时没有用到
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param BillingItem: 计费项
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillingItem: String
 
         attr_accessor :ResourceIds, :ValidTime, :RenewFlag, :Count, :Region, :BillingItem

@@ -2388,10 +2388,25 @@ module TencentCloud
         # @type CheckStatus: String
         # @param TaskCreateTime: 任务创建时间,检查时间
         # @type TaskCreateTime: String
+        # @param AccessedStatus: 接入状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessedStatus: String
+        # @param AccessedSubStatus: 接入失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessedSubStatus: String
+        # @param NodeCount: 节点总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeCount: Integer
+        # @param OffLineNodeCount: 离线节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffLineNodeCount: Integer
+        # @param UnInstallAgentNodeCount: 未安装agent节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnInstallAgentNodeCount: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime
+        attr_accessor :ClusterId, :ClusterName, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNodeNum, :Region, :DefenderStatus, :ClusterStatus, :ClusterCheckMode, :ClusterAutoCheck, :DefenderErrorReason, :UnreadyNodeNum, :SeriousRiskCount, :HighRiskCount, :MiddleRiskCount, :HintRiskCount, :CheckFailReason, :CheckStatus, :TaskCreateTime, :AccessedStatus, :AccessedSubStatus, :NodeCount, :OffLineNodeCount, :UnInstallAgentNodeCount
 
-        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternodenum=nil, region=nil, defenderstatus=nil, clusterstatus=nil, clustercheckmode=nil, clusterautocheck=nil, defendererrorreason=nil, unreadynodenum=nil, seriousriskcount=nil, highriskcount=nil, middleriskcount=nil, hintriskcount=nil, checkfailreason=nil, checkstatus=nil, taskcreatetime=nil, accessedstatus=nil, accessedsubstatus=nil, nodecount=nil, offlinenodecount=nil, uninstallagentnodecount=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterVersion = clusterversion
@@ -2412,6 +2427,11 @@ module TencentCloud
           @CheckFailReason = checkfailreason
           @CheckStatus = checkstatus
           @TaskCreateTime = taskcreatetime
+          @AccessedStatus = accessedstatus
+          @AccessedSubStatus = accessedsubstatus
+          @NodeCount = nodecount
+          @OffLineNodeCount = offlinenodecount
+          @UnInstallAgentNodeCount = uninstallagentnodecount
         end
 
         def deserialize(params)
@@ -2435,6 +2455,11 @@ module TencentCloud
           @CheckFailReason = params['CheckFailReason']
           @CheckStatus = params['CheckStatus']
           @TaskCreateTime = params['TaskCreateTime']
+          @AccessedStatus = params['AccessedStatus']
+          @AccessedSubStatus = params['AccessedSubStatus']
+          @NodeCount = params['NodeCount']
+          @OffLineNodeCount = params['OffLineNodeCount']
+          @UnInstallAgentNodeCount = params['UnInstallAgentNodeCount']
         end
       end
 
@@ -4208,20 +4233,25 @@ module TencentCloud
         # @type TaskId: Integer
         # @param CreateResult: 创建检查任务的结果，"Succ"为成功，其他的为失败原因
         # @type CreateResult: String
+        # @param NewTaskID: 返回创建的集群新任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewTaskID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :CreateResult, :RequestId
+        attr_accessor :TaskId, :CreateResult, :NewTaskID, :RequestId
 
-        def initialize(taskid=nil, createresult=nil, requestid=nil)
+        def initialize(taskid=nil, createresult=nil, newtaskid=nil, requestid=nil)
           @TaskId = taskid
           @CreateResult = createresult
+          @NewTaskID = newtaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @CreateResult = params['CreateResult']
+          @NewTaskID = params['NewTaskID']
           @RequestId = params['RequestId']
         end
       end
@@ -8391,12 +8421,18 @@ module TencentCloud
         # @type Project: :class:`Tencentcloud::Tcss.v20201101.models.ProjectInfo`
         # @param Tags: 标签
         # @type Tags: Array
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterAccessedStatus: 集群接入状态
+        # @type ClusterAccessedStatus: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :InstanceID, :RegionID, :Project, :Tags, :RequestId
+        attr_accessor :UUID, :UpdateTime, :HostName, :Group, :HostIP, :OsName, :AgentVersion, :KernelVersion, :DockerVersion, :DockerAPIVersion, :DockerGoVersion, :DockerFileSystemDriver, :DockerRootDir, :ImageCnt, :ContainerCnt, :K8sMasterIP, :K8sVersion, :KubeProxyVersion, :Status, :IsContainerd, :MachineType, :PublicIp, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus, :RequestId
 
-        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, requestid=nil)
+        def initialize(uuid=nil, updatetime=nil, hostname=nil, group=nil, hostip=nil, osname=nil, agentversion=nil, kernelversion=nil, dockerversion=nil, dockerapiversion=nil, dockergoversion=nil, dockerfilesystemdriver=nil, dockerrootdir=nil, imagecnt=nil, containercnt=nil, k8smasterip=nil, k8sversion=nil, kubeproxyversion=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil, requestid=nil)
           @UUID = uuid
           @UpdateTime = updatetime
           @HostName = hostname
@@ -8423,6 +8459,9 @@ module TencentCloud
           @RegionID = regionid
           @Project = project
           @Tags = tags
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @ClusterAccessedStatus = clusteraccessedstatus
           @RequestId = requestid
         end
 
@@ -8463,6 +8502,9 @@ module TencentCloud
               @Tags << taginfo_tmp
             end
           end
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @ClusterAccessedStatus = params['ClusterAccessedStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -11315,12 +11357,21 @@ module TencentCloud
         # @type NotImportedClusterCount: Integer
         # @param ServerlessClusterCount: eks集群数量
         # @type ServerlessClusterCount: Integer
+        # @param TkeClusterCount: TKE集群数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TkeClusterCount: Integer
+        # @param UserCreateTencentClusterCount: 用户自建腾讯云集群数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserCreateTencentClusterCount: Integer
+        # @param UserCreateHybridClusterCount: 用户自建集群混合云数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserCreateHybridClusterCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :CheckedClusterCount, :AutoCheckClusterCount, :ManualCheckClusterCount, :FailedClusterCount, :NotImportedClusterCount, :ServerlessClusterCount, :RequestId
+        attr_accessor :TotalCount, :RiskClusterCount, :UncheckClusterCount, :ManagedClusterCount, :IndependentClusterCount, :NoRiskClusterCount, :CheckedClusterCount, :AutoCheckClusterCount, :ManualCheckClusterCount, :FailedClusterCount, :NotImportedClusterCount, :ServerlessClusterCount, :TkeClusterCount, :UserCreateTencentClusterCount, :UserCreateHybridClusterCount, :RequestId
 
-        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, checkedclustercount=nil, autocheckclustercount=nil, manualcheckclustercount=nil, failedclustercount=nil, notimportedclustercount=nil, serverlessclustercount=nil, requestid=nil)
+        def initialize(totalcount=nil, riskclustercount=nil, uncheckclustercount=nil, managedclustercount=nil, independentclustercount=nil, noriskclustercount=nil, checkedclustercount=nil, autocheckclustercount=nil, manualcheckclustercount=nil, failedclustercount=nil, notimportedclustercount=nil, serverlessclustercount=nil, tkeclustercount=nil, usercreatetencentclustercount=nil, usercreatehybridclustercount=nil, requestid=nil)
           @TotalCount = totalcount
           @RiskClusterCount = riskclustercount
           @UncheckClusterCount = uncheckclustercount
@@ -11333,6 +11384,9 @@ module TencentCloud
           @FailedClusterCount = failedclustercount
           @NotImportedClusterCount = notimportedclustercount
           @ServerlessClusterCount = serverlessclustercount
+          @TkeClusterCount = tkeclustercount
+          @UserCreateTencentClusterCount = usercreatetencentclustercount
+          @UserCreateHybridClusterCount = usercreatehybridclustercount
           @RequestId = requestid
         end
 
@@ -11349,6 +11403,9 @@ module TencentCloud
           @FailedClusterCount = params['FailedClusterCount']
           @NotImportedClusterCount = params['NotImportedClusterCount']
           @ServerlessClusterCount = params['ServerlessClusterCount']
+          @TkeClusterCount = params['TkeClusterCount']
+          @UserCreateTencentClusterCount = params['UserCreateTencentClusterCount']
+          @UserCreateHybridClusterCount = params['UserCreateHybridClusterCount']
           @RequestId = params['RequestId']
         end
       end
@@ -15051,15 +15108,19 @@ module TencentCloud
       class DescribeRefreshTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
         # @type TaskId: Integer
+        # @param NewTaskID: 新任务ID
+        # @type NewTaskID: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :NewTaskID
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, newtaskid=nil)
           @TaskId = taskid
+          @NewTaskID = newtaskid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @NewTaskID = params['NewTaskID']
         end
       end
 
@@ -17309,20 +17370,25 @@ module TencentCloud
         # @type TaskId: Integer
         # @param TaskStatus: 任务状态，为Task_New,Task_Running,Task_Finish,Task_Error,Task_NoExist.Task_New,Task_Running表示有任务存在，不允许新下发
         # @type TaskStatus: String
+        # @param NewTaskID: 新任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewTaskID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskStatus, :RequestId
+        attr_accessor :TaskId, :TaskStatus, :NewTaskID, :RequestId
 
-        def initialize(taskid=nil, taskstatus=nil, requestid=nil)
+        def initialize(taskid=nil, taskstatus=nil, newtaskid=nil, requestid=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
+          @NewTaskID = newtaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @TaskStatus = params['TaskStatus']
+          @NewTaskID = params['NewTaskID']
           @RequestId = params['RequestId']
         end
       end
@@ -20692,10 +20758,14 @@ module TencentCloud
         # @type Tags: Array
         # @param ClusterID: 集群id
         # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterAccessedStatus: 集群接入状态
+        # @type ClusterAccessedStatus: String
 
-        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID
+        attr_accessor :HostID, :HostIP, :HostName, :Group, :DockerVersion, :DockerFileSystemDriver, :ImageCnt, :ContainerCnt, :Status, :IsContainerd, :MachineType, :PublicIp, :Uuid, :InstanceID, :RegionID, :Project, :Tags, :ClusterID, :ClusterName, :ClusterAccessedStatus
 
-        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil)
+        def initialize(hostid=nil, hostip=nil, hostname=nil, group=nil, dockerversion=nil, dockerfilesystemdriver=nil, imagecnt=nil, containercnt=nil, status=nil, iscontainerd=nil, machinetype=nil, publicip=nil, uuid=nil, instanceid=nil, regionid=nil, project=nil, tags=nil, clusterid=nil, clustername=nil, clusteraccessedstatus=nil)
           @HostID = hostid
           @HostIP = hostip
           @HostName = hostname
@@ -20714,6 +20784,8 @@ module TencentCloud
           @Project = project
           @Tags = tags
           @ClusterID = clusterid
+          @ClusterName = clustername
+          @ClusterAccessedStatus = clusteraccessedstatus
         end
 
         def deserialize(params)
@@ -20745,6 +20817,8 @@ module TencentCloud
             end
           end
           @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @ClusterAccessedStatus = params['ClusterAccessedStatus']
         end
       end
 

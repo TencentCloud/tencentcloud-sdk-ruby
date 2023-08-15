@@ -6232,10 +6232,12 @@ module TencentCloud
         # <li>单端口：80；</li>
         # <li>端口段：81-90，81至90端口。</li>
         # @type OriginPort: String
+        # @param RuleTag: 规则标签。不填保持原有值。
+        # @type RuleTag: String
 
-        attr_accessor :ZoneId, :ProxyId, :RuleId, :OriginType, :Port, :Proto, :OriginValue, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort
+        attr_accessor :ZoneId, :ProxyId, :RuleId, :OriginType, :Port, :Proto, :OriginValue, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort, :RuleTag
 
-        def initialize(zoneid=nil, proxyid=nil, ruleid=nil, origintype=nil, port=nil, proto=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil)
+        def initialize(zoneid=nil, proxyid=nil, ruleid=nil, origintype=nil, port=nil, proto=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil, ruletag=nil)
           @ZoneId = zoneid
           @ProxyId = proxyid
           @RuleId = ruleid
@@ -6247,6 +6249,7 @@ module TencentCloud
           @SessionPersist = sessionpersist
           @SessionPersistTime = sessionpersisttime
           @OriginPort = originport
+          @RuleTag = ruletag
         end
 
         def deserialize(params)
@@ -6261,6 +6264,7 @@ module TencentCloud
           @SessionPersist = params['SessionPersist']
           @SessionPersistTime = params['SessionPersistTime']
           @OriginPort = params['OriginPort']
+          @RuleTag = params['RuleTag']
         end
       end
 

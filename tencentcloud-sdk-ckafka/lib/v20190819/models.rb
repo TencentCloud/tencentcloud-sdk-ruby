@@ -9817,22 +9817,31 @@ module TencentCloud
       # record 与数据库表的映射关系
       class RecordMapping < TencentCloud::Common::AbstractModel
         # @param JsonKey: 消息的 key 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JsonKey: String
         # @param Type: 消息类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param AllowNull: 消息是否允许为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowNull: Boolean
         # @param ColumnName: 对应映射列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnName: String
         # @param ExtraInfo: 数据库表额外字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraInfo: String
         # @param ColumnSize: 当前列大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnSize: String
         # @param DecimalDigits: 当前列精度
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecimalDigits: String
         # @param AutoIncrement: 是否为自增列
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoIncrement: Boolean
         # @param DefaultValue: 数据库表默认参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultValue: String
 
         attr_accessor :JsonKey, :Type, :AllowNull, :ColumnName, :ExtraInfo, :ColumnSize, :DecimalDigits, :AutoIncrement, :DefaultValue

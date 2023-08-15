@@ -5879,6 +5879,42 @@ module TencentCloud
         end
       end
 
+      # ModifyLoadBalancersProject请求参数结构体
+      class ModifyLoadBalancersProjectRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 一个或多个待操作的负载均衡实例ID。
+        # @type LoadBalancerIds: Array
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: Integer
+
+        attr_accessor :LoadBalancerIds, :ProjectId
+
+        def initialize(loadbalancerids=nil, projectid=nil)
+          @LoadBalancerIds = loadbalancerids
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # ModifyLoadBalancersProject返回参数结构体
+      class ModifyLoadBalancersProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRule请求参数结构体
       class ModifyRuleRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID。

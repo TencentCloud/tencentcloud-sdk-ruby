@@ -4696,6 +4696,66 @@ module TencentCloud
         end
       end
 
+      # DuplicateImage请求参数结构体
+      class DuplicateImageRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例id
+        # @type RegistryId: String
+        # @param SourceNamespace: 源命名空间名称
+        # @type SourceNamespace: String
+        # @param SourceRepo: 源镜像仓库名称
+        # @type SourceRepo: String
+        # @param SourceReference: 源镜像tag或digest值，目前仅支持tag
+        # @type SourceReference: String
+        # @param DestinationTag: 目标镜像版本
+        # @type DestinationTag: String
+        # @param DestinationNamespace: 目标命名空间，不填默认与源一致
+        # @type DestinationNamespace: String
+        # @param DestinationRepo: 目标镜像仓库，不填默认与源一致
+        # @type DestinationRepo: String
+        # @param Override: 是否覆盖
+        # @type Override: Boolean
+
+        attr_accessor :RegistryId, :SourceNamespace, :SourceRepo, :SourceReference, :DestinationTag, :DestinationNamespace, :DestinationRepo, :Override
+
+        def initialize(registryid=nil, sourcenamespace=nil, sourcerepo=nil, sourcereference=nil, destinationtag=nil, destinationnamespace=nil, destinationrepo=nil, override=nil)
+          @RegistryId = registryid
+          @SourceNamespace = sourcenamespace
+          @SourceRepo = sourcerepo
+          @SourceReference = sourcereference
+          @DestinationTag = destinationtag
+          @DestinationNamespace = destinationnamespace
+          @DestinationRepo = destinationrepo
+          @Override = override
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @SourceNamespace = params['SourceNamespace']
+          @SourceRepo = params['SourceRepo']
+          @SourceReference = params['SourceReference']
+          @DestinationTag = params['DestinationTag']
+          @DestinationNamespace = params['DestinationNamespace']
+          @DestinationRepo = params['DestinationRepo']
+          @Override = params['Override']
+        end
+      end
+
+      # DuplicateImage返回参数结构体
+      class DuplicateImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 用于获取收藏仓库的响应
       class FavorResp < TencentCloud::Common::AbstractModel
         # @param TotalCount: 收藏仓库的总数

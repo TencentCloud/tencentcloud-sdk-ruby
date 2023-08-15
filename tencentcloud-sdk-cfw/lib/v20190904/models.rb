@@ -1512,10 +1512,16 @@ module TencentCloud
         # @param BetaList: 关联任务详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
+        # @param Scope: 生效范围：serial，串行；side，旁路；all，全局
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scope: String
+        # @param InternetBorderUuid: 互联网边界防火墙使用的内部规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetBorderUuid: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -1541,6 +1547,8 @@ module TencentCloud
           @InternalUuid = internaluuid
           @Status = status
           @BetaList = betalist
+          @Scope = scope
+          @InternetBorderUuid = internetborderuuid
         end
 
         def deserialize(params)
@@ -1576,6 +1584,8 @@ module TencentCloud
               @BetaList << betainfobyacl_tmp
             end
           end
+          @Scope = params['Scope']
+          @InternetBorderUuid = params['InternetBorderUuid']
         end
       end
 
@@ -4829,10 +4839,16 @@ module TencentCloud
         # @param RuleMax: 实例的规则限制最大规格数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleMax: Integer
+        # @param EngineVersion: 实例引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineVersion: String
+        # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateEnable: Integer
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable
 
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -4850,6 +4866,8 @@ module TencentCloud
           @ZoneZhBak = zonezhbak
           @RuleUsed = ruleused
           @RuleMax = rulemax
+          @EngineVersion = engineversion
+          @UpdateEnable = updateenable
         end
 
         def deserialize(params)
@@ -4870,6 +4888,8 @@ module TencentCloud
           @ZoneZhBak = params['ZoneZhBak']
           @RuleUsed = params['RuleUsed']
           @RuleMax = params['RuleMax']
+          @EngineVersion = params['EngineVersion']
+          @UpdateEnable = params['UpdateEnable']
         end
       end
 
@@ -6014,10 +6034,16 @@ module TencentCloud
         # @type NatInsName: String
         # @param SwitchStatus: 0：开关关闭 ， 1: 开关打开
         # @type SwitchStatus: Integer
+        # @param ProtectedStatus: 0：未防护， 1: 已防护，2：忽略此字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectedStatus: Integer
+        # @param SupportDNSFW: 是否支持DNS FW，0-不支持、1-支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDNSFW: Integer
 
-        attr_accessor :VpcId, :VpcName, :FwMode, :VpcIpv4Cidr, :DNSEip, :NatInsId, :NatInsName, :SwitchStatus
+        attr_accessor :VpcId, :VpcName, :FwMode, :VpcIpv4Cidr, :DNSEip, :NatInsId, :NatInsName, :SwitchStatus, :ProtectedStatus, :SupportDNSFW
 
-        def initialize(vpcid=nil, vpcname=nil, fwmode=nil, vpcipv4cidr=nil, dnseip=nil, natinsid=nil, natinsname=nil, switchstatus=nil)
+        def initialize(vpcid=nil, vpcname=nil, fwmode=nil, vpcipv4cidr=nil, dnseip=nil, natinsid=nil, natinsname=nil, switchstatus=nil, protectedstatus=nil, supportdnsfw=nil)
           @VpcId = vpcid
           @VpcName = vpcname
           @FwMode = fwmode
@@ -6026,6 +6052,8 @@ module TencentCloud
           @NatInsId = natinsid
           @NatInsName = natinsname
           @SwitchStatus = switchstatus
+          @ProtectedStatus = protectedstatus
+          @SupportDNSFW = supportdnsfw
         end
 
         def deserialize(params)
@@ -6037,6 +6065,8 @@ module TencentCloud
           @NatInsId = params['NatInsId']
           @NatInsName = params['NatInsName']
           @SwitchStatus = params['SwitchStatus']
+          @ProtectedStatus = params['ProtectedStatus']
+          @SupportDNSFW = params['SupportDNSFW']
         end
       end
 
