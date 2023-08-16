@@ -755,7 +755,7 @@ module TencentCloud
 
       # 资源包绑定的实例信息
       class BindInstanceInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 绑定的实例ID
+        # @param InstanceId: 绑定的集群ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
         # @param InstanceRegion: 绑定的实例所在的地域
@@ -764,19 +764,24 @@ module TencentCloud
         # @param InstanceType: 绑定的实例类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
+        # @param ExtendIds: 绑定集群下的实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendIds: Array
 
-        attr_accessor :InstanceId, :InstanceRegion, :InstanceType
+        attr_accessor :InstanceId, :InstanceRegion, :InstanceType, :ExtendIds
 
-        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil)
+        def initialize(instanceid=nil, instanceregion=nil, instancetype=nil, extendids=nil)
           @InstanceId = instanceid
           @InstanceRegion = instanceregion
           @InstanceType = instancetype
+          @ExtendIds = extendids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @InstanceRegion = params['InstanceRegion']
           @InstanceType = params['InstanceType']
+          @ExtendIds = params['ExtendIds']
         end
       end
 
@@ -993,10 +998,13 @@ module TencentCloud
         # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaintainWeekDays: Array
+        # @param ServerlessStatus: serverless实例子状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerlessStatus: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
+        attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus
 
-        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil)
+        def initialize(instanceid=nil, instancename=nil, instancetype=nil, instancestatus=nil, instancestatusdesc=nil, instancecpu=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, serverlessstatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceType = instancetype
@@ -1009,6 +1017,7 @@ module TencentCloud
           @MaintainStartTime = maintainstarttime
           @MaintainDuration = maintainduration
           @MaintainWeekDays = maintainweekdays
+          @ServerlessStatus = serverlessstatus
         end
 
         def deserialize(params)
@@ -1024,6 +1033,7 @@ module TencentCloud
           @MaintainStartTime = params['MaintainStartTime']
           @MaintainDuration = params['MaintainDuration']
           @MaintainWeekDays = params['MaintainWeekDays']
+          @ServerlessStatus = params['ServerlessStatus']
         end
       end
 
@@ -5601,7 +5611,7 @@ module TencentCloud
       class DescribeResourcePackageDetailRequest < TencentCloud::Common::AbstractModel
         # @param PackageId: 资源包唯一ID
         # @type PackageId: String
-        # @param ClusterIds: 实例ID
+        # @param ClusterIds: 集群ID
         # @type ClusterIds: Array
         # @param StartTime: 开始时间
         # @type StartTime: String
@@ -5611,16 +5621,19 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 限制
         # @type Limit: String
+        # @param InstanceIds: 实例D
+        # @type InstanceIds: Array
 
-        attr_accessor :PackageId, :ClusterIds, :StartTime, :EndTime, :Offset, :Limit
+        attr_accessor :PackageId, :ClusterIds, :StartTime, :EndTime, :Offset, :Limit, :InstanceIds
 
-        def initialize(packageid=nil, clusterids=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+        def initialize(packageid=nil, clusterids=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, instanceids=nil)
           @PackageId = packageid
           @ClusterIds = clusterids
           @StartTime = starttime
           @EndTime = endtime
           @Offset = offset
           @Limit = limit
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
@@ -5630,12 +5643,13 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @InstanceIds = params['InstanceIds']
         end
       end
 
       # DescribeResourcePackageDetail返回参数结构体
       class DescribeResourcePackageDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总使用明细数
+        # @param Total: 资源包抵扣总数
         # @type Total: Integer
         # @param Detail: 资源包明细说明
         # @type Detail: Array
@@ -6613,14 +6627,26 @@ module TencentCloud
         # @type InstanceType: String
         # @param InstanceCount: 实例个数,范围[1,15]
         # @type InstanceCount: Integer
+        # @param MinRoCount: Serverless实例个数最小值，范围[1,15]
+        # @type MinRoCount: Integer
+        # @param MaxRoCount: Serverless实例个数最大值，范围[1,15]
+        # @type MaxRoCount: Integer
+        # @param MinRoCpu: Serverless实例最小规格
+        # @type MinRoCpu: Float
+        # @param MaxRoCpu: Serverless实例最大规格
+        # @type MaxRoCpu: Float
 
-        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount
+        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :MinRoCount, :MaxRoCount, :MinRoCpu, :MaxRoCpu
 
-        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil)
+        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil, minrocount=nil, maxrocount=nil, minrocpu=nil, maxrocpu=nil)
           @Cpu = cpu
           @Memory = memory
           @InstanceType = instancetype
           @InstanceCount = instancecount
+          @MinRoCount = minrocount
+          @MaxRoCount = maxrocount
+          @MinRoCpu = minrocpu
+          @MaxRoCpu = maxrocpu
         end
 
         def deserialize(params)
@@ -6628,6 +6654,10 @@ module TencentCloud
           @Memory = params['Memory']
           @InstanceType = params['InstanceType']
           @InstanceCount = params['InstanceCount']
+          @MinRoCount = params['MinRoCount']
+          @MaxRoCount = params['MaxRoCount']
+          @MinRoCpu = params['MinRoCpu']
+          @MaxRoCpu = params['MaxRoCpu']
         end
       end
 

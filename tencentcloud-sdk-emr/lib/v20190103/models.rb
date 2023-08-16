@@ -3788,6 +3788,129 @@ module TencentCloud
         end
       end
 
+      # 强制修改标签
+      class ModifyResourceTags < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 集群id 或者 cvm id
+        # @type ResourceId: String
+        # @param Resource: 资源6段式表达式
+        # @type Resource: String
+        # @param ResourcePrefix: 资源前缀
+        # @type ResourcePrefix: String
+        # @param ResourceRegion: ap-beijing
+        # @type ResourceRegion: String
+        # @param ServiceType: emr
+        # @type ServiceType: String
+        # @param DeleteTags: 删除的标签列表
+        # @type DeleteTags: Array
+        # @param AddTags: 添加的标签列表
+        # @type AddTags: Array
+        # @param ModifyTags: 修改的标签列表
+        # @type ModifyTags: Array
+
+        attr_accessor :ResourceId, :Resource, :ResourcePrefix, :ResourceRegion, :ServiceType, :DeleteTags, :AddTags, :ModifyTags
+
+        def initialize(resourceid=nil, resource=nil, resourceprefix=nil, resourceregion=nil, servicetype=nil, deletetags=nil, addtags=nil, modifytags=nil)
+          @ResourceId = resourceid
+          @Resource = resource
+          @ResourcePrefix = resourceprefix
+          @ResourceRegion = resourceregion
+          @ServiceType = servicetype
+          @DeleteTags = deletetags
+          @AddTags = addtags
+          @ModifyTags = modifytags
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Resource = params['Resource']
+          @ResourcePrefix = params['ResourcePrefix']
+          @ResourceRegion = params['ResourceRegion']
+          @ServiceType = params['ServiceType']
+          unless params['DeleteTags'].nil?
+            @DeleteTags = []
+            params['DeleteTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @DeleteTags << tag_tmp
+            end
+          end
+          unless params['AddTags'].nil?
+            @AddTags = []
+            params['AddTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @AddTags << tag_tmp
+            end
+          end
+          unless params['ModifyTags'].nil?
+            @ModifyTags = []
+            params['ModifyTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ModifyTags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyResourcesTags请求参数结构体
+      class ModifyResourcesTagsRequest < TencentCloud::Common::AbstractModel
+        # @param ModifyType: 标签类型，取值Cluster或者Node
+        # @type ModifyType: String
+        # @param ModifyResourceTagsInfoList: 标签信息
+        # @type ModifyResourceTagsInfoList: Array
+
+        attr_accessor :ModifyType, :ModifyResourceTagsInfoList
+
+        def initialize(modifytype=nil, modifyresourcetagsinfolist=nil)
+          @ModifyType = modifytype
+          @ModifyResourceTagsInfoList = modifyresourcetagsinfolist
+        end
+
+        def deserialize(params)
+          @ModifyType = params['ModifyType']
+          unless params['ModifyResourceTagsInfoList'].nil?
+            @ModifyResourceTagsInfoList = []
+            params['ModifyResourceTagsInfoList'].each do |i|
+              modifyresourcetags_tmp = ModifyResourceTags.new
+              modifyresourcetags_tmp.deserialize(i)
+              @ModifyResourceTagsInfoList << modifyresourcetags_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyResourcesTags返回参数结构体
+      class ModifyResourcesTagsResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessList: 成功的资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessList: Array
+        # @param FailList: 失败的资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailList: Array
+        # @param PartSuccessList: 部分成功的资源id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartSuccessList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessList, :FailList, :PartSuccessList, :RequestId
+
+        def initialize(successlist=nil, faillist=nil, partsuccesslist=nil, requestid=nil)
+          @SuccessList = successlist
+          @FailList = faillist
+          @PartSuccessList = partsuccesslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessList = params['SuccessList']
+          @FailList = params['FailList']
+          @PartSuccessList = params['PartSuccessList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多云盘参数
       class MultiDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 云盘类型

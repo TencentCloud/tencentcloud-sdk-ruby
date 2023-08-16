@@ -17,6 +17,33 @@
 module TencentCloud
   module Dasb
     module V20191018
+      # 权限控制模版对象
+      class ACTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param TemplateName: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param Description: 模版描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :TemplateId, :TemplateName, :Description
+
+        def initialize(templateid=nil, templatename=nil, description=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Description = description
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Description = params['Description']
+        end
+      end
+
       # 访问权限
       class Acl < TencentCloud::Common::AbstractModel
         # @param Id: 访问权限ID
@@ -76,10 +103,16 @@ module TencentCloud
         # @param Department: 所属部门的信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Dasb.v20191018.models.Department`
+        # @param AllowAccessCredential: 是否允许使用访问串，默认允许
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowAccessCredential: Boolean
+        # @param ACTemplateSet: 关联的数据库高危命令列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ACTemplateSet: Array
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -107,6 +140,8 @@ module TencentCloud
           @ValidateTo = validateto
           @Status = status
           @Department = department
+          @AllowAccessCredential = allowaccesscredential
+          @ACTemplateSet = actemplateset
         end
 
         def deserialize(params)
@@ -174,6 +209,15 @@ module TencentCloud
           unless params['Department'].nil?
             @Department = Department.new
             @Department.deserialize(params['Department'])
+          end
+          @AllowAccessCredential = params['AllowAccessCredential']
+          unless params['ACTemplateSet'].nil?
+            @ACTemplateSet = []
+            params['ACTemplateSet'].each do |i|
+              actemplate_tmp = ACTemplate.new
+              actemplate_tmp.deserialize(i)
+              @ACTemplateSet << actemplate_tmp
+            end
           end
         end
       end
@@ -605,10 +649,12 @@ module TencentCloud
         # @type ValidateTo: String
         # @param DepartmentId: 访问权限所属部门的ID
         # @type DepartmentId: String
+        # @param AllowAccessCredential: 是否允许使用访问串，默认允许
+        # @type AllowAccessCredential: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -635,6 +681,7 @@ module TencentCloud
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
           @DepartmentId = departmentid
+          @AllowAccessCredential = allowaccesscredential
         end
 
         def deserialize(params)
@@ -664,6 +711,7 @@ module TencentCloud
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']
           @DepartmentId = params['DepartmentId']
+          @AllowAccessCredential = params['AllowAccessCredential']
         end
       end
 
@@ -1264,19 +1312,53 @@ module TencentCloud
         # @param Managers: 部门管理员账号ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Managers: Array
+        # @param ManagerUsers: 管理员用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagerUsers: Array
 
-        attr_accessor :Id, :Name, :Managers
+        attr_accessor :Id, :Name, :Managers, :ManagerUsers
 
-        def initialize(id=nil, name=nil, managers=nil)
+        def initialize(id=nil, name=nil, managers=nil, managerusers=nil)
           @Id = id
           @Name = name
           @Managers = managers
+          @ManagerUsers = managerusers
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Name = params['Name']
           @Managers = params['Managers']
+          unless params['ManagerUsers'].nil?
+            @ManagerUsers = []
+            params['ManagerUsers'].each do |i|
+              departmentmanageruser_tmp = DepartmentManagerUser.new
+              departmentmanageruser_tmp.deserialize(i)
+              @ManagerUsers << departmentmanageruser_tmp
+            end
+          end
+        end
+      end
+
+      # 部门管理员信息
+      class DepartmentManagerUser < TencentCloud::Common::AbstractModel
+        # @param ManagerId: 管理员Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagerId: String
+        # @param ManagerName: 管理员姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManagerName: String
+
+        attr_accessor :ManagerId, :ManagerName
+
+        def initialize(managerid=nil, managername=nil)
+          @ManagerId = managerid
+          @ManagerName = managername
+        end
+
+        def deserialize(params)
+          @ManagerId = params['ManagerId']
+          @ManagerName = params['ManagerName']
         end
       end
 
@@ -2240,10 +2322,12 @@ module TencentCloud
         # @type AuthTypeSet: Array
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的用户
         # @type DepartmentId: String
+        # @param Filters: 参数过滤数组
+        # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :UserName, :Phone, :Email, :AuthorizedDeviceIdSet, :AuthTypeSet, :DepartmentId, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, username=nil, phone=nil, email=nil, authorizeddeviceidset=nil, authtypeset=nil, departmentid=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -2254,6 +2338,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @AuthTypeSet = authtypeset
           @DepartmentId = departmentid
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2267,6 +2352,14 @@ module TencentCloud
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @AuthTypeSet = params['AuthTypeSet']
           @DepartmentId = params['DepartmentId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
@@ -2649,10 +2742,12 @@ module TencentCloud
         # @type ValidateTo: String
         # @param DepartmentId: 权限所属部门的ID，如：1.2.3
         # @type DepartmentId: String
+        # @param AllowAccessCredential: 是否允许使用访问串
+        # @type AllowAccessCredential: Boolean
 
-        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId
+        attr_accessor :Name, :AllowDiskRedirect, :AllowAnyAccount, :Id, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :UserIdSet, :UserGroupIdSet, :DeviceIdSet, :DeviceGroupIdSet, :AccountSet, :CmdTemplateIdSet, :ACTemplateIdSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :DepartmentId, :AllowAccessCredential
 
-        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil)
+        def initialize(name=nil, allowdiskredirect=nil, allowanyaccount=nil, id=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, useridset=nil, usergroupidset=nil, deviceidset=nil, devicegroupidset=nil, accountset=nil, cmdtemplateidset=nil, actemplateidset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, departmentid=nil, allowaccesscredential=nil)
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
           @AllowAnyAccount = allowanyaccount
@@ -2680,6 +2775,7 @@ module TencentCloud
           @ValidateFrom = validatefrom
           @ValidateTo = validateto
           @DepartmentId = departmentid
+          @AllowAccessCredential = allowaccesscredential
         end
 
         def deserialize(params)
@@ -2710,6 +2806,7 @@ module TencentCloud
           @ValidateFrom = params['ValidateFrom']
           @ValidateTo = params['ValidateTo']
           @DepartmentId = params['DepartmentId']
+          @AllowAccessCredential = params['AllowAccessCredential']
         end
       end
 
@@ -4128,10 +4225,19 @@ module TencentCloud
         # @param DepartmentId: 用户所属部门（用于入参）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
+        # @param ActiveStatus: 激活状态 0 - 未激活 1 - 激活
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveStatus: Integer
+        # @param LockStatus: 锁定状态 0 - 未锁定 1 - 锁定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockStatus: Integer
+        # @param Status: 状态 与Filter中一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :Status
 
-        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, status=nil)
           @UserName = username
           @RealName = realname
           @Id = id
@@ -4144,6 +4250,9 @@ module TencentCloud
           @ValidateTime = validatetime
           @Department = department
           @DepartmentId = departmentid
+          @ActiveStatus = activestatus
+          @LockStatus = lockstatus
+          @Status = status
         end
 
         def deserialize(params)
@@ -4169,6 +4278,9 @@ module TencentCloud
             @Department.deserialize(params['Department'])
           end
           @DepartmentId = params['DepartmentId']
+          @ActiveStatus = params['ActiveStatus']
+          @LockStatus = params['LockStatus']
+          @Status = params['Status']
         end
       end
 

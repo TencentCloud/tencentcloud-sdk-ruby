@@ -1849,7 +1849,7 @@ module TencentCloud
       class CreateApiRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: API 所在的服务唯一 ID。
         # @type ServiceId: String
-        # @param ServiceType: API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、WEBSOCKET、TARGET（内测）。
+        # @param ServiceType: API 的后端服务类型。支持HTTP、MOCK、TSF、SCF、EB、TARGET、VPC、UPSTREAM、GRPC、COS、WEBSOCKET。
         # @type ServiceType: String
         # @param ServiceTimeout: API 的后端服务超时时间，单位是秒。
         # @type ServiceTimeout: Integer

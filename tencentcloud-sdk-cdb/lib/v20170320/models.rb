@@ -6493,7 +6493,7 @@ module TencentCloud
       class DescribeRollbackRangeTimeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表，单个实例 ID 的格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceIds: Array
-        # @param IsRemoteZone: 克隆实例与源实例是否在同一可用区，是:"false"，否:"true"
+        # @param IsRemoteZone: 克隆实例与源实例是否在异地可用区，是:"true"，否:"false"
         # @type IsRemoteZone: String
         # @param BackupRegion: 克隆实例与源实例不在同一地域时需填写克隆实例所在地域，例："ap-guangzhou"
         # @type BackupRegion: String

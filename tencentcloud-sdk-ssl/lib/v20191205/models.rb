@@ -4279,16 +4279,23 @@ module TencentCloud
         # @type CsrkeyPassword: String
         # @param Reason: 重颁发原因。
         # @type Reason: String
+        # @param CertCSREncryptAlgo: CSR加密方式，可选：RSA、ECC、SM2
+        # （CsrType为Online才可选）， 默认为RSA
+        # @type CertCSREncryptAlgo: String
+        # @param CertCSRKeyParameter: CSR加密参数，CsrEncryptAlgo为RSA时， 可选2048、4096等默认为2048；CsrEncryptAlgo为ECC时，可选prime256v1，secp384r1等，默认为prime256v1;
+        # @type CertCSRKeyParameter: String
 
-        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason
+        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason, :CertCSREncryptAlgo, :CertCSRKeyParameter
 
-        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil)
+        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil, certcsrencryptalgo=nil, certcsrkeyparameter=nil)
           @CertificateId = certificateid
           @ValidType = validtype
           @CsrType = csrtype
           @CsrContent = csrcontent
           @CsrkeyPassword = csrkeypassword
           @Reason = reason
+          @CertCSREncryptAlgo = certcsrencryptalgo
+          @CertCSRKeyParameter = certcsrkeyparameter
         end
 
         def deserialize(params)
@@ -4298,6 +4305,8 @@ module TencentCloud
           @CsrContent = params['CsrContent']
           @CsrkeyPassword = params['CsrkeyPassword']
           @Reason = params['Reason']
+          @CertCSREncryptAlgo = params['CertCSREncryptAlgo']
+          @CertCSRKeyParameter = params['CertCSRKeyParameter']
         end
       end
 

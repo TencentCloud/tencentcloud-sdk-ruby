@@ -818,10 +818,13 @@ module TencentCloud
         # <li>单端口，如：80。</li>
         # <li>端口段：81-82，表示81，82两个端口。</li>
         # @type OriginPort: String
+        # @param RuleTag: 规则标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTag: String
 
-        attr_accessor :Proto, :Port, :OriginType, :OriginValue, :RuleId, :Status, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort
+        attr_accessor :Proto, :Port, :OriginType, :OriginValue, :RuleId, :Status, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort, :RuleTag
 
-        def initialize(proto=nil, port=nil, origintype=nil, originvalue=nil, ruleid=nil, status=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil)
+        def initialize(proto=nil, port=nil, origintype=nil, originvalue=nil, ruleid=nil, status=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil, ruletag=nil)
           @Proto = proto
           @Port = port
           @OriginType = origintype
@@ -832,6 +835,7 @@ module TencentCloud
           @SessionPersist = sessionpersist
           @SessionPersistTime = sessionpersisttime
           @OriginPort = originport
+          @RuleTag = ruletag
         end
 
         def deserialize(params)
@@ -845,6 +849,7 @@ module TencentCloud
           @SessionPersist = params['SessionPersist']
           @SessionPersistTime = params['SessionPersistTime']
           @OriginPort = params['OriginPort']
+          @RuleTag = params['RuleTag']
         end
       end
 
@@ -1736,10 +1741,12 @@ module TencentCloud
         # <li>单端口：80；</li>
         # <li>端口段：81-90，81至90端口。</li>
         # @type OriginPort: String
+        # @param RuleTag: 规则标签。默认值为空字符串。
+        # @type RuleTag: String
 
-        attr_accessor :ZoneId, :ProxyId, :Proto, :Port, :OriginType, :OriginValue, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort
+        attr_accessor :ZoneId, :ProxyId, :Proto, :Port, :OriginType, :OriginValue, :ForwardClientIp, :SessionPersist, :SessionPersistTime, :OriginPort, :RuleTag
 
-        def initialize(zoneid=nil, proxyid=nil, proto=nil, port=nil, origintype=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil)
+        def initialize(zoneid=nil, proxyid=nil, proto=nil, port=nil, origintype=nil, originvalue=nil, forwardclientip=nil, sessionpersist=nil, sessionpersisttime=nil, originport=nil, ruletag=nil)
           @ZoneId = zoneid
           @ProxyId = proxyid
           @Proto = proto
@@ -1750,6 +1757,7 @@ module TencentCloud
           @SessionPersist = sessionpersist
           @SessionPersistTime = sessionpersisttime
           @OriginPort = originport
+          @RuleTag = ruletag
         end
 
         def deserialize(params)
@@ -1763,6 +1771,7 @@ module TencentCloud
           @SessionPersist = params['SessionPersist']
           @SessionPersistTime = params['SessionPersistTime']
           @OriginPort = params['OriginPort']
+          @RuleTag = params['RuleTag']
         end
       end
 
@@ -2862,7 +2871,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id<br>   按照【<strong>代理ID</strong>】进行过滤。代理ID形如：proxy-ev2sawbwfd。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-vawer2vadg。<br>   类型：String<br>   必选：否</li>
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id<br>   按照【<strong>代理ID</strong>】进行过滤。代理ID形如：proxy-ev2sawbwfd。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-vawer2vadg。<br>   类型：String<br>   必选：否</li><li>rule-tag<br>   按照【<strong>规则标签</strong>】对应用代理下的规则进行过滤。规则标签形如：rule-service-1。<br>   类型：String<br>   必选：否</li>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
