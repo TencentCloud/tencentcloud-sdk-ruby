@@ -2243,6 +2243,71 @@ module TencentCloud
         end
       end
 
+      # RequestLocalTask请求参数结构体
+      class RequestLocalTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClientId: Client Id
+        # @type ClientId: String
+
+        attr_accessor :ClientId
+
+        def initialize(clientid=nil)
+          @ClientId = clientid
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+        end
+      end
+
+      # RequestLocalTask返回参数结构体
+      class RequestLocalTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Sid: 返回的任务id
+        # @type Sid: String
+        # @param SrcFileMd5: 任务文件的mk5
+        # @type SrcFileMd5: String
+        # @param SrcFileSize: 文件大小，可不传
+        # @type SrcFileSize: Integer
+        # @param SrcFileUrl: 任务文件的下载地址，必须无鉴权可下载
+        # @type SrcFileUrl: String
+        # @param SrcFileType: release: 需要INFO-PLIST文件，会生成工具部署安装包，并带有license文件，绑定机器；nobind不需要INFO-PLIST文件，不绑定机器
+        # @type SrcFileType: String
+        # @param SrcFileVersion: enterprise
+        # trial
+        # @type SrcFileVersion: String
+        # @param EncryptParam: 补充字段
+        # @type EncryptParam: String
+        # @param EncryptState: 任务状态
+        # @type EncryptState: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Sid, :SrcFileMd5, :SrcFileSize, :SrcFileUrl, :SrcFileType, :SrcFileVersion, :EncryptParam, :EncryptState, :RequestId
+
+        def initialize(sid=nil, srcfilemd5=nil, srcfilesize=nil, srcfileurl=nil, srcfiletype=nil, srcfileversion=nil, encryptparam=nil, encryptstate=nil, requestid=nil)
+          @Sid = sid
+          @SrcFileMd5 = srcfilemd5
+          @SrcFileSize = srcfilesize
+          @SrcFileUrl = srcfileurl
+          @SrcFileType = srcfiletype
+          @SrcFileVersion = srcfileversion
+          @EncryptParam = encryptparam
+          @EncryptState = encryptstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @SrcFileMd5 = params['SrcFileMd5']
+          @SrcFileSize = params['SrcFileSize']
+          @SrcFileUrl = params['SrcFileUrl']
+          @SrcFileType = params['SrcFileType']
+          @SrcFileVersion = params['SrcFileVersion']
+          @EncryptParam = params['EncryptParam']
+          @EncryptState = params['EncryptState']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 拉取某个用户的所有资源信息
       class ResourceInfo < TencentCloud::Common::AbstractModel
         # @param ResourceId: 用户购买的资源id，全局唯一
@@ -2570,6 +2635,114 @@ module TencentCloud
 
         def deserialize(params)
           @SoFileNames = params['SoFileNames']
+        end
+      end
+
+      # UpdateClientState请求参数结构体
+      class UpdateClientStateRequest < TencentCloud::Common::AbstractModel
+        # @param ClientId: Client Id
+        # @type ClientId: String
+        # @param Ip: Ip addr
+        # @type Ip: String
+        # @param Internal: 内部分组
+        # @type Internal: Integer
+        # @param ServerVersion: Client  Version
+        # @type ServerVersion: String
+        # @param Hostname: 主机
+        # @type Hostname: String
+        # @param Os: 系统
+        # @type Os: String
+
+        attr_accessor :ClientId, :Ip, :Internal, :ServerVersion, :Hostname, :Os
+
+        def initialize(clientid=nil, ip=nil, internal=nil, serverversion=nil, hostname=nil, os=nil)
+          @ClientId = clientid
+          @Ip = ip
+          @Internal = internal
+          @ServerVersion = serverversion
+          @Hostname = hostname
+          @Os = os
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @Ip = params['Ip']
+          @Internal = params['Internal']
+          @ServerVersion = params['ServerVersion']
+          @Hostname = params['Hostname']
+          @Os = params['Os']
+        end
+      end
+
+      # UpdateClientState返回参数结构体
+      class UpdateClientStateResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: 返回值
+        # @type ResultCode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultCode, :RequestId
+
+        def initialize(resultcode=nil, requestid=nil)
+          @ResultCode = resultcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateLocalTaskResult请求参数结构体
+      class UpdateLocalTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param Sid: 任务id
+        # @type Sid: String
+        # @param ResultCode: 一级任务code。标记任务状态
+        # @type ResultCode: Integer
+        # @param SubCode: 二级错误码
+        # @type SubCode: Integer
+        # @param ErrMsg: 二级错误信息
+        # @type ErrMsg: String
+        # @param Result: 结果
+        # @type Result: String
+
+        attr_accessor :Sid, :ResultCode, :SubCode, :ErrMsg, :Result
+
+        def initialize(sid=nil, resultcode=nil, subcode=nil, errmsg=nil, result=nil)
+          @Sid = sid
+          @ResultCode = resultcode
+          @SubCode = subcode
+          @ErrMsg = errmsg
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Sid = params['Sid']
+          @ResultCode = params['ResultCode']
+          @SubCode = params['SubCode']
+          @ErrMsg = params['ErrMsg']
+          @Result = params['Result']
+        end
+      end
+
+      # UpdateLocalTaskResult返回参数结构体
+      class UpdateLocalTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultCode: 标记成功
+        # @type ResultCode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultCode, :RequestId
+
+        def initialize(resultcode=nil, requestid=nil)
+          @ResultCode = resultcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultCode = params['ResultCode']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -14390,16 +14390,19 @@ module TencentCloud
         # @type ExtParams: Array
         # @param IgnoreTemp: 是否过滤临时表,默认true
         # @type IgnoreTemp: Boolean
+        # @param RecursiveSecond: 是否递归查询二级节点数目，默认为true
+        # @type RecursiveSecond: Boolean
 
-        attr_accessor :Direction, :Data, :InputDepth, :OutputDepth, :ExtParams, :IgnoreTemp
+        attr_accessor :Direction, :Data, :InputDepth, :OutputDepth, :ExtParams, :IgnoreTemp, :RecursiveSecond
 
-        def initialize(direction=nil, data=nil, inputdepth=nil, outputdepth=nil, extparams=nil, ignoretemp=nil)
+        def initialize(direction=nil, data=nil, inputdepth=nil, outputdepth=nil, extparams=nil, ignoretemp=nil, recursivesecond=nil)
           @Direction = direction
           @Data = data
           @InputDepth = inputdepth
           @OutputDepth = outputdepth
           @ExtParams = extparams
           @IgnoreTemp = ignoretemp
+          @RecursiveSecond = recursivesecond
         end
 
         def deserialize(params)
@@ -14419,6 +14422,7 @@ module TencentCloud
             end
           end
           @IgnoreTemp = params['IgnoreTemp']
+          @RecursiveSecond = params['RecursiveSecond']
         end
       end
 

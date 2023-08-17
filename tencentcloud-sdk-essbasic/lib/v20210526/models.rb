@@ -1527,33 +1527,36 @@ module TencentCloud
       class ChannelCreatePreparedPersonalEsignRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param UserName: 个人用户名称
+        # @param UserName: 个人用户姓名
         # @type UserName: String
         # @param IdCardNumber: 身份证件号码
         # @type IdCardNumber: String
-        # @param SealImage: 印章图片的base64
-        # @type SealImage: String
         # @param SealName: 印章名称
         # @type SealName: String
+        # @param SealImage: 印章图片的base64，最大不超过 8M
+        # @type SealImage: String
         # @param Operator: 操作者信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param IdCardType: 身份证件类型
         # @type IdCardType: String
+        # @param SealImageCompress: 是否开启印章图片压缩处理，默认不开启，如需开启请设置为 true。当印章超过 2M 时建议开启，开启后图片的 hash 将发生变化。
+        # @type SealImageCompress: Boolean
         # @param Mobile: 手机号码；当需要开通自动签时，该参数必传
         # @type Mobile: String
         # @param EnableAutoSign: 是否开通自动签，该功能需联系运营工作人员开通后使用
         # @type EnableAutoSign: Boolean
 
-        attr_accessor :Agent, :UserName, :IdCardNumber, :SealImage, :SealName, :Operator, :IdCardType, :Mobile, :EnableAutoSign
+        attr_accessor :Agent, :UserName, :IdCardNumber, :SealName, :SealImage, :Operator, :IdCardType, :SealImageCompress, :Mobile, :EnableAutoSign
 
-        def initialize(agent=nil, username=nil, idcardnumber=nil, sealimage=nil, sealname=nil, operator=nil, idcardtype=nil, mobile=nil, enableautosign=nil)
+        def initialize(agent=nil, username=nil, idcardnumber=nil, sealname=nil, sealimage=nil, operator=nil, idcardtype=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil)
           @Agent = agent
           @UserName = username
           @IdCardNumber = idcardnumber
-          @SealImage = sealimage
           @SealName = sealname
+          @SealImage = sealimage
           @Operator = operator
           @IdCardType = idcardtype
+          @SealImageCompress = sealimagecompress
           @Mobile = mobile
           @EnableAutoSign = enableautosign
         end
@@ -1565,13 +1568,14 @@ module TencentCloud
           end
           @UserName = params['UserName']
           @IdCardNumber = params['IdCardNumber']
-          @SealImage = params['SealImage']
           @SealName = params['SealName']
+          @SealImage = params['SealImage']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
           @IdCardType = params['IdCardType']
+          @SealImageCompress = params['SealImageCompress']
           @Mobile = params['Mobile']
           @EnableAutoSign = params['EnableAutoSign']
         end
@@ -3336,7 +3340,7 @@ module TencentCloud
       class CreateFlowsByTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowInfos: 多个合同（签署流程）信息，最多支持20个
+        # @param FlowInfos: 要创建的合同信息列表，最多支持一次创建20个合同
         # @type FlowInfos: Array
         # @param NeedPreview: 是否为预览模式；默认为false，即非预览模式，此时发起合同并返回FlowIds；若为预览模式，不会发起合同，会返回PreviewUrls；
         # 预览链接有效期300秒；
@@ -3386,7 +3390,7 @@ module TencentCloud
       class CreateFlowsByTemplatesResponse < TencentCloud::Common::AbstractModel
         # @param FlowIds: 多个合同ID
         # @type FlowIds: Array
-        # @param CustomerData: 业务信息，限制1024字符
+        # @param CustomerData: 第三方应用平台的业务信息, 与创建合同的FlowInfos数组中的CustomerData一一对应
         # @type CustomerData: Array
         # @param ErrorMessages: 创建消息，对应多个合同ID，
         # 成功为“”,创建失败则对应失败消息

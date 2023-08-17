@@ -682,14 +682,16 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param IntentionVerifyText: 意愿核身（朗读模式）使用的文案，若未使用意愿核身（朗读模式），则该字段无需传入。默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
-        # @param IntentionQuestions: 意愿核身（问答模式）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持一个播报文本+回答文本。
+        # @param IntentionQuestions: 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
         # @type IntentionQuestions: Array
         # @param Config: RuleId相关配置
         # @type Config: :class:`Tencentcloud::Faceid.v20180301.models.RuleIdConfig`
+        # @param IntentionActions: 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。当前仅支持一个提示文本。
+        # @type IntentionActions: Array
 
-        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions, :Config
+        attr_accessor :RuleId, :TerminalType, :IdCard, :Name, :RedirectUrl, :Extra, :ImageBase64, :Encryption, :IntentionVerifyText, :IntentionQuestions, :Config, :IntentionActions
 
-        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil, config=nil)
+        def initialize(ruleid=nil, terminaltype=nil, idcard=nil, name=nil, redirecturl=nil, extra=nil, imagebase64=nil, encryption=nil, intentionverifytext=nil, intentionquestions=nil, config=nil, intentionactions=nil)
           @RuleId = ruleid
           @TerminalType = terminaltype
           @IdCard = idcard
@@ -701,6 +703,7 @@ module TencentCloud
           @IntentionVerifyText = intentionverifytext
           @IntentionQuestions = intentionquestions
           @Config = config
+          @IntentionActions = intentionactions
         end
 
         def deserialize(params)
@@ -727,6 +730,14 @@ module TencentCloud
           unless params['Config'].nil?
             @Config = RuleIdConfig.new
             @Config.deserialize(params['Config'])
+          end
+          unless params['IntentionActions'].nil?
+            @IntentionActions = []
+            params['IntentionActions'].each do |i|
+              intentionactionconfig_tmp = IntentionActionConfig.new
+              intentionactionconfig_tmp.deserialize(i)
+              @IntentionActions << intentionactionconfig_tmp
+            end
           end
         end
       end
@@ -1369,12 +1380,15 @@ module TencentCloud
         # @param IntentionQuestionResult: 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionQuestionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionQuestionResult`
+        # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionActionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionActionResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
 
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
@@ -1382,6 +1396,7 @@ module TencentCloud
           @Encryption = encryption
           @IntentionVerifyData = intentionverifydata
           @IntentionQuestionResult = intentionquestionresult
+          @IntentionActionResult = intentionactionresult
           @RequestId = requestid
         end
 
@@ -1413,6 +1428,10 @@ module TencentCloud
           unless params['IntentionQuestionResult'].nil?
             @IntentionQuestionResult = IntentionQuestionResult.new
             @IntentionQuestionResult.deserialize(params['IntentionQuestionResult'])
+          end
+          unless params['IntentionActionResult'].nil?
+            @IntentionActionResult = IntentionActionResult.new
+            @IntentionActionResult.deserialize(params['IntentionActionResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -2208,11 +2227,102 @@ module TencentCloud
         end
       end
 
+      # 意愿核身（点头确认模式）配置
+      class IntentionActionConfig < TencentCloud::Common::AbstractModel
+        # @param Text: 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为150个字符。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 意愿核身点头确认模式结果
+      class IntentionActionResult < TencentCloud::Common::AbstractModel
+        # @param FinalResultDetailCode: 意愿核身错误码：
+        # 0: "成功"
+        # -1: "参数错误"
+        # -2: "系统异常"
+        # -101: "请保持人脸在框内"
+        # -102: "检测到多张人脸"
+        # -103: "人脸检测失败"
+        # -104: "人脸检测不完整"
+        # -105: "请勿遮挡眼睛"
+        # -106: "请勿遮挡嘴巴"
+        # -107: "请勿遮挡鼻子"
+        # -201: "人脸比对相似度低"
+        # -202: "人脸比对失败"
+        # -301: "意愿核验不通过"
+        # -800: "前端不兼容错误"
+        # -801: "用户未授权摄像头和麦克风权限"
+        # -802: "获取视频流失败"
+        # -803: "用户主动关闭链接/异常断开链接"
+        # -998: "系统数据异常"
+        # -999: "系统未知错误，请联系人工核实"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalResultDetailCode: Integer
+        # @param FinalResultMessage: 意愿核身错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinalResultMessage: String
+        # @param Details: 意愿核身结果详细数据，与每段点头确认过程一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+
+        attr_accessor :FinalResultDetailCode, :FinalResultMessage, :Details
+
+        def initialize(finalresultdetailcode=nil, finalresultmessage=nil, details=nil)
+          @FinalResultDetailCode = finalresultdetailcode
+          @FinalResultMessage = finalresultmessage
+          @Details = details
+        end
+
+        def deserialize(params)
+          @FinalResultDetailCode = params['FinalResultDetailCode']
+          @FinalResultMessage = params['FinalResultMessage']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              intentionactionresultdetail_tmp = IntentionActionResultDetail.new
+              intentionactionresultdetail_tmp.deserialize(i)
+              @Details << intentionactionresultdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 意愿核身点头确认模式结果详细数据
+      class IntentionActionResultDetail < TencentCloud::Common::AbstractModel
+        # @param Video: 视频base64编码（其中包含全程提示文本和点头音频，mp4格式）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Video: String
+        # @param ScreenShot: 屏幕截图base64编码列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScreenShot: Array
+
+        attr_accessor :Video, :ScreenShot
+
+        def initialize(video=nil, screenshot=nil)
+          @Video = video
+          @ScreenShot = screenshot
+        end
+
+        def deserialize(params)
+          @Video = params['Video']
+          @ScreenShot = params['ScreenShot']
+        end
+      end
+
       # 意愿核身过程中播报的问题文本、用户回答的标准文本。
       class IntentionQuestion < TencentCloud::Common::AbstractModel
-        # @param Question: 系统播报的问题文本，问题最大长度为150个字符。
+        # @param Question: 当选择语音问答模式时，系统自动播报的问题文本，最大长度为150个字符。
         # @type Question: String
-        # @param Answers: 用户答案的标准文本列表，用于识别用户回答的语音与标准文本是否一致。列表长度最大为50，单个答案长度限制10个字符。
+        # @param Answers: 当选择语音问答模式时，用于判断用户回答是否通过的标准答案列表，传入后可自动判断用户回答文本是否在标准文本列表中。列表长度最大为50，单个答案长度限制10个字符。
         # @type Answers: Array
 
         attr_accessor :Question, :Answers
@@ -3235,15 +3345,21 @@ module TencentCloud
       class RuleIdConfig < TencentCloud::Common::AbstractModel
         # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         # @type IntentionRecognition: Boolean
+        # @param IntentionType: 意愿核身类型，默认为0：
+        # 0：问答模式，DetectAuth接口需要传入IntentionQuestions字段；
+        # 1：点头模式，DetectAuth接口需要传入IntentionActions字段；
+        # @type IntentionType: Integer
 
-        attr_accessor :IntentionRecognition
+        attr_accessor :IntentionRecognition, :IntentionType
 
-        def initialize(intentionrecognition=nil)
+        def initialize(intentionrecognition=nil, intentiontype=nil)
           @IntentionRecognition = intentionrecognition
+          @IntentionType = intentiontype
         end
 
         def deserialize(params)
           @IntentionRecognition = params['IntentionRecognition']
+          @IntentionType = params['IntentionType']
         end
       end
 

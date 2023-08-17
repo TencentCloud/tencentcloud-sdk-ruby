@@ -2669,7 +2669,7 @@ module TencentCloud
         # @type Filter: Array
         # @param Sorter: 排序参数
         # @type Sorter: Array
-        # @param ExportFlag: 是否导出
+        # @param ExportFlag: 是否导出；默认为否，如量级超过1000，则使用单独的导出接口
         # @type ExportFlag: Boolean
 
         attr_accessor :PageSize, :PageIndex, :Scenes, :Filter, :Sorter, :ExportFlag

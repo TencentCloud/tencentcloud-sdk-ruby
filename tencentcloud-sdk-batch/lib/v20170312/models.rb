@@ -138,27 +138,31 @@ module TencentCloud
 
       # 应用程序信息
       class Application < TencentCloud::Common::AbstractModel
-        # @param Command: 任务执行命令
-        # @type Command: String
         # @param DeliveryForm: 应用程序的交付方式，包括PACKAGE、LOCAL 两种取值，分别指远程存储的软件包、计算环境本地。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeliveryForm: String
+        # @param Command: 任务执行命令。与Commands不能同时指定。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Command: String
         # @param PackagePath: 应用程序软件包的远程存储路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackagePath: String
         # @param Docker: 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Docker: :class:`Tencentcloud::Batch.v20170312.models.Docker`
 
-        attr_accessor :Command, :DeliveryForm, :PackagePath, :Docker
+        attr_accessor :DeliveryForm, :Command, :PackagePath, :Docker
 
-        def initialize(command=nil, deliveryform=nil, packagepath=nil, docker=nil)
-          @Command = command
+        def initialize(deliveryform=nil, command=nil, packagepath=nil, docker=nil)
           @DeliveryForm = deliveryform
+          @Command = command
           @PackagePath = packagepath
           @Docker = docker
         end
 
         def deserialize(params)
-          @Command = params['Command']
           @DeliveryForm = params['DeliveryForm']
+          @Command = params['Command']
           @PackagePath = params['PackagePath']
           unless params['Docker'].nil?
             @Docker = Docker.new

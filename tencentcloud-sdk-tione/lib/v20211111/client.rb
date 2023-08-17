@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+        # 本接口(DescribeBillingSpecsPrice)用于查询按量计费计费项价格。
 
         # @param request: Request instance for DescribeBillingSpecsPrice.
         # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingSpecsPriceRequest`

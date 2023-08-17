@@ -1013,15 +1013,18 @@ module TencentCloud
         # @type Override: Integer
         # @param PackageQueue: 套餐列表顺序：PackageQueue=front会立即使用新购买的套餐，新购套餐结束后，列表中下一个未过期的套餐继续生效；PackageQueue=end会等设备当前所有已购买套餐过期后才会生效新购套餐。与Override参数不能同时使用。
         # @type PackageQueue: String
+        # @param OrderId: 订单id
+        # @type OrderId: String
 
-        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue
+        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue, :OrderId
 
-        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil)
+        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil, orderid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @PackageId = packageid
           @Override = override
           @PackageQueue = packagequeue
+          @OrderId = orderid
         end
 
         def deserialize(params)
@@ -1030,6 +1033,7 @@ module TencentCloud
           @PackageId = params['PackageId']
           @Override = params['Override']
           @PackageQueue = params['PackageQueue']
+          @OrderId = params['OrderId']
         end
       end
 
@@ -5558,16 +5562,24 @@ module TencentCloud
         # @param UpdatedAt: 云存套餐更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: Integer
+        # @param PackageId: 套餐id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param OrderId: 订单id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderId: String
 
-        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt
+        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt, :PackageId, :OrderId
 
-        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil)
+        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil, packageid=nil, orderid=nil)
           @Status = status
           @CSType = cstype
           @CSShiftDuration = csshiftduration
           @CSExpiredTime = csexpiredtime
           @CreatedAt = createdat
           @UpdatedAt = updatedat
+          @PackageId = packageid
+          @OrderId = orderid
         end
 
         def deserialize(params)
@@ -5577,6 +5589,8 @@ module TencentCloud
           @CSExpiredTime = params['CSExpiredTime']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+          @PackageId = params['PackageId']
+          @OrderId = params['OrderId']
         end
       end
 

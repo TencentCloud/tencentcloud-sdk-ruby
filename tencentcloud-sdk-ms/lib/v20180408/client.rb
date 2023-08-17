@@ -492,6 +492,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # client任务请求地址
+
+        # @param request: Request instance for RequestLocalTask.
+        # @type request: :class:`Tencentcloud::ms::V20180408::RequestLocalTaskRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::RequestLocalTaskResponse`
+        def RequestLocalTask(request)
+          body = send_request('RequestLocalTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RequestLocalTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新client状态
+
+        # @param request: Request instance for UpdateClientState.
+        # @type request: :class:`Tencentcloud::ms::V20180408::UpdateClientStateRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::UpdateClientStateResponse`
+        def UpdateClientState(request)
+          body = send_request('UpdateClientState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateClientStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新本地任务结果
+
+        # @param request: Request instance for UpdateLocalTaskResult.
+        # @type request: :class:`Tencentcloud::ms::V20180408::UpdateLocalTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::ms::V20180408::UpdateLocalTaskResultResponse`
+        def UpdateLocalTaskResult(request)
+          body = send_request('UpdateLocalTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateLocalTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end
