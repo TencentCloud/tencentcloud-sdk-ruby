@@ -2287,6 +2287,60 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageOrder请求参数结构体
+      class DescribeCloudStorageOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单id
+        # @type OrderId: String
+
+        attr_accessor :OrderId
+
+        def initialize(orderid=nil)
+          @OrderId = orderid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+        end
+      end
+
+      # DescribeCloudStorageOrder返回参数结构体
+      class DescribeCloudStorageOrderResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 云存套餐开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param ExpireTime: 云存套餐过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param PackageId: 套餐id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageId: String
+        # @param Status: 套餐状态
+        # 0：等待生效
+        # 1: 已过期
+        # 2:生效
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :ExpireTime, :PackageId, :Status, :RequestId
+
+        def initialize(starttime=nil, expiretime=nil, packageid=nil, status=nil, requestid=nil)
+          @StartTime = starttime
+          @ExpireTime = expiretime
+          @PackageId = packageid
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
+          @PackageId = params['PackageId']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStoragePackageConsumeDetails请求参数结构体
       class DescribeCloudStoragePackageConsumeDetailsRequest < TencentCloud::Common::AbstractModel
         # @param StartDate: 开始日期

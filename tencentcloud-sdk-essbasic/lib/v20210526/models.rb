@@ -631,7 +631,7 @@ module TencentCloud
         # @type ResourceType: String
         # @param ResourceName: 资源名称，长度限制为256字符
         # @type ResourceName: String
-        # @param ResourceId: 资源Id，通过UploadFiles获取
+        # @param ResourceId: 文件Id，通过UploadFiles获取
         # @type ResourceId: String
         # @param Operator: 调用方用户信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -935,19 +935,22 @@ module TencentCloud
         # MobileCheck：手机号验证
         # 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
+        # @param FlowGroupOptions: 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
+        # @type FlowGroupOptions: :class:`Tencentcloud::Essbasic.v20210526.models.FlowGroupOptions`
         # @param Operator: 操作者的信息，此参数不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :ApproverVerifyType, :Operator
+        attr_accessor :FlowFileInfos, :FlowGroupName, :Agent, :ApproverVerifyType, :FlowGroupOptions, :Operator
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 8
         deprecate :Operator=, :none, 2023, 8
 
-        def initialize(flowfileinfos=nil, flowgroupname=nil, agent=nil, approververifytype=nil, operator=nil)
+        def initialize(flowfileinfos=nil, flowgroupname=nil, agent=nil, approververifytype=nil, flowgroupoptions=nil, operator=nil)
           @FlowFileInfos = flowfileinfos
           @FlowGroupName = flowgroupname
           @Agent = agent
           @ApproverVerifyType = approververifytype
+          @FlowGroupOptions = flowgroupoptions
           @Operator = operator
         end
 
@@ -966,6 +969,10 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ApproverVerifyType = params['ApproverVerifyType']
+          unless params['FlowGroupOptions'].nil?
+            @FlowGroupOptions = FlowGroupOptions.new
+            @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
+          end
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -1501,9 +1508,9 @@ module TencentCloud
 
       # ChannelCreatePrepareFlow返回参数结构体
       class ChannelCreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
-        # @param PrepareFlowUrl: 预发起的合同链接
+        # @param PrepareFlowUrl: 预发起的合同链接， 可以直接点击进入进行合同发起
         # @type PrepareFlowUrl: String
-        # @param PreviewFlowUrl: 合同发起后预览链接
+        # @param PreviewFlowUrl: 合同发起后预览链接， 注意此时合同并未发起，仅只是展示效果
         # @type PreviewFlowUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4631,6 +4638,32 @@ module TencentCloud
           end
           @CustomShowMap = params['CustomShowMap']
           @NeedSignReview = params['NeedSignReview']
+        end
+      end
+
+      # 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
+      class FlowGroupOptions < TencentCloud::Common::AbstractModel
+        # @param SelfOrganizationApproverSignEach: 发起方企业经办人（即签署人为发起方企业员工）是否需要对子合同进行独立的意愿确认：
+        # fasle：发起方企业经办人签署时对所有子合同进行统一的意愿确认
+        # true：发起方企业经办人签署时需要对子合同进行独立的意愿确认
+        # 默认为fasle。
+        # @type SelfOrganizationApproverSignEach: Boolean
+        # @param OtherApproverSignEach: 非发起方企业经办人（即：签署人为个人或者不为发起方企业的员工）是否需要对子合同进行独立的意愿确认：
+        # fasle：非发起方企业经办人签署时对所有子合同进行统一的意愿确认
+        # true：非发起方企业经办人签署时需要对子合同进行独立的意愿确认
+        # 默认为false。
+        # @type OtherApproverSignEach: Boolean
+
+        attr_accessor :SelfOrganizationApproverSignEach, :OtherApproverSignEach
+
+        def initialize(selforganizationapproversigneach=nil, otherapproversigneach=nil)
+          @SelfOrganizationApproverSignEach = selforganizationapproversigneach
+          @OtherApproverSignEach = otherapproversigneach
+        end
+
+        def deserialize(params)
+          @SelfOrganizationApproverSignEach = params['SelfOrganizationApproverSignEach']
+          @OtherApproverSignEach = params['OtherApproverSignEach']
         end
       end
 

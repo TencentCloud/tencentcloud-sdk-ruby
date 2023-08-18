@@ -1952,10 +1952,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Description: 描述信息
         # @type Description: String
+        # @param ISPTypes: 网络运营商类型 取值范围:'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        # @type ISPTypes: Array
 
-        attr_accessor :VpcName, :CidrBlock, :EcmRegion, :EnableMulticast, :DnsServers, :DomainName, :Tags, :Description
+        attr_accessor :VpcName, :CidrBlock, :EcmRegion, :EnableMulticast, :DnsServers, :DomainName, :Tags, :Description, :ISPTypes
 
-        def initialize(vpcname=nil, cidrblock=nil, ecmregion=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil, description=nil)
+        def initialize(vpcname=nil, cidrblock=nil, ecmregion=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil, description=nil, isptypes=nil)
           @VpcName = vpcname
           @CidrBlock = cidrblock
           @EcmRegion = ecmregion
@@ -1964,6 +1966,7 @@ module TencentCloud
           @DomainName = domainname
           @Tags = tags
           @Description = description
+          @ISPTypes = isptypes
         end
 
         def deserialize(params)
@@ -1982,6 +1985,14 @@ module TencentCloud
             end
           end
           @Description = params['Description']
+          unless params['ISPTypes'].nil?
+            @ISPTypes = []
+            params['ISPTypes'].each do |i|
+              isptypeitem_tmp = ISPTypeItem.new
+              isptypeitem_tmp.deserialize(i)
+              @ISPTypes << isptypeitem_tmp
+            end
+          end
         end
       end
 

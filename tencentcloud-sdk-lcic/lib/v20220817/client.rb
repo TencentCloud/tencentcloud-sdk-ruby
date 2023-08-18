@@ -533,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除已注册用户。注：如果该成员已被添加到群组，请先在群组中删除该成员。
+
+        # @param request: Request instance for DeleteUser.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeleteUserRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeleteUserResponse`
+        def DeleteUser(request)
+          body = send_request('DeleteUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间答题详情
 
         # @param request: Request instance for DescribeAnswerList.

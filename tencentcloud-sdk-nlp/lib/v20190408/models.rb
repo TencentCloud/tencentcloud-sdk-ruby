@@ -748,6 +748,107 @@ module TencentCloud
         end
       end
 
+      # TestingTextGeneration请求参数结构体
+      class TestingTextGenerationRequest < TencentCloud::Common::AbstractModel
+        # @param Messages: 会话内容,按对话时间从旧到新在数组中排列。
+        # @type Messages: Array
+        # @param Model: 模型名称，当前固定为TestingModel
+        # @type Model: String
+        # @param QueryId: 会话id。
+        # @type QueryId: String
+        # @param Temperature: 超参数temperature, 该参数用于控制生成文本中重复内容。取值区间为[0.0, 2.0], 非必要不建议使用, 不合理的取值会影响效果。默认为1.0。
+        # @type Temperature: Float
+        # @param TopP: 超参数top_p, 该参数用于控制生成文本的多样性。较小的"top_p"值会限制模型的选择范围，使生成的文本更加一致和确定性。较大的"top_p"值会扩大选择范围，使生成的文本更加多样化和随机。取值区间为[0.0, 1.0], 非必要不建议使用, 不合理的取值会影响效果。默认值为1.0。
+        # @type TopP: Float
+        # @param TopK: 超参数top_k,该参数用于控制生成文本的多样性和可控性，较小的"top_k"值会限制模型的选择范围，使生成的文本更加一致和确定性。较大的"top_k"值会扩大选择范围，使生成的文本更加多样化和随机。取值区间为[1, 100]，默认值 40。
+        # @type TopK: Float
+        # @param RepetitionPenalty: 重复惩罚项,该参数用于用于控制生成文本中重复内容。建议范围[1.0, 1.05]非必要不建议使用, 不合理的取值会影响效果。默认为1。
+        # @type RepetitionPenalty: Float
+        # @param OutputSeqLen: 输出结果最大tokens数量。取值区间为(0, 1024]。默认值为768。
+        # @type OutputSeqLen: Integer
+        # @param MaxInputSeqLen: 输入文本的最大 tokens 数量。取值区间为(0, 1024]。默认值为256。
+        # @type MaxInputSeqLen: Integer
+
+        attr_accessor :Messages, :Model, :QueryId, :Temperature, :TopP, :TopK, :RepetitionPenalty, :OutputSeqLen, :MaxInputSeqLen
+
+        def initialize(messages=nil, model=nil, queryid=nil, temperature=nil, topp=nil, topk=nil, repetitionpenalty=nil, outputseqlen=nil, maxinputseqlen=nil)
+          @Messages = messages
+          @Model = model
+          @QueryId = queryid
+          @Temperature = temperature
+          @TopP = topp
+          @TopK = topk
+          @RepetitionPenalty = repetitionpenalty
+          @OutputSeqLen = outputseqlen
+          @MaxInputSeqLen = maxinputseqlen
+        end
+
+        def deserialize(params)
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              textgenerationmessage_tmp = TextGenerationMessage.new
+              textgenerationmessage_tmp.deserialize(i)
+              @Messages << textgenerationmessage_tmp
+            end
+          end
+          @Model = params['Model']
+          @QueryId = params['QueryId']
+          @Temperature = params['Temperature']
+          @TopP = params['TopP']
+          @TopK = params['TopK']
+          @RepetitionPenalty = params['RepetitionPenalty']
+          @OutputSeqLen = params['OutputSeqLen']
+          @MaxInputSeqLen = params['MaxInputSeqLen']
+        end
+      end
+
+      # TestingTextGeneration返回参数结构体
+      class TestingTextGenerationResponse < TencentCloud::Common::AbstractModel
+        # @param Choices: 结果
+        # @type Choices: Array
+        # @param Created: unix时间戳的字符串
+        # @type Created: Integer
+        # @param Id: 会话id
+        # @type Id: String
+        # @param Model: 模型名
+        # @type Model: String
+        # @param Usage: token数量
+        # @type Usage: :class:`Tencentcloud::Nlp.v20190408.models.TextGenerationUsage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Choices, :Created, :Id, :Model, :Usage, :RequestId
+
+        def initialize(choices=nil, created=nil, id=nil, model=nil, usage=nil, requestid=nil)
+          @Choices = choices
+          @Created = created
+          @Id = id
+          @Model = model
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              textgenerationchoices_tmp = TextGenerationChoices.new
+              textgenerationchoices_tmp.deserialize(i)
+              @Choices << textgenerationchoices_tmp
+            end
+          end
+          @Created = params['Created']
+          @Id = params['Id']
+          @Model = params['Model']
+          unless params['Usage'].nil?
+            @Usage = TextGenerationUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # TextEmbellish请求参数结构体
       class TextEmbellishRequest < TencentCloud::Common::AbstractModel
         # @param Text: 待润色的文本。中文文本长度需<=50字符；英文文本长度需<=30个单词。
@@ -809,6 +910,72 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # TextGenerationChoices
+      class TextGenerationChoices < TencentCloud::Common::AbstractModel
+        # @param Message: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: :class:`Tencentcloud::Nlp.v20190408.models.TextGenerationMessage`
+
+        attr_accessor :Message
+
+        def initialize(message=nil)
+          @Message = message
+        end
+
+        def deserialize(params)
+          unless params['Message'].nil?
+            @Message = TextGenerationMessage.new
+            @Message.deserialize(params['Message'])
+          end
+        end
+      end
+
+      # TextGenerationMessage
+      class TextGenerationMessage < TencentCloud::Common::AbstractModel
+        # @param Role: 角色支持 system, user, assistant。默认为user。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param Content: 消息的内容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
+      # TextGenerationUsage
+      class TextGenerationUsage < TencentCloud::Common::AbstractModel
+        # @param PromptTokens: 输入tokens数量
+        # @type PromptTokens: Integer
+        # @param CompletionTokens: 输出tokens数量
+        # @type CompletionTokens: Integer
+        # @param TotalTokens: 总token数量
+        # @type TotalTokens: Integer
+
+        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens
+
+        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil)
+          @PromptTokens = prompttokens
+          @CompletionTokens = completiontokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @PromptTokens = params['PromptTokens']
+          @CompletionTokens = params['CompletionTokens']
+          @TotalTokens = params['TotalTokens']
         end
       end
 

@@ -12065,7 +12065,9 @@ module TencentCloud
         # @type LicenseType: Integer
         # @param ResourceId: 资源ID
         # @type ResourceId: String
-        # @param Filters: <li>Keywords 机器别名/公私IP 模糊查询</li>
+        # @param Filters: <li>InstanceID、IP、
+
+        # MachineName 模糊查询</li>
         # @type Filters: Array
         # @param Limit: 限制条数,默认10.
         # @type Limit: Integer

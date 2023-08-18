@@ -1193,6 +1193,38 @@ module TencentCloud
         end
       end
 
+      # DeleteUser请求参数结构体
+      class DeleteUserRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 待删除用户的ID
+        # @type UserId: String
+
+        attr_accessor :UserId
+
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+        end
+      end
+
+      # DeleteUser返回参数结构体
+      class DeleteUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAnswerList请求参数结构体
       class DescribeAnswerListRequest < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID

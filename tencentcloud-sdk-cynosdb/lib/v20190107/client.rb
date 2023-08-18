@@ -1445,7 +1445,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeProxyNodes）用于查询代理接口列表。
+        # 本接口（DescribeProxyNodes）用于查询代理节点列表。
 
         # @param request: Request instance for DescribeProxyNodes.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeProxyNodesRequest`

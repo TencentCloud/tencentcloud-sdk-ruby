@@ -3043,22 +3043,6 @@ module TencentCloud
         end
       end
 
-      # 数据库表名
-      class DatabaseName < TencentCloud::Common::AbstractModel
-        # @param DatabaseName: 数据库表名
-        # @type DatabaseName: String
-
-        attr_accessor :DatabaseName
-
-        def initialize(databasename=nil)
-          @DatabaseName = databasename
-        end
-
-        def deserialize(params)
-          @DatabaseName = params['DatabaseName']
-        end
-      end
-
       # 数据库权限
       class DatabasePrivilege < TencentCloud::Common::AbstractModel
         # @param Privileges: 权限信息
@@ -4046,69 +4030,6 @@ module TencentCloud
           @BackupStandbyDays = params['BackupStandbyDays']
           @EnableBinlogStandby = params['EnableBinlogStandby']
           @BinlogStandbyDays = params['BinlogStandbyDays']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBackupDatabases请求参数结构体
-      class DescribeBackupDatabasesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
-        # @type InstanceId: String
-        # @param StartTime: 开始时间，格式为：2017-07-12 10:29:20。
-        # @type StartTime: String
-        # @param SearchDatabase: 要查询的数据库名前缀。
-        # @type SearchDatabase: String
-        # @param Offset: 分页偏移量。
-        # @type Offset: Integer
-        # @param Limit: 分页大小，最小值为1，最大值为2000。
-        # @type Limit: Integer
-
-        attr_accessor :InstanceId, :StartTime, :SearchDatabase, :Offset, :Limit
-
-        def initialize(instanceid=nil, starttime=nil, searchdatabase=nil, offset=nil, limit=nil)
-          @InstanceId = instanceid
-          @StartTime = starttime
-          @SearchDatabase = searchdatabase
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @StartTime = params['StartTime']
-          @SearchDatabase = params['SearchDatabase']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeBackupDatabases返回参数结构体
-      class DescribeBackupDatabasesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 返回的数据个数。
-        # @type TotalCount: Integer
-        # @param Items: 符合查询条件的数据库数组。
-        # @type Items: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Items, :RequestId
-
-        def initialize(totalcount=nil, items=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Items = items
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Items'].nil?
-            @Items = []
-            params['Items'].each do |i|
-              databasename_tmp = DatabaseName.new
-              databasename_tmp.deserialize(i)
-              @Items << databasename_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end

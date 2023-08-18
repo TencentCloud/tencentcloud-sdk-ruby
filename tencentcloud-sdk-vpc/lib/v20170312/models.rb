@@ -11162,17 +11162,20 @@ module TencentCloud
 
       # DescribeVpcEndPointServiceWhiteList返回参数结构体
       class DescribeVpcEndPointServiceWhiteListResponse < TencentCloud::Common::AbstractModel
-        # @param VpcEndpointServiceUserSet: 白名单对象数组。
+        # @param VpcEndpointServiceUserSet: 白名单对象数组。已废弃
         # @type VpcEndpointServiceUserSet: Array
+        # @param VpcEndPointServiceUserSet: 白名单对象数组。
+        # @type VpcEndPointServiceUserSet: Array
         # @param TotalCount: 符合条件的白名单个数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VpcEndpointServiceUserSet, :TotalCount, :RequestId
+        attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
 
-        def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
+        def initialize(vpcendpointserviceuserset=nil, vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndpointServiceUserSet = vpcendpointserviceuserset
+          @VpcEndPointServiceUserSet = vpcendpointserviceuserset
           @TotalCount = totalcount
           @RequestId = requestid
         end
@@ -11184,6 +11187,14 @@ module TencentCloud
               vpcendpointserviceuser_tmp = VpcEndPointServiceUser.new
               vpcendpointserviceuser_tmp.deserialize(i)
               @VpcEndpointServiceUserSet << vpcendpointserviceuser_tmp
+            end
+          end
+          unless params['VpcEndPointServiceUserSet'].nil?
+            @VpcEndPointServiceUserSet = []
+            params['VpcEndPointServiceUserSet'].each do |i|
+              vpcendpointserviceuser_tmp = VpcEndPointServiceUser.new
+              vpcendpointserviceuser_tmp.deserialize(i)
+              @VpcEndPointServiceUserSet << vpcendpointserviceuser_tmp
             end
           end
           @TotalCount = params['TotalCount']

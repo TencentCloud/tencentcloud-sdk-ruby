@@ -467,16 +467,20 @@ module TencentCloud
         # @type SubStreamObjectName: String
         # @param SegmentObjectName: 转自适应码流（仅 HLS）后，分片文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}_{segmentNumber}.{format}`。
         # @type SegmentObjectName: String
+        # @param AddOnSubtitles: 要插入的字幕文件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddOnSubtitles: Array
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @SubStreamObjectName = substreamobjectname
           @SegmentObjectName = segmentobjectname
+          @AddOnSubtitles = addonsubtitles
         end
 
         def deserialize(params)
@@ -496,6 +500,14 @@ module TencentCloud
           @OutputObjectPath = params['OutputObjectPath']
           @SubStreamObjectName = params['SubStreamObjectName']
           @SegmentObjectName = params['SegmentObjectName']
+          unless params['AddOnSubtitles'].nil?
+            @AddOnSubtitles = []
+            params['AddOnSubtitles'].each do |i|
+              addonsubtitle_tmp = AddOnSubtitle.new
+              addonsubtitle_tmp.deserialize(i)
+              @AddOnSubtitles << addonsubtitle_tmp
+            end
+          end
         end
       end
 
@@ -601,6 +613,33 @@ module TencentCloud
           end
           @RemoveAudio = params['RemoveAudio']
           @RemoveVideo = params['RemoveVideo']
+        end
+      end
+
+      # 外挂字幕。
+      class AddOnSubtitle < TencentCloud::Common::AbstractModel
+        # @param Type: 插入形式，可选值：
+        # <li>subtitle-stream：插入字幕轨道</li>
+        # <li>close-caption：编码到SEI帧</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Subtitle: 字幕文件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subtitle: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+
+        attr_accessor :Type, :Subtitle
+
+        def initialize(type=nil, subtitle=nil)
+          @Type = type
+          @Subtitle = subtitle
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Subtitle'].nil?
+            @Subtitle = MediaInputInfo.new
+            @Subtitle.deserialize(params['Subtitle'])
+          end
         end
       end
 
@@ -14353,10 +14392,13 @@ module TencentCloud
         # @param StdExtInfo: 转码扩展字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StdExtInfo: String
+        # @param AddOnSubtitles: 要插入的字幕文件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddOnSubtitles: Array
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate, :AddonAudioStream, :StdExtInfo
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SubtitleTemplate, :AddonAudioStream, :StdExtInfo, :AddOnSubtitles
 
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subtitletemplate=nil, addonaudiostream=nil, stdextinfo=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, subtitletemplate=nil, addonaudiostream=nil, stdextinfo=nil, addonsubtitles=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
@@ -14366,6 +14408,7 @@ module TencentCloud
           @SubtitleTemplate = subtitletemplate
           @AddonAudioStream = addonaudiostream
           @StdExtInfo = stdextinfo
+          @AddOnSubtitles = addonsubtitles
         end
 
         def deserialize(params)
@@ -14397,6 +14440,14 @@ module TencentCloud
             end
           end
           @StdExtInfo = params['StdExtInfo']
+          unless params['AddOnSubtitles'].nil?
+            @AddOnSubtitles = []
+            params['AddOnSubtitles'].each do |i|
+              addonsubtitle_tmp = AddOnSubtitle.new
+              addonsubtitle_tmp.deserialize(i)
+              @AddOnSubtitles << addonsubtitle_tmp
+            end
+          end
         end
       end
 
@@ -15965,12 +16016,16 @@ module TencentCloud
       # AWS S3 输出位置
       class S3OutputStorage < TencentCloud::Common::AbstractModel
         # @param S3Bucket: S3 bucket。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3Bucket: String
         # @param S3Region: S3 bucket 对应的区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3Region: String
         # @param S3SecretId: AWS 内网上传 媒体资源的秘钥id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretId: String
         # @param S3SecretKey: AWS 内网上传 媒体资源的秘钥key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretKey: String
 
         attr_accessor :S3Bucket, :S3Region, :S3SecretId, :S3SecretKey
