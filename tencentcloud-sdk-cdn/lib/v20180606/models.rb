@@ -2081,8 +2081,10 @@ module TencentCloud
         # @param HeuristicCacheTimeSwitch: 启发式自定义时间缓存配置开关，取值有：
         # on：开启
         # off：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeuristicCacheTimeSwitch: String
         # @param HeuristicCacheTime: 单位 秒.
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeuristicCacheTime: Integer
 
         attr_accessor :HeuristicCacheTimeSwitch, :HeuristicCacheTime
@@ -7776,8 +7778,10 @@ module TencentCloud
         # @param Switch: 启发式缓存配置开关，取值有：
         # on：开启
         # off：关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
         # @param CacheConfig: 自定义启发式缓存时间配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CacheConfig: :class:`Tencentcloud::Cdn.v20180606.models.CacheConfig`
 
         attr_accessor :Switch, :CacheConfig

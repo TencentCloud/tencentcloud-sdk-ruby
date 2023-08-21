@@ -8741,10 +8741,13 @@ module TencentCloud
         # @param GatewayRouteEnvId: 路由环境ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRouteEnvId: String
+        # @param GatewayRoutePathMatchType: 路径匹配类型，支持prefix(前缀匹配)，regex(正则匹配)， 默认prefix
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayRoutePathMatchType: String
 
-        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId
+        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId, :GatewayRoutePathMatchType
 
-        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil, gatewayrouteenvid=nil)
+        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil, gatewayrouteenvid=nil, gatewayroutepathmatchtype=nil)
           @GatewayRouteName = gatewayroutename
           @GatewayRouteProtocol = gatewayrouteprotocol
           @GatewayRouteAddr = gatewayrouteaddr
@@ -8760,6 +8763,7 @@ module TencentCloud
           @GatewayRouteMethod = gatewayroutemethod
           @GatewayRoutePort = gatewayrouteport
           @GatewayRouteEnvId = gatewayrouteenvid
+          @GatewayRoutePathMatchType = gatewayroutepathmatchtype
         end
 
         def deserialize(params)
@@ -8785,6 +8789,7 @@ module TencentCloud
           @GatewayRouteMethod = params['GatewayRouteMethod']
           @GatewayRoutePort = params['GatewayRoutePort']
           @GatewayRouteEnvId = params['GatewayRouteEnvId']
+          @GatewayRoutePathMatchType = params['GatewayRoutePathMatchType']
         end
       end
 

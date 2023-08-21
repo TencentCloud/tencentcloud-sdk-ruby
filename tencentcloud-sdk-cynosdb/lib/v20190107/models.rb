@@ -9477,10 +9477,12 @@ module TencentCloud
         # @type Region: String
         # @param Zone: 可用区
         # @type Zone: String
+        # @param OssProxyNodeName: 数据库代理节点名字
+        # @type OssProxyNodeName: String
 
-        attr_accessor :ProxyNodeId, :ProxyNodeConnections, :Cpu, :Mem, :Status, :ProxyGroupId, :ClusterId, :AppId, :Region, :Zone
+        attr_accessor :ProxyNodeId, :ProxyNodeConnections, :Cpu, :Mem, :Status, :ProxyGroupId, :ClusterId, :AppId, :Region, :Zone, :OssProxyNodeName
 
-        def initialize(proxynodeid=nil, proxynodeconnections=nil, cpu=nil, mem=nil, status=nil, proxygroupid=nil, clusterid=nil, appid=nil, region=nil, zone=nil)
+        def initialize(proxynodeid=nil, proxynodeconnections=nil, cpu=nil, mem=nil, status=nil, proxygroupid=nil, clusterid=nil, appid=nil, region=nil, zone=nil, ossproxynodename=nil)
           @ProxyNodeId = proxynodeid
           @ProxyNodeConnections = proxynodeconnections
           @Cpu = cpu
@@ -9491,6 +9493,7 @@ module TencentCloud
           @AppId = appid
           @Region = region
           @Zone = zone
+          @OssProxyNodeName = ossproxynodename
         end
 
         def deserialize(params)
@@ -9504,6 +9507,7 @@ module TencentCloud
           @AppId = params['AppId']
           @Region = params['Region']
           @Zone = params['Zone']
+          @OssProxyNodeName = params['OssProxyNodeName']
         end
       end
 

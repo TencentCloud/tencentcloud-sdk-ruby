@@ -707,6 +707,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户在发现迁移任务对用户的数据库的负载影响较大时、可通过该接口限制任务的传输速率
+
+        # @param request: Request instance for ModifyMigrateRateLimit.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifyMigrateRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifyMigrateRateLimitResponse`
+        def ModifyMigrateRateLimit(request)
+          body = send_request('ModifyMigrateRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMigrateRateLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
 
         # @param request: Request instance for ModifyMigrationJob.
@@ -742,6 +766,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySyncJobConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户在发现同步任务对用户的数据库的负载影响较大时、可通过该接口限制任务的传输速率
+
+        # @param request: Request instance for ModifySyncRateLimit.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifySyncRateLimitRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifySyncRateLimitResponse`
+        def ModifySyncRateLimit(request)
+          body = send_request('ModifySyncRateLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySyncRateLimitResponse.new
             model.deserialize(response['Response'])
             model
           else

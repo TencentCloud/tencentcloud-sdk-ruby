@@ -295,6 +295,28 @@ module TencentCloud
         end
       end
 
+      # 云原生API网关节点配置。
+      class CloudNativeAPIGatewayNodeConfig < TencentCloud::Common::AbstractModel
+        # @param Specification: 节点配置, 1c2g|2c4g|4c8g|8c16g。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Specification: String
+        # @param Number: 节点数量，2-9。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: Integer
+
+        attr_accessor :Specification, :Number
+
+        def initialize(specification=nil, number=nil)
+          @Specification = specification
+          @Number = number
+        end
+
+        def deserialize(params)
+          @Specification = params['Specification']
+          @Number = params['Number']
+        end
+      end
+
       # 云原生网关Tse 限流插件配置
       class CloudNativeAPIGatewayRateLimitDetail < TencentCloud::Common::AbstractModel
         # @param Enabled: 插件启用状态
@@ -387,6 +409,28 @@ module TencentCloud
         end
       end
 
+      # 云原生API网关vpc配置。
+      class CloudNativeAPIGatewayVpcConfig < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
       # CreateCloudNativeAPIGatewayCanaryRule请求参数结构体
       class CreateCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 ID
@@ -427,6 +471,145 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudNativeAPIGateway请求参数结构体
+      class CreateCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 云原生API网关名字, 最多支持60个字符。
+        # @type Name: String
+        # @param Type: 云原生API网关类型, 目前只支持kong。
+        # @type Type: String
+        # @param GatewayVersion: 云原生API网关版本。参考值：
+        # - 2.4.1
+        # - 2.5.1
+        # @type GatewayVersion: String
+        # @param NodeConfig: 云原生API网关节点配置。
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+        # @param VpcConfig: 云原生API网关vpc配置。
+        # @type VpcConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayVpcConfig`
+        # @param Description: 云原生API网关描述信息, 最多支持120个字符。
+        # @type Description: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param EnableCls: 是否开启 CLS 日志。默认值：fasle
+        # @type EnableCls: Boolean
+        # @param FeatureVersion: 产品版本。参考值：
+        # - TRIAL：开发版
+        # - STANDARD：标准版 （默认值）
+        # - PROFESSIONAL：专业版
+        # @type FeatureVersion: String
+        # @param InternetMaxBandwidthOut: 公网出流量带宽，[1,2048]Mbps
+        # @type InternetMaxBandwidthOut: Integer
+        # @param EngineRegion: 实例实际的地域信息，默认值：ap-guangzhou
+        # @type EngineRegion: String
+        # @param IngressClassName: ingress Class名称
+        # @type IngressClassName: String
+        # @param TradeType: 付费类型。参考值：
+        # 0：后付费（默认值）
+        # 1：预付费（接口暂不支持创建预付费实例）
+        # @type TradeType: Integer
+        # @param InternetConfig: 公网相关配置
+        # @type InternetConfig: :class:`Tencentcloud::Tse.v20201207.models.InternetConfig`
+
+        attr_accessor :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :Tags, :EnableCls, :FeatureVersion, :InternetMaxBandwidthOut, :EngineRegion, :IngressClassName, :TradeType, :InternetConfig
+
+        def initialize(name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, tags=nil, enablecls=nil, featureversion=nil, internetmaxbandwidthout=nil, engineregion=nil, ingressclassname=nil, tradetype=nil, internetconfig=nil)
+          @Name = name
+          @Type = type
+          @GatewayVersion = gatewayversion
+          @NodeConfig = nodeconfig
+          @VpcConfig = vpcconfig
+          @Description = description
+          @Tags = tags
+          @EnableCls = enablecls
+          @FeatureVersion = featureversion
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @EngineRegion = engineregion
+          @IngressClassName = ingressclassname
+          @TradeType = tradetype
+          @InternetConfig = internetconfig
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @GatewayVersion = params['GatewayVersion']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+          unless params['VpcConfig'].nil?
+            @VpcConfig = CloudNativeAPIGatewayVpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @Tags << instancetaginfo_tmp
+            end
+          end
+          @EnableCls = params['EnableCls']
+          @FeatureVersion = params['FeatureVersion']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @EngineRegion = params['EngineRegion']
+          @IngressClassName = params['IngressClassName']
+          @TradeType = params['TradeType']
+          unless params['InternetConfig'].nil?
+            @InternetConfig = InternetConfig.new
+            @InternetConfig.deserialize(params['InternetConfig'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGateway返回参数结构体
+      class CreateCloudNativeAPIGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建云原生API网关实例响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateCloudNativeAPIGatewayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateCloudNativeAPIGatewayResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建云原生API网关响应结果。
+      class CreateCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关ID。
+        # @type GatewayId: String
+        # @param Status: 云原生网关状态。
+        # @type Status: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :GatewayId, :Status, :TaskId
+
+        def initialize(gatewayid=nil, status=nil, taskid=nil)
+          @GatewayId = gatewayid
+          @Status = status
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -579,6 +762,36 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建网关分组信息
+      class CreateCloudNativeAPIGatewayServerGroupResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param GroupId: 分组id
+        # @type GroupId: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :GatewayId, :GroupId, :Status, :TaskId
+
+        def initialize(gatewayid=nil, groupid=nil, status=nil, taskid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @Status = status
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -873,6 +1086,77 @@ module TencentCloud
         end
       end
 
+      # CreateNativeGatewayServerGroup请求参数结构体
+      class CreateNativeGatewayServerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id。
+        # 只支持后付费实例
+        # @type GatewayId: String
+        # @param Name: 网关分组名
+        # @type Name: String
+        # @param NodeConfig: 节点配置
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+        # @param SubnetId: 子网id
+        # @type SubnetId: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param InternetMaxBandwidthOut: 公网带宽信息
+        # @type InternetMaxBandwidthOut: Integer
+        # @param InternetConfig: 公网配置。
+        # @type InternetConfig: :class:`Tencentcloud::Tse.v20201207.models.InternetConfig`
+
+        attr_accessor :GatewayId, :Name, :NodeConfig, :SubnetId, :Description, :InternetMaxBandwidthOut, :InternetConfig
+
+        def initialize(gatewayid=nil, name=nil, nodeconfig=nil, subnetid=nil, description=nil, internetmaxbandwidthout=nil, internetconfig=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @NodeConfig = nodeconfig
+          @SubnetId = subnetid
+          @Description = description
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @InternetConfig = internetconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+          @SubnetId = params['SubnetId']
+          @Description = params['Description']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          unless params['InternetConfig'].nil?
+            @InternetConfig = InternetConfig.new
+            @InternetConfig.deserialize(params['InternetConfig'])
+          end
+        end
+      end
+
+      # CreateNativeGatewayServerGroup返回参数结构体
+      class CreateNativeGatewayServerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 网关分组创建信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateCloudNativeAPIGatewayServerGroupResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateCloudNativeAPIGatewayServerGroupResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudNativeAPIGatewayCanaryRule请求参数结构体
       class DeleteCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 ID
@@ -910,6 +1194,69 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGateway请求参数结构体
+      class DeleteCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param DeleteClsTopic: 是否删除实例关联的 CLS 日志主题。
+        # @type DeleteClsTopic: Boolean
+
+        attr_accessor :GatewayId, :DeleteClsTopic
+
+        def initialize(gatewayid=nil, deleteclstopic=nil)
+          @GatewayId = gatewayid
+          @DeleteClsTopic = deleteclstopic
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @DeleteClsTopic = params['DeleteClsTopic']
+        end
+      end
+
+      # DeleteCloudNativeAPIGateway返回参数结构体
+      class DeleteCloudNativeAPIGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除云原生API网关实例响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DeleteCloudNativeAPIGatewayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeleteCloudNativeAPIGatewayResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除云原生API网关响应结果。
+      class DeleteCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生网关ID。
+        # @type GatewayId: String
+        # @param Status: 云原生网关状态。
+        # @type Status: String
+
+        attr_accessor :GatewayId, :Status
+
+        def initialize(gatewayid=nil, status=nil)
+          @GatewayId = gatewayid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Status = params['Status']
         end
       end
 
@@ -1090,6 +1437,79 @@ module TencentCloud
         end
       end
 
+      # DeleteNativeGatewayServerGroup请求参数结构体
+      class DeleteNativeGatewayServerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id。
+        # 只支持后付费实例
+        # @type GatewayId: String
+        # @param GroupId: 网关分组id
+        # @type GroupId: String
+
+        attr_accessor :GatewayId, :GroupId
+
+        def initialize(gatewayid=nil, groupid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteNativeGatewayServerGroup返回参数结构体
+      class DeleteNativeGatewayServerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除信息
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DeleteNativeGatewayServerGroupResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeleteNativeGatewayServerGroupResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除网关实例结果
+      class DeleteNativeGatewayServerGroupResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例id
+        # @type GatewayId: String
+        # @param GroupId: 网关分组id
+        # @type GroupId: String
+        # @param Status: 删除状态
+        # @type Status: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :GatewayId, :GroupId, :Status, :TaskId
+
+        def initialize(gatewayid=nil, groupid=nil, status=nil, taskid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @Status = status
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayCanaryRules请求参数结构体
       class DescribeCloudNativeAPIGatewayCanaryRulesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -1256,6 +1676,192 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGateway请求参数结构体
+      class DescribeCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGateway返回参数结构体
+      class DescribeCloudNativeAPIGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生API网关基础信息响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeCloudNativeAPIGatewayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeCloudNativeAPIGatewayResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取云原生API网关基础信息响应结果。
+      class DescribeCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关ID。
+        # @type GatewayId: String
+        # @param Status: 云原生API网关状态。
+        # @type Status: String
+        # @param Name: 云原生API网关名。
+        # @type Name: String
+        # @param Type: 云原生API网关类型。
+        # @type Type: String
+        # @param GatewayVersion: 实例版本：
+        # - 2.4.1
+        # - 2.5.1
+        # @type GatewayVersion: String
+        # @param NodeConfig: 云原生API网关节点信息。
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+        # @param VpcConfig: 云原生API网关vpc配置。
+        # @type VpcConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayVpcConfig`
+        # @param Description: 云原生API网关描述。
+        # @type Description: String
+        # @param CreateTime: 云原生API网关创建时间。
+        # @type CreateTime: String
+        # @param Tags: 实例的标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param EnableCls: 是否开启 cls 日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCls: Boolean
+        # @param TradeType: 付费模式，0表示后付费，1预付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TradeType: Integer
+        # @param FeatureVersion: 实例版本，当前支持开发版、标准版、专业版【TRIAL、STANDARD、PROFESSIONAL】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeatureVersion: String
+        # @param InternetMaxBandwidthOut: 公网出流量带宽，[1,2048]Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态)；
+        # 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续费，需要设置为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param CurDeadline: 到期时间，预付费时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param IsolateTime: 隔离时间，实例隔离时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
+        # @param EnableInternet: 是否开启客户端公网。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableInternet: Boolean
+        # @param EngineRegion: 实例实际的地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineRegion: String
+        # @param IngressClassName: Ingress class名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IngressClassName: String
+        # @param InternetPayMode: 公网计费方式。可选取值 BANDWIDTH | TRAFFIC ，表示按带宽和按流量计费。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetPayMode: String
+        # @param GatewayMinorVersion: 云原生API网关小版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayMinorVersion: String
+        # @param InstancePort: 实例监听的端口信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePort: :class:`Tencentcloud::Tse.v20201207.models.InstancePort`
+        # @param LoadBalancerType: 公网CLB默认类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerType: String
+        # @param PublicIpAddresses: 公网IP地址列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddresses: Array
+
+        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses
+
+        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil)
+          @GatewayId = gatewayid
+          @Status = status
+          @Name = name
+          @Type = type
+          @GatewayVersion = gatewayversion
+          @NodeConfig = nodeconfig
+          @VpcConfig = vpcconfig
+          @Description = description
+          @CreateTime = createtime
+          @Tags = tags
+          @EnableCls = enablecls
+          @TradeType = tradetype
+          @FeatureVersion = featureversion
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @AutoRenewFlag = autorenewflag
+          @CurDeadline = curdeadline
+          @IsolateTime = isolatetime
+          @EnableInternet = enableinternet
+          @EngineRegion = engineregion
+          @IngressClassName = ingressclassname
+          @InternetPayMode = internetpaymode
+          @GatewayMinorVersion = gatewayminorversion
+          @InstancePort = instanceport
+          @LoadBalancerType = loadbalancertype
+          @PublicIpAddresses = publicipaddresses
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Status = params['Status']
+          @Name = params['Name']
+          @Type = params['Type']
+          @GatewayVersion = params['GatewayVersion']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+          unless params['VpcConfig'].nil?
+            @VpcConfig = CloudNativeAPIGatewayVpcConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              instancetaginfo_tmp = InstanceTagInfo.new
+              instancetaginfo_tmp.deserialize(i)
+              @Tags << instancetaginfo_tmp
+            end
+          end
+          @EnableCls = params['EnableCls']
+          @TradeType = params['TradeType']
+          @FeatureVersion = params['FeatureVersion']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @CurDeadline = params['CurDeadline']
+          @IsolateTime = params['IsolateTime']
+          @EnableInternet = params['EnableInternet']
+          @EngineRegion = params['EngineRegion']
+          @IngressClassName = params['IngressClassName']
+          @InternetPayMode = params['InternetPayMode']
+          @GatewayMinorVersion = params['GatewayMinorVersion']
+          unless params['InstancePort'].nil?
+            @InstancePort = InstancePort.new
+            @InstancePort.deserialize(params['InstancePort'])
+          end
+          @LoadBalancerType = params['LoadBalancerType']
+          @PublicIpAddresses = params['PublicIpAddresses']
         end
       end
 
@@ -1466,6 +2072,60 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = KongServices.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGateways请求参数结构体
+      class DescribeCloudNativeAPIGatewaysRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Filters: 请求过滤参数，支持按照实例名称、ID和标签键值（Name、GatewayId、Tag）筛选
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCloudNativeAPIGateways返回参数结构体
+      class DescribeCloudNativeAPIGatewaysResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生API网关实例列表响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.ListCloudNativeAPIGatewayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ListCloudNativeAPIGatewayResult.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -2227,6 +2887,28 @@ module TencentCloud
         end
       end
 
+      # 实例监听端口信息
+      class InstancePort < TencentCloud::Common::AbstractModel
+        # @param HttpPort: 监听的 http 端口范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpPort: String
+        # @param HttpsPort: 监听的 https 端口范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsPort: String
+
+        attr_accessor :HttpPort, :HttpsPort
+
+        def initialize(httpport=nil, httpsport=nil)
+          @HttpPort = httpport
+          @HttpsPort = httpsport
+        end
+
+        def deserialize(params)
+          @HttpPort = params['HttpPort']
+          @HttpsPort = params['HttpsPort']
+        end
+      end
+
       # 引擎实例的标签信息
       class InstanceTagInfo < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -2244,6 +2926,50 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 公网负载均衡配置
+      class InternetConfig < TencentCloud::Common::AbstractModel
+        # @param InternetAddressVersion: 公网地址版本，可选："IPV4" | "IPV6-NAT64" 。不填默认 IPV4 。
+        # @type InternetAddressVersion: String
+        # @param InternetPayMode: 公网付费类型，当前仅可选："BANDWIDTH"。不填默认为 "BANDWIDTH"
+        # @type InternetPayMode: String
+        # @param InternetMaxBandwidthOut: 公网带宽。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param Description: 负载均衡描述
+        # @type Description: String
+        # @param SlaType: 负载均衡的规格类型，传 "SLA" 表示性能容量型，不传为共享型。
+        # @type SlaType: String
+        # @param MultiZoneFlag: 负载均衡是否多可用区
+        # @type MultiZoneFlag: Boolean
+        # @param MasterZoneId: 主可用区
+        # @type MasterZoneId: String
+        # @param SlaveZoneId: 备可用区
+        # @type SlaveZoneId: String
+
+        attr_accessor :InternetAddressVersion, :InternetPayMode, :InternetMaxBandwidthOut, :Description, :SlaType, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId
+
+        def initialize(internetaddressversion=nil, internetpaymode=nil, internetmaxbandwidthout=nil, description=nil, slatype=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil)
+          @InternetAddressVersion = internetaddressversion
+          @InternetPayMode = internetpaymode
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @Description = description
+          @SlaType = slatype
+          @MultiZoneFlag = multizoneflag
+          @MasterZoneId = masterzoneid
+          @SlaveZoneId = slavezoneid
+        end
+
+        def deserialize(params)
+          @InternetAddressVersion = params['InternetAddressVersion']
+          @InternetPayMode = params['InternetPayMode']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @Description = params['Description']
+          @SlaType = params['SlaType']
+          @MultiZoneFlag = params['MultiZoneFlag']
+          @MasterZoneId = params['MasterZoneId']
+          @SlaveZoneId = params['SlaveZoneId']
         end
       end
 
@@ -2695,6 +3421,33 @@ module TencentCloud
         end
       end
 
+      # 获取云原生API网关实例列表响应结果。
+      class ListCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数。
+        # @type TotalCount: Integer
+        # @param GatewayList: 云原生API网关实例列表。
+        # @type GatewayList: Array
+
+        attr_accessor :TotalCount, :GatewayList
+
+        def initialize(totalcount=nil, gatewaylist=nil)
+          @TotalCount = totalcount
+          @GatewayList = gatewaylist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['GatewayList'].nil?
+            @GatewayList = []
+            params['GatewayList'].each do |i|
+              describecloudnativeapigatewayresult_tmp = DescribeCloudNativeAPIGatewayResult.new
+              describecloudnativeapigatewayresult_tmp.deserialize(i)
+              @GatewayList << describecloudnativeapigatewayresult_tmp
+            end
+          end
+        end
+      end
+
       # 列表过滤条件，模糊匹配
       class ListFilter < TencentCloud::Common::AbstractModel
         # @param Key: 过滤字段
@@ -2748,6 +3501,54 @@ module TencentCloud
 
       # ModifyCloudNativeAPIGatewayCanaryRule返回参数结构体
       class ModifyCloudNativeAPIGatewayCanaryRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCloudNativeAPIGateway请求参数结构体
+      class ModifyCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param Name: 云原生API网关名字, 最多支持60个字符。
+        # @type Name: String
+        # @param Description: 云原生API网关描述信息, 最多支持120个字符。
+        # @type Description: String
+        # @param EnableCls: 是否开启 CLS 日志。暂时取值只能是 true，即只能从关闭状态变成开启状态。
+        # @type EnableCls: Boolean
+        # @param InternetPayMode: 公网计费模式。可选取值 BANDWIDTH | TRAFFIC ，表示按带宽和按流量计费。
+        # @type InternetPayMode: String
+
+        attr_accessor :GatewayId, :Name, :Description, :EnableCls, :InternetPayMode
+
+        def initialize(gatewayid=nil, name=nil, description=nil, enablecls=nil, internetpaymode=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @Description = description
+          @EnableCls = enablecls
+          @InternetPayMode = internetpaymode
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @EnableCls = params['EnableCls']
+          @InternetPayMode = params['InternetPayMode']
+        end
+      end
+
+      # ModifyCloudNativeAPIGateway返回参数结构体
+      class ModifyCloudNativeAPIGatewayResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3023,6 +3824,50 @@ module TencentCloud
 
       # ModifyCloudNativeAPIGatewayService返回参数结构体
       class ModifyCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNativeGatewayServerGroup请求参数结构体
+      class ModifyNativeGatewayServerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 网关分组 id
+        # @type GroupId: String
+        # @param Name: 云原生API网关名字, 最多支持60个字符。
+        # @type Name: String
+        # @param Description: 云原生API网关描述信息, 最多支持120个字符。
+        # @type Description: String
+
+        attr_accessor :GatewayId, :GroupId, :Name, :Description
+
+        def initialize(gatewayid=nil, groupid=nil, name=nil, description=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyNativeGatewayServerGroup返回参数结构体
+      class ModifyNativeGatewayServerGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3442,6 +4287,82 @@ module TencentCloud
               @LimiterVpcInfos << vpcinfo_tmp
             end
           end
+        end
+      end
+
+      # 更新云原生API网关响应结果。
+      class UpdateCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关ID。
+        # @type GatewayId: String
+        # @param Status: 云原生网关状态。
+        # @type Status: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :GatewayId, :Status, :TaskId
+
+        def initialize(gatewayid=nil, status=nil, taskid=nil)
+          @GatewayId = gatewayid
+          @Status = status
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewaySpec请求参数结构体
+      class UpdateCloudNativeAPIGatewaySpecRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # 只支持后付费实例
+        # @type GatewayId: String
+        # @param GroupId: 网关分组id
+        # @type GroupId: String
+        # @param NodeConfig: 网关分组节点规格配置。
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+
+        attr_accessor :GatewayId, :GroupId, :NodeConfig
+
+        def initialize(gatewayid=nil, groupid=nil, nodeconfig=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @NodeConfig = nodeconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewaySpec返回参数结构体
+      class UpdateCloudNativeAPIGatewaySpecResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 更新云原生API网关实例规格的响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.UpdateCloudNativeAPIGatewayResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UpdateCloudNativeAPIGatewayResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

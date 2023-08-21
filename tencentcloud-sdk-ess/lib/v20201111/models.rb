@@ -100,7 +100,7 @@ module TencentCloud
         # @param SignComponents: 合同中的签署控件列表，列表中可支持下列多种签署控件,控件的详细定义参考开发者中心的Component结构体
         # <ul><li> 个人签名/印章</li>
         # <li> 企业印章</li>
-        # <li> 骑缝章等签署控件</li><ul>
+        # <li> 骑缝章等签署控件</li></ul>
         # @type SignComponents: Array
         # @param ApproverIdCardType: 签署方经办人的证件类型，支持以下类型
         # <ul><li>ID_CARD 居民身份证  (默认值)</li>
@@ -2172,10 +2172,14 @@ module TencentCloud
 
       # CreateIntegrationDepartment请求参数结构体
       class CreateIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param DeptName: 部门名称，不超过50个字符
         # @type DeptName: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ParentDeptId: 电子签父部门ID，与ParentDeptOpenId二选一,优先ParentDeptId,都为空时自动填充至根节点下
         # @type ParentDeptId: String
         # @param ParentDeptOpenId: 第三方平台中父部门ID,与ParentDeptId二选一,优先ParentDeptId,都为空时自动填充至根节点下
@@ -2185,11 +2189,12 @@ module TencentCloud
         # @param OrderNo: 排序号,1~30000范围内
         # @type OrderNo: Integer
 
-        attr_accessor :Operator, :DeptName, :ParentDeptId, :ParentDeptOpenId, :DeptOpenId, :OrderNo
+        attr_accessor :Operator, :DeptName, :Agent, :ParentDeptId, :ParentDeptOpenId, :DeptOpenId, :OrderNo
 
-        def initialize(operator=nil, deptname=nil, parentdeptid=nil, parentdeptopenid=nil, deptopenid=nil, orderno=nil)
+        def initialize(operator=nil, deptname=nil, agent=nil, parentdeptid=nil, parentdeptopenid=nil, deptopenid=nil, orderno=nil)
           @Operator = operator
           @DeptName = deptname
+          @Agent = agent
           @ParentDeptId = parentdeptid
           @ParentDeptOpenId = parentdeptopenid
           @DeptOpenId = deptopenid
@@ -2202,6 +2207,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @DeptName = params['DeptName']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           @ParentDeptId = params['ParentDeptId']
           @ParentDeptOpenId = params['ParentDeptOpenId']
           @DeptOpenId = params['DeptOpenId']
@@ -3366,18 +3375,23 @@ module TencentCloud
 
       # DeleteIntegrationDepartment请求参数结构体
       class DeleteIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param DeptId: 电子签中的部门id,通过DescribeIntegrationDepartments接口可获得
         # @type DeptId: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ReceiveDeptId: 交接部门ID。待删除部门中的合同、印章和模板数据，交接至该部门ID下，未填写交接至公司根部门。
         # @type ReceiveDeptId: String
 
-        attr_accessor :Operator, :DeptId, :ReceiveDeptId
+        attr_accessor :Operator, :DeptId, :Agent, :ReceiveDeptId
 
-        def initialize(operator=nil, deptid=nil, receivedeptid=nil)
+        def initialize(operator=nil, deptid=nil, agent=nil, receivedeptid=nil)
           @Operator = operator
           @DeptId = deptid
+          @Agent = agent
           @ReceiveDeptId = receivedeptid
         end
 
@@ -3387,6 +3401,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @DeptId = params['DeptId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           @ReceiveDeptId = params['ReceiveDeptId']
         end
       end
@@ -4170,20 +4188,25 @@ module TencentCloud
 
       # DescribeIntegrationDepartments请求参数结构体
       class DescribeIntegrationDepartmentsRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param QueryType: 查询类型 0-查询单个部门节点 1-单个部门节点及一级子节点部门列表
         # @type QueryType: Integer
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param DeptId: 部门ID,与DeptOpenId二选一,优先DeptId,都为空时获取根节点数据
         # @type DeptId: String
         # @param DeptOpenId: 客户系统部门ID,与DeptId二选一,优先DeptId,都为空时获取根节点数据
         # @type DeptOpenId: String
 
-        attr_accessor :Operator, :QueryType, :DeptId, :DeptOpenId
+        attr_accessor :Operator, :QueryType, :Agent, :DeptId, :DeptOpenId
 
-        def initialize(operator=nil, querytype=nil, deptid=nil, deptopenid=nil)
+        def initialize(operator=nil, querytype=nil, agent=nil, deptid=nil, deptopenid=nil)
           @Operator = operator
           @QueryType = querytype
+          @Agent = agent
           @DeptId = deptid
           @DeptOpenId = deptopenid
         end
@@ -4194,6 +4217,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @QueryType = params['QueryType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           @DeptId = params['DeptId']
           @DeptOpenId = params['DeptOpenId']
         end
@@ -6232,10 +6259,14 @@ module TencentCloud
 
       # ModifyIntegrationDepartment请求参数结构体
       class ModifyIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，UserId必填且需拥有组织架构管理权限
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param DeptId: 电子签部门ID,通过DescribeIntegrationDepartments接口可以获取
         # @type DeptId: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ParentDeptId: 电子签父部门ID，通过DescribeIntegrationDepartments接口可以获取
         # @type ParentDeptId: String
         # @param DeptName: 部门名称，不超过50个字符
@@ -6245,11 +6276,12 @@ module TencentCloud
         # @param OrderNo: 排序号,1~30000范围内
         # @type OrderNo: Integer
 
-        attr_accessor :Operator, :DeptId, :ParentDeptId, :DeptName, :DeptOpenId, :OrderNo
+        attr_accessor :Operator, :DeptId, :Agent, :ParentDeptId, :DeptName, :DeptOpenId, :OrderNo
 
-        def initialize(operator=nil, deptid=nil, parentdeptid=nil, deptname=nil, deptopenid=nil, orderno=nil)
+        def initialize(operator=nil, deptid=nil, agent=nil, parentdeptid=nil, deptname=nil, deptopenid=nil, orderno=nil)
           @Operator = operator
           @DeptId = deptid
+          @Agent = agent
           @ParentDeptId = parentdeptid
           @DeptName = deptname
           @DeptOpenId = deptopenid
@@ -6262,6 +6294,10 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @DeptId = params['DeptId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
           @ParentDeptId = params['ParentDeptId']
           @DeptName = params['DeptName']
           @DeptOpenId = params['DeptOpenId']

@@ -3429,6 +3429,58 @@ module TencentCloud
         end
       end
 
+      # ModifyMigrateRateLimit请求参数结构体
+      class ModifyMigrateRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 迁移任务ID
+        # @type JobId: String
+        # @param DumpThread: 迁移任务全量导出线程数、有效值为 1-16
+        # @type DumpThread: Integer
+        # @param DumpRps: 迁移全量导出的 Rps 限制、需要大于 0
+        # @type DumpRps: Integer
+        # @param LoadThread: 迁移任务全量导入线程数、有效值为 1-16
+        # @type LoadThread: Integer
+        # @param SinkerThread: 迁移任务增量导入线程数、有效值为 1-128
+        # @type SinkerThread: Integer
+        # @param LoadRps: 全量导入Rps限制
+        # @type LoadRps: Integer
+
+        attr_accessor :JobId, :DumpThread, :DumpRps, :LoadThread, :SinkerThread, :LoadRps
+
+        def initialize(jobid=nil, dumpthread=nil, dumprps=nil, loadthread=nil, sinkerthread=nil, loadrps=nil)
+          @JobId = jobid
+          @DumpThread = dumpthread
+          @DumpRps = dumprps
+          @LoadThread = loadthread
+          @SinkerThread = sinkerthread
+          @LoadRps = loadrps
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @DumpThread = params['DumpThread']
+          @DumpRps = params['DumpRps']
+          @LoadThread = params['LoadThread']
+          @SinkerThread = params['SinkerThread']
+          @LoadRps = params['LoadRps']
+        end
+      end
+
+      # ModifyMigrateRateLimit返回参数结构体
+      class ModifyMigrateRateLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMigrationJob请求参数结构体
       class ModifyMigrationJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务id
@@ -3541,6 +3593,58 @@ module TencentCloud
 
       # ModifySyncJobConfig返回参数结构体
       class ModifySyncJobConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySyncRateLimit请求参数结构体
+      class ModifySyncRateLimitRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 迁移任务ID
+        # @type JobId: String
+        # @param DumpThread: 同步任务全量导出线程数、有效值为 1-16
+        # @type DumpThread: Integer
+        # @param DumpRps: 同步任务全量导出的 Rps 限制、需要大于 0
+        # @type DumpRps: Integer
+        # @param LoadThread: 同步任务全量导入线程数、有效值为 1-16
+        # @type LoadThread: Integer
+        # @param SinkerThread: 同步任务增量导入线程数、有效值为 1-128
+        # @type SinkerThread: Integer
+        # @param LoadRps: 同步任务全量导入的Rps
+        # @type LoadRps: Integer
+
+        attr_accessor :JobId, :DumpThread, :DumpRps, :LoadThread, :SinkerThread, :LoadRps
+
+        def initialize(jobid=nil, dumpthread=nil, dumprps=nil, loadthread=nil, sinkerthread=nil, loadrps=nil)
+          @JobId = jobid
+          @DumpThread = dumpthread
+          @DumpRps = dumprps
+          @LoadThread = loadthread
+          @SinkerThread = sinkerthread
+          @LoadRps = loadrps
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @DumpThread = params['DumpThread']
+          @DumpRps = params['DumpRps']
+          @LoadThread = params['LoadThread']
+          @SinkerThread = params['SinkerThread']
+          @LoadRps = params['LoadRps']
+        end
+      end
+
+      # ModifySyncRateLimit返回参数结构体
+      class ModifySyncRateLimitResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
