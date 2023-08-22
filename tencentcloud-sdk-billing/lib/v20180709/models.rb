@@ -145,13 +145,22 @@ module TencentCloud
         # @type RegionId: String
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
-        # @param PriceInfo: 价格属性
+        # @param PriceInfo: 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PriceInfo: Array
+        # @param AssociatedOrder: 关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedOrder: :class:`Tencentcloud::Billing.v20180709.models.BillDetailAssociatedOrder`
+        # @param Formula: 计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Formula: String
+        # @param FormulaUrl: 计费规则：各产品详细的计费规则官网说明链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormulaUrl: String
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl
 
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -177,6 +186,9 @@ module TencentCloud
           @RegionId = regionid
           @ProjectId = projectid
           @PriceInfo = priceinfo
+          @AssociatedOrder = associatedorder
+          @Formula = formula
+          @FormulaUrl = formulaurl
         end
 
         def deserialize(params)
@@ -219,6 +231,54 @@ module TencentCloud
           @RegionId = params['RegionId']
           @ProjectId = params['ProjectId']
           @PriceInfo = params['PriceInfo']
+          unless params['AssociatedOrder'].nil?
+            @AssociatedOrder = BillDetailAssociatedOrder.new
+            @AssociatedOrder.deserialize(params['AssociatedOrder'])
+          end
+          @Formula = params['Formula']
+          @FormulaUrl = params['FormulaUrl']
+        end
+      end
+
+      # 明细账单关联单据信息
+      class BillDetailAssociatedOrder < TencentCloud::Common::AbstractModel
+        # @param PrepayPurchase: 新购订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepayPurchase: String
+        # @param PrepayRenew: 续费订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepayRenew: String
+        # @param PrepayModifyUp: 升配订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrepayModifyUp: String
+        # @param ReverseOrder: 冲销订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReverseOrder: String
+        # @param NewOrder: 优惠调整后订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewOrder: String
+        # @param Original: 优惠调整前订单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Original: String
+
+        attr_accessor :PrepayPurchase, :PrepayRenew, :PrepayModifyUp, :ReverseOrder, :NewOrder, :Original
+
+        def initialize(prepaypurchase=nil, prepayrenew=nil, prepaymodifyup=nil, reverseorder=nil, neworder=nil, original=nil)
+          @PrepayPurchase = prepaypurchase
+          @PrepayRenew = prepayrenew
+          @PrepayModifyUp = prepaymodifyup
+          @ReverseOrder = reverseorder
+          @NewOrder = neworder
+          @Original = original
+        end
+
+        def deserialize(params)
+          @PrepayPurchase = params['PrepayPurchase']
+          @PrepayRenew = params['PrepayRenew']
+          @PrepayModifyUp = params['PrepayModifyUp']
+          @ReverseOrder = params['ReverseOrder']
+          @NewOrder = params['NewOrder']
+          @Original = params['Original']
         end
       end
 
@@ -295,15 +355,18 @@ module TencentCloud
         # @param BlendedDiscount: 混合折扣率：综合各类折扣抵扣信息后的最终折扣率，混合折扣率 = 优惠后总价 / 组件原价
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlendedDiscount: String
+        # @param ComponentConfig: 配置描述：资源配置规格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentConfig: Array
 
-        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount
+        attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount, :ComponentConfig
         extend Gem::Deprecate
         deprecate :SpecifiedPrice, :none, 2023, 8
         deprecate :SpecifiedPrice=, :none, 2023, 8
         deprecate :SPDeduction, :none, 2023, 8
         deprecate :SPDeduction=, :none, 2023, 8
 
-        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil)
+        def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil, componentconfig=nil)
           @ComponentCodeName = componentcodename
           @ItemCodeName = itemcodename
           @SinglePrice = singleprice
@@ -333,6 +396,7 @@ module TencentCloud
           @SPDeduction = spdeduction
           @OriginalCostWithSP = originalcostwithsp
           @BlendedDiscount = blendeddiscount
+          @ComponentConfig = componentconfig
         end
 
         def deserialize(params)
@@ -365,6 +429,36 @@ module TencentCloud
           @SPDeduction = params['SPDeduction']
           @OriginalCostWithSP = params['OriginalCostWithSP']
           @BlendedDiscount = params['BlendedDiscount']
+          unless params['ComponentConfig'].nil?
+            @ComponentConfig = []
+            params['ComponentConfig'].each do |i|
+              billdetailcomponentconfig_tmp = BillDetailComponentConfig.new
+              billdetailcomponentconfig_tmp.deserialize(i)
+              @ComponentConfig << billdetailcomponentconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 明细账单配置描述结构
+      class BillDetailComponentConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 配置描述名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 配置描述值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -1695,16 +1789,16 @@ module TencentCloud
         # @type PeriodType: String
         # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         # @type Month: String
-        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。(不支持跨月查询)
+        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         # @type BeginTime: String
-        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。（不支持跨月查询）
+        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
         # @type EndTime: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
         # @param ProductCode: 已废弃参数，未开放
         # @type ProductCode: String
-        # @param PayMode: 付费模式 prePay/postPay
+        # @param PayMode: 付费模式 prePay(表示包年包月)/postPay(表示按时按量)
         # @type PayMode: String
         # @param ResourceId: 查询指定资源信息
         # @type ResourceId: String

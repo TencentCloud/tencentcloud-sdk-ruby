@@ -2987,7 +2987,7 @@ module TencentCloud
         # @param Ciphers: 加密套件信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ciphers: Array
-        # @param CipherTemplate: 模版
+        # @param CipherTemplate: 模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherTemplate: Integer
         # @param ProxyReadTimeout: 300s
@@ -3382,6 +3382,54 @@ module TencentCloud
             end
           end
           @Period = params['Period']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetAttackTotalCount请求参数结构体
+      class GetAttackTotalCountRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Domain: 查询的域名，全部域名不指定
+        # @type Domain: String
+        # @param QueryString: 查询条件，默认为""
+        # @type QueryString: String
+
+        attr_accessor :StartTime, :EndTime, :Domain, :QueryString
+
+        def initialize(starttime=nil, endtime=nil, domain=nil, querystring=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Domain = domain
+          @QueryString = querystring
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Domain = params['Domain']
+          @QueryString = params['QueryString']
+        end
+      end
+
+      # GetAttackTotalCount返回参数结构体
+      class GetAttackTotalCountResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 攻击总次数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RequestId
+
+        def initialize(totalcount=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -3956,7 +4004,7 @@ module TencentCloud
 
       # ModifyAreaBanStatus请求参数结构体
       class ModifyAreaBanStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 修要修改的域名
+        # @param Domain: 需要修改的域名
         # @type Domain: String
         # @param Status: 状态值，0表示关闭，1表示开启
         # @type Status: Integer
@@ -4049,7 +4097,7 @@ module TencentCloud
         # @type RuleId: Integer
         # @param RuleName: 编辑的规则名称
         # @type RuleName: String
-        # @param Bypass: 放行时是否继续执行其它检查逻辑，继续执行地域封禁防护：geoip、继续执行CC策略防护：cc、继续执行WEB应用防护：owasp、继续执行AI引擎防护：ai、继续执行信息防泄漏防护：antileakage。如果多个勾选那么以,串接。
+        # @param Bypass: 放行时是否继续执行其它检查逻辑，继续执行地域封禁防护：geoip、继续执行CC策略防护：cc、继续执行WEB应用防护：owasp、继续执行AI引擎防护：ai、继续执行信息防泄漏防护：antileakage。如果勾选多个，则以“，”串接。
         # @type Bypass: String
         # @param SortId: 优先级，1~100的整数，数字越小，代表这条规则的执行优先级越高。
         # @type SortId: Integer

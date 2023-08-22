@@ -39,12 +39,14 @@ module TencentCloud
         # @type Codec: String
         # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收识别结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。[回调说明](https://cloud.tencent.com/document/product/1073/55746)
         # @type CallbackUrl: String
+        # @param EnableSubtitle: 是否开启时间戳功能，默认为false。
+        # @type EnableSubtitle: Boolean
         # @param VoiceoverDialogueSplit: 旁白与对白文本解析，分别合成相应风格（仅适用于旁对白音色10510000、100510000），默认 false
         # @type VoiceoverDialogueSplit: Boolean
 
-        attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :VoiceoverDialogueSplit
+        attr_accessor :Text, :ModelType, :Volume, :Speed, :ProjectId, :VoiceType, :PrimaryLanguage, :SampleRate, :Codec, :CallbackUrl, :EnableSubtitle, :VoiceoverDialogueSplit
 
-        def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, voiceoverdialoguesplit=nil)
+        def initialize(text=nil, modeltype=nil, volume=nil, speed=nil, projectid=nil, voicetype=nil, primarylanguage=nil, samplerate=nil, codec=nil, callbackurl=nil, enablesubtitle=nil, voiceoverdialoguesplit=nil)
           @Text = text
           @ModelType = modeltype
           @Volume = volume
@@ -55,6 +57,7 @@ module TencentCloud
           @SampleRate = samplerate
           @Codec = codec
           @CallbackUrl = callbackurl
+          @EnableSubtitle = enablesubtitle
           @VoiceoverDialogueSplit = voiceoverdialoguesplit
         end
 
@@ -69,6 +72,7 @@ module TencentCloud
           @SampleRate = params['SampleRate']
           @Codec = params['Codec']
           @CallbackUrl = params['CallbackUrl']
+          @EnableSubtitle = params['EnableSubtitle']
           @VoiceoverDialogueSplit = params['VoiceoverDialogueSplit']
         end
       end
@@ -138,16 +142,19 @@ module TencentCloud
         # @type StatusStr: String
         # @param ResultUrl: 合成音频COS地址（链接有效期1天）。
         # @type ResultUrl: String
+        # @param Subtitles: 时间戳信息，若未开启时间戳，则返回空数组。
+        # @type Subtitles: Array
         # @param ErrorMsg: 失败原因说明。
         # @type ErrorMsg: String
 
-        attr_accessor :TaskId, :Status, :StatusStr, :ResultUrl, :ErrorMsg
+        attr_accessor :TaskId, :Status, :StatusStr, :ResultUrl, :Subtitles, :ErrorMsg
 
-        def initialize(taskid=nil, status=nil, statusstr=nil, resulturl=nil, errormsg=nil)
+        def initialize(taskid=nil, status=nil, statusstr=nil, resulturl=nil, subtitles=nil, errormsg=nil)
           @TaskId = taskid
           @Status = status
           @StatusStr = statusstr
           @ResultUrl = resulturl
+          @Subtitles = subtitles
           @ErrorMsg = errormsg
         end
 
@@ -156,6 +163,14 @@ module TencentCloud
           @Status = params['Status']
           @StatusStr = params['StatusStr']
           @ResultUrl = params['ResultUrl']
+          unless params['Subtitles'].nil?
+            @Subtitles = []
+            params['Subtitles'].each do |i|
+              subtitle_tmp = Subtitle.new
+              subtitle_tmp.deserialize(i)
+              @Subtitles << subtitle_tmp
+            end
+          end
           @ErrorMsg = params['ErrorMsg']
         end
       end

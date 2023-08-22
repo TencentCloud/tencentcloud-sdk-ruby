@@ -2420,17 +2420,37 @@ module TencentCloud
         # @param UserId: 事件发生的用户。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
+        # @param Device: 用户设备类型。0: Unknown; 1: Windows; 2: macOS; 3: Android; 4: iOS; 5: Web; 6: Mobile webpage; 7: Weixin Mini Program.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Device: Integer
+        # @param Duration: 录制时长。单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param RecordSize: 录制文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordSize: Integer
+        # @param RecordUrl: 录制url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordUrl: String
 
-        attr_accessor :RoomId, :UserId
+        attr_accessor :RoomId, :UserId, :Device, :Duration, :RecordSize, :RecordUrl
 
-        def initialize(roomid=nil, userid=nil)
+        def initialize(roomid=nil, userid=nil, device=nil, duration=nil, recordsize=nil, recordurl=nil)
           @RoomId = roomid
           @UserId = userid
+          @Device = device
+          @Duration = duration
+          @RecordSize = recordsize
+          @RecordUrl = recordurl
         end
 
         def deserialize(params)
           @RoomId = params['RoomId']
           @UserId = params['UserId']
+          @Device = params['Device']
+          @Duration = params['Duration']
+          @RecordSize = params['RecordSize']
+          @RecordUrl = params['RecordUrl']
         end
       end
 
@@ -3564,7 +3584,7 @@ module TencentCloud
         # @param RecordUrl: 录制地址（协议为https)。仅在房间结束后存在。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordUrl: String
-        # @param MaxMicNumber: 最高房间内人数（包括老师），0表示不限制，默认为0
+        # @param MaxMicNumber: 最高房间内人数（不包括老师），0表示不限制，默认为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxMicNumber: Integer
         # @param EnableDirectControl: 打开学生麦克风/摄像头的授权开关

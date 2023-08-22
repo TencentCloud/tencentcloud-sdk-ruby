@@ -4588,6 +4588,70 @@ module TencentCloud
         end
       end
 
+      # UpdateTrigger请求参数结构体
+      class UpdateTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param TriggerName: 触发器名称
+        # @type TriggerName: String
+        # @param Type: 触发器类型
+        # @type Type: String
+        # @param Enable: 触发器开启或关闭，传参为OPEN为开启，CLOSE为关闭
+        # @type Enable: String
+        # @param Qualifier: 函数的版本，默认为 $LATEST，建议填写 [$DEFAULT](https://cloud.tencent.com/document/product/583/36149#.E9.BB.98.E8.AE.A4.E5.88.AB.E5.90.8D)方便后续进行版本的灰度发布。
+        # @type Qualifier: String
+        # @param Namespace: 函数的命名空间
+        # @type Namespace: String
+        # @param TriggerDesc: TriggerDesc参数
+        # @type TriggerDesc: String
+        # @param Description: 触发器描述
+        # @type Description: String
+        # @param CustomArgument: 用户附加信息
+        # @type CustomArgument: String
+
+        attr_accessor :FunctionName, :TriggerName, :Type, :Enable, :Qualifier, :Namespace, :TriggerDesc, :Description, :CustomArgument
+
+        def initialize(functionname=nil, triggername=nil, type=nil, enable=nil, qualifier=nil, namespace=nil, triggerdesc=nil, description=nil, customargument=nil)
+          @FunctionName = functionname
+          @TriggerName = triggername
+          @Type = type
+          @Enable = enable
+          @Qualifier = qualifier
+          @Namespace = namespace
+          @TriggerDesc = triggerdesc
+          @Description = description
+          @CustomArgument = customargument
+        end
+
+        def deserialize(params)
+          @FunctionName = params['FunctionName']
+          @TriggerName = params['TriggerName']
+          @Type = params['Type']
+          @Enable = params['Enable']
+          @Qualifier = params['Qualifier']
+          @Namespace = params['Namespace']
+          @TriggerDesc = params['TriggerDesc']
+          @Description = params['Description']
+          @CustomArgument = params['CustomArgument']
+        end
+      end
+
+      # UpdateTrigger返回参数结构体
+      class UpdateTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateTriggerStatus请求参数结构体
       class UpdateTriggerStatusRequest < TencentCloud::Common::AbstractModel
         # @param Enable: 触发器的初始是能状态OPEN表示开启 CLOSE表示关闭

@@ -2335,6 +2335,58 @@ module TencentCloud
         end
       end
 
+      # DescribeInstance请求参数结构体
+      class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Include: 附加查询返回包含字段值，不传返回0，有效值 ProductNum、ProjectNum、UsedDeviceNum、TotalDevice、ActivateDevice
+        # @type Include: Array
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param ProductId: 产品ID，-1 代表全部产品
+        # @type ProductId: String
+
+        attr_accessor :InstanceId, :Include, :ProjectId, :ProductId
+
+        def initialize(instanceid=nil, include=nil, projectid=nil, productid=nil)
+          @InstanceId = instanceid
+          @Include = include
+          @ProjectId = projectid
+          @ProductId = productid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Include = params['Include']
+          @ProjectId = params['ProjectId']
+          @ProductId = params['ProductId']
+        end
+      end
+
+      # DescribeInstance返回参数结构体
+      class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.InstanceDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = InstanceDetail.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoRaFrequency请求参数结构体
       class DescribeLoRaFrequencyRequest < TencentCloud::Common::AbstractModel
         # @param FreqId: 频点唯一ID
@@ -4033,6 +4085,73 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例信息
+      # 公共实例过期时间 0001-01-01T00:00:00Z，公共实例是永久有效
+      class InstanceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceType: 实例类型（0 公共实例 1 标准企业实例 2专享企业实例）
+        # @type InstanceType: Integer
+        # @param Region: 地域字母缩写
+        # @type Region: String
+        # @param ZoneId: 区域全拼
+        # @type ZoneId: String
+        # @param TotalDeviceNum: 支持设备总数
+        # @type TotalDeviceNum: Integer
+        # @param UsedDeviceNum: 以注册设备数
+        # @type UsedDeviceNum: Integer
+        # @param ProjectNum: 项目数
+        # @type ProjectNum: Integer
+        # @param ProductNum: 产品数
+        # @type ProductNum: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param ExpireTime: 过期时间，公共实例过期时间 0001-01-01T00:00:00Z，公共实例是永久有效
+        # @type ExpireTime: String
+        # @param TotalDevice: 总设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalDevice: Integer
+        # @param ActivateDevice: 激活设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivateDevice: Integer
+
+        attr_accessor :InstanceId, :InstanceType, :Region, :ZoneId, :TotalDeviceNum, :UsedDeviceNum, :ProjectNum, :ProductNum, :CreateTime, :UpdateTime, :ExpireTime, :TotalDevice, :ActivateDevice
+
+        def initialize(instanceid=nil, instancetype=nil, region=nil, zoneid=nil, totaldevicenum=nil, useddevicenum=nil, projectnum=nil, productnum=nil, createtime=nil, updatetime=nil, expiretime=nil, totaldevice=nil, activatedevice=nil)
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @Region = region
+          @ZoneId = zoneid
+          @TotalDeviceNum = totaldevicenum
+          @UsedDeviceNum = useddevicenum
+          @ProjectNum = projectnum
+          @ProductNum = productnum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ExpireTime = expiretime
+          @TotalDevice = totaldevice
+          @ActivateDevice = activatedevice
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          @Region = params['Region']
+          @ZoneId = params['ZoneId']
+          @TotalDeviceNum = params['TotalDeviceNum']
+          @UsedDeviceNum = params['UsedDeviceNum']
+          @ProjectNum = params['ProjectNum']
+          @ProductNum = params['ProductNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @ExpireTime = params['ExpireTime']
+          @TotalDevice = params['TotalDevice']
+          @ActivateDevice = params['ActivateDevice']
         end
       end
 

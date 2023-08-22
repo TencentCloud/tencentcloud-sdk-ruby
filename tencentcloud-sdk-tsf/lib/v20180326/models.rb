@@ -1832,10 +1832,13 @@ module TencentCloud
         # @param ApplicationId: 应用ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
+        # @param ConfigCenters: 配置中心发布情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigCenters: Array
 
-        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc, :ApplicationId
+        attr_accessor :ConfigReleaseId, :ConfigId, :ConfigName, :ConfigVersion, :ReleaseTime, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseDesc, :ApplicationId, :ConfigCenters
 
-        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil, applicationid=nil)
+        def initialize(configreleaseid=nil, configid=nil, configname=nil, configversion=nil, releasetime=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasedesc=nil, applicationid=nil, configcenters=nil)
           @ConfigReleaseId = configreleaseid
           @ConfigId = configid
           @ConfigName = configname
@@ -1849,6 +1852,7 @@ module TencentCloud
           @ClusterName = clustername
           @ReleaseDesc = releasedesc
           @ApplicationId = applicationid
+          @ConfigCenters = configcenters
         end
 
         def deserialize(params)
@@ -1865,6 +1869,14 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @ReleaseDesc = params['ReleaseDesc']
           @ApplicationId = params['ApplicationId']
+          unless params['ConfigCenters'].nil?
+            @ConfigCenters = []
+            params['ConfigCenters'].each do |i|
+              tsfconfigcenter_tmp = TsfConfigCenter.new
+              tsfconfigcenter_tmp.deserialize(i)
+              @ConfigCenters << tsfconfigcenter_tmp
+            end
+          end
         end
       end
 
@@ -1921,10 +1933,16 @@ module TencentCloud
         # @param RollbackFlag: 回滚标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RollbackFlag: Boolean
+        # @param ReleasedConfigCenter: 发布成功的配置中心
+        #  ALL/EXCLUSIVE/SHARE/NONE
 
-        attr_accessor :ConfigReleaseLogId, :ConfigId, :ConfigName, :ConfigVersion, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseTime, :ReleaseDesc, :ReleaseStatus, :LastConfigId, :LastConfigName, :LastConfigVersion, :RollbackFlag
+        # 全部发布成功，独占发布成功，共享发布成功，全部发布失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleasedConfigCenter: String
 
-        def initialize(configreleaselogid=nil, configid=nil, configname=nil, configversion=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasetime=nil, releasedesc=nil, releasestatus=nil, lastconfigid=nil, lastconfigname=nil, lastconfigversion=nil, rollbackflag=nil)
+        attr_accessor :ConfigReleaseLogId, :ConfigId, :ConfigName, :ConfigVersion, :GroupId, :GroupName, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ReleaseTime, :ReleaseDesc, :ReleaseStatus, :LastConfigId, :LastConfigName, :LastConfigVersion, :RollbackFlag, :ReleasedConfigCenter
+
+        def initialize(configreleaselogid=nil, configid=nil, configname=nil, configversion=nil, groupid=nil, groupname=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, releasetime=nil, releasedesc=nil, releasestatus=nil, lastconfigid=nil, lastconfigname=nil, lastconfigversion=nil, rollbackflag=nil, releasedconfigcenter=nil)
           @ConfigReleaseLogId = configreleaselogid
           @ConfigId = configid
           @ConfigName = configname
@@ -1942,6 +1960,7 @@ module TencentCloud
           @LastConfigName = lastconfigname
           @LastConfigVersion = lastconfigversion
           @RollbackFlag = rollbackflag
+          @ReleasedConfigCenter = releasedconfigcenter
         end
 
         def deserialize(params)
@@ -1962,6 +1981,7 @@ module TencentCloud
           @LastConfigName = params['LastConfigName']
           @LastConfigVersion = params['LastConfigVersion']
           @RollbackFlag = params['RollbackFlag']
+          @ReleasedConfigCenter = params['ReleasedConfigCenter']
         end
       end
 
@@ -18491,6 +18511,43 @@ module TencentCloud
               @Content << msapiarray_tmp
             end
           end
+        end
+      end
+
+      # 配置中心
+      class TsfConfigCenter < TencentCloud::Common::AbstractModel
+        # @param ConfigType: 配置中心类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigType: String
+        # @param ConfigCenterInstanceId: 配置中心实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigCenterInstanceId: String
+        # @param ConfigCenterInstanceName: 配置中心实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigCenterInstanceName: String
+        # @param RegionId: 实例地域id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param NamespaceId: 命名空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
+
+        attr_accessor :ConfigType, :ConfigCenterInstanceId, :ConfigCenterInstanceName, :RegionId, :NamespaceId
+
+        def initialize(configtype=nil, configcenterinstanceid=nil, configcenterinstancename=nil, regionid=nil, namespaceid=nil)
+          @ConfigType = configtype
+          @ConfigCenterInstanceId = configcenterinstanceid
+          @ConfigCenterInstanceName = configcenterinstancename
+          @RegionId = regionid
+          @NamespaceId = namespaceid
+        end
+
+        def deserialize(params)
+          @ConfigType = params['ConfigType']
+          @ConfigCenterInstanceId = params['ConfigCenterInstanceId']
+          @ConfigCenterInstanceName = params['ConfigCenterInstanceName']
+          @RegionId = params['RegionId']
+          @NamespaceId = params['NamespaceId']
         end
       end
 

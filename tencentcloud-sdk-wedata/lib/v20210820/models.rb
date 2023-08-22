@@ -25078,10 +25078,13 @@ module TencentCloud
         # @param InstanceId: 实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime
 
-        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil)
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil)
           @RuleGroupId = rulegroupid
           @DatasourceId = datasourceid
           @DatasourceName = datasourcename
@@ -25100,6 +25103,7 @@ module TencentCloud
           @MonitorStatus = monitorstatus
           @TableOwnerUserId = tableowneruserid
           @InstanceId = instanceid
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -25127,6 +25131,7 @@ module TencentCloud
           @MonitorStatus = params['MonitorStatus']
           @TableOwnerUserId = params['TableOwnerUserId']
           @InstanceId = params['InstanceId']
+          @CreateTime = params['CreateTime']
         end
       end
 

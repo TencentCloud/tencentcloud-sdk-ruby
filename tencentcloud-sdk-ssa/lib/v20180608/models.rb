@@ -3122,7 +3122,7 @@ module TencentCloud
 
       # DescribeVulList请求参数结构体
       class DescribeVulListRequest < TencentCloud::Common::AbstractModel
-        # @param Params: 查询过滤参数
+        # @param Params: 查询过滤参数:(json序列化的结果）
         # @type Params: String
 
         attr_accessor :Params

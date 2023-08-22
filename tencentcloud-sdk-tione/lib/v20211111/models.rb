@@ -1324,28 +1324,28 @@ module TencentCloud
 
       # CreateNotebookImage请求参数结构体
       class CreateNotebookImageRequest < TencentCloud::Common::AbstractModel
-        # @param Kernels: 要保存的kernel数组
-        # @type Kernels: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param NotebookId: notebook id
         # @type NotebookId: String
+        # @param Kernels: 要保存的kernel数组
+        # @type Kernels: Array
 
-        attr_accessor :Kernels, :ImageInfo, :NotebookId
+        attr_accessor :ImageInfo, :NotebookId, :Kernels
 
-        def initialize(kernels=nil, imageinfo=nil, notebookid=nil)
-          @Kernels = kernels
+        def initialize(imageinfo=nil, notebookid=nil, kernels=nil)
           @ImageInfo = imageinfo
           @NotebookId = notebookid
+          @Kernels = kernels
         end
 
         def deserialize(params)
-          @Kernels = params['Kernels']
           unless params['ImageInfo'].nil?
             @ImageInfo = ImageInfo.new
             @ImageInfo.deserialize(params['ImageInfo'])
           end
           @NotebookId = params['NotebookId']
+          @Kernels = params['Kernels']
         end
       end
 
@@ -5438,14 +5438,22 @@ module TencentCloud
         # @param RegistryId: TCR镜像对应的实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegistryId: String
+        # @param AllowSaveAllContent: 是否允许导出全部内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowSaveAllContent: Boolean
+        # @param ImageName: 镜像名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageName: String
 
-        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId
+        attr_accessor :ImageType, :ImageUrl, :RegistryRegion, :RegistryId, :AllowSaveAllContent, :ImageName
 
-        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil)
+        def initialize(imagetype=nil, imageurl=nil, registryregion=nil, registryid=nil, allowsaveallcontent=nil, imagename=nil)
           @ImageType = imagetype
           @ImageUrl = imageurl
           @RegistryRegion = registryregion
           @RegistryId = registryid
+          @AllowSaveAllContent = allowsaveallcontent
+          @ImageName = imagename
         end
 
         def deserialize(params)
@@ -5453,6 +5461,8 @@ module TencentCloud
           @ImageUrl = params['ImageUrl']
           @RegistryRegion = params['RegistryRegion']
           @RegistryId = params['RegistryId']
+          @AllowSaveAllContent = params['AllowSaveAllContent']
+          @ImageName = params['ImageName']
         end
       end
 

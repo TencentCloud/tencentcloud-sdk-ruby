@@ -39,12 +39,21 @@ module TencentCloud
 
       # CheckRule请求参数结构体
       class CheckRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Event: Event信息
+        # @type Event: String
+        # @param EventPattern: EventPattern信息
+        # @type EventPattern: String
 
+        attr_accessor :Event, :EventPattern
 
-        def initialize()
+        def initialize(event=nil, eventpattern=nil)
+          @Event = event
+          @EventPattern = eventpattern
         end
 
         def deserialize(params)
+          @Event = params['Event']
+          @EventPattern = params['EventPattern']
         end
       end
 

@@ -620,7 +620,8 @@ module TencentCloud
       class AddOnSubtitle < TencentCloud::Common::AbstractModel
         # @param Type: 插入形式，可选值：
         # <li>subtitle-stream：插入字幕轨道</li>
-        # <li>close-caption：编码到SEI帧</li>
+        # <li>close-caption-708：CEA-708字幕编码到SEI帧</li>
+        # <li>close-caption-608：CEA-608字幕编码到SEI帧</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Subtitle: 字幕文件。
@@ -10786,6 +10787,7 @@ module TencentCloud
         # <li>AsrFullTextRecognition：语音全文识别，</li>
         # <li>OcrFullTextRecognition：文本全文识别。</li>
         # <li>TransTextRecognition：语音翻译。</li>
+        # <li>TagRecognition：精彩打点。</li>
         # @type Type: String
         # @param FaceRecognitionResultSet: 人脸识别结果，当 Type 为
         # FaceRecognition 时有效。
@@ -10804,10 +10806,13 @@ module TencentCloud
         # @type OcrFullTextRecognitionResultSet: Array
         # @param TransTextRecognitionResultSet: 翻译结果，当Type 为 TransTextRecognition 时有效。
         # @type TransTextRecognitionResultSet: Array
+        # @param TagRecognitionResultSet: 打点结果，当Type 为 TagRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagRecognitionResultSet: Array
 
-        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet, :TransTextRecognitionResultSet
+        attr_accessor :Type, :FaceRecognitionResultSet, :AsrWordsRecognitionResultSet, :OcrWordsRecognitionResultSet, :AsrFullTextRecognitionResultSet, :OcrFullTextRecognitionResultSet, :TransTextRecognitionResultSet, :TagRecognitionResultSet
 
-        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil, transtextrecognitionresultset=nil)
+        def initialize(type=nil, facerecognitionresultset=nil, asrwordsrecognitionresultset=nil, ocrwordsrecognitionresultset=nil, asrfulltextrecognitionresultset=nil, ocrfulltextrecognitionresultset=nil, transtextrecognitionresultset=nil, tagrecognitionresultset=nil)
           @Type = type
           @FaceRecognitionResultSet = facerecognitionresultset
           @AsrWordsRecognitionResultSet = asrwordsrecognitionresultset
@@ -10815,6 +10820,7 @@ module TencentCloud
           @AsrFullTextRecognitionResultSet = asrfulltextrecognitionresultset
           @OcrFullTextRecognitionResultSet = ocrfulltextrecognitionresultset
           @TransTextRecognitionResultSet = transtextrecognitionresultset
+          @TagRecognitionResultSet = tagrecognitionresultset
         end
 
         def deserialize(params)
@@ -10865,6 +10871,14 @@ module TencentCloud
               livestreamtranstextrecognitionresult_tmp = LiveStreamTransTextRecognitionResult.new
               livestreamtranstextrecognitionresult_tmp.deserialize(i)
               @TransTextRecognitionResultSet << livestreamtranstextrecognitionresult_tmp
+            end
+          end
+          unless params['TagRecognitionResultSet'].nil?
+            @TagRecognitionResultSet = []
+            params['TagRecognitionResultSet'].each do |i|
+              livestreamtagrecognitionresult_tmp = LiveStreamTagRecognitionResult.new
+              livestreamtagrecognitionresult_tmp.deserialize(i)
+              @TagRecognitionResultSet << livestreamtagrecognitionresult_tmp
             end
           end
         end
@@ -11376,6 +11390,34 @@ module TencentCloud
           @ErrCode = params['ErrCode']
           @Message = params['Message']
           @Url = params['Url']
+        end
+      end
+
+      # 直播 AI 打点识别结果
+      class LiveStreamTagRecognitionResult < TencentCloud::Common::AbstractModel
+        # @param Id: 打点事件。
+        # @type Id: String
+        # @param StartPtsTime: 识别片段起始的 PTS 时间，单位：秒。
+        # @type StartPtsTime: Float
+        # @param EndPtsTime: 识别片段终止的 PTS 时间，单位：秒。
+        # @type EndPtsTime: Float
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+
+        attr_accessor :Id, :StartPtsTime, :EndPtsTime, :Confidence
+
+        def initialize(id=nil, startptstime=nil, endptstime=nil, confidence=nil)
+          @Id = id
+          @StartPtsTime = startptstime
+          @EndPtsTime = endptstime
+          @Confidence = confidence
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @StartPtsTime = params['StartPtsTime']
+          @EndPtsTime = params['EndPtsTime']
+          @Confidence = params['Confidence']
         end
       end
 

@@ -1976,10 +1976,12 @@ module TencentCloud
         # 2: 持久非分区
         # 3: 持久分区
         # @type PulsarTopicType: Integer
+        # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
+        # @type MsgTTL: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :TopicType, :ClusterId, :PulsarTopicType
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :TopicType, :ClusterId, :PulsarTopicType, :MsgTTL
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, topictype=nil, clusterid=nil, pulsartopictype=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, topictype=nil, clusterid=nil, pulsartopictype=nil, msgttl=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -1987,6 +1989,7 @@ module TencentCloud
           @TopicType = topictype
           @ClusterId = clusterid
           @PulsarTopicType = pulsartopictype
+          @MsgTTL = msgttl
         end
 
         def deserialize(params)
@@ -1997,6 +2000,7 @@ module TencentCloud
           @TopicType = params['TopicType']
           @ClusterId = params['ClusterId']
           @PulsarTopicType = params['PulsarTopicType']
+          @MsgTTL = params['MsgTTL']
         end
       end
 
@@ -6408,15 +6412,18 @@ module TencentCloud
         # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
+        # @type MsgTTL: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :ClusterId
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :ClusterId, :MsgTTL
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, clusterid=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, clusterid=nil, msgttl=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
           @Remark = remark
           @ClusterId = clusterid
+          @MsgTTL = msgttl
         end
 
         def deserialize(params)
@@ -6425,6 +6432,7 @@ module TencentCloud
           @Partitions = params['Partitions']
           @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @MsgTTL = params['MsgTTL']
         end
       end
 
@@ -8844,10 +8852,14 @@ module TencentCloud
         # 3: 持久分区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PulsarTopicType: Integer
+        # @param MsgTTL: 未消费消息过期时间，单位：秒
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgTTL: Integer
 
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil)
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL
+
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -8870,6 +8882,7 @@ module TencentCloud
           @ProducerLimit = producerlimit
           @ConsumerLimit = consumerlimit
           @PulsarTopicType = pulsartopictype
+          @MsgTTL = msgttl
         end
 
         def deserialize(params)
@@ -8902,6 +8915,7 @@ module TencentCloud
           @ProducerLimit = params['ProducerLimit']
           @ConsumerLimit = params['ConsumerLimit']
           @PulsarTopicType = params['PulsarTopicType']
+          @MsgTTL = params['MsgTTL']
         end
       end
 

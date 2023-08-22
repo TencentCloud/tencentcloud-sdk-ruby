@@ -331,16 +331,21 @@ module TencentCloud
 
         # 如果是 H5 开通链接，支持传 INSIGHT / TELECOM。默认值 WEIXINAPP / INSIGHT。
         # @type VerifyChannels: Array
+        # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。
+        # 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次
+        # 1-不绑定，发起合同时将按标准合同套餐进行扣减
+        # @type LicenseType: Integer
 
-        attr_accessor :UserInfo, :CallbackUrl, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :VerifyChannels
+        attr_accessor :UserInfo, :CallbackUrl, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :VerifyChannels, :LicenseType
 
-        def initialize(userinfo=nil, callbackurl=nil, certinfocallback=nil, userdefineseal=nil, sealimgcallback=nil, verifychannels=nil)
+        def initialize(userinfo=nil, callbackurl=nil, certinfocallback=nil, userdefineseal=nil, sealimgcallback=nil, verifychannels=nil, licensetype=nil)
           @UserInfo = userinfo
           @CallbackUrl = callbackurl
           @CertInfoCallback = certinfocallback
           @UserDefineSeal = userdefineseal
           @SealImgCallback = sealimgcallback
           @VerifyChannels = verifychannels
+          @LicenseType = licensetype
         end
 
         def deserialize(params)
@@ -353,6 +358,7 @@ module TencentCloud
           @UserDefineSeal = params['UserDefineSeal']
           @SealImgCallback = params['SealImgCallback']
           @VerifyChannels = params['VerifyChannels']
+          @LicenseType = params['LicenseType']
         end
       end
 
@@ -2782,13 +2788,15 @@ module TencentCloud
         # @type FileId: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次 1-不绑定，发起合同时将按标准合同套餐进行扣减
+        # @type LicenseType: Integer
 
-        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent
+        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent, :LicenseType
         extend Gem::Deprecate
         deprecate :SealImage, :none, 2023, 8
         deprecate :SealImage=, :none, 2023, 8
 
-        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil)
+        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil, licensetype=nil)
           @UserName = username
           @IdCardNumber = idcardnumber
           @SealName = sealname
@@ -2802,6 +2810,7 @@ module TencentCloud
           @ProcessSeal = processseal
           @FileId = fileid
           @Agent = agent
+          @LicenseType = licensetype
         end
 
         def deserialize(params)
@@ -2824,6 +2833,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @LicenseType = params['LicenseType']
         end
       end
 
@@ -2933,7 +2943,8 @@ module TencentCloud
         # @type Mobile: String
         # @param EndPoint: 要跳转的链接类型
 
-        # - HTTP：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  (默认)
+        # - HTTP：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  (默认)，此时返回长链
+        # - HTTP_SHORT_URL：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链
         # - APP： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型
         # @type EndPoint: String
         # @param FlowId: 签署流程编号 (PathType=1时必传)
@@ -3000,7 +3011,7 @@ module TencentCloud
 
       # CreateSchemeUrl返回参数结构体
       class CreateSchemeUrlResponse < TencentCloud::Common::AbstractModel
-        # @param SchemeUrl: 小程序链接地址，有效期30天
+        # @param SchemeUrl: 小程序链接地址，有效期90天。如果EndPoint是App，得到的链接Path如’weixin://dl/business/?t= *TICKET*‘，用于客户APP、小程序直接拉起电子签小程序；其他EndPoint得到的https链接如'https://essurl.cn/xxx'，点击链接会打开一个H5页面，然后拉起电子签小程序。
         # @type SchemeUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3335,13 +3346,16 @@ module TencentCloud
         # @type ThemeType: String
         # @param WebThemeConfig: 主题配置
         # @type WebThemeConfig: :class:`Tencentcloud::Ess.v20201111.models.WebThemeConfig`
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :ThemeType, :WebThemeConfig
+        attr_accessor :Operator, :ThemeType, :WebThemeConfig, :Agent
 
-        def initialize(operator=nil, themetype=nil, webthemeconfig=nil)
+        def initialize(operator=nil, themetype=nil, webthemeconfig=nil, agent=nil)
           @Operator = operator
           @ThemeType = themetype
           @WebThemeConfig = webthemeconfig
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -3353,6 +3367,10 @@ module TencentCloud
           unless params['WebThemeConfig'].nil?
             @WebThemeConfig = WebThemeConfig.new
             @WebThemeConfig.deserialize(params['WebThemeConfig'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
           end
         end
       end
@@ -4751,15 +4769,20 @@ module TencentCloud
         # @param LicenseTo: 自动签许可到期时间。当且仅当已开通自动签时有值。
         # 值为unix时间戳,单位为秒。
         # @type LicenseTo: Integer
+        # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。
+        # 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次
+        # 1-不绑定，发起合同时将按标准合同套餐进行扣减
+        # @type LicenseType: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :RequestId
+        attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :LicenseType, :RequestId
 
-        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, requestid=nil)
+        def initialize(isopen=nil, licensefrom=nil, licenseto=nil, licensetype=nil, requestid=nil)
           @IsOpen = isopen
           @LicenseFrom = licensefrom
           @LicenseTo = licenseto
+          @LicenseType = licensetype
           @RequestId = requestid
         end
 
@@ -4767,6 +4790,7 @@ module TencentCloud
           @IsOpen = params['IsOpen']
           @LicenseFrom = params['LicenseFrom']
           @LicenseTo = params['LicenseTo']
+          @LicenseType = params['LicenseType']
           @RequestId = params['RequestId']
         end
       end

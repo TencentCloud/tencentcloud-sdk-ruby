@@ -60,8 +60,10 @@ module TencentCloud
       # 告警多维分析一些配置信息
       class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
         # @param Key: 键
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -110,10 +112,14 @@ module TencentCloud
         # @param Analysis: 多维分析设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Analysis: Array
+        # @param MultiConditions: 多触发条件。
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiConditions: Array
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil)
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :MultiConditions
+
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, multiconditions=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -128,6 +134,7 @@ module TencentCloud
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
+          @MultiConditions = multiconditions
         end
 
         def deserialize(params)
@@ -165,6 +172,14 @@ module TencentCloud
               @Analysis << analysisdimensional_tmp
             end
           end
+          unless params['MultiConditions'].nil?
+            @MultiConditions = []
+            params['MultiConditions'].each do |i|
+              multicondition_tmp = MultiCondition.new
+              multicondition_tmp.deserialize(i)
+              @MultiConditions << multicondition_tmp
+            end
+          end
         end
       end
 
@@ -192,10 +207,13 @@ module TencentCloud
         # @param UpdateTime: 最近更新时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param NoticeRules: 通知规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeRules: Array
 
-        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :CreateTime, :UpdateTime, :NoticeRules
 
-        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, createtime=nil, updatetime=nil, noticerules=nil)
           @Name = name
           @Type = type
           @NoticeReceivers = noticereceivers
@@ -203,6 +221,7 @@ module TencentCloud
           @AlarmNoticeId = alarmnoticeid
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @NoticeRules = noticerules
         end
 
         def deserialize(params)
@@ -227,26 +246,41 @@ module TencentCloud
           @AlarmNoticeId = params['AlarmNoticeId']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['NoticeRules'].nil?
+            @NoticeRules = []
+            params['NoticeRules'].each do |i|
+              noticerule_tmp = NoticeRule.new
+              noticerule_tmp.deserialize(i)
+              @NoticeRules << noticerule_tmp
+            end
+          end
         end
       end
 
       # 告警对象
       class AlarmTarget < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicId: String
         # @param Query: 查询语句。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Query: String
         # @param Number: 告警对象序号；从1开始递增。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Number: Integer
         # @param StartTimeOffset: 查询范围起始时间相对于告警执行时间的偏移，单位为分钟，取值为非正，最大值为0，最小值为-1440。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeOffset: Integer
         # @param EndTimeOffset: 查询范围终止时间相对于告警执行时间的偏移，单位为分钟，取值为非正，须大于StartTimeOffset，最大值为0，最小值为-1440。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTimeOffset: Integer
         # @param LogsetId: 日志集ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogsetId: String
         # @param SyntaxRule: 检索语法规则，默认值为0。
         # 0：Lucene语法，1：CQL语法。
         # 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyntaxRule: Integer
 
         attr_accessor :TopicId, :Query, :Number, :StartTimeOffset, :EndTimeOffset, :LogsetId, :SyntaxRule
@@ -939,6 +973,8 @@ module TencentCloud
         # @type LogPath: String
         # @param FilePattern: 日志名称
         # @type FilePattern: String
+        # @param FilePaths: 日志文件信息
+        # @type FilePaths: Array
         # @param IncludeLabels: pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeLabels: Array
@@ -951,18 +987,23 @@ module TencentCloud
         # @param ExcludeLabels: 需要排除的pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeLabels: Array
+        # @param CustomLabels: metadata信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLabels: Array
 
-        attr_accessor :Namespace, :Container, :LogPath, :FilePattern, :IncludeLabels, :WorkLoad, :ExcludeNamespace, :ExcludeLabels
+        attr_accessor :Namespace, :Container, :LogPath, :FilePattern, :FilePaths, :IncludeLabels, :WorkLoad, :ExcludeNamespace, :ExcludeLabels, :CustomLabels
 
-        def initialize(namespace=nil, container=nil, logpath=nil, filepattern=nil, includelabels=nil, workload=nil, excludenamespace=nil, excludelabels=nil)
+        def initialize(namespace=nil, container=nil, logpath=nil, filepattern=nil, filepaths=nil, includelabels=nil, workload=nil, excludenamespace=nil, excludelabels=nil, customlabels=nil)
           @Namespace = namespace
           @Container = container
           @LogPath = logpath
           @FilePattern = filepattern
+          @FilePaths = filepaths
           @IncludeLabels = includelabels
           @WorkLoad = workload
           @ExcludeNamespace = excludenamespace
           @ExcludeLabels = excludelabels
+          @CustomLabels = customlabels
         end
 
         def deserialize(params)
@@ -970,6 +1011,14 @@ module TencentCloud
           @Container = params['Container']
           @LogPath = params['LogPath']
           @FilePattern = params['FilePattern']
+          unless params['FilePaths'].nil?
+            @FilePaths = []
+            params['FilePaths'].each do |i|
+              filepathinfo_tmp = FilePathInfo.new
+              filepathinfo_tmp.deserialize(i)
+              @FilePaths << filepathinfo_tmp
+            end
+          end
           @IncludeLabels = params['IncludeLabels']
           unless params['WorkLoad'].nil?
             @WorkLoad = ContainerWorkLoadInfo.new
@@ -977,6 +1026,7 @@ module TencentCloud
           end
           @ExcludeNamespace = params['ExcludeNamespace']
           @ExcludeLabels = params['ExcludeLabels']
+          @CustomLabels = params['CustomLabels']
         end
       end
 
@@ -1002,10 +1052,13 @@ module TencentCloud
         # @param ExcludeLabels: 需要排除的pod标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludeLabels: Array
+        # @param CustomLabels: metadata信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLabels: Array
 
-        attr_accessor :AllContainers, :Container, :Namespace, :IncludeLabels, :WorkLoads, :ExcludeNamespace, :ExcludeLabels
+        attr_accessor :AllContainers, :Container, :Namespace, :IncludeLabels, :WorkLoads, :ExcludeNamespace, :ExcludeLabels, :CustomLabels
 
-        def initialize(allcontainers=nil, container=nil, namespace=nil, includelabels=nil, workloads=nil, excludenamespace=nil, excludelabels=nil)
+        def initialize(allcontainers=nil, container=nil, namespace=nil, includelabels=nil, workloads=nil, excludenamespace=nil, excludelabels=nil, customlabels=nil)
           @AllContainers = allcontainers
           @Container = container
           @Namespace = namespace
@@ -1013,6 +1066,7 @@ module TencentCloud
           @WorkLoads = workloads
           @ExcludeNamespace = excludenamespace
           @ExcludeLabels = excludelabels
+          @CustomLabels = customlabels
         end
 
         def deserialize(params)
@@ -1030,6 +1084,7 @@ module TencentCloud
           end
           @ExcludeNamespace = params['ExcludeNamespace']
           @ExcludeLabels = params['ExcludeLabels']
+          @CustomLabels = params['CustomLabels']
         end
       end
 
@@ -1207,14 +1262,22 @@ module TencentCloud
         # @type NoticeReceivers: Array
         # @param WebCallbacks: 接口回调信息（包括企业微信）。
         # @type WebCallbacks: Array
+        # @param NoticeRules: 通知规则。
 
-        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks
+        #  注意:
 
-        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil)
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
+
+        # @type NoticeRules: Array
+
+        attr_accessor :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules
+
+        def initialize(name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil)
           @Name = name
           @Type = type
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
+          @NoticeRules = noticerules
         end
 
         def deserialize(params)
@@ -1234,6 +1297,14 @@ module TencentCloud
               webcallback_tmp = WebCallback.new
               webcallback_tmp.deserialize(i)
               @WebCallbacks << webcallback_tmp
+            end
+          end
+          unless params['NoticeRules'].nil?
+            @NoticeRules = []
+            params['NoticeRules'].each do |i|
+              noticerule_tmp = NoticeRule.new
+              noticerule_tmp.deserialize(i)
+              @NoticeRules << noticerule_tmp
             end
           end
         end
@@ -1267,14 +1338,25 @@ module TencentCloud
         # @type AlarmTargets: Array
         # @param MonitorTime: 监控任务运行时间点。
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
-        # @param Condition: 触发条件。
-        # @type Condition: String
         # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
         # @param AlarmNoticeIds: 关联的告警通知模板列表。
         # @type AlarmNoticeIds: Array
+        # @param Condition: 触发条件。
+
+        #  注意:
+
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @type Condition: String
+        # @param MultiConditions: 多触发条件。
+
+        #  注意:
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li>
+
+
+        # @type MultiConditions: Array
         # @param Status: 是否开启告警策略。默认值为true
         # @type Status: Boolean
         # @param MessageTemplate: 用户自定义告警内容
@@ -1284,16 +1366,17 @@ module TencentCloud
         # @param Analysis: 多维分析
         # @type Analysis: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :MessageTemplate, :CallBack, :Analysis
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :MultiConditions, :Status, :MessageTemplate, :CallBack, :Analysis
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, multiconditions=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
-          @Condition = condition
           @TriggerCount = triggercount
           @AlarmPeriod = alarmperiod
           @AlarmNoticeIds = alarmnoticeids
+          @Condition = condition
+          @MultiConditions = multiconditions
           @Status = status
           @MessageTemplate = messagetemplate
           @CallBack = callback
@@ -1314,10 +1397,18 @@ module TencentCloud
             @MonitorTime = MonitorTime.new
             @MonitorTime.deserialize(params['MonitorTime'])
           end
-          @Condition = params['Condition']
           @TriggerCount = params['TriggerCount']
           @AlarmPeriod = params['AlarmPeriod']
           @AlarmNoticeIds = params['AlarmNoticeIds']
+          @Condition = params['Condition']
+          unless params['MultiConditions'].nil?
+            @MultiConditions = []
+            params['MultiConditions'].each do |i|
+              multicondition_tmp = MultiCondition.new
+              multicondition_tmp.deserialize(i)
+              @MultiConditions << multicondition_tmp
+            end
+          end
           @Status = params['Status']
           @MessageTemplate = params['MessageTemplate']
           unless params['CallBack'].nil?
@@ -5096,6 +5187,26 @@ module TencentCloud
         end
       end
 
+      # 文件路径信息
+      class FilePathInfo < TencentCloud::Common::AbstractModel
+        # @param Path: 文件路径
+        # @type Path: String
+        # @param File: 文件名称
+        # @type File: String
+
+        attr_accessor :Path, :File
+
+        def initialize(path=nil, file=nil)
+          @Path = path
+          @File = file
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @File = params['File']
+        end
+      end
+
       # 过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Key: 需要过滤的字段。
@@ -6090,15 +6201,23 @@ module TencentCloud
         # @type NoticeReceivers: Array
         # @param WebCallbacks: 接口回调信息（包括企业微信）。
         # @type WebCallbacks: Array
+        # @param NoticeRules: 通知规则。
 
-        attr_accessor :AlarmNoticeId, :Name, :Type, :NoticeReceivers, :WebCallbacks
+        # 注意:
 
-        def initialize(alarmnoticeid=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil)
+        # - Type、NoticeReceivers和WebCallbacks是一组配置，NoticeRules是另一组配置，2组配置互斥。
+        # - 传其中一组数据，则另一组数据置空。
+        # @type NoticeRules: Array
+
+        attr_accessor :AlarmNoticeId, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules
+
+        def initialize(alarmnoticeid=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil)
           @AlarmNoticeId = alarmnoticeid
           @Name = name
           @Type = type
           @NoticeReceivers = noticereceivers
           @WebCallbacks = webcallbacks
+          @NoticeRules = noticerules
         end
 
         def deserialize(params)
@@ -6119,6 +6238,14 @@ module TencentCloud
               webcallback_tmp = WebCallback.new
               webcallback_tmp.deserialize(i)
               @WebCallbacks << webcallback_tmp
+            end
+          end
+          unless params['NoticeRules'].nil?
+            @NoticeRules = []
+            params['NoticeRules'].each do |i|
+              noticerule_tmp = NoticeRule.new
+              noticerule_tmp.deserialize(i)
+              @NoticeRules << noticerule_tmp
             end
           end
         end
@@ -6149,7 +6276,22 @@ module TencentCloud
         # @param MonitorTime: 监控任务运行时间点。
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
         # @param Condition: 触发条件。
+
+        # 注意:
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         # @type Condition: String
+        # @param AlarmLevel: 告警级别。
+
+        # 0:警告(Warn);1:提醒(Info);2:紧急 (Critical)
+
+        # 注意:
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @type AlarmLevel: Integer
+        # @param MultiConditions: 多触发条件。
+
+        # 注意:
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @type MultiConditions: Array
         # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
@@ -6167,13 +6309,15 @@ module TencentCloud
         # @param Analysis: 多维分析
         # @type Analysis: Array
 
-        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis
+        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis
 
-        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
+        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
           @AlarmId = alarmid
           @Name = name
           @MonitorTime = monitortime
           @Condition = condition
+          @AlarmLevel = alarmlevel
+          @MultiConditions = multiconditions
           @TriggerCount = triggercount
           @AlarmPeriod = alarmperiod
           @AlarmNoticeIds = alarmnoticeids
@@ -6192,6 +6336,15 @@ module TencentCloud
             @MonitorTime.deserialize(params['MonitorTime'])
           end
           @Condition = params['Condition']
+          @AlarmLevel = params['AlarmLevel']
+          unless params['MultiConditions'].nil?
+            @MultiConditions = []
+            params['MultiConditions'].each do |i|
+              multicondition_tmp = MultiCondition.new
+              multicondition_tmp.deserialize(i)
+              @MultiConditions << multicondition_tmp
+            end
+          end
           @TriggerCount = params['TriggerCount']
           @AlarmPeriod = params['AlarmPeriod']
           @AlarmNoticeIds = params['AlarmNoticeIds']
@@ -7165,6 +7318,29 @@ module TencentCloud
         end
       end
 
+      # 多触发条件。
+      class MultiCondition < TencentCloud::Common::AbstractModel
+        # @param Condition: 触发条件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Condition: String
+        # @param AlarmLevel: 告警级别。0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
+        # <li> 不填则默认为0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: Integer
+
+        attr_accessor :Condition, :AlarmLevel
+
+        def initialize(condition=nil, alarmlevel=nil)
+          @Condition = condition
+          @AlarmLevel = alarmlevel
+        end
+
+        def deserialize(params)
+          @Condition = params['Condition']
+          @AlarmLevel = params['AlarmLevel']
+        end
+      end
+
       # 多日志主题检索相关信息
       class MultiTopicSearchInformation < TencentCloud::Common::AbstractModel
         # @param TopicId: 要检索分析的日志主题ID
@@ -7225,6 +7401,47 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Index = params['Index']
+        end
+      end
+
+      # 通知规则
+      class NoticeRule < TencentCloud::Common::AbstractModel
+        # @param NoticeReceivers: 告警通知模板接收者信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeReceivers: Array
+        # @param WebCallbacks: 告警通知模板回调信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebCallbacks: Array
+        # @param Rule: 匹配规则。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: String
+
+        attr_accessor :NoticeReceivers, :WebCallbacks, :Rule
+
+        def initialize(noticereceivers=nil, webcallbacks=nil, rule=nil)
+          @NoticeReceivers = noticereceivers
+          @WebCallbacks = webcallbacks
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          unless params['NoticeReceivers'].nil?
+            @NoticeReceivers = []
+            params['NoticeReceivers'].each do |i|
+              noticereceiver_tmp = NoticeReceiver.new
+              noticereceiver_tmp.deserialize(i)
+              @NoticeReceivers << noticereceiver_tmp
+            end
+          end
+          unless params['WebCallbacks'].nil?
+            @WebCallbacks = []
+            params['WebCallbacks'].each do |i|
+              webcallback_tmp = WebCallback.new
+              webcallback_tmp.deserialize(i)
+              @WebCallbacks << webcallback_tmp
+            end
+          end
+          @Rule = params['Rule']
         end
       end
 
