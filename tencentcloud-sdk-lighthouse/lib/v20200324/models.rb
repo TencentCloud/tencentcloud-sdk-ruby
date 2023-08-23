@@ -53,6 +53,53 @@ module TencentCloud
         end
       end
 
+      # ApplyFirewallTemplate请求参数结构体
+      class ApplyFirewallTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID。
+        # @type TemplateId: String
+        # @param ApplyInstances: 应用防火墙模板的实例列表。
+        # @type ApplyInstances: Array
+
+        attr_accessor :TemplateId, :ApplyInstances
+
+        def initialize(templateid=nil, applyinstances=nil)
+          @TemplateId = templateid
+          @ApplyInstances = applyinstances
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['ApplyInstances'].nil?
+            @ApplyInstances = []
+            params['ApplyInstances'].each do |i|
+              instanceidentifier_tmp = InstanceIdentifier.new
+              instanceidentifier_tmp.deserialize(i)
+              @ApplyInstances << instanceidentifier_tmp
+            end
+          end
+        end
+      end
+
+      # ApplyFirewallTemplate返回参数结构体
+      class ApplyFirewallTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyInstanceSnapshot请求参数结构体
       class ApplyInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。
@@ -779,6 +826,100 @@ module TencentCloud
         end
       end
 
+      # CreateFirewallTemplate请求参数结构体
+      class CreateFirewallTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+        # @param TemplateRules: 防火墙规则列表。
+        # @type TemplateRules: Array
+
+        attr_accessor :TemplateName, :TemplateRules
+
+        def initialize(templatename=nil, templaterules=nil)
+          @TemplateName = templatename
+          @TemplateRules = templaterules
+        end
+
+        def deserialize(params)
+          @TemplateName = params['TemplateName']
+          unless params['TemplateRules'].nil?
+            @TemplateRules = []
+            params['TemplateRules'].each do |i|
+              firewallrule_tmp = FirewallRule.new
+              firewallrule_tmp.deserialize(i)
+              @TemplateRules << firewallrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateFirewallTemplate返回参数结构体
+      class CreateFirewallTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFirewallTemplateRules请求参数结构体
+      class CreateFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TemplateRules: 防火墙模板规则列表。
+        # @type TemplateRules: Array
+
+        attr_accessor :TemplateId, :TemplateRules
+
+        def initialize(templateid=nil, templaterules=nil)
+          @TemplateId = templateid
+          @TemplateRules = templaterules
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['TemplateRules'].nil?
+            @TemplateRules = []
+            params['TemplateRules'].each do |i|
+              firewallrule_tmp = FirewallRule.new
+              firewallrule_tmp.deserialize(i)
+              @TemplateRules << firewallrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateFirewallTemplateRules返回参数结构体
+      class CreateFirewallTemplateRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateRuleIdSet: 规则ID列表。
+        # @type TemplateRuleIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateRuleIdSet, :RequestId
+
+        def initialize(templateruleidset=nil, requestid=nil)
+          @TemplateRuleIdSet = templateruleidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateRuleIdSet = params['TemplateRuleIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstanceSnapshot请求参数结构体
       class CreateInstanceSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 需要创建快照的实例 ID。
@@ -847,10 +988,12 @@ module TencentCloud
         # @type Containers: Array
         # @param AutoVoucher: 是否自动使用代金券。默认不使用。
         # @type AutoVoucher: Boolean
+        # @param FirewallTemplateId: 防火墙模版ID。若不指定该参数，则使用默认防火墙策略。
+        # @type FirewallTemplateId: String
 
-        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId
 
-        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil)
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil)
           @BundleId = bundleid
           @BlueprintId = blueprintid
           @InstanceChargePrepaid = instancechargeprepaid
@@ -862,6 +1005,7 @@ module TencentCloud
           @LoginConfiguration = loginconfiguration
           @Containers = containers
           @AutoVoucher = autovoucher
+          @FirewallTemplateId = firewalltemplateid
         end
 
         def deserialize(params)
@@ -889,6 +1033,7 @@ module TencentCloud
             end
           end
           @AutoVoucher = params['AutoVoucher']
+          @FirewallTemplateId = params['FirewallTemplateId']
         end
       end
 
@@ -1087,6 +1232,74 @@ module TencentCloud
 
       # DeleteFirewallRules返回参数结构体
       class DeleteFirewallRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFirewallTemplate请求参数结构体
+      class DeleteFirewallTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DeleteFirewallTemplate返回参数结构体
+      class DeleteFirewallTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteFirewallTemplateRules请求参数结构体
+      class DeleteFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TemplateRuleIds: 防火墙模板规则ID列表。
+        # @type TemplateRuleIds: Array
+
+        attr_accessor :TemplateId, :TemplateRuleIds
+
+        def initialize(templateid=nil, templateruleids=nil)
+          @TemplateId = templateid
+          @TemplateRuleIds = templateruleids
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateRuleIds = params['TemplateRuleIds']
+        end
+      end
+
+      # DeleteFirewallTemplateRules返回参数结构体
+      class DeleteFirewallTemplateRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2304,6 +2517,263 @@ module TencentCloud
               firewallruleinfo_tmp = FirewallRuleInfo.new
               firewallruleinfo_tmp.deserialize(i)
               @FirewallRuleSet << firewallruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirewallTemplateApplyRecords请求参数结构体
+      class DescribeFirewallTemplateApplyRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TaskIds: 应用任务ID列表。
+        # @type TaskIds: Array
+
+        attr_accessor :TemplateId, :TaskIds
+
+        def initialize(templateid=nil, taskids=nil)
+          @TemplateId = templateid
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # DescribeFirewallTemplateApplyRecords返回参数结构体
+      class DescribeFirewallTemplateApplyRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param ApplyRecordSet: 防火墙模板应用记录列表。
+        # @type ApplyRecordSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApplyRecordSet, :RequestId
+
+        def initialize(applyrecordset=nil, requestid=nil)
+          @ApplyRecordSet = applyrecordset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApplyRecordSet'].nil?
+            @ApplyRecordSet = []
+            params['ApplyRecordSet'].each do |i|
+              firewalltemplateapplyrecord_tmp = FirewallTemplateApplyRecord.new
+              firewalltemplateapplyrecord_tmp.deserialize(i)
+              @ApplyRecordSet << firewalltemplateapplyrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirewallTemplateQuota请求参数结构体
+      class DescribeFirewallTemplateQuotaRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeFirewallTemplateQuota返回参数结构体
+      class DescribeFirewallTemplateQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param Available: 当前可用配额。
+        # @type Available: Integer
+        # @param Total: 总配额。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Available, :Total, :RequestId
+
+        def initialize(available=nil, total=nil, requestid=nil)
+          @Available = available
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Available = params['Available']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirewallTemplateRuleQuota请求参数结构体
+      class DescribeFirewallTemplateRuleQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+
+        attr_accessor :TemplateId
+
+        def initialize(templateid=nil)
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeFirewallTemplateRuleQuota返回参数结构体
+      class DescribeFirewallTemplateRuleQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param Available: 当前可用配额。
+        # @type Available: Integer
+        # @param Total: 总配额。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Available, :Total, :RequestId
+
+        def initialize(available=nil, total=nil, requestid=nil)
+          @Available = available
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Available = params['Available']
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirewallTemplateRules请求参数结构体
+      class DescribeFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TemplateRuleIds: 防火墙模板规则ID列表。
+        # @type TemplateRuleIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :TemplateId, :TemplateRuleIds, :Offset, :Limit
+
+        def initialize(templateid=nil, templateruleids=nil, offset=nil, limit=nil)
+          @TemplateId = templateid
+          @TemplateRuleIds = templateruleids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateRuleIds = params['TemplateRuleIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeFirewallTemplateRules返回参数结构体
+      class DescribeFirewallTemplateRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 防火墙模板规则总数量。
+        # @type TotalCount: Integer
+        # @param TemplateRuleSet: 防火墙模板规则信息列表。
+        # @type TemplateRuleSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TemplateRuleSet, :RequestId
+
+        def initialize(totalcount=nil, templateruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TemplateRuleSet = templateruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TemplateRuleSet'].nil?
+            @TemplateRuleSet = []
+            params['TemplateRuleSet'].each do |i|
+              firewalltemplateruleinfo_tmp = FirewallTemplateRuleInfo.new
+              firewalltemplateruleinfo_tmp.deserialize(i)
+              @TemplateRuleSet << firewalltemplateruleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirewallTemplates请求参数结构体
+      class DescribeFirewallTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateIds: 防火墙模板ID列表。
+        # @type TemplateIds: Array
+        # @param Filters: 过滤器列表。
+        # <li>template-id</li>按照【防火墙模版所属的ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>template-name</li>按照【防火墙模版所属的名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # <li>template-type</li>按照【防火墙模版的类型】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 TemplateIds 和 Filters。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :TemplateIds, :Filters, :Offset, :Limit
+
+        def initialize(templateids=nil, filters=nil, offset=nil, limit=nil)
+          @TemplateIds = templateids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TemplateIds = params['TemplateIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeFirewallTemplates返回参数结构体
+      class DescribeFirewallTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 模板总数量。
+        # @type TotalCount: Integer
+        # @param TemplateSet: 防火墙模板列表。
+        # @type TemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TemplateSet, :RequestId
+
+        def initialize(totalcount=nil, templateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TemplateSet = templateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TemplateSet'].nil?
+            @TemplateSet = []
+            params['TemplateSet'].each do |i|
+              firewalltemplate_tmp = FirewallTemplate.new
+              firewalltemplate_tmp.deserialize(i)
+              @TemplateSet << firewalltemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4092,6 +4562,169 @@ module TencentCloud
         end
       end
 
+      # 防火墙模板信息。
+      class FirewallTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板Id。
+        # @type TemplateId: String
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+        # @param TemplateType: 模板类型。
+        # @type TemplateType: String
+        # @param TemplateState: 模板状态。
+        # @type TemplateState: String
+        # @param CreatedTime: 模板创建时间。
+        # @type CreatedTime: String
+
+        attr_accessor :TemplateId, :TemplateName, :TemplateType, :TemplateState, :CreatedTime
+
+        def initialize(templateid=nil, templatename=nil, templatetype=nil, templatestate=nil, createdtime=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @TemplateType = templatetype
+          @TemplateState = templatestate
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @TemplateType = params['TemplateType']
+          @TemplateState = params['TemplateState']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 防火墙模板应用记录。
+      class FirewallTemplateApplyRecord < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: String
+        # @param ApplyTime: 应用模板的时间。
+        # @type ApplyTime: String
+        # @param TemplateRuleSet: 模板规则列表。
+        # @type TemplateRuleSet: Array
+        # @param ApplyState: 应用模板的执行状态。
+        # @type ApplyState: String
+        # @param SuccessCount: 应用成功的实例数量。
+        # @type SuccessCount: Integer
+        # @param FailedCount: 应用失败的实例数量。
+        # @type FailedCount: Integer
+        # @param RunningCount: 正在应用中的实例数量。
+        # @type RunningCount: Integer
+        # @param ApplyDetailSet: 应用模板的执行细节。
+        # @type ApplyDetailSet: Array
+
+        attr_accessor :TaskId, :ApplyTime, :TemplateRuleSet, :ApplyState, :SuccessCount, :FailedCount, :RunningCount, :ApplyDetailSet
+
+        def initialize(taskid=nil, applytime=nil, templateruleset=nil, applystate=nil, successcount=nil, failedcount=nil, runningcount=nil, applydetailset=nil)
+          @TaskId = taskid
+          @ApplyTime = applytime
+          @TemplateRuleSet = templateruleset
+          @ApplyState = applystate
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+          @RunningCount = runningcount
+          @ApplyDetailSet = applydetailset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ApplyTime = params['ApplyTime']
+          unless params['TemplateRuleSet'].nil?
+            @TemplateRuleSet = []
+            params['TemplateRuleSet'].each do |i|
+              firewalltemplaterule_tmp = FirewallTemplateRule.new
+              firewalltemplaterule_tmp.deserialize(i)
+              @TemplateRuleSet << firewalltemplaterule_tmp
+            end
+          end
+          @ApplyState = params['ApplyState']
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+          @RunningCount = params['RunningCount']
+          unless params['ApplyDetailSet'].nil?
+            @ApplyDetailSet = []
+            params['ApplyDetailSet'].each do |i|
+              firewalltemplateapplyrecorddetail_tmp = FirewallTemplateApplyRecordDetail.new
+              firewalltemplateapplyrecorddetail_tmp.deserialize(i)
+              @ApplyDetailSet << firewalltemplateapplyrecorddetail_tmp
+            end
+          end
+        end
+      end
+
+      # 防火墙模板应用记录详情。
+      class FirewallTemplateApplyRecordDetail < TencentCloud::Common::AbstractModel
+        # @param Instance: 实例标识信息。
+        # @type Instance: :class:`Tencentcloud::Lighthouse.v20200324.models.InstanceIdentifier`
+        # @param ApplyState: 防火墙模板应用状态。
+        # @type ApplyState: String
+        # @param ErrorMessage: 防火墙模板应用错误信息。
+        # @type ErrorMessage: String
+
+        attr_accessor :Instance, :ApplyState, :ErrorMessage
+
+        def initialize(instance=nil, applystate=nil, errormessage=nil)
+          @Instance = instance
+          @ApplyState = applystate
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          unless params['Instance'].nil?
+            @Instance = InstanceIdentifier.new
+            @Instance.deserialize(params['Instance'])
+          end
+          @ApplyState = params['ApplyState']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
+      # 防火墙模板规则信息
+      class FirewallTemplateRule < TencentCloud::Common::AbstractModel
+        # @param TemplateRuleId: 防火墙模板规则ID。
+        # @type TemplateRuleId: String
+        # @param FirewallRule: 防火墙规则。
+        # @type FirewallRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`
+
+        attr_accessor :TemplateRuleId, :FirewallRule
+
+        def initialize(templateruleid=nil, firewallrule=nil)
+          @TemplateRuleId = templateruleid
+          @FirewallRule = firewallrule
+        end
+
+        def deserialize(params)
+          @TemplateRuleId = params['TemplateRuleId']
+          unless params['FirewallRule'].nil?
+            @FirewallRule = FirewallRule.new
+            @FirewallRule.deserialize(params['FirewallRule'])
+          end
+        end
+      end
+
+      # 防火墙模板规则信息
+      class FirewallTemplateRuleInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateRuleId: 防火墙模板规则ID。
+        # @type TemplateRuleId: String
+        # @param FirewallRuleInfo: 防火墙规则信息。
+        # @type FirewallRuleInfo: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRuleInfo`
+
+        attr_accessor :TemplateRuleId, :FirewallRuleInfo
+
+        def initialize(templateruleid=nil, firewallruleinfo=nil)
+          @TemplateRuleId = templateruleid
+          @FirewallRuleInfo = firewallruleinfo
+        end
+
+        def deserialize(params)
+          @TemplateRuleId = params['TemplateRuleId']
+          unless params['FirewallRuleInfo'].nil?
+            @FirewallRuleInfo = FirewallRuleInfo.new
+            @FirewallRuleInfo.deserialize(params['FirewallRuleInfo'])
+          end
+        end
+      end
+
       # 描述通用资源配额信息。
 
       class GeneralResourceQuota < TencentCloud::Common::AbstractModel
@@ -4638,6 +5271,26 @@ module TencentCloud
               @DeniedActions << deniedaction_tmp
             end
           end
+        end
+      end
+
+      # 实例标识信息。
+      class InstanceIdentifier < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Region: 实例地域。
+        # @type Region: String
+
+        attr_accessor :InstanceId, :Region
+
+        def initialize(instanceid=nil, region=nil)
+          @InstanceId = instanceid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Region = params['Region']
         end
       end
 
@@ -5308,6 +5961,42 @@ module TencentCloud
         end
       end
 
+      # ModifyFirewallTemplate请求参数结构体
+      class ModifyFirewallTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TemplateName: 模板名称。
+        # @type TemplateName: String
+
+        attr_accessor :TemplateId, :TemplateName
+
+        def initialize(templateid=nil, templatename=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+        end
+      end
+
+      # ModifyFirewallTemplate返回参数结构体
+      class ModifyFirewallTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstancesAttribute请求参数结构体
       class ModifyInstancesAttributeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -5821,6 +6510,49 @@ module TencentCloud
         end
       end
 
+      # ReplaceFirewallTemplateRule请求参数结构体
+      class ReplaceFirewallTemplateRuleRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 防火墙模板ID。
+        # @type TemplateId: String
+        # @param TemplateRuleId: 防火墙模板规则ID。
+        # @type TemplateRuleId: String
+        # @param TemplateRule: 替换后的防火墙模板规则。
+        # @type TemplateRule: :class:`Tencentcloud::Lighthouse.v20200324.models.FirewallRule`
+
+        attr_accessor :TemplateId, :TemplateRuleId, :TemplateRule
+
+        def initialize(templateid=nil, templateruleid=nil, templaterule=nil)
+          @TemplateId = templateid
+          @TemplateRuleId = templateruleid
+          @TemplateRule = templaterule
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateRuleId = params['TemplateRuleId']
+          unless params['TemplateRule'].nil?
+            @TemplateRule = FirewallRule.new
+            @TemplateRule.deserialize(params['TemplateRule'])
+          end
+        end
+      end
+
+      # ReplaceFirewallTemplateRule返回参数结构体
+      class ReplaceFirewallTemplateRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RerunDockerContainer请求参数结构体
       class RerunDockerContainerRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -5896,6 +6628,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetFirewallTemplateRules请求参数结构体
+      class ResetFirewallTemplateRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID。
+        # @type TemplateId: String
+        # @param TemplateRules: 重置后的防火墙模板规则列表。
+        # @type TemplateRules: Array
+
+        attr_accessor :TemplateId, :TemplateRules
+
+        def initialize(templateid=nil, templaterules=nil)
+          @TemplateId = templateid
+          @TemplateRules = templaterules
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['TemplateRules'].nil?
+            @TemplateRules = []
+            params['TemplateRules'].each do |i|
+              firewallrule_tmp = FirewallRule.new
+              firewallrule_tmp.deserialize(i)
+              @TemplateRules << firewallrule_tmp
+            end
+          end
+        end
+      end
+
+      # ResetFirewallTemplateRules返回参数结构体
+      class ResetFirewallTemplateRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateRuleIdSet: 重置后的规则ID列表。
+        # @type TemplateRuleIdSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateRuleIdSet, :RequestId
+
+        def initialize(templateruleidset=nil, requestid=nil)
+          @TemplateRuleIdSet = templateruleidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateRuleIdSet = params['TemplateRuleIdSet']
           @RequestId = params['RequestId']
         end
       end

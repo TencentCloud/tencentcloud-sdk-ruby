@@ -809,7 +809,7 @@ module TencentCloud
         # @type NeedSignReview: Boolean
         # @param ApproverVerifyType: 签署人校验方式
         # VerifyCheck: 人脸识别（默认）
-        # MobileCheck：手机号验证
+        # MobileCheck：手机号验证，用户手机号和参与方手机号（ApproverMobile）相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）
         # 参数说明：可选人脸识别或手机号验证两种方式，若选择后者，未实名个人签署方在签署合同时，无需经过实名认证和意愿确认两次人脸识别，该能力仅适用于个人签署方。
         # @type ApproverVerifyType: String
         # @param SignBeanTag: 标识是否允许发起后添加控件。
@@ -4431,6 +4431,7 @@ module TencentCloud
         # @type ApproverNeedSignReview: Boolean
         # @param ApproverVerifyTypes: 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1
         # 查看合同的认证方式 Flow层级的优先于approver层级的
+        # （当手写签名方式为OCR_ESIGN时，合同认证方式2无效，因为这种签名方式依赖实名认证）
         # @type ApproverVerifyTypes: Array
         # @param ApproverSignTypes: 签署人签署合同时的认证方式
         # 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)

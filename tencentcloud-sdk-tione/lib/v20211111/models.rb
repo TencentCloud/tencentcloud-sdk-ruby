@@ -1417,10 +1417,12 @@ module TencentCloud
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param ImageType: 镜像类型
         # @type ImageType: String
+        # @param SSHConfig: SSH配置信息
+        # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
 
-        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig
 
-        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil)
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConf = resourceconf
@@ -1443,6 +1445,7 @@ module TencentCloud
           @DataConfigs = dataconfigs
           @ImageInfo = imageinfo
           @ImageType = imagetype
+          @SSHConfig = sshconfig
         end
 
         def deserialize(params)
@@ -1494,6 +1497,10 @@ module TencentCloud
             @ImageInfo.deserialize(params['ImageInfo'])
           end
           @ImageType = params['ImageType']
+          unless params['SSHConfig'].nil?
+            @SSHConfig = SSHConfig.new
+            @SSHConfig.deserialize(params['SSHConfig'])
+          end
         end
       end
 
@@ -1740,14 +1747,6 @@ module TencentCloud
         # @type ChargeType: String
         # @param ResourceConfigInfos: 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]
         # @type ResourceConfigInfos: Array
-        # @param CodePackagePath: COS代码包路径
-        # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
-        # @type TrainingMode: String
-        # @param Output: COS训练输出路径
-        # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param LogEnable: 是否上报日志
-        # @type LogEnable: Boolean
         # @param FrameworkName: 训练框架名称，通过DescribeTrainingFrameworks接口查询，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH
         # @type FrameworkName: String
         # @param FrameworkVersion: 训练框架版本，通过DescribeTrainingFrameworks接口查询，eg：1.15、1.9
@@ -1760,18 +1759,26 @@ module TencentCloud
         # @type Tags: Array
         # @param ImageInfo: 自定义镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param CodePackagePath: COS代码包路径
+        # @type CodePackagePath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param StartCmdInfo: 启动命令信息，默认为sh start.sh
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
+        # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
+        # @type TrainingMode: String
         # @param DataConfigs: 数据配置，依赖DataSource字段
         # @type DataConfigs: Array
         # @param VpcId: VPC Id
         # @type VpcId: String
         # @param SubnetId: 子网Id
         # @type SubnetId: String
+        # @param Output: COS训练输出路径
+        # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param LogConfig: CLS日志配置
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
         # @param TuningParameters: 调优参数
         # @type TuningParameters: String
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
         # @param Remark: 备注，最多500个字
         # @type Remark: String
         # @param DataSource: 数据来源，eg：DATASET、COS、CFS、HDFS
@@ -1779,28 +1786,28 @@ module TencentCloud
         # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
         # @type CallbackUrl: String
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :CodePackagePath, :TrainingMode, :Output, :LogEnable, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :StartCmdInfo, :DataConfigs, :VpcId, :SubnetId, :LogConfig, :TuningParameters, :Remark, :DataSource, :CallbackUrl
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, codepackagepath=nil, trainingmode=nil, output=nil, logenable=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, startcmdinfo=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, logconfig=nil, tuningparameters=nil, remark=nil, datasource=nil, callbackurl=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
-          @CodePackagePath = codepackagepath
-          @TrainingMode = trainingmode
-          @Output = output
-          @LogEnable = logenable
           @FrameworkName = frameworkname
           @FrameworkVersion = frameworkversion
           @FrameworkEnvironment = frameworkenvironment
           @ResourceGroupId = resourcegroupid
           @Tags = tags
           @ImageInfo = imageinfo
+          @CodePackagePath = codepackagepath
           @StartCmdInfo = startcmdinfo
+          @TrainingMode = trainingmode
           @DataConfigs = dataconfigs
           @VpcId = vpcid
           @SubnetId = subnetid
+          @Output = output
           @LogConfig = logconfig
           @TuningParameters = tuningparameters
+          @LogEnable = logenable
           @Remark = remark
           @DataSource = datasource
           @CallbackUrl = callbackurl
@@ -1817,16 +1824,6 @@ module TencentCloud
               @ResourceConfigInfos << resourceconfiginfo_tmp
             end
           end
-          unless params['CodePackagePath'].nil?
-            @CodePackagePath = CosPathInfo.new
-            @CodePackagePath.deserialize(params['CodePackagePath'])
-          end
-          @TrainingMode = params['TrainingMode']
-          unless params['Output'].nil?
-            @Output = CosPathInfo.new
-            @Output.deserialize(params['Output'])
-          end
-          @LogEnable = params['LogEnable']
           @FrameworkName = params['FrameworkName']
           @FrameworkVersion = params['FrameworkVersion']
           @FrameworkEnvironment = params['FrameworkEnvironment']
@@ -1843,10 +1840,15 @@ module TencentCloud
             @ImageInfo = ImageInfo.new
             @ImageInfo.deserialize(params['ImageInfo'])
           end
+          unless params['CodePackagePath'].nil?
+            @CodePackagePath = CosPathInfo.new
+            @CodePackagePath.deserialize(params['CodePackagePath'])
+          end
           unless params['StartCmdInfo'].nil?
             @StartCmdInfo = StartCmdInfo.new
             @StartCmdInfo.deserialize(params['StartCmdInfo'])
           end
+          @TrainingMode = params['TrainingMode']
           unless params['DataConfigs'].nil?
             @DataConfigs = []
             params['DataConfigs'].each do |i|
@@ -1857,11 +1859,16 @@ module TencentCloud
           end
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          unless params['Output'].nil?
+            @Output = CosPathInfo.new
+            @Output.deserialize(params['Output'])
+          end
           unless params['LogConfig'].nil?
             @LogConfig = LogConfig.new
             @LogConfig.deserialize(params['LogConfig'])
           end
           @TuningParameters = params['TuningParameters']
+          @LogEnable = params['LogEnable']
           @Remark = params['Remark']
           @DataSource = params['DataSource']
           @CallbackUrl = params['CallbackUrl']
@@ -6346,10 +6353,12 @@ module TencentCloud
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param ImageType: 镜像类型
         # @type ImageType: String
+        # @param SSHConfig: SSH配置
+        # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :LogEnable, :AutoStopping, :DirectInternetAccess, :RootAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :LogEnable, :AutoStopping, :DirectInternetAccess, :RootAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, logenable=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, logenable=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -6373,6 +6382,7 @@ module TencentCloud
           @DataConfigs = dataconfigs
           @ImageInfo = imageinfo
           @ImageType = imagetype
+          @SSHConfig = sshconfig
         end
 
         def deserialize(params)
@@ -6425,6 +6435,10 @@ module TencentCloud
             @ImageInfo.deserialize(params['ImageInfo'])
           end
           @ImageType = params['ImageType']
+          unless params['SSHConfig'].nil?
+            @SSHConfig = SSHConfig.new
+            @SSHConfig.deserialize(params['SSHConfig'])
+          end
         end
       end
 
@@ -6873,10 +6887,13 @@ module TencentCloud
         # @param UserTypes: notebook用户类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserTypes: Array
+        # @param SSHConfig: SSH配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -6902,6 +6919,7 @@ module TencentCloud
           @VolumeSourceCFS = volumesourcecfs
           @Message = message
           @UserTypes = usertypes
+          @SSHConfig = sshconfig
         end
 
         def deserialize(params)
@@ -6943,6 +6961,10 @@ module TencentCloud
           end
           @Message = params['Message']
           @UserTypes = params['UserTypes']
+          unless params['SSHConfig'].nil?
+            @SSHConfig = SSHConfig.new
+            @SSHConfig.deserialize(params['SSHConfig'])
+          end
         end
       end
 
@@ -7095,17 +7117,22 @@ module TencentCloud
         # @param IP: pod的IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
+        # @param Status: pod状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :Name, :IP
+        attr_accessor :Name, :IP, :Status
 
-        def initialize(name=nil, ip=nil)
+        def initialize(name=nil, ip=nil, status=nil)
           @Name = name
           @IP = ip
+          @Status = status
         end
 
         def deserialize(params)
           @Name = params['Name']
           @IP = params['IP']
+          @Status = params['Status']
         end
       end
 
@@ -7619,6 +7646,38 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # notebook ssh端口配置
+      class SSHConfig < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启ssh
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param PublicKey: 公钥信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKey: String
+        # @param Port: 端口号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param LoginCommand: 登录命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginCommand: String
+
+        attr_accessor :Enable, :PublicKey, :Port, :LoginCommand
+
+        def initialize(enable=nil, publickey=nil, port=nil, logincommand=nil)
+          @Enable = enable
+          @PublicKey = publickey
+          @Port = port
+          @LoginCommand = logincommand
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @PublicKey = params['PublicKey']
+          @Port = params['Port']
+          @LoginCommand = params['LoginCommand']
         end
       end
 

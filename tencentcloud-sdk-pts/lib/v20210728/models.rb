@@ -5039,10 +5039,12 @@ module TencentCloud
         # @type NotificationHooks: Array
         # @param Owner: 创建人名
         # @type Owner: String
+        # @param EnvId: 环境ID
+        # @type EnvId: String
 
-        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks, :Owner
+        attr_accessor :ScenarioId, :Name, :Description, :Type, :Load, :EncodedScripts, :Configs, :Datasets, :Extensions, :SLAId, :CronId, :Status, :ProjectId, :TestScripts, :Protocols, :RequestFiles, :SLAPolicy, :Plugins, :DomainNameConfig, :NotificationHooks, :Owner, :EnvId
 
-        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil, owner=nil)
+        def initialize(scenarioid=nil, name=nil, description=nil, type=nil, load=nil, encodedscripts=nil, configs=nil, datasets=nil, extensions=nil, slaid=nil, cronid=nil, status=nil, projectid=nil, testscripts=nil, protocols=nil, requestfiles=nil, slapolicy=nil, plugins=nil, domainnameconfig=nil, notificationhooks=nil, owner=nil, envid=nil)
           @ScenarioId = scenarioid
           @Name = name
           @Description = description
@@ -5064,6 +5066,7 @@ module TencentCloud
           @DomainNameConfig = domainnameconfig
           @NotificationHooks = notificationhooks
           @Owner = owner
+          @EnvId = envid
         end
 
         def deserialize(params)
@@ -5139,6 +5142,7 @@ module TencentCloud
             end
           end
           @Owner = params['Owner']
+          @EnvId = params['EnvId']
         end
       end
 

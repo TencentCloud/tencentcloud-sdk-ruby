@@ -59,6 +59,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ApplyFirewallTemplate) 用于应用防火墙模板到多个实例。
+
+        # @param request: Request instance for ApplyFirewallTemplate.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ApplyFirewallTemplateRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ApplyFirewallTemplateResponse`
+        def ApplyFirewallTemplate(request)
+          body = send_request('ApplyFirewallTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyFirewallTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
         # <li>仅支持回滚到原系统盘。</li>
         # <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
@@ -270,6 +294,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (CreateFirewallTemplate) 用于创建防火墙模板。
+
+        # @param request: Request instance for CreateFirewallTemplate.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateFirewallTemplateRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateFirewallTemplateResponse`
+        def CreateFirewallTemplate(request)
+          body = send_request('CreateFirewallTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFirewallTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (CreateFirewallTemplateRules) 用于创建防火墙模板规则。
+
+        # @param request: Request instance for CreateFirewallTemplateRules.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CreateFirewallTemplateRulesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CreateFirewallTemplateRulesResponse`
+        def CreateFirewallTemplateRules(request)
+          body = send_request('CreateFirewallTemplateRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFirewallTemplateRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
 
         # @param request: Request instance for CreateInstanceSnapshot.
@@ -410,6 +482,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteFirewallRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DeleteFirewallTemplate) 用于删除防火墙模板。
+
+        # @param request: Request instance for DeleteFirewallTemplate.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DeleteFirewallTemplateRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DeleteFirewallTemplateResponse`
+        def DeleteFirewallTemplate(request)
+          body = send_request('DeleteFirewallTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFirewallTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DeleteFirewallTemplateRules) 用于删除防火墙模板规则。
+
+        # @param request: Request instance for DeleteFirewallTemplateRules.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DeleteFirewallTemplateRulesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DeleteFirewallTemplateRulesResponse`
+        def DeleteFirewallTemplateRules(request)
+          body = send_request('DeleteFirewallTemplateRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFirewallTemplateRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -915,6 +1035,126 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFirewallRulesTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeFirewallTemplateApplyRecords) 用于查询防火墙模板应用记录列表。
+
+        # @param request: Request instance for DescribeFirewallTemplateApplyRecords.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateApplyRecordsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateApplyRecordsResponse`
+        def DescribeFirewallTemplateApplyRecords(request)
+          body = send_request('DescribeFirewallTemplateApplyRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirewallTemplateApplyRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeFirewallTemplateQuota) 用于查询防火墙模板配额。
+
+        # @param request: Request instance for DescribeFirewallTemplateQuota.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateQuotaRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateQuotaResponse`
+        def DescribeFirewallTemplateQuota(request)
+          body = send_request('DescribeFirewallTemplateQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirewallTemplateQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeFirewallTemplateRuleQuota) 用于查询防火墙模板规则配额。
+
+        # @param request: Request instance for DescribeFirewallTemplateRuleQuota.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateRuleQuotaRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateRuleQuotaResponse`
+        def DescribeFirewallTemplateRuleQuota(request)
+          body = send_request('DescribeFirewallTemplateRuleQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirewallTemplateRuleQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeFirewallTemplateRules) 用于查询防火墙模板规则列表。
+
+        # @param request: Request instance for DescribeFirewallTemplateRules.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateRulesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplateRulesResponse`
+        def DescribeFirewallTemplateRules(request)
+          body = send_request('DescribeFirewallTemplateRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirewallTemplateRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeFirewallTemplates) 用于查询防火墙模板列表。
+
+        # @param request: Request instance for DescribeFirewallTemplates.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeFirewallTemplatesResponse`
+        def DescribeFirewallTemplates(request)
+          body = send_request('DescribeFirewallTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirewallTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1798,6 +2038,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ModifyFirewallTemplate) 用于修改防火墙模板。
+
+        # @param request: Request instance for ModifyFirewallTemplate.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyFirewallTemplateRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyFirewallTemplateResponse`
+        def ModifyFirewallTemplate(request)
+          body = send_request('ModifyFirewallTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFirewallTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyInstancesAttribute）用于修改实例的属性。
         # * “实例名称”仅为方便用户自己管理之用。
         # * 支持批量操作。每次请求批量实例的上限为 100。
@@ -2060,6 +2324,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (ReplaceFirewallTemplateRules) 用于替换防火墙模板规则。
+
+        # @param request: Request instance for ReplaceFirewallTemplateRule.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ReplaceFirewallTemplateRuleRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ReplaceFirewallTemplateRuleResponse`
+        def ReplaceFirewallTemplateRule(request)
+          body = send_request('ReplaceFirewallTemplateRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceFirewallTemplateRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重新创建并运行实例内的Docker容器，之后可以通过返回的ActivityId调用DescribeDockerActivities接口查询重建情况。
 
         # @param request: Request instance for RerunDockerContainer.
@@ -2094,6 +2382,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetAttachCcnResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ResetFirewallTemplateRules) 用于重置防火墙模板下所有规则。
+
+        # @param request: Request instance for ResetFirewallTemplateRules.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ResetFirewallTemplateRulesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ResetFirewallTemplateRulesResponse`
+        def ResetFirewallTemplateRules(request)
+          body = send_request('ResetFirewallTemplateRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetFirewallTemplateRulesResponse.new
             model.deserialize(response['Response'])
             model
           else

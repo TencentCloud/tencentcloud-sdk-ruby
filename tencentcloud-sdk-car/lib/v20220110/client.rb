@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 申请并发
+        # 本接口用于申请并发。接口超时时间：20秒。
 
         # @param request: Request instance for ApplyConcurrent.
         # @type request: :class:`Tencentcloud::car::V20220110::ApplyConcurrentRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建会话
+        # 本接口用于创建会话。接口超时时间：5秒。
 
         # @param request: Request instance for CreateSession.
         # @type request: :class:`Tencentcloud::car::V20220110::CreateSessionRequest`

@@ -30380,12 +30380,12 @@ module TencentCloud
         # @param Md5Value: 文件MD5值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Md5Value: String
-        # @param CreateTime: 创建时间，秒级别的时间戳
+        # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间，秒级别的时间戳
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: Integer
+        # @type UpdateTime: String
         # @param Size: 文件大小，单位为字节
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: Integer

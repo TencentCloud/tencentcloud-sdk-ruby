@@ -152,7 +152,8 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
         # @param ApproverVerifyTypes: 指定个人签署方查看合同的校验方式,可以传值如下:
         # <ul><li>  **1**   : （默认）人脸识别,人脸识别后才能合同内容</li>
-        # <li>  **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容</li></ul>
+        # <li>  **2**  : 手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）
+        # </li></ul>
         # 注:
         # <ul><li>如果合同流程设置ApproverVerifyType查看合同的校验方式,    则忽略此签署人的查看合同的校验方式</li>
         # <li>此字段不可传多个校验方式</li></ul>
@@ -1425,7 +1426,7 @@ module TencentCloud
         # @type UserData: String
         # @param ApproverVerifyType: 指定个人签署方查看合同的校验方式
         # <ul><li>   **VerifyCheck**  :（默认）人脸识别,人脸识别后才能合同内容 </li>
-        # <li>   **MobileCheck**  :  手机号验证, 用户手机号和参与方手机号(ApproverMobile)相同即可查看合同内容</li></ul>
+        # <li>   **MobileCheck**  :  手机号验证, 用户手机号和参与方手机号（ApproverMobile）相同即可查看合同内容（当手写签名方式为OCR_ESIGN时，该校验方式无效，因为这种签名方式依赖实名认证）</li></ul>
         # @type ApproverVerifyType: String
         # @param SignBeanTag: 签署方签署控件（印章/签名等）的生成方式：
         # <ul><li> **0**：在合同流程发起时，由发起人指定签署方的签署控件的位置和数量。</li>

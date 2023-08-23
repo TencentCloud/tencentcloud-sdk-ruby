@@ -3596,77 +3596,6 @@ module TencentCloud
         end
       end
 
-      # DescribeSqlLogs请求参数结构体
-      class DescribeSqlLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
-        # @type InstanceId: String
-        # @param Offset: SQL日志偏移。
-        # @type Offset: Integer
-        # @param Limit: 拉取数量（0-10000，为0时拉取总数信息）。
-        # @type Limit: Integer
-
-        attr_accessor :InstanceId, :Offset, :Limit
-
-        def initialize(instanceid=nil, offset=nil, limit=nil)
-          @InstanceId = instanceid
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @InstanceId = params['InstanceId']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeSqlLogs返回参数结构体
-      class DescribeSqlLogsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 当前消息队列中的sql日志条目数。
-        # @type TotalCount: Integer
-        # @param StartOffset: 消息队列中的sql日志起始偏移。
-        # @type StartOffset: Integer
-        # @param EndOffset: 消息队列中的sql日志结束偏移。
-        # @type EndOffset: Integer
-        # @param Offset: 返回的第一条sql日志的偏移。
-        # @type Offset: Integer
-        # @param Count: 返回的sql日志数量。
-        # @type Count: Integer
-        # @param SqlItems: Sql日志列表。
-        # @type SqlItems: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :StartOffset, :EndOffset, :Offset, :Count, :SqlItems, :RequestId
-
-        def initialize(totalcount=nil, startoffset=nil, endoffset=nil, offset=nil, count=nil, sqlitems=nil, requestid=nil)
-          @TotalCount = totalcount
-          @StartOffset = startoffset
-          @EndOffset = endoffset
-          @Offset = offset
-          @Count = count
-          @SqlItems = sqlitems
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          @StartOffset = params['StartOffset']
-          @EndOffset = params['EndOffset']
-          @Offset = params['Offset']
-          @Count = params['Count']
-          unless params['SqlItems'].nil?
-            @SqlItems = []
-            params['SqlItems'].each do |i|
-              sqllogitem_tmp = SqlLogItem.new
-              sqllogitem_tmp.deserialize(i)
-              @SqlItems << sqllogitem_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeUserTasks请求参数结构体
       class DescribeUserTasksRequest < TencentCloud::Common::AbstractModel
         # @param Statuses: 任务的状态列表。0-任务启动中；1-任务运行中；2-任务成功；3-任务失败
@@ -5735,58 +5664,6 @@ module TencentCloud
           @SplitRate = params['SplitRate']
           @ShardMemory = params['ShardMemory']
           @ShardStorage = params['ShardStorage']
-        end
-      end
-
-      # 描述一条sql日志的详细信息。
-      class SqlLogItem < TencentCloud::Common::AbstractModel
-        # @param Offset: 本条日志在消息队列中的偏移量。
-        # @type Offset: Integer
-        # @param User: 执行本条sql的用户。
-        # @type User: String
-        # @param Client: 执行本条sql的客户端IP+端口。
-        # @type Client: String
-        # @param DbName: 数据库名称。
-        # @type DbName: String
-        # @param Sql: 执行的sql语句。
-        # @type Sql: String
-        # @param SelectRowNum: 返回的数据行数。
-        # @type SelectRowNum: Integer
-        # @param AffectRowNum: 影响行数。
-        # @type AffectRowNum: Integer
-        # @param Timestamp: Sql执行时间戳。
-        # @type Timestamp: Integer
-        # @param TimeCostMs: Sql耗时，单位为毫秒。
-        # @type TimeCostMs: Integer
-        # @param ResultCode: Sql返回码，0为成功。
-        # @type ResultCode: Integer
-
-        attr_accessor :Offset, :User, :Client, :DbName, :Sql, :SelectRowNum, :AffectRowNum, :Timestamp, :TimeCostMs, :ResultCode
-
-        def initialize(offset=nil, user=nil, client=nil, dbname=nil, sql=nil, selectrownum=nil, affectrownum=nil, timestamp=nil, timecostms=nil, resultcode=nil)
-          @Offset = offset
-          @User = user
-          @Client = client
-          @DbName = dbname
-          @Sql = sql
-          @SelectRowNum = selectrownum
-          @AffectRowNum = affectrownum
-          @Timestamp = timestamp
-          @TimeCostMs = timecostms
-          @ResultCode = resultcode
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @User = params['User']
-          @Client = params['Client']
-          @DbName = params['DbName']
-          @Sql = params['Sql']
-          @SelectRowNum = params['SelectRowNum']
-          @AffectRowNum = params['AffectRowNum']
-          @Timestamp = params['Timestamp']
-          @TimeCostMs = params['TimeCostMs']
-          @ResultCode = params['ResultCode']
         end
       end
 

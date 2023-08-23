@@ -732,17 +732,21 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param SeatUserId: 座席账号。
         # @type SeatUserId: String
+        # @param OnlyOnce: 生成的token是否一次性校验
+        # @type OnlyOnce: Boolean
 
-        attr_accessor :SdkAppId, :SeatUserId
+        attr_accessor :SdkAppId, :SeatUserId, :OnlyOnce
 
-        def initialize(sdkappid=nil, seatuserid=nil)
+        def initialize(sdkappid=nil, seatuserid=nil, onlyonce=nil)
           @SdkAppId = sdkappid
           @SeatUserId = seatuserid
+          @OnlyOnce = onlyonce
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @SeatUserId = params['SeatUserId']
+          @OnlyOnce = params['OnlyOnce']
         end
       end
 

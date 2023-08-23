@@ -81,6 +81,9 @@ module TencentCloud
         # 如果请求的是多应用共享项目，此参数生效；
         # 如果请求的是关闭预启动的单应用独享项目，此参数生效；
         # 如果请求的是开启预启动的单应用独享项目，此参数失效。
+
+        # 注意：在此参数生效的情况下，将会被追加到控制台应用或项目配置的启动参数的后面。
+        # 例如，对于某关闭预启动的单应用独享项目，若在控制台中项目配置的启动参数为bar=0，而ApplicationParameters参数为foo=1，则实际应用启动参数为bar=0 foo=1。
         # @type ApplicationParameters: String
         # @param HostUserId: 【多人互动】房主用户ID，在多人互动模式下为必填字段。
         # 如果该用户是房主，HostUserId需要和UserId保持一致；
@@ -170,15 +173,19 @@ module TencentCloud
       class StartPublishStreamRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（UserId将作为StreamId进行推流，比如绑定推流域名为abc.livepush.myqcloud.com，那么推流地址为rtmp://abc.livepush.myqcloud.com/live/UserId?txSecret=xxx&txTime=xxx）
         # @type UserId: String
+        # @param PublishStreamArgs: 推流参数，推流时携带自定义参数。
+        # @type PublishStreamArgs: String
 
-        attr_accessor :UserId
+        attr_accessor :UserId, :PublishStreamArgs
 
-        def initialize(userid=nil)
+        def initialize(userid=nil, publishstreamargs=nil)
           @UserId = userid
+          @PublishStreamArgs = publishstreamargs
         end
 
         def deserialize(params)
           @UserId = params['UserId']
+          @PublishStreamArgs = params['PublishStreamArgs']
         end
       end
 

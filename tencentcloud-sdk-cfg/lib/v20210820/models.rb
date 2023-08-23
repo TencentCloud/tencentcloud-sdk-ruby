@@ -1216,8 +1216,11 @@ module TencentCloud
 
       # 监控指标
       class TaskMonitor < TencentCloud::Common::AbstractModel
-        # @param TaskMonitorId: 监控指标ID
+        # @param TaskMonitorId: 演练监控指标ID
         # @type TaskMonitorId: Integer
+        # @param MetricId: 监控指标ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricId: Integer
         # @param TaskMonitorObjectTypeId: 监控指标对象类型ID
         # @type TaskMonitorObjectTypeId: Integer
         # @param MetricName: 指标名称
@@ -1231,10 +1234,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Unit: String
 
-        attr_accessor :TaskMonitorId, :TaskMonitorObjectTypeId, :MetricName, :InstancesIds, :MetricChineseName, :Unit
+        attr_accessor :TaskMonitorId, :MetricId, :TaskMonitorObjectTypeId, :MetricName, :InstancesIds, :MetricChineseName, :Unit
 
-        def initialize(taskmonitorid=nil, taskmonitorobjecttypeid=nil, metricname=nil, instancesids=nil, metricchinesename=nil, unit=nil)
+        def initialize(taskmonitorid=nil, metricid=nil, taskmonitorobjecttypeid=nil, metricname=nil, instancesids=nil, metricchinesename=nil, unit=nil)
           @TaskMonitorId = taskmonitorid
+          @MetricId = metricid
           @TaskMonitorObjectTypeId = taskmonitorobjecttypeid
           @MetricName = metricname
           @InstancesIds = instancesids
@@ -1244,6 +1248,7 @@ module TencentCloud
 
         def deserialize(params)
           @TaskMonitorId = params['TaskMonitorId']
+          @MetricId = params['MetricId']
           @TaskMonitorObjectTypeId = params['TaskMonitorObjectTypeId']
           @MetricName = params['MetricName']
           @InstancesIds = params['InstancesIds']
@@ -1578,8 +1583,11 @@ module TencentCloud
 
       # 监控指标
       class TemplateMonitor < TencentCloud::Common::AbstractModel
-        # @param MonitorId: 监控指标ID
+        # @param MonitorId: pk
         # @type MonitorId: Integer
+        # @param MetricId: 监控指标ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricId: Integer
         # @param ObjectTypeId: 监控指标对象类型ID
         # @type ObjectTypeId: Integer
         # @param MetricName: 指标名称
@@ -1588,10 +1596,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetricChineseName: String
 
-        attr_accessor :MonitorId, :ObjectTypeId, :MetricName, :MetricChineseName
+        attr_accessor :MonitorId, :MetricId, :ObjectTypeId, :MetricName, :MetricChineseName
 
-        def initialize(monitorid=nil, objecttypeid=nil, metricname=nil, metricchinesename=nil)
+        def initialize(monitorid=nil, metricid=nil, objecttypeid=nil, metricname=nil, metricchinesename=nil)
           @MonitorId = monitorid
+          @MetricId = metricid
           @ObjectTypeId = objecttypeid
           @MetricName = metricname
           @MetricChineseName = metricchinesename
@@ -1599,6 +1608,7 @@ module TencentCloud
 
         def deserialize(params)
           @MonitorId = params['MonitorId']
+          @MetricId = params['MetricId']
           @ObjectTypeId = params['ObjectTypeId']
           @MetricName = params['MetricName']
           @MetricChineseName = params['MetricChineseName']

@@ -3255,10 +3255,12 @@ module TencentCloud
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         # @type RoomType: Integer
+        # @param RecordLayout: 录制模板。仅可修改还未开始的房间。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        # @type RecordLayout: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3278,6 +3280,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @RecordLayout = recordlayout
         end
 
         def deserialize(params)
@@ -3300,6 +3303,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @RecordLayout = params['RecordLayout']
         end
       end
 
