@@ -119,6 +119,9 @@ module TencentCloud
         # @type EnableParameter: Boolean
         # @param DefaultParameters: 自定义参数的默认取值。
         # @type DefaultParameters: String
+        # @param DefaultParameterConfs: 自定义参数的默认取值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultParameterConfs: Array
         # @param FormattedDescription: 命令的结构化描述。公共命令有值，用户命令为空字符串。
         # @type FormattedDescription: String
         # @param CreatedBy: 命令创建者。TAT 代表公共命令，USER 代表个人命令。
@@ -132,9 +135,9 @@ module TencentCloud
         # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, createdtime=nil, updatedtime=nil, enableparameter=nil, defaultparameters=nil, defaultparameterconfs=nil, formatteddescription=nil, createdby=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -146,6 +149,7 @@ module TencentCloud
           @UpdatedTime = updatedtime
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
+          @DefaultParameterConfs = defaultparameterconfs
           @FormattedDescription = formatteddescription
           @CreatedBy = createdby
           @Tags = tags
@@ -166,6 +170,14 @@ module TencentCloud
           @UpdatedTime = params['UpdatedTime']
           @EnableParameter = params['EnableParameter']
           @DefaultParameters = params['DefaultParameters']
+          unless params['DefaultParameterConfs'].nil?
+            @DefaultParameterConfs = []
+            params['DefaultParameterConfs'].each do |i|
+              defaultparameterconf_tmp = DefaultParameterConf.new
+              defaultparameterconf_tmp.deserialize(i)
+              @DefaultParameterConfs << defaultparameterconf_tmp
+            end
+          end
           @FormattedDescription = params['FormattedDescription']
           @CreatedBy = params['CreatedBy']
           unless params['Tags'].nil?
@@ -382,6 +394,89 @@ module TencentCloud
         end
       end
 
+      # CreateRegisterCode请求参数结构体
+      class CreateRegisterCodeRequest < TencentCloud::Common::AbstractModel
+        # @param Description: 注册码描述。
+        # @type Description: String
+        # @param InstanceNamePrefix: 注册实列名称前缀。
+        # @type InstanceNamePrefix: String
+        # @param RegisterLimit: 该注册码允许注册的实列数目。默认限制为10个。
+        # @type RegisterLimit: Integer
+        # @param EffectiveTime: 该注册码的有效时间，单位为小时。默认为4小时。
+        # @type EffectiveTime: Integer
+        # @param IpAddressRange: 该注册码限制tat_agent只能从IpAddressRange所描述公网出口进行注册。默认不做限制。
+        # @type IpAddressRange: String
+
+        attr_accessor :Description, :InstanceNamePrefix, :RegisterLimit, :EffectiveTime, :IpAddressRange
+
+        def initialize(description=nil, instancenameprefix=nil, registerlimit=nil, effectivetime=nil, ipaddressrange=nil)
+          @Description = description
+          @InstanceNamePrefix = instancenameprefix
+          @RegisterLimit = registerlimit
+          @EffectiveTime = effectivetime
+          @IpAddressRange = ipaddressrange
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @InstanceNamePrefix = params['InstanceNamePrefix']
+          @RegisterLimit = params['RegisterLimit']
+          @EffectiveTime = params['EffectiveTime']
+          @IpAddressRange = params['IpAddressRange']
+        end
+      end
+
+      # CreateRegisterCode返回参数结构体
+      class CreateRegisterCodeResponse < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeId: 注册码ID。
+        # @type RegisterCodeId: String
+        # @param RegisterCodeValue: 注册码值。
+        # @type RegisterCodeValue: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegisterCodeId, :RegisterCodeValue, :RequestId
+
+        def initialize(registercodeid=nil, registercodevalue=nil, requestid=nil)
+          @RegisterCodeId = registercodeid
+          @RegisterCodeValue = registercodevalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RegisterCodeId = params['RegisterCodeId']
+          @RegisterCodeValue = params['RegisterCodeValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义参数。
+      class DefaultParameterConf < TencentCloud::Common::AbstractModel
+        # @param ParameterName: 参数名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterName: String
+        # @param ParameterValue: 参数默认值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterValue: String
+        # @param ParameterDescription: 参数描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParameterDescription: String
+
+        attr_accessor :ParameterName, :ParameterValue, :ParameterDescription
+
+        def initialize(parametername=nil, parametervalue=nil, parameterdescription=nil)
+          @ParameterName = parametername
+          @ParameterValue = parametervalue
+          @ParameterDescription = parameterdescription
+        end
+
+        def deserialize(params)
+          @ParameterName = params['ParameterName']
+          @ParameterValue = params['ParameterValue']
+          @ParameterDescription = params['ParameterDescription']
+        end
+      end
+
       # DeleteCommand请求参数结构体
       class DeleteCommandRequest < TencentCloud::Common::AbstractModel
         # @param CommandId: 待删除的命令ID。
@@ -432,6 +527,70 @@ module TencentCloud
 
       # DeleteInvoker返回参数结构体
       class DeleteInvokerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRegisterCodes请求参数结构体
+      class DeleteRegisterCodesRequest < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeIds: 注册码ID列表。限制输入的注册码ID数量大于0小于100。
+        # @type RegisterCodeIds: Array
+
+        attr_accessor :RegisterCodeIds
+
+        def initialize(registercodeids=nil)
+          @RegisterCodeIds = registercodeids
+        end
+
+        def deserialize(params)
+          @RegisterCodeIds = params['RegisterCodeIds']
+        end
+      end
+
+      # DeleteRegisterCodes返回参数结构体
+      class DeleteRegisterCodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRegisterInstance请求参数结构体
+      class DeleteRegisterInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteRegisterInstance返回参数结构体
+      class DeleteRegisterInstanceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -894,6 +1053,146 @@ module TencentCloud
         end
       end
 
+      # DescribeRegisterCodes请求参数结构体
+      class DescribeRegisterCodesRequest < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeIds: 注册码ID。
+        # @type RegisterCodeIds: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :RegisterCodeIds, :Offset, :Limit
+
+        def initialize(registercodeids=nil, offset=nil, limit=nil)
+          @RegisterCodeIds = registercodeids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RegisterCodeIds = params['RegisterCodeIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRegisterCodes返回参数结构体
+      class DescribeRegisterCodesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询到的注册码总数。
+        # @type TotalCount: Integer
+        # @param RegisterCodeSet: 注册码信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterCodeSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RegisterCodeSet, :RequestId
+
+        def initialize(totalcount=nil, registercodeset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RegisterCodeSet = registercodeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RegisterCodeSet'].nil?
+            @RegisterCodeSet = []
+            params['RegisterCodeSet'].each do |i|
+              registercodeinfo_tmp = RegisterCodeInfo.new
+              registercodeinfo_tmp.deserialize(i)
+              @RegisterCodeSet << registercodeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegisterInstances请求参数结构体
+      class DescribeRegisterInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例id。
+        # @type InstanceIds: Array
+        # @param Filters: 过滤器列表。
+
+        # - instance-name
+
+        # 按照【实例名称】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - instance-id
+
+        # 按照【实例ID】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - register-code-id
+
+        # 按照【注册码ID】进行过滤。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceIds, :Filters, :Offset, :Limit
+
+        def initialize(instanceids=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceIds = instanceids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRegisterInstances返回参数结构体
+      class DescribeRegisterInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该实例注册过的注册码总数。
+        # @type TotalCount: Integer
+        # @param RegisterInstanceSet: 被托管的实例信息的列表。
+        # @type RegisterInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RegisterInstanceSet, :RequestId
+
+        def initialize(totalcount=nil, registerinstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RegisterInstanceSet = registerinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RegisterInstanceSet'].nil?
+            @RegisterInstanceSet = []
+            params['RegisterInstanceSet'].each do |i|
+              registerinstanceinfo_tmp = RegisterInstanceInfo.new
+              registerinstanceinfo_tmp.deserialize(i)
+              @RegisterInstanceSet << registerinstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableInvoker请求参数结构体
       class DisableInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待停止的执行器ID。
@@ -912,6 +1211,38 @@ module TencentCloud
 
       # DisableInvoker返回参数结构体
       class DisableInvokerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableRegisterCodes请求参数结构体
+      class DisableRegisterCodesRequest < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeIds: 注册码ID。
+        # @type RegisterCodeIds: Array
+
+        attr_accessor :RegisterCodeIds
+
+        def initialize(registercodeids=nil)
+          @RegisterCodeIds = registercodeids
+        end
+
+        def deserialize(params)
+          @RegisterCodeIds = params['RegisterCodeIds']
+        end
+      end
+
+      # DisableRegisterCodes返回参数结构体
+      class DisableRegisterCodesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1522,6 +1853,42 @@ module TencentCloud
         end
       end
 
+      # ModifyRegisterInstance请求参数结构体
+      class ModifyRegisterInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名。
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyRegisterInstance返回参数结构体
+      class ModifyRegisterInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PreviewReplacedCommandContent请求参数结构体
       class PreviewReplacedCommandContentRequest < TencentCloud::Common::AbstractModel
         # @param Parameters: 本次预览采用的自定义参数。字段类型为 json encoded string，如：{\"varA\": \"222\"}。
@@ -1593,6 +1960,141 @@ module TencentCloud
           @Region = params['Region']
           @RegionName = params['RegionName']
           @RegionState = params['RegionState']
+        end
+      end
+
+      # 注册码信息。
+      class RegisterCodeInfo < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeId: 注册码ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterCodeId: String
+        # @param Description: 注册码描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param InstanceNamePrefix: 注册实例名称前缀。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNamePrefix: String
+        # @param RegisterLimit: 该注册码允许注册的实列数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterLimit: Integer
+        # @param ExpiredTime: 该注册码的过期时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param IpAddressRange: 该注册码限制tat_agent只能从IpAddressRange所描述公网出口进行注册。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpAddressRange: String
+        # @param Enabled: 该注册码是否可用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param RegisteredCount: 该注册码已注册数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisteredCount: Integer
+        # @param CreatedTime: 注册码创建时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 注册码最近一次更新时间，按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+
+        attr_accessor :RegisterCodeId, :Description, :InstanceNamePrefix, :RegisterLimit, :ExpiredTime, :IpAddressRange, :Enabled, :RegisteredCount, :CreatedTime, :UpdatedTime
+
+        def initialize(registercodeid=nil, description=nil, instancenameprefix=nil, registerlimit=nil, expiredtime=nil, ipaddressrange=nil, enabled=nil, registeredcount=nil, createdtime=nil, updatedtime=nil)
+          @RegisterCodeId = registercodeid
+          @Description = description
+          @InstanceNamePrefix = instancenameprefix
+          @RegisterLimit = registerlimit
+          @ExpiredTime = expiredtime
+          @IpAddressRange = ipaddressrange
+          @Enabled = enabled
+          @RegisteredCount = registeredcount
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @RegisterCodeId = params['RegisterCodeId']
+          @Description = params['Description']
+          @InstanceNamePrefix = params['InstanceNamePrefix']
+          @RegisterLimit = params['RegisterLimit']
+          @ExpiredTime = params['ExpiredTime']
+          @IpAddressRange = params['IpAddressRange']
+          @Enabled = params['Enabled']
+          @RegisteredCount = params['RegisteredCount']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
+      # 注册实例信息。
+      class RegisterInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param RegisterCodeId: 注册码ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegisterCodeId: String
+        # @param InstanceId: 实例ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param MachineId: 机器ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineId: String
+        # @param SystemName: 系统名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemName: String
+        # @param HostName: 主机IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param LocalIp: 内网IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalIp: String
+        # @param PublicKey: 公钥。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKey: String
+        # @param Status: 托管状态。
+        # 返回Online表示实例正在托管，返回Offline表示实例未托管。
+        # @type Status: String
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param UpdatedTime: 上次更新时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedTime: String
+
+        attr_accessor :RegisterCodeId, :InstanceId, :InstanceName, :MachineId, :SystemName, :HostName, :LocalIp, :PublicKey, :Status, :CreatedTime, :UpdatedTime
+
+        def initialize(registercodeid=nil, instanceid=nil, instancename=nil, machineid=nil, systemname=nil, hostname=nil, localip=nil, publickey=nil, status=nil, createdtime=nil, updatedtime=nil)
+          @RegisterCodeId = registercodeid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @MachineId = machineid
+          @SystemName = systemname
+          @HostName = hostname
+          @LocalIp = localip
+          @PublicKey = publickey
+          @Status = status
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+        end
+
+        def deserialize(params)
+          @RegisterCodeId = params['RegisterCodeId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @MachineId = params['MachineId']
+          @SystemName = params['SystemName']
+          @HostName = params['HostName']
+          @LocalIp = params['LocalIp']
+          @PublicKey = params['PublicKey']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
         end
       end
 

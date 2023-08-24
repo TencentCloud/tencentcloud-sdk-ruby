@@ -594,18 +594,30 @@ module TencentCloud
         # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID
         # @type BizId: Integer
         # @param UserId: 需要新增送检的用户号。示例：1234
+        # (若UserId不填，则UserIdString必填；两者选其一；两者都填以UserIdString为准)
         # @type UserId: Integer
+        # @param UserIdString: 需要新增送检的用户号。示例："1234"
+        # (若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
+        # @type UserIdString: String
+        # @param ExpirationTime: 当前用户送检过期时间，单位：秒。
+        # 若参数不为0，则在过期时间之后，用户不会被送检。
+        # 若参数为0，则送检配置不会自动失效。
+        # @type ExpirationTime: Integer
 
-        attr_accessor :BizId, :UserId
+        attr_accessor :BizId, :UserId, :UserIdString, :ExpirationTime
 
-        def initialize(bizid=nil, userid=nil)
+        def initialize(bizid=nil, userid=nil, useridstring=nil, expirationtime=nil)
           @BizId = bizid
           @UserId = userid
+          @UserIdString = useridstring
+          @ExpirationTime = expirationtime
         end
 
         def deserialize(params)
           @BizId = params['BizId']
           @UserId = params['UserId']
+          @UserIdString = params['UserIdString']
+          @ExpirationTime = params['ExpirationTime']
         end
       end
 
@@ -781,18 +793,24 @@ module TencentCloud
         # @param BizId: 应用ID，登录控制台 - 服务管理创建应用得到的AppID
         # @type BizId: Integer
         # @param UserId: 需要删除送检的用户号。示例：1234
+        # (若UserId不填，则UserIdString必填；两者选其一；两者都填以UserIdString为准)
         # @type UserId: Integer
+        # @param UserIdString: 需要删除送检的用户号。示例："1234"
+        # (若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
+        # @type UserIdString: String
 
-        attr_accessor :BizId, :UserId
+        attr_accessor :BizId, :UserId, :UserIdString
 
-        def initialize(bizid=nil, userid=nil)
+        def initialize(bizid=nil, userid=nil, useridstring=nil)
           @BizId = bizid
           @UserId = userid
+          @UserIdString = useridstring
         end
 
         def deserialize(params)
           @BizId = params['BizId']
           @UserId = params['UserId']
+          @UserIdString = params['UserIdString']
         end
       end
 

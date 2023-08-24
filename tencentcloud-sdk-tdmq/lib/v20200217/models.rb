@@ -1258,22 +1258,22 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         # @type MsgTTL: Integer
-        # @param Remark: 说明，128个字符以内。
-        # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param Remark: 说明，128个字符以内。
+        # @type Remark: String
         # @param RetentionPolicy: 消息保留策略
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
         # @param AutoSubscriptionCreation: 是否开启自动创建订阅
         # @type AutoSubscriptionCreation: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy, :AutoSubscriptionCreation
+        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation
 
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
+        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
-          @Remark = remark
           @ClusterId = clusterid
+          @Remark = remark
           @RetentionPolicy = retentionpolicy
           @AutoSubscriptionCreation = autosubscriptioncreation
         end
@@ -1281,8 +1281,8 @@ module TencentCloud
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
-          @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
           unless params['RetentionPolicy'].nil?
             @RetentionPolicy = RetentionPolicy.new
             @RetentionPolicy.deserialize(params['RetentionPolicy'])

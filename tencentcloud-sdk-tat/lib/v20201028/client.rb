@@ -104,6 +104,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口用于创建注册码。
+
+        # @param request: Request instance for CreateRegisterCode.
+        # @type request: :class:`Tencentcloud::tat::V20201028::CreateRegisterCodeRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::CreateRegisterCodeResponse`
+        def CreateRegisterCode(request)
+          body = send_request('CreateRegisterCode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRegisterCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于删除命令。
         # 如果命令与执行器关联，则无法被删除。
 
@@ -139,6 +163,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInvokerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于批量删除注册码。
+
+        # @param request: Request instance for DeleteRegisterCodes.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DeleteRegisterCodesRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DeleteRegisterCodesResponse`
+        def DeleteRegisterCodes(request)
+          body = send_request('DeleteRegisterCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRegisterCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口用于删除托管实例。
+
+        # @param request: Request instance for DeleteRegisterInstance.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DeleteRegisterInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DeleteRegisterInstanceResponse`
+        def DeleteRegisterInstance(request)
+          body = send_request('DeleteRegisterInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRegisterInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -322,6 +394,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口用于查询注册码信息。
+
+        # @param request: Request instance for DescribeRegisterCodes.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeRegisterCodesRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeRegisterCodesResponse`
+        def DescribeRegisterCodes(request)
+          body = send_request('DescribeRegisterCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRegisterCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口用于查询被托管的实例信息。
+
+        # @param request: Request instance for DescribeRegisterInstances.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeRegisterInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeRegisterInstancesResponse`
+        def DescribeRegisterInstances(request)
+          body = send_request('DescribeRegisterInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRegisterInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于停止执行器。
 
         # @param request: Request instance for DisableInvoker.
@@ -332,6 +452,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableInvokerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于批量禁用注册码。
+
+        # @param request: Request instance for DisableRegisterCodes.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DisableRegisterCodesRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DisableRegisterCodesResponse`
+        def DisableRegisterCodes(request)
+          body = send_request('DisableRegisterCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableRegisterCodesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -434,6 +578,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInvokerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口用于修改托管实例信息。
+
+        # @param request: Request instance for ModifyRegisterInstance.
+        # @type request: :class:`Tencentcloud::tat::V20201028::ModifyRegisterInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::ModifyRegisterInstanceResponse`
+        def ModifyRegisterInstance(request)
+          body = send_request('ModifyRegisterInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRegisterInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

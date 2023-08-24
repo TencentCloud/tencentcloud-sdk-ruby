@@ -265,7 +265,7 @@ module TencentCloud
         # @param Time: 返回格式：
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 根据粒度会有不同程度的缩减。
         # @type Time: String
         # @param Bandwidth: 带宽。
@@ -3543,11 +3543,11 @@ module TencentCloud
       # DescribeCallbackRecordsList请求参数结构体
       class DescribeCallbackRecordsListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)
         # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         # @type StartTime: String
         # @param EndTime: 结束时间点，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)
         # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
 
         # 查询的起始和结束时间跨度不支持超过1天。仅支持查询最近14天的数据。
@@ -3757,12 +3757,12 @@ module TencentCloud
         # @param StartTime: 起始时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 时间跨度在（0,3小时]，支持最近1个月数据查询。
         # @type EndTime: String
         # @param PlayDomains: 播放域名，默认为不填，表示求总体数据。
@@ -3827,12 +3827,12 @@ module TencentCloud
         # @param StartTime: 起始时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type EndTime: String
         # @param PlayDomains: 播放域名列表。
         # @type PlayDomains: Array
@@ -5668,13 +5668,13 @@ module TencentCloud
 
         # 使用 UTC 格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: UTC结束时间，支持最近三个月的查询，查询时间最长跨度为一个月。
 
         # 使用 UTC 格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type EndTime: String
         # @param PushDomains: 推流域名列表，若不传递此参数，则表示查询总体数据。
         # @type PushDomains: Array
@@ -6016,13 +6016,13 @@ module TencentCloud
       # DescribeLiveTranscodeTotalInfo请求参数结构体
       class DescribeLiveTranscodeTotalInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 结束时间点，接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)
         # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         # @type StartTime: String
         # @param EndTime: 结束时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见  [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type EndTime: String
         # @param PushDomains: 推流域名列表，若不填，表示查询所有域名总体数据。
         # 指定域名时返回1小时粒度数据。
@@ -6372,12 +6372,12 @@ module TencentCloud
         # @param StartTime: 起始时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         # @type EndTime: String
         # @param Granularity: 查询粒度：
@@ -6568,12 +6568,12 @@ module TencentCloud
         # @param StartTime: 起始时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         # @type EndTime: String
         # @param StatType: 统计的类型，可选值：”Province”(省份)，”Isp”(运营商)，“CountryOrArea”(国家或地区)。
@@ -6678,12 +6678,12 @@ module TencentCloud
         # @param StartTime: 起始时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 注：EndTime 和 StartTime 只支持最近1天的数据查询。
         # @type EndTime: String
         # @param Granularity: 支持如下粒度：
@@ -7275,12 +7275,12 @@ module TencentCloud
         # @param StartTime: 起始时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 支持查询最近7天数据，建议查询时间跨度在3小时之内。
         # @type EndTime: String
         # @param PushDomain: 推流域名。
@@ -7480,12 +7480,12 @@ module TencentCloud
         # @param StartTime: 起始时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # @type StartTime: String
         # @param EndTime: 结束时间点，
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
-        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)。
         # 时间跨度在[0,4小时]，支持最近1天数据查询。
         # @type EndTime: String
         # @param PlayDomains: 播放域名，默认为不填，表示求总体数据。

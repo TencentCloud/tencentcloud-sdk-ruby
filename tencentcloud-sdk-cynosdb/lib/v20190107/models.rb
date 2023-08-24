@@ -1083,9 +1083,9 @@ module TencentCloud
 
       # CopyClusterPasswordComplexity请求参数结构体
       class CopyClusterPasswordComplexityRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterIds: 复制集群ID数组
+        # @param ClusterIds: 复制集群ID数组，例如["cynosdbmysql-bzxxrmtq","cynosdbmysql-qwer"]
         # @type ClusterIds: Array
-        # @param SourceClusterId: 集群id
+        # @param SourceClusterId: 集群id，例如"cynosdbmysql-bzxxrmtq"
         # @type SourceClusterId: String
 
         attr_accessor :ClusterIds, :SourceClusterId
@@ -6866,7 +6866,7 @@ module TencentCloud
       class IsolateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param InstanceIdList: 实例ID数组
+        # @param InstanceIdList: 实例ID数组，例如["cynosdbbmysql-ins-asd","cynosdbmysql-ins-zxc"]
         # @type InstanceIdList: Array
         # @param DbType: 该参数已废弃
         # @type DbType: String
@@ -7978,9 +7978,9 @@ module TencentCloud
 
       # ModifyProxyRwSplit请求参数结构体
       class ModifyProxyRwSplitRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，例如cynosdbmysql-asd123
         # @type ClusterId: String
-        # @param ProxyGroupId: 数据库代理组ID
+        # @param ProxyGroupId: 数据库代理组ID，例如cynosdbmysql-proxy-qwe123
         # @type ProxyGroupId: String
         # @param ConsistencyType: 一致性类型；“eventual"-最终一致性, "session"-会话一致性, "global"-全局一致性
         # @type ConsistencyType: String
@@ -8305,11 +8305,11 @@ module TencentCloud
 
       # x08新创建的账号
       class NewAccount < TencentCloud::Common::AbstractModel
-        # @param AccountName: 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-16
+        # @param AccountName: 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-30
         # @type AccountName: String
         # @param AccountPassword: 密码，密码长度范围为8到64个字符
         # @type AccountPassword: String
-        # @param Host: 主机
+        # @param Host: 主机(%或ipv4地址)
         # @type Host: String
         # @param Description: 描述
         # @type Description: String

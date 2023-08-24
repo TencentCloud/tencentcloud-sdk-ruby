@@ -529,6 +529,38 @@ module TencentCloud
         end
       end
 
+      # AddSpartaProtectionAuto请求参数结构体
+      class AddSpartaProtectionAutoRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # AddSpartaProtectionAuto返回参数结构体
+      class AddSpartaProtectionAutoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddSpartaProtection请求参数结构体
       class AddSpartaProtectionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要防御的域名
@@ -696,6 +728,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddSpartaProtectionsAuto请求参数结构体
+      class AddSpartaProtectionsAutoRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 多域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # AddSpartaProtectionsAuto返回参数结构体
+      class AddSpartaProtectionsAutoResponse < TencentCloud::Common::AbstractModel
+        # @param FailedInfos: 失败原因
+        # @type FailedInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedInfos, :RequestId
+
+        def initialize(failedinfos=nil, requestid=nil)
+          @FailedInfos = failedinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FailedInfos'].nil?
+            @FailedInfos = []
+            params['FailedInfos'].each do |i|
+              failedinfo_tmp = FailedInfo.new
+              failedinfo_tmp.deserialize(i)
+              @FailedInfos << failedinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -932,6 +1007,136 @@ module TencentCloud
               @Clusters << cdccluster_tmp
             end
           end
+        end
+      end
+
+      # clb域名详情
+      class ClbDomainsInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param Edition: waf类型
+        # @type Edition: String
+        # @param IsCdn: 是否是cdn
+        # @type IsCdn: Integer
+        # @param LoadBalancerSet: 负载均衡算法
+        # @type LoadBalancerSet: Array
+        # @param FlowMode: 镜像模式
+        # @type FlowMode: Integer
+        # @param State: 绑定clb状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param AlbType: 负载均衡类型，clb或者apisix
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlbType: String
+        # @param IpHeaders: IsCdn=3时，表示自定义header
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpHeaders: Array
+        # @param CdcClusters: cdc类型会增加集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcClusters: String
+
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters
+
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Edition = edition
+          @IsCdn = iscdn
+          @LoadBalancerSet = loadbalancerset
+          @FlowMode = flowmode
+          @State = state
+          @AlbType = albtype
+          @IpHeaders = ipheaders
+          @CdcClusters = cdcclusters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Edition = params['Edition']
+          @IsCdn = params['IsCdn']
+          unless params['LoadBalancerSet'].nil?
+            @LoadBalancerSet = []
+            params['LoadBalancerSet'].each do |i|
+              loadbalancerpackagenew_tmp = LoadBalancerPackageNew.new
+              loadbalancerpackagenew_tmp.deserialize(i)
+              @LoadBalancerSet << loadbalancerpackagenew_tmp
+            end
+          end
+          @FlowMode = params['FlowMode']
+          @State = params['State']
+          @AlbType = params['AlbType']
+          @IpHeaders = params['IpHeaders']
+          @CdcClusters = params['CdcClusters']
+        end
+      end
+
+      # CLB查询对应绑定的WAF状态的结果参数
+      class ClbHostResult < TencentCloud::Common::AbstractModel
+        # @param LoadBalancer: WAF绑定的监听器实例
+        # @type LoadBalancer: :class:`Tencentcloud::Waf.v20180125.models.LoadBalancer`
+        # @param Domain: WAF绑定的域名
+        # @type Domain: String
+        # @param DomainId: WAF绑定的实例ID
+        # @type DomainId: String
+        # @param Status: 是否有绑定WAF，1：绑定了WAF，0：没有绑定WAF
+        # @type Status: Integer
+        # @param FlowMode: 绑定了WAF的情况下，WAF流量模式，1：清洗模式，0：镜像模式（默认）
+        # @type FlowMode: Integer
+
+        attr_accessor :LoadBalancer, :Domain, :DomainId, :Status, :FlowMode
+
+        def initialize(loadbalancer=nil, domain=nil, domainid=nil, status=nil, flowmode=nil)
+          @LoadBalancer = loadbalancer
+          @Domain = domain
+          @DomainId = domainid
+          @Status = status
+          @FlowMode = flowmode
+        end
+
+        def deserialize(params)
+          unless params['LoadBalancer'].nil?
+            @LoadBalancer = LoadBalancer.new
+            @LoadBalancer.deserialize(params['LoadBalancer'])
+          end
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Status = params['Status']
+          @FlowMode = params['FlowMode']
+        end
+      end
+
+      # CLB回调WAF接口（获取、删除）的参数
+      class ClbHostsParams < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例ID，如果不传次参数则默认认为操作的是整个AppId的监听器，如果此参数不为空则认为操作的是对应负载均衡实例。
+        # @type LoadBalancerId: String
+        # @param ListenerId: 负载均衡监听器ID，，如果不传次参数则默认认为操作的是整个负载均衡实例，如果此参数不为空则认为操作的是对应负载均衡监听器。
+        # @type ListenerId: String
+        # @param DomainId: WAF实例ID，，如果不传次参数则默认认为操作的是整个负载均衡监听器实例，如果此参数不为空则认为操作的是对应负载均衡监听器的某一个具体的域名。
+        # @type DomainId: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :DomainId
+
+        def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          @DomainId = params['DomainId']
         end
       end
 
@@ -1222,6 +1427,52 @@ module TencentCloud
         end
       end
 
+      # DeleteHost请求参数结构体
+      class DeleteHostRequest < TencentCloud::Common::AbstractModel
+        # @param HostsDel: 删除的域名列表
+        # @type HostsDel: Array
+
+        attr_accessor :HostsDel
+
+        def initialize(hostsdel=nil)
+          @HostsDel = hostsdel
+        end
+
+        def deserialize(params)
+          unless params['HostsDel'].nil?
+            @HostsDel = []
+            params['HostsDel'].each do |i|
+              hostdel_tmp = HostDel.new
+              hostdel_tmp.deserialize(i)
+              @HostsDel << hostdel_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteHost返回参数结构体
+      class DeleteHostResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIpAccessControl请求参数结构体
       class DeleteIpAccessControlRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -1313,6 +1564,46 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSpartaProtection请求参数结构体
+      class DeleteSpartaProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 域名列表
+        # @type Domains: Array
+        # @param Edition: 版本
+        # @type Edition: String
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+
+        attr_accessor :Domains, :Edition, :InstanceID
+
+        def initialize(domains=nil, edition=nil, instanceid=nil)
+          @Domains = domains
+          @Edition = edition
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DeleteSpartaProtection返回参数结构体
+      class DeleteSpartaProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1692,6 +1983,45 @@ module TencentCloud
         end
       end
 
+      # DescribeCiphersDetail请求参数结构体
+      class DescribeCiphersDetailRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCiphersDetail返回参数结构体
+      class DescribeCiphersDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Ciphers: 加密套件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ciphers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ciphers, :RequestId
+
+        def initialize(ciphers=nil, requestid=nil)
+          @Ciphers = ciphers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Ciphers'].nil?
+            @Ciphers = []
+            params['Ciphers'].each do |i|
+              tlsciphers_tmp = TLSCiphers.new
+              tlsciphers_tmp.deserialize(i)
+              @Ciphers << tlsciphers_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCustomRules接口回包中的复杂类型
       class DescribeCustomRulesRspRuleListItem < TencentCloud::Common::AbstractModel
         # @param ActionType: 动作类型
@@ -1826,6 +2156,100 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainCountInfo请求参数结构体
+      class DescribeDomainCountInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDomainCountInfo返回参数结构体
+      class DescribeDomainCountInfoResponse < TencentCloud::Common::AbstractModel
+        # @param AllDomain: 域名总数
+        # @type AllDomain: Integer
+        # @param UpdateTime: 最近发现时间
+        # @type UpdateTime: String
+        # @param WafDomainCount: 接入域名总数
+        # @type WafDomainCount: Integer
+        # @param LeftDomainCount: 剩下配额
+        # @type LeftDomainCount: Integer
+        # @param OpenWafDomain: 开启防护域名数
+        # @type OpenWafDomain: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllDomain, :UpdateTime, :WafDomainCount, :LeftDomainCount, :OpenWafDomain, :RequestId
+
+        def initialize(alldomain=nil, updatetime=nil, wafdomaincount=nil, leftdomaincount=nil, openwafdomain=nil, requestid=nil)
+          @AllDomain = alldomain
+          @UpdateTime = updatetime
+          @WafDomainCount = wafdomaincount
+          @LeftDomainCount = leftdomaincount
+          @OpenWafDomain = openwafdomain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AllDomain = params['AllDomain']
+          @UpdateTime = params['UpdateTime']
+          @WafDomainCount = params['WafDomainCount']
+          @LeftDomainCount = params['LeftDomainCount']
+          @OpenWafDomain = params['OpenWafDomain']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainDetailsClb请求参数结构体
+      class DescribeDomainDetailsClbRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :Domain, :DomainId, :InstanceId
+
+        def initialize(domain=nil, domainid=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDomainDetailsClb返回参数结构体
+      class DescribeDomainDetailsClbResponse < TencentCloud::Common::AbstractModel
+        # @param DomainsClbPartInfo: clb域名详情
+        # @type DomainsClbPartInfo: :class:`Tencentcloud::Waf.v20180125.models.ClbDomainsInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainsClbPartInfo, :RequestId
+
+        def initialize(domainsclbpartinfo=nil, requestid=nil)
+          @DomainsClbPartInfo = domainsclbpartinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DomainsClbPartInfo'].nil?
+            @DomainsClbPartInfo = ClbDomainsInfo.new
+            @DomainsClbPartInfo.deserialize(params['DomainsClbPartInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2007,6 +2431,73 @@ module TencentCloud
         end
       end
 
+      # DescribeFindDomainList请求参数结构体
+      class DescribeFindDomainListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 每页容量
+        # @type Limit: Integer
+        # @param Key: 过滤条件
+        # @type Key: String
+        # @param IsWafDomain: 是否接入waf
+        # @type IsWafDomain: String
+        # @param By: 排序参数
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+
+        attr_accessor :Offset, :Limit, :Key, :IsWafDomain, :By, :Order
+
+        def initialize(offset=nil, limit=nil, key=nil, iswafdomain=nil, by=nil, order=nil)
+          @Offset = offset
+          @Limit = limit
+          @Key = key
+          @IsWafDomain = iswafdomain
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Key = params['Key']
+          @IsWafDomain = params['IsWafDomain']
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeFindDomainList返回参数结构体
+      class DescribeFindDomainListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 域名总数
+        # @type Total: Integer
+        # @param List: 域名信息列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              findalldomaindetail_tmp = FindAllDomainDetail.new
+              findalldomaindetail_tmp.deserialize(i)
+              @List << findalldomaindetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFlowTrend请求参数结构体
       class DescribeFlowTrendRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要获取流量趋势的域名, all表示所有域名
@@ -2052,6 +2543,168 @@ module TencentCloud
               botstatpointitem_tmp = BotStatPointItem.new
               botstatpointitem_tmp.deserialize(i)
               @Data << botstatpointitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHostLimit请求参数结构体
+      class DescribeHostLimitRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 添加的域名
+        # @type Domain: String
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+        # @param AlbType: 流量来源
+        # @type AlbType: String
+
+        attr_accessor :Domain, :InstanceID, :AlbType
+
+        def initialize(domain=nil, instanceid=nil, albtype=nil)
+          @Domain = domain
+          @InstanceID = instanceid
+          @AlbType = albtype
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @InstanceID = params['InstanceID']
+          @AlbType = params['AlbType']
+        end
+      end
+
+      # DescribeHostLimit返回参数结构体
+      class DescribeHostLimitResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功返回的状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHost请求参数结构体
+      class DescribeHostRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :DomainId, :InstanceID
+
+        def initialize(domain=nil, domainid=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeHost返回参数结构体
+      class DescribeHostResponse < TencentCloud::Common::AbstractModel
+        # @param Host: 域名详情
+        # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Host, :RequestId
+
+        def initialize(host=nil, requestid=nil)
+          @Host = host
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Host'].nil?
+            @Host = HostRecord.new
+            @Host.deserialize(params['Host'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHosts请求参数结构体
+      class DescribeHostsRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 防护域名，如果是要查询某一具体的防护域名则传入此参数，要求是准确的域名，此参数不支持模糊搜索
+        # @type Domain: String
+        # @param DomainId: 防护域名ID，如果是要查询某一具体的防护域名则传入此参数，要求是准确的域名ID，此参数不支持模糊搜索
+        # @type DomainId: String
+        # @param Search: 搜索条件，根据此参数对域名做模糊搜索
+        # @type Search: String
+        # @param Item: 复杂的搜索条件
+        # @type Item: :class:`Tencentcloud::Waf.v20180125.models.SearchItem`
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :DomainId, :Search, :Item, :InstanceID
+
+        def initialize(domain=nil, domainid=nil, search=nil, item=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Search = search
+          @Item = item
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Search = params['Search']
+          unless params['Item'].nil?
+            @Item = SearchItem.new
+            @Item.deserialize(params['Item'])
+          end
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeHosts返回参数结构体
+      class DescribeHostsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 防护域名列表的长度
+        # @type TotalCount: Integer
+        # @param HostList: 防护域名的列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :HostList, :RequestId
+
+        def initialize(totalcount=nil, hostlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @HostList = hostlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['HostList'].nil?
+            @HostList = []
+            params['HostList'].each do |i|
+              hostrecord_tmp = HostRecord.new
+              hostrecord_tmp.deserialize(i)
+              @HostList << hostrecord_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2524,6 +3177,44 @@ module TencentCloud
         end
       end
 
+      # DescribeTlsVersion请求参数结构体
+      class DescribeTlsVersionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeTlsVersion返回参数结构体
+      class DescribeTlsVersionResponse < TencentCloud::Common::AbstractModel
+        # @param TLS: TLS key value
+        # @type TLS: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TLS, :RequestId
+
+        def initialize(tls=nil, requestid=nil)
+          @TLS = tls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TLS'].nil?
+            @TLS = []
+            params['TLS'].each do |i|
+              tlsversion_tmp = TLSVersion.new
+              tlsversion_tmp.deserialize(i)
+              @TLS << tlsversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserCdcClbWafRegions请求参数结构体
       class DescribeUserCdcClbWafRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -2591,6 +3282,44 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserDomainInfo请求参数结构体
+      class DescribeUserDomainInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserDomainInfo返回参数结构体
+      class DescribeUserDomainInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UsersInfo: saas和clb域名信息
+        # @type UsersInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsersInfo, :RequestId
+
+        def initialize(usersinfo=nil, requestid=nil)
+          @UsersInfo = usersinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UsersInfo'].nil?
+            @UsersInfo = []
+            params['UsersInfo'].each do |i|
+              userdomaininfo_tmp = UserDomainInfo.new
+              userdomaininfo_tmp.deserialize(i)
+              @UsersInfo << userdomaininfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2715,6 +3444,60 @@ module TencentCloud
           unless params['WafAutoDenyDetails'].nil?
             @WafAutoDenyDetails = AutoDenyDetail.new
             @WafAutoDenyDetails.deserialize(params['WafAutoDenyDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWafInfo请求参数结构体
+      class DescribeWafInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Params: CLB回调WAF接口（获取、删除）的参数
+        # @type Params: Array
+
+        attr_accessor :Params
+
+        def initialize(params=nil)
+          @Params = params
+        end
+
+        def deserialize(params)
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              clbhostsparams_tmp = ClbHostsParams.new
+              clbhostsparams_tmp.deserialize(i)
+              @Params << clbhostsparams_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeWafInfo返回参数结构体
+      class DescribeWafInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回的WAF信息数组的长度，为0则表示没有查询到对应的信息
+        # @type Total: Integer
+        # @param HostList: 对应的WAF信息的数组。
+        # @type HostList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :HostList, :RequestId
+
+        def initialize(total=nil, hostlist=nil, requestid=nil)
+          @Total = total
+          @HostList = hostlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['HostList'].nil?
+            @HostList = []
+            params['HostList'].each do |i|
+              clbhostresult_tmp = ClbHostResult.new
+              clbhostresult_tmp.deserialize(i)
+              @HostList << clbhostresult_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -2935,6 +3718,26 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @Count = params['Count']
           @Region = params['Region']
+        end
+      end
+
+      # 唯一定位Domain
+      class DomainURI < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Edition: 版本
+        # @type Edition: String
+
+        attr_accessor :Domain, :Edition
+
+        def initialize(domain=nil, edition=nil)
+          @Domain = domain
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Edition = params['Edition']
         end
       end
 
@@ -3210,6 +4013,28 @@ module TencentCloud
         end
       end
 
+      # 失败描述
+      class FailedInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Message: 失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Domain, :Message
+
+        def initialize(domain=nil, message=nil)
+          @Domain = domain
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Message = params['Message']
+        end
+      end
+
       # 过滤数组
       class FiltersItemNew < TencentCloud::Common::AbstractModel
         # @param Name: 字段名
@@ -3231,6 +4056,50 @@ module TencentCloud
           @Name = params['Name']
           @Values = params['Values']
           @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # 域名列表
+      class FindAllDomainDetail < TencentCloud::Common::AbstractModel
+        # @param Appid: 用户id
+        # @type Appid: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Ips: 域名ip
+        # @type Ips: Array
+        # @param FindTime: 发现时间
+        # @type FindTime: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param Edition: waf类型
+        # @type Edition: String
+        # @param IsWafDomain: 是否接入waf
+        # @type IsWafDomain: Integer
+
+        attr_accessor :Appid, :Domain, :Ips, :FindTime, :InstanceId, :DomainId, :Edition, :IsWafDomain
+
+        def initialize(appid=nil, domain=nil, ips=nil, findtime=nil, instanceid=nil, domainid=nil, edition=nil, iswafdomain=nil)
+          @Appid = appid
+          @Domain = domain
+          @Ips = ips
+          @FindTime = findtime
+          @InstanceId = instanceid
+          @DomainId = domainid
+          @Edition = edition
+          @IsWafDomain = iswafdomain
+        end
+
+        def deserialize(params)
+          @Appid = params['Appid']
+          @Domain = params['Domain']
+          @Ips = params['Ips']
+          @FindTime = params['FindTime']
+          @InstanceId = params['InstanceId']
+          @DomainId = params['DomainId']
+          @Edition = params['Edition']
+          @IsWafDomain = params['IsWafDomain']
         end
       end
 
@@ -3435,6 +4304,30 @@ module TencentCloud
         end
       end
 
+      # CLB-WAF删除域名参数
+      class HostDel < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param InstanceID: 实例类型
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :DomainId, :InstanceID
+
+        def initialize(domain=nil, domainid=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
       # clb-waf防护域名
       class HostRecord < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -3528,6 +4421,34 @@ module TencentCloud
           @AlbType = params['AlbType']
           @IpHeaders = params['IpHeaders']
           @EngineType = params['EngineType']
+        end
+      end
+
+      # 设置WAF状态的结构体
+      class HostStatus < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param Status: WAF的开关，1：开，0：关
+        # @type Status: Integer
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :DomainId, :Status, :InstanceID
+
+        def initialize(domain=nil, domainid=nil, status=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Status = status
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Status = params['Status']
+          @InstanceID = params['InstanceID']
         end
       end
 
@@ -4159,6 +5080,54 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainIpv6Status请求参数结构体
+      class ModifyDomainIpv6StatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 需要修改的域名所属的实例ID
+        # @type InstanceId: String
+        # @param Domain: 需要修改的域名
+        # @type Domain: String
+        # @param DomainId: 需要修改的域名ID
+        # @type DomainId: String
+        # @param Status: 修改域名的Ipv6开关为Status （0:关闭 1:开启）
+        # @type Status: Integer
+
+        attr_accessor :InstanceId, :Domain, :DomainId, :Status
+
+        def initialize(instanceid=nil, domain=nil, domainid=nil, status=nil)
+          @InstanceId = instanceid
+          @Domain = domain
+          @DomainId = domainid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDomainIpv6Status返回参数结构体
+      class ModifyDomainIpv6StatusResponse < TencentCloud::Common::AbstractModel
+        # @param Ipv6Status: 返回的状态 （0: 操作失败 1:操作成功 2:企业版以上不支持 3:企业版以下不支持 ）
+        # @type Ipv6Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ipv6Status, :RequestId
+
+        def initialize(ipv6status=nil, requestid=nil)
+          @Ipv6Status = ipv6status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ipv6Status = params['Ipv6Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainWhiteRule请求参数结构体
       class ModifyDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要更改的规则的域名
@@ -4197,6 +5166,337 @@ module TencentCloud
 
       # ModifyDomainWhiteRule返回参数结构体
       class ModifyDomainWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDomainsCLSStatus请求参数结构体
+      class ModifyDomainsCLSStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 需要修改的域名列表
+        # @type Domains: Array
+        # @param Status: 修改域名的访问日志开关为Status
+        # @type Status: Integer
+
+        attr_accessor :Domains, :Status
+
+        def initialize(domains=nil, status=nil)
+          @Domains = domains
+          @Status = status
+        end
+
+        def deserialize(params)
+          unless params['Domains'].nil?
+            @Domains = []
+            params['Domains'].each do |i|
+              domainuri_tmp = DomainURI.new
+              domainuri_tmp.deserialize(i)
+              @Domains << domainuri_tmp
+            end
+          end
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDomainsCLSStatus返回参数结构体
+      class ModifyDomainsCLSStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHostFlowMode请求参数结构体
+      class ModifyHostFlowModeRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param FlowMode: WAF流量模式，1：清洗模式，0：镜像模式（默认）
+        # @type FlowMode: Integer
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :DomainId, :FlowMode, :InstanceID
+
+        def initialize(domain=nil, domainid=nil, flowmode=nil, instanceid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @FlowMode = flowmode
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @FlowMode = params['FlowMode']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # ModifyHostFlowMode返回参数结构体
+      class ModifyHostFlowModeResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功的状态码
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHostMode请求参数结构体
+      class ModifyHostModeRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param Mode: 防护状态：
+        # 10：规则观察&&AI关闭模式，11：规则观察&&AI观察模式，12：规则观察&&AI拦截模式
+        # 20：规则拦截&&AI关闭模式，21：规则拦截&&AI观察模式，22：规则拦截&&AI拦截模式
+        # @type Mode: Integer
+        # @param Type: 0:修改防护模式，1:修改AI
+        # @type Type: Integer
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+        # @param Edition: 实例类型
+        # @type Edition: String
+
+        attr_accessor :Domain, :DomainId, :Mode, :Type, :InstanceID, :Edition
+
+        def initialize(domain=nil, domainid=nil, mode=nil, type=nil, instanceid=nil, edition=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Mode = mode
+          @Type = type
+          @InstanceID = instanceid
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Mode = params['Mode']
+          @Type = params['Type']
+          @InstanceID = params['InstanceID']
+          @Edition = params['Edition']
+        end
+      end
+
+      # ModifyHostMode返回参数结构体
+      class ModifyHostModeResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHost请求参数结构体
+      class ModifyHostRequest < TencentCloud::Common::AbstractModel
+        # @param Host: 编辑的域名配置信息
+        # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+
+        attr_accessor :Host, :InstanceID
+
+        def initialize(host=nil, instanceid=nil)
+          @Host = host
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          unless params['Host'].nil?
+            @Host = HostRecord.new
+            @Host.deserialize(params['Host'])
+          end
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # ModifyHost返回参数结构体
+      class ModifyHostResponse < TencentCloud::Common::AbstractModel
+        # @param DomainId: 编辑的域名ID
+        # @type DomainId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainId, :RequestId
+
+        def initialize(domainid=nil, requestid=nil)
+          @DomainId = domainid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHostStatus请求参数结构体
+      class ModifyHostStatusRequest < TencentCloud::Common::AbstractModel
+        # @param HostsStatus: 域名状态列表
+        # @type HostsStatus: Array
+
+        attr_accessor :HostsStatus
+
+        def initialize(hostsstatus=nil)
+          @HostsStatus = hostsstatus
+        end
+
+        def deserialize(params)
+          unless params['HostsStatus'].nil?
+            @HostsStatus = []
+            params['HostsStatus'].each do |i|
+              hoststatus_tmp = HostStatus.new
+              hoststatus_tmp.deserialize(i)
+              @HostsStatus << hoststatus_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyHostStatus返回参数结构体
+      class ModifyHostStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功的状态码，需要JSON解码后再使用，返回的格式是{"域名":"状态"}，成功的状态码为Success，其它的为失败的状态码（yunapi定义的错误码）
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProtectionStatus请求参数结构体
+      class ModifyProtectionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
+        # @type Edition: String
+
+        attr_accessor :Domain, :Status, :Edition
+
+        def initialize(domain=nil, status=nil, edition=nil)
+          @Domain = domain
+          @Status = status
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @Edition = params['Edition']
+        end
+      end
+
+      # ModifyProtectionStatus返回参数结构体
+      class ModifyProtectionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySpartaProtectionMode请求参数结构体
+      class ModifySpartaProtectionModeRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Mode: 防护状态：
+        # 10：规则观察&&AI关闭模式，11：规则观察&&AI观察模式，12：规则观察&&AI拦截模式
+        # 20：规则拦截&&AI关闭模式，21：规则拦截&&AI观察模式，22：规则拦截&&AI拦截模式
+        # @type Mode: Integer
+        # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
+        # @type Edition: String
+        # @param Type: 0是修改规则引擎状态，1是修改AI的状态
+        # @type Type: Integer
+
+        attr_accessor :Domain, :Mode, :Edition, :Type
+
+        def initialize(domain=nil, mode=nil, edition=nil, type=nil)
+          @Domain = domain
+          @Mode = mode
+          @Edition = edition
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Mode = params['Mode']
+          @Edition = params['Edition']
+          @Type = params['Type']
+        end
+      end
+
+      # ModifySpartaProtectionMode返回参数结构体
+      class ModifySpartaProtectionModeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4758,6 +6058,38 @@ module TencentCloud
         end
       end
 
+      # RefreshAccessCheckResult请求参数结构体
+      class RefreshAccessCheckResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # RefreshAccessCheckResult返回参数结构体
+      class RefreshAccessCheckResultResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 响应体的返回码
       class ResponseCode < TencentCloud::Common::AbstractModel
         # @param Code: 如果成功则返回Success，失败则返回云api定义的错误码
@@ -5005,6 +6337,30 @@ module TencentCloud
         end
       end
 
+      # 接入列表查询复杂条件
+      class SearchItem < TencentCloud::Common::AbstractModel
+        # @param ClsStatus: 日志开关
+        # @type ClsStatus: String
+        # @param Status: waf开关
+        # @type Status: String
+        # @param FlowMode: 流量模式
+        # @type FlowMode: String
+
+        attr_accessor :ClsStatus, :Status, :FlowMode
+
+        def initialize(clsstatus=nil, status=nil, flowmode=nil)
+          @ClsStatus = clsstatus
+          @Status = status
+          @FlowMode = flowmode
+        end
+
+        def deserialize(params)
+          @ClsStatus = params['ClsStatus']
+          @Status = params['Status']
+          @FlowMode = params['FlowMode']
+        end
+      end
+
       # waf斯巴达-编辑防护域名中的端口结构
       class SpartaProtectionPort < TencentCloud::Common::AbstractModel
         # @param NginxServerId: nginx Id
@@ -5114,6 +6470,55 @@ module TencentCloud
         end
       end
 
+      # TLS 加密套件
+      class TLSCiphers < TencentCloud::Common::AbstractModel
+        # @param VersionId: TLS版本ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: Integer
+        # @param CipherId: 加密套件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CipherId: Integer
+        # @param CipherName: 加密套件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CipherName: String
+
+        attr_accessor :VersionId, :CipherId, :CipherName
+
+        def initialize(versionid=nil, cipherid=nil, ciphername=nil)
+          @VersionId = versionid
+          @CipherId = cipherid
+          @CipherName = ciphername
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @CipherId = params['CipherId']
+          @CipherName = params['CipherName']
+        end
+      end
+
+      # TLS信息
+      class TLSVersion < TencentCloud::Common::AbstractModel
+        # @param VersionId: TLSVERSION的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionId: Integer
+        # @param VersionName: TLSVERSION的NAME
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VersionName: String
+
+        attr_accessor :VersionId, :VersionName
+
+        def initialize(versionid=nil, versionname=nil)
+          @VersionId = versionid
+          @VersionName = versionname
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @VersionName = params['VersionName']
+        end
+      end
+
       # UpsertIpAccessControl请求参数结构体
       class UpsertIpAccessControlRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -5165,6 +6570,57 @@ module TencentCloud
           @FailedItems = params['FailedItems']
           @FailedCount = params['FailedCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # saas和clb信息
+      class UserDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Appid: 用户id
+        # @type Appid: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param Edition: waf类型
+        # @type Edition: String
+        # @param Level: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param WriteConfig: 指定域名访问日志字段的开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteConfig: String
+        # @param Cls: 指定域名是否写cls的开关 1:写 0:不写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cls: Integer
+
+        attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls
+
+        def initialize(appid=nil, domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, level=nil, writeconfig=nil, cls=nil)
+          @Appid = appid
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Edition = edition
+          @Level = level
+          @WriteConfig = writeconfig
+          @Cls = cls
+        end
+
+        def deserialize(params)
+          @Appid = params['Appid']
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Edition = params['Edition']
+          @Level = params['Level']
+          @WriteConfig = params['WriteConfig']
+          @Cls = params['Cls']
         end
       end
 
