@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建集群
+        # 购买新集群
 
         # @param request: Request instance for CreateClusters.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateClustersRequest`
@@ -2213,7 +2213,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级预付费存储
+        # 调整包年包月存储容量
 
         # @param request: Request instance for ModifyClusterStorage.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyClusterStorageRequest`
@@ -2477,7 +2477,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下线集群
+        # 销毁集群
 
         # @param request: Request instance for OfflineCluster.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OfflineClusterRequest`
@@ -2501,7 +2501,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 下线实例
+        # 销毁实例
 
         # @param request: Request instance for OfflineInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OfflineInstanceRequest`
@@ -2549,7 +2549,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（OpenClusterPasswordComplexity）用于开启集群密码复杂度
+        # 本接口（OpenClusterPasswordComplexity）用于开启自定义密码复杂度功能
 
         # @param request: Request instance for OpenClusterPasswordComplexity.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::OpenClusterPasswordComplexityRequest`
@@ -3029,7 +3029,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新集群Cynos内核版本
+        # 更新内核小版本
 
         # @param request: Request instance for UpgradeClusterVersion.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeClusterVersionRequest`
@@ -3053,7 +3053,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 升级实例
+        # 实例变配
 
         # @param request: Request instance for UpgradeInstance.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::UpgradeInstanceRequest`

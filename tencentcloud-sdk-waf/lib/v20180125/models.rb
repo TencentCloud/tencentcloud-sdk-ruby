@@ -1874,18 +1874,22 @@ module TencentCloud
         # @type BotCount: Integer
         # @param ApiAssetsCount: api资产总数
         # @type ApiAssetsCount: Integer
+        # @param ApiRiskEventCount: api风险事件数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiRiskEventCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :RequestId
+        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :ApiRiskEventCount, :RequestId
 
-        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, requestid=nil)
+        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, apiriskeventcount=nil, requestid=nil)
           @AccessCount = accesscount
           @AttackCount = attackcount
           @ACLCount = aclcount
           @CCCount = cccount
           @BotCount = botcount
           @ApiAssetsCount = apiassetscount
+          @ApiRiskEventCount = apiriskeventcount
           @RequestId = requestid
         end
 
@@ -1896,6 +1900,7 @@ module TencentCloud
           @CCCount = params['CCCount']
           @BotCount = params['BotCount']
           @ApiAssetsCount = params['ApiAssetsCount']
+          @ApiRiskEventCount = params['ApiRiskEventCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2370,7 +2375,7 @@ module TencentCloud
 
       # DescribeDomains请求参数结构体
       class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 数据偏移量，从1开始。
+        # @param Offset: 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
         # @type Offset: Integer
         # @param Limit: 返回域名的数量
         # @type Limit: Integer
@@ -4923,6 +4928,72 @@ module TencentCloud
         end
       end
 
+      # ModifyApiAnalyzeStatus请求参数结构体
+      class ModifyApiAnalyzeStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 开关状态
+        # @type Status: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param TargetList: 需要批量开启的实体列表
+        # @type TargetList: Array
+
+        attr_accessor :Status, :Domain, :InstanceId, :TargetList
+
+        def initialize(status=nil, domain=nil, instanceid=nil, targetlist=nil)
+          @Status = status
+          @Domain = domain
+          @InstanceId = instanceid
+          @TargetList = targetlist
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Domain = params['Domain']
+          @InstanceId = params['InstanceId']
+          unless params['TargetList'].nil?
+            @TargetList = []
+            params['TargetList'].each do |i|
+              targetentity_tmp = TargetEntity.new
+              targetentity_tmp.deserialize(i)
+              @TargetList << targetentity_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyApiAnalyzeStatus返回参数结构体
+      class ModifyApiAnalyzeStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 已经开启的数量,如果返回值为3（大于支持的域名开启数量），则表示开启失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param UnSupportedList: 不支持开启的域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnSupportedList: Array
+        # @param FailDomainList: 开启/关闭失败的域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailDomainList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :UnSupportedList, :FailDomainList, :RequestId
+
+        def initialize(count=nil, unsupportedlist=nil, faildomainlist=nil, requestid=nil)
+          @Count = count
+          @UnSupportedList = unsupportedlist
+          @FailDomainList = faildomainlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @UnSupportedList = params['UnSupportedList']
+          @FailDomainList = params['FailDomainList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAreaBanStatus请求参数结构体
       class ModifyAreaBanStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要修改的域名
@@ -4955,6 +5026,63 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBotStatus请求参数结构体
+      class ModifyBotStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Category: 类别
+        # @type Category: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+        # @param IsVersionFour: 是否是bot4.0版本
+        # @type IsVersionFour: Boolean
+        # @param BotVersion: 传入Bot版本号，场景化版本为"4.1.0"
+        # @type BotVersion: String
+
+        attr_accessor :Domain, :Category, :Status, :InstanceID, :IsVersionFour, :BotVersion
+
+        def initialize(domain=nil, category=nil, status=nil, instanceid=nil, isversionfour=nil, botversion=nil)
+          @Domain = domain
+          @Category = category
+          @Status = status
+          @InstanceID = instanceid
+          @IsVersionFour = isversionfour
+          @BotVersion = botversion
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Category = params['Category']
+          @Status = params['Status']
+          @InstanceID = params['InstanceID']
+          @IsVersionFour = params['IsVersionFour']
+          @BotVersion = params['BotVersion']
+        end
+      end
+
+      # ModifyBotStatus返回参数结构体
+      class ModifyBotStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 正常情况为null
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -6516,6 +6644,26 @@ module TencentCloud
         def deserialize(params)
           @VersionId = params['VersionId']
           @VersionName = params['VersionName']
+        end
+      end
+
+      # 需要开启/关闭API安全的 实例+域名 组合实体
+      class TargetEntity < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :InstanceId, :Domain
+
+        def initialize(instanceid=nil, domain=nil)
+          @InstanceId = instanceid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Domain = params['Domain']
         end
       end
 

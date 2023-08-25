@@ -150,14 +150,18 @@ module TencentCloud
         # @param Docker: 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Docker: :class:`Tencentcloud::Batch.v20170312.models.Docker`
+        # @param Commands: 任务执行命令信息。与Command不能同时指定。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Commands: Array
 
-        attr_accessor :DeliveryForm, :Command, :PackagePath, :Docker
+        attr_accessor :DeliveryForm, :Command, :PackagePath, :Docker, :Commands
 
-        def initialize(deliveryform=nil, command=nil, packagepath=nil, docker=nil)
+        def initialize(deliveryform=nil, command=nil, packagepath=nil, docker=nil, commands=nil)
           @DeliveryForm = deliveryform
           @Command = command
           @PackagePath = packagepath
           @Docker = docker
+          @Commands = commands
         end
 
         def deserialize(params)
@@ -167,6 +171,14 @@ module TencentCloud
           unless params['Docker'].nil?
             @Docker = Docker.new
             @Docker.deserialize(params['Docker'])
+          end
+          unless params['Commands'].nil?
+            @Commands = []
+            params['Commands'].each do |i|
+              commandline_tmp = CommandLine.new
+              commandline_tmp.deserialize(i)
+              @Commands << commandline_tmp
+            end
           end
         end
       end
@@ -235,6 +247,23 @@ module TencentCloud
           @Scene = params['Scene']
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
+        end
+      end
+
+      # 任务执行信息描述。
+      class CommandLine < TencentCloud::Common::AbstractModel
+        # @param Command: 任务执行命令。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Command: String
+
+        attr_accessor :Command
+
+        def initialize(command=nil)
+          @Command = command
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
         end
       end
 

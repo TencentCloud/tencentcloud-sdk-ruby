@@ -409,6 +409,230 @@ module TencentCloud
         end
       end
 
+      # 网关实例策略
+      class CloudNativeAPIGatewayStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param StrategyName: 策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Description: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Config: 弹性伸缩配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyAutoScalerConfig`
+        # @param GatewayId: 网关实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param CronConfig: 定时伸缩配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
+        # @param MaxReplicas: 最大节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicas: Integer
+
+        attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
+
+        def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
+          @StrategyId = strategyid
+          @StrategyName = strategyname
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Description = description
+          @Config = config
+          @GatewayId = gatewayid
+          @CronConfig = cronconfig
+          @MaxReplicas = maxreplicas
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @StrategyName = params['StrategyName']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Description = params['Description']
+          unless params['Config'].nil?
+            @Config = CloudNativeAPIGatewayStrategyAutoScalerConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @GatewayId = params['GatewayId']
+          unless params['CronConfig'].nil?
+            @CronConfig = CloudNativeAPIGatewayStrategyCronScalerConfig.new
+            @CronConfig.deserialize(params['CronConfig'])
+          end
+          @MaxReplicas = params['MaxReplicas']
+        end
+      end
+
+      # 弹性伸缩策略
+      class CloudNativeAPIGatewayStrategyAutoScalerConfig < TencentCloud::Common::AbstractModel
+        # @param MaxReplicas: 最大副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicas: Integer
+        # @param Metrics: 指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metrics: Array
+        # @param Enabled: 是否开启指标伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param StrategyId: 弹性策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: String
+        # @param AutoScalerId: 指标配置ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoScalerId: String
+
+        attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId
+
+        def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil)
+          @MaxReplicas = maxreplicas
+          @Metrics = metrics
+          @Enabled = enabled
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @StrategyId = strategyid
+          @AutoScalerId = autoscalerid
+        end
+
+        def deserialize(params)
+          @MaxReplicas = params['MaxReplicas']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              cloudnativeapigatewaystrategyautoscalerconfigmetric_tmp = CloudNativeAPIGatewayStrategyAutoScalerConfigMetric.new
+              cloudnativeapigatewaystrategyautoscalerconfigmetric_tmp.deserialize(i)
+              @Metrics << cloudnativeapigatewaystrategyautoscalerconfigmetric_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @StrategyId = params['StrategyId']
+          @AutoScalerId = params['AutoScalerId']
+        end
+      end
+
+      # 弹性伸缩配置指标
+      class CloudNativeAPIGatewayStrategyAutoScalerConfigMetric < TencentCloud::Common::AbstractModel
+        # @param Type: 指标类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ResourceName: 指标资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param TargetType: 指标目标类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetType: String
+        # @param TargetValue: 指标目标值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetValue: Integer
+
+        attr_accessor :Type, :ResourceName, :TargetType, :TargetValue
+
+        def initialize(type=nil, resourcename=nil, targettype=nil, targetvalue=nil)
+          @Type = type
+          @ResourceName = resourcename
+          @TargetType = targettype
+          @TargetValue = targetvalue
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ResourceName = params['ResourceName']
+          @TargetType = params['TargetType']
+          @TargetValue = params['TargetValue']
+        end
+      end
+
+      # 定时伸缩策略配置
+      class CloudNativeAPIGatewayStrategyCronScalerConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启定时伸缩
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param Params: 定时伸缩配置参数列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param StrategyId: 弹性策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: String
+
+        attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
+
+        def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
+          @Enabled = enabled
+          @Params = params
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @StrategyId = strategyid
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              cloudnativeapigatewaystrategycronscalerconfigparam_tmp = CloudNativeAPIGatewayStrategyCronScalerConfigParam.new
+              cloudnativeapigatewaystrategycronscalerconfigparam_tmp.deserialize(i)
+              @Params << cloudnativeapigatewaystrategycronscalerconfigparam_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @StrategyId = params['StrategyId']
+        end
+      end
+
+      # 定时伸缩配置参数
+      class CloudNativeAPIGatewayStrategyCronScalerConfigParam < TencentCloud::Common::AbstractModel
+        # @param Period: 定时伸缩周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: String
+        # @param StartAt: 定时伸缩开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param TargetReplicas: 定时伸缩目标节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetReplicas: Integer
+        # @param Crontab: 定时伸缩cron表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Crontab: String
+
+        attr_accessor :Period, :StartAt, :TargetReplicas, :Crontab
+
+        def initialize(period=nil, startat=nil, targetreplicas=nil, crontab=nil)
+          @Period = period
+          @StartAt = startat
+          @TargetReplicas = targetreplicas
+          @Crontab = crontab
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @StartAt = params['StartAt']
+          @TargetReplicas = params['TargetReplicas']
+          @Crontab = params['Crontab']
+        end
+      end
+
       # 云原生API网关vpc配置。
       class CloudNativeAPIGatewayVpcConfig < TencentCloud::Common::AbstractModel
         # @param VpcId: 私有网络ID。
@@ -2316,6 +2540,64 @@ module TencentCloud
         end
       end
 
+      # DescribeNativeGatewayServerGroups请求参数结构体
+      class DescribeNativeGatewayServerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param Offset: 翻页从第几个开始获取
+        # @type Offset: Integer
+        # @param Limit: 翻页获取多少个
+        # @type Limit: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Offset, :Limit, :Filters
+
+        def initialize(gatewayid=nil, offset=nil, limit=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeNativeGatewayServerGroups返回参数结构体
+      class DescribeNativeGatewayServerGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 分组列表信息
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.NativeGatewayServerGroups`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = NativeGatewayServerGroups.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOneCloudNativeAPIGatewayService请求参数结构体
       class DescribeOneCloudNativeAPIGatewayServiceRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -3940,6 +4222,106 @@ module TencentCloud
 
         def deserialize(params)
           @Interface = params['Interface']
+        end
+      end
+
+      # 云原生网关分组信息
+      class NativeGatewayServerGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: 云原生网关分组唯一id
+        # @type GroupId: String
+        # @param Name: 分组名
+        # @type Name: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param NodeConfig: 节点规格、节点数信息
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+        # @param Status: 网关分组状态。
+        # @type Status: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param IsFirstGroup: 是否是默认分组。
+        # 0：否。
+        # 1：是。
+        # @type IsFirstGroup: Integer
+        # @param BindingStrategy: 关联策略信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindingStrategy: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategy`
+        # @param GatewayId: 网关实例 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param InternetMaxBandwidthOut: 带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param SubnetIds: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: String
+
+        attr_accessor :GroupId, :Name, :Description, :NodeConfig, :Status, :CreateTime, :IsFirstGroup, :BindingStrategy, :GatewayId, :InternetMaxBandwidthOut, :ModifyTime, :SubnetIds
+
+        def initialize(groupid=nil, name=nil, description=nil, nodeconfig=nil, status=nil, createtime=nil, isfirstgroup=nil, bindingstrategy=nil, gatewayid=nil, internetmaxbandwidthout=nil, modifytime=nil, subnetids=nil)
+          @GroupId = groupid
+          @Name = name
+          @Description = description
+          @NodeConfig = nodeconfig
+          @Status = status
+          @CreateTime = createtime
+          @IsFirstGroup = isfirstgroup
+          @BindingStrategy = bindingstrategy
+          @GatewayId = gatewayid
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @ModifyTime = modifytime
+          @SubnetIds = subnetids
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @IsFirstGroup = params['IsFirstGroup']
+          unless params['BindingStrategy'].nil?
+            @BindingStrategy = CloudNativeAPIGatewayStrategy.new
+            @BindingStrategy.deserialize(params['BindingStrategy'])
+          end
+          @GatewayId = params['GatewayId']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @ModifyTime = params['ModifyTime']
+          @SubnetIds = params['SubnetIds']
+        end
+      end
+
+      # 网关分组列表
+      class NativeGatewayServerGroups < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param GatewayGroupList: 分组信息数组。
+        # @type GatewayGroupList: Array
+
+        attr_accessor :TotalCount, :GatewayGroupList
+
+        def initialize(totalcount=nil, gatewaygrouplist=nil)
+          @TotalCount = totalcount
+          @GatewayGroupList = gatewaygrouplist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['GatewayGroupList'].nil?
+            @GatewayGroupList = []
+            params['GatewayGroupList'].each do |i|
+              nativegatewayservergroup_tmp = NativeGatewayServerGroup.new
+              nativegatewayservergroup_tmp.deserialize(i)
+              @GatewayGroupList << nativegatewayservergroup_tmp
+            end
+          end
         end
       end
 

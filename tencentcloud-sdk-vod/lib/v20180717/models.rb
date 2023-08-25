@@ -14160,6 +14160,30 @@ module TencentCloud
         end
       end
 
+      # 直播录制信息
+      class LiveRecordInfo < TencentCloud::Common::AbstractModel
+        # @param StreamId: 直播录制流 ID。
+        # @type StreamId: String
+        # @param RecordStartTime: 录制起始时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type RecordStartTime: String
+        # @param RecordEndTime: 录制结束时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type RecordEndTime: String
+
+        attr_accessor :StreamId, :RecordStartTime, :RecordEndTime
+
+        def initialize(streamid=nil, recordstarttime=nil, recordendtime=nil)
+          @StreamId = streamid
+          @RecordStartTime = recordstarttime
+          @RecordEndTime = recordendtime
+        end
+
+        def deserialize(params)
+          @StreamId = params['StreamId']
+          @RecordStartTime = params['RecordStartTime']
+          @RecordEndTime = params['RecordEndTime']
+        end
+      end
+
       # 低光照增强控制
       class LowLightEnhanceInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 低光照增强控制开关，可选值：
@@ -16001,29 +16025,46 @@ module TencentCloud
         # <li>Record：来自录制。如直播录制、直播时移录制等。</li>
         # <li>Upload：来自上传。如拉取上传、服务端上传、客户端 UGC 上传等。</li>
         # <li>VideoProcessing：来自视频处理。如视频拼接、视频剪辑等。</li>
+        # <li>TrtcRecord：来自TRTC 伴生录制。</li>
         # <li>WebPageRecord：来自全景录制。</li>
         # <li>Unknown：未知来源。</li>
         # @type SourceType: String
-        # @param SourceContext: 用户创建文件时透传的字段
+        # @param SourceContext: 用户创建文件时透传的字段。
         # @type SourceContext: String
-        # @param TrtcRecordInfo: TRTC 伴生录制信息。
+        # @param LiveRecordInfo: 直播录制信息，当文件来源为 Record 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveRecordInfo: :class:`Tencentcloud::Vod.v20180717.models.LiveRecordInfo`
+        # @param TrtcRecordInfo: TRTC 伴生录制信息，当文件来源为 TrtcRecord 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrtcRecordInfo: :class:`Tencentcloud::Vod.v20180717.models.TrtcRecordInfo`
+        # @param WebPageRecordInfo: 全景录制信息，当文件来源为 WebPageRecord 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebPageRecordInfo: :class:`Tencentcloud::Vod.v20180717.models.WebPageRecordInfo`
 
-        attr_accessor :SourceType, :SourceContext, :TrtcRecordInfo
+        attr_accessor :SourceType, :SourceContext, :LiveRecordInfo, :TrtcRecordInfo, :WebPageRecordInfo
 
-        def initialize(sourcetype=nil, sourcecontext=nil, trtcrecordinfo=nil)
+        def initialize(sourcetype=nil, sourcecontext=nil, liverecordinfo=nil, trtcrecordinfo=nil, webpagerecordinfo=nil)
           @SourceType = sourcetype
           @SourceContext = sourcecontext
+          @LiveRecordInfo = liverecordinfo
           @TrtcRecordInfo = trtcrecordinfo
+          @WebPageRecordInfo = webpagerecordinfo
         end
 
         def deserialize(params)
           @SourceType = params['SourceType']
           @SourceContext = params['SourceContext']
+          unless params['LiveRecordInfo'].nil?
+            @LiveRecordInfo = LiveRecordInfo.new
+            @LiveRecordInfo.deserialize(params['LiveRecordInfo'])
+          end
           unless params['TrtcRecordInfo'].nil?
             @TrtcRecordInfo = TrtcRecordInfo.new
             @TrtcRecordInfo.deserialize(params['TrtcRecordInfo'])
+          end
+          unless params['WebPageRecordInfo'].nil?
+            @WebPageRecordInfo = WebPageRecordInfo.new
+            @WebPageRecordInfo.deserialize(params['WebPageRecordInfo'])
           end
         end
       end
@@ -26484,6 +26525,26 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 全景录制信息
+      class WebPageRecordInfo < TencentCloud::Common::AbstractModel
+        # @param RecordUrl: 全景录制地址。
+        # @type RecordUrl: String
+        # @param RecordTaskId: 全景录制任务 ID。
+        # @type RecordTaskId: String
+
+        attr_accessor :RecordUrl, :RecordTaskId
+
+        def initialize(recordurl=nil, recordtaskid=nil)
+          @RecordUrl = recordurl
+          @RecordTaskId = recordtaskid
+        end
+
+        def deserialize(params)
+          @RecordUrl = params['RecordUrl']
+          @RecordTaskId = params['RecordTaskId']
         end
       end
 

@@ -1232,6 +1232,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询网关下挂载的设备列表。
+
+        # @param request: Request instance for ListGatewayDevices.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListGatewayDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListGatewayDevicesResponse`
+        def ListGatewayDevices(request)
+          body = send_request('ListGatewayDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListGatewayDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取网关列表。
 
         # @param request: Request instance for ListGateways.

@@ -3919,6 +3919,63 @@ module TencentCloud
         end
       end
 
+      # 网关设备数据
+      class GatewayDevice < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param ProtocolType: 网关接入协议类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolType: Integer
+        # @param ProtocolTypeName: 网关接入协议名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolTypeName: String
+        # @param Name: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 设备类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Ip: 设备内网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Port: 设备端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param ChannelNum: 设备下通道数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelNum: Integer
+        # @param Status: 设备状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :DeviceId, :ProtocolType, :ProtocolTypeName, :Name, :Type, :Ip, :Port, :ChannelNum, :Status
+
+        def initialize(deviceid=nil, protocoltype=nil, protocoltypename=nil, name=nil, type=nil, ip=nil, port=nil, channelnum=nil, status=nil)
+          @DeviceId = deviceid
+          @ProtocolType = protocoltype
+          @ProtocolTypeName = protocoltypename
+          @Name = name
+          @Type = type
+          @Ip = ip
+          @Port = port
+          @ChannelNum = channelnum
+          @Status = status
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @ProtocolType = params['ProtocolType']
+          @ProtocolTypeName = params['ProtocolTypeName']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @ChannelNum = params['ChannelNum']
+          @Status = params['Status']
+        end
+      end
+
       # 网关详情版本信息
       class GatewayVersion < TencentCloud::Common::AbstractModel
         # @param Name: 服务名称
@@ -4247,6 +4304,74 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询网关设备列表返回数据
+      class ListGatewayDevicesData < TencentCloud::Common::AbstractModel
+        # @param List: 网关下设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 网关下设备总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :List, :TotalCount
+
+        def initialize(list=nil, totalcount=nil)
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              gatewaydevice_tmp = GatewayDevice.new
+              gatewaydevice_tmp.deserialize(i)
+              @List << gatewaydevice_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListGatewayDevices请求参数结构体
+      class ListGatewayDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关索引ID（从获取网关列表接口ListGateways中获取）
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # ListGatewayDevices返回参数结构体
+      class ListGatewayDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListGatewayDevicesData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListGatewayDevicesData.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end

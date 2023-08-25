@@ -1354,6 +1354,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # api分析页面开关
+
+        # @param request: Request instance for ModifyApiAnalyzeStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyApiAnalyzeStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyApiAnalyzeStatusResponse`
+        def ModifyApiAnalyzeStatus(request)
+          body = send_request('ModifyApiAnalyzeStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiAnalyzeStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改防护域名的地域封禁状态
 
         # @param request: Request instance for ModifyAreaBanStatus.
@@ -1364,6 +1388,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAreaBanStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Bot_V2 bot总开关更新
+
+        # @param request: Request instance for ModifyBotStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBotStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBotStatusResponse`
+        def ModifyBotStatus(request)
+          body = send_request('ModifyBotStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBotStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -7951,6 +7951,85 @@ module TencentCloud
         end
       end
 
+      # SearchCosRechargeInfo请求参数结构体
+      class SearchCosRechargeInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID
+        # @type TopicId: String
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+        # @param Name: 投递任务名称
+        # @type Name: String
+        # @param Bucket: 存储桶
+        # @type Bucket: String
+        # @param BucketRegion: 存储桶所在地域
+        # @type BucketRegion: String
+        # @param Prefix: cos文件所在文件夹的前缀
+        # @type Prefix: String
+        # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy”;   默认""
+        # @type Compress: String
+
+        attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :Compress
+
+        def initialize(topicid=nil, logsetid=nil, name=nil, bucket=nil, bucketregion=nil, prefix=nil, compress=nil)
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Name = name
+          @Bucket = bucket
+          @BucketRegion = bucketregion
+          @Prefix = prefix
+          @Compress = compress
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Name = params['Name']
+          @Bucket = params['Bucket']
+          @BucketRegion = params['BucketRegion']
+          @Prefix = params['Prefix']
+          @Compress = params['Compress']
+        end
+      end
+
+      # SearchCosRechargeInfo返回参数结构体
+      class SearchCosRechargeInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 匹配到的存储桶下的某个文件的前几行数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Sum: 匹配到的存储桶下的文件个数
+        # @type Sum: Integer
+        # @param Path: 当前预览文件路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Msg: 预览获取数据失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Sum, :Path, :Msg, :Status, :RequestId
+
+        def initialize(data=nil, sum=nil, path=nil, msg=nil, status=nil, requestid=nil)
+          @Data = data
+          @Sum = sum
+          @Path = path
+          @Msg = msg
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Sum = params['Sum']
+          @Path = params['Path']
+          @Msg = params['Msg']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多日志主题检索错误信息
       class SearchLogErrors < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID

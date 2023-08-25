@@ -1897,24 +1897,24 @@ module TencentCloud
         # @type SubscriptionName: String
         # @param IsIdempotent: 是否幂等创建，若否不允许创建同名的订阅关系。
         # @type IsIdempotent: Boolean
-        # @param Remark: 备注，128个字符以内。
-        # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param Remark: 备注，128个字符以内。
+        # @type Remark: String
         # @param AutoCreatePolicyTopic: 是否自动创建死信和重试主题，True 表示创建，False表示不创建，默认自动创建死信和重试主题。
         # @type AutoCreatePolicyTopic: Boolean
         # @param PostFixPattern: 指定死信和重试主题名称规范，LEGACY表示历史命名规则，COMMUNITY表示Pulsar社区命名规范
         # @type PostFixPattern: String
 
-        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :Remark, :ClusterId, :AutoCreatePolicyTopic, :PostFixPattern
+        attr_accessor :EnvironmentId, :TopicName, :SubscriptionName, :IsIdempotent, :ClusterId, :Remark, :AutoCreatePolicyTopic, :PostFixPattern
 
-        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, remark=nil, clusterid=nil, autocreatepolicytopic=nil, postfixpattern=nil)
+        def initialize(environmentid=nil, topicname=nil, subscriptionname=nil, isidempotent=nil, clusterid=nil, remark=nil, autocreatepolicytopic=nil, postfixpattern=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @SubscriptionName = subscriptionname
           @IsIdempotent = isidempotent
-          @Remark = remark
           @ClusterId = clusterid
+          @Remark = remark
           @AutoCreatePolicyTopic = autocreatepolicytopic
           @PostFixPattern = postfixpattern
         end
@@ -1924,8 +1924,8 @@ module TencentCloud
           @TopicName = params['TopicName']
           @SubscriptionName = params['SubscriptionName']
           @IsIdempotent = params['IsIdempotent']
-          @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
           @AutoCreatePolicyTopic = params['AutoCreatePolicyTopic']
           @PostFixPattern = params['PostFixPattern']
         end
@@ -1959,6 +1959,8 @@ module TencentCloud
         # @type TopicName: String
         # @param Partitions: 入参为1，即是创建非分区topic，无分区；入参大于1，表示分区topic的分区数，最大不允许超过128。
         # @type Partitions: Integer
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
         # @param TopicType: 该入参将逐步弃用，可切换至PulsarTopicType参数
@@ -1968,8 +1970,6 @@ module TencentCloud
         # 3 ：重试队列；
         # 4 ：死信队列。
         # @type TopicType: Integer
-        # @param ClusterId: Pulsar 集群的ID
-        # @type ClusterId: String
         # @param PulsarTopicType: Pulsar 主题类型
         # 0: 非持久非分区
         # 1: 非持久分区
@@ -1979,15 +1979,15 @@ module TencentCloud
         # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         # @type MsgTTL: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :TopicType, :ClusterId, :PulsarTopicType, :MsgTTL
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, topictype=nil, clusterid=nil, pulsartopictype=nil, msgttl=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
+          @ClusterId = clusterid
           @Remark = remark
           @TopicType = topictype
-          @ClusterId = clusterid
           @PulsarTopicType = pulsartopictype
           @MsgTTL = msgttl
         end
@@ -1996,9 +1996,9 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
           @Partitions = params['Partitions']
+          @ClusterId = params['ClusterId']
           @Remark = params['Remark']
           @TopicType = params['TopicType']
-          @ClusterId = params['ClusterId']
           @PulsarTopicType = params['PulsarTopicType']
           @MsgTTL = params['MsgTTL']
         end
@@ -3583,35 +3583,35 @@ module TencentCloud
 
       # DescribeEnvironments请求参数结构体
       class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
         # @param EnvironmentId: 命名空间名称，模糊搜索。
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
-        # @param ClusterId: Pulsar 集群的ID
-        # @type ClusterId: String
         # @param Filters: * EnvironmentId
         # 按照名称空间进行过滤，精确查询。
         # 类型：String
         # 必选：否
         # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :Filters
+        attr_accessor :ClusterId, :EnvironmentId, :Offset, :Limit, :Filters
 
-        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, filters=nil)
+        def initialize(clusterid=nil, environmentid=nil, offset=nil, limit=nil, filters=nil)
+          @ClusterId = clusterid
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
-          @ClusterId = clusterid
           @Filters = filters
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @ClusterId = params['ClusterId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5005,35 +5005,35 @@ module TencentCloud
 
       # DescribeRoles请求参数结构体
       class DescribeRolesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 必填字段，集群Id
+        # @type ClusterId: String
         # @param RoleName: 角色名称，模糊查询
         # @type RoleName: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
-        # @param ClusterId: 必填字段，集群Id
-        # @type ClusterId: String
         # @param Filters: * RoleName
         # 按照角色名进行过滤，精确查询。
         # 类型：String
         # 必选：否
         # @type Filters: Array
 
-        attr_accessor :RoleName, :Offset, :Limit, :ClusterId, :Filters
+        attr_accessor :ClusterId, :RoleName, :Offset, :Limit, :Filters
 
-        def initialize(rolename=nil, offset=nil, limit=nil, clusterid=nil, filters=nil)
+        def initialize(clusterid=nil, rolename=nil, offset=nil, limit=nil, filters=nil)
+          @ClusterId = clusterid
           @RoleName = rolename
           @Offset = offset
           @Limit = limit
-          @ClusterId = clusterid
           @Filters = filters
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
           @RoleName = params['RoleName']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @ClusterId = params['ClusterId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -5082,6 +5082,8 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param TopicName: 主题名称。
         # @type TopicName: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
@@ -5090,24 +5092,23 @@ module TencentCloud
         # @type SubscriptionName: String
         # @param Filters: 数据过滤条件。
         # @type Filters: Array
-        # @param ClusterId: Pulsar 集群的ID
-        # @type ClusterId: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Offset, :Limit, :SubscriptionName, :Filters, :ClusterId
+        attr_accessor :EnvironmentId, :TopicName, :ClusterId, :Offset, :Limit, :SubscriptionName, :Filters
 
-        def initialize(environmentid=nil, topicname=nil, offset=nil, limit=nil, subscriptionname=nil, filters=nil, clusterid=nil)
+        def initialize(environmentid=nil, topicname=nil, clusterid=nil, offset=nil, limit=nil, subscriptionname=nil, filters=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
+          @ClusterId = clusterid
           @Offset = offset
           @Limit = limit
           @SubscriptionName = subscriptionname
           @Filters = filters
-          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
+          @ClusterId = params['ClusterId']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @SubscriptionName = params['SubscriptionName']
@@ -5119,7 +5120,6 @@ module TencentCloud
               @Filters << filtersubscription_tmp
             end
           end
-          @ClusterId = params['ClusterId']
         end
       end
 
@@ -5843,22 +5843,22 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒，范围60秒~15天。
         # @type MsgTTL: Integer
-        # @param Remark: 备注，字符串最长不超过128。
-        # @type Remark: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
+        # @param Remark: 备注，字符串最长不超过128。
+        # @type Remark: String
         # @param RetentionPolicy: 消息保留策略
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
         # @param AutoSubscriptionCreation: 是否开启自动创建订阅
         # @type AutoSubscriptionCreation: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :ClusterId, :RetentionPolicy, :AutoSubscriptionCreation
+        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation
 
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, clusterid=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
+        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
-          @Remark = remark
           @ClusterId = clusterid
+          @Remark = remark
           @RetentionPolicy = retentionpolicy
           @AutoSubscriptionCreation = autosubscriptioncreation
         end
@@ -5866,8 +5866,8 @@ module TencentCloud
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @MsgTTL = params['MsgTTL']
-          @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
           unless params['RetentionPolicy'].nil?
             @RetentionPolicy = RetentionPolicy.new
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
@@ -6356,23 +6356,38 @@ module TencentCloud
       class ModifyRoleRequest < TencentCloud::Common::AbstractModel
         # @param RoleName: 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
         # @type RoleName: String
-        # @param Remark: 备注说明，长度必须大等于0且小等于128。
-        # @type Remark: String
         # @param ClusterId: 必填字段，集群Id
         # @type ClusterId: String
+        # @param Remark: 备注说明，长度必须大等于0且小等于128。
+        # @type Remark: String
+        # @param EnvironmentRoleSets: 批量绑定名字空间信息
+        # @type EnvironmentRoleSets: Array
+        # @param UnbindAllEnvironment: 全部解绑名字空间，设置为 true
+        # @type UnbindAllEnvironment: Boolean
 
-        attr_accessor :RoleName, :Remark, :ClusterId
+        attr_accessor :RoleName, :ClusterId, :Remark, :EnvironmentRoleSets, :UnbindAllEnvironment
 
-        def initialize(rolename=nil, remark=nil, clusterid=nil)
+        def initialize(rolename=nil, clusterid=nil, remark=nil, environmentrolesets=nil, unbindallenvironment=nil)
           @RoleName = rolename
-          @Remark = remark
           @ClusterId = clusterid
+          @Remark = remark
+          @EnvironmentRoleSets = environmentrolesets
+          @UnbindAllEnvironment = unbindallenvironment
         end
 
         def deserialize(params)
           @RoleName = params['RoleName']
-          @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
+          unless params['EnvironmentRoleSets'].nil?
+            @EnvironmentRoleSets = []
+            params['EnvironmentRoleSets'].each do |i|
+              environmentroleset_tmp = EnvironmentRoleSet.new
+              environmentroleset_tmp.deserialize(i)
+              @EnvironmentRoleSets << environmentroleset_tmp
+            end
+          end
+          @UnbindAllEnvironment = params['UnbindAllEnvironment']
         end
       end
 
@@ -6408,21 +6423,21 @@ module TencentCloud
         # @type TopicName: String
         # @param Partitions: 分区数，必须大于或者等于原分区数，若想维持原分区数请输入原数目，修改分区数仅对非全局顺序消息起效果，不允许超过128个分区。
         # @type Partitions: Integer
-        # @param Remark: 备注，128字符以内。
-        # @type Remark: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param Remark: 备注，128字符以内。
+        # @type Remark: String
         # @param MsgTTL: 未消费消息过期时间，单位：秒，取值范围：60秒~15天。
         # @type MsgTTL: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :ClusterId, :MsgTTL
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, remark=nil, clusterid=nil, msgttl=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
-          @Remark = remark
           @ClusterId = clusterid
+          @Remark = remark
           @MsgTTL = msgttl
         end
 
@@ -6430,8 +6445,8 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
           @Partitions = params['Partitions']
-          @Remark = params['Remark']
           @ClusterId = params['ClusterId']
+          @Remark = params['Remark']
           @MsgTTL = params['MsgTTL']
         end
       end

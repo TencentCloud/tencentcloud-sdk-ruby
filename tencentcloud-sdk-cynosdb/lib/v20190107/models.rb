@@ -5406,7 +5406,7 @@ module TencentCloud
 
       # DescribeProxies请求参数结构体
       class DescribeProxiesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID（该参数必传，例如cynosdbmysql-xxxxxx）
         # @type ClusterId: String
         # @param Limit: 返回数量，默认为 20，最大值为 100
         # @type Limit: Integer
@@ -5738,7 +5738,7 @@ module TencentCloud
 
       # DescribeResourcePackageList返回参数结构体
       class DescribeResourcePackageListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总配置数
+        # @param Total: 资源包总数
         # @type Total: Integer
         # @param Detail: 资源包明细
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8743,7 +8743,7 @@ module TencentCloud
         # @param PackageUsedSpec: 资源包已使用量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageUsedSpec: Float
-        # @param HasQuota: 资源包已使用量
+        # @param HasQuota: 是否还有库存余量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasQuota: Boolean
         # @param BindInstanceInfos: 绑定实例信息

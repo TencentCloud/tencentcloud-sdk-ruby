@@ -19817,16 +19817,20 @@ module TencentCloud
         # @param Alias: schema别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
+        # @param Comment: 字段备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
 
-        attr_accessor :Id, :Name, :Type, :Value, :Properties, :Alias
+        attr_accessor :Id, :Name, :Type, :Value, :Properties, :Alias, :Comment
 
-        def initialize(id=nil, name=nil, type=nil, value=nil, properties=nil, _alias=nil)
+        def initialize(id=nil, name=nil, type=nil, value=nil, properties=nil, _alias=nil, comment=nil)
           @Id = id
           @Name = name
           @Type = type
           @Value = value
           @Properties = properties
           @Alias = _alias
+          @Comment = comment
         end
 
         def deserialize(params)
@@ -19843,6 +19847,7 @@ module TencentCloud
             end
           end
           @Alias = params['Alias']
+          @Comment = params['Comment']
         end
       end
 
