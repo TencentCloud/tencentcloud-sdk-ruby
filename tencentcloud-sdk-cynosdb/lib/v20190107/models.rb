@@ -3103,8 +3103,10 @@ module TencentCloud
       # 数据库权限列表
       class DatabasePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Db: String
         # @param Privileges: 权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Db, :Privileges
@@ -10662,10 +10664,13 @@ module TencentCloud
       # mysql表权限
       class TablePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Db: String
         # @param TableName: 表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param Privileges: 权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privileges: Array
 
         attr_accessor :Db, :TableName, :Privileges

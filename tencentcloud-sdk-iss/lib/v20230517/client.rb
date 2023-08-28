@@ -248,6 +248,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于批量操作（启用，禁用，删除）设备
+
+        # @param request: Request instance for BatchOperateDevice.
+        # @type request: :class:`Tencentcloud::iss::V20230517::BatchOperateDeviceRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::BatchOperateDeviceResponse`
+        def BatchOperateDevice(request)
+          body = send_request('BatchOperateDevice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchOperateDeviceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于检测域名是否备案。
 
         # @param request: Request instance for CheckDomain.
@@ -1136,6 +1160,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询任务详情
+
+        # @param request: Request instance for DescribeTask.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeTaskRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeTaskResponse`
+        def DescribeTask(request)
+          body = send_request('DescribeTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询设备的详细信息。
 
         # @param request: Request instance for DescribeUserDevice.
@@ -1506,6 +1554,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListRecordTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询任务的子任务列表
+
+        # @param request: Request instance for ListSubTasks.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListSubTasksRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListSubTasksResponse`
+        def ListSubTasks(request)
+          body = send_request('ListSubTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListSubTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询批量任务和简单任务列表
+
+        # @param request: Request instance for ListTasks.
+        # @type request: :class:`Tencentcloud::iss::V20230517::ListTasksRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::ListTasksResponse`
+        def ListTasks(request)
+          body = send_request('ListTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTasksResponse.new
             model.deserialize(response['Response'])
             model
           else

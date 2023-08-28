@@ -1311,6 +1311,46 @@ module TencentCloud
         end
       end
 
+      # DeleteCustomRule请求参数结构体
+      class DeleteCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 删除的域名
+        # @type Domain: String
+        # @param RuleId: 删除的规则ID
+        # @type RuleId: String
+        # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
+        # @type Edition: String
+
+        attr_accessor :Domain, :RuleId, :Edition
+
+        def initialize(domain=nil, ruleid=nil, edition=nil)
+          @Domain = domain
+          @RuleId = ruleid
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleId = params['RuleId']
+          @Edition = params['Edition']
+        end
+      end
+
+      # DeleteCustomRule返回参数结构体
+      class DeleteCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCustomWhiteRule请求参数结构体
       class DeleteCustomWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 删除的域名
@@ -2023,6 +2063,80 @@ module TencentCloud
               @Ciphers << tlsciphers_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomRuleList请求参数结构体
+      class DescribeCustomRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param Filters: 过滤数组,name可以是如下的值： RuleID,RuleName,Match
+        # @type Filters: Array
+        # @param Order: asc或者desc
+        # @type Order: String
+        # @param By: exp_ts或者mod_ts
+        # @type By: String
+
+        attr_accessor :Domain, :Offset, :Limit, :Filters, :Order, :By
+
+        def initialize(domain=nil, offset=nil, limit=nil, filters=nil, order=nil, by=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeCustomRuleList返回参数结构体
+      class DescribeCustomRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param RuleList: 规则详情
+        # @type RuleList: Array
+        # @param TotalCount: 规则条数
+        # @type TotalCount: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleList, :TotalCount, :RequestId
+
+        def initialize(rulelist=nil, totalcount=nil, requestid=nil)
+          @RuleList = rulelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              describecustomrulesrsprulelistitem_tmp = DescribeCustomRulesRspRuleListItem.new
+              describecustomrulesrsprulelistitem_tmp.deserialize(i)
+              @RuleList << describecustomrulesrsprulelistitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5083,6 +5197,84 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomRule请求参数结构体
+      class ModifyCustomRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 编辑的域名
+        # @type Domain: String
+        # @param RuleId: 编辑的规则ID
+        # @type RuleId: Integer
+        # @param RuleName: 编辑的规则名称
+        # @type RuleName: String
+        # @param RuleAction: 执行动作，0：放行、1：阻断、2：人机识别、3：观察、4：重定向
+        # @type RuleAction: String
+        # @param Strategies: 匹配条件数组
+        # @type Strategies: Array
+        # @param Edition: WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
+        # @type Edition: String
+        # @param Redirect: 动作为重定向的时候重定向URL，默认为"/"
+        # @type Redirect: String
+        # @param Bypass: 放行时是否继续执行其它检查逻辑，继续执行地域封禁防护：geoip、继续执行CC策略防护：cc、继续执行WEB应用防护：owasp、继续执行AI引擎防护：ai、继续执行信息防泄漏防护：antileakage。如果多个勾选那么以,串接。
+        # 默认是"geoip,cc,owasp,ai,antileakage"
+        # @type Bypass: String
+        # @param SortId: 优先级，1~100的整数，数字越小，代表这条规则的执行优先级越高。
+        # 默认是100
+        # @type SortId: Integer
+        # @param ExpireTime: 规则生效截止时间，0：永久生效，其它值为对应时间的时间戳。
+        # 默认是0
+        # @type ExpireTime: Integer
+
+        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime
+
+        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil)
+          @Domain = domain
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleAction = ruleaction
+          @Strategies = strategies
+          @Edition = edition
+          @Redirect = redirect
+          @Bypass = bypass
+          @SortId = sortid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleAction = params['RuleAction']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Edition = params['Edition']
+          @Redirect = params['Redirect']
+          @Bypass = params['Bypass']
+          @SortId = params['SortId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # ModifyCustomRule返回参数结构体
+      class ModifyCustomRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

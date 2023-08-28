@@ -1251,6 +1251,66 @@ module TencentCloud
         end
       end
 
+      # 批量操作设备返回结果
+      class BatchOperateDeviceData < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID（用于在查询任务的子任务列表接口ListSubTasks中查询任务进度）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # BatchOperateDevice请求参数结构体
+      class BatchOperateDeviceRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
+        # @type DeviceIds: Array
+        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除）
+        # @type Cmd: String
+
+        attr_accessor :DeviceIds, :Cmd
+
+        def initialize(deviceids=nil, cmd=nil)
+          @DeviceIds = deviceids
+          @Cmd = cmd
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+          @Cmd = params['Cmd']
+        end
+      end
+
+      # BatchOperateDevice返回参数结构体
+      class BatchOperateDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.BatchOperateDeviceData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BatchOperateDeviceData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 人体识别结果详情
       class BodyAIResultInfo < TencentCloud::Common::AbstractModel
         # @param Time: 时间字符串
@@ -3764,6 +3824,45 @@ module TencentCloud
         end
       end
 
+      # DescribeTask请求参数结构体
+      class DescribeTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 简单任务或复杂任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeTask返回参数结构体
+      class DescribeTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务详情
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.TaskData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserDevice请求参数结构体
       class DescribeUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备ID（从获取设备列表接口ListDevices中获取）
@@ -4341,15 +4440,23 @@ module TencentCloud
       class ListGatewayDevicesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关索引ID（从获取网关列表接口ListGateways中获取）
         # @type GatewayId: String
+        # @param PageNumber: 分页页数
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
 
-        attr_accessor :GatewayId
+        attr_accessor :GatewayId, :PageNumber, :PageSize
 
-        def initialize(gatewayid=nil)
+        def initialize(gatewayid=nil, pagenumber=nil, pagesize=nil)
           @GatewayId = gatewayid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
@@ -5160,6 +5267,164 @@ module TencentCloud
         end
       end
 
+      # 列举子任务列表
+      class ListSubTasksData < TencentCloud::Common::AbstractModel
+        # @param List: 子任务列表
+        # @type List: Array
+        # @param TotalCount: 子任务数量
+        # @type TotalCount: Integer
+
+        attr_accessor :List, :TotalCount
+
+        def initialize(list=nil, totalcount=nil)
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              subtaskdata_tmp = SubTaskData.new
+              subtaskdata_tmp.deserialize(i)
+              @List << subtaskdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListSubTasks请求参数结构体
+      class ListSubTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 复杂任务ID
+        # @type TaskId: String
+        # @param PageNumber: 页码，默认为1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量，默认为10
+        # @type PageSize: Integer
+        # @param Status: 默认不对该字段进行筛选，否则根据任务状态进行筛选。状态码：1-NEW，2-RUNNING，3-COMPLETED，4-FAILED
+        # @type Status: Integer
+
+        attr_accessor :TaskId, :PageNumber, :PageSize, :Status
+
+        def initialize(taskid=nil, pagenumber=nil, pagesize=nil, status=nil)
+          @TaskId = taskid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Status = params['Status']
+        end
+      end
+
+      # ListSubTasks返回参数结构体
+      class ListSubTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListSubTasksData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListSubTasksData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询任务列表
+      class ListTasksData < TencentCloud::Common::AbstractModel
+        # @param List: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 任务数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :List, :TotalCount
+
+        def initialize(list=nil, totalcount=nil)
+          @List = list
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              taskdata_tmp = TaskData.new
+              taskdata_tmp.deserialize(i)
+              @List << taskdata_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListTasks请求参数结构体
+      class ListTasksRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，默认为1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量，默认为10
+        # @type PageSize: Integer
+        # @param Operation: 默认不根据该字段进行筛选，否则根据设备操作类型进行筛选，对应任务的Action字段，批量任务操作类型以Batch开头。目前值有：BatchDeleteUserDevice，BatchDisableDevice，BatchEnableDevice，DeleteUserDevice，DisableDevice，EnableDevice
+        # @type Operation: String
+        # @param Status: 默认不根据该字段进行筛选，否则根据任务状态进行筛选。状态码：1-NEW，2-RUNNING，3-COMPLETED，4-FAILED
+        # @type Status: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Operation, :Status
+
+        def initialize(pagenumber=nil, pagesize=nil, operation=nil, status=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Operation = operation
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Operation = params['Operation']
+          @Status = params['Status']
+        end
+      end
+
+      # ListTasks返回参数结构体
+      class ListTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListTasksData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListTasksData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AI识别结果在画面中坐标
       class Location < TencentCloud::Common::AbstractModel
         # @param X: 左上角 X 坐标轴
@@ -5795,6 +6060,140 @@ module TencentCloud
               @OperTimeSlot << opertimeslot_tmp
             end
           end
+        end
+      end
+
+      # 子任务详情
+      class SubTaskData < TencentCloud::Common::AbstractModel
+        # @param SubTaskId: 子任务ID
+        # @type SubTaskId: String
+        # @param Status: 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
+        # @type Status: Integer
+        # @param FailReason: 任务失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param Progress: 任务进度
+        # @type Progress: Float
+        # @param Action: 操作类型
+        # @type Action: String
+        # @param ActionZhDesc: 操作类型中文描述
+        # @type ActionZhDesc: String
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param StartedAt: 启动任务时间
+        # @type StartedAt: String
+        # @param CreatedAt: 创建任务时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新任务时间
+        # @type UpdatedAt: String
+        # @param Runtime: 任务运行时间，单位ms
+        # @type Runtime: Integer
+
+        attr_accessor :SubTaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :ResourceId, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime
+
+        def initialize(subtaskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, resourceid=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil)
+          @SubTaskId = subtaskid
+          @Status = status
+          @FailReason = failreason
+          @Progress = progress
+          @Action = action
+          @ActionZhDesc = actionzhdesc
+          @ResourceId = resourceid
+          @StartedAt = startedat
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @Runtime = runtime
+        end
+
+        def deserialize(params)
+          @SubTaskId = params['SubTaskId']
+          @Status = params['Status']
+          @FailReason = params['FailReason']
+          @Progress = params['Progress']
+          @Action = params['Action']
+          @ActionZhDesc = params['ActionZhDesc']
+          @ResourceId = params['ResourceId']
+          @StartedAt = params['StartedAt']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @Runtime = params['Runtime']
+        end
+      end
+
+      # 查询复杂任务详情返回结果
+      class TaskData < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Status: 任务状态1:NEW,2:RUNNING,3:COMPLETED ,4:FAILED
+        # @type Status: Integer
+        # @param FailReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param Progress: 进度（0-1）
+        # @type Progress: Float
+        # @param Action: 任务操作类型，批量任务类型以Batch开头
+        # @type Action: String
+        # @param ActionZhDesc: 操作类型中文描述
+        # @type ActionZhDesc: String
+        # @param TaskType: 任务类型 1.简单 2.复杂 3.子任务
+        # @type TaskType: Integer
+        # @param ResourceId: 任务资源id（复杂任务该字段无效）
+        # @type ResourceId: String
+        # @param Total: 总任务数（仅复杂任务有效）
+        # @type Total: Integer
+        # @param SuccessCount: 成功任务数（仅复杂任务有效）
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败任务数（仅复杂任务有效）
+        # @type FailCount: Integer
+        # @param RunningCount: 运行任务数（仅复杂任务有效）
+        # @type RunningCount: Integer
+        # @param StartedAt: 启动任务时间
+        # @type StartedAt: String
+        # @param CreatedAt: 创建任务时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新任务时间
+        # @type UpdatedAt: String
+        # @param Runtime: 任务运行时间，单位ms
+        # @type Runtime: Integer
+
+        attr_accessor :TaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :TaskType, :ResourceId, :Total, :SuccessCount, :FailCount, :RunningCount, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime
+
+        def initialize(taskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, tasktype=nil, resourceid=nil, total=nil, successcount=nil, failcount=nil, runningcount=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil)
+          @TaskId = taskid
+          @Status = status
+          @FailReason = failreason
+          @Progress = progress
+          @Action = action
+          @ActionZhDesc = actionzhdesc
+          @TaskType = tasktype
+          @ResourceId = resourceid
+          @Total = total
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @RunningCount = runningcount
+          @StartedAt = startedat
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @Runtime = runtime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @FailReason = params['FailReason']
+          @Progress = params['Progress']
+          @Action = params['Action']
+          @ActionZhDesc = params['ActionZhDesc']
+          @TaskType = params['TaskType']
+          @ResourceId = params['ResourceId']
+          @Total = params['Total']
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          @RunningCount = params['RunningCount']
+          @StartedAt = params['StartedAt']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @Runtime = params['Runtime']
         end
       end
 

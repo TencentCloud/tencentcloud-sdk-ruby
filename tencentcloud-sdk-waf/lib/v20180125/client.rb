@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除自定义规则
+
+        # @param request: Request instance for DeleteCustomRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteCustomRuleResponse`
+        def DeleteCustomRule(request)
+          body = send_request('DeleteCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除精准白名单规则
 
         # @param request: Request instance for DeleteCustomWhiteRule.
@@ -594,6 +618,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCiphersDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取防护配置中的访问控制策略列表
+
+        # @param request: Request instance for DescribeCustomRuleList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCustomRuleListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeCustomRuleListResponse`
+        def DescribeCustomRuleList(request)
+          body = send_request('DescribeCustomRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomRuleListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1412,6 +1460,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBotStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑自定义规则
+
+        # @param request: Request instance for ModifyCustomRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyCustomRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyCustomRuleResponse`
+        def ModifyCustomRule(request)
+          body = send_request('ModifyCustomRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

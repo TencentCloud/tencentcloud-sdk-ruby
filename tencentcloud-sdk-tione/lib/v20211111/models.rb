@@ -1185,10 +1185,12 @@ module TencentCloud
         # @type ModelTurboEnable: Boolean
         # @param ServiceCategory: 服务分类
         # @type ServiceCategory: String
+        # @param Command: 服务的启动命令
+        # @type Command: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -1218,6 +1220,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @ModelTurboEnable = modelturboenable
           @ServiceCategory = servicecategory
+          @Command = command
         end
 
         def deserialize(params)
@@ -1295,6 +1298,7 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @ModelTurboEnable = params['ModelTurboEnable']
           @ServiceCategory = params['ServiceCategory']
+          @Command = params['Command']
         end
       end
 
@@ -5473,6 +5477,26 @@ module TencentCloud
         end
       end
 
+      # 推理代码的信息
+      class InferCodeInfo < TencentCloud::Common::AbstractModel
+        # @param CosPathInfo: 推理代码所在的cos详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosPathInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+
+        attr_accessor :CosPathInfo
+
+        def initialize(cospathinfo=nil)
+          @CosPathInfo = cospathinfo
+        end
+
+        def deserialize(params)
+          unless params['CosPathInfo'].nil?
+            @CosPathInfo = CosPathInfo.new
+            @CosPathInfo.deserialize(params['CosPathInfo'])
+          end
+        end
+      end
+
       # 服务的调用信息，服务组下唯一
       class InferGatewayCallInfo < TencentCloud::Common::AbstractModel
         # @param VpcHttpAddr: 内网http调用地址
@@ -6185,10 +6209,12 @@ module TencentCloud
         # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
         # @param ModelTurboEnable: 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。默认不开启
         # @type ModelTurboEnable: Boolean
+        # @param Command: 服务的启动命令
+        # @type Command: String
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -6210,6 +6236,7 @@ module TencentCloud
           @ServiceLimit = servicelimit
           @VolumeMount = volumemount
           @ModelTurboEnable = modelturboenable
+          @Command = command
         end
 
         def deserialize(params)
@@ -6272,6 +6299,7 @@ module TencentCloud
             @VolumeMount.deserialize(params['VolumeMount'])
           end
           @ModelTurboEnable = params['ModelTurboEnable']
+          @Command = params['Command']
         end
       end
 
@@ -8286,10 +8314,19 @@ module TencentCloud
         # @param ModelTurboEnable: 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelTurboEnable: Boolean
+        # @param VolumeMount: 挂载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMount: :class:`Tencentcloud::Tione.v20211111.models.VolumeMount`
+        # @param InferCodeInfo: 推理代码信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InferCodeInfo: :class:`Tencentcloud::Tione.v20211111.models.InferCodeInfo`
+        # @param Command: 服务的启动命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Command: String
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -8316,6 +8353,9 @@ module TencentCloud
           @PodInfos = podinfos
           @ServiceLimit = servicelimit
           @ModelTurboEnable = modelturboenable
+          @VolumeMount = volumemount
+          @InferCodeInfo = infercodeinfo
+          @Command = command
         end
 
         def deserialize(params)
@@ -8393,6 +8433,15 @@ module TencentCloud
             @ServiceLimit.deserialize(params['ServiceLimit'])
           end
           @ModelTurboEnable = params['ModelTurboEnable']
+          unless params['VolumeMount'].nil?
+            @VolumeMount = VolumeMount.new
+            @VolumeMount.deserialize(params['VolumeMount'])
+          end
+          unless params['InferCodeInfo'].nil?
+            @InferCodeInfo = InferCodeInfo.new
+            @InferCodeInfo.deserialize(params['InferCodeInfo'])
+          end
+          @Command = params['Command']
         end
       end
 
@@ -8601,15 +8650,19 @@ module TencentCloud
         # @param LastTransitionTime: 上次更新的时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastTransitionTime: String
+        # @param LastUpdateTime: 上次更新的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: String
 
-        attr_accessor :Message, :Reason, :Status, :Type, :LastTransitionTime
+        attr_accessor :Message, :Reason, :Status, :Type, :LastTransitionTime, :LastUpdateTime
 
-        def initialize(message=nil, reason=nil, status=nil, type=nil, lasttransitiontime=nil)
+        def initialize(message=nil, reason=nil, status=nil, type=nil, lasttransitiontime=nil, lastupdatetime=nil)
           @Message = message
           @Reason = reason
           @Status = status
           @Type = type
           @LastTransitionTime = lasttransitiontime
+          @LastUpdateTime = lastupdatetime
         end
 
         def deserialize(params)
@@ -8618,6 +8671,7 @@ module TencentCloud
           @Status = params['Status']
           @Type = params['Type']
           @LastTransitionTime = params['LastTransitionTime']
+          @LastUpdateTime = params['LastUpdateTime']
         end
       end
 
@@ -9730,7 +9784,7 @@ module TencentCloud
       class VolumeMount < TencentCloud::Common::AbstractModel
         # @param CFSConfig: cfs的配置信息
         # @type CFSConfig: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
-        # @param VolumeSourceType: 挂载源类型
+        # @param VolumeSourceType: 挂载源类型，CFS、COS，默认为CFS
         # @type VolumeSourceType: String
 
         attr_accessor :CFSConfig, :VolumeSourceType
@@ -9797,6 +9851,9 @@ module TencentCloud
         # @type Reason: String
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
+        extend Gem::Deprecate
+        deprecate :StatefulSetCondition, :none, 2023, 8
+        deprecate :StatefulSetCondition=, :none, 2023, 8
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas
