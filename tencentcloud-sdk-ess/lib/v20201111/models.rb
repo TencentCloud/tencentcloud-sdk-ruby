@@ -74,7 +74,7 @@ module TencentCloud
         end
       end
 
-      # 参与者信息
+      # 参与者信息。
       class ApproverInfo < TencentCloud::Common::AbstractModel
         # @param ApproverType: 在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:
         # **0**：企业
@@ -1048,15 +1048,13 @@ module TencentCloud
         # @type ResourceId: String
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用号信息
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
         attr_accessor :ResourceType, :ResourceName, :ResourceId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 8
-        deprecate :Agent=, :none, 2023, 8
         deprecate :Organization, :none, 2023, 8
         deprecate :Organization=, :none, 2023, 8
 
@@ -2391,18 +2389,19 @@ module TencentCloud
         # @param UserData: 用户自定义字段
         # <br/>回调的时候会进行透传，长度需要小于20480
         # @type UserData: String
-        # @param CallbackUrl: 回调地址,最大长度1000字符串
-        # <br/>回调时机：用户通过签署二维码发起签署流程时，企业额度不足导致失败
+        # @param CallbackUrl: 已废弃，回调配置统一使用企业应用管理-应用集成-企业版应用中的配置
+        # <br/> 通过一码多扫二维码发起的合同，回调消息可参考文档 https://qian.tencent.com/developers/company/callback_types_contracts_sign
+        # <br/> 用户通过签署二维码发起合同时，因企业额度不足导致失败 会触发签署二维码相关回调,具体参考文档 https://qian.tencent.com/developers/company/callback_types_commons#%E7%AD%BE%E7%BD%B2%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9B%B8%E5%85%B3%E5%9B%9E%E8%B0%83
         # @type CallbackUrl: String
-        # @param Agent: 应用信息
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
 
         attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 8
-        deprecate :Agent=, :none, 2023, 8
+        deprecate :CallbackUrl, :none, 2023, 8
+        deprecate :CallbackUrl=, :none, 2023, 8
         deprecate :ApproverRestrictions, :none, 2023, 8
         deprecate :ApproverRestrictions=, :none, 2023, 8
 
@@ -2562,14 +2561,17 @@ module TencentCloud
         # @type IdCardType: String
         # @param IdCardNumber: 身份证件号码
         # @type IdCardNumber: String
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :UserName, :IdCardType, :IdCardNumber
+        attr_accessor :Operator, :UserName, :IdCardType, :IdCardNumber, :Agent
 
-        def initialize(operator=nil, username=nil, idcardtype=nil, idcardnumber=nil)
+        def initialize(operator=nil, username=nil, idcardtype=nil, idcardnumber=nil, agent=nil)
           @Operator = operator
           @UserName = username
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -2580,6 +2582,10 @@ module TencentCloud
           @UserName = params['UserName']
           @IdCardType = params['IdCardType']
           @IdCardNumber = params['IdCardNumber']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
@@ -3787,7 +3793,8 @@ module TencentCloud
         # @type CcToken: String
         # @param Scene: 暂不开放
         # @type Scene: String
-        # @param Agent: 应用相关信息
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :BusinessType, :BusinessIds, :FileName, :FileType, :Offset, :Limit, :UrlTtl, :CcToken, :Scene, :Agent
@@ -3796,8 +3803,6 @@ module TencentCloud
         deprecate :CcToken=, :none, 2023, 8
         deprecate :Scene, :none, 2023, 8
         deprecate :Scene=, :none, 2023, 8
-        deprecate :Agent, :none, 2023, 8
-        deprecate :Agent=, :none, 2023, 8
 
         def initialize(operator=nil, businesstype=nil, businessids=nil, filename=nil, filetype=nil, offset=nil, limit=nil, urlttl=nil, cctoken=nil, scene=nil, agent=nil)
           @Operator = operator
@@ -4436,7 +4441,8 @@ module TencentCloud
         # @param Filters: 查询的关键字段:
         # Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
         # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
-        # Key:"IsGroupRole"，Values:["0"],查询非集团角色，Values:["1"]表示查询集团角色
+        # Key:"IsGroupRole"，Values:["0"]:查询非集团角色，Values:["1"]表示查询集团角色
+        # Key:"IsReturnPermissionGroup"，Values:["0"]:表示接口不返回角色对应的权限树字段，Values:["1"]表示接口返回角色对应的权限树字段
         # @type Filters: Array
         # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
         # @type Offset: Integer
@@ -4633,10 +4639,21 @@ module TencentCloud
         # @type SealTypes: Array
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param SealStatuses: 查询的印章状态列表。
+        # 取值为空，只查询启用状态的印章；
+        # 取值ALL，查询所有状态的印章；
+        # 取值CHECKING，查询待审核的印章；
+        # 取值SUCCESS，查询启用状态的印章；
+        # 取值FAIL，查询印章审核拒绝的印章；
+        # 取值DISABLE，查询已停用的印章；
+        # 取值STOPPED，查询已终止的印章；
+        # 取值VOID，查询已作废的印章；
+        # 取值INVALID，查询以失效的印章；
+        # @type SealStatuses: Array
 
-        attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId, :SealTypes, :Agent
+        attr_accessor :Operator, :Limit, :Offset, :InfoType, :SealId, :SealTypes, :Agent, :SealStatuses
 
-        def initialize(operator=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil, agent=nil)
+        def initialize(operator=nil, limit=nil, offset=nil, infotype=nil, sealid=nil, sealtypes=nil, agent=nil, sealstatuses=nil)
           @Operator = operator
           @Limit = limit
           @Offset = offset
@@ -4644,6 +4661,7 @@ module TencentCloud
           @SealId = sealid
           @SealTypes = sealtypes
           @Agent = agent
+          @SealStatuses = sealstatuses
         end
 
         def deserialize(params)
@@ -4660,6 +4678,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @SealStatuses = params['SealStatuses']
         end
       end
 
@@ -5329,44 +5348,42 @@ module TencentCloud
         end
       end
 
-      # 流程信息摘要
+      # 合同流程的基础信息
       class FlowBrief < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程的编号ID
+        # @param FlowId: 合同流程ID，为32位字符串。
         # @type FlowId: String
-        # @param FlowName: 流程的名称
+        # @param FlowName: 合同流程的名称。
         # @type FlowName: String
-        # @param FlowDescription: 流程的描述信息
+        # @param FlowDescription: 合同流程描述信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowDescription: String
-        # @param FlowType: 流程的类型
+        # @param FlowType: 合同流程的类别分类（如销售合同/入职合同等）。
         # @type FlowType: String
-        # @param FlowStatus: 流程状态
-        # - 0 还没有发起
-        # - 1 待签署
-        # - 2 部分签署
-        # - 3 已拒签
-        # - 4 已签署
-        # - 5 已过期
-        # - 6 已撤销
-        # - 7 还没有预发起
-        # - 8 等待填写
-        # - 9 部分填写
-        # - 10 拒填
-        # - 21 已解除
+        # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值
+        # <ul><li> **0** : 未开启流程(合同中不存在填写环节)</li>
+        # <li> **1** : 待签署</li>
+        # <li> **2** : 部分签署</li>
+        # <li> **3** : 已拒签</li>
+        # <li> **4** : 已签署</li>
+        # <li> **5** : 已过期</li>
+        # <li> **6** : 已撤销</li>
+        # <li> **7** : 未开启流程(合同中存在填写环节)</li>
+        # <li> **8** : 等待填写</li>
+        # <li> **9** : 部分填写</li>
+        # <li> **10** : 已拒填</li>
+        # <li> **21** : 已解除</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowStatus: Integer
-        # @param CreatedOn: 流程创建的时间戳，单位秒
+        # @param CreatedOn: 合同流程创建时间，格式为Unix标准时间戳（秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedOn: Integer
-        # @param FlowMessage: 当合同被拒签或者取消后(当FlowStatus=3或者FlowStatus=6的时候)
-        # 此字段展示拒签或者取消的原因描述
-
+        # @param FlowMessage: 当合同流程状态为已拒签（即 FlowStatus=3）或已撤销（即 FlowStatus=6）时，此字段 FlowMessage 为拒签或撤销原因。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowMessage: String
-        # @param Creator:  合同发起人userId
+        # @param Creator:  合同流程发起方的员工编号, 即员工在腾讯电子签平台的唯一身份标识。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Creator: String
-        # @param Deadline: 合同过期时间，时间戳，单位秒
+        # @param Deadline: 合同流程的签署截止时间，格式为Unix标准时间戳（秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Deadline: Integer
 
@@ -5972,15 +5989,13 @@ module TencentCloud
         # @type TaskId: String
         # @param Operator: 操作人信息,UserId必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 应用号信息
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
 
         attr_accessor :TaskId, :Operator, :Agent, :Organization
         extend Gem::Deprecate
-        deprecate :Agent, :none, 2023, 8
-        deprecate :Agent=, :none, 2023, 8
         deprecate :Organization, :none, 2023, 8
         deprecate :Organization=, :none, 2023, 8
 
@@ -6168,15 +6183,19 @@ module TencentCloud
         # @param SubOrgIdList: 管辖的子企业列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubOrgIdList: Array
+        # @param PermissionGroups: 权限树
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermissionGroups: Array
 
-        attr_accessor :RoleId, :RoleName, :RoleStatus, :IsGroupRole, :SubOrgIdList
+        attr_accessor :RoleId, :RoleName, :RoleStatus, :IsGroupRole, :SubOrgIdList, :PermissionGroups
 
-        def initialize(roleid=nil, rolename=nil, rolestatus=nil, isgrouprole=nil, suborgidlist=nil)
+        def initialize(roleid=nil, rolename=nil, rolestatus=nil, isgrouprole=nil, suborgidlist=nil, permissiongroups=nil)
           @RoleId = roleid
           @RoleName = rolename
           @RoleStatus = rolestatus
           @IsGroupRole = isgrouprole
           @SubOrgIdList = suborgidlist
+          @PermissionGroups = permissiongroups
         end
 
         def deserialize(params)
@@ -6185,6 +6204,14 @@ module TencentCloud
           @RoleStatus = params['RoleStatus']
           @IsGroupRole = params['IsGroupRole']
           @SubOrgIdList = params['SubOrgIdList']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
         end
       end
 
@@ -6538,6 +6565,119 @@ module TencentCloud
           @ComponentWidth = params['ComponentWidth']
           @ComponentHeight = params['ComponentHeight']
           @ComponentPage = params['ComponentPage']
+        end
+      end
+
+      # 权限树节点权限
+      class Permission < TencentCloud::Common::AbstractModel
+        # @param Name: 权限名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Key: 权限key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Type: 权限类型 1前端，2后端
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Hide: 是否隐藏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hide: Integer
+        # @param DataLabel: 数据权限标签 1:表示根节点，2:表示叶子结点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLabel: Integer
+        # @param DataType: 数据权限独有，1:关联其他模块鉴权，2:表示关联自己模块鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataType: Integer
+        # @param DataRange: 数据权限独有，表示数据范围，1：全公司，2:部门及下级部门，3:自己
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRange: Integer
+        # @param DataTo: 关联权限, 表示这个功能权限要受哪个数据权限管控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataTo: String
+        # @param ParentKey: 父级权限key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentKey: String
+        # @param IsChecked: 是否选中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsChecked: Boolean
+        # @param Children: 子权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+
+        attr_accessor :Name, :Key, :Type, :Hide, :DataLabel, :DataType, :DataRange, :DataTo, :ParentKey, :IsChecked, :Children
+
+        def initialize(name=nil, key=nil, type=nil, hide=nil, datalabel=nil, datatype=nil, datarange=nil, datato=nil, parentkey=nil, ischecked=nil, children=nil)
+          @Name = name
+          @Key = key
+          @Type = type
+          @Hide = hide
+          @DataLabel = datalabel
+          @DataType = datatype
+          @DataRange = datarange
+          @DataTo = datato
+          @ParentKey = parentkey
+          @IsChecked = ischecked
+          @Children = children
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Key = params['Key']
+          @Type = params['Type']
+          @Hide = params['Hide']
+          @DataLabel = params['DataLabel']
+          @DataType = params['DataType']
+          @DataRange = params['DataRange']
+          @DataTo = params['DataTo']
+          @ParentKey = params['ParentKey']
+          @IsChecked = params['IsChecked']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Children << permission_tmp
+            end
+          end
+        end
+      end
+
+      # 权限树中的权限组
+      class PermissionGroup < TencentCloud::Common::AbstractModel
+        # @param GroupName: 权限组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param GroupKey: 权限组key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupKey: String
+        # @param Hide: 是否隐藏分组，0否1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hide: Integer
+        # @param Permissions: 权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :GroupName, :GroupKey, :Hide, :Permissions
+
+        def initialize(groupname=nil, groupkey=nil, hide=nil, permissions=nil)
+          @GroupName = groupname
+          @GroupKey = groupkey
+          @Hide = hide
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @GroupKey = params['GroupKey']
+          @Hide = params['Hide']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Permissions << permission_tmp
+            end
+          end
         end
       end
 
@@ -7647,7 +7787,7 @@ module TencentCloud
       class VerifyPdfResponse < TencentCloud::Common::AbstractModel
         # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
         # @type VerifyResult: Integer
-        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
+        # @param PdfVerifyResults: 验签结果详情，每个签名域对应的验签结果。状态值：1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
         # @type PdfVerifyResults: Array
         # @param VerifySerialNo: 验签序列号
         # @type VerifySerialNo: String

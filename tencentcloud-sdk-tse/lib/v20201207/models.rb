@@ -3213,7 +3213,7 @@ module TencentCloud
 
       # 公网负载均衡配置
       class InternetConfig < TencentCloud::Common::AbstractModel
-        # @param InternetAddressVersion: 公网地址版本，可选："IPV4" | "IPV6-NAT64" 。不填默认 IPV4 。
+        # @param InternetAddressVersion: 公网地址版本，可选："IPV4" | "IPV6" 。不填默认 IPV4 。
         # @type InternetAddressVersion: String
         # @param InternetPayMode: 公网付费类型，当前仅可选："BANDWIDTH"。不填默认为 "BANDWIDTH"
         # @type InternetPayMode: String
@@ -4367,7 +4367,7 @@ module TencentCloud
         # @param Body: 自定义响应体
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Body: String
-        # @param Headers: headrs
+        # @param Headers: Headers
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Headers: Array
         # @param HttpStatus: http状态码

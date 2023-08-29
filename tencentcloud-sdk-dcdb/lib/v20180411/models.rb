@@ -838,7 +838,7 @@ module TencentCloud
         # @type ShardCpu: Integer
         # @param DbVersionId: 数据库引擎版本，当前可选：8.0，5.7，10.1，10.0。
         # @type DbVersionId: String
-        # @param Zones: 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
+        # @param Zones: 分片节点可用区分布，可填写多个可用区。
         # @type Zones: Array
         # @param SecurityGroupId: 安全组id
         # @type SecurityGroupId: String
@@ -860,10 +860,12 @@ module TencentCloud
         # @type RollbackTime: String
         # @param SecurityGroupIds: 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
         # @type SecurityGroupIds: Array
+        # @param DcnSyncMode: DCN同步模式，0：普通DCN同步，1：一致性同步
+        # @type DcnSyncMode: Integer
 
-        attr_accessor :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :ShardCpu, :DbVersionId, :Zones, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :SecurityGroupIds
+        attr_accessor :ShardMemory, :ShardStorage, :ShardNodeCount, :ShardCount, :Count, :ProjectId, :VpcId, :SubnetId, :ShardCpu, :DbVersionId, :Zones, :SecurityGroupId, :InstanceName, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :SecurityGroupIds, :DcnSyncMode
 
-        def initialize(shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, shardcpu=nil, dbversionid=nil, zones=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, securitygroupids=nil)
+        def initialize(shardmemory=nil, shardstorage=nil, shardnodecount=nil, shardcount=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, shardcpu=nil, dbversionid=nil, zones=nil, securitygroupid=nil, instancename=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, securitygroupids=nil, dcnsyncmode=nil)
           @ShardMemory = shardmemory
           @ShardStorage = shardstorage
           @ShardNodeCount = shardnodecount
@@ -885,6 +887,7 @@ module TencentCloud
           @RollbackInstanceId = rollbackinstanceid
           @RollbackTime = rollbacktime
           @SecurityGroupIds = securitygroupids
+          @DcnSyncMode = dcnsyncmode
         end
 
         def deserialize(params)
@@ -923,6 +926,7 @@ module TencentCloud
           @RollbackInstanceId = params['RollbackInstanceId']
           @RollbackTime = params['RollbackTime']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DcnSyncMode = params['DcnSyncMode']
         end
       end
 

@@ -2256,16 +2256,20 @@ module TencentCloud
         # @type Name: String
         # @param Avatar: 用户头像Url。
         # @type Avatar: String
+        # @param OriginId: 用户在客户系统的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SdkAppId, :UserId, :Name, :Avatar, :RequestId
+        attr_accessor :SdkAppId, :UserId, :Name, :Avatar, :OriginId, :RequestId
 
-        def initialize(sdkappid=nil, userid=nil, name=nil, avatar=nil, requestid=nil)
+        def initialize(sdkappid=nil, userid=nil, name=nil, avatar=nil, originid=nil, requestid=nil)
           @SdkAppId = sdkappid
           @UserId = userid
           @Name = name
           @Avatar = avatar
+          @OriginId = originid
           @RequestId = requestid
         end
 
@@ -2274,6 +2278,7 @@ module TencentCloud
           @UserId = params['UserId']
           @Name = params['Name']
           @Avatar = params['Avatar']
+          @OriginId = params['OriginId']
           @RequestId = params['RequestId']
         end
       end
@@ -3892,14 +3897,18 @@ module TencentCloud
         # @param Avatar: 用户头像Url。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Avatar: String
+        # @param OriginId: 用户在客户系统的Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginId: String
 
-        attr_accessor :SdkAppId, :UserId, :Name, :Avatar
+        attr_accessor :SdkAppId, :UserId, :Name, :Avatar, :OriginId
 
-        def initialize(sdkappid=nil, userid=nil, name=nil, avatar=nil)
+        def initialize(sdkappid=nil, userid=nil, name=nil, avatar=nil, originid=nil)
           @SdkAppId = sdkappid
           @UserId = userid
           @Name = name
           @Avatar = avatar
+          @OriginId = originid
         end
 
         def deserialize(params)
@@ -3907,6 +3916,7 @@ module TencentCloud
           @UserId = params['UserId']
           @Name = params['Name']
           @Avatar = params['Avatar']
+          @OriginId = params['OriginId']
         end
       end
 

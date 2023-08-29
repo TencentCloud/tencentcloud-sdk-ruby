@@ -720,7 +720,7 @@ module TencentCloud
 
       # CreateHourDBInstance请求参数结构体
       class CreateHourDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Zones: 节点可用区分布，最多可填两个可用区。
+        # @param Zones: 节点可用区分布，可填写多个可用区。
         # @type Zones: Array
         # @param NodeCount: 节点个数
         # @type NodeCount: Integer
@@ -758,10 +758,12 @@ module TencentCloud
         # @type RollbackInstanceId: String
         # @param RollbackTime: 回档时间
         # @type RollbackTime: String
+        # @param DcnSyncMode: DCN同步模式，0：普通DCN同步，1：一致性同步
+        # @type DcnSyncMode: Integer
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
 
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, count=nil, projectid=nil, vpcid=nil, subnetid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, ipv6flag=nil, resourcetags=nil, dcnregion=nil, dcninstanceid=nil, initparams=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -780,6 +782,7 @@ module TencentCloud
           @InitParams = initparams
           @RollbackInstanceId = rollbackinstanceid
           @RollbackTime = rollbacktime
+          @DcnSyncMode = dcnsyncmode
         end
 
         def deserialize(params)
@@ -815,6 +818,7 @@ module TencentCloud
           end
           @RollbackInstanceId = params['RollbackInstanceId']
           @RollbackTime = params['RollbackTime']
+          @DcnSyncMode = params['DcnSyncMode']
         end
       end
 

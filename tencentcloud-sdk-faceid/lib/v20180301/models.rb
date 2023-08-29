@@ -2433,6 +2433,9 @@ module TencentCloud
         # @type AsrResultSimilarity: String
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
+        extend Gem::Deprecate
+        deprecate :AsrResultSimilarity, :none, 2023, 8
+        deprecate :AsrResultSimilarity=, :none, 2023, 8
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

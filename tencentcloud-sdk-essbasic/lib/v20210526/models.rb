@@ -210,10 +210,12 @@ module TencentCloud
         # <br/>false：不开启发起方发起前审核
         # <br/>当指定NeedCreateReview=true，则提交审核后，需要使用接口：ChannelCreateFlowSignReview，来完成发起前审核，审核通过后，可以继续查看，签署合同
         # @type NeedCreateReview: Boolean
+        # @param Components: 填写控件：文件发起使用
+        # @type Components: Array
 
-        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview
+        attr_accessor :FlowName, :FlowType, :FlowDescription, :Deadline, :Unordered, :IntelligentStatus, :FormFields, :NeedSignReview, :UserData, :CcInfos, :NeedCreateReview, :Components
 
-        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil)
+        def initialize(flowname=nil, flowtype=nil, flowdescription=nil, deadline=nil, unordered=nil, intelligentstatus=nil, formfields=nil, needsignreview=nil, userdata=nil, ccinfos=nil, needcreatereview=nil, components=nil)
           @FlowName = flowname
           @FlowType = flowtype
           @FlowDescription = flowdescription
@@ -225,6 +227,7 @@ module TencentCloud
           @UserData = userdata
           @CcInfos = ccinfos
           @NeedCreateReview = needcreatereview
+          @Components = components
         end
 
         def deserialize(params)
@@ -253,6 +256,14 @@ module TencentCloud
             end
           end
           @NeedCreateReview = params['NeedCreateReview']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
         end
       end
 
@@ -1297,9 +1308,9 @@ module TencentCloud
         # @param Restrictions: 指定的签署二维码签署人
         # <br/>指定后，只允许知道的人操作和签署
         # @type Restrictions: Array
-        # @param CallbackUrl: 回调地址，最大长度1000个字符
-        # 不传默认使用第三方应用号配置的回调地址
-        # 回调时机:用户通过签署二维码发起合同时，企业额度不足导致失败
+        # @param CallbackUrl: 已废弃，回调配置统一使用企业应用管理-应用集成-第三方应用中的配置
+        # <br/> 通过一码多扫二维码发起的合同，回调消息可参考文档 https://qian.tencent.com/developers/partner/callback_types_contracts_sign
+        # <br/> 用户通过签署二维码发起合同时，因企业额度不足导致失败 会触发签署二维码相关回调,具体参考文档 https://qian.tencent.com/developers/partner/callback_types_commons#%E7%AD%BE%E7%BD%B2%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9B%B8%E5%85%B3%E5%9B%9E%E8%B0%83
         # @type CallbackUrl: String
         # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverRestriction`
@@ -1308,6 +1319,8 @@ module TencentCloud
 
         attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator
         extend Gem::Deprecate
+        deprecate :CallbackUrl, :none, 2023, 8
+        deprecate :CallbackUrl=, :none, 2023, 8
         deprecate :ApproverRestrictions, :none, 2023, 8
         deprecate :ApproverRestrictions=, :none, 2023, 8
         deprecate :Operator, :none, 2023, 8
@@ -1433,7 +1446,7 @@ module TencentCloud
       class ChannelCreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源id，与ResourceType对应
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，1：模板，目前仅支持模板，与ResourceId对应
+        # @param ResourceType: 资源类型，与ResourceId对应1：模板   2: 文件
         # @type ResourceType: Integer
         # @param FlowInfo: 合同流程基础信息
         # @type FlowInfo: :class:`Tencentcloud::Essbasic.v20210526.models.BaseFlowInfo`
@@ -2827,13 +2840,15 @@ module TencentCloud
         # @type NotifyType: String
         # @param ApproverOption: 签署人配置
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
+        # @param SignComponents: 签署控件：文件发起使用
+        # @type SignComponents: Array
 
-        attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption
+        attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption, :SignComponents
         extend Gem::Deprecate
         deprecate :NotifyType, :none, 2023, 8
         deprecate :NotifyType=, :none, 2023, 8
 
-        def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil)
+        def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil, signcomponents=nil)
           @NotChannelOrganization = notchannelorganization
           @ApproverType = approvertype
           @OrganizationId = organizationid
@@ -2848,6 +2863,7 @@ module TencentCloud
           @IsFullText = isfulltext
           @NotifyType = notifytype
           @ApproverOption = approveroption
+          @SignComponents = signcomponents
         end
 
         def deserialize(params)
@@ -2867,6 +2883,14 @@ module TencentCloud
           unless params['ApproverOption'].nil?
             @ApproverOption = CommonApproverOption.new
             @ApproverOption.deserialize(params['ApproverOption'])
+          end
+          unless params['SignComponents'].nil?
+            @SignComponents = []
+            params['SignComponents'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @SignComponents << component_tmp
+            end
           end
         end
       end
@@ -4376,7 +4400,7 @@ module TencentCloud
       # 4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
 
       # RecipientId参数：
-      # 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId
+      # 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId。
       class FlowApproverInfo < TencentCloud::Common::AbstractModel
         # @param Name: 签署人姓名，最大长度50个字符
         # @type Name: String
