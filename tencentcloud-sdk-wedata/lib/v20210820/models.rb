@@ -15442,7 +15442,7 @@ module TencentCloud
         # @param PageSize: 分页大小
         # @type PageSize: Integer
         # @param PageNumber: 分页页码
-        # @type PageNumber: String
+        # @type PageNumber: Integer
 
         attr_accessor :ProjectId, :SearchCondition, :PageSize, :PageNumber
 

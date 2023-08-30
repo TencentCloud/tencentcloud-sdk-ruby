@@ -3707,10 +3707,13 @@ module TencentCloud
         # @type GpuTotal: Integer
         # @param GpuAvailable: 专用宿主机实例可用GPU卡数
         # @type GpuAvailable: Integer
+        # @param ExclusiveOwner: CDH owner
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExclusiveOwner: String
 
-        attr_accessor :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable, :DiskType, :GpuTotal, :GpuAvailable
+        attr_accessor :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable, :DiskTotal, :DiskAvailable, :DiskType, :GpuTotal, :GpuAvailable, :ExclusiveOwner
 
-        def initialize(cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil, disktotal=nil, diskavailable=nil, disktype=nil, gputotal=nil, gpuavailable=nil)
+        def initialize(cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil, disktotal=nil, diskavailable=nil, disktype=nil, gputotal=nil, gpuavailable=nil, exclusiveowner=nil)
           @CpuTotal = cputotal
           @CpuAvailable = cpuavailable
           @MemTotal = memtotal
@@ -3720,6 +3723,7 @@ module TencentCloud
           @DiskType = disktype
           @GpuTotal = gputotal
           @GpuAvailable = gpuavailable
+          @ExclusiveOwner = exclusiveowner
         end
 
         def deserialize(params)
@@ -3732,6 +3736,7 @@ module TencentCloud
           @DiskType = params['DiskType']
           @GpuTotal = params['GpuTotal']
           @GpuAvailable = params['GpuAvailable']
+          @ExclusiveOwner = params['ExclusiveOwner']
         end
       end
 

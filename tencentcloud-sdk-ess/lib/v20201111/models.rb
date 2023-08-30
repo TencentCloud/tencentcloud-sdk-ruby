@@ -87,10 +87,8 @@ module TencentCloud
         # @param ApproverName: 签署方经办人的姓名。
         # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
         # @type ApproverName: String
-        # @param ApproverMobile: 本企业的签署方经办人的员工UserId
-        # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
-
-        # 注: `若传该字段，则签署方经办人的其他信息（如签署方经办人的姓名、证件号码、手机号码等）将被忽略。`
+        # @param ApproverMobile: 签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
+        # 请确认手机号所有方为此合同签署方。
         # @type ApproverMobile: String
         # @param OrganizationName: 组织机构名称。
         # 请确认该名称与企业营业执照中注册的名称一致。
@@ -2305,6 +2303,84 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrationRole请求参数结构体
+      class CreateIntegrationRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 角色名称，最大长度为20个字符，仅限中文、字母、数字和下划线组成。
+        # @type Name: String
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        # 支持填入集团子公司经办人 userId 代发合同。
+
+        # 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Description: 角色描述，最大长度为50个字符
+        # @type Description: String
+        # @param IsGroupRole: 角色类型，0:saas角色，1:集团角色
+        # 默认0，saas角色
+        # @type IsGroupRole: Integer
+        # @param PermissionGroups: 权限树
+        # @type PermissionGroups: Array
+        # @param SubOrganizationIds: 集团角色的话，需要传递集团子企业列表，如果是全选，则传1
+        # @type SubOrganizationIds: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Name, :Operator, :Description, :IsGroupRole, :PermissionGroups, :SubOrganizationIds, :Agent
+
+        def initialize(name=nil, operator=nil, description=nil, isgrouprole=nil, permissiongroups=nil, suborganizationids=nil, agent=nil)
+          @Name = name
+          @Operator = operator
+          @Description = description
+          @IsGroupRole = isgrouprole
+          @PermissionGroups = permissiongroups
+          @SubOrganizationIds = suborganizationids
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Description = params['Description']
+          @IsGroupRole = params['IsGroupRole']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
+          @SubOrganizationIds = params['SubOrganizationIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateIntegrationRole返回参数结构体
+      class CreateIntegrationRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIntegrationUserRoles请求参数结构体
       class CreateIntegrationUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 操作人信息，UserId必填
@@ -2593,18 +2669,38 @@ module TencentCloud
       class CreatePersonAuthCertificateImageResponse < TencentCloud::Common::AbstractModel
         # @param AuthCertUrl: 个人用户证明证书的下载链接
         # @type AuthCertUrl: String
+        # @param ImageCertId: 证书图片上的证书编号，20位数字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageCertId: String
+        # @param SerialNumber: 图片证明对应的CA证书序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialNumber: String
+        # @param ValidFrom: CA证书颁发时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidFrom: Integer
+        # @param ValidTo: CA证书有效截止时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidTo: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AuthCertUrl, :RequestId
+        attr_accessor :AuthCertUrl, :ImageCertId, :SerialNumber, :ValidFrom, :ValidTo, :RequestId
 
-        def initialize(authcerturl=nil, requestid=nil)
+        def initialize(authcerturl=nil, imagecertid=nil, serialnumber=nil, validfrom=nil, validto=nil, requestid=nil)
           @AuthCertUrl = authcerturl
+          @ImageCertId = imagecertid
+          @SerialNumber = serialnumber
+          @ValidFrom = validfrom
+          @ValidTo = validto
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AuthCertUrl = params['AuthCertUrl']
+          @ImageCertId = params['ImageCertId']
+          @SerialNumber = params['SerialNumber']
+          @ValidFrom = params['ValidFrom']
+          @ValidTo = params['ValidTo']
           @RequestId = params['RequestId']
         end
       end
@@ -2613,7 +2709,7 @@ module TencentCloud
       class CreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param ResourceId: 资源Id，通过多文件上传（UploadFiles）接口获得
+        # @param ResourceId: 资源id，与ResourceType对应
         # @type ResourceId: String
         # @param FlowName: 合同名称
         # @type FlowName: String
@@ -2626,19 +2722,24 @@ module TencentCloud
         # 不传默认为当前时间一年后
         # @type Deadline: Integer
         # @param UserFlowTypeId: 用户自定义合同类型Id
-        # 该id为电子签企业内的合同类型id
+
+        # 该id为电子签企业内的合同类型id， 可以在自定义合同类型处获取
         # @type UserFlowTypeId: String
+        # @param FlowType: 合同类型名称
+        # 该字段用于客户自定义合同类型
+        # 建议使用时指定合同类型，便于之后合同分类以及查看
+        # 如果合同类型与自定义的合同类型描述一致，会自动归类到自定义的合同类型处，如果不一致，则会创建一个新的自定义合同类型
+        # @type FlowType: String
         # @param Approvers: 签署流程参与者信息，最大限制50方
         # @type Approvers: Array
         # @param IntelligentStatus: 打开智能添加填写区
-        # (默认开启，打开:"OPEN"
+        # 默认开启，打开:"OPEN"
         #  关闭："CLOSE"
         # @type IntelligentStatus: String
         # @param ResourceType: 资源类型，
-        # 1：文件，
-        # 2：模板
-        # 不传默认为1：文件
-        # 目前仅支持文件
+        # 1：模板
+        # 2：文件，
+        # 不传默认为2：文件
         # @type ResourceType: Integer
         # @param Components: 发起方填写控件
         # 该类型控件由发起方完成填写
@@ -2661,22 +2762,19 @@ module TencentCloud
         # @type UserData: String
         # @param FlowId: 合同id,用于通过已web页面发起的合同id快速生成一个web发起合同链接
         # @type FlowId: String
-        # @param FlowType: 合同类型名称
-        # 该字段用于客户自定义合同类型
-        # 建议使用时指定合同类型，便于之后合同分类以及查看
-        # @type FlowType: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :FlowId, :FlowType, :Agent
+        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :FlowId, :Agent
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, flowid=nil, flowtype=nil, agent=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, flowid=nil, agent=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
           @Unordered = unordered
           @Deadline = deadline
           @UserFlowTypeId = userflowtypeid
+          @FlowType = flowtype
           @Approvers = approvers
           @IntelligentStatus = intelligentstatus
           @ResourceType = resourcetype
@@ -2686,7 +2784,6 @@ module TencentCloud
           @NeedCreateReview = needcreatereview
           @UserData = userdata
           @FlowId = flowid
-          @FlowType = flowtype
           @Agent = agent
         end
 
@@ -2700,6 +2797,7 @@ module TencentCloud
           @Unordered = params['Unordered']
           @Deadline = params['Deadline']
           @UserFlowTypeId = params['UserFlowTypeId']
+          @FlowType = params['FlowType']
           unless params['Approvers'].nil?
             @Approvers = []
             params['Approvers'].each do |i|
@@ -2722,7 +2820,6 @@ module TencentCloud
           @NeedCreateReview = params['NeedCreateReview']
           @UserData = params['UserData']
           @FlowId = params['FlowId']
-          @FlowType = params['FlowType']
           unless params['Agent'].nil?
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
@@ -5428,7 +5525,7 @@ module TencentCloud
         # 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
         # @type ApproverType: Integer
         # @param OrganizationName: 签署人企业名称
-        # <br/>当approverType=1 或 approverType=3时，必须指定
+        # 当approverType=0 或 approverType=3时，必须指定
 
         # @type OrganizationName: String
         # @param ApproverName: 签署方经办人姓名
@@ -5504,8 +5601,12 @@ module TencentCloud
         # 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
         # @type ComponentLimitType: Array
         # @param ApproverVerifyTypes: 合同查看方式<br/>默认1 -实名查看 <br/>2-短信验证码查看(企业签署方暂不支持该方式)
+
+        # > 注意:此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主.
         # @type ApproverVerifyTypes: Array
         # @param ApproverSignTypes: 合同签署方式(默认1,2) <br/>1-人脸认证 <br/>2-签署密码 <br/>3-运营商三要素
+
+        # > 注意:此参数仅针对文件发起设置生效,模板发起合同签署流程, 请以模板配置为主.
         # @type ApproverSignTypes: Array
 
         attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes
@@ -6392,6 +6493,83 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIntegrationRole请求参数结构体
+      class ModifyIntegrationRoleRequest < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色Id，可通过接口 DescribeIntegrationRoles 查询获取
+        # @type RoleId: String
+        # @param Name: 角色名称，最大长度为20个字符，仅限中文、字母、数字和下划线组成。
+        # @type Name: String
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        # 支持填入集团子公司经办人 userId 代发合同。
+
+        # 注: 在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Description: 角色描述，最大长度为50个字符
+        # @type Description: String
+        # @param PermissionGroups: 权限树
+        # @type PermissionGroups: Array
+        # @param SubOrganizationIds: 集团角色的话，需要传递集团子企业列表，如果是全选，则传1
+        # @type SubOrganizationIds: Array
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :RoleId, :Name, :Operator, :Description, :PermissionGroups, :SubOrganizationIds, :Agent
+
+        def initialize(roleid=nil, name=nil, operator=nil, description=nil, permissiongroups=nil, suborganizationids=nil, agent=nil)
+          @RoleId = roleid
+          @Name = name
+          @Operator = operator
+          @Description = description
+          @PermissionGroups = permissiongroups
+          @SubOrganizationIds = suborganizationids
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @Name = params['Name']
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Description = params['Description']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
+          @SubOrganizationIds = params['SubOrganizationIds']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ModifyIntegrationRole返回参数结构体
+      class ModifyIntegrationRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
           @RequestId = params['RequestId']
         end
       end

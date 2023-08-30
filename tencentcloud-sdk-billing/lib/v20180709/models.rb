@@ -1558,6 +1558,38 @@ module TencentCloud
         end
       end
 
+      # CreateAllocationTag请求参数结构体
+      class CreateAllocationTagRequest < TencentCloud::Common::AbstractModel
+        # @param TagKey: 用户分账标签键
+        # @type TagKey: Array
+
+        attr_accessor :TagKey
+
+        def initialize(tagkey=nil)
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # CreateAllocationTag返回参数结构体
+      class CreateAllocationTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 订单数据对象
       class Deal < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单号
@@ -1697,6 +1729,38 @@ module TencentCloud
           @ProductName = params['ProductName']
           @SubProductName = params['SubProductName']
           @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DeleteAllocationTag请求参数结构体
+      class DeleteAllocationTagRequest < TencentCloud::Common::AbstractModel
+        # @param TagKey: 用户分账标签键
+        # @type TagKey: Array
+
+        attr_accessor :TagKey
+
+        def initialize(tagkey=nil)
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # DeleteAllocationTag返回参数结构体
+      class DeleteAllocationTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2104,10 +2168,15 @@ module TencentCloud
         # @type BusinessCode: String
         # @param PayerUin: 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN
         # @type PayerUin: String
+        # @param TagKey: 分账标签键，用户自定义（支持2021-01以后账单查询）
+        # @type TagKey: String
+        # @param TagValue: 分账标签值，该参数为空表示该标签键下未设置标签值的记录
+        # （支持2021-01以后账单查询）
+        # @type TagValue: String
 
-        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin
+        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin, :TagKey, :TagValue
 
-        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil)
+        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
           @Limit = limit
           @Month = month
@@ -2118,6 +2187,8 @@ module TencentCloud
           @PayMode = paymode
           @BusinessCode = businesscode
           @PayerUin = payeruin
+          @TagKey = tagkey
+          @TagValue = tagvalue
         end
 
         def deserialize(params)
@@ -2131,6 +2202,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @BusinessCode = params['BusinessCode']
           @PayerUin = params['PayerUin']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -3185,6 +3258,69 @@ module TencentCloud
         end
       end
 
+      # DescribeTagList请求参数结构体
+      class DescribeTagListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @type Limit: Integer
+        # @param Offset: 数量，最大值为1000
+        # @type Offset: Integer
+        # @param TagKey: 分账标签键，用作模糊搜索
+        # @type TagKey: String
+        # @param Status: 标签类型，枚举值：0普通标签，1分账标签，用作筛选，不传获取全部标签键
+        # @type Status: Integer
+        # @param OrderType: 排序方式，枚举值：asc排升序，desc排降序
+        # @type OrderType: String
+
+        attr_accessor :Limit, :Offset, :TagKey, :Status, :OrderType
+
+        def initialize(limit=nil, offset=nil, tagkey=nil, status=nil, ordertype=nil)
+          @Limit = limit
+          @Offset = offset
+          @TagKey = tagkey
+          @Status = status
+          @OrderType = ordertype
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TagKey = params['TagKey']
+          @Status = params['Status']
+          @OrderType = params['OrderType']
+        end
+      end
+
+      # DescribeTagList返回参数结构体
+      class DescribeTagListResponse < TencentCloud::Common::AbstractModel
+        # @param RecordNum: 总记录数
+        # @type RecordNum: Integer
+        # @param Data: 标签信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordNum, :Data, :RequestId
+
+        def initialize(recordnum=nil, data=nil, requestid=nil)
+          @RecordNum = recordnum
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordNum = params['RecordNum']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              tagdatainfo_tmp = TagDataInfo.new
+              tagdatainfo_tmp.deserialize(i)
+              @Data << tagdatainfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVoucherInfo请求参数结构体
       class DescribeVoucherInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 一页多少条数据，默认是20条，最大不超过1000
@@ -3747,6 +3883,31 @@ module TencentCloud
         def deserialize(params)
           @RealTotalCost = params['RealTotalCost']
           @TotalCost = params['TotalCost']
+        end
+      end
+
+      # 标签信息
+      class TagDataInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 分账标签键
+        # @type TagKey: String
+        # @param Status: 标签类型，0普通标签，1分账标签
+        # @type Status: Integer
+        # @param UpdateTime: 设置分账标签时间，普通标签不返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :TagKey, :Status, :UpdateTime
+
+        def initialize(tagkey=nil, status=nil, updatetime=nil)
+          @TagKey = tagkey
+          @Status = status
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @Status = params['Status']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

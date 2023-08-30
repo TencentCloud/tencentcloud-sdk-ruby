@@ -182,19 +182,23 @@ module TencentCloud
         # @type CertId: String
         # @param Status: 域名状态
         # @type Status: String
+        # @param HttpsBillingSwitch: 域名计费状态
+        # @type HttpsBillingSwitch: String
 
-        attr_accessor :Domain, :CertId, :Status
+        attr_accessor :Domain, :CertId, :Status, :HttpsBillingSwitch
 
-        def initialize(domain=nil, certid=nil, status=nil)
+        def initialize(domain=nil, certid=nil, status=nil, httpsbillingswitch=nil)
           @Domain = domain
           @CertId = certid
           @Status = status
+          @HttpsBillingSwitch = httpsbillingswitch
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @CertId = params['CertId']
           @Status = params['Status']
+          @HttpsBillingSwitch = params['HttpsBillingSwitch']
         end
       end
 
@@ -235,17 +239,27 @@ module TencentCloud
         # @type CertId: String
         # @param DnsNames: 证书绑定的域名
         # @type DnsNames: Array
+        # @param CertCaId: 根证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertCaId: String
+        # @param SSLMode: 证书认证模式：UNIDIRECTIONAL单向认证，MUTUAL双向认证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLMode: String
 
-        attr_accessor :CertId, :DnsNames
+        attr_accessor :CertId, :DnsNames, :CertCaId, :SSLMode
 
-        def initialize(certid=nil, dnsnames=nil)
+        def initialize(certid=nil, dnsnames=nil, certcaid=nil, sslmode=nil)
           @CertId = certid
           @DnsNames = dnsnames
+          @CertCaId = certcaid
+          @SSLMode = sslmode
         end
 
         def deserialize(params)
           @CertId = params['CertId']
           @DnsNames = params['DnsNames']
+          @CertCaId = params['CertCaId']
+          @SSLMode = params['SSLMode']
         end
       end
 
@@ -4847,13 +4861,19 @@ module TencentCloud
         # @type ClusterName: String
         # @param NamespaceList: 集群命名空间列表
         # @type NamespaceList: Array
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param ClusterVersion: 集群版本
+        # @type ClusterVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :NamespaceList
+        attr_accessor :ClusterId, :ClusterName, :NamespaceList, :ClusterType, :ClusterVersion
 
-        def initialize(clusterid=nil, clustername=nil, namespacelist=nil)
+        def initialize(clusterid=nil, clustername=nil, namespacelist=nil, clustertype=nil, clusterversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @NamespaceList = namespacelist
+          @ClusterType = clustertype
+          @ClusterVersion = clusterversion
         end
 
         def deserialize(params)
@@ -4867,6 +4887,8 @@ module TencentCloud
               @NamespaceList << tkenamespacedetail_tmp
             end
           end
+          @ClusterType = params['ClusterType']
+          @ClusterVersion = params['ClusterVersion']
         end
       end
 

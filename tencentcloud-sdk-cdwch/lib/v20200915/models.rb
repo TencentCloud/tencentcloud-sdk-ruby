@@ -278,6 +278,14 @@ module TencentCloud
 
       # CreateBackUpSchedule请求参数结构体
       class CreateBackUpScheduleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param ScheduleType: 策略类型 meta(元数据)  data (表数据)
+        # @type ScheduleType: String
+        # @param OperationType: 操作类型 create(创建) update(编辑修改)
+        # @type OperationType: String
+        # @param RetainDays: 保留天数 例如7
+        # @type RetainDays: Integer
         # @param ScheduleId: 编辑时需要传
         # @type ScheduleId: Integer
         # @param WeekDays: 选择的星期 逗号分隔，例如 2 代表周二
@@ -287,9 +295,13 @@ module TencentCloud
         # @param BackUpTables: 备份表列表
         # @type BackUpTables: Array
 
-        attr_accessor :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables
+        attr_accessor :InstanceId, :ScheduleType, :OperationType, :RetainDays, :ScheduleId, :WeekDays, :ExecuteHour, :BackUpTables
 
-        def initialize(scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil)
+        def initialize(instanceid=nil, scheduletype=nil, operationtype=nil, retaindays=nil, scheduleid=nil, weekdays=nil, executehour=nil, backuptables=nil)
+          @InstanceId = instanceid
+          @ScheduleType = scheduletype
+          @OperationType = operationtype
+          @RetainDays = retaindays
           @ScheduleId = scheduleid
           @WeekDays = weekdays
           @ExecuteHour = executehour
@@ -297,6 +309,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ScheduleType = params['ScheduleType']
+          @OperationType = params['OperationType']
+          @RetainDays = params['RetainDays']
           @ScheduleId = params['ScheduleId']
           @WeekDays = params['WeekDays']
           @ExecuteHour = params['ExecuteHour']
@@ -313,16 +329,20 @@ module TencentCloud
 
       # CreateBackUpSchedule返回参数结构体
       class CreateBackUpScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMsg: 错误描述
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ErrorMsg, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(errormsg=nil, requestid=nil)
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end

@@ -1015,16 +1015,19 @@ module TencentCloud
         # @type PackageQueue: String
         # @param OrderId: 订单id
         # @type OrderId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue, :OrderId
+        attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue, :OrderId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil, orderid=nil)
+        def initialize(productid=nil, devicename=nil, packageid=nil, override=nil, packagequeue=nil, orderid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @PackageId = packageid
           @Override = override
           @PackageQueue = packagequeue
           @OrderId = orderid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -1034,6 +1037,7 @@ module TencentCloud
           @Override = params['Override']
           @PackageQueue = params['PackageQueue']
           @OrderId = params['OrderId']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -2160,19 +2164,23 @@ module TencentCloud
         # @type DeviceName: String
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :UserId
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, userid=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -2595,16 +2603,19 @@ module TencentCloud
         # @type EndTime: Integer
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :Date, :StartTime, :EndTime, :UserId
+        attr_accessor :ProductId, :DeviceName, :Date, :StartTime, :EndTime, :UserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, date=nil, starttime=nil, endtime=nil, userid=nil)
+        def initialize(productid=nil, devicename=nil, date=nil, starttime=nil, endtime=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Date = date
           @StartTime = starttime
           @EndTime = endtime
           @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -2614,6 +2625,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 

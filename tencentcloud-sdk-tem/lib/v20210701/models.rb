@@ -858,7 +858,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
-        # @param SourceChannel: 来源渠道
+        # @param SourceChannel: 来源渠道(用户不需要关心此参数)
         # @type SourceChannel: Integer
         # @param DeleteApplicationIfNoRunningVersion: 当服务没有任何运行版本时，是否删除此服务
         # @type DeleteApplicationIfNoRunningVersion: Boolean
@@ -3478,7 +3478,7 @@ module TencentCloud
 
       # ModifyApplicationReplicas请求参数结构体
       class ModifyApplicationReplicasRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 服务id
+        # @param ApplicationId: 应用id
         # @type ApplicationId: String
         # @param EnvironmentId: 环境ID
         # @type EnvironmentId: String
@@ -4172,7 +4172,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
-        # @param EnvironmentId: 环境ID
+        # @param EnvironmentId: 环境ID/命名空间ID
         # @type EnvironmentId: String
 
         attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId
@@ -4751,7 +4751,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param SourceChannel: 来源渠道
         # @type SourceChannel: Integer
-        # @param EnvironmentId: 环境ID
+        # @param EnvironmentId: 环境ID/命名空间ID
         # @type EnvironmentId: String
 
         attr_accessor :ApplicationId, :SourceChannel, :EnvironmentId

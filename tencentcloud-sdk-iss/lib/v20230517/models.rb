@@ -4783,7 +4783,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param List: 设备通道信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: :class:`Tencentcloud::Iss.v20230517.models.RecordPlanChannelInfo`
+        # @type List: Array
 
         attr_accessor :PageNumber, :PageSize, :TotalCount, :List
 
@@ -4799,8 +4799,12 @@ module TencentCloud
           @PageSize = params['PageSize']
           @TotalCount = params['TotalCount']
           unless params['List'].nil?
-            @List = RecordPlanChannelInfo.new
-            @List.deserialize(params['List'])
+            @List = []
+            params['List'].each do |i|
+              recordplanchannelinfo_tmp = RecordPlanChannelInfo.new
+              recordplanchannelinfo_tmp.deserialize(i)
+              @List << recordplanchannelinfo_tmp
+            end
           end
         end
       end
@@ -4816,9 +4820,9 @@ module TencentCloud
         # @param OrganizationName: 按照组织名称查询（为空时，不参考该参数）
         # @type OrganizationName: String
         # @param PageSize: 每页最大数量
-        # @type PageSize: String
-        # @param PageNumber: 第几页
-        # @type PageNumber: String
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页数
+        # @type PageNumber: Integer
 
         attr_accessor :PlanId, :DeviceName, :ChannelName, :OrganizationName, :PageSize, :PageNumber
 

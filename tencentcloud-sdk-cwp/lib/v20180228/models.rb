@@ -4085,10 +4085,16 @@ module TencentCloud
         # @param DealOldEvents: 是否处理之前的事件 0: 不处理 1:处理
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealOldEvents: Integer
+        # @param Description: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents
+        attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
+        extend Gem::Deprecate
+        deprecate :Decription, :none, 2023, 8
+        deprecate :Decription=, :none, 2023, 8
 
-        def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil)
+        def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
           @Uuid = uuid
           @Name = name
@@ -4104,6 +4110,7 @@ module TencentCloud
           @Uuids = uuids
           @White = white
           @DealOldEvents = dealoldevents
+          @Description = description
         end
 
         def deserialize(params)
@@ -4122,6 +4129,7 @@ module TencentCloud
           @Uuids = params['Uuids']
           @White = params['White']
           @DealOldEvents = params['DealOldEvents']
+          @Description = params['Description']
         end
       end
 

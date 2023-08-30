@@ -492,7 +492,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # client任务请求地址
+        # client任务请求
 
         # @param request: Request instance for RequestLocalTask.
         # @type request: :class:`Tencentcloud::ms::V20180408::RequestLocalTaskRequest`
@@ -516,7 +516,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新client状态
+        # 更新client状态，需要白名单
 
         # @param request: Request instance for UpdateClientState.
         # @type request: :class:`Tencentcloud::ms::V20180408::UpdateClientStateRequest`
@@ -540,7 +540,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新本地任务结果
+        # 更新本地任务执行结果
 
         # @param request: Request instance for UpdateLocalTaskResult.
         # @type request: :class:`Tencentcloud::ms::V20180408::UpdateLocalTaskResultRequest`

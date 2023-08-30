@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 批量设置分账标签
+
+        # @param request: Request instance for CreateAllocationTag.
+        # @type request: :class:`Tencentcloud::billing::V20180709::CreateAllocationTagRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateAllocationTagResponse`
+        def CreateAllocationTag(request)
+          body = send_request('CreateAllocationTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAllocationTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量取消设置分账标签
+
+        # @param request: Request instance for DeleteAllocationTag.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DeleteAllocationTagRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DeleteAllocationTagResponse`
+        def DeleteAllocationTag(request)
+          body = send_request('DeleteAllocationTag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAllocationTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云账户余额信息。
 
         # @param request: Request instance for DescribeAccountBalance.
@@ -450,6 +498,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDosageDetailByDateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取分账标签
+
+        # @param request: Request instance for DescribeTagList.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeTagListRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeTagListResponse`
+        def DescribeTagList(request)
+          body = send_request('DescribeTagList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTagListResponse.new
             model.deserialize(response['Response'])
             model
           else
