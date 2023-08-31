@@ -1249,6 +1249,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateNetworkAclEntries）用于增量添加网络ACL三元组的入站规则和出站规则。
+
+        # @param request: Request instance for CreateNetworkAclEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateNetworkAclEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateNetworkAclEntriesResponse`
+        def CreateNetworkAclEntries(request)
+          body = send_request('CreateNetworkAclEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNetworkAclEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
 
         # @param request: Request instance for CreateNetworkAclQuintupleEntries.
@@ -2287,6 +2311,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteNetworkAclResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteNetworkAclEntries）用于删除三元组网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
+        # * 删除IPv4规则，需要传入NetworkAclIpv4EntryId。
+        # * 删除IPv6规则，需要传入NetworkAclIpv6EntryId。
+
+        # @param request: Request instance for DeleteNetworkAclEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteNetworkAclEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteNetworkAclEntriesResponse`
+        def DeleteNetworkAclEntries(request)
+          body = send_request('DeleteNetworkAclEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNetworkAclEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else

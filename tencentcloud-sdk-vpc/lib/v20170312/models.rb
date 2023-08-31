@@ -3652,6 +3652,45 @@ module TencentCloud
         end
       end
 
+      # CreateNetworkAclEntries请求参数结构体
+      class CreateNetworkAclEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkAclId: 网络ACL实例ID。例如：acl-12345678。
+        # @type NetworkAclId: String
+        # @param NetworkAclEntrySet: 网络三元组ACL规则集。
+        # @type NetworkAclEntrySet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclEntrySet`
+
+        attr_accessor :NetworkAclId, :NetworkAclEntrySet
+
+        def initialize(networkaclid=nil, networkaclentryset=nil)
+          @NetworkAclId = networkaclid
+          @NetworkAclEntrySet = networkaclentryset
+        end
+
+        def deserialize(params)
+          @NetworkAclId = params['NetworkAclId']
+          unless params['NetworkAclEntrySet'].nil?
+            @NetworkAclEntrySet = NetworkAclEntrySet.new
+            @NetworkAclEntrySet.deserialize(params['NetworkAclEntrySet'])
+          end
+        end
+      end
+
+      # CreateNetworkAclEntries返回参数结构体
+      class CreateNetworkAclEntriesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNetworkAclQuintupleEntries请求参数结构体
       class CreateNetworkAclQuintupleEntriesRequest < TencentCloud::Common::AbstractModel
         # @param NetworkAclId: 网络ACL实例ID。例如：acl-12345678。
@@ -5920,6 +5959,45 @@ module TencentCloud
 
       # DeleteNetDetect返回参数结构体
       class DeleteNetDetectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNetworkAclEntries请求参数结构体
+      class DeleteNetworkAclEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkAclId: 三元组网络ACL实例ID。例如：acl-12345678。
+        # @type NetworkAclId: String
+        # @param NetworkAclEntrySet: 三元组网络ACL规则集。
+        # @type NetworkAclEntrySet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclEntrySet`
+
+        attr_accessor :NetworkAclId, :NetworkAclEntrySet
+
+        def initialize(networkaclid=nil, networkaclentryset=nil)
+          @NetworkAclId = networkaclid
+          @NetworkAclEntrySet = networkaclentryset
+        end
+
+        def deserialize(params)
+          @NetworkAclId = params['NetworkAclId']
+          unless params['NetworkAclEntrySet'].nil?
+            @NetworkAclEntrySet = NetworkAclEntrySet.new
+            @NetworkAclEntrySet.deserialize(params['NetworkAclEntrySet'])
+          end
+        end
+      end
+
+      # DeleteNetworkAclEntries返回参数结构体
+      class DeleteNetworkAclEntriesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 添加防篡改url
+
+        # @param request: Request instance for AddAntiFakeUrl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddAntiFakeUrlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddAntiFakeUrlResponse`
+        def AddAntiFakeUrl(request)
+          body = send_request('AddAntiFakeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAntiFakeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加信息防泄漏规则
+
+        # @param request: Request instance for AddAntiInfoLeakRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddAntiInfoLeakRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddAntiInfoLeakRulesResponse`
+        def AddAntiInfoLeakRules(request)
+          body = send_request('AddAntiInfoLeakRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAntiInfoLeakRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加访问控制（自定义策略）
 
         # @param request: Request instance for AddCustomRule.
@@ -245,6 +293,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除防篡改url
+
+        # @param request: Request instance for DeleteAntiFakeUrl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteAntiFakeUrlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteAntiFakeUrlResponse`
+        def DeleteAntiFakeUrl(request)
+          body = send_request('DeleteAntiFakeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAntiFakeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 信息防泄漏删除规则
+
+        # @param request: Request instance for DeleteAntiInfoLeakRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteAntiInfoLeakRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteAntiInfoLeakRuleResponse`
+        def DeleteAntiInfoLeakRule(request)
+          body = send_request('DeleteAntiInfoLeakRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAntiInfoLeakRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除攻击日志下载任务记录
 
         # @param request: Request instance for DeleteAttackDownloadRecord.
@@ -255,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAttackDownloadRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf  CC V2 Delete接口
+
+        # @param request: Request instance for DeleteCCRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteCCRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteCCRuleResponse`
+        def DeleteCCRule(request)
+          body = send_request('DeleteCCRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCCRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -558,6 +678,104 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取防篡改url
+
+        # @param request: Request instance for DescribeAntiFakeRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeRulesResponse`
+        def DescribeAntiFakeRules(request)
+          body = send_request('DescribeAntiFakeRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAntiFakeRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取防篡改url
+
+        # @param request: Request instance for DescribeAntiFakeUrl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeUrlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiFakeUrlResponse`
+        def DescribeAntiFakeUrl(request)
+          body = send_request('DescribeAntiFakeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAntiFakeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 老接口已经不再使用。
+
+        # 获取信息防泄漏规则列表
+
+        # @param request: Request instance for DescribeAntiInfoLeakRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakRulesResponse`
+        def DescribeAntiInfoLeakRules(request)
+          body = send_request('DescribeAntiInfoLeakRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAntiInfoLeakRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取得信息防泄漏规则列表
+
+        # @param request: Request instance for DescribeAntiInfoLeakageRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakageRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAntiInfoLeakageRulesResponse`
+        def DescribeAntiInfoLeakageRules(request)
+          body = send_request('DescribeAntiInfoLeakageRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAntiInfoLeakageRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 攻击总览
 
         # @param request: Request instance for DescribeAttackOverview.
@@ -594,6 +812,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAutoDenyIPResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf 多域名ip黑白名单查询
+
+        # @param request: Request instance for DescribeBatchIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeBatchIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeBatchIpAccessControlResponse`
+        def DescribeBatchIpAccessControl(request)
+          body = send_request('DescribeBatchIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBatchIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf  CC V2 Query接口
+
+        # @param request: Request instance for DescribeCCRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCCRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeCCRuleResponse`
+        def DescribeCCRule(request)
+          body = send_request('DescribeCCRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据多条件查询CC规则
+
+        # @param request: Request instance for DescribeCCRuleList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCCRuleListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeCCRuleListResponse`
+        def DescribeCCRuleList(request)
+          body = send_request('DescribeCCRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCRuleListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1088,6 +1378,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Waf 会话定义查询接口
+
+        # @param request: Request instance for DescribeSession.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeSessionRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeSessionResponse`
+        def DescribeSession(request)
+          body = send_request('DescribeSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户TLS版本
 
         # @param request: Request instance for DescribeTlsVersion.
@@ -1402,6 +1716,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 编辑防篡改url
+
+        # @param request: Request instance for ModifyAntiFakeUrl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAntiFakeUrlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAntiFakeUrlResponse`
+        def ModifyAntiFakeUrl(request)
+          body = send_request('ModifyAntiFakeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAntiFakeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换防篡改开关
+
+        # @param request: Request instance for ModifyAntiFakeUrlStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAntiFakeUrlStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAntiFakeUrlStatusResponse`
+        def ModifyAntiFakeUrlStatus(request)
+          body = send_request('ModifyAntiFakeUrlStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAntiFakeUrlStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 信息防泄漏切换规则开关
+
+        # @param request: Request instance for ModifyAntiInfoLeakRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAntiInfoLeakRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAntiInfoLeakRuleStatusResponse`
+        def ModifyAntiInfoLeakRuleStatus(request)
+          body = send_request('ModifyAntiInfoLeakRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAntiInfoLeakRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑信息防泄漏规则
+
+        # @param request: Request instance for ModifyAntiInfoLeakRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAntiInfoLeakRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAntiInfoLeakRulesResponse`
+        def ModifyAntiInfoLeakRules(request)
+          body = send_request('ModifyAntiInfoLeakRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAntiInfoLeakRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # api分析页面开关
 
         # @param request: Request instance for ModifyApiAnalyzeStatus.
@@ -1532,6 +1942,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启或禁用精准白名单
+
+        # @param request: Request instance for ModifyCustomWhiteRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyCustomWhiteRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyCustomWhiteRuleStatusResponse`
+        def ModifyCustomWhiteRuleStatus(request)
+          body = send_request('ModifyCustomWhiteRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomWhiteRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1979,6 +2413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Waf  CC V2 Upsert接口
+
+        # @param request: Request instance for UpsertCCRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::UpsertCCRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::UpsertCCRuleResponse`
+        def UpsertCCRule(request)
+          body = send_request('UpsertCCRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpsertCCRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # Waf IP黑白名单Upsert接口
 
         # @param request: Request instance for UpsertIpAccessControl.
@@ -1989,6 +2447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpsertIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf  会话定义 Upsert接口
+
+        # @param request: Request instance for UpsertSession.
+        # @type request: :class:`Tencentcloud::waf::V20180125::UpsertSessionRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::UpsertSessionResponse`
+        def UpsertSession(request)
+          body = send_request('UpsertSession', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpsertSessionResponse.new
             model.deserialize(response['Response'])
             model
           else
