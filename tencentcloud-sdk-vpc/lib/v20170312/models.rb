@@ -2712,6 +2712,8 @@ module TencentCloud
         # <li>TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费</li>
         # <li>PERCENT95_POSTPAID_BY_MONTH: 按月后付费月95计费</li>
         # <li>FIXED_PREPAID_BY_MONTH: 包月预付费计费</li>
+        # <li>ENHANCED95_POSTPAID_BY_MONTH: 按月后付费增强型95计费</li>
+        # <li>PEAK_BANDWIDTH_POSTPAID_BY_DAY: 后付费日结按带宽计费</li>
         # @type ChargeType: String
         # @param BandwidthPackageName: 带宽包名称。
         # @type BandwidthPackageName: String
@@ -15922,13 +15924,16 @@ module TencentCloud
         # @type NetworkAclEntrySet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclEntrySet`
         # @param NetworkAclQuintupleSet: 网络ACL五元组规则集。NetworkAclEntrySet和NetworkAclQuintupleSet只能输入一个。
         # @type NetworkAclQuintupleSet: :class:`Tencentcloud::Vpc.v20170312.models.NetworkAclQuintupleEntries`
+        # @param EnableUpdateAclEntries: 三元组的增量更新。该接口的默认语义为全量覆盖。当需要实现增量更新语义时，设置该参数为True。
+        # @type EnableUpdateAclEntries: Boolean
 
-        attr_accessor :NetworkAclId, :NetworkAclEntrySet, :NetworkAclQuintupleSet
+        attr_accessor :NetworkAclId, :NetworkAclEntrySet, :NetworkAclQuintupleSet, :EnableUpdateAclEntries
 
-        def initialize(networkaclid=nil, networkaclentryset=nil, networkaclquintupleset=nil)
+        def initialize(networkaclid=nil, networkaclentryset=nil, networkaclquintupleset=nil, enableupdateaclentries=nil)
           @NetworkAclId = networkaclid
           @NetworkAclEntrySet = networkaclentryset
           @NetworkAclQuintupleSet = networkaclquintupleset
+          @EnableUpdateAclEntries = enableupdateaclentries
         end
 
         def deserialize(params)
@@ -15941,6 +15946,7 @@ module TencentCloud
             @NetworkAclQuintupleSet = NetworkAclQuintupleEntries.new
             @NetworkAclQuintupleSet.deserialize(params['NetworkAclQuintupleSet'])
           end
+          @EnableUpdateAclEntries = params['EnableUpdateAclEntries']
         end
       end
 
@@ -17372,13 +17378,11 @@ module TencentCloud
 
       # 网络ACL规则。
       class NetworkAclEntry < TencentCloud::Common::AbstractModel
-        # @param ModifyTime: 修改时间。
-        # @type ModifyTime: String
         # @param Protocol: 协议, 取值: TCP,UDP, ICMP, ALL。
         # @type Protocol: String
         # @param Port: 端口(all, 单个port,  range)。当Protocol为ALL或ICMP时，不能指定Port。
         # @type Port: String
-        # @param CidrBlock: 网段或IP(互斥)。
+        # @param CidrBlock: 网段或IP(互斥)。增量创建ACL规则时，CidrBlock和Ipv6CidrBlock至少提供一个。
         # @type CidrBlock: String
         # @param Ipv6CidrBlock: 网段或IPv6(互斥)。
         # @type Ipv6CidrBlock: String
@@ -17386,27 +17390,43 @@ module TencentCloud
         # @type Action: String
         # @param Description: 规则描述，最大长度100。
         # @type Description: String
+        # @param ModifyTime: 修改时间。
+        # @type ModifyTime: String
+        # @param Priority: 优先级，从1开始。
+        # @type Priority: Integer
+        # @param NetworkAclIpv4EntryId: IPv4网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryID至少提供一个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAclIpv4EntryId: String
+        # @param NetworkAclIpv6EntryId: IPv6网络ACL条目唯一ID。当修改ACL条目时，NetworkAclIpv4EntryId和NetworkAclIpv6EntryId至少提供一个。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkAclIpv6EntryId: String
 
-        attr_accessor :ModifyTime, :Protocol, :Port, :CidrBlock, :Ipv6CidrBlock, :Action, :Description
+        attr_accessor :Protocol, :Port, :CidrBlock, :Ipv6CidrBlock, :Action, :Description, :ModifyTime, :Priority, :NetworkAclIpv4EntryId, :NetworkAclIpv6EntryId
 
-        def initialize(modifytime=nil, protocol=nil, port=nil, cidrblock=nil, ipv6cidrblock=nil, action=nil, description=nil)
-          @ModifyTime = modifytime
+        def initialize(protocol=nil, port=nil, cidrblock=nil, ipv6cidrblock=nil, action=nil, description=nil, modifytime=nil, priority=nil, networkaclipv4entryid=nil, networkaclipv6entryid=nil)
           @Protocol = protocol
           @Port = port
           @CidrBlock = cidrblock
           @Ipv6CidrBlock = ipv6cidrblock
           @Action = action
           @Description = description
+          @ModifyTime = modifytime
+          @Priority = priority
+          @NetworkAclIpv4EntryId = networkaclipv4entryid
+          @NetworkAclIpv6EntryId = networkaclipv6entryid
         end
 
         def deserialize(params)
-          @ModifyTime = params['ModifyTime']
           @Protocol = params['Protocol']
           @Port = params['Port']
           @CidrBlock = params['CidrBlock']
           @Ipv6CidrBlock = params['Ipv6CidrBlock']
           @Action = params['Action']
           @Description = params['Description']
+          @ModifyTime = params['ModifyTime']
+          @Priority = params['Priority']
+          @NetworkAclIpv4EntryId = params['NetworkAclIpv4EntryId']
+          @NetworkAclIpv6EntryId = params['NetworkAclIpv6EntryId']
         end
       end
 

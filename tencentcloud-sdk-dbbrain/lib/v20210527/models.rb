@@ -3523,10 +3523,14 @@ module TencentCloud
         # @param ClusterName: 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
+        # @param AgentStatus: 自建MySQL的Agent状态，"not_deployed" - 未部署，"deploying" - 部署中，"connected" - 连接正常，"deploy_failed" - 连接失败，"monitoring" - 连接正常，"stopped" - 暂停连接，"connect_failed" - 连接失败，unknown - 未知。
+        # @type AgentStatus: String
+        # @param InstanceStatus: 自建MySQL的实例状态，"not_attached" - 未连接，"attached" - 连接正常，"failed" - 连接失败，"stopped" - 停止监控，unknown- 未知。
+        # @type InstanceStatus: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus, :InternalVip, :InternalVport, :CreateTime, :ClusterId, :ClusterName
+        attr_accessor :InstanceId, :InstanceName, :Region, :HealthScore, :Product, :EventCount, :InstanceType, :Cpu, :Memory, :Volume, :EngineVersion, :Vip, :Vport, :Source, :GroupId, :GroupName, :Status, :UniqSubnetId, :DeployMode, :InitFlag, :TaskStatus, :UniqVpcId, :InstanceConf, :DeadlineTime, :IsSupported, :SecAuditStatus, :AuditPolicyStatus, :AuditRunningStatus, :InternalVip, :InternalVport, :CreateTime, :ClusterId, :ClusterName, :AgentStatus, :InstanceStatus
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil, internalvip=nil, internalvport=nil, createtime=nil, clusterid=nil, clustername=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, healthscore=nil, product=nil, eventcount=nil, instancetype=nil, cpu=nil, memory=nil, volume=nil, engineversion=nil, vip=nil, vport=nil, source=nil, groupid=nil, groupname=nil, status=nil, uniqsubnetid=nil, deploymode=nil, initflag=nil, taskstatus=nil, uniqvpcid=nil, instanceconf=nil, deadlinetime=nil, issupported=nil, secauditstatus=nil, auditpolicystatus=nil, auditrunningstatus=nil, internalvip=nil, internalvport=nil, createtime=nil, clusterid=nil, clustername=nil, agentstatus=nil, instancestatus=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -3560,6 +3564,8 @@ module TencentCloud
           @CreateTime = createtime
           @ClusterId = clusterid
           @ClusterName = clustername
+          @AgentStatus = agentstatus
+          @InstanceStatus = instancestatus
         end
 
         def deserialize(params)
@@ -3599,6 +3605,8 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ClusterId = params['ClusterId']
           @ClusterName = params['ClusterName']
+          @AgentStatus = params['AgentStatus']
+          @InstanceStatus = params['InstanceStatus']
         end
       end
 

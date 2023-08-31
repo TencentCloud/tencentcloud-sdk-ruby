@@ -160,10 +160,13 @@ module TencentCloud
         # @param RiskType: 风险类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
+        # @param RiskSide: 风险面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSide: String
 
-        attr_accessor :RiskId, :RiskDescription, :TemplateId, :TemplateName, :ControlItemId, :ControlItemName, :ControlItemDesc, :RiskLevel, :RiskMitigation, :Status, :CreatedTime, :RiskOwner, :RelatedAsset, :DataSourceId, :DataSourceName, :AssetName, :SecurityProduct, :RiskType
+        attr_accessor :RiskId, :RiskDescription, :TemplateId, :TemplateName, :ControlItemId, :ControlItemName, :ControlItemDesc, :RiskLevel, :RiskMitigation, :Status, :CreatedTime, :RiskOwner, :RelatedAsset, :DataSourceId, :DataSourceName, :AssetName, :SecurityProduct, :RiskType, :RiskSide
 
-        def initialize(riskid=nil, riskdescription=nil, templateid=nil, templatename=nil, controlitemid=nil, controlitemname=nil, controlitemdesc=nil, risklevel=nil, riskmitigation=nil, status=nil, createdtime=nil, riskowner=nil, relatedasset=nil, datasourceid=nil, datasourcename=nil, assetname=nil, securityproduct=nil, risktype=nil)
+        def initialize(riskid=nil, riskdescription=nil, templateid=nil, templatename=nil, controlitemid=nil, controlitemname=nil, controlitemdesc=nil, risklevel=nil, riskmitigation=nil, status=nil, createdtime=nil, riskowner=nil, relatedasset=nil, datasourceid=nil, datasourcename=nil, assetname=nil, securityproduct=nil, risktype=nil, riskside=nil)
           @RiskId = riskid
           @RiskDescription = riskdescription
           @TemplateId = templateid
@@ -182,6 +185,7 @@ module TencentCloud
           @AssetName = assetname
           @SecurityProduct = securityproduct
           @RiskType = risktype
+          @RiskSide = riskside
         end
 
         def deserialize(params)
@@ -210,6 +214,7 @@ module TencentCloud
             end
           end
           @RiskType = params['RiskType']
+          @RiskSide = params['RiskSide']
         end
       end
 
@@ -236,10 +241,16 @@ module TencentCloud
         # @param SupportDataSource: 支持的数据源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataSource: Array
+        # @param RiskSide: 风险面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSide: String
+        # @param ReferTemplateList: 关联模版列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReferTemplateList: Array
 
-        attr_accessor :Id, :RiskName, :Level, :Description, :RiskType, :ReferTemplateCount, :SupportDataSource
+        attr_accessor :Id, :RiskName, :Level, :Description, :RiskType, :ReferTemplateCount, :SupportDataSource, :RiskSide, :ReferTemplateList
 
-        def initialize(id=nil, riskname=nil, level=nil, description=nil, risktype=nil, refertemplatecount=nil, supportdatasource=nil)
+        def initialize(id=nil, riskname=nil, level=nil, description=nil, risktype=nil, refertemplatecount=nil, supportdatasource=nil, riskside=nil, refertemplatelist=nil)
           @Id = id
           @RiskName = riskname
           @Level = level
@@ -247,6 +258,8 @@ module TencentCloud
           @RiskType = risktype
           @ReferTemplateCount = refertemplatecount
           @SupportDataSource = supportdatasource
+          @RiskSide = riskside
+          @ReferTemplateList = refertemplatelist
         end
 
         def deserialize(params)
@@ -257,6 +270,15 @@ module TencentCloud
           @RiskType = params['RiskType']
           @ReferTemplateCount = params['ReferTemplateCount']
           @SupportDataSource = params['SupportDataSource']
+          @RiskSide = params['RiskSide']
+          unless params['ReferTemplateList'].nil?
+            @ReferTemplateList = []
+            params['ReferTemplateList'].each do |i|
+              templateinfo_tmp = TemplateInfo.new
+              templateinfo_tmp.deserialize(i)
+              @ReferTemplateList << templateinfo_tmp
+            end
+          end
         end
       end
 
@@ -379,10 +401,13 @@ module TencentCloud
         # @param SupportDataSource: 支持的数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportDataSource: Array
+        # @param IsASMTemplate: 是否包含攻击面风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsASMTemplate: Boolean
 
-        attr_accessor :Id, :TemplateId, :TemplateName, :Description, :Source, :UseType, :CreatedTime, :ControlItemCount, :AppliedItemCount, :Status, :SupportDataSource
+        attr_accessor :Id, :TemplateId, :TemplateName, :Description, :Source, :UseType, :CreatedTime, :ControlItemCount, :AppliedItemCount, :Status, :SupportDataSource, :IsASMTemplate
 
-        def initialize(id=nil, templateid=nil, templatename=nil, description=nil, source=nil, usetype=nil, createdtime=nil, controlitemcount=nil, applieditemcount=nil, status=nil, supportdatasource=nil)
+        def initialize(id=nil, templateid=nil, templatename=nil, description=nil, source=nil, usetype=nil, createdtime=nil, controlitemcount=nil, applieditemcount=nil, status=nil, supportdatasource=nil, isasmtemplate=nil)
           @Id = id
           @TemplateId = templateid
           @TemplateName = templatename
@@ -394,6 +419,7 @@ module TencentCloud
           @AppliedItemCount = applieditemcount
           @Status = status
           @SupportDataSource = supportdatasource
+          @IsASMTemplate = isasmtemplate
         end
 
         def deserialize(params)
@@ -408,6 +434,7 @@ module TencentCloud
           @AppliedItemCount = params['AppliedItemCount']
           @Status = params['Status']
           @SupportDataSource = params['SupportDataSource']
+          @IsASMTemplate = params['IsASMTemplate']
         end
       end
 
@@ -1343,8 +1370,6 @@ module TencentCloud
         # @type Name: String
         # @param TemplateId: 评估模版Id，格式“template-xxxxxxxx”
         # @type TemplateId: String
-        # @param DiscoveryCondition: 敏感数据扫描数据源条件。
-        # @type DiscoveryCondition: :class:`Tencentcloud::Dsgc.v20190723.models.DiscoveryCondition`
         # @param BusinessName: 评估业务名称。1-60个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字
         # @type BusinessName: String
         # @param BusinessDept: 业务所属部门。1-60个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字
@@ -1353,10 +1378,12 @@ module TencentCloud
         # @type BusinessOwner: String
         # @param ComplianceId: 分类分级模版Id
         # @type ComplianceId: Integer
+        # @param DiscoveryCondition: 敏感数据扫描数据源条件。
+        # @type DiscoveryCondition: :class:`Tencentcloud::Dsgc.v20190723.models.DiscoveryCondition`
         # @param Description: 说明
         # @type Description: String
 
-        attr_accessor :DspaId, :Name, :TemplateId, :DiscoveryCondition, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :Description
+        attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
         deprecate :BusinessName, :none, 2023, 8
         deprecate :BusinessName=, :none, 2023, 8
@@ -1365,15 +1392,15 @@ module TencentCloud
         deprecate :BusinessOwner, :none, 2023, 8
         deprecate :BusinessOwner=, :none, 2023, 8
 
-        def initialize(dspaid=nil, name=nil, templateid=nil, discoverycondition=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, description=nil)
+        def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
           @Name = name
           @TemplateId = templateid
-          @DiscoveryCondition = discoverycondition
           @BusinessName = businessname
           @BusinessDept = businessdept
           @BusinessOwner = businessowner
           @ComplianceId = complianceid
+          @DiscoveryCondition = discoverycondition
           @Description = description
         end
 
@@ -1381,14 +1408,14 @@ module TencentCloud
           @DspaId = params['DspaId']
           @Name = params['Name']
           @TemplateId = params['TemplateId']
-          unless params['DiscoveryCondition'].nil?
-            @DiscoveryCondition = DiscoveryCondition.new
-            @DiscoveryCondition.deserialize(params['DiscoveryCondition'])
-          end
           @BusinessName = params['BusinessName']
           @BusinessDept = params['BusinessDept']
           @BusinessOwner = params['BusinessOwner']
           @ComplianceId = params['ComplianceId']
+          unless params['DiscoveryCondition'].nil?
+            @DiscoveryCondition = DiscoveryCondition.new
+            @DiscoveryCondition.deserialize(params['DiscoveryCondition'])
+          end
           @Description = params['Description']
         end
       end
@@ -3458,17 +3485,22 @@ module TencentCloud
         # @type DspaId: String
         # @param TemplateId: 评估模版id
         # @type TemplateId: Integer
+        # @param Filter: 过滤条件， rdb（数据库）cos（对象存储）
+        # 不传就是全部
+        # @type Filter: String
 
-        attr_accessor :DspaId, :TemplateId
+        attr_accessor :DspaId, :TemplateId, :Filter
 
-        def initialize(dspaid=nil, templateid=nil)
+        def initialize(dspaid=nil, templateid=nil, filter=nil)
           @DspaId = dspaid
           @TemplateId = templateid
+          @Filter = filter
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @TemplateId = params['TemplateId']
+          @Filter = params['Filter']
         end
       end
 
@@ -3687,10 +3719,12 @@ module TencentCloud
         # @type EndTime: String
         # @param RiskLevel: 风险等级筛选
         # @type RiskLevel: String
+        # @param RiskSide: 风险面筛选
+        # @type RiskSide: Array
 
-        attr_accessor :DspaId, :TemplateId, :Limit, :Offset, :DataSourceId, :RiskType, :ControlItemId, :Status, :BeginTime, :EndTime, :RiskLevel
+        attr_accessor :DspaId, :TemplateId, :Limit, :Offset, :DataSourceId, :RiskType, :ControlItemId, :Status, :BeginTime, :EndTime, :RiskLevel, :RiskSide
 
-        def initialize(dspaid=nil, templateid=nil, limit=nil, offset=nil, datasourceid=nil, risktype=nil, controlitemid=nil, status=nil, begintime=nil, endtime=nil, risklevel=nil)
+        def initialize(dspaid=nil, templateid=nil, limit=nil, offset=nil, datasourceid=nil, risktype=nil, controlitemid=nil, status=nil, begintime=nil, endtime=nil, risklevel=nil, riskside=nil)
           @DspaId = dspaid
           @TemplateId = templateid
           @Limit = limit
@@ -3702,6 +3736,7 @@ module TencentCloud
           @BeginTime = begintime
           @EndTime = endtime
           @RiskLevel = risklevel
+          @RiskSide = riskside
         end
 
         def deserialize(params)
@@ -3716,6 +3751,7 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @RiskLevel = params['RiskLevel']
+          @RiskSide = params['RiskSide']
         end
       end
 
@@ -4093,17 +4129,22 @@ module TencentCloud
         # @type DspaId: String
         # @param TemplateId: 评估模版id
         # @type TemplateId: Integer
+        # @param Filter: 风险资产分布的过滤条件
+        # （rdb，cos，不传就筛选全部）
+        # @type Filter: String
 
-        attr_accessor :DspaId, :TemplateId
+        attr_accessor :DspaId, :TemplateId, :Filter
 
-        def initialize(dspaid=nil, templateid=nil)
+        def initialize(dspaid=nil, templateid=nil, filter=nil)
           @DspaId = dspaid
           @TemplateId = templateid
+          @Filter = filter
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @TemplateId = params['TemplateId']
+          @Filter = params['Filter']
         end
       end
 
@@ -4477,6 +4518,102 @@ module TencentCloud
         end
       end
 
+      # DescribeDSPAAssessmentRiskSideDistributed请求参数结构体
+      class DescribeDSPAAssessmentRiskSideDistributedRequest < TencentCloud::Common::AbstractModel
+        # @param DspaId: DSPA实例ID
+        # @type DspaId: String
+        # @param TemplateId: 评估模版id
+        # @type TemplateId: Integer
+
+        attr_accessor :DspaId, :TemplateId
+
+        def initialize(dspaid=nil, templateid=nil)
+          @DspaId = dspaid
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @DspaId = params['DspaId']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeDSPAAssessmentRiskSideDistributed返回参数结构体
+      class DescribeDSPAAssessmentRiskSideDistributedResponse < TencentCloud::Common::AbstractModel
+        # @param RiskSideDistributed: 风险面的分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSideDistributed: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RiskSideDistributed, :RequestId
+
+        def initialize(risksidedistributed=nil, requestid=nil)
+          @RiskSideDistributed = risksidedistributed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RiskSideDistributed'].nil?
+            @RiskSideDistributed = []
+            params['RiskSideDistributed'].each do |i|
+              risksidedistributed_tmp = RiskSideDistributed.new
+              risksidedistributed_tmp.deserialize(i)
+              @RiskSideDistributed << risksidedistributed_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDSPAAssessmentRiskSideList请求参数结构体
+      class DescribeDSPAAssessmentRiskSideListRequest < TencentCloud::Common::AbstractModel
+        # @param DspaId: DSPA实例ID
+        # @type DspaId: String
+        # @param TemplateId: 评估模版id
+        # @type TemplateId: Integer
+
+        attr_accessor :DspaId, :TemplateId
+
+        def initialize(dspaid=nil, templateid=nil)
+          @DspaId = dspaid
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @DspaId = params['DspaId']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeDSPAAssessmentRiskSideList返回参数结构体
+      class DescribeDSPAAssessmentRiskSideListResponse < TencentCloud::Common::AbstractModel
+        # @param RiskSideItmeList: 风险面列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSideItmeList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RiskSideItmeList, :RequestId
+
+        def initialize(risksideitmelist=nil, requestid=nil)
+          @RiskSideItmeList = risksideitmelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RiskSideItmeList'].nil?
+            @RiskSideItmeList = []
+            params['RiskSideItmeList'].each do |i|
+              note_tmp = Note.new
+              note_tmp.deserialize(i)
+              @RiskSideItmeList << note_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDSPAAssessmentRiskTemplateDetail请求参数结构体
       class DescribeDSPAAssessmentRiskTemplateDetailRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
@@ -4576,15 +4713,18 @@ module TencentCloud
         # @type RiskType: String
         # @param RiskName: 风险名称
         # @type RiskName: String
+        # @param RiskSide: 风险面
+        # @type RiskSide: String
 
-        attr_accessor :DspaId, :Limit, :Offset, :RiskType, :RiskName
+        attr_accessor :DspaId, :Limit, :Offset, :RiskType, :RiskName, :RiskSide
 
-        def initialize(dspaid=nil, limit=nil, offset=nil, risktype=nil, riskname=nil)
+        def initialize(dspaid=nil, limit=nil, offset=nil, risktype=nil, riskname=nil, riskside=nil)
           @DspaId = dspaid
           @Limit = limit
           @Offset = offset
           @RiskType = risktype
           @RiskName = riskname
+          @RiskSide = riskside
         end
 
         def deserialize(params)
@@ -4593,6 +4733,7 @@ module TencentCloud
           @Offset = params['Offset']
           @RiskType = params['RiskType']
           @RiskName = params['RiskName']
+          @RiskSide = params['RiskSide']
         end
       end
 
@@ -6390,10 +6531,12 @@ module TencentCloud
         # @type CategoryIdList: Array
         # @param LevelId: 敏感数据分级ID
         # @type LevelId: Integer
+        # @param DbName: 索引名称
+        # @type DbName: String
 
-        attr_accessor :DspaId, :TaskId, :ComplianceId, :Offset, :Limit, :CategoryIdList, :LevelId
+        attr_accessor :DspaId, :TaskId, :ComplianceId, :Offset, :Limit, :CategoryIdList, :LevelId, :DbName
 
-        def initialize(dspaid=nil, taskid=nil, complianceid=nil, offset=nil, limit=nil, categoryidlist=nil, levelid=nil)
+        def initialize(dspaid=nil, taskid=nil, complianceid=nil, offset=nil, limit=nil, categoryidlist=nil, levelid=nil, dbname=nil)
           @DspaId = dspaid
           @TaskId = taskid
           @ComplianceId = complianceid
@@ -6401,6 +6544,7 @@ module TencentCloud
           @Limit = limit
           @CategoryIdList = categoryidlist
           @LevelId = levelid
+          @DbName = dbname
         end
 
         def deserialize(params)
@@ -6411,6 +6555,7 @@ module TencentCloud
           @Limit = params['Limit']
           @CategoryIdList = params['CategoryIdList']
           @LevelId = params['LevelId']
+          @DbName = params['DbName']
         end
       end
 
@@ -9651,10 +9796,13 @@ module TencentCloud
         # @param LevelName: 分级名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LevelName: String
+        # @param LevelRiskScore: 分级分数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LevelRiskScore: Integer
 
-        attr_accessor :Id, :TaskId, :FieldName, :RuleId, :RuleName, :CategoryId, :CategoryName, :CategoryArr, :LevelId, :LevelName
+        attr_accessor :Id, :TaskId, :FieldName, :RuleId, :RuleName, :CategoryId, :CategoryName, :CategoryArr, :LevelId, :LevelName, :LevelRiskScore
 
-        def initialize(id=nil, taskid=nil, fieldname=nil, ruleid=nil, rulename=nil, categoryid=nil, categoryname=nil, categoryarr=nil, levelid=nil, levelname=nil)
+        def initialize(id=nil, taskid=nil, fieldname=nil, ruleid=nil, rulename=nil, categoryid=nil, categoryname=nil, categoryarr=nil, levelid=nil, levelname=nil, levelriskscore=nil)
           @Id = id
           @TaskId = taskid
           @FieldName = fieldname
@@ -9665,6 +9813,7 @@ module TencentCloud
           @CategoryArr = categoryarr
           @LevelId = levelid
           @LevelName = levelname
+          @LevelRiskScore = levelriskscore
         end
 
         def deserialize(params)
@@ -9678,6 +9827,7 @@ module TencentCloud
           @CategoryArr = params['CategoryArr']
           @LevelId = params['LevelId']
           @LevelName = params['LevelName']
+          @LevelRiskScore = params['LevelRiskScore']
         end
       end
 
@@ -10017,6 +10167,12 @@ module TencentCloud
         # @param InstanceId: 实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param DataSourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceType: String
+        # @param DataSourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceName: String
         # @param AssetsName: 资产对象名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetsName: String
@@ -10029,23 +10185,37 @@ module TencentCloud
         # @param TotalRiskCount: 总的风险个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalRiskCount: Integer
+        # @param RiskSide: 风险面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSide: String
+        # @param ResourceRegion: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
 
-        attr_accessor :InstanceId, :AssetsName, :HighRiskCount, :RiskType, :TotalRiskCount
+        attr_accessor :InstanceId, :DataSourceType, :DataSourceName, :AssetsName, :HighRiskCount, :RiskType, :TotalRiskCount, :RiskSide, :ResourceRegion
 
-        def initialize(instanceid=nil, assetsname=nil, highriskcount=nil, risktype=nil, totalriskcount=nil)
+        def initialize(instanceid=nil, datasourcetype=nil, datasourcename=nil, assetsname=nil, highriskcount=nil, risktype=nil, totalriskcount=nil, riskside=nil, resourceregion=nil)
           @InstanceId = instanceid
+          @DataSourceType = datasourcetype
+          @DataSourceName = datasourcename
           @AssetsName = assetsname
           @HighRiskCount = highriskcount
           @RiskType = risktype
           @TotalRiskCount = totalriskcount
+          @RiskSide = riskside
+          @ResourceRegion = resourceregion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @DataSourceType = params['DataSourceType']
+          @DataSourceName = params['DataSourceName']
           @AssetsName = params['AssetsName']
           @HighRiskCount = params['HighRiskCount']
           @RiskType = params['RiskType']
           @TotalRiskCount = params['TotalRiskCount']
+          @RiskSide = params['RiskSide']
+          @ResourceRegion = params['ResourceRegion']
         end
       end
 
@@ -10402,15 +10572,21 @@ module TencentCloud
         # @type Note: String
         # @param ProcessPeople: 处置人
         # @type ProcessPeople: String
+        # @param BathRiskIdList: 批量处理的列表
+        # @type BathRiskIdList: Array
 
-        attr_accessor :DspaId, :RiskLatestTableId, :Status, :Note, :ProcessPeople
+        attr_accessor :DspaId, :RiskLatestTableId, :Status, :Note, :ProcessPeople, :BathRiskIdList
+        extend Gem::Deprecate
+        deprecate :RiskLatestTableId, :none, 2023, 8
+        deprecate :RiskLatestTableId=, :none, 2023, 8
 
-        def initialize(dspaid=nil, risklatesttableid=nil, status=nil, note=nil, processpeople=nil)
+        def initialize(dspaid=nil, risklatesttableid=nil, status=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
           @RiskLatestTableId = risklatesttableid
           @Status = status
           @Note = note
           @ProcessPeople = processpeople
+          @BathRiskIdList = bathriskidlist
         end
 
         def deserialize(params)
@@ -10419,6 +10595,7 @@ module TencentCloud
           @Status = params['Status']
           @Note = params['Note']
           @ProcessPeople = params['ProcessPeople']
+          @BathRiskIdList = params['BathRiskIdList']
         end
       end
 
@@ -11846,17 +12023,22 @@ module TencentCloud
         # @type RiskLevel: String
         # @param Count: 该等级风险项数量
         # @type Count: Integer
+        # @param RiskLevelName: 风险等级名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevelName: String
 
-        attr_accessor :RiskLevel, :Count
+        attr_accessor :RiskLevel, :Count, :RiskLevelName
 
-        def initialize(risklevel=nil, count=nil)
+        def initialize(risklevel=nil, count=nil, risklevelname=nil)
           @RiskLevel = risklevel
           @Count = count
+          @RiskLevelName = risklevelname
         end
 
         def deserialize(params)
           @RiskLevel = params['RiskLevel']
           @Count = params['Count']
+          @RiskLevelName = params['RiskLevelName']
         end
       end
 
@@ -11922,6 +12104,9 @@ module TencentCloud
         # @param DataSourceType: 数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
+        # @param ResourceRegion: 资源地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRegion: String
         # @param AssetName: 资产名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
@@ -11958,14 +12143,18 @@ module TencentCloud
         # @param ItemSubType: 类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemSubType: String
+        # @param RiskSide: 风险面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskSide: String
 
-        attr_accessor :Id, :DataSourceId, :DataSourceName, :DataSourceType, :AssetName, :RiskType, :RiskName, :RiskLevel, :RiskDescription, :SuggestAction, :SecurityProduct, :Status, :ScanTime, :LastProcessTime, :IdentifyComplianceId, :ItemSubType
+        attr_accessor :Id, :DataSourceId, :DataSourceName, :DataSourceType, :ResourceRegion, :AssetName, :RiskType, :RiskName, :RiskLevel, :RiskDescription, :SuggestAction, :SecurityProduct, :Status, :ScanTime, :LastProcessTime, :IdentifyComplianceId, :ItemSubType, :RiskSide
 
-        def initialize(id=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, assetname=nil, risktype=nil, riskname=nil, risklevel=nil, riskdescription=nil, suggestaction=nil, securityproduct=nil, status=nil, scantime=nil, lastprocesstime=nil, identifycomplianceid=nil, itemsubtype=nil)
+        def initialize(id=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, resourceregion=nil, assetname=nil, risktype=nil, riskname=nil, risklevel=nil, riskdescription=nil, suggestaction=nil, securityproduct=nil, status=nil, scantime=nil, lastprocesstime=nil, identifycomplianceid=nil, itemsubtype=nil, riskside=nil)
           @Id = id
           @DataSourceId = datasourceid
           @DataSourceName = datasourcename
           @DataSourceType = datasourcetype
+          @ResourceRegion = resourceregion
           @AssetName = assetname
           @RiskType = risktype
           @RiskName = riskname
@@ -11978,6 +12167,7 @@ module TencentCloud
           @LastProcessTime = lastprocesstime
           @IdentifyComplianceId = identifycomplianceid
           @ItemSubType = itemsubtype
+          @RiskSide = riskside
         end
 
         def deserialize(params)
@@ -11985,6 +12175,7 @@ module TencentCloud
           @DataSourceId = params['DataSourceId']
           @DataSourceName = params['DataSourceName']
           @DataSourceType = params['DataSourceType']
+          @ResourceRegion = params['ResourceRegion']
           @AssetName = params['AssetName']
           @RiskType = params['RiskType']
           @RiskName = params['RiskName']
@@ -12004,6 +12195,7 @@ module TencentCloud
           @LastProcessTime = params['LastProcessTime']
           @IdentifyComplianceId = params['IdentifyComplianceId']
           @ItemSubType = params['ItemSubType']
+          @RiskSide = params['RiskSide']
         end
       end
 
@@ -12137,6 +12329,38 @@ module TencentCloud
           @Name = params['Name']
           @Id = params['Id']
           @Score = params['Score']
+        end
+      end
+
+      # 风险面的分布
+      class RiskSideDistributed < TencentCloud::Common::AbstractModel
+        # @param AssessmentRiskSide: 风险面
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssessmentRiskSide: :class:`Tencentcloud::Dsgc.v20190723.models.Note`
+        # @param AssessmentRisk: 风险类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssessmentRisk: Array
+
+        attr_accessor :AssessmentRiskSide, :AssessmentRisk
+
+        def initialize(assessmentriskside=nil, assessmentrisk=nil)
+          @AssessmentRiskSide = assessmentriskside
+          @AssessmentRisk = assessmentrisk
+        end
+
+        def deserialize(params)
+          unless params['AssessmentRiskSide'].nil?
+            @AssessmentRiskSide = Note.new
+            @AssessmentRiskSide.deserialize(params['AssessmentRiskSide'])
+          end
+          unless params['AssessmentRisk'].nil?
+            @AssessmentRisk = []
+            params['AssessmentRisk'].each do |i|
+              note_tmp = Note.new
+              note_tmp.deserialize(i)
+              @AssessmentRisk << note_tmp
+            end
+          end
         end
       end
 
@@ -12494,6 +12718,28 @@ module TencentCloud
           end
           @RiskName = params['RiskName']
           @RiskScore = params['RiskScore']
+        end
+      end
+
+      # 评估模版的详情数据
+      class TemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模版id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: Integer
+        # @param TemplateName: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+
+        attr_accessor :TemplateId, :TemplateName
+
+        def initialize(templateid=nil, templatename=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
         end
       end
 

@@ -20184,6 +20184,8 @@ module TencentCloud
         # @type BindStatus: Integer
         # @param ProductInstanceResourceSet: 预付费资源包实例中包含的资源包列表。
         # @type ProductInstanceResourceSet: Array
+        # @param ResourceSet: 预付费资源包实例中包含的资源包列表。
+        # @type ResourceSet: Array
         # @param ProductInstanceStatus: 资源包实例的状态，取值有：
         # <li>Effective：生效，可用于计费抵扣。</li>
         # <li>Isolated：隔离，不可用于计费抵扣。</li>
@@ -20199,9 +20201,12 @@ module TencentCloud
         # <li>NotSupport：不支持。</li>
         # @type RenewStatus: String
 
-        attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
+        attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
+        extend Gem::Deprecate
+        deprecate :ProductInstanceResourceSet, :none, 2023, 8
+        deprecate :ProductInstanceResourceSet=, :none, 2023, 8
 
-        def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
+        def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
           @StartTime = starttime
           @ExpireTime = expiretime
@@ -20209,6 +20214,7 @@ module TencentCloud
           @LastConsumeDate = lastconsumedate
           @BindStatus = bindstatus
           @ProductInstanceResourceSet = productinstanceresourceset
+          @ResourceSet = resourceset
           @ProductInstanceStatus = productinstancestatus
           @RefundStatus = refundstatus
           @RenewStatus = renewstatus
@@ -20229,6 +20235,14 @@ module TencentCloud
               @ProductInstanceResourceSet << productinstancerecource_tmp
             end
           end
+          unless params['ResourceSet'].nil?
+            @ResourceSet = []
+            params['ResourceSet'].each do |i|
+              productinstanceresource_tmp = ProductInstanceResource.new
+              productinstanceresource_tmp.deserialize(i)
+              @ResourceSet << productinstanceresource_tmp
+            end
+          end
           @ProductInstanceStatus = params['ProductInstanceStatus']
           @RefundStatus = params['RefundStatus']
           @RenewStatus = params['RenewStatus']
@@ -20237,6 +20251,48 @@ module TencentCloud
 
       # 资源包中包含的资源。
       class ProductInstanceRecource < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型。
+        # <li>Storage：存储资源包。</li>
+        # <li>Traffic：流量资源包。</li>
+        # <li>Transcode：普通转码资源包。</li>
+        # <li>TESHD：极速高清转码资源包。</li>
+        # <li>Review：音视频审核转码资源包。</li>
+        # <li>MediaProcess：媒体处理时长资源包。</li>
+        # @type ResourceType: String
+        # @param Amount: 资源包额度。
+        # <li>音视频存储资源包，单位为字节。</li>
+        # <li>音视频转码资源包，单位为秒。</li>
+        # <li>音视频审核资源包，单位为秒。</li>
+        # <li>音视频极速高清资源包，单位为秒。</li>
+        # <li>音视频加速资源包，单位为字节。</li>
+        # <li>媒体处理时长资源包，单位为秒。</li>
+        # @type Amount: Integer
+        # @param Left: 资源包余量。
+        # <li>音视频存储资源包，单位为字节。</li>
+        # <li>音视频转码资源包，单位为秒。</li>
+        # <li>音视频审核资源包，单位为秒。</li>
+        # <li>音视频极速高清资源包，单位为秒。</li>
+        # <li>音视频加速资源包，单位为字节。</li>
+        # <li>媒体处理时长资源包，单位为秒。</li>
+        # @type Left: Integer
+
+        attr_accessor :ResourceType, :Amount, :Left
+
+        def initialize(resourcetype=nil, amount=nil, left=nil)
+          @ResourceType = resourcetype
+          @Amount = amount
+          @Left = left
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Amount = params['Amount']
+          @Left = params['Left']
+        end
+      end
+
+      # 资源包中包含的资源。
+      class ProductInstanceResource < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型。
         # <li>Storage：存储资源包。</li>
         # <li>Traffic：流量资源包。</li>

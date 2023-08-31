@@ -1577,18 +1577,22 @@ module TencentCloud
         # @param IntentionQuestionResult: 意愿核身问答模式相关信息。若未使用意愿核身问答模式功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionQuestionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionQuestionResult`
+        # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionActionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionActionResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
 
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
           @EidInfo = eidinfo
           @IntentionVerifyData = intentionverifydata
           @IntentionQuestionResult = intentionquestionresult
+          @IntentionActionResult = intentionactionresult
           @RequestId = requestid
         end
 
@@ -1617,6 +1621,10 @@ module TencentCloud
             @IntentionQuestionResult = IntentionQuestionResult.new
             @IntentionQuestionResult.deserialize(params['IntentionQuestionResult'])
           end
+          unless params['IntentionActionResult'].nil?
+            @IntentionActionResult = IntentionActionResult.new
+            @IntentionActionResult.deserialize(params['IntentionActionResult'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1633,25 +1641,28 @@ module TencentCloud
         # @type InputType: String
         # @param UseIntentionVerify: 是否使用意愿核身，默认不使用。注意：如开启使用，则计费标签按【意愿核身】计费标签计价；如不开启，则计费标签按【E证通】计费标签计价，价格详见：[价格说明](https://cloud.tencent.com/document/product/1007/56804)。
         # @type UseIntentionVerify: Boolean
-        # @param IntentionMode: 意愿核身模式。枚举值：1( 朗读模式)，2（问答模式） 。默认值1
+        # @param IntentionMode: 意愿核身模式。枚举值：1( 语音朗读模式)，2（语音问答模式） ，3（点头确认模式）。默认值为1。
         # @type IntentionMode: String
         # @param IntentionVerifyText: 意愿核身朗读模式使用的文案，若未使用意愿核身朗读功能，该字段无需传入。默认为空，最长可接受120的字符串长度。
         # @type IntentionVerifyText: String
         # @param IntentionQuestions: 意愿核身问答模式的配置列表。当前仅支持一个问答。
         # @type IntentionQuestions: Array
+        # @param IntentionActions: 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。默认为空，最长可接受150的字符串长度。
+        # @type IntentionActions: Array
         # @param IntentionRecognition: 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         # @type IntentionRecognition: Boolean
         # @param IsSupportHMTResidentPermitOCR: 是否支持港澳台居住证识别
         # @type IsSupportHMTResidentPermitOCR: Boolean
 
-        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR
+        attr_accessor :InputType, :UseIntentionVerify, :IntentionMode, :IntentionVerifyText, :IntentionQuestions, :IntentionActions, :IntentionRecognition, :IsSupportHMTResidentPermitOCR
 
-        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil)
+        def initialize(inputtype=nil, useintentionverify=nil, intentionmode=nil, intentionverifytext=nil, intentionquestions=nil, intentionactions=nil, intentionrecognition=nil, issupporthmtresidentpermitocr=nil)
           @InputType = inputtype
           @UseIntentionVerify = useintentionverify
           @IntentionMode = intentionmode
           @IntentionVerifyText = intentionverifytext
           @IntentionQuestions = intentionquestions
+          @IntentionActions = intentionactions
           @IntentionRecognition = intentionrecognition
           @IsSupportHMTResidentPermitOCR = issupporthmtresidentpermitocr
         end
@@ -1667,6 +1678,14 @@ module TencentCloud
               intentionquestion_tmp = IntentionQuestion.new
               intentionquestion_tmp.deserialize(i)
               @IntentionQuestions << intentionquestion_tmp
+            end
+          end
+          unless params['IntentionActions'].nil?
+            @IntentionActions = []
+            params['IntentionActions'].each do |i|
+              intentionactionconfig_tmp = IntentionActionConfig.new
+              intentionactionconfig_tmp.deserialize(i)
+              @IntentionActions << intentionactionconfig_tmp
             end
           end
           @IntentionRecognition = params['IntentionRecognition']

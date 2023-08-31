@@ -363,19 +363,23 @@ module TencentCloud
         # @type WhiteListType: Integer
         # @param WhiteLists: 白名单名称
         # @type WhiteLists: Array
+        # @param Remark: 白名单备注
+        # @type Remark: String
 
-        attr_accessor :CompanyId, :WhiteListType, :WhiteLists
+        attr_accessor :CompanyId, :WhiteListType, :WhiteLists, :Remark
 
-        def initialize(companyid=nil, whitelisttype=nil, whitelists=nil)
+        def initialize(companyid=nil, whitelisttype=nil, whitelists=nil, remark=nil)
           @CompanyId = companyid
           @WhiteListType = whitelisttype
           @WhiteLists = whitelists
+          @Remark = remark
         end
 
         def deserialize(params)
           @CompanyId = params['CompanyId']
           @WhiteListType = params['WhiteListType']
           @WhiteLists = params['WhiteLists']
+          @Remark = params['Remark']
         end
       end
 
@@ -1003,18 +1007,22 @@ module TencentCloud
         # @param WhiteList: 白名单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WhiteList: String
+        # @param Remark: 白名单备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
         # @param InsertTime: 新增时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
 
-        attr_accessor :WhiteListId, :CompanyId, :BrandName, :AssetsType, :WhiteList, :InsertTime
+        attr_accessor :WhiteListId, :CompanyId, :BrandName, :AssetsType, :WhiteList, :Remark, :InsertTime
 
-        def initialize(whitelistid=nil, companyid=nil, brandname=nil, assetstype=nil, whitelist=nil, inserttime=nil)
+        def initialize(whitelistid=nil, companyid=nil, brandname=nil, assetstype=nil, whitelist=nil, remark=nil, inserttime=nil)
           @WhiteListId = whitelistid
           @CompanyId = companyid
           @BrandName = brandname
           @AssetsType = assetstype
           @WhiteList = whitelist
+          @Remark = remark
           @InsertTime = inserttime
         end
 
@@ -1024,6 +1032,7 @@ module TencentCloud
           @BrandName = params['BrandName']
           @AssetsType = params['AssetsType']
           @WhiteList = params['WhiteList']
+          @Remark = params['Remark']
           @InsertTime = params['InsertTime']
         end
       end

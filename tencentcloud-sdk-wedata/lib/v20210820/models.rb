@@ -5063,10 +5063,13 @@ module TencentCloud
         # @param ModifiedTime: 修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: Integer
+        # @param ShowType: 数据源页面展示类型，与Type对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShowType: String
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -5097,6 +5100,7 @@ module TencentCloud
           @ParamsString = paramsstring
           @BizParamsString = bizparamsstring
           @ModifiedTime = modifiedtime
+          @ShowType = showtype
         end
 
         def deserialize(params)
@@ -5130,6 +5134,7 @@ module TencentCloud
           @ParamsString = params['ParamsString']
           @BizParamsString = params['BizParamsString']
           @ModifiedTime = params['ModifiedTime']
+          @ShowType = params['ShowType']
         end
       end
 

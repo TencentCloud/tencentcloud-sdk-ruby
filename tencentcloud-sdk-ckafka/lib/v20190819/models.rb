@@ -659,6 +659,33 @@ module TencentCloud
         end
       end
 
+      # broker维度topic 流量排行指标
+      class BrokerTopicFlowData < TencentCloud::Common::AbstractModel
+        # @param TopicName: Topic 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param TopicId: Topic Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicTraffic: Topic 流量(MB)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicTraffic: String
+
+        attr_accessor :TopicName, :TopicId, :TopicTraffic
+
+        def initialize(topicname=nil, topicid=nil, topictraffic=nil)
+          @TopicName = topicname
+          @TopicId = topicid
+          @TopicTraffic = topictraffic
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @TopicId = params['TopicId']
+          @TopicTraffic = params['TopicTraffic']
+        end
+      end
+
       # CancelAuthorizationToken请求参数结构体
       class CancelAuthorizationTokenRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -2231,10 +2258,12 @@ module TencentCloud
         # @type PublicNetworkMonthly: Integer
         # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
         # @type InstanceNum: Integer
+        # @param AutoVoucher: 是否自动选择代金券:1-是;0否。默认为0
+        # @type AutoVoucher: Integer
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher
 
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2255,6 +2284,7 @@ module TencentCloud
           @ZoneIds = zoneids
           @PublicNetworkMonthly = publicnetworkmonthly
           @InstanceNum = instancenum
+          @AutoVoucher = autovoucher
         end
 
         def deserialize(params)
@@ -2285,6 +2315,7 @@ module TencentCloud
           @ZoneIds = params['ZoneIds']
           @PublicNetworkMonthly = params['PublicNetworkMonthly']
           @InstanceNum = params['InstanceNum']
+          @AutoVoucher = params['AutoVoucher']
         end
       end
 
@@ -10950,15 +10981,18 @@ module TencentCloud
         # @param BrokerTopicData: 单个broker 节点 Topic占用的数据大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BrokerTopicData: Array
+        # @param BrokerTopicFlowData: 单个Broker 节点Topic 流量的大小(单位MB)
+        # @type BrokerTopicFlowData: Array
 
-        attr_accessor :TopicFlow, :ConsumeSpeed, :TopicMessageHeap, :BrokerIp, :BrokerTopicData
+        attr_accessor :TopicFlow, :ConsumeSpeed, :TopicMessageHeap, :BrokerIp, :BrokerTopicData, :BrokerTopicFlowData
 
-        def initialize(topicflow=nil, consumespeed=nil, topicmessageheap=nil, brokerip=nil, brokertopicdata=nil)
+        def initialize(topicflow=nil, consumespeed=nil, topicmessageheap=nil, brokerip=nil, brokertopicdata=nil, brokertopicflowdata=nil)
           @TopicFlow = topicflow
           @ConsumeSpeed = consumespeed
           @TopicMessageHeap = topicmessageheap
           @BrokerIp = brokerip
           @BrokerTopicData = brokertopicdata
+          @BrokerTopicFlowData = brokertopicflowdata
         end
 
         def deserialize(params)
@@ -10993,6 +11027,14 @@ module TencentCloud
               brokertopicdata_tmp = BrokerTopicData.new
               brokertopicdata_tmp.deserialize(i)
               @BrokerTopicData << brokertopicdata_tmp
+            end
+          end
+          unless params['BrokerTopicFlowData'].nil?
+            @BrokerTopicFlowData = []
+            params['BrokerTopicFlowData'].each do |i|
+              brokertopicflowdata_tmp = BrokerTopicFlowData.new
+              brokertopicflowdata_tmp.deserialize(i)
+              @BrokerTopicFlowData << brokertopicflowdata_tmp
             end
           end
         end
@@ -11655,10 +11697,15 @@ module TencentCloud
         # @param SalesInfo: 标准版售罄信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SalesInfo: Array
+        # @param ExtraFlag: 额外标识
+        # @type ExtraFlag: String
 
-        attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo
+        attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
+        extend Gem::Deprecate
+        deprecate :Exflag, :none, 2023, 8
+        deprecate :Exflag=, :none, 2023, 8
 
-        def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil)
+        def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid
           @IsInternalApp = isinternalapp
           @AppId = appid
@@ -11668,6 +11715,7 @@ module TencentCloud
           @Exflag = exflag
           @SoldOut = soldout
           @SalesInfo = salesinfo
+          @ExtraFlag = extraflag
         end
 
         def deserialize(params)
@@ -11687,6 +11735,7 @@ module TencentCloud
               @SalesInfo << saleinfo_tmp
             end
           end
+          @ExtraFlag = params['ExtraFlag']
         end
       end
 

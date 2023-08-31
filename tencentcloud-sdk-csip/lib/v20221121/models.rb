@@ -868,10 +868,13 @@ module TencentCloud
         # @param Domain: 监听器域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
+        # @param LoadBalancerDomain: 负载均衡域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerDomain: String
 
-        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :VPort, :Zone, :NumericalVpcId, :LoadBalancerType, :Domain
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :VPort, :Zone, :NumericalVpcId, :LoadBalancerType, :Domain, :LoadBalancerDomain
 
-        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, domain=nil)
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, domain=nil, loadbalancerdomain=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @LoadBalancerId = loadbalancerid
@@ -884,6 +887,7 @@ module TencentCloud
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
           @Domain = domain
+          @LoadBalancerDomain = loadbalancerdomain
         end
 
         def deserialize(params)
@@ -899,6 +903,7 @@ module TencentCloud
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
           @Domain = params['Domain']
+          @LoadBalancerDomain = params['LoadBalancerDomain']
         end
       end
 

@@ -19497,7 +19497,7 @@ module TencentCloud
         # @param UnitRuleTagList: 规则标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnitRuleTagList: Array
-        # @param ItemIndex: 项目id
+        # @param ItemIndex: 规则项索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ItemIndex: Integer
         # @param CreatedTime: 创建时间
@@ -19549,7 +19549,7 @@ module TencentCloud
 
       # 微服务网关单元化规则标签
       class UnitRuleTag < TencentCloud::Common::AbstractModel
-        # @param TagType: 标签类型 : U(用户标签)
+        # @param TagType: 标签类型 : U(用户标签)/S(系统标签)
         # @type TagType: String
         # @param TagField: 标签名
         # @type TagField: String

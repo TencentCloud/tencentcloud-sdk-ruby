@@ -215,10 +215,19 @@ module TencentCloud
         # @param ClusterSessions: session集群信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterSessions: Array
+        # @param ArchGeneration: V3版本 = 2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArchGeneration: Integer
+        # @param ClusterType: 0:TKE, 1:EKS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: Integer
+        # @param Orders: 订单信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Orders: Array
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -255,6 +264,9 @@ module TencentCloud
           @PayMode = paymode
           @IsNeedManageNode = isneedmanagenode
           @ClusterSessions = clustersessions
+          @ArchGeneration = archgeneration
+          @ClusterType = clustertype
+          @Orders = orders
         end
 
         def deserialize(params)
@@ -323,6 +335,16 @@ module TencentCloud
               clustersession_tmp = ClusterSession.new
               clustersession_tmp.deserialize(i)
               @ClusterSessions << clustersession_tmp
+            end
+          end
+          @ArchGeneration = params['ArchGeneration']
+          @ClusterType = params['ClusterType']
+          unless params['Orders'].nil?
+            @Orders = []
+            params['Orders'].each do |i|
+              order_tmp = Order.new
+              order_tmp.deserialize(i)
+              @Orders << order_tmp
             end
           end
         end
@@ -2704,6 +2726,43 @@ module TencentCloud
             end
           end
           @StateTTL = params['StateTTL']
+        end
+      end
+
+      # 集群购买、扩缩容、续费订单信息
+      class Order < TencentCloud::Common::AbstractModel
+        # @param Type: 创建、续费、扩缩容 1 2 3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param AutoRenewFlag: 自动续费 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param OperateUin: 操作人的UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateUin: String
+        # @param ComputeCu: 最终集群的CU数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeCu: Integer
+        # @param OrderTime: 订单的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrderTime: String
+
+        attr_accessor :Type, :AutoRenewFlag, :OperateUin, :ComputeCu, :OrderTime
+
+        def initialize(type=nil, autorenewflag=nil, operateuin=nil, computecu=nil, ordertime=nil)
+          @Type = type
+          @AutoRenewFlag = autorenewflag
+          @OperateUin = operateuin
+          @ComputeCu = computecu
+          @OrderTime = ordertime
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @OperateUin = params['OperateUin']
+          @ComputeCu = params['ComputeCu']
+          @OrderTime = params['OrderTime']
         end
       end
 

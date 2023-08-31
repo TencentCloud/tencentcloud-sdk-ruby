@@ -1381,6 +1381,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 风险评估概览页，查询风险面的分布
+
+        # @param request: Request instance for DescribeDSPAAssessmentRiskSideDistributed.
+        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskSideDistributedRequest`
+        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskSideDistributedResponse`
+        def DescribeDSPAAssessmentRiskSideDistributed(request)
+          body = send_request('DescribeDSPAAssessmentRiskSideDistributed', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDSPAAssessmentRiskSideDistributedResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 风险评估概览页，查询风险面的分布
+
+        # @param request: Request instance for DescribeDSPAAssessmentRiskSideList.
+        # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskSideListRequest`
+        # @rtype: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskSideListResponse`
+        def DescribeDSPAAssessmentRiskSideList(request)
+          body = send_request('DescribeDSPAAssessmentRiskSideList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDSPAAssessmentRiskSideListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 风险项页面--查看评估模版详情
 
         # @param request: Request instance for DescribeDSPAAssessmentRiskTemplateDetail.

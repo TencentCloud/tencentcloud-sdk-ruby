@@ -2393,7 +2393,7 @@ module TencentCloud
         # @type Tags: Array
         # @param InstanceId: 独享实例id
         # @type InstanceId: String
-        # @param UniqVpcId: vpc属性
+        # @param UniqVpcId: vpc属性，选择VPC后不可修改，为服务选择VPC后，可对接该VPC下的后端资源
         # @type UniqVpcId: String
 
         attr_accessor :ServiceName, :Protocol, :ServiceDesc, :NetTypes, :IpVersion, :SetServerName, :AppIdType, :Tags, :InstanceId, :UniqVpcId
@@ -2483,7 +2483,7 @@ module TencentCloud
 
       # CreateUpstream请求参数结构体
       class CreateUpstreamRequest < TencentCloud::Common::AbstractModel
-        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS
+        # @param Scheme: 后端协议，取值范围：HTTP, HTTPS,gRPC，gRPCs
         # @type Scheme: String
         # @param Algorithm: 负载均衡算法，取值范围：ROUND-ROBIN
         # @type Algorithm: String
@@ -5205,12 +5205,15 @@ module TencentCloud
         # @param SpecialUse: 特殊用途, NULL和DEFAULT表示无特殊用途，其他用途如HTTP_DNS等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecialUse: String
+        # @param UniqVpcId: vpc属性，存量可能为空字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :DeploymentType, :SpecialUse, :RequestId
+        attr_accessor :ServiceId, :AvailableEnvironments, :ServiceName, :ServiceDesc, :Protocol, :CreatedTime, :ModifiedTime, :NetTypes, :InternalSubDomain, :OuterSubDomain, :InnerHttpPort, :InnerHttpsPort, :ApiTotalCount, :ApiIdStatusSet, :UsagePlanTotalCount, :UsagePlanList, :IpVersion, :UserType, :SetId, :Tags, :InstanceId, :InstanceName, :SetType, :DeploymentType, :SpecialUse, :UniqVpcId, :RequestId
 
-        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, deploymenttype=nil, specialuse=nil, requestid=nil)
+        def initialize(serviceid=nil, availableenvironments=nil, servicename=nil, servicedesc=nil, protocol=nil, createdtime=nil, modifiedtime=nil, nettypes=nil, internalsubdomain=nil, outersubdomain=nil, innerhttpport=nil, innerhttpsport=nil, apitotalcount=nil, apiidstatusset=nil, usageplantotalcount=nil, usageplanlist=nil, ipversion=nil, usertype=nil, setid=nil, tags=nil, instanceid=nil, instancename=nil, settype=nil, deploymenttype=nil, specialuse=nil, uniqvpcid=nil, requestid=nil)
           @ServiceId = serviceid
           @AvailableEnvironments = availableenvironments
           @ServiceName = servicename
@@ -5236,6 +5239,7 @@ module TencentCloud
           @SetType = settype
           @DeploymentType = deploymenttype
           @SpecialUse = specialuse
+          @UniqVpcId = uniqvpcid
           @RequestId = requestid
         end
 
@@ -5286,6 +5290,7 @@ module TencentCloud
           @SetType = params['SetType']
           @DeploymentType = params['DeploymentType']
           @SpecialUse = params['SpecialUse']
+          @UniqVpcId = params['UniqVpcId']
           @RequestId = params['RequestId']
         end
       end
@@ -7447,15 +7452,18 @@ module TencentCloud
         # @type Protocol: String
         # @param NetTypes: 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         # @type NetTypes: Array
+        # @param UniqVpcId: vpc属性，选择VPC后不可修改。为服务选择VPC后，可对接该VPC下的后端资源
+        # @type UniqVpcId: String
 
-        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :Protocol, :NetTypes
+        attr_accessor :ServiceId, :ServiceName, :ServiceDesc, :Protocol, :NetTypes, :UniqVpcId
 
-        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, protocol=nil, nettypes=nil)
+        def initialize(serviceid=nil, servicename=nil, servicedesc=nil, protocol=nil, nettypes=nil, uniqvpcid=nil)
           @ServiceId = serviceid
           @ServiceName = servicename
           @ServiceDesc = servicedesc
           @Protocol = protocol
           @NetTypes = nettypes
+          @UniqVpcId = uniqvpcid
         end
 
         def deserialize(params)
@@ -7464,6 +7472,7 @@ module TencentCloud
           @ServiceDesc = params['ServiceDesc']
           @Protocol = params['Protocol']
           @NetTypes = params['NetTypes']
+          @UniqVpcId = params['UniqVpcId']
         end
       end
 

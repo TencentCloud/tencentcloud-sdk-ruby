@@ -90,6 +90,46 @@ module TencentCloud
         end
       end
 
+      # 备份任务详情
+      class BackUpJobDisplay < TencentCloud::Common::AbstractModel
+        # @param JobId: 备份任务id
+        # @type JobId: Integer
+        # @param Snapshot: 备份任务名
+        # @type Snapshot: String
+        # @param BackUpType: 任务类型(元数据),(数据)
+        # @type BackUpType: String
+        # @param BackUpSize: 备份数据量
+        # @type BackUpSize: Integer
+        # @param BackUpTime: 任务创建时间
+        # @type BackUpTime: String
+        # @param ExpireTime: 任务过期时间
+        # @type ExpireTime: String
+        # @param JobStatus: 任务状态
+        # @type JobStatus: String
+
+        attr_accessor :JobId, :Snapshot, :BackUpType, :BackUpSize, :BackUpTime, :ExpireTime, :JobStatus
+
+        def initialize(jobid=nil, snapshot=nil, backuptype=nil, backupsize=nil, backuptime=nil, expiretime=nil, jobstatus=nil)
+          @JobId = jobid
+          @Snapshot = snapshot
+          @BackUpType = backuptype
+          @BackUpSize = backupsize
+          @BackUpTime = backuptime
+          @ExpireTime = expiretime
+          @JobStatus = jobstatus
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Snapshot = params['Snapshot']
+          @BackUpType = params['BackUpType']
+          @BackUpSize = params['BackUpSize']
+          @BackUpTime = params['BackUpTime']
+          @ExpireTime = params['ExpireTime']
+          @JobStatus = params['JobStatus']
+        end
+      end
+
       # 备份表信息
       class BackupTableContent < TencentCloud::Common::AbstractModel
         # @param Database: 数据库
@@ -458,6 +498,154 @@ module TencentCloud
         end
       end
 
+      # DeleteBackUpData请求参数结构体
+      class DeleteBackUpDataRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param BackUpJobId: 任务id
+        # @type BackUpJobId: Integer
+        # @param IsDeleteAll: 是否删除所有数据
+        # @type IsDeleteAll: Boolean
+
+        attr_accessor :InstanceId, :BackUpJobId, :IsDeleteAll
+
+        def initialize(instanceid=nil, backupjobid=nil, isdeleteall=nil)
+          @InstanceId = instanceid
+          @BackUpJobId = backupjobid
+          @IsDeleteAll = isdeleteall
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackUpJobId = params['BackUpJobId']
+          @IsDeleteAll = params['IsDeleteAll']
+        end
+      end
+
+      # DeleteBackUpData返回参数结构体
+      class DeleteBackUpDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackUpJobDetail请求参数结构体
+      class DescribeBackUpJobDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param BackUpJobId: 任务id
+        # @type BackUpJobId: Integer
+
+        attr_accessor :InstanceId, :BackUpJobId
+
+        def initialize(instanceid=nil, backupjobid=nil)
+          @InstanceId = instanceid
+          @BackUpJobId = backupjobid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackUpJobId = params['BackUpJobId']
+        end
+      end
+
+      # DescribeBackUpJobDetail返回参数结构体
+      class DescribeBackUpJobDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TableContents: 备份表详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableContents: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableContents, :RequestId
+
+        def initialize(tablecontents=nil, requestid=nil)
+          @TableContents = tablecontents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableContents'].nil?
+            @TableContents = []
+            params['TableContents'].each do |i|
+              backuptablecontent_tmp = BackupTableContent.new
+              backuptablecontent_tmp.deserialize(i)
+              @TableContents << backuptablecontent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackUpJob请求参数结构体
+      class DescribeBackUpJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNum: 页号
+        # @type PageNum: Integer
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :InstanceId, :PageSize, :PageNum, :BeginTime, :EndTime
+
+        def initialize(instanceid=nil, pagesize=nil, pagenum=nil, begintime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @PageSize = pagesize
+          @PageNum = pagenum
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeBackUpJob返回参数结构体
+      class DescribeBackUpJobResponse < TencentCloud::Common::AbstractModel
+        # @param BackUpJobs: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackUpJobs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackUpJobs, :RequestId
+
+        def initialize(backupjobs=nil, requestid=nil)
+          @BackUpJobs = backupjobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackUpJobs'].nil?
+            @BackUpJobs = []
+            params['BackUpJobs'].each do |i|
+              backupjobdisplay_tmp = BackUpJobDisplay.new
+              backupjobdisplay_tmp.deserialize(i)
+              @BackUpJobs << backupjobdisplay_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackUpSchedule请求参数结构体
       class DescribeBackUpScheduleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -552,14 +740,17 @@ module TencentCloud
         # @type Cluster: String
         # @param UserName: 用户名称，api与user相关的必填
         # @type UserName: String
+        # @param UserType: 账户的类型
+        # @type UserType: String
 
-        attr_accessor :InstanceId, :ApiType, :Cluster, :UserName
+        attr_accessor :InstanceId, :ApiType, :Cluster, :UserName, :UserType
 
-        def initialize(instanceid=nil, apitype=nil, cluster=nil, username=nil)
+        def initialize(instanceid=nil, apitype=nil, cluster=nil, username=nil, usertype=nil)
           @InstanceId = instanceid
           @ApiType = apitype
           @Cluster = cluster
           @UserName = username
+          @UserType = usertype
         end
 
         def deserialize(params)
@@ -567,6 +758,7 @@ module TencentCloud
           @ApiType = params['ApiType']
           @Cluster = params['Cluster']
           @UserName = params['UserName']
+          @UserType = params['UserType']
         end
       end
 
@@ -1842,6 +2034,42 @@ module TencentCloud
 
       # OpenBackUp返回参数结构体
       class OpenBackUpResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecoverBackUpJob请求参数结构体
+      class RecoverBackUpJobRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param BackUpJobId: 任务id
+        # @type BackUpJobId: Integer
+
+        attr_accessor :InstanceId, :BackUpJobId
+
+        def initialize(instanceid=nil, backupjobid=nil)
+          @InstanceId = instanceid
+          @BackUpJobId = backupjobid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BackUpJobId = params['BackUpJobId']
+        end
+      end
+
+      # RecoverBackUpJob返回参数结构体
+      class RecoverBackUpJobResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

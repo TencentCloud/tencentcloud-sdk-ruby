@@ -7758,9 +7758,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param InstanceIds: 实例ID
         # @type InstanceIds: Array
-        # @param ClusterParamList: 集群参数列表
+        # @param ClusterParamList: 集群参数列表，例如 [{           "CurrentValue":"2",        "ParamName":"innodb_stats_transient_sample_pages"}]
         # @type ClusterParamList: Array
-        # @param InstanceParamList: 实例参数列表
+        # @param InstanceParamList: 实例参数列表，例如[{           "CurrentValue":"2",        "ParamName":"innodb_stats_transient_sample_pages"}]
         # @type InstanceParamList: Array
         # @param IsInMaintainPeriod: yes：在运维时间窗内修改，no：立即执行（默认值）
         # @type IsInMaintainPeriod: String

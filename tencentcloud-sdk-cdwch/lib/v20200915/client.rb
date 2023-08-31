@@ -101,6 +101,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除备份数据
+
+        # @param request: Request instance for DeleteBackUpData.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::DeleteBackUpDataRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::DeleteBackUpDataResponse`
+        def DeleteBackUpData(request)
+          body = send_request('DeleteBackUpData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBackUpDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份任务列表
+
+        # @param request: Request instance for DescribeBackUpJob.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::DescribeBackUpJobRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::DescribeBackUpJobResponse`
+        def DescribeBackUpJob(request)
+          body = send_request('DescribeBackUpJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackUpJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询备份任务详情
+
+        # @param request: Request instance for DescribeBackUpJobDetail.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::DescribeBackUpJobDetailRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::DescribeBackUpJobDetailResponse`
+        def DescribeBackUpJobDetail(request)
+          body = send_request('DescribeBackUpJobDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackUpJobDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询备份策略信息
 
         # @param request: Request instance for DescribeBackUpSchedule.
@@ -447,6 +519,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenBackUpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 备份恢复
+
+        # @param request: Request instance for RecoverBackUpJob.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::RecoverBackUpJobRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::RecoverBackUpJobResponse`
+        def RecoverBackUpJob(request)
+          body = send_request('RecoverBackUpJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecoverBackUpJobResponse.new
             model.deserialize(response['Response'])
             model
           else

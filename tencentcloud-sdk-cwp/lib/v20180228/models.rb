@@ -13154,13 +13154,19 @@ module TencentCloud
 
         # <li>Domain  - String - 基线名称</li>
         # @type Filters: Array
+        # @param Order: 排序方式 [asc:升序|desc:降序]
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
 
-        attr_accessor :Limit, :Offset, :Filters
+        attr_accessor :Limit, :Offset, :Filters, :Order, :By
 
-        def initialize(limit=nil, offset=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @Order = order
+          @By = by
         end
 
         def deserialize(params)
@@ -13174,6 +13180,8 @@ module TencentCloud
               @Filters << filters_tmp
             end
           end
+          @Order = params['Order']
+          @By = params['By']
         end
       end
 
