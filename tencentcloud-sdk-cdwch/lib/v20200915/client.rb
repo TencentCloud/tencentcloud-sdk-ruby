@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 针对ck账号的权限做管控（新版）
+        # 针对集群账号的权限做管控（新版）
 
         # @param request: Request instance for ModifyUserNewPrivilege.
         # @type request: :class:`Tencentcloud::cdwch::V20200915::ModifyUserNewPrivilegeRequest`

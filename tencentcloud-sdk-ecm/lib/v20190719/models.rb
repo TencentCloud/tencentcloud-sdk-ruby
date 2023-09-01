@@ -11495,12 +11495,14 @@ module TencentCloud
         # @type SubnetId: String
         # @param PrivateIpAddresses: 指定主网卡内网IP。条件：SubnetId与VpcId必须同时指定，并且IP数量与InstanceCount相同，多IP主机副网卡内网IP在相同子网内通过DHCP获取。
         # @type PrivateIpAddresses: Array
-        # @param Ipv6AddressCount: 为弹性网卡指定随机生成的IPv6地址数量，目前数量不能大于1。
+        # @param Ipv6AddressCount: 为弹性网卡指定随机生成的IPv6地址数量，单网情况下是1，单网需要ISP 只能为单网运营商，三网情况3
         # @type Ipv6AddressCount: Integer
+        # @param Ipv6SubnetIds: 指定创建三网ipv6地址，使用的subnet数组，单独ipv4和单网ipv6子网依然使用SubnetId字段
+        # @type Ipv6SubnetIds: Array
 
-        attr_accessor :Zone, :InstanceCount, :ISP, :VpcId, :SubnetId, :PrivateIpAddresses, :Ipv6AddressCount
+        attr_accessor :Zone, :InstanceCount, :ISP, :VpcId, :SubnetId, :PrivateIpAddresses, :Ipv6AddressCount, :Ipv6SubnetIds
 
-        def initialize(zone=nil, instancecount=nil, isp=nil, vpcid=nil, subnetid=nil, privateipaddresses=nil, ipv6addresscount=nil)
+        def initialize(zone=nil, instancecount=nil, isp=nil, vpcid=nil, subnetid=nil, privateipaddresses=nil, ipv6addresscount=nil, ipv6subnetids=nil)
           @Zone = zone
           @InstanceCount = instancecount
           @ISP = isp
@@ -11508,6 +11510,7 @@ module TencentCloud
           @SubnetId = subnetid
           @PrivateIpAddresses = privateipaddresses
           @Ipv6AddressCount = ipv6addresscount
+          @Ipv6SubnetIds = ipv6subnetids
         end
 
         def deserialize(params)
@@ -11518,6 +11521,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @PrivateIpAddresses = params['PrivateIpAddresses']
           @Ipv6AddressCount = params['Ipv6AddressCount']
+          @Ipv6SubnetIds = params['Ipv6SubnetIds']
         end
       end
 

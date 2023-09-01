@@ -365,6 +365,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取扫描任务列表
+
+        # @param request: Request instance for DescribeScanTaskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeScanTaskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeScanTaskListResponse`
+        def DescribeScanTaskList(request)
+          body = send_request('DescribeScanTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScanTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 立体防护中心查询漏洞信息
+
+        # @param request: Request instance for DescribeSearchBugInfo.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeSearchBugInfoRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeSearchBugInfoResponse`
+        def DescribeSearchBugInfo(request)
+          body = send_request('DescribeSearchBugInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSearchBugInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取子网列表
 
         # @param request: Request instance for DescribeSubnetAssets.
@@ -375,6 +423,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSubnetAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取任务扫描报告列表
+
+        # @param request: Request instance for DescribeTaskLogList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeTaskLogListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeTaskLogListResponse`
+        def DescribeTaskLogList(request)
+          body = send_request('DescribeTaskLogList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取报告下载的临时链接
+
+        # @param request: Request instance for DescribeTaskLogURL.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeTaskLogURLRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeTaskLogURLResponse`
+        def DescribeTaskLogURL(request)
+          body = send_request('DescribeTaskLogURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskLogURLResponse.new
             model.deserialize(response['Response'])
             model
           else

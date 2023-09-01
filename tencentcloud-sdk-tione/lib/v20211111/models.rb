@@ -555,15 +555,17 @@ module TencentCloud
 
       # ChatCompletion请求参数结构体
       class ChatCompletionRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 部署好的模型服务Id。
+        # @param Model: 对话的目标模型ID。
+        # 多行业多场景大模型在线体验聊天：tj_llm_clm-v1。
+        # 自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-xxyyzz。
         # @type Model: String
         # @param Messages: 输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。
         # @type Messages: Array
-        # @param Temperature: 采样随机值，默认值为1.0，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
+        # @param Temperature: 仅当模型为自行部署的开源大模型时生效。采样随机值，默认值为1.0，取值范围[0,2]。较高的值(如0.8)将使输出更加随机，而较低的值(如0.2)将使输出更加确定。建议仅修改此参数或TopP，但不建议两者都修改。
         # @type Temperature: Float
-        # @param TopP: 核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。
+        # @param TopP: 仅当模型为自行部署的开源大模型时生效。核采样，默认值为1，取值范围[0,1]。指的是预先设置一个概率界限 p，然后将所有可能生成的token，根据概率大小从高到低排列，依次选取。当这些选取的token的累积概率大于或等于 p 值时停止，然后从已经选取的token中进行采样，生成下一个token。例如top_p为0.1时意味着模型只考虑累积概率为10%的token。建议仅修改此参数或Temperature，不建议两者都修改。
         # @type TopP: Float
-        # @param MaxTokens: 最大生成的token数目。默认为无限大。
+        # @param MaxTokens: 仅当模型为自行部署的开源大模型时生效。最大生成的token数目。默认为无限大。
         # @type MaxTokens: Integer
 
         attr_accessor :Model, :Messages, :Temperature, :TopP, :MaxTokens
@@ -1588,8 +1590,6 @@ module TencentCloud
         # VERSION：导入新版本
         # EXIST：导入现有版本
         # @type ImportMethod: String
-        # @param TrainingModelCosPath: 模型来源cos目录，以/结尾
-        # @type TrainingModelCosPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param ReasoningEnvironmentSource: 推理环境来源（SYSTEM/CUSTOM）
         # @type ReasoningEnvironmentSource: String
         # @param TrainingModelName: 模型名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
@@ -1598,6 +1598,8 @@ module TencentCloud
         # @type Tags: Array
         # @param TrainingJobName: 训练任务名称
         # @type TrainingJobName: String
+        # @param TrainingModelCosPath: 模型来源cos目录，以/结尾
+        # @type TrainingModelCosPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param AlgorithmFramework: 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML/MMDETECTION)
         # @type AlgorithmFramework: String
         # @param ReasoningEnvironment: 推理环境
@@ -1641,15 +1643,15 @@ module TencentCloud
         # @param IsQAT: 是否QAT模型
         # @type IsQAT: Boolean
 
-        attr_accessor :ImportMethod, :TrainingModelCosPath, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod, :IsQAT
+        attr_accessor :ImportMethod, :ReasoningEnvironmentSource, :TrainingModelName, :Tags, :TrainingJobName, :TrainingModelCosPath, :AlgorithmFramework, :ReasoningEnvironment, :TrainingModelIndex, :TrainingModelVersion, :ReasoningImageInfo, :ModelMoveMode, :TrainingJobId, :TrainingModelId, :ModelOutputPath, :TrainingModelSource, :TrainingPreference, :AutoMLTaskId, :TrainingJobVersion, :ModelVersionType, :ModelFormat, :ReasoningEnvironmentId, :AutoClean, :MaxReservedModels, :ModelCleanPeriod, :IsQAT
 
-        def initialize(importmethod=nil, trainingmodelcospath=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil, isqat=nil)
+        def initialize(importmethod=nil, reasoningenvironmentsource=nil, trainingmodelname=nil, tags=nil, trainingjobname=nil, trainingmodelcospath=nil, algorithmframework=nil, reasoningenvironment=nil, trainingmodelindex=nil, trainingmodelversion=nil, reasoningimageinfo=nil, modelmovemode=nil, trainingjobid=nil, trainingmodelid=nil, modeloutputpath=nil, trainingmodelsource=nil, trainingpreference=nil, automltaskid=nil, trainingjobversion=nil, modelversiontype=nil, modelformat=nil, reasoningenvironmentid=nil, autoclean=nil, maxreservedmodels=nil, modelcleanperiod=nil, isqat=nil)
           @ImportMethod = importmethod
-          @TrainingModelCosPath = trainingmodelcospath
           @ReasoningEnvironmentSource = reasoningenvironmentsource
           @TrainingModelName = trainingmodelname
           @Tags = tags
           @TrainingJobName = trainingjobname
+          @TrainingModelCosPath = trainingmodelcospath
           @AlgorithmFramework = algorithmframework
           @ReasoningEnvironment = reasoningenvironment
           @TrainingModelIndex = trainingmodelindex
@@ -1674,10 +1676,6 @@ module TencentCloud
 
         def deserialize(params)
           @ImportMethod = params['ImportMethod']
-          unless params['TrainingModelCosPath'].nil?
-            @TrainingModelCosPath = CosPathInfo.new
-            @TrainingModelCosPath.deserialize(params['TrainingModelCosPath'])
-          end
           @ReasoningEnvironmentSource = params['ReasoningEnvironmentSource']
           @TrainingModelName = params['TrainingModelName']
           unless params['Tags'].nil?
@@ -1689,6 +1687,10 @@ module TencentCloud
             end
           end
           @TrainingJobName = params['TrainingJobName']
+          unless params['TrainingModelCosPath'].nil?
+            @TrainingModelCosPath = CosPathInfo.new
+            @TrainingModelCosPath.deserialize(params['TrainingModelCosPath'])
+          end
           @AlgorithmFramework = params['AlgorithmFramework']
           @ReasoningEnvironment = params['ReasoningEnvironment']
           @TrainingModelIndex = params['TrainingModelIndex']
@@ -2612,15 +2614,19 @@ module TencentCloud
       class DeleteModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
+        # @param ServiceCategory: 服务分类
+        # @type ServiceCategory: String
 
-        attr_accessor :ServiceId
+        attr_accessor :ServiceId, :ServiceCategory
 
-        def initialize(serviceid=nil)
+        def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
+          @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @ServiceCategory = params['ServiceCategory']
         end
       end
 
@@ -3603,14 +3609,14 @@ module TencentCloud
       class DescribeLogsRequest < TencentCloud::Common::AbstractModel
         # @param Service: 查询哪个服务的事件（可选值为TRAIN, NOTEBOOK, INFER）
         # @type Service: String
-        # @param PodName: 查询哪个Pod的日志（支持结尾通配符*)
-        # @type PodName: String
         # @param StartTime: 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
         # @type StartTime: String
         # @param EndTime: 日志查询结束时间（RFC3339格式的时间字符串），默认值为当前时间
         # @type EndTime: String
         # @param Limit: 日志查询条数，默认值100，最大值100
         # @type Limit: Integer
+        # @param PodName: 查询哪个Pod的日志（支持结尾通配符*)
+        # @type PodName: String
         # @param Order: 排序方向（可选值为ASC, DESC ），默认为DESC
         # @type Order: String
         # @param OrderField: 按哪个字段排序（可选值为Timestamp），默认值为Timestamp
@@ -3624,14 +3630,14 @@ module TencentCloud
         # 3. Filter. Negative和Filter. Fuzzy没有使用
         # @type Filters: Array
 
-        attr_accessor :Service, :PodName, :StartTime, :EndTime, :Limit, :Order, :OrderField, :Context, :Filters
+        attr_accessor :Service, :StartTime, :EndTime, :Limit, :PodName, :Order, :OrderField, :Context, :Filters
 
-        def initialize(service=nil, podname=nil, starttime=nil, endtime=nil, limit=nil, order=nil, orderfield=nil, context=nil, filters=nil)
+        def initialize(service=nil, starttime=nil, endtime=nil, limit=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil)
           @Service = service
-          @PodName = podname
           @StartTime = starttime
           @EndTime = endtime
           @Limit = limit
+          @PodName = podname
           @Order = order
           @OrderField = orderfield
           @Context = context
@@ -3640,10 +3646,10 @@ module TencentCloud
 
         def deserialize(params)
           @Service = params['Service']
-          @PodName = params['PodName']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
+          @PodName = params['PodName']
           @Order = params['Order']
           @OrderField = params['OrderField']
           @Context = params['Context']
@@ -3874,15 +3880,19 @@ module TencentCloud
       class DescribeModelServiceCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
         # @type ServiceGroupId: String
+        # @param ServiceCategory: 服务分类
+        # @type ServiceCategory: String
 
-        attr_accessor :ServiceGroupId
+        attr_accessor :ServiceGroupId, :ServiceCategory
 
-        def initialize(servicegroupid=nil)
+        def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
+          @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @ServiceCategory = params['ServiceCategory']
         end
       end
 
@@ -3897,15 +3907,23 @@ module TencentCloud
         # @param DefaultNginxGatewayCallInfo: 默认nginx网关的调用信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultNginxGatewayCallInfo: :class:`Tencentcloud::Tione.v20211111.models.DefaultNginxGatewayCallInfo`
+        # @param TJCallInfo: 太极服务的调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TJCallInfo: :class:`Tencentcloud::Tione.v20211111.models.TJCallInfo`
+        # @param IntranetCallInfo: 内网调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetCallInfo: :class:`Tencentcloud::Tione.v20211111.models.IntranetCallInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :DefaultNginxGatewayCallInfo, :RequestId
+        attr_accessor :ServiceCallInfo, :InferGatewayCallInfo, :DefaultNginxGatewayCallInfo, :TJCallInfo, :IntranetCallInfo, :RequestId
 
-        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, defaultnginxgatewaycallinfo=nil, requestid=nil)
+        def initialize(servicecallinfo=nil, infergatewaycallinfo=nil, defaultnginxgatewaycallinfo=nil, tjcallinfo=nil, intranetcallinfo=nil, requestid=nil)
           @ServiceCallInfo = servicecallinfo
           @InferGatewayCallInfo = infergatewaycallinfo
           @DefaultNginxGatewayCallInfo = defaultnginxgatewaycallinfo
+          @TJCallInfo = tjcallinfo
+          @IntranetCallInfo = intranetcallinfo
           @RequestId = requestid
         end
 
@@ -3922,6 +3940,14 @@ module TencentCloud
             @DefaultNginxGatewayCallInfo = DefaultNginxGatewayCallInfo.new
             @DefaultNginxGatewayCallInfo.deserialize(params['DefaultNginxGatewayCallInfo'])
           end
+          unless params['TJCallInfo'].nil?
+            @TJCallInfo = TJCallInfo.new
+            @TJCallInfo.deserialize(params['TJCallInfo'])
+          end
+          unless params['IntranetCallInfo'].nil?
+            @IntranetCallInfo = IntranetCallInfo.new
+            @IntranetCallInfo.deserialize(params['IntranetCallInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3930,15 +3956,19 @@ module TencentCloud
       class DescribeModelServiceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组ID
         # @type ServiceGroupId: String
+        # @param ServiceCategory: 服务分类
+        # @type ServiceCategory: String
 
-        attr_accessor :ServiceGroupId
+        attr_accessor :ServiceGroupId, :ServiceCategory
 
-        def initialize(servicegroupid=nil)
+        def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
+          @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceGroupId = params['ServiceGroupId']
+          @ServiceCategory = params['ServiceCategory']
         end
       end
 
@@ -3981,16 +4011,19 @@ module TencentCloud
         # @type Filters: Array
         # @param TagFilters: 标签过滤参数
         # @type TagFilters: Array
+        # @param ServiceCategory: 服务分类
+        # @type ServiceCategory: String
 
-        attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters
+        attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
 
-        def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil)
+        def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @Offset = offset
           @Limit = limit
           @Order = order
           @OrderField = orderfield
           @Filters = filters
           @TagFilters = tagfilters
+          @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
@@ -4014,6 +4047,7 @@ module TencentCloud
               @TagFilters << tagfilter_tmp
             end
           end
+          @ServiceCategory = params['ServiceCategory']
         end
       end
 
@@ -4156,15 +4190,19 @@ module TencentCloud
       class DescribeModelServiceRequest < TencentCloud::Common::AbstractModel
         # @param ServiceId: 服务id
         # @type ServiceId: String
+        # @param ServiceCategory: 服务分类
+        # @type ServiceCategory: String
 
-        attr_accessor :ServiceId
+        attr_accessor :ServiceId, :ServiceCategory
 
-        def initialize(serviceid=nil)
+        def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
+          @ServiceCategory = servicecategory
         end
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+          @ServiceCategory = params['ServiceCategory']
         end
       end
 
@@ -5593,6 +5631,38 @@ module TencentCloud
         end
       end
 
+      # 私有连接通道信息
+      class IngressPrivateLinkInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: 用户VpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 用户子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param InnerHttpAddr: 内网http调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerHttpAddr: Array
+        # @param InnerHttpsAddr: 内网https调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerHttpsAddr: Array
+
+        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr
+
+        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InnerHttpAddr = innerhttpaddr
+          @InnerHttpsAddr = innerhttpsaddr
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InnerHttpAddr = params['InnerHttpAddr']
+          @InnerHttpsAddr = params['InnerHttpsAddr']
+        end
+      end
+
       # 资源组节点信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 资源组节点id
@@ -5669,6 +5739,38 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @SpecId = params['SpecId']
           @SpecAlias = params['SpecAlias']
+        end
+      end
+
+      # 内网调用信息
+      class IntranetCallInfo < TencentCloud::Common::AbstractModel
+        # @param IngressPrivateLinkInfo: 私有连接通道信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IngressPrivateLinkInfo: :class:`Tencentcloud::Tione.v20211111.models.IngressPrivateLinkInfo`
+        # @param ServiceEIPInfo: 共享弹性网卡信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceEIPInfo: Array
+
+        attr_accessor :IngressPrivateLinkInfo, :ServiceEIPInfo
+
+        def initialize(ingressprivatelinkinfo=nil, serviceeipinfo=nil)
+          @IngressPrivateLinkInfo = ingressprivatelinkinfo
+          @ServiceEIPInfo = serviceeipinfo
+        end
+
+        def deserialize(params)
+          unless params['IngressPrivateLinkInfo'].nil?
+            @IngressPrivateLinkInfo = IngressPrivateLinkInfo.new
+            @IngressPrivateLinkInfo.deserialize(params['IngressPrivateLinkInfo'])
+          end
+          unless params['ServiceEIPInfo'].nil?
+            @ServiceEIPInfo = []
+            params['ServiceEIPInfo'].each do |i|
+              serviceeipinfo_tmp = ServiceEIPInfo.new
+              serviceeipinfo_tmp.deserialize(i)
+              @ServiceEIPInfo << serviceeipinfo_tmp
+            end
+          end
         end
       end
 
@@ -7794,12 +7896,18 @@ module TencentCloud
         # @type SessionId: String
         # @param Question: 问题描述
         # @type Question: String
-        # @param ModelVersion: 会话模型版本，不同的会话模型调用到不同的模型后台。
-        # 注: 多行业多场景大模型填写 tj_llm_clm-v1
+        # @param ModelVersion: 会话模型版本。
+        # 多行业多场景大模型：填写 tj_llm_clm-v1。
+        # 多行业客服大模型：填写demo_big_model_version_id。
+        # 默认为demo_big_model_version_id，即多行业客服大模型。
         # @type ModelVersion: String
-        # @param Mode: 使用模式(仅部分模型支持)。General 通用问答；WithSearchPlugin 搜索增强问答
+        # @param Mode: 使用模式(仅多场景客服大模型支持)。
+        # 通用问答：填写General。
+        # 搜索增强问答：填写WithSearchPlugin。
+        # 默认为General，即通用问答。
         # @type Mode: String
-        # @param SearchSource: 搜索来源。仅当Mode未WithSearchPlugin时生效。Preset 预置文稿库；Custom 自定义。
+        # @param SearchSource: 搜索来源。仅当Mode为WithSearchPlugin时生效。
+        # 预置文稿库：填写Preset。自定义：填写Custom。
         # @type SearchSource: String
 
         attr_accessor :SessionId, :Question, :ModelVersion, :Mode, :SearchSource
@@ -8072,6 +8180,60 @@ module TencentCloud
         end
       end
 
+      # 服务共享弹性网卡设置
+      class ServiceEIP < TencentCloud::Common::AbstractModel
+        # @param EnableEIP: 是否开启TIONE内网到外部的访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableEIP: Boolean
+        # @param VpcId: 用户VpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 用户subnetId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+
+        attr_accessor :EnableEIP, :VpcId, :SubnetId
+
+        def initialize(enableeip=nil, vpcid=nil, subnetid=nil)
+          @EnableEIP = enableeip
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @EnableEIP = params['EnableEIP']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 共享弹性网卡信息
+      class ServiceEIPInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param VpcId: 用户VpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 用户子网Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+
+        attr_accessor :ServiceId, :VpcId, :SubnetId
+
+        def initialize(serviceid=nil, vpcid=nil, subnetid=nil)
+          @ServiceId = serviceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
       # 在线服务一个服务组的信息
       class ServiceGroup < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -8323,10 +8485,13 @@ module TencentCloud
         # @param Command: 服务的启动命令
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Command: String
+        # @param ServiceEIP: 开启TIONE内网访问外部设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -8356,6 +8521,7 @@ module TencentCloud
           @VolumeMount = volumemount
           @InferCodeInfo = infercodeinfo
           @Command = command
+          @ServiceEIP = serviceeip
         end
 
         def deserialize(params)
@@ -8442,6 +8608,10 @@ module TencentCloud
             @InferCodeInfo.deserialize(params['InferCodeInfo'])
           end
           @Command = params['Command']
+          unless params['ServiceEIP'].nil?
+            @ServiceEIP = ServiceEIP.new
+            @ServiceEIP.deserialize(params['ServiceEIP'])
+          end
         end
       end
 
@@ -8842,6 +9012,33 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 太极服务的调用信息
+      class TJCallInfo < TencentCloud::Common::AbstractModel
+        # @param HttpAddr: 调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpAddr: String
+        # @param Token: token
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Token: String
+        # @param CallExample: 调用示例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallExample: String
+
+        attr_accessor :HttpAddr, :Token, :CallExample
+
+        def initialize(httpaddr=nil, token=nil, callexample=nil)
+          @HttpAddr = httpaddr
+          @Token = token
+          @CallExample = callexample
+        end
+
+        def deserialize(params)
+          @HttpAddr = params['HttpAddr']
+          @Token = params['Token']
+          @CallExample = params['CallExample']
         end
       end
 
@@ -9852,8 +10049,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2023, 8
-        deprecate :StatefulSetCondition=, :none, 2023, 8
+        deprecate :StatefulSetCondition, :none, 2023, 9
+        deprecate :StatefulSetCondition=, :none, 2023, 9
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

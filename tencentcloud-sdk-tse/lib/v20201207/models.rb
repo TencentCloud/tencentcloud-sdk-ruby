@@ -60,6 +60,95 @@ module TencentCloud
         end
       end
 
+      # 指标伸缩行为
+      class AutoScalerBehavior < TencentCloud::Common::AbstractModel
+        # @param ScaleUp: 扩容行为配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleUp: :class:`Tencentcloud::Tse.v20201207.models.AutoScalerRules`
+        # @param ScaleDown: 缩容行为配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleDown: :class:`Tencentcloud::Tse.v20201207.models.AutoScalerRules`
+
+        attr_accessor :ScaleUp, :ScaleDown
+
+        def initialize(scaleup=nil, scaledown=nil)
+          @ScaleUp = scaleup
+          @ScaleDown = scaledown
+        end
+
+        def deserialize(params)
+          unless params['ScaleUp'].nil?
+            @ScaleUp = AutoScalerRules.new
+            @ScaleUp.deserialize(params['ScaleUp'])
+          end
+          unless params['ScaleDown'].nil?
+            @ScaleDown = AutoScalerRules.new
+            @ScaleDown.deserialize(params['ScaleDown'])
+          end
+        end
+      end
+
+      # 扩容策略
+      class AutoScalerPolicy < TencentCloud::Common::AbstractModel
+        # @param Type: 类型，Pods或Percent
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+        # @param PeriodSeconds: 扩容周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodSeconds: Integer
+
+        attr_accessor :Type, :Value, :PeriodSeconds
+
+        def initialize(type=nil, value=nil, periodseconds=nil)
+          @Type = type
+          @Value = value
+          @PeriodSeconds = periodseconds
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+          @PeriodSeconds = params['PeriodSeconds']
+        end
+      end
+
+      # 指标伸缩的规则
+      class AutoScalerRules < TencentCloud::Common::AbstractModel
+        # @param StabilizationWindowSeconds: 稳定窗口时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StabilizationWindowSeconds: Integer
+        # @param SelectPolicy: 选择策略依据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectPolicy: String
+        # @param Policies: 扩容策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policies: Array
+
+        attr_accessor :StabilizationWindowSeconds, :SelectPolicy, :Policies
+
+        def initialize(stabilizationwindowseconds=nil, selectpolicy=nil, policies=nil)
+          @StabilizationWindowSeconds = stabilizationwindowseconds
+          @SelectPolicy = selectpolicy
+          @Policies = policies
+        end
+
+        def deserialize(params)
+          @StabilizationWindowSeconds = params['StabilizationWindowSeconds']
+          @SelectPolicy = params['SelectPolicy']
+          unless params['Policies'].nil?
+            @Policies = []
+            params['Policies'].each do |i|
+              autoscalerpolicy_tmp = AutoScalerPolicy.new
+              autoscalerpolicy_tmp.deserialize(i)
+              @Policies << autoscalerpolicy_tmp
+            end
+          end
+        end
+      end
+
       # 服务治理引擎绑定的kubernetes信息
       class BoundK8SInfo < TencentCloud::Common::AbstractModel
         # @param BoundClusterId: 绑定的kubernetes集群ID
@@ -439,6 +528,9 @@ module TencentCloud
         # @type MaxReplicas: Integer
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
+        extend Gem::Deprecate
+        deprecate :MaxReplicas, :none, 2023, 9
+        deprecate :MaxReplicas=, :none, 2023, 9
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -494,10 +586,22 @@ module TencentCloud
         # @param AutoScalerId: 指标配置ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalerId: String
+        # @param Behavior: 指标伸缩行为配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Behavior: :class:`Tencentcloud::Tse.v20201207.models.AutoScalerBehavior`
 
-        attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId
+        attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
+        extend Gem::Deprecate
+        deprecate :CreateTime, :none, 2023, 9
+        deprecate :CreateTime=, :none, 2023, 9
+        deprecate :ModifyTime, :none, 2023, 9
+        deprecate :ModifyTime=, :none, 2023, 9
+        deprecate :StrategyId, :none, 2023, 9
+        deprecate :StrategyId=, :none, 2023, 9
+        deprecate :AutoScalerId, :none, 2023, 9
+        deprecate :AutoScalerId=, :none, 2023, 9
 
-        def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil)
+        def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
           @Metrics = metrics
           @Enabled = enabled
@@ -505,6 +609,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @StrategyId = strategyid
           @AutoScalerId = autoscalerid
+          @Behavior = behavior
         end
 
         def deserialize(params)
@@ -522,6 +627,10 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @StrategyId = params['StrategyId']
           @AutoScalerId = params['AutoScalerId']
+          unless params['Behavior'].nil?
+            @Behavior = AutoScalerBehavior.new
+            @Behavior.deserialize(params['Behavior'])
+          end
         end
       end
 
@@ -576,6 +685,13 @@ module TencentCloud
         # @type StrategyId: String
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
+        extend Gem::Deprecate
+        deprecate :CreateTime, :none, 2023, 9
+        deprecate :CreateTime=, :none, 2023, 9
+        deprecate :ModifyTime, :none, 2023, 9
+        deprecate :ModifyTime=, :none, 2023, 9
+        deprecate :StrategyId, :none, 2023, 9
+        deprecate :StrategyId=, :none, 2023, 9
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -930,8 +1046,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 8
-        deprecate :ForceHttps=, :none, 2023, 8
+        deprecate :ForceHttps, :none, 2023, 9
+        deprecate :ForceHttps=, :none, 2023, 9
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -3347,8 +3463,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 8
-        deprecate :ForceHttps=, :none, 2023, 8
+        deprecate :ForceHttps, :none, 2023, 9
+        deprecate :ForceHttps=, :none, 2023, 9
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -3940,8 +4056,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 8
-        deprecate :ForceHttps=, :none, 2023, 8
+        deprecate :ForceHttps, :none, 2023, 9
+        deprecate :ForceHttps=, :none, 2023, 9
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid

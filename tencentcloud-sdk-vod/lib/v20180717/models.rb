@@ -20203,8 +20203,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2023, 8
-        deprecate :ProductInstanceResourceSet=, :none, 2023, 8
+        deprecate :ProductInstanceResourceSet, :none, 2023, 9
+        deprecate :ProductInstanceResourceSet=, :none, 2023, 9
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype

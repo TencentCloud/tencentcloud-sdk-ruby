@@ -101,6 +101,28 @@ module TencentCloud
         end
       end
 
+      # 数据同步中的列信息
+      class Column < TencentCloud::Common::AbstractModel
+        # @param ColumnName: 列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param NewColumnName: 新列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewColumnName: String
+
+        attr_accessor :ColumnName, :NewColumnName
+
+        def initialize(columnname=nil, newcolumnname=nil)
+          @ColumnName = columnname
+          @NewColumnName = newcolumnname
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @NewColumnName = params['NewColumnName']
+        end
+      end
+
       # 一致性校验摘要信息
       class CompareAbstractInfo < TencentCloud::Common::AbstractModel
         # @param Options: 校验配置参数
@@ -189,6 +211,23 @@ module TencentCloud
         end
       end
 
+      # 列选项
+      class CompareColumnItem < TencentCloud::Common::AbstractModel
+        # @param ColumnName: 列名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+
+        attr_accessor :ColumnName
+
+        def initialize(columnname=nil)
+          @ColumnName = columnname
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+        end
+      end
+
       # 一致性校验详细信息
       class CompareDetailInfo < TencentCloud::Common::AbstractModel
         # @param Difference: 数据不一致的表详情
@@ -268,10 +307,10 @@ module TencentCloud
         # @param Tables: 用于一致性校验的表配置，当 TableMode 为 partial 时，需要填写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tables: Array
-        # @param ViewMode: 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象
+        # @param ViewMode: 视图选择模式: all 为当前对象下的所有视图对象,partial 为部分视图对象(一致性校验不校验视图，当前参数未启作用)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ViewMode: String
-        # @param Views: 用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写
+        # @param Views: 用于一致性校验的视图配置，当 ViewMode 为 partial 时， 需要填写(一致性校验不校验视图，当前参数未启作用)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Views: Array
 
@@ -344,15 +383,32 @@ module TencentCloud
         # @param TableName: 表名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
+        # @param ColumnMode: column 模式，all 为全部，partial 表示部分(该参数仅对数据同步任务有效)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnMode: String
+        # @param Columns: 当 ColumnMode 为 partial 时必填(该参数仅对数据同步任务有效)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
 
-        attr_accessor :TableName
+        attr_accessor :TableName, :ColumnMode, :Columns
 
-        def initialize(tablename=nil)
+        def initialize(tablename=nil, columnmode=nil, columns=nil)
           @TableName = tablename
+          @ColumnMode = columnmode
+          @Columns = columns
         end
 
         def deserialize(params)
           @TableName = params['TableName']
+          @ColumnMode = params['ColumnMode']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              comparecolumnitem_tmp = CompareColumnItem.new
+              comparecolumnitem_tmp.deserialize(i)
+              @Columns << comparecolumnitem_tmp
+            end
+          end
         end
       end
 
@@ -5073,6 +5129,12 @@ module TencentCloud
         # @param FilterCondition: 过滤条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterCondition: String
+        # @param ColumnMode: 是否同步表中所有列，All：当前表下的所有列,Partial(ModifySyncJobConfig接口里的对应字段ColumnMode暂不支持Partial)：当前表下的部分列，通过填充Columns字段详细表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnMode: String
+        # @param Columns: 同步的的列信息，当ColumnMode为Partial时，必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
         # @param TmpTables: 同步临时表，注意此配置与NewTableName互斥，只能使用其中一种。当配置的同步对象为表级别且TableEditMode为pt时此项有意义，针对pt-osc等工具在同步过程中产生的临时表进行同步，需要提前将可能的临时表配置在这里，否则不会同步任何临时表。示例，如要对t1进行pt-osc操作，此项配置应该为["\_t1\_new","\_t1\_old"]；如要对t1进行gh-ost操作，此项配置应该为["\_t1\_ghc","\_t1\_gho","\_t1\_del"]，pt-osc与gh-ost产生的临时表可同时配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpTables: Array
@@ -5080,12 +5142,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableEditMode: String
 
-        attr_accessor :TableName, :NewTableName, :FilterCondition, :TmpTables, :TableEditMode
+        attr_accessor :TableName, :NewTableName, :FilterCondition, :ColumnMode, :Columns, :TmpTables, :TableEditMode
 
-        def initialize(tablename=nil, newtablename=nil, filtercondition=nil, tmptables=nil, tableeditmode=nil)
+        def initialize(tablename=nil, newtablename=nil, filtercondition=nil, columnmode=nil, columns=nil, tmptables=nil, tableeditmode=nil)
           @TableName = tablename
           @NewTableName = newtablename
           @FilterCondition = filtercondition
+          @ColumnMode = columnmode
+          @Columns = columns
           @TmpTables = tmptables
           @TableEditMode = tableeditmode
         end
@@ -5094,6 +5158,15 @@ module TencentCloud
           @TableName = params['TableName']
           @NewTableName = params['NewTableName']
           @FilterCondition = params['FilterCondition']
+          @ColumnMode = params['ColumnMode']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @Columns << column_tmp
+            end
+          end
           @TmpTables = params['TmpTables']
           @TableEditMode = params['TableEditMode']
         end

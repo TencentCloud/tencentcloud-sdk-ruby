@@ -1684,7 +1684,7 @@ module TencentCloud
       class DescribeDiagDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param IsSupported: 是否是DBbrain支持的实例，固定传 true。
         # @type IsSupported: Boolean
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"cynosdb" - 云数据库 TDSQL-C for MySQL，"dbbrain-mysql" - 自建 MySQL，默认为"mysql"。
         # @type Product: String
         # @param Offset: 分页参数，偏移量。
         # @type Offset: Integer
@@ -4910,6 +4910,86 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # UpdateAgentSwitch请求参数结构体
+      class UpdateAgentSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: Agent标识。
+        # @type AgentId: String
+        # @param Switch: 停止或重连Agent，支持值包括："on" - 重连Agent， "off" - 停止Agent。
+        # @type Switch: String
+        # @param Product: 服务产品类型，仅支持 "dbbrain-mysql" - 自建MySQL。
+        # @type Product: String
+
+        attr_accessor :AgentId, :Switch, :Product
+
+        def initialize(agentid=nil, switch=nil, product=nil)
+          @AgentId = agentid
+          @Switch = switch
+          @Product = product
+        end
+
+        def deserialize(params)
+          @AgentId = params['AgentId']
+          @Switch = params['Switch']
+          @Product = params['Product']
+        end
+      end
+
+      # UpdateAgentSwitch返回参数结构体
+      class UpdateAgentSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateMonitorSwitch请求参数结构体
+      class UpdateMonitorSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param Switch: 停止或重连Agent实例，支持值包括："on" - 重连实例， "off" - 停止实例。
+        # @type Switch: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，仅支持 "dbbrain-mysql" - 自建MySQL。
+        # @type Product: String
+
+        attr_accessor :Switch, :InstanceId, :Product
+
+        def initialize(switch=nil, instanceid=nil, product=nil)
+          @Switch = switch
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # UpdateMonitorSwitch返回参数结构体
+      class UpdateMonitorSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

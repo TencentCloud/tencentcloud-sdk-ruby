@@ -470,10 +470,13 @@ module TencentCloud
         # @param AddOnSubtitles: 要插入的字幕文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddOnSubtitles: Array
+        # @param DrmInfo: Drm信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DrmInfo: :class:`Tencentcloud::Mps.v20190612.models.DrmInfo`
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
@@ -481,6 +484,7 @@ module TencentCloud
           @SubStreamObjectName = substreamobjectname
           @SegmentObjectName = segmentobjectname
           @AddOnSubtitles = addonsubtitles
+          @DrmInfo = drminfo
         end
 
         def deserialize(params)
@@ -507,6 +511,10 @@ module TencentCloud
               addonsubtitle_tmp.deserialize(i)
               @AddOnSubtitles << addonsubtitle_tmp
             end
+          end
+          unless params['DrmInfo'].nil?
+            @DrmInfo = DrmInfo.new
+            @DrmInfo.deserialize(params['DrmInfo'])
           end
         end
       end
@@ -9233,6 +9241,32 @@ module TencentCloud
         end
       end
 
+      # Drm 加密信息。
+      class DrmInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 加密类型：
+        # <li> simpleaes: aes-128 加密</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param SimpleAesDrm: SimpleAes 加密信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimpleAesDrm: :class:`Tencentcloud::Mps.v20190612.models.SimpleAesDrm`
+
+        attr_accessor :Type, :SimpleAesDrm
+
+        def initialize(type=nil, simpleaesdrm=nil)
+          @Type = type
+          @SimpleAesDrm = simpleaesdrm
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['SimpleAesDrm'].nil?
+            @SimpleAesDrm = SimpleAesDrm.new
+            @SimpleAesDrm.deserialize(params['SimpleAesDrm'])
+          end
+        end
+      end
+
       # 编辑点播视频文件信息
       class EditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param InputInfo: 视频的输入信息。
@@ -16705,6 +16739,33 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Intensity = params['Intensity']
+        end
+      end
+
+      # SimpleAes 加密信息。
+      class SimpleAesDrm < TencentCloud::Common::AbstractModel
+        # @param Uri: 请求解密秘钥uri地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uri: String
+        # @param Key: 加密key(32字节字符串)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Vector: 加密初始化向量(32字节字符串)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vector: String
+
+        attr_accessor :Uri, :Key, :Vector
+
+        def initialize(uri=nil, key=nil, vector=nil)
+          @Uri = uri
+          @Key = key
+          @Vector = vector
+        end
+
+        def deserialize(params)
+          @Uri = params['Uri']
+          @Key = params['Key']
+          @Vector = params['Vector']
         end
       end
 

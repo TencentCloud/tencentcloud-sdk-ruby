@@ -1225,15 +1225,23 @@ module TencentCloud
       class DescribeCfsFileSystemClientsRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID。
         # @type FileSystemId: String
+        # @param Offset: Offset 分页码
+        # @type Offset: Integer
+        # @param Limit: Limit 页面大小
+        # @type Limit: Integer
 
-        attr_accessor :FileSystemId
+        attr_accessor :FileSystemId, :Offset, :Limit
 
-        def initialize(filesystemid=nil)
+        def initialize(filesystemid=nil, offset=nil, limit=nil)
           @FileSystemId = filesystemid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
@@ -1241,13 +1249,16 @@ module TencentCloud
       class DescribeCfsFileSystemClientsResponse < TencentCloud::Common::AbstractModel
         # @param ClientList: 客户端列表
         # @type ClientList: Array
+        # @param TotalCount: 文件系统总数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClientList, :RequestId
+        attr_accessor :ClientList, :TotalCount, :RequestId
 
-        def initialize(clientlist=nil, requestid=nil)
+        def initialize(clientlist=nil, totalcount=nil, requestid=nil)
           @ClientList = clientlist
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -1260,6 +1271,7 @@ module TencentCloud
               @ClientList << filesystemclient_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

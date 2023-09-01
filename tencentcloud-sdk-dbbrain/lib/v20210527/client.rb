@@ -1301,6 +1301,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新agent状态（停止或重连Agent）
+
+        # @param request: Request instance for UpdateAgentSwitch.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::UpdateAgentSwitchRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::UpdateAgentSwitchResponse`
+        def UpdateAgentSwitch(request)
+          body = send_request('UpdateAgentSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAgentSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新Agent实例状态（停止或重连实例）
+
+        # @param request: Request instance for UpdateMonitorSwitch.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::UpdateMonitorSwitchRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::UpdateMonitorSwitchResponse`
+        def UpdateMonitorSwitch(request)
+          body = send_request('UpdateMonitorSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateMonitorSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 验证用户数据库账号权限，获取会话token。
 
         # @param request: Request instance for VerifyUserAccount.

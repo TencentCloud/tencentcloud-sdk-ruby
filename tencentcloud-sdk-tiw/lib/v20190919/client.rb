@@ -77,6 +77,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 课后录制服务已下线
+
         # 创建课后录制任务
 
         # @param request: Request instance for CreateOfflineRecord.
@@ -317,6 +319,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 课后录制服务已下线
+
         # 查询课后录制任务的进度与录制结果等相关信息
 
         # @param request: Request instance for DescribeOfflineRecord.
@@ -340,6 +344,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 课后录制服务已下线
 
         # 查询课后录制回调地址
 
@@ -1184,6 +1190,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 课后录制服务已下线
 
         # 设置课后录制回调地址
 

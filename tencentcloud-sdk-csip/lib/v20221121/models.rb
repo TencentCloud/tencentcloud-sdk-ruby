@@ -319,6 +319,68 @@ module TencentCloud
         end
       end
 
+      # 资产扫描结构细节
+      class AssetInfoDetail < TencentCloud::Common::AbstractModel
+        # @param AppID: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: String
+        # @param CVEId: CVE编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVEId: String
+        # @param IsScan: 是扫描，0默认未扫描，1正在扫描，2扫描完成，3扫描出错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsScan: Integer
+        # @param InfluenceAsset: 影响资产数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InfluenceAsset: Integer
+        # @param NotRepairAsset: 未修复资产数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotRepairAsset: Integer
+        # @param NotProtectAsset: 未防护资产数目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotProtectAsset: Integer
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskPercent: 任务百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskPercent: Integer
+        # @param TaskTime: 任务时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTime: Integer
+        # @param ScanTime: 扫描时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanTime: String
+
+        attr_accessor :AppID, :CVEId, :IsScan, :InfluenceAsset, :NotRepairAsset, :NotProtectAsset, :TaskId, :TaskPercent, :TaskTime, :ScanTime
+
+        def initialize(appid=nil, cveid=nil, isscan=nil, influenceasset=nil, notrepairasset=nil, notprotectasset=nil, taskid=nil, taskpercent=nil, tasktime=nil, scantime=nil)
+          @AppID = appid
+          @CVEId = cveid
+          @IsScan = isscan
+          @InfluenceAsset = influenceasset
+          @NotRepairAsset = notrepairasset
+          @NotProtectAsset = notprotectasset
+          @TaskId = taskid
+          @TaskPercent = taskpercent
+          @TaskTime = tasktime
+          @ScanTime = scantime
+        end
+
+        def deserialize(params)
+          @AppID = params['AppID']
+          @CVEId = params['CVEId']
+          @IsScan = params['IsScan']
+          @InfluenceAsset = params['InfluenceAsset']
+          @NotRepairAsset = params['NotRepairAsset']
+          @NotProtectAsset = params['NotProtectAsset']
+          @TaskId = params['TaskId']
+          @TaskPercent = params['TaskPercent']
+          @TaskTime = params['TaskTime']
+          @ScanTime = params['ScanTime']
+        end
+      end
+
       # 资产视角的端口风险对象
       class AssetViewPortRisk < TencentCloud::Common::AbstractModel
         # @param Port: 端口
@@ -553,6 +615,118 @@ module TencentCloud
           @InstanceUUID = params['InstanceUUID']
           @Payload = params['Payload']
           @EMGCVulType = params['EMGCVulType']
+        end
+      end
+
+      # 漏洞详细信息
+      class BugInfoDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 漏洞编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param PatchId: 漏洞对应pocId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PatchId: String
+        # @param VULName: 漏洞名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VULName: String
+        # @param Level: 漏洞严重性：high,middle，low，info
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
+        # @param CVSSScore: cvss评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVSSScore: String
+        # @param CVEId: cve编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVEId: String
+        # @param Tag: 漏洞标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
+        # @param VULCategory: 漏洞种类，1:web应用，2:系统组件漏洞，3:配置风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VULCategory: Integer
+        # @param ImpactOs: 漏洞影响系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactOs: String
+        # @param ImpactCOMPENT: 漏洞影响组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactCOMPENT: String
+        # @param ImpactVersion: 漏洞影响版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactVersion: String
+        # @param Reference: 链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reference: String
+        # @param VULDescribe: 漏洞描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VULDescribe: String
+        # @param Fix: 修复建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fix: String
+        # @param ProSupport: 产品支持状态，实时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProSupport: Integer
+        # @param IsPublish: 是否公开，0为未发布，1为发布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPublish: Integer
+        # @param ReleaseTime: 释放时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseTime: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param SubCategory: 漏洞子类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubCategory: String
+
+        attr_accessor :Id, :PatchId, :VULName, :Level, :CVSSScore, :CVEId, :Tag, :VULCategory, :ImpactOs, :ImpactCOMPENT, :ImpactVersion, :Reference, :VULDescribe, :Fix, :ProSupport, :IsPublish, :ReleaseTime, :CreateTime, :UpdateTime, :SubCategory
+
+        def initialize(id=nil, patchid=nil, vulname=nil, level=nil, cvssscore=nil, cveid=nil, tag=nil, vulcategory=nil, impactos=nil, impactcompent=nil, impactversion=nil, reference=nil, vuldescribe=nil, fix=nil, prosupport=nil, ispublish=nil, releasetime=nil, createtime=nil, updatetime=nil, subcategory=nil)
+          @Id = id
+          @PatchId = patchid
+          @VULName = vulname
+          @Level = level
+          @CVSSScore = cvssscore
+          @CVEId = cveid
+          @Tag = tag
+          @VULCategory = vulcategory
+          @ImpactOs = impactos
+          @ImpactCOMPENT = impactcompent
+          @ImpactVersion = impactversion
+          @Reference = reference
+          @VULDescribe = vuldescribe
+          @Fix = fix
+          @ProSupport = prosupport
+          @IsPublish = ispublish
+          @ReleaseTime = releasetime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @SubCategory = subcategory
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @PatchId = params['PatchId']
+          @VULName = params['VULName']
+          @Level = params['Level']
+          @CVSSScore = params['CVSSScore']
+          @CVEId = params['CVEId']
+          @Tag = params['Tag']
+          @VULCategory = params['VULCategory']
+          @ImpactOs = params['ImpactOs']
+          @ImpactCOMPENT = params['ImpactCOMPENT']
+          @ImpactVersion = params['ImpactVersion']
+          @Reference = params['Reference']
+          @VULDescribe = params['VULDescribe']
+          @Fix = params['Fix']
+          @ProSupport = params['ProSupport']
+          @IsPublish = params['IsPublish']
+          @ReleaseTime = params['ReleaseTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @SubCategory = params['SubCategory']
         end
       end
 
@@ -1160,6 +1334,71 @@ module TencentCloud
           @Status = params['Status']
           @IsCore = params['IsCore']
           @IsNewAsset = params['IsNewAsset']
+        end
+      end
+
+      # 漏洞和资产信息
+      class DataSearchBug < TencentCloud::Common::AbstractModel
+        # @param StateCode: 返回查询状态
+        # @type StateCode: String
+        # @param DataBug: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataBug: Array
+        # @param DataAsset: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataAsset: Array
+        # @param VSSScan: true支持扫描。false不支持扫描
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VSSScan: Boolean
+        # @param CWPScan: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPScan: String
+        # @param CFWPatch: 1支持虚拟补丁，0或空不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFWPatch: String
+        # @param WafPatch: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WafPatch: Integer
+        # @param CWPFix: 0不支持，1支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPFix: Integer
+
+        attr_accessor :StateCode, :DataBug, :DataAsset, :VSSScan, :CWPScan, :CFWPatch, :WafPatch, :CWPFix
+
+        def initialize(statecode=nil, databug=nil, dataasset=nil, vssscan=nil, cwpscan=nil, cfwpatch=nil, wafpatch=nil, cwpfix=nil)
+          @StateCode = statecode
+          @DataBug = databug
+          @DataAsset = dataasset
+          @VSSScan = vssscan
+          @CWPScan = cwpscan
+          @CFWPatch = cfwpatch
+          @WafPatch = wafpatch
+          @CWPFix = cwpfix
+        end
+
+        def deserialize(params)
+          @StateCode = params['StateCode']
+          unless params['DataBug'].nil?
+            @DataBug = []
+            params['DataBug'].each do |i|
+              buginfodetail_tmp = BugInfoDetail.new
+              buginfodetail_tmp.deserialize(i)
+              @DataBug << buginfodetail_tmp
+            end
+          end
+          unless params['DataAsset'].nil?
+            @DataAsset = []
+            params['DataAsset'].each do |i|
+              assetinfodetail_tmp = AssetInfoDetail.new
+              assetinfodetail_tmp.deserialize(i)
+              @DataAsset << assetinfodetail_tmp
+            end
+          end
+          @VSSScan = params['VSSScan']
+          @CWPScan = params['CWPScan']
+          @CFWPatch = params['CFWPatch']
+          @WafPatch = params['WafPatch']
+          @CWPFix = params['CWPFix']
         end
       end
 
@@ -2212,6 +2451,127 @@ module TencentCloud
         end
       end
 
+      # DescribeScanTaskList请求参数结构体
+      class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeScanTaskList返回参数结构体
+      class DescribeScanTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 任务日志列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param UINList: 主账户ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UINList: Array
+        # @param TaskModeList: 体检模式过滤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskModeList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :UINList, :TaskModeList, :RequestId
+
+        def initialize(totalcount=nil, data=nil, uinlist=nil, taskmodelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @UINList = uinlist
+          @TaskModeList = taskmodelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              scantaskinfolist_tmp = ScanTaskInfoList.new
+              scantaskinfolist_tmp.deserialize(i)
+              @Data << scantaskinfolist_tmp
+            end
+          end
+          @UINList = params['UINList']
+          unless params['TaskModeList'].nil?
+            @TaskModeList = []
+            params['TaskModeList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @TaskModeList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSearchBugInfo请求参数结构体
+      class DescribeSearchBugInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 无
+        # @type Id: String
+        # @param CVEId: id=3时传入该参数
+        # @type CVEId: String
+
+        attr_accessor :Id, :CVEId
+
+        def initialize(id=nil, cveid=nil)
+          @Id = id
+          @CVEId = cveid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CVEId = params['CVEId']
+        end
+      end
+
+      # DescribeSearchBugInfo返回参数结构体
+      class DescribeSearchBugInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 漏洞信息和资产信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Csip.v20221121.models.DataSearchBug`
+        # @param ReturnCode: 状态值，0：查询成功，非0：查询失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(data=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSearchBug.new
+            @Data.deserialize(params['Data'])
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubnetAssets请求参数结构体
       class DescribeSubnetAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤参数
@@ -2300,6 +2660,117 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @ZoneList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTaskLogList请求参数结构体
+      class DescribeTaskLogListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeTaskLogList返回参数结构体
+      class DescribeTaskLogListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 报告列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param NotViewNumber: 待查看数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotViewNumber: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :NotViewNumber, :RequestId
+
+        def initialize(totalcount=nil, data=nil, notviewnumber=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @NotViewNumber = notviewnumber
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              taskloginfo_tmp = TaskLogInfo.new
+              taskloginfo_tmp.deserialize(i)
+              @Data << taskloginfo_tmp
+            end
+          end
+          @NotViewNumber = params['NotViewNumber']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTaskLogURL请求参数结构体
+      class DescribeTaskLogURLRequest < TencentCloud::Common::AbstractModel
+        # @param ReportItemKeyList: 任务报告Id 列表
+        # @type ReportItemKeyList: Array
+        # @param Type: 0: 预览， 1: 下载
+        # @type Type: Integer
+
+        attr_accessor :ReportItemKeyList, :Type
+
+        def initialize(reportitemkeylist=nil, type=nil)
+          @ReportItemKeyList = reportitemkeylist
+          @Type = type
+        end
+
+        def deserialize(params)
+          unless params['ReportItemKeyList'].nil?
+            @ReportItemKeyList = []
+            params['ReportItemKeyList'].each do |i|
+              reportitemkey_tmp = ReportItemKey.new
+              reportitemkey_tmp.deserialize(i)
+              @ReportItemKeyList << reportitemkey_tmp
+            end
+          end
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeTaskLogURL返回参数结构体
+      class DescribeTaskLogURLResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回报告临时下载url
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              tasklogurl_tmp = TaskLogURL.new
+              tasklogurl_tmp.deserialize(i)
+              @Data << tasklogurl_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2859,6 +3330,22 @@ module TencentCloud
         end
       end
 
+      # 报告项key
+      class ReportItemKey < TencentCloud::Common::AbstractModel
+        # @param TaskLogList: 日志Id列表
+        # @type TaskLogList: Array
+
+        attr_accessor :TaskLogList
+
+        def initialize(taskloglist=nil)
+          @TaskLogList = taskloglist
+        end
+
+        def deserialize(params)
+          @TaskLogList = params['TaskLogList']
+        end
+      end
+
       # 扫描任务详情
       class ScanTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务日志Id
@@ -2928,6 +3415,220 @@ module TencentCloud
           @AppId = params['AppId']
           @UIN = params['UIN']
           @UserName = params['UserName']
+        end
+      end
+
+      # 扫描任务列表展示信息
+      class ScanTaskInfoList < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param StartTime: 任务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ScanPlanContent: corn
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanPlanContent: String
+        # @param TaskType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: Integer
+        # @param InsertTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param SelfDefiningAssets: 排除扫描资产信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelfDefiningAssets: Array
+        # @param PredictTime: 预估时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PredictTime: Integer
+        # @param PredictEndTime: 预估完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PredictEndTime: String
+        # @param ReportNumber: 报告数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportNumber: Integer
+        # @param AssetNumber: 资产数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetNumber: Integer
+        # @param ScanStatus: 扫描状态 0 初始值  1正在扫描  2扫描完成  3扫描出错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanStatus: Integer
+        # @param Percent: 任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Float
+        # @param ScanItem: port/poc/weakpass/webcontent/configrisk
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanItem: String
+        # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanAssetType: Integer
+        # @param VSSTaskId: vss子任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VSSTaskId: String
+        # @param CSPMTaskId: cspm子任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CSPMTaskId: String
+        # @param CWPPOCId: 主机漏扫子任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPPOCId: String
+        # @param CWPBlId: 主机基线子任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPBlId: String
+        # @param VSSTaskProcess: vss子任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VSSTaskProcess: Integer
+        # @param CSPMTaskProcess: cspm子任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CSPMTaskProcess: Integer
+        # @param CWPPOCProcess: 主机漏扫子任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPPOCProcess: Integer
+        # @param CWPBlProcess: 主机基线子任务进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPBlProcess: Integer
+        # @param ErrorCode: 异常状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: Integer
+        # @param ErrorInfo: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: String
+        # @param StartDay: 周期任务开始的天数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartDay: Integer
+        # @param Frequency: 扫描频率,单位天,1-每天,7-每周,30-月,0-扫描一次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Frequency: Integer
+        # @param CompleteNumber: 完成次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompleteNumber: Integer
+        # @param CompleteAssetNumber: 已完成资产个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompleteAssetNumber: Integer
+        # @param RiskCount: 风险数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCount: Integer
+        # @param Assets: 资产
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Assets: Array
+        # @param AppId: 用户Appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param UIN: 用户主账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UIN: String
+        # @param UserName: 用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskMode: Integer
+        # @param ScanFrom: 扫描来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanFrom: String
+        # @param IsFree: 是否限免体检0不是，1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFree: Integer
+        # @param IsDelete: 是否可以删除，1-可以，0-不可以，对应多账户管理使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDelete: Integer
+
+        attr_accessor :TaskName, :StartTime, :EndTime, :ScanPlanContent, :TaskType, :InsertTime, :TaskId, :SelfDefiningAssets, :PredictTime, :PredictEndTime, :ReportNumber, :AssetNumber, :ScanStatus, :Percent, :ScanItem, :ScanAssetType, :VSSTaskId, :CSPMTaskId, :CWPPOCId, :CWPBlId, :VSSTaskProcess, :CSPMTaskProcess, :CWPPOCProcess, :CWPBlProcess, :ErrorCode, :ErrorInfo, :StartDay, :Frequency, :CompleteNumber, :CompleteAssetNumber, :RiskCount, :Assets, :AppId, :UIN, :UserName, :TaskMode, :ScanFrom, :IsFree, :IsDelete
+
+        def initialize(taskname=nil, starttime=nil, endtime=nil, scanplancontent=nil, tasktype=nil, inserttime=nil, taskid=nil, selfdefiningassets=nil, predicttime=nil, predictendtime=nil, reportnumber=nil, assetnumber=nil, scanstatus=nil, percent=nil, scanitem=nil, scanassettype=nil, vsstaskid=nil, cspmtaskid=nil, cwppocid=nil, cwpblid=nil, vsstaskprocess=nil, cspmtaskprocess=nil, cwppocprocess=nil, cwpblprocess=nil, errorcode=nil, errorinfo=nil, startday=nil, frequency=nil, completenumber=nil, completeassetnumber=nil, riskcount=nil, assets=nil, appid=nil, uin=nil, username=nil, taskmode=nil, scanfrom=nil, isfree=nil, isdelete=nil)
+          @TaskName = taskname
+          @StartTime = starttime
+          @EndTime = endtime
+          @ScanPlanContent = scanplancontent
+          @TaskType = tasktype
+          @InsertTime = inserttime
+          @TaskId = taskid
+          @SelfDefiningAssets = selfdefiningassets
+          @PredictTime = predicttime
+          @PredictEndTime = predictendtime
+          @ReportNumber = reportnumber
+          @AssetNumber = assetnumber
+          @ScanStatus = scanstatus
+          @Percent = percent
+          @ScanItem = scanitem
+          @ScanAssetType = scanassettype
+          @VSSTaskId = vsstaskid
+          @CSPMTaskId = cspmtaskid
+          @CWPPOCId = cwppocid
+          @CWPBlId = cwpblid
+          @VSSTaskProcess = vsstaskprocess
+          @CSPMTaskProcess = cspmtaskprocess
+          @CWPPOCProcess = cwppocprocess
+          @CWPBlProcess = cwpblprocess
+          @ErrorCode = errorcode
+          @ErrorInfo = errorinfo
+          @StartDay = startday
+          @Frequency = frequency
+          @CompleteNumber = completenumber
+          @CompleteAssetNumber = completeassetnumber
+          @RiskCount = riskcount
+          @Assets = assets
+          @AppId = appid
+          @UIN = uin
+          @UserName = username
+          @TaskMode = taskmode
+          @ScanFrom = scanfrom
+          @IsFree = isfree
+          @IsDelete = isdelete
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ScanPlanContent = params['ScanPlanContent']
+          @TaskType = params['TaskType']
+          @InsertTime = params['InsertTime']
+          @TaskId = params['TaskId']
+          @SelfDefiningAssets = params['SelfDefiningAssets']
+          @PredictTime = params['PredictTime']
+          @PredictEndTime = params['PredictEndTime']
+          @ReportNumber = params['ReportNumber']
+          @AssetNumber = params['AssetNumber']
+          @ScanStatus = params['ScanStatus']
+          @Percent = params['Percent']
+          @ScanItem = params['ScanItem']
+          @ScanAssetType = params['ScanAssetType']
+          @VSSTaskId = params['VSSTaskId']
+          @CSPMTaskId = params['CSPMTaskId']
+          @CWPPOCId = params['CWPPOCId']
+          @CWPBlId = params['CWPBlId']
+          @VSSTaskProcess = params['VSSTaskProcess']
+          @CSPMTaskProcess = params['CSPMTaskProcess']
+          @CWPPOCProcess = params['CWPPOCProcess']
+          @CWPBlProcess = params['CWPBlProcess']
+          @ErrorCode = params['ErrorCode']
+          @ErrorInfo = params['ErrorInfo']
+          @StartDay = params['StartDay']
+          @Frequency = params['Frequency']
+          @CompleteNumber = params['CompleteNumber']
+          @CompleteAssetNumber = params['CompleteAssetNumber']
+          @RiskCount = params['RiskCount']
+          unless params['Assets'].nil?
+            @Assets = []
+            params['Assets'].each do |i|
+              taskassetobject_tmp = TaskAssetObject.new
+              taskassetobject_tmp.deserialize(i)
+              @Assets << taskassetobject_tmp
+            end
+          end
+          @AppId = params['AppId']
+          @UIN = params['UIN']
+          @UserName = params['UserName']
+          @TaskMode = params['TaskMode']
+          @ScanFrom = params['ScanFrom']
+          @IsFree = params['IsFree']
+          @IsDelete = params['IsDelete']
         end
       end
 
@@ -3191,6 +3892,109 @@ module TencentCloud
         def deserialize(params)
           @CheckItemId = params['CheckItemId']
           @Enable = params['Enable']
+        end
+      end
+
+      # 任务报告信息
+      class TaskLogInfo < TencentCloud::Common::AbstractModel
+        # @param TaskLogName: 报告名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskLogName: String
+        # @param TaskLogId: 报告ID
+        # @type TaskLogId: String
+        # @param AssetsNumber: 关联资产个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetsNumber: Integer
+        # @param RiskNumber: 安全风险数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskNumber: Integer
+        # @param Time: 报告生成时间,任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Status: 任务状态码：0 初始值  1正在扫描  2扫描完成  3扫描出错，4停止，5暂停，6该任务已被重启过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param TaskName: 关联任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param StartTime: 扫描开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param TaskCenterTaskId: 任务中心扫描任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskCenterTaskId: String
+        # @param AppId: 租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param UIN: 主账户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UIN: String
+        # @param UserName: 用户名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+
+        attr_accessor :TaskLogName, :TaskLogId, :AssetsNumber, :RiskNumber, :Time, :Status, :TaskName, :StartTime, :TaskCenterTaskId, :AppId, :UIN, :UserName
+
+        def initialize(tasklogname=nil, tasklogid=nil, assetsnumber=nil, risknumber=nil, time=nil, status=nil, taskname=nil, starttime=nil, taskcentertaskid=nil, appid=nil, uin=nil, username=nil)
+          @TaskLogName = tasklogname
+          @TaskLogId = tasklogid
+          @AssetsNumber = assetsnumber
+          @RiskNumber = risknumber
+          @Time = time
+          @Status = status
+          @TaskName = taskname
+          @StartTime = starttime
+          @TaskCenterTaskId = taskcentertaskid
+          @AppId = appid
+          @UIN = uin
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @TaskLogName = params['TaskLogName']
+          @TaskLogId = params['TaskLogId']
+          @AssetsNumber = params['AssetsNumber']
+          @RiskNumber = params['RiskNumber']
+          @Time = params['Time']
+          @Status = params['Status']
+          @TaskName = params['TaskName']
+          @StartTime = params['StartTime']
+          @TaskCenterTaskId = params['TaskCenterTaskId']
+          @AppId = params['AppId']
+          @UIN = params['UIN']
+          @UserName = params['UserName']
+        end
+      end
+
+      # 报告pdf下载的临时链接
+      class TaskLogURL < TencentCloud::Common::AbstractModel
+        # @param URL: 报告下载临时链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type URL: String
+        # @param LogId: 任务报告id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: String
+        # @param TaskLogName: 任务报告名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskLogName: String
+        # @param AppId: APP ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+
+        attr_accessor :URL, :LogId, :TaskLogName, :AppId
+
+        def initialize(url=nil, logid=nil, tasklogname=nil, appid=nil)
+          @URL = url
+          @LogId = logid
+          @TaskLogName = tasklogname
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @URL = params['URL']
+          @LogId = params['LogId']
+          @TaskLogName = params['TaskLogName']
+          @AppId = params['AppId']
         end
       end
 
