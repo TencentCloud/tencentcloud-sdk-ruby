@@ -3646,6 +3646,131 @@ module TencentCloud
         end
       end
 
+      # 音量美化配置
+      class AudioBeautifyConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Types: 类型，可多选，可选值：
+        # <li>declick：杂音去除</li>
+        # <li>deesser：齿音压制</li>
+        # 默认值：declick。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Types: Array
+
+        attr_accessor :Switch, :Types
+
+        def initialize(switch=nil, types=nil)
+          @Switch = switch
+          @Types = types
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Types = params['Types']
+        end
+      end
+
+      # 音频降噪配置
+      class AudioDenoiseConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 音频增强配置
+      class AudioEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Denoise: 音频降噪配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.AudioDenoiseConfig`
+        # @param Separate: 音频分离配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Separate: :class:`Tencentcloud::Mps.v20190612.models.AudioSeparateConfig`
+        # @param VolumeBalance: 音量均衡配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeBalance: :class:`Tencentcloud::Mps.v20190612.models.VolumeBalanceConfig`
+        # @param Beautify: 音频美化配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Beautify: :class:`Tencentcloud::Mps.v20190612.models.AudioBeautifyConfig`
+
+        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify
+
+        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil)
+          @Denoise = denoise
+          @Separate = separate
+          @VolumeBalance = volumebalance
+          @Beautify = beautify
+        end
+
+        def deserialize(params)
+          unless params['Denoise'].nil?
+            @Denoise = AudioDenoiseConfig.new
+            @Denoise.deserialize(params['Denoise'])
+          end
+          unless params['Separate'].nil?
+            @Separate = AudioSeparateConfig.new
+            @Separate.deserialize(params['Separate'])
+          end
+          unless params['VolumeBalance'].nil?
+            @VolumeBalance = VolumeBalanceConfig.new
+            @VolumeBalance.deserialize(params['VolumeBalance'])
+          end
+          unless params['Beautify'].nil?
+            @Beautify = AudioBeautifyConfig.new
+            @Beautify.deserialize(params['Beautify'])
+          end
+        end
+      end
+
+      # 音频分离配置
+      class AudioSeparateConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 场景类型，可选值：
+        # <li>normal：人声背景声场景</li>
+        # <li>music：演唱伴奏场景</li>
+        # 默认值：normal。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Track: 输出音轨，可选值：
+        # <li>vocal：输出人声</li>
+        # <li>background：应用场景为normal时输出背景声，应用场景为music时输出伴奏</li>
+        # 默认值：vocal。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Track: String
+
+        attr_accessor :Switch, :Type, :Track
+
+        def initialize(switch=nil, type=nil, track=nil)
+          @Switch = switch
+          @Type = type
+          @Track = track
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Track = params['Track']
+        end
+      end
+
       # 音频流配置参数
       class AudioTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 音频流的编码格式。
@@ -9564,17 +9689,25 @@ module TencentCloud
         # @param VideoEnhance: 视频增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoEnhance: :class:`Tencentcloud::Mps.v20190612.models.VideoEnhanceConfig`
+        # @param AudioEnhance: 音频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioEnhance: :class:`Tencentcloud::Mps.v20190612.models.AudioEnhanceConfig`
 
-        attr_accessor :VideoEnhance
+        attr_accessor :VideoEnhance, :AudioEnhance
 
-        def initialize(videoenhance=nil)
+        def initialize(videoenhance=nil, audioenhance=nil)
           @VideoEnhance = videoenhance
+          @AudioEnhance = audioenhance
         end
 
         def deserialize(params)
           unless params['VideoEnhance'].nil?
             @VideoEnhance = VideoEnhanceConfig.new
             @VideoEnhance.deserialize(params['VideoEnhance'])
+          end
+          unless params['AudioEnhance'].nil?
+            @AudioEnhance = AudioEnhanceConfig.new
+            @AudioEnhance.deserialize(params['AudioEnhance'])
           end
         end
       end
@@ -18406,6 +18539,33 @@ module TencentCloud
           @FillType = params['FillType']
           @Vcrf = params['Vcrf']
           @ContentAdaptStream = params['ContentAdaptStream']
+        end
+      end
+
+      # 音量均衡配置
+      class VolumeBalanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>loudNorm：响度标准化</li>
+        # <li>gainControl：减小突变</li>
+        # 默认值：loudNorm。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 

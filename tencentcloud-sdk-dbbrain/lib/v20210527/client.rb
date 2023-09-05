@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通知模板查询
+
+        # @param request: Request instance for DescribeAlarmTemplate.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeAlarmTemplateRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeAlarmTemplateResponse`
+        def DescribeAlarmTemplate(request)
+          body = send_request('DescribeAlarmTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlarmTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取邮件发送中联系人的相关信息。
 
         # @param request: Request instance for DescribeAllUserContact.
@@ -1191,6 +1215,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = KillMySqlThreadsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改告警策略
+
+        # @param request: Request instance for ModifyAlarmPolicy.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::ModifyAlarmPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::ModifyAlarmPolicyResponse`
+        def ModifyAlarmPolicy(request)
+          body = send_request('ModifyAlarmPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAlarmPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

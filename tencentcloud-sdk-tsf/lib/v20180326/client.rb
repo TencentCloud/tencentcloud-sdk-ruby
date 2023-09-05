@@ -4040,7 +4040,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 手动执行一次任务。
+        # 手动执行一次任务
 
         # @param request: Request instance for ExecuteTask.
         # @type request: :class:`Tencentcloud::tsf::V20180326::ExecuteTaskRequest`

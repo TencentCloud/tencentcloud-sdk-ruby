@@ -1394,9 +1394,8 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param ExclusiveCluster: 独占型实例信息。若创建独占型的内网负载均衡实例，则此参数必填。
         # @type ExclusiveCluster: :class:`Tencentcloud::Clb.v20180317.models.ExclusiveCluster`
-        # @param SlaType: 创建性能容量型实例。
-        # <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示超强型1规格。
-        # <ul><li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
+        # @param SlaType: 性能容量型规格。
+        # <ul><li>若需要创建性能容量型实例，则此参数必填，取值范围：<ul><li> SLA：超强型1规格。当您开通了超大型规格的性能容量型时，SLA对应超强型4规格 </li><li> clb.c2.medium：标准型规格 </li><li> clb.c3.small：高阶型1规格 </li><li> clb.c3.medium：高阶型2规格 </li><li> clb.c4.small：超强型1规格 </li><li> clb.c4.medium：超强型2规格 </li><li> clb.c4.large：超强型3规格 </li><li> clb.c4.xlarge：超强型4规格 </li>如需超大型规格（超强型2及以上），请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。</ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>如需了解规格详情，请参见[实例规格对比](https://cloud.tencent.com/document/product/214/84689)。
         # @type SlaType: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
@@ -1415,10 +1414,12 @@ module TencentCloud
         # @type LoadBalancerPassToTarget: Boolean
         # @param DynamicVip: 创建域名化负载均衡。
         # @type DynamicVip: Boolean
+        # @param Egress: 网络出口
+        # @type Egress: String
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress
 
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1444,6 +1445,7 @@ module TencentCloud
           @EipAddressId = eipaddressid
           @LoadBalancerPassToTarget = loadbalancerpasstotarget
           @DynamicVip = dynamicvip
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -1492,6 +1494,7 @@ module TencentCloud
           @EipAddressId = params['EipAddressId']
           @LoadBalancerPassToTarget = params['LoadBalancerPassToTarget']
           @DynamicVip = params['DynamicVip']
+          @Egress = params['Egress']
         end
       end
 
@@ -7241,8 +7244,15 @@ module TencentCloud
       class SlaUpdateParam < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: lb的字符串ID
         # @type LoadBalancerId: String
-        # @param SlaType: 升级为性能容量型，固定取值为SLA。SLA表示超强型1规格。
-        # 当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+        # @param SlaType: 性能容量型规格，取值范围：
+        # <li> SLA：超强型1规格。当您开通了超大型规格的性能容量型时，SLA对应超强型4规格 </li>
+        # <li> clb.c2.medium：标准型规格 </li>
+        # <li> clb.c3.small：高阶型1规格 </li>
+        # <li> clb.c3.medium：高阶型2规格 </li>
+        # <li> clb.c4.small：超强型1规格 </li>
+        # <li> clb.c4.medium：超强型2规格 </li>
+        # <li> clb.c4.large：超强型3规格 </li>
+        # <li> clb.c4.xlarge：超强型4规格 </li>如需超大型规格（超强型2及以上），请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。如需了解规格详情，请参见[实例规格对比](https://cloud.tencent.com/document/product/214/84689)
         # @type SlaType: String
 
         attr_accessor :LoadBalancerId, :SlaType
@@ -7543,8 +7553,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2023, 8
-        deprecate :HealthStatusDetial=, :none, 2023, 8
+        deprecate :HealthStatusDetial, :none, 2023, 9
+        deprecate :HealthStatusDetial=, :none, 2023, 9
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

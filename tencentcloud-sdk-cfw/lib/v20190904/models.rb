@@ -733,6 +733,49 @@ module TencentCloud
         end
       end
 
+      # CreateBlockIgnoreRuleList请求参数结构体
+      class CreateBlockIgnoreRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param RuleType: 规则类型，1封禁，2放通，不支持域名封禁
+        # @type RuleType: Integer
+
+        attr_accessor :Rules, :RuleType
+
+        def initialize(rules=nil, ruletype=nil)
+          @Rules = rules
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              intrusiondefenserule_tmp = IntrusionDefenseRule.new
+              intrusiondefenserule_tmp.deserialize(i)
+              @Rules << intrusiondefenserule_tmp
+            end
+          end
+          @RuleType = params['RuleType']
+        end
+      end
+
+      # CreateBlockIgnoreRuleList返回参数结构体
+      class CreateBlockIgnoreRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateChooseVpcs请求参数结构体
       class CreateChooseVpcsRequest < TencentCloud::Common::AbstractModel
         # @param VpcList: vpc列表
@@ -3580,6 +3623,42 @@ module TencentCloud
         end
       end
 
+      # 入侵防御封禁列表、放通列表添加规则入参
+      class IntrusionDefenseRule < TencentCloud::Common::AbstractModel
+        # @param Direction: 规则方向，0出站，1入站，3内网间
+        # @type Direction: Integer
+        # @param EndTime: 规则结束时间，格式：2006-01-02 15:04:05，必须大于当前时间
+        # @type EndTime: String
+        # @param IP: 规则IP地址，IP与Domain必填其中之一
+        # @type IP: String
+        # @param Domain: 规则域名，IP与Domain必填其中之一
+        # @type Domain: String
+        # @param Comment: 备注信息，长度不能超过50
+        # @type Comment: String
+        # @param StartTime: 规则开始时间
+        # @type StartTime: String
+
+        attr_accessor :Direction, :EndTime, :IP, :Domain, :Comment, :StartTime
+
+        def initialize(direction=nil, endtime=nil, ip=nil, domain=nil, comment=nil, starttime=nil)
+          @Direction = direction
+          @EndTime = endtime
+          @IP = ip
+          @Domain = domain
+          @Comment = comment
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          @EndTime = params['EndTime']
+          @IP = params['IP']
+          @Domain = params['Domain']
+          @Comment = params['Comment']
+          @StartTime = params['StartTime']
+        end
+      end
+
       # 黑白名单IOC列表
       class IocListData < TencentCloud::Common::AbstractModel
         # @param IP: 待处置IP地址，IP/Domain字段二选一
@@ -3976,6 +4055,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyEWRuleStatus请求参数结构体
+      class ModifyEWRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EdgeId: vpc规则必填，边id
+        # @type EdgeId: String
+        # @param Status: 是否开关开启，0：未开启，1：开启
+        # @type Status: Integer
+        # @param Direction: 规则方向，0：出站，1：入站，默认1
+        # @type Direction: Integer
+        # @param RuleSequence: 更改的规则当前执行顺序
+        # @type RuleSequence: Integer
+        # @param RuleType: 规则类型，vpc：VPC间规则、nat：Nat边界规则
+        # @type RuleType: String
+
+        attr_accessor :EdgeId, :Status, :Direction, :RuleSequence, :RuleType
+
+        def initialize(edgeid=nil, status=nil, direction=nil, rulesequence=nil, ruletype=nil)
+          @EdgeId = edgeid
+          @Status = status
+          @Direction = direction
+          @RuleSequence = rulesequence
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          @EdgeId = params['EdgeId']
+          @Status = params['Status']
+          @Direction = params['Direction']
+          @RuleSequence = params['RuleSequence']
+          @RuleType = params['RuleType']
+        end
+      end
+
+      # ModifyEWRuleStatus返回参数结构体
+      class ModifyEWRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 状态值，0：修改成功，非0：修改失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 状态信息，success：查询成功，fail：查询失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -5106,10 +5241,12 @@ module TencentCloud
         # @type CityName: String
         # @param CountryName: 国家名
         # @type CountryName: String
+        # @param RegionIso: 国家二位iso代码或者省份缩写代码
+        # @type RegionIso: String
 
-        attr_accessor :OrderIndex, :SourceIp, :TargetIp, :Protocol, :Strategy, :SourceType, :Direction, :Detail, :TargetType, :Port, :Id, :LogId, :City, :Country, :CloudCode, :IsRegion, :CityName, :CountryName
+        attr_accessor :OrderIndex, :SourceIp, :TargetIp, :Protocol, :Strategy, :SourceType, :Direction, :Detail, :TargetType, :Port, :Id, :LogId, :City, :Country, :CloudCode, :IsRegion, :CityName, :CountryName, :RegionIso
 
-        def initialize(orderindex=nil, sourceip=nil, targetip=nil, protocol=nil, strategy=nil, sourcetype=nil, direction=nil, detail=nil, targettype=nil, port=nil, id=nil, logid=nil, city=nil, country=nil, cloudcode=nil, isregion=nil, cityname=nil, countryname=nil)
+        def initialize(orderindex=nil, sourceip=nil, targetip=nil, protocol=nil, strategy=nil, sourcetype=nil, direction=nil, detail=nil, targettype=nil, port=nil, id=nil, logid=nil, city=nil, country=nil, cloudcode=nil, isregion=nil, cityname=nil, countryname=nil, regioniso=nil)
           @OrderIndex = orderindex
           @SourceIp = sourceip
           @TargetIp = targetip
@@ -5128,6 +5265,7 @@ module TencentCloud
           @IsRegion = isregion
           @CityName = cityname
           @CountryName = countryname
+          @RegionIso = regioniso
         end
 
         def deserialize(params)
@@ -5149,6 +5287,7 @@ module TencentCloud
           @IsRegion = params['IsRegion']
           @CityName = params['CityName']
           @CountryName = params['CountryName']
+          @RegionIso = params['RegionIso']
         end
       end
 
@@ -5512,20 +5651,20 @@ module TencentCloud
       class SecurityGroupRule < TencentCloud::Common::AbstractModel
         # @param SourceContent: 访问源示例：
         # net：IP/CIDR(192.168.0.2)
-        # template：参数模板(ipm-dyodhpby)
-        # instance：资产实例(ins-123456)
-        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
-        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # template：参数模板id(ipm-dyodhpby)
+        # instance：资产实例id(ins-123456)
+        # resourcegroup：资产分组id(cfwrg-xxxx)
+        # tag：资源标签({\"Key\":\"标签key值\",\"Value\":\"标签Value值\"})
         # region：地域(ap-gaungzhou)
         # @type SourceContent: String
         # @param SourceType: 访问源类型，类型可以为以下6种：net|template|instance|resourcegroup|tag|region
         # @type SourceType: String
         # @param DestContent: 访问目的示例：
         # net：IP/CIDR(192.168.0.2)
-        # template：参数模板(ipm-dyodhpby)
-        # instance：资产实例(ins-123456)
-        # resourcegroup：资产分组(/全部分组/分组1/子分组1)
-        # tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        # template：参数模板id(ipm-dyodhpby)
+        # instance：资产实例id(ins-123456)
+        # resourcegroup：资产分组id(cfwrg-xxxx)
+        # tag：资源标签({\"Key\":\"标签key值\",\"Value\":\"标签Value值\"})
         # region：地域(ap-gaungzhou)
         # @type DestContent: String
         # @param DestType: 访问目的类型，类型可以为以下6种：net|template|instance|resourcegroup|tag|region
@@ -5536,7 +5675,7 @@ module TencentCloud
         # @type RuleAction: String
         # @param Description: 描述
         # @type Description: String
-        # @param OrderIndex: 规则顺序，-1表示最低，1表示最高
+        # @param OrderIndex: 规则顺序，-1表示最低，1表示最高，请勿和外层Type冲突（和外层的Type配合使用，当中间插入时，指定添加位置）
         # @type OrderIndex: String
         # @param Protocol: 协议；TCP/UDP/ICMP/ANY
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5549,9 +5688,10 @@ module TencentCloud
         # @param ServiceTemplateId: 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceTemplateId: String
-        # @param Id: 规则对应的唯一id
+        # @param Id: （入参时无需填写，自动生成）规则对应的唯一id
         # @type Id: String
-        # @param Enable: 规则状态，true表示启用，false表示禁用
+        # @param Enable: （入参时、Enable已弃用；由通用配置中新增规则启用状态控制）
+        # 规则状态，true表示启用，false表示禁用
         # @type Enable: String
 
         attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable

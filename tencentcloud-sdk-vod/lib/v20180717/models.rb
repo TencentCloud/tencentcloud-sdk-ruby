@@ -17401,7 +17401,7 @@ module TencentCloud
 
       # ModifyMediaStorageClass请求参数结构体
       class ModifyMediaStorageClassRequest < TencentCloud::Common::AbstractModel
-        # @param FileIds: 媒体文件唯一标识列表。
+        # @param FileIds: 媒体文件唯一标识列表，最大长度：100。
         # @type FileIds: Array
         # @param StorageClass: 目标存储类型。可选值有：
         # <li> STANDARD：标准存储。</li>

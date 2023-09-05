@@ -11841,7 +11841,7 @@ module TencentCloud
 
       # ExecuteTask请求参数结构体
       class ExecuteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: 任务 ID
         # @type TaskId: String
 
         attr_accessor :TaskId

@@ -1340,6 +1340,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量获取转推日志的URL。
+
+        # @param request: Request instance for DescribeDeliverLogDownList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeDeliverLogDownListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeDeliverLogDownListResponse`
+        def DescribeDeliverLogDownList(request)
+          body = send_request('DescribeDeliverLogDownList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeliverLogDownListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口为监控数据接口，数据采集及统计方式与计费数据不同，仅供运营分析使用，不能用于计费对账参考。
         # 查询按省份和运营商分组的下行播放数据。
 

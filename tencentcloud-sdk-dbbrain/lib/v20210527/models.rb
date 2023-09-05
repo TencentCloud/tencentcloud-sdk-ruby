@@ -61,6 +61,135 @@ module TencentCloud
         end
       end
 
+      # 通知模板
+      class AlarmProfileList < TencentCloud::Common::AbstractModel
+        # @param IsWebHook: 0-不是 1-是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsWebHook: Integer
+        # @param ReceiveUinCount: 接收告警用户数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveUinCount: Integer
+        # @param Lang: 语言
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lang: String
+        # @param TemplateType: 模板类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateType: String
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param ReceiveGroupCount: 接收组数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveGroupCount: Integer
+        # @param UpdateUin: 更新用户的uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateUin: Integer
+        # @param ReceiveType: 接收类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveType: Array
+        # @param ReceiveInfo: 接收用户信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveInfo: Array
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TemplateName: 模板名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateName: String
+        # @param SendChannel: 发送渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendChannel: Array
+        # @param TemplateId: 模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: Integer
+        # @param WebHookCount: webhook数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebHookCount: Integer
+
+        attr_accessor :IsWebHook, :ReceiveUinCount, :Lang, :TemplateType, :Remark, :ReceiveGroupCount, :UpdateUin, :ReceiveType, :ReceiveInfo, :UpdateTime, :TemplateName, :SendChannel, :TemplateId, :WebHookCount
+
+        def initialize(iswebhook=nil, receiveuincount=nil, lang=nil, templatetype=nil, remark=nil, receivegroupcount=nil, updateuin=nil, receivetype=nil, receiveinfo=nil, updatetime=nil, templatename=nil, sendchannel=nil, templateid=nil, webhookcount=nil)
+          @IsWebHook = iswebhook
+          @ReceiveUinCount = receiveuincount
+          @Lang = lang
+          @TemplateType = templatetype
+          @Remark = remark
+          @ReceiveGroupCount = receivegroupcount
+          @UpdateUin = updateuin
+          @ReceiveType = receivetype
+          @ReceiveInfo = receiveinfo
+          @UpdateTime = updatetime
+          @TemplateName = templatename
+          @SendChannel = sendchannel
+          @TemplateId = templateid
+          @WebHookCount = webhookcount
+        end
+
+        def deserialize(params)
+          @IsWebHook = params['IsWebHook']
+          @ReceiveUinCount = params['ReceiveUinCount']
+          @Lang = params['Lang']
+          @TemplateType = params['TemplateType']
+          @Remark = params['Remark']
+          @ReceiveGroupCount = params['ReceiveGroupCount']
+          @UpdateUin = params['UpdateUin']
+          @ReceiveType = params['ReceiveType']
+          unless params['ReceiveInfo'].nil?
+            @ReceiveInfo = []
+            params['ReceiveInfo'].each do |i|
+              receiveinfo_tmp = ReceiveInfo.new
+              receiveinfo_tmp.deserialize(i)
+              @ReceiveInfo << receiveinfo_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @TemplateName = params['TemplateName']
+          @SendChannel = params['SendChannel']
+          @TemplateId = params['TemplateId']
+          @WebHookCount = params['WebHookCount']
+        end
+      end
+
+      # 告警规则
+      class AlarmsRules < TencentCloud::Common::AbstractModel
+        # @param Interval: 间隔
+        # @type Interval: Integer
+        # @param Name: 告警名
+        # @type Name: String
+        # @param Metric: 指标
+        # @type Metric: String
+        # @param Operator: 操作符
+        # @type Operator: String
+        # @param Severity: 等级
+        # fatal-致命
+        # critical-严重
+        # warning-告警
+        # information-通知
+        # @type Severity: String
+        # @param Value: 指标值
+        # @type Value: Float
+
+        attr_accessor :Interval, :Name, :Metric, :Operator, :Severity, :Value
+
+        def initialize(interval=nil, name=nil, metric=nil, operator=nil, severity=nil, value=nil)
+          @Interval = interval
+          @Name = name
+          @Metric = metric
+          @Operator = operator
+          @Severity = severity
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Interval = params['Interval']
+          @Name = params['Name']
+          @Metric = params['Metric']
+          @Operator = params['Operator']
+          @Severity = params['Severity']
+          @Value = params['Value']
+        end
+      end
+
       # 实例详细信息
       class AuditInstance < TencentCloud::Common::AbstractModel
         # @param AuditStatus: 审计状态，已开通审计为：YES，未开通审计为：ON。
@@ -1090,6 +1219,66 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmTemplate请求参数结构体
+      class DescribeAlarmTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateNameRegexp: 搜索字段
+        # @type TemplateNameRegexp: String
+        # @param Limit: 返回限制长度
+        # @type Limit: Integer
+        # @param Offset: 偏置
+        # @type Offset: Integer
+        # @param Product: mysql -  mysql
+        # cynosdb -  tdsql-c
+        # @type Product: String
+
+        attr_accessor :TemplateNameRegexp, :Limit, :Offset, :Product
+
+        def initialize(templatenameregexp=nil, limit=nil, offset=nil, product=nil)
+          @TemplateNameRegexp = templatenameregexp
+          @Limit = limit
+          @Offset = offset
+          @Product = product
+        end
+
+        def deserialize(params)
+          @TemplateNameRegexp = params['TemplateNameRegexp']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeAlarmTemplate返回参数结构体
+      class DescribeAlarmTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param ProfileList: 模板列表
+        # @type ProfileList: Array
+        # @param TotalCount: 模板总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProfileList, :TotalCount, :RequestId
+
+        def initialize(profilelist=nil, totalcount=nil, requestid=nil)
+          @ProfileList = profilelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProfileList'].nil?
+            @ProfileList = []
+            params['ProfileList'].each do |i|
+              alarmprofilelist_tmp = AlarmProfileList.new
+              alarmprofilelist_tmp.deserialize(i)
+              @ProfileList << alarmprofilelist_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3451,6 +3640,22 @@ module TencentCloud
         end
       end
 
+      # 实例id
+      class InstanceID < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 查询实例列表，返回实例的相关信息的对象。
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -3731,6 +3936,106 @@ module TencentCloud
           @HealthStatus = params['HealthStatus']
           @ContactPerson = params['ContactPerson']
           @ContactGroup = params['ContactGroup']
+        end
+      end
+
+      # ModifyAlarmPolicy请求参数结构体
+      class ModifyAlarmPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ApplyType: 类型
+        # @type ApplyType: String
+        # @param Enable: 开启策略
+        # @type Enable: Integer
+        # @param InstanceIds: 列表
+        # @type InstanceIds: Array
+        # @param NewProfileLevel: User-动态关联该用户所有实例
+        # Instance-关联实例列表的实例
+        # @type NewProfileLevel: String
+        # @param NewProfileName: 新策略名
+        # @type NewProfileName: String
+        # @param ProfileName: 旧策略名
+        # @type ProfileName: String
+        # @param ProfileType: 策略类型
+        # @type ProfileType: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param RuleType: 规则类型 0-快速，1-自定义 若值为0，则QuickRule不能为空，若值为1，则Rules 不能为空
+        # @type RuleType: Integer
+        # @param TemplateInfo: 接受模板
+        # @type TemplateInfo: Array
+        # @param QuickRule: 快速规则  支持包括fatal-致命, critical-严重,
+        # warning-告警,
+        # information-通知
+        # @type QuickRule: String
+        # @param Rules: 自定义规则
+        # @type Rules: Array
+
+        attr_accessor :ApplyType, :Enable, :InstanceIds, :NewProfileLevel, :NewProfileName, :ProfileName, :ProfileType, :Remark, :RuleType, :TemplateInfo, :QuickRule, :Rules
+
+        def initialize(applytype=nil, enable=nil, instanceids=nil, newprofilelevel=nil, newprofilename=nil, profilename=nil, profiletype=nil, remark=nil, ruletype=nil, templateinfo=nil, quickrule=nil, rules=nil)
+          @ApplyType = applytype
+          @Enable = enable
+          @InstanceIds = instanceids
+          @NewProfileLevel = newprofilelevel
+          @NewProfileName = newprofilename
+          @ProfileName = profilename
+          @ProfileType = profiletype
+          @Remark = remark
+          @RuleType = ruletype
+          @TemplateInfo = templateinfo
+          @QuickRule = quickrule
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @ApplyType = params['ApplyType']
+          @Enable = params['Enable']
+          unless params['InstanceIds'].nil?
+            @InstanceIds = []
+            params['InstanceIds'].each do |i|
+              instanceid_tmp = InstanceID.new
+              instanceid_tmp.deserialize(i)
+              @InstanceIds << instanceid_tmp
+            end
+          end
+          @NewProfileLevel = params['NewProfileLevel']
+          @NewProfileName = params['NewProfileName']
+          @ProfileName = params['ProfileName']
+          @ProfileType = params['ProfileType']
+          @Remark = params['Remark']
+          @RuleType = params['RuleType']
+          unless params['TemplateInfo'].nil?
+            @TemplateInfo = []
+            params['TemplateInfo'].each do |i|
+              templateinfo_tmp = TemplateInfo.new
+              templateinfo_tmp.deserialize(i)
+              @TemplateInfo << templateinfo_tmp
+            end
+          end
+          @QuickRule = params['QuickRule']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              alarmsrules_tmp = AlarmsRules.new
+              alarmsrules_tmp.deserialize(i)
+              @Rules << alarmsrules_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAlarmPolicy返回参数结构体
+      class ModifyAlarmPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4132,6 +4437,77 @@ module TencentCloud
             @MailConfiguration = MailConfiguration.new
             @MailConfiguration.deserialize(params['MailConfiguration'])
           end
+        end
+      end
+
+      # 接收组信息
+      class ReceiveInfo < TencentCloud::Common::AbstractModel
+        # @param ReceiveGroup: 接收组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveGroup: Array
+        # @param EndReceiveTime: 最后接收时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndReceiveTime: String
+        # @param ReceiveName: 接收名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveName: String
+        # @param SendChannel: 推送渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendChannel: Array
+        # @param StartReceiveTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartReceiveTime: String
+        # @param ReceiveUin: 接收用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiveUin: Array
+
+        attr_accessor :ReceiveGroup, :EndReceiveTime, :ReceiveName, :SendChannel, :StartReceiveTime, :ReceiveUin
+
+        def initialize(receivegroup=nil, endreceivetime=nil, receivename=nil, sendchannel=nil, startreceivetime=nil, receiveuin=nil)
+          @ReceiveGroup = receivegroup
+          @EndReceiveTime = endreceivetime
+          @ReceiveName = receivename
+          @SendChannel = sendchannel
+          @StartReceiveTime = startreceivetime
+          @ReceiveUin = receiveuin
+        end
+
+        def deserialize(params)
+          @ReceiveGroup = params['ReceiveGroup']
+          @EndReceiveTime = params['EndReceiveTime']
+          @ReceiveName = params['ReceiveName']
+          @SendChannel = params['SendChannel']
+          @StartReceiveTime = params['StartReceiveTime']
+          unless params['ReceiveUin'].nil?
+            @ReceiveUin = []
+            params['ReceiveUin'].each do |i|
+              receiveuin_tmp = ReceiveUin.new
+              receiveuin_tmp.deserialize(i)
+              @ReceiveUin << receiveuin_tmp
+            end
+          end
+        end
+      end
+
+      # 接收用户
+      class ReceiveUin < TencentCloud::Common::AbstractModel
+        # @param UinName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UinName: String
+        # @param Uin: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+
+        attr_accessor :UinName, :Uin
+
+        def initialize(uinname=nil, uin=nil)
+          @UinName = uinname
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @UinName = params['UinName']
+          @Uin = params['Uin']
         end
       end
 
@@ -4890,6 +5266,26 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Progress = params['Progress']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 通知模板
+      class TemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+        # @param TemplateName: 模板名
+        # @type TemplateName: String
+
+        attr_accessor :TemplateId, :TemplateName
+
+        def initialize(templateid=nil, templatename=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
         end
       end
 

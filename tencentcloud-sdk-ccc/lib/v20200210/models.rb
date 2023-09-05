@@ -841,11 +841,11 @@ module TencentCloud
       class CreateUserSigRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param Uid: 用户 ID
+        # @param Uid: 用户 ID，该值必须与 ClientData 字段中 Uid 的值一致
         # @type Uid: String
         # @param ExpiredTime: 有效期，单位秒，不超过 1 小时
         # @type ExpiredTime: Integer
-        # @param ClientData: 用户签名数据
+        # @param ClientData: 用户签名数据，必填字段，为标准 JSON 格式
         # @type ClientData: String
 
         attr_accessor :SdkAppId, :Uid, :ExpiredTime, :ClientData

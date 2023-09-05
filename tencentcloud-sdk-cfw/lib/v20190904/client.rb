@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量添加入侵防御封禁列表、放通列表规则
+
+        # @param request: Request instance for CreateBlockIgnoreRuleList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateBlockIgnoreRuleListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateBlockIgnoreRuleListResponse`
+        def CreateBlockIgnoreRuleList(request)
+          body = send_request('CreateBlockIgnoreRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlockIgnoreRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建、选择vpc
 
         # @param request: Request instance for CreateChooseVpcs.
@@ -1290,6 +1314,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockTopResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 启用停用VPC间规则或Nat边界规则
+        # VPC间规则需指定EdgeId。Nat边界规则需指定地域Region与Direction。
+
+        # @param request: Request instance for ModifyEWRuleStatus.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyEWRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyEWRuleStatusResponse`
+        def ModifyEWRuleStatus(request)
+          body = send_request('ModifyEWRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEWRuleStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
