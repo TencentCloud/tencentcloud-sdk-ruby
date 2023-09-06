@@ -261,7 +261,9 @@ module TencentCloud
         # @type ReqTime: String
         # @param Seq: 一比一请求的唯一标记。
         # @type Seq: String
-        # @param Idcard: 一比一时使用的、脱敏后的身份证号。
+        # @param IdCard: 一比一时使用的、脱敏后的身份证号。
+        # @type IdCard: String
+        # @param Idcard: 已废弃。请使用“IdCard”字段
         # @type Idcard: String
         # @param Name: 一比一时使用的、脱敏后的姓名。
         # @type Name: String
@@ -276,11 +278,15 @@ module TencentCloud
         # @param ErrorMessage: 本次活体一比一最终结果描述。
         # @type ErrorMessage: String
 
-        attr_accessor :ReqTime, :Seq, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
+        attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
+        extend Gem::Deprecate
+        deprecate :Idcard, :none, 2023, 9
+        deprecate :Idcard=, :none, 2023, 9
 
-        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
+        def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
           @Seq = seq
+          @IdCard = idcard
           @Idcard = idcard
           @Name = name
           @Sim = sim
@@ -293,6 +299,7 @@ module TencentCloud
         def deserialize(params)
           @ReqTime = params['ReqTime']
           @Seq = params['Seq']
+          @IdCard = params['IdCard']
           @Idcard = params['Idcard']
           @Name = params['Name']
           @Sim = params['Sim']
@@ -2453,8 +2460,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2023, 8
-        deprecate :AsrResultSimilarity=, :none, 2023, 8
+        deprecate :AsrResultSimilarity, :none, 2023, 9
+        deprecate :AsrResultSimilarity=, :none, 2023, 9
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

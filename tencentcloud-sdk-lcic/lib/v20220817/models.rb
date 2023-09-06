@@ -835,10 +835,12 @@ module TencentCloud
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         # @type RoomType: Integer
+        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # @type EndDelayTime: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -861,6 +863,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @EndDelayTime = enddelaytime
         end
 
         def deserialize(params)
@@ -886,6 +889,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @EndDelayTime = params['EndDelayTime']
         end
       end
 
@@ -1979,12 +1983,14 @@ module TencentCloud
         # @type RoomType: Integer
         # @param VideoDuration: 录制时长
         # @type VideoDuration: Integer
+        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # @type EndDelayTime: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2007,6 +2013,7 @@ module TencentCloud
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
           @VideoDuration = videoduration
+          @EndDelayTime = enddelaytime
           @RequestId = requestid
         end
 
@@ -2033,6 +2040,7 @@ module TencentCloud
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
           @VideoDuration = params['VideoDuration']
+          @EndDelayTime = params['EndDelayTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2339,10 +2347,13 @@ module TencentCloud
         # @param Cover: 封面，仅转码的课件会生成封面
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cover: String
+        # @param Preview: 课件预览地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Preview: String
 
-        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover
+        attr_accessor :DocumentId, :DocumentUrl, :DocumentName, :Owner, :SdkAppId, :Permission, :TranscodeResult, :TranscodeType, :TranscodeProgress, :TranscodeState, :TranscodeInfo, :DocumentType, :DocumentSize, :UpdateTime, :Pages, :Width, :Height, :Cover, :Preview
 
-        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, width=nil, height=nil, cover=nil)
+        def initialize(documentid=nil, documenturl=nil, documentname=nil, owner=nil, sdkappid=nil, permission=nil, transcoderesult=nil, transcodetype=nil, transcodeprogress=nil, transcodestate=nil, transcodeinfo=nil, documenttype=nil, documentsize=nil, updatetime=nil, pages=nil, width=nil, height=nil, cover=nil, preview=nil)
           @DocumentId = documentid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -2361,6 +2372,7 @@ module TencentCloud
           @Width = width
           @Height = height
           @Cover = cover
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -2382,6 +2394,7 @@ module TencentCloud
           @Width = params['Width']
           @Height = params['Height']
           @Cover = params['Cover']
+          @Preview = params['Preview']
         end
       end
 
@@ -3262,10 +3275,12 @@ module TencentCloud
         # @type RoomType: Integer
         # @param RecordLayout: 录制模板。仅可修改还未开始的房间。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
+        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # @type EndDelayTime: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3286,6 +3301,7 @@ module TencentCloud
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
           @RecordLayout = recordlayout
+          @EndDelayTime = enddelaytime
         end
 
         def deserialize(params)
@@ -3309,6 +3325,7 @@ module TencentCloud
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
           @RecordLayout = params['RecordLayout']
+          @EndDelayTime = params['EndDelayTime']
         end
       end
 
@@ -3504,10 +3521,12 @@ module TencentCloud
         # @type IsGradingRequiredPostClass: Integer
         # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
         # @type RoomType: Integer
+        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # @type EndDelayTime: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -3529,6 +3548,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @EndDelayTime = enddelaytime
         end
 
         def deserialize(params)
@@ -3553,6 +3573,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @EndDelayTime = params['EndDelayTime']
         end
       end
 
@@ -3611,10 +3632,13 @@ module TencentCloud
         # @param RoomType: 房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomType: Integer
+        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndDelayTime: Integer
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -3632,6 +3656,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @EndDelayTime = enddelaytime
         end
 
         def deserialize(params)
@@ -3652,6 +3677,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @EndDelayTime = params['EndDelayTime']
         end
       end
 

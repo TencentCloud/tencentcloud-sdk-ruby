@@ -498,6 +498,39 @@ module TencentCloud
         end
       end
 
+      # 数据库权限信息
+      class DatabasePrivilegeInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param DatabasePrivileges: //库表权限，SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE、CREATE_TABLE、DROP_DATABASE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabasePrivileges: Array
+        # @param TablePrivilegeList: // 库下面的表权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePrivilegeList: Array
+
+        attr_accessor :DatabaseName, :DatabasePrivileges, :TablePrivilegeList
+
+        def initialize(databasename=nil, databaseprivileges=nil, tableprivilegelist=nil)
+          @DatabaseName = databasename
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivilegeList = tableprivilegelist
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @DatabasePrivileges = params['DatabasePrivileges']
+          unless params['TablePrivilegeList'].nil?
+            @TablePrivilegeList = []
+            params['TablePrivilegeList'].each do |i|
+              tableprivilegeinfo_tmp = TablePrivilegeInfo.new
+              tableprivilegeinfo_tmp.deserialize(i)
+              @TablePrivilegeList << tableprivilegeinfo_tmp
+            end
+          end
+        end
+      end
+
       # DeleteBackUpData请求参数结构体
       class DeleteBackUpDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -1881,12 +1914,44 @@ module TencentCloud
 
       # ModifyUserNewPrivilege请求参数结构体
       class ModifyUserNewPrivilegeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Cluster: cluster名称
+        # @type Cluster: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param AllDatabase: 是否所有数据库表
+        # @type AllDatabase: Boolean
+        # @param GlobalPrivileges: 全局权限
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivilegeList: 数据库表权限
+        # @type DatabasePrivilegeList: Array
 
+        attr_accessor :InstanceId, :Cluster, :UserName, :AllDatabase, :GlobalPrivileges, :DatabasePrivilegeList
 
-        def initialize()
+        def initialize(instanceid=nil, cluster=nil, username=nil, alldatabase=nil, globalprivileges=nil, databaseprivilegelist=nil)
+          @InstanceId = instanceid
+          @Cluster = cluster
+          @UserName = username
+          @AllDatabase = alldatabase
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivilegeList = databaseprivilegelist
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Cluster = params['Cluster']
+          @UserName = params['UserName']
+          @AllDatabase = params['AllDatabase']
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivilegeList'].nil?
+            @DatabasePrivilegeList = []
+            params['DatabasePrivilegeList'].each do |i|
+              databaseprivilegeinfo_tmp = DatabasePrivilegeInfo.new
+              databaseprivilegeinfo_tmp.deserialize(i)
+              @DatabasePrivilegeList << databaseprivilegeinfo_tmp
+            end
+          end
         end
       end
 
@@ -2417,6 +2482,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Version = params['Version']
+        end
+      end
+
+      # 表权限
+      class TablePrivilegeInfo < TencentCloud::Common::AbstractModel
+        # @param TableName: 表名称
+        # @type TableName: String
+        # @param TablePrivileges: 表权限列表 SELECT、INSERT_ALL、ALTER、TRUNCATE、DROP_TABLE 查询、插入、设置、清空表、删除表
+        # @type TablePrivileges: Array
+
+        attr_accessor :TableName, :TablePrivileges
+
+        def initialize(tablename=nil, tableprivileges=nil)
+          @TableName = tablename
+          @TablePrivileges = tableprivileges
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @TablePrivileges = params['TablePrivileges']
         end
       end
 

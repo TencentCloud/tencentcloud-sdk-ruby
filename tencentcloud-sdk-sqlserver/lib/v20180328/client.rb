@@ -1686,7 +1686,6 @@ module TencentCloud
         end
 
         # 本接口（InquiryPriceUpgradeDBInstance）用于查询包年包月实例升级变配的价格。
-        # 按量计费实例变配后的价格参考InquiryPriceCreateDBInstances接口。
 
         # @param request: Request instance for InquiryPriceUpgradeDBInstance.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::InquiryPriceUpgradeDBInstanceRequest`

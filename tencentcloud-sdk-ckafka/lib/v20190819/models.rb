@@ -415,7 +415,7 @@ module TencentCloud
 
       # BatchCreateAcl返回参数结构体
       class BatchCreateAclResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 状态码
+        # @param Result: 状态码：0-修改成功，否则修改失败
         # @type Result: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2334,8 +2334,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2023, 8
-        deprecate :DeleteRouteTimestamp=, :none, 2023, 8
+        deprecate :DeleteRouteTimestamp, :none, 2023, 9
+        deprecate :DeleteRouteTimestamp=, :none, 2023, 9
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2542,7 +2542,7 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: vpc子网id
         # @type SubnetId: String
-        # @param AccessType: 访问类型
+        # @param AccessType: 访问类型：0-plaintext；1-sasl_plaintext；2-ssl；3-sasl_ssl
         # @type AccessType: Integer
         # @param AuthFlag: 是否需要权限管理
         # @type AuthFlag: Integer
@@ -11702,8 +11702,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2023, 8
-        deprecate :Exflag=, :none, 2023, 8
+        deprecate :Exflag, :none, 2023, 9
+        deprecate :Exflag=, :none, 2023, 9
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

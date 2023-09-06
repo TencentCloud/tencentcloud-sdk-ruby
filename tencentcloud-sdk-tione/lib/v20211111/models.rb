@@ -1189,10 +1189,12 @@ module TencentCloud
         # @type ServiceCategory: String
         # @param Command: 服务的启动命令
         # @type Command: String
+        # @param ServiceEIP: 是否开启TIONE内网访问外部
+        # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -1223,6 +1225,7 @@ module TencentCloud
           @ModelTurboEnable = modelturboenable
           @ServiceCategory = servicecategory
           @Command = command
+          @ServiceEIP = serviceeip
         end
 
         def deserialize(params)
@@ -1301,6 +1304,10 @@ module TencentCloud
           @ModelTurboEnable = params['ModelTurboEnable']
           @ServiceCategory = params['ServiceCategory']
           @Command = params['Command']
+          unless params['ServiceEIP'].nil?
+            @ServiceEIP = ServiceEIP.new
+            @ServiceEIP.deserialize(params['ServiceEIP'])
+          end
         end
       end
 
@@ -6313,10 +6320,12 @@ module TencentCloud
         # @type ModelTurboEnable: Boolean
         # @param Command: 服务的启动命令
         # @type Command: String
+        # @param ServiceEIP: 是否开启TIONE内网访问外部
+        # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -6339,6 +6348,7 @@ module TencentCloud
           @VolumeMount = volumemount
           @ModelTurboEnable = modelturboenable
           @Command = command
+          @ServiceEIP = serviceeip
         end
 
         def deserialize(params)
@@ -6402,6 +6412,10 @@ module TencentCloud
           end
           @ModelTurboEnable = params['ModelTurboEnable']
           @Command = params['Command']
+          unless params['ServiceEIP'].nil?
+            @ServiceEIP = ServiceEIP.new
+            @ServiceEIP.deserialize(params['ServiceEIP'])
+          end
         end
       end
 
@@ -7250,19 +7264,37 @@ module TencentCloud
         # @param Status: pod状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param StartTime: pod启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: pod结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param ResourceConfigInfo: pod资源配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
 
-        attr_accessor :Name, :IP, :Status
+        attr_accessor :Name, :IP, :Status, :StartTime, :EndTime, :ResourceConfigInfo
 
-        def initialize(name=nil, ip=nil, status=nil)
+        def initialize(name=nil, ip=nil, status=nil, starttime=nil, endtime=nil, resourceconfiginfo=nil)
           @Name = name
           @IP = ip
           @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @ResourceConfigInfo = resourceconfiginfo
         end
 
         def deserialize(params)
           @Name = params['Name']
           @IP = params['IP']
           @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['ResourceConfigInfo'].nil?
+            @ResourceConfigInfo = ResourceConfigInfo.new
+            @ResourceConfigInfo.deserialize(params['ResourceConfigInfo'])
+          end
         end
       end
 
@@ -8647,15 +8679,31 @@ module TencentCloud
         # @type Available: Boolean
         # @param AvailableRegion: 当前资源售罄时，可用的区域有哪些
         # @type AvailableRegion: Array
+        # @param SpecFeatures: 当前计费项支持的特性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecFeatures: Array
+        # @param SpecType: 计费项类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecType: String
+        # @param GpuType: GPU类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuType: String
+        # @param CategoryId: 计费项CategoryId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryId: String
 
-        attr_accessor :SpecId, :SpecName, :SpecAlias, :Available, :AvailableRegion
+        attr_accessor :SpecId, :SpecName, :SpecAlias, :Available, :AvailableRegion, :SpecFeatures, :SpecType, :GpuType, :CategoryId
 
-        def initialize(specid=nil, specname=nil, specalias=nil, available=nil, availableregion=nil)
+        def initialize(specid=nil, specname=nil, specalias=nil, available=nil, availableregion=nil, specfeatures=nil, spectype=nil, gputype=nil, categoryid=nil)
           @SpecId = specid
           @SpecName = specname
           @SpecAlias = specalias
           @Available = available
           @AvailableRegion = availableregion
+          @SpecFeatures = specfeatures
+          @SpecType = spectype
+          @GpuType = gputype
+          @CategoryId = categoryid
         end
 
         def deserialize(params)
@@ -8664,6 +8712,10 @@ module TencentCloud
           @SpecAlias = params['SpecAlias']
           @Available = params['Available']
           @AvailableRegion = params['AvailableRegion']
+          @SpecFeatures = params['SpecFeatures']
+          @SpecType = params['SpecType']
+          @GpuType = params['GpuType']
+          @CategoryId = params['CategoryId']
         end
       end
 

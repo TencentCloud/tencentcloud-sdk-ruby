@@ -1230,8 +1230,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2023, 8
-        deprecate :IgnoreCacheControl=, :none, 2023, 8
+        deprecate :IgnoreCacheControl, :none, 2023, 9
+        deprecate :IgnoreCacheControl=, :none, 2023, 9
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2010,8 +2010,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2023, 8
-        deprecate :EncodeUrl=, :none, 2023, 8
+        deprecate :EncodeUrl, :none, 2023, 9
+        deprecate :EncodeUrl=, :none, 2023, 9
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
@@ -2162,6 +2162,52 @@ module TencentCloud
 
         def deserialize(params)
           @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSharedCNAME请求参数结构体
+      class CreateSharedCNAMERequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 共享 CNAME 所属站点的 ID。
+        # @type ZoneId: String
+        # @param SharedCNAMEPrefix: 共享 CNAME 前缀。请输入合法的域名前缀，例如"test-api"、"test-api.com"，限制输入 50 个字符。
+        # 共享 CNAME 完整格式为：<自定义前缀>+<zoneid中的12位随机字符串>+"share.eo.dnse[0-5].com"。例如前缀传入 example.com，EO 会为您创建共享 CNAME：example.com.sai2ig51kaa5.eo.dns2.com
+        # 示例值：example.com
+        # @type SharedCNAMEPrefix: String
+        # @param Description: 描述。可输入 1-50 个任意字符。
+        # @type Description: String
+
+        attr_accessor :ZoneId, :SharedCNAMEPrefix, :Description
+
+        def initialize(zoneid=nil, sharedcnameprefix=nil, description=nil)
+          @ZoneId = zoneid
+          @SharedCNAMEPrefix = sharedcnameprefix
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SharedCNAMEPrefix = params['SharedCNAMEPrefix']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateSharedCNAME返回参数结构体
+      class CreateSharedCNAMEResponse < TencentCloud::Common::AbstractModel
+        # @param SharedCNAME: 共享 CNAME。格式为：<自定义前缀>+<ZoneId中的12位随机字符串>+"share.eo.dnse[0-5].com"
+        # @type SharedCNAME: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SharedCNAME, :RequestId
+
+        def initialize(sharedcname=nil, requestid=nil)
+          @SharedCNAME = sharedcname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SharedCNAME = params['SharedCNAME']
           @RequestId = params['RequestId']
         end
       end

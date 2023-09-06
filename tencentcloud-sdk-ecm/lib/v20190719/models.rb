@@ -1882,16 +1882,19 @@ module TencentCloud
         # @type EcmRegion: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param IPv6CidrBlock: IPv6 CIDR
+        # @type IPv6CidrBlock: String
 
-        attr_accessor :VpcId, :SubnetName, :CidrBlock, :Zone, :EcmRegion, :Tags
+        attr_accessor :VpcId, :SubnetName, :CidrBlock, :Zone, :EcmRegion, :Tags, :IPv6CidrBlock
 
-        def initialize(vpcid=nil, subnetname=nil, cidrblock=nil, zone=nil, ecmregion=nil, tags=nil)
+        def initialize(vpcid=nil, subnetname=nil, cidrblock=nil, zone=nil, ecmregion=nil, tags=nil, ipv6cidrblock=nil)
           @VpcId = vpcid
           @SubnetName = subnetname
           @CidrBlock = cidrblock
           @Zone = zone
           @EcmRegion = ecmregion
           @Tags = tags
+          @IPv6CidrBlock = ipv6cidrblock
         end
 
         def deserialize(params)
@@ -1908,6 +1911,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IPv6CidrBlock = params['IPv6CidrBlock']
         end
       end
 

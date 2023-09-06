@@ -5021,10 +5021,13 @@ module TencentCloud
         # @type CosPath: String
         # @param CreateTime: 日志导出创建时间
         # @type CreateTime: String
+        # @param SyntaxRule: 语法规则。 默认值为0。
+        # 0：Lucene语法，1：CQL语法。
+        # @type SyntaxRule: Integer
 
-        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime
+        attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule
 
-        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil)
+        def initialize(topicid=nil, exportid=nil, query=nil, filename=nil, filesize=nil, order=nil, format=nil, count=nil, status=nil, from=nil, to=nil, cospath=nil, createtime=nil, syntaxrule=nil)
           @TopicId = topicid
           @ExportId = exportid
           @Query = query
@@ -5038,6 +5041,7 @@ module TencentCloud
           @To = to
           @CosPath = cospath
           @CreateTime = createtime
+          @SyntaxRule = syntaxrule
         end
 
         def deserialize(params)
@@ -5054,6 +5058,7 @@ module TencentCloud
           @To = params['To']
           @CosPath = params['CosPath']
           @CreateTime = params['CreateTime']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 
@@ -6079,6 +6084,9 @@ module TencentCloud
       class MachineInfo < TencentCloud::Common::AbstractModel
         # @param Ip: 机器的IP
         # @type Ip: String
+        # @param InstanceID: 机器实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
         # @param Status: 机器状态，0:异常，1:正常
         # @type Status: Integer
         # @param OfflineTime: 机器离线时间，空为正常，异常返回具体时间
@@ -6094,10 +6102,11 @@ module TencentCloud
         # @param ErrMsg: 机器升级结果信息。
         # @type ErrMsg: String
 
-        attr_accessor :Ip, :Status, :OfflineTime, :AutoUpdate, :Version, :UpdateStatus, :ErrCode, :ErrMsg
+        attr_accessor :Ip, :InstanceID, :Status, :OfflineTime, :AutoUpdate, :Version, :UpdateStatus, :ErrCode, :ErrMsg
 
-        def initialize(ip=nil, status=nil, offlinetime=nil, autoupdate=nil, version=nil, updatestatus=nil, errcode=nil, errmsg=nil)
+        def initialize(ip=nil, instanceid=nil, status=nil, offlinetime=nil, autoupdate=nil, version=nil, updatestatus=nil, errcode=nil, errmsg=nil)
           @Ip = ip
+          @InstanceID = instanceid
           @Status = status
           @OfflineTime = offlinetime
           @AutoUpdate = autoupdate
@@ -6109,6 +6118,7 @@ module TencentCloud
 
         def deserialize(params)
           @Ip = params['Ip']
+          @InstanceID = params['InstanceID']
           @Status = params['Status']
           @OfflineTime = params['OfflineTime']
           @AutoUpdate = params['AutoUpdate']

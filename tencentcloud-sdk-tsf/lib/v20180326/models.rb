@@ -6169,7 +6169,7 @@ module TencentCloud
         # @type DeployBetaEnable: Boolean
         # @param DeployBatch: 滚动发布每个批次参与的实例比率
         # @type DeployBatch: Array
-        # @param DeployExeMode: 滚动发布的执行方式
+        # @param DeployExeMode: 滚动发布的执行方式，auto表示自动， manual表示手动
         # @type DeployExeMode: String
         # @param DeployWaitTime: 滚动发布每个批次的时间间隔
         # @type DeployWaitTime: Integer
@@ -6181,7 +6181,8 @@ module TencentCloud
         # @type IncrementalDeployment: Boolean
         # @param JdkName: JDK名称: konaJDK或openJDK
         # @type JdkName: String
-        # @param JdkVersion: JDK版本: 8或11 (openJDK只支持8)
+        # @param JdkVersion: konaJDK版本：8、11和17
+        # openJDK版本：8、17
         # @type JdkVersion: String
         # @param AgentProfileList: 部署agent的类型、版本
         # @type AgentProfileList: Array
@@ -19898,7 +19899,7 @@ module TencentCloud
       class UpdateHealthCheckSettingsRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID
         # @type GroupId: String
-        # @param EnableHealthCheck: 是否能使健康检查
+        # @param EnableHealthCheck: 是否开启健康检查
         # @type EnableHealthCheck: Boolean
         # @param HealthCheckSettings: 健康检查配置
         # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`

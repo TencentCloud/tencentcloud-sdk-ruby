@@ -1661,6 +1661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询消息轨迹
+
+        # @param request: Request instance for DescribeRocketMQMsgTrace.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQMsgTraceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQMsgTraceResponse`
+        def DescribeRocketMQMsgTrace(request)
+          body = send_request('DescribeRocketMQMsgTrace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQMsgTraceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取RocketMQ命名空间列表
 
         # @param request: Request instance for DescribeRocketMQNamespaces.
@@ -1671,6 +1695,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRocketMQNamespacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # rocketmq 消息查询
+
+        # @param request: Request instance for DescribeRocketMQTopicMsgs.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicMsgsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicMsgsResponse`
+        def DescribeRocketMQTopicMsgs(request)
+          body = send_request('DescribeRocketMQTopicMsgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQTopicMsgsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -961,7 +961,7 @@ module TencentCloud
 
       # CreateCluster请求参数结构体
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
+        # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
         # @type ClusterName: String
         # @param BindClusterId: 用户专享物理集群ID，如果不传，则默认在公共集群上创建用户集群资源。
         # @type BindClusterId: Integer
@@ -4767,6 +4767,114 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQMsgTrace请求参数结构体
+      class DescribeRocketMQMsgTraceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param EnvironmentId: 命名空间
+        # @type EnvironmentId: String
+        # @param TopicName: 主题，rocketmq查询死信时值为groupId
+        # @type TopicName: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param GroupName: 消费组、订阅
+        # @type GroupName: String
+        # @param QueryDLQMsg: 查询死信时该值为true
+        # @type QueryDLQMsg: Boolean
+
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg
+
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil)
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @MsgId = msgid
+          @GroupName = groupname
+          @QueryDLQMsg = querydlqmsg
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @MsgId = params['MsgId']
+          @GroupName = params['GroupName']
+          @QueryDLQMsg = params['QueryDLQMsg']
+        end
+      end
+
+      # DescribeRocketMQMsgTrace返回参数结构体
+      class DescribeRocketMQMsgTraceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: [
+        #     {
+        #         "Stage": "produce",
+        #         "Data": {
+        #             "ProducerName": "生产者名",
+        #             "ProduceTime": "消息生产时间",
+        #             "ProducerAddr": "客户端地址",
+        #             "Duration": "耗时ms",
+        #             "Status": "状态（0：成功，1：失败）"
+        #         }
+        #     },
+        #     {
+        #         "Stage": "persist",
+        #         "Data": {
+        #             "PersistTime": "存储时间",
+        #             "Duration": "耗时ms",
+        #             "Status": "状态（0：成功，1：失败）"
+        #         }
+        #     },
+        #     {
+        #         "Stage": "consume",
+        #         "Data": {
+        #             "TotalCount": 2,
+        #             "RocketMqConsumeLogs": [
+        #                 {
+        #                     "ConsumerGroup": "消费组",
+        #                     "ConsumeModel": "消费模式",
+        #                     "ConsumerAddr": "消费者地址",
+        #                     "ConsumeTime": "推送时间",
+        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
+        #                 },
+        #                 {
+        #                     "ConsumerGroup": "消费组",
+        #                     "ConsumeModel": "消费模式",
+        #                     "ConsumerAddr": "消费者地址",
+        #                     "ConsumeTime": "推送时间",
+        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
+        #                 }
+        #             ]
+        #         }
+        #     }
+        # ]
+        # @type Result: Array
+        # @param ShowTopicName: 消息轨迹页展示的topic名称
+        # @type ShowTopicName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ShowTopicName, :RequestId
+
+        def initialize(result=nil, showtopicname=nil, requestid=nil)
+          @Result = result
+          @ShowTopicName = showtopicname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              traceresult_tmp = TraceResult.new
+              traceresult_tmp.deserialize(i)
+              @Result << traceresult_tmp
+            end
+          end
+          @ShowTopicName = params['ShowTopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQNamespaces请求参数结构体
       class DescribeRocketMQNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -4822,6 +4930,102 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQTopicMsgs请求参数结构体
+      class DescribeRocketMQTopicMsgsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param EnvironmentId: 命名空间
+        # @type EnvironmentId: String
+        # @param TopicName: 主题名称，查询死信时为groupId
+        # @type TopicName: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param MsgId: 消息 ID
+        # @type MsgId: String
+        # @param MsgKey: 消息 key
+        # @type MsgKey: String
+        # @param Offset: 查询偏移
+        # @type Offset: Integer
+        # @param Limit: 查询限额
+        # @type Limit: Integer
+        # @param TaskRequestId: 标志一次分页事务
+        # @type TaskRequestId: String
+        # @param QueryDlqMsg: 死信查询时该值为true，只对Rocketmq有效
+        # @type QueryDlqMsg: Boolean
+        # @param NumOfLatestMsg: 查询最近N条消息 最大不超过1024，默认-1为其他查询条件
+        # @type NumOfLatestMsg: Integer
+
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg
+
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil)
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @StartTime = starttime
+          @EndTime = endtime
+          @MsgId = msgid
+          @MsgKey = msgkey
+          @Offset = offset
+          @Limit = limit
+          @TaskRequestId = taskrequestid
+          @QueryDlqMsg = querydlqmsg
+          @NumOfLatestMsg = numoflatestmsg
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MsgId = params['MsgId']
+          @MsgKey = params['MsgKey']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TaskRequestId = params['TaskRequestId']
+          @QueryDlqMsg = params['QueryDlqMsg']
+          @NumOfLatestMsg = params['NumOfLatestMsg']
+        end
+      end
+
+      # DescribeRocketMQTopicMsgs返回参数结构体
+      class DescribeRocketMQTopicMsgsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param TopicMsgLogSets: 消息列表
+        # @type TopicMsgLogSets: Array
+        # @param TaskRequestId: 标志一次分页事务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TopicMsgLogSets, :TaskRequestId, :RequestId
+
+        def initialize(totalcount=nil, topicmsglogsets=nil, taskrequestid=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TopicMsgLogSets = topicmsglogsets
+          @TaskRequestId = taskrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopicMsgLogSets'].nil?
+            @TopicMsgLogSets = []
+            params['TopicMsgLogSets'].each do |i|
+              rocketmqmsglog_tmp = RocketMQMsgLog.new
+              rocketmqmsglog_tmp.deserialize(i)
+              @TopicMsgLogSets << rocketmqmsglog_tmp
+            end
+          end
+          @TaskRequestId = params['TaskRequestId']
           @RequestId = params['RequestId']
         end
       end
@@ -8090,6 +8294,54 @@ module TencentCloud
         end
       end
 
+      # rocketmq消息日志
+      class RocketMQMsgLog < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param MsgTag: 消息tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgTag: String
+        # @param MsgKey: 消息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgKey: String
+        # @param ProducerAddr: 客户端地址
+        # @type ProducerAddr: String
+        # @param ProduceTime: 消息发送时间
+        # @type ProduceTime: String
+        # @param PulsarMsgId: pulsar消息id
+        # @type PulsarMsgId: String
+        # @param DeadLetterResendTimes: 死信重发次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterResendTimes: Integer
+        # @param ResendSuccessCount: 死信重发成功次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResendSuccessCount: Integer
+
+        attr_accessor :MsgId, :MsgTag, :MsgKey, :ProducerAddr, :ProduceTime, :PulsarMsgId, :DeadLetterResendTimes, :ResendSuccessCount
+
+        def initialize(msgid=nil, msgtag=nil, msgkey=nil, produceraddr=nil, producetime=nil, pulsarmsgid=nil, deadletterresendtimes=nil, resendsuccesscount=nil)
+          @MsgId = msgid
+          @MsgTag = msgtag
+          @MsgKey = msgkey
+          @ProducerAddr = produceraddr
+          @ProduceTime = producetime
+          @PulsarMsgId = pulsarmsgid
+          @DeadLetterResendTimes = deadletterresendtimes
+          @ResendSuccessCount = resendsuccesscount
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @MsgTag = params['MsgTag']
+          @MsgKey = params['MsgKey']
+          @ProducerAddr = params['ProducerAddr']
+          @ProduceTime = params['ProduceTime']
+          @PulsarMsgId = params['PulsarMsgId']
+          @DeadLetterResendTimes = params['DeadLetterResendTimes']
+          @ResendSuccessCount = params['ResendSuccessCount']
+        end
+      end
+
       # RocketMQ命名空间信息
       class RocketMQNamespace < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -8951,6 +9203,26 @@ module TencentCloud
         def deserialize(params)
           @EnvironmentId = params['EnvironmentId']
           @TopicName = params['TopicName']
+        end
+      end
+
+      # 消息轨迹结果
+      class TraceResult < TencentCloud::Common::AbstractModel
+        # @param Stage: 阶段
+        # @type Stage: String
+        # @param Data: 内容详情
+        # @type Data: String
+
+        attr_accessor :Stage, :Data
+
+        def initialize(stage=nil, data=nil)
+          @Stage = stage
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Data = params['Data']
         end
       end
 

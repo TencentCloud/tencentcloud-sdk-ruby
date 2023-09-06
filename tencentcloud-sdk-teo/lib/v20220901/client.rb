@@ -319,6 +319,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建共享 CNAME
+
+        # @param request: Request instance for CreateSharedCNAME.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateSharedCNAMERequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateSharedCNAMEResponse`
+        def CreateSharedCNAME(request)
+          body = send_request('CreateSharedCNAME', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSharedCNAMEResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于用户接入新的站点。
 
         # @param request: Request instance for CreateZone.

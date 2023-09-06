@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建证书绑定关联云资源异步任务， 该接口用于查询证书关联云资源。 若证书ID已存在查询云资源任务，则结果返回该任务ID。关联云资源类型，支持以下云资源：clb、cdn、waf、live、vod、ddos、tke、apigateway、tcb、teo（edgeOne）。查询关联云资源结果使用DescribeCertificateBindResourceTaskResult接口
+
+        # @param request: Request instance for CreateCertificateBindResourceSyncTask.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CreateCertificateBindResourceSyncTaskRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CreateCertificateBindResourceSyncTaskResponse`
+        def CreateCertificateBindResourceSyncTask(request)
+          body = send_request('CreateCertificateBindResourceSyncTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCertificateBindResourceSyncTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用权益点创建证书
 
         # @param request: Request instance for CreateCertificateByPackage.
@@ -327,6 +351,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CreateCertificateBindResourceSyncTask任务结果， 返回证书关联云资源异步任务结果， 支持以下云资源：clb、cdn、waf、live、vod、ddos、tke、apigateway、tcb、teo（edgeOne）
+
+        # @param request: Request instance for DescribeCertificateBindResourceTaskDetail.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeCertificateBindResourceTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeCertificateBindResourceTaskDetailResponse`
+        def DescribeCertificateBindResourceTaskDetail(request)
+          body = send_request('DescribeCertificateBindResourceTaskDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCertificateBindResourceTaskDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CreateCertificateBindResourceSyncTask任务结果， 返回证书关联云资源异步任务结果， 支持以下云资源：clb、cdn、waf、live、vod、ddos、tke、apigateway、tcb、teo（edgeOne）
+
+        # @param request: Request instance for DescribeCertificateBindResourceTaskResult.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeCertificateBindResourceTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::DescribeCertificateBindResourceTaskResultResponse`
+        def DescribeCertificateBindResourceTaskResult(request)
+          body = send_request('DescribeCertificateBindResourceTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCertificateBindResourceTaskResultResponse.new
             model.deserialize(response['Response'])
             model
           else

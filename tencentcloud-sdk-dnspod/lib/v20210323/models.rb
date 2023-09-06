@@ -5724,7 +5724,7 @@ module TencentCloud
         # @param IsQcloud: 是否是在腾讯云注册的域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsQcloud: Boolean
-        # @param IsQcloudOwner: 是否当前操作帐号注册的域名
+        # @param IsQcloudOwner: 是否当前操作账号注册的域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsQcloudOwner: Boolean
         # @param NameServers: 域名配置的NS

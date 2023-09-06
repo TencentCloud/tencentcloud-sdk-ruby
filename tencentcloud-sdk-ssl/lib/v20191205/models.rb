@@ -50,6 +50,38 @@ module TencentCloud
         end
       end
 
+      # apigateway实例详情 - 异步关联云资源数据结构
+      class ApiGatewayInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: apigateway实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下apigateway实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :InstanceList, :TotalCount
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              apigatewayinstancedetail_tmp = ApiGatewayInstanceDetail.new
+              apigatewayinstancedetail_tmp.deserialize(i)
+              @InstanceList << apigatewayinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # ApplyCertificate请求参数结构体
       class ApplyCertificateRequest < TencentCloud::Common::AbstractModel
         # @param DvAuthMethod: 验证方式：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证。
@@ -138,6 +170,54 @@ module TencentCloud
         end
       end
 
+      # 绑定资源地域结果
+      class BindResourceRegionResult < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param TotalCount: 关联资源总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :TotalCount
+
+        def initialize(region=nil, totalcount=nil)
+          @Region = region
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 绑定资源结果
+      class BindResourceResult < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型：clb、cdn、waf、live、vod、ddos、tke、apigateway、tcb、teo（edgeOne）
+        # @type ResourceType: String
+        # @param BindResourceRegionResult: 绑定资源地域结果
+        # @type BindResourceRegionResult: Array
+
+        attr_accessor :ResourceType, :BindResourceRegionResult
+
+        def initialize(resourcetype=nil, bindresourceregionresult=nil)
+          @ResourceType = resourcetype
+          @BindResourceRegionResult = bindresourceregionresult
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['BindResourceRegionResult'].nil?
+            @BindResourceRegionResult = []
+            params['BindResourceRegionResult'].each do |i|
+              bindresourceregionresult_tmp = BindResourceRegionResult.new
+              bindresourceregionresult_tmp.deserialize(i)
+              @BindResourceRegionResult << bindresourceregionresult_tmp
+            end
+          end
+        end
+      end
+
       # CancelCertificateOrder请求参数结构体
       class CancelCertificateOrderRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -202,6 +282,34 @@ module TencentCloud
         end
       end
 
+      # cdn实例详情 - 异步关联云资源数据结构
+      class CdnInstanceList < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该地域下CDN域名总数
+        # @type TotalCount: Integer
+        # @param InstanceList: cdn域名详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+
+        attr_accessor :TotalCount, :InstanceList
+
+        def initialize(totalcount=nil, instancelist=nil)
+          @TotalCount = totalcount
+          @InstanceList = instancelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              cdninstancedetail_tmp = CdnInstanceDetail.new
+              cdninstancedetail_tmp.deserialize(i)
+              @InstanceList << cdninstancedetail_tmp
+            end
+          end
+        end
+      end
+
       # 云资源配置详情
       class CertHostingInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 证书ID
@@ -230,6 +338,26 @@ module TencentCloud
           @RenewCertId = params['RenewCertId']
           @ResourceType = params['ResourceType']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 证书异步任务ID
+      class CertTaskId < TencentCloud::Common::AbstractModel
+        # @param CertId: 证书ID
+        # @type CertId: String
+        # @param TaskId: 异步任务ID
+        # @type TaskId: String
+
+        attr_accessor :CertId, :TaskId
+
+        def initialize(certid=nil, taskid=nil)
+          @CertId = certid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @TaskId = params['TaskId']
         end
       end
 
@@ -601,6 +729,38 @@ module TencentCloud
         end
       end
 
+      # clb实例详情 - 异步关联云资源数据结构
+      class ClbInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: clb实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下Clb实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :InstanceList, :TotalCount
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              clbinstancedetail_tmp = ClbInstanceDetail.new
+              clbinstancedetail_tmp.deserialize(i)
+              @InstanceList << clbinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # CLB实例监听器
       class ClbListener < TencentCloud::Common::AbstractModel
         # @param ListenerId: 监听器ID
@@ -857,6 +1017,53 @@ module TencentCloud
         end
       end
 
+      # CreateCertificateBindResourceSyncTask请求参数结构体
+      class CreateCertificateBindResourceSyncTaskRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateIds: 证书ID列表，总数不能超过100
+        # @type CertificateIds: Array
+        # @param IsCache: 是否使用缓存， 1使用缓存，0不使用缓存； 默认为1使用缓存； 若当前证书ID存在半小时已完成的任务， 则使用缓存的情况下， 会读取半小时内离当前时间最近的查询结果
+        # @type IsCache: Integer
+
+        attr_accessor :CertificateIds, :IsCache
+
+        def initialize(certificateids=nil, iscache=nil)
+          @CertificateIds = certificateids
+          @IsCache = iscache
+        end
+
+        def deserialize(params)
+          @CertificateIds = params['CertificateIds']
+          @IsCache = params['IsCache']
+        end
+      end
+
+      # CreateCertificateBindResourceSyncTask返回参数结构体
+      class CreateCertificateBindResourceSyncTaskResponse < TencentCloud::Common::AbstractModel
+        # @param CertTaskIds: 证书关联云资源异步任务ID列表
+        # @type CertTaskIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertTaskIds, :RequestId
+
+        def initialize(certtaskids=nil, requestid=nil)
+          @CertTaskIds = certtaskids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CertTaskIds'].nil?
+            @CertTaskIds = []
+            params['CertTaskIds'].each do |i|
+              certtaskid_tmp = CertTaskId.new
+              certtaskid_tmp.deserialize(i)
+              @CertTaskIds << certtaskid_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCertificateByPackage请求参数结构体
       class CreateCertificateByPackageRequest < TencentCloud::Common::AbstractModel
         # @param ProductPid: 证书产品PID。
@@ -1046,6 +1253,34 @@ module TencentCloud
           @Protocol = params['Protocol']
           @CertId = params['CertId']
           @VirtualPort = params['VirtualPort']
+        end
+      end
+
+      # ddos实例详情 - 异步关联云资源数据结构
+      class DdosInstanceList < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该地域下ddos域名总数
+        # @type TotalCount: Integer
+        # @param InstanceList: ddos实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+
+        attr_accessor :TotalCount, :InstanceList
+
+        def initialize(totalcount=nil, instancelist=nil)
+          @TotalCount = totalcount
+          @InstanceList = instancelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              ddosinstancedetail_tmp = DdosInstanceDetail.new
+              ddosinstancedetail_tmp.deserialize(i)
+              @InstanceList << ddosinstancedetail_tmp
+            end
+          end
         end
       end
 
@@ -1428,6 +1663,226 @@ module TencentCloud
           @Type = params['Type']
           @ResourceIds = params['ResourceIds']
           @Resources = params['Resources']
+        end
+      end
+
+      # DescribeCertificateBindResourceTaskDetail请求参数结构体
+      class DescribeCertificateBindResourceTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID，根据任务ID查询绑定云资源结果
+        # @type TaskId: String
+        # @param Limit: 每页展示数量， 默认10，最大值100; 分页总数为云资源地域下实例总数， 即第一页会拉群每个云资源的地域下面Limit数量实例
+        # @type Limit: String
+        # @param Offset: 当前偏移量
+        # @type Offset: String
+        # @param ResourceTypes: 查询资源类型的结果详情， 不传则查询所有
+        # @type ResourceTypes: Array
+        # @param Regions: 查询地域列表的数据，CLB、TKE、WAF、APIGATEWAY、TCB支持地域查询， 其他资源类型不支持
+        # @type Regions: Array
+
+        attr_accessor :TaskId, :Limit, :Offset, :ResourceTypes, :Regions
+
+        def initialize(taskid=nil, limit=nil, offset=nil, resourcetypes=nil, regions=nil)
+          @TaskId = taskid
+          @Limit = limit
+          @Offset = offset
+          @ResourceTypes = resourcetypes
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ResourceTypes = params['ResourceTypes']
+          @Regions = params['Regions']
+        end
+      end
+
+      # DescribeCertificateBindResourceTaskDetail返回参数结构体
+      class DescribeCertificateBindResourceTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param CLB: 关联clb资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLB: Array
+        # @param CDN: 关联cdn资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CDN: Array
+        # @param WAF: 关联waf资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WAF: Array
+        # @param DDOS: 关联ddos资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DDOS: Array
+        # @param LIVE: 关联live资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LIVE: Array
+        # @param VOD: 关联vod资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VOD: Array
+        # @param TKE: 关联tke资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TKE: Array
+        # @param APIGATEWAY: 关联apigateway资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APIGATEWAY: Array
+        # @param TCB: 关联tcb资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TCB: Array
+        # @param TEO: 关联teo资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TEO: Array
+        # @param Status: 关联云资源异步查询结果： 0表示查询中， 1表示查询成功。 2表示查询异常； 若状态为1，则查看BindResourceResult结果；若状态为2，则查看Error原因
+        # @type Status: Integer
+        # @param CacheTime: 当前结果缓存时间
+        # @type CacheTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :RequestId
+
+        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, requestid=nil)
+          @CLB = clb
+          @CDN = cdn
+          @WAF = waf
+          @DDOS = ddos
+          @LIVE = live
+          @VOD = vod
+          @TKE = tke
+          @APIGATEWAY = apigateway
+          @TCB = tcb
+          @TEO = teo
+          @Status = status
+          @CacheTime = cachetime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CLB'].nil?
+            @CLB = []
+            params['CLB'].each do |i|
+              clbinstancelist_tmp = ClbInstanceList.new
+              clbinstancelist_tmp.deserialize(i)
+              @CLB << clbinstancelist_tmp
+            end
+          end
+          unless params['CDN'].nil?
+            @CDN = []
+            params['CDN'].each do |i|
+              cdninstancelist_tmp = CdnInstanceList.new
+              cdninstancelist_tmp.deserialize(i)
+              @CDN << cdninstancelist_tmp
+            end
+          end
+          unless params['WAF'].nil?
+            @WAF = []
+            params['WAF'].each do |i|
+              wafinstancelist_tmp = WafInstanceList.new
+              wafinstancelist_tmp.deserialize(i)
+              @WAF << wafinstancelist_tmp
+            end
+          end
+          unless params['DDOS'].nil?
+            @DDOS = []
+            params['DDOS'].each do |i|
+              ddosinstancelist_tmp = DdosInstanceList.new
+              ddosinstancelist_tmp.deserialize(i)
+              @DDOS << ddosinstancelist_tmp
+            end
+          end
+          unless params['LIVE'].nil?
+            @LIVE = []
+            params['LIVE'].each do |i|
+              liveinstancelist_tmp = LiveInstanceList.new
+              liveinstancelist_tmp.deserialize(i)
+              @LIVE << liveinstancelist_tmp
+            end
+          end
+          unless params['VOD'].nil?
+            @VOD = []
+            params['VOD'].each do |i|
+              vodinstancelist_tmp = VODInstanceList.new
+              vodinstancelist_tmp.deserialize(i)
+              @VOD << vodinstancelist_tmp
+            end
+          end
+          unless params['TKE'].nil?
+            @TKE = []
+            params['TKE'].each do |i|
+              tkeinstancelist_tmp = TkeInstanceList.new
+              tkeinstancelist_tmp.deserialize(i)
+              @TKE << tkeinstancelist_tmp
+            end
+          end
+          unless params['APIGATEWAY'].nil?
+            @APIGATEWAY = []
+            params['APIGATEWAY'].each do |i|
+              apigatewayinstancelist_tmp = ApiGatewayInstanceList.new
+              apigatewayinstancelist_tmp.deserialize(i)
+              @APIGATEWAY << apigatewayinstancelist_tmp
+            end
+          end
+          unless params['TCB'].nil?
+            @TCB = []
+            params['TCB'].each do |i|
+              tcbinstancelist_tmp = TCBInstanceList.new
+              tcbinstancelist_tmp.deserialize(i)
+              @TCB << tcbinstancelist_tmp
+            end
+          end
+          unless params['TEO'].nil?
+            @TEO = []
+            params['TEO'].each do |i|
+              teoinstancelist_tmp = TeoInstanceList.new
+              teoinstancelist_tmp.deserialize(i)
+              @TEO << teoinstancelist_tmp
+            end
+          end
+          @Status = params['Status']
+          @CacheTime = params['CacheTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCertificateBindResourceTaskResult请求参数结构体
+      class DescribeCertificateBindResourceTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务ID，根据任务ID查询绑定云资源结果， 最大支持100个
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # DescribeCertificateBindResourceTaskResult返回参数结构体
+      class DescribeCertificateBindResourceTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param SyncTaskBindResourceResult: 异步任务绑定关联云资源结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncTaskBindResourceResult: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SyncTaskBindResourceResult, :RequestId
+
+        def initialize(synctaskbindresourceresult=nil, requestid=nil)
+          @SyncTaskBindResourceResult = synctaskbindresourceresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SyncTaskBindResourceResult'].nil?
+            @SyncTaskBindResourceResult = []
+            params['SyncTaskBindResourceResult'].each do |i|
+              synctaskbindresourceresult_tmp = SyncTaskBindResourceResult.new
+              synctaskbindresourceresult_tmp.deserialize(i)
+              @SyncTaskBindResourceResult << synctaskbindresourceresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3731,6 +4186,28 @@ module TencentCloud
         end
       end
 
+      # 错误异常
+      class Error < TencentCloud::Common::AbstractModel
+        # @param Code: 异常错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Message: 异常错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Code, :Message
+
+        def initialize(code=nil, message=nil)
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
       # 过滤参数列表
       class Filter < TencentCloud::Common::AbstractModel
         # @param FilterKey: 过滤参数key
@@ -3846,6 +4323,34 @@ module TencentCloud
           @Domain = params['Domain']
           @CertId = params['CertId']
           @Status = params['Status']
+        end
+      end
+
+      # live实例详情 - 异步关联云资源数据结构
+      class LiveInstanceList < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 该地域下live实例总数
+        # @type TotalCount: Integer
+        # @param InstanceList: live实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+
+        attr_accessor :TotalCount, :InstanceList
+
+        def initialize(totalcount=nil, instancelist=nil)
+          @TotalCount = totalcount
+          @InstanceList = instancelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              liveinstancedetail_tmp = LiveInstanceDetail.new
+              liveinstancedetail_tmp.deserialize(i)
+              @InstanceList << liveinstancedetail_tmp
+            end
+          end
         end
       end
 
@@ -4780,6 +5285,281 @@ module TencentCloud
         end
       end
 
+      # 异步任务证书关联云资源结果
+      class SyncTaskBindResourceResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param BindResourceResult: 关联云资源结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindResourceResult: Array
+        # @param Status: 关联云资源异步查询结果： 0表示查询中， 1表示查询成功。 2表示查询异常； 若状态为1，则查看BindResourceResult结果；若状态为2，则查看Error原因
+        # @type Status: Integer
+        # @param Error: 关联云资源错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Error: :class:`Tencentcloud::Ssl.v20191205.models.Error`
+        # @param CacheTime: 当前结果缓存时间
+        # @type CacheTime: String
+
+        attr_accessor :TaskId, :BindResourceResult, :Status, :Error, :CacheTime
+
+        def initialize(taskid=nil, bindresourceresult=nil, status=nil, error=nil, cachetime=nil)
+          @TaskId = taskid
+          @BindResourceResult = bindresourceresult
+          @Status = status
+          @Error = error
+          @CacheTime = cachetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['BindResourceResult'].nil?
+            @BindResourceResult = []
+            params['BindResourceResult'].each do |i|
+              bindresourceresult_tmp = BindResourceResult.new
+              bindresourceresult_tmp.deserialize(i)
+              @BindResourceResult << bindresourceresult_tmp
+            end
+          end
+          @Status = params['Status']
+          unless params['Error'].nil?
+            @Error = Error.new
+            @Error.deserialize(params['Error'])
+          end
+          @CacheTime = params['CacheTime']
+        end
+      end
+
+      # TCB访问服务实例
+      class TCBAccessInstance < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param UnionStatus: 统一域名状态
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnionStatus: Integer
+        # @param IsPreempted: 是否被抢占, 被抢占表示域名被其他环境绑定了，需要解绑或者重新绑定。
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPreempted: Boolean
+        # @param ICPStatus: icp黑名单封禁状态，0-未封禁，1-封禁
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ICPStatus: Integer
+        # @param OldCertificateId: 已绑定证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldCertificateId: String
+
+        attr_accessor :Domain, :Status, :UnionStatus, :IsPreempted, :ICPStatus, :OldCertificateId
+
+        def initialize(domain=nil, status=nil, unionstatus=nil, ispreempted=nil, icpstatus=nil, oldcertificateid=nil)
+          @Domain = domain
+          @Status = status
+          @UnionStatus = unionstatus
+          @IsPreempted = ispreempted
+          @ICPStatus = icpstatus
+          @OldCertificateId = oldcertificateid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @UnionStatus = params['UnionStatus']
+          @IsPreempted = params['IsPreempted']
+          @ICPStatus = params['ICPStatus']
+          @OldCertificateId = params['OldCertificateId']
+        end
+      end
+
+      # TCB访问服务列表
+      class TCBAccessService < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :InstanceList, :TotalCount
+
+        def initialize(instancelist=nil, totalcount=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              tcbaccessinstance_tmp = TCBAccessInstance.new
+              tcbaccessinstance_tmp.deserialize(i)
+              @InstanceList << tcbaccessinstance_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # TCB环境
+      class TCBEnvironment < TencentCloud::Common::AbstractModel
+        # @param ID: 唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Source: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :ID, :Source, :Name, :Status
+
+        def initialize(id=nil, source=nil, name=nil, status=nil)
+          @ID = id
+          @Source = source
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Source = params['Source']
+          @Name = params['Name']
+          @Status = params['Status']
+        end
+      end
+
+      # tcb环境实例详情 - 异步关联云资源数据结构
+      class TCBEnvironments < TencentCloud::Common::AbstractModel
+        # @param Environment: tcb环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environment: :class:`Tencentcloud::Ssl.v20191205.models.TCBEnvironment`
+        # @param AccessService: 访问服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessService: :class:`Tencentcloud::Ssl.v20191205.models.TCBAccessService`
+        # @param HostService: 静态托管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostService: :class:`Tencentcloud::Ssl.v20191205.models.TCBHostService`
+
+        attr_accessor :Environment, :AccessService, :HostService
+
+        def initialize(environment=nil, accessservice=nil, hostservice=nil)
+          @Environment = environment
+          @AccessService = accessservice
+          @HostService = hostservice
+        end
+
+        def deserialize(params)
+          unless params['Environment'].nil?
+            @Environment = TCBEnvironment.new
+            @Environment.deserialize(params['Environment'])
+          end
+          unless params['AccessService'].nil?
+            @AccessService = TCBAccessService.new
+            @AccessService.deserialize(params['AccessService'])
+          end
+          unless params['HostService'].nil?
+            @HostService = TCBHostService.new
+            @HostService.deserialize(params['HostService'])
+          end
+        end
+      end
+
+      # TCB静态托管服务实例
+      class TCBHostInstance < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param DNSStatus: 解析状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DNSStatus: String
+        # @param OldCertificateId: 已绑定证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldCertificateId: String
+
+        attr_accessor :Domain, :Status, :DNSStatus, :OldCertificateId
+
+        def initialize(domain=nil, status=nil, dnsstatus=nil, oldcertificateid=nil)
+          @Domain = domain
+          @Status = status
+          @DNSStatus = dnsstatus
+          @OldCertificateId = oldcertificateid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @DNSStatus = params['DNSStatus']
+          @OldCertificateId = params['OldCertificateId']
+        end
+      end
+
+      # TCB静态托管服务列表
+      class TCBHostService < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :InstanceList, :TotalCount
+
+        def initialize(instancelist=nil, totalcount=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              tcbhostinstance_tmp = TCBHostInstance.new
+              tcbhostinstance_tmp.deserialize(i)
+              @InstanceList << tcbhostinstance_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # tcb地域实例详情 - 异步关联云资源数据结构
+      class TCBInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param Environments: tcb环境实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environments: Array
+
+        attr_accessor :Region, :Environments
+
+        def initialize(region=nil, environments=nil)
+          @Region = region
+          @Environments = environments
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['Environments'].nil?
+            @Environments = []
+            params['Environments'].each do |i|
+              tcbenvironments_tmp = TCBEnvironments.new
+              tcbenvironments_tmp.deserialize(i)
+              @Environments << tcbenvironments_tmp
+            end
+          end
+        end
+      end
+
       # 标签
       class Tags < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -4826,6 +5606,34 @@ module TencentCloud
           @CertId = params['CertId']
           @ZoneId = params['ZoneId']
           @Status = params['Status']
+        end
+      end
+
+      # edgeone实例详情 - 异步关联云资源数据结构
+      class TeoInstanceList < TencentCloud::Common::AbstractModel
+        # @param InstanceList: edgeone实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: edgeone实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :InstanceList, :TotalCount
+
+        def initialize(instancelist=nil, totalcount=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              teoinstancedetail_tmp = TeoInstanceDetail.new
+              teoinstancedetail_tmp.deserialize(i)
+              @InstanceList << teoinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -4889,6 +5697,38 @@ module TencentCloud
           end
           @ClusterType = params['ClusterType']
           @ClusterVersion = params['ClusterVersion']
+        end
+      end
+
+      # tke实例详情 - 异步关联云资源数据结构
+      class TkeInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: tke实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下tke实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :InstanceList, :TotalCount
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              tkeinstancedetail_tmp = TkeInstanceDetail.new
+              tkeinstancedetail_tmp.deserialize(i)
+              @InstanceList << tkeinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 
@@ -4970,8 +5810,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :OldCertificateId, :ResourceTypes, :Regions, :ResourceTypesRegions
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2023, 8
-        deprecate :Regions=, :none, 2023, 8
+        deprecate :Regions, :none, 2023, 9
+        deprecate :Regions=, :none, 2023, 9
 
         def initialize(certificateid=nil, oldcertificateid=nil, resourcetypes=nil, regions=nil, resourcetypesregions=nil)
           @CertificateId = certificateid
@@ -5449,6 +6289,34 @@ module TencentCloud
         end
       end
 
+      # vod实例详情 - 异步关联云资源数据结构
+      class VODInstanceList < TencentCloud::Common::AbstractModel
+        # @param InstanceList: vod实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下vod实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :InstanceList, :TotalCount
+
+        def initialize(instancelist=nil, totalcount=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              vodinstancedetail_tmp = VodInstanceDetail.new
+              vodinstancedetail_tmp.deserialize(i)
+              @InstanceList << vodinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # VerifyManager请求参数结构体
       class VerifyManagerRequest < TencentCloud::Common::AbstractModel
         # @param ManagerId: 管理人ID
@@ -5502,6 +6370,64 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @CertId = params['CertId']
+        end
+      end
+
+      # waf实例详情
+      class WafInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param CertId: 证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+        # @param Keepalive: 是否保持长连接，1是，0 否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keepalive: Integer
+
+        attr_accessor :Domain, :CertId, :Keepalive
+
+        def initialize(domain=nil, certid=nil, keepalive=nil)
+          @Domain = domain
+          @CertId = certid
+          @Keepalive = keepalive
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @CertId = params['CertId']
+          @Keepalive = params['Keepalive']
+        end
+      end
+
+      # waf实例详情 - 异步关联云资源数据结构
+      class WafInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: waf实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下waf实例总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :InstanceList, :TotalCount
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              wafinstancedetail_tmp = WafInstanceDetail.new
+              wafinstancedetail_tmp.deserialize(i)
+              @InstanceList << wafinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 

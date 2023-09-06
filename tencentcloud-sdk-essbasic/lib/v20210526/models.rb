@@ -3577,24 +3577,31 @@ module TencentCloud
       class CreateSignUrlsRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowIds: 签署流程编号数组，最多支持100个。(备注：该参数和合同组编号必须二选一)
+        # @param FlowIds: 流程(合同)的编号列表，最多支持100个。(备注：该参数和合同组编号必须二选一)
         # @type FlowIds: Array
         # @param FlowGroupId: 合同组编号(备注：该参数和合同(流程)编号数组必须二选一)
         # @type FlowGroupId: String
-        # @param Endpoint: 签署链接类型：“WEIXINAPP”-短链直接跳小程序；“CHANNEL”-跳转H5页面；“APP”-第三方APP或小程序跳转电子签小程序；"LONGURL2WEIXINAPP"-长链接跳转小程序；默认“WEIXINAPP”类型，即跳转至小程序；
+        # @param Endpoint: 签署链接类型,可以设置的参数如下
+
+        # - WEIXINAPP:短链直接跳小程序 (默认类型)
+        # - CHANNEL:跳转H5页面
+        # - APP:第三方APP或小程序跳转电子签小程序
+        # - LONGURL2WEIXINAPP:长链接跳转小程序
         # @type Endpoint: String
-        # @param GenerateType: 签署链接生成类型，默认是 "ALL"；
-        # "ALL"：全部签署方签署链接，此时不会给自动签署的签署方创建签署链接；
-        # "CHANNEL"：第三方平台子客企业企业；
-        # "NOT_CHANNEL"：非第三方平台子客企业企业；
-        # "PERSON"：个人；
-        # "FOLLOWER"：关注方，目前是合同抄送方；
+        # @param GenerateType: 签署链接生成类型，可以选择的类型如下
+
+        # - ALL：全部签署方签署链接，此时不会给自动签署的签署方创建签署链接(默认类型)
+        # - CHANNEL：第三方平台子客企业企业
+        # - NOT_CHANNEL：非第三方平台子客企业企业
+        # - PERSON：个人
+        # - FOLLOWER：关注方，目前是合同抄送方
         # @type GenerateType: String
         # @param OrganizationName: 非第三方平台子客企业参与方的企业名称，GenerateType为"NOT_CHANNEL"时必填
         # @type OrganizationName: String
-        # @param Name: 参与人姓名，GenerateType为"PERSON"时必填
+        # @param Name: 参与人姓名
+        # GenerateType为"PERSON"(即个人签署方)时必填
         # @type Name: String
-        # @param Mobile: 参与人手机号；
+        # @param Mobile: 参与人手机号
         # GenerateType为"PERSON"或"FOLLOWER"时必填
         # @type Mobile: String
         # @param OrganizationOpenId: 第三方平台子客企业的企业OpenId，GenerateType为"CHANNEL"时必填
@@ -3609,10 +3616,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param Hides: 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
 
-        # 0:合同签署页面更多操作按钮
-        # 1:合同签署页面更多操作的拒绝签署按钮
-        # 2:合同签署页面更多操作的转他人处理按钮
-        # 3:签署成功页的查看详情按钮
+        # - 0:合同签署页面更多操作按钮
+        # - 1:合同签署页面更多操作的拒绝签署按钮
+        # - 2:合同签署页面更多操作的转他人处理按钮
+        # - 3:签署成功页的查看详情按钮
         # @type Hides: Array
 
         attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides
@@ -5833,7 +5840,7 @@ module TencentCloud
 
       # 签署链接内容
       class SignUrlInfo < TencentCloud::Common::AbstractModel
-        # @param SignUrl: 签署链接，过期时间为30天
+        # @param SignUrl: 签署链接，过期时间为90天
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUrl: String
         # @param Deadline: 合同过期时间戳，单位秒

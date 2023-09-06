@@ -3183,9 +3183,11 @@ module TencentCloud
         # @type JobId: String
         # @param RunType: 运行类型，1：启动，2：恢复
         # @type RunType: Integer
-        # @param StartMode: 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（例:T1557394288000）
+        # @param StartMode: 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（建议传值）
+        # 保证参数为 LATEST、EARLIEST、T+Timestamp （例:T1557394288000）
         # @type StartMode: String
         # @param JobConfigVersion: 当前作业的某个版本
+        # （不传默认为非草稿的作业版本）
         # @type JobConfigVersion: Integer
         # @param SavepointPath: Savepoint路径
         # @type SavepointPath: String
@@ -3193,10 +3195,12 @@ module TencentCloud
         # @type SavepointId: String
         # @param UseOldSystemConnector: 使用历史版本系统依赖
         # @type UseOldSystemConnector: Boolean
+        # @param CustomTimestamp: 自定义时间戳
+        # @type CustomTimestamp: Integer
 
-        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector
+        attr_accessor :JobId, :RunType, :StartMode, :JobConfigVersion, :SavepointPath, :SavepointId, :UseOldSystemConnector, :CustomTimestamp
 
-        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil)
+        def initialize(jobid=nil, runtype=nil, startmode=nil, jobconfigversion=nil, savepointpath=nil, savepointid=nil, useoldsystemconnector=nil, customtimestamp=nil)
           @JobId = jobid
           @RunType = runtype
           @StartMode = startmode
@@ -3204,6 +3208,7 @@ module TencentCloud
           @SavepointPath = savepointpath
           @SavepointId = savepointid
           @UseOldSystemConnector = useoldsystemconnector
+          @CustomTimestamp = customtimestamp
         end
 
         def deserialize(params)
@@ -3214,6 +3219,7 @@ module TencentCloud
           @SavepointPath = params['SavepointPath']
           @SavepointId = params['SavepointId']
           @UseOldSystemConnector = params['UseOldSystemConnector']
+          @CustomTimestamp = params['CustomTimestamp']
         end
       end
 

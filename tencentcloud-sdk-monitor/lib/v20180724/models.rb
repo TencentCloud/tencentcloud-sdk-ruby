@@ -7896,6 +7896,49 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusRegions请求参数结构体
+      class DescribePrometheusRegionsRequest < TencentCloud::Common::AbstractModel
+        # @param PayMode: 1-预付费，2-后付费，3-全地域（不填默认全地域）
+        # @type PayMode: Integer
+
+        attr_accessor :PayMode
+
+        def initialize(paymode=nil)
+          @PayMode = paymode
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+        end
+      end
+
+      # DescribePrometheusRegions返回参数结构体
+      class DescribePrometheusRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: 区域列表
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :RequestId
+
+        def initialize(regionset=nil, requestid=nil)
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              prometheusregionitem_tmp = PrometheusRegionItem.new
+              prometheusregionitem_tmp.deserialize(i)
+              @RegionSet << prometheusregionitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusScrapeJobs请求参数结构体
       class DescribePrometheusScrapeJobsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -9009,9 +9052,9 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetIds: 子网 ID 数组
         # @type SubnetIds: Array
-        # @param InternetUrl: Grafana 内网地址
+        # @param InternetUrl: Grafana 公网地址
         # @type InternetUrl: String
-        # @param InternalUrl: Grafana 公网地址
+        # @param InternalUrl: Grafana 内网地址
         # @type InternalUrl: String
         # @param CreatedAt: 创建时间
         # @type CreatedAt: String
@@ -11897,6 +11940,46 @@ module TencentCloud
           @Status = params['Status']
           @Id = params['Id']
           @Count = params['Count']
+        end
+      end
+
+      # DescribePrometheusRegions 响应结构体
+      class PrometheusRegionItem < TencentCloud::Common::AbstractModel
+        # @param Region: 区域
+        # @type Region: String
+        # @param RegionId: 区域 ID
+        # @type RegionId: Integer
+        # @param RegionState: 区域状态( 0: 不可用；1: 可用)
+        # @type RegionState: Integer
+        # @param RegionName: 区域名(中文)
+        # @type RegionName: String
+        # @param RegionShortName: 区域名(英文缩写)
+        # @type RegionShortName: String
+        # @param Area: 区域所在大区名
+        # @type Area: String
+        # @param RegionPayMode: 1-仅支持预付费，2-仅支持后付费，3-支持两种计费模式实例
+        # @type RegionPayMode: Integer
+
+        attr_accessor :Region, :RegionId, :RegionState, :RegionName, :RegionShortName, :Area, :RegionPayMode
+
+        def initialize(region=nil, regionid=nil, regionstate=nil, regionname=nil, regionshortname=nil, area=nil, regionpaymode=nil)
+          @Region = region
+          @RegionId = regionid
+          @RegionState = regionstate
+          @RegionName = regionname
+          @RegionShortName = regionshortname
+          @Area = area
+          @RegionPayMode = regionpaymode
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionId = params['RegionId']
+          @RegionState = params['RegionState']
+          @RegionName = params['RegionName']
+          @RegionShortName = params['RegionShortName']
+          @Area = params['Area']
+          @RegionPayMode = params['RegionPayMode']
         end
       end
 

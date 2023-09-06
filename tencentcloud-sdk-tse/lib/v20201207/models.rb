@@ -3603,10 +3603,13 @@ module TencentCloud
         # @param Editable: 是否可编辑
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Editable: Boolean
+        # @param Path: 请求路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
 
-        attr_accessor :ID, :Name, :Tags, :UpstreamInfo, :UpstreamType, :CreatedTime, :Editable
+        attr_accessor :ID, :Name, :Tags, :UpstreamInfo, :UpstreamType, :CreatedTime, :Editable, :Path
 
-        def initialize(id=nil, name=nil, tags=nil, upstreaminfo=nil, upstreamtype=nil, createdtime=nil, editable=nil)
+        def initialize(id=nil, name=nil, tags=nil, upstreaminfo=nil, upstreamtype=nil, createdtime=nil, editable=nil, path=nil)
           @ID = id
           @Name = name
           @Tags = tags
@@ -3614,6 +3617,7 @@ module TencentCloud
           @UpstreamType = upstreamtype
           @CreatedTime = createdtime
           @Editable = editable
+          @Path = path
         end
 
         def deserialize(params)
@@ -3627,6 +3631,7 @@ module TencentCloud
           @UpstreamType = params['UpstreamType']
           @CreatedTime = params['CreatedTime']
           @Editable = params['Editable']
+          @Path = params['Path']
         end
       end
 

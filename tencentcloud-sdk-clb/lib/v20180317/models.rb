@@ -1007,10 +1007,13 @@ module TencentCloud
         # @param DisasterRecoveryType: 集群容灾类型，如SINGLE-ZONE，DISASTER-RECOVERY，MUTUAL-DISASTER-RECOVERY
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DisasterRecoveryType: String
+        # @param Egress: 网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone, :ClustersVersion, :DisasterRecoveryType
+        attr_accessor :ClusterId, :ClusterName, :ClusterType, :ClusterTag, :Zone, :Network, :MaxConn, :MaxInFlow, :MaxInPkg, :MaxOutFlow, :MaxOutPkg, :MaxNewConn, :HTTPMaxNewConn, :HTTPSMaxNewConn, :HTTPQps, :HTTPSQps, :ResourceCount, :IdleResourceCount, :LoadBalanceDirectorCount, :Isp, :ClustersZone, :ClustersVersion, :DisasterRecoveryType, :Egress
 
-        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil, clustersversion=nil, disasterrecoverytype=nil)
+        def initialize(clusterid=nil, clustername=nil, clustertype=nil, clustertag=nil, zone=nil, network=nil, maxconn=nil, maxinflow=nil, maxinpkg=nil, maxoutflow=nil, maxoutpkg=nil, maxnewconn=nil, httpmaxnewconn=nil, httpsmaxnewconn=nil, httpqps=nil, httpsqps=nil, resourcecount=nil, idleresourcecount=nil, loadbalancedirectorcount=nil, isp=nil, clusterszone=nil, clustersversion=nil, disasterrecoverytype=nil, egress=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterType = clustertype
@@ -1034,6 +1037,7 @@ module TencentCloud
           @ClustersZone = clusterszone
           @ClustersVersion = clustersversion
           @DisasterRecoveryType = disasterrecoverytype
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -1063,6 +1067,7 @@ module TencentCloud
           end
           @ClustersVersion = params['ClustersVersion']
           @DisasterRecoveryType = params['DisasterRecoveryType']
+          @Egress = params['Egress']
         end
       end
 
@@ -4856,10 +4861,13 @@ module TencentCloud
         # @param LoadBalancerDomain: 负载均衡实例的域名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerDomain: String
+        # @param Egress: 网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -4914,6 +4922,7 @@ module TencentCloud
           @ClusterIds = clusterids
           @AttributeFlags = attributeflags
           @LoadBalancerDomain = loadbalancerdomain
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -5010,6 +5019,7 @@ module TencentCloud
           @ClusterIds = params['ClusterIds']
           @AttributeFlags = params['AttributeFlags']
           @LoadBalancerDomain = params['LoadBalancerDomain']
+          @Egress = params['Egress']
         end
       end
 
@@ -5129,10 +5139,13 @@ module TencentCloud
         # @param LoadBalancerDomain: 负载均衡实例的域名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerDomain: String
+        # @param Egress: 网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain, :Egress
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil, egress=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -5171,6 +5184,7 @@ module TencentCloud
           @Zones = zones
           @SniSwitch = sniswitch
           @LoadBalancerDomain = loadbalancerdomain
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -5228,6 +5242,7 @@ module TencentCloud
           @Zones = params['Zones']
           @SniSwitch = params['SniSwitch']
           @LoadBalancerDomain = params['LoadBalancerDomain']
+          @Egress = params['Egress']
         end
       end
 
@@ -7686,10 +7701,13 @@ module TencentCloud
         # @type ZoneResourceType: String
         # @param EdgeZone: 可用区是否是EdgeZone可用区，如：false
         # @type EdgeZone: Boolean
+        # @param Egress: 网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
 
-        attr_accessor :MasterZone, :ResourceSet, :SlaveZone, :IPVersion, :ZoneRegion, :LocalZone, :ZoneResourceType, :EdgeZone
+        attr_accessor :MasterZone, :ResourceSet, :SlaveZone, :IPVersion, :ZoneRegion, :LocalZone, :ZoneResourceType, :EdgeZone, :Egress
 
-        def initialize(masterzone=nil, resourceset=nil, slavezone=nil, ipversion=nil, zoneregion=nil, localzone=nil, zoneresourcetype=nil, edgezone=nil)
+        def initialize(masterzone=nil, resourceset=nil, slavezone=nil, ipversion=nil, zoneregion=nil, localzone=nil, zoneresourcetype=nil, edgezone=nil, egress=nil)
           @MasterZone = masterzone
           @ResourceSet = resourceset
           @SlaveZone = slavezone
@@ -7698,6 +7716,7 @@ module TencentCloud
           @LocalZone = localzone
           @ZoneResourceType = zoneresourcetype
           @EdgeZone = edgezone
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -7716,6 +7735,7 @@ module TencentCloud
           @LocalZone = params['LocalZone']
           @ZoneResourceType = params['ZoneResourceType']
           @EdgeZone = params['EdgeZone']
+          @Egress = params['Egress']
         end
       end
 
