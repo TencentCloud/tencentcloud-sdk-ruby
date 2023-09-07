@@ -5253,6 +5253,46 @@ module TencentCloud
         end
       end
 
+      # FreshAntiFakeUrl请求参数结构体
+      class FreshAntiFakeUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Id: Id
+        # @type Id: Integer
+
+        attr_accessor :Domain, :Id
+
+        def initialize(domain=nil, id=nil)
+          @Domain = domain
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Id = params['Id']
+        end
+      end
+
+      # FreshAntiFakeUrl返回参数结构体
+      class FreshAntiFakeUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 结果成功与否
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAttackDownloadRecords请求参数结构体
       class GetAttackDownloadRecordsRequest < TencentCloud::Common::AbstractModel
 

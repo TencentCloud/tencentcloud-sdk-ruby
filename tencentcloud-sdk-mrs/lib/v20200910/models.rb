@@ -4956,10 +4956,16 @@ module TencentCloud
         # @param Coords: 器官在报告图片中的坐标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
+        # @param IsthmusThickness: 峡部厚度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsthmusThickness: :class:`Tencentcloud::Mrs.v20200910.models.Size`
 
-        attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords
+        attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
+        extend Gem::Deprecate
+        deprecate :IsthmusThicknese, :none, 2023, 9
+        deprecate :IsthmusThicknese=, :none, 2023, 9
 
-        def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil)
+        def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
           @Size = size
           @Envelope = envelope
@@ -4997,6 +5003,7 @@ module TencentCloud
           @Trend = trend
           @Operation = operation
           @Coords = coords
+          @IsthmusThickness = isthmusthickness
         end
 
         def deserialize(params)
@@ -5149,6 +5156,10 @@ module TencentCloud
               coord_tmp.deserialize(i)
               @Coords << coord_tmp
             end
+          end
+          unless params['IsthmusThickness'].nil?
+            @IsthmusThickness = Size.new
+            @IsthmusThickness.deserialize(params['IsthmusThickness'])
           end
         end
       end
@@ -5393,10 +5404,16 @@ module TencentCloud
         # @param TreatmentResultText: 治疗结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TreatmentResultText: String
+        # @param MenstrualHistoryText: 月经史
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MenstrualHistoryText: String
 
-        attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText
+        attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
+        extend Gem::Deprecate
+        deprecate :MenstruallHistoryText, :none, 2023, 9
+        deprecate :MenstruallHistoryText=, :none, 2023, 9
 
-        def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil)
+        def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
           @AuxiliaryExaminationText = auxiliaryexaminationtext
           @SpecialExamText = specialexamtext
@@ -5424,6 +5441,7 @@ module TencentCloud
           @BodyExaminationText = bodyexaminationtext
           @SpecialistExaminationText = specialistexaminationtext
           @TreatmentResultText = treatmentresulttext
+          @MenstrualHistoryText = menstrualhistorytext
         end
 
         def deserialize(params)
@@ -5454,6 +5472,7 @@ module TencentCloud
           @BodyExaminationText = params['BodyExaminationText']
           @SpecialistExaminationText = params['SpecialistExaminationText']
           @TreatmentResultText = params['TreatmentResultText']
+          @MenstrualHistoryText = params['MenstrualHistoryText']
         end
       end
 
@@ -6525,10 +6544,13 @@ module TencentCloud
         # @param Times: 未归类时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Times: Array
+        # @param BedNo: 床号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BedNo: String
 
-        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose, :CheckItem, :CheckMethod, :DiagnoseTime, :HealthCheckupNum, :OtherTime, :PrintTime, :Times
+        attr_accessor :Hospital, :DepartmentName, :BillingTime, :ReportTime, :InspectTime, :CheckNum, :ImageNum, :RadiationNum, :TestNum, :OutpatientNum, :PathologyNum, :InHospitalNum, :SampleNum, :SampleType, :MedicalRecordNum, :ReportName, :UltraNum, :Diagnose, :CheckItem, :CheckMethod, :DiagnoseTime, :HealthCheckupNum, :OtherTime, :PrintTime, :Times, :BedNo
 
-        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil, checkitem=nil, checkmethod=nil, diagnosetime=nil, healthcheckupnum=nil, othertime=nil, printtime=nil, times=nil)
+        def initialize(hospital=nil, departmentname=nil, billingtime=nil, reporttime=nil, inspecttime=nil, checknum=nil, imagenum=nil, radiationnum=nil, testnum=nil, outpatientnum=nil, pathologynum=nil, inhospitalnum=nil, samplenum=nil, sampletype=nil, medicalrecordnum=nil, reportname=nil, ultranum=nil, diagnose=nil, checkitem=nil, checkmethod=nil, diagnosetime=nil, healthcheckupnum=nil, othertime=nil, printtime=nil, times=nil, bedno=nil)
           @Hospital = hospital
           @DepartmentName = departmentname
           @BillingTime = billingtime
@@ -6554,6 +6576,7 @@ module TencentCloud
           @OtherTime = othertime
           @PrintTime = printtime
           @Times = times
+          @BedNo = bedno
         end
 
         def deserialize(params)
@@ -6589,6 +6612,7 @@ module TencentCloud
               @Times << time_tmp
             end
           end
+          @BedNo = params['BedNo']
         end
       end
 
@@ -8296,10 +8320,16 @@ module TencentCloud
         # @param Coords: 在报告图片中的坐标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coords: Array
+        # @param IsthmusThickness: 峡部厚度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsthmusThickness: :class:`Tencentcloud::Mrs.v20200910.models.Size`
 
-        attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords
+        attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
+        extend Gem::Deprecate
+        deprecate :IsthmusThicknese, :none, 2023, 9
+        deprecate :IsthmusThicknese=, :none, 2023, 9
 
-        def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil)
+        def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type
           @Part = part
           @Size = size
@@ -8345,6 +8375,7 @@ module TencentCloud
           @SymDesc = symdesc
           @ImageFeature = imagefeature
           @Coords = coords
+          @IsthmusThickness = isthmusthickness
         end
 
         def deserialize(params)
@@ -8533,6 +8564,10 @@ module TencentCloud
               coord_tmp.deserialize(i)
               @Coords << coord_tmp
             end
+          end
+          unless params['IsthmusThickness'].nil?
+            @IsthmusThickness = Size.new
+            @IsthmusThickness.deserialize(params['IsthmusThickness'])
           end
         end
       end

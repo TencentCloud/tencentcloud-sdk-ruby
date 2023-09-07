@@ -158,23 +158,37 @@ module TencentCloud
       class BindStaffSkillGroupListRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
-        # @param StaffEmail: 坐席邮箱
+        # @param StaffEmail: 座席邮箱
         # @type StaffEmail: String
         # @param SkillGroupList: 绑定技能组列表
         # @type SkillGroupList: Array
+        # @param StaffSkillGroupList: 绑定技能组列表(必填)
+        # @type StaffSkillGroupList: Array
 
-        attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList
+        attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
+        extend Gem::Deprecate
+        deprecate :SkillGroupList, :none, 2023, 9
+        deprecate :SkillGroupList=, :none, 2023, 9
 
-        def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil)
+        def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
           @StaffEmail = staffemail
           @SkillGroupList = skillgrouplist
+          @StaffSkillGroupList = staffskillgrouplist
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @StaffEmail = params['StaffEmail']
           @SkillGroupList = params['SkillGroupList']
+          unless params['StaffSkillGroupList'].nil?
+            @StaffSkillGroupList = []
+            params['StaffSkillGroupList'].each do |i|
+              staffskillgrouplist_tmp = StaffSkillGroupList.new
+              staffskillgrouplist_tmp.deserialize(i)
+              @StaffSkillGroupList << staffskillgrouplist_tmp
+            end
+          end
         end
       end
 
@@ -3257,6 +3271,26 @@ module TencentCloud
             end
           end
           @LastModifyTimestamp = params['LastModifyTimestamp']
+        end
+      end
+
+      # 座席绑定技能组列表
+      class StaffSkillGroupList < TencentCloud::Common::AbstractModel
+        # @param SkillGroupId: 技能组ID
+        # @type SkillGroupId: Integer
+        # @param Priority: 座席在技能组中的优先级（1为最高，5最低，默认3）
+        # @type Priority: Integer
+
+        attr_accessor :SkillGroupId, :Priority
+
+        def initialize(skillgroupid=nil, priority=nil)
+          @SkillGroupId = skillgroupid
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @SkillGroupId = params['SkillGroupId']
+          @Priority = params['Priority']
         end
       end
 
