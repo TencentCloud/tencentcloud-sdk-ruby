@@ -752,6 +752,49 @@ module TencentCloud
         end
       end
 
+      # DescribeBackUpTables请求参数结构体
+      class DescribeBackUpTablesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeBackUpTables返回参数结构体
+      class DescribeBackUpTablesResponse < TencentCloud::Common::AbstractModel
+        # @param AvailableTables: 可备份表列表
+        # @type AvailableTables: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AvailableTables, :RequestId
+
+        def initialize(availabletables=nil, requestid=nil)
+          @AvailableTables = availabletables
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AvailableTables'].nil?
+            @AvailableTables = []
+            params['AvailableTables'].each do |i|
+              backuptablecontent_tmp = BackupTableContent.new
+              backuptablecontent_tmp.deserialize(i)
+              @AvailableTables << backuptablecontent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCkSqlApis请求参数结构体
       class DescribeCkSqlApisRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id

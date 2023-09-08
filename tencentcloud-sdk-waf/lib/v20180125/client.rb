@@ -173,54 +173,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 一键接入
-
-        # @param request: Request instance for AddSpartaProtectionAuto.
-        # @type request: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionAutoRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionAutoResponse`
-        def AddSpartaProtectionAuto(request)
-          body = send_request('AddSpartaProtectionAuto', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddSpartaProtectionAutoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 批量添加域名
-
-        # @param request: Request instance for AddSpartaProtectionsAuto.
-        # @type request: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionsAutoRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionsAutoResponse`
-        def AddSpartaProtectionsAuto(request)
-          body = send_request('AddSpartaProtectionsAuto', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddSpartaProtectionsAutoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于创建访问日志导出
 
         # @param request: Request instance for CreateAccessExport.
@@ -1028,6 +980,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainDetailsSaasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取添加域名操作的结果
+
+        # @param request: Request instance for DescribeDomainVerifyResult.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainVerifyResultRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeDomainVerifyResultResponse`
+        def DescribeDomainVerifyResult(request)
+          body = send_request('DescribeDomainVerifyResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainVerifyResultResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1136,6 +1136,42 @@ module TencentCloud
         end
       end
 
+      # GetPlatformEventTemplate请求参数结构体
+      class GetPlatformEventTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param EventType: 平台产品事件类型
+        # @type EventType: String
+
+        attr_accessor :EventType
+
+        def initialize(eventtype=nil)
+          @EventType = eventtype
+        end
+
+        def deserialize(params)
+          @EventType = params['EventType']
+        end
+      end
+
+      # GetPlatformEventTemplate返回参数结构体
+      class GetPlatformEventTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param EventTemplate: 平台产品事件模板
+        # @type EventTemplate: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventTemplate, :RequestId
+
+        def initialize(eventtemplate=nil, requestid=nil)
+          @EventTemplate = eventtemplate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EventTemplate = params['EventTemplate']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRule请求参数结构体
       class GetRuleRequest < TencentCloud::Common::AbstractModel
         # @param EventBusId: 事件集ID
@@ -1392,6 +1428,130 @@ module TencentCloud
         end
       end
 
+      # ListPlatformEventNames请求参数结构体
+      class ListPlatformEventNamesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: 平台产品类型
+        # @type ProductType: String
+
+        attr_accessor :ProductType
+
+        def initialize(producttype=nil)
+          @ProductType = producttype
+        end
+
+        def deserialize(params)
+          @ProductType = params['ProductType']
+        end
+      end
+
+      # ListPlatformEventNames返回参数结构体
+      class ListPlatformEventNamesResponse < TencentCloud::Common::AbstractModel
+        # @param EventNames: 平台产品列表
+        # @type EventNames: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventNames, :RequestId
+
+        def initialize(eventnames=nil, requestid=nil)
+          @EventNames = eventnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventNames'].nil?
+            @EventNames = []
+            params['EventNames'].each do |i|
+              platformeventdetail_tmp = PlatformEventDetail.new
+              platformeventdetail_tmp.deserialize(i)
+              @EventNames << platformeventdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListPlatformEventPatterns请求参数结构体
+      class ListPlatformEventPatternsRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: 平台产品类型
+        # @type ProductType: String
+
+        attr_accessor :ProductType
+
+        def initialize(producttype=nil)
+          @ProductType = producttype
+        end
+
+        def deserialize(params)
+          @ProductType = params['ProductType']
+        end
+      end
+
+      # ListPlatformEventPatterns返回参数结构体
+      class ListPlatformEventPatternsResponse < TencentCloud::Common::AbstractModel
+        # @param EventPatterns: 平台产品事件匹配规则
+        # @type EventPatterns: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventPatterns, :RequestId
+
+        def initialize(eventpatterns=nil, requestid=nil)
+          @EventPatterns = eventpatterns
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventPatterns'].nil?
+            @EventPatterns = []
+            params['EventPatterns'].each do |i|
+              platformeventsummary_tmp = PlatformEventSummary.new
+              platformeventsummary_tmp.deserialize(i)
+              @EventPatterns << platformeventsummary_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListPlatformProducts请求参数结构体
+      class ListPlatformProductsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ListPlatformProducts返回参数结构体
+      class ListPlatformProductsResponse < TencentCloud::Common::AbstractModel
+        # @param PlatformProducts: 平台产品列表
+        # @type PlatformProducts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PlatformProducts, :RequestId
+
+        def initialize(platformproducts=nil, requestid=nil)
+          @PlatformProducts = platformproducts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PlatformProducts'].nil?
+            @PlatformProducts = []
+            params['PlatformProducts'].each do |i|
+              platformproduct_tmp = PlatformProduct.new
+              platformproduct_tmp.deserialize(i)
+              @PlatformProducts << platformproduct_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListRules请求参数结构体
       class ListRulesRequest < TencentCloud::Common::AbstractModel
         # @param EventBusId: 事件集ID
@@ -1606,6 +1766,70 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @ValueType = params['ValueType']
+        end
+      end
+
+      # 平台事件名称
+      class PlatformEventDetail < TencentCloud::Common::AbstractModel
+        # @param EventName: 事件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
+        # @param EventType: 事件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventType: String
+
+        attr_accessor :EventName, :EventType
+
+        def initialize(eventname=nil, eventtype=nil)
+          @EventName = eventname
+          @EventType = eventtype
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventType = params['EventType']
+        end
+      end
+
+      # 平台事件匹配规则
+      class PlatformEventSummary < TencentCloud::Common::AbstractModel
+        # @param EventName: 平台事件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventName: String
+        # @param EventPattern: 平台事件匹配规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventPattern: String
+
+        attr_accessor :EventName, :EventPattern
+
+        def initialize(eventname=nil, eventpattern=nil)
+          @EventName = eventname
+          @EventPattern = eventpattern
+        end
+
+        def deserialize(params)
+          @EventName = params['EventName']
+          @EventPattern = params['EventPattern']
+        end
+      end
+
+      # 平台产品基础信息
+      class PlatformProduct < TencentCloud::Common::AbstractModel
+        # @param ProductName: 平台产品名称
+        # @type ProductName: String
+        # @param ProductType: 平台产品类型
+        # @type ProductType: String
+
+        attr_accessor :ProductName, :ProductType
+
+        def initialize(productname=nil, producttype=nil)
+          @ProductName = productname
+          @ProductType = producttype
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @ProductType = params['ProductType']
         end
       end
 

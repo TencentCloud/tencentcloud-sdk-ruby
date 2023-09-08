@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取平台产品事件模板
+
+        # @param request: Request instance for GetPlatformEventTemplate.
+        # @type request: :class:`Tencentcloud::eb::V20210416::GetPlatformEventTemplateRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::GetPlatformEventTemplateResponse`
+        def GetPlatformEventTemplate(request)
+          body = send_request('GetPlatformEventTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPlatformEventTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取事件规则详情
 
         # @param request: Request instance for GetRule.
@@ -447,6 +471,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListEventBusesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取平台产品事件名称
+
+        # @param request: Request instance for ListPlatformEventNames.
+        # @type request: :class:`Tencentcloud::eb::V20210416::ListPlatformEventNamesRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::ListPlatformEventNamesResponse`
+        def ListPlatformEventNames(request)
+          body = send_request('ListPlatformEventNames', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPlatformEventNamesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取平台产品事件匹配规则
+
+        # @param request: Request instance for ListPlatformEventPatterns.
+        # @type request: :class:`Tencentcloud::eb::V20210416::ListPlatformEventPatternsRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::ListPlatformEventPatternsResponse`
+        def ListPlatformEventPatterns(request)
+          body = send_request('ListPlatformEventPatterns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPlatformEventPatternsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取平台产品列表
+
+        # @param request: Request instance for ListPlatformProducts.
+        # @type request: :class:`Tencentcloud::eb::V20210416::ListPlatformProductsRequest`
+        # @rtype: :class:`Tencentcloud::eb::V20210416::ListPlatformProductsResponse`
+        def ListPlatformProducts(request)
+          body = send_request('ListPlatformProducts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPlatformProductsResponse.new
             model.deserialize(response['Response'])
             model
           else

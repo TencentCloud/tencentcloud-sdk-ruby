@@ -628,38 +628,6 @@ module TencentCloud
         end
       end
 
-      # AddSpartaProtectionAuto请求参数结构体
-      class AddSpartaProtectionAutoRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # @type Domain: String
-
-        attr_accessor :Domain
-
-        def initialize(domain=nil)
-          @Domain = domain
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-        end
-      end
-
-      # AddSpartaProtectionAuto返回参数结构体
-      class AddSpartaProtectionAutoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # AddSpartaProtection请求参数结构体
       class AddSpartaProtectionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要防御的域名
@@ -827,49 +795,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # AddSpartaProtectionsAuto请求参数结构体
-      class AddSpartaProtectionsAutoRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 多域名
-        # @type Domain: String
-
-        attr_accessor :Domain
-
-        def initialize(domain=nil)
-          @Domain = domain
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-        end
-      end
-
-      # AddSpartaProtectionsAuto返回参数结构体
-      class AddSpartaProtectionsAutoResponse < TencentCloud::Common::AbstractModel
-        # @param FailedInfos: 失败原因
-        # @type FailedInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :FailedInfos, :RequestId
-
-        def initialize(failedinfos=nil, requestid=nil)
-          @FailedInfos = failedinfos
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['FailedInfos'].nil?
-            @FailedInfos = []
-            params['FailedInfos'].each do |i|
-              failedinfo_tmp = FailedInfo.new
-              failedinfo_tmp.deserialize(i)
-              @FailedInfos << failedinfo_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -3355,6 +3280,50 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainVerifyResult请求参数结构体
+      class DescribeDomainVerifyResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :InstanceID
+
+        def initialize(domain=nil, instanceid=nil)
+          @Domain = domain
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeDomainVerifyResult返回参数结构体
+      class DescribeDomainVerifyResultResponse < TencentCloud::Common::AbstractModel
+        # @param Msg: 结果描述；如果可以添加返回空字符串
+        # @type Msg: String
+        # @param VerifyCode: 检验状态：0表示可以添加，大于0为不能添加
+        # @type VerifyCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Msg, :VerifyCode, :RequestId
+
+        def initialize(msg=nil, verifycode=nil, requestid=nil)
+          @Msg = msg
+          @VerifyCode = verifycode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          @VerifyCode = params['VerifyCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainWhiteRules请求参数结构体
       class DescribeDomainWhiteRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要查询的域名
@@ -5108,28 +5077,6 @@ module TencentCloud
           @To = params['To']
           @CosPath = params['CosPath']
           @CreateTime = params['CreateTime']
-        end
-      end
-
-      # 失败描述
-      class FailedInfo < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Domain: String
-        # @param Message: 失败信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Message: String
-
-        attr_accessor :Domain, :Message
-
-        def initialize(domain=nil, message=nil)
-          @Domain = domain
-          @Message = message
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-          @Message = params['Message']
         end
       end
 

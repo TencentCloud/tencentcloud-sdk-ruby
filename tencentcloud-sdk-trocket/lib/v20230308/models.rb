@@ -17,6 +17,140 @@
 module TencentCloud
   module Trocket
     module V20230308
+      # CreateInstance请求参数结构体
+      class CreateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型，
+        # EXPERIMENT 体验版
+        # BASIC 基础版
+        # PRO  专业版
+        # PLATINUM 铂金版
+        # @type InstanceType: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param SkuCode: 商品规格，可用规格如下：
+        # experiment_500,
+        # basic_1k,
+        # basic_2k,
+        # basic_4k,
+        # basic_6k
+        # @type SkuCode: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param TagList: 标签列表
+        # @type TagList: Array
+        # @param VpcList: 实例绑定的VPC信息
+        # @type VpcList: Array
+        # @param EnablePublic: 是否开启公网
+        # @type EnablePublic: Boolean
+        # @param Bandwidth: 公网带宽
+        # @type Bandwidth: Integer
+        # @param IpRules: 公网访问白名单
+        # @type IpRules: Array
+        # @param MessageRetention: 消息保留时长，小时为单位
+        # @type MessageRetention: Integer
+
+        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :Bandwidth, :IpRules, :MessageRetention
+
+        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, bandwidth=nil, iprules=nil, messageretention=nil)
+          @InstanceType = instancetype
+          @Name = name
+          @SkuCode = skucode
+          @Remark = remark
+          @TagList = taglist
+          @VpcList = vpclist
+          @EnablePublic = enablepublic
+          @Bandwidth = bandwidth
+          @IpRules = iprules
+          @MessageRetention = messageretention
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Name = params['Name']
+          @SkuCode = params['SkuCode']
+          @Remark = params['Remark']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcList << vpcinfo_tmp
+            end
+          end
+          @EnablePublic = params['EnablePublic']
+          @Bandwidth = params['Bandwidth']
+          unless params['IpRules'].nil?
+            @IpRules = []
+            params['IpRules'].each do |i|
+              iprule_tmp = IpRule.new
+              iprule_tmp.deserialize(i)
+              @IpRules << iprule_tmp
+            end
+          end
+          @MessageRetention = params['MessageRetention']
+        end
+      end
+
+      # CreateInstance返回参数结构体
+      class CreateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :RequestId
+
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstance请求参数结构体
+      class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteInstance返回参数结构体
+      class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceList请求参数结构体
       class DescribeInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 查询起始位置
@@ -91,6 +225,151 @@ module TencentCloud
         end
       end
 
+      # DescribeInstance请求参数结构体
+      class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstance返回参数结构体
+      class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型，
+        # EXPERIMENT 体验版
+        # BASIC 基础版
+        # PRO  专业版
+        # PLATINUM 铂金版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param TopicNum: 主题数量
+        # @type TopicNum: Integer
+        # @param TopicNumLimit: 实例最大主题数量
+        # @type TopicNumLimit: Integer
+        # @param GroupNum: 消费组数量
+        # @type GroupNum: Integer
+        # @param GroupNumLimit: 实例最大消费组数量
+        # @type GroupNumLimit: Integer
+        # @param MessageRetention: 消息保留时间，小时为单位
+        # @type MessageRetention: Integer
+        # @param RetentionUpperLimit: 最大可调整消息保留时间，小时为单位
+        # @type RetentionUpperLimit: Integer
+        # @param RetentionLowerLimit: 最小可调整消息保留时间，小时为单位
+        # @type RetentionLowerLimit: Integer
+        # @param TpsLimit: TPS限流值
+        # @type TpsLimit: Integer
+        # @param ScaledTpsLimit: 弹性TPS限流值
+        # @type ScaledTpsLimit: Integer
+        # @param MaxMessageDelay: 延迟消息最长时间，小时为单位
+        # @type MaxMessageDelay: Integer
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param SendReceiveRatio: 消息发送接收比例
+        # @type SendReceiveRatio: Float
+        # @param TagList: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param EndpointList: 接入点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointList: Array
+        # @param TopicQueueNumUpperLimit: 主题队列数上限
+        # @type TopicQueueNumUpperLimit: Integer
+        # @param TopicQueueNumLowerLimit: 主题队列数下限
+        # @type TopicQueueNumLowerLimit: Integer
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param SkuCode: 实例规格
+        # @type SkuCode: String
+        # @param PayMode: 计费模式
+        # @type PayMode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :RequestId
+
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, requestid=nil)
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @TopicNum = topicnum
+          @TopicNumLimit = topicnumlimit
+          @GroupNum = groupnum
+          @GroupNumLimit = groupnumlimit
+          @MessageRetention = messageretention
+          @RetentionUpperLimit = retentionupperlimit
+          @RetentionLowerLimit = retentionlowerlimit
+          @TpsLimit = tpslimit
+          @ScaledTpsLimit = scaledtpslimit
+          @MaxMessageDelay = maxmessagedelay
+          @CreatedTime = createdtime
+          @SendReceiveRatio = sendreceiveratio
+          @TagList = taglist
+          @EndpointList = endpointlist
+          @TopicQueueNumUpperLimit = topicqueuenumupperlimit
+          @TopicQueueNumLowerLimit = topicqueuenumlowerlimit
+          @Remark = remark
+          @InstanceStatus = instancestatus
+          @SkuCode = skucode
+          @PayMode = paymode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @TopicNum = params['TopicNum']
+          @TopicNumLimit = params['TopicNumLimit']
+          @GroupNum = params['GroupNum']
+          @GroupNumLimit = params['GroupNumLimit']
+          @MessageRetention = params['MessageRetention']
+          @RetentionUpperLimit = params['RetentionUpperLimit']
+          @RetentionLowerLimit = params['RetentionLowerLimit']
+          @TpsLimit = params['TpsLimit']
+          @ScaledTpsLimit = params['ScaledTpsLimit']
+          @MaxMessageDelay = params['MaxMessageDelay']
+          @CreatedTime = params['CreatedTime']
+          @SendReceiveRatio = params['SendReceiveRatio']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+          unless params['EndpointList'].nil?
+            @EndpointList = []
+            params['EndpointList'].each do |i|
+              endpoint_tmp = Endpoint.new
+              endpoint_tmp.deserialize(i)
+              @EndpointList << endpoint_tmp
+            end
+          end
+          @TopicQueueNumUpperLimit = params['TopicQueueNumUpperLimit']
+          @TopicQueueNumLowerLimit = params['TopicQueueNumLowerLimit']
+          @Remark = params['Remark']
+          @InstanceStatus = params['InstanceStatus']
+          @SkuCode = params['SkuCode']
+          @PayMode = params['PayMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicList请求参数结构体
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -155,6 +434,70 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 接入点信息
+      class Endpoint < TencentCloud::Common::AbstractModel
+        # @param Type: 接入点类型，
+        # VPC，
+        # PUBLIC 公网
+        # @type Type: String
+        # @param Status: 状态，
+        # OPEN 开启，
+        # CLOSE 关闭，
+        # PROCESSING 操作中，
+        # @type Status: String
+        # @param PayMode: 付费类型，仅公网
+        # PREPAID 包年包月
+        # POSTPAID 按量付费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param EndpointUrl: 接入点地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndpointUrl: String
+        # @param VpcId: VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Bandwidth: 公网带宽，Mbps为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param IpRules: 公网放通规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpRules: Array
+
+        attr_accessor :Type, :Status, :PayMode, :EndpointUrl, :VpcId, :SubnetId, :Bandwidth, :IpRules
+
+        def initialize(type=nil, status=nil, paymode=nil, endpointurl=nil, vpcid=nil, subnetid=nil, bandwidth=nil, iprules=nil)
+          @Type = type
+          @Status = status
+          @PayMode = paymode
+          @EndpointUrl = endpointurl
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Bandwidth = bandwidth
+          @IpRules = iprules
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Status = params['Status']
+          @PayMode = params['PayMode']
+          @EndpointUrl = params['EndpointUrl']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Bandwidth = params['Bandwidth']
+          unless params['IpRules'].nil?
+            @IpRules = []
+            params['IpRules'].each do |i|
+              iprule_tmp = IpRule.new
+              iprule_tmp.deserialize(i)
+              @IpRules << iprule_tmp
+            end
+          end
         end
       end
 
@@ -292,6 +635,87 @@ module TencentCloud
         end
       end
 
+      # IP规则
+      class IpRule < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Allow: 是否允许放行
+        # @type Allow: Boolean
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Ip, :Allow, :Remark
+
+        def initialize(ip=nil, allow=nil, remark=nil)
+          @Ip = ip
+          @Allow = allow
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Allow = params['Allow']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyInstance请求参数结构体
+      class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param SendReceiveRatio: 消息发送和接收的比例
+        # @type SendReceiveRatio: Float
+        # @param SkuCode: 调整实例规格的商品代号
+        # @type SkuCode: String
+        # @param MessageRetention: 消息保留时长，小时为单位
+        # @type MessageRetention: Integer
+        # @param ScaledTpsEnabled: 是否开启弹性TPS
+        # @type ScaledTpsEnabled: Boolean
+
+        attr_accessor :InstanceId, :Name, :Remark, :SendReceiveRatio, :SkuCode, :MessageRetention, :ScaledTpsEnabled
+
+        def initialize(instanceid=nil, name=nil, remark=nil, sendreceiveratio=nil, skucode=nil, messageretention=nil, scaledtpsenabled=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Remark = remark
+          @SendReceiveRatio = sendreceiveratio
+          @SkuCode = skucode
+          @MessageRetention = messageretention
+          @ScaledTpsEnabled = scaledtpsenabled
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+          @SendReceiveRatio = params['SendReceiveRatio']
+          @SkuCode = params['SkuCode']
+          @MessageRetention = params['MessageRetention']
+          @ScaledTpsEnabled = params['ScaledTpsEnabled']
+        end
+      end
+
+      # ModifyInstance返回参数结构体
+      class ModifyInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 标签数据
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签名称
@@ -364,6 +788,26 @@ module TencentCloud
           @TopicType = params['TopicType']
           @QueueNum = params['QueueNum']
           @Remark = params['Remark']
+        end
+      end
+
+      # VPC信息
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
         end
       end
 
