@@ -4155,7 +4155,7 @@ module TencentCloud
         # @type RegistryId: String
         # @param All: 列出所有服务级账号
         # @type All: Boolean
-        # @param EmbedPermission: 是否填充策略
+        # @param EmbedPermission: 是否填充权限信息
         # @type EmbedPermission: Boolean
         # @param Filters: 过滤条件
         # @type Filters: Array
@@ -4197,7 +4197,7 @@ module TencentCloud
         # @param ServiceAccounts: 服务级账号列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceAccounts: Array
-        # @param TotalCount: 自定义账户数量
+        # @param TotalCount: 服务级账户数量
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5988,7 +5988,7 @@ module TencentCloud
         # @param Resource: 资源路径，目前仅支持Namespace
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: String
-        # @param Actions: 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository
+        # @param Actions: 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository、tcr:CreateRepository、tcr:CreateHelmChart、tcr:DescribeHelmCharts
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Actions: Array
 
@@ -6085,10 +6085,12 @@ module TencentCloud
         # @param RenewFlag: 预付费续费标识，0表示手动续费，1表示自动续费，2不续费并且不通知
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
+        # @param DeletionProtection: 是否开启实例删除保护，false表示不开启
+        # @type DeletionProtection: Boolean
 
-        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag
+        attr_accessor :RegistryId, :RegistryName, :RegistryType, :Status, :PublicDomain, :CreatedAt, :RegionName, :RegionId, :EnableAnonymous, :TokenValidTime, :InternalEndpoint, :TagSpecification, :ExpiredAt, :PayMod, :RenewFlag, :DeletionProtection
 
-        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil)
+        def initialize(registryid=nil, registryname=nil, registrytype=nil, status=nil, publicdomain=nil, createdat=nil, regionname=nil, regionid=nil, enableanonymous=nil, tokenvalidtime=nil, internalendpoint=nil, tagspecification=nil, expiredat=nil, paymod=nil, renewflag=nil, deletionprotection=nil)
           @RegistryId = registryid
           @RegistryName = registryname
           @RegistryType = registrytype
@@ -6104,6 +6106,7 @@ module TencentCloud
           @ExpiredAt = expiredat
           @PayMod = paymod
           @RenewFlag = renewflag
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -6125,6 +6128,7 @@ module TencentCloud
           @ExpiredAt = params['ExpiredAt']
           @PayMod = params['PayMod']
           @RenewFlag = params['RenewFlag']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -6856,8 +6860,10 @@ module TencentCloud
       # 云标签Tag
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 云标签的key
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
         # @param Value: 云标签的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Key, :Value

@@ -1085,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeHASwitchLog)用于手动主备切换。
+
+        # @param request: Request instance for DescribeHASwitchLog.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeHASwitchLogRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::DescribeHASwitchLogResponse`
+        def DescribeHASwitchLog(request)
+          body = send_request('DescribeHASwitchLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHASwitchLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
 
         # @param request: Request instance for DescribeIncrementalMigration.
@@ -2658,6 +2682,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopMigrationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(SwitchCloudInstanceHA)用于手动主备切换。
+
+        # @param request: Request instance for SwitchCloudInstanceHA.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::SwitchCloudInstanceHARequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::SwitchCloudInstanceHAResponse`
+        def SwitchCloudInstanceHA(request)
+          body = send_request('SwitchCloudInstanceHA', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchCloudInstanceHAResponse.new
             model.deserialize(response['Response'])
             model
           else

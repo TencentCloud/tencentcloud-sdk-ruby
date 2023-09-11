@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建自定义账户
+        # 创建服务级账户
 
         # @param request: Request instance for CreateServiceAccount.
         # @type request: :class:`Tencentcloud::tcr::V20190924::CreateServiceAccountRequest`

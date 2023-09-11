@@ -1223,13 +1223,9 @@ module TencentCloud
         # 建议：人脸入库操作建议开启此功能。
         # @type NeedQualityDetection: Integer
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
-
         # 目前入参支持 “2.0”和“3.0“ 两个输入。
-
         # 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
-
         # 2020年11月26日后开通服务的账号仅支持输入“3.0”。
-
         # 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         # @type FaceModelVersion: String
         # @param NeedRotateDetection: 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
@@ -2086,7 +2082,7 @@ module TencentCloud
         # @type Tag: String
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param CreationTimestamp: Group的创建时间和日期 CreationTimestamp。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
+        # @param CreationTimestamp: Group的创建时间和日期。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
         # @type CreationTimestamp: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

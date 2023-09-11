@@ -3946,6 +3946,73 @@ module TencentCloud
         end
       end
 
+      # DescribeHASwitchLog请求参数结构体
+      class DescribeHASwitchLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间(yyyy-MM-dd HH:mm:ss)
+        # @type StartTime: String
+        # @param EndTime: 结束时间(yyyy-MM-dd HH:mm:ss)
+        # @type EndTime: String
+        # @param SwitchType: 切换模式 0-系统自动切换，1-手动切换，不填默认查全部。
+        # @type SwitchType: Integer
+        # @param Limit: 分页，页大小
+        # @type Limit: Integer
+        # @param Offset: 分页,页数
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :SwitchType, :Limit, :Offset
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, switchtype=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @SwitchType = switchtype
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SwitchType = params['SwitchType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeHASwitchLog返回参数结构体
+      class DescribeHASwitchLogResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志总数量
+        # @type TotalCount: Integer
+        # @param SwitchLog: 主备切换日志
+        # @type SwitchLog: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SwitchLog, :RequestId
+
+        def initialize(totalcount=nil, switchlog=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SwitchLog = switchlog
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SwitchLog'].nil?
+            @SwitchLog = []
+            params['SwitchLog'].each do |i|
+              switchlog_tmp = SwitchLog.new
+              switchlog_tmp.deserialize(i)
+              @SwitchLog << switchlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIncrementalMigration请求参数结构体
       class DescribeIncrementalMigrationRequest < TencentCloud::Common::AbstractModel
         # @param BackupMigrationId: 备份导入任务ID，由CreateBackupMigration接口返回
@@ -8637,6 +8704,83 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SwitchCloudInstanceHA请求参数结构体
+      class SwitchCloudInstanceHARequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param WaitSwitch: 切换执行方式，0-立刻执行，1-时间窗内执行，默认取值为0。
+        # @type WaitSwitch: Integer
+
+        attr_accessor :InstanceId, :WaitSwitch
+
+        def initialize(instanceid=nil, waitswitch=nil)
+          @InstanceId = instanceid
+          @WaitSwitch = waitswitch
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @WaitSwitch = params['WaitSwitch']
+        end
+      end
+
+      # SwitchCloudInstanceHA返回参数结构体
+      class SwitchCloudInstanceHAResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 主备切换日志
+      class SwitchLog < TencentCloud::Common::AbstractModel
+        # @param EventId: 切换事件ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventId: String
+        # @param SwitchType: 切换模式 0-系统自动切换，1-手动切换
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchType: Integer
+        # @param StartTime: 切换开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 切换结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Reason: 机器故障导致自动切换
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :EventId, :SwitchType, :StartTime, :EndTime, :Reason
+
+        def initialize(eventid=nil, switchtype=nil, starttime=nil, endtime=nil, reason=nil)
+          @EventId = eventid
+          @SwitchType = switchtype
+          @StartTime = starttime
+          @EndTime = endtime
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @SwitchType = params['SwitchType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Reason = params['Reason']
         end
       end
 

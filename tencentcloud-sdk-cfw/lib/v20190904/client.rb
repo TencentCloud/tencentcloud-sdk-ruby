@@ -629,6 +629,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询地址模板列表
+
+        # @param request: Request instance for DescribeAddressTemplateList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeAddressTemplateListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeAddressTemplateListResponse`
+        def DescribeAddressTemplateList(request)
+          body = send_request('DescribeAddressTemplateList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddressTemplateListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 资产同步状态查询
+
+        # @param request: Request instance for DescribeAssetSync.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeAssetSyncRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeAssetSyncResponse`
+        def DescribeAssetSync(request)
+          body = send_request('DescribeAssetSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetSyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取安全组关联实例列表
 
         # @param request: Request instance for DescribeAssociatedInstanceList.
@@ -869,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取防火墙同步状态，一般在执行同步操作后查询
+
+        # @param request: Request instance for DescribeFwSyncStatus.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeFwSyncStatusRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeFwSyncStatusResponse`
+        def DescribeFwSyncStatus(request)
+          body = send_request('DescribeFwSyncStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFwSyncStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribeGuideScanInfo新手引导扫描接口信息
 
         # @param request: Request instance for DescribeGuideScanInfo.
@@ -1071,6 +1143,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeNatFwVpcDnsLstResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询NAT边界防火墙开关列表
+
+        # @param request: Request instance for DescribeNatSwitchList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeNatSwitchListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeNatSwitchListResponse`
+        def DescribeNatSwitchList(request)
+          body = send_request('DescribeNatSwitchList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatSwitchListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1445,6 +1541,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改地址模板
+
+        # @param request: Request instance for ModifyAddressTemplate.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyAddressTemplateRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyAddressTemplateResponse`
+        def ModifyAddressTemplate(request)
+          body = send_request('ModifyAddressTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAddressTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 互联网边界防火墙一键开关
 
         # @param request: Request instance for ModifyAllPublicIPSwitchStatus.
@@ -1527,6 +1647,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAssetScanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 资产同步
+
+        # @param request: Request instance for ModifyAssetSync.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyAssetSyncRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyAssetSyncResponse`
+        def ModifyAssetSync(request)
+          body = send_request('ModifyAssetSync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAssetSyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1819,6 +1963,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNatFwVpcDnsSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑NAT防火墙
+
+        # @param request: Request instance for ModifyNatInstance.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyNatInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyNatInstanceResponse`
+        def ModifyNatInstance(request)
+          body = send_request('ModifyNatInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNatInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2348,6 +2516,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopSecurityGroupRuleDispatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步防火墙操作，包括同步防火墙路由（若vpc，专线网关等增加了Cidr，需要手动同步一下路由使之在防火墙上生效）等。
+
+        # @param request: Request instance for SyncFwOperate.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::SyncFwOperateRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::SyncFwOperateResponse`
+        def SyncFwOperate(request)
+          body = send_request('SyncFwOperate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncFwOperateResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -325,7 +325,7 @@ module TencentCloud
         # <li>**TELECOM** : 运营商三要素验证</li></ul>
         # 注：
         # <ul><li>如果是小程序开通链接，支持传 WEIXINAPP / TELECOM。为空默认 WEIXINAPP</li>
-        # <li>如果是 H5 开通链接，支持传 INSIGHT / TELECOM。为空默认 INSIGHT </li>
+        # <li>如果是 H5 开通链接，支持传 INSIGHT / TELECOM。为空默认 INSIGHT </li></ul>
         # @type VerifyChannels: Array
         # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。
 
@@ -3505,7 +3505,7 @@ module TencentCloud
         # @type AutoSignConfig: :class:`Tencentcloud::Ess.v20201111.models.AutoSignConfig`
         # @param UrlType: 生成的链接类型：
         # <ul><li> 不传(即为空值) 则会生成小程序端开通链接(默认)</li>
-        # <li> **H5SIGN** : 生成H5端开通链接</li><ul>
+        # <li> **H5SIGN** : 生成H5端开通链接</li></ul>
         # @type UrlType: String
         # @param NotifyType: 是否通知开通方，通知类型:
         # <ul><li>默认不设置为不通知开通方</li>

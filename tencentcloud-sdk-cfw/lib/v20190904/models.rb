@@ -2157,6 +2157,122 @@ module TencentCloud
         end
       end
 
+      # DescribeAddressTemplateList请求参数结构体
+      class DescribeAddressTemplateListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，分页用
+        # @type Offset: Integer
+        # @param Limit: 条数，分页用
+        # @type Limit: Integer
+        # @param By: 排序字段，取值 'UpdateTime' | 'RulesNum'
+        # @type By: String
+        # @param Order: 排序，取值 'asc'|'desc'
+        # @type Order: String
+        # @param SearchValue: 搜索值
+        # @type SearchValue: String
+        # @param Uuid: 检索地址模板唯一id
+        # @type Uuid: String
+
+        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue, :Uuid
+
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil, uuid=nil)
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @SearchValue = searchvalue
+          @Uuid = uuid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          @SearchValue = params['SearchValue']
+          @Uuid = params['Uuid']
+        end
+      end
+
+      # DescribeAddressTemplateList返回参数结构体
+      class DescribeAddressTemplateListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 模板总数
+        # @type Total: Integer
+        # @param Data: 模板列表数据
+        # @type Data: Array
+        # @param NameList: 模板名称列表
+        # @type NameList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :NameList, :RequestId
+
+        def initialize(total=nil, data=nil, namelist=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @NameList = namelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              templatelistinfo_tmp = TemplateListInfo.new
+              templatelistinfo_tmp.deserialize(i)
+              @Data << templatelistinfo_tmp
+            end
+          end
+          @NameList = params['NameList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetSync请求参数结构体
+      class DescribeAssetSyncRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAssetSync返回参数结构体
+      class DescribeAssetSyncResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 返回状态
+        # 1 更新中
+        # 2 更新完成
+        # 3 更新失败
+        # 4 更新失败
+        # @type Status: Integer
+        # @param ReturnMsg: success 成功
+        # 其他失败
+        # @type ReturnMsg: String
+        # @param ReturnCode: 0 成功
+        # 非0 失败
+        # @type ReturnCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ReturnMsg, :ReturnCode, :RequestId
+
+        def initialize(status=nil, returnmsg=nil, returncode=nil, requestid=nil)
+          @Status = status
+          @ReturnMsg = returnmsg
+          @ReturnCode = returncode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ReturnMsg = params['ReturnMsg']
+          @ReturnCode = params['ReturnCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAssociatedInstanceList请求参数结构体
       class DescribeAssociatedInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 列表偏移量
@@ -2872,6 +2988,42 @@ module TencentCloud
         end
       end
 
+      # DescribeFwSyncStatus请求参数结构体
+      class DescribeFwSyncStatusRequest < TencentCloud::Common::AbstractModel
+        # @param SyncType: 查询的同步状态类型：Route,同步路由状态
+        # @type SyncType: String
+
+        attr_accessor :SyncType
+
+        def initialize(synctype=nil)
+          @SyncType = synctype
+        end
+
+        def deserialize(params)
+          @SyncType = params['SyncType']
+        end
+      end
+
+      # DescribeFwSyncStatus返回参数结构体
+      class DescribeFwSyncStatusResponse < TencentCloud::Common::AbstractModel
+        # @param SyncStatus: 同步状态：1，同步中；0，同步完成
+        # @type SyncStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SyncStatus, :RequestId
+
+        def initialize(syncstatus=nil, requestid=nil)
+          @SyncStatus = syncstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SyncStatus = params['SyncStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGuideScanInfo请求参数结构体
       class DescribeGuideScanInfoRequest < TencentCloud::Common::AbstractModel
 
@@ -3373,6 +3525,81 @@ module TencentCloud
           end
           @ReturnMsg = params['ReturnMsg']
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNatSwitchList请求参数结构体
+      class DescribeNatSwitchListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，分页用
+        # @type Offset: Integer
+        # @param Limit: 条数，分页用
+        # @type Limit: Integer
+        # @param SearchValue: 搜索值
+        # @type SearchValue: String
+        # @param Status: 开关，1打开，0关闭
+        # @type Status: Integer
+        # @param VpcId: 筛选NAT防火墙子网开关所属VPC
+        # @type VpcId: String
+        # @param NatId: 筛选NAT防火墙子网开关所属NAT网关
+        # @type NatId: String
+        # @param NatInsId: 筛选NAT防火墙子网开关所属NAT防火墙实例
+        # @type NatInsId: String
+        # @param Area: 筛选NAT防火墙子网开关所属地域
+        # @type Area: String
+
+        attr_accessor :Offset, :Limit, :SearchValue, :Status, :VpcId, :NatId, :NatInsId, :Area
+
+        def initialize(offset=nil, limit=nil, searchvalue=nil, status=nil, vpcid=nil, natid=nil, natinsid=nil, area=nil)
+          @Offset = offset
+          @Limit = limit
+          @SearchValue = searchvalue
+          @Status = status
+          @VpcId = vpcid
+          @NatId = natid
+          @NatInsId = natinsid
+          @Area = area
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchValue = params['SearchValue']
+          @Status = params['Status']
+          @VpcId = params['VpcId']
+          @NatId = params['NatId']
+          @NatInsId = params['NatInsId']
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeNatSwitchList返回参数结构体
+      class DescribeNatSwitchListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: NAT边界防火墙开关列表数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              natswitchlistdata_tmp = NatSwitchListData.new
+              natswitchlistdata_tmp.deserialize(i)
+              @Data << natswitchlistdata_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4936,6 +5163,64 @@ module TencentCloud
         end
       end
 
+      # ModifyAddressTemplate请求参数结构体
+      class ModifyAddressTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Uuid: 地址模板唯一Id
+        # @type Uuid: String
+        # @param Name: 模板名称
+        # @type Name: String
+        # @param Detail: 模板描述
+        # @type Detail: String
+        # @param IpString: Type为1，ip模板eg：1.1.1.1,2.2.2.2；
+        # Type为5，域名模板eg：www.qq.com,www.tencent.com
+        # @type IpString: String
+        # @param Type: 1 ip模板
+        # 5 域名模板
+        # @type Type: Integer
+
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :Type
+
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, type=nil)
+          @Uuid = uuid
+          @Name = name
+          @Detail = detail
+          @IpString = ipstring
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Name = params['Name']
+          @Detail = params['Detail']
+          @IpString = params['IpString']
+          @Type = params['Type']
+        end
+      end
+
+      # ModifyAddressTemplate返回参数结构体
+      class ModifyAddressTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 创建结果,0成功
+        # @type Status: Integer
+        # @param Uuid: 唯一Id
+        # @type Uuid: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Uuid, :RequestId
+
+        def initialize(status=nil, uuid=nil, requestid=nil)
+          @Status = status
+          @Uuid = uuid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Uuid = params['Uuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAllPublicIPSwitchStatus请求参数结构体
       class ModifyAllPublicIPSwitchStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: 状态，0：关闭，1：开启
@@ -5129,6 +5414,50 @@ module TencentCloud
           @ReturnMsg = params['ReturnMsg']
           @ReturnCode = params['ReturnCode']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAssetSync请求参数结构体
+      class ModifyAssetSyncRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyAssetSync返回参数结构体
+      class ModifyAssetSyncResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 返回状态
+        # 0 请求成功
+        # 2 请求失败
+        # 3 请求失败-频率限制
+        # @type Status: Integer
+        # @param ReturnMsg: success 成功
+        # 其他失败
+        # @type ReturnMsg: String
+        # @param ReturnCode: 0 成功
+        # 非0 失败
+        # @type ReturnCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ReturnMsg, :ReturnCode, :RequestId
+
+        def initialize(status=nil, returnmsg=nil, returncode=nil, requestid=nil)
+          @Status = status
+          @ReturnMsg = returnmsg
+          @ReturnCode = returncode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ReturnMsg = params['ReturnMsg']
+          @ReturnCode = params['ReturnCode']
           @RequestId = params['RequestId']
         end
       end
@@ -5698,6 +6027,51 @@ module TencentCloud
 
         def deserialize(params)
           @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNatInstance请求参数结构体
+      class ModifyNatInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: NAT防火墙实例名称
+        # @type InstanceName: String
+        # @param NatInstanceId: NAT防火墙实例ID
+        # @type NatInstanceId: String
+
+        attr_accessor :InstanceName, :NatInstanceId
+
+        def initialize(instancename=nil, natinstanceid=nil)
+          @InstanceName = instancename
+          @NatInstanceId = natinstanceid
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @NatInstanceId = params['NatInstanceId']
+        end
+      end
+
+      # ModifyNatInstance返回参数结构体
+      class ModifyNatInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0 正常
+        # -1 异常
+        # @type Status: Integer
+        # @param NatInstanceId: nat实例唯一ID
+        # @type NatInstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :NatInstanceId, :RequestId
+
+        def initialize(status=nil, natinstanceid=nil, requestid=nil)
+          @Status = status
+          @NatInstanceId = natinstanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @NatInstanceId = params['NatInstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -6509,6 +6883,102 @@ module TencentCloud
           @RuleMax = params['RuleMax']
           @EngineVersion = params['EngineVersion']
           @UpdateEnable = params['UpdateEnable']
+        end
+      end
+
+      # NAT防火墙开关列表数据
+      class NatSwitchListData < TencentCloud::Common::AbstractModel
+        # @param Id: 列表ID
+        # @type Id: Integer
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param SubnetName: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
+        # @param SubnetCidr: IPv4 CIDR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetCidr: String
+        # @param RouteId: 关联路由ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteId: String
+        # @param RouteName: 关联路由名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteName: String
+        # @param CvmNum: 云服务器个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmNum: Integer
+        # @param VpcId: 所属VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcName: 所属VPC名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param Enable: 是否生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param Status: 开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param NatId: NAT网关ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatId: String
+        # @param NatName: NAT网关名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatName: String
+        # @param NatInsId: NAT防火墙实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatInsId: String
+        # @param NatInsName: NAT防火墙实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatInsName: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Abnormal: 开关是否异常,0:正常,1:异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abnormal: Integer
+
+        attr_accessor :Id, :SubnetId, :SubnetName, :SubnetCidr, :RouteId, :RouteName, :CvmNum, :VpcId, :VpcName, :Enable, :Status, :NatId, :NatName, :NatInsId, :NatInsName, :Region, :Abnormal
+
+        def initialize(id=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, routeid=nil, routename=nil, cvmnum=nil, vpcid=nil, vpcname=nil, enable=nil, status=nil, natid=nil, natname=nil, natinsid=nil, natinsname=nil, region=nil, abnormal=nil)
+          @Id = id
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+          @SubnetCidr = subnetcidr
+          @RouteId = routeid
+          @RouteName = routename
+          @CvmNum = cvmnum
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @Enable = enable
+          @Status = status
+          @NatId = natid
+          @NatName = natname
+          @NatInsId = natinsid
+          @NatInsName = natinsname
+          @Region = region
+          @Abnormal = abnormal
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+          @SubnetCidr = params['SubnetCidr']
+          @RouteId = params['RouteId']
+          @RouteName = params['RouteName']
+          @CvmNum = params['CvmNum']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @Enable = params['Enable']
+          @Status = params['Status']
+          @NatId = params['NatId']
+          @NatName = params['NatName']
+          @NatInsId = params['NatInsId']
+          @NatInsName = params['NatInsName']
+          @Region = params['Region']
+          @Abnormal = params['Abnormal']
         end
       end
 
@@ -7647,6 +8117,42 @@ module TencentCloud
         end
       end
 
+      # SyncFwOperate请求参数结构体
+      class SyncFwOperateRequest < TencentCloud::Common::AbstractModel
+        # @param SyncType: 同步操作类型：Route，同步防火墙路由
+        # @type SyncType: String
+        # @param FwType: 防火墙类型；nat,nat防火墙;ew,vpc间防火墙
+        # @type FwType: String
+
+        attr_accessor :SyncType, :FwType
+
+        def initialize(synctype=nil, fwtype=nil)
+          @SyncType = synctype
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @SyncType = params['SyncType']
+          @FwType = params['FwType']
+        end
+      end
+
+      # SyncFwOperate返回参数结构体
+      class SyncFwOperateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 告警中心概览数据
       class TLogInfo < TencentCloud::Common::AbstractModel
         # @param OutNum: 失陷主机
@@ -7680,6 +8186,58 @@ module TencentCloud
           @NetworkNum = params['NetworkNum']
           @BanNum = params['BanNum']
           @BruteForceNum = params['BruteForceNum']
+        end
+      end
+
+      # 地址模版列表数据
+      class TemplateListInfo < TencentCloud::Common::AbstractModel
+        # @param Uuid: 模版ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uuid: String
+        # @param Name: 模版名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Detail: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+        # @param IpString: IP模版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpString: String
+        # @param InsertTime: 插入时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Type: 模版类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param RulesNum: 关联规则条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulesNum: Integer
+
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum
+
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil)
+          @Uuid = uuid
+          @Name = name
+          @Detail = detail
+          @IpString = ipstring
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+          @Type = type
+          @RulesNum = rulesnum
+        end
+
+        def deserialize(params)
+          @Uuid = params['Uuid']
+          @Name = params['Name']
+          @Detail = params['Detail']
+          @IpString = params['IpString']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
+          @Type = params['Type']
+          @RulesNum = params['RulesNum']
         end
       end
 
