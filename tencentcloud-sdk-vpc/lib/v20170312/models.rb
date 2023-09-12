@@ -6921,13 +6921,16 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param NeedMemberInfo: 是否查询IP地址模板成员标识。
+        # @type NeedMemberInfo: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @NeedMemberInfo = needmemberinfo
         end
 
         def deserialize(params)
@@ -6941,6 +6944,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NeedMemberInfo = params['NeedMemberInfo']
         end
       end
 
@@ -6986,13 +6990,16 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param NeedMemberInfo: 是否获取IP地址模板成员标识。
+        # @type NeedMemberInfo: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @NeedMemberInfo = needmemberinfo
         end
 
         def deserialize(params)
@@ -7006,6 +7013,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NeedMemberInfo = params['NeedMemberInfo']
         end
       end
 
@@ -10193,13 +10201,16 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param NeedMemberInfo: 是否获取协议端口模板成员标识。
+        # @type NeedMemberInfo: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @NeedMemberInfo = needmemberinfo
         end
 
         def deserialize(params)
@@ -10213,6 +10224,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NeedMemberInfo = params['NeedMemberInfo']
         end
       end
 
@@ -10258,13 +10270,16 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param NeedMemberInfo: 是否获取协议端口成员标识。
+        # @type NeedMemberInfo: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :NeedMemberInfo
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, needmemberinfo=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @NeedMemberInfo = needmemberinfo
         end
 
         def deserialize(params)
@@ -10278,6 +10293,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @NeedMemberInfo = params['NeedMemberInfo']
         end
       end
 

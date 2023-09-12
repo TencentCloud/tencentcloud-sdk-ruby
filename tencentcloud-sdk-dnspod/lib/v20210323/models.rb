@@ -3177,7 +3177,7 @@ module TencentCloud
 
       # DescribeUserDetail返回参数结构体
       class DescribeUserDetailResponse < TencentCloud::Common::AbstractModel
-        # @param UserInfo: 帐户信息
+        # @param UserInfo: 账户信息
         # @type UserInfo: :class:`Tencentcloud::Dnspod.v20210323.models.UserInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -4796,7 +4796,7 @@ module TencentCloud
 
       # CreateUnitRuleWithDetailResp返回参数结构体
       class CreateUnitRuleWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 单元化规则 ID
+        # @param Result: 单元化规则信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.UnitRule`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -7618,7 +7618,7 @@ module TencentCloud
 
       # DescribeCreateGatewayApiStatus请求参数结构体
       class DescribeCreateGatewayApiStatusRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 请求方法
+        # @param GroupId: 所属分组ID
         # @type GroupId: String
         # @param MicroserviceId: 微服务ID
         # @type MicroserviceId: String
@@ -7742,19 +7742,27 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 搜索条数
         # @type Limit: Integer
+        # @param ProgramIdList: 数据集idList
+        # @type ProgramIdList: Array
+        # @param ConfigIdList: ConfigIdList
+        # @type ConfigIdList: Array
 
-        attr_accessor :SearchWord, :Offset, :Limit
+        attr_accessor :SearchWord, :Offset, :Limit, :ProgramIdList, :ConfigIdList
 
-        def initialize(searchword=nil, offset=nil, limit=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, programidlist=nil, configidlist=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
+          @ProgramIdList = programidlist
+          @ConfigIdList = configidlist
         end
 
         def deserialize(params)
           @SearchWord = params['SearchWord']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @ProgramIdList = params['ProgramIdList']
+          @ConfigIdList = params['ConfigIdList']
         end
       end
 
@@ -8099,15 +8107,18 @@ module TencentCloud
         # @type SearchWord: String
         # @param GatewayDeployGroupId: 部署组ID
         # @type GatewayDeployGroupId: String
+        # @param ReleaseStatus: 发布状态, drafted(未发布)/released(已发布)/releasing(发布中)/failed(发布失败)
+        # @type ReleaseStatus: String
 
-        attr_accessor :GroupId, :Offset, :Limit, :SearchWord, :GatewayDeployGroupId
+        attr_accessor :GroupId, :Offset, :Limit, :SearchWord, :GatewayDeployGroupId, :ReleaseStatus
 
-        def initialize(groupid=nil, offset=nil, limit=nil, searchword=nil, gatewaydeploygroupid=nil)
+        def initialize(groupid=nil, offset=nil, limit=nil, searchword=nil, gatewaydeploygroupid=nil, releasestatus=nil)
           @GroupId = groupid
           @Offset = offset
           @Limit = limit
           @SearchWord = searchword
           @GatewayDeployGroupId = gatewaydeploygroupid
+          @ReleaseStatus = releasestatus
         end
 
         def deserialize(params)
@@ -8116,6 +8127,7 @@ module TencentCloud
           @Limit = params['Limit']
           @SearchWord = params['SearchWord']
           @GatewayDeployGroupId = params['GatewayDeployGroupId']
+          @ReleaseStatus = params['ReleaseStatus']
         end
       end
 
@@ -8642,33 +8654,33 @@ module TencentCloud
       class DescribeGroupsWithPluginRequest < TencentCloud::Common::AbstractModel
         # @param PluginId: 插件ID
         # @type PluginId: String
-        # @param Bound: 绑定/未绑定: true / false
-        # @type Bound: Boolean
         # @param Offset: 翻页偏移量
         # @type Offset: Integer
         # @param Limit: 每页记录数量
         # @type Limit: Integer
+        # @param Bound: 绑定/未绑定: true / false
+        # @type Bound: Boolean
         # @param SearchWord: 搜索关键字
         # @type SearchWord: String
         # @param GatewayInstanceId: 网关实体ID
         # @type GatewayInstanceId: String
 
-        attr_accessor :PluginId, :Bound, :Offset, :Limit, :SearchWord, :GatewayInstanceId
+        attr_accessor :PluginId, :Offset, :Limit, :Bound, :SearchWord, :GatewayInstanceId
 
-        def initialize(pluginid=nil, bound=nil, offset=nil, limit=nil, searchword=nil, gatewayinstanceid=nil)
+        def initialize(pluginid=nil, offset=nil, limit=nil, bound=nil, searchword=nil, gatewayinstanceid=nil)
           @PluginId = pluginid
-          @Bound = bound
           @Offset = offset
           @Limit = limit
+          @Bound = bound
           @SearchWord = searchword
           @GatewayInstanceId = gatewayinstanceid
         end
 
         def deserialize(params)
           @PluginId = params['PluginId']
-          @Bound = params['Bound']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Bound = params['Bound']
           @SearchWord = params['SearchWord']
           @GatewayInstanceId = params['GatewayInstanceId']
         end
@@ -9851,33 +9863,33 @@ module TencentCloud
       class DescribePluginInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ScopeValue: 分组或者API的ID
         # @type ScopeValue: String
-        # @param Bound: 绑定: true; 未绑定: false
-        # @type Bound: Boolean
         # @param Offset: 翻页偏移量
         # @type Offset: Integer
         # @param Limit: 每页展示的条数
         # @type Limit: Integer
+        # @param Bound: 绑定: true; 未绑定: false
+        # @type Bound: Boolean
         # @param Type: 插件类型
         # @type Type: String
         # @param SearchWord: 搜索关键字
         # @type SearchWord: String
 
-        attr_accessor :ScopeValue, :Bound, :Offset, :Limit, :Type, :SearchWord
+        attr_accessor :ScopeValue, :Offset, :Limit, :Bound, :Type, :SearchWord
 
-        def initialize(scopevalue=nil, bound=nil, offset=nil, limit=nil, type=nil, searchword=nil)
+        def initialize(scopevalue=nil, offset=nil, limit=nil, bound=nil, type=nil, searchword=nil)
           @ScopeValue = scopevalue
-          @Bound = bound
           @Offset = offset
           @Limit = limit
+          @Bound = bound
           @Type = type
           @SearchWord = searchword
         end
 
         def deserialize(params)
           @ScopeValue = params['ScopeValue']
-          @Bound = params['Bound']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Bound = params['Bound']
           @Type = params['Type']
           @SearchWord = params['SearchWord']
         end
@@ -12333,23 +12345,31 @@ module TencentCloud
       class GatewayPluginBoundParam < TencentCloud::Common::AbstractModel
         # @param PluginId: 插件id
         # @type PluginId: String
-        # @param ScopeType: 插件绑定到的对象类型:group/api
+        # @param ScopeType: 插件绑定到的对象类型:group/api/all
         # @type ScopeType: String
         # @param ScopeValue: 插件绑定到的对象主键值，例如分组的ID/API的ID
         # @type ScopeValue: String
+        # @param MicroserviceId: 创建关联的服务id，关联envoy网关时使用
+        # @type MicroserviceId: String
+        # @param GatewayInstanceId: 网关id
+        # @type GatewayInstanceId: String
 
-        attr_accessor :PluginId, :ScopeType, :ScopeValue
+        attr_accessor :PluginId, :ScopeType, :ScopeValue, :MicroserviceId, :GatewayInstanceId
 
-        def initialize(pluginid=nil, scopetype=nil, scopevalue=nil)
+        def initialize(pluginid=nil, scopetype=nil, scopevalue=nil, microserviceid=nil, gatewayinstanceid=nil)
           @PluginId = pluginid
           @ScopeType = scopetype
           @ScopeValue = scopevalue
+          @MicroserviceId = microserviceid
+          @GatewayInstanceId = gatewayinstanceid
         end
 
         def deserialize(params)
           @PluginId = params['PluginId']
           @ScopeType = params['ScopeType']
           @ScopeValue = params['ScopeValue']
+          @MicroserviceId = params['MicroserviceId']
+          @GatewayInstanceId = params['GatewayInstanceId']
         end
       end
 
@@ -19594,7 +19614,7 @@ module TencentCloud
         # @type GroupName: String
         # @param Description: Api 分组描述
         # @type Description: String
-        # @param AuthType: 鉴权类型
+        # @param AuthType: 鉴权类型。 secret： 密钥鉴权； none:无鉴权
         # @type AuthType: String
         # @param GroupContext: 分组上下文
         # @type GroupContext: String

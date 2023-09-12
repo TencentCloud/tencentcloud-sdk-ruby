@@ -127,6 +127,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将PDF格式的体检报告文件结构化,解析关键信息.
+
+        # @param request: Request instance for TurnPDFToObject.
+        # @type request: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectRequest`
+        # @rtype: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectResponse`
+        def TurnPDFToObject(request)
+          body = send_request('TurnPDFToObject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TurnPDFToObjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 创建消费组
+
+        # @param request: Request instance for CreateConsumerGroup.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::CreateConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::CreateConsumerGroupResponse`
+        def CreateConsumerGroup(request)
+          body = send_request('CreateConsumerGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 购买新实例
 
         # @param request: Request instance for CreateInstance.
@@ -53,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建主题
+
+        # @param request: Request instance for CreateTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::CreateTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::CreateTopicResponse`
+        def CreateTopic(request)
+          body = send_request('CreateTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消费组
+
+        # @param request: Request instance for DeleteConsumerGroup.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DeleteConsumerGroupResponse`
+        def DeleteConsumerGroup(request)
+          body = send_request('DeleteConsumerGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除实例
 
         # @param request: Request instance for DeleteInstance.
@@ -63,6 +135,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主题
+
+        # @param request: Request instance for DeleteTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DeleteTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DeleteTopicResponse`
+        def DeleteTopic(request)
+          body = send_request('DeleteTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消费组详情
+
+        # @param request: Request instance for DescribeConsumerGroup.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerGroupResponse`
+        def DescribeConsumerGroup(request)
+          body = send_request('DescribeConsumerGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -131,6 +251,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询主题详情，Offset和Limit参数是指订阅该主题的消费组查询分页参数，Filter参数使用说明如下：
+
+        # ConsumerGroup，消费组名称过滤
+
+        # @param request: Request instance for DescribeTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeTopicResponse`
+        def DescribeTopic(request)
+          body = send_request('DescribeTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取主题列表，Filter参数使用说明如下：
 
         # 1. TopicName，主题名称模糊搜索
@@ -158,6 +304,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 运营端查询topicStata
+
+        # @param request: Request instance for DescribeTopicStatsOp.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeTopicStatsOpRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeTopicStatsOpResponse`
+        def DescribeTopicStatsOp(request)
+          body = send_request('DescribeTopicStatsOp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicStatsOpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改消费组属性
+
+        # @param request: Request instance for ModifyConsumerGroup.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyConsumerGroupRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::ModifyConsumerGroupResponse`
+        def ModifyConsumerGroup(request)
+          body = send_request('ModifyConsumerGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改实例属性
 
         # @param request: Request instance for ModifyInstance.
@@ -168,6 +362,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改主题属性
+
+        # @param request: Request instance for ModifyTopic.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::ModifyTopicRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::ModifyTopicResponse`
+        def ModifyTopic(request)
+          body = send_request('ModifyTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTopicResponse.new
             model.deserialize(response['Response'])
             model
           else

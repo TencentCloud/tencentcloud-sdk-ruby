@@ -823,15 +823,31 @@ module TencentCloud
       class DescribeDedicatedClusterHostStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterId: 查询的专用集群id
         # @type DedicatedClusterId: String
+        # @param HostId: 宿主机id
+        # @type HostId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Period: 时间范围精度，1分钟/5分钟
+        # @type Period: String
 
-        attr_accessor :DedicatedClusterId
+        attr_accessor :DedicatedClusterId, :HostId, :StartTime, :EndTime, :Period
 
-        def initialize(dedicatedclusterid=nil)
+        def initialize(dedicatedclusterid=nil, hostid=nil, starttime=nil, endtime=nil, period=nil)
           @DedicatedClusterId = dedicatedclusterid
+          @HostId = hostid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
         end
 
         def deserialize(params)
           @DedicatedClusterId = params['DedicatedClusterId']
+          @HostId = params['HostId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
         end
       end
 
@@ -1396,6 +1412,28 @@ module TencentCloud
         end
       end
 
+      # 带有时间的详细数据。
+      class DetailData < TencentCloud::Common::AbstractModel
+        # @param Timestamps: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamps: Array
+        # @param Values: 对应的具体值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Timestamps, :Values
+
+        def initialize(timestamps=nil, values=nil)
+          @Timestamps = timestamps
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Timestamps = params['Timestamps']
+          @Values = params['Values']
+        end
+      end
+
       # CDC宿主机的详细信息
       class HostInfo < TencentCloud::Common::AbstractModel
         # @param HostIp: 宿主机IP
@@ -1465,15 +1503,43 @@ module TencentCloud
         # @type Memory: Integer
         # @param Count: 该规格宿主机的数量
         # @type Count: Integer
+        # @param CpuAverage: 平均cpu负载百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuAverage: Float
+        # @param MemAverage: 平均内存使用率百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemAverage: Float
+        # @param NetAverage: 平均网络流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetAverage: Float
+        # @param CpuDetailData: cpu详细监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param MemDetailData: 内存详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param NetRateDetailData: 网络速率详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetRateDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param NetPacketDetailData: 网速包详细数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetPacketDetailData: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
 
-        attr_accessor :HostType, :HostFamily, :Cpu, :Memory, :Count
+        attr_accessor :HostType, :HostFamily, :Cpu, :Memory, :Count, :CpuAverage, :MemAverage, :NetAverage, :CpuDetailData, :MemDetailData, :NetRateDetailData, :NetPacketDetailData
 
-        def initialize(hosttype=nil, hostfamily=nil, cpu=nil, memory=nil, count=nil)
+        def initialize(hosttype=nil, hostfamily=nil, cpu=nil, memory=nil, count=nil, cpuaverage=nil, memaverage=nil, netaverage=nil, cpudetaildata=nil, memdetaildata=nil, netratedetaildata=nil, netpacketdetaildata=nil)
           @HostType = hosttype
           @HostFamily = hostfamily
           @Cpu = cpu
           @Memory = memory
           @Count = count
+          @CpuAverage = cpuaverage
+          @MemAverage = memaverage
+          @NetAverage = netaverage
+          @CpuDetailData = cpudetaildata
+          @MemDetailData = memdetaildata
+          @NetRateDetailData = netratedetaildata
+          @NetPacketDetailData = netpacketdetaildata
         end
 
         def deserialize(params)
@@ -1482,6 +1548,25 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @Count = params['Count']
+          @CpuAverage = params['CpuAverage']
+          @MemAverage = params['MemAverage']
+          @NetAverage = params['NetAverage']
+          unless params['CpuDetailData'].nil?
+            @CpuDetailData = DetailData.new
+            @CpuDetailData.deserialize(params['CpuDetailData'])
+          end
+          unless params['MemDetailData'].nil?
+            @MemDetailData = DetailData.new
+            @MemDetailData.deserialize(params['MemDetailData'])
+          end
+          unless params['NetRateDetailData'].nil?
+            @NetRateDetailData = DetailData.new
+            @NetRateDetailData.deserialize(params['NetRateDetailData'])
+          end
+          unless params['NetPacketDetailData'].nil?
+            @NetPacketDetailData = DetailData.new
+            @NetPacketDetailData.deserialize(params['NetPacketDetailData'])
+          end
         end
       end
 

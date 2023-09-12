@@ -1340,12 +1340,16 @@ module TencentCloud
         # @type State: String
         # @param CumulativeScore: 累积记分（仅电子驾驶证支持返回该字段）
         # @type CumulativeScore: String
+        # @param CurrentTime: 当前时间（仅电子驾驶证支持返回该字段）
+        # @type CurrentTime: String
+        # @param GenerateTime: 生成时间（仅电子驾驶证支持返回该字段）
+        # @type GenerateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :RequestId
+        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :RequestId
 
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, currenttime=nil, generatetime=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
@@ -1363,6 +1367,8 @@ module TencentCloud
           @IssuingAuthority = issuingauthority
           @State = state
           @CumulativeScore = cumulativescore
+          @CurrentTime = currenttime
+          @GenerateTime = generatetime
           @RequestId = requestid
         end
 
@@ -1384,6 +1390,8 @@ module TencentCloud
           @IssuingAuthority = params['IssuingAuthority']
           @State = params['State']
           @CumulativeScore = params['CumulativeScore']
+          @CurrentTime = params['CurrentTime']
+          @GenerateTime = params['GenerateTime']
           @RequestId = params['RequestId']
         end
       end

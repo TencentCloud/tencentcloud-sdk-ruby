@@ -17,6 +17,67 @@
 module TencentCloud
   module Trocket
     module V20230308
+      # CreateConsumerGroup请求参数结构体
+      class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param MaxRetryTimes: 最大重试次数
+        # @type MaxRetryTimes: Integer
+        # @param ConsumeEnable: 是否开启消费
+        # @type ConsumeEnable: Boolean
+        # @param ConsumeMessageOrderly: 顺序投递：true
+        # 并发投递：false
+        # @type ConsumeMessageOrderly: Boolean
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :ConsumerGroup, :MaxRetryTimes, :ConsumeEnable, :ConsumeMessageOrderly, :Remark
+
+        def initialize(instanceid=nil, consumergroup=nil, maxretrytimes=nil, consumeenable=nil, consumemessageorderly=nil, remark=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+          @MaxRetryTimes = maxretrytimes
+          @ConsumeEnable = consumeenable
+          @ConsumeMessageOrderly = consumemessageorderly
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @MaxRetryTimes = params['MaxRetryTimes']
+          @ConsumeEnable = params['ConsumeEnable']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateConsumerGroup返回参数结构体
+      class CreateConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组
+        # @type ConsumerGroup: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :ConsumerGroup, :RequestId
+
+        def initialize(instanceid=nil, consumergroup=nil, requestid=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceType: 实例类型，
@@ -119,6 +180,103 @@ module TencentCloud
         end
       end
 
+      # CreateTopic请求参数结构体
+      class CreateTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param TopicType: 主题类型
+        # UNSPECIFIED:未指定,
+        # NORMAL:普通消息,
+        # FIFO:顺序消息,
+        # DELAY:延时消息,
+        # TRANSACTION:事务消息
+        # @type TopicType: String
+        # @param QueueNum: 队列数量
+        # @type QueueNum: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark
+
+        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @TopicType = topictype
+          @QueueNum = queuenum
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @TopicType = params['TopicType']
+          @QueueNum = params['QueueNum']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateTopic返回参数结构体
+      class CreateTopicResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Topic, :RequestId
+
+        def initialize(instanceid=nil, topic=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConsumerGroup请求参数结构体
+      class DeleteConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :ConsumerGroup
+
+        def initialize(instanceid=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # DeleteConsumerGroup返回参数结构体
+      class DeleteConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstance请求参数结构体
       class DeleteInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -147,6 +305,115 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTopic请求参数结构体
+      class DeleteTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+
+        attr_accessor :InstanceId, :Topic
+
+        def initialize(instanceid=nil, topic=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DeleteTopic返回参数结构体
+      class DeleteTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerGroup请求参数结构体
+      class DescribeConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :ConsumerGroup
+
+        def initialize(instanceid=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # DescribeConsumerGroup返回参数结构体
+      class DescribeConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerNum: 在线消费者数量
+        # @type ConsumerNum: Integer
+        # @param Tps: TPS
+        # @type Tps: Integer
+        # @param ConsumerLag: 消息堆积数量
+        # @type ConsumerLag: Integer
+        # @param ConsumeType: 消费者类型
+        # @type ConsumeType: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param ConsumeMessageOrderly: 顺序投递：true
+        # 并发投递：false
+        # @type ConsumeMessageOrderly: Boolean
+        # @param ConsumeEnable: 是否开启消费
+        # @type ConsumeEnable: Boolean
+        # @param MaxRetryTimes: 最大重试次数
+        # @type MaxRetryTimes: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerNum, :Tps, :ConsumerLag, :ConsumeType, :CreatedTime, :ConsumeMessageOrderly, :ConsumeEnable, :MaxRetryTimes, :Remark, :RequestId
+
+        def initialize(consumernum=nil, tps=nil, consumerlag=nil, consumetype=nil, createdtime=nil, consumemessageorderly=nil, consumeenable=nil, maxretrytimes=nil, remark=nil, requestid=nil)
+          @ConsumerNum = consumernum
+          @Tps = tps
+          @ConsumerLag = consumerlag
+          @ConsumeType = consumetype
+          @CreatedTime = createdtime
+          @ConsumeMessageOrderly = consumemessageorderly
+          @ConsumeEnable = consumeenable
+          @MaxRetryTimes = maxretrytimes
+          @Remark = remark
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsumerNum = params['ConsumerNum']
+          @Tps = params['Tps']
+          @ConsumerLag = params['ConsumerLag']
+          @ConsumeType = params['ConsumeType']
+          @CreatedTime = params['CreatedTime']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @ConsumeEnable = params['ConsumeEnable']
+          @MaxRetryTimes = params['MaxRetryTimes']
+          @Remark = params['Remark']
           @RequestId = params['RequestId']
         end
       end
@@ -437,6 +704,137 @@ module TencentCloud
         end
       end
 
+      # DescribeTopic请求参数结构体
+      class DescribeTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Topic, :Offset, :Limit, :Filters
+
+        def initialize(instanceid=nil, topic=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTopic返回参数结构体
+      class DescribeTopicResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param TopicType: 主题类型
+        # UNSPECIFIED:未指定,
+        # NORMAL:普通消息,
+        # FIFO:顺序消息,
+        # DELAY:延时消息,
+        # TRANSACTION:事务消息
+        # @type TopicType: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param LastUpdateTime: 最后写入时间，秒为单位
+        # @type LastUpdateTime: Integer
+        # @param SubscriptionCount: 订阅数量
+        # @type SubscriptionCount: Integer
+        # @param SubscriptionData: 订阅关系列表
+        # @type SubscriptionData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Topic, :TopicType, :Remark, :CreatedTime, :LastUpdateTime, :SubscriptionCount, :SubscriptionData, :RequestId
+
+        def initialize(instanceid=nil, topic=nil, topictype=nil, remark=nil, createdtime=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @TopicType = topictype
+          @Remark = remark
+          @CreatedTime = createdtime
+          @LastUpdateTime = lastupdatetime
+          @SubscriptionCount = subscriptioncount
+          @SubscriptionData = subscriptiondata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @TopicType = params['TopicType']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @SubscriptionCount = params['SubscriptionCount']
+          unless params['SubscriptionData'].nil?
+            @SubscriptionData = []
+            params['SubscriptionData'].each do |i|
+              subscriptiondata_tmp = SubscriptionData.new
+              subscriptiondata_tmp.deserialize(i)
+              @SubscriptionData << subscriptiondata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicStatsOp请求参数结构体
+      class DescribeTopicStatsOpRequest < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题
+        # @type Topic: String
+
+        attr_accessor :Topic
+
+        def initialize(topic=nil)
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+        end
+      end
+
+      # DescribeTopicStatsOp返回参数结构体
+      class DescribeTopicStatsOpResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 接入点信息
       class Endpoint < TencentCloud::Common::AbstractModel
         # @param Type: 接入点类型，
@@ -660,6 +1058,59 @@ module TencentCloud
         end
       end
 
+      # ModifyConsumerGroup请求参数结构体
+      class ModifyConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param ConsumeEnable: 是否开启消费
+        # @type ConsumeEnable: Boolean
+        # @param ConsumeMessageOrderly: 顺序投递：true
+        # 并发投递：false
+        # @type ConsumeMessageOrderly: Boolean
+        # @param MaxRetryTimes: 最大重试次数
+        # @type MaxRetryTimes: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark
+
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+          @ConsumeEnable = consumeenable
+          @ConsumeMessageOrderly = consumemessageorderly
+          @MaxRetryTimes = maxretrytimes
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @ConsumeEnable = params['ConsumeEnable']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @MaxRetryTimes = params['MaxRetryTimes']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyConsumerGroup返回参数结构体
+      class ModifyConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstance请求参数结构体
       class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -713,6 +1164,132 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyTopic请求参数结构体
+      class ModifyTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param QueueNum: 队列数量
+        # @type QueueNum: Integer
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Topic, :QueueNum, :Remark
+
+        def initialize(instanceid=nil, topic=nil, queuenum=nil, remark=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @QueueNum = queuenum
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @QueueNum = params['QueueNum']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyTopic返回参数结构体
+      class ModifyTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 主题与消费组的订阅关系数据
+      class SubscriptionData < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param TopicType: 主题类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicType: String
+        # @param TopicQueueNum: 单个节点上主题队列数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicQueueNum: Integer
+        # @param ConsumerGroup: 消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerGroup: String
+        # @param IsOnline: 是否在线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOnline: Boolean
+        # @param ConsumeType: 消费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumeType: String
+        # @param SubString: 订阅规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubString: String
+        # @param ExpressionType: 过滤类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpressionType: String
+        # @param Consistency: 订阅一致性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: Integer
+        # @param ConsumerLag: 消费堆积
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLag: Integer
+        # @param LastUpdateTime: 最后消费进度更新时间，秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param MaxRetryTimes: 最大重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetryTimes: Integer
+        # @param ConsumeMessageOrderly: 是否顺序消费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumeMessageOrderly: Boolean
+
+        attr_accessor :InstanceId, :Topic, :TopicType, :TopicQueueNum, :ConsumerGroup, :IsOnline, :ConsumeType, :SubString, :ExpressionType, :Consistency, :ConsumerLag, :LastUpdateTime, :MaxRetryTimes, :ConsumeMessageOrderly
+
+        def initialize(instanceid=nil, topic=nil, topictype=nil, topicqueuenum=nil, consumergroup=nil, isonline=nil, consumetype=nil, substring=nil, expressiontype=nil, consistency=nil, consumerlag=nil, lastupdatetime=nil, maxretrytimes=nil, consumemessageorderly=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @TopicType = topictype
+          @TopicQueueNum = topicqueuenum
+          @ConsumerGroup = consumergroup
+          @IsOnline = isonline
+          @ConsumeType = consumetype
+          @SubString = substring
+          @ExpressionType = expressiontype
+          @Consistency = consistency
+          @ConsumerLag = consumerlag
+          @LastUpdateTime = lastupdatetime
+          @MaxRetryTimes = maxretrytimes
+          @ConsumeMessageOrderly = consumemessageorderly
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @TopicType = params['TopicType']
+          @TopicQueueNum = params['TopicQueueNum']
+          @ConsumerGroup = params['ConsumerGroup']
+          @IsOnline = params['IsOnline']
+          @ConsumeType = params['ConsumeType']
+          @SubString = params['SubString']
+          @ExpressionType = params['ExpressionType']
+          @Consistency = params['Consistency']
+          @ConsumerLag = params['ConsumerLag']
+          @LastUpdateTime = params['LastUpdateTime']
+          @MaxRetryTimes = params['MaxRetryTimes']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
         end
       end
 

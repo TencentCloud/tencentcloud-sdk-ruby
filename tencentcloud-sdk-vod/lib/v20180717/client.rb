@@ -312,6 +312,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
+
+        # @param request: Request instance for CreateDomainVerifyRecord.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateDomainVerifyRecordRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateDomainVerifyRecordResponse`
+        def CreateDomainVerifyRecord(request)
+          body = send_request('CreateDomainVerifyRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainVerifyRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建音画质重生模板。
 
         # @param request: Request instance for CreateEnhanceMediaTemplate.
@@ -4109,6 +4133,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SplitMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 控制台验证域名归属
+
+        # @param request: Request instance for VerifyDomainOwnershipForConsole.
+        # @type request: :class:`Tencentcloud::vod::V20180717::VerifyDomainOwnershipForConsoleRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::VerifyDomainOwnershipForConsoleResponse`
+        def VerifyDomainOwnershipForConsole(request)
+          body = send_request('VerifyDomainOwnershipForConsole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyDomainOwnershipForConsoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于验证域名解析值。
+
+        # @param request: Request instance for VerifyDomainRecord.
+        # @type request: :class:`Tencentcloud::vod::V20180717::VerifyDomainRecordRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::VerifyDomainRecordResponse`
+        def VerifyDomainRecord(request)
+          body = send_request('VerifyDomainRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyDomainRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -2842,13 +2842,14 @@ module TencentCloud
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
         # @param SignComponents: 签署控件：文件发起使用
         # @type SignComponents: Array
+        # @param ApproverVerifyTypes: 签署人查看合同时认证方式, 1-实名查看 2-短信验证码查看(企业签署方不支持该方式) 如果不传默认为1 查看合同的认证方式 Flow层级的优先于approver层级的 （当手写签名方式为OCR_ESIGN时，合同认证方式2无效，因为这种签名方式依赖实名认证）
+        # @type ApproverVerifyTypes: Array
+        # @param ApproverSignTypes: 签署人签署合同时的认证方式 1-人脸认证 2-签署密码 3-运营商三要素(默认为1,2)
+        # @type ApproverSignTypes: Array
 
-        attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption, :SignComponents
-        extend Gem::Deprecate
-        deprecate :NotifyType, :none, 2023, 9
-        deprecate :NotifyType=, :none, 2023, 9
+        attr_accessor :NotChannelOrganization, :ApproverType, :OrganizationId, :OrganizationOpenId, :OrganizationName, :UserId, :OpenId, :ApproverName, :ApproverMobile, :RecipientId, :PreReadTime, :IsFullText, :NotifyType, :ApproverOption, :SignComponents, :ApproverVerifyTypes, :ApproverSignTypes
 
-        def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil, signcomponents=nil)
+        def initialize(notchannelorganization=nil, approvertype=nil, organizationid=nil, organizationopenid=nil, organizationname=nil, userid=nil, openid=nil, approvername=nil, approvermobile=nil, recipientid=nil, prereadtime=nil, isfulltext=nil, notifytype=nil, approveroption=nil, signcomponents=nil, approververifytypes=nil, approversigntypes=nil)
           @NotChannelOrganization = notchannelorganization
           @ApproverType = approvertype
           @OrganizationId = organizationid
@@ -2864,6 +2865,8 @@ module TencentCloud
           @NotifyType = notifytype
           @ApproverOption = approveroption
           @SignComponents = signcomponents
+          @ApproverVerifyTypes = approververifytypes
+          @ApproverSignTypes = approversigntypes
         end
 
         def deserialize(params)
@@ -2892,6 +2895,8 @@ module TencentCloud
               @SignComponents << component_tmp
             end
           end
+          @ApproverVerifyTypes = params['ApproverVerifyTypes']
+          @ApproverSignTypes = params['ApproverSignTypes']
         end
       end
 
@@ -3116,10 +3121,16 @@ module TencentCloud
         # @param Placeholder: 填写提示的内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Placeholder: String
+        # @param LockComponentValue: 是否锁定控件值不允许编辑（嵌入式发起使用） <br/>默认false：不锁定控件值，允许在页面编辑控件值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LockComponentValue: Boolean
+        # @param ForbidMoveAndDelete: 是否禁止移动和删除控件 <br/>默认false，不禁止移动和删除控件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForbidMoveAndDelete: Boolean
 
-        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :Placeholder
+        attr_accessor :ComponentId, :ComponentType, :ComponentName, :ComponentRequired, :ComponentRecipientId, :FileIndex, :GenerateMode, :ComponentWidth, :ComponentHeight, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentExtra, :ComponentValue, :ComponentDateFontSize, :DocumentId, :ComponentDescription, :OffsetX, :OffsetY, :ChannelComponentId, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :Placeholder, :LockComponentValue, :ForbidMoveAndDelete
 
-        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, placeholder=nil)
+        def initialize(componentid=nil, componenttype=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, fileindex=nil, generatemode=nil, componentwidth=nil, componentheight=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentextra=nil, componentvalue=nil, componentdatefontsize=nil, documentid=nil, componentdescription=nil, offsetx=nil, offsety=nil, channelcomponentid=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, placeholder=nil, lockcomponentvalue=nil, forbidmoveanddelete=nil)
           @ComponentId = componentid
           @ComponentType = componenttype
           @ComponentName = componentname
@@ -3145,6 +3156,8 @@ module TencentCloud
           @RelativeLocation = relativelocation
           @KeywordIndexes = keywordindexes
           @Placeholder = placeholder
+          @LockComponentValue = lockcomponentvalue
+          @ForbidMoveAndDelete = forbidmoveanddelete
         end
 
         def deserialize(params)
@@ -3173,6 +3186,43 @@ module TencentCloud
           @RelativeLocation = params['RelativeLocation']
           @KeywordIndexes = params['KeywordIndexes']
           @Placeholder = params['Placeholder']
+          @LockComponentValue = params['LockComponentValue']
+          @ForbidMoveAndDelete = params['ForbidMoveAndDelete']
+        end
+      end
+
+      # 签署控件的类型和范围限制条件，用于控制文件发起后签署人拖拽签署区时可使用的控件类型和具体的印章或签名方式。
+      class ComponentLimit < TencentCloud::Common::AbstractModel
+        # @param ComponentType: 控件类型，支持以下类型
+        # <ul><li>SIGN_SEAL : 印章控件</li>
+        # <li>SIGN_PAGING_SEAL : 骑缝章控件</li>
+        # <li>SIGN_LEGAL_PERSON_SEAL : 企业法定代表人控件</li>
+        # <li>SIGN_SIGNATURE : 用户签名控件</li></ul>
+        # @type ComponentType: String
+        # @param ComponentValue: 签署控件类型的值(可选)，用与限制签署时印章或者签名的选择范围
+
+        # 1.当ComponentType 是 SIGN_SEAL 或者 SIGN_PAGING_SEAL 时可传入企业印章Id（支持多个）
+
+        # 2.当ComponentType 是 SIGN_SIGNATURE 时可传入以下类型（支持多个）
+
+        # <ul><li>HANDWRITE : 手写签名</li>
+        # <li>OCR_ESIGN : OCR印章（智慧手写签名）</li>
+        # <li>ESIGN : 个人印章</li>
+        # <li>SYSTEM_ESIGN : 系统印章</li></ul>
+
+        # 3.当ComponentType 是 SIGN_LEGAL_PERSON_SEAL 时无需传递此参数。
+        # @type ComponentValue: Array
+
+        attr_accessor :ComponentType, :ComponentValue
+
+        def initialize(componenttype=nil, componentvalue=nil)
+          @ComponentType = componenttype
+          @ComponentValue = componentvalue
+        end
+
+        def deserialize(params)
+          @ComponentType = params['ComponentType']
+          @ComponentValue = params['ComponentValue']
         end
       end
 
@@ -4474,13 +4524,17 @@ module TencentCloud
         # @param NotifyType: SMS: 短信(需确保“电子签短信通知签署方”功能是开启状态才能生效); NONE: 不发信息
         # 默认为SMS(签署方为子客时该字段不生效)
         # @type NotifyType: String
+        # @param AddSignComponentsLimits: [通过文件创建签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowByFiles)时,如果设置了外层参数SignBeanTag=1(允许签署过程中添加签署控件),则可通过此参数明确规定合同所使用的签署控件类型（骑缝章、普通章法人章等）和具体的印章（印章ID）或签名方式。
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType
+        # 注：`限制印章控件或骑缝章控件情况下,仅本企业签署方可以指定具体印章（通过传递ComponentValue,支持多个），他方企业或个人只支持限制控件类型。`
+        # @type AddSignComponentsLimits: Array
+
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 9
         deprecate :CallbackUrl=, :none, 2023, 9
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -4503,6 +4557,7 @@ module TencentCloud
           @ApproverSignTypes = approversigntypes
           @SignId = signid
           @NotifyType = notifytype
+          @AddSignComponentsLimits = addsigncomponentslimits
         end
 
         def deserialize(params)
@@ -4538,6 +4593,14 @@ module TencentCloud
           @ApproverSignTypes = params['ApproverSignTypes']
           @SignId = params['SignId']
           @NotifyType = params['NotifyType']
+          unless params['AddSignComponentsLimits'].nil?
+            @AddSignComponentsLimits = []
+            params['AddSignComponentsLimits'].each do |i|
+              componentlimit_tmp = ComponentLimit.new
+              componentlimit_tmp.deserialize(i)
+              @AddSignComponentsLimits << componentlimit_tmp
+            end
+          end
         end
       end
 

@@ -5257,7 +5257,7 @@ module TencentCloud
         # @type Ip: String
         # @param Limit: 一页条数，默认值100，最大值100，超过100最大返回100条
         # @type Limit: Integer
-        # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
+        # @param Offset: 规则偏移量，取值为(页码-1)*一页条数
         # @type Offset: Integer
         # @param ProtocolList: 转发协议搜索，选填，取值[http, https, http/https]
         # @type ProtocolList: Array

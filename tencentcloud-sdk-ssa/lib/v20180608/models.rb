@@ -44,6 +44,30 @@ module TencentCloud
         end
       end
 
+      # 用户威胁告警信息
+      class AlarmInfoRsp < TencentCloud::Common::AbstractModel
+        # @param AttackEvent: 近7天威胁告警
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackEvent: Array
+
+        attr_accessor :AttackEvent
+
+        def initialize(attackevent=nil)
+          @AttackEvent = attackevent
+        end
+
+        def deserialize(params)
+          unless params['AttackEvent'].nil?
+            @AttackEvent = []
+            params['AttackEvent'].each do |i|
+              attackevent_tmp = AttackEvent.new
+              attackevent_tmp.deserialize(i)
+              @AttackEvent << attackevent_tmp
+            end
+          end
+        end
+      end
+
       # 告警详情
       class AlertDetail < TencentCloud::Common::AbstractModel
         # @param BaseInfo: 告警基础信息
@@ -799,6 +823,58 @@ module TencentCloud
         def deserialize(params)
           @AssetType = params['AssetType']
           @AssetCount = params['AssetCount']
+        end
+      end
+
+      # 攻击事件
+      class AttackEvent < TencentCloud::Common::AbstractModel
+        # @param SsaSrcIp: 来源ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaSrcIp: String
+        # @param SsaDstIp: 目标ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDstIp: String
+        # @param SsaDstProvince: 目标省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDstProvince: String
+        # @param SsaDstCity: 目标城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDstCity: String
+        # @param SsaDstCountry: 目标国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaDstCountry: String
+        # @param SsaSrcProvince: 来源省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaSrcProvince: String
+        # @param SsaSrcCountry: 来源国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaSrcCountry: String
+        # @param SsaSrcCity: 来源城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SsaSrcCity: String
+
+        attr_accessor :SsaSrcIp, :SsaDstIp, :SsaDstProvince, :SsaDstCity, :SsaDstCountry, :SsaSrcProvince, :SsaSrcCountry, :SsaSrcCity
+
+        def initialize(ssasrcip=nil, ssadstip=nil, ssadstprovince=nil, ssadstcity=nil, ssadstcountry=nil, ssasrcprovince=nil, ssasrccountry=nil, ssasrccity=nil)
+          @SsaSrcIp = ssasrcip
+          @SsaDstIp = ssadstip
+          @SsaDstProvince = ssadstprovince
+          @SsaDstCity = ssadstcity
+          @SsaDstCountry = ssadstcountry
+          @SsaSrcProvince = ssasrcprovince
+          @SsaSrcCountry = ssasrccountry
+          @SsaSrcCity = ssasrccity
+        end
+
+        def deserialize(params)
+          @SsaSrcIp = params['SsaSrcIp']
+          @SsaDstIp = params['SsaDstIp']
+          @SsaDstProvince = params['SsaDstProvince']
+          @SsaDstCity = params['SsaDstCity']
+          @SsaDstCountry = params['SsaDstCountry']
+          @SsaSrcProvince = params['SsaSrcProvince']
+          @SsaSrcCountry = params['SsaSrcCountry']
+          @SsaSrcCity = params['SsaSrcCity']
         end
       end
 
@@ -1692,6 +1768,50 @@ module TencentCloud
           @SsaEventId = params['SsaEventId']
           @IsNewCfwEvent = params['IsNewCfwEvent']
           @Direction = params['Direction']
+        end
+      end
+
+      # DescribeAlarmStat请求参数结构体
+      class DescribeAlarmStatRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAlarmStat返回参数结构体
+      class DescribeAlarmStatResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 威胁告警信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.AlarmInfoRsp`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AlarmInfoRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

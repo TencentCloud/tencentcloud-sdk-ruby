@@ -1103,6 +1103,65 @@ module TencentCloud
         end
       end
 
+      # ListReceiverDetails请求参数结构体
+      class ListReceiverDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param ReceiverId: 收件人列表ID,CreateReceiver接口创建收件人列表时会返回该值
+        # @type ReceiverId: Integer
+        # @param Offset: 偏移量，整型，从0开始
+        # @type Offset: Integer
+        # @param Limit: 限制数目，整型,不超过100
+        # @type Limit: Integer
+        # @param Email: 收件人地址，长度0-50，示例：xxx@te.com，支持模糊查询
+        # @type Email: String
+
+        attr_accessor :ReceiverId, :Offset, :Limit, :Email
+
+        def initialize(receiverid=nil, offset=nil, limit=nil, email=nil)
+          @ReceiverId = receiverid
+          @Offset = offset
+          @Limit = limit
+          @Email = email
+        end
+
+        def deserialize(params)
+          @ReceiverId = params['ReceiverId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Email = params['Email']
+        end
+      end
+
+      # ListReceiverDetails返回参数结构体
+      class ListReceiverDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 数据记录
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              receiverdetail_tmp = ReceiverDetail.new
+              receiverdetail_tmp.deserialize(i)
+              @Data << receiverdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListReceivers请求参数结构体
       class ListReceiversRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，整型，从0开始
@@ -1260,6 +1319,30 @@ module TencentCloud
           @Desc = params['Desc']
           @ReceiversStatus = params['ReceiversStatus']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 收件人列表详情
+      class ReceiverDetail < TencentCloud::Common::AbstractModel
+        # @param Email: 收件人地址
+        # @type Email: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param TemplateData: 模板参数
+        # @type TemplateData: String
+
+        attr_accessor :Email, :CreateTime, :TemplateData
+
+        def initialize(email=nil, createtime=nil, templatedata=nil)
+          @Email = email
+          @CreateTime = createtime
+          @TemplateData = templatedata
+        end
+
+        def deserialize(params)
+          @Email = params['Email']
+          @CreateTime = params['CreateTime']
+          @TemplateData = params['TemplateData']
         end
       end
 

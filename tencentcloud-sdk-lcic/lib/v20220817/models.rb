@@ -629,10 +629,12 @@ module TencentCloud
         # @type DocumentType: String
         # @param DocumentSize: 文档大小，单位 字节
         # @type DocumentSize: Integer
+        # @param AutoHandleUnsupportedElement: 是否对不支持元素开启自动处理的功能。默认关闭。
+        # @type AutoHandleUnsupportedElement: Boolean
 
-        attr_accessor :SdkAppId, :DocumentUrl, :DocumentName, :Owner, :TranscodeType, :Permission, :DocumentType, :DocumentSize
+        attr_accessor :SdkAppId, :DocumentUrl, :DocumentName, :Owner, :TranscodeType, :Permission, :DocumentType, :DocumentSize, :AutoHandleUnsupportedElement
 
-        def initialize(sdkappid=nil, documenturl=nil, documentname=nil, owner=nil, transcodetype=nil, permission=nil, documenttype=nil, documentsize=nil)
+        def initialize(sdkappid=nil, documenturl=nil, documentname=nil, owner=nil, transcodetype=nil, permission=nil, documenttype=nil, documentsize=nil, autohandleunsupportedelement=nil)
           @SdkAppId = sdkappid
           @DocumentUrl = documenturl
           @DocumentName = documentname
@@ -641,6 +643,7 @@ module TencentCloud
           @Permission = permission
           @DocumentType = documenttype
           @DocumentSize = documentsize
+          @AutoHandleUnsupportedElement = autohandleunsupportedelement
         end
 
         def deserialize(params)
@@ -652,6 +655,7 @@ module TencentCloud
           @Permission = params['Permission']
           @DocumentType = params['DocumentType']
           @DocumentSize = params['DocumentSize']
+          @AutoHandleUnsupportedElement = params['AutoHandleUnsupportedElement']
         end
       end
 

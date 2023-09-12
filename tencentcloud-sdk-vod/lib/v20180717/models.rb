@@ -5952,6 +5952,47 @@ module TencentCloud
         end
       end
 
+      # CreateDomainVerifyRecord请求参数结构体
+      class CreateDomainVerifyRecordRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateDomainVerifyRecord返回参数结构体
+      class CreateDomainVerifyRecordResponse < TencentCloud::Common::AbstractModel
+        # @param DNSVerifyInfo: DNS解析信息
+        # @type DNSVerifyInfo: :class:`Tencentcloud::Vod.v20180717.models.DNSVerifyInfo`
+        # @param FileVerifyInfo: 文件验证信息
+        # @type FileVerifyInfo: :class:`Tencentcloud::Vod.v20180717.models.FileVerifyInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DNSVerifyInfo, :FileVerifyInfo, :RequestId
+
+        def initialize(dnsverifyinfo=nil, fileverifyinfo=nil, requestid=nil)
+          @DNSVerifyInfo = dnsverifyinfo
+          @FileVerifyInfo = fileverifyinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DNSVerifyInfo'].nil?
+            @DNSVerifyInfo = DNSVerifyInfo.new
+            @DNSVerifyInfo.deserialize(params['DNSVerifyInfo'])
+          end
+          unless params['FileVerifyInfo'].nil?
+            @FileVerifyInfo = FileVerifyInfo.new
+            @FileVerifyInfo.deserialize(params['FileVerifyInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEnhanceMediaTemplate请求参数结构体
       class CreateEnhanceMediaTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Container: 输出文件封装格式，可选值：mp4、flv、hls。
@@ -7441,6 +7482,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DNS解析验证信息
+      class DNSVerifyInfo < TencentCloud::Common::AbstractModel
+        # @param SubDomain: 子解析。
+        # @type SubDomain: String
+        # @param Record: 解析值。
+        # @type Record: String
+        # @param RecordType: 解析类型。
+        # @type RecordType: String
+
+        attr_accessor :SubDomain, :Record, :RecordType
+
+        def initialize(subdomain=nil, record=nil, recordtype=nil)
+          @SubDomain = subdomain
+          @Record = record
+          @RecordType = recordtype
+        end
+
+        def deserialize(params)
+          @SubDomain = params['SubDomain']
+          @Record = params['Record']
+          @RecordType = params['RecordType']
         end
       end
 
@@ -13122,6 +13187,31 @@ module TencentCloud
             @MetaData = MediaMetaData.new
             @MetaData.deserialize(params['MetaData'])
           end
+        end
+      end
+
+      # 文件验证信息
+      class FileVerifyInfo < TencentCloud::Common::AbstractModel
+        # @param FileVerifyUrl: 文件验证 URL 指引。
+        # @type FileVerifyUrl: String
+        # @param FileVerifyDomains: 文件校验域名列表。
+        # @type FileVerifyDomains: Array
+        # @param FileVerifyName: 文件校验文件名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileVerifyName: String
+
+        attr_accessor :FileVerifyUrl, :FileVerifyDomains, :FileVerifyName
+
+        def initialize(fileverifyurl=nil, fileverifydomains=nil, fileverifyname=nil)
+          @FileVerifyUrl = fileverifyurl
+          @FileVerifyDomains = fileverifydomains
+          @FileVerifyName = fileverifyname
+        end
+
+        def deserialize(params)
+          @FileVerifyUrl = params['FileVerifyUrl']
+          @FileVerifyDomains = params['FileVerifyDomains']
+          @FileVerifyName = params['FileVerifyName']
         end
       end
 
@@ -26033,6 +26123,86 @@ module TencentCloud
           @LabelSet = params['LabelSet']
           @BlockConfidence = params['BlockConfidence']
           @ReviewConfidence = params['ReviewConfidence']
+        end
+      end
+
+      # VerifyDomainOwnershipForConsole请求参数结构体
+      class VerifyDomainOwnershipForConsoleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要接入点播的域名。
+        # @type Domain: String
+        # @param AccelerateArea: 需要开启加速的区域： <li>Mainland: 中国大陆地区</li> <li>Internation: 海外地区及港澳台</li> <li>Global: 全球</li> 不填会根据用户注册腾讯云时的地域信息自动判断 Mainland 或 Internation
+        # @type AccelerateArea: String
+
+        attr_accessor :Domain, :AccelerateArea
+
+        def initialize(domain=nil, acceleratearea=nil)
+          @Domain = domain
+          @AccelerateArea = acceleratearea
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @AccelerateArea = params['AccelerateArea']
+        end
+      end
+
+      # VerifyDomainOwnershipForConsole返回参数结构体
+      class VerifyDomainOwnershipForConsoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyDomainRecord请求参数结构体
+      class VerifyDomainRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要接入点播的加速域名。
+        # @type Domain: String
+        # @param VerifyType: 验证方式：
+        # <li>dns：DNS 解析验证；</li>
+        # <li>fIle：文件验证。</li>
+
+        # 默认值：dns。
+        # @type VerifyType: String
+
+        attr_accessor :Domain, :VerifyType
+
+        def initialize(domain=nil, verifytype=nil)
+          @Domain = domain
+          @VerifyType = verifytype
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @VerifyType = params['VerifyType']
+        end
+      end
+
+      # VerifyDomainRecord返回参数结构体
+      class VerifyDomainRecordResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否验证成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

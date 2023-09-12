@@ -407,6 +407,314 @@ module TencentCloud
         end
       end
 
+      # 结构化信息
+      class Block < TencentCloud::Common::AbstractModel
+        # @param Check: 诊断信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Check: Array
+        # @param Pathology: 病理报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pathology: Array
+        # @param MedDoc: 医学资料
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedDoc: Array
+        # @param DiagCert: 诊断证明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiagCert: Array
+        # @param FirstPage: 病案首页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstPage: Array
+        # @param Indicator: 检验报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Indicator: Array
+        # @param MedicalRecordInfo: 门诊病历信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedicalRecordInfo: Array
+        # @param Hospitalization: 出入院信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hospitalization: Array
+        # @param Surgery: 手术记录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Surgery: Array
+        # @param Prescription: 处方单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prescription: Array
+        # @param VaccineCertificate: 免疫接种证明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VaccineCertificate: Array
+        # @param Electrocardiogram: 心电图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Electrocardiogram: Array
+        # @param PathologyV2: 病理报告v2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathologyV2: Array
+        # @param Endoscopy: 内窥镜报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endoscopy: Array
+        # @param C14: C14检验报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type C14: Array
+        # @param Exame: 体检结论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Exame: Array
+        # @param MedDocV2: 出入院结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MedDocV2: Array
+        # @param IndicatorV3: 检验报告v3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorV3: Array
+        # @param Maternity: 孕产报告
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Maternity: Array
+        # @param Timeline: 时间轴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeline: Array
+        # @param Covid: 核酸报告结论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Covid: Array
+        # @param Eye: 眼科报告结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Eye: Array
+        # @param BirthCert: 出生证明结构化信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BirthCert: Array
+        # @param TextTypeListBlocks: 文本类型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTypeListBlocks: Array
+        # @param PhysicalExamination: 体检报告信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalExamination: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalExaminationV1`
+
+        attr_accessor :Check, :Pathology, :MedDoc, :DiagCert, :FirstPage, :Indicator, :MedicalRecordInfo, :Hospitalization, :Surgery, :Prescription, :VaccineCertificate, :Electrocardiogram, :PathologyV2, :Endoscopy, :C14, :Exame, :MedDocV2, :IndicatorV3, :Maternity, :Timeline, :Covid, :Eye, :BirthCert, :TextTypeListBlocks, :PhysicalExamination
+
+        def initialize(check=nil, pathology=nil, meddoc=nil, diagcert=nil, firstpage=nil, indicator=nil, medicalrecordinfo=nil, hospitalization=nil, surgery=nil, prescription=nil, vaccinecertificate=nil, electrocardiogram=nil, pathologyv2=nil, endoscopy=nil, c14=nil, exame=nil, meddocv2=nil, indicatorv3=nil, maternity=nil, timeline=nil, covid=nil, eye=nil, birthcert=nil, texttypelistblocks=nil, physicalexamination=nil)
+          @Check = check
+          @Pathology = pathology
+          @MedDoc = meddoc
+          @DiagCert = diagcert
+          @FirstPage = firstpage
+          @Indicator = indicator
+          @MedicalRecordInfo = medicalrecordinfo
+          @Hospitalization = hospitalization
+          @Surgery = surgery
+          @Prescription = prescription
+          @VaccineCertificate = vaccinecertificate
+          @Electrocardiogram = electrocardiogram
+          @PathologyV2 = pathologyv2
+          @Endoscopy = endoscopy
+          @C14 = c14
+          @Exame = exame
+          @MedDocV2 = meddocv2
+          @IndicatorV3 = indicatorv3
+          @Maternity = maternity
+          @Timeline = timeline
+          @Covid = covid
+          @Eye = eye
+          @BirthCert = birthcert
+          @TextTypeListBlocks = texttypelistblocks
+          @PhysicalExamination = physicalexamination
+        end
+
+        def deserialize(params)
+          unless params['Check'].nil?
+            @Check = []
+            params['Check'].each do |i|
+              check_tmp = Check.new
+              check_tmp.deserialize(i)
+              @Check << check_tmp
+            end
+          end
+          unless params['Pathology'].nil?
+            @Pathology = []
+            params['Pathology'].each do |i|
+              pathologyreport_tmp = PathologyReport.new
+              pathologyreport_tmp.deserialize(i)
+              @Pathology << pathologyreport_tmp
+            end
+          end
+          unless params['MedDoc'].nil?
+            @MedDoc = []
+            params['MedDoc'].each do |i|
+              meddoc_tmp = MedDoc.new
+              meddoc_tmp.deserialize(i)
+              @MedDoc << meddoc_tmp
+            end
+          end
+          unless params['DiagCert'].nil?
+            @DiagCert = []
+            params['DiagCert'].each do |i|
+              diagcert_tmp = DiagCert.new
+              diagcert_tmp.deserialize(i)
+              @DiagCert << diagcert_tmp
+            end
+          end
+          unless params['FirstPage'].nil?
+            @FirstPage = []
+            params['FirstPage'].each do |i|
+              firstpage_tmp = FirstPage.new
+              firstpage_tmp.deserialize(i)
+              @FirstPage << firstpage_tmp
+            end
+          end
+          unless params['Indicator'].nil?
+            @Indicator = []
+            params['Indicator'].each do |i|
+              indicator_tmp = Indicator.new
+              indicator_tmp.deserialize(i)
+              @Indicator << indicator_tmp
+            end
+          end
+          unless params['MedicalRecordInfo'].nil?
+            @MedicalRecordInfo = []
+            params['MedicalRecordInfo'].each do |i|
+              medicalrecordinfo_tmp = MedicalRecordInfo.new
+              medicalrecordinfo_tmp.deserialize(i)
+              @MedicalRecordInfo << medicalrecordinfo_tmp
+            end
+          end
+          unless params['Hospitalization'].nil?
+            @Hospitalization = []
+            params['Hospitalization'].each do |i|
+              hospitalization_tmp = Hospitalization.new
+              hospitalization_tmp.deserialize(i)
+              @Hospitalization << hospitalization_tmp
+            end
+          end
+          unless params['Surgery'].nil?
+            @Surgery = []
+            params['Surgery'].each do |i|
+              surgery_tmp = Surgery.new
+              surgery_tmp.deserialize(i)
+              @Surgery << surgery_tmp
+            end
+          end
+          unless params['Prescription'].nil?
+            @Prescription = []
+            params['Prescription'].each do |i|
+              prescription_tmp = Prescription.new
+              prescription_tmp.deserialize(i)
+              @Prescription << prescription_tmp
+            end
+          end
+          unless params['VaccineCertificate'].nil?
+            @VaccineCertificate = []
+            params['VaccineCertificate'].each do |i|
+              vaccinecertificate_tmp = VaccineCertificate.new
+              vaccinecertificate_tmp.deserialize(i)
+              @VaccineCertificate << vaccinecertificate_tmp
+            end
+          end
+          unless params['Electrocardiogram'].nil?
+            @Electrocardiogram = []
+            params['Electrocardiogram'].each do |i|
+              electrocardiogram_tmp = Electrocardiogram.new
+              electrocardiogram_tmp.deserialize(i)
+              @Electrocardiogram << electrocardiogram_tmp
+            end
+          end
+          unless params['PathologyV2'].nil?
+            @PathologyV2 = []
+            params['PathologyV2'].each do |i|
+              pathologyv2_tmp = PathologyV2.new
+              pathologyv2_tmp.deserialize(i)
+              @PathologyV2 << pathologyv2_tmp
+            end
+          end
+          unless params['Endoscopy'].nil?
+            @Endoscopy = []
+            params['Endoscopy'].each do |i|
+              endoscopy_tmp = Endoscopy.new
+              endoscopy_tmp.deserialize(i)
+              @Endoscopy << endoscopy_tmp
+            end
+          end
+          unless params['C14'].nil?
+            @C14 = []
+            params['C14'].each do |i|
+              indicator_tmp = Indicator.new
+              indicator_tmp.deserialize(i)
+              @C14 << indicator_tmp
+            end
+          end
+          unless params['Exame'].nil?
+            @Exame = []
+            params['Exame'].each do |i|
+              exame_tmp = Exame.new
+              exame_tmp.deserialize(i)
+              @Exame << exame_tmp
+            end
+          end
+          unless params['MedDocV2'].nil?
+            @MedDocV2 = []
+            params['MedDocV2'].each do |i|
+              dischargeinfoblock_tmp = DischargeInfoBlock.new
+              dischargeinfoblock_tmp.deserialize(i)
+              @MedDocV2 << dischargeinfoblock_tmp
+            end
+          end
+          unless params['IndicatorV3'].nil?
+            @IndicatorV3 = []
+            params['IndicatorV3'].each do |i|
+              indicatorv3_tmp = IndicatorV3.new
+              indicatorv3_tmp.deserialize(i)
+              @IndicatorV3 << indicatorv3_tmp
+            end
+          end
+          unless params['Maternity'].nil?
+            @Maternity = []
+            params['Maternity'].each do |i|
+              maternity_tmp = Maternity.new
+              maternity_tmp.deserialize(i)
+              @Maternity << maternity_tmp
+            end
+          end
+          unless params['Timeline'].nil?
+            @Timeline = []
+            params['Timeline'].each do |i|
+              timelineinformation_tmp = TimelineInformation.new
+              timelineinformation_tmp.deserialize(i)
+              @Timeline << timelineinformation_tmp
+            end
+          end
+          unless params['Covid'].nil?
+            @Covid = []
+            params['Covid'].each do |i|
+              coviditemsinfo_tmp = CovidItemsInfo.new
+              coviditemsinfo_tmp.deserialize(i)
+              @Covid << coviditemsinfo_tmp
+            end
+          end
+          unless params['Eye'].nil?
+            @Eye = []
+            params['Eye'].each do |i|
+              eyeitemsinfo_tmp = EyeItemsInfo.new
+              eyeitemsinfo_tmp.deserialize(i)
+              @Eye << eyeitemsinfo_tmp
+            end
+          end
+          unless params['BirthCert'].nil?
+            @BirthCert = []
+            params['BirthCert'].each do |i|
+              birthcert_tmp = BirthCert.new
+              birthcert_tmp.deserialize(i)
+              @BirthCert << birthcert_tmp
+            end
+          end
+          unless params['TextTypeListBlocks'].nil?
+            @TextTypeListBlocks = []
+            params['TextTypeListBlocks'].each do |i|
+              texttypelistblock_tmp = TextTypeListBlock.new
+              texttypelistblock_tmp.deserialize(i)
+              @TextTypeListBlocks << texttypelistblock_tmp
+            end
+          end
+          unless params['PhysicalExamination'].nil?
+            @PhysicalExamination = PhysicalExaminationV1.new
+            @PhysicalExamination.deserialize(params['PhysicalExamination'])
+          end
+        end
+      end
+
       # 块信息
       class BlockInfo < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
@@ -545,6 +853,63 @@ module TencentCloud
         end
       end
 
+      # 体检报告血压检测信息
+      class BloodPressureItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Item: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Result: 数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Times: 第几次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Times: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Location: 左右手臂
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+
+        attr_accessor :Name, :Item, :Result, :Unit, :Times, :Location
+
+        def initialize(name=nil, item=nil, result=nil, unit=nil, times=nil, location=nil)
+          @Name = name
+          @Item = item
+          @Result = result
+          @Unit = unit
+          @Times = times
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Item'].nil?
+            @Item = PhysicalBaseItem.new
+            @Item.deserialize(params['Item'])
+          end
+          unless params['Result'].nil?
+            @Result = PhysicalBaseItem.new
+            @Result.deserialize(params['Result'])
+          end
+          unless params['Unit'].nil?
+            @Unit = PhysicalBaseItem.new
+            @Unit.deserialize(params['Unit'])
+          end
+          unless params['Times'].nil?
+            @Times = PhysicalBaseItem.new
+            @Times.deserialize(params['Times'])
+          end
+          unless params['Location'].nil?
+            @Location = PhysicalBaseItem.new
+            @Location.deserialize(params['Location'])
+          end
+        end
+      end
+
       # 查体
       class BodyExaminationBlock < TencentCloud::Common::AbstractModel
         # @param BodyTemperature: 体温
@@ -650,6 +1015,55 @@ module TencentCloud
           unless params['Summary'].nil?
             @Summary = Summary.new
             @Summary.deserialize(params['Summary'])
+          end
+        end
+      end
+
+      # 体检报告-胸围信息
+      class ChestCircumferenceItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Item: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Result: 数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param State: 呼吸状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+
+        attr_accessor :Name, :Item, :Result, :Unit, :State
+
+        def initialize(name=nil, item=nil, result=nil, unit=nil, state=nil)
+          @Name = name
+          @Item = item
+          @Result = result
+          @Unit = unit
+          @State = state
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Item'].nil?
+            @Item = PhysicalBaseItem.new
+            @Item.deserialize(params['Item'])
+          end
+          unless params['Result'].nil?
+            @Result = PhysicalBaseItem.new
+            @Result.deserialize(params['Result'])
+          end
+          unless params['Unit'].nil?
+            @Unit = PhysicalBaseItem.new
+            @Unit.deserialize(params['Unit'])
+          end
+          unless params['State'].nil?
+            @State = PhysicalBaseItem.new
+            @State.deserialize(params['State'])
           end
         end
       end
@@ -2706,6 +3120,306 @@ module TencentCloud
         end
       end
 
+      # 体检报告-一般检测信息
+      class GeneralExaminationBaseItem < TencentCloud::Common::AbstractModel
+        # @param VitalSign: 生命体征
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VitalSign: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationVitalSign`
+        # @param Others: 其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationOthers`
+        # @param BriefSummary: 小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationBriefSummary`
+
+        attr_accessor :VitalSign, :Others, :BriefSummary
+
+        def initialize(vitalsign=nil, others=nil, briefsummary=nil)
+          @VitalSign = vitalsign
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['VitalSign'].nil?
+            @VitalSign = GeneralExaminationVitalSign.new
+            @VitalSign.deserialize(params['VitalSign'])
+          end
+          unless params['Others'].nil?
+            @Others = GeneralExaminationOthers.new
+            @Others.deserialize(params['Others'])
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = GeneralExaminationBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-小结
+      class GeneralExaminationBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 一般检查小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-其他项
+      class GeneralExaminationOthers < TencentCloud::Common::AbstractModel
+        # @param Countenance: 面容与表情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Countenance: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param MentalStatus: 精神状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MentalStatus: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param DevelopmentCondition: 发育及营养状况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DevelopmentCondition: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Memory: 记忆力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Hipline: 臀围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hipline: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param WaistHipRatio: 腰臀比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaistHipRatio: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param Addiction: 生活嗜好
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Addiction: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param AbilityOfLifeADL: 生活能力评定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AbilityOfLifeADL: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Others: 一般检查其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param ChestCircumference: 胸围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChestCircumference: :class:`Tencentcloud::Mrs.v20200910.models.ChestCircumferenceItem`
+
+        attr_accessor :Countenance, :MentalStatus, :DevelopmentCondition, :Memory, :Hipline, :WaistHipRatio, :Addiction, :AbilityOfLifeADL, :Others, :ChestCircumference
+
+        def initialize(countenance=nil, mentalstatus=nil, developmentcondition=nil, memory=nil, hipline=nil, waisthipratio=nil, addiction=nil, abilityoflifeadl=nil, others=nil, chestcircumference=nil)
+          @Countenance = countenance
+          @MentalStatus = mentalstatus
+          @DevelopmentCondition = developmentcondition
+          @Memory = memory
+          @Hipline = hipline
+          @WaistHipRatio = waisthipratio
+          @Addiction = addiction
+          @AbilityOfLifeADL = abilityoflifeadl
+          @Others = others
+          @ChestCircumference = chestcircumference
+        end
+
+        def deserialize(params)
+          unless params['Countenance'].nil?
+            @Countenance = KeyValueItem.new
+            @Countenance.deserialize(params['Countenance'])
+          end
+          unless params['MentalStatus'].nil?
+            @MentalStatus = KeyValueItem.new
+            @MentalStatus.deserialize(params['MentalStatus'])
+          end
+          unless params['DevelopmentCondition'].nil?
+            @DevelopmentCondition = KeyValueItem.new
+            @DevelopmentCondition.deserialize(params['DevelopmentCondition'])
+          end
+          unless params['Memory'].nil?
+            @Memory = KeyValueItem.new
+            @Memory.deserialize(params['Memory'])
+          end
+          unless params['Hipline'].nil?
+            @Hipline = ValueUnitItem.new
+            @Hipline.deserialize(params['Hipline'])
+          end
+          unless params['WaistHipRatio'].nil?
+            @WaistHipRatio = ValueUnitItem.new
+            @WaistHipRatio.deserialize(params['WaistHipRatio'])
+          end
+          unless params['Addiction'].nil?
+            @Addiction = KeyValueItem.new
+            @Addiction.deserialize(params['Addiction'])
+          end
+          unless params['AbilityOfLifeADL'].nil?
+            @AbilityOfLifeADL = KeyValueItem.new
+            @AbilityOfLifeADL.deserialize(params['AbilityOfLifeADL'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['ChestCircumference'].nil?
+            @ChestCircumference = ChestCircumferenceItem.new
+            @ChestCircumference.deserialize(params['ChestCircumference'])
+          end
+        end
+      end
+
+      # 生命体征
+      class GeneralExaminationVitalSign < TencentCloud::Common::AbstractModel
+        # @param Text: 生命体征总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BodyTemperature: 体温
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BodyTemperature: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param Pulse: 脉率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pulse: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param HeartRate: 心率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BreathingRate: 呼吸频率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BreathingRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BodyHeight: 身高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BodyHeight: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BodyWeight: 体重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BodyWeight: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BodyMassIndex: 体质指数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BodyMassIndex: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param Waistline: 腰围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Waistline: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param BloodPressure: 血压
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BloodPressure: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationVitalSignBloodPressure`
+
+        attr_accessor :Text, :BodyTemperature, :Pulse, :HeartRate, :BreathingRate, :BodyHeight, :BodyWeight, :BodyMassIndex, :Waistline, :BloodPressure
+
+        def initialize(text=nil, bodytemperature=nil, pulse=nil, heartrate=nil, breathingrate=nil, bodyheight=nil, bodyweight=nil, bodymassindex=nil, waistline=nil, bloodpressure=nil)
+          @Text = text
+          @BodyTemperature = bodytemperature
+          @Pulse = pulse
+          @HeartRate = heartrate
+          @BreathingRate = breathingrate
+          @BodyHeight = bodyheight
+          @BodyWeight = bodyweight
+          @BodyMassIndex = bodymassindex
+          @Waistline = waistline
+          @BloodPressure = bloodpressure
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = ValueUnitItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['BodyTemperature'].nil?
+            @BodyTemperature = ValueUnitItem.new
+            @BodyTemperature.deserialize(params['BodyTemperature'])
+          end
+          unless params['Pulse'].nil?
+            @Pulse = ValueUnitItem.new
+            @Pulse.deserialize(params['Pulse'])
+          end
+          unless params['HeartRate'].nil?
+            @HeartRate = ValueUnitItem.new
+            @HeartRate.deserialize(params['HeartRate'])
+          end
+          unless params['BreathingRate'].nil?
+            @BreathingRate = ValueUnitItem.new
+            @BreathingRate.deserialize(params['BreathingRate'])
+          end
+          unless params['BodyHeight'].nil?
+            @BodyHeight = ValueUnitItem.new
+            @BodyHeight.deserialize(params['BodyHeight'])
+          end
+          unless params['BodyWeight'].nil?
+            @BodyWeight = ValueUnitItem.new
+            @BodyWeight.deserialize(params['BodyWeight'])
+          end
+          unless params['BodyMassIndex'].nil?
+            @BodyMassIndex = ValueUnitItem.new
+            @BodyMassIndex.deserialize(params['BodyMassIndex'])
+          end
+          unless params['Waistline'].nil?
+            @Waistline = ValueUnitItem.new
+            @Waistline.deserialize(params['Waistline'])
+          end
+          unless params['BloodPressure'].nil?
+            @BloodPressure = GeneralExaminationVitalSignBloodPressure.new
+            @BloodPressure.deserialize(params['BloodPressure'])
+          end
+        end
+      end
+
+      # 血压
+      class GeneralExaminationVitalSignBloodPressure < TencentCloud::Common::AbstractModel
+        # @param Text: 血压
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.BloodPressureItem`
+        # @param SystolicDiastolicPressure: 收缩压/舒张压
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystolicDiastolicPressure: Array
+        # @param SystolicPressure: 收缩压
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystolicPressure: Array
+        # @param DiastolicPressure: 舒张压
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiastolicPressure: Array
+
+        attr_accessor :Text, :SystolicDiastolicPressure, :SystolicPressure, :DiastolicPressure
+
+        def initialize(text=nil, systolicdiastolicpressure=nil, systolicpressure=nil, diastolicpressure=nil)
+          @Text = text
+          @SystolicDiastolicPressure = systolicdiastolicpressure
+          @SystolicPressure = systolicpressure
+          @DiastolicPressure = diastolicpressure
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = BloodPressureItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['SystolicDiastolicPressure'].nil?
+            @SystolicDiastolicPressure = []
+            params['SystolicDiastolicPressure'].each do |i|
+              bloodpressureitem_tmp = BloodPressureItem.new
+              bloodpressureitem_tmp.deserialize(i)
+              @SystolicDiastolicPressure << bloodpressureitem_tmp
+            end
+          end
+          unless params['SystolicPressure'].nil?
+            @SystolicPressure = []
+            params['SystolicPressure'].each do |i|
+              bloodpressureitem_tmp = BloodPressureItem.new
+              bloodpressureitem_tmp.deserialize(i)
+              @SystolicPressure << bloodpressureitem_tmp
+            end
+          end
+          unless params['DiastolicPressure'].nil?
+            @DiastolicPressure = []
+            params['DiastolicPressure'].each do |i|
+              bloodpressureitem_tmp = BloodPressureItem.new
+              bloodpressureitem_tmp.deserialize(i)
+              @DiastolicPressure << bloodpressureitem_tmp
+            end
+          end
+        end
+      end
+
       # 家族遗传史
       class GeneticHistoryBlock < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -2735,6 +3449,254 @@ module TencentCloud
           @Src = params['Src']
           @GeneticList = params['GeneticList']
           @Value = params['Value']
+        end
+      end
+
+      # 体检报告-妇科-子宫附件
+      class GynaecologyAdnexal < TencentCloud::Common::AbstractModel
+        # @param Text: 子宫附件总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科
+      class GynaecologyBaseItem < TencentCloud::Common::AbstractModel
+        # @param Vulva: 外阴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vulva: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyVulva`
+        # @param Vagina: 阴道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vagina: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyVagina`
+        # @param Cervix: 子宫颈
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cervix: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyCervix`
+        # @param Uterus: 子宫
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uterus: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyUterus`
+        # @param Adnexal: 子宫附件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Adnexal: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyAdnexal`
+        # @param PelvicCavity: 盆腔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PelvicCavity: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyPelvicCavity`
+        # @param Others: 妇科其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param MenstrualHistory: 月经史
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MenstrualHistory: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyMenstrualHistory`
+        # @param BriefSummary: 小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyBriefSummary`
+
+        attr_accessor :Vulva, :Vagina, :Cervix, :Uterus, :Adnexal, :PelvicCavity, :Others, :MenstrualHistory, :BriefSummary
+
+        def initialize(vulva=nil, vagina=nil, cervix=nil, uterus=nil, adnexal=nil, pelviccavity=nil, others=nil, menstrualhistory=nil, briefsummary=nil)
+          @Vulva = vulva
+          @Vagina = vagina
+          @Cervix = cervix
+          @Uterus = uterus
+          @Adnexal = adnexal
+          @PelvicCavity = pelviccavity
+          @Others = others
+          @MenstrualHistory = menstrualhistory
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['Vulva'].nil?
+            @Vulva = GynaecologyVulva.new
+            @Vulva.deserialize(params['Vulva'])
+          end
+          unless params['Vagina'].nil?
+            @Vagina = GynaecologyVagina.new
+            @Vagina.deserialize(params['Vagina'])
+          end
+          unless params['Cervix'].nil?
+            @Cervix = GynaecologyCervix.new
+            @Cervix.deserialize(params['Cervix'])
+          end
+          unless params['Uterus'].nil?
+            @Uterus = GynaecologyUterus.new
+            @Uterus.deserialize(params['Uterus'])
+          end
+          unless params['Adnexal'].nil?
+            @Adnexal = GynaecologyAdnexal.new
+            @Adnexal.deserialize(params['Adnexal'])
+          end
+          unless params['PelvicCavity'].nil?
+            @PelvicCavity = GynaecologyPelvicCavity.new
+            @PelvicCavity.deserialize(params['PelvicCavity'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['MenstrualHistory'].nil?
+            @MenstrualHistory = GynaecologyMenstrualHistory.new
+            @MenstrualHistory.deserialize(params['MenstrualHistory'])
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = GynaecologyBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-小结
+      class GynaecologyBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-子宫颈
+      class GynaecologyCervix < TencentCloud::Common::AbstractModel
+        # @param Text: 子宫颈总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-月经史
+      class GynaecologyMenstrualHistory < TencentCloud::Common::AbstractModel
+        # @param Text: 妇科月经史总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-盆腔
+      class GynaecologyPelvicCavity < TencentCloud::Common::AbstractModel
+        # @param Text: 盆腔总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-子宫
+      class GynaecologyUterus < TencentCloud::Common::AbstractModel
+        # @param Text: 子宫总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-阴道
+      class GynaecologyVagina < TencentCloud::Common::AbstractModel
+        # @param Text: 阴道总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-妇科-外阴
+      class GynaecologyVulva < TencentCloud::Common::AbstractModel
+        # @param Text: 外阴总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
         end
       end
 
@@ -2779,6 +3741,47 @@ module TencentCloud
           @IsScale = params['IsScale']
           @ImageOriginalSize = params['ImageOriginalSize']
           @ScaleTargetSize = params['ScaleTargetSize']
+        end
+      end
+
+      # 听力信息
+      class HearingItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Item: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Location: 方位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Result: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+
+        attr_accessor :Name, :Item, :Location, :Result
+
+        def initialize(name=nil, item=nil, location=nil, result=nil)
+          @Name = name
+          @Item = item
+          @Location = location
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Item'].nil?
+            @Item = PhysicalBaseItem.new
+            @Item.deserialize(params['Item'])
+          end
+          unless params['Location'].nil?
+            @Location = PhysicalBaseItem.new
+            @Location.deserialize(params['Location'])
+          end
+          unless params['Result'].nil?
+            @Result = PhysicalBaseItem.new
+            @Result.deserialize(params['Result'])
+          end
         end
       end
 
@@ -3552,6 +4555,598 @@ module TencentCloud
         end
       end
 
+      # 体检报告-内科-腹部
+      class InternalMedicineAbdomen < TencentCloud::Common::AbstractModel
+        # @param Text: 内科腹部小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Liver: 肝脏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Liver: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenLiver`
+        # @param GallBladder: 胆囊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GallBladder: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenGallBladder`
+        # @param Pancreas: 胰腺
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pancreas: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenPancreas`
+        # @param Spleen: 脾脏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spleen: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenSpleen`
+        # @param Kidney: 肾脏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kidney: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomenKidney`
+        # @param Others: 腹部其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+
+        attr_accessor :Text, :Liver, :GallBladder, :Pancreas, :Spleen, :Kidney, :Others
+
+        def initialize(text=nil, liver=nil, gallbladder=nil, pancreas=nil, spleen=nil, kidney=nil, others=nil)
+          @Text = text
+          @Liver = liver
+          @GallBladder = gallbladder
+          @Pancreas = pancreas
+          @Spleen = spleen
+          @Kidney = kidney
+          @Others = others
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['Liver'].nil?
+            @Liver = InternalMedicineAbdomenLiver.new
+            @Liver.deserialize(params['Liver'])
+          end
+          unless params['GallBladder'].nil?
+            @GallBladder = InternalMedicineAbdomenGallBladder.new
+            @GallBladder.deserialize(params['GallBladder'])
+          end
+          unless params['Pancreas'].nil?
+            @Pancreas = InternalMedicineAbdomenPancreas.new
+            @Pancreas.deserialize(params['Pancreas'])
+          end
+          unless params['Spleen'].nil?
+            @Spleen = InternalMedicineAbdomenSpleen.new
+            @Spleen.deserialize(params['Spleen'])
+          end
+          unless params['Kidney'].nil?
+            @Kidney = InternalMedicineAbdomenKidney.new
+            @Kidney.deserialize(params['Kidney'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+        end
+      end
+
+      # 体检报告-内科-腹部-胆囊
+      class InternalMedicineAbdomenGallBladder < TencentCloud::Common::AbstractModel
+        # @param Src: 胆囊总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Size: 胆囊大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Palpation: 胆囊触诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Percussion: 胆囊叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Tenderness: 胆囊压痛
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Consistency: 胆囊质地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
+
+        def initialize(src=nil, size=nil, palpation=nil, percussion=nil, tenderness=nil, consistency=nil)
+          @Src = src
+          @Size = size
+          @Palpation = palpation
+          @Percussion = percussion
+          @Tenderness = tenderness
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          unless params['Src'].nil?
+            @Src = KeyValueItem.new
+            @Src.deserialize(params['Src'])
+          end
+          unless params['Size'].nil?
+            @Size = KeyValueItem.new
+            @Size.deserialize(params['Size'])
+          end
+          unless params['Palpation'].nil?
+            @Palpation = KeyValueItem.new
+            @Palpation.deserialize(params['Palpation'])
+          end
+          unless params['Percussion'].nil?
+            @Percussion = KeyValueItem.new
+            @Percussion.deserialize(params['Percussion'])
+          end
+          unless params['Tenderness'].nil?
+            @Tenderness = KeyValueItem.new
+            @Tenderness.deserialize(params['Tenderness'])
+          end
+          unless params['Consistency'].nil?
+            @Consistency = KeyValueItem.new
+            @Consistency.deserialize(params['Consistency'])
+          end
+        end
+      end
+
+      # 体检报告-内科-腹部-肾脏
+      class InternalMedicineAbdomenKidney < TencentCloud::Common::AbstractModel
+        # @param Src: 肾脏总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Size: 肾脏大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Palpation: 肾脏触诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Percussion: 肾脏叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Tenderness: 肾脏压痛
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Consistency: 肾脏质地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
+
+        def initialize(src=nil, size=nil, palpation=nil, percussion=nil, tenderness=nil, consistency=nil)
+          @Src = src
+          @Size = size
+          @Palpation = palpation
+          @Percussion = percussion
+          @Tenderness = tenderness
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          unless params['Src'].nil?
+            @Src = KeyValueItem.new
+            @Src.deserialize(params['Src'])
+          end
+          unless params['Size'].nil?
+            @Size = KeyValueItem.new
+            @Size.deserialize(params['Size'])
+          end
+          unless params['Palpation'].nil?
+            @Palpation = KeyValueItem.new
+            @Palpation.deserialize(params['Palpation'])
+          end
+          unless params['Percussion'].nil?
+            @Percussion = KeyValueItem.new
+            @Percussion.deserialize(params['Percussion'])
+          end
+          unless params['Tenderness'].nil?
+            @Tenderness = KeyValueItem.new
+            @Tenderness.deserialize(params['Tenderness'])
+          end
+          unless params['Consistency'].nil?
+            @Consistency = KeyValueItem.new
+            @Consistency.deserialize(params['Consistency'])
+          end
+        end
+      end
+
+      # 体检报告-内科-腹部-肝脏
+      class InternalMedicineAbdomenLiver < TencentCloud::Common::AbstractModel
+        # @param Src: 肝脏总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Size: 肝脏大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Palpation: 肝脏触诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Percussion: 肝脏叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Tenderness: 肝脏压痛
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Consistency: 肝脏质地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
+
+        def initialize(src=nil, size=nil, palpation=nil, percussion=nil, tenderness=nil, consistency=nil)
+          @Src = src
+          @Size = size
+          @Palpation = palpation
+          @Percussion = percussion
+          @Tenderness = tenderness
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          unless params['Src'].nil?
+            @Src = KeyValueItem.new
+            @Src.deserialize(params['Src'])
+          end
+          unless params['Size'].nil?
+            @Size = KeyValueItem.new
+            @Size.deserialize(params['Size'])
+          end
+          unless params['Palpation'].nil?
+            @Palpation = KeyValueItem.new
+            @Palpation.deserialize(params['Palpation'])
+          end
+          unless params['Percussion'].nil?
+            @Percussion = KeyValueItem.new
+            @Percussion.deserialize(params['Percussion'])
+          end
+          unless params['Tenderness'].nil?
+            @Tenderness = KeyValueItem.new
+            @Tenderness.deserialize(params['Tenderness'])
+          end
+          unless params['Consistency'].nil?
+            @Consistency = KeyValueItem.new
+            @Consistency.deserialize(params['Consistency'])
+          end
+        end
+      end
+
+      # 体检报告-内科-腹部-胰腺
+      class InternalMedicineAbdomenPancreas < TencentCloud::Common::AbstractModel
+        # @param Src: 胰腺总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Size: 胰腺大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Palpation: 胰腺触诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Percussion: 胰腺叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Tenderness: 肝脏压痛
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Consistency: 胰腺质地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
+
+        def initialize(src=nil, size=nil, palpation=nil, percussion=nil, tenderness=nil, consistency=nil)
+          @Src = src
+          @Size = size
+          @Palpation = palpation
+          @Percussion = percussion
+          @Tenderness = tenderness
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          unless params['Src'].nil?
+            @Src = KeyValueItem.new
+            @Src.deserialize(params['Src'])
+          end
+          unless params['Size'].nil?
+            @Size = KeyValueItem.new
+            @Size.deserialize(params['Size'])
+          end
+          unless params['Palpation'].nil?
+            @Palpation = KeyValueItem.new
+            @Palpation.deserialize(params['Palpation'])
+          end
+          unless params['Percussion'].nil?
+            @Percussion = KeyValueItem.new
+            @Percussion.deserialize(params['Percussion'])
+          end
+          unless params['Tenderness'].nil?
+            @Tenderness = KeyValueItem.new
+            @Tenderness.deserialize(params['Tenderness'])
+          end
+          unless params['Consistency'].nil?
+            @Consistency = KeyValueItem.new
+            @Consistency.deserialize(params['Consistency'])
+          end
+        end
+      end
+
+      # 体检报告-内科-腹部-脾脏
+      class InternalMedicineAbdomenSpleen < TencentCloud::Common::AbstractModel
+        # @param Src: 脾脏总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Size: 脾脏大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Palpation: 脾脏触诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Palpation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Percussion: 脾脏叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Tenderness: 脾脏压痛
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tenderness: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Consistency: 脾脏质地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Src, :Size, :Palpation, :Percussion, :Tenderness, :Consistency
+
+        def initialize(src=nil, size=nil, palpation=nil, percussion=nil, tenderness=nil, consistency=nil)
+          @Src = src
+          @Size = size
+          @Palpation = palpation
+          @Percussion = percussion
+          @Tenderness = tenderness
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          unless params['Src'].nil?
+            @Src = KeyValueItem.new
+            @Src.deserialize(params['Src'])
+          end
+          unless params['Size'].nil?
+            @Size = KeyValueItem.new
+            @Size.deserialize(params['Size'])
+          end
+          unless params['Palpation'].nil?
+            @Palpation = KeyValueItem.new
+            @Palpation.deserialize(params['Palpation'])
+          end
+          unless params['Percussion'].nil?
+            @Percussion = KeyValueItem.new
+            @Percussion.deserialize(params['Percussion'])
+          end
+          unless params['Tenderness'].nil?
+            @Tenderness = KeyValueItem.new
+            @Tenderness.deserialize(params['Tenderness'])
+          end
+          unless params['Consistency'].nil?
+            @Consistency = KeyValueItem.new
+            @Consistency.deserialize(params['Consistency'])
+          end
+        end
+      end
+
+      # 体检报告-内科
+      class InternalMedicineBaseItem < TencentCloud::Common::AbstractModel
+        # @param Abdomen: 体检报告-内科-腹部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abdomen: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineAbdomen`
+        # @param Heart: 体检报告-内科-心脏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Heart: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineHeart`
+        # @param Vessel: 体检报告-内科-血管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vessel: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineVessel`
+        # @param RespiratorySystem: 体检报告-内科-呼吸系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RespiratorySystem: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineRespiratorySystem`
+        # @param Others: 体检报告-内科-内科其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param BriefSummary: 体检报告-内科-小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineBriefSummary`
+
+        attr_accessor :Abdomen, :Heart, :Vessel, :RespiratorySystem, :Others, :BriefSummary
+
+        def initialize(abdomen=nil, heart=nil, vessel=nil, respiratorysystem=nil, others=nil, briefsummary=nil)
+          @Abdomen = abdomen
+          @Heart = heart
+          @Vessel = vessel
+          @RespiratorySystem = respiratorysystem
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['Abdomen'].nil?
+            @Abdomen = InternalMedicineAbdomen.new
+            @Abdomen.deserialize(params['Abdomen'])
+          end
+          unless params['Heart'].nil?
+            @Heart = InternalMedicineHeart.new
+            @Heart.deserialize(params['Heart'])
+          end
+          unless params['Vessel'].nil?
+            @Vessel = InternalMedicineVessel.new
+            @Vessel.deserialize(params['Vessel'])
+          end
+          unless params['RespiratorySystem'].nil?
+            @RespiratorySystem = InternalMedicineRespiratorySystem.new
+            @RespiratorySystem.deserialize(params['RespiratorySystem'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = InternalMedicineBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-内科-内科小结
+      class InternalMedicineBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 内科小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-内科-心脏
+      class InternalMedicineHeart < TencentCloud::Common::AbstractModel
+        # @param Text: 心脏总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param HeartRhythm: 心律
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeartRhythm: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param HeartRate: 心率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeartRate: :class:`Tencentcloud::Mrs.v20200910.models.ValueUnitItem`
+        # @param HeartAuscultation: 心脏听诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeartAuscultation: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text, :HeartRhythm, :HeartRate, :HeartAuscultation
+
+        def initialize(text=nil, heartrhythm=nil, heartrate=nil, heartauscultation=nil)
+          @Text = text
+          @HeartRhythm = heartrhythm
+          @HeartRate = heartrate
+          @HeartAuscultation = heartauscultation
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['HeartRhythm'].nil?
+            @HeartRhythm = KeyValueItem.new
+            @HeartRhythm.deserialize(params['HeartRhythm'])
+          end
+          unless params['HeartRate'].nil?
+            @HeartRate = ValueUnitItem.new
+            @HeartRate.deserialize(params['HeartRate'])
+          end
+          unless params['HeartAuscultation'].nil?
+            @HeartAuscultation = KeyValueItem.new
+            @HeartAuscultation.deserialize(params['HeartAuscultation'])
+          end
+        end
+      end
+
+      # 体检报告-内科-呼吸系统
+      class InternalMedicineRespiratorySystem < TencentCloud::Common::AbstractModel
+        # @param Text: 呼吸系统总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Thoracic: 胸廓
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Thoracic: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Sputum: 痰量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sputum: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param LungPercussion: 肺部叩诊
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LungPercussion: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param LungAuscultation: 肺部听诊其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LungAuscultation: Array
+
+        attr_accessor :Text, :Thoracic, :Sputum, :LungPercussion, :LungAuscultation
+
+        def initialize(text=nil, thoracic=nil, sputum=nil, lungpercussion=nil, lungauscultation=nil)
+          @Text = text
+          @Thoracic = thoracic
+          @Sputum = sputum
+          @LungPercussion = lungpercussion
+          @LungAuscultation = lungauscultation
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['Thoracic'].nil?
+            @Thoracic = KeyValueItem.new
+            @Thoracic.deserialize(params['Thoracic'])
+          end
+          unless params['Sputum'].nil?
+            @Sputum = KeyValueItem.new
+            @Sputum.deserialize(params['Sputum'])
+          end
+          unless params['LungPercussion'].nil?
+            @LungPercussion = KeyValueItem.new
+            @LungPercussion.deserialize(params['LungPercussion'])
+          end
+          unless params['LungAuscultation'].nil?
+            @LungAuscultation = []
+            params['LungAuscultation'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @LungAuscultation << keyvalueitem_tmp
+            end
+          end
+        end
+      end
+
+      # 体检报告-内科-血管
+      class InternalMedicineVessel < TencentCloud::Common::AbstractModel
+        # @param Text: 血管总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param VascularMurmur: 血管杂音
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VascularMurmur: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param PeripheralVessel: 外周血管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeripheralVessel: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text, :VascularMurmur, :PeripheralVessel
+
+        def initialize(text=nil, vascularmurmur=nil, peripheralvessel=nil)
+          @Text = text
+          @VascularMurmur = vascularmurmur
+          @PeripheralVessel = peripheralvessel
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['VascularMurmur'].nil?
+            @VascularMurmur = KeyValueItem.new
+            @VascularMurmur.deserialize(params['VascularMurmur'])
+          end
+          unless params['PeripheralVessel'].nil?
+            @PeripheralVessel = KeyValueItem.new
+            @PeripheralVessel.deserialize(params['PeripheralVessel'])
+          end
+        end
+      end
+
       # 侵犯扩散
       class Invas < TencentCloud::Common::AbstractModel
         # @param Index: 原文位置
@@ -3658,6 +5253,39 @@ module TencentCloud
           @CertNumber = params['CertNumber']
           @IssuedAuthority = params['IssuedAuthority']
           @IssuedDate = params['IssuedDate']
+        end
+      end
+
+      # 体检报告信息
+      class KeyValueItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Item: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+
+        attr_accessor :Name, :Item, :Result
+
+        def initialize(name=nil, item=nil, result=nil)
+          @Name = name
+          @Item = item
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Item'].nil?
+            @Item = PhysicalBaseItem.new
+            @Item.deserialize(params['Item'])
+          end
+          unless params['Result'].nil?
+            @Result = PhysicalBaseItem.new
+            @Result.deserialize(params['Result'])
+          end
         end
       end
 
@@ -4843,6 +6471,202 @@ module TencentCloud
         end
       end
 
+      # 体检报告-眼科-裸眼视力
+      class OphthalmologyBareEyeSight < TencentCloud::Common::AbstractModel
+        # @param LeftEyeVisual: 左眼视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeftEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Text: 裸眼视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param RightEyeVisual: 右眼视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RightEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :LeftEyeVisual, :Text, :RightEyeVisual
+
+        def initialize(lefteyevisual=nil, text=nil, righteyevisual=nil)
+          @LeftEyeVisual = lefteyevisual
+          @Text = text
+          @RightEyeVisual = righteyevisual
+        end
+
+        def deserialize(params)
+          unless params['LeftEyeVisual'].nil?
+            @LeftEyeVisual = KeyValueItem.new
+            @LeftEyeVisual.deserialize(params['LeftEyeVisual'])
+          end
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['RightEyeVisual'].nil?
+            @RightEyeVisual = KeyValueItem.new
+            @RightEyeVisual.deserialize(params['RightEyeVisual'])
+          end
+        end
+      end
+
+      # 体检报告-眼科
+      class OphthalmologyBaseItem < TencentCloud::Common::AbstractModel
+        # @param BareEyeSight: 裸眼视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BareEyeSight: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBareEyeSight`
+        # @param CorrectedVisualAcuity: 矫正视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorrectedVisualAcuity: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyCorrectedVisualAcuity`
+        # @param ColourVision: 色觉
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColourVision: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyColourVision`
+        # @param Fundoscopy: 眼底
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fundoscopy: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyFundoscopy`
+        # @param Others: 眼科其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param BriefSummary: 眼科小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBriefSummary`
+
+        attr_accessor :BareEyeSight, :CorrectedVisualAcuity, :ColourVision, :Fundoscopy, :Others, :BriefSummary
+
+        def initialize(bareeyesight=nil, correctedvisualacuity=nil, colourvision=nil, fundoscopy=nil, others=nil, briefsummary=nil)
+          @BareEyeSight = bareeyesight
+          @CorrectedVisualAcuity = correctedvisualacuity
+          @ColourVision = colourvision
+          @Fundoscopy = fundoscopy
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['BareEyeSight'].nil?
+            @BareEyeSight = OphthalmologyBareEyeSight.new
+            @BareEyeSight.deserialize(params['BareEyeSight'])
+          end
+          unless params['CorrectedVisualAcuity'].nil?
+            @CorrectedVisualAcuity = OphthalmologyCorrectedVisualAcuity.new
+            @CorrectedVisualAcuity.deserialize(params['CorrectedVisualAcuity'])
+          end
+          unless params['ColourVision'].nil?
+            @ColourVision = OphthalmologyColourVision.new
+            @ColourVision.deserialize(params['ColourVision'])
+          end
+          unless params['Fundoscopy'].nil?
+            @Fundoscopy = OphthalmologyFundoscopy.new
+            @Fundoscopy.deserialize(params['Fundoscopy'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = OphthalmologyBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-眼科-小结
+      class OphthalmologyBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 眼科小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-眼科-色觉
+      class OphthalmologyColourVision < TencentCloud::Common::AbstractModel
+        # @param Text: 色觉总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-眼科-矫正视力
+      class OphthalmologyCorrectedVisualAcuity < TencentCloud::Common::AbstractModel
+        # @param LeftEyeVisual: 左眼矫正视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeftEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Text: 矫正视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param RightEyeVisual: 右眼矫正视力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RightEyeVisual: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :LeftEyeVisual, :Text, :RightEyeVisual
+
+        def initialize(lefteyevisual=nil, text=nil, righteyevisual=nil)
+          @LeftEyeVisual = lefteyevisual
+          @Text = text
+          @RightEyeVisual = righteyevisual
+        end
+
+        def deserialize(params)
+          unless params['LeftEyeVisual'].nil?
+            @LeftEyeVisual = KeyValueItem.new
+            @LeftEyeVisual.deserialize(params['LeftEyeVisual'])
+          end
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['RightEyeVisual'].nil?
+            @RightEyeVisual = KeyValueItem.new
+            @RightEyeVisual.deserialize(params['RightEyeVisual'])
+          end
+        end
+      end
+
+      # 体检报告-眼科-眼底
+      class OphthalmologyFundoscopy < TencentCloud::Common::AbstractModel
+        # @param Text: 眼底检查总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
       # 器官
       class Organ < TencentCloud::Common::AbstractModel
         # @param Part: 部位
@@ -5220,6 +7044,150 @@ module TencentCloud
           unless params['StartTime'].nil?
             @StartTime = SurgeryAttr.new
             @StartTime.deserialize(params['StartTime'])
+          end
+        end
+      end
+
+      # 体检报告-耳鼻喉科
+      class OtolaryngologyBaseItem < TencentCloud::Common::AbstractModel
+        # @param Ear: 耳朵
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ear: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyEar`
+        # @param Nose: 鼻
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nose: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyNose`
+        # @param Larynx: 喉
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Larynx: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyLarynx`
+        # @param Others: 耳鼻喉其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param BriefSummary: 小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyBriefSummary`
+
+        attr_accessor :Ear, :Nose, :Larynx, :Others, :BriefSummary
+
+        def initialize(ear=nil, nose=nil, larynx=nil, others=nil, briefsummary=nil)
+          @Ear = ear
+          @Nose = nose
+          @Larynx = larynx
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['Ear'].nil?
+            @Ear = OtolaryngologyEar.new
+            @Ear.deserialize(params['Ear'])
+          end
+          unless params['Nose'].nil?
+            @Nose = OtolaryngologyNose.new
+            @Nose.deserialize(params['Nose'])
+          end
+          unless params['Larynx'].nil?
+            @Larynx = OtolaryngologyLarynx.new
+            @Larynx.deserialize(params['Larynx'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = OtolaryngologyBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-耳鼻喉科-小结
+      class OtolaryngologyBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 耳鼻喉小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-耳鼻喉科-耳朵
+      class OtolaryngologyEar < TencentCloud::Common::AbstractModel
+        # @param Text: 耳总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Hearing: 听力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hearing: :class:`Tencentcloud::Mrs.v20200910.models.HearingItem`
+
+        attr_accessor :Text, :Hearing
+
+        def initialize(text=nil, hearing=nil)
+          @Text = text
+          @Hearing = hearing
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['Hearing'].nil?
+            @Hearing = HearingItem.new
+            @Hearing.deserialize(params['Hearing'])
+          end
+        end
+      end
+
+      # 体检报告-耳鼻喉科-喉
+      class OtolaryngologyLarynx < TencentCloud::Common::AbstractModel
+        # @param Text: 喉总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-耳鼻喉科-鼻
+      class OtolaryngologyNose < TencentCloud::Common::AbstractModel
+        # @param Text: 鼻总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
           end
         end
       end
@@ -6055,6 +8023,26 @@ module TencentCloud
         end
       end
 
+      # 体检报告PDF信息
+      class PdfInfo < TencentCloud::Common::AbstractModel
+        # @param Url: pdf文件url链接(暂不支持)
+        # @type Url: String
+        # @param Base64: pdf文件base64编码字符串
+        # @type Base64: String
+
+        attr_accessor :Url, :Base64
+
+        def initialize(url=nil, base64=nil)
+          @Url = url
+          @Base64 = base64
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Base64 = params['Base64']
+        end
+      end
+
       # 个人史
       class PersonalHistoryBlock < TencentCloud::Common::AbstractModel
         # @param BirthPlace: 出生地
@@ -6165,6 +8153,150 @@ module TencentCloud
           @Job = params['Job']
           @SmokeHistory = params['SmokeHistory']
           @AlcoholicHistory = params['AlcoholicHistory']
+        end
+      end
+
+      # 体检报告基础信息
+      class PhysicalBaseItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Src: 原始文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Src: String
+        # @param Value: 归一化后值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Coords: 四点坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Coords: Array
+
+        attr_accessor :Name, :Src, :Value, :Coords
+
+        def initialize(name=nil, src=nil, value=nil, coords=nil)
+          @Name = name
+          @Src = src
+          @Value = value
+          @Coords = coords
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Src = params['Src']
+          @Value = params['Value']
+          unless params['Coords'].nil?
+            @Coords = []
+            params['Coords'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @Coords << coord_tmp
+            end
+          end
+        end
+      end
+
+      # 体检报告综合信息
+      class PhysicalExamination < TencentCloud::Common::AbstractModel
+        # @param GeneralExamination: 一般检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GeneralExamination: :class:`Tencentcloud::Mrs.v20200910.models.GeneralExaminationBaseItem`
+        # @param InternalMedicine: 内科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalMedicine: :class:`Tencentcloud::Mrs.v20200910.models.InternalMedicineBaseItem`
+        # @param Surgery: 外科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Surgery: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBaseItem`
+        # @param Stomatology: 口腔科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stomatology: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyBaseItem`
+        # @param Ophthalmology: 眼科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ophthalmology: :class:`Tencentcloud::Mrs.v20200910.models.OphthalmologyBaseItem`
+        # @param Otolaryngology: 耳鼻喉科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Otolaryngology: :class:`Tencentcloud::Mrs.v20200910.models.OtolaryngologyBaseItem`
+        # @param Gynaecology: 妇科
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gynaecology: :class:`Tencentcloud::Mrs.v20200910.models.GynaecologyBaseItem`
+        # @param Unclassified: 未标准化
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unclassified: Array
+
+        attr_accessor :GeneralExamination, :InternalMedicine, :Surgery, :Stomatology, :Ophthalmology, :Otolaryngology, :Gynaecology, :Unclassified
+
+        def initialize(generalexamination=nil, internalmedicine=nil, surgery=nil, stomatology=nil, ophthalmology=nil, otolaryngology=nil, gynaecology=nil, unclassified=nil)
+          @GeneralExamination = generalexamination
+          @InternalMedicine = internalmedicine
+          @Surgery = surgery
+          @Stomatology = stomatology
+          @Ophthalmology = ophthalmology
+          @Otolaryngology = otolaryngology
+          @Gynaecology = gynaecology
+          @Unclassified = unclassified
+        end
+
+        def deserialize(params)
+          unless params['GeneralExamination'].nil?
+            @GeneralExamination = GeneralExaminationBaseItem.new
+            @GeneralExamination.deserialize(params['GeneralExamination'])
+          end
+          unless params['InternalMedicine'].nil?
+            @InternalMedicine = InternalMedicineBaseItem.new
+            @InternalMedicine.deserialize(params['InternalMedicine'])
+          end
+          unless params['Surgery'].nil?
+            @Surgery = SurgeryBaseItem.new
+            @Surgery.deserialize(params['Surgery'])
+          end
+          unless params['Stomatology'].nil?
+            @Stomatology = StomatologyBaseItem.new
+            @Stomatology.deserialize(params['Stomatology'])
+          end
+          unless params['Ophthalmology'].nil?
+            @Ophthalmology = OphthalmologyBaseItem.new
+            @Ophthalmology.deserialize(params['Ophthalmology'])
+          end
+          unless params['Otolaryngology'].nil?
+            @Otolaryngology = OtolaryngologyBaseItem.new
+            @Otolaryngology.deserialize(params['Otolaryngology'])
+          end
+          unless params['Gynaecology'].nil?
+            @Gynaecology = GynaecologyBaseItem.new
+            @Gynaecology.deserialize(params['Gynaecology'])
+          end
+          unless params['Unclassified'].nil?
+            @Unclassified = []
+            params['Unclassified'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Unclassified << keyvalueitem_tmp
+            end
+          end
+        end
+      end
+
+      # 体检报告V1版本
+      class PhysicalExaminationV1 < TencentCloud::Common::AbstractModel
+        # @param PhysicalExaminationMulti: 体检报告信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhysicalExaminationMulti: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalExamination`
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+
+        attr_accessor :PhysicalExaminationMulti, :Version
+
+        def initialize(physicalexaminationmulti=nil, version=nil)
+          @PhysicalExaminationMulti = physicalexaminationmulti
+          @Version = version
+        end
+
+        def deserialize(params)
+          unless params['PhysicalExaminationMulti'].nil?
+            @PhysicalExaminationMulti = PhysicalExamination.new
+            @PhysicalExaminationMulti.deserialize(params['PhysicalExaminationMulti'])
+          end
+          @Version = params['Version']
         end
       end
 
@@ -6760,6 +8892,142 @@ module TencentCloud
         end
       end
 
+      # 体检报告-口腔科
+      class StomatologyBaseItem < TencentCloud::Common::AbstractModel
+        # @param ToothDecay: 龋齿
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ToothDecay: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyToothDecay`
+        # @param Gingiva: 牙龈
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gingiva: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyGingiva`
+        # @param Periodontics: 牙周
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Periodontics: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyPeriodontics`
+        # @param Others: 口腔其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param BriefSummary: 小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.StomatologyBriefSummary`
+
+        attr_accessor :ToothDecay, :Gingiva, :Periodontics, :Others, :BriefSummary
+
+        def initialize(toothdecay=nil, gingiva=nil, periodontics=nil, others=nil, briefsummary=nil)
+          @ToothDecay = toothdecay
+          @Gingiva = gingiva
+          @Periodontics = periodontics
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['ToothDecay'].nil?
+            @ToothDecay = StomatologyToothDecay.new
+            @ToothDecay.deserialize(params['ToothDecay'])
+          end
+          unless params['Gingiva'].nil?
+            @Gingiva = StomatologyGingiva.new
+            @Gingiva.deserialize(params['Gingiva'])
+          end
+          unless params['Periodontics'].nil?
+            @Periodontics = StomatologyPeriodontics.new
+            @Periodontics.deserialize(params['Periodontics'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = StomatologyBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-口腔科-小结
+      class StomatologyBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 口腔小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-口腔科-牙龈
+      class StomatologyGingiva < TencentCloud::Common::AbstractModel
+        # @param Text: 牙龈总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-口腔科-牙周
+      class StomatologyPeriodontics < TencentCloud::Common::AbstractModel
+        # @param Text: 牙周总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-口腔科-龋齿
+      class StomatologyToothDecay < TencentCloud::Common::AbstractModel
+        # @param Text: 龋齿总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
       # 结论
       class Summary < TencentCloud::Common::AbstractModel
         # @param Symptom: 症状
@@ -6861,6 +9129,42 @@ module TencentCloud
         end
       end
 
+      # 体检报告-外科-肛门直肠
+      class SurgeryAnorectal < TencentCloud::Common::AbstractModel
+        # @param Text: 肛门直肠总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param DigitalRectalExamination: 直肠指检
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DigitalRectalExamination: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Hemorrhoid: 痔疮
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hemorrhoid: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text, :DigitalRectalExamination, :Hemorrhoid
+
+        def initialize(text=nil, digitalrectalexamination=nil, hemorrhoid=nil)
+          @Text = text
+          @DigitalRectalExamination = digitalrectalexamination
+          @Hemorrhoid = hemorrhoid
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['DigitalRectalExamination'].nil?
+            @DigitalRectalExamination = KeyValueItem.new
+            @DigitalRectalExamination.deserialize(params['DigitalRectalExamination'])
+          end
+          unless params['Hemorrhoid'].nil?
+            @Hemorrhoid = KeyValueItem.new
+            @Hemorrhoid.deserialize(params['Hemorrhoid'])
+          end
+        end
+      end
+
       # 手术记录属性
       class SurgeryAttr < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -6880,6 +9184,142 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 体检报告-外科
+      class SurgeryBaseItem < TencentCloud::Common::AbstractModel
+        # @param HeadNeck: 体检报告-外科-头颈部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadNeck: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryHeadNeck`
+        # @param Thyroid: 体检报告-外科-甲状腺
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Thyroid: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryThyroid`
+        # @param Breast: 体检报告-外科-乳房
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Breast: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBreast`
+        # @param LymphNode: 体检报告-外科-浅表淋巴结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LymphNode: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryLymphNode`
+        # @param SpinalExtremities: 体检报告-外科-脊柱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpinalExtremities: :class:`Tencentcloud::Mrs.v20200910.models.SurgerySpinalExtremities`
+        # @param Skin: 体检报告-外科-皮肤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Skin: :class:`Tencentcloud::Mrs.v20200910.models.SurgerySkin`
+        # @param Anorectal: 体检报告-外科-肛门直肠
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Anorectal: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryAnorectal`
+        # @param UrogenitalSystem: 体检报告-外科-泌尿生殖系统
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UrogenitalSystem: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryUrogenitalSystem`
+        # @param Others: 体检报告-外科-外科其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Others: Array
+        # @param BriefSummary: 体检报告-外科-小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BriefSummary: :class:`Tencentcloud::Mrs.v20200910.models.SurgeryBriefSummary`
+
+        attr_accessor :HeadNeck, :Thyroid, :Breast, :LymphNode, :SpinalExtremities, :Skin, :Anorectal, :UrogenitalSystem, :Others, :BriefSummary
+
+        def initialize(headneck=nil, thyroid=nil, breast=nil, lymphnode=nil, spinalextremities=nil, skin=nil, anorectal=nil, urogenitalsystem=nil, others=nil, briefsummary=nil)
+          @HeadNeck = headneck
+          @Thyroid = thyroid
+          @Breast = breast
+          @LymphNode = lymphnode
+          @SpinalExtremities = spinalextremities
+          @Skin = skin
+          @Anorectal = anorectal
+          @UrogenitalSystem = urogenitalsystem
+          @Others = others
+          @BriefSummary = briefsummary
+        end
+
+        def deserialize(params)
+          unless params['HeadNeck'].nil?
+            @HeadNeck = SurgeryHeadNeck.new
+            @HeadNeck.deserialize(params['HeadNeck'])
+          end
+          unless params['Thyroid'].nil?
+            @Thyroid = SurgeryThyroid.new
+            @Thyroid.deserialize(params['Thyroid'])
+          end
+          unless params['Breast'].nil?
+            @Breast = SurgeryBreast.new
+            @Breast.deserialize(params['Breast'])
+          end
+          unless params['LymphNode'].nil?
+            @LymphNode = SurgeryLymphNode.new
+            @LymphNode.deserialize(params['LymphNode'])
+          end
+          unless params['SpinalExtremities'].nil?
+            @SpinalExtremities = SurgerySpinalExtremities.new
+            @SpinalExtremities.deserialize(params['SpinalExtremities'])
+          end
+          unless params['Skin'].nil?
+            @Skin = SurgerySkin.new
+            @Skin.deserialize(params['Skin'])
+          end
+          unless params['Anorectal'].nil?
+            @Anorectal = SurgeryAnorectal.new
+            @Anorectal.deserialize(params['Anorectal'])
+          end
+          unless params['UrogenitalSystem'].nil?
+            @UrogenitalSystem = SurgeryUrogenitalSystem.new
+            @UrogenitalSystem.deserialize(params['UrogenitalSystem'])
+          end
+          unless params['Others'].nil?
+            @Others = []
+            params['Others'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Others << keyvalueitem_tmp
+            end
+          end
+          unless params['BriefSummary'].nil?
+            @BriefSummary = SurgeryBriefSummary.new
+            @BriefSummary.deserialize(params['BriefSummary'])
+          end
+        end
+      end
+
+      # 体检报告-外科-乳房
+      class SurgeryBreast < TencentCloud::Common::AbstractModel
+        # @param Text: 乳房总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-外科-小结
+      class SurgeryBriefSummary < TencentCloud::Common::AbstractModel
+        # @param Text: 外科小结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
         end
       end
 
@@ -6920,6 +9360,26 @@ module TencentCloud
             end
           end
           @Value = params['Value']
+        end
+      end
+
+      # 体检报告-外科-头颈部
+      class SurgeryHeadNeck < TencentCloud::Common::AbstractModel
+        # @param Text: 头颈部总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
         end
       end
 
@@ -7051,6 +9511,170 @@ module TencentCloud
           @TimeType = params['TimeType']
           @Name = params['Name']
           @Part = params['Part']
+        end
+      end
+
+      # 体检报告-外科-浅表淋巴结
+      class SurgeryLymphNode < TencentCloud::Common::AbstractModel
+        # @param Text: 浅表淋巴结总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-外科-皮肤
+      class SurgerySkin < TencentCloud::Common::AbstractModel
+        # @param Text: 皮肤总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-外科-脊柱
+      class SurgerySpinalExtremities < TencentCloud::Common::AbstractModel
+        # @param Text: 脊柱四肢总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param SpinalColumn: 脊柱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpinalColumn: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param LimbJoint: 四肢和关节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimbJoint: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Foot: 平跛足
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Foot: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Bone: 骨骼
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bone: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Gait: 步态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gait: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Deformity: 残疾或畸形
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deformity: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text, :SpinalColumn, :LimbJoint, :Foot, :Bone, :Gait, :Deformity
+
+        def initialize(text=nil, spinalcolumn=nil, limbjoint=nil, foot=nil, bone=nil, gait=nil, deformity=nil)
+          @Text = text
+          @SpinalColumn = spinalcolumn
+          @LimbJoint = limbjoint
+          @Foot = foot
+          @Bone = bone
+          @Gait = gait
+          @Deformity = deformity
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['SpinalColumn'].nil?
+            @SpinalColumn = KeyValueItem.new
+            @SpinalColumn.deserialize(params['SpinalColumn'])
+          end
+          unless params['LimbJoint'].nil?
+            @LimbJoint = KeyValueItem.new
+            @LimbJoint.deserialize(params['LimbJoint'])
+          end
+          unless params['Foot'].nil?
+            @Foot = KeyValueItem.new
+            @Foot.deserialize(params['Foot'])
+          end
+          unless params['Bone'].nil?
+            @Bone = KeyValueItem.new
+            @Bone.deserialize(params['Bone'])
+          end
+          unless params['Gait'].nil?
+            @Gait = KeyValueItem.new
+            @Gait.deserialize(params['Gait'])
+          end
+          unless params['Deformity'].nil?
+            @Deformity = KeyValueItem.new
+            @Deformity.deserialize(params['Deformity'])
+          end
+        end
+      end
+
+      # 体检报告-外科-甲状腺
+      class SurgeryThyroid < TencentCloud::Common::AbstractModel
+        # @param Text: 甲状腺总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+        end
+      end
+
+      # 体检报告-外科-泌尿生殖系统
+      class SurgeryUrogenitalSystem < TencentCloud::Common::AbstractModel
+        # @param Text: 泌尿生殖系统总体描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param Prostate: 前列腺
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Prostate: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+        # @param ExternalReproductiveOrgans: 外生殖器（男性）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalReproductiveOrgans: :class:`Tencentcloud::Mrs.v20200910.models.KeyValueItem`
+
+        attr_accessor :Text, :Prostate, :ExternalReproductiveOrgans
+
+        def initialize(text=nil, prostate=nil, externalreproductiveorgans=nil)
+          @Text = text
+          @Prostate = prostate
+          @ExternalReproductiveOrgans = externalreproductiveorgans
+        end
+
+        def deserialize(params)
+          unless params['Text'].nil?
+            @Text = KeyValueItem.new
+            @Text.deserialize(params['Text'])
+          end
+          unless params['Prostate'].nil?
+            @Prostate = KeyValueItem.new
+            @Prostate.deserialize(params['Prostate'])
+          end
+          unless params['ExternalReproductiveOrgans'].nil?
+            @ExternalReproductiveOrgans = KeyValueItem.new
+            @ExternalReproductiveOrgans.deserialize(params['ExternalReproductiveOrgans'])
+          end
         end
       end
 
@@ -7525,6 +10149,30 @@ module TencentCloud
           @Id = params['Id']
           @Level = params['Level']
           @Name = params['Name']
+        end
+      end
+
+      # 文本类型列表块
+      class TextTypeListBlock < TencentCloud::Common::AbstractModel
+        # @param TextTypeList: 文本类型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextTypeList: Array
+
+        attr_accessor :TextTypeList
+
+        def initialize(texttypelist=nil)
+          @TextTypeList = texttypelist
+        end
+
+        def deserialize(params)
+          unless params['TextTypeList'].nil?
+            @TextTypeList = []
+            params['TextTypeList'].each do |i|
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
+            end
+          end
         end
       end
 
@@ -8572,6 +11220,70 @@ module TencentCloud
         end
       end
 
+      # TurnPDFToObject请求参数结构体
+      class TurnPDFToObjectRequest < TencentCloud::Common::AbstractModel
+        # @param PdfInfo: 体检报告PDF文件信息, 目前只支持传PDF文件的Base64编码字符
+        # @type PdfInfo: :class:`Tencentcloud::Mrs.v20200910.models.PdfInfo`
+
+        attr_accessor :PdfInfo
+
+        def initialize(pdfinfo=nil)
+          @PdfInfo = pdfinfo
+        end
+
+        def deserialize(params)
+          unless params['PdfInfo'].nil?
+            @PdfInfo = PdfInfo.new
+            @PdfInfo.deserialize(params['PdfInfo'])
+          end
+        end
+      end
+
+      # TurnPDFToObject返回参数结构体
+      class TurnPDFToObjectResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 报告结构化结果
+        # @type Template: :class:`Tencentcloud::Mrs.v20200910.models.Template`
+        # @param TextTypeList: 多级分类结果
+        # @type TextTypeList: Array
+        # @param Block: 报告结构化结果
+        # @type Block: :class:`Tencentcloud::Mrs.v20200910.models.Block`
+        # @param IsBlock: 是否使用Block字段
+        # @type IsBlock: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :TextTypeList, :Block, :IsBlock, :RequestId
+
+        def initialize(template=nil, texttypelist=nil, block=nil, isblock=nil, requestid=nil)
+          @Template = template
+          @TextTypeList = texttypelist
+          @Block = block
+          @IsBlock = isblock
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
+          end
+          unless params['TextTypeList'].nil?
+            @TextTypeList = []
+            params['TextTypeList'].each do |i|
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
+            end
+          end
+          unless params['Block'].nil?
+            @Block = Block.new
+            @Block.deserialize(params['Block'])
+          end
+          @IsBlock = params['IsBlock']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 免疫接种记录
       class Vaccination < TencentCloud::Common::AbstractModel
         # @param Id: 序号
@@ -8709,6 +11421,47 @@ module TencentCloud
           @Grade = params['Grade']
           @Percent = params['Percent']
           @Positive = params['Positive']
+        end
+      end
+
+      # 体检报告信息-包含单位
+      class ValueUnitItem < TencentCloud::Common::AbstractModel
+        # @param Name: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Item: 项目原文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Result: 数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+        # @param Unit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unit: :class:`Tencentcloud::Mrs.v20200910.models.PhysicalBaseItem`
+
+        attr_accessor :Name, :Item, :Result, :Unit
+
+        def initialize(name=nil, item=nil, result=nil, unit=nil)
+          @Name = name
+          @Item = item
+          @Result = result
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Item'].nil?
+            @Item = PhysicalBaseItem.new
+            @Item.deserialize(params['Item'])
+          end
+          unless params['Result'].nil?
+            @Result = PhysicalBaseItem.new
+            @Result.deserialize(params['Result'])
+          end
+          unless params['Unit'].nil?
+            @Unit = PhysicalBaseItem.new
+            @Unit.deserialize(params['Unit'])
+          end
         end
       end
 

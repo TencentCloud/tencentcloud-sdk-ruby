@@ -551,10 +551,19 @@ module TencentCloud
         # @param AutoRenewFlag: 是否自动续费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
+        # @param HostingStatus: 托管状态，0，托管中，5，资源替换中， 10， 托管完成， -1未托管
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostingStatus: Integer
+        # @param HostingCompleteTime: 托管完成时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostingCompleteTime: String
+        # @param HostingRenewCertId: 托管新证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostingRenewCertId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -593,6 +602,9 @@ module TencentCloud
           @CACommonNames = cacommonnames
           @PreAuditInfo = preauditinfo
           @AutoRenewFlag = autorenewflag
+          @HostingStatus = hostingstatus
+          @HostingCompleteTime = hostingcompletetime
+          @HostingRenewCertId = hostingrenewcertid
         end
 
         def deserialize(params)
@@ -650,6 +662,9 @@ module TencentCloud
             @PreAuditInfo.deserialize(params['PreAuditInfo'])
           end
           @AutoRenewFlag = params['AutoRenewFlag']
+          @HostingStatus = params['HostingStatus']
+          @HostingCompleteTime = params['HostingCompleteTime']
+          @HostingRenewCertId = params['HostingRenewCertId']
         end
       end
 
@@ -3346,15 +3361,24 @@ module TencentCloud
         # @type Filters: Array
         # @param OldCertificateId: 已部署的证书ID
         # @type OldCertificateId: String
+        # @param Offset: 分页偏移量，从0开始。
+        # @type Offset: Integer
+        # @param Limit: 每页数量，默认10。
+        # @type Limit: Integer
+        # @param AsyncCache: 是否异步
+        # @type AsyncCache: Integer
 
-        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId
+        attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
 
-        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil)
+        def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
           @ResourceType = resourcetype
           @IsCache = iscache
           @Filters = filters
           @OldCertificateId = oldcertificateid
+          @Offset = offset
+          @Limit = limit
+          @AsyncCache = asynccache
         end
 
         def deserialize(params)
@@ -3370,6 +3394,9 @@ module TencentCloud
             end
           end
           @OldCertificateId = params['OldCertificateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @AsyncCache = params['AsyncCache']
         end
       end
 
