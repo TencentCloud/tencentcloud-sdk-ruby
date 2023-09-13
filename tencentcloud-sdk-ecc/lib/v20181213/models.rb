@@ -42,6 +42,40 @@ module TencentCloud
       end
 
       # 图像识别批改接口返回的作文文本信息或批改信息
+      class CompositionContext < TencentCloud::Common::AbstractModel
+        # @param Content: 作文内容
+        # @type Content: String
+        # @param CorrectData: 批改结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorrectData: :class:`Tencentcloud::Ecc.v20181213.models.CorrectData`
+        # @param TaskId: 任务 id，用于查询接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param SessionId: 图像识别唯一标识，一次识别一个 SessionId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+
+        attr_accessor :Content, :CorrectData, :TaskId, :SessionId
+
+        def initialize(content=nil, correctdata=nil, taskid=nil, sessionid=nil)
+          @Content = content
+          @CorrectData = correctdata
+          @TaskId = taskid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          unless params['CorrectData'].nil?
+            @CorrectData = CorrectData.new
+            @CorrectData.deserialize(params['CorrectData'])
+          end
+          @TaskId = params['TaskId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # 图像识别批改接口返回的作文文本信息或批改信息
       class CompostionContext < TencentCloud::Common::AbstractModel
         # @param Content: 作文内容
         # @type Content: String
@@ -173,13 +207,19 @@ module TencentCloud
       class CorrectMultiImageResponse < TencentCloud::Common::AbstractModel
         # @param Data: 接口返回数据
         # @type Data: :class:`Tencentcloud::Ecc.v20181213.models.CompostionContext`
+        # @param ResultData: 接口返回数据
+        # @type ResultData: :class:`Tencentcloud::Ecc.v20181213.models.CompositionContext`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :ResultData, :RequestId
+        extend Gem::Deprecate
+        deprecate :Data, :none, 2023, 9
+        deprecate :Data=, :none, 2023, 9
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data
+          @ResultData = resultdata
           @RequestId = requestid
         end
 
@@ -187,6 +227,10 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = CompostionContext.new
             @Data.deserialize(params['Data'])
+          end
+          unless params['ResultData'].nil?
+            @ResultData = CompositionContext.new
+            @ResultData.deserialize(params['ResultData'])
           end
           @RequestId = params['RequestId']
         end
@@ -382,13 +426,19 @@ module TencentCloud
       class EHOCRResponse < TencentCloud::Common::AbstractModel
         # @param Data: 接口返回数据
         # @type Data: :class:`Tencentcloud::Ecc.v20181213.models.CompostionContext`
+        # @param ResultData: 接口返回数据
+        # @type ResultData: :class:`Tencentcloud::Ecc.v20181213.models.CompositionContext`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :ResultData, :RequestId
+        extend Gem::Deprecate
+        deprecate :Data, :none, 2023, 9
+        deprecate :Data=, :none, 2023, 9
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data
+          @ResultData = resultdata
           @RequestId = requestid
         end
 
@@ -396,6 +446,10 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = CompostionContext.new
             @Data.deserialize(params['Data'])
+          end
+          unless params['ResultData'].nil?
+            @ResultData = CompositionContext.new
+            @ResultData.deserialize(params['ResultData'])
           end
           @RequestId = params['RequestId']
         end

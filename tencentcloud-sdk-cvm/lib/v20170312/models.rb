@@ -3626,10 +3626,13 @@ module TencentCloud
         # @param CageId: 专用宿主机所属的围笼ID。该字段仅对金融专区围笼内的专用宿主机有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CageId: String
+        # @param Tags: 专用宿主机关联的标签列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :Placement, :HostId, :HostType, :HostName, :HostChargeType, :RenewFlag, :CreatedTime, :ExpiredTime, :InstanceIds, :HostState, :HostIp, :HostResource, :CageId
+        attr_accessor :Placement, :HostId, :HostType, :HostName, :HostChargeType, :RenewFlag, :CreatedTime, :ExpiredTime, :InstanceIds, :HostState, :HostIp, :HostResource, :CageId, :Tags
 
-        def initialize(placement=nil, hostid=nil, hosttype=nil, hostname=nil, hostchargetype=nil, renewflag=nil, createdtime=nil, expiredtime=nil, instanceids=nil, hoststate=nil, hostip=nil, hostresource=nil, cageid=nil)
+        def initialize(placement=nil, hostid=nil, hosttype=nil, hostname=nil, hostchargetype=nil, renewflag=nil, createdtime=nil, expiredtime=nil, instanceids=nil, hoststate=nil, hostip=nil, hostresource=nil, cageid=nil, tags=nil)
           @Placement = placement
           @HostId = hostid
           @HostType = hosttype
@@ -3643,6 +3646,7 @@ module TencentCloud
           @HostIp = hostip
           @HostResource = hostresource
           @CageId = cageid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -3665,6 +3669,14 @@ module TencentCloud
             @HostResource.deserialize(params['HostResource'])
           end
           @CageId = params['CageId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

@@ -3568,7 +3568,8 @@ module TencentCloud
 
       # CreateSealByImage请求参数结构体
       class CreateSealByImageRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param SealName: 印章名称，最大长度不超过50字符
         # @type SealName: String
@@ -3576,17 +3577,46 @@ module TencentCloud
         # @type SealImage: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param GenerateSource: 本接口支持上传图片印章及系统直接生成印章； 如果要使用系统生成印章，此值传：SealGenerateSourceSystem； 如果要使用图片上传请传字段 SealImage
+        # @type GenerateSource: String
+        # @param SealType: 电子印章类型：
+        # <ul><li>OFFICIAL-公章</li>
+        # <li>CONTRACT-合同专用章;</li>
+        # <li>FINANCE-合财务专用章;</li>
+        # <li>PERSONNEL-人事专用章
+        # </li>
+        # <li>默认：OFFICIAL</li>
+        # <ul>
+        # @type SealType: String
+        # @param SealHorizontalText: 企业印章横向文字，最多可填15个汉字（若超过印章最大宽度，优先压缩字间距，其次缩小字号
+        # @type SealHorizontalText: String
+        # @param SealStyle: 印章样式:
 
-        attr_accessor :Agent, :SealName, :SealImage, :Operator
+        # <ul><li>cycle:圆形印章</li>
+        # <li>ellipse:椭圆印章</li>
+        # <li> 注：默认圆形印章</li></ul>
+        # @type SealStyle: String
+        # @param SealSize: 印章尺寸取值描述：<ul><li> 42_42 圆形企业公章直径42mm</li>
+        # <li> 40_40 圆形企业印章直径40mm</li>
+        # <li> 45_30 椭圆形印章45mm x 30mm</li>
+        # </ul>
+        # @type SealSize: String
+
+        attr_accessor :Agent, :SealName, :SealImage, :Operator, :GenerateSource, :SealType, :SealHorizontalText, :SealStyle, :SealSize
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 9
         deprecate :Operator=, :none, 2023, 9
 
-        def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil)
+        def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil, generatesource=nil, sealtype=nil, sealhorizontaltext=nil, sealstyle=nil, sealsize=nil)
           @Agent = agent
           @SealName = sealname
           @SealImage = sealimage
           @Operator = operator
+          @GenerateSource = generatesource
+          @SealType = sealtype
+          @SealHorizontalText = sealhorizontaltext
+          @SealStyle = sealstyle
+          @SealSize = sealsize
         end
 
         def deserialize(params)
@@ -3600,25 +3630,37 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @GenerateSource = params['GenerateSource']
+          @SealType = params['SealType']
+          @SealHorizontalText = params['SealHorizontalText']
+          @SealStyle = params['SealStyle']
+          @SealSize = params['SealSize']
         end
       end
 
       # CreateSealByImage返回参数结构体
       class CreateSealByImageResponse < TencentCloud::Common::AbstractModel
-        # @param SealId: 印章id
+        # @param SealId: 电子印章ID，为32位字符串。
+        # 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
+        # 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         # @type SealId: String
+        # @param ImageUrl: 电子印章预览链接地址，地址默认失效时间为24小时。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SealId, :RequestId
+        attr_accessor :SealId, :ImageUrl, :RequestId
 
-        def initialize(sealid=nil, requestid=nil)
+        def initialize(sealid=nil, imageurl=nil, requestid=nil)
           @SealId = sealid
+          @ImageUrl = imageurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SealId = params['SealId']
+          @ImageUrl = params['ImageUrl']
           @RequestId = params['RequestId']
         end
       end

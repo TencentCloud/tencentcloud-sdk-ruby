@@ -142,10 +142,13 @@ module TencentCloud
         # @param Dimensions: 告警实例的维度信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dimensions: String
+        # @param AlarmLevel: 告警等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: String
 
-        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions, :AlarmLevel
 
-        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil)
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil, alarmlevel=nil)
           @AlarmId = alarmid
           @MonitorType = monitortype
           @Namespace = namespace
@@ -170,6 +173,7 @@ module TencentCloud
           @PolicyExists = policyexists
           @MetricsInfo = metricsinfo
           @Dimensions = dimensions
+          @AlarmLevel = alarmlevel
         end
 
         def deserialize(params)
@@ -211,6 +215,7 @@ module TencentCloud
             end
           end
           @Dimensions = params['Dimensions']
+          @AlarmLevel = params['AlarmLevel']
         end
       end
 

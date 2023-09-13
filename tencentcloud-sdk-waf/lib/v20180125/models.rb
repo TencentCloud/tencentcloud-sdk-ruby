@@ -4161,6 +4161,50 @@ module TencentCloud
         end
       end
 
+      # DescribePorts请求参数结构体
+      class DescribePortsRequest < TencentCloud::Common::AbstractModel
+        # @param Edition: 版本
+        # @type Edition: String
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+
+        attr_accessor :Edition, :InstanceID
+
+        def initialize(edition=nil, instanceid=nil)
+          @Edition = edition
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribePorts返回参数结构体
+      class DescribePortsResponse < TencentCloud::Common::AbstractModel
+        # @param HttpPorts: http端口列表
+        # @type HttpPorts: Array
+        # @param HttpsPorts: https端口列表
+        # @type HttpsPorts: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HttpPorts, :HttpsPorts, :RequestId
+
+        def initialize(httpports=nil, httpsports=nil, requestid=nil)
+          @HttpPorts = httpports
+          @HttpsPorts = httpsports
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HttpPorts = params['HttpPorts']
+          @HttpsPorts = params['HttpsPorts']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRuleLimit请求参数结构体
       class DescribeRuleLimitRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名

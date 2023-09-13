@@ -26126,42 +26126,6 @@ module TencentCloud
         end
       end
 
-      # VerifyDomainOwnershipForConsole请求参数结构体
-      class VerifyDomainOwnershipForConsoleRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要接入点播的域名。
-        # @type Domain: String
-        # @param AccelerateArea: 需要开启加速的区域： <li>Mainland: 中国大陆地区</li> <li>Internation: 海外地区及港澳台</li> <li>Global: 全球</li> 不填会根据用户注册腾讯云时的地域信息自动判断 Mainland 或 Internation
-        # @type AccelerateArea: String
-
-        attr_accessor :Domain, :AccelerateArea
-
-        def initialize(domain=nil, acceleratearea=nil)
-          @Domain = domain
-          @AccelerateArea = acceleratearea
-        end
-
-        def deserialize(params)
-          @Domain = params['Domain']
-          @AccelerateArea = params['AccelerateArea']
-        end
-      end
-
-      # VerifyDomainOwnershipForConsole返回参数结构体
-      class VerifyDomainOwnershipForConsoleResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # VerifyDomainRecord请求参数结构体
       class VerifyDomainRecordRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要接入点播的加速域名。

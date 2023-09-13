@@ -1517,7 +1517,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeSparkSessionBatchSqlLog）用于获取SparkSQL批任务日志
+        # 本接口（DescribeSparkSessionBatchSqlLog）用于查询Spark SQL批任务日志
 
         # @param request: Request instance for DescribeSparkSessionBatchSqlLog.
         # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeSparkSessionBatchSqlLogRequest`

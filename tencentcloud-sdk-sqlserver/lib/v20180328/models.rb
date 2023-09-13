@@ -288,6 +288,8 @@ module TencentCloud
         # @type DBs: Array
         # @param Strategy: 备份策略（0-实例备份；1-多库备份）
         # @type Strategy: Integer
+        # @param StorageStrategy: 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线
+        # @type StorageStrategy: Integer
         # @param BackupWay: 备份方式，0-定时备份；1-手动临时备份；2-定期备份
         # @type BackupWay: Integer
         # @param BackupName: 备份任务名称，可自定义
@@ -303,9 +305,9 @@ module TencentCloud
         # @param CrossBackupStatus: 跨地域备份的目标地域和备份状态
         # @type CrossBackupStatus: Array
 
-        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :BackupWay, :BackupName, :GroupId, :BackupFormat, :Region, :CrossBackupAddr, :CrossBackupStatus
+        attr_accessor :FileName, :Size, :StartTime, :EndTime, :InternalAddr, :ExternalAddr, :Id, :Status, :DBs, :Strategy, :StorageStrategy, :BackupWay, :BackupName, :GroupId, :BackupFormat, :Region, :CrossBackupAddr, :CrossBackupStatus
 
-        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, backupway=nil, backupname=nil, groupid=nil, backupformat=nil, region=nil, crossbackupaddr=nil, crossbackupstatus=nil)
+        def initialize(filename=nil, size=nil, starttime=nil, endtime=nil, internaladdr=nil, externaladdr=nil, id=nil, status=nil, dbs=nil, strategy=nil, storagestrategy=nil, backupway=nil, backupname=nil, groupid=nil, backupformat=nil, region=nil, crossbackupaddr=nil, crossbackupstatus=nil)
           @FileName = filename
           @Size = size
           @StartTime = starttime
@@ -316,6 +318,7 @@ module TencentCloud
           @Status = status
           @DBs = dbs
           @Strategy = strategy
+          @StorageStrategy = storagestrategy
           @BackupWay = backupway
           @BackupName = backupname
           @GroupId = groupid
@@ -336,6 +339,7 @@ module TencentCloud
           @Status = params['Status']
           @DBs = params['DBs']
           @Strategy = params['Strategy']
+          @StorageStrategy = params['StorageStrategy']
           @BackupWay = params['BackupWay']
           @BackupName = params['BackupName']
           @GroupId = params['GroupId']
@@ -769,14 +773,17 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupName: 备份名称，若不填则自动生成“实例ID_备份开始时间戳”
         # @type BackupName: String
+        # @param StorageStrategy: 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线，默认取值0
+        # @type StorageStrategy: Integer
 
-        attr_accessor :Strategy, :DBNames, :InstanceId, :BackupName
+        attr_accessor :Strategy, :DBNames, :InstanceId, :BackupName, :StorageStrategy
 
-        def initialize(strategy=nil, dbnames=nil, instanceid=nil, backupname=nil)
+        def initialize(strategy=nil, dbnames=nil, instanceid=nil, backupname=nil, storagestrategy=nil)
           @Strategy = strategy
           @DBNames = dbnames
           @InstanceId = instanceid
           @BackupName = backupname
+          @StorageStrategy = storagestrategy
         end
 
         def deserialize(params)
@@ -784,6 +791,7 @@ module TencentCloud
           @DBNames = params['DBNames']
           @InstanceId = params['InstanceId']
           @BackupName = params['BackupName']
+          @StorageStrategy = params['StorageStrategy']
         end
       end
 
@@ -3278,10 +3286,12 @@ module TencentCloud
         # @type Type: Integer
         # @param BackupFormat: 按照备份文件形式筛选，pkg-打包备份文件，single-单库备份文件
         # @type BackupFormat: String
+        # @param StorageStrategy: 备份存储策略 0-跟随自定义备份保留策略 1-跟随实例生命周期直到实例下线，默认取值0
+        # @type StorageStrategy: Integer
 
-        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName, :Group, :Type, :BackupFormat
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Limit, :Offset, :BackupName, :Strategy, :BackupWay, :BackupId, :DatabaseName, :Group, :Type, :BackupFormat, :StorageStrategy
 
-        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil, group=nil, type=nil, backupformat=nil)
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, limit=nil, offset=nil, backupname=nil, strategy=nil, backupway=nil, backupid=nil, databasename=nil, group=nil, type=nil, backupformat=nil, storagestrategy=nil)
           @StartTime = starttime
           @EndTime = endtime
           @InstanceId = instanceid
@@ -3295,6 +3305,7 @@ module TencentCloud
           @Group = group
           @Type = type
           @BackupFormat = backupformat
+          @StorageStrategy = storagestrategy
         end
 
         def deserialize(params)
@@ -3311,6 +3322,7 @@ module TencentCloud
           @Group = params['Group']
           @Type = params['Type']
           @BackupFormat = params['BackupFormat']
+          @StorageStrategy = params['StorageStrategy']
         end
       end
 

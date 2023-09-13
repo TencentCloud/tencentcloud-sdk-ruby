@@ -4939,7 +4939,7 @@ module TencentCloud
 
       # DescribeSparkSessionBatchSqlLog返回参数结构体
       class DescribeSparkSessionBatchSqlLogResponse < TencentCloud::Common::AbstractModel
-        # @param State: 状态：0：初始化、1：成功、2：失败、3：取消、4：异常；
+        # @param State: 状态：0：运行中、1：成功、2：失败、3：取消、4：超时；
         # @type State: Integer
         # @param LogSet: 日志信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
