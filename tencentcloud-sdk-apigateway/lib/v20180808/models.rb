@@ -6524,10 +6524,22 @@ module TencentCloud
         # @type DealName: String
         # @param ResourceId: 资源ID同唯一id
         # @type ResourceId: String
+        # @param OuterIpList: 公网IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OuterIpList: Array
+        # @param InnerIpList: 内网IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerIpList: Array
+        # @param InstanceChargePrepaid: 专享实例计费信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Apigateway.v20180808.models.InstanceChargePrepaid`
+        # @param UniqVpcId: 所属vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceDescription, :InstanceChargeType, :InstanceType, :InstanceState, :CreatedTime, :DealName, :ResourceId
+        attr_accessor :InstanceId, :InstanceName, :InstanceDescription, :InstanceChargeType, :InstanceType, :InstanceState, :CreatedTime, :DealName, :ResourceId, :OuterIpList, :InnerIpList, :InstanceChargePrepaid, :UniqVpcId
 
-        def initialize(instanceid=nil, instancename=nil, instancedescription=nil, instancechargetype=nil, instancetype=nil, instancestate=nil, createdtime=nil, dealname=nil, resourceid=nil)
+        def initialize(instanceid=nil, instancename=nil, instancedescription=nil, instancechargetype=nil, instancetype=nil, instancestate=nil, createdtime=nil, dealname=nil, resourceid=nil, outeriplist=nil, inneriplist=nil, instancechargeprepaid=nil, uniqvpcid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceDescription = instancedescription
@@ -6537,6 +6549,10 @@ module TencentCloud
           @CreatedTime = createdtime
           @DealName = dealname
           @ResourceId = resourceid
+          @OuterIpList = outeriplist
+          @InnerIpList = inneriplist
+          @InstanceChargePrepaid = instancechargeprepaid
+          @UniqVpcId = uniqvpcid
         end
 
         def deserialize(params)
@@ -6549,6 +6565,13 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @DealName = params['DealName']
           @ResourceId = params['ResourceId']
+          @OuterIpList = params['OuterIpList']
+          @InnerIpList = params['InnerIpList']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @UniqVpcId = params['UniqVpcId']
         end
       end
 

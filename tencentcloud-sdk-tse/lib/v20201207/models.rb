@@ -339,6 +339,118 @@ module TencentCloud
         end
       end
 
+      # 云原生API网关配置信息。
+      class CloudNativeAPIGatewayConfig < TencentCloud::Common::AbstractModel
+        # @param ConsoleType: 控制台类型。
+        # @type ConsoleType: String
+        # @param HttpUrl: HTTP链接地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpUrl: String
+        # @param HttpsUrl: HTTPS链接地址。
+        # @type HttpsUrl: String
+        # @param NetType: 网络类型, Open|Internal。
+        # @type NetType: String
+        # @param AdminUser: 管理员用户名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminUser: String
+        # @param AdminPassword: 管理员密码。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminPassword: String
+        # @param Status: 网络状态, Open|Closed|Updating
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param AccessControl: 网络访问策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessControl: :class:`Tencentcloud::Tse.v20201207.models.NetworkAccessControl`
+        # @param SubnetId: 内网子网 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param VpcId: 内网VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param Description: 负载均衡的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param SlaType: 负载均衡的规格类型，传 "SLA" 表示性能容量型，返回空为共享型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaType: String
+        # @param Vip: clb vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param InternetMaxBandwidthOut: 带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternetMaxBandwidthOut: Integer
+        # @param MultiZoneFlag: 是否多可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiZoneFlag: Boolean
+        # @param MasterZoneId: 主可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZoneId: String
+        # @param SlaveZoneId: 备可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneId: String
+        # @param MasterZoneName: 主可用区名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterZoneName: String
+        # @param SlaveZoneName: 备可用区名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneName: String
+        # @param NetworkId: 网络 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkId: String
+
+        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId
+
+        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil)
+          @ConsoleType = consoletype
+          @HttpUrl = httpurl
+          @HttpsUrl = httpsurl
+          @NetType = nettype
+          @AdminUser = adminuser
+          @AdminPassword = adminpassword
+          @Status = status
+          @AccessControl = accesscontrol
+          @SubnetId = subnetid
+          @VpcId = vpcid
+          @Description = description
+          @SlaType = slatype
+          @Vip = vip
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @MultiZoneFlag = multizoneflag
+          @MasterZoneId = masterzoneid
+          @SlaveZoneId = slavezoneid
+          @MasterZoneName = masterzonename
+          @SlaveZoneName = slavezonename
+          @NetworkId = networkid
+        end
+
+        def deserialize(params)
+          @ConsoleType = params['ConsoleType']
+          @HttpUrl = params['HttpUrl']
+          @HttpsUrl = params['HttpsUrl']
+          @NetType = params['NetType']
+          @AdminUser = params['AdminUser']
+          @AdminPassword = params['AdminPassword']
+          @Status = params['Status']
+          unless params['AccessControl'].nil?
+            @AccessControl = NetworkAccessControl.new
+            @AccessControl.deserialize(params['AccessControl'])
+          end
+          @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
+          @Description = params['Description']
+          @SlaType = params['SlaType']
+          @Vip = params['Vip']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @MultiZoneFlag = params['MultiZoneFlag']
+          @MasterZoneId = params['MasterZoneId']
+          @SlaveZoneId = params['SlaveZoneId']
+          @MasterZoneName = params['MasterZoneName']
+          @SlaveZoneName = params['SlaveZoneName']
+          @NetworkId = params['NetworkId']
+        end
+      end
+
       # 云原生API网关节点信息。
       class CloudNativeAPIGatewayNode < TencentCloud::Common::AbstractModel
         # @param NodeId: 云原生网关节点 id
@@ -1898,6 +2010,91 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayConfig请求参数结构体
+      class DescribeCloudNativeAPIGatewayConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 分组id，不填时为默认分组
+        # @type GroupId: String
+
+        attr_accessor :GatewayId, :GroupId
+
+        def initialize(gatewayid=nil, groupid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayConfig返回参数结构体
+      class DescribeCloudNativeAPIGatewayConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生API网关响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeCloudNativeAPIGatewayConfigResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeCloudNativeAPIGatewayConfigResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取云原生API网关实例网络配置结果。
+      class DescribeCloudNativeAPIGatewayConfigResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID。
+        # @type GatewayId: String
+        # @param ConfigList: 分组网络配置列表。
+        # @type ConfigList: Array
+        # @param GroupSubnetId: 分组子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupSubnetId: String
+        # @param GroupVpcId: 分组VPC信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupVpcId: String
+        # @param GroupId: 分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+
+        attr_accessor :GatewayId, :ConfigList, :GroupSubnetId, :GroupVpcId, :GroupId
+
+        def initialize(gatewayid=nil, configlist=nil, groupsubnetid=nil, groupvpcid=nil, groupid=nil)
+          @GatewayId = gatewayid
+          @ConfigList = configlist
+          @GroupSubnetId = groupsubnetid
+          @GroupVpcId = groupvpcid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          unless params['ConfigList'].nil?
+            @ConfigList = []
+            params['ConfigList'].each do |i|
+              cloudnativeapigatewayconfig_tmp = CloudNativeAPIGatewayConfig.new
+              cloudnativeapigatewayconfig_tmp.deserialize(i)
+              @ConfigList << cloudnativeapigatewayconfig_tmp
+            end
+          end
+          @GroupSubnetId = params['GroupSubnetId']
+          @GroupVpcId = params['GroupVpcId']
+          @GroupId = params['GroupId']
         end
       end
 
@@ -4443,6 +4640,30 @@ module TencentCloud
               @GatewayGroupList << nativegatewayservergroup_tmp
             end
           end
+        end
+      end
+
+      # 网络访问策略
+      class NetworkAccessControl < TencentCloud::Common::AbstractModel
+        # @param Mode: 访问模式：Whitelist|Blacklist
+        # @type Mode: String
+        # @param CidrWhiteList: 白名单列表
+        # @type CidrWhiteList: Array
+        # @param CidrBlackList: 黑名单列表
+        # @type CidrBlackList: Array
+
+        attr_accessor :Mode, :CidrWhiteList, :CidrBlackList
+
+        def initialize(mode=nil, cidrwhitelist=nil, cidrblacklist=nil)
+          @Mode = mode
+          @CidrWhiteList = cidrwhitelist
+          @CidrBlackList = cidrblacklist
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @CidrWhiteList = params['CidrWhiteList']
+          @CidrBlackList = params['CidrBlackList']
         end
       end
 

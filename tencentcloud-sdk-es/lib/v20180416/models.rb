@@ -1593,7 +1593,7 @@ module TencentCloud
         end
       end
 
-      # ES公网访问访问控制信息
+      # ES公网访问控制信息
       class EsPublicAcl < TencentCloud::Common::AbstractModel
         # @param BlackIpList: 访问黑名单
         # @type BlackIpList: Array
@@ -3062,10 +3062,13 @@ module TencentCloud
         # @type Tasks: Array
         # @param Progress: 操作进度
         # @type Progress: Float
+        # @param SubAccountUin: 操作者Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
 
-        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress
+        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress, :SubAccountUin
 
-        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil)
+        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil, subaccountuin=nil)
           @Id = id
           @StartTime = starttime
           @Type = type
@@ -3073,6 +3076,7 @@ module TencentCloud
           @Result = result
           @Tasks = tasks
           @Progress = progress
+          @SubAccountUin = subaccountuin
         end
 
         def deserialize(params)
@@ -3093,6 +3097,7 @@ module TencentCloud
             end
           end
           @Progress = params['Progress']
+          @SubAccountUin = params['SubAccountUin']
         end
       end
 
@@ -3235,6 +3240,41 @@ module TencentCloud
           @PublicAccess = params['PublicAccess']
           @PrivateAccess = params['PrivateAccess']
           @Version = params['Version']
+        end
+      end
+
+      # 任务进度详情
+      class ProcessDetail < TencentCloud::Common::AbstractModel
+        # @param Completed: 已完成数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Completed: Integer
+        # @param Remain: 剩余数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remain: Integer
+        # @param Total: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param TaskType: 任务类型：
+        # 60：重启型任务
+        # 70：分片迁移型任务
+        # 80：节点变配任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: Integer
+
+        attr_accessor :Completed, :Remain, :Total, :TaskType
+
+        def initialize(completed=nil, remain=nil, total=nil, tasktype=nil)
+          @Completed = completed
+          @Remain = remain
+          @Total = total
+          @TaskType = tasktype
+        end
+
+        def deserialize(params)
+          @Completed = params['Completed']
+          @Remain = params['Remain']
+          @Total = params['Total']
+          @TaskType = params['TaskType']
         end
       end
 
@@ -3586,15 +3626,19 @@ module TencentCloud
         # @param ElapsedTime: 任务花费时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElapsedTime: Integer
+        # @param ProcessInfo: 任务进度详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessInfo: :class:`Tencentcloud::Es.v20180416.models.ProcessDetail`
 
-        attr_accessor :Name, :Progress, :FinishTime, :SubTasks, :ElapsedTime
+        attr_accessor :Name, :Progress, :FinishTime, :SubTasks, :ElapsedTime, :ProcessInfo
 
-        def initialize(name=nil, progress=nil, finishtime=nil, subtasks=nil, elapsedtime=nil)
+        def initialize(name=nil, progress=nil, finishtime=nil, subtasks=nil, elapsedtime=nil, processinfo=nil)
           @Name = name
           @Progress = progress
           @FinishTime = finishtime
           @SubTasks = subtasks
           @ElapsedTime = elapsedtime
+          @ProcessInfo = processinfo
         end
 
         def deserialize(params)
@@ -3610,6 +3654,10 @@ module TencentCloud
             end
           end
           @ElapsedTime = params['ElapsedTime']
+          unless params['ProcessInfo'].nil?
+            @ProcessInfo = ProcessDetail.new
+            @ProcessInfo.deserialize(params['ProcessInfo'])
+          end
         end
       end
 
@@ -3619,7 +3667,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Status: 0：开启智能运维；-1：关闭智能运维
         # @type Status: Integer
-        # @param CronTime: 智能运维每天定时巡检时间
+        # @param CronTime: 智能运维每天定时巡检时间，时间格式为HH:00:00，例如15:00:00
         # @type CronTime: String
 
         attr_accessor :InstanceId, :Status, :CronTime
@@ -3657,13 +3705,13 @@ module TencentCloud
       class UpdateDictionariesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ES实例ID
         # @type InstanceId: String
-        # @param IkMainDicts: IK分词主词典COS地址
+        # @param IkMainDicts: 安装时填IK分词主词典COS地址，删除时填词典名如test.dic
         # @type IkMainDicts: Array
-        # @param IkStopwords: IK分词停用词词典COS地址
+        # @param IkStopwords: 安装时填IK分词停用词词典COS地址，删除时填词典名如test.dic
         # @type IkStopwords: Array
-        # @param Synonym: 同义词词典COS地址
+        # @param Synonym: 安装时填同义词词典COS地址，删除时填词典名如test.dic
         # @type Synonym: Array
-        # @param QQDict: QQ分词词典COS地址
+        # @param QQDict: 安装时填QQ分词词典COS地址，删除时填词典名如test.dic
         # @type QQDict: Array
         # @param UpdateType: 0：安装；1：删除。默认值0
         # @type UpdateType: Integer
@@ -4229,7 +4277,7 @@ module TencentCloud
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param EsVersion: 目标ES版本，支持：”6.4.3“, "6.8.2"，"7.5.1"
+        # @param EsVersion: 目标ES版本，支持：”6.4.3“, "6.8.2"，"7.5.1", "7.10.1", "7.14.2"
         # @type EsVersion: String
         # @param CheckOnly: 是否只做升级检查，默认值为false
         # @type CheckOnly: Boolean
@@ -4295,7 +4343,7 @@ module TencentCloud
         # @type AutoVoucher: Integer
         # @param VoucherIds: 代金券ID列表（目前仅支持指定一张代金券）
         # @type VoucherIds: Array
-        # @param BasicSecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
+        # @param BasicSecurityType: 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li><li>不传参时会默认维持原状，传参时需注意只能由不开启变为开启，无法由开启变为不开启</li>
         # @type BasicSecurityType: Integer
         # @param ForceRestart: 是否强制重启<li>true强制重启</li><li>false不强制重启</li> 默认值false
         # @type ForceRestart: Boolean

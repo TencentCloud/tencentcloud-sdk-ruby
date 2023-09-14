@@ -1978,12 +1978,18 @@ module TencentCloud
         # @type Name: String
         # @param SegmentSet: 物体出现的片段列表。
         # @type SegmentSet: Array
+        # @param RecognitionSegmentSet: 物体出现的片段列表。
+        # @type RecognitionSegmentSet: Array
 
-        attr_accessor :Name, :SegmentSet
+        attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
+        extend Gem::Deprecate
+        deprecate :SegmentSet, :none, 2023, 9
+        deprecate :SegmentSet=, :none, 2023, 9
 
-        def initialize(name=nil, segmentset=nil)
+        def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
           @SegmentSet = segmentset
+          @RecognitionSegmentSet = recognitionsegmentset
         end
 
         def deserialize(params)
@@ -1994,6 +2000,14 @@ module TencentCloud
               airecognitiontaskobjectseqmentitem_tmp = AiRecognitionTaskObjectSeqmentItem.new
               airecognitiontaskobjectseqmentitem_tmp.deserialize(i)
               @SegmentSet << airecognitiontaskobjectseqmentitem_tmp
+            end
+          end
+          unless params['RecognitionSegmentSet'].nil?
+            @RecognitionSegmentSet = []
+            params['RecognitionSegmentSet'].each do |i|
+              airecognitiontaskobjectsegmentitem_tmp = AiRecognitionTaskObjectSegmentItem.new
+              airecognitiontaskobjectsegmentitem_tmp.deserialize(i)
+              @RecognitionSegmentSet << airecognitiontaskobjectsegmentitem_tmp
             end
           end
         end
@@ -2028,6 +2042,34 @@ module TencentCloud
           end
           @ResultSetFileUrl = params['ResultSetFileUrl']
           @ResultSetFileUrlExpireTime = params['ResultSetFileUrlExpireTime']
+        end
+      end
+
+      # 物体识别结果片段。
+      class AiRecognitionTaskObjectSegmentItem < TencentCloud::Common::AbstractModel
+        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :AreaCoordSet
+
+        def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, areacoordset=nil)
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Confidence = confidence
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Confidence = params['Confidence']
+          @AreaCoordSet = params['AreaCoordSet']
         end
       end
 
@@ -16493,12 +16535,18 @@ module TencentCloud
         # @type Duration: Float
         # @param Transitions: 转场操作列表。图像转场操作和音频转场操作各自最多支持一个。
         # @type Transitions: Array
+        # @param MediaTransitions: 转场操作列表。图像转场操作和音频转场操作各自最多支持一个。
+        # @type MediaTransitions: Array
 
-        attr_accessor :Duration, :Transitions
+        attr_accessor :Duration, :Transitions, :MediaTransitions
+        extend Gem::Deprecate
+        deprecate :Transitions, :none, 2023, 9
+        deprecate :Transitions=, :none, 2023, 9
 
-        def initialize(duration=nil, transitions=nil)
+        def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
           @Transitions = transitions
+          @MediaTransitions = mediatransitions
         end
 
         def deserialize(params)
@@ -16509,6 +16557,14 @@ module TencentCloud
               transitionopertion_tmp = TransitionOpertion.new
               transitionopertion_tmp.deserialize(i)
               @Transitions << transitionopertion_tmp
+            end
+          end
+          unless params['MediaTransitions'].nil?
+            @MediaTransitions = []
+            params['MediaTransitions'].each do |i|
+              transitionoperation_tmp = TransitionOperation.new
+              transitionoperation_tmp.deserialize(i)
+              @MediaTransitions << transitionoperation_tmp
             end
           end
         end
@@ -25755,6 +25811,68 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @SegmentType = params['SegmentType']
+        end
+      end
+
+      # 转场操作
+      class TransitionOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 转场类型，取值有：
+        # <ul>
+        # <li>图像的转场操作，用于两个视频片段图像间的转场处理：
+        # <ul>
+        # <li>ImageFadeInFadeOut：图像淡入淡出。 </li>
+        # <li>BowTieHorizontal：水平蝴蝶结。 </li>
+        # <li>BowTieVertical：垂直蝴蝶结。 </li>
+        # <li>ButterflyWaveScrawler：晃动。 </li>
+        # <li>Cannabisleaf：枫叶。 </li>
+        # <li>Circle：弧形收放。 </li>
+        # <li>CircleCrop：圆环聚拢。 </li>
+        # <li>Circleopen：椭圆聚拢。 </li>
+        # <li>Crosswarp：横向翘曲。 </li>
+        # <li>Cube：立方体。 </li>
+        # <li>DoomScreenTransition：幕布。 </li>
+        # <li>Doorway：门廊。 </li>
+        # <li>Dreamy：波浪。 </li>
+        # <li>DreamyZoom：水平聚拢。 </li>
+        # <li>FilmBurn：火烧云。 </li>
+        # <li>GlitchMemories：抖动。 </li>
+        # <li>Heart：心形。 </li>
+        # <li>InvertedPageCurl：翻页。 </li>
+        # <li>Luma：腐蚀。 </li>
+        # <li>Mosaic：九宫格。 </li>
+        # <li>Pinwheel：风车。 </li>
+        # <li>PolarFunction：椭圆扩散。 </li>
+        # <li>PolkaDotsCurtain：弧形扩散。 </li>
+        # <li>Radial：雷达扫描 </li>
+        # <li>RotateScaleFade：上下收放。 </li>
+        # <li>Squeeze：上下聚拢。 </li>
+        # <li>Swap：放大切换。 </li>
+        # <li>Swirl：螺旋。 </li>
+        # <li>UndulatingBurnOutSwirl：水流蔓延。 </li>
+        # <li>Windowblinds：百叶窗。 </li>
+        # <li>WipeDown：向下收起。 </li>
+        # <li>WipeLeft：向左收起。 </li>
+        # <li>WipeRight：向右收起。 </li>
+        # <li>WipeUp：向上收起。 </li>
+        # <li>ZoomInCircles：水波纹。 </li>
+        # </ul>
+        # </li>
+        # <li>音频的转场操作，用于两个音频片段间的转场处理：
+        # <ul>
+        # <li>AudioFadeInFadeOut：声音淡入淡出。 </li>
+        # </ul>
+        # </li>
+        # </ul>
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
         end
       end
 

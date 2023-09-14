@@ -1277,7 +1277,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeInstanceSpecs）用于查询实例规格
+        # 本接口（DescribeInstanceSpecs）用于查询购买页可购买的实例规格
 
         # @param request: Request instance for DescribeInstanceSpecs.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceSpecsRequest`

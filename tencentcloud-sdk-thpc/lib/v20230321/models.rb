@@ -591,10 +591,12 @@ module TencentCloud
         # @type AutoScalingType: String
         # @param InitNodeScripts: 节点初始化脚本信息列表。
         # @type InitNodeScripts: Array
+        # @param HpcClusterId: 高性能计算集群ID。若创建的实例为高性能计算实例，需指定实例放置的集群，否则不可指定。
+        # @type HpcClusterId: String
 
-        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts
+        attr_accessor :Placement, :ManagerNode, :ManagerNodeCount, :ComputeNode, :ComputeNodeCount, :SchedulerType, :ImageId, :VirtualPrivateCloud, :LoginSettings, :SecurityGroupIds, :ClientToken, :DryRun, :AccountType, :ClusterName, :StorageOption, :LoginNode, :LoginNodeCount, :Tags, :AutoScalingType, :InitNodeScripts, :HpcClusterId
 
-        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil)
+        def initialize(placement=nil, managernode=nil, managernodecount=nil, computenode=nil, computenodecount=nil, schedulertype=nil, imageid=nil, virtualprivatecloud=nil, loginsettings=nil, securitygroupids=nil, clienttoken=nil, dryrun=nil, accounttype=nil, clustername=nil, storageoption=nil, loginnode=nil, loginnodecount=nil, tags=nil, autoscalingtype=nil, initnodescripts=nil, hpcclusterid=nil)
           @Placement = placement
           @ManagerNode = managernode
           @ManagerNodeCount = managernodecount
@@ -615,6 +617,7 @@ module TencentCloud
           @Tags = tags
           @AutoScalingType = autoscalingtype
           @InitNodeScripts = initnodescripts
+          @HpcClusterId = hpcclusterid
         end
 
         def deserialize(params)
@@ -673,6 +676,7 @@ module TencentCloud
               @InitNodeScripts << nodescript_tmp
             end
           end
+          @HpcClusterId = params['HpcClusterId']
         end
       end
 

@@ -670,7 +670,7 @@ module TencentCloud
         # @type Ports: Array
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF，cdn-waf表示CDN上的Web防护能力
         # @type Edition: String
-        # @param IsKeepAlive: 是否开启长连接，仅IP回源时可以用填次参数，域名回源时这个参数无效
+        # @param IsKeepAlive: 是否开启长连接，0 短连接，1 长连接
         # @type IsKeepAlive: String
         # @param InstanceID: 实例id，上线之后带上此字段
         # @type InstanceID: String
@@ -4854,6 +4854,22 @@ module TencentCloud
 
       # saas域名详情
       class DomainsPartInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名id
+        # @type DomainId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Edition: 类型
+        # @type Edition: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param Cert: 证书
+        # @type Cert: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param Engine: AI防御模式
+        # @type Engine: Integer
         # @param HttpsRewrite: 是否开启httpRewrite
         # @type HttpsRewrite: Integer
         # @param HttpsUpstreamPort: https回源端口
@@ -4926,9 +4942,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XFFReset: Integer
 
-        attr_accessor :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset
 
-        def initialize(httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @InstanceId = instanceid
+          @Edition = edition
+          @InstanceName = instancename
+          @Cert = cert
+          @CreateTime = createtime
+          @Engine = engine
           @HttpsRewrite = httpsrewrite
           @HttpsUpstreamPort = httpsupstreamport
           @IsCdn = iscdn
@@ -4962,6 +4986,14 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @InstanceId = params['InstanceId']
+          @Edition = params['Edition']
+          @InstanceName = params['InstanceName']
+          @Cert = params['Cert']
+          @CreateTime = params['CreateTime']
+          @Engine = params['Engine']
           @HttpsRewrite = params['HttpsRewrite']
           @HttpsUpstreamPort = params['HttpsUpstreamPort']
           @IsCdn = params['IsCdn']
@@ -5429,6 +5461,49 @@ module TencentCloud
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetInstanceQpsLimit请求参数结构体
+      class GetInstanceQpsLimitRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 套餐实例id
+        # @type InstanceId: String
+        # @param Type: 套餐类型
+        # @type Type: String
+
+        attr_accessor :InstanceId, :Type
+
+        def initialize(instanceid=nil, type=nil)
+          @InstanceId = instanceid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+        end
+      end
+
+      # GetInstanceQpsLimit返回参数结构体
+      class GetInstanceQpsLimitResponse < TencentCloud::Common::AbstractModel
+        # @param QpsData: 弹性qps相关值集合
+        # @type QpsData: :class:`Tencentcloud::Waf.v20180125.models.QpsData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QpsData, :RequestId
+
+        def initialize(qpsdata=nil, requestid=nil)
+          @QpsData = qpsdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QpsData'].nil?
+            @QpsData = QpsData.new
+            @QpsData.deserialize(params['QpsData'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7638,6 +7713,43 @@ module TencentCloud
         end
       end
 
+      # 获取弹性qps的默认相关值
+      class QpsData < TencentCloud::Common::AbstractModel
+        # @param ElasticBillingDefault: 弹性qps默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBillingDefault: Integer
+        # @param ElasticBillingMin: 弹性qps最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBillingMin: Integer
+        # @param ElasticBillingMax: 弹性qps最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBillingMax: Integer
+        # @param QPSExtendMax: 业务扩展包最大qps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QPSExtendMax: Integer
+        # @param QPSExtendIntlMax: 海外业务扩展包最大qps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QPSExtendIntlMax: Integer
+
+        attr_accessor :ElasticBillingDefault, :ElasticBillingMin, :ElasticBillingMax, :QPSExtendMax, :QPSExtendIntlMax
+
+        def initialize(elasticbillingdefault=nil, elasticbillingmin=nil, elasticbillingmax=nil, qpsextendmax=nil, qpsextendintlmax=nil)
+          @ElasticBillingDefault = elasticbillingdefault
+          @ElasticBillingMin = elasticbillingmin
+          @ElasticBillingMax = elasticbillingmax
+          @QPSExtendMax = qpsextendmax
+          @QPSExtendIntlMax = qpsextendintlmax
+        end
+
+        def deserialize(params)
+          @ElasticBillingDefault = params['ElasticBillingDefault']
+          @ElasticBillingMin = params['ElasticBillingMin']
+          @ElasticBillingMax = params['ElasticBillingMax']
+          @QPSExtendMax = params['QPSExtendMax']
+          @QPSExtendIntlMax = params['QPSExtendIntlMax']
+        end
+      end
+
       # RefreshAccessCheckResult请求参数结构体
       class RefreshAccessCheckResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -8040,62 +8152,49 @@ module TencentCloud
       class Strategy < TencentCloud::Common::AbstractModel
         # @param Field: 匹配字段
 
-        # 有以下枚举值：
-        # IP-来源IP
-        # 	IPV6-来源IPv6
-        # 	Referer-Referer
-        # 	URL-请求路径
-        # UserAgent-UserAgent
-        # 	HTTP_METHOD-HTTP请求方法
-        # 	QUERY_STRING-请求字符串
-        # 	GET-GET参数值
-        # 	GET_PARAMS_NAMES-GET参数名
-        # 	POST-POST参数值
-        # 	GET_POST_NAMES-POST参数名
-        # 	POST_BODY-完整BODY
-        # 	COOKIE-Cookie
-        # 	GET_COOKIES_NAMES-Cookie参数名
-        # 	ARGS_COOKIE-Cookie参数值
-        # 	GET_HEADERS_NAMES-Header参数名
-        # 	ARGS_HEADER-Header参数值
-
+        #     匹配字段不同，相应的匹配参数、逻辑符号、匹配内容有所不同
+        # 具体如下所示：
+        # <table><thead><tr><th>匹配字段</th><th>匹配参数</th><th>逻辑符号</th><th>匹配内容</th></tr></thead><tbody><tr><td>IP（来源IP）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>多个IP以英文逗号隔开,最多20个</td></tr><tr><td>IPV6（来源IPv6）</td><td>不支持参数</td><td>ipmatch（匹配）<br/>ipnmatch（不匹配）</td><td>支持单个IPV6地址</td></tr><tr><td>Referer（Referer）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>URL（请求路径）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）<br/>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）<br/></td><td>请以/开头,512个字符以内</td></tr><tr><td>UserAgent（UserAgent）</td><td>不支持参数</td><td>同匹配字段<font color="Red">Referer</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>HTTP_METHOD（HTTP请求方法）</td><td>不支持参数</td><td>eq（等于）<br/>neq（不等于）</td><td>请输入方法名称,建议大写</td></tr><tr><td>QUERY_STRING（请求字符串）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET（GET参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_PARAMS_NAMES（GET参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST（POST参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_POST_NAMES（POST参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>POST_BODY（完整BODY）</td><td>不支持参数</td><td>同匹配字段<font color="Red">请求路径</font>逻辑符号</td><td>请输入BODY内容,512个字符以内</td></tr><tr><td>COOKIE（Cookie）</td><td>不支持参数</td><td>empty（内容为空）<br/>null（不存在）<br/>rematch（正则匹配）</td><td><font color="Red">暂不支持</font></td></tr><tr><td>GET_COOKIES_NAMES（Cookie参数名）</td><td>不支持参数</td><td>同匹配字段<font color="Red">GET参数名</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>ARGS_COOKIE（Cookie参数值）</td><td>支持参数录入</td><td>同匹配字段<font color="Red">GET参数值</font>逻辑符号</td><td>请输入内容,512个字符以内</td></tr><tr><td>GET_HEADERS_NAMES（Header参数名）</td><td>不支持参数</td><td>exsit（存在参数）<br/>nexsit（不存在参数）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,建议小写,512个字符以内</td></tr><tr><td>ARGS_HEADER（Header参数值）</td><td>支持参数录入</td><td>contains（包含）<br/>ncontains（不包含）<br/>len_eq（长度等于）<br/>len_gt（长度大于）<br/>len_lt（长度小于）<br/>strprefix（前缀匹配）<br/>strsuffix（后缀匹配）<br/>rematch（正则匹配）</td><td>请输入内容,512个字符以内</td></tr></tbody></table>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Field: String
         # @param CompareFunc: 逻辑符号
 
-        # 有以下枚举值：
-        # empty - 内容为空
-        #   	null - 不存在
-        #   	eq - 等于
-        #   	neq - 不等于
-        #   	contains - 包含
-        #  	ncontains - 不包含
-        #   	strprefix - 前缀匹配
-        #   	strsuffix - 后缀匹配
-        #   	len_eq - 长度等于
-        #   	len_gt - 长度大于
-        #   	len_lt - 长度小于
-        #   	ipmatch - 属于
-        #  	ipnmatch - 不属于
+        #     逻辑符号一共分为以下几种类型：
+        #         empty （ 内容为空）
+        #         null （不存在）
+        #         eq （ 等于）
+        #         neq （ 不等于）
+        #         contains （ 包含）
+        #         ncontains （ 不包含）
+        #         strprefix （ 前缀匹配）
+        #         strsuffix （ 后缀匹配）
+        #         len_eq （ 长度等于）
+        #         len_gt （ 长度大于）
+        #         len_lt （ 长度小于）
+        #         ipmatch （ 属于）
+        #         ipnmatch （ 不属于）
+        #     各匹配字段对应的逻辑符号不同，详见上述匹配字段表格
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareFunc: String
         # @param Content: 匹配内容
 
-        # 目前 只有匹配字段为COOKIE-Cookie时，才不需要输入 匹配内容
+        #     目前 当匹配字段为COOKIE（Cookie）时，不需要输入 匹配内容
         # 其他都需要
-
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
         # @param Arg: 匹配参数
 
-        # 目前 只有匹配字段为以下4个时，匹配参数才能选择，否则置灰无法选择
+        #     配置参数一共分2种类型 不支持参数与支持参数
+        #     当匹配字段为以下4个时，匹配参数才能录入，否则不支持该参数
+        #         GET（GET参数值）
 
-        # GET-GET参数值
-        # 	POST-POST参数值
-        # 	ARGS_COOKIE-Cookie参数值
-        # 	ARGS_HEADER-Header参数值
+        #         POST（POST参数值）
+
+        #         ARGS_COOKIE（Cookie参数值）
+
+        #         ARGS_HEADER（Header参数值）
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Arg: String

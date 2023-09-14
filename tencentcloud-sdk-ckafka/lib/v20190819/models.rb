@@ -3576,6 +3576,45 @@ module TencentCloud
         end
       end
 
+      # DeleteInstancePost请求参数结构体
+      class DeleteInstancePostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteInstancePost返回参数结构体
+      class DeleteInstancePostResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的结果集
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceDeleteResponse`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceDeleteResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstancePre请求参数结构体
       class DeleteInstancePreRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -7774,6 +7813,23 @@ module TencentCloud
           @AutoCreateTopicsEnable = params['AutoCreateTopicsEnable']
           @DefaultNumPartitions = params['DefaultNumPartitions']
           @DefaultReplicationFactor = params['DefaultReplicationFactor']
+        end
+      end
+
+      # 删除实例返回任务
+      class InstanceDeleteResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 删除实例返回的任务Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+
+        attr_accessor :FlowId
+
+        def initialize(flowid=nil)
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
         end
       end
 

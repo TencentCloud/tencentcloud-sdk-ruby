@@ -17,72 +17,8 @@
 module TencentCloud
   module Advisor
     module V20200721
-      # 评估项信息
-      class DescribeStrategie < TencentCloud::Common::AbstractModel
-        # @param StrategyId: 评估项ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StrategyId: Integer
-        # @param Name: 评估项名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Name: String
-        # @param Desc: 评估项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Desc: String
-        # @param Product: 评估项对应产品ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Product: String
-        # @param ProductDesc: 评估项对应产品名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ProductDesc: String
-        # @param Repair: 评估项优化建议
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Repair: String
-        # @param GroupId: 评估项类别ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GroupId: Integer
-        # @param GroupName: 评估项类别名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GroupName: String
-        # @param Conditions: 评估项风险列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Conditions: Array
-
-        attr_accessor :StrategyId, :Name, :Desc, :Product, :ProductDesc, :Repair, :GroupId, :GroupName, :Conditions
-
-        def initialize(strategyid=nil, name=nil, desc=nil, product=nil, productdesc=nil, repair=nil, groupid=nil, groupname=nil, conditions=nil)
-          @StrategyId = strategyid
-          @Name = name
-          @Desc = desc
-          @Product = product
-          @ProductDesc = productdesc
-          @Repair = repair
-          @GroupId = groupid
-          @GroupName = groupname
-          @Conditions = conditions
-        end
-
-        def deserialize(params)
-          @StrategyId = params['StrategyId']
-          @Name = params['Name']
-          @Desc = params['Desc']
-          @Product = params['Product']
-          @ProductDesc = params['ProductDesc']
-          @Repair = params['Repair']
-          @GroupId = params['GroupId']
-          @GroupName = params['GroupName']
-          unless params['Conditions'].nil?
-            @Conditions = []
-            params['Conditions'].each do |i|
-              describestrategiescondition_tmp = DescribeStrategiesCondition.new
-              describestrategiescondition_tmp.deserialize(i)
-              @Conditions << describestrategiescondition_tmp
-            end
-          end
-        end
-      end
-
       # 评估项警告条件
-      class DescribeStrategiesCondition < TencentCloud::Common::AbstractModel
+      class Conditions < TencentCloud::Common::AbstractModel
         # @param ConditionId: 警告条件ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionId: Integer
@@ -142,9 +78,9 @@ module TencentCloud
           unless params['Strategies'].nil?
             @Strategies = []
             params['Strategies'].each do |i|
-              describestrategie_tmp = DescribeStrategie.new
-              describestrategie_tmp.deserialize(i)
-              @Strategies << describestrategie_tmp
+              strategies_tmp = Strategies.new
+              strategies_tmp.deserialize(i)
+              @Strategies << strategies_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -287,6 +223,70 @@ module TencentCloud
               keyvalue_tmp = KeyValue.new
               keyvalue_tmp.deserialize(i)
               @FieldDict << keyvalue_tmp
+            end
+          end
+        end
+      end
+
+      # 评估项信息
+      class Strategies < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 评估项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: Integer
+        # @param Name: 评估项名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Desc: 评估项描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Desc: String
+        # @param Product: 评估项对应产品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Product: String
+        # @param ProductDesc: 评估项对应产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductDesc: String
+        # @param Repair: 评估项优化建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Repair: String
+        # @param GroupId: 评估项类别ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param GroupName: 评估项类别名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Conditions: 评估项风险列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+
+        attr_accessor :StrategyId, :Name, :Desc, :Product, :ProductDesc, :Repair, :GroupId, :GroupName, :Conditions
+
+        def initialize(strategyid=nil, name=nil, desc=nil, product=nil, productdesc=nil, repair=nil, groupid=nil, groupname=nil, conditions=nil)
+          @StrategyId = strategyid
+          @Name = name
+          @Desc = desc
+          @Product = product
+          @ProductDesc = productdesc
+          @Repair = repair
+          @GroupId = groupid
+          @GroupName = groupname
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Product = params['Product']
+          @ProductDesc = params['ProductDesc']
+          @Repair = params['Repair']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              conditions_tmp = Conditions.new
+              conditions_tmp.deserialize(i)
+              @Conditions << conditions_tmp
             end
           end
         end

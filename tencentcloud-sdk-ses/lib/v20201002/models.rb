@@ -138,23 +138,28 @@ module TencentCloud
         end
       end
 
-      # 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间
+      # 邮箱黑名单结构，包含被拉黑的邮箱地址和被拉黑时间，以及被拉黑的理由
       class BlackEmailAddress < TencentCloud::Common::AbstractModel
         # @param BounceTime: 邮箱被拉黑时间
         # @type BounceTime: String
         # @param EmailAddress: 被拉黑的邮箱地址
         # @type EmailAddress: String
+        # @param IspDesc: 被拉黑的理由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IspDesc: String
 
-        attr_accessor :BounceTime, :EmailAddress
+        attr_accessor :BounceTime, :EmailAddress, :IspDesc
 
-        def initialize(bouncetime=nil, emailaddress=nil)
+        def initialize(bouncetime=nil, emailaddress=nil, ispdesc=nil)
           @BounceTime = bouncetime
           @EmailAddress = emailaddress
+          @IspDesc = ispdesc
         end
 
         def deserialize(params)
           @BounceTime = params['BounceTime']
           @EmailAddress = params['EmailAddress']
+          @IspDesc = params['IspDesc']
         end
       end
 
@@ -912,7 +917,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param EmailAddress: 可以指定邮箱进行查询
         # @type EmailAddress: String
-        # @param TaskID: 可以指定任务ID进行查询
+        # @param TaskID: 已废弃
         # @type TaskID: String
 
         attr_accessor :StartDate, :EndDate, :Limit, :Offset, :EmailAddress, :TaskID

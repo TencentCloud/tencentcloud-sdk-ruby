@@ -4878,7 +4878,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例 ID 集合。
         # @type ProxyIds: Array
-        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
+        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 300。
         # @type Limit: Integer
         # @param Offset: 分页的偏移量，默认值为 0。
         # @type Offset: Integer
@@ -4945,7 +4945,7 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param Domains: 子域名集合，不填默认选择全部子域名。
         # @type Domains: Array
-        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
+        # @param Limit: 分页查询的限制数目，默认值为 20，最大查询条目为 300。
         # @type Limit: Integer
         # @param Offset: 分页的偏移量，默认值为 0。
         # @type Offset: Integer

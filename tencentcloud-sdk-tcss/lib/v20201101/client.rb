@@ -4136,7 +4136,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户镜像仓库下的项目名称列表
+        # 查询用户镜像仓库下的命令空间列表
 
         # @param request: Request instance for DescribeImageRegistryNamespaceList.
         # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeImageRegistryNamespaceListRequest`

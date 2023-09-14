@@ -515,10 +515,13 @@ module TencentCloud
         # @param TrxLivingTime: 事物持续时间，微秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrxLivingTime: Integer
+        # @param TemplateInfo: 日志命中规则模板的基本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateInfo: Array
 
-        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime
+        attr_accessor :AffectRows, :ErrCode, :SqlType, :PolicyName, :DBName, :Sql, :Host, :User, :ExecTime, :Timestamp, :SentRows, :ThreadId, :CheckRows, :CpuTime, :IoWaitTime, :LockWaitTime, :NsTime, :TrxLivingTime, :TemplateInfo
 
-        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil)
+        def initialize(affectrows=nil, errcode=nil, sqltype=nil, policyname=nil, dbname=nil, sql=nil, host=nil, user=nil, exectime=nil, timestamp=nil, sentrows=nil, threadid=nil, checkrows=nil, cputime=nil, iowaittime=nil, lockwaittime=nil, nstime=nil, trxlivingtime=nil, templateinfo=nil)
           @AffectRows = affectrows
           @ErrCode = errcode
           @SqlType = sqltype
@@ -537,6 +540,7 @@ module TencentCloud
           @LockWaitTime = lockwaittime
           @NsTime = nstime
           @TrxLivingTime = trxlivingtime
+          @TemplateInfo = templateinfo
         end
 
         def deserialize(params)
@@ -558,6 +562,14 @@ module TencentCloud
           @LockWaitTime = params['LockWaitTime']
           @NsTime = params['NsTime']
           @TrxLivingTime = params['TrxLivingTime']
+          unless params['TemplateInfo'].nil?
+            @TemplateInfo = []
+            params['TemplateInfo'].each do |i|
+              logruletemplateinfo_tmp = LogRuleTemplateInfo.new
+              logruletemplateinfo_tmp.deserialize(i)
+              @TemplateInfo << logruletemplateinfo_tmp
+            end
+          end
         end
       end
 
@@ -3678,6 +3690,7 @@ module TencentCloud
         # @param TotalCount: 符合条件的审计日志文件个数。
         # @type TotalCount: Integer
         # @param Items: 审计日志文件详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7511,7 +7524,7 @@ module TencentCloud
         # @param Type: 过滤项。目前支持以下搜索条件：
 
         # 包含、不包含、包含（分词维度）、不包含（分词维度）:
-        # sql - SQL详情
+        # sql - SQL详情；alarmLevel - 告警等级；ruleTemplateId - 规则模板Id
 
         # 等于、不等于、包含、不包含：
         # host - 客户端地址；
@@ -7926,6 +7939,38 @@ module TencentCloud
         def deserialize(params)
           @SaveHours = params['SaveHours']
           @MaxUsage = params['MaxUsage']
+        end
+      end
+
+      # 审计日志命中规则模板的基本信息
+      class LogRuleTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param RuleTemplateId: 模板ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateId: String
+        # @param RuleTemplateName: 规则模板名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateName: String
+        # @param AlarmLevel: 告警等级。1-低风险，2-中风险，3-高风险。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: String
+        # @param RuleTemplateStatus: 规则模板变更状态：0-未变更；1-已变更；2-已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateStatus: Integer
+
+        attr_accessor :RuleTemplateId, :RuleTemplateName, :AlarmLevel, :RuleTemplateStatus
+
+        def initialize(ruletemplateid=nil, ruletemplatename=nil, alarmlevel=nil, ruletemplatestatus=nil)
+          @RuleTemplateId = ruletemplateid
+          @RuleTemplateName = ruletemplatename
+          @AlarmLevel = alarmlevel
+          @RuleTemplateStatus = ruletemplatestatus
+        end
+
+        def deserialize(params)
+          @RuleTemplateId = params['RuleTemplateId']
+          @RuleTemplateName = params['RuleTemplateName']
+          @AlarmLevel = params['AlarmLevel']
+          @RuleTemplateStatus = params['RuleTemplateStatus']
         end
       end
 
@@ -9463,17 +9508,20 @@ module TencentCloud
         # @type HighLogExpireDay: Integer
         # @param AuditRuleFilters: 审计规则。同RuleTemplateIds都不填是全审计。
         # @type AuditRuleFilters: Array
-        # @param RuleTemplateIds: 规则模版ID。同AuditRuleFilters都不填是全审计。
+        # @param RuleTemplateIds: 规则模板ID。同AuditRuleFilters都不填是全审计。
         # @type RuleTemplateIds: Array
+        # @param AuditAll: 审计类型。true-全审计；默认false-规则审计。
+        # @type AuditAll: Boolean
 
-        attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds
+        attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
 
-        def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil)
+        def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
           @LogExpireDay = logexpireday
           @HighLogExpireDay = highlogexpireday
           @AuditRuleFilters = auditrulefilters
           @RuleTemplateIds = ruletemplateids
+          @AuditAll = auditall
         end
 
         def deserialize(params)
@@ -9489,6 +9537,7 @@ module TencentCloud
             end
           end
           @RuleTemplateIds = params['RuleTemplateIds']
+          @AuditAll = params['AuditAll']
         end
       end
 
