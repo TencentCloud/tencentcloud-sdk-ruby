@@ -2069,6 +2069,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取任务结果查询
+
+        # @param request: Request instance for QueryResult.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::QueryResultRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::QueryResultResponse`
+        def QueryResult(request)
+          body = send_request('QueryResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 上报元数据心跳
 
         # @param request: Request instance for ReportHeartbeatMetaData.

@@ -774,7 +774,7 @@ module TencentCloud
         # @type Name: String
         # @param CosUri: 表格文件Cos对象路径。
         # @type CosUri: String
-        # @param DataType: 表格文件中每列的数据类型，支持的类型包括：Int、String、File、Array[File]
+        # @param DataType: 表格文件中每列的数据类型，支持的类型包括：Int、Float、String、File、Boolean、Array[Int]、Array[Float]、Array[String]、Array[File]、Array[Boolean]
         # @type DataType: Array
         # @param Description: 表格描述。
         # @type Description: String

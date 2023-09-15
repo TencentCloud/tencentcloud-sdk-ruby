@@ -344,10 +344,12 @@ module TencentCloud
         # @param DockerVersion: Docker版本号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DockerVersion: String
+        # @param BlueprintShared: 镜像是否已共享。
+        # @type BlueprintShared: Boolean
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet, :DockerVersion
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet, :DockerVersion, :BlueprintShared
 
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil, dockerversion=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil, dockerversion=nil, blueprintshared=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -368,6 +370,7 @@ module TencentCloud
           @GuideUrl = guideurl
           @SceneIdSet = sceneidset
           @DockerVersion = dockerversion
+          @BlueprintShared = blueprintshared
         end
 
         def deserialize(params)
@@ -391,6 +394,7 @@ module TencentCloud
           @GuideUrl = params['GuideUrl']
           @SceneIdSet = params['SceneIdSet']
           @DockerVersion = params['DockerVersion']
+          @BlueprintShared = params['BlueprintShared']
         end
       end
 

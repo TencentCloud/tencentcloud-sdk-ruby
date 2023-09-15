@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建审计规则模版
+        # 创建审计规则模板
 
         # @param request: Request instance for CreateAuditRuleTemplate.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateAuditRuleTemplateRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除审计规则模版
+        # 删除审计规则模板
 
         # @param request: Request instance for DeleteAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteAuditRuleTemplatesRequest`
@@ -773,7 +773,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询审计规则模版信息
+        # 查询审计规则模板信息
 
         # @param request: Request instance for DescribeAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeAuditRuleTemplatesRequest`
@@ -1973,7 +1973,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改审计规则模版
+        # 修改审计规则模板
 
         # @param request: Request instance for ModifyAuditRuleTemplates.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifyAuditRuleTemplatesRequest`

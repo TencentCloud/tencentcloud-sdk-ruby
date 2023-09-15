@@ -184,7 +184,7 @@ module TencentCloud
         # @type IndexType: String
         # @param IndexName: 创建的索引名
         # @type IndexName: String
-        # @param IndexMetaJson: 创建的索引元数据JSON，如mappings、settings
+        # @param IndexMetaJson: 【必填】创建的索引元数据JSON，如mappings、settings
         # @type IndexMetaJson: String
         # @param Username: 集群访问用户名
         # @type Username: String
@@ -726,7 +726,7 @@ module TencentCloud
         # @type OrderBy: String
         # @param IndexStatusList: 过滤索引状态
         # @type IndexStatusList: Array
-        # @param Order: 排序顺序，支持asc、desc
+        # @param Order: 排序顺序，支持asc、desc，默认为desc 数据格式"asc","desc"
         # @type Order: String
 
         attr_accessor :IndexType, :InstanceId, :IndexName, :Username, :Password, :Offset, :Limit, :OrderBy, :IndexStatusList, :Order

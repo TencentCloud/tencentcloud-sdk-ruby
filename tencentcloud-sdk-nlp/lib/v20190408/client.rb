@@ -269,32 +269,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 文案创作（内测版）为内测体验专用接口，现内测期结束，统一改为使用正式服务接口（混元大模型），故内测接口做下线处理。
-
-        # 基于腾讯大模型能力，用户可以通过传入不同的参数控制生成内容的类型，并通过自然语言给模型以内容生成的指令，可以满足多种场景的文本生成需求，包括但不限于文章写作、营销文案、视频脚本、电商文案、纪要整理等（**注意：当前接口为内测体验专用接口，仅有获取白名单权限的客户可以测试调用，如需测试请联系商务非正式服务接口，内测期结束接口会下线或停服，届时请接入正式服务接口**）
-
-        # @param request: Request instance for TestingTextGeneration.
-        # @type request: :class:`Tencentcloud::nlp::V20190408::TestingTextGenerationRequest`
-        # @rtype: :class:`Tencentcloud::nlp::V20190408::TestingTextGenerationResponse`
-        def TestingTextGeneration(request)
-          body = send_request('TestingTextGeneration', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = TestingTextGenerationResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 运用先进的自然语言处理技术，对原始文本进行优化润色，提升文本的通顺性、表达力和语言质量。
 
         # @param request: Request instance for TextEmbellish.

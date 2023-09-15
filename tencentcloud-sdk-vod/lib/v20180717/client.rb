@@ -3788,7 +3788,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发起视频重生
+        # 发起音画质重生
 
         # @param request: Request instance for RebuildMedia.
         # @type request: :class:`Tencentcloud::vod::V20180717::RebuildMediaRequest`

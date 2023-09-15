@@ -218,6 +218,42 @@ module TencentCloud
         end
       end
 
+      # CancelAuditCertificate请求参数结构体
+      class CancelAuditCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+
+        attr_accessor :CertificateId
+
+        def initialize(certificateid=nil)
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+        end
+      end
+
+      # CancelAuditCertificate返回参数结构体
+      class CancelAuditCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CancelCertificateOrder请求参数结构体
       class CancelCertificateOrderRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
@@ -4558,6 +4594,42 @@ module TencentCloud
         def deserialize(params)
           @SuccessCertificates = params['SuccessCertificates']
           @FailCertificates = params['FailCertificates']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCertificateResubmit请求参数结构体
+      class ModifyCertificateResubmitRequest < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID。
+        # @type CertificateId: String
+
+        attr_accessor :CertificateId
+
+        def initialize(certificateid=nil)
+          @CertificateId = certificateid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+        end
+      end
+
+      # ModifyCertificateResubmit返回参数结构体
+      class ModifyCertificateResubmitResponse < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID。
+        # @type CertificateId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CertificateId, :RequestId
+
+        def initialize(certificateid=nil, requestid=nil)
+          @CertificateId = certificateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
           @RequestId = params['RequestId']
         end
       end

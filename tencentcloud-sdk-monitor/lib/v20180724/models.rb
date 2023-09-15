@@ -3573,10 +3573,12 @@ module TencentCloud
         # @type ReceiverGroups: Array
         # @param PolicyIds: 根据告警策略 Id 列表搜索
         # @type PolicyIds: Array
+        # @param AlarmLevels: 告警等级
+        # @type AlarmLevels: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels
 
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil, alarmlevels=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -3595,6 +3597,7 @@ module TencentCloud
           @ReceiverUids = receiveruids
           @ReceiverGroups = receivergroups
           @PolicyIds = policyids
+          @AlarmLevels = alarmlevels
         end
 
         def deserialize(params)
@@ -3623,6 +3626,7 @@ module TencentCloud
           @ReceiverUids = params['ReceiverUids']
           @ReceiverGroups = params['ReceiverGroups']
           @PolicyIds = params['PolicyIds']
+          @AlarmLevels = params['AlarmLevels']
         end
       end
 

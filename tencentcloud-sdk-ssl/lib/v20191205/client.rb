@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消证书审核
+
+        # @param request: Request instance for CancelAuditCertificate.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::CancelAuditCertificateRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::CancelAuditCertificateResponse`
+        def CancelAuditCertificate(request)
+          body = send_request('CancelAuditCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelAuditCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 取消证书订单。
 
         # @param request: Request instance for CancelCertificateOrder.
@@ -1047,6 +1071,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCertificateProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 针对审核失败或审核取消的付费证书，重新发起审核
+
+        # @param request: Request instance for ModifyCertificateResubmit.
+        # @type request: :class:`Tencentcloud::ssl::V20191205::ModifyCertificateResubmitRequest`
+        # @rtype: :class:`Tencentcloud::ssl::V20191205::ModifyCertificateResubmitResponse`
+        def ModifyCertificateResubmit(request)
+          body = send_request('ModifyCertificateResubmit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCertificateResubmitResponse.new
             model.deserialize(response['Response'])
             model
           else

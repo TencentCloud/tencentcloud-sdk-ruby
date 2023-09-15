@@ -1717,6 +1717,64 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateRole请求参数结构体
+      class ChannelCreateRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 角色名称，最大长度为20个字符，仅限中文、字母、数字和下划线组成。
+        # @type Name: String
+        # @param Agent: 代理企业和员工的信息。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Description: 角色描述，最大长度为50个字符
+        # @type Description: String
+        # @param PermissionGroups: 权限树，权限树内容 PermissionGroups 可参考接口 DescribeIntegrationRoles 的输出
+        # @type PermissionGroups: Array
+
+        attr_accessor :Name, :Agent, :Description, :PermissionGroups
+
+        def initialize(name=nil, agent=nil, description=nil, permissiongroups=nil)
+          @Name = name
+          @Agent = agent
+          @Description = description
+          @PermissionGroups = permissiongroups
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Description = params['Description']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
+        end
+      end
+
+      # ChannelCreateRole返回参数结构体
+      class ChannelCreateRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateSealPolicy请求参数结构体
       class ChannelCreateSealPolicyRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
@@ -1980,6 +2038,45 @@ module TencentCloud
 
       # ChannelCreateWebThemeConfig返回参数结构体
       class ChannelCreateWebThemeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelDeleteRole请求参数结构体
+      class ChannelDeleteRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 代理企业和员工的信息。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param RoleIds: 角色id，最多20个
+        # @type RoleIds: Array
+
+        attr_accessor :Agent, :RoleIds
+
+        def initialize(agent=nil, roleids=nil)
+          @Agent = agent
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # ChannelDeleteRole返回参数结构体
+      class ChannelDeleteRoleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2340,27 +2437,28 @@ module TencentCloud
       class ChannelDescribeRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
-        # @type Offset: Integer
         # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: String
         # @param Filters: 查询的关键字段:
         # Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
         # Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
+        # Key:"IsReturnPermissionGroup"，Values:["0"]:表示接口不返回角色对应的权限树字段，Values:["1"]表示接口返回角色对应的权限树字段
         # @type Filters: Array
+        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大2000
+        # @type Offset: Integer
         # @param Operator: 操作人信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :Offset, :Limit, :Filters, :Operator
+        attr_accessor :Agent, :Limit, :Filters, :Offset, :Operator
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 9
         deprecate :Operator=, :none, 2023, 9
 
-        def initialize(agent=nil, offset=nil, limit=nil, filters=nil, operator=nil)
+        def initialize(agent=nil, limit=nil, filters=nil, offset=nil, operator=nil)
           @Agent = agent
-          @Offset = offset
           @Limit = limit
           @Filters = filters
+          @Offset = offset
           @Operator = operator
         end
 
@@ -2369,7 +2467,6 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
-          @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
@@ -2379,6 +2476,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @Offset = params['Offset']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
@@ -2645,6 +2743,68 @@ module TencentCloud
         end
       end
 
+      # ChannelModifyRole请求参数结构体
+      class ChannelModifyRoleRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 代理企业和员工的信息。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Name: 角色名称，最大长度为20个字符，仅限中文、字母、数字和下划线组成。
+        # @type Name: String
+        # @param RoleId: 角色Id，可通过接口 ChannelDescribeRoles 查询获取
+        # @type RoleId: String
+        # @param Description: 角色描述，最大长度为50个字符
+        # @type Description: String
+        # @param PermissionGroups: 权限树，权限树内容 PermissionGroups 可参考接口 DescribeIntegrationRoles 的输出
+        # @type PermissionGroups: Array
+
+        attr_accessor :Agent, :Name, :RoleId, :Description, :PermissionGroups
+
+        def initialize(agent=nil, name=nil, roleid=nil, description=nil, permissiongroups=nil)
+          @Agent = agent
+          @Name = name
+          @RoleId = roleid
+          @Description = description
+          @PermissionGroups = permissiongroups
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Name = params['Name']
+          @RoleId = params['RoleId']
+          @Description = params['Description']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
+        end
+      end
+
+      # ChannelModifyRole返回参数结构体
+      class ChannelModifyRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 渠道角色信息
       class ChannelRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
@@ -2656,19 +2816,31 @@ module TencentCloud
         # @param RoleStatus: 角色状态：1-启用；2-禁用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleStatus: Integer
+        # @param PermissionGroups: 权限树
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermissionGroups: Array
 
-        attr_accessor :RoleId, :RoleName, :RoleStatus
+        attr_accessor :RoleId, :RoleName, :RoleStatus, :PermissionGroups
 
-        def initialize(roleid=nil, rolename=nil, rolestatus=nil)
+        def initialize(roleid=nil, rolename=nil, rolestatus=nil, permissiongroups=nil)
           @RoleId = roleid
           @RoleName = rolename
           @RoleStatus = rolestatus
+          @PermissionGroups = permissiongroups
         end
 
         def deserialize(params)
           @RoleId = params['RoleId']
           @RoleName = params['RoleName']
           @RoleStatus = params['RoleStatus']
+          unless params['PermissionGroups'].nil?
+            @PermissionGroups = []
+            params['PermissionGroups'].each do |i|
+              permissiongroup_tmp = PermissionGroup.new
+              permissiongroup_tmp.deserialize(i)
+              @PermissionGroups << permissiongroup_tmp
+            end
+          end
         end
       end
 
@@ -5537,6 +5709,119 @@ module TencentCloud
         end
       end
 
+      # 权限树节点权限
+      class Permission < TencentCloud::Common::AbstractModel
+        # @param Name: 权限名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Key: 权限key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Type: 权限类型 1前端，2后端
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Hide: 是否隐藏
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hide: Integer
+        # @param DataLabel: 数据权限标签 1:表示根节点，2:表示叶子结点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataLabel: Integer
+        # @param DataType: 数据权限独有，1:关联其他模块鉴权，2:表示关联自己模块鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataType: Integer
+        # @param DataRange: 数据权限独有，表示数据范围，1：全公司，2:部门及下级部门，3:自己
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataRange: Integer
+        # @param DataTo: 关联权限, 表示这个功能权限要受哪个数据权限管控
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataTo: String
+        # @param ParentKey: 父级权限key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentKey: String
+        # @param IsChecked: 是否选中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsChecked: Boolean
+        # @param Children: 子权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+
+        attr_accessor :Name, :Key, :Type, :Hide, :DataLabel, :DataType, :DataRange, :DataTo, :ParentKey, :IsChecked, :Children
+
+        def initialize(name=nil, key=nil, type=nil, hide=nil, datalabel=nil, datatype=nil, datarange=nil, datato=nil, parentkey=nil, ischecked=nil, children=nil)
+          @Name = name
+          @Key = key
+          @Type = type
+          @Hide = hide
+          @DataLabel = datalabel
+          @DataType = datatype
+          @DataRange = datarange
+          @DataTo = datato
+          @ParentKey = parentkey
+          @IsChecked = ischecked
+          @Children = children
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Key = params['Key']
+          @Type = params['Type']
+          @Hide = params['Hide']
+          @DataLabel = params['DataLabel']
+          @DataType = params['DataType']
+          @DataRange = params['DataRange']
+          @DataTo = params['DataTo']
+          @ParentKey = params['ParentKey']
+          @IsChecked = params['IsChecked']
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Children << permission_tmp
+            end
+          end
+        end
+      end
+
+      # 权限树中的权限组
+      class PermissionGroup < TencentCloud::Common::AbstractModel
+        # @param GroupName: 权限组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param GroupKey: 权限组key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupKey: String
+        # @param Hide: 是否隐藏分组，0否1是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hide: Integer
+        # @param Permissions: 权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+
+        attr_accessor :GroupName, :GroupKey, :Hide, :Permissions
+
+        def initialize(groupname=nil, groupkey=nil, hide=nil, permissions=nil)
+          @GroupName = groupname
+          @GroupKey = groupkey
+          @Hide = hide
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @GroupKey = params['GroupKey']
+          @Hide = params['Hide']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permission_tmp = Permission.new
+              permission_tmp.deserialize(i)
+              @Permissions << permission_tmp
+            end
+          end
+        end
+      end
+
       # PrepareFlows请求参数结构体
       class PrepareFlowsRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
@@ -6640,12 +6925,13 @@ module TencentCloud
 
       # 主题配置
       class WebThemeConfig < TencentCloud::Common::AbstractModel
-        # @param DisplaySignBrandLogo: 页面底部是否显示电子签logo
-        # <br/>true：允许在页面底部隐藏电子签logo
-        # <br/>默认false，不允许允许在页面底部隐藏电子签logo
+        # @param DisplaySignBrandLogo: 是否显示页面底部电子签logo，取值如下：
+        # <ul><li> **true**：页面底部显示电子签logo</li>
+        # <li> **false**：页面底部不显示电子签logo（默认）</li></ul>
         # @type DisplaySignBrandLogo: Boolean
-        # @param WebEmbedThemeColor: 嵌入式主题颜色
-        # <br/>支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        # @param WebEmbedThemeColor: 主题颜色：
+        # 支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        # <br/>
         # @type WebEmbedThemeColor: String
 
         attr_accessor :DisplaySignBrandLogo, :WebEmbedThemeColor

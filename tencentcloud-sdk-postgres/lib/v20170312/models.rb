@@ -681,7 +681,8 @@ module TencentCloud
         # @type Zone: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: Integer
-        # @param DBVersion: PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBMajorVersion、DBKernelVersion至少需要传递一个。
+        # @param DBVersion: PostgreSQL社区大版本+小版本号。
+        # 一般场景不推荐传入该参数。如需指定，只能传当前大版本号下最新小版本号。
         # @type DBVersion: String
         # @param InstanceChargeType: 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。
         # @type InstanceChargeType: String
@@ -705,9 +706,11 @@ module TencentCloud
         # @type TagList: Array
         # @param SecurityGroupIds: 安全组id
         # @type SecurityGroupIds: Array
-        # @param DBMajorVersion: PostgreSQL主要版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBVersion、DBKernelVersion至少需要传递一个。
+        # @param DBMajorVersion: PostgreSQL大版本号（该参数当前必传），版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。目前支持10，11，12，13，14，15这几个大版本，详情见[内核版本概述](https://cloud.tencent.com/document/product/409/67018)。
+        # 输入该参数时，会基于此大版本号创建对应的最新小版本的最新内核版本号实例。
         # @type DBMajorVersion: String
-        # @param DBKernelVersion: PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。该参数和DBVersion、DBMajorVersion至少需要传递一个。
+        # @param DBKernelVersion: PostgreSQL内核版本号。
+        # 一般场景不推荐传入该参数。如需指定，只能传当前大版本号下最新内核版本号。
         # @type DBKernelVersion: String
 
         attr_accessor :SpecCode, :Storage, :InstanceCount, :Period, :Zone, :ProjectId, :DBVersion, :InstanceChargeType, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :AutoRenewFlag, :ActivityId, :Name, :NeedSupportIpv6, :TagList, :SecurityGroupIds, :DBMajorVersion, :DBKernelVersion

@@ -1494,6 +1494,26 @@ module TencentCloud
         end
       end
 
+      # 计费下单响应实体
+      class DealData < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号列表，元素个数与请求包的goods数组的元素个数一致，商品详情与订单按顺序对应
+        # @type DealNames: Array
+        # @param BigDealId: 大订单号，一个大订单号下可以有多个子订单，说明是同一次下单[{},{}]
+        # @type BigDealId: String
+
+        attr_accessor :DealNames, :BigDealId
+
+        def initialize(dealnames=nil, bigdealid=nil)
+          @DealNames = dealnames
+          @BigDealId = bigdealid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @BigDealId = params['BigDealId']
+        end
+      end
+
       # DeleteAccessExport请求参数结构体
       class DeleteAccessExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出ID
@@ -5316,6 +5336,67 @@ module TencentCloud
         end
       end
 
+      # GenerateDealsAndPayNew请求参数结构体
+      class GenerateDealsAndPayNewRequest < TencentCloud::Common::AbstractModel
+        # @param Goods: 计费下单入参
+        # @type Goods: Array
+
+        attr_accessor :Goods
+
+        def initialize(goods=nil)
+          @Goods = goods
+        end
+
+        def deserialize(params)
+          unless params['Goods'].nil?
+            @Goods = []
+            params['Goods'].each do |i|
+              goodnews_tmp = GoodNews.new
+              goodnews_tmp.deserialize(i)
+              @Goods << goodnews_tmp
+            end
+          end
+        end
+      end
+
+      # GenerateDealsAndPayNew返回参数结构体
+      class GenerateDealsAndPayNewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 计费下单响应结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
+        # @param Status: 1:成功，0:失败
+        # @type Status: Integer
+        # @param ReturnMessage: 返回message
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnMessage: String
+        # @param InstanceId: 购买的实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Status, :ReturnMessage, :InstanceId, :RequestId
+
+        def initialize(data=nil, status=nil, returnmessage=nil, instanceid=nil, requestid=nil)
+          @Data = data
+          @Status = status
+          @ReturnMessage = returnmessage
+          @InstanceId = instanceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DealData.new
+            @Data.deserialize(params['Data'])
+          end
+          @Status = params['Status']
+          @ReturnMessage = params['ReturnMessage']
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetAttackDownloadRecords请求参数结构体
       class GetAttackDownloadRecordsRequest < TencentCloud::Common::AbstractModel
 
@@ -5505,6 +5586,129 @@ module TencentCloud
             @QpsData.deserialize(params['QpsData'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 计费下单接口出入参Goods
+      class GoodNews < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 商品数量
+        # @type GoodsNum: Integer
+        # @param GoodsDetail: 商品明细
+        # @type GoodsDetail: :class:`Tencentcloud::Waf.v20180125.models.GoodsDetailNew`
+        # @param GoodsCategoryId: 订单类型ID，用来唯一标识一个业务的一种场景（总共三种场景：新购、配置变更、续费）
+        # 高级版: 102375(新购),102376(续费),102377(变配)
+        # 企业版 : 102378(新购),102379(续费),102380(变配)
+        # 旗舰版 : 102369(新购),102370(续费),102371(变配)
+        # 高级版-CLB: 新购 101198  续费 101199 变配 101200
+        # 企业版-CLB 101204(新购),101205(续费),101206(变配)
+        # 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsCategoryId: Integer
+        # @param RegionId: 购买waf实例区域ID
+        # 1 表示购买大陆资源
+        # 2表示购买非中国大陆资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+
+        attr_accessor :GoodsNum, :GoodsDetail, :GoodsCategoryId, :RegionId
+
+        def initialize(goodsnum=nil, goodsdetail=nil, goodscategoryid=nil, regionid=nil)
+          @GoodsNum = goodsnum
+          @GoodsDetail = goodsdetail
+          @GoodsCategoryId = goodscategoryid
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          unless params['GoodsDetail'].nil?
+            @GoodsDetail = GoodsDetailNew.new
+            @GoodsDetail.deserialize(params['GoodsDetail'])
+          end
+          @GoodsCategoryId = params['GoodsCategoryId']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # 产品明细
+      class GoodsDetailNew < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 时间间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 单位，支持m、y、d
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param SubProductCode: 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
+        # 高级版 ：sp_wsm_waf_premium
+        # 企业版 ：sp_wsm_waf_enterprise
+        # 旗舰版 ：sp_wsm_waf_ultimate
+        # 高级版-CLB:sp_wsm_waf_premium_clb
+        # 企业版-CLB : sp_wsm_waf_enterprise_clb
+        # 旗舰版-CLB:sp_wsm_waf_ultimate_clb
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductCode: String
+        # @param Pid: 业务产品申请的pid（对应一个定价公式），通过pid计费查询到定价模型
+        # 高级版 ：1000827
+        # 企业版 ：1000830
+        # 旗舰版 ：1000832
+        # 高级版-CLB:1001150
+        # 企业版-CLB : 1001152
+        # 旗舰版-CLB:1001154
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: Integer
+        # @param InstanceName: waf实例名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param AutoRenewFlag: 1:自动续费，0:不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param RealRegion: waf购买的实际地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealRegion: Integer
+        # @param LabelTypes: 计费细项标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelTypes: Array
+        # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCounts: Array
+        # @param CurDeadline: 变配使用，实例到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param InstanceId: 对存在的实例购买bot 或api 安全
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId
+
+        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @SubProductCode = subproductcode
+          @Pid = pid
+          @InstanceName = instancename
+          @AutoRenewFlag = autorenewflag
+          @RealRegion = realregion
+          @LabelTypes = labeltypes
+          @LabelCounts = labelcounts
+          @CurDeadline = curdeadline
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @SubProductCode = params['SubProductCode']
+          @Pid = params['Pid']
+          @InstanceName = params['InstanceName']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @RealRegion = params['RealRegion']
+          @LabelTypes = params['LabelTypes']
+          @LabelCounts = params['LabelCounts']
+          @CurDeadline = params['CurDeadline']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -8218,11 +8422,16 @@ module TencentCloud
 
       # 防信息泄露的匹配条件结构体
       class StrategyForAntiInfoLeak < TencentCloud::Common::AbstractModel
-        # @param Field: 匹配字段
+        # @param Field: 匹配条件，returncode（响应码）、keywords（关键字）、information（敏感信息）
         # @type Field: String
-        # @param CompareFunc: 逻辑符号
+        # @param CompareFunc: 逻辑符号，固定取值为contains
         # @type CompareFunc: String
-        # @param Content: 匹配内容
+        # @param Content: 匹配内容。
+        # 以下三个对应Field为information时可取的匹配内容：
+        # idcard（身份证）、phone（手机号）、bankcard（银行卡）。
+        # 以下为对应Field为returncode时可取的匹配内容：
+        # 400（状态码400）、403（状态码403）、404（状态码404）、4xx（其它4xx状态码）、500（状态码500）、501（状态码501）、502（状态码502）、504（状态码504）、5xx（其它5xx状态码）。
+        # 当对应Field为keywords时由用户自己输入匹配内容。
         # @type Content: String
 
         attr_accessor :Field, :CompareFunc, :Content

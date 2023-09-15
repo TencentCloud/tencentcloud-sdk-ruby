@@ -350,12 +350,15 @@ module TencentCloud
         # @param InstanceType: EIP绑定的实例类型。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
+        # @param Egress: 静态单线IP网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
         # @param AntiDDoSPackageId: 高防包ID,当EIP类型为高防EIP时，返回EIP绑定的高防包ID.
         # @type AntiDDoSPackageId: String
 
-        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :AntiDDoSPackageId
+        attr_accessor :AddressId, :AddressName, :AddressStatus, :AddressIp, :InstanceId, :CreatedTime, :NetworkInterfaceId, :PrivateAddressIp, :IsArrears, :IsBlocked, :IsEipDirectConnection, :AddressType, :CascadeRelease, :EipAlgType, :InternetServiceProvider, :LocalBgp, :Bandwidth, :InternetChargeType, :TagSet, :DeadlineDate, :InstanceType, :Egress, :AntiDDoSPackageId
 
-        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, antiddospackageid=nil)
+        def initialize(addressid=nil, addressname=nil, addressstatus=nil, addressip=nil, instanceid=nil, createdtime=nil, networkinterfaceid=nil, privateaddressip=nil, isarrears=nil, isblocked=nil, iseipdirectconnection=nil, addresstype=nil, cascaderelease=nil, eipalgtype=nil, internetserviceprovider=nil, localbgp=nil, bandwidth=nil, internetchargetype=nil, tagset=nil, deadlinedate=nil, instancetype=nil, egress=nil, antiddospackageid=nil)
           @AddressId = addressid
           @AddressName = addressname
           @AddressStatus = addressstatus
@@ -377,6 +380,7 @@ module TencentCloud
           @TagSet = tagset
           @DeadlineDate = deadlinedate
           @InstanceType = instancetype
+          @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
         end
 
@@ -412,6 +416,7 @@ module TencentCloud
           end
           @DeadlineDate = params['DeadlineDate']
           @InstanceType = params['InstanceType']
+          @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
         end
       end
@@ -671,7 +676,6 @@ module TencentCloud
         # @param AddressType: EIP类型。默认值：EIP。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>AnycastEIP：加速IP，可参见 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)</li></ul>注意：仅部分地域支持加速IP。</li></ul>
         # <ul style="margin:0"><li>已开通精品IP白名单的用户，可选值：<ul><li>HighQualityEIP：精品IP</li></ul>注意：仅部分地域支持精品IP。</li></ul>
-        # </ul>
         # <ul style="margin:0"><li>已开高防IP白名单的用户，可选值：<ul><li>AntiDDoSEIP：高防IP</li></ul>注意：仅部分地域支持高防IP。</li></ul>
         # @type AddressType: String
         # @param AnycastZone: Anycast发布域。
@@ -688,7 +692,7 @@ module TencentCloud
         # @type BandwidthPackageId: String
         # @param AddressName: EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         # @type AddressName: String
-        # @param Egress: 网络出口，默认是：center_egress1
+        # @param Egress: 静态单线IP网络出口，默认值：center_egress1
         # @type Egress: String
         # @param AntiDDoSPackageId: 高防包ID， 申请高防IP时，该字段必传。
         # @type AntiDDoSPackageId: String
@@ -17120,10 +17124,16 @@ module TencentCloud
         # @param NatProductVersion: NAT网关大版本号，传统型=1，标准型=2
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatProductVersion: Integer
+        # @param SmartScheduleMode: 是否启用根据目的网段选择SNAT使用的EIP功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartScheduleMode: Boolean
+        # @param DedicatedClusterId: NAT实例归属的专属集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DedicatedClusterId: String
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -17144,6 +17154,8 @@ module TencentCloud
           @ExclusiveGatewayBandwidth = exclusivegatewaybandwidth
           @RestrictState = restrictstate
           @NatProductVersion = natproductversion
+          @SmartScheduleMode = smartschedulemode
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
@@ -17195,6 +17207,8 @@ module TencentCloud
           @ExclusiveGatewayBandwidth = params['ExclusiveGatewayBandwidth']
           @RestrictState = params['RestrictState']
           @NatProductVersion = params['NatProductVersion']
+          @SmartScheduleMode = params['SmartScheduleMode']
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 
@@ -17206,19 +17220,23 @@ module TencentCloud
         # @type PublicIpAddress: String
         # @param IsBlocked: 资源封堵状态。true表示弹性ip处于封堵状态，false表示弹性ip处于未封堵状态。
         # @type IsBlocked: Boolean
+        # @param BlockType: 资源封堵类型。NORMAL表示未封禁，SECURITY表示安全封禁，USER表示用户封禁，OTHER表示其他封禁，多个原因封禁时用&连接，比如：SECURITY&USER&OTHER。
+        # @type BlockType: String
 
-        attr_accessor :AddressId, :PublicIpAddress, :IsBlocked
+        attr_accessor :AddressId, :PublicIpAddress, :IsBlocked, :BlockType
 
-        def initialize(addressid=nil, publicipaddress=nil, isblocked=nil)
+        def initialize(addressid=nil, publicipaddress=nil, isblocked=nil, blocktype=nil)
           @AddressId = addressid
           @PublicIpAddress = publicipaddress
           @IsBlocked = isblocked
+          @BlockType = blocktype
         end
 
         def deserialize(params)
           @AddressId = params['AddressId']
           @PublicIpAddress = params['PublicIpAddress']
           @IsBlocked = params['IsBlocked']
+          @BlockType = params['BlockType']
         end
       end
 

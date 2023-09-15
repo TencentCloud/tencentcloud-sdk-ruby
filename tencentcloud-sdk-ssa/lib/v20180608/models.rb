@@ -3959,6 +3959,97 @@ module TencentCloud
         end
       end
 
+      # SaDivulgeScanRuleMutate请求参数结构体
+      class SaDivulgeScanRuleMutateRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: String
+        # @param DivulgeSoure: DivulgeSoure
+        # @type DivulgeSoure: String
+        # @param DivulgeSoureUrl: DivulgeSoureUrl
+        # @type DivulgeSoureUrl: String
+        # @param RuleName: RuleName
+        # @type RuleName: String
+        # @param RuleWord: RuleWord
+        # @type RuleWord: String
+        # @param ScanStatus: ScanStatus
+        # @type ScanStatus: String
+        # @param DivulgeType: DivulgeType
+        # @type DivulgeType: String
+        # @param RepairAdvice: RepairAdvice
+        # @type RepairAdvice: String
+
+        attr_accessor :Id, :DivulgeSoure, :DivulgeSoureUrl, :RuleName, :RuleWord, :ScanStatus, :DivulgeType, :RepairAdvice
+
+        def initialize(id=nil, divulgesoure=nil, divulgesoureurl=nil, rulename=nil, ruleword=nil, scanstatus=nil, divulgetype=nil, repairadvice=nil)
+          @Id = id
+          @DivulgeSoure = divulgesoure
+          @DivulgeSoureUrl = divulgesoureurl
+          @RuleName = rulename
+          @RuleWord = ruleword
+          @ScanStatus = scanstatus
+          @DivulgeType = divulgetype
+          @RepairAdvice = repairadvice
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DivulgeSoure = params['DivulgeSoure']
+          @DivulgeSoureUrl = params['DivulgeSoureUrl']
+          @RuleName = params['RuleName']
+          @RuleWord = params['RuleWord']
+          @ScanStatus = params['ScanStatus']
+          @DivulgeType = params['DivulgeType']
+          @RepairAdvice = params['RepairAdvice']
+        end
+      end
+
+      # SaDivulgeScanRuleMutate返回参数结构体
+      class SaDivulgeScanRuleMutateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: Data
+        # @type Data: :class:`Tencentcloud::Ssa.v20180608.models.SaDivulgeScanRuleSetList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SaDivulgeScanRuleSetList.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设置_泄露监测产品监测扫描规则策略
+      class SaDivulgeScanRuleSetList < TencentCloud::Common::AbstractModel
+        # @param Value: Value
+        # @type Value: String
+        # @param Code: Code
+        # @type Code: Integer
+        # @param Message: Message
+        # @type Message: String
+
+        attr_accessor :Value, :Code, :Message
+
+        def initialize(value=nil, code=nil, message=nil)
+          @Value = value
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
       # SaEventPub请求参数结构体
       class SaEventPubRequest < TencentCloud::Common::AbstractModel
         # @param Asset: 受影响资产

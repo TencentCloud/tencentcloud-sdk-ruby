@@ -7061,6 +7061,66 @@ module TencentCloud
         end
       end
 
+      # QueryResult请求参数结构体
+      class QueryResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param NextToken: lastReadFile为上一次读取的文件，lastReadOffset为上一次读取到的位置
+        # @type NextToken: String
+
+        attr_accessor :TaskId, :NextToken
+
+        def initialize(taskid=nil, nexttoken=nil)
+          @TaskId = taskid
+          @NextToken = nexttoken
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @NextToken = params['NextToken']
+        end
+      end
+
+      # QueryResult返回参数结构体
+      class QueryResultResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param ResultSet: 结果数据
+        # @type ResultSet: String
+        # @param ResultSchema: schema
+        # @type ResultSchema: Array
+        # @param NextToken: 分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :ResultSet, :ResultSchema, :NextToken, :RequestId
+
+        def initialize(taskid=nil, resultset=nil, resultschema=nil, nexttoken=nil, requestid=nil)
+          @TaskId = taskid
+          @ResultSet = resultset
+          @ResultSchema = resultschema
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ResultSet = params['ResultSet']
+          unless params['ResultSchema'].nil?
+            @ResultSchema = []
+            params['ResultSchema'].each do |i|
+              column_tmp = Column.new
+              column_tmp.deserialize(i)
+              @ResultSchema << column_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReportHeartbeatMetaData请求参数结构体
       class ReportHeartbeatMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param DatasourceConnectionName: 数据源名称

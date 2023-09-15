@@ -5697,7 +5697,7 @@ module TencentCloud
         # <li>SimpleAES</li>
         # <li>Widevine</li>
         # <li>FairPlay</li>
-        # 如果取值为空字符串，代表不对视频做 DRM 保护。
+        # 默认值为空字符串，如果取值为空字符串，代表不对视频做 DRM 保护。
         # @type DrmType: String
         # @param DrmKeyProvider: DRM 的密钥提供商，取值范围：
         # <li>SDMC：华曦达；</li>
@@ -6299,8 +6299,10 @@ module TencentCloud
         # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
         # @param RowCount: 雪碧图中小图的行数。
+        # 注意：小图的行数会影响最终大图的高度，大图的高度最大为15000像素，其中大图的高度为小图行数与小图高度的乘积。
         # @type RowCount: Integer
         # @param ColumnCount: 雪碧图中小图的列数。
+        # 注意：小图的列数会影响最终大图的宽度，大图的宽度最大为15000像素，其中大图的宽度为小图列数与小图宽度的乘积。
         # @type ColumnCount: Integer
         # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         # @type SubAppId: Integer
@@ -6319,6 +6321,7 @@ module TencentCloud
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
+        # 注意：小图的宽度会影响最终大图的宽度，大图的宽度最大为15000像素，其中大图的宽度为小图列数与小图宽度的乘积。
         # @type Width: Integer
         # @param Height: 雪碧图中小图的高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
@@ -6326,6 +6329,7 @@ module TencentCloud
         # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
         # 默认值：0。
+        # 注意：小图的高度会影响最终大图的高度，大图的高度最大为15000像素，其中大图的高度为小图行数与小图高度的乘积。
         # @type Height: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
@@ -7333,27 +7337,27 @@ module TencentCloud
       class CreateVodDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要接入点播的加速域名。注意：不支持填写泛域名。
         # @type Domain: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
-        # @type SubAppId: Integer
         # @param AccelerateArea: 需要开启 CDN 加速的区域：
         # <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
         # <li>Outside Chinese Mainland: 中国境外。</li>
         # <li>Global: 全球范围。</li>
         # 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         # @type AccelerateArea: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
 
-        attr_accessor :Domain, :SubAppId, :AccelerateArea
+        attr_accessor :Domain, :AccelerateArea, :SubAppId
 
-        def initialize(domain=nil, subappid=nil, acceleratearea=nil)
+        def initialize(domain=nil, acceleratearea=nil, subappid=nil)
           @Domain = domain
-          @SubAppId = subappid
           @AccelerateArea = acceleratearea
+          @SubAppId = subappid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
-          @SubAppId = params['SubAppId']
           @AccelerateArea = params['AccelerateArea']
+          @SubAppId = params['SubAppId']
         end
       end
 
@@ -21556,7 +21560,7 @@ module TencentCloud
 
       # RebuildMedia返回参数结构体
       class RebuildMediaResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 视频重生的任务 ID，可以通过该 ID 查询视频重生任务的状态。
+        # @param TaskId: 音画质重生的任务 ID，可以通过该 ID 查询音画质重生任务的状态。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -22758,6 +22762,8 @@ module TencentCloud
       class RestoreMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileIds: 媒体文件唯一标识列表，最大长度：100。
         # @type FileIds: Array
+        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
         # @param RestoreDay: 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         # @type RestoreDay: Integer
         # @param RestoreTier: 解冻模式。当媒体文件当前的存储类型为归档存储时，有以下取值：
@@ -22768,23 +22774,21 @@ module TencentCloud
         # <li>标准模式：Standard，解冻任务在24小时后完成。</li>
         # <li>批量模式：Bulk，解冻任务在48小时后完成。</li>
         # @type RestoreTier: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        # @type SubAppId: Integer
 
-        attr_accessor :FileIds, :RestoreDay, :RestoreTier, :SubAppId
+        attr_accessor :FileIds, :SubAppId, :RestoreDay, :RestoreTier
 
-        def initialize(fileids=nil, restoreday=nil, restoretier=nil, subappid=nil)
+        def initialize(fileids=nil, subappid=nil, restoreday=nil, restoretier=nil)
           @FileIds = fileids
+          @SubAppId = subappid
           @RestoreDay = restoreday
           @RestoreTier = restoretier
-          @SubAppId = subappid
         end
 
         def deserialize(params)
           @FileIds = params['FileIds']
+          @SubAppId = params['SubAppId']
           @RestoreDay = params['RestoreDay']
           @RestoreTier = params['RestoreTier']
-          @SubAppId = params['SubAppId']
         end
       end
 
