@@ -3562,18 +3562,15 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param HostIds: 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         # @type HostIds: Array
-        # @param HostIps: 指定母机IP生产子机
-        # @type HostIps: Array
         # @param HostId: 实例所属的专用宿主机ID，仅用于出参。
         # @type HostId: String
 
-        attr_accessor :Zone, :ProjectId, :HostIds, :HostIps, :HostId
+        attr_accessor :Zone, :ProjectId, :HostIds, :HostId
 
-        def initialize(zone=nil, projectid=nil, hostids=nil, hostips=nil, hostid=nil)
+        def initialize(zone=nil, projectid=nil, hostids=nil, hostid=nil)
           @Zone = zone
           @ProjectId = projectid
           @HostIds = hostids
-          @HostIps = hostips
           @HostId = hostid
         end
 
@@ -3581,7 +3578,6 @@ module TencentCloud
           @Zone = params['Zone']
           @ProjectId = params['ProjectId']
           @HostIds = params['HostIds']
-          @HostIps = params['HostIps']
           @HostId = params['HostId']
         end
       end

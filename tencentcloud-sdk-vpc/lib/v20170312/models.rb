@@ -3476,10 +3476,12 @@ module TencentCloud
         # @type PublicIpAddressesBandwidthOut: Integer
         # @param PublicIpFromSameZone: 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
         # @type PublicIpFromSameZone: Boolean
+        # @param NatProductVersion: NAT网关大版本号，1是传统型，2是标准型，默认是1
+        # @type NatProductVersion: Integer
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
 
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -3492,6 +3494,7 @@ module TencentCloud
           @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
           @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
           @PublicIpFromSameZone = publicipfromsamezone
+          @NatProductVersion = natproductversion
         end
 
         def deserialize(params)
@@ -3514,6 +3517,7 @@ module TencentCloud
           @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
           @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
           @PublicIpFromSameZone = params['PublicIpFromSameZone']
+          @NatProductVersion = params['NatProductVersion']
         end
       end
 

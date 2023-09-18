@@ -320,16 +320,19 @@ module TencentCloud
         # @type Url: String
         # @param InputImageFaceRect: 上传的图片人脸位置信息（人脸框）
         # @type InputImageFaceRect: :class:`Tencentcloud::Facefusion.v20220927.models.FaceRect`
-        # @param TemplateFaceID: 控制台上传的素材人脸ID，不填默认取最大人脸
+        # @param TemplateFaceID: 控制台上传的素材人脸ID，不填默认取最大人脸。此字段仅适用于控制台上传素材的有素材场景。
         # @type TemplateFaceID: String
+        # @param TemplateFaceRect: 模版图片人脸位置信息(人脸框)，不填默认取最大人脸。此字段仅适用于自定义模版素材场景。
+        # @type TemplateFaceRect: :class:`Tencentcloud::Facefusion.v20220927.models.FaceRect`
 
-        attr_accessor :Image, :Url, :InputImageFaceRect, :TemplateFaceID
+        attr_accessor :Image, :Url, :InputImageFaceRect, :TemplateFaceID, :TemplateFaceRect
 
-        def initialize(image=nil, url=nil, inputimagefacerect=nil, templatefaceid=nil)
+        def initialize(image=nil, url=nil, inputimagefacerect=nil, templatefaceid=nil, templatefacerect=nil)
           @Image = image
           @Url = url
           @InputImageFaceRect = inputimagefacerect
           @TemplateFaceID = templatefaceid
+          @TemplateFaceRect = templatefacerect
         end
 
         def deserialize(params)
@@ -340,6 +343,10 @@ module TencentCloud
             @InputImageFaceRect.deserialize(params['InputImageFaceRect'])
           end
           @TemplateFaceID = params['TemplateFaceID']
+          unless params['TemplateFaceRect'].nil?
+            @TemplateFaceRect = FaceRect.new
+            @TemplateFaceRect.deserialize(params['TemplateFaceRect'])
+          end
         end
       end
 

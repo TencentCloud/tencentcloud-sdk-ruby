@@ -22,7 +22,9 @@ module TencentCloud
         # @param Name: 超管名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Mobile: 超管手机号
+        # @param Mobile: 超管手机号，打码显示
+        # 示例值：138****1569
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
 
@@ -377,13 +379,16 @@ module TencentCloud
 
       # BindEmployeeUserIdWithClientOpenId请求参数结构体
       class BindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定。（参数参考示例）
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserId: 电子签系统员工UserId
+        # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)；或者通过<a href="https://qian.tencent.com/developers/companyApis/staffs/DescribeIntegrationEmployees" target="_blank">DescribeIntegrationEmployees</a>接口获取。
         # @type UserId: String
-        # @param OpenId: 客户系统OpenId
+        # @param OpenId: 员工在贵司业务系统中的唯一身份标识，用于与腾讯电子签账号进行映射，确保在同一企业内不会出现重复。 该标识最大长度为64位字符串，仅支持包含26个英文字母和数字0-9的字符。
         # @type OpenId: String
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :UserId, :OpenId, :Agent
@@ -411,7 +416,8 @@ module TencentCloud
 
       # BindEmployeeUserIdWithClientOpenId返回参数结构体
       class BindEmployeeUserIdWithClientOpenIdResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 绑定是否成功，1表示成功，0表示失败
+        # @param Status: 绑定是否成功。
+        # <ul><li>**0**：失败</li><li>**1**：成功</li></ul>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2302,18 +2308,19 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param DeptName: 部门名称，不超过50个字符
+        # @param DeptName: 部门名称，最大长度为50个字符。
         # @type DeptName: String
-        # @param Agent: 代理企业和员工的信息。
-        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ParentDeptId: 电子签父部门ID，与ParentDeptOpenId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        # @param ParentDeptId: 电子签父部门ID。
+        # 注：`如果同时指定了ParentDeptId与ParentDeptOpenId参数，系统将优先使用ParentDeptId。当二者都未指定时，创建的新部门将自动填充至根节点部门下。`
         # @type ParentDeptId: String
-        # @param ParentDeptOpenId: 第三方平台中父部门ID,与ParentDeptId二选一,优先ParentDeptId,都为空时自动填充至根节点下
+        # @param ParentDeptOpenId: 第三方平台中父部门ID。
+        # 注：`如果同时指定了ParentDeptId与ParentDeptOpenId参数，系统将优先使用ParentDeptId。当二者都未指定时，创建的新部门将自动填充至根节点部门下。`
         # @type ParentDeptOpenId: String
-        # @param DeptOpenId: 客户系统部门ID，不超过64个字符
+        # @param DeptOpenId: 客户系统部门ID，最大长度为64个字符。
         # @type DeptOpenId: String
-        # @param OrderNo: 排序号,1~30000范围内
+        # @param OrderNo: 排序号，支持设置的数值范围为1~30000。同一父部门下，排序号越大，部门顺序越靠前。
         # @type OrderNo: Integer
 
         attr_accessor :Operator, :DeptName, :Agent, :ParentDeptId, :ParentDeptOpenId, :DeptOpenId, :OrderNo
@@ -2347,7 +2354,7 @@ module TencentCloud
 
       # CreateIntegrationDepartment返回参数结构体
       class CreateIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
-        # @param DeptId: 电子签部门ID
+        # @param DeptId: 电子签部门ID。建议开发者保存此部门ID，方便后续查询或修改部门信息。
         # @type DeptId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2367,13 +2374,15 @@ module TencentCloud
 
       # CreateIntegrationEmployees请求参数结构体
       class CreateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，userId必填
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待创建员工的信息，不超过20个。
-        # 所有类型的企业支持的入参：Mobile和DisplayName必填,OpenId、Email和Department.DepartmentId选填，其他字段暂不支持。
-        # 企微类型的企业特有支持的入参：WeworkOpenId，传入此字段无需在传入其他信息
+        # @param Employees: 待创建员工的信息，最多不超过20个。
+        # 其中入参Mobile和DisplayName必填，OpenId、Email和Department.DepartmentId选填，其他字段暂不支持设置。
+        # 在创建企微企业员工场景下，只需传入WeworkOpenId，无需再传其他信息。
         # @type Employees: Array
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :Employees, :Agent
@@ -2406,7 +2415,7 @@ module TencentCloud
 
       # CreateIntegrationEmployees返回参数结构体
       class CreateIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
-        # @param CreateEmployeeResult: 创建员工的结果
+        # @param CreateEmployeeResult: 创建员工的结果。包含创建成功的数据与创建失败数据。
         # @type CreateEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.CreateStaffResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3714,12 +3723,13 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param DeptId: 电子签中的部门id,通过DescribeIntegrationDepartments接口可获得
+        # @param DeptId: 电子签中的部门ID，通过<a href="https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments" target="_blank">DescribeIntegrationDepartments</a>接口可获得。
         # @type DeptId: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ReceiveDeptId: 交接部门ID。待删除部门中的合同、印章和模板数据，交接至该部门ID下，未填写交接至公司根部门。
+        # @param ReceiveDeptId: 交接部门ID。
+        # 待删除部门中的合同、印章和模板数据，将会被交接至该部门ID下；若未填写则交接至公司根部门。
         # @type ReceiveDeptId: String
 
         attr_accessor :Operator, :DeptId, :Agent, :ReceiveDeptId
@@ -3763,11 +3773,15 @@ module TencentCloud
 
       # DeleteIntegrationEmployees请求参数结构体
       class DeleteIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，userId必填
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待移除员工的信息，userId和openId二选一，必填一个，如果需要指定交接人的话，ReceiveUserId或者ReceiveOpenId字段二选一
+        # @param Employees: 待移除员工的信息。应符合以下规则：
+        # <ul><li>UserId和OpenId不可同时为空。</li>
+        # <li>若需要进行离职交接，交接人信息ReceiveUserId和ReceiveOpenId不可同时为空。否则视为不进行离职交接。</li></ul>
         # @type Employees: Array
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :Employees, :Agent
@@ -3800,7 +3814,9 @@ module TencentCloud
 
       # DeleteIntegrationEmployees返回参数结构体
       class DeleteIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteEmployeeResult: 员工删除数据
+        # @param DeleteEmployeeResult: 员工删除结果。包含成功数据与失败数据。
+        # <ul><li>**成功数据**：展示员工姓名、手机号与电子签平台UserId</li>
+        # <li>**失败数据**：展示员工电子签平台UserId、第三方平台OpenId和失败原因</li></ul>
         # @type DeleteEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.DeleteStaffsResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3972,11 +3988,11 @@ module TencentCloud
         end
       end
 
-      # 集成版员工部门信息
+      # 集成版员工部门信息。
       class Department < TencentCloud::Common::AbstractModel
-        # @param DepartmentId: 部门id
+        # @param DepartmentId: 部门ID。
         # @type DepartmentId: String
-        # @param DepartmentName: 部门名称
+        # @param DepartmentName: 部门名称。
         # @type DepartmentName: String
 
         attr_accessor :DepartmentId, :DepartmentName
@@ -4538,14 +4554,18 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param QueryType: 查询类型 0-查询单个部门节点 1-单个部门节点及一级子节点部门列表
+        # @param QueryType: 查询类型，支持以下类型：
+        # <ul><li>**0**：查询单个部门节点列表，不包含子节点部门信息</li>
+        # <li>**1**：查询单个部门节点级一级子节点部门信息列表</li></ul>
         # @type QueryType: Integer
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param DeptId: 部门ID,与DeptOpenId二选一,优先DeptId,都为空时获取根节点数据
+        # @param DeptId: 查询的部门ID。
+        # 注：`如果同时指定了DeptId与DeptOpenId参数，系统将优先使用DeptId参数进行查询。当二者都未指定时，系统将返回根节点部门数据。`
         # @type DeptId: String
-        # @param DeptOpenId: 客户系统部门ID,与DeptId二选一,优先DeptId,都为空时获取根节点数据
+        # @param DeptOpenId: 查询的客户系统部门ID。
+        # 注：`如果同时指定了DeptId与DeptOpenId参数，系统将优先使用DeptId参数进行查询。当二者都未指定时，系统将返回根节点部门数据。`
         # @type DeptOpenId: String
 
         attr_accessor :Operator, :QueryType, :Agent, :DeptId, :DeptOpenId
@@ -4575,7 +4595,7 @@ module TencentCloud
 
       # DescribeIntegrationDepartments返回参数结构体
       class DescribeIntegrationDepartmentsResponse < TencentCloud::Common::AbstractModel
-        # @param Departments: 部门列表
+        # @param Departments: 部门信息列表。部门信息根据部门排序号OrderNo降序排列，根据部门创建时间升序排列。
         # @type Departments: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4602,18 +4622,25 @@ module TencentCloud
 
       # DescribeIntegrationEmployees请求参数结构体
       class DescribeIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，userId必填
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Limit: 指定每页多少条数据，单页最大20
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 20。
         # @type Limit: Integer
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param Filters: 查询过滤实名用户，Key为Status，Values为["IsVerified"]，查询过滤未实名用户，Key为Status，Values为["NotVerified"]
-        # 查询某个部门的用户，Key为DepartmentId，Values为["DepartmentId"]
-        # 根据用户Id查询员工时，Key为UserId，Values为["UserId"]
-        # 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
+        # @param Filters: 查询的关键字段，支持Key-Values查询。可选键值如下：
+        # <ul>
+        #   <li>Key:**"Status"**，根据实名状态查询员工，Values可选：
+        #     <ul><li>**["IsVerified"]**：查询已实名的员工</li><li>**["NotVerified"]**：查询未实名的员工</li></ul></li>
+        #   <li>Key:**"DepartmentId"**，根据部门ID查询部门下的员工，Values为指定的部门ID：**["DepartmentId"]**</li>
+        #   <li>Key:**"UserId"**，根据用户ID查询员工，Values为指定的用户ID：**["UserId"]**</li>
+        #   <li>Key:**"UserWeWorkOpenId"**，根据用户企微账号ID查询员工，Values为指定用户的企微账号ID：**["UserWeWorkOpenId"]**</li>
+        #   <li>Key:**"StaffOpenId"**，根据第三方系统用户OpenId查询员工，Values为第三方系统用户OpenId列表：**["OpenId1","OpenId2",...]**</li>
+        # </ul>
         # @type Filters: Array
-        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。页码从 0 开始，即首页为 0，最大20000。
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
@@ -4650,15 +4677,15 @@ module TencentCloud
 
       # DescribeIntegrationEmployees返回参数结构体
       class DescribeIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
-        # @param Employees: 员工数据列表
+        # @param Employees: 员工信息列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Employees: Array
-        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0，最大20000
+        # @param Offset: 指定分页返回第几页的数据。页码从 0 开始，即首页为 0，最大20000。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Offset: Integer
-        # @param Limit: 指定每页多少条数据，单页最大20
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 20。
         # @type Limit: Integer
-        # @param TotalCount: 符合条件的员工数量
+        # @param TotalCount: 符合条件的员工数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4788,19 +4815,28 @@ module TencentCloud
 
       # DescribeOrganizationGroupOrganizations请求参数结构体
       class DescribeOrganizationGroupOrganizationsRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 操作人信息，userId必填
+        # @param Operator: 执行本接口操作的员工信息,userId必填。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Limit: 指定每页多少条数据，单页最大1000
+        # @param Limit: 指定分页每页返回的数据条数，单页最大1000
         # @type Limit: Integer
-        # @param Offset: 查询结果分页返回，此处指定第几页，如果不传默认从第一页返回。页码从 0 开始，即首页为 0
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
         # @type Offset: Integer
         # @param Name: 查询成员企业的企业名，模糊匹配
         # @type Name: String
-        # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
+        # @param Status: 成员企业加入集团的当前状态
+        # <ul><li> **1**：待授权</li>
+        # <li> **2**：已授权待激活</li>
+        # <li> **3**：拒绝授权</li>
+        # <li> **4**：已解除</li>
+        # <li> **5**：已加入</li>
+        # </ul>
         # @type Status: Integer
         # @param Export: 是否导出当前成员企业数据
+        # <ul><li> **false**：不导出（默认值）</li>
+        # <li> **true**：导出</li></ul>
         # @type Export: Boolean
-        # @param Id: 成员企业机构 ID，在PC控制台 集团管理可获取
+        # @param Id: 成员企业机构 ID，32 位字符串，在PC控制台 集团管理可获取
         # @type Id: String
 
         attr_accessor :Operator, :Limit, :Offset, :Name, :Status, :Export, :Id
@@ -4831,10 +4867,10 @@ module TencentCloud
 
       # DescribeOrganizationGroupOrganizations返回参数结构体
       class DescribeOrganizationGroupOrganizationsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 查询到的符合条件的成员企业总数量
+        # @param Total: 符合查询条件的资源实例总数量。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param JoinedTotal: 已授权待激活的企业数量
+        # @param JoinedTotal: 已授权待激活的子企业总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinedTotal: Integer
         # @param ActivedTotal: 已加入的企业数量(废弃,请使用ActivatedTotal)
@@ -4846,7 +4882,7 @@ module TencentCloud
         # @param List: 成员企业信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type List: Array
-        # @param ActivatedTotal: 已加入的企业数量
+        # @param ActivatedTotal: 已加入的子企业总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivatedTotal: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5331,11 +5367,12 @@ module TencentCloud
       class FailedUpdateStaffData < TencentCloud::Common::AbstractModel
         # @param DisplayName: 用户传入的名称
         # @type DisplayName: String
-        # @param Mobile: 用户传入的手机号
+        # @param Mobile: 用户传入的手机号，明文展示
         # @type Mobile: String
         # @param Reason: 失败原因
         # @type Reason: String
-        # @param UserId: 用户Id
+        # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         # @type UserId: String
         # @param OpenId: 员工在第三方平台的openId
         # @type OpenId: String
@@ -6445,13 +6482,20 @@ module TencentCloud
         # @param Alias: 成员企业别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alias: String
-        # @param OrganizationId: 成员企业id
+        # @param OrganizationId: 成员企业id，为 32 位字符串，可在电子签PC 控制台，企业设置->企业电子签账号 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrganizationId: String
-        # @param UpdateTime: 更新时间，时间戳，单位秒
+        # @param UpdateTime: 记录更新时间， unix时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: Integer
-        # @param Status: 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
+        # @param Status: 成员企业加入集团的当前状态
+        # <ul><li> **1**：待授权</li>
+        # <li> **2**：已授权待激活</li>
+        # <li> **3**：拒绝授权</li>
+        # <li> **4**：已解除</li>
+        # <li> **5**：已加入</li>
+        # </ul>
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param IsMainOrganization: 是否为集团主企业
@@ -6463,16 +6507,18 @@ module TencentCloud
         # @param AdminInfo: 企业超管信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdminInfo: :class:`Tencentcloud::Ess.v20201111.models.Admin`
-        # @param License: 企业许可证
+        # @param License: 企业许可证Id，此字段暂时不需要关注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type License: String
-        # @param LicenseExpireTime: 企业许可证过期时间，时间戳，单位秒
+        # @param LicenseExpireTime: 企业许可证过期时间，unix时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseExpireTime: Integer
-        # @param JoinTime: 成员企业加入集团时间，时间戳，单位秒
+        # @param JoinTime: 成员企业加入集团时间，unix时间戳，单位秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JoinTime: Integer
-        # @param FlowEngineEnable: 是否使用自建审批流引擎（即不是企微审批流引擎），true-是，false-否
+        # @param FlowEngineEnable: 是否使用自建审批流引擎（即不是企微审批流引擎）
+        # <ul><li> **true**：是</li>
+        # <li> **false**：否</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowEngineEnable: Boolean
 
@@ -6587,10 +6633,10 @@ module TencentCloud
 
       # 部门信息
       class IntegrationDepartment < TencentCloud::Common::AbstractModel
-        # @param DeptId: 部门ID
+        # @param DeptId: 部门ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptId: String
-        # @param DeptName: 部门名
+        # @param DeptName: 部门名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptName: String
         # @param ParentDeptId: 父部门ID
@@ -6599,7 +6645,7 @@ module TencentCloud
         # @param DeptOpenId: 客户系统部门ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeptOpenId: String
-        # @param OrderNo: 序列号
+        # @param OrderNo: 序列号。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderNo: Integer
 
@@ -6684,18 +6730,18 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。
         # 注: `在调用此接口时，请确保指定的员工已获得组织架构管理权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param DeptId: 电子签部门ID,通过DescribeIntegrationDepartments接口可以获取
+        # @param DeptId: 电子签部门ID，通过<a href="https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments" target="_blank">DescribeIntegrationDepartments</a>接口获得。
         # @type DeptId: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param ParentDeptId: 电子签父部门ID，通过DescribeIntegrationDepartments接口可以获取
+        # @param ParentDeptId: 电子签父部门ID，通过<a href="https://qian.tencent.com/developers/companyApis/organizations/DescribeIntegrationDepartments" target="_blank">DescribeIntegrationDepartments</a>接口获得。
         # @type ParentDeptId: String
-        # @param DeptName: 部门名称，不超过50个字符
+        # @param DeptName: 部门名称，最大长度为50个字符。
         # @type DeptName: String
-        # @param DeptOpenId: 客户系统部门ID，不超过64个字符
+        # @param DeptOpenId: 客户系统部门ID，最大长度为64个字符。
         # @type DeptOpenId: String
-        # @param OrderNo: 排序号,1~30000范围内
+        # @param OrderNo: 排序号，支持设置的数值范围为1~30000。同一父部门下，排序号越大，部门顺序越靠前。
         # @type OrderNo: Integer
 
         attr_accessor :Operator, :DeptId, :Agent, :ParentDeptId, :DeptName, :DeptOpenId, :OrderNo
@@ -7452,50 +7498,52 @@ module TencentCloud
         end
       end
 
-      # 企业员工信息
+      # 企业员工信息。
       class Staff < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户在电子签平台的id
-        # 注：创建和更新场景无需填写
+        # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 注：`创建和更新场景无需填写。`
         # @type UserId: String
-        # @param DisplayName: 显示的用户名/昵称
+        # @param DisplayName: 显示的用户名/昵称。
         # @type DisplayName: String
-        # @param Mobile: 用户手机号
+        # @param Mobile: 用户手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
         # @type Mobile: String
-        # @param Email: 用户邮箱
+        # @param Email: 用户邮箱。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Email: String
-        # @param OpenId: 用户在第三方平台id，如需在此接口提醒员工实名，该参数不传
+        # @param OpenId: 用户在第三方平台ID。
+        # 注：`如需在此接口提醒员工实名，该参数不传。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OpenId: String
-        # @param Roles: 员工角色
-        # 注：创建和更新场景无需填写
+        # @param Roles: 员工角色信息。
+        # 注：`创建和更新场景无需填写。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Roles: Array
-        # @param Department: 员工部门
+        # @param Department: 员工部门信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Department: :class:`Tencentcloud::Ess.v20201111.models.Department`
-        # @param Verified: 员工是否实名
-        # 注：创建和更新场景无需填写
+        # @param Verified: 员工是否实名。
+        # 注：`创建和更新场景无需填写。`
         # @type Verified: Boolean
-        # @param CreatedOn: 员工创建时间戳，单位秒
-        # 注：创建和更新场景无需填写
+        # @param CreatedOn: 员工创建时间戳，单位秒。
+        # 注：`创建和更新场景无需填写。`
         # @type CreatedOn: Integer
-        # @param VerifiedOn: 员工实名时间戳，单位秒
-        # 注：创建和更新场景无需填写
+        # @param VerifiedOn: 员工实名时间戳，单位秒。
+        # 注：`创建和更新场景无需填写。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifiedOn: Integer
-        # @param QuiteJob: 员工是否离职：0-未离职，1-离职
-        # 注：创建和更新场景无需填写
+        # @param QuiteJob: 员工是否离职：
+        # <ul><li>**0**：未离职</li><li>**1**：离职</li></ul>
+        # 注：`创建和更新场景无需填写。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuiteJob: Integer
-        # @param ReceiveUserId: 员工离职交接人用户id
-        # 注：创建和更新场景无需填写
+        # @param ReceiveUserId: 员工离职交接人用户ID。
+        # 注：`创建和更新场景无需填写。`
         # @type ReceiveUserId: String
-        # @param ReceiveOpenId: 员工离职交接人用户OpenId
-        # 注：创建和更新场景无需填写
+        # @param ReceiveOpenId: 员工离职交接人用户OpenId。
+        # 注：`创建和更新场景无需填写。`
         # @type ReceiveOpenId: String
-        # @param WeworkOpenId: 企业微信用户账号ID
-        # 注：仅企微类型的企业创建员工接口支持该字段
+        # @param WeworkOpenId: 企业微信用户账号ID。
+        # 注：`仅企微类型的企业创建员工接口支持该字段。`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeworkOpenId: String
 
@@ -7546,12 +7594,12 @@ module TencentCloud
         end
       end
 
-      # 集成版企业角色信息
+      # 集成版企业角色信息。
       class StaffRole < TencentCloud::Common::AbstractModel
-        # @param RoleId: 角色id
+        # @param RoleId: 角色ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleId: String
-        # @param RoleName: 角色名称
+        # @param RoleName: 角色名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleName: String
 
@@ -7698,9 +7746,10 @@ module TencentCloud
       class SuccessUpdateStaffData < TencentCloud::Common::AbstractModel
         # @param DisplayName: 传入的用户名称
         # @type DisplayName: String
-        # @param Mobile: 传入的手机号
+        # @param Mobile: 传入的手机号，没有打码
         # @type Mobile: String
-        # @param UserId: 用户Id
+        # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         # @type UserId: String
 
         attr_accessor :DisplayName, :Mobile, :UserId
@@ -7893,13 +7942,17 @@ module TencentCloud
 
       # UnbindEmployeeUserIdWithClientOpenId请求参数结构体
       class UnbindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为INTEGRATE；当传入参数UserId，Channel无需指定(参数用法参考示例)
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param UserId: 电子签系统员工UserId
+        # @param UserId: 员工在腾讯电子签平台的唯一身份标识，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         # @type UserId: String
-        # @param OpenId: 客户系统OpenId
+        # @param OpenId: 员工在贵司业务系统中的唯一身份标识，用于与腾讯电子签账号进行映射，确保在同一企业内不会出现重复。
+        # 该标识最大长度为64位字符串，仅支持包含26个英文字母和数字0-9的字符。
         # @type OpenId: String
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :UserId, :OpenId, :Agent
@@ -7927,7 +7980,9 @@ module TencentCloud
 
       # UnbindEmployeeUserIdWithClientOpenId返回参数结构体
       class UnbindEmployeeUserIdWithClientOpenIdResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 解绑是否成功，1表示成功，0表示失败
+        # @param Status: 解绑是否成功。
+        # <ul><li> **0**：失败 </li>
+        # <li> **1**：成功 </li></ul>
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7947,13 +8002,15 @@ module TencentCloud
 
       # UpdateIntegrationEmployees请求参数结构体
       class UpdateIntegrationEmployeesRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 当前用户信息，UserId必填
+        # @param Operator: 执行本接口操作的员工信息,UserId必填。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param Employees: 员工信息，不超过100个。
         # 根据UserId或OpenId更新员工，必填一个，优先UserId。
         # 可更新Mobile、DisplayName、Email和Department.DepartmentId字段，其他字段暂不支持
         # @type Employees: Array
-        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :Operator, :Employees, :Agent

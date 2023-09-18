@@ -3225,6 +3225,56 @@ module TencentCloud
         end
       end
 
+      # 数据源详细信息
+      class DataSourceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 数据源实例的唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 数据源的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param JdbcUrl: 数据源的JDBC访问链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JdbcUrl: String
+        # @param User: 用于访问数据源的用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Password: 数据源访问密码，需要base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Location: 数据源的VPC和子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+        # @param DbName: 默认数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+
+        attr_accessor :InstanceId, :InstanceName, :JdbcUrl, :User, :Password, :Location, :DbName
+
+        def initialize(instanceid=nil, instancename=nil, jdbcurl=nil, user=nil, password=nil, location=nil, dbname=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @JdbcUrl = jdbcurl
+          @User = user
+          @Password = password
+          @Location = location
+          @DbName = dbname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @JdbcUrl = params['JdbcUrl']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+          @DbName = params['DbName']
+        end
+      end
+
       # 数据库对象
       class DatabaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 数据库名称，长度0~128，支持数字、字母下划线，不允许数字大头，统一转换为小写。
@@ -3331,6 +3381,221 @@ module TencentCloud
             @GovernPolicy.deserialize(params['GovernPolicy'])
           end
           @DatabaseId = params['DatabaseId']
+        end
+      end
+
+      # 数据源属性
+      class DatasourceConnectionConfig < TencentCloud::Common::AbstractModel
+        # @param Mysql: Mysql数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mysql: :class:`Tencentcloud::Dlc.v20210125.models.MysqlInfo`
+        # @param Hive: Hive数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hive: :class:`Tencentcloud::Dlc.v20210125.models.HiveInfo`
+        # @param Kafka: Kafka数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kafka: :class:`Tencentcloud::Dlc.v20210125.models.KafkaInfo`
+        # @param OtherDatasourceConnection: 其他数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherDatasourceConnection: :class:`Tencentcloud::Dlc.v20210125.models.OtherDatasourceConnection`
+        # @param PostgreSql: PostgreSQL数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostgreSql: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
+        # @param SqlServer: SQLServer数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlServer: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
+        # @param ClickHouse: ClickHouse数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClickHouse: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
+        # @param Elasticsearch: Elasticsearch数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Elasticsearch: :class:`Tencentcloud::Dlc.v20210125.models.ElasticsearchInfo`
+        # @param TDSQLPostgreSql: TDSQL-PostgreSQL数据源连接的属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TDSQLPostgreSql: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
+
+        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql
+
+        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil)
+          @Mysql = mysql
+          @Hive = hive
+          @Kafka = kafka
+          @OtherDatasourceConnection = otherdatasourceconnection
+          @PostgreSql = postgresql
+          @SqlServer = sqlserver
+          @ClickHouse = clickhouse
+          @Elasticsearch = elasticsearch
+          @TDSQLPostgreSql = tdsqlpostgresql
+        end
+
+        def deserialize(params)
+          unless params['Mysql'].nil?
+            @Mysql = MysqlInfo.new
+            @Mysql.deserialize(params['Mysql'])
+          end
+          unless params['Hive'].nil?
+            @Hive = HiveInfo.new
+            @Hive.deserialize(params['Hive'])
+          end
+          unless params['Kafka'].nil?
+            @Kafka = KafkaInfo.new
+            @Kafka.deserialize(params['Kafka'])
+          end
+          unless params['OtherDatasourceConnection'].nil?
+            @OtherDatasourceConnection = OtherDatasourceConnection.new
+            @OtherDatasourceConnection.deserialize(params['OtherDatasourceConnection'])
+          end
+          unless params['PostgreSql'].nil?
+            @PostgreSql = DataSourceInfo.new
+            @PostgreSql.deserialize(params['PostgreSql'])
+          end
+          unless params['SqlServer'].nil?
+            @SqlServer = DataSourceInfo.new
+            @SqlServer.deserialize(params['SqlServer'])
+          end
+          unless params['ClickHouse'].nil?
+            @ClickHouse = DataSourceInfo.new
+            @ClickHouse.deserialize(params['ClickHouse'])
+          end
+          unless params['Elasticsearch'].nil?
+            @Elasticsearch = ElasticsearchInfo.new
+            @Elasticsearch.deserialize(params['Elasticsearch'])
+          end
+          unless params['TDSQLPostgreSql'].nil?
+            @TDSQLPostgreSql = DataSourceInfo.new
+            @TDSQLPostgreSql.deserialize(params['TDSQLPostgreSql'])
+          end
+        end
+      end
+
+      # 数据源信息
+      class DatasourceConnectionInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源数字Id
+        # @type Id: Integer
+        # @param DatasourceConnectionId: 数据源字符串Id
+        # @type DatasourceConnectionId: String
+        # @param DatasourceConnectionName: 数据源名称
+        # @type DatasourceConnectionName: String
+        # @param DatasourceConnectionDesc: 数据源描述
+        # @type DatasourceConnectionDesc: String
+        # @param DatasourceConnectionType: 数据源类型，支持DataLakeCatalog、IcebergCatalog、Result、Mysql、HiveCos、HiveHdfs
+        # @type DatasourceConnectionType: String
+        # @param DatasourceConnectionConfig: 数据源属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceConnectionConfig: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionConfig`
+        # @param State: 数据源状态：0（初始化）、1（成功）、-1（已删除）、-2（失败）、-3（删除中）
+        # @type State: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param AppId: 用户AppId
+        # @type AppId: String
+        # @param CreateTime: 数据源创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 数据源最近一次更新时间
+        # @type UpdateTime: String
+        # @param Message: 数据源同步失败原因
+        # @type Message: String
+        # @param DataEngines: 数据源绑定的计算引擎信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngines: Array
+        # @param UserAlias: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param NetworkConnectionSet: 网络配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConnectionSet: Array
+        # @param ConnectivityState: 连通性状态：0（未测试，默认）、1（正常）、2（失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectivityState: Integer
+        # @param ConnectivityTips: 连通性测试提示信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectivityTips: String
+
+        attr_accessor :Id, :DatasourceConnectionId, :DatasourceConnectionName, :DatasourceConnectionDesc, :DatasourceConnectionType, :DatasourceConnectionConfig, :State, :Region, :AppId, :CreateTime, :UpdateTime, :Message, :DataEngines, :UserAlias, :NetworkConnectionSet, :ConnectivityState, :ConnectivityTips
+
+        def initialize(id=nil, datasourceconnectionid=nil, datasourceconnectionname=nil, datasourceconnectiondesc=nil, datasourceconnectiontype=nil, datasourceconnectionconfig=nil, state=nil, region=nil, appid=nil, createtime=nil, updatetime=nil, message=nil, dataengines=nil, useralias=nil, networkconnectionset=nil, connectivitystate=nil, connectivitytips=nil)
+          @Id = id
+          @DatasourceConnectionId = datasourceconnectionid
+          @DatasourceConnectionName = datasourceconnectionname
+          @DatasourceConnectionDesc = datasourceconnectiondesc
+          @DatasourceConnectionType = datasourceconnectiontype
+          @DatasourceConnectionConfig = datasourceconnectionconfig
+          @State = state
+          @Region = region
+          @AppId = appid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Message = message
+          @DataEngines = dataengines
+          @UserAlias = useralias
+          @NetworkConnectionSet = networkconnectionset
+          @ConnectivityState = connectivitystate
+          @ConnectivityTips = connectivitytips
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DatasourceConnectionId = params['DatasourceConnectionId']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DatasourceConnectionDesc = params['DatasourceConnectionDesc']
+          @DatasourceConnectionType = params['DatasourceConnectionType']
+          unless params['DatasourceConnectionConfig'].nil?
+            @DatasourceConnectionConfig = DatasourceConnectionConfig.new
+            @DatasourceConnectionConfig.deserialize(params['DatasourceConnectionConfig'])
+          end
+          @State = params['State']
+          @Region = params['Region']
+          @AppId = params['AppId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Message = params['Message']
+          unless params['DataEngines'].nil?
+            @DataEngines = []
+            params['DataEngines'].each do |i|
+              dataengineinfo_tmp = DataEngineInfo.new
+              dataengineinfo_tmp.deserialize(i)
+              @DataEngines << dataengineinfo_tmp
+            end
+          end
+          @UserAlias = params['UserAlias']
+          unless params['NetworkConnectionSet'].nil?
+            @NetworkConnectionSet = []
+            params['NetworkConnectionSet'].each do |i|
+              networkconnection_tmp = NetworkConnection.new
+              networkconnection_tmp.deserialize(i)
+              @NetworkConnectionSet << networkconnection_tmp
+            end
+          end
+          @ConnectivityState = params['ConnectivityState']
+          @ConnectivityTips = params['ConnectivityTips']
+        end
+      end
+
+      # 数据源连接的网络信息
+      class DatasourceConnectionLocation < TencentCloud::Common::AbstractModel
+        # @param VpcId: 数据连接所在Vpc实例Id，如“vpc-azd4dt1c”。
+        # @type VpcId: String
+        # @param VpcCidrBlock: Vpc的IPv4 CIDR
+        # @type VpcCidrBlock: String
+        # @param SubnetId: 数据连接所在子网的实例Id，如“subnet-bthucmmy”
+        # @type SubnetId: String
+        # @param SubnetCidrBlock: Subnet的IPv4 CIDR
+        # @type SubnetCidrBlock: String
+
+        attr_accessor :VpcId, :VpcCidrBlock, :SubnetId, :SubnetCidrBlock
+
+        def initialize(vpcid=nil, vpccidrblock=nil, subnetid=nil, subnetcidrblock=nil)
+          @VpcId = vpcid
+          @VpcCidrBlock = vpccidrblock
+          @SubnetId = subnetid
+          @SubnetCidrBlock = subnetcidrblock
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @SubnetId = params['SubnetId']
+          @SubnetCidrBlock = params['SubnetCidrBlock']
         end
       end
 
@@ -4116,6 +4381,97 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatasourceConnection请求参数结构体
+      class DescribeDatasourceConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionIds: 连接ID列表，指定要查询的连接ID
+        # @type DatasourceConnectionIds: Array
+        # @param Filters: 过滤条件，当前支持的过滤键为：DatasourceConnectionName（数据源连接名）。
+        # DatasourceConnectionType   （数据源连接连接类型）
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认20，最大值100
+        # @type Limit: Integer
+        # @param SortBy: 排序字段，支持如下字段类型，create-time（默认，创建时间）、update-time（更新时间）
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为desc
+        # @type Sorting: String
+        # @param StartTime: 筛选字段：起始时间
+        # @type StartTime: String
+        # @param EndTime: 筛选字段：截止时间
+        # @type EndTime: String
+        # @param DatasourceConnectionNames: 连接名称列表，指定要查询的连接名称
+        # @type DatasourceConnectionNames: Array
+        # @param DatasourceConnectionTypes: 连接类型，支持Mysql/HiveCos/Kafka/DataLakeCatalog
+        # @type DatasourceConnectionTypes: Array
+
+        attr_accessor :DatasourceConnectionIds, :Filters, :Offset, :Limit, :SortBy, :Sorting, :StartTime, :EndTime, :DatasourceConnectionNames, :DatasourceConnectionTypes
+
+        def initialize(datasourceconnectionids=nil, filters=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, datasourceconnectionnames=nil, datasourceconnectiontypes=nil)
+          @DatasourceConnectionIds = datasourceconnectionids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @SortBy = sortby
+          @Sorting = sorting
+          @StartTime = starttime
+          @EndTime = endtime
+          @DatasourceConnectionNames = datasourceconnectionnames
+          @DatasourceConnectionTypes = datasourceconnectiontypes
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionIds = params['DatasourceConnectionIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DatasourceConnectionNames = params['DatasourceConnectionNames']
+          @DatasourceConnectionTypes = params['DatasourceConnectionTypes']
+        end
+      end
+
+      # DescribeDatasourceConnection返回参数结构体
+      class DescribeDatasourceConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据连接总数
+        # @type TotalCount: Integer
+        # @param ConnectionSet: 数据连接对象集合
+        # @type ConnectionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConnectionSet, :RequestId
+
+        def initialize(totalcount=nil, connectionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConnectionSet = connectionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConnectionSet'].nil?
+            @ConnectionSet = []
+            params['ConnectionSet'].each do |i|
+              datasourceconnectioninfo_tmp = DatasourceConnectionInfo.new
+              datasourceconnectioninfo_tmp.deserialize(i)
+              @ConnectionSet << datasourceconnectioninfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5815,6 +6171,63 @@ module TencentCloud
         end
       end
 
+      # Elasticsearch数据源的详细信息
+      class ElasticsearchInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param User: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Password: 密码，需要base64编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param Location: 数据源的VPC和子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+        # @param DbName: 默认数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param ServiceInfo: 访问Elasticsearch的ip、端口信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceInfo: Array
+
+        attr_accessor :InstanceId, :InstanceName, :User, :Password, :Location, :DbName, :ServiceInfo
+
+        def initialize(instanceid=nil, instancename=nil, user=nil, password=nil, location=nil, dbname=nil, serviceinfo=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @User = user
+          @Password = password
+          @Location = location
+          @DbName = dbname
+          @ServiceInfo = serviceinfo
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+          @DbName = params['DbName']
+          unless params['ServiceInfo'].nil?
+            @ServiceInfo = []
+            params['ServiceInfo'].each do |i|
+              ipportpair_tmp = IpPortPair.new
+              ipportpair_tmp.deserialize(i)
+              @ServiceInfo << ipportpair_tmp
+            end
+          end
+        end
+      end
+
       # SQL语句对象
       class Execution < TencentCloud::Common::AbstractModel
         # @param SQL: 自动生成SQL语句。
@@ -5930,6 +6343,107 @@ module TencentCloud
         end
       end
 
+      # hive类型数据源的信息
+      class HiveInfo < TencentCloud::Common::AbstractModel
+        # @param MetaStoreUrl: hive metastore的地址
+        # @type MetaStoreUrl: String
+        # @param Type: hive数据源类型，代表数据储存的位置，COS或者HDFS
+        # @type Type: String
+        # @param Location: 数据源所在的私有网络信息
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+        # @param User: 如果类型为HDFS，需要传一个用户名
+        # @type User: String
+        # @param HighAvailability: 如果类型为HDFS，需要选择是否高可用
+        # @type HighAvailability: Boolean
+        # @param BucketUrl: 如果类型为COS，需要填写COS桶连接
+        # @type BucketUrl: String
+        # @param HdfsProperties: json字符串。如果类型为HDFS，需要填写该字段
+        # @type HdfsProperties: String
+        # @param Mysql: Hive的元数据库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mysql: :class:`Tencentcloud::Dlc.v20210125.models.MysqlInfo`
+        # @param InstanceId: emr集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: emr集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param HiveVersion: EMR集群中hive组件的版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HiveVersion: String
+        # @param KerberosInfo: Kerberos详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KerberosInfo: :class:`Tencentcloud::Dlc.v20210125.models.KerberosInfo`
+        # @param KerberosEnable: 是否开启Kerberos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KerberosEnable: Boolean
+
+        attr_accessor :MetaStoreUrl, :Type, :Location, :User, :HighAvailability, :BucketUrl, :HdfsProperties, :Mysql, :InstanceId, :InstanceName, :HiveVersion, :KerberosInfo, :KerberosEnable
+
+        def initialize(metastoreurl=nil, type=nil, location=nil, user=nil, highavailability=nil, bucketurl=nil, hdfsproperties=nil, mysql=nil, instanceid=nil, instancename=nil, hiveversion=nil, kerberosinfo=nil, kerberosenable=nil)
+          @MetaStoreUrl = metastoreurl
+          @Type = type
+          @Location = location
+          @User = user
+          @HighAvailability = highavailability
+          @BucketUrl = bucketurl
+          @HdfsProperties = hdfsproperties
+          @Mysql = mysql
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @HiveVersion = hiveversion
+          @KerberosInfo = kerberosinfo
+          @KerberosEnable = kerberosenable
+        end
+
+        def deserialize(params)
+          @MetaStoreUrl = params['MetaStoreUrl']
+          @Type = params['Type']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+          @User = params['User']
+          @HighAvailability = params['HighAvailability']
+          @BucketUrl = params['BucketUrl']
+          @HdfsProperties = params['HdfsProperties']
+          unless params['Mysql'].nil?
+            @Mysql = MysqlInfo.new
+            @Mysql.deserialize(params['Mysql'])
+          end
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @HiveVersion = params['HiveVersion']
+          unless params['KerberosInfo'].nil?
+            @KerberosInfo = KerberosInfo.new
+            @KerberosInfo.deserialize(params['KerberosInfo'])
+          end
+          @KerberosEnable = params['KerberosEnable']
+        end
+      end
+
+      # ip端口对信息
+      class IpPortPair < TencentCloud::Common::AbstractModel
+        # @param Ip: ip信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Port: 端口信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+
+        attr_accessor :Ip, :Port
+
+        def initialize(ip=nil, port=nil)
+          @Ip = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Port = params['Port']
+        end
+      end
+
       # 日志详情
       class JobLogResult < TencentCloud::Common::AbstractModel
         # @param Time: 日志时间戳，毫秒
@@ -5986,6 +6500,53 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # Kafka连接信息
+      class KafkaInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: kakfa实例Id
+        # @type InstanceId: String
+        # @param Location: kakfa数据源的网络信息
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+
+        attr_accessor :InstanceId, :Location
+
+        def initialize(instanceid=nil, location=nil)
+          @InstanceId = instanceid
+          @Location = location
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+        end
+      end
+
+      # Kerberos详细信息
+      class KerberosInfo < TencentCloud::Common::AbstractModel
+        # @param Krb5Conf: Krb5Conf文件值
+        # @type Krb5Conf: String
+        # @param KeyTab: KeyTab文件值
+        # @type KeyTab: String
+        # @param ServicePrincipal: 服务主体
+        # @type ServicePrincipal: String
+
+        attr_accessor :Krb5Conf, :KeyTab, :ServicePrincipal
+
+        def initialize(krb5conf=nil, keytab=nil, serviceprincipal=nil)
+          @Krb5Conf = krb5conf
+          @KeyTab = keytab
+          @ServicePrincipal = serviceprincipal
+        end
+
+        def deserialize(params)
+          @Krb5Conf = params['Krb5Conf']
+          @KeyTab = params['KeyTab']
+          @ServicePrincipal = params['ServicePrincipal']
         end
       end
 
@@ -6493,6 +7054,51 @@ module TencentCloud
         end
       end
 
+      # Mysql类型数据源信息
+      class MysqlInfo < TencentCloud::Common::AbstractModel
+        # @param JdbcUrl: 连接mysql的jdbc url
+        # @type JdbcUrl: String
+        # @param User: 用户名
+        # @type User: String
+        # @param Password: mysql密码
+        # @type Password: String
+        # @param Location: mysql数据源的网络信息
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+        # @param DbName: 数据库名称
+        # @type DbName: String
+        # @param InstanceId: 数据库实例ID，和数据库侧保持一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 数据库实例名称，和数据库侧保持一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+
+        attr_accessor :JdbcUrl, :User, :Password, :Location, :DbName, :InstanceId, :InstanceName
+
+        def initialize(jdbcurl=nil, user=nil, password=nil, location=nil, dbname=nil, instanceid=nil, instancename=nil)
+          @JdbcUrl = jdbcurl
+          @User = user
+          @Password = password
+          @Location = location
+          @DbName = dbname
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @JdbcUrl = params['JdbcUrl']
+          @User = params['User']
+          @Password = params['Password']
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
+          @DbName = params['DbName']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
       # 网络配置
       class NetworkConnection < TencentCloud::Common::AbstractModel
         # @param Id: 网络配置id
@@ -6885,6 +7491,25 @@ module TencentCloud
 
         def deserialize(params)
           @Format = params['Format']
+        end
+      end
+
+      # 其他数据源
+      class OtherDatasourceConnection < TencentCloud::Common::AbstractModel
+        # @param Location: 网络参数
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionLocation`
+
+        attr_accessor :Location
+
+        def initialize(location=nil)
+          @Location = location
+        end
+
+        def deserialize(params)
+          unless params['Location'].nil?
+            @Location = DatasourceConnectionLocation.new
+            @Location.deserialize(params['Location'])
+          end
         end
       end
 

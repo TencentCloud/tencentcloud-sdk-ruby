@@ -112,15 +112,21 @@ module TencentCloud
         # @type ExpireTime: String
         # @param ExtraParam: 备用字段
         # @type ExtraParam: String
+        # @param UserCorpId: 使用者企业Id(仅用于多用户)
+        # @type UserCorpId: String
+        # @param UserId: 使用者Id(仅用于多用户)
+        # @type UserId: String
 
-        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam
+        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId
 
-        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil)
+        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil)
           @ProjectId = projectid
           @PageId = pageid
           @Scope = scope
           @ExpireTime = expiretime
           @ExtraParam = extraparam
+          @UserCorpId = usercorpid
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -129,6 +135,8 @@ module TencentCloud
           @Scope = params['Scope']
           @ExpireTime = params['ExpireTime']
           @ExtraParam = params['ExtraParam']
+          @UserCorpId = params['UserCorpId']
+          @UserId = params['UserId']
         end
       end
 
@@ -201,10 +209,16 @@ module TencentCloud
         # @param ExpireTime: 过期时间，分钟为单位，最大240
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: Integer
+        # @param UserCorpId: 使用者企业Id(仅用于多用户)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserCorpId: String
+        # @param UserId: 使用者Id(仅用于多用户)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -216,6 +230,8 @@ module TencentCloud
           @ExtraParam = extraparam
           @Scope = scope
           @ExpireTime = expiretime
+          @UserCorpId = usercorpid
+          @UserId = userid
         end
 
         def deserialize(params)
@@ -230,6 +246,8 @@ module TencentCloud
           @ExtraParam = params['ExtraParam']
           @Scope = params['Scope']
           @ExpireTime = params['ExpireTime']
+          @UserCorpId = params['UserCorpId']
+          @UserId = params['UserId']
         end
       end
 

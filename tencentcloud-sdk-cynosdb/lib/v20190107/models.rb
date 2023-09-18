@@ -1790,18 +1790,21 @@ module TencentCloud
         # @type OpenConnectionPool: String
         # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
         # @type ConnectionPoolTimeOut: Integer
-        # @param SecurityGroupIds: 安全组ID数组
+        # @param SecurityGroupIds: 绑定的安全组ID数组
         # @type SecurityGroupIds: Array
         # @param Description: 描述说明
         # @type Description: String
-        # @param Vip: vip信息
+        # @param Vip: 想要绑定的vip信息，需与UniqueVpcId对应。
         # @type Vip: String
         # @param WeightMode: 权重模式：
         # system-系统分配，custom-自定义
         # @type WeightMode: String
         # @param AutoAddRo: 是否自动添加只读实例，yes-是，no-不自动添加
         # @type AutoAddRo: String
-        # @param FailOver: 是否开启故障转移
+        # @param FailOver: 是否开启故障转移。
+        # yes：开启
+        # no：不开启。
+        # 数据库代理出现故障时，链接地址将会路由到主实例
         # @type FailOver: String
         # @param ConsistencyType: 一致性类型：
         # eventual,global,session
@@ -1809,9 +1812,9 @@ module TencentCloud
         # @param RwType: 读写属性：
         # READWRITE,READONLY
         # @type RwType: String
-        # @param ConsistencyTimeOut: 一致性超时时间
+        # @param ConsistencyTimeOut: 一致性超时时间。取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待
         # @type ConsistencyTimeOut: Integer
-        # @param TransSplit: 事务拆分
+        # @param TransSplit: 是否开启事务拆分。在一个事务中拆分读和写到不同的实例上去执行
         # @type TransSplit: Boolean
         # @param AccessMode: 连接模式：
         # nearby,balance
@@ -8090,22 +8093,26 @@ module TencentCloud
         # @type ProxyGroupId: String
         # @param ConsistencyType: 一致性类型；“eventual"-最终一致性, "session"-会话一致性, "global"-全局一致性
         # @type ConsistencyType: String
-        # @param ConsistencyTimeOut: 一致性超时时间
+        # @param ConsistencyTimeOut: 一致性超时时间。
+        # 取值范围：0~1000000（微秒）,设置0则表示若只读实例出现延迟, 导致一致性策略不满足, 请求将一直等待。
         # @type ConsistencyTimeOut: String
         # @param WeightMode: 读写权重分配模式；系统自动分配："system"， 自定义："custom"
         # @type WeightMode: String
-        # @param InstanceWeights: 实例只读权重
+        # @param InstanceWeights: 实例只读权重。
+        # 该参数必填。
         # @type InstanceWeights: Array
         # @param FailOver: 是否开启故障转移，代理出现故障后，连接地址将路由到主实例，取值："yes" , "no"
         # @type FailOver: String
         # @param AutoAddRo: 是否自动添加只读实例，取值："yes" , "no"
         # @type AutoAddRo: String
-        # @param OpenRw: 是否打开读写分离
+        # @param OpenRw: 是否打开读写分离。
+        # 该参数已废弃，请通过RwType设置读写属性。
         # @type OpenRw: String
         # @param RwType: 读写类型：
         # READWRITE,READONLY
         # @type RwType: String
-        # @param TransSplit: 事务拆分
+        # @param TransSplit: 事务拆分。
+        # 在一个事务中拆分读和写到不同的实例上去执行。
         # @type TransSplit: Boolean
         # @param AccessMode: 连接模式：
         # nearby,balance
@@ -8116,7 +8123,8 @@ module TencentCloud
         # @param ConnectionPoolType: 连接池类型：
         # SessionConnectionPool
         # @type ConnectionPoolType: String
-        # @param ConnectionPoolTimeOut: 连接池时间
+        # @param ConnectionPoolTimeOut: 连接池时间。
+        # 可选范围:0~300（秒）
         # @type ConnectionPoolTimeOut: Integer
 
         attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut
@@ -10036,9 +10044,11 @@ module TencentCloud
         # @type ClusterId: String
         # @param RollbackStrategy: 回档策略 timeRollback-按时间点回档 snapRollback-按备份文件回档
         # @type RollbackStrategy: String
-        # @param RollbackId: 回档ID
+        # @param RollbackId: 备份文件ID。
+        # 回档策略为按备份文件回档时必填。
         # @type RollbackId: Integer
-        # @param ExpectTime: 期望回档时间
+        # @param ExpectTime: 期望回档时间。
+        # 回档策略为timeRollback按时间点回档时必填。
         # @type ExpectTime: String
         # @param ExpectTimeThresh: 期望阈值（已废弃）
         # @type ExpectTimeThresh: Integer
@@ -10576,7 +10586,7 @@ module TencentCloud
 
       # SetRenewFlag请求参数结构体
       class SetRenewFlagRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceIds: 需操作的实例ID
+        # @param ResourceIds: 需操作的集群ID
         # @type ResourceIds: Array
         # @param AutoRenewFlag: 自动续费标志位，续费标记 0:正常续费  1:自动续费 2:到期不续
         # @type AutoRenewFlag: Integer

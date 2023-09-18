@@ -10539,10 +10539,13 @@ module TencentCloud
         # @param RecordTemplateId: 录制模板 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordTemplateId: String
+        # @param BackupToUrl: 新增的推流地址。用于单任务推两路场景。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupToUrl: String
 
-        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId
+        attr_accessor :TaskId, :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :PushArgs, :StartTime, :EndTime, :Region, :VodLoopTimes, :VodRefreshType, :CreateTime, :UpdateTime, :CreateBy, :UpdateBy, :CallbackUrl, :CallbackEvents, :CallbackInfo, :ErrorInfo, :Status, :RecentPullInfo, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl
 
-        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil)
+        def initialize(taskid=nil, sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, pushargs=nil, starttime=nil, endtime=nil, region=nil, vodlooptimes=nil, vodrefreshtype=nil, createtime=nil, updatetime=nil, createby=nil, updateby=nil, callbackurl=nil, callbackevents=nil, callbackinfo=nil, errorinfo=nil, status=nil, recentpullinfo=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil)
           @TaskId = taskid
           @SourceType = sourcetype
           @SourceUrls = sourceurls
@@ -10571,6 +10574,7 @@ module TencentCloud
           @WatermarkList = watermarklist
           @VodLocalMode = vodlocalmode
           @RecordTemplateId = recordtemplateid
+          @BackupToUrl = backuptourl
         end
 
         def deserialize(params)
@@ -10612,6 +10616,7 @@ module TencentCloud
           end
           @VodLocalMode = params['VodLocalMode']
           @RecordTemplateId = params['RecordTemplateId']
+          @BackupToUrl = params['BackupToUrl']
         end
       end
 

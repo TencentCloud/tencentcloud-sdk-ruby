@@ -175,6 +175,23 @@ module TencentCloud
         end
       end
 
+      # 证书信息
+      class CertificateInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
       # 灰度规则列表
       class CloudAPIGatewayCanaryRuleList < TencentCloud::Common::AbstractModel
         # @param CanaryRuleList: 灰度规则
@@ -926,6 +943,66 @@ module TencentCloud
         end
       end
 
+      # CreateCloudNativeAPIGatewayCertificate请求参数结构体
+      class CreateCloudNativeAPIGatewayCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param BindDomains: 绑定的域名
+        # @type BindDomains: Array
+        # @param CertId: ssl平台证书 Id
+        # @type CertId: String
+        # @param Name: 证书名称
+        # @type Name: String
+        # @param Key: 证书私钥
+        # @type Key: String
+        # @param Crt: 证书pem格式
+        # @type Crt: String
+
+        attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
+
+        def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
+          @GatewayId = gatewayid
+          @BindDomains = binddomains
+          @CertId = certid
+          @Name = name
+          @Key = key
+          @Crt = crt
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @BindDomains = params['BindDomains']
+          @CertId = params['CertId']
+          @Name = params['Name']
+          @Key = params['Key']
+          @Crt = params['Crt']
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayCertificate返回参数结构体
+      class CreateCloudNativeAPIGatewayCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建证书结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CertificateInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CertificateInfo.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudNativeAPIGateway请求参数结构体
       class CreateCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
         # @param Name: 云原生API网关名字, 最多支持60个字符。
@@ -1649,6 +1726,42 @@ module TencentCloud
         end
       end
 
+      # DeleteCloudNativeAPIGatewayCertificate请求参数结构体
+      class DeleteCloudNativeAPIGatewayCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Id: 证书Id
+        # @type Id: String
+
+        attr_accessor :GatewayId, :Id
+
+        def initialize(gatewayid=nil, id=nil)
+          @GatewayId = gatewayid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayCertificate返回参数结构体
+      class DeleteCloudNativeAPIGatewayCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudNativeAPIGateway请求参数结构体
       class DeleteCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
@@ -2007,6 +2120,108 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = CloudAPIGatewayCanaryRuleList.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCertificateDetails请求参数结构体
+      class DescribeCloudNativeAPIGatewayCertificateDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Id: 证书Id
+        # @type Id: String
+
+        attr_accessor :GatewayId, :Id
+
+        def initialize(gatewayid=nil, id=nil)
+          @GatewayId = gatewayid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCertificateDetails返回参数结构体
+      class DescribeCloudNativeAPIGatewayCertificateDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongCertificate`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongCertificate.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCertificates请求参数结构体
+      class DescribeCloudNativeAPIGatewayCertificatesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Limit: 列表数量
+        # @type Limit: Integer
+        # @param Offset: 列表offset
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，多个过滤条件之间是与的关系，支持BindDomain ，Name
+        # @type Filters: Array
+
+        attr_accessor :GatewayId, :Limit, :Offset, :Filters
+
+        def initialize(gatewayid=nil, limit=nil, offset=nil, filters=nil)
+          @GatewayId = gatewayid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              listfilter_tmp = ListFilter.new
+              listfilter_tmp.deserialize(i)
+              @Filters << listfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayCertificates返回参数结构体
+      class DescribeCloudNativeAPIGatewayCertificatesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongCertificatesList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongCertificatesList.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
@@ -3610,6 +3825,132 @@ module TencentCloud
         end
       end
 
+      # 云原生网关证书
+      class KongCertificate < TencentCloud::Common::AbstractModel
+        # @param Cert: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cert: :class:`Tencentcloud::Tse.v20201207.models.KongCertificatesPreview`
+
+        attr_accessor :Cert
+
+        def initialize(cert=nil)
+          @Cert = cert
+        end
+
+        def deserialize(params)
+          unless params['Cert'].nil?
+            @Cert = KongCertificatesPreview.new
+            @Cert.deserialize(params['Cert'])
+          end
+        end
+      end
+
+      # kong证书列表
+      class KongCertificatesList < TencentCloud::Common::AbstractModel
+        # @param Total: 证书列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param CertificatesList: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificatesList: Array
+        # @param Pages: 证书列表总页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pages: Integer
+
+        attr_accessor :Total, :CertificatesList, :Pages
+        extend Gem::Deprecate
+        deprecate :Pages, :none, 2023, 9
+        deprecate :Pages=, :none, 2023, 9
+
+        def initialize(total=nil, certificateslist=nil, pages=nil)
+          @Total = total
+          @CertificatesList = certificateslist
+          @Pages = pages
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['CertificatesList'].nil?
+            @CertificatesList = []
+            params['CertificatesList'].each do |i|
+              kongcertificatespreview_tmp = KongCertificatesPreview.new
+              kongcertificatespreview_tmp.deserialize(i)
+              @CertificatesList << kongcertificatespreview_tmp
+            end
+          end
+          @Pages = params['Pages']
+        end
+      end
+
+      # 云原生网关证书预览信息
+      class KongCertificatesPreview < TencentCloud::Common::AbstractModel
+        # @param Name: 证书名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param BindDomains: 绑定的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindDomains: Array
+        # @param Status: 证书状态：expired(已过期)
+        #                    active(生效中)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Crt: 证书pem格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Crt: String
+        # @param Key: 证书私钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param ExpireTime: 证书过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param CreateTime: 证书上传时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param IssueTime: 证书签发时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IssueTime: String
+        # @param CertSource: 证书来源：native(kong自定义证书)
+        #                     ssl(ssl平台证书)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertSource: String
+        # @param CertId: ssl平台证书Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+
+        attr_accessor :Name, :Id, :BindDomains, :Status, :Crt, :Key, :ExpireTime, :CreateTime, :IssueTime, :CertSource, :CertId
+
+        def initialize(name=nil, id=nil, binddomains=nil, status=nil, crt=nil, key=nil, expiretime=nil, createtime=nil, issuetime=nil, certsource=nil, certid=nil)
+          @Name = name
+          @Id = id
+          @BindDomains = binddomains
+          @Status = status
+          @Crt = crt
+          @Key = key
+          @ExpireTime = expiretime
+          @CreateTime = createtime
+          @IssueTime = issuetime
+          @CertSource = certsource
+          @CertId = certid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
+          @BindDomains = params['BindDomains']
+          @Status = params['Status']
+          @Crt = params['Crt']
+          @Key = params['Key']
+          @ExpireTime = params['ExpireTime']
+          @CreateTime = params['CreateTime']
+          @IssueTime = params['IssueTime']
+          @CertSource = params['CertSource']
+          @CertId = params['CertId']
+        end
+      end
+
       # 云原生网关路由信息
       class KongRoutePreview < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
@@ -5011,6 +5352,50 @@ module TencentCloud
               @LimiterVpcInfos << vpcinfo_tmp
             end
           end
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewayCertificateInfo请求参数结构体
+      class UpdateCloudNativeAPIGatewayCertificateInfoRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Id: 证书id
+        # @type Id: String
+        # @param BindDomains: 绑定的域名列表
+        # @type BindDomains: Array
+        # @param Name: 证书名称
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Id, :BindDomains, :Name
+
+        def initialize(gatewayid=nil, id=nil, binddomains=nil, name=nil)
+          @GatewayId = gatewayid
+          @Id = id
+          @BindDomains = binddomains
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Id = params['Id']
+          @BindDomains = params['BindDomains']
+          @Name = params['Name']
+        end
+      end
+
+      # UpdateCloudNativeAPIGatewayCertificateInfo返回参数结构体
+      class UpdateCloudNativeAPIGatewayCertificateInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

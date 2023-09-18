@@ -258,6 +258,10 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
+        # @param DefaultParameterConfs: 自定义参数数组。
+        # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # 自定义参数最多20个。
+        # @type DefaultParameterConfs: Array
         # @param Tags: 为命令关联的标签，列表长度不超过10。
         # @type Tags: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
@@ -271,9 +275,9 @@ module TencentCloud
         # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :CommandName, :Content, :Description, :CommandType, :WorkingDirectory, :Timeout, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(commandname=nil, content=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, enableparameter=nil, defaultparameters=nil, defaultparameterconfs=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandName = commandname
           @Content = content
           @Description = description
@@ -282,6 +286,7 @@ module TencentCloud
           @Timeout = timeout
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
+          @DefaultParameterConfs = defaultparameterconfs
           @Tags = tags
           @Username = username
           @OutputCOSBucketUrl = outputcosbucketurl
@@ -297,6 +302,14 @@ module TencentCloud
           @Timeout = params['Timeout']
           @EnableParameter = params['EnableParameter']
           @DefaultParameters = params['DefaultParameters']
+          unless params['DefaultParameterConfs'].nil?
+            @DefaultParameterConfs = []
+            params['DefaultParameterConfs'].each do |i|
+              defaultparameterconf_tmp = DefaultParameterConf.new
+              defaultparameterconf_tmp.deserialize(i)
+              @DefaultParameterConfs << defaultparameterconf_tmp
+            end
+          end
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -1549,7 +1562,7 @@ module TencentCloud
       class InvokeCommandRequest < TencentCloud::Common::AbstractModel
         # @param CommandId: 待触发的命令ID。
         # @type CommandId: String
-        # @param InstanceIds: 待执行命令的实例ID列表，上限100。
+        # @param InstanceIds: 待执行命令的实例ID列表，上限200。
         # @type InstanceIds: Array
         # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
@@ -1732,6 +1745,10 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
+        # @param DefaultParameterConfs: 自定义参数数组。
+        # 如果InvokeCommand时未提供参数取值，将使用这里的默认值进行替换。
+        # 自定义参数最多20个。
+        # @type DefaultParameterConfs: Array
         # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
         # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。
         # @type Username: String
@@ -1743,9 +1760,9 @@ module TencentCloud
         # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :DefaultParameterConfs, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(commandid=nil, commandname=nil, description=nil, content=nil, commandtype=nil, workingdirectory=nil, timeout=nil, defaultparameters=nil, defaultparameterconfs=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @CommandId = commandid
           @CommandName = commandname
           @Description = description
@@ -1754,6 +1771,7 @@ module TencentCloud
           @WorkingDirectory = workingdirectory
           @Timeout = timeout
           @DefaultParameters = defaultparameters
+          @DefaultParameterConfs = defaultparameterconfs
           @Username = username
           @OutputCOSBucketUrl = outputcosbucketurl
           @OutputCOSKeyPrefix = outputcoskeyprefix
@@ -1768,6 +1786,14 @@ module TencentCloud
           @WorkingDirectory = params['WorkingDirectory']
           @Timeout = params['Timeout']
           @DefaultParameters = params['DefaultParameters']
+          unless params['DefaultParameterConfs'].nil?
+            @DefaultParameterConfs = []
+            params['DefaultParameterConfs'].each do |i|
+              defaultparameterconf_tmp = DefaultParameterConf.new
+              defaultparameterconf_tmp.deserialize(i)
+              @DefaultParameterConfs << defaultparameterconf_tmp
+            end
+          end
           @Username = params['Username']
           @OutputCOSBucketUrl = params['OutputCOSBucketUrl']
           @OutputCOSKeyPrefix = params['OutputCOSKeyPrefix']
@@ -2102,7 +2128,7 @@ module TencentCloud
       class RunCommandRequest < TencentCloud::Common::AbstractModel
         # @param Content: Base64编码后的命令内容，长度不可超过64KB。
         # @type Content: String
-        # @param InstanceIds: 待执行命令的实例ID列表，上限100。支持实例类型：
+        # @param InstanceIds: 待执行命令的实例ID列表，上限200。支持实例类型：
         # <li> CVM
         # <li> LIGHTHOUSE
         # @type InstanceIds: Array
@@ -2117,12 +2143,15 @@ module TencentCloud
         # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
         # @type Timeout: Integer
         # @param SaveCommand: 是否保存命令，取值范围：
-        # <li> True：保存
-        # <li> False：不保存
-        # 默认为 False。
+        # <li> true：保存
+        # <li> false：不保存
+        # 默认为 false。
         # @type SaveCommand: Boolean
         # @param EnableParameter: 是否启用自定义参数功能。
         # 一旦创建，此值不提供修改。
+        # 取值范围：
+        # <li> true：启用
+        # <li> false：不启用
         # 默认值：false。
         # @type EnableParameter: Boolean
         # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{\"varA\": \"222\"}。
@@ -2131,6 +2160,8 @@ module TencentCloud
         # 自定义参数最多20个。
         # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
         # @type DefaultParameters: String
+        # @param DefaultParameterConfs: 自定义参数数组。 如果 Parameters 未提供，将使用这里的默认值进行替换。 自定义参数最多20个。
+        # @type DefaultParameterConfs: Array
         # @param Parameters: Command 的自定义参数。字段类型为json encoded string。如：{\"varA\": \"222\"}。
         # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
         # 如果未提供该参数取值，将使用 DefaultParameters 进行替换。
@@ -2150,9 +2181,9 @@ module TencentCloud
         # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :Parameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :Content, :InstanceIds, :CommandName, :Description, :CommandType, :WorkingDirectory, :Timeout, :SaveCommand, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :Parameters, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, parameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(content=nil, instanceids=nil, commandname=nil, description=nil, commandtype=nil, workingdirectory=nil, timeout=nil, savecommand=nil, enableparameter=nil, defaultparameters=nil, defaultparameterconfs=nil, parameters=nil, tags=nil, username=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @Content = content
           @InstanceIds = instanceids
           @CommandName = commandname
@@ -2163,6 +2194,7 @@ module TencentCloud
           @SaveCommand = savecommand
           @EnableParameter = enableparameter
           @DefaultParameters = defaultparameters
+          @DefaultParameterConfs = defaultparameterconfs
           @Parameters = parameters
           @Tags = tags
           @Username = username
@@ -2181,6 +2213,14 @@ module TencentCloud
           @SaveCommand = params['SaveCommand']
           @EnableParameter = params['EnableParameter']
           @DefaultParameters = params['DefaultParameters']
+          unless params['DefaultParameterConfs'].nil?
+            @DefaultParameterConfs = []
+            params['DefaultParameterConfs'].each do |i|
+              defaultparameterconf_tmp = DefaultParameterConf.new
+              defaultparameterconf_tmp.deserialize(i)
+              @DefaultParameterConfs << defaultparameterconf_tmp
+            end
+          end
           @Parameters = params['Parameters']
           unless params['Tags'].nil?
             @Tags = []
@@ -2273,8 +2313,10 @@ module TencentCloud
         # @param Output: Base64编码后的命令输出。最大长度24KB。
         # @type Output: String
         # @param ExecStartTime: 命令执行开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecStartTime: String
         # @param ExecEndTime: 命令执行结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecEndTime: String
         # @param Dropped: 命令最终输出被截断的字节数。
         # @type Dropped: Integer

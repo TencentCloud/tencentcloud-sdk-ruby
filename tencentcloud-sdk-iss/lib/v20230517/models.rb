@@ -6771,11 +6771,11 @@ module TencentCloud
         # @param LifeCycle: 生命周期（录像文件生命周期设置，管理文件冷、热存储的时间，不修改生命周期时，不需要该字段）
         # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
         # @param Add: 要新增的设备通道（Json数组，没有新增时，不需要该字段，一次添加通道总数不超过5000个，包括组织目录下的通道数量）
-        # @type Add: String
+        # @type Add: Array
         # @param Del: 要删除的设备通道（Json数组，内容为要删除的设备通道id，没有删除设备通道时，不需要该字段）
-        # @type Del: String
+        # @type Del: Array
         # @param OrganizationId: 添加组织目录下所有设备通道（Json数组，可以为空，并且通道总数量不超过5000个（包括Add字段通道数量））
-        # @type OrganizationId: String
+        # @type OrganizationId: Array
 
         attr_accessor :PlanName, :TemplateId, :Describe, :LifeCycle, :Add, :Del, :OrganizationId
 
@@ -6797,7 +6797,14 @@ module TencentCloud
             @LifeCycle = LifeCycleData.new
             @LifeCycle.deserialize(params['LifeCycle'])
           end
-          @Add = params['Add']
+          unless params['Add'].nil?
+            @Add = []
+            params['Add'].each do |i|
+              channelinfo_tmp = ChannelInfo.new
+              channelinfo_tmp.deserialize(i)
+              @Add << channelinfo_tmp
+            end
+          end
           @Del = params['Del']
           @OrganizationId = params['OrganizationId']
         end

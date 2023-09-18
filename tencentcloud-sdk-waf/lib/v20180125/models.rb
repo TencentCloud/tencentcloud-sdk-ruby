@@ -5599,15 +5599,20 @@ module TencentCloud
         # 高级版: 102375(新购),102376(续费),102377(变配)
         # 企业版 : 102378(新购),102379(续费),102380(变配)
         # 旗舰版 : 102369(新购),102370(续费),102371(变配)
+        # 域名包 : 102372(新购),102373(续费),102374(变配)
+        # 业务扩展包 : 101040(新购),101041(续费),101042(变配)
+
         # 高级版-CLB: 新购 101198  续费 101199 变配 101200
         # 企业版-CLB 101204(新购),101205(续费),101206(变配)
         # 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
+        # 域名包-CLB: 101207(新购),101208(续费),101209(变配)
+        # 业务扩展包-CLB: 101210(新购),101211(续费),101212(变配)
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GoodsCategoryId: Integer
         # @param RegionId: 购买waf实例区域ID
-        # 1 表示购买大陆资源
-        # 2表示购买非中国大陆资源
+        # 1 表示购买大陆资源;
+        # 9表示购买非中国大陆资源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegionId: Integer
 
@@ -5636,16 +5641,22 @@ module TencentCloud
         # @param TimeSpan: 时间间隔
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
-        # @param TimeUnit: 单位，支持m、y、d
+        # @param TimeUnit: 单位，支持购买d、m、y 即（日、月、年）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param SubProductCode: 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
-        # 高级版 ：sp_wsm_waf_premium
-        # 企业版 ：sp_wsm_waf_enterprise
-        # 旗舰版 ：sp_wsm_waf_ultimate
+
+        # Saas 高级版 ：sp_wsm_waf_premium
+        # Saas企业版 ：sp_wsm_waf_enterprise
+        # Saas旗舰版 ：sp_wsm_waf_ultimate
+        # Saas 业务扩展包：sp_wsm_waf_qpsep
+        # Saas 域名扩展包：sp_wsm_waf_domain
+
         # 高级版-CLB:sp_wsm_waf_premium_clb
         # 企业版-CLB : sp_wsm_waf_enterprise_clb
         # 旗舰版-CLB:sp_wsm_waf_ultimate_clb
+        #  业务扩展包-CLB：sp_wsm_waf_qpsep_clb
+        # 域名扩展包-CLB：sp_wsm_waf_domain_clb
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubProductCode: String
@@ -5653,9 +5664,13 @@ module TencentCloud
         # 高级版 ：1000827
         # 企业版 ：1000830
         # 旗舰版 ：1000832
+        # 域名包 : 1000834
+        # 业务扩展包 : 1000481
         # 高级版-CLB:1001150
         # 企业版-CLB : 1001152
         # 旗舰版-CLB:1001154
+        # 域名包-CLB: 1001156
+        # 业务扩展包-CLB : 1001160
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pid: Integer
@@ -5669,6 +5684,24 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealRegion: Integer
         # @param LabelTypes: 计费细项标签数组
+        # Saas 高级版  sv_wsm_waf_package_premium
+        # Saas 企业版  sv_wsm_waf_package_enterprise
+        # Saas 旗舰版  sv_wsm_waf_package_ultimate
+        # Saas 非中国大陆高级版  sv_wsm_waf_package_premium_intl
+        # Saas 非中国大陆企业版   sv_wsm_waf_package_enterprise_intl
+        # Saas 非中国大陆旗舰版  sv_wsm_waf_package_ultimate _intl
+        # Saas 业务扩展包  sv_wsm_waf_qps_ep
+        # Saas 域名扩展包  sv_wsm_waf_domain
+
+        # 高级版CLB   sv_wsm_waf_package_premium_clb
+        # 企业版CLB  sv_wsm_waf_package_enterprise_clb
+        # 旗舰版CLB   sv_wsm_waf_package_ultimate_clb
+        # 非中国大陆高级版 CLB sv_wsm_waf_package_premium_clb_intl
+        # 非中国大陆企业版CLB   sv_wsm_waf_package_premium_clb_intl
+        # 非中国大陆旗舰版CLB  sv_wsm_waf_package_ultimate_clb _intl
+        # 业务扩展包CLB sv_wsm_waf_qps_ep_clb
+        # 域名扩展包CLB  sv_wsm_waf_domain_clb
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelTypes: Array
         # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
@@ -7260,6 +7293,154 @@ module TencentCloud
             @Success = ResponseCode.new
             @Success.deserialize(params['Success'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceElasticMode请求参数结构体
+      class ModifyInstanceElasticModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Mode: 弹性计费开关
+        # @type Mode: Integer
+
+        attr_accessor :InstanceId, :Mode
+
+        def initialize(instanceid=nil, mode=nil)
+          @InstanceId = instanceid
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Mode = params['Mode']
+        end
+      end
+
+      # ModifyInstanceElasticMode返回参数结构体
+      class ModifyInstanceElasticModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceName请求参数结构体
+      class ModifyInstanceNameRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: 实例id
+        # @type InstanceID: String
+        # @param Edition: 版本
+        # @type Edition: String
+
+        attr_accessor :InstanceID, :Edition
+
+        def initialize(instanceid=nil, edition=nil)
+          @InstanceID = instanceid
+          @Edition = edition
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @Edition = params['Edition']
+        end
+      end
+
+      # ModifyInstanceName返回参数结构体
+      class ModifyInstanceNameResponse < TencentCloud::Common::AbstractModel
+        # @param ModifyCode: 修改状态：0为成功
+        # @type ModifyCode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModifyCode, :RequestId
+
+        def initialize(modifycode=nil, requestid=nil)
+          @ModifyCode = modifycode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModifyCode = params['ModifyCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceQpsLimit请求参数结构体
+      class ModifyInstanceQpsLimitRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 套餐实例id
+        # @type InstanceId: String
+        # @param QpsLimit: qps上限
+        # @type QpsLimit: Integer
+
+        attr_accessor :InstanceId, :QpsLimit
+
+        def initialize(instanceid=nil, qpslimit=nil)
+          @InstanceId = instanceid
+          @QpsLimit = qpslimit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @QpsLimit = params['QpsLimit']
+        end
+      end
+
+      # ModifyInstanceQpsLimit返回参数结构体
+      class ModifyInstanceQpsLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceRenewFlag请求参数结构体
+      class ModifyInstanceRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RenewFlag: 续费开关
+        # @type RenewFlag: Integer
+
+        attr_accessor :InstanceId, :RenewFlag
+
+        def initialize(instanceid=nil, renewflag=nil)
+          @InstanceId = instanceid
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyInstanceRenewFlag返回参数结构体
+      class ModifyInstanceRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

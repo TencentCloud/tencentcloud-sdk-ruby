@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云原生网关证书
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayCertificate.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayCertificateRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayCertificateResponse`
+        def CreateCloudNativeAPIGatewayCertificate(request)
+          body = send_request('CreateCloudNativeAPIGatewayCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建云原生网关路由
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayRoute.
@@ -269,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除云原生网关证书
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayCertificate.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCertificateRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayCertificateResponse`
+        def DeleteCloudNativeAPIGatewayCertificate(request)
+          body = send_request('DeleteCloudNativeAPIGatewayCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除云原生网关路由
 
         # @param request: Request instance for DeleteCloudNativeAPIGatewayRoute.
@@ -447,6 +495,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayCanaryRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关单个证书详情
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayCertificateDetails.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCertificateDetailsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCertificateDetailsResponse`
+        def DescribeCloudNativeAPIGatewayCertificateDetails(request)
+          body = send_request('DescribeCloudNativeAPIGatewayCertificateDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayCertificateDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关证书列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayCertificates.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCertificatesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayCertificatesResponse`
+        def DescribeCloudNativeAPIGatewayCertificates(request)
+          body = send_request('DescribeCloudNativeAPIGatewayCertificates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayCertificatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -999,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNativeGatewayServerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生网关证书信息
+
+        # @param request: Request instance for UpdateCloudNativeAPIGatewayCertificateInfo.
+        # @type request: :class:`Tencentcloud::tse::V20201207::UpdateCloudNativeAPIGatewayCertificateInfoRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::UpdateCloudNativeAPIGatewayCertificateInfoResponse`
+        def UpdateCloudNativeAPIGatewayCertificateInfo(request)
+          body = send_request('UpdateCloudNativeAPIGatewayCertificateInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCloudNativeAPIGatewayCertificateInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

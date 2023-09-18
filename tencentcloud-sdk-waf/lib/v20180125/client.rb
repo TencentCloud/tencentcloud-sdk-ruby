@@ -510,7 +510,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # waf斯巴达-删除防护域名
+        # SAASWAF删除防护域名
 
         # @param request: Request instance for DeleteSpartaProtection.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteSpartaProtectionRequest`
@@ -2207,6 +2207,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyHostStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例的QPS弹性计费开关
+
+        # @param request: Request instance for ModifyInstanceElasticMode.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyInstanceElasticModeRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyInstanceElasticModeResponse`
+        def ModifyInstanceElasticMode(request)
+          body = send_request('ModifyInstanceElasticMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceElasticModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例的名称
+
+        # @param request: Request instance for ModifyInstanceName.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyInstanceNameRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyInstanceNameResponse`
+        def ModifyInstanceName(request)
+          body = send_request('ModifyInstanceName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置套餐实例的弹性qps上限
+
+        # @param request: Request instance for ModifyInstanceQpsLimit.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyInstanceQpsLimitRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyInstanceQpsLimitResponse`
+        def ModifyInstanceQpsLimit(request)
+          body = send_request('ModifyInstanceQpsLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceQpsLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例的自动续费开关
+
+        # @param request: Request instance for ModifyInstanceRenewFlag.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyInstanceRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyInstanceRenewFlagResponse`
+        def ModifyInstanceRenewFlag(request)
+          body = send_request('ModifyInstanceRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceRenewFlagResponse.new
             model.deserialize(response['Response'])
             model
           else
