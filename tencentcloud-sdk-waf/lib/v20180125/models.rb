@@ -1291,10 +1291,13 @@ module TencentCloud
         # @param CdcClusters: cdc类型会增加集群信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: String
+        # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -1307,6 +1310,7 @@ module TencentCloud
           @AlbType = albtype
           @IpHeaders = ipheaders
           @CdcClusters = cdcclusters
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -1329,6 +1333,7 @@ module TencentCloud
           @AlbType = params['AlbType']
           @IpHeaders = params['IpHeaders']
           @CdcClusters = params['CdcClusters']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -5777,13 +5782,13 @@ module TencentCloud
         # @type DomainId: String
         # @param MainDomain: 主域名，入参时为空
         # @type MainDomain: String
-        # @param Mode: waf模式，同saas waf保持一致
+        # @param Mode: 规则引擎防护模式，0 观察模式，1拦截模式
         # @type Mode: Integer
         # @param Status: waf和LD的绑定，0：没有绑定，1：绑定
         # @type Status: Integer
         # @param State: 域名状态，0：正常，1：未检测到流量，2：即将过期，3：过期
         # @type State: Integer
-        # @param Engine: 使用的规则，同saas waf保持一致
+        # @param Engine: 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
         # @param IsCdn: 是否开启代理，0：不开启，1：开启
         # @type IsCdn: Integer
@@ -5812,10 +5817,13 @@ module TencentCloud
         # @param EngineType: 规则引擎类型， 1: menshen,   2:tiga
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: Integer
+        # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: String
 
-        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType
+        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType
 
-        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil)
+        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil, cloudtype=nil)
           @Domain = domain
           @DomainId = domainid
           @MainDomain = maindomain
@@ -5834,6 +5842,7 @@ module TencentCloud
           @AlbType = albtype
           @IpHeaders = ipheaders
           @EngineType = enginetype
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -5862,6 +5871,7 @@ module TencentCloud
           @AlbType = params['AlbType']
           @IpHeaders = params['IpHeaders']
           @EngineType = params['EngineType']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -6209,10 +6219,13 @@ module TencentCloud
         # @param LoadBalancerType: 负载均衡的网络类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
+        # @param LoadBalancerDomain: 负载均衡的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerDomain: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vip, :Vport, :Region, :Protocol, :Zone, :NumericalVpcId, :LoadBalancerType
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vip, :Vport, :Region, :Protocol, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vip=nil, vport=nil, region=nil, protocol=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vip=nil, vport=nil, region=nil, protocol=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @ListenerId = listenerid
@@ -6224,6 +6237,7 @@ module TencentCloud
           @Zone = zone
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
+          @LoadBalancerDomain = loadbalancerdomain
         end
 
         def deserialize(params)
@@ -6238,6 +6252,7 @@ module TencentCloud
           @Zone = params['Zone']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
+          @LoadBalancerDomain = params['LoadBalancerDomain']
         end
       end
 
@@ -6276,10 +6291,13 @@ module TencentCloud
         # @param LoadBalancerType: CLB类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LoadBalancerType: String
+        # @param LoadBalancerDomain: 负载均衡器的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoadBalancerDomain: String
 
-        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
 
-        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil)
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @LoadBalancerId = loadbalancerid
@@ -6291,6 +6309,7 @@ module TencentCloud
           @Zone = zone
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
+          @LoadBalancerDomain = loadbalancerdomain
         end
 
         def deserialize(params)
@@ -6305,6 +6324,7 @@ module TencentCloud
           @Zone = params['Zone']
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
+          @LoadBalancerDomain = params['LoadBalancerDomain']
         end
       end
 
@@ -7335,19 +7355,23 @@ module TencentCloud
 
       # ModifyInstanceName请求参数结构体
       class ModifyInstanceNameRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 新名称
+        # @type InstanceName: String
         # @param InstanceID: 实例id
         # @type InstanceID: String
         # @param Edition: 版本
         # @type Edition: String
 
-        attr_accessor :InstanceID, :Edition
+        attr_accessor :InstanceName, :InstanceID, :Edition
 
-        def initialize(instanceid=nil, edition=nil)
+        def initialize(instancename=nil, instanceid=nil, edition=nil)
+          @InstanceName = instancename
           @InstanceID = instanceid
           @Edition = edition
         end
 
         def deserialize(params)
+          @InstanceName = params['InstanceName']
           @InstanceID = params['InstanceID']
           @Edition = params['Edition']
         end
@@ -7597,7 +7621,7 @@ module TencentCloud
         # @type SniHost: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
-        # @param XFFReset: 0:关闭xff重置；1:开启xff重置
+        # @param XFFReset: 0:关闭xff重置；1:开启xff重置，只有在IsCdn=0时可以开启
         # @type XFFReset: Integer
 
         attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset
@@ -8979,10 +9003,13 @@ module TencentCloud
         # @param Cls: 指定域名是否写cls的开关 1:写 0:不写
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cls: Integer
+        # @param CloudType: 标记是否是混合云接入。hybrid表示混合云接入域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: String
 
-        attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls
+        attr_accessor :Appid, :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :Level, :WriteConfig, :Cls, :CloudType
 
-        def initialize(appid=nil, domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, level=nil, writeconfig=nil, cls=nil)
+        def initialize(appid=nil, domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, level=nil, writeconfig=nil, cls=nil, cloudtype=nil)
           @Appid = appid
           @Domain = domain
           @DomainId = domainid
@@ -8992,6 +9019,7 @@ module TencentCloud
           @Level = level
           @WriteConfig = writeconfig
           @Cls = cls
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -9004,6 +9032,7 @@ module TencentCloud
           @Level = params['Level']
           @WriteConfig = params['WriteConfig']
           @Cls = params['Cls']
+          @CloudType = params['CloudType']
         end
       end
 

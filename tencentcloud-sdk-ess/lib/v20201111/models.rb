@@ -1063,6 +1063,130 @@ module TencentCloud
         end
       end
 
+      # CreateBatchSignUrl请求参数结构体
+      class CreateBatchSignUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Name: 签署方经办人的姓名。
+        # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
+
+        # 注：`请确保和合同中填入的一致`
+        # @type Name: String
+        # @param Mobile: 手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
+        # 请确认手机号所有方为此业务通知方。
+
+        # 注：`请确保和合同中填入的一致,  若无法保持一致，请确保在发起和生成批量签署链接时传入相同的参与方证件信息`
+        # @type Mobile: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param IdCardType: 证件类型，支持以下类型
+        # <ul><li>ID_CARD : 居民身份证 (默认值)</li>
+        # <li>HONGKONG_AND_MACAO : 港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)</li></ul>
+
+        # 注：`请确保和合同中填入的一致`
+        # @type IdCardType: String
+        # @param IdCardNumber: 证件号码，应符合以下规则
+        # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
+        # <li>港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。</li>
+        # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+
+        # 注：`请确保和合同中填入的一致`
+        # @type IdCardNumber: String
+        # @param NotifyType: 通知用户方式：
+        # <ul>
+        # <li>**NONE** : 不通知（默认）</li>
+        # <li>**SMS** : 短信通知（发送短信通知到Mobile参数所传的手机号）</li>
+        # </ul>
+        # @type NotifyType: String
+        # @param FlowIds: 本次需要批量签署的合同流程ID列表。
+        # 可以不传,  如不传则是发给对方的所有待签署合同流程。
+        # @type FlowIds: Array
+        # @param OrganizationName: 目标签署人的企业名称，签署人如果是企业员工身份，需要传此参数。
+
+        # 注：
+        # <ul>
+        # <li>请确认该名称与企业营业执照中注册的名称一致。</li>
+        # <li>如果名称中包含英文括号()，请使用中文括号（）代替。</li>
+        # <li>请确保此企业已完成腾讯电子签企业认证。</li>
+        # </ul>
+        # @type OrganizationName: String
+        # @param JumpToDetail: 是否直接跳转至合同内容页面进行签署
+        # <ul>
+        # <li>**false**: 会跳转至批量合同流程的列表,  点击需要批量签署合同后进入合同内容页面进行签署(默认)</li>
+        # <li>**true**: 跳过合同流程列表, 直接进入合同内容页面进行签署</li>
+        # </ul>
+        # @type JumpToDetail: Boolean
+
+        attr_accessor :Operator, :Name, :Mobile, :Agent, :IdCardType, :IdCardNumber, :NotifyType, :FlowIds, :OrganizationName, :JumpToDetail
+
+        def initialize(operator=nil, name=nil, mobile=nil, agent=nil, idcardtype=nil, idcardnumber=nil, notifytype=nil, flowids=nil, organizationname=nil, jumptodetail=nil)
+          @Operator = operator
+          @Name = name
+          @Mobile = mobile
+          @Agent = agent
+          @IdCardType = idcardtype
+          @IdCardNumber = idcardnumber
+          @NotifyType = notifytype
+          @FlowIds = flowids
+          @OrganizationName = organizationname
+          @JumpToDetail = jumptodetail
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @IdCardType = params['IdCardType']
+          @IdCardNumber = params['IdCardNumber']
+          @NotifyType = params['NotifyType']
+          @FlowIds = params['FlowIds']
+          @OrganizationName = params['OrganizationName']
+          @JumpToDetail = params['JumpToDetail']
+        end
+      end
+
+      # CreateBatchSignUrl返回参数结构体
+      class CreateBatchSignUrlResponse < TencentCloud::Common::AbstractModel
+        # @param SignUrl: 批量签署链接，以短链形式返回，短链的有效期参考回参中的 ExpiredTime。
+
+        # 注: `非小程序和APP集成使用`
+        # @type SignUrl: String
+        # @param ExpiredTime: 链接过期时间以 Unix 时间戳格式表示，默认生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+        # @type ExpiredTime: Integer
+        # @param MiniAppPath: 从客户小程序或者客户APP跳转至腾讯电子签小程序进行批量签署的跳转路径
+
+        # 注: `小程序和APP集成使用`
+        # @type MiniAppPath: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignUrl, :ExpiredTime, :MiniAppPath, :RequestId
+
+        def initialize(signurl=nil, expiredtime=nil, miniapppath=nil, requestid=nil)
+          @SignUrl = signurl
+          @ExpiredTime = expiredtime
+          @MiniAppPath = miniapppath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignUrl = params['SignUrl']
+          @ExpiredTime = params['ExpiredTime']
+          @MiniAppPath = params['MiniAppPath']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: 需要进行转换的资源文件类型
@@ -2142,30 +2266,33 @@ module TencentCloud
 
       # CreateFlowSignReview请求参数结构体
       class CreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
-        # @param Operator: 调用方用户信息，userId 必填
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowId: 签署流程编号
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # @type FlowId: String
-        # @param ReviewType: 企业内部审核结果
-        # PASS: 通过
-        # REJECT: 拒绝
+        # @param ReviewType: 企业审核结果
+        # <ul><li>PASS: 通过</li>
+        # <li>REJECT: 拒绝</li></ul>
         # @type ReviewType: String
-        # @param ReviewMessage: 审核原因
-        # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
+        # @param ReviewMessage: 审核结果原因，
+        # 字符串长度不超过200
+        # 当ReviewType 是拒绝（REJECT） 时此字段必填。
         # @type ReviewMessage: String
         # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param RecipientId: 审核签署节点使用 非必填 如果填写则审核该签署节点。给个人审核时必填。
+        # @param RecipientId: 审核签署节点人标识，
+        # 用来标识审核的签署方。
+        # 如果签署审核节点是个人， 此参数必填。
         # @type RecipientId: String
-        # @param OperateType: 操作类型：（接口通过该字段区分操作类型）
+        # @param OperateType: 操作类型：（接口通过该字段区分不同的操作类型）
 
-        # SignReview:签署审核
-        # CreateReview:发起审核
+        # <ul><li>SignReview: 签署审核（默认）</li>
+        # <li>CreateReview: 创建审核</li></ul>
 
-        # 默认：SignReview；SignReview:签署审核
-
-        # 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
-        # 若发起个人审核，则指定该字段为：SignReview
+        # 如果审核节点是个人，则操作类型只能为SignReview。
         # @type OperateType: String
 
         attr_accessor :Operator, :FlowId, :ReviewType, :ReviewMessage, :Agent, :RecipientId, :OperateType

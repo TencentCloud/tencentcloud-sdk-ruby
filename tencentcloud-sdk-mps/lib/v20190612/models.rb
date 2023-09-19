@@ -315,7 +315,7 @@ module TencentCloud
         # @type AnimatedGraphicTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskAnimatedGraphicResult`
         # @param SnapshotByTimeOffsetTask: 时间点截图任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSampleSnapshotResult`
+        # @type SnapshotByTimeOffsetTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSnapshotByTimeOffsetResult`
         # @param SampleSnapshotTask: 采样截图任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SampleSnapshotTask: :class:`Tencentcloud::Mps.v20190612.models.MediaProcessTaskSampleSnapshotResult`
@@ -359,7 +359,7 @@ module TencentCloud
             @AnimatedGraphicTask.deserialize(params['AnimatedGraphicTask'])
           end
           unless params['SnapshotByTimeOffsetTask'].nil?
-            @SnapshotByTimeOffsetTask = MediaProcessTaskSampleSnapshotResult.new
+            @SnapshotByTimeOffsetTask = MediaProcessTaskSnapshotByTimeOffsetResult.new
             @SnapshotByTimeOffsetTask.deserialize(params['SnapshotByTimeOffsetTask'])
           end
           unless params['SampleSnapshotTask'].nil?
@@ -987,6 +987,7 @@ module TencentCloud
         # @param HighlightSet: 视频智能精彩片段列表。
         # @type HighlightSet: Array
         # @param OutputStorage: 精彩片段的存储位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
         attr_accessor :HighlightSet, :OutputStorage
@@ -1453,6 +1454,9 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
+        extend Gem::Deprecate
+        deprecate :OutputStorage, :none, 2023, 9
+        deprecate :OutputStorage=, :none, 2023, 9
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -2191,15 +2195,12 @@ module TencentCloud
         # @type SegmentSet: Array
         # @param SubtitlePath: 字幕文件地址。
         # @type SubtitlePath: String
-        # @param OutputStorage: 字幕文件存储位置。
-        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
+        attr_accessor :SegmentSet, :SubtitlePath
 
-        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
+        def initialize(segmentset=nil, subtitlepath=nil)
           @SegmentSet = segmentset
           @SubtitlePath = subtitlepath
-          @OutputStorage = outputstorage
         end
 
         def deserialize(params)
@@ -2212,10 +2213,6 @@ module TencentCloud
             end
           end
           @SubtitlePath = params['SubtitlePath']
-          unless params['OutputStorage'].nil?
-            @OutputStorage = TaskOutputStorage.new
-            @OutputStorage.deserialize(params['OutputStorage'])
-          end
         end
       end
 
@@ -2512,6 +2509,7 @@ module TencentCloud
       # 内容审核鉴黄任务输入参数类型
       class AiReviewPornTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 鉴黄模板 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Definition: Integer
 
         attr_accessor :Definition
@@ -3935,12 +3933,16 @@ module TencentCloud
       # Aws SQS 队列信息
       class AwsSQS < TencentCloud::Common::AbstractModel
         # @param SQSRegion: SQS 队列区域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQSRegion: String
         # @param SQSQueueName: SQS 队列名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SQSQueueName: String
         # @param S3SecretId: 读写SQS的秘钥id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretId: String
         # @param S3SecretKey: 读写SQS的秘钥key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3SecretKey: String
 
         attr_accessor :SQSRegion, :SQSQueueName, :S3SecretId, :S3SecretKey
@@ -4129,6 +4131,825 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 视频编辑/合成任务 音频元素信息。
+      class ComposeAudioItem < TencentCloud::Common::AbstractModel
+        # @param SourceMedia: 元素对应媒体信息。
+        # @type SourceMedia: :class:`Tencentcloud::Mps.v20190612.models.ComposeSourceMedia`
+        # @param TrackTime: 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        # @type TrackTime: :class:`Tencentcloud::Mps.v20190612.models.ComposeTrackTime`
+        # @param AudioOperations: 对音频进行操作，如静音等。
+        # @type AudioOperations: Array
+
+        attr_accessor :SourceMedia, :TrackTime, :AudioOperations
+
+        def initialize(sourcemedia=nil, tracktime=nil, audiooperations=nil)
+          @SourceMedia = sourcemedia
+          @TrackTime = tracktime
+          @AudioOperations = audiooperations
+        end
+
+        def deserialize(params)
+          unless params['SourceMedia'].nil?
+            @SourceMedia = ComposeSourceMedia.new
+            @SourceMedia.deserialize(params['SourceMedia'])
+          end
+          unless params['TrackTime'].nil?
+            @TrackTime = ComposeTrackTime.new
+            @TrackTime.deserialize(params['TrackTime'])
+          end
+          unless params['AudioOperations'].nil?
+            @AudioOperations = []
+            params['AudioOperations'].each do |i|
+              composeaudiooperation_tmp = ComposeAudioOperation.new
+              composeaudiooperation_tmp.deserialize(i)
+              @AudioOperations << composeaudiooperation_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 音频操作。
+      class ComposeAudioOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 音频操作类型，取值有：
+        # <li>Volume：音量调节。</li>
+        # @type Type: String
+        # @param Volume:  当 Type = Volume 时有效。音量调节参数，取值范围: 0~5。
+        # <li>0 表示静音。</li>
+        # <li>小于1 表示降低音量。</li>
+        # <li>1 表示不变。</li>
+        # <li>大于1表示升高音量。</li>
+        # @type Volume: Float
+
+        attr_accessor :Type, :Volume
+
+        def initialize(type=nil, volume=nil)
+          @Type = type
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Volume = params['Volume']
+        end
+      end
+
+      # 视频编辑/合成任务 音频流信息。
+      class ComposeAudioStream < TencentCloud::Common::AbstractModel
+        # @param Codec: 音频流的编码方式，可选值：
+        # <li>AAC：AAC 编码（默认），用于容器为 mp4。</li>
+        # <li>MP3：mp3 编码，用于容器为 mp3。</li>
+        # @type Codec: String
+        # @param SampleRate: 音频流的采样率，单位：Hz，可选值：
+        # <li>16000（默认）</li>
+        # <li>32000</li>
+        # <li>44100</li>
+        # <li>48000</li>
+        # @type SampleRate: Integer
+        # @param AudioChannel: 声道数，可选值：
+        # <li>1：单声道 。</li>
+        # <li>2：双声道（默认）。</li>
+        # @type AudioChannel: Integer
+
+        attr_accessor :Codec, :SampleRate, :AudioChannel
+
+        def initialize(codec=nil, samplerate=nil, audiochannel=nil)
+          @Codec = codec
+          @SampleRate = samplerate
+          @AudioChannel = audiochannel
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @SampleRate = params['SampleRate']
+          @AudioChannel = params['AudioChannel']
+        end
+      end
+
+      # 视频编辑/合成任务画布信息。
+      class ComposeCanvas < TencentCloud::Common::AbstractModel
+        # @param Color: 背景颜色对应的 RGB 参考值，取值格式： #RRGGBB，如 #F0F0F0 。
+        # 默认值：#000000（黑色）。
+        # @type Color: String
+        # @param Width: 画布宽度，即输出视频的宽度，取值范围：0~ 3840，单位：px。
+        # 默认值：0，表示和第一个视频宽度一致。
+        # @type Width: Integer
+        # @param Height: 画布高度，即输出视频的高度，取值范围：0~ 3840，单位：px。
+        # 默认值：0，表示和第一个视频高度一致。
+        # @type Height: Integer
+
+        attr_accessor :Color, :Width, :Height
+
+        def initialize(color=nil, width=nil, height=nil)
+          @Color = color
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @Color = params['Color']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
+      # 视频编辑/合成任务 空白占位元素信息。
+      class ComposeEmptyItem < TencentCloud::Common::AbstractModel
+        # @param Duration: 元素时长，时间支持：
+        # <li>以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒。</li>
+        # @type Duration: String
+
+        attr_accessor :Duration
+
+        def initialize(duration=nil)
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+        end
+      end
+
+      # 视频编辑/合成任务 图片元素信息。
+      class ComposeImageItem < TencentCloud::Common::AbstractModel
+        # @param SourceMedia: 元素对应媒体信息。
+        # @type SourceMedia: :class:`Tencentcloud::Mps.v20190612.models.ComposeSourceMedia`
+        # @param TrackTime: 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        # @type TrackTime: :class:`Tencentcloud::Mps.v20190612.models.ComposeTrackTime`
+        # @param XPos: 元素中心点距离画布原点的水平位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
+        # 默认：50%。
+        # @type XPos: String
+        # @param YPos: 元素中心点距离画布原点的垂直位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
+        # 默认：50%。
+        # @type YPos: String
+        # @param Width: 视频片段的宽度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 Width 单位为像素，如 100px 表示 Width 为100像素。</li>
+        # 为空（或0） 的场景：
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按源素材比例缩放。</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按源素材比例缩放。</li>
+        # @type Width: String
+        # @param Height: 元素的高度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 Height 单位为像素，如 100px 表示 Height 为100像素。</li>
+        # 为空（或0） 的场景：
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按源素材比例缩放。</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按源素材比例缩放。</li>
+        # @type Height: String
+        # @param ImageOperations: 对图像画面进行的操作，如图像旋转等。
+        # @type ImageOperations: Array
+
+        attr_accessor :SourceMedia, :TrackTime, :XPos, :YPos, :Width, :Height, :ImageOperations
+
+        def initialize(sourcemedia=nil, tracktime=nil, xpos=nil, ypos=nil, width=nil, height=nil, imageoperations=nil)
+          @SourceMedia = sourcemedia
+          @TrackTime = tracktime
+          @XPos = xpos
+          @YPos = ypos
+          @Width = width
+          @Height = height
+          @ImageOperations = imageoperations
+        end
+
+        def deserialize(params)
+          unless params['SourceMedia'].nil?
+            @SourceMedia = ComposeSourceMedia.new
+            @SourceMedia.deserialize(params['SourceMedia'])
+          end
+          unless params['TrackTime'].nil?
+            @TrackTime = ComposeTrackTime.new
+            @TrackTime.deserialize(params['TrackTime'])
+          end
+          @XPos = params['XPos']
+          @YPos = params['YPos']
+          @Width = params['Width']
+          @Height = params['Height']
+          unless params['ImageOperations'].nil?
+            @ImageOperations = []
+            params['ImageOperations'].each do |i|
+              composeimageoperation_tmp = ComposeImageOperation.new
+              composeimageoperation_tmp.deserialize(i)
+              @ImageOperations << composeimageoperation_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 视频图像转换操作。
+      class ComposeImageOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 类型，取值有：
+        # <li>Rotate：图像旋转。</li>
+        # <li>Flip：图像翻转。</li>
+        # @type Type: String
+        # @param RotateAngle: 当 Type = Rotate 时有效。图像以中心点为原点进行旋转的角度，取值范围0~360。
+        # @type RotateAngle: Float
+        # @param FlipType: 当 Type = Flip 时有效。图像翻转动作，取值有：
+        # <li>Horizental：水平翻转，即左右镜像。</li>
+        # <li>Vertical：垂直翻转，即上下镜像。</li>
+        # @type FlipType: String
+
+        attr_accessor :Type, :RotateAngle, :FlipType
+
+        def initialize(type=nil, rotateangle=nil, fliptype=nil)
+          @Type = type
+          @RotateAngle = rotateangle
+          @FlipType = fliptype
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @RotateAngle = params['RotateAngle']
+          @FlipType = params['FlipType']
+        end
+      end
+
+      # 视频编辑/合成任务 信息。
+
+      # 关于 轨道、元素、时间轴 关系示意图：
+
+      # ![image](https://ie-mps-1258344699.cos.ap-nanjing.tencentcos.cn/common/cloud/EditMedia-Compose-Track-Item.png)
+      class ComposeMediaConfig < TencentCloud::Common::AbstractModel
+        # @param TargetInfo: 合成目标视频信息。
+        # @type TargetInfo: :class:`Tencentcloud::Mps.v20190612.models.ComposeTargetInfo`
+        # @param Canvas: 合成目标视频的画布信息。
+        # @type Canvas: :class:`Tencentcloud::Mps.v20190612.models.ComposeCanvas`
+        # @param Styles: 全局样式，和轨道 Tracks 配合使用，用于定于样式，如字幕样式。
+        # @type Styles: Array
+        # @param Tracks: 用于描述合成视频的轨道列表，包括：视频、音频、图片、文字等元素组成的多个轨道信息。关于轨道和时间：
+        # <ul><li>轨道时间轴即为目标视频时间轴。</li><li>时间轴上相同时间点的不同轨道上的元素会重叠：</li><ul><li>视频、图片、文字：按轨道顺序进行图像的叠加，轨道顺序靠前的在上面。</li><li>音频 ：进行混音。</li></ul></ul>注意：同一轨道中各个元素（除字幕元素外）的轨道时间不能重叠。
+        # @type Tracks: Array
+
+        attr_accessor :TargetInfo, :Canvas, :Styles, :Tracks
+
+        def initialize(targetinfo=nil, canvas=nil, styles=nil, tracks=nil)
+          @TargetInfo = targetinfo
+          @Canvas = canvas
+          @Styles = styles
+          @Tracks = tracks
+        end
+
+        def deserialize(params)
+          unless params['TargetInfo'].nil?
+            @TargetInfo = ComposeTargetInfo.new
+            @TargetInfo.deserialize(params['TargetInfo'])
+          end
+          unless params['Canvas'].nil?
+            @Canvas = ComposeCanvas.new
+            @Canvas.deserialize(params['Canvas'])
+          end
+          unless params['Styles'].nil?
+            @Styles = []
+            params['Styles'].each do |i|
+              composestyles_tmp = ComposeStyles.new
+              composestyles_tmp.deserialize(i)
+              @Styles << composestyles_tmp
+            end
+          end
+          unless params['Tracks'].nil?
+            @Tracks = []
+            params['Tracks'].each do |i|
+              composemediatrack_tmp = ComposeMediaTrack.new
+              composemediatrack_tmp.deserialize(i)
+              @Tracks << composemediatrack_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 轨道元素信息。
+      class ComposeMediaItem < TencentCloud::Common::AbstractModel
+        # @param Type: 元素类型。取值有：
+        # <li>Video：视频元素。</li>
+        # <li>Audio：音频元素。</li>
+        # <li>Image：图片元素。</li>
+        # <li>Transition：转场元素。</li>
+        # <li>Subtitle：字幕元素。</li>
+        # <li>Empty：空白元素。</li>
+        # @type Type: String
+        # @param Video: 视频元素，当 Type = Video 时有效。
+        # @type Video: :class:`Tencentcloud::Mps.v20190612.models.ComposeVideoItem`
+        # @param Audio: 音频元素，当 Type = Audio 时有效。
+        # @type Audio: :class:`Tencentcloud::Mps.v20190612.models.ComposeAudioItem`
+        # @param Image: 图片元素，当 Type = Image 时有效。
+        # @type Image: :class:`Tencentcloud::Mps.v20190612.models.ComposeImageItem`
+        # @param Transition: 转场元素，当 Type = Transition 时有效。
+        # @type Transition: :class:`Tencentcloud::Mps.v20190612.models.ComposeTransitionItem`
+        # @param Subtitle: 字幕元素，当 Type = Subtitle 是有效。
+        # @type Subtitle: :class:`Tencentcloud::Mps.v20190612.models.ComposeSubtitleItem`
+        # @param Empty: 空白元素，当 Type = Empty 时有效。用于时间轴的占位。
+        # @type Empty: :class:`Tencentcloud::Mps.v20190612.models.ComposeEmptyItem`
+
+        attr_accessor :Type, :Video, :Audio, :Image, :Transition, :Subtitle, :Empty
+
+        def initialize(type=nil, video=nil, audio=nil, image=nil, transition=nil, subtitle=nil, empty=nil)
+          @Type = type
+          @Video = video
+          @Audio = audio
+          @Image = image
+          @Transition = transition
+          @Subtitle = subtitle
+          @Empty = empty
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Video'].nil?
+            @Video = ComposeVideoItem.new
+            @Video.deserialize(params['Video'])
+          end
+          unless params['Audio'].nil?
+            @Audio = ComposeAudioItem.new
+            @Audio.deserialize(params['Audio'])
+          end
+          unless params['Image'].nil?
+            @Image = ComposeImageItem.new
+            @Image.deserialize(params['Image'])
+          end
+          unless params['Transition'].nil?
+            @Transition = ComposeTransitionItem.new
+            @Transition.deserialize(params['Transition'])
+          end
+          unless params['Subtitle'].nil?
+            @Subtitle = ComposeSubtitleItem.new
+            @Subtitle.deserialize(params['Subtitle'])
+          end
+          unless params['Empty'].nil?
+            @Empty = ComposeEmptyItem.new
+            @Empty.deserialize(params['Empty'])
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 轨道信息。
+      class ComposeMediaTrack < TencentCloud::Common::AbstractModel
+        # @param Type: 轨道类型，取值有：<ul><li>Video ：视频轨道。视频轨道可由以下元素组成：</li><ul><li>Video 元素</li><li>Image 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Audio ：音频轨道。音频轨道可由以下元素组成：</li><ul><li>Audio 元素</li><li>Transition 元素</li><li>Empty 元素</li></ul><li>Title：文字轨道。文字轨道可由以下元素组成：</li><ul><li>Subtitle 元素</li></ul>
+        # @type Type: String
+        # @param Items: 轨道上的元素列表。
+        # @type Items: Array
+
+        attr_accessor :Type, :Items
+
+        def initialize(type=nil, items=nil)
+          @Type = type
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              composemediaitem_tmp = ComposeMediaItem.new
+              composemediaitem_tmp.deserialize(i)
+              @Items << composemediaitem_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务  媒体素材源信息。
+      class ComposeSourceMedia < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体对应的素材ID，即 FileInfos 列表中对应素材的 ID。
+        # @type FileId: String
+        # @param StartTime: 媒体位于素材的起始时间，时间点支持 s、% 两种格式：
+        # <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
+        # <li>当字符串以 % 结尾，表示时间点为素材时长的百分比大小，如10%表示时间点为素材第10% 的时刻。</li>
+        # 默认：0s
+        # @type StartTime: String
+        # @param EndTime: 媒体位于素材的结束时间，和 StartTime 构成媒体在源素材的时间区间，时间点支持 s、% 两种格式：
+        # <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
+        # <li>当字符串以 % 结尾，表示时间点为素材时长的百分比大小，如10%表示时间点为素材第10%的时间。</li>
+        # 默认：如果对应轨道时长有设置，则默认轨道时长，否则为素材时长，无时长的素材默认为 1 秒。
+        # 注意：至少需要大于 StartTime 0.02 秒。
+        # @type EndTime: String
+
+        attr_accessor :FileId, :StartTime, :EndTime
+
+        def initialize(fileid=nil, starttime=nil, endtime=nil)
+          @FileId = fileid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 视频编辑/合成任务 样式信息。
+      class ComposeStyles < TencentCloud::Common::AbstractModel
+        # @param Id: 样式 Id，用于和轨道元素中的样式关联。
+        # 注意：允许字母、数字、-、_ 组合，最长 32 字符。
+        # @type Id: String
+        # @param Type: 样式类型，取值有：
+        # <li>Subtitle：字幕样式。</li>
+        # @type Type: String
+        # @param Subtitle: 字幕样式信息，当 Type = Subtitle 时有效。
+        # @type Subtitle: :class:`Tencentcloud::Mps.v20190612.models.ComposeSubtitleStyle`
+
+        attr_accessor :Id, :Type, :Subtitle
+
+        def initialize(id=nil, type=nil, subtitle=nil)
+          @Id = id
+          @Type = type
+          @Subtitle = subtitle
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          unless params['Subtitle'].nil?
+            @Subtitle = ComposeSubtitleStyle.new
+            @Subtitle.deserialize(params['Subtitle'])
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 字幕元素信息。
+      class ComposeSubtitleItem < TencentCloud::Common::AbstractModel
+        # @param StyleId: 字幕样式，Styles 列表中对应的 Subtitle样式的 ID。
+        # @type StyleId: String
+        # @param Text: 字幕文本。
+        # @type Text: String
+        # @param TrackTime: 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        # @type TrackTime: :class:`Tencentcloud::Mps.v20190612.models.ComposeTrackTime`
+
+        attr_accessor :StyleId, :Text, :TrackTime
+
+        def initialize(styleid=nil, text=nil, tracktime=nil)
+          @StyleId = styleid
+          @Text = text
+          @TrackTime = tracktime
+        end
+
+        def deserialize(params)
+          @StyleId = params['StyleId']
+          @Text = params['Text']
+          unless params['TrackTime'].nil?
+            @TrackTime = ComposeTrackTime.new
+            @TrackTime.deserialize(params['TrackTime'])
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 字幕样式。
+      class ComposeSubtitleStyle < TencentCloud::Common::AbstractModel
+        # @param Height: 字幕高度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。</li>
+        # 默认为 FontSize 大小。
+        # @type Height: String
+        # @param MarginBottom: 字幕距离下边框距离，支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。</li>
+        # 默认：0px
+        # @type MarginBottom: String
+        # @param FontType: 字体类型，支持：
+        # <li>SimHei：黑体（默认）。</li>
+        # <li>SimSun：宋体。</li>
+        # @type FontType: String
+        # @param FontSize: 字体大小，支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。</li>
+        # 默认：2%
+        # @type FontSize: String
+        # @param FontBold: 是否使用粗体，和字体相关，可选值：
+        # <li>0：否（默认）。</li>
+        # <li>1：是。</li>
+        # @type FontBold: Integer
+        # @param FontItalic: 是否使用斜体，和字体相关，可选值：
+        # <li>0：否（默认）。</li>
+        # <li>1：是。</li>
+        # @type FontItalic: Integer
+        # @param FontColor: 字体颜色，格式：#RRGGBBAA。
+        # 默认值：0x000000FF（黑色）。
+        # 注意：其中 AA 部分指的是透明度，为可选。
+        # @type FontColor: String
+        # @param FontAlign: 文字对齐方式：
+        # <li>Center：居中（默认）。</li>
+        # <li>Left：左对齐。</li>
+        # <li>Right：右对齐。</li>
+        # @type FontAlign: String
+        # @param FontAlignMargin: 用于字幕对齐留白：
+        # <li>FontAlign=Left 时，表示距离左边距离。</li>
+        # <li>FontAlign=Right时，表示距离右边距离。</li>
+        # 支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示为画布宽度的百分比大小，如 10% 表示为画布宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。</li>
+        # @type FontAlignMargin: String
+        # @param BorderWidth: 字体边框宽度，支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示为画布高度的百分比大小，如 10% 表示为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示单位为像素，如 100px 表示为100像素。</li>
+        # 默认： 0，表示不需要边框。
+        # @type BorderWidth: String
+        # @param BorderColor: 边框颜色，当 BorderWidth 不为 0 时生效，其值格式和 FontColor 一致。
+        # @type BorderColor: String
+        # @param BottomColor: 文字底色，其值格式和 FontColor 一致。
+        # 默认为空， 表示不使用底色。
+        # @type BottomColor: String
+
+        attr_accessor :Height, :MarginBottom, :FontType, :FontSize, :FontBold, :FontItalic, :FontColor, :FontAlign, :FontAlignMargin, :BorderWidth, :BorderColor, :BottomColor
+
+        def initialize(height=nil, marginbottom=nil, fonttype=nil, fontsize=nil, fontbold=nil, fontitalic=nil, fontcolor=nil, fontalign=nil, fontalignmargin=nil, borderwidth=nil, bordercolor=nil, bottomcolor=nil)
+          @Height = height
+          @MarginBottom = marginbottom
+          @FontType = fonttype
+          @FontSize = fontsize
+          @FontBold = fontbold
+          @FontItalic = fontitalic
+          @FontColor = fontcolor
+          @FontAlign = fontalign
+          @FontAlignMargin = fontalignmargin
+          @BorderWidth = borderwidth
+          @BorderColor = bordercolor
+          @BottomColor = bottomcolor
+        end
+
+        def deserialize(params)
+          @Height = params['Height']
+          @MarginBottom = params['MarginBottom']
+          @FontType = params['FontType']
+          @FontSize = params['FontSize']
+          @FontBold = params['FontBold']
+          @FontItalic = params['FontItalic']
+          @FontColor = params['FontColor']
+          @FontAlign = params['FontAlign']
+          @FontAlignMargin = params['FontAlignMargin']
+          @BorderWidth = params['BorderWidth']
+          @BorderColor = params['BorderColor']
+          @BottomColor = params['BottomColor']
+        end
+      end
+
+      # 视频编辑/合成任务 目标视频信息。
+      class ComposeTargetInfo < TencentCloud::Common::AbstractModel
+        # @param Container: 封装容器格式，可选值：
+        # <li>mp4：视频文件（默认）。</li>
+        # <li>mp3：纯音频文件。</li>
+        # @type Container: String
+        # @param RemoveVideo: 是否去除视频数据，可选值：
+        # <li>0：保留（默认）。</li>
+        # <li>1：去除。</li>
+        # @type RemoveVideo: Integer
+        # @param RemoveAudio: 是否去除音频数据，可选值：
+        # <li>0：保留（默认）。</li>
+        # <li>1：去除。</li>
+        # @type RemoveAudio: Integer
+        # @param VideoStream: 输出视频流信息。
+        # @type VideoStream: :class:`Tencentcloud::Mps.v20190612.models.ComposeVideoStream`
+        # @param AudioStream: 输出音频流信息。
+        # @type AudioStream: :class:`Tencentcloud::Mps.v20190612.models.ComposeAudioStream`
+
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoStream, :AudioStream
+
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videostream=nil, audiostream=nil)
+          @Container = container
+          @RemoveVideo = removevideo
+          @RemoveAudio = removeaudio
+          @VideoStream = videostream
+          @AudioStream = audiostream
+        end
+
+        def deserialize(params)
+          @Container = params['Container']
+          @RemoveVideo = params['RemoveVideo']
+          @RemoveAudio = params['RemoveAudio']
+          unless params['VideoStream'].nil?
+            @VideoStream = ComposeVideoStream.new
+            @VideoStream.deserialize(params['VideoStream'])
+          end
+          unless params['AudioStream'].nil?
+            @AudioStream = ComposeAudioStream.new
+            @AudioStream.deserialize(params['AudioStream'])
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 对应元素在目标视频轨道上的时间信息。
+      class ComposeTrackTime < TencentCloud::Common::AbstractModel
+        # @param Start: 元素在轨道上的起始时间，时间点支持：
+        # <li>以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
+        # 注意：不填则默认为前一个元素的结束时间，此时可以通过 ComposeEmptyItem 元素来进行占位，实现轨道起始时间设置。
+        # @type Start: String
+        # @param Duration: 元素时长，时间支持：
+        # <li>以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
+        # 默认：取对应 ComposeSourceMedia 媒体的有效时长（即 EndTime-StartTime），没有 ComposeSourceMedia 则默认为 1 秒。
+        # @type Duration: String
+
+        attr_accessor :Start, :Duration
+
+        def initialize(start=nil, duration=nil)
+          @Start = start
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 视频编辑/合成任务 转场元素信息。
+      class ComposeTransitionItem < TencentCloud::Common::AbstractModel
+        # @param Duration: 元素时长，时间支持：<li>以 s 结尾，表示时间点单位为秒，如 3s 表示时间点为第3秒。</li>
+        # 默认：1s
+        # 注意：
+        # <li>必须是整数s，否则向下取整。</li>
+        # <li>转场 前后必须紧挨着两个不为 Empty 的元素。</li>
+        # <li>转场 Duration 必须小于前一个元素的 Duration，同时必须小于后一个元素的 Duration。</li>
+        # <li>进行转场处理的两个元素，第二个元素在轨道上的起始时间会自动调整为前一个元素的结束时间减去转场的 Duration。</li>
+        # @type Duration: String
+        # @param Transitions: 转场操作列表。
+        # 默认：淡入淡出。
+        # 注意：图像转场操作和音频转场操作各自最多支持一个。
+        # @type Transitions: Array
+
+        attr_accessor :Duration, :Transitions
+
+        def initialize(duration=nil, transitions=nil)
+          @Duration = duration
+          @Transitions = transitions
+        end
+
+        def deserialize(params)
+          @Duration = params['Duration']
+          unless params['Transitions'].nil?
+            @Transitions = []
+            params['Transitions'].each do |i|
+              composetransitionoperation_tmp = ComposeTransitionOperation.new
+              composetransitionoperation_tmp.deserialize(i)
+              @Transitions << composetransitionoperation_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 元素转场信息。
+      class ComposeTransitionOperation < TencentCloud::Common::AbstractModel
+        # @param Type: 转场类型。
+
+        # 图像的转场操作，用于两个视频片段图像间的转场处理：
+        # <li>ImageFadeInFadeOut：图像淡入淡出。</li>
+        # <li>BowTieHorizontal：水平蝴蝶结。</li>
+        # <li>BowTieVertical：垂直蝴蝶结。</li>
+        # <li>ButterflyWaveScrawler：晃动。</li>
+        # <li>Cannabisleaf：枫叶。</li>
+        # <li>Circle：弧形收放。</li>
+        # <li>CircleCrop：圆环聚拢。</li>
+        # <li>Circleopen：椭圆聚拢。</li>
+        # <li>Crosswarp：横向翘曲。</li>
+        # <li>Cube：立方体。</li>
+        # <li>DoomScreenTransition：幕布。</li>
+        # <li>Doorway：门廊。</li>
+        # <li>Dreamy：波浪。</li>
+        # <li>DreamyZoom：水平聚拢。</li>
+        # <li>FilmBurn：火烧云。</li>
+        # <li>GlitchMemories：抖动。</li>
+        # <li>Heart：心形。</li>
+        # <li>InvertedPageCurl：翻页。</li>
+        # <li>Luma：腐蚀。</li>
+        # <li>Mosaic：九宫格。</li>
+        # <li>Pinwheel：风车。</li>
+        # <li>PolarFunction：椭圆扩散。</li>
+        # <li>PolkaDotsCurtain：弧形扩散。</li>
+        # <li>Radial：雷达扫描。</li>
+        # <li>RotateScaleFade：上下收放。</li>
+        # <li>Squeeze：上下聚拢。</li>
+        # <li>Swap：放大切换。</li>
+        # <li>Swirl：螺旋。</li>
+        # <li>UndulatingBurnOutSwirl：水流蔓延。</li>
+        # <li>Windowblinds：百叶窗。</li>
+        # <li>WipeDown：向下收起。</li>
+        # <li>WipeLeft：向左收起。</li>
+        # <li>WipeRight：向右收起。</li>
+        # <li>WipeUp：向上收起。</li>
+        # <li>ZoomInCircles：水波纹。</li>
+        # 音频的转场操作，用于两个音频片段间的转场处理：
+        # <li>AudioFadeInFadeOut：声音淡入淡出。</li>
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # 视频编辑/合成任务 视频元素信息。
+      class ComposeVideoItem < TencentCloud::Common::AbstractModel
+        # @param SourceMedia: 元素对应媒体信息。
+        # @type SourceMedia: :class:`Tencentcloud::Mps.v20190612.models.ComposeSourceMedia`
+        # @param TrackTime: 元素在轨道时间轴上的时间信息，不填则紧跟上一个元素。
+        # @type TrackTime: :class:`Tencentcloud::Mps.v20190612.models.ComposeTrackTime`
+        # @param XPos: 元素中心点距离画布原点的水平位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
+        # 默认：50%。
+        # @type XPos: String
+        # @param YPos: 元素中心点距离画布原点的垂直位置。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
+        # 默认：50%。
+        # @type YPos: String
+        # @param Width: 视频片段的宽度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 Width 单位为像素，如 100px 表示 Width 为100像素。</li>
+        # 为空（或0） 的场景：
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按源素材比例缩放。</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按源素材比例缩放。</li>
+        # @type Width: String
+        # @param Height: 元素的高度。支持 %、px 两种格式：
+        # <li>当字符串以 % 结尾，表示元素 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。</li>
+        # <li>当字符串以 px 结尾，表示元素 Height 单位为像素，如 100px 表示 Height 为100像素。</li>
+        # 为空（或0） 的场景：
+        # <li>当 Width、Height 均为空，则 Width 和 Height 取源素材本身的 Width、Height。</li>
+        # <li>当 Width 为空，Height 非空，则 Width 按源素材比例缩放。</li>
+        # <li>当 Width 非空，Height 为空，则 Height 按源素材比例缩放。</li>
+        # @type Height: String
+        # @param ImageOperations: 对图像画面进行的操作，如图像旋转等。
+        # @type ImageOperations: Array
+        # @param AudioOperations: 对音频进行操作，如静音等。
+        # @type AudioOperations: Array
+
+        attr_accessor :SourceMedia, :TrackTime, :XPos, :YPos, :Width, :Height, :ImageOperations, :AudioOperations
+
+        def initialize(sourcemedia=nil, tracktime=nil, xpos=nil, ypos=nil, width=nil, height=nil, imageoperations=nil, audiooperations=nil)
+          @SourceMedia = sourcemedia
+          @TrackTime = tracktime
+          @XPos = xpos
+          @YPos = ypos
+          @Width = width
+          @Height = height
+          @ImageOperations = imageoperations
+          @AudioOperations = audiooperations
+        end
+
+        def deserialize(params)
+          unless params['SourceMedia'].nil?
+            @SourceMedia = ComposeSourceMedia.new
+            @SourceMedia.deserialize(params['SourceMedia'])
+          end
+          unless params['TrackTime'].nil?
+            @TrackTime = ComposeTrackTime.new
+            @TrackTime.deserialize(params['TrackTime'])
+          end
+          @XPos = params['XPos']
+          @YPos = params['YPos']
+          @Width = params['Width']
+          @Height = params['Height']
+          unless params['ImageOperations'].nil?
+            @ImageOperations = []
+            params['ImageOperations'].each do |i|
+              composeimageoperation_tmp = ComposeImageOperation.new
+              composeimageoperation_tmp.deserialize(i)
+              @ImageOperations << composeimageoperation_tmp
+            end
+          end
+          unless params['AudioOperations'].nil?
+            @AudioOperations = []
+            params['AudioOperations'].each do |i|
+              composeaudiooperation_tmp = ComposeAudioOperation.new
+              composeaudiooperation_tmp.deserialize(i)
+              @AudioOperations << composeaudiooperation_tmp
+            end
+          end
+        end
+      end
+
+      # 视频编辑/合成任务 视频流信息。
+      class ComposeVideoStream < TencentCloud::Common::AbstractModel
+        # @param Codec: 视频流的编码方式，可选值：
+        # <li>H.264：H.264 编码（默认）。</li>
+        # @type Codec: String
+        # @param Fps: 视频帧率，取值范围：[0, 60]，单位：Hz。
+        # 默认值：0，表示和第一个视频帧率一致。
+        # @type Fps: Integer
+
+        attr_accessor :Codec, :Fps
+
+        def initialize(codec=nil, fps=nil)
+          @Codec = codec
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @Fps = params['Fps']
         end
       end
 
@@ -8863,12 +9684,15 @@ module TencentCloud
         # @param ScheduleTask: 编排处理任务信息，仅当 TaskType 为 ScheduleTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleTask`
+        # @param LiveScheduleTask: 直播编排处理任务信息，仅当 TaskType 为 LiveScheduleTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveScheduleTask: :class:`Tencentcloud::Mps.v20190612.models.LiveScheduleTask`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :EditMediaTask, :WorkflowTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :ScheduleTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :EditMediaTask, :WorkflowTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :ScheduleTask, :LiveScheduleTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, editmediatask=nil, workflowtask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, scheduletask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, editmediatask=nil, workflowtask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, scheduletask=nil, livescheduletask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -8883,6 +9707,7 @@ module TencentCloud
           @SessionContext = sessioncontext
           @ExtInfo = extinfo
           @ScheduleTask = scheduletask
+          @LiveScheduleTask = livescheduletask
           @RequestId = requestid
         end
 
@@ -8915,6 +9740,10 @@ module TencentCloud
           unless params['ScheduleTask'].nil?
             @ScheduleTask = ScheduleTask.new
             @ScheduleTask.deserialize(params['ScheduleTask'])
+          end
+          unless params['LiveScheduleTask'].nil?
+            @LiveScheduleTask = LiveScheduleTask.new
+            @LiveScheduleTask.deserialize(params['LiveScheduleTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -9396,17 +10225,23 @@ module TencentCloud
       class EditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param InputInfo: 视频的输入信息。
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param StartTimeOffset: 视频剪辑的起始时间偏移，单位：秒。
+        # @param StartTimeOffset: 【剪辑】任务生效，视频剪辑的起始时间偏移，单位：秒。
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 视频剪辑的结束时间偏移，单位：秒。
+        # @param EndTimeOffset: 【剪辑】任务生效，视频剪辑的结束时间偏移，单位：秒。
         # @type EndTimeOffset: Float
+        # @param Id: 【合成】任务必选，用于轨道元素中媒体关联源素材 ID。
 
-        attr_accessor :InputInfo, :StartTimeOffset, :EndTimeOffset
+        # 注意：允许字母、数字、-、_ ，最长 32 字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
 
-        def initialize(inputinfo=nil, starttimeoffset=nil, endtimeoffset=nil)
+        attr_accessor :InputInfo, :StartTimeOffset, :EndTimeOffset, :Id
+
+        def initialize(inputinfo=nil, starttimeoffset=nil, endtimeoffset=nil, id=nil)
           @InputInfo = inputinfo
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
+          @Id = id
         end
 
         def deserialize(params)
@@ -9416,14 +10251,17 @@ module TencentCloud
           end
           @StartTimeOffset = params['StartTimeOffset']
           @EndTimeOffset = params['EndTimeOffset']
+          @Id = params['Id']
         end
       end
 
       # 编辑视频的结果文件输出配置。
       class EditMediaOutputConfig < TencentCloud::Common::AbstractModel
         # @param Container: 封装格式，可选值：mp4、hls、mov、flv、avi。默认是 mp4。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Container: String
         # @param Type: 剪辑模式，可选值 normal、fast。默认是精确剪辑 normal
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
         attr_accessor :Container, :Type
@@ -9446,9 +10284,15 @@ module TencentCloud
         # @param OutputStorage: 媒体处理输出文件的目标存储。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OutputObjectPath: 媒体处理输出文件的目标路径。
+
+        # 注意：对于复杂合成任务，路径中的文件名只可为数字、字母、-、_ 的组合，最长 64 个字符。
         # @type OutputObjectPath: String
-        # @param OutputConfig: 编辑后生成的文件配置。
+        # @param OutputConfig: 【剪辑】任务生成的文件配置。
         # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.EditMediaOutputConfig`
+        # @param ComposeConfig: 【合成】任务配置。
+
+        # 注意：当其不为空时，认为是合成任务，否则按剪辑任务处理。
+        # @type ComposeConfig: :class:`Tencentcloud::Mps.v20190612.models.ComposeMediaConfig`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
@@ -9458,13 +10302,14 @@ module TencentCloud
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
 
-        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :OutputConfig, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
+        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :OutputConfig, :ComposeConfig, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
 
-        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, outputconfig=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, outputconfig=nil, composeconfig=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
           @FileInfos = fileinfos
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @OutputConfig = outputconfig
+          @ComposeConfig = composeconfig
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
@@ -9488,6 +10333,10 @@ module TencentCloud
           unless params['OutputConfig'].nil?
             @OutputConfig = EditMediaOutputConfig.new
             @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          unless params['ComposeConfig'].nil?
+            @ComposeConfig = ComposeMediaConfig.new
+            @ComposeConfig.deserialize(params['ComposeConfig'])
           end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
@@ -10490,8 +11339,10 @@ module TencentCloud
       # 片头片尾参数
       class HeadTailParameter < TencentCloud::Common::AbstractModel
         # @param HeadSet: 片头列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadSet: Array
         # @param TailSet: 片尾列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TailSet: Array
 
         attr_accessor :HeadSet, :TailSet
@@ -10829,6 +11680,258 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Port = params['Port']
+        end
+      end
+
+      # 直播编排子任务输出
+      class LiveActivityResItem < TencentCloud::Common::AbstractModel
+        # @param LiveRecordTask: 直播录制任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveRecordTask: :class:`Tencentcloud::Mps.v20190612.models.LiveScheduleLiveRecordTaskResult`
+
+        attr_accessor :LiveRecordTask
+
+        def initialize(liverecordtask=nil)
+          @LiveRecordTask = liverecordtask
+        end
+
+        def deserialize(params)
+          unless params['LiveRecordTask'].nil?
+            @LiveRecordTask = LiveScheduleLiveRecordTaskResult.new
+            @LiveRecordTask.deserialize(params['LiveRecordTask'])
+          end
+        end
+      end
+
+      # 直播编排任务输出
+      class LiveActivityResult < TencentCloud::Common::AbstractModel
+        # @param ActivityType: 原子任务类型。
+        # <li>LiveRecord：直播录制。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActivityType: String
+        # @param LiveActivityResItem: 原子任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.LiveActivityResItem`
+
+        attr_accessor :ActivityType, :LiveActivityResItem
+
+        def initialize(activitytype=nil, liveactivityresitem=nil)
+          @ActivityType = activitytype
+          @LiveActivityResItem = liveactivityresitem
+        end
+
+        def deserialize(params)
+          @ActivityType = params['ActivityType']
+          unless params['LiveActivityResItem'].nil?
+            @LiveActivityResItem = LiveActivityResItem.new
+            @LiveActivityResItem.deserialize(params['LiveActivityResItem'])
+          end
+        end
+      end
+
+      # 直播录制输出文件信息
+      class LiveRecordFile < TencentCloud::Common::AbstractModel
+        # @param Url: 直播录制文件地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Size: 直播录制文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Duration: 直播录制文件时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param StartTime: 直播录制文件开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 直播录制文件结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :Url, :Size, :Duration, :StartTime, :EndTime
+
+        def initialize(url=nil, size=nil, duration=nil, starttime=nil, endtime=nil)
+          @Url = url
+          @Size = size
+          @Duration = duration
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Size = params['Size']
+          @Duration = params['Duration']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 直播录制结果
+      class LiveRecordResult < TencentCloud::Common::AbstractModel
+        # @param OutputStorage: 直播录制文件的目标存储。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param FileList: 直播录制文件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileList: Array
+
+        attr_accessor :OutputStorage, :FileList
+
+        def initialize(outputstorage=nil, filelist=nil)
+          @OutputStorage = outputstorage
+          @FileList = filelist
+        end
+
+        def deserialize(params)
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              liverecordfile_tmp = LiveRecordFile.new
+              liverecordfile_tmp.deserialize(i)
+              @FileList << liverecordfile_tmp
+            end
+          end
+        end
+      end
+
+      # 直播录制任务输入参数类型
+      class LiveRecordTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 直播录制模板 ID。
+        # @type Definition: Integer
+        # @param OutputStorage: 直播录制后文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputObjectPath: 直播录制后文件的输出路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputObjectPath: String
+
+        attr_accessor :Definition, :OutputStorage, :OutputObjectPath
+
+        def initialize(definition=nil, outputstorage=nil, outputobjectpath=nil)
+          @Definition = definition
+          @OutputStorage = outputstorage
+          @OutputObjectPath = outputobjectpath
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputObjectPath = params['OutputObjectPath']
+        end
+      end
+
+      # 直播编排直播录制任务结果类型
+      class LiveScheduleLiveRecordTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Input: 直播录制任务的输入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.LiveRecordTaskInput`
+        # @param Output: 直播录制任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.LiveRecordResult`
+        # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = LiveRecordTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = LiveRecordResult.new
+            @Output.deserialize(params['Output'])
+          end
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 直播编排任务信息
+      class LiveScheduleTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 直播编排任务 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param Status: 任务流状态，取值：
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param ErrCode: 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCode: Integer
+        # @param Message: 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Url: 直播流 URL。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param LiveActivityResultSet: 直播编排任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveActivityResultSet: Array
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Url, :LiveActivityResultSet
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, url=nil, liveactivityresultset=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Url = url
+          @LiveActivityResultSet = liveactivityresultset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Url = params['Url']
+          unless params['LiveActivityResultSet'].nil?
+            @LiveActivityResultSet = []
+            params['LiveActivityResultSet'].each do |i|
+              liveactivityresult_tmp = LiveActivityResult.new
+              liveactivityresult_tmp.deserialize(i)
+              @LiveActivityResultSet << liveactivityresult_tmp
+            end
+          end
         end
       end
 
@@ -15328,10 +16431,16 @@ module TencentCloud
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
+        # @param ScheduleId: 直播编排ID。
+        # 注意1：对于OutputStorage、OutputDir参数：
+        # <li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li>
+        # <li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若对直播流发起处理（ProcessLiveStream）有输出，将覆盖原有编排的默认输出。</li>
+        # 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessLiveStream）有设置，将覆盖原有编排的默认回调。
+        # @type ScheduleId: Integer
 
-        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SessionId, :SessionContext
+        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SessionId, :SessionContext, :ScheduleId
 
-        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil)
           @Url = url
           @TaskNotifyConfig = tasknotifyconfig
           @OutputStorage = outputstorage
@@ -15342,6 +16451,7 @@ module TencentCloud
           @AiQualityControlTask = aiqualitycontroltask
           @SessionId = sessionid
           @SessionContext = sessioncontext
+          @ScheduleId = scheduleid
         end
 
         def deserialize(params)
@@ -15373,6 +16483,7 @@ module TencentCloud
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+          @ScheduleId = params['ScheduleId']
         end
       end
 
@@ -16724,6 +17835,11 @@ module TencentCloud
         # @param ScheduleName: 编排名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleName: String
+        # @param Type: 编排类型，可选值：
+        #  <li>Preset：系统预置编排；</li>
+        # <li>Custom：用户自定义编排。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
         # @param Status: 编排状态，取值范围：
         # Enabled：已启用，
         # Disabled：已禁用。
@@ -16751,11 +17867,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
 
-        attr_accessor :ScheduleId, :ScheduleName, :Status, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig, :CreateTime, :UpdateTime
+        attr_accessor :ScheduleId, :ScheduleName, :Type, :Status, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig, :CreateTime, :UpdateTime
 
-        def initialize(scheduleid=nil, schedulename=nil, status=nil, trigger=nil, activities=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil, createtime=nil, updatetime=nil)
+        def initialize(scheduleid=nil, schedulename=nil, type=nil, status=nil, trigger=nil, activities=nil, outputstorage=nil, outputdir=nil, tasknotifyconfig=nil, createtime=nil, updatetime=nil)
           @ScheduleId = scheduleid
           @ScheduleName = schedulename
+          @Type = type
           @Status = status
           @Trigger = trigger
           @Activities = activities
@@ -16769,6 +17886,7 @@ module TencentCloud
         def deserialize(params)
           @ScheduleId = params['ScheduleId']
           @ScheduleName = params['ScheduleName']
+          @Type = params['Type']
           @Status = params['Status']
           unless params['Trigger'].nil?
             @Trigger = WorkflowTrigger.new
@@ -17365,16 +18483,6 @@ module TencentCloud
 
       # 任务的事件通知配置。
       class TaskNotifyConfig < TencentCloud::Common::AbstractModel
-        # @param CmqModel: CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
-        # @type CmqModel: String
-        # @param CmqRegion: CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。
-        # @type CmqRegion: String
-        # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。
-        # @type TopicName: String
-        # @param QueueName: 当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。
-        # @type QueueName: String
-        # @param NotifyMode: 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
-        # @type NotifyMode: String
         # @param NotifyType: 通知类型，可选值：
         # <li>CMQ：已下线，建议切换到TDMQ-CMQ</li>
         # <li>TDMQ-CMQ：消息队列</li>
@@ -17383,34 +18491,44 @@ module TencentCloud
         # <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
         # <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         # @type NotifyType: String
+        # @param NotifyMode: 工作流通知的模式，可取值有 Finish 和 Change，不填代表 Finish。
+        # @type NotifyMode: String
         # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
         # @type NotifyUrl: String
+        # @param CmqModel: CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
+        # @type CmqModel: String
+        # @param CmqRegion: CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。
+        # @type CmqRegion: String
+        # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。
+        # @type TopicName: String
+        # @param QueueName: 当模型为 Queue 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的队列名。
+        # @type QueueName: String
         # @param AwsSQS: AWS SQS 回调，NotifyType为 AWS-SQS 时必填。
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
 
-        attr_accessor :CmqModel, :CmqRegion, :TopicName, :QueueName, :NotifyMode, :NotifyType, :NotifyUrl, :AwsSQS
+        attr_accessor :NotifyType, :NotifyMode, :NotifyUrl, :CmqModel, :CmqRegion, :TopicName, :QueueName, :AwsSQS
 
-        def initialize(cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, notifymode=nil, notifytype=nil, notifyurl=nil, awssqs=nil)
+        def initialize(notifytype=nil, notifymode=nil, notifyurl=nil, cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, awssqs=nil)
+          @NotifyType = notifytype
+          @NotifyMode = notifymode
+          @NotifyUrl = notifyurl
           @CmqModel = cmqmodel
           @CmqRegion = cmqregion
           @TopicName = topicname
           @QueueName = queuename
-          @NotifyMode = notifymode
-          @NotifyType = notifytype
-          @NotifyUrl = notifyurl
           @AwsSQS = awssqs
         end
 
         def deserialize(params)
+          @NotifyType = params['NotifyType']
+          @NotifyMode = params['NotifyMode']
+          @NotifyUrl = params['NotifyUrl']
           @CmqModel = params['CmqModel']
           @CmqRegion = params['CmqRegion']
           @TopicName = params['TopicName']
           @QueueName = params['QueueName']
-          @NotifyMode = params['NotifyMode']
-          @NotifyType = params['NotifyType']
-          @NotifyUrl = params['NotifyUrl']
           unless params['AwsSQS'].nil?
             @AwsSQS = AwsSQS.new
             @AwsSQS.deserialize(params['AwsSQS'])

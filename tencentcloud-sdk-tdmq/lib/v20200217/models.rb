@@ -4934,6 +4934,81 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQPublicAccessPoint请求参数结构体
+      class DescribeRocketMQPublicAccessPointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID，当前只支持专享集群
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeRocketMQPublicAccessPoint返回参数结构体
+      class DescribeRocketMQPublicAccessPointResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 公网接入点状态：
+        # 0， 已开启
+        # 1， 已关闭
+        # 2，开启中
+        # 3，关闭中
+        # 4，修改中
+        # @type Status: Integer
+        # @param PayStatus: 支付状态：
+        # 0, 未知
+        # 1，正常
+        # 2，欠费
+        # @type PayStatus: Integer
+        # @param AccessUrl: 接入点地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessUrl: String
+        # @param Rules: 安全访问规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param Bandwidth: 带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param PayMode: 付费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :PayStatus, :AccessUrl, :Rules, :Bandwidth, :PayMode, :RequestId
+
+        def initialize(status=nil, paystatus=nil, accessurl=nil, rules=nil, bandwidth=nil, paymode=nil, requestid=nil)
+          @Status = status
+          @PayStatus = paystatus
+          @AccessUrl = accessurl
+          @Rules = rules
+          @Bandwidth = bandwidth
+          @PayMode = paymode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @PayStatus = params['PayStatus']
+          @AccessUrl = params['AccessUrl']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+          @Bandwidth = params['Bandwidth']
+          @PayMode = params['PayMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQTopicMsgs请求参数结构体
       class DescribeRocketMQTopicMsgsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
@@ -6158,6 +6233,62 @@ module TencentCloud
         end
       end
 
+      # ModifyPublicNetworkAccessPoint请求参数结构体
+      class ModifyPublicNetworkAccessPointRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群名字
+        # @type ClusterId: String
+        # @param PublicNetworkAccessPointStatus: 是否开启
+        # @type PublicNetworkAccessPointStatus: Boolean
+        # @param SwitchOwner: 必填，公网控制台的开关/Vpc控制台的开关，示例值，Public/Vpc
+        # @type SwitchOwner: String
+        # @param VpcId: Vpc
+        # @type VpcId: String
+        # @param SubnetId: 子网
+        # @type SubnetId: String
+        # @param SelectIp: 子网下面指定ip作为vpc接入点
+        # @type SelectIp: String
+
+        attr_accessor :ClusterId, :PublicNetworkAccessPointStatus, :SwitchOwner, :VpcId, :SubnetId, :SelectIp
+
+        def initialize(clusterid=nil, publicnetworkaccesspointstatus=nil, switchowner=nil, vpcid=nil, subnetid=nil, selectip=nil)
+          @ClusterId = clusterid
+          @PublicNetworkAccessPointStatus = publicnetworkaccesspointstatus
+          @SwitchOwner = switchowner
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @SelectIp = selectip
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @PublicNetworkAccessPointStatus = params['PublicNetworkAccessPointStatus']
+          @SwitchOwner = params['SwitchOwner']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @SelectIp = params['SelectIp']
+        end
+      end
+
+      # ModifyPublicNetworkAccessPoint返回参数结构体
+      class ModifyPublicNetworkAccessPointResponse < TencentCloud::Common::AbstractModel
+        # @param ModifyResult: 修改结果
+        # @type ModifyResult: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModifyResult, :RequestId
+
+        def initialize(modifyresult=nil, requestid=nil)
+          @ModifyResult = modifyresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ModifyResult = params['ModifyResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRabbitMQUser请求参数结构体
       class ModifyRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -6788,6 +6919,31 @@ module TencentCloud
             @VpcEndpointInfo = VpcEndpointInfo.new
             @VpcEndpointInfo.deserialize(params['VpcEndpointInfo'])
           end
+        end
+      end
+
+      # 公网访问安全规则
+      class PublicAccessRule < TencentCloud::Common::AbstractModel
+        # @param IpRule: ip网段信息
+        # @type IpRule: String
+        # @param Allow: 允许或者拒绝
+        # @type Allow: Boolean
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :IpRule, :Allow, :Remark
+
+        def initialize(iprule=nil, allow=nil, remark=nil)
+          @IpRule = iprule
+          @Allow = allow
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @IpRule = params['IpRule']
+          @Allow = params['Allow']
+          @Remark = params['Remark']
         end
       end
 
@@ -8850,6 +9006,61 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @MsgId = params['MsgId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetRocketMQPublicAccessPoint请求参数结构体
+      class SetRocketMQPublicAccessPointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID，当前只支持专享集群
+        # @type InstanceId: String
+        # @param Enabled: 开启或关闭访问
+        # @type Enabled: Boolean
+        # @param Bandwidth: 带宽大小，开启或者调整公网时必须指定，Mbps为单位
+        # @type Bandwidth: Integer
+        # @param PayMode: 付费模式，开启公网时必须指定，0为按小时计费，1为包年包月，当前只支持按小时计费
+        # @type PayMode: Integer
+        # @param Rules: 公网访问安全规则列表，Enabled为true时必须传入
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :Enabled, :Bandwidth, :PayMode, :Rules
+
+        def initialize(instanceid=nil, enabled=nil, bandwidth=nil, paymode=nil, rules=nil)
+          @InstanceId = instanceid
+          @Enabled = enabled
+          @Bandwidth = bandwidth
+          @PayMode = paymode
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Enabled = params['Enabled']
+          @Bandwidth = params['Bandwidth']
+          @PayMode = params['PayMode']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+        end
+      end
+
+      # SetRocketMQPublicAccessPoint返回参数结构体
+      class SetRocketMQPublicAccessPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

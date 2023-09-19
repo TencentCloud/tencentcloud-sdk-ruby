@@ -170,6 +170,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过此接口，创建小程序批量签署链接，个人/企业员工点击此链接即可跳转小程序进行批量签署。
+        # 请确保生成链接时候的身份信息和签署合同参与方的信息保持一致。
+
+        # 注：
+        # - 参与人点击链接后需短信验证码才能查看合同内容。
+        # - 企业用户批量签署，需要传OrganizationName（参与方所在企业名称）参数生成签署链接，`请确保此企业已完成腾讯电子签企业认证`。
+        # - 个人批量签署，签名区`仅支持手写签名`。
+
+        # @param request: Request instance for ChannelCreateBatchSignUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateBatchSignUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateBatchSignUrlResponse`
+        def ChannelCreateBatchSignUrl(request)
+          body = send_request('ChannelCreateBatchSignUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateBatchSignUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（ChannelCreateBoundFlows）用于子客领取合同，经办人需要有相应的角色，合同不能重复领取。
 
         # @param request: Request instance for ChannelCreateBoundFlows.

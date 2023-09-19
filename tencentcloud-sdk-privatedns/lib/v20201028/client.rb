@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 追加与私有域关联的VPC
+
+        # @param request: Request instance for AddSpecifyPrivateZoneVpc.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::AddSpecifyPrivateZoneVpcRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::AddSpecifyPrivateZoneVpcResponse`
+        def AddSpecifyPrivateZoneVpc(request)
+          body = send_request('AddSpecifyPrivateZoneVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddSpecifyPrivateZoneVpcResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建私有域解析账号
 
         # @param request: Request instance for CreatePrivateDNSAccount.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrivateZoneRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除与私有域关联的VPC
+
+        # @param request: Request instance for DeleteSpecifyPrivateZoneVpc.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DeleteSpecifyPrivateZoneVpcRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DeleteSpecifyPrivateZoneVpcResponse`
+        def DeleteSpecifyPrivateZoneVpc(request)
+          body = send_request('DeleteSpecifyPrivateZoneVpc', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSpecifyPrivateZoneVpcResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -373,6 +373,41 @@ module TencentCloud
         end
       end
 
+      # CreateOrganization请求参数结构体
+      class CreateOrganizationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateOrganization返回参数结构体
+      class CreateOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param OrgId: 企业组织ID
+        # @type OrgId: Integer
+        # @param NickName: 创建者昵称
+        # @type NickName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrgId, :NickName, :RequestId
+
+        def initialize(orgid=nil, nickname=nil, requestid=nil)
+          @OrgId = orgid
+          @NickName = nickname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+          @NickName = params['NickName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOrganizationMemberAuthIdentity请求参数结构体
       class DeleteOrganizationMemberAuthIdentityRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员uin。
@@ -491,6 +526,33 @@ module TencentCloud
 
       # DeleteOrganizationNodes返回参数结构体
       class DeleteOrganizationNodesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOrganization请求参数结构体
+      class DeleteOrganizationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteOrganization返回参数结构体
+      class DeleteOrganizationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

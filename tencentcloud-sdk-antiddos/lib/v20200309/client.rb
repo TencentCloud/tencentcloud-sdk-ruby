@@ -1037,6 +1037,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口变更
+
         # 获取DDoS防护的IP黑白名单
 
         # @param request: Request instance for DescribeBlackWhiteIpList.
@@ -1612,6 +1614,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口变更
 
         # 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
 

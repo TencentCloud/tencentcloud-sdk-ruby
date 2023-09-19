@@ -1709,6 +1709,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口用于查询RocketMQ实例的公网接入信息
+
+        # @param request: Request instance for DescribeRocketMQPublicAccessPoint.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQPublicAccessPointRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQPublicAccessPointResponse`
+        def DescribeRocketMQPublicAccessPoint(request)
+          body = send_request('DescribeRocketMQPublicAccessPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQPublicAccessPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # rocketmq 消息查询
 
         # @param request: Request instance for DescribeRocketMQTopicMsgs.
@@ -2031,6 +2055,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEnvironmentRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # RabbitMQ专享版修改公网管控台，vpc15672开关
+
+        # @param request: Request instance for ModifyPublicNetworkAccessPoint.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyPublicNetworkAccessPointRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ModifyPublicNetworkAccessPointResponse`
+        def ModifyPublicNetworkAccessPoint(request)
+          body = send_request('ModifyPublicNetworkAccessPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPublicNetworkAccessPointResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2533,6 +2581,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SendRocketMQMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于开启关闭公网访问、设置安全访问策略
+
+        # @param request: Request instance for SetRocketMQPublicAccessPoint.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::SetRocketMQPublicAccessPointRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::SetRocketMQPublicAccessPointResponse`
+        def SetRocketMQPublicAccessPoint(request)
+          body = send_request('SetRocketMQPublicAccessPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetRocketMQPublicAccessPointResponse.new
             model.deserialize(response['Response'])
             model
           else

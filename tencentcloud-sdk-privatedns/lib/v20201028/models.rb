@@ -100,6 +100,86 @@ module TencentCloud
         end
       end
 
+      # AddSpecifyPrivateZoneVpc请求参数结构体
+      class AddSpecifyPrivateZoneVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域id
+        # @type ZoneId: String
+        # @param VpcSet: 本次新增的vpc信息
+        # @type VpcSet: Array
+        # @param AccountVpcSet: 本次新增关联账户vpc信息
+        # @type AccountVpcSet: Array
+
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet
+
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil)
+          @ZoneId = zoneid
+          @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AddSpecifyPrivateZoneVpc返回参数结构体
+      class AddSpecifyPrivateZoneVpcResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: zone id
+        # @type ZoneId: String
+        # @param VpcSet: 本次新增的vpc
+        # @type VpcSet: Array
+        # @param AccountVpcSet: 本次新增的关联账号vpc
+        # @type AccountVpcSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :RequestId
+
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, requestid=nil)
+          @ZoneId = zoneid
+          @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 操作日志
       class AuditLog < TencentCloud::Common::AbstractModel
         # @param Resource: 日志类型
@@ -509,6 +589,86 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSpecifyPrivateZoneVpc请求参数结构体
+      class DeleteSpecifyPrivateZoneVpcRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域id
+        # @type ZoneId: String
+        # @param VpcSet: 本次删除的VPC
+        # @type VpcSet: Array
+        # @param AccountVpcSet: 本次删除的关联账户VPC
+        # @type AccountVpcSet: Array
+
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet
+
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil)
+          @ZoneId = zoneid
+          @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteSpecifyPrivateZoneVpc返回参数结构体
+      class DeleteSpecifyPrivateZoneVpcResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域id
+        # @type ZoneId: String
+        # @param VpcSet: 本次删除的VPC
+        # @type VpcSet: Array
+        # @param AccountVpcSet: 本次删除的关联账户的VPC
+        # @type AccountVpcSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :RequestId
+
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, requestid=nil)
+          @ZoneId = zoneid
+          @VpcSet = vpcset
+          @AccountVpcSet = accountvpcset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
+            end
+          end
+          unless params['AccountVpcSet'].nil?
+            @AccountVpcSet = []
+            params['AccountVpcSet'].each do |i|
+              accountvpcinfo_tmp = AccountVpcInfo.new
+              accountvpcinfo_tmp.deserialize(i)
+              @AccountVpcSet << accountvpcinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
