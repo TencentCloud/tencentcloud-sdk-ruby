@@ -18507,10 +18507,13 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AwsSQS: :class:`Tencentcloud::Mps.v20190612.models.AwsSQS`
+        # @param NotifyKey: 用于生成回调签名的key。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotifyKey: String
 
-        attr_accessor :NotifyType, :NotifyMode, :NotifyUrl, :CmqModel, :CmqRegion, :TopicName, :QueueName, :AwsSQS
+        attr_accessor :NotifyType, :NotifyMode, :NotifyUrl, :CmqModel, :CmqRegion, :TopicName, :QueueName, :AwsSQS, :NotifyKey
 
-        def initialize(notifytype=nil, notifymode=nil, notifyurl=nil, cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, awssqs=nil)
+        def initialize(notifytype=nil, notifymode=nil, notifyurl=nil, cmqmodel=nil, cmqregion=nil, topicname=nil, queuename=nil, awssqs=nil, notifykey=nil)
           @NotifyType = notifytype
           @NotifyMode = notifymode
           @NotifyUrl = notifyurl
@@ -18519,6 +18522,7 @@ module TencentCloud
           @TopicName = topicname
           @QueueName = queuename
           @AwsSQS = awssqs
+          @NotifyKey = notifykey
         end
 
         def deserialize(params)
@@ -18533,6 +18537,7 @@ module TencentCloud
             @AwsSQS = AwsSQS.new
             @AwsSQS.deserialize(params['AwsSQS'])
           end
+          @NotifyKey = params['NotifyKey']
         end
       end
 

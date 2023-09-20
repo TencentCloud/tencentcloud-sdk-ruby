@@ -1112,6 +1112,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 平台支持将数据以TS切片的形式存入客户自有COS桶，该接口用于支持客户快捷查询切片信息列表
+        # （注意：只支持标准存储类型的查询）
+
+        # @param request: Request instance for DescribeRecordSlice.
+        # @type request: :class:`Tencentcloud::iss::V20230517::DescribeRecordSliceRequest`
+        # @rtype: :class:`Tencentcloud::iss::V20230517::DescribeRecordSliceResponse`
+        def DescribeRecordSlice(request)
+          body = send_request('DescribeRecordSlice', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRecordSliceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询实时上云模板详情
 
         # @param request: Request instance for DescribeRecordTemplate.

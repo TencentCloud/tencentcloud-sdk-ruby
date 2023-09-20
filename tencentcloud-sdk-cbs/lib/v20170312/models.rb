@@ -426,21 +426,22 @@ module TencentCloud
 
       # 显示独享集群的大小
       class CdcSize < TencentCloud::Common::AbstractModel
-        # @param DiskAavilable: 独享集群的可用容量大小，单位GiB
-        # @type DiskAavilable: Integer
         # @param DiskTotal: 独享集群的总容量大小，单位GiB
         # @type DiskTotal: Integer
+        # @param DiskAvailable: 独享集群的可用容量大小，单位GiB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskAvailable: Integer
 
-        attr_accessor :DiskAavilable, :DiskTotal
+        attr_accessor :DiskTotal, :DiskAvailable
 
-        def initialize(diskaavilable=nil, disktotal=nil)
-          @DiskAavilable = diskaavilable
+        def initialize(disktotal=nil, diskavailable=nil)
           @DiskTotal = disktotal
+          @DiskAvailable = diskavailable
         end
 
         def deserialize(params)
-          @DiskAavilable = params['DiskAavilable']
           @DiskTotal = params['DiskTotal']
+          @DiskAvailable = params['DiskAvailable']
         end
       end
 

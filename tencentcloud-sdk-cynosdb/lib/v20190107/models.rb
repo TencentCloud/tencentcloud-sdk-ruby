@@ -4014,17 +4014,21 @@ module TencentCloud
         # @param BackupType: 备份方式，logic-逻辑备份，snapshot-快照备份
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupType: String
+        # @param LogicCrossRegionsConfigUpdateTime: 跨地域逻辑备份配置修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicCrossRegionsConfigUpdateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :RequestId
+        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :RequestId
 
-        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, requestid=nil)
+        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, requestid=nil)
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
           @ReserveDuration = reserveduration
           @BackupFreq = backupfreq
           @BackupType = backuptype
+          @LogicCrossRegionsConfigUpdateTime = logiccrossregionsconfigupdatetime
           @RequestId = requestid
         end
 
@@ -4034,6 +4038,7 @@ module TencentCloud
           @ReserveDuration = params['ReserveDuration']
           @BackupFreq = params['BackupFreq']
           @BackupType = params['BackupType']
+          @LogicCrossRegionsConfigUpdateTime = params['LogicCrossRegionsConfigUpdateTime']
           @RequestId = params['RequestId']
         end
       end
@@ -4107,10 +4112,14 @@ module TencentCloud
         # @type BackupNames: Array
         # @param SnapshotIdList: 快照备份Id列表
         # @type SnapshotIdList: Array
+        # @param BackupRegion: 备份地域
+        # @type BackupRegion: String
+        # @param IsCrossRegionsBackup: 是否跨地域备份
+        # @type IsCrossRegionsBackup: String
 
-        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames, :SnapshotIdList
+        attr_accessor :ClusterId, :Limit, :Offset, :DbType, :BackupIds, :BackupType, :BackupMethod, :SnapShotType, :StartTime, :EndTime, :FileNames, :BackupNames, :SnapshotIdList, :BackupRegion, :IsCrossRegionsBackup
 
-        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil, snapshotidlist=nil)
+        def initialize(clusterid=nil, limit=nil, offset=nil, dbtype=nil, backupids=nil, backuptype=nil, backupmethod=nil, snapshottype=nil, starttime=nil, endtime=nil, filenames=nil, backupnames=nil, snapshotidlist=nil, backupregion=nil, iscrossregionsbackup=nil)
           @ClusterId = clusterid
           @Limit = limit
           @Offset = offset
@@ -4124,6 +4133,8 @@ module TencentCloud
           @FileNames = filenames
           @BackupNames = backupnames
           @SnapshotIdList = snapshotidlist
+          @BackupRegion = backupregion
+          @IsCrossRegionsBackup = iscrossregionsbackup
         end
 
         def deserialize(params)
@@ -4140,6 +4151,8 @@ module TencentCloud
           @FileNames = params['FileNames']
           @BackupNames = params['BackupNames']
           @SnapshotIdList = params['SnapshotIdList']
+          @BackupRegion = params['BackupRegion']
+          @IsCrossRegionsBackup = params['IsCrossRegionsBackup']
         end
       end
 
@@ -7012,6 +7025,48 @@ module TencentCloud
         end
       end
 
+      # 逻辑备份配置信息
+      class LogicBackupConfigInfo < TencentCloud::Common::AbstractModel
+        # @param LogicBackupEnable: 是否开启自动逻辑备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicBackupEnable: String
+        # @param LogicBackupTimeBeg: 自动逻辑备份开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicBackupTimeBeg: Integer
+        # @param LogicBackupTimeEnd: 自动逻辑备份结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicBackupTimeEnd: Integer
+        # @param LogicReserveDuration: 自动逻辑备份保留时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicReserveDuration: Integer
+        # @param LogicCrossRegionsEnable: 是否开启跨地域逻辑备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicCrossRegionsEnable: String
+        # @param LogicCrossRegions: 逻辑备份所跨地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicCrossRegions: Array
+
+        attr_accessor :LogicBackupEnable, :LogicBackupTimeBeg, :LogicBackupTimeEnd, :LogicReserveDuration, :LogicCrossRegionsEnable, :LogicCrossRegions
+
+        def initialize(logicbackupenable=nil, logicbackuptimebeg=nil, logicbackuptimeend=nil, logicreserveduration=nil, logiccrossregionsenable=nil, logiccrossregions=nil)
+          @LogicBackupEnable = logicbackupenable
+          @LogicBackupTimeBeg = logicbackuptimebeg
+          @LogicBackupTimeEnd = logicbackuptimeend
+          @LogicReserveDuration = logicreserveduration
+          @LogicCrossRegionsEnable = logiccrossregionsenable
+          @LogicCrossRegions = logiccrossregions
+        end
+
+        def deserialize(params)
+          @LogicBackupEnable = params['LogicBackupEnable']
+          @LogicBackupTimeBeg = params['LogicBackupTimeBeg']
+          @LogicBackupTimeEnd = params['LogicBackupTimeEnd']
+          @LogicReserveDuration = params['LogicReserveDuration']
+          @LogicCrossRegionsEnable = params['LogicCrossRegionsEnable']
+          @LogicCrossRegions = params['LogicCrossRegions']
+        end
+      end
+
       # 参数是否可修改的详细信息
       class ModifiableInfo < TencentCloud::Common::AbstractModel
 
@@ -7347,35 +7402,46 @@ module TencentCloud
       class ModifyBackupConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
-        # @type ReserveDuration: Integer
         # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeBeg: Integer
         # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         # @type BackupTimeEnd: Integer
+        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600*24*7=604800，最大为158112000
+        # @type ReserveDuration: Integer
         # @param BackupFreq: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周一到周日的备份方式，full-全量备份，increment-增量备份
         # @type BackupFreq: Array
         # @param BackupType: 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         # @type BackupType: String
+        # @param LogicBackupConfig: 逻辑备份配置
+        # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
+        # @param DeleteAutoLogicBackup: 是否删除自动逻辑备份
+        # @type DeleteAutoLogicBackup: Boolean
 
-        attr_accessor :ClusterId, :ReserveDuration, :BackupTimeBeg, :BackupTimeEnd, :BackupFreq, :BackupType
+        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicBackupConfig, :DeleteAutoLogicBackup
 
-        def initialize(clusterid=nil, reserveduration=nil, backuptimebeg=nil, backuptimeend=nil, backupfreq=nil, backuptype=nil)
+        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logicbackupconfig=nil, deleteautologicbackup=nil)
           @ClusterId = clusterid
-          @ReserveDuration = reserveduration
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
+          @ReserveDuration = reserveduration
           @BackupFreq = backupfreq
           @BackupType = backuptype
+          @LogicBackupConfig = logicbackupconfig
+          @DeleteAutoLogicBackup = deleteautologicbackup
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
-          @ReserveDuration = params['ReserveDuration']
           @BackupTimeBeg = params['BackupTimeBeg']
           @BackupTimeEnd = params['BackupTimeEnd']
+          @ReserveDuration = params['ReserveDuration']
           @BackupFreq = params['BackupFreq']
           @BackupType = params['BackupType']
+          unless params['LogicBackupConfig'].nil?
+            @LogicBackupConfig = LogicBackupConfigInfo.new
+            @LogicBackupConfig.deserialize(params['LogicBackupConfig'])
+          end
+          @DeleteAutoLogicBackup = params['DeleteAutoLogicBackup']
         end
       end
 

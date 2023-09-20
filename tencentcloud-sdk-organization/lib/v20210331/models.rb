@@ -1966,6 +1966,38 @@ module TencentCloud
         end
       end
 
+      # QuitOrganization请求参数结构体
+      class QuitOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param OrgId: 企业组织ID
+        # @type OrgId: Integer
+
+        attr_accessor :OrgId
+
+        def initialize(orgid=nil)
+          @OrgId = orgid
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+        end
+      end
+
+      # QuitOrganization返回参数结构体
+      class QuitOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateOrganizationMemberEmailBind请求参数结构体
       class UpdateOrganizationMemberEmailBindRequest < TencentCloud::Common::AbstractModel
         # @param MemberUin: 成员Uin

@@ -841,7 +841,7 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
-        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放)
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer

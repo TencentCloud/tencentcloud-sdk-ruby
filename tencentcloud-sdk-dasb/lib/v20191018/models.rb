@@ -2826,6 +2826,51 @@ module TencentCloud
         end
       end
 
+      # ModifyCmdTemplate请求参数结构体
+      class ModifyCmdTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名，最长32字符，不能包含空白字符
+        # @type Name: String
+        # @param CmdList: 命令列表，\n分隔，最长32768字节
+        # @type CmdList: String
+        # @param Id: 命令模板ID
+        # @type Id: Integer
+        # @param Encoding: CmdList字段前端是否base64传值。
+        # 0：否，1：是
+        # @type Encoding: Integer
+
+        attr_accessor :Name, :CmdList, :Id, :Encoding
+
+        def initialize(name=nil, cmdlist=nil, id=nil, encoding=nil)
+          @Name = name
+          @CmdList = cmdlist
+          @Id = id
+          @Encoding = encoding
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @CmdList = params['CmdList']
+          @Id = params['Id']
+          @Encoding = params['Encoding']
+        end
+      end
+
+      # ModifyCmdTemplate返回参数结构体
+      class ModifyCmdTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDeviceGroup请求参数结构体
       class ModifyDeviceGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 资产组名，最大长度32字符，不能为空

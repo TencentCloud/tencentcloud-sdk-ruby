@@ -1374,6 +1374,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # InquiryPriceCreateLoadBalancer接口查询创建负载均衡的价格。
+
+        # @param request: Request instance for InquiryPriceCreateLoadBalancer.
+        # @type request: :class:`Tencentcloud::clb::V20180317::InquiryPriceCreateLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::InquiryPriceCreateLoadBalancerResponse`
+        def InquiryPriceCreateLoadBalancer(request)
+          body = send_request('InquiryPriceCreateLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceCreateLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # InquiryPriceModifyLoadBalancer接口修改负载均衡配置询价。
+
+        # @param request: Request instance for InquiryPriceModifyLoadBalancer.
+        # @type request: :class:`Tencentcloud::clb::V20180317::InquiryPriceModifyLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::InquiryPriceModifyLoadBalancerResponse`
+        def InquiryPriceModifyLoadBalancer(request)
+          body = send_request('InquiryPriceModifyLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceModifyLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # InquiryPriceRefundLoadBalancer接口查询负载均衡退费价格。
+
+        # @param request: Request instance for InquiryPriceRefundLoadBalancer.
+        # @type request: :class:`Tencentcloud::clb::V20180317::InquiryPriceRefundLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::InquiryPriceRefundLoadBalancerResponse`
+        def InquiryPriceRefundLoadBalancer(request)
+          body = send_request('InquiryPriceRefundLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceRefundLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # InquiryPriceRenewLoadBalancer接口查询对负载均衡续费的价格，只支持预付费负载均衡续费。
+
+        # @param request: Request instance for InquiryPriceRenewLoadBalancer.
+        # @type request: :class:`Tencentcloud::clb::V20180317::InquiryPriceRenewLoadBalancerRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::InquiryPriceRenewLoadBalancerResponse`
+        def InquiryPriceRenewLoadBalancer(request)
+          body = send_request('InquiryPriceRenewLoadBalancer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquiryPriceRenewLoadBalancerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用户手动配置原访问地址和重定向地址，系统自动将原访问地址的请求重定向至对应路径的目的地址。同一域名下可以配置多条路径作为重定向策略，实现http/https之间请求的自动跳转。设置重定向时，需满足如下约束条件：若A已经重定向至B，则A不能再重定向至C（除非先删除老的重定向关系，再建立新的重定向关系），B不能重定向至任何其它地址。
         # 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
 

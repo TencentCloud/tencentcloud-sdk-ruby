@@ -4263,6 +4263,214 @@ module TencentCloud
         end
       end
 
+      # InquiryPriceCreateLoadBalancer请求参数结构体
+      class InquiryPriceCreateLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerType: 询价的负载均衡类型，OPEN为公网类型，INTERNAL为内网类型
+        # @type LoadBalancerType: String
+        # @param LoadBalancerChargeType: 询价的收费类型，POSTPAID为按量计费，"PREPAID"为预付费包年包月
+        # @type LoadBalancerChargeType: String
+        # @param LoadBalancerChargePrepaid: 询价的收费周期
+        # @type LoadBalancerChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
+        # @param InternetAccessible: 询价的网络计费方式
+        # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
+        # @param GoodsNum: 询价的负载均衡实例个数，默认为1
+        # @type GoodsNum: Integer
+        # @param ZoneId: 指定可用区询价。如：ap-guangzhou-1
+        # @type ZoneId: String
+        # @param SlaType: 包年包月询价时传性能容量型规格，如：clb.c3.small。按量付费询价时传SLA
+        # @type SlaType: String
+        # @param AddressIPVersion: IP版本，可取值：IPV4、IPV6、IPv6FullChain，不区分大小写，默认值 IPV4。说明：取值为IPV6表示为IPV6 NAT64版本；取值为IPv6FullChain，表示为IPv6版本。
+        # @type AddressIPVersion: String
+        # @param VipIsp: 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。
+        # @type VipIsp: String
+
+        attr_accessor :LoadBalancerType, :LoadBalancerChargeType, :LoadBalancerChargePrepaid, :InternetAccessible, :GoodsNum, :ZoneId, :SlaType, :AddressIPVersion, :VipIsp
+
+        def initialize(loadbalancertype=nil, loadbalancerchargetype=nil, loadbalancerchargeprepaid=nil, internetaccessible=nil, goodsnum=nil, zoneid=nil, slatype=nil, addressipversion=nil, vipisp=nil)
+          @LoadBalancerType = loadbalancertype
+          @LoadBalancerChargeType = loadbalancerchargetype
+          @LoadBalancerChargePrepaid = loadbalancerchargeprepaid
+          @InternetAccessible = internetaccessible
+          @GoodsNum = goodsnum
+          @ZoneId = zoneid
+          @SlaType = slatype
+          @AddressIPVersion = addressipversion
+          @VipIsp = vipisp
+        end
+
+        def deserialize(params)
+          @LoadBalancerType = params['LoadBalancerType']
+          @LoadBalancerChargeType = params['LoadBalancerChargeType']
+          unless params['LoadBalancerChargePrepaid'].nil?
+            @LoadBalancerChargePrepaid = LBChargePrepaid.new
+            @LoadBalancerChargePrepaid.deserialize(params['LoadBalancerChargePrepaid'])
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          @GoodsNum = params['GoodsNum']
+          @ZoneId = params['ZoneId']
+          @SlaType = params['SlaType']
+          @AddressIPVersion = params['AddressIPVersion']
+          @VipIsp = params['VipIsp']
+        end
+      end
+
+      # InquiryPriceCreateLoadBalancer返回参数结构体
+      class InquiryPriceCreateLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 该参数表示对应的价格。
+        # @type Price: :class:`Tencentcloud::Clb.v20180317.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceModifyLoadBalancer请求参数结构体
+      class InquiryPriceModifyLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例ID
+        # @type LoadBalancerId: String
+        # @param InternetAccessible: 修改后的网络带宽信息
+        # @type InternetAccessible: :class:`Tencentcloud::Clb.v20180317.models.InternetAccessible`
+
+        attr_accessor :LoadBalancerId, :InternetAccessible
+
+        def initialize(loadbalancerid=nil, internetaccessible=nil)
+          @LoadBalancerId = loadbalancerid
+          @InternetAccessible = internetaccessible
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+        end
+      end
+
+      # InquiryPriceModifyLoadBalancer返回参数结构体
+      class InquiryPriceModifyLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 描述价格信息
+        # @type Price: :class:`Tencentcloud::Clb.v20180317.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceRefundLoadBalancer请求参数结构体
+      class InquiryPriceRefundLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例ID
+        # @type LoadBalancerId: String
+
+        attr_accessor :LoadBalancerId
+
+        def initialize(loadbalancerid=nil)
+          @LoadBalancerId = loadbalancerid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+        end
+      end
+
+      # InquiryPriceRefundLoadBalancer返回参数结构体
+      class InquiryPriceRefundLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 该参数表示对应的价格。
+        # @type Price: :class:`Tencentcloud::Clb.v20180317.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquiryPriceRenewLoadBalancer请求参数结构体
+      class InquiryPriceRenewLoadBalancerRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例ID
+        # @type LoadBalancerId: String
+        # @param LoadBalancerChargePrepaid: 续费周期
+        # @type LoadBalancerChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
+
+        attr_accessor :LoadBalancerId, :LoadBalancerChargePrepaid
+
+        def initialize(loadbalancerid=nil, loadbalancerchargeprepaid=nil)
+          @LoadBalancerId = loadbalancerid
+          @LoadBalancerChargePrepaid = loadbalancerchargeprepaid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          unless params['LoadBalancerChargePrepaid'].nil?
+            @LoadBalancerChargePrepaid = LBChargePrepaid.new
+            @LoadBalancerChargePrepaid.deserialize(params['LoadBalancerChargePrepaid'])
+          end
+        end
+      end
+
+      # InquiryPriceRenewLoadBalancer返回参数结构体
+      class InquiryPriceRenewLoadBalancerResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 表示续费价格
+        # @type Price: :class:`Tencentcloud::Clb.v20180317.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网络计费模式，最大出带宽
       class InternetAccessible < TencentCloud::Common::AbstractModel
         # @param InternetChargeType: TRAFFIC_POSTPAID_BY_HOUR 按流量按小时后计费 ; BANDWIDTH_POSTPAID_BY_HOUR 按带宽按小时后计费;
@@ -4292,6 +4500,50 @@ module TencentCloud
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @BandwidthpkgSubType = params['BandwidthpkgSubType']
+        end
+      end
+
+      # 描述了单项的价格信息
+      class ItemPrice < TencentCloud::Common::AbstractModel
+        # @param UnitPrice: 后付费单价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param ChargeUnit: 后续计价单元，可取值范围：
+        # HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）；
+        # GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param OriginalPrice: 预支费用的原价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 预支费用的折扣价，单位：元。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountPrice: Float
+        # @param UnitPriceDiscount: 后付费的折扣单价，单位:元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPriceDiscount: Float
+        # @param Discount: 折扣，如20.0代表2折。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+
+        attr_accessor :UnitPrice, :ChargeUnit, :OriginalPrice, :DiscountPrice, :UnitPriceDiscount, :Discount
+
+        def initialize(unitprice=nil, chargeunit=nil, originalprice=nil, discountprice=nil, unitpricediscount=nil, discount=nil)
+          @UnitPrice = unitprice
+          @ChargeUnit = chargeunit
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @UnitPriceDiscount = unitpricediscount
+          @Discount = discount
+        end
+
+        def deserialize(params)
+          @UnitPrice = params['UnitPrice']
+          @ChargeUnit = params['ChargeUnit']
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @UnitPriceDiscount = params['UnitPriceDiscount']
+          @Discount = params['Discount']
         end
       end
 
@@ -6280,6 +6532,42 @@ module TencentCloud
               certinfo_tmp.deserialize(i)
               @CertList << certinfo_tmp
             end
+          end
+        end
+      end
+
+      # 表示负载均衡的价格
+      class Price < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 描述了实例价格。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePrice: :class:`Tencentcloud::Clb.v20180317.models.ItemPrice`
+        # @param BandwidthPrice: 描述了网络价格。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthPrice: :class:`Tencentcloud::Clb.v20180317.models.ItemPrice`
+        # @param LcuPrice: 描述了lcu价格。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LcuPrice: :class:`Tencentcloud::Clb.v20180317.models.ItemPrice`
+
+        attr_accessor :InstancePrice, :BandwidthPrice, :LcuPrice
+
+        def initialize(instanceprice=nil, bandwidthprice=nil, lcuprice=nil)
+          @InstancePrice = instanceprice
+          @BandwidthPrice = bandwidthprice
+          @LcuPrice = lcuprice
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = ItemPrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['BandwidthPrice'].nil?
+            @BandwidthPrice = ItemPrice.new
+            @BandwidthPrice.deserialize(params['BandwidthPrice'])
+          end
+          unless params['LcuPrice'].nil?
+            @LcuPrice = ItemPrice.new
+            @LcuPrice.deserialize(params['LcuPrice'])
           end
         end
       end

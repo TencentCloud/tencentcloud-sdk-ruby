@@ -149,7 +149,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加Spart防护域名
+        # 添加SaaS型WAF防护域名
 
         # @param request: Request instance for AddSpartaProtection.
         # @type request: :class:`Tencentcloud::waf::V20180125::AddSpartaProtectionRequest`
@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # clb-waf中添加防护的域名
+        # clb-waf中添加防护域名
 
         # @param request: Request instance for CreateHost.
         # @type request: :class:`Tencentcloud::waf::V20180125::CreateHostRequest`
@@ -510,7 +510,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # SAASWAF删除防护域名
+        # Saas型WAF删除防护域名
 
         # @param request: Request instance for DeleteSpartaProtection.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteSpartaProtectionRequest`
@@ -850,7 +850,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询加密套件信息
+        # Saas型WAF接入查询加密套件信息
 
         # @param request: Request instance for DescribeCiphersDetail.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCiphersDetailRequest`
@@ -946,7 +946,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取一个clb域名详情
+        # 获取一个clbwaf域名详情
 
         # @param request: Request instance for DescribeDomainDetailsClb.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainDetailsClbRequest`
@@ -970,7 +970,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询单个saas域名详情
+        # 查询单个saaswaf域名详情
 
         # @param request: Request instance for DescribeDomainDetailsSaas.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainDetailsSaasRequest`
@@ -1330,7 +1330,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取非标端口列表
+        # 获取Saas型WAF防护端口列表
 
         # @param request: Request instance for DescribePorts.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribePortsRequest`
@@ -2052,7 +2052,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改ipv6开关
+        # 切换ipv6开关
 
         # @param request: Request instance for ModifyDomainIpv6Status.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyDomainIpv6StatusRequest`
@@ -2567,6 +2567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchDomainRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 切换弹性的开关
+
+        # @param request: Request instance for SwitchElasticMode.
+        # @type request: :class:`Tencentcloud::waf::V20180125::SwitchElasticModeRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::SwitchElasticModeResponse`
+        def SwitchElasticMode(request)
+          body = send_request('SwitchElasticMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchElasticModeResponse.new
             model.deserialize(response['Response'])
             model
           else

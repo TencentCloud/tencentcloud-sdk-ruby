@@ -3699,6 +3699,58 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordSlice请求参数结构体
+      class DescribeRecordSliceRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道ID
+        # @type ChannelId: String
+        # @param StartTime: 检索开始时间，UTC秒数，例如：1662114146，开始和结束时间段最长为一天，且不能跨天
+        # @type StartTime: Integer
+        # @param EndTime: 检索结束时间，UTC秒数，例如：1662114246，开始和结束时间段最长为一天，且不能跨天
+        # @type EndTime: Integer
+
+        attr_accessor :ChannelId, :StartTime, :EndTime
+
+        def initialize(channelid=nil, starttime=nil, endtime=nil)
+          @ChannelId = channelid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeRecordSlice返回参数结构体
+      class DescribeRecordSliceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 云录像切片信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              recordsliceinfo_tmp = RecordSliceInfo.new
+              recordsliceinfo_tmp.deserialize(i)
+              @Data << recordsliceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordTemplate请求参数结构体
       class DescribeRecordTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -5899,6 +5951,33 @@ module TencentCloud
           @Capacity = params['Capacity']
           @Describe = params['Describe']
           @ChannelCount = params['ChannelCount']
+        end
+      end
+
+      # 录像切片信息
+      class RecordSliceInfo < TencentCloud::Common::AbstractModel
+        # @param PlanId: 计划ID
+        # @type PlanId: String
+        # @param List: 录像切片开始和结束时间列表
+        # @type List: Array
+
+        attr_accessor :PlanId, :List
+
+        def initialize(planid=nil, list=nil)
+          @PlanId = planid
+          @List = list
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              recordtimeline_tmp = RecordTimeLine.new
+              recordtimeline_tmp.deserialize(i)
+              @List << recordtimeline_tmp
+            end
+          end
         end
       end
 

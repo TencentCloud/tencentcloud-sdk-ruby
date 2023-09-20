@@ -4091,8 +4091,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2023, 8
-        deprecate :Decription=, :none, 2023, 8
+        deprecate :Decription, :none, 2023, 9
+        deprecate :Decription=, :none, 2023, 9
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -4130,6 +4130,44 @@ module TencentCloud
           @White = params['White']
           @DealOldEvents = params['DealOldEvents']
           @Description = params['Description']
+        end
+      end
+
+      # 安全播报列表
+      class Broadcasts < TencentCloud::Common::AbstractModel
+        # @param Title: 文章名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Type: 类型：0=紧急通知，1=功能更新，2=行业荣誉，3=版本发布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Subtitle: 副标题
+        # @type Subtitle: String
+        # @param CreateTime: 发布时间
+        # @type CreateTime: String
+        # @param Id: 文章唯一id
+        # @type Id: Integer
+        # @param Level: 危险程度  0：无， 1：严重， 2: 高危， 3:中危， 4: 低危
+        # @type Level: Integer
+
+        attr_accessor :Title, :Type, :Subtitle, :CreateTime, :Id, :Level
+
+        def initialize(title=nil, type=nil, subtitle=nil, createtime=nil, id=nil, level=nil)
+          @Title = title
+          @Type = type
+          @Subtitle = subtitle
+          @CreateTime = createtime
+          @Id = id
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Type = params['Type']
+          @Subtitle = params['Subtitle']
+          @CreateTime = params['CreateTime']
+          @Id = params['Id']
+          @Level = params['Level']
         end
       end
 
@@ -8093,6 +8131,88 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAttackEvents请求参数结构体
+      class DescribeAttackEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters:  过滤条件。
+        # <li>Type - String 攻击状态 0: 尝试攻击 1: 攻击成功 - 是否必填: 否</li>
+        # <li>Status - String 事件处理状态 0：待处理 1：已处理 2： 已加白 3： 已忽略 4：已删除  - 是否必填: 否</li>
+        # <li>SrcIP - String 来源IP - 是否必填: 否</li>
+        # <li>Uuids - String 主机安全uuid - 是否必填: 否</li>
+        # <li>Quuids - String cvm uuid - 是否必填: 否</li>
+        # <li>DstPort - String 攻击目标端口 - 是否必填: 否</li>
+        # <li>MachineName - String 主机名称 - 是否必填: 否</li>
+        # <li>InstanceID - String 主机实例ID - 是否必填: 否</li>
+        # <li>AttackTimeBegin - String 攻击开始时间 - 是否必填: 否</li>
+        # <li>AttackTimeEnd - String 攻击结束时间 - 是否必填: 否</li>
+        # <li>VulSupportDefense - String 漏洞是否支持防御 0不支持，1支持 - 是否必填: 否</li>
+        # @type Filters: Array
+        # @param By: 排序
+        # @type By: String
+        # @param Order: 排序方式 ASC,DESC
+        # @type Order: String
+
+        attr_accessor :Limit, :Offset, :Filters, :By, :Order
+
+        def initialize(limit=nil, offset=nil, filters=nil, by=nil, order=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @By = by
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @By = params['By']
+          @Order = params['Order']
+        end
+      end
+
+      # DescribeAttackEvents返回参数结构体
+      class DescribeAttackEventsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 攻击事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              netattackevent_tmp = NetAttackEvent.new
+              netattackevent_tmp.deserialize(i)
+              @List << netattackevent_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -12978,6 +13098,74 @@ module TencentCloud
         end
       end
 
+      # DescribeMachineRiskCnt请求参数结构体
+      class DescribeMachineRiskCntRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Uuids- String - 是否必填：否 - 主机uuid</li>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeMachineRiskCnt返回参数结构体
+      class DescribeMachineRiskCntResponse < TencentCloud::Common::AbstractModel
+        # @param HostLogin: 异地登录
+        # @type HostLogin: Integer
+        # @param BruteAttack: 密码破解
+        # @type BruteAttack: Integer
+        # @param MaliciousRequest: 恶意请求
+        # @type MaliciousRequest: Integer
+        # @param ReverseShell: 反弹shell
+        # @type ReverseShell: Integer
+        # @param Bash: 高危命令
+        # @type Bash: Integer
+        # @param PrivilegeEscalation: 本地提权
+        # @type PrivilegeEscalation: Integer
+        # @param Malware: 木马
+        # @type Malware: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HostLogin, :BruteAttack, :MaliciousRequest, :ReverseShell, :Bash, :PrivilegeEscalation, :Malware, :RequestId
+
+        def initialize(hostlogin=nil, bruteattack=nil, maliciousrequest=nil, reverseshell=nil, bash=nil, privilegeescalation=nil, malware=nil, requestid=nil)
+          @HostLogin = hostlogin
+          @BruteAttack = bruteattack
+          @MaliciousRequest = maliciousrequest
+          @ReverseShell = reverseshell
+          @Bash = bash
+          @PrivilegeEscalation = privilegeescalation
+          @Malware = malware
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HostLogin = params['HostLogin']
+          @BruteAttack = params['BruteAttack']
+          @MaliciousRequest = params['MaliciousRequest']
+          @ReverseShell = params['ReverseShell']
+          @Bash = params['Bash']
+          @PrivilegeEscalation = params['PrivilegeEscalation']
+          @Malware = params['Malware']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
         # @param MachineType: 机器所属专区类型
@@ -14987,6 +15175,69 @@ module TencentCloud
               @List << searchtemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityBroadcasts请求参数结构体
+      class DescribeSecurityBroadcastsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 需要返回的数量，默认为10 ，0=全部
+        # @type Limit: Integer
+        # @param BeginDate: 筛选发布日期：开始时间
+        # @type BeginDate: String
+        # @param EndDate: 筛选发布日期：结束时间
+        # @type EndDate: String
+        # @param BroadcastType: 过滤安全播报类型：0-紧急通知，1-功能更新，2-行业荣誉，3-版本发布
+        # @type BroadcastType: String
+
+        attr_accessor :Offset, :Limit, :BeginDate, :EndDate, :BroadcastType
+
+        def initialize(offset=nil, limit=nil, begindate=nil, enddate=nil, broadcasttype=nil)
+          @Offset = offset
+          @Limit = limit
+          @BeginDate = begindate
+          @EndDate = enddate
+          @BroadcastType = broadcasttype
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @BeginDate = params['BeginDate']
+          @EndDate = params['EndDate']
+          @BroadcastType = params['BroadcastType']
+        end
+      end
+
+      # DescribeSecurityBroadcasts返回参数结构体
+      class DescribeSecurityBroadcastsResponse < TencentCloud::Common::AbstractModel
+        # @param List: 列表
+        # @type List: Array
+        # @param TotalCount: 总共多少条
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :TotalCount, :RequestId
+
+        def initialize(list=nil, totalcount=nil, requestid=nil)
+          @List = list
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              broadcasts_tmp = Broadcasts.new
+              broadcasts_tmp.deserialize(i)
+              @List << broadcasts_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -20924,6 +21175,58 @@ module TencentCloud
         end
       end
 
+      # ModifyLicenseOrder请求参数结构体
+      class ModifyLicenseOrderRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID
+        # @type ResourceId: String
+        # @param InquireNum: 预期值,如果当前为10,扩容则输入原来大的值, 缩容则比原来小的值(缩容时不允许预期值比使用量小),如果保持不变则填写原值,
+        # @type InquireNum: Integer
+        # @param ProjectId: 项目ID,不修改则输入原值.
+        # @type ProjectId: Integer
+        # @param Alias: 资源别名,不修改则输入原值.
+        # @type Alias: String
+
+        attr_accessor :ResourceId, :InquireNum, :ProjectId, :Alias
+
+        def initialize(resourceid=nil, inquirenum=nil, projectid=nil, _alias=nil)
+          @ResourceId = resourceid
+          @InquireNum = inquirenum
+          @ProjectId = projectid
+          @Alias = _alias
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @InquireNum = params['InquireNum']
+          @ProjectId = params['ProjectId']
+          @Alias = params['Alias']
+        end
+      end
+
+      # ModifyLicenseOrder返回参数结构体
+      class ModifyLicenseOrderResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 订单号
+        # @type DealNames: Array
+        # @param ResourceIds: 资源ID
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :ResourceIds, :RequestId
+
+        def initialize(dealnames=nil, resourceids=nil, requestid=nil)
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLicenseUnBinds请求参数结构体
       class ModifyLicenseUnBindsRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -21376,6 +21679,90 @@ module TencentCloud
           @ReportName = params['ReportName']
           @ReportPath = params['ReportPath']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 网络攻击事件
+      class NetAttackEvent < TencentCloud::Common::AbstractModel
+        # @param Id: 日志ID
+        # @type Id: Integer
+        # @param Uuid: 客户端ID
+        # @type Uuid: String
+        # @param DstPort: 目标端口
+        # @type DstPort: Integer
+        # @param SrcIP: 来源IP
+        # @type SrcIP: String
+        # @param Location: 来源地
+        # @type Location: String
+        # @param VulId: 漏洞id
+        # @type VulId: Integer
+        # @param VulName: 漏洞名称
+        # @type VulName: String
+        # @param MergeTime: 攻击时间
+        # @type MergeTime: String
+        # @param MachineExtraInfo: 主机额外信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Type: 攻击状态，0: 尝试攻击 1: 实锤攻击(攻击成功)
+        # @type Type: Integer
+        # @param Status: 处理状态，0 待处理 1 已处理 2 已加白  3 已忽略 4 已删除 5: 已开启防御
+        # @type Status: Integer
+        # @param VulSupportDefense: 漏洞是否支持防御，0:不支持 1:支持
+        # @type VulSupportDefense: Integer
+        # @param VulDefenceStatus: 是否开启漏洞防御，0关1开
+        # @type VulDefenceStatus: Integer
+        # @param PayVersion: 机器付费版本，0 基础版，1专业版，2旗舰版，3普惠版
+        # @type PayVersion: Integer
+        # @param Quuid: cvm uuid
+        # @type Quuid: String
+        # @param Count: 攻击次数
+        # @type Count: Integer
+        # @param New: 是否今日新增主机
+        # @type New: Boolean
+
+        attr_accessor :Id, :Uuid, :DstPort, :SrcIP, :Location, :VulId, :VulName, :MergeTime, :MachineExtraInfo, :Type, :Status, :VulSupportDefense, :VulDefenceStatus, :PayVersion, :Quuid, :Count, :New
+
+        def initialize(id=nil, uuid=nil, dstport=nil, srcip=nil, location=nil, vulid=nil, vulname=nil, mergetime=nil, machineextrainfo=nil, type=nil, status=nil, vulsupportdefense=nil, vuldefencestatus=nil, payversion=nil, quuid=nil, count=nil, new=nil)
+          @Id = id
+          @Uuid = uuid
+          @DstPort = dstport
+          @SrcIP = srcip
+          @Location = location
+          @VulId = vulid
+          @VulName = vulname
+          @MergeTime = mergetime
+          @MachineExtraInfo = machineextrainfo
+          @Type = type
+          @Status = status
+          @VulSupportDefense = vulsupportdefense
+          @VulDefenceStatus = vuldefencestatus
+          @PayVersion = payversion
+          @Quuid = quuid
+          @Count = count
+          @New = new
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Uuid = params['Uuid']
+          @DstPort = params['DstPort']
+          @SrcIP = params['SrcIP']
+          @Location = params['Location']
+          @VulId = params['VulId']
+          @VulName = params['VulName']
+          @MergeTime = params['MergeTime']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
+          @Type = params['Type']
+          @Status = params['Status']
+          @VulSupportDefense = params['VulSupportDefense']
+          @VulDefenceStatus = params['VulDefenceStatus']
+          @PayVersion = params['PayVersion']
+          @Quuid = params['Quuid']
+          @Count = params['Count']
+          @New = params['New']
         end
       end
 
