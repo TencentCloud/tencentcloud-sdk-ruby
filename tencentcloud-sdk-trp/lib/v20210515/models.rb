@@ -347,10 +347,22 @@ module TencentCloud
         # @param PackSpec: 层级码配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackSpec: Array
+        # @param ProductName: 商品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param ProductSpecification: 商品规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductSpecification: String
+        # @param ProductId: 商品ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductId: String
+        # @param RelateType: 码关系是否预关联
+        # 0:否, 1:是
+        # @type RelateType: Integer
 
-        attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec
+        attr_accessor :PackId, :CorpId, :MerchantId, :CreateTime, :UpdateTime, :Status, :Log, :CreateUser, :Amount, :CodeLength, :CodeType, :Cipher, :TextUrl, :PackUrl, :MerchantName, :RuleType, :CustomId, :PackType, :PackLevel, :PackSpec, :ProductName, :ProductSpecification, :ProductId, :RelateType
 
-        def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil)
+        def initialize(packid=nil, corpid=nil, merchantid=nil, createtime=nil, updatetime=nil, status=nil, log=nil, createuser=nil, amount=nil, codelength=nil, codetype=nil, cipher=nil, texturl=nil, packurl=nil, merchantname=nil, ruletype=nil, customid=nil, packtype=nil, packlevel=nil, packspec=nil, productname=nil, productspecification=nil, productid=nil, relatetype=nil)
           @PackId = packid
           @CorpId = corpid
           @MerchantId = merchantid
@@ -371,6 +383,10 @@ module TencentCloud
           @PackType = packtype
           @PackLevel = packlevel
           @PackSpec = packspec
+          @ProductName = productname
+          @ProductSpecification = productspecification
+          @ProductId = productid
+          @RelateType = relatetype
         end
 
         def deserialize(params)
@@ -401,6 +417,10 @@ module TencentCloud
               @PackSpec << packspec_tmp
             end
           end
+          @ProductName = params['ProductName']
+          @ProductSpecification = params['ProductSpecification']
+          @ProductId = params['ProductId']
+          @RelateType = params['RelateType']
         end
       end
 
@@ -572,10 +592,14 @@ module TencentCloud
         # @type BatchId: String
         # @param SerialType: 是否有流水码 0:无 1:有
         # @type SerialType: Integer
+        # @param ProductId: 关联产品ID
+        # @type ProductId: String
+        # @param RelateType: 层级码时是否提前生成关联关系，默认为 1
+        # @type RelateType: Integer
 
-        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType
+        attr_accessor :MerchantId, :CodeLength, :CodeType, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :BatchId, :SerialType, :ProductId, :RelateType
 
-        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil)
+        def initialize(merchantid=nil, codelength=nil, codetype=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil)
           @MerchantId = merchantid
           @CodeLength = codelength
           @CodeType = codetype
@@ -586,6 +610,8 @@ module TencentCloud
           @PackSpec = packspec
           @BatchId = batchid
           @SerialType = serialtype
+          @ProductId = productid
+          @RelateType = relatetype
         end
 
         def deserialize(params)
@@ -606,6 +632,8 @@ module TencentCloud
           end
           @BatchId = params['BatchId']
           @SerialType = params['SerialType']
+          @ProductId = params['ProductId']
+          @RelateType = params['RelateType']
         end
       end
 
@@ -720,10 +748,16 @@ module TencentCloud
         # @type BatchId: String
         # @param SerialType: 是否有流水码 0:无 1:有
         # @type SerialType: Integer
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param RelateType: 是否预生成码关系
+        # 0: 否, 1:是
+        # 默认为1，仅对层级码有效
+        # @type RelateType: Integer
 
-        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType
+        attr_accessor :MerchantId, :Amount, :CorpId, :PackType, :PackLevel, :PackSpec, :CustomId, :CodeParts, :BatchId, :SerialType, :ProductId, :RelateType
 
-        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil)
+        def initialize(merchantid=nil, amount=nil, corpid=nil, packtype=nil, packlevel=nil, packspec=nil, customid=nil, codeparts=nil, batchid=nil, serialtype=nil, productid=nil, relatetype=nil)
           @MerchantId = merchantid
           @Amount = amount
           @CorpId = corpid
@@ -734,6 +768,8 @@ module TencentCloud
           @CodeParts = codeparts
           @BatchId = batchid
           @SerialType = serialtype
+          @ProductId = productid
+          @RelateType = relatetype
         end
 
         def deserialize(params)
@@ -761,6 +797,8 @@ module TencentCloud
           end
           @BatchId = params['BatchId']
           @SerialType = params['SerialType']
+          @ProductId = params['ProductId']
+          @RelateType = params['RelateType']
         end
       end
 
@@ -2344,8 +2382,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2023, 8
-        deprecate :Products=, :none, 2023, 8
+        deprecate :Products, :none, 2023, 9
+        deprecate :Products=, :none, 2023, 9
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products

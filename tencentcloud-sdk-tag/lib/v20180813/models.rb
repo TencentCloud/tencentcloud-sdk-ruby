@@ -410,16 +410,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :ServiceType, :ResourcePrefix, :ResourceIds, :ResourceRegion, :Offset, :Limit
+        attr_accessor :ServiceType, :ResourcePrefix, :ResourceIds, :ResourceRegion, :Offset, :Limit, :Category
 
-        def initialize(servicetype=nil, resourceprefix=nil, resourceids=nil, resourceregion=nil, offset=nil, limit=nil)
+        def initialize(servicetype=nil, resourceprefix=nil, resourceids=nil, resourceregion=nil, offset=nil, limit=nil, category=nil)
           @ServiceType = servicetype
           @ResourcePrefix = resourceprefix
           @ResourceIds = resourceids
           @ResourceRegion = resourceregion
           @Offset = offset
           @Limit = limit
+          @Category = category
         end
 
         def deserialize(params)
@@ -429,6 +432,7 @@ module TencentCloud
           @ResourceRegion = params['ResourceRegion']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Category = params['Category']
         end
       end
 
@@ -896,18 +900,21 @@ module TencentCloud
         # @type CreateUin: Integer
         # @param Offset: 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         # @type Offset: Integer
-        # @param Limit: 每页大小，默认为 15
+        # @param Limit: 每页大小，默认为 15，最大1000
         # @type Limit: Integer
         # @param ShowProject: 是否展现项目
         # @type ShowProject: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :CreateUin, :Offset, :Limit, :ShowProject
+        attr_accessor :CreateUin, :Offset, :Limit, :ShowProject, :Category
 
-        def initialize(createuin=nil, offset=nil, limit=nil, showproject=nil)
+        def initialize(createuin=nil, offset=nil, limit=nil, showproject=nil, category=nil)
           @CreateUin = createuin
           @Offset = offset
           @Limit = limit
           @ShowProject = showproject
+          @Category = category
         end
 
         def deserialize(params)
@@ -915,6 +922,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @ShowProject = params['ShowProject']
+          @Category = params['Category']
         end
       end
 
@@ -960,14 +968,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 每页大小，默认为 15
         # @type Limit: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :TagKeys, :CreateUin, :Offset, :Limit
+        attr_accessor :TagKeys, :CreateUin, :Offset, :Limit, :Category
 
-        def initialize(tagkeys=nil, createuin=nil, offset=nil, limit=nil)
+        def initialize(tagkeys=nil, createuin=nil, offset=nil, limit=nil, category=nil)
           @TagKeys = tagkeys
           @CreateUin = createuin
           @Offset = offset
           @Limit = limit
+          @Category = category
         end
 
         def deserialize(params)
@@ -975,6 +986,7 @@ module TencentCloud
           @CreateUin = params['CreateUin']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Category = params['Category']
         end
       end
 
@@ -1397,17 +1409,21 @@ module TencentCloud
         # @param MaxResults: 每一页返回的数据最大条数，最大1000。
         # 缺省值：50。
         # @type MaxResults: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :PaginationToken, :MaxResults
+        attr_accessor :PaginationToken, :MaxResults, :Category
 
-        def initialize(paginationtoken=nil, maxresults=nil)
+        def initialize(paginationtoken=nil, maxresults=nil, category=nil)
           @PaginationToken = paginationtoken
           @MaxResults = maxresults
+          @Category = category
         end
 
         def deserialize(params)
           @PaginationToken = params['PaginationToken']
           @MaxResults = params['MaxResults']
+          @Category = params['Category']
         end
       end
 
@@ -1447,19 +1463,23 @@ module TencentCloud
         # @param MaxResults: 每一页返回的数据最大条数，最大1000。
         # 缺省值：50。
         # @type MaxResults: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :TagKeys, :PaginationToken, :MaxResults
+        attr_accessor :TagKeys, :PaginationToken, :MaxResults, :Category
 
-        def initialize(tagkeys=nil, paginationtoken=nil, maxresults=nil)
+        def initialize(tagkeys=nil, paginationtoken=nil, maxresults=nil, category=nil)
           @TagKeys = tagkeys
           @PaginationToken = paginationtoken
           @MaxResults = maxresults
+          @Category = category
         end
 
         def deserialize(params)
           @TagKeys = params['TagKeys']
           @PaginationToken = params['PaginationToken']
           @MaxResults = params['MaxResults']
+          @Category = params['Category']
         end
       end
 
@@ -1506,19 +1526,23 @@ module TencentCloud
         # 返回所有标签键列表对应的标签。
         # 最大长度：20
         # @type TagKeys: Array
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @type Category: String
 
-        attr_accessor :PaginationToken, :MaxResults, :TagKeys
+        attr_accessor :PaginationToken, :MaxResults, :TagKeys, :Category
 
-        def initialize(paginationtoken=nil, maxresults=nil, tagkeys=nil)
+        def initialize(paginationtoken=nil, maxresults=nil, tagkeys=nil, category=nil)
           @PaginationToken = paginationtoken
           @MaxResults = maxresults
           @TagKeys = tagkeys
+          @Category = category
         end
 
         def deserialize(params)
           @PaginationToken = params['PaginationToken']
           @MaxResults = params['MaxResults']
           @TagKeys = params['TagKeys']
+          @Category = params['Category']
         end
       end
 
@@ -1798,17 +1822,22 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值
         # @type TagValue: String
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
 
-        attr_accessor :TagKey, :TagValue
+        attr_accessor :TagKey, :TagValue, :Category
 
-        def initialize(tagkey=nil, tagvalue=nil)
+        def initialize(tagkey=nil, tagvalue=nil, category=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
+          @Category = category
         end
 
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+          @Category = params['Category']
         end
       end
 
@@ -1863,16 +1892,20 @@ module TencentCloud
         # @param ServiceType: 资源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceType: String
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
 
-        attr_accessor :TagKey, :TagValue, :ResourceId, :TagKeyMd5, :TagValueMd5, :ServiceType
+        attr_accessor :TagKey, :TagValue, :ResourceId, :TagKeyMd5, :TagValueMd5, :ServiceType, :Category
 
-        def initialize(tagkey=nil, tagvalue=nil, resourceid=nil, tagkeymd5=nil, tagvaluemd5=nil, servicetype=nil)
+        def initialize(tagkey=nil, tagvalue=nil, resourceid=nil, tagkeymd5=nil, tagvaluemd5=nil, servicetype=nil, category=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
           @ResourceId = resourceid
           @TagKeyMd5 = tagkeymd5
           @TagValueMd5 = tagvaluemd5
           @ServiceType = servicetype
+          @Category = category
         end
 
         def deserialize(params)
@@ -1882,13 +1915,13 @@ module TencentCloud
           @TagKeyMd5 = params['TagKeyMd5']
           @TagValueMd5 = params['TagValueMd5']
           @ServiceType = params['ServiceType']
+          @Category = params['Category']
         end
       end
 
       # TagResources请求参数结构体
       class TagResourcesRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceList: 资源六段式列表。腾讯云使用资源六段式描述一个资源。可参考[访问管理](https://cloud.tencent.com/document/product/598/67350)-概览-接口列表-资源六段式信息
-        # 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:uin/${Account}:${ResourcePrefix}/${ResourceId}。
+        # @param ResourceList: 待绑定的云资源，用标准的资源六段式表示。正确的资源六段式请参考：[标准的资源六段式](https://cloud.tencent.com/document/product/598/10606)和[支持标签的云产品及资源描述方式](https://cloud.tencent.com/document/product/651/89122)。
         # N取值范围：0~9
         # @type ResourceList: Array
         # @param Tags: 标签键和标签值。
@@ -1955,19 +1988,24 @@ module TencentCloud
         # @type TagValue: String
         # @param CanDelete: 是否可以删除
         # @type CanDelete: Integer
+        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
 
-        attr_accessor :TagKey, :TagValue, :CanDelete
+        attr_accessor :TagKey, :TagValue, :CanDelete, :Category
 
-        def initialize(tagkey=nil, tagvalue=nil, candelete=nil)
+        def initialize(tagkey=nil, tagvalue=nil, candelete=nil, category=nil)
           @TagKey = tagkey
           @TagValue = tagvalue
           @CanDelete = candelete
+          @Category = category
         end
 
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
           @CanDelete = params['CanDelete']
+          @Category = params['Category']
         end
       end
 

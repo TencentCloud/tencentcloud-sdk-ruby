@@ -205,6 +205,42 @@ module TencentCloud
         end
       end
 
+      # StartPublishStreamWithURL请求参数结构体
+      class StartPublishStreamWithURLRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。
+        # @type UserId: String
+        # @param PublishStreamURL: 推流地址，仅支持rtmp协议。
+        # @type PublishStreamURL: String
+
+        attr_accessor :UserId, :PublishStreamURL
+
+        def initialize(userid=nil, publishstreamurl=nil)
+          @UserId = userid
+          @PublishStreamURL = publishstreamurl
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @PublishStreamURL = params['PublishStreamURL']
+        end
+      end
+
+      # StartPublishStreamWithURL返回参数结构体
+      class StartPublishStreamWithURLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopPublishStream请求参数结构体
       class StopPublishStreamRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）

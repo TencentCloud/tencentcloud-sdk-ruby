@@ -655,6 +655,91 @@ module TencentCloud
         end
       end
 
+      # DescribeGeneralSpanList请求参数结构体
+      class DescribeGeneralSpanListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 列表项个数
+        # @type Limit: Integer
+        # @param OrderBy: 排序
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param StartTime: span查询开始时间戳（单位:秒）
+        # @type StartTime: Integer
+        # @param InstanceId: 实例名
+        # @type InstanceId: String
+        # @param Filters: 通用过滤参数
+        # @type Filters: Array
+        # @param BusinessName: 业务自身服务名
+        # @type BusinessName: String
+        # @param EndTime: span查询结束时间戳（单位:秒）
+        # @type EndTime: Integer
+
+        attr_accessor :Offset, :Limit, :OrderBy, :StartTime, :InstanceId, :Filters, :BusinessName, :EndTime
+
+        def initialize(offset=nil, limit=nil, orderby=nil, starttime=nil, instanceid=nil, filters=nil, businessname=nil, endtime=nil)
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @StartTime = starttime
+          @InstanceId = instanceid
+          @Filters = filters
+          @BusinessName = businessname
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @StartTime = params['StartTime']
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @BusinessName = params['BusinessName']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeGeneralSpanList返回参数结构体
+      class DescribeGeneralSpanListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param Spans: Span分页列表
+        # @type Spans: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Spans, :RequestId
+
+        def initialize(totalcount=nil, spans=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Spans = spans
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Spans'].nil?
+            @Spans = []
+            params['Spans'].each do |i|
+              span_tmp = Span.new
+              span_tmp.deserialize(i)
+              @Spans << span_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMetricRecords请求参数结构体
       class DescribeMetricRecordsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件
@@ -1098,6 +1183,203 @@ module TencentCloud
           @MetricName = params['MetricName']
           @Compare = params['Compare']
           @Compares = params['Compares']
+        end
+      end
+
+      # Span对象
+
+      class Span < TencentCloud::Common::AbstractModel
+        # @param TraceID: Trace Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceID: String
+        # @param Logs: 日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Logs: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Process: 上报应用服务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Process: :class:`Tencentcloud::Apm.v20210622.models.SpanProcess`
+        # @param Timestamp: 产生时间戳(毫秒)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param OperationName: Span名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationName: String
+        # @param References: 关联关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type References: Array
+        # @param StartTime: 产生时间戳(微秒)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: Integer
+        # @param Duration: 持续耗时(微妙)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param SpanID: Span Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpanID: String
+        # @param StartTimeMillis: 产生时间戳(毫秒)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimeMillis: Integer
+
+        attr_accessor :TraceID, :Logs, :Tags, :Process, :Timestamp, :OperationName, :References, :StartTime, :Duration, :SpanID, :StartTimeMillis
+
+        def initialize(traceid=nil, logs=nil, tags=nil, process=nil, timestamp=nil, operationname=nil, references=nil, starttime=nil, duration=nil, spanid=nil, starttimemillis=nil)
+          @TraceID = traceid
+          @Logs = logs
+          @Tags = tags
+          @Process = process
+          @Timestamp = timestamp
+          @OperationName = operationname
+          @References = references
+          @StartTime = starttime
+          @Duration = duration
+          @SpanID = spanid
+          @StartTimeMillis = starttimemillis
+        end
+
+        def deserialize(params)
+          @TraceID = params['TraceID']
+          unless params['Logs'].nil?
+            @Logs = []
+            params['Logs'].each do |i|
+              spanlog_tmp = SpanLog.new
+              spanlog_tmp.deserialize(i)
+              @Logs << spanlog_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              spantag_tmp = SpanTag.new
+              spantag_tmp.deserialize(i)
+              @Tags << spantag_tmp
+            end
+          end
+          unless params['Process'].nil?
+            @Process = SpanProcess.new
+            @Process.deserialize(params['Process'])
+          end
+          @Timestamp = params['Timestamp']
+          @OperationName = params['OperationName']
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              spanreference_tmp = SpanReference.new
+              spanreference_tmp.deserialize(i)
+              @References << spanreference_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @Duration = params['Duration']
+          @SpanID = params['SpanID']
+          @StartTimeMillis = params['StartTimeMillis']
+        end
+      end
+
+      # Span日志部分
+
+      class SpanLog < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 日志时间戳
+        # @type Timestamp: Integer
+        # @param Fields: 标签
+        # @type Fields: Array
+
+        attr_accessor :Timestamp, :Fields
+
+        def initialize(timestamp=nil, fields=nil)
+          @Timestamp = timestamp
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              spantag_tmp = SpanTag.new
+              spantag_tmp.deserialize(i)
+              @Fields << spantag_tmp
+            end
+          end
+        end
+      end
+
+      # 服务相关信息
+      class SpanProcess < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 应用服务名称
+        # @type ServiceName: String
+        # @param Tags: Tags 标签数组
+        # @type Tags: Array
+
+        attr_accessor :ServiceName, :Tags
+
+        def initialize(servicename=nil, tags=nil)
+          @ServiceName = servicename
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              spantag_tmp = SpanTag.new
+              spantag_tmp.deserialize(i)
+              @Tags << spantag_tmp
+            end
+          end
+        end
+      end
+
+      # Span上下游关联关系
+      class SpanReference < TencentCloud::Common::AbstractModel
+        # @param RefType: 关联关系类型
+        # @type RefType: String
+        # @param SpanID: Span ID
+        # @type SpanID: String
+        # @param TraceID: Trace ID
+        # @type TraceID: String
+
+        attr_accessor :RefType, :SpanID, :TraceID
+
+        def initialize(reftype=nil, spanid=nil, traceid=nil)
+          @RefType = reftype
+          @SpanID = spanid
+          @TraceID = traceid
+        end
+
+        def deserialize(params)
+          @RefType = params['RefType']
+          @SpanID = params['SpanID']
+          @TraceID = params['TraceID']
+        end
+      end
+
+      # 标签
+      class SpanTag < TencentCloud::Common::AbstractModel
+        # @param Type: 标签类型
+        # @type Type: String
+        # @param Key: 标签Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Type, :Key, :Value
+
+        def initialize(type=nil, key=nil, value=nil)
+          @Type = type
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

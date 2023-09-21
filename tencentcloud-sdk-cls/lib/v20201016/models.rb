@@ -7707,6 +7707,110 @@ module TencentCloud
         end
       end
 
+      # QueryMetric请求参数结构体
+      class QueryMetricRequest < TencentCloud::Common::AbstractModel
+        # @param Query: 查询语句，使用PromQL语法
+        # @type Query: String
+        # @param TopicId: 指标主题ID
+        # @type TopicId: String
+        # @param Time: 查询时间，秒级Unix时间戳
+        # @type Time: Integer
+
+        attr_accessor :Query, :TopicId, :Time
+
+        def initialize(query=nil, topicid=nil, time=nil)
+          @Query = query
+          @TopicId = topicid
+          @Time = time
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @TopicId = params['TopicId']
+          @Time = params['Time']
+        end
+      end
+
+      # QueryMetric返回参数结构体
+      class QueryMetricResponse < TencentCloud::Common::AbstractModel
+        # @param ResultType: 指标查询结果类型
+        # @type ResultType: String
+        # @param Result: 指标查询结果
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultType, :Result, :RequestId
+
+        def initialize(resulttype=nil, result=nil, requestid=nil)
+          @ResultType = resulttype
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultType = params['ResultType']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryRangeMetric请求参数结构体
+      class QueryRangeMetricRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标主题ID
+        # @type TopicId: String
+        # @param Query: 查询语句，使用PromQL语法
+        # @type Query: String
+        # @param Start: 查询起始时间，秒级Unix时间戳
+        # @type Start: Integer
+        # @param End: 查询结束时间，秒级Unix时间戳
+        # @type End: Integer
+        # @param Step: 查询时间间隔，单位秒
+        # @type Step: Integer
+
+        attr_accessor :TopicId, :Query, :Start, :End, :Step
+
+        def initialize(topicid=nil, query=nil, start=nil, _end=nil, step=nil)
+          @TopicId = topicid
+          @Query = query
+          @Start = start
+          @End = _end
+          @Step = step
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Query = params['Query']
+          @Start = params['Start']
+          @End = params['End']
+          @Step = params['Step']
+        end
+      end
+
+      # QueryRangeMetric返回参数结构体
+      class QueryRangeMetricResponse < TencentCloud::Common::AbstractModel
+        # @param ResultType: 指标查询结果类型
+        # @type ResultType: String
+        # @param Result: 指标查询结果
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultType, :Result, :RequestId
+
+        def initialize(resulttype=nil, result=nil, requestid=nil)
+          @ResultType = resulttype
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultType = params['ResultType']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RetryShipperTask请求参数结构体
       class RetryShipperTaskRequest < TencentCloud::Common::AbstractModel
         # @param ShipperId: 投递规则ID

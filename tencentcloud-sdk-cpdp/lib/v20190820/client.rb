@@ -4744,30 +4744,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
-
-        # @param request: Request instance for RevResigterBillSupportWithdraw.
-        # @type request: :class:`Tencentcloud::cpdp::V20190820::RevResigterBillSupportWithdrawRequest`
-        # @rtype: :class:`Tencentcloud::cpdp::V20190820::RevResigterBillSupportWithdrawResponse`
-        def RevResigterBillSupportWithdraw(request)
-          body = send_request('RevResigterBillSupportWithdraw', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RevResigterBillSupportWithdrawResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 修改会员属性-普通商户子账户。修改会员的会员属性。
 
         # @param request: Request instance for ReviseMbrProperty.

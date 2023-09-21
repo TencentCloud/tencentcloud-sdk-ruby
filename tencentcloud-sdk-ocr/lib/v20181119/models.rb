@@ -2185,16 +2185,19 @@ module TencentCloud
         # @type IsPdf: Boolean
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         # @type PdfPageNumber: Integer
+        # @param EnableDetectText: 文本检测开关，默认为true。设置为false可直接进行单行识别，适用于仅包含正向单行文本的图片场景。
+        # @type EnableDetectText: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText
 
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
           @EnableDetectSplit = enabledetectsplit
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
+          @EnableDetectText = enabledetecttext
         end
 
         def deserialize(params)
@@ -2204,6 +2207,7 @@ module TencentCloud
           @EnableDetectSplit = params['EnableDetectSplit']
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
+          @EnableDetectText = params['EnableDetectText']
         end
       end
 
@@ -2213,14 +2217,20 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TextDetections, :Angel, :RequestId
+        attr_accessor :TextDetections, :Angel, :Angle, :RequestId
+        extend Gem::Deprecate
+        deprecate :Angel, :none, 2023, 9
+        deprecate :Angel=, :none, 2023, 9
 
-        def initialize(textdetections=nil, angel=nil, requestid=nil)
+        def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
           @Angel = angel
+          @Angle = angle
           @RequestId = requestid
         end
 
@@ -2234,6 +2244,7 @@ module TencentCloud
             end
           end
           @Angel = params['Angel']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end

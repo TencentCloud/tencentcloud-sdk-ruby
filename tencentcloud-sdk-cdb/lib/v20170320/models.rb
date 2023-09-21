@@ -9743,16 +9743,22 @@ module TencentCloud
         # @type IsSucess: Boolean
         # @param ModifyTime: 修改时间
         # @type ModifyTime: String
+        # @param IsSuccess: 参数是否修改成功
+        # @type IsSuccess: Boolean
 
-        attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime
+        attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
+        extend Gem::Deprecate
+        deprecate :IsSucess, :none, 2023, 9
+        deprecate :IsSucess=, :none, 2023, 9
 
-        def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil)
+        def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
           @ParamName = paramname
           @OldValue = oldvalue
           @NewValue = newvalue
           @IsSucess = issucess
           @ModifyTime = modifytime
+          @IsSuccess = issuccess
         end
 
         def deserialize(params)
@@ -9762,6 +9768,7 @@ module TencentCloud
           @NewValue = params['NewValue']
           @IsSucess = params['IsSucess']
           @ModifyTime = params['ModifyTime']
+          @IsSuccess = params['IsSuccess']
         end
       end
 

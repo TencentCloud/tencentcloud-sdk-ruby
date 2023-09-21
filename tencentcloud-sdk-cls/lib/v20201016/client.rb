@@ -1949,6 +1949,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定时刻指标的最新值
+
+        # @param request: Request instance for QueryMetric.
+        # @type request: :class:`Tencentcloud::cls::V20201016::QueryMetricRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::QueryMetricResponse`
+        def QueryMetric(request)
+          body = send_request('QueryMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定时间范围内指标的变化趋势
+
+        # @param request: Request instance for QueryRangeMetric.
+        # @type request: :class:`Tencentcloud::cls::V20201016::QueryRangeMetricRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::QueryRangeMetricResponse`
+        def QueryRangeMetric(request)
+          body = send_request('QueryRangeMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryRangeMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重试失败的投递任务
 
         # @param request: Request instance for RetryShipperTask.

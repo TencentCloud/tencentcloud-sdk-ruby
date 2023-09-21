@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开始云端推流到指定URL
+
+        # @param request: Request instance for StartPublishStreamWithURL.
+        # @type request: :class:`Tencentcloud::car::V20220110::StartPublishStreamWithURLRequest`
+        # @rtype: :class:`Tencentcloud::car::V20220110::StartPublishStreamWithURLResponse`
+        def StartPublishStreamWithURL(request)
+          body = send_request('StartPublishStreamWithURL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartPublishStreamWithURLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止云端推流
 
         # @param request: Request instance for StopPublishStream.
