@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取组织成员可被管理的身份列表
+        # 获取组织成员访问授权列表
 
         # @param request: Request instance for DescribeOrganizationMemberAuthIdentities.
         # @type request: :class:`Tencentcloud::organization::V20210331::DescribeOrganizationMemberAuthIdentitiesRequest`

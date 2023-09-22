@@ -506,6 +506,33 @@ module TencentCloud
         end
       end
 
+      # SparkSQL批任务信息
+      class BatchSqlTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: SQL子任务唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param ExecuteSQL: 运行SQL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteSQL: String
+        # @param Message: 任务信息，成功则返回：Task Success!，失败则返回异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :TaskId, :ExecuteSQL, :Message
+
+        def initialize(taskid=nil, executesql=nil, message=nil)
+          @TaskId = taskid
+          @ExecuteSQL = executesql
+          @Message = message
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ExecuteSQL = params['ExecuteSQL']
+          @Message = params['Message']
+        end
+      end
+
       # BindWorkGroupsToUser请求参数结构体
       class BindWorkGroupsToUserRequest < TencentCloud::Common::AbstractModel
         # @param AddInfo: 绑定的用户和工作组信息
@@ -5273,6 +5300,58 @@ module TencentCloud
               @SparkAppTasks << taskresponseinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSparkSessionBatchSQL请求参数结构体
+      class DescribeSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
+        # @param BatchId: SparkSQL唯一标识
+        # @type BatchId: String
+
+        attr_accessor :BatchId
+
+        def initialize(batchid=nil)
+          @BatchId = batchid
+        end
+
+        def deserialize(params)
+          @BatchId = params['BatchId']
+        end
+      end
+
+      # DescribeSparkSessionBatchSQL返回参数结构体
+      class DescribeSparkSessionBatchSQLResponse < TencentCloud::Common::AbstractModel
+        # @param State: 状态：0：运行中、1：成功、2：失败、3：取消、4：超时；
+        # @type State: Integer
+        # @param Tasks: SQL子任务列表，仅展示运行完成的子任务，若某个任务运行失败，后续其它子任务不返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Event: 非sql运行的异常事件信息，包含资源创建失败、调度异常，JOB超时等，正常运行下该Event值为空
+        # @type Event: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :State, :Tasks, :Event, :RequestId
+
+        def initialize(state=nil, tasks=nil, event=nil, requestid=nil)
+          @State = state
+          @Tasks = tasks
+          @Event = event
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              batchsqltask_tmp = BatchSqlTask.new
+              batchsqltask_tmp.deserialize(i)
+              @Tasks << batchsqltask_tmp
+            end
+          end
+          @Event = params['Event']
           @RequestId = params['RequestId']
         end
       end

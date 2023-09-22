@@ -2621,12 +2621,17 @@ module TencentCloud
 
       # DescribeCustomHeader请求参数结构体
       class DescribeCustomHeaderRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: String
 
+        attr_accessor :RuleId
 
-        def initialize()
+        def initialize(ruleid=nil)
+          @RuleId = ruleid
         end
 
         def deserialize(params)
+          @RuleId = params['RuleId']
         end
       end
 

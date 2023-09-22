@@ -920,6 +920,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取agent安装命令
+
+        # @param request: Request instance for DescribeAgentInstallCommand.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeAgentInstallCommandRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeAgentInstallCommandResponse`
+        def DescribeAgentInstallCommand(request)
+          body = send_request('DescribeAgentInstallCommand', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAgentInstallCommandResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取告警点所在事件的所有节点信息
 
         # @param request: Request instance for DescribeAlarmIncidentNodes.

@@ -5713,10 +5713,13 @@ module TencentCloud
         # @type SpecId: String
         # @param SpecAlias: 计费项别名
         # @type SpecAlias: String
+        # @param SpecFeatures: 计费项特性列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecFeatures: Array
 
-        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias
+        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures
 
-        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil)
+        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil)
           @InstanceId = instanceid
           @UsedResource = usedresource
           @TotalResource = totalresource
@@ -5727,6 +5730,7 @@ module TencentCloud
           @AutoRenewFlag = autorenewflag
           @SpecId = specid
           @SpecAlias = specalias
+          @SpecFeatures = specfeatures
         end
 
         def deserialize(params)
@@ -5746,6 +5750,7 @@ module TencentCloud
           @AutoRenewFlag = params['AutoRenewFlag']
           @SpecId = params['SpecId']
           @SpecAlias = params['SpecAlias']
+          @SpecFeatures = params['SpecFeatures']
         end
       end
 

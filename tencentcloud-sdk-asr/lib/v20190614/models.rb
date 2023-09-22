@@ -1111,6 +1111,9 @@ module TencentCloud
         # @param SliceSentence: 单句中间识别结果，使用空格拆分为多个词
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SliceSentence: String
+        # @param WrittenText: 口语转书面语结果，开启改功能才有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WrittenText: String
         # @param StartMs: 单句开始时间（毫秒）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartMs: Integer
@@ -1139,11 +1142,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionType: Array
 
-        attr_accessor :FinalSentence, :SliceSentence, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType
+        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType
 
-        def initialize(finalsentence=nil, slicesentence=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
+          @WrittenText = writtentext
           @StartMs = startms
           @EndMs = endms
           @WordsNum = wordsnum
@@ -1158,6 +1162,7 @@ module TencentCloud
         def deserialize(params)
           @FinalSentence = params['FinalSentence']
           @SliceSentence = params['SliceSentence']
+          @WrittenText = params['WrittenText']
           @StartMs = params['StartMs']
           @EndMs = params['EndMs']
           @WordsNum = params['WordsNum']

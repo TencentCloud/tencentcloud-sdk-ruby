@@ -2025,6 +2025,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 已上新接口，支持串行
+
         # 单个修改互联网边界防火墙开关
 
         # @param request: Request instance for ModifyPublicIPSwitchStatus.

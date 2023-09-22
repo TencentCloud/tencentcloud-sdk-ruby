@@ -3563,7 +3563,7 @@ module TencentCloud
         # @type Namespaces: Array
         # @param MetricNames: 根据指标名过滤
         # @type MetricNames: Array
-        # @param PolicyName: 根据策略名称模糊搜索
+        # @param PolicyName: 根据策略名称模糊搜索,不支持大小写区分
         # @type PolicyName: String
         # @param Content: 根据告警内容模糊搜索
         # @type Content: String
@@ -3573,7 +3573,7 @@ module TencentCloud
         # @type ReceiverGroups: Array
         # @param PolicyIds: 根据告警策略 Id 列表搜索
         # @type PolicyIds: Array
-        # @param AlarmLevels: 告警等级
+        # @param AlarmLevels: 告警等级,取值范围：Remind、Serious、Warn
         # @type AlarmLevels: Array
 
         attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels

@@ -1476,6 +1476,96 @@ module TencentCloud
         end
       end
 
+      # DeleteDomainAndIp请求参数结构体
+      class DeleteDomainAndIpRequest < TencentCloud::Common::AbstractModel
+        # @param Content: -
+        # @type Content: Array
+        # @param RetainPath: 是否保留路径配置，1：保留，其他：不保留，默认不传为不保留
+        # @type RetainPath: Integer
+        # @param IgnoreAsset: 以后是否忽略该资产，，1：忽略，其他：不忽略，默认不传为忽略
+        # @type IgnoreAsset: Integer
+
+        attr_accessor :Content, :RetainPath, :IgnoreAsset
+
+        def initialize(content=nil, retainpath=nil, ignoreasset=nil)
+          @Content = content
+          @RetainPath = retainpath
+          @IgnoreAsset = ignoreasset
+        end
+
+        def deserialize(params)
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              publicipdomainlistkey_tmp = PublicIpDomainListKey.new
+              publicipdomainlistkey_tmp.deserialize(i)
+              @Content << publicipdomainlistkey_tmp
+            end
+          end
+          @RetainPath = params['RetainPath']
+          @IgnoreAsset = params['IgnoreAsset']
+        end
+      end
+
+      # DeleteDomainAndIp返回参数结构体
+      class DeleteDomainAndIpResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除的资产数量
+        # @type Data: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRiskScanTask请求参数结构体
+      class DeleteRiskScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: 任务id 列表
+        # @type TaskIdList: Array
+
+        attr_accessor :TaskIdList
+
+        def initialize(taskidlist=nil)
+          @TaskIdList = taskidlist
+        end
+
+        def deserialize(params)
+          unless params['TaskIdList'].nil?
+            @TaskIdList = []
+            params['TaskIdList'].each do |i|
+              taskidlistkey_tmp = TaskIdListKey.new
+              taskidlistkey_tmp.deserialize(i)
+              @TaskIdList << taskidlistkey_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteRiskScanTask返回参数结构体
+      class DeleteRiskScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCVMAssetInfo请求参数结构体
       class DescribeCVMAssetInfoRequest < TencentCloud::Common::AbstractModel
         # @param AssetId: -
@@ -3335,6 +3425,22 @@ module TencentCloud
         end
       end
 
+      # 公网IP和域名资产列表key
+      class PublicIpDomainListKey < TencentCloud::Common::AbstractModel
+        # @param Asset: 资产值
+        # @type Asset: String
+
+        attr_accessor :Asset
+
+        def initialize(asset=nil)
+          @Asset = asset
+        end
+
+        def deserialize(params)
+          @Asset = params['Asset']
+        end
+      end
+
       # 报告项key
       class ReportItemKey < TencentCloud::Common::AbstractModel
         # @param TaskLogList: 日志Id列表
@@ -3637,6 +3743,49 @@ module TencentCloud
         end
       end
 
+      # StopRiskCenterTask请求参数结构体
+      class StopRiskCenterTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: 任务id 列表
+        # @type TaskIdList: Array
+
+        attr_accessor :TaskIdList
+
+        def initialize(taskidlist=nil)
+          @TaskIdList = taskidlist
+        end
+
+        def deserialize(params)
+          unless params['TaskIdList'].nil?
+            @TaskIdList = []
+            params['TaskIdList'].each do |i|
+              taskidlistkey_tmp = TaskIdListKey.new
+              taskidlistkey_tmp.deserialize(i)
+              @TaskIdList << taskidlistkey_tmp
+            end
+          end
+        end
+      end
+
+      # StopRiskCenterTask返回参数结构体
+      class StopRiskCenterTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: Status为0， 停止成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 子网资产
       class SubnetAsset < TencentCloud::Common::AbstractModel
         # @param AppId: appid
@@ -3897,6 +4046,22 @@ module TencentCloud
         def deserialize(params)
           @CheckItemId = params['CheckItemId']
           @Enable = params['Enable']
+        end
+      end
+
+      # 任务ID列表Key
+      class TaskIdListKey < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 

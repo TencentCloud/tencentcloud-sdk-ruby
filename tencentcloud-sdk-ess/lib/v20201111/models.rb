@@ -76,6 +76,34 @@ module TencentCloud
         end
       end
 
+      # 签署方在使用个人印章签署控件（SIGN_SIGNATURE） 时可使用的签署方式
+      class ApproverComponentLimitType < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        # @type RecipientId: String
+        # @param Values: 签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式，可多选
+
+        # 签名方式：
+        # <ul>
+        # <li>HANDWRITE-手写签名</li>
+        # <li>ESIGN-个人印章类型</li>
+        # <li>OCR_ESIGN-AI智能识别手写签名</li>
+        # <li>SYSTEM_ESIGN-系统签名</li>
+        # </ul>
+        # @type Values: Array
+
+        attr_accessor :RecipientId, :Values
+
+        def initialize(recipientid=nil, values=nil)
+          @RecipientId = recipientid
+          @Values = values
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @Values = params['Values']
+        end
+      end
+
       # 参与者信息。
       class ApproverInfo < TencentCloud::Common::AbstractModel
         # @param ApproverType: 在指定签署方时，可选择企业B端或个人C端等不同的参与者类型，可选类型如下:
@@ -1890,7 +1918,7 @@ module TencentCloud
       # CreateFlowGroupByTemplates请求参数结构体
       class CreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowGroupName: String
@@ -2741,15 +2769,17 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param ApproverRestrictions: 限制二维码用户条件（已弃用）
         # @type ApproverRestrictions: :class:`Tencentcloud::Ess.v20201111.models.ApproverRestriction`
+        # @param ApproverComponentLimitTypes: 指定签署方在使用个人印章签署控件（SIGN_SIGNATURE） 时可使用的签署方式：自由书写、正楷临摹、系统签名、个人印章。
+        # @type ApproverComponentLimitTypes: Array
 
-        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions
+        attr_accessor :Operator, :TemplateId, :FlowName, :MaxFlowNum, :QrEffectiveDay, :FlowEffectiveDay, :Restrictions, :UserData, :CallbackUrl, :Agent, :ApproverRestrictions, :ApproverComponentLimitTypes
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 9
         deprecate :CallbackUrl=, :none, 2023, 9
         deprecate :ApproverRestrictions, :none, 2023, 9
         deprecate :ApproverRestrictions=, :none, 2023, 9
 
-        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil)
+        def initialize(operator=nil, templateid=nil, flowname=nil, maxflownum=nil, qreffectiveday=nil, floweffectiveday=nil, restrictions=nil, userdata=nil, callbackurl=nil, agent=nil, approverrestrictions=nil, approvercomponentlimittypes=nil)
           @Operator = operator
           @TemplateId = templateid
           @FlowName = flowname
@@ -2761,6 +2791,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @Agent = agent
           @ApproverRestrictions = approverrestrictions
+          @ApproverComponentLimitTypes = approvercomponentlimittypes
         end
 
         def deserialize(params)
@@ -2790,6 +2821,14 @@ module TencentCloud
           unless params['ApproverRestrictions'].nil?
             @ApproverRestrictions = ApproverRestriction.new
             @ApproverRestrictions.deserialize(params['ApproverRestrictions'])
+          end
+          unless params['ApproverComponentLimitTypes'].nil?
+            @ApproverComponentLimitTypes = []
+            params['ApproverComponentLimitTypes'].each do |i|
+              approvercomponentlimittype_tmp = ApproverComponentLimitType.new
+              approvercomponentlimittype_tmp.deserialize(i)
+              @ApproverComponentLimitTypes << approvercomponentlimittype_tmp
+            end
           end
         end
       end
@@ -4558,14 +4597,12 @@ module TencentCloud
       class DescribeFlowInfoRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 需要查询的流程ID列表，限制最大100个
-
-        # 如果查询合同组的信息,不要传此参数
+        # @param FlowIds: 需要查询的流程ID列表，最多可传入100个ID。
+        # 如果要查询合同组的信息，则不需要传入此参数，只需传入 FlowGroupId 参数即可。
         # @type FlowIds: Array
         # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param FlowGroupId: 合同组ID, 如果传此参数会忽略FlowIds入参
-        #  所以如传此参数不要传FlowIds参数
+        # @param FlowGroupId: 需要查询的流程组ID，如果传入此参数，则会忽略 FlowIds 参数。该合同组由<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByFiles" target="_blank">通过多文件创建合同组签署流程</a>等接口创建。
         # @type FlowGroupId: String
 
         attr_accessor :Operator, :FlowIds, :Agent, :FlowGroupId
@@ -4593,11 +4630,12 @@ module TencentCloud
 
       # DescribeFlowInfo返回参数结构体
       class DescribeFlowInfoResponse < TencentCloud::Common::AbstractModel
-        # @param FlowDetailInfos: 签署流程信息
+        # @param FlowDetailInfos: 合同流程的详细信息。
+        # 如果查询的是合同组信息，则返回的是组内所有子合同流程的详细信息。
         # @type FlowDetailInfos: Array
-        # @param FlowGroupId: 合同组ID，为32位字符串
+        # @param FlowGroupId: 合同组ID，只有在查询合同组信息时才会返回。
         # @type FlowGroupId: String
-        # @param FlowGroupName: 合同组名称
+        # @param FlowGroupName: 合同组名称，只有在查询合同组信息时才会返回。
         # @type FlowGroupName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5220,6 +5258,70 @@ module TencentCloud
               @Seals << occupiedseal_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePersonCertificate请求参数结构体
+      class DescribePersonCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserInfo: 个人用户的三要素信息：
+        # <ul><li>姓名</li>
+        # <li>证件号</li>
+        # <li>证件类型</li></ul>
+        # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param SceneKey: 证书使用场景，可以选择的场景值如下:
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** : 电子处方场景</li></ul>
+        # 注: `现在仅支持电子处方场景`
+        # @type SceneKey: String
+
+        attr_accessor :Operator, :UserInfo, :Agent, :SceneKey
+
+        def initialize(operator=nil, userinfo=nil, agent=nil, scenekey=nil)
+          @Operator = operator
+          @UserInfo = userinfo
+          @Agent = agent
+          @SceneKey = scenekey
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+        end
+      end
+
+      # DescribePersonCertificate返回参数结构体
+      class DescribePersonCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param Cert: 证书的Base64
+        # @type Cert: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Cert, :RequestId
+
+        def initialize(cert=nil, requestid=nil)
+          @Cert = cert
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Cert = params['Cert']
           @RequestId = params['RequestId']
         end
       end

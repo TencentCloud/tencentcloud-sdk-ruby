@@ -161,7 +161,8 @@ module TencentCloud
       # 第三方云存储的账号信息。
       class CloudStorage < TencentCloud::Common::AbstractModel
         # @param Vendor: 第三方云储存的供应商:
-        # 0：腾讯云存储 COS，暂不支持其他家。
+        # 0：腾讯云存储 COS。
+        # 【*注意】：目前第三方仅支持腾讯云存储COS，暂不支持AWS等其他第三方云存储。
         # @type Vendor: Integer
         # @param Region: 第三方云存储的地域信息。
         # @type Region: String

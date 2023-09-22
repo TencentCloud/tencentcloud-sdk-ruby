@@ -101,6 +101,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除域名和ip请求
+
+        # @param request: Request instance for DeleteDomainAndIp.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteDomainAndIpRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteDomainAndIpResponse`
+        def DeleteDomainAndIp(request)
+          body = send_request('DeleteDomainAndIp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDomainAndIpResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除风险中心扫描任务
+
+        # @param request: Request instance for DeleteRiskScanTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteRiskScanTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteRiskScanTaskResponse`
+        def DeleteRiskScanTask(request)
+          body = send_request('DeleteRiskScanTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRiskScanTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # cvm详情
 
         # @param request: Request instance for DescribeCVMAssetInfo.
@@ -495,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止扫风险中心扫描任务
+
+        # @param request: Request instance for StopRiskCenterTask.
+        # @type request: :class:`Tencentcloud::csip::V20221121::StopRiskCenterTaskRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::StopRiskCenterTaskResponse`
+        def StopRiskCenterTask(request)
+          body = send_request('StopRiskCenterTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopRiskCenterTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

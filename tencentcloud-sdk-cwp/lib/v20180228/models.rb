@@ -5878,6 +5878,87 @@ module TencentCloud
         end
       end
 
+      # DescribeAgentInstallCommand请求参数结构体
+      class DescribeAgentInstallCommandRequest < TencentCloud::Common::AbstractModel
+        # @param IsCloud: 是否腾讯云
+        # @type IsCloud: Boolean
+        # @param NetType: 网络类型：basic-基础网络，private-VPC, public-公网，direct-专线
+        # @type NetType: String
+        # @param RegionCode: 地域标示, NetType=direct时必填
+        # @type RegionCode: String
+        # @param VpcId: VpcId, NetType=direct时必填
+        # @type VpcId: String
+        # @param TagIds: 标签ID列表，IsCloud=false时才会生效
+        # @type TagIds: Array
+        # @param ExpireDate: 命令有效期，非腾讯云时必填
+        # @type ExpireDate: String
+        # @param Vip: 代理方式接入的vip
+        # @type Vip: String
+
+        attr_accessor :IsCloud, :NetType, :RegionCode, :VpcId, :TagIds, :ExpireDate, :Vip
+
+        def initialize(iscloud=nil, nettype=nil, regioncode=nil, vpcid=nil, tagids=nil, expiredate=nil, vip=nil)
+          @IsCloud = iscloud
+          @NetType = nettype
+          @RegionCode = regioncode
+          @VpcId = vpcid
+          @TagIds = tagids
+          @ExpireDate = expiredate
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @IsCloud = params['IsCloud']
+          @NetType = params['NetType']
+          @RegionCode = params['RegionCode']
+          @VpcId = params['VpcId']
+          @TagIds = params['TagIds']
+          @ExpireDate = params['ExpireDate']
+          @Vip = params['Vip']
+        end
+      end
+
+      # DescribeAgentInstallCommand返回参数结构体
+      class DescribeAgentInstallCommandResponse < TencentCloud::Common::AbstractModel
+        # @param LinuxCommand: linux系统安装命令
+        # @type LinuxCommand: String
+        # @param WindowsCommand: windows系统安装命令（windows2008及以上）
+        # @type WindowsCommand: String
+        # @param WindowsStepOne: windows系统安装命令第一步（windows2003）
+        # @type WindowsStepOne: String
+        # @param WindowsStepTwo: windows系统安装命令第二步（windows2003）
+        # @type WindowsStepTwo: String
+        # @param WindowsDownloadUrl: windows版agent下载链接
+        # @type WindowsDownloadUrl: String
+        # @param ARMCommand: Arm安装命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ARMCommand: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LinuxCommand, :WindowsCommand, :WindowsStepOne, :WindowsStepTwo, :WindowsDownloadUrl, :ARMCommand, :RequestId
+
+        def initialize(linuxcommand=nil, windowscommand=nil, windowsstepone=nil, windowssteptwo=nil, windowsdownloadurl=nil, armcommand=nil, requestid=nil)
+          @LinuxCommand = linuxcommand
+          @WindowsCommand = windowscommand
+          @WindowsStepOne = windowsstepone
+          @WindowsStepTwo = windowssteptwo
+          @WindowsDownloadUrl = windowsdownloadurl
+          @ARMCommand = armcommand
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LinuxCommand = params['LinuxCommand']
+          @WindowsCommand = params['WindowsCommand']
+          @WindowsStepOne = params['WindowsStepOne']
+          @WindowsStepTwo = params['WindowsStepTwo']
+          @WindowsDownloadUrl = params['WindowsDownloadUrl']
+          @ARMCommand = params['ARMCommand']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAlarmIncidentNodes请求参数结构体
       class DescribeAlarmIncidentNodesRequest < TencentCloud::Common::AbstractModel
         # @param Uuid: 机器uuid
@@ -13192,6 +13273,7 @@ module TencentCloud
         # 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         # <li>Quuid - String - 是否必填: 否 - 云服务器uuid  最大100条.</li>
         # <li>AddedOnTheFifteen- String 是否必填: 否 - 是否只查询15天内新增的主机( 1：是) </li>
+        # <li> TagId- String 是否必填: 否 - 查询指定标签关联的主机列表 </li>
         # @type Filters: Array
         # @param ProjectIds: 机器所属业务ID列表
         # @type ProjectIds: Array

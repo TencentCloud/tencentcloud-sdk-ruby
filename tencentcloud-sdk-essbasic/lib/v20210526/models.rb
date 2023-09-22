@@ -55,6 +55,34 @@ module TencentCloud
         end
       end
 
+      # 指定签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+      class ApproverComponentLimitType < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        # @type RecipientId: String
+        # @param Values: 签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+
+        # 签名方式：
+        # <ul>
+        # <li>HANDWRITE-手写签名</li>
+        # <li>ESIGN-个人印章类型</li>
+        # <li>OCR_ESIGN-AI智能识别手写签名</li>
+        # <li>SYSTEM_ESIGN-系统签名</li>
+        # </ul>
+        # @type Values: Array
+
+        attr_accessor :RecipientId, :Values
+
+        def initialize(recipientid=nil, values=nil)
+          @RecipientId = recipientid
+          @Values = values
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @Values = params['Values']
+        end
+      end
+
       # 签署人个性化能力信息
       class ApproverOption < TencentCloud::Common::AbstractModel
         # @param HideOneKeySign: 是否隐藏一键签署 默认false-不隐藏true-隐藏
@@ -1439,8 +1467,10 @@ module TencentCloud
         # @type ApproverRestrictions: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverRestriction`
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param ApproverComponentLimitTypes: 指定签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+        # @type ApproverComponentLimitTypes: Array
 
-        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator
+        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator, :ApproverComponentLimitTypes
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 9
         deprecate :CallbackUrl=, :none, 2023, 9
@@ -1449,7 +1479,7 @@ module TencentCloud
         deprecate :Operator, :none, 2023, 9
         deprecate :Operator=, :none, 2023, 9
 
-        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, approverrestrictions=nil, operator=nil)
+        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, approverrestrictions=nil, operator=nil, approvercomponentlimittypes=nil)
           @Agent = agent
           @TemplateId = templateid
           @FlowName = flowname
@@ -1460,6 +1490,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @ApproverRestrictions = approverrestrictions
           @Operator = operator
+          @ApproverComponentLimitTypes = approvercomponentlimittypes
         end
 
         def deserialize(params)
@@ -1488,6 +1519,14 @@ module TencentCloud
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['ApproverComponentLimitTypes'].nil?
+            @ApproverComponentLimitTypes = []
+            params['ApproverComponentLimitTypes'].each do |i|
+              approvercomponentlimittype_tmp = ApproverComponentLimitType.new
+              approvercomponentlimittype_tmp.deserialize(i)
+              @ApproverComponentLimitTypes << approvercomponentlimittype_tmp
+            end
           end
         end
       end
@@ -3299,7 +3338,7 @@ module TencentCloud
 
         # ComponentType为SIGN_SEAL类型时，支持以下参数：
         # 1.PageRanges：PageRange的数组，通过PageRanges属性设置该印章在PDF所有页面上盖章（适用于标书在所有页面盖章的情况）
-        # 参数样例： "ComponentExtra":"{["PageRange":{"BeginPage":1,"EndPage":-1}]}"
+        # 参数样例： "ComponentExtra":"{"PageRange":[{"BeginPage":1,"EndPage":-1}]}"
         # @type ComponentExtra: String
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
         # TEXT - 文本内容
@@ -4823,7 +4862,12 @@ module TencentCloud
         # PERSON_AUTO_SIGN-个人自动签署，适用于个人自动签场景
         # 注: 个人自动签场景为白名单功能, 使用前请联系对接的客户经理沟通。
         # ORGANIZATION-企业（企业签署方或模板发起时的企业静默签）；
-        # ENTERPRISESERVER-企业静默签（文件发起时的企业静默签字）。
+        # ENTERPRISESERVER-企业自动签（他方企业自动签署或文件发起时的本方企业自动签）
+
+        # 若要实现他方企业（同一应用下）自动签，需要满足3个条件：
+        # 条件1：ApproverType 设置为ENTERPRISESERVER
+        # 条件2：子客之间完成授权
+        # 条件3：联系对接的客户经理沟通
         # @type ApproverType: String
         # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
         # @type RecipientId: String

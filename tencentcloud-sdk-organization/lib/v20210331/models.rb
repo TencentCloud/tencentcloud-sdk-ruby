@@ -47,16 +47,21 @@ module TencentCloud
 
       # AddOrganizationMemberEmail返回参数结构体
       class AddOrganizationMemberEmailResponse < TencentCloud::Common::AbstractModel
+        # @param BindId: 绑定Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :BindId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(bindid=nil, requestid=nil)
+          @BindId = bindid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @BindId = params['BindId']
           @RequestId = params['RequestId']
         end
       end
@@ -895,21 +900,25 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制数目。取值范围：1~50，默认值：10
         # @type Limit: Integer
-        # @param MemberUin: 组织成员Uin。
+        # @param MemberUin: 组织成员Uin。入参MemberUin与IdentityId至少填写一个
         # @type MemberUin: Integer
+        # @param IdentityId: 身份ID。入参MemberUin与IdentityId至少填写一个
+        # @type IdentityId: Integer
 
-        attr_accessor :Offset, :Limit, :MemberUin
+        attr_accessor :Offset, :Limit, :MemberUin, :IdentityId
 
-        def initialize(offset=nil, limit=nil, memberuin=nil)
+        def initialize(offset=nil, limit=nil, memberuin=nil, identityid=nil)
           @Offset = offset
           @Limit = limit
           @MemberUin = memberuin
+          @IdentityId = identityid
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
           @MemberUin = params['MemberUin']
+          @IdentityId = params['IdentityId']
         end
       end
 
@@ -1329,21 +1338,31 @@ module TencentCloud
 
       # 组织身份策略
       class IdentityPolicy < TencentCloud::Common::AbstractModel
-        # @param PolicyId: 策略ID
+        # @param PolicyId: CAM预设策略ID。PolicyType 为预设策略时有效且必选
         # @type PolicyId: Integer
-        # @param PolicyName: 策略名称
+        # @param PolicyName: CAM预设策略名称。PolicyType 为预设策略时有效且必选
         # @type PolicyName: String
+        # @param PolicyType: 策略类型。取值 1-自定义策略  2-预设策略；默认值2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: Integer
+        # @param PolicyDocument: 自定义策略内容，遵循CAM策略语法。PolicyType 为自定义策略时有效且必选
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDocument: String
 
-        attr_accessor :PolicyId, :PolicyName
+        attr_accessor :PolicyId, :PolicyName, :PolicyType, :PolicyDocument
 
-        def initialize(policyid=nil, policyname=nil)
+        def initialize(policyid=nil, policyname=nil, policytype=nil, policydocument=nil)
           @PolicyId = policyid
           @PolicyName = policyname
+          @PolicyType = policytype
+          @PolicyDocument = policydocument
         end
 
         def deserialize(params)
           @PolicyId = params['PolicyId']
           @PolicyName = params['PolicyName']
+          @PolicyType = params['PolicyType']
+          @PolicyDocument = params['PolicyDocument']
         end
       end
 
@@ -1752,22 +1771,31 @@ module TencentCloud
         # @param IdentityRoleAliasName: 身份的角色别名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityRoleAliasName: String
-        # @param Description: 描述。
+        # @param Description: 身份描述。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: 首次配置成功的时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间。
+        # @param UpdateTime: 最后一次配置成功的时间。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param IdentityType: 身份类型。取值： 1-预设  2-自定义
+        # @param IdentityType: 身份类型。取值： 1-预设身份  2-自定义身份
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentityType: Integer
+        # @param Status: 配置状态。取值：1-配置完成 2-需重新配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param MemberUin: 成员Uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param MemberName: 成员名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberName: String
 
-        attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime, :IdentityType
+        attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :Description, :CreateTime, :UpdateTime, :IdentityType, :Status, :MemberUin, :MemberName
 
-        def initialize(identityid=nil, identityrolename=nil, identityrolealiasname=nil, description=nil, createtime=nil, updatetime=nil, identitytype=nil)
+        def initialize(identityid=nil, identityrolename=nil, identityrolealiasname=nil, description=nil, createtime=nil, updatetime=nil, identitytype=nil, status=nil, memberuin=nil, membername=nil)
           @IdentityId = identityid
           @IdentityRoleName = identityrolename
           @IdentityRoleAliasName = identityrolealiasname
@@ -1775,6 +1803,9 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @IdentityType = identitytype
+          @Status = status
+          @MemberUin = memberuin
+          @MemberName = membername
         end
 
         def deserialize(params)
@@ -1785,6 +1816,9 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @IdentityType = params['IdentityType']
+          @Status = params['Status']
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
         end
       end
 

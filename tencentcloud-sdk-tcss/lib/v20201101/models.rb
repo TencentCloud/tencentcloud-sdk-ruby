@@ -5290,12 +5290,21 @@ module TencentCloud
 
       # CreateRefreshTask请求参数结构体
       class CreateRefreshTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIDs: 指定集群列表,若为空则标识同步所有集群
+        # @type ClusterIDs: Array
+        # @param IsSyncListOnly: 是否只同步列表
+        # @type IsSyncListOnly: Boolean
 
+        attr_accessor :ClusterIDs, :IsSyncListOnly
 
-        def initialize()
+        def initialize(clusterids=nil, issynclistonly=nil)
+          @ClusterIDs = clusterids
+          @IsSyncListOnly = issynclistonly
         end
 
         def deserialize(params)
+          @ClusterIDs = params['ClusterIDs']
+          @IsSyncListOnly = params['IsSyncListOnly']
         end
       end
 
@@ -5305,20 +5314,24 @@ module TencentCloud
         # @type TaskId: Integer
         # @param CreateResult: 创建检查任务的结果，"Succ"为成功，"Failed"为失败
         # @type CreateResult: String
+        # @param NewTaskID: 返回创建的新集群检查任务ID
+        # @type NewTaskID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :CreateResult, :RequestId
+        attr_accessor :TaskId, :CreateResult, :NewTaskID, :RequestId
 
-        def initialize(taskid=nil, createresult=nil, requestid=nil)
+        def initialize(taskid=nil, createresult=nil, newtaskid=nil, requestid=nil)
           @TaskId = taskid
           @CreateResult = createresult
+          @NewTaskID = newtaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @CreateResult = params['CreateResult']
+          @NewTaskID = params['NewTaskID']
           @RequestId = params['RequestId']
         end
       end

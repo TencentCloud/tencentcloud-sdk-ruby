@@ -1202,7 +1202,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口用户查询合同流程的详情信息, 支持查询多个(数量不能超过100)
+        # 此接口用于查询合同流程的详情信息，支持查询多个（数量不能超过100）。
 
         # 适用场景：可用于主动查询某个合同详情信息。
 
@@ -1374,6 +1374,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOrganizationSealsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribePersonCertificate）用于查询个人数字证书信息。<br />注：`1.目前仅用于查询开通了医疗自动签署功能的个人数字证书。`<br />`2.调用此接口需要开通白名单，使用前请联系相关人员开通白名单。`
+
+        # @param request: Request instance for DescribePersonCertificate.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribePersonCertificateRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribePersonCertificateResponse`
+        def DescribePersonCertificate(request)
+          body = send_request('DescribePersonCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePersonCertificateResponse.new
             model.deserialize(response['Response'])
             model
           else
