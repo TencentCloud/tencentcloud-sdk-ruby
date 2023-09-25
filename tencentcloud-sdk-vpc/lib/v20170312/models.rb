@@ -1576,10 +1576,13 @@ module TencentCloud
         # @type ResourceSet: Array
         # @param Bandwidth: 带宽包限速大小。单位：Mbps，-1表示不限速。
         # @type Bandwidth: Integer
+        # @param Egress: 网络出口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Egress: String
 
-        attr_accessor :BandwidthPackageId, :NetworkType, :ChargeType, :BandwidthPackageName, :CreatedTime, :Status, :ResourceSet, :Bandwidth
+        attr_accessor :BandwidthPackageId, :NetworkType, :ChargeType, :BandwidthPackageName, :CreatedTime, :Status, :ResourceSet, :Bandwidth, :Egress
 
-        def initialize(bandwidthpackageid=nil, networktype=nil, chargetype=nil, bandwidthpackagename=nil, createdtime=nil, status=nil, resourceset=nil, bandwidth=nil)
+        def initialize(bandwidthpackageid=nil, networktype=nil, chargetype=nil, bandwidthpackagename=nil, createdtime=nil, status=nil, resourceset=nil, bandwidth=nil, egress=nil)
           @BandwidthPackageId = bandwidthpackageid
           @NetworkType = networktype
           @ChargeType = chargetype
@@ -1588,6 +1591,7 @@ module TencentCloud
           @Status = status
           @ResourceSet = resourceset
           @Bandwidth = bandwidth
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -1606,6 +1610,7 @@ module TencentCloud
             end
           end
           @Bandwidth = params['Bandwidth']
+          @Egress = params['Egress']
         end
       end
 
@@ -2723,6 +2728,9 @@ module TencentCloud
         # @param NetworkType: 带宽包类型, 默认值: BGP, 可选值:
         # <li>BGP: 普通BGP共享带宽包</li>
         # <li>HIGH_QUALITY_BGP: 精品BGP共享带宽包</li>
+        # <li>SINGLEISP_CMCC: 中国移动共享带宽包</li>
+        # <li>SINGLEISP_CTCC: 中国电信共享带宽包</li>
+        # <li>SINGLEISP_CUCC: 中国联通共享带宽包</li>
         # @type NetworkType: String
         # @param ChargeType: 带宽包计费类型, 默认为: TOP5_POSTPAID_BY_MONTH, 可选值:
         # <li>TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费</li>
@@ -2743,10 +2751,12 @@ module TencentCloud
         # @type Protocol: String
         # @param TimeSpan: 预付费包月带宽包的购买时长，单位: 月，取值范围: 1~60。
         # @type TimeSpan: Integer
+        # @param Egress: 网络出口，默认值：center_egress1
+        # @type Egress: String
 
-        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol, :TimeSpan
+        attr_accessor :NetworkType, :ChargeType, :BandwidthPackageName, :BandwidthPackageCount, :InternetMaxBandwidth, :Tags, :Protocol, :TimeSpan, :Egress
 
-        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil, timespan=nil)
+        def initialize(networktype=nil, chargetype=nil, bandwidthpackagename=nil, bandwidthpackagecount=nil, internetmaxbandwidth=nil, tags=nil, protocol=nil, timespan=nil, egress=nil)
           @NetworkType = networktype
           @ChargeType = chargetype
           @BandwidthPackageName = bandwidthpackagename
@@ -2755,6 +2765,7 @@ module TencentCloud
           @Tags = tags
           @Protocol = protocol
           @TimeSpan = timespan
+          @Egress = egress
         end
 
         def deserialize(params)
@@ -2773,6 +2784,7 @@ module TencentCloud
           end
           @Protocol = params['Protocol']
           @TimeSpan = params['TimeSpan']
+          @Egress = params['Egress']
         end
       end
 

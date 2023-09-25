@@ -47,6 +47,9 @@ module TencentCloud
         # @type RejectVagueArithmetic: Boolean
 
         attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex, :RejectVagueArithmetic
+        extend Gem::Deprecate
+        deprecate :IsAsync, :none, 2023, 9
+        deprecate :IsAsync=, :none, 2023, 9
 
         def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil, rejectvaguearithmetic=nil)
           @SessionId = sessionid
@@ -94,6 +97,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :SessionId, :Items, :TaskId, :RequestId
+        extend Gem::Deprecate
+        deprecate :TaskId, :none, 2023, 9
+        deprecate :TaskId=, :none, 2023, 9
 
         def initialize(sessionid=nil, items=nil, taskid=nil, requestid=nil)
           @SessionId = sessionid

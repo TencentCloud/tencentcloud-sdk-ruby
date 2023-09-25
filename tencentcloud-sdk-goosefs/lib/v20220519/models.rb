@@ -1091,15 +1091,26 @@ module TencentCloud
         # @param RuleDescription: 规则备注与描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleDescription: String
+        # @param Status: 桶关联状态 0：关联中 1：关联完成
+        # @type Status: Integer
+        # @param AccelerateFlag: 是否使用全球加速域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccelerateFlag: Boolean
+        # @param BucketRegion: 桶所在的园区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BucketRegion: String
 
-        attr_accessor :BucketName, :FileSystemPath, :DataRepositoryTaskAutoStrategy, :RuleId, :RuleDescription
+        attr_accessor :BucketName, :FileSystemPath, :DataRepositoryTaskAutoStrategy, :RuleId, :RuleDescription, :Status, :AccelerateFlag, :BucketRegion
 
-        def initialize(bucketname=nil, filesystempath=nil, datarepositorytaskautostrategy=nil, ruleid=nil, ruledescription=nil)
+        def initialize(bucketname=nil, filesystempath=nil, datarepositorytaskautostrategy=nil, ruleid=nil, ruledescription=nil, status=nil, accelerateflag=nil, bucketregion=nil)
           @BucketName = bucketname
           @FileSystemPath = filesystempath
           @DataRepositoryTaskAutoStrategy = datarepositorytaskautostrategy
           @RuleId = ruleid
           @RuleDescription = ruledescription
+          @Status = status
+          @AccelerateFlag = accelerateflag
+          @BucketRegion = bucketregion
         end
 
         def deserialize(params)
@@ -1108,6 +1119,9 @@ module TencentCloud
           @DataRepositoryTaskAutoStrategy = params['DataRepositoryTaskAutoStrategy']
           @RuleId = params['RuleId']
           @RuleDescription = params['RuleDescription']
+          @Status = params['Status']
+          @AccelerateFlag = params['AccelerateFlag']
+          @BucketRegion = params['BucketRegion']
         end
       end
 

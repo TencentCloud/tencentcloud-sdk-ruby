@@ -2599,9 +2599,9 @@ module TencentCloud
 
       # ckafka地址信息
       class KafkaInfo < TencentCloud::Common::AbstractModel
-        # @param Address: kafaka address
+        # @param Address: Kafka address
         # @type Address: String
-        # @param Topic: kafaka topic
+        # @param Topic: Kafka topic
         # @type Topic: String
         # @param User: kafka username
         # @type User: String

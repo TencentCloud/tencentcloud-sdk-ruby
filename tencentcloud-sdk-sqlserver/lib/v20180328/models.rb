@@ -3692,10 +3692,12 @@ module TencentCloud
         # @type UidSet: Array
         # @param InstanceType: 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
         # @type InstanceType: String
+        # @param PaginationType: 分页查询方式 offset-按照偏移量分页查询，pageNumber-按照页数分页查询，默认取值pageNumber
+        # @type PaginationType: String
 
-        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey, :UidSet, :InstanceType
+        attr_accessor :ProjectId, :Status, :Offset, :Limit, :InstanceIdSet, :PayMode, :VpcId, :SubnetId, :VipSet, :InstanceNameSet, :VersionSet, :Zone, :TagKeys, :SearchKey, :UidSet, :InstanceType, :PaginationType
 
-        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil, uidset=nil, instancetype=nil)
+        def initialize(projectid=nil, status=nil, offset=nil, limit=nil, instanceidset=nil, paymode=nil, vpcid=nil, subnetid=nil, vipset=nil, instancenameset=nil, versionset=nil, zone=nil, tagkeys=nil, searchkey=nil, uidset=nil, instancetype=nil, paginationtype=nil)
           @ProjectId = projectid
           @Status = status
           @Offset = offset
@@ -3712,6 +3714,7 @@ module TencentCloud
           @SearchKey = searchkey
           @UidSet = uidset
           @InstanceType = instancetype
+          @PaginationType = paginationtype
         end
 
         def deserialize(params)
@@ -3731,6 +3734,7 @@ module TencentCloud
           @SearchKey = params['SearchKey']
           @UidSet = params['UidSet']
           @InstanceType = params['InstanceType']
+          @PaginationType = params['PaginationType']
         end
       end
 

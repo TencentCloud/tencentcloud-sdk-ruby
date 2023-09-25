@@ -959,6 +959,11 @@ module TencentCloud
         # @type Crt: String
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
+        extend Gem::Deprecate
+        deprecate :Key, :none, 2023, 9
+        deprecate :Key=, :none, 2023, 9
+        deprecate :Crt, :none, 2023, 9
+        deprecate :Crt=, :none, 2023, 9
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid

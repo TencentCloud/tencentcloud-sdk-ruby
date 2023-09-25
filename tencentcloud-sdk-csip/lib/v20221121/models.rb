@@ -381,6 +381,100 @@ module TencentCloud
         end
       end
 
+      # 资产视角配置风险
+      class AssetViewCFGRisk < TencentCloud::Common::AbstractModel
+        # @param Id: 唯一id
+        # @type Id: String
+        # @param CFGName: 配置名
+        # @type CFGName: String
+        # @param CheckType: 检查类型
+        # @type CheckType: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param AffectAsset: 影响资产
+        # @type AffectAsset: String
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param FirstTime: 首次识别时间
+        # @type FirstTime: String
+        # @param RecentTime: 最近识别时间
+        # @type RecentTime: String
+        # @param From: 来源
+        # @type From: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param CFGSTD: -
+        # @type CFGSTD: String
+        # @param CFGDescribe: 配置详情
+        # @type CFGDescribe: String
+        # @param CFGFix: 修复建议
+        # @type CFGFix: String
+        # @param CFGHelpURL: 帮助文档链接
+        # @type CFGHelpURL: String
+        # @param Index: 前端使用索引
+        # @type Index: String
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param Nick: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+
+        attr_accessor :Id, :CFGName, :CheckType, :InstanceId, :InstanceName, :InstanceType, :AffectAsset, :Level, :FirstTime, :RecentTime, :From, :Status, :CFGSTD, :CFGDescribe, :CFGFix, :CFGHelpURL, :Index, :AppId, :Nick, :Uin
+
+        def initialize(id=nil, cfgname=nil, checktype=nil, instanceid=nil, instancename=nil, instancetype=nil, affectasset=nil, level=nil, firsttime=nil, recenttime=nil, from=nil, status=nil, cfgstd=nil, cfgdescribe=nil, cfgfix=nil, cfghelpurl=nil, index=nil, appid=nil, nick=nil, uin=nil)
+          @Id = id
+          @CFGName = cfgname
+          @CheckType = checktype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @AffectAsset = affectasset
+          @Level = level
+          @FirstTime = firsttime
+          @RecentTime = recenttime
+          @From = from
+          @Status = status
+          @CFGSTD = cfgstd
+          @CFGDescribe = cfgdescribe
+          @CFGFix = cfgfix
+          @CFGHelpURL = cfghelpurl
+          @Index = index
+          @AppId = appid
+          @Nick = nick
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CFGName = params['CFGName']
+          @CheckType = params['CheckType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @AffectAsset = params['AffectAsset']
+          @Level = params['Level']
+          @FirstTime = params['FirstTime']
+          @RecentTime = params['RecentTime']
+          @From = params['From']
+          @Status = params['Status']
+          @CFGSTD = params['CFGSTD']
+          @CFGDescribe = params['CFGDescribe']
+          @CFGFix = params['CFGFix']
+          @CFGHelpURL = params['CFGHelpURL']
+          @Index = params['Index']
+          @AppId = params['AppId']
+          @Nick = params['Nick']
+          @Uin = params['Uin']
+        end
+      end
+
       # 资产视角的端口风险对象
       class AssetViewPortRisk < TencentCloud::Common::AbstractModel
         # @param Port: 端口
@@ -615,6 +709,104 @@ module TencentCloud
           @InstanceUUID = params['InstanceUUID']
           @Payload = params['Payload']
           @EMGCVulType = params['EMGCVulType']
+        end
+      end
+
+      # 资产视角的弱口令风险
+      class AssetViewWeakPassRisk < TencentCloud::Common::AbstractModel
+        # @param AffectAsset: 影响资产
+        # @type AffectAsset: String
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param InstanceType: 资产类型
+        # @type InstanceType: String
+        # @param Component: 组件
+        # @type Component: String
+        # @param Service: 服务
+        # @type Service: String
+        # @param RecentTime: 最近识别时间
+        # @type RecentTime: String
+        # @param FirstTime: 首次识别时间
+        # @type FirstTime: String
+        # @param Status: 状态，0未处理、1已处置、2已忽略
+        # @type Status: Integer
+        # @param Id: 资产唯一id
+        # @type Id: String
+        # @param Index: 前端索引
+        # @type Index: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param Nick: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param PasswordType: 弱口令类型
+        # @type PasswordType: String
+        # @param From: 来源
+        # @type From: String
+        # @param VULType: 漏洞类型
+        # @type VULType: String
+        # @param VULURL: 漏洞url
+        # @type VULURL: String
+        # @param Fix: 修复建议
+        # @type Fix: String
+        # @param Payload: 负载
+        # @type Payload: String
+
+        attr_accessor :AffectAsset, :Level, :InstanceType, :Component, :Service, :RecentTime, :FirstTime, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :PasswordType, :From, :VULType, :VULURL, :Fix, :Payload
+
+        def initialize(affectasset=nil, level=nil, instancetype=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, passwordtype=nil, from=nil, vultype=nil, vulurl=nil, fix=nil, payload=nil)
+          @AffectAsset = affectasset
+          @Level = level
+          @InstanceType = instancetype
+          @Component = component
+          @Service = service
+          @RecentTime = recenttime
+          @FirstTime = firsttime
+          @Status = status
+          @Id = id
+          @Index = index
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @AppId = appid
+          @Nick = nick
+          @Uin = uin
+          @PasswordType = passwordtype
+          @From = from
+          @VULType = vultype
+          @VULURL = vulurl
+          @Fix = fix
+          @Payload = payload
+        end
+
+        def deserialize(params)
+          @AffectAsset = params['AffectAsset']
+          @Level = params['Level']
+          @InstanceType = params['InstanceType']
+          @Component = params['Component']
+          @Service = params['Service']
+          @RecentTime = params['RecentTime']
+          @FirstTime = params['FirstTime']
+          @Status = params['Status']
+          @Id = params['Id']
+          @Index = params['Index']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @AppId = params['AppId']
+          @Nick = params['Nick']
+          @Uin = params['Uin']
+          @PasswordType = params['PasswordType']
+          @From = params['From']
+          @VULType = params['VULType']
+          @VULURL = params['VULURL']
+          @Fix = params['Fix']
+          @Payload = params['Payload']
         end
       end
 
@@ -2275,6 +2467,122 @@ module TencentCloud
         end
       end
 
+      # DescribeRiskCenterAssetViewCFGRiskList请求参数结构体
+      class DescribeRiskCenterAssetViewCFGRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskCenterAssetViewCFGRiskList返回参数结构体
+      class DescribeRiskCenterAssetViewCFGRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 资产视角的配置风险列表
+        # @type Data: Array
+        # @param StatusLists: 状态列表
+        # @type StatusLists: Array
+        # @param LevelLists: 危险等级列表
+        # @type LevelLists: Array
+        # @param CFGNameLists: 配置名列表
+        # @type CFGNameLists: Array
+        # @param CheckTypeLists: 检查类型列表
+        # @type CheckTypeLists: Array
+        # @param InstanceTypeLists: 资产类型列表
+        # @type InstanceTypeLists: Array
+        # @param FromLists: 来源列表
+        # @type FromLists: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :StatusLists, :LevelLists, :CFGNameLists, :CheckTypeLists, :InstanceTypeLists, :FromLists, :RequestId
+
+        def initialize(totalcount=nil, data=nil, statuslists=nil, levellists=nil, cfgnamelists=nil, checktypelists=nil, instancetypelists=nil, fromlists=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @StatusLists = statuslists
+          @LevelLists = levellists
+          @CFGNameLists = cfgnamelists
+          @CheckTypeLists = checktypelists
+          @InstanceTypeLists = instancetypelists
+          @FromLists = fromlists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              assetviewcfgrisk_tmp = AssetViewCFGRisk.new
+              assetviewcfgrisk_tmp.deserialize(i)
+              @Data << assetviewcfgrisk_tmp
+            end
+          end
+          unless params['StatusLists'].nil?
+            @StatusLists = []
+            params['StatusLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @StatusLists << filterdataobject_tmp
+            end
+          end
+          unless params['LevelLists'].nil?
+            @LevelLists = []
+            params['LevelLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @LevelLists << filterdataobject_tmp
+            end
+          end
+          unless params['CFGNameLists'].nil?
+            @CFGNameLists = []
+            params['CFGNameLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @CFGNameLists << filterdataobject_tmp
+            end
+          end
+          unless params['CheckTypeLists'].nil?
+            @CheckTypeLists = []
+            params['CheckTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @CheckTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['InstanceTypeLists'].nil?
+            @InstanceTypeLists = []
+            params['InstanceTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @InstanceTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['FromLists'].nil?
+            @FromLists = []
+            params['FromLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @FromLists << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRiskCenterAssetViewPortRiskList请求参数结构体
       class DescribeRiskCenterAssetViewPortRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
@@ -2479,6 +2787,266 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @InstanceTypeLists << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskCenterAssetViewWeakPasswordRiskList请求参数结构体
+      class DescribeRiskCenterAssetViewWeakPasswordRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskCenterAssetViewWeakPasswordRiskList返回参数结构体
+      class DescribeRiskCenterAssetViewWeakPasswordRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 风险列表
+        # @type Data: Array
+        # @param StatusLists: 状态列表
+        # @type StatusLists: Array
+        # @param LevelLists: 危险等级列表
+        # @type LevelLists: Array
+        # @param FromLists: 来源列表
+        # @type FromLists: Array
+        # @param InstanceTypeLists: 资产类型列表
+        # @type InstanceTypeLists: Array
+        # @param PasswordTypeLists: 弱口令类型列表
+        # @type PasswordTypeLists: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :StatusLists, :LevelLists, :FromLists, :InstanceTypeLists, :PasswordTypeLists, :RequestId
+
+        def initialize(totalcount=nil, data=nil, statuslists=nil, levellists=nil, fromlists=nil, instancetypelists=nil, passwordtypelists=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @StatusLists = statuslists
+          @LevelLists = levellists
+          @FromLists = fromlists
+          @InstanceTypeLists = instancetypelists
+          @PasswordTypeLists = passwordtypelists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              assetviewweakpassrisk_tmp = AssetViewWeakPassRisk.new
+              assetviewweakpassrisk_tmp.deserialize(i)
+              @Data << assetviewweakpassrisk_tmp
+            end
+          end
+          unless params['StatusLists'].nil?
+            @StatusLists = []
+            params['StatusLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @StatusLists << filterdataobject_tmp
+            end
+          end
+          unless params['LevelLists'].nil?
+            @LevelLists = []
+            params['LevelLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @LevelLists << filterdataobject_tmp
+            end
+          end
+          unless params['FromLists'].nil?
+            @FromLists = []
+            params['FromLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @FromLists << filterdataobject_tmp
+            end
+          end
+          unless params['InstanceTypeLists'].nil?
+            @InstanceTypeLists = []
+            params['InstanceTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @InstanceTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['PasswordTypeLists'].nil?
+            @PasswordTypeLists = []
+            params['PasswordTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @PasswordTypeLists << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskCenterServerRiskList请求参数结构体
+      class DescribeRiskCenterServerRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskCenterServerRiskList返回参数结构体
+      class DescribeRiskCenterServerRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 风险服务列表
+        # @type Data: Array
+        # @param InstanceTypeLists: 资产类型枚举
+        # @type InstanceTypeLists: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :InstanceTypeLists, :RequestId
+
+        def initialize(totalcount=nil, data=nil, instancetypelists=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @InstanceTypeLists = instancetypelists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              serverrisk_tmp = ServerRisk.new
+              serverrisk_tmp.deserialize(i)
+              @Data << serverrisk_tmp
+            end
+          end
+          unless params['InstanceTypeLists'].nil?
+            @InstanceTypeLists = []
+            params['InstanceTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @InstanceTypeLists << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskCenterWebsiteRiskList请求参数结构体
+      class DescribeRiskCenterWebsiteRiskListRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeRiskCenterWebsiteRiskList返回参数结构体
+      class DescribeRiskCenterWebsiteRiskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Data: 资产视角的端口风险列表
+        # @type Data: Array
+        # @param StatusLists: 状态列表
+        # @type StatusLists: Array
+        # @param LevelLists: 危险等级列表
+        # @type LevelLists: Array
+        # @param InstanceTypeLists: 资产类型列表
+        # @type InstanceTypeLists: Array
+        # @param DetectEngineLists: 风险类型列表
+        # @type DetectEngineLists: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :StatusLists, :LevelLists, :InstanceTypeLists, :DetectEngineLists, :RequestId
+
+        def initialize(totalcount=nil, data=nil, statuslists=nil, levellists=nil, instancetypelists=nil, detectenginelists=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @StatusLists = statuslists
+          @LevelLists = levellists
+          @InstanceTypeLists = instancetypelists
+          @DetectEngineLists = detectenginelists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              websiterisk_tmp = WebsiteRisk.new
+              websiterisk_tmp.deserialize(i)
+              @Data << websiterisk_tmp
+            end
+          end
+          unless params['StatusLists'].nil?
+            @StatusLists = []
+            params['StatusLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @StatusLists << filterdataobject_tmp
+            end
+          end
+          unless params['LevelLists'].nil?
+            @LevelLists = []
+            params['LevelLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @LevelLists << filterdataobject_tmp
+            end
+          end
+          unless params['InstanceTypeLists'].nil?
+            @InstanceTypeLists = []
+            params['InstanceTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @InstanceTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['DetectEngineLists'].nil?
+            @DetectEngineLists = []
+            params['DetectEngineLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @DetectEngineLists << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3743,6 +4311,164 @@ module TencentCloud
         end
       end
 
+      # 服务风险
+      class ServerRisk < TencentCloud::Common::AbstractModel
+        # @param ServiceTag: 测绘标签
+        # @type ServiceTag: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param AffectAsset: 影响资产
+        # @type AffectAsset: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param InstanceType: 资产类型
+        # @type InstanceType: String
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param Component: 组件
+        # @type Component: String
+        # @param Service: 服务
+        # @type Service: String
+        # @param RecentTime: 最近识别时间
+        # @type RecentTime: String
+        # @param FirstTime: 首次识别时间
+        # @type FirstTime: String
+        # @param RiskDetails: 风险详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskDetails: String
+        # @param Suggestion: 处置建议
+        # @type Suggestion: String
+        # @param Status: 状态，0未处理、1已处置、2已忽略
+        # @type Status: Integer
+        # @param Id: 资产唯一id
+        # @type Id: String
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param Nick: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param ServiceSnapshot: 服务快照
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceSnapshot: String
+        # @param Url: 服务访问的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Index: 列表索引值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param RiskList: 风险列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskList: Array
+        # @param SuggestionList: 建议列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuggestionList: Array
+        # @param StatusCode: HTTP响应状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusCode: String
+
+        attr_accessor :ServiceTag, :Port, :AffectAsset, :InstanceId, :InstanceName, :InstanceType, :Level, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :RiskDetails, :Suggestion, :Status, :Id, :AppId, :Nick, :Uin, :ServiceSnapshot, :Url, :Index, :RiskList, :SuggestionList, :StatusCode
+
+        def initialize(servicetag=nil, port=nil, affectasset=nil, instanceid=nil, instancename=nil, instancetype=nil, level=nil, protocol=nil, component=nil, service=nil, recenttime=nil, firsttime=nil, riskdetails=nil, suggestion=nil, status=nil, id=nil, appid=nil, nick=nil, uin=nil, servicesnapshot=nil, url=nil, index=nil, risklist=nil, suggestionlist=nil, statuscode=nil)
+          @ServiceTag = servicetag
+          @Port = port
+          @AffectAsset = affectasset
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceType = instancetype
+          @Level = level
+          @Protocol = protocol
+          @Component = component
+          @Service = service
+          @RecentTime = recenttime
+          @FirstTime = firsttime
+          @RiskDetails = riskdetails
+          @Suggestion = suggestion
+          @Status = status
+          @Id = id
+          @AppId = appid
+          @Nick = nick
+          @Uin = uin
+          @ServiceSnapshot = servicesnapshot
+          @Url = url
+          @Index = index
+          @RiskList = risklist
+          @SuggestionList = suggestionlist
+          @StatusCode = statuscode
+        end
+
+        def deserialize(params)
+          @ServiceTag = params['ServiceTag']
+          @Port = params['Port']
+          @AffectAsset = params['AffectAsset']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceType = params['InstanceType']
+          @Level = params['Level']
+          @Protocol = params['Protocol']
+          @Component = params['Component']
+          @Service = params['Service']
+          @RecentTime = params['RecentTime']
+          @FirstTime = params['FirstTime']
+          @RiskDetails = params['RiskDetails']
+          @Suggestion = params['Suggestion']
+          @Status = params['Status']
+          @Id = params['Id']
+          @AppId = params['AppId']
+          @Nick = params['Nick']
+          @Uin = params['Uin']
+          @ServiceSnapshot = params['ServiceSnapshot']
+          @Url = params['Url']
+          @Index = params['Index']
+          unless params['RiskList'].nil?
+            @RiskList = []
+            params['RiskList'].each do |i|
+              serverrisksuggestion_tmp = ServerRiskSuggestion.new
+              serverrisksuggestion_tmp.deserialize(i)
+              @RiskList << serverrisksuggestion_tmp
+            end
+          end
+          unless params['SuggestionList'].nil?
+            @SuggestionList = []
+            params['SuggestionList'].each do |i|
+              serverrisksuggestion_tmp = ServerRiskSuggestion.new
+              serverrisksuggestion_tmp.deserialize(i)
+              @SuggestionList << serverrisksuggestion_tmp
+            end
+          end
+          @StatusCode = params['StatusCode']
+        end
+      end
+
+      # 风险详情
+      class ServerRiskSuggestion < TencentCloud::Common::AbstractModel
+        # @param Title: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Body: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Body: String
+
+        attr_accessor :Title, :Body
+
+        def initialize(title=nil, body=nil)
+          @Title = title
+          @Body = body
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Body = params['Body']
+        end
+      end
+
       # StopRiskCenterTask请求参数结构体
       class StopRiskCenterTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskIdList: 任务id 列表
@@ -4248,6 +4974,96 @@ module TencentCloud
           @Nick = params['Nick']
           @IsNewAsset = params['IsNewAsset']
           @IsCore = params['IsCore']
+        end
+      end
+
+      # 网站风险对象
+      class WebsiteRisk < TencentCloud::Common::AbstractModel
+        # @param AffectAsset: 影响资产
+        # @type AffectAsset: String
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param RecentTime: 最近识别时间
+        # @type RecentTime: String
+        # @param FirstTime: 首次识别时间
+        # @type FirstTime: String
+        # @param Status: 状态，0未处理、1已处置、2已忽略
+        # @type Status: Integer
+        # @param Id: 资产唯一id
+        # @type Id: String
+        # @param Index: 前端索引
+        # @type Index: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceName: 实例名
+        # @type InstanceName: String
+        # @param AppId: 用户appid
+        # @type AppId: String
+        # @param Nick: 用户昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nick: String
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param URL: 风险链接
+        # @type URL: String
+        # @param URLPath: 风险文件地址
+        # @type URLPath: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param DetectEngine: 类型
+        # @type DetectEngine: String
+        # @param ResultDescribe: 结果描述
+        # @type ResultDescribe: String
+        # @param SourceURL: 源地址url
+        # @type SourceURL: String
+        # @param SourceURLPath: 源文件地址
+        # @type SourceURLPath: String
+
+        attr_accessor :AffectAsset, :Level, :RecentTime, :FirstTime, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :URL, :URLPath, :InstanceType, :DetectEngine, :ResultDescribe, :SourceURL, :SourceURLPath
+
+        def initialize(affectasset=nil, level=nil, recenttime=nil, firsttime=nil, status=nil, id=nil, index=nil, instanceid=nil, instancename=nil, appid=nil, nick=nil, uin=nil, url=nil, urlpath=nil, instancetype=nil, detectengine=nil, resultdescribe=nil, sourceurl=nil, sourceurlpath=nil)
+          @AffectAsset = affectasset
+          @Level = level
+          @RecentTime = recenttime
+          @FirstTime = firsttime
+          @Status = status
+          @Id = id
+          @Index = index
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @AppId = appid
+          @Nick = nick
+          @Uin = uin
+          @URL = url
+          @URLPath = urlpath
+          @InstanceType = instancetype
+          @DetectEngine = detectengine
+          @ResultDescribe = resultdescribe
+          @SourceURL = sourceurl
+          @SourceURLPath = sourceurlpath
+        end
+
+        def deserialize(params)
+          @AffectAsset = params['AffectAsset']
+          @Level = params['Level']
+          @RecentTime = params['RecentTime']
+          @FirstTime = params['FirstTime']
+          @Status = params['Status']
+          @Id = params['Id']
+          @Index = params['Index']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @AppId = params['AppId']
+          @Nick = params['Nick']
+          @Uin = params['Uin']
+          @URL = params['URL']
+          @URLPath = params['URLPath']
+          @InstanceType = params['InstanceType']
+          @DetectEngine = params['DetectEngine']
+          @ResultDescribe = params['ResultDescribe']
+          @SourceURL = params['SourceURL']
+          @SourceURLPath = params['SourceURLPath']
         end
       end
 

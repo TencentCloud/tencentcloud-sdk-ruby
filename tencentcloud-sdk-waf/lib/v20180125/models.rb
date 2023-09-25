@@ -4737,9 +4737,9 @@ module TencentCloud
         # @type FlowMode: Integer
         # @param Status: waf开关,0关闭 1开启
         # @type Status: Integer
-        # @param Mode: 规则防御模式,0观察模式 1拦截模式
+        # @param Mode: 规则引擎防护模式,0观察模式 1拦截模式
         # @type Mode: Integer
-        # @param Engine: AI防御模式,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
+        # @param Engine: 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
         # @param CCList: CC列表
         # @type CCList: Array
@@ -4780,10 +4780,13 @@ module TencentCloud
         # @param SgDetail: 安全组状态的详细解释
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgDetail: String
+        # @param CloudType: 域名类型:hybrid表示混合云域名，public表示公有云域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -4813,6 +4816,7 @@ module TencentCloud
           @AlbType = albtype
           @SgState = sgstate
           @SgDetail = sgdetail
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -4859,6 +4863,7 @@ module TencentCloud
           @AlbType = params['AlbType']
           @SgState = params['SgState']
           @SgDetail = params['SgDetail']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -7022,7 +7027,7 @@ module TencentCloud
         # @type Domain: String
         # @param DomainId: 需要修改的域名ID
         # @type DomainId: String
-        # @param Status: 修改域名的Ipv6开关为Status （0:关闭 1:开启）
+        # @param Status: 修改域名的Ipv6开关为Status （1:开启 2:关闭）
         # @type Status: Integer
 
         attr_accessor :InstanceId, :Domain, :DomainId, :Status
