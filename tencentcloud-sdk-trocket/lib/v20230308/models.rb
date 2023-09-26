@@ -180,6 +180,58 @@ module TencentCloud
         end
       end
 
+      # CreateRole请求参数结构体
+      class CreateRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Role: 角色名称
+        # @type Role: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PermWrite: 是否开启生产权限
+        # @type PermWrite: Boolean
+        # @param PermRead: 是否开启消费权限
+        # @type PermRead: Boolean
+
+        attr_accessor :InstanceId, :Role, :Remark, :PermWrite, :PermRead
+
+        def initialize(instanceid=nil, role=nil, remark=nil, permwrite=nil, permread=nil)
+          @InstanceId = instanceid
+          @Role = role
+          @Remark = remark
+          @PermWrite = permwrite
+          @PermRead = permread
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Role = params['Role']
+          @Remark = params['Remark']
+          @PermWrite = params['PermWrite']
+          @PermRead = params['PermRead']
+        end
+      end
+
+      # CreateRole返回参数结构体
+      class CreateRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Role: 角色名
+        # @type Role: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Role, :RequestId
+
+        def initialize(role=nil, requestid=nil)
+          @Role = role
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -295,6 +347,42 @@ module TencentCloud
 
       # DeleteInstance返回参数结构体
       class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRole请求参数结构体
+      class DeleteRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Role: 角色名称
+        # @type Role: String
+
+        attr_accessor :InstanceId, :Role
+
+        def initialize(instanceid=nil, role=nil)
+          @InstanceId = instanceid
+          @Role = role
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Role = params['Role']
+        end
+      end
+
+      # DeleteRole返回参数结构体
+      class DeleteRoleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -633,6 +721,73 @@ module TencentCloud
           @InstanceStatus = params['InstanceStatus']
           @SkuCode = params['SkuCode']
           @PayMode = params['PayMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoleList请求参数结构体
+      class DescribeRoleListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRoleList返回参数结构体
+      class DescribeRoleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 角色信息列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              roleitem_tmp = RoleItem.new
+              roleitem_tmp.deserialize(i)
+              @Data << roleitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1167,6 +1322,54 @@ module TencentCloud
         end
       end
 
+      # ModifyRole请求参数结构体
+      class ModifyRoleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Role: 角色名称
+        # @type Role: String
+        # @param PermRead: 是否开启消费
+        # @type PermRead: Boolean
+        # @param PermWrite: 是否开启生产
+        # @type PermWrite: Boolean
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Role, :PermRead, :PermWrite, :Remark
+
+        def initialize(instanceid=nil, role=nil, permread=nil, permwrite=nil, remark=nil)
+          @InstanceId = instanceid
+          @Role = role
+          @PermRead = permread
+          @PermWrite = permwrite
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Role = params['Role']
+          @PermRead = params['PermRead']
+          @PermWrite = params['PermWrite']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyRole返回参数结构体
+      class ModifyRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1208,6 +1411,50 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 角色信息
+      class RoleItem < TencentCloud::Common::AbstractModel
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param AccessKey: Access Key
+        # @type AccessKey: String
+        # @param SecretKey: Secret Key
+        # @type SecretKey: String
+        # @param PermRead: 是否开启消费
+        # @type PermRead: Boolean
+        # @param PermWrite: 是否开启生产
+        # @type PermWrite: Boolean
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param ModifiedTime: 修改时间，秒为单位
+        # @type ModifiedTime: Integer
+
+        attr_accessor :RoleName, :AccessKey, :SecretKey, :PermRead, :PermWrite, :Remark, :CreatedTime, :ModifiedTime
+
+        def initialize(rolename=nil, accesskey=nil, secretkey=nil, permread=nil, permwrite=nil, remark=nil, createdtime=nil, modifiedtime=nil)
+          @RoleName = rolename
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+          @PermRead = permread
+          @PermWrite = permwrite
+          @Remark = remark
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @RoleName = params['RoleName']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+          @PermRead = params['PermRead']
+          @PermWrite = params['PermWrite']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
         end
       end
 

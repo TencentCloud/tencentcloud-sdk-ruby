@@ -4239,16 +4239,22 @@ module TencentCloud
       # Kong Upstream中的Target
       class KongTarget < TencentCloud::Common::AbstractModel
         # @param Host: Host
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param Weight: 权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
         # @param Health: 健康状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Health: String
         # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param Source: Target的来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
 
         attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source
@@ -4275,47 +4281,69 @@ module TencentCloud
       # 服务的后端配置
       class KongUpstreamInfo < TencentCloud::Common::AbstractModel
         # @param Host: IP或域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Host: String
         # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
         # @param SourceID: 服务来源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceID: String
         # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
         # @param ServiceName: 服务（注册中心或Kubernetes中的服务）名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
         # @param Targets: 服务后端类型是IPList时提供
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Targets: Array
         # @param SourceType: 服务来源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
         # @param ScfType: SCF函数类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfType: String
         # @param ScfNamespace: SCF函数命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfNamespace: String
         # @param ScfLambdaName: SCF函数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfLambdaName: String
         # @param ScfLambdaQualifier: SCF函数版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScfLambdaQualifier: String
         # @param SlowStart: 冷启动时间，单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlowStart: Integer
         # @param Algorithm: 负载均衡算法，默认为 round-robin，还支持 least-connections，consisten_hashing
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Algorithm: String
         # @param AutoScalingGroupID: CVM弹性伸缩组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalingGroupID: String
         # @param AutoScalingCvmPort: CVM弹性伸缩组端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalingCvmPort: Integer
         # @param AutoScalingTatCmdStatus: CVM弹性伸缩组使用的CVM TAT命令状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalingTatCmdStatus: String
         # @param AutoScalingHookStatus: CVM弹性伸缩组生命周期挂钩状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoScalingHookStatus: String
         # @param SourceName: 服务来源的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceName: String
         # @param RealSourceType: 精确的服务来源类型，新建服务来源时候传入的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealSourceType: String
+        # @param HealthStatus: upstream健康状态HEALTHY（健康）, UNHEALTHY（异常）, HEALTHCHECKS_OFF（未开启）和NONE（不支持健康检查）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthStatus: String
 
-        attr_accessor :Host, :Port, :SourceID, :Namespace, :ServiceName, :Targets, :SourceType, :ScfType, :ScfNamespace, :ScfLambdaName, :ScfLambdaQualifier, :SlowStart, :Algorithm, :AutoScalingGroupID, :AutoScalingCvmPort, :AutoScalingTatCmdStatus, :AutoScalingHookStatus, :SourceName, :RealSourceType
+        attr_accessor :Host, :Port, :SourceID, :Namespace, :ServiceName, :Targets, :SourceType, :ScfType, :ScfNamespace, :ScfLambdaName, :ScfLambdaQualifier, :SlowStart, :Algorithm, :AutoScalingGroupID, :AutoScalingCvmPort, :AutoScalingTatCmdStatus, :AutoScalingHookStatus, :SourceName, :RealSourceType, :HealthStatus
 
-        def initialize(host=nil, port=nil, sourceid=nil, namespace=nil, servicename=nil, targets=nil, sourcetype=nil, scftype=nil, scfnamespace=nil, scflambdaname=nil, scflambdaqualifier=nil, slowstart=nil, algorithm=nil, autoscalinggroupid=nil, autoscalingcvmport=nil, autoscalingtatcmdstatus=nil, autoscalinghookstatus=nil, sourcename=nil, realsourcetype=nil)
+        def initialize(host=nil, port=nil, sourceid=nil, namespace=nil, servicename=nil, targets=nil, sourcetype=nil, scftype=nil, scfnamespace=nil, scflambdaname=nil, scflambdaqualifier=nil, slowstart=nil, algorithm=nil, autoscalinggroupid=nil, autoscalingcvmport=nil, autoscalingtatcmdstatus=nil, autoscalinghookstatus=nil, sourcename=nil, realsourcetype=nil, healthstatus=nil)
           @Host = host
           @Port = port
           @SourceID = sourceid
@@ -4335,6 +4363,7 @@ module TencentCloud
           @AutoScalingHookStatus = autoscalinghookstatus
           @SourceName = sourcename
           @RealSourceType = realsourcetype
+          @HealthStatus = healthstatus
         end
 
         def deserialize(params)
@@ -4364,6 +4393,7 @@ module TencentCloud
           @AutoScalingHookStatus = params['AutoScalingHookStatus']
           @SourceName = params['SourceName']
           @RealSourceType = params['RealSourceType']
+          @HealthStatus = params['HealthStatus']
         end
       end
 

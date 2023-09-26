@@ -536,6 +536,9 @@ module TencentCloud
         # @param Domain: 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
+        # @param IP: IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
         # @param Ioc: 规则ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ioc: String
@@ -582,10 +585,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
 
-        attr_accessor :Domain, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment
+        attr_accessor :Domain, :IP, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment
 
-        def initialize(domain=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil)
+        def initialize(domain=nil, ip=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil)
           @Domain = domain
+          @IP = ip
           @Ioc = ioc
           @Level = level
           @EventName = eventname
@@ -605,6 +609,7 @@ module TencentCloud
 
         def deserialize(params)
           @Domain = params['Domain']
+          @IP = params['IP']
           @Ioc = params['Ioc']
           @Level = params['Level']
           @EventName = params['EventName']
@@ -837,12 +842,15 @@ module TencentCloud
         # @type Rules: Array
         # @param RuleType: 规则类型，1封禁，2放通，不支持域名封禁
         # @type RuleType: Integer
+        # @param CoverDuplicate: 是否覆盖重复数据，1覆盖，非1不覆盖，跳过重复数据
+        # @type CoverDuplicate: Integer
 
-        attr_accessor :Rules, :RuleType
+        attr_accessor :Rules, :RuleType, :CoverDuplicate
 
-        def initialize(rules=nil, ruletype=nil)
+        def initialize(rules=nil, ruletype=nil, coverduplicate=nil)
           @Rules = rules
           @RuleType = ruletype
+          @CoverDuplicate = coverduplicate
         end
 
         def deserialize(params)
@@ -855,6 +863,7 @@ module TencentCloud
             end
           end
           @RuleType = params['RuleType']
+          @CoverDuplicate = params['CoverDuplicate']
         end
       end
 
@@ -4481,10 +4490,13 @@ module TencentCloud
         # 1 : 串行
         # 2 : 正在模式切换
         # @type SwitchMode: Integer
+        # @param SwitchWeight: 开关权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchWeight: Integer
 
-        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode
+        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight
 
-        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil)
+        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil)
           @PublicIp = publicip
           @PublicIpType = publiciptype
           @InstanceId = instanceid
@@ -4505,6 +4517,7 @@ module TencentCloud
           @EndpointId = endpointid
           @EndpointIp = endpointip
           @SwitchMode = switchmode
+          @SwitchWeight = switchweight
         end
 
         def deserialize(params)
@@ -4528,6 +4541,7 @@ module TencentCloud
           @EndpointId = params['EndpointId']
           @EndpointIp = params['EndpointIp']
           @SwitchMode = params['SwitchMode']
+          @SwitchWeight = params['SwitchWeight']
         end
       end
 
@@ -5660,15 +5674,25 @@ module TencentCloud
       class ModifyEdgeIpSwitchRequest < TencentCloud::Common::AbstractModel
         # @param Enable: 0 关闭开关
         # 1 打开开关
+        # 2 不操作开关，此次切换模式
         # @type Enable: Integer
         # @param EdgeIpSwitchLst: 操作开关详情
         # @type EdgeIpSwitchLst: Array
+        # @param AutoChooseSubnet: 0 不自动选择子网
+        # 1 自动选择子网创建私有连接
+        # @type AutoChooseSubnet: Integer
+        # @param SwitchMode: 0 切换为旁路
+        # 1 切换为串行
+        # 2 不切换模式，此次操作开关
+        # @type SwitchMode: Integer
 
-        attr_accessor :Enable, :EdgeIpSwitchLst
+        attr_accessor :Enable, :EdgeIpSwitchLst, :AutoChooseSubnet, :SwitchMode
 
-        def initialize(enable=nil, edgeipswitchlst=nil)
+        def initialize(enable=nil, edgeipswitchlst=nil, autochoosesubnet=nil, switchmode=nil)
           @Enable = enable
           @EdgeIpSwitchLst = edgeipswitchlst
+          @AutoChooseSubnet = autochoosesubnet
+          @SwitchMode = switchmode
         end
 
         def deserialize(params)
@@ -5681,6 +5705,8 @@ module TencentCloud
               @EdgeIpSwitchLst << edgeipswitch_tmp
             end
           end
+          @AutoChooseSubnet = params['AutoChooseSubnet']
+          @SwitchMode = params['SwitchMode']
         end
       end
 
@@ -6838,10 +6864,13 @@ module TencentCloud
         # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateEnable: Integer
+        # @param NeedProbeEngineUpdate: 是的需要升级引擎 支持 nat拨测 1需要 0不需要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedProbeEngineUpdate: Integer
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate
 
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -6861,6 +6890,7 @@ module TencentCloud
           @RuleMax = rulemax
           @EngineVersion = engineversion
           @UpdateEnable = updateenable
+          @NeedProbeEngineUpdate = needprobeengineupdate
         end
 
         def deserialize(params)
@@ -6883,6 +6913,7 @@ module TencentCloud
           @RuleMax = params['RuleMax']
           @EngineVersion = params['EngineVersion']
           @UpdateEnable = params['UpdateEnable']
+          @NeedProbeEngineUpdate = params['NeedProbeEngineUpdate']
         end
       end
 

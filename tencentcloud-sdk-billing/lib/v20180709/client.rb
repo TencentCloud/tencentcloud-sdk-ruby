@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询账单明细数据。
+        # 获取账单明细数据。
         # 注意事项：
         # 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
         # 2.对于账单明细数据量级很大（例如每月账单明细量级超过20w）的客户，通过 API 调用账单数据效率较低，建议您开通账单数据存储功能，通过存储桶中获取账单文件进行分析。[账单存储至COS桶](https://cloud.tencent.com/document/product/555/61275)
@@ -114,6 +114,55 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBillDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成员账号获取管理账号代付账单（费用明细）。
+        # 注意事项：在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
+
+        # @param request: Request instance for DescribeBillDetailForOrganization.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillDetailForOrganizationRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBillDetailForOrganizationResponse`
+        def DescribeBillDetailForOrganization(request)
+          body = send_request('DescribeBillDetailForOrganization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillDetailForOrganizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口支持通过传参，获取L0-PDF、L1-汇总、L2-资源、L3-明细、账单包、五类账单文件下载链接
+
+        # @param request: Request instance for DescribeBillDownloadUrl.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBillDownloadUrlResponse`
+        def DescribeBillDownloadUrl(request)
+          body = send_request('DescribeBillDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillDownloadUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -152,7 +201,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询账单资源汇总数据
+        # 获取账单资源汇总数据
 
         # @param request: Request instance for DescribeBillResourceSummary.
         # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillResourceSummaryRequest`
@@ -162,6 +211,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBillResourceSummaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 成员账号获取管理账号代付账单（按资源汇总）
+
+        # @param request: Request instance for DescribeBillResourceSummaryForOrganization.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillResourceSummaryForOrganizationRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBillResourceSummaryForOrganizationResponse`
+        def DescribeBillResourceSummaryForOrganization(request)
+          body = send_request('DescribeBillResourceSummaryForOrganization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillResourceSummaryForOrganizationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -306,6 +379,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBillSummaryByTagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口支持通过传参，按照产品、项目、地域、计费模式和标签五个维度获取账单费用明细。
+
+        # @param request: Request instance for DescribeBillSummaryForOrganization.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBillSummaryForOrganizationRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBillSummaryForOrganizationResponse`
+        def DescribeBillSummaryForOrganization(request)
+          body = send_request('DescribeBillSummaryForOrganization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillSummaryForOrganizationResponse.new
             model.deserialize(response['Response'])
             model
           else

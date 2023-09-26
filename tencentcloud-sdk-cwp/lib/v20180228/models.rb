@@ -782,10 +782,12 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param IsAutoRun: 开机自启动[0:否|1:是]
+        # @type IsAutoRun: Integer
 
-        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo
+        attr_accessor :Name, :Type, :Status, :User, :Path, :MachineIp, :MachineName, :OsInfo, :Quuid, :Uuid, :UpdateTime, :FirstTime, :IsNew, :MachineWanIp, :MachineExtraInfo, :IsAutoRun
 
-        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil)
+        def initialize(name=nil, type=nil, status=nil, user=nil, path=nil, machineip=nil, machinename=nil, osinfo=nil, quuid=nil, uuid=nil, updatetime=nil, firsttime=nil, isnew=nil, machinewanip=nil, machineextrainfo=nil, isautorun=nil)
           @Name = name
           @Type = type
           @Status = status
@@ -801,6 +803,7 @@ module TencentCloud
           @IsNew = isnew
           @MachineWanIp = machinewanip
           @MachineExtraInfo = machineextrainfo
+          @IsAutoRun = isautorun
         end
 
         def deserialize(params)
@@ -822,6 +825,7 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @IsAutoRun = params['IsAutoRun']
         end
       end
 
@@ -6748,6 +6752,7 @@ module TencentCloud
         # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>User- string - 是否必填：否 - 用户</li>
+        # <li>IsAutoRun - string - 是否必填：否 - 是否开机自启动：0否，1是</li>
         # <li>Status- string - 是否必填：否 - 默认启用状态：0未启用， 1启用 仅linux</li>
         # <li>Type- string - 是否必填：否 - 类型：类型 仅windows：
         # 1:编码器

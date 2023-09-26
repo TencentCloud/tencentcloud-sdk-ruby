@@ -55,17 +55,10 @@ module TencentCloud
 
       # 加速域名
       class AccelerationDomain < TencentCloud::Common::AbstractModel
-        # @param OriginDetail: 源站信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
-        # @param CreatedOn: 创建时间。
-        # @type CreatedOn: String
-        # @param DomainName: 加速域名名称。
-        # @type DomainName: String
-        # @param ModifiedOn: 修改时间。
-        # @type ModifiedOn: String
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
+        # @param DomainName: 加速域名名称。
+        # @type DomainName: String
         # @param DomainStatus: 加速域名状态，取值有：
         # <li>online：已生效；</li>
         # <li>process：部署中；</li>
@@ -73,37 +66,52 @@ module TencentCloud
         # <li>forbidden：已封禁；</li>
         # <li>init：未生效，待激活站点；</li>
         # @type DomainStatus: String
+        # @param OriginDetail: 源站信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
         # @param Cname: CNAME 地址。
         # @type Cname: String
         # @param IdentificationStatus: 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentificationStatus: String
+        # @param CreatedOn: 创建时间。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 修改时间。
+        # @type ModifiedOn: String
+        # @param OwnershipVerification: 当域名需要进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
 
-        attr_accessor :OriginDetail, :CreatedOn, :DomainName, :ModifiedOn, :ZoneId, :DomainStatus, :Cname, :IdentificationStatus
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification
 
-        def initialize(origindetail=nil, createdon=nil, domainname=nil, modifiedon=nil, zoneid=nil, domainstatus=nil, cname=nil, identificationstatus=nil)
-          @OriginDetail = origindetail
-          @CreatedOn = createdon
-          @DomainName = domainname
-          @ModifiedOn = modifiedon
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil)
           @ZoneId = zoneid
+          @DomainName = domainname
           @DomainStatus = domainstatus
+          @OriginDetail = origindetail
           @Cname = cname
           @IdentificationStatus = identificationstatus
+          @CreatedOn = createdon
+          @ModifiedOn = modifiedon
+          @OwnershipVerification = ownershipverification
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainName = params['DomainName']
+          @DomainStatus = params['DomainStatus']
           unless params['OriginDetail'].nil?
             @OriginDetail = OriginDetail.new
             @OriginDetail.deserialize(params['OriginDetail'])
           end
-          @CreatedOn = params['CreatedOn']
-          @DomainName = params['DomainName']
-          @ModifiedOn = params['ModifiedOn']
-          @ZoneId = params['ZoneId']
-          @DomainStatus = params['DomainStatus']
           @Cname = params['Cname']
           @IdentificationStatus = params['IdentificationStatus']
+          @CreatedOn = params['CreatedOn']
+          @ModifiedOn = params['ModifiedOn']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
         end
       end
 
@@ -1515,9 +1523,9 @@ module TencentCloud
 
       # CreateAccelerationDomain请求参数结构体
       class CreateAccelerationDomainRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 加速域名所属站点ID。
+        # @param ZoneId: 加速域名所属站点 ID。
         # @type ZoneId: String
-        # @param DomainName: 加速域名名称。
+        # @param DomainName: 加速域名。
         # @type DomainName: String
         # @param OriginInfo: 源站信息。
         # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
@@ -1542,16 +1550,24 @@ module TencentCloud
 
       # CreateAccelerationDomain返回参数结构体
       class CreateAccelerationDomainResponse < TencentCloud::Common::AbstractModel
+        # @param OwnershipVerification: 当您的站点未进行归属权验证时，您可通过该参数返回的信息单独对域名进行归属权校验。详情参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :OwnershipVerification, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ownershipverification=nil, requestid=nil)
+          @OwnershipVerification = ownershipverification
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2214,39 +2230,55 @@ module TencentCloud
 
       # CreateZone请求参数结构体
       class CreateZoneRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneName: 站点名称。
-        # @type ZoneName: String
-        # @param Type: 接入方式，取值有：
-        # <li> full：NS接入；</li>
-        # <li> partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点；<li>noDomainAccess：无域名接入，取此值时仅Tags字段有效。</li>
-        # </li>不填写使用默认值full。
+        # @param Type: 站点接入类型。该参数取值如下，不填写时默认为 partial：
+        # <li>partial：CNAME 接入；</li>
+        # <li> full：NS 接入；</li>
+        # <li>noDomainAccess：无域名接入。</li>
         # @type Type: String
-        # @param JumpStart: 是否跳过站点现有的DNS记录扫描。默认值：false。
-        # @type JumpStart: Boolean
-        # @param Tags: 资源标签。
+        # @param ZoneName: 站点名称。CNAME/NS 接入的时，请传入二级域名（example.com）作为站点名称；无域名接入时，该值请保留为空。
+        # @type ZoneName: String
+        # @param Area: Type 取值为 partial/full 时，七层域名的加速区域。以下为该参数取值，不填写时该值默认为 overseas。Type 取值为 noDomainAccess 时该值请保留为空：
+        # <li> global: 全球可用区；</li>
+        # <li> mainland: 中国大陆可用区；</li>
+        # <li> overseas: 全球可用区（不含中国大陆）。</li>
+        # @type Area: String
+        # @param PlanId: 待绑定的目标套餐 ID。当您账号下已存在套餐时，可以填写此参数，直接将站点绑定至该套餐。若您当前没有可绑定的套餐时，请前往控制台购买套餐完成站点创建。
+        # @type PlanId: String
+        # @param AliasZoneName: 同名站点标识。限制输入数字、英文、- 和 _ 组合，长度 20 个字符以内。详情参考 [同名站点标识]()，无此使用场景时，该字段保留为空即可。
+        # @type AliasZoneName: String
+        # @param Tags: 标签。该参数用于对站点进行分权限管控、分账。需要先前往 [标签控制台](https://console.cloud.tencent.com/tag/taglist) 创建对应的标签才可以在此处传入对应的标签键和标签值。
         # @type Tags: Array
         # @param AllowDuplicates: 是否允许重复接入。
         # <li> true：允许重复接入；</li>
         # <li> false：不允许重复接入。</li>不填写使用默认值false。
         # @type AllowDuplicates: Boolean
-        # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
-        # @type AliasZoneName: String
+        # @param JumpStart: 是否跳过站点现有的DNS记录扫描。默认值：false。
+        # @type JumpStart: Boolean
 
-        attr_accessor :ZoneName, :Type, :JumpStart, :Tags, :AllowDuplicates, :AliasZoneName
+        attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
+        extend Gem::Deprecate
+        deprecate :AllowDuplicates, :none, 2023, 9
+        deprecate :AllowDuplicates=, :none, 2023, 9
+        deprecate :JumpStart, :none, 2023, 9
+        deprecate :JumpStart=, :none, 2023, 9
 
-        def initialize(zonename=nil, type=nil, jumpstart=nil, tags=nil, allowduplicates=nil, aliaszonename=nil)
-          @ZoneName = zonename
+        def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
-          @JumpStart = jumpstart
+          @ZoneName = zonename
+          @Area = area
+          @PlanId = planid
+          @AliasZoneName = aliaszonename
           @Tags = tags
           @AllowDuplicates = allowduplicates
-          @AliasZoneName = aliaszonename
+          @JumpStart = jumpstart
         end
 
         def deserialize(params)
-          @ZoneName = params['ZoneName']
           @Type = params['Type']
-          @JumpStart = params['JumpStart']
+          @ZoneName = params['ZoneName']
+          @Area = params['Area']
+          @PlanId = params['PlanId']
+          @AliasZoneName = params['AliasZoneName']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -2256,26 +2288,40 @@ module TencentCloud
             end
           end
           @AllowDuplicates = params['AllowDuplicates']
-          @AliasZoneName = params['AliasZoneName']
+          @JumpStart = params['JumpStart']
         end
       end
 
       # CreateZone返回参数结构体
       class CreateZoneResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID。
         # @type ZoneId: String
+        # @param OwnershipVerification: 站点归属权验证信息。站点完成创建后，您还需要完成归属权校验，站点才能正常服务。
+
+        # Type = partial 时，您需要参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789) 前往您的域名解析服务商添加 TXT 记录或者前往根域名服务器添加文件，再调用接口 [VerifyOwnership]() 完成验证；
+
+        # Type = full 时，您需要参考 [修改 DNS 服务器](https://cloud.tencent.com/document/product/1552/90452) 切换 DNS 服务器即可，可通过接口 [VerifyOwnership]() 查询 DNS 是否切换成功；
+
+        # Type = noDomainAccess 时，该值为空，不需要进行任何操作。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ZoneId, :RequestId
+        attr_accessor :ZoneId, :OwnershipVerification, :RequestId
 
-        def initialize(zoneid=nil, requestid=nil)
+        def initialize(zoneid=nil, ownershipverification=nil, requestid=nil)
           @ZoneId = zoneid
+          @OwnershipVerification = ownershipverification
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2755,48 +2801,49 @@ module TencentCloud
 
       # DescribeAccelerationDomains请求参数结构体
       class DescribeAccelerationDomainsRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 加速域名所属站点ID。
+        # @param ZoneId: 加速域名所属站点 ID。
         # @type ZoneId: String
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>domain-name<br>   按照【<strong>加速域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # <li>origin-type<br>   按照【<strong>源站类型</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # <li>origin<br>   按照【<strong>主源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # <li>backup-origin<br>   按照【<strong>备用源站地址</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # <li>domain-cname<br>   按照【<strong>加速CNAME名</strong>】进行过滤。<br>   类型：String<br>   必选：否
-        # <li>share-cname<br>   按照【<strong>共享CNAME名</strong>】进行过滤。<br>   类型：String<br>   必选：否
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目，默认值：20，上限：200。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有域名信息。详细的过滤条件如下：
+        # <li>domain-name：按照加速域名进行过滤；</li>
+        # <li>origin-type：按照源站类型进行过滤；</li>
+        # <li>origin：按照主源站地址进行过滤；</li>
+        # <li>backup-origin： 按照备用源站地址进行过滤；</li>
+        # <li>domain-cname：按照 CNAME 进行过滤；</li>
+        # <li>share-cname：按照共享 CNAME 进行过滤；</li>
         # @type Filters: Array
-        # @param Direction: 列表排序方式，取值有：
+        # @param Order: 可根据该字段对返回结果进行排序，取值有：
+        # <li>created_on：加速域名创建时间；</li>
+        # <li>domain-name：加速域名。</li>不填写时，默认对返回结果按照 domain-name 排序。
+        # @type Order: String
+        # @param Direction: 排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ascill 码的大小排序。取值有：
         # <li>asc：升序排列；</li>
-        # <li>desc：降序排列。</li>默认值为asc。
+        # <li>desc：降序排列。</li>不填写使用默认值 asc。
         # @type Direction: String
         # @param Match: 匹配方式，取值有：
         # <li>all：返回匹配所有查询条件的加速域名；</li>
-        # <li>any：返回匹配任意一个查询条件的加速域名。</li>默认值为all。
+        # <li>any：返回匹配任意一个查询条件的加速域名。</li>不填写时默认值为 all。
         # @type Match: String
-        # @param Limit: 分页查询限制数目，默认值：20，上限：200。
-        # @type Limit: Integer
-        # @param Offset: 分页查询偏移量，默认为 0。
-        # @type Offset: Integer
-        # @param Order: 排序依据，取值有：
-        # <li>created_on：加速域名创建时间；</li>
-        # <li>domain-name：加速域名名称；</li>
-        # </li>默认根据domain-name属性排序。
-        # @type Order: String
 
-        attr_accessor :ZoneId, :Filters, :Direction, :Match, :Limit, :Offset, :Order
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters, :Order, :Direction, :Match
 
-        def initialize(zoneid=nil, filters=nil, direction=nil, match=nil, limit=nil, offset=nil, order=nil)
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil, order=nil, direction=nil, match=nil)
           @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
           @Filters = filters
+          @Order = order
           @Direction = direction
           @Match = match
-          @Limit = limit
-          @Offset = offset
-          @Order = order
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -2805,19 +2852,17 @@ module TencentCloud
               @Filters << advancedfilter_tmp
             end
           end
+          @Order = params['Order']
           @Direction = params['Direction']
           @Match = params['Match']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @Order = params['Order']
         end
       end
 
       # DescribeAccelerationDomains返回参数结构体
       class DescribeAccelerationDomainsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 加速域名总数。
+        # @param TotalCount: 符合查询条件的加速域名个数。
         # @type TotalCount: Integer
-        # @param AccelerationDomains: 加速域名列表。
+        # @param AccelerationDomains: 符合查询条件的所有加速域名的信息。
         # @type AccelerationDomains: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4591,22 +4636,22 @@ module TencentCloud
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页查询偏移量。默认值：0。
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：
+        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-id：按照站点 ID进行过滤。站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤；</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤。</li>模糊查询时仅支持过滤字段名为 zone-name。
         # @type Filters: Array
-        # @param Order: 排序字段，取值有：
+        # @param Order: 可根据该字段对返回结果进行排序，取值有：
         # <li> type：接入类型；</li>
         # <li> area：加速区域；</li>
         # <li> create-time：创建时间；</li>
         # <li> zone-name：站点名称；</li>
         # <li> use-time：最近使用时间；</li>
-        # <li> active-status：生效状态。</li>不填写使用默认值create-time。
+        # <li> active-status：生效状态。</li>不填写时对返回结果默认按照 create-time 排序。
         # @type Order: String
-        # @param Direction: 排序方向，取值有：
+        # @param Direction: 排序方向，如果是字段值为数字，则根据数字大小排序；如果字段值为文本，则根据 ascill 码的大小排序。取值有：
         # <li> asc：从小到大排序；</li>
-        # <li> desc：从大到小排序。</li>不填写使用默认值desc。
+        # <li> desc：从大到小排序。</li>不填写使用默认值 desc。
         # @type Direction: String
 
         attr_accessor :Offset, :Limit, :Filters, :Order, :Direction
@@ -4639,7 +4684,7 @@ module TencentCloud
       class DescribeZonesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的站点个数。
         # @type TotalCount: Integer
-        # @param Zones: 站点详细信息列表。
+        # @param Zones: 站点详细信息。
         # @type Zones: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4865,6 +4910,30 @@ module TencentCloud
             @NoChangeIPWhitelist = IPWhitelist.new
             @NoChangeIPWhitelist.deserialize(params['NoChangeIPWhitelist'])
           end
+        end
+      end
+
+      # CNAME 接入，使用 DNS 解析验证时所需的信息。
+      class DnsVerification < TencentCloud::Common::AbstractModel
+        # @param Subdomain: 主机记录。
+        # @type Subdomain: String
+        # @param RecordType: 记录类型。
+        # @type RecordType: String
+        # @param RecordValue: 记录值。
+        # @type RecordValue: String
+
+        attr_accessor :Subdomain, :RecordType, :RecordValue
+
+        def initialize(subdomain=nil, recordtype=nil, recordvalue=nil)
+          @Subdomain = subdomain
+          @RecordType = recordtype
+          @RecordValue = recordvalue
+        end
+
+        def deserialize(params)
+          @Subdomain = params['Subdomain']
+          @RecordType = params['RecordType']
+          @RecordValue = params['RecordValue']
         end
       end
 
@@ -5300,6 +5369,26 @@ module TencentCloud
         def deserialize(params)
           @IdentifyPath = params['IdentifyPath']
           @IdentifyContent = params['IdentifyContent']
+        end
+      end
+
+      # CNAME 接入，使用文件验证时所需的信息。
+      class FileVerification < TencentCloud::Common::AbstractModel
+        # @param Path: EdgeOne 后台服务器将通过 Scheme + Host + URL Path 的格式（例如 https://www.example.com/.well-known/teo-verification/z12h416twn.txt）获取文件验证信息。该字段为您需要创建的 URL Path 部分。
+        # @type Path: String
+        # @param Content: 验证文件的内容。该字段的内容需要您填写至 Path 字段返回的 txt 文件中。
+        # @type Content: String
+
+        attr_accessor :Path, :Content
+
+        def initialize(path=nil, content=nil)
+          @Path = path
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Content = params['Content']
         end
       end
 
@@ -6431,20 +6520,30 @@ module TencentCloud
       class ModifyHostsCertificateRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param Hosts: 本次变更的域名列表。
+        # @param Hosts: 需要修改证书配置的加速域名。
         # @type Hosts: Array
-        # @param ServerCertInfo: 证书信息, 只需要传入 CertId 即可, 如果为空, 则使用默认证书。
+        # @param Mode: 配置证书的模式，取值有：
+        # <li>disable：不配置证书；</li>
+        # <li>eofreecert：配置 EdgeOne 免费证书；</li>
+        # <li>sslcert：配置 SSL 证书。</li>不填时默认取值为 disable。
+        # @type Mode: String
+        # @param ServerCertInfo: SSL 证书配置，本参数仅在 mode = sslcert 时生效，传入对应证书的 CertId 即可。您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/certoverview) 查看 CertId。
         # @type ServerCertInfo: Array
         # @param ApplyType: 托管类型，取值有：
-        # <li>apply：托管EO；</li>
-        # <li>none：不托管EO；</li>不填，默认取值为none。
+        # <li>none：不托管EO；</li>
+        # <li>apply：托管EO</li>
+        # 不填，默认取值为none。
         # @type ApplyType: String
 
-        attr_accessor :ZoneId, :Hosts, :ServerCertInfo, :ApplyType
+        attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
+        extend Gem::Deprecate
+        deprecate :ApplyType, :none, 2023, 9
+        deprecate :ApplyType=, :none, 2023, 9
 
-        def initialize(zoneid=nil, hosts=nil, servercertinfo=nil, applytype=nil)
+        def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
           @Hosts = hosts
+          @Mode = mode
           @ServerCertInfo = servercertinfo
           @ApplyType = applytype
         end
@@ -6452,6 +6551,7 @@ module TencentCloud
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Hosts = params['Hosts']
+          @Mode = params['Mode']
           unless params['ServerCertInfo'].nil?
             @ServerCertInfo = []
             params['ServerCertInfo'].each do |i|
@@ -7042,6 +7142,22 @@ module TencentCloud
         end
       end
 
+      # NS 接入，切换 DNS 服务器所需的信息。
+      class NsVerification < TencentCloud::Common::AbstractModel
+        # @param NameServers: NS 接入时，分配给用户的 DNS 服务器地址，需要将域名的 NameServer 切换至该地址。
+        # @type NameServers: Array
+
+        attr_accessor :NameServers
+
+        def initialize(nameservers=nil)
+          @NameServers = nameservers
+        end
+
+        def deserialize(params)
+          @NameServers = params['NameServers']
+        end
+      end
+
       # 离线缓存是否开启
       class OfflineCache < TencentCloud::Common::AbstractModel
         # @param Switch: 离线缓存是否开启，取值有：
@@ -7382,6 +7498,44 @@ module TencentCloud
               privateparameter_tmp.deserialize(i)
               @PrivateParameters << privateparameter_tmp
             end
+          end
+        end
+      end
+
+      # 该结构体表示各种场景、模式下，用于验证用户对站点域名的归属权内容。
+      class OwnershipVerification < TencentCloud::Common::AbstractModel
+        # @param DnsVerification: CNAME 接入，使用 DNS 解析验证时所需的信息。详情参考 [站点/域名归属权验证
+        # ](https://cloud.tencent.com/document/product/1552/70789#7af6ecf8-afca-4e35-8811-b5797ed1bde5)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DnsVerification: :class:`Tencentcloud::Teo.v20220901.models.DnsVerification`
+        # @param FileVerification: CNAME 接入，使用文件验证时所需的信息。详情参考 [站点/域名归属权验证
+        # ](https://cloud.tencent.com/document/product/1552/70789#7af6ecf8-afca-4e35-8811-b5797ed1bde5)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileVerification: :class:`Tencentcloud::Teo.v20220901.models.FileVerification`
+        # @param NsVerification: NS 接入，切换 DNS 服务器所需的信息。详情参考 [修改 DNS 服务器](https://cloud.tencent.com/document/product/1552/90452)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NsVerification: :class:`Tencentcloud::Teo.v20220901.models.NsVerification`
+
+        attr_accessor :DnsVerification, :FileVerification, :NsVerification
+
+        def initialize(dnsverification=nil, fileverification=nil, nsverification=nil)
+          @DnsVerification = dnsverification
+          @FileVerification = fileverification
+          @NsVerification = nsverification
+        end
+
+        def deserialize(params)
+          unless params['DnsVerification'].nil?
+            @DnsVerification = DnsVerification.new
+            @DnsVerification.deserialize(params['DnsVerification'])
+          end
+          unless params['FileVerification'].nil?
+            @FileVerification = FileVerification.new
+            @FileVerification.deserialize(params['FileVerification'])
+          end
+          unless params['NsVerification'].nil?
+            @NsVerification = NsVerification.new
+            @NsVerification.deserialize(params['NsVerification'])
           end
         end
       end
@@ -9397,7 +9551,7 @@ module TencentCloud
 
       # 站点信息
       class Zone < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID。
         # @type ZoneId: String
         # @param ZoneName: 站点名称。
         # @type ZoneName: String
@@ -9410,11 +9564,13 @@ module TencentCloud
         # <li> pending：NS 未切换；</li>
         # <li> moved：NS 已切走；</li>
         # <li> deactivated：被封禁。 </li>
+        # <li> initializing：待绑定套餐。 </li>
         # @type Status: String
-        # @param Type: 站点接入方式，取值有
-        # <li> full：NS 接入； </li>
+        # @param Type: 站点接入方式，取值有：
+        # <li> full：NS 接入；</li>
         # <li> partial：CNAME 接入；</li>
-        # <li> noDomainAccess：无域名接入。</li>
+        # <li> noDomainAccess：无域名接入；</li>
+        # <li> vodeo：vodeo默认站点。</li>
         # @type Type: String
         # @param Paused: 站点是否关闭。
         # @type Paused: Boolean
@@ -9457,12 +9613,15 @@ module TencentCloud
         # <li> 0：非伪站点；</li>
         # <li> 1：伪站点。</li>
         # @type IsFake: Integer
-        # @param LockStatus: 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作。</li>
+        # @param LockStatus: 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作；</li><li> plan_migrate：套餐迁移中，不允许进行修改操作。</li>
         # @type LockStatus: String
+        # @param OwnershipVerification: 归属权验证信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
 
-        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake, :LockStatus
+        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake, :LockStatus, :OwnershipVerification
 
-        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil, lockstatus=nil)
+        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil, lockstatus=nil, ownershipverification=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @OriginalNameServers = originalnameservers
@@ -9483,6 +9642,7 @@ module TencentCloud
           @AliasZoneName = aliaszonename
           @IsFake = isfake
           @LockStatus = lockstatus
+          @OwnershipVerification = ownershipverification
         end
 
         def deserialize(params)
@@ -9530,6 +9690,10 @@ module TencentCloud
           @AliasZoneName = params['AliasZoneName']
           @IsFake = params['IsFake']
           @LockStatus = params['LockStatus']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
         end
       end
 

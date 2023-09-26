@@ -462,6 +462,178 @@ module TencentCloud
         end
       end
 
+      # 经销账单资源汇总数据对象
+      class BillDistributionResourceSummary < TencentCloud::Common::AbstractModel
+        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        # @type BusinessCodeName: String
+        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        # @type ProductCodeName: String
+        # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
+        # @type PayModeName: String
+        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
+        # @type ProjectName: String
+        # @param RegionName: 地域：资源所属地域，如华南地区（广州）
+        # @type RegionName: String
+        # @param ZoneName: 可用区：资源所属可用区，如广州三区
+        # @type ZoneName: String
+        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @type ResourceId: String
+        # @param ResourceName: 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
+        # @type ResourceName: String
+        # @param ActionTypeName: 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
+        # @type ActionTypeName: String
+        # @param OrderId: 订单ID：包年包月计费模式下订购的订单号
+        # @type OrderId: String
+        # @param PayTime: 扣费时间：结算扣费时间
+        # @type PayTime: String
+        # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
+        # @type FeeBeginTime: String
+        # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
+        # @type FeeEndTime: String
+        # @param ConfigDesc: 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
+        # @type ConfigDesc: String
+        # @param ExtendField1: 扩展字段1：产品对应的扩展属性信息，仅在资源账单体现
+        # @type ExtendField1: String
+        # @param ExtendField2: 扩展字段2：产品对应的扩展属性信息，仅在资源账单体现
+        # @type ExtendField2: String
+        # @param TotalCost: 原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
+        # @type TotalCost: String
+        # @param Discount: 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
+        # @type Discount: String
+        # @param ReduceType: 优惠类型
+        # @type ReduceType: String
+        # @param RealTotalCost: 优惠后总价
+        # @type RealTotalCost: String
+        # @param VoucherPayAmount: 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        # @type VoucherPayAmount: String
+        # @param CashPayAmount: 现金账户支出：通过现金账户支付的金额
+        # @type CashPayAmount: String
+        # @param IncentivePayAmount: 赠送账户支出：使用赠送金支付的金额
+        # @type IncentivePayAmount: String
+        # @param TransferPayAmount: 分成金账户支出：通过分成金账户支付的金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TransferPayAmount: String
+        # @param ExtendField3: 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
+        # @type ExtendField3: String
+        # @param ExtendField4: 扩展字段4：产品对应的扩展属性信息，仅在资源账单体现
+        # @type ExtendField4: String
+        # @param ExtendField5: 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
+        # @type ExtendField5: String
+        # @param Tags: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
+        # @type OwnerUin: String
+        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        # @type OperateUin: String
+        # @param BusinessCode: 产品编码
+        # @type BusinessCode: String
+        # @param ProductCode: 子产品编码
+        # @type ProductCode: String
+        # @param RegionId: 地域ID
+        # @type RegionId: Integer
+        # @param InstanceType: 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
+        # @type InstanceType: String
+        # @param OriginalCostWithRI: 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
+        # @type OriginalCostWithRI: String
+        # @param SPDeduction: 节省计划抵扣金额（已废弃）
+        # @type SPDeduction: String
+        # @param OriginalCostWithSP: 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
+        # @type OriginalCostWithSP: String
+
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP
+        extend Gem::Deprecate
+        deprecate :SPDeduction, :none, 2023, 9
+        deprecate :SPDeduction=, :none, 2023, 9
+
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil)
+          @BusinessCodeName = businesscodename
+          @ProductCodeName = productcodename
+          @PayModeName = paymodename
+          @ProjectName = projectname
+          @RegionName = regionname
+          @ZoneName = zonename
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @ActionTypeName = actiontypename
+          @OrderId = orderid
+          @PayTime = paytime
+          @FeeBeginTime = feebegintime
+          @FeeEndTime = feeendtime
+          @ConfigDesc = configdesc
+          @ExtendField1 = extendfield1
+          @ExtendField2 = extendfield2
+          @TotalCost = totalcost
+          @Discount = discount
+          @ReduceType = reducetype
+          @RealTotalCost = realtotalcost
+          @VoucherPayAmount = voucherpayamount
+          @CashPayAmount = cashpayamount
+          @IncentivePayAmount = incentivepayamount
+          @TransferPayAmount = transferpayamount
+          @ExtendField3 = extendfield3
+          @ExtendField4 = extendfield4
+          @ExtendField5 = extendfield5
+          @Tags = tags
+          @OwnerUin = owneruin
+          @OperateUin = operateuin
+          @BusinessCode = businesscode
+          @ProductCode = productcode
+          @RegionId = regionid
+          @InstanceType = instancetype
+          @OriginalCostWithRI = originalcostwithri
+          @SPDeduction = spdeduction
+          @OriginalCostWithSP = originalcostwithsp
+        end
+
+        def deserialize(params)
+          @BusinessCodeName = params['BusinessCodeName']
+          @ProductCodeName = params['ProductCodeName']
+          @PayModeName = params['PayModeName']
+          @ProjectName = params['ProjectName']
+          @RegionName = params['RegionName']
+          @ZoneName = params['ZoneName']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @ActionTypeName = params['ActionTypeName']
+          @OrderId = params['OrderId']
+          @PayTime = params['PayTime']
+          @FeeBeginTime = params['FeeBeginTime']
+          @FeeEndTime = params['FeeEndTime']
+          @ConfigDesc = params['ConfigDesc']
+          @ExtendField1 = params['ExtendField1']
+          @ExtendField2 = params['ExtendField2']
+          @TotalCost = params['TotalCost']
+          @Discount = params['Discount']
+          @ReduceType = params['ReduceType']
+          @RealTotalCost = params['RealTotalCost']
+          @VoucherPayAmount = params['VoucherPayAmount']
+          @CashPayAmount = params['CashPayAmount']
+          @IncentivePayAmount = params['IncentivePayAmount']
+          @TransferPayAmount = params['TransferPayAmount']
+          @ExtendField3 = params['ExtendField3']
+          @ExtendField4 = params['ExtendField4']
+          @ExtendField5 = params['ExtendField5']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              billtaginfo_tmp = BillTagInfo.new
+              billtaginfo_tmp.deserialize(i)
+              @Tags << billtaginfo_tmp
+            end
+          end
+          @OwnerUin = params['OwnerUin']
+          @OperateUin = params['OperateUin']
+          @BusinessCode = params['BusinessCode']
+          @ProductCode = params['ProductCode']
+          @RegionId = params['RegionId']
+          @InstanceType = params['InstanceType']
+          @OriginalCostWithRI = params['OriginalCostWithRI']
+          @SPDeduction = params['SPDeduction']
+          @OriginalCostWithSP = params['OriginalCostWithSP']
+        end
+      end
+
       # 账单资源汇总数据对象
       class BillResourceSummary < TencentCloud::Common::AbstractModel
         # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
@@ -1843,6 +2015,137 @@ module TencentCloud
         end
       end
 
+      # DescribeBillDetailForOrganization请求参数结构体
+      class DescribeBillDetailForOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @type Offset: Integer
+        # @param Limit: 数量，最大值为100
+        # @type Limit: Integer
+        # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
+        # @type PeriodType: String
+        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
+        # @type Month: String
+        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
+        # @type BeginTime: String
+        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为相同月份，不支持跨月查询，查询结果是整月数据。不能早于开通账单2.0的月份，最多可拉取18个月内的数据。
+        # @type EndTime: String
+        # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
+        # 1-表示需要， 0-表示不需要
+        # @type NeedRecordNum: Integer
+        # @param PayMode: 付费模式 prePay(表示包年包月)/postPay(表示按时按量)
+        # @type PayMode: String
+        # @param ResourceId: 查询指定资源信息
+        # @type ResourceId: String
+        # @param ActionType: 查询交易类型（请使用交易类型名称入参），入参示例枚举如下：
+        # 包年包月新购
+        # 包年包月续费
+        # 包年包月配置变更
+        # 包年包月退款
+        # 按量计费扣费
+        # 线下项目扣费
+        # 线下产品扣费
+        # 调账扣费
+        # 调账补偿
+        # 按量计费小时结
+        # 按量计费日结
+        # 按量计费月结
+        # 竞价实例小时结
+        # 线下项目调账补偿
+        # 线下产品调账补偿
+        # 优惠扣费
+        # 优惠补偿
+        # 按量计费迁入资源
+        # 按量计费迁出资源
+        # 包年包月迁入资源
+        # 包年包月迁出资源
+        # 预付费用
+        # 小时费用
+        # 预留实例退款
+        # 按量计费冲正
+        # 包年包月转按量
+        # 保底扣款
+        # 节省计划小时费用
+        # @type ActionType: String
+        # @param ProjectId: 项目ID:资源所属项目ID
+        # @type ProjectId: Integer
+        # @param BusinessCode: 产品名称代码
+        # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        # @type BusinessCode: String
+        # @param Context: 上一次请求返回的上下文信息，翻页查询Month>=2023-05的月份的数据可加快查询速度，数据量10万级别以上的用户建议使用，查询速度可提升2~10倍
+        # @type Context: String
+
+        attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
+
+        def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
+          @Offset = offset
+          @Limit = limit
+          @PeriodType = periodtype
+          @Month = month
+          @BeginTime = begintime
+          @EndTime = endtime
+          @NeedRecordNum = needrecordnum
+          @PayMode = paymode
+          @ResourceId = resourceid
+          @ActionType = actiontype
+          @ProjectId = projectid
+          @BusinessCode = businesscode
+          @Context = context
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @PeriodType = params['PeriodType']
+          @Month = params['Month']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @NeedRecordNum = params['NeedRecordNum']
+          @PayMode = params['PayMode']
+          @ResourceId = params['ResourceId']
+          @ActionType = params['ActionType']
+          @ProjectId = params['ProjectId']
+          @BusinessCode = params['BusinessCode']
+          @Context = params['Context']
+        end
+      end
+
+      # DescribeBillDetailForOrganization返回参数结构体
+      class DescribeBillDetailForOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param DetailSet: 详情列表
+        # @type DetailSet: Array
+        # @param Total: 总记录数，24小时缓存一次，可能比实际总记录数少
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Context: 本次请求的上下文信息，可用于下一次请求的请求参数中，加快查询速度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Context: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DetailSet, :Total, :Context, :RequestId
+
+        def initialize(detailset=nil, total=nil, context=nil, requestid=nil)
+          @DetailSet = detailset
+          @Total = total
+          @Context = context
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DetailSet'].nil?
+            @DetailSet = []
+            params['DetailSet'].each do |i|
+              distributionbilldetail_tmp = DistributionBillDetail.new
+              distributionbilldetail_tmp.deserialize(i)
+              @DetailSet << distributionbilldetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @Context = params['Context']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillDetail请求参数结构体
       class DescribeBillDetailRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
@@ -1982,6 +2285,62 @@ module TencentCloud
         end
       end
 
+      # DescribeBillDownloadUrl请求参数结构体
+      class DescribeBillDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param FileType: 账单类型，枚举值
+        # billOverview=L0-PDF账单
+        # billSummary=L1-汇总账单
+        # billResource=L2-资源账单
+        # billDetail=L3-明细账单
+        # billPack=账单包
+        # @type FileType: String
+        # @param Month: 账单月份
+        # 支持的最早开始月份为2021-01
+        # L0-PDF&账单包不支持当月下载，当月账单请在次月1号19:00出账后下载
+        # @type Month: String
+        # @param ChildUin: 下载的账号 ID列表，默认查询本账号账单，如集团管理账号需下载成员账号自付的账单，该字段需入参成员账号UIN
+        # @type ChildUin: Array
+
+        attr_accessor :FileType, :Month, :ChildUin
+
+        def initialize(filetype=nil, month=nil, childuin=nil)
+          @FileType = filetype
+          @Month = month
+          @ChildUin = childuin
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @Month = params['Month']
+          @ChildUin = params['ChildUin']
+        end
+      end
+
+      # DescribeBillDownloadUrl返回参数结构体
+      class DescribeBillDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Ready: 账单文件是否准备就绪，0文件生成中，1文件已生成
+        # @type Ready: Integer
+        # @param DownloadUrl: 账单文件下载链接，有效时长为一小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ready, :DownloadUrl, :RequestId
+
+        def initialize(ready=nil, downloadurl=nil, requestid=nil)
+          @Ready = ready
+          @DownloadUrl = downloadurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ready = params['Ready']
+          @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillList请求参数结构体
       class DescribeBillListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询范围的起始时间（包含）时间格式 yyyy-MM-dd HH:mm:ss 开始时间和结束时间差值小于等于六个月
@@ -2112,6 +2471,125 @@ module TencentCloud
           @WithdrawAmount = params['WithdrawAmount']
           @AgentOutAmount = params['AgentOutAmount']
           @AdvancePayAmount = params['AdvancePayAmount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBillResourceSummaryForOrganization请求参数结构体
+      class DescribeBillResourceSummaryForOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
+        # @type Offset: Integer
+        # @param Limit: 数量，最大值为1000
+        # @type Limit: Integer
+        # @param Month: 月份，格式为yyyy-mm。不能早于开通账单2.0的月份
+        # @type Month: String
+        # @param PeriodType: 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
+        # @type PeriodType: String
+        # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
+        # 1-表示需要， 0-表示不需要
+        # @type NeedRecordNum: Integer
+        # @param ActionType: 查询交易类型（请使用交易类型名称入参），入参示例枚举如下：
+        # 包年包月新购
+        # 包年包月续费
+        # 包年包月配置变更
+        # 包年包月退款
+        # 按量计费扣费
+        # 线下项目扣费
+        # 线下产品扣费
+        # 调账扣费
+        # 调账补偿
+        # 按量计费小时结
+        # 按量计费日结
+        # 按量计费月结
+        # 竞价实例小时结
+        # 线下项目调账补偿
+        # 线下产品调账补偿
+        # 优惠扣费
+        # 优惠补偿
+        # 按量计费迁入资源
+        # 按量计费迁出资源
+        # 包年包月迁入资源
+        # 包年包月迁出资源
+        # 预付费用
+        # 小时费用
+        # 预留实例退款
+        # 按量计费冲正
+        # 包年包月转按量
+        # 保底扣款
+        # 节省计划小时费用
+        # @type ActionType: String
+        # @param ResourceId: 查询指定资源信息
+        # @type ResourceId: String
+        # @param PayMode: 付费模式 prePay/postPay
+        # @type PayMode: String
+        # @param BusinessCode: 产品名称代码
+        # 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        # @type BusinessCode: String
+        # @param TagKey: 分账标签键，用户自定义（支持2021-01以后账单查询）
+        # @type TagKey: String
+        # @param TagValue: 分账标签值，该参数为空表示该标签键下未设置标签值的记录
+        # （支持2021-01以后账单查询）
+        # @type TagValue: String
+
+        attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :TagKey, :TagValue
+
+        def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, tagkey=nil, tagvalue=nil)
+          @Offset = offset
+          @Limit = limit
+          @Month = month
+          @PeriodType = periodtype
+          @NeedRecordNum = needrecordnum
+          @ActionType = actiontype
+          @ResourceId = resourceid
+          @PayMode = paymode
+          @BusinessCode = businesscode
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Month = params['Month']
+          @PeriodType = params['PeriodType']
+          @NeedRecordNum = params['NeedRecordNum']
+          @ActionType = params['ActionType']
+          @ResourceId = params['ResourceId']
+          @PayMode = params['PayMode']
+          @BusinessCode = params['BusinessCode']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # DescribeBillResourceSummaryForOrganization返回参数结构体
+      class DescribeBillResourceSummaryForOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceSummarySet: 资源汇总列表
+        # @type ResourceSummarySet: Array
+        # @param Total: 资源汇总列表总数，入参NeedRecordNum为0时不返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceSummarySet, :Total, :RequestId
+
+        def initialize(resourcesummaryset=nil, total=nil, requestid=nil)
+          @ResourceSummarySet = resourcesummaryset
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceSummarySet'].nil?
+            @ResourceSummarySet = []
+            params['ResourceSummarySet'].each do |i|
+              billdistributionresourcesummary_tmp = BillDistributionResourceSummary.new
+              billdistributionresourcesummary_tmp.deserialize(i)
+              @ResourceSummarySet << billdistributionresourcesummary_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -2547,6 +3025,61 @@ module TencentCloud
           unless params['SummaryTotal'].nil?
             @SummaryTotal = SummaryTotal.new
             @SummaryTotal.deserialize(params['SummaryTotal'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBillSummaryForOrganization请求参数结构体
+      class DescribeBillSummaryForOrganizationRequest < TencentCloud::Common::AbstractModel
+        # @param Month: 账单月份，格式为2023-04
+        # @type Month: String
+        # @param GroupType: 账单维度类型，枚举值如下：business、project、region、payMode、tag
+        # @type GroupType: String
+        # @param TagKey: 标签键，GroupType=tag获取标签维度账单时传
+        # @type TagKey: Array
+
+        attr_accessor :Month, :GroupType, :TagKey
+
+        def initialize(month=nil, grouptype=nil, tagkey=nil)
+          @Month = month
+          @GroupType = grouptype
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @Month = params['Month']
+          @GroupType = params['GroupType']
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # DescribeBillSummaryForOrganization返回参数结构体
+      class DescribeBillSummaryForOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
+        # @type Ready: Integer
+        # @param SummaryDetail: 账单多维度汇总消费详情
+        # @type SummaryDetail: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ready, :SummaryDetail, :RequestId
+
+        def initialize(ready=nil, summarydetail=nil, requestid=nil)
+          @Ready = ready
+          @SummaryDetail = summarydetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ready = params['Ready']
+          unless params['SummaryDetail'].nil?
+            @SummaryDetail = []
+            params['SummaryDetail'].each do |i|
+              summarydetail_tmp = SummaryDetail.new
+              summarydetail_tmp.deserialize(i)
+              @SummaryDetail << summarydetail_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -3542,6 +4075,152 @@ module TencentCloud
             end
           end
           @InstanceID = params['InstanceID']
+        end
+      end
+
+      # 经销账单明细数据对象
+      class DistributionBillDetail < TencentCloud::Common::AbstractModel
+        # @param BusinessCodeName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        # @type BusinessCodeName: String
+        # @param ProductCodeName: 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
+        # @type ProductCodeName: String
+        # @param PayModeName: 计费模式：资源的计费模式，区分为包年包月和按量计费
+        # @type PayModeName: String
+        # @param ProjectName: 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
+        # @type ProjectName: String
+        # @param RegionName: 地域：资源所属地域，如华南地区（广州）
+        # @type RegionName: String
+        # @param ZoneName: 可用区：资源所属可用区，如广州三区
+        # @type ZoneName: String
+        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @type ResourceId: String
+        # @param ResourceName: 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
+        # @type ResourceName: String
+        # @param ActionTypeName: 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
+        # @type ActionTypeName: String
+        # @param OrderId: 订单ID：包年包月计费模式下订购的订单号
+        # @type OrderId: String
+        # @param BillId: 交易ID：结算扣费单号
+        # @type BillId: String
+        # @param PayTime: 扣费时间：结算扣费时间
+        # @type PayTime: String
+        # @param FeeBeginTime: 开始使用时间：产品服务开始使用时间
+        # @type FeeBeginTime: String
+        # @param FeeEndTime: 结束使用时间：产品服务结束使用时间
+        # @type FeeEndTime: String
+        # @param ComponentSet: 组件列表
+        # @type ComponentSet: Array
+        # @param OwnerUin: 使用者UIN：实际使用资源的账号 ID
+        # @type OwnerUin: String
+        # @param OperateUin: 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
+        # @type OperateUin: String
+        # @param Tags: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param BusinessCode: 产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCode: String
+        # @param ProductCode: 子产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param ActionType: 交易类型编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionType: String
+        # @param RegionId: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param PriceInfo: 价格属性：该组件除单价、时长外的其他影响折扣定价的属性信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriceInfo: Array
+        # @param AssociatedOrder: 关联交易单据ID：和本笔交易关联单据 ID，如，冲销订单，记录原订单、重结订单，退费单记录对应的原购买订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedOrder: :class:`Tencentcloud::Billing.v20180709.models.BillDetailAssociatedOrder`
+        # @param Formula: 计算说明：特殊交易类型计费结算的详细计算说明，如退费及变配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Formula: String
+        # @param FormulaUrl: 计费规则：各产品详细的计费规则官网说明链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FormulaUrl: String
+
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl
+
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil)
+          @BusinessCodeName = businesscodename
+          @ProductCodeName = productcodename
+          @PayModeName = paymodename
+          @ProjectName = projectname
+          @RegionName = regionname
+          @ZoneName = zonename
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @ActionTypeName = actiontypename
+          @OrderId = orderid
+          @BillId = billid
+          @PayTime = paytime
+          @FeeBeginTime = feebegintime
+          @FeeEndTime = feeendtime
+          @ComponentSet = componentset
+          @OwnerUin = owneruin
+          @OperateUin = operateuin
+          @Tags = tags
+          @BusinessCode = businesscode
+          @ProductCode = productcode
+          @ActionType = actiontype
+          @RegionId = regionid
+          @ProjectId = projectid
+          @PriceInfo = priceinfo
+          @AssociatedOrder = associatedorder
+          @Formula = formula
+          @FormulaUrl = formulaurl
+        end
+
+        def deserialize(params)
+          @BusinessCodeName = params['BusinessCodeName']
+          @ProductCodeName = params['ProductCodeName']
+          @PayModeName = params['PayModeName']
+          @ProjectName = params['ProjectName']
+          @RegionName = params['RegionName']
+          @ZoneName = params['ZoneName']
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          @ActionTypeName = params['ActionTypeName']
+          @OrderId = params['OrderId']
+          @BillId = params['BillId']
+          @PayTime = params['PayTime']
+          @FeeBeginTime = params['FeeBeginTime']
+          @FeeEndTime = params['FeeEndTime']
+          unless params['ComponentSet'].nil?
+            @ComponentSet = []
+            params['ComponentSet'].each do |i|
+              billdetailcomponent_tmp = BillDetailComponent.new
+              billdetailcomponent_tmp.deserialize(i)
+              @ComponentSet << billdetailcomponent_tmp
+            end
+          end
+          @OwnerUin = params['OwnerUin']
+          @OperateUin = params['OperateUin']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              billtaginfo_tmp = BillTagInfo.new
+              billtaginfo_tmp.deserialize(i)
+              @Tags << billtaginfo_tmp
+            end
+          end
+          @BusinessCode = params['BusinessCode']
+          @ProductCode = params['ProductCode']
+          @ActionType = params['ActionType']
+          @RegionId = params['RegionId']
+          @ProjectId = params['ProjectId']
+          @PriceInfo = params['PriceInfo']
+          unless params['AssociatedOrder'].nil?
+            @AssociatedOrder = BillDetailAssociatedOrder.new
+            @AssociatedOrder.deserialize(params['AssociatedOrder'])
+          end
+          @Formula = params['Formula']
+          @FormulaUrl = params['FormulaUrl']
         end
       end
 

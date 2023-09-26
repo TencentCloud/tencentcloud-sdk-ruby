@@ -347,18 +347,22 @@ module TencentCloud
       class AddAntiFakeUrlResponse < TencentCloud::Common::AbstractModel
         # @param Result: 结果
         # @type Result: String
+        # @param Id: 规则ID
+        # @type Id: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :Id, :RequestId
 
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, id=nil, requestid=nil)
           @Result = result
+          @Id = id
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -367,9 +371,9 @@ module TencentCloud
       class AddAntiInfoLeakRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Name: 名称
+        # @param Name: 规则名称
         # @type Name: String
-        # @param ActionType: 动作
+        # @param ActionType: 动作，0（告警）、1（替换）、2（仅显示前四位）、3（仅显示后四位）、4（阻断）
         # @type ActionType: Integer
         # @param Strategies: 策略详情
         # @type Strategies: Array
@@ -404,16 +408,20 @@ module TencentCloud
 
       # AddAntiInfoLeakRules返回参数结构体
       class AddAntiInfoLeakRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RuleId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -934,6 +942,9 @@ module TencentCloud
 
       # 多域名黑白名单列表Ip
       class BatchIpAccessControlItem < TencentCloud::Common::AbstractModel
+        # @param Id: mongo表自增Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
         # @param ActionType: 黑名单42或白名单40
         # @type ActionType: Integer
         # @param Ip: 黑白名单的IP
@@ -949,9 +960,10 @@ module TencentCloud
         # @param Hosts: 域名列表
         # @type Hosts: Array
 
-        attr_accessor :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts
 
-        def initialize(actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil)
+          @Id = id
           @ActionType = actiontype
           @Ip = ip
           @Note = note
@@ -962,6 +974,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Id = params['Id']
           @ActionType = params['ActionType']
           @Ip = params['Ip']
           @Note = params['Note']
@@ -1709,19 +1722,23 @@ module TencentCloud
         # @type Name: String
         # @param Edition: clb-waf或者sparta-waf
         # @type Edition: String
+        # @param RuleId: 规则Id
+        # @type RuleId: Integer
 
-        attr_accessor :Domain, :Name, :Edition
+        attr_accessor :Domain, :Name, :Edition, :RuleId
 
-        def initialize(domain=nil, name=nil, edition=nil)
+        def initialize(domain=nil, name=nil, edition=nil, ruleid=nil)
           @Domain = domain
           @Name = name
           @Edition = edition
+          @RuleId = ruleid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Name = params['Name']
           @Edition = params['Edition']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -1730,18 +1747,22 @@ module TencentCloud
         # @param Data: 一般为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
+        # @param RuleId: 操作的规则Id
+        # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :RuleId, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, ruleid=nil, requestid=nil)
           @Data = data
+          @RuleId = ruleid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -1954,16 +1975,19 @@ module TencentCloud
         # @type Domain: String
         # @param Items: 删除的ip数组
         # @type Items: Array
+        # @param IsId: 若IsId字段为True，则Items列表元素需为Id，否则为IP
+        # @type IsId: Boolean
         # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         # @type DeleteAll: Boolean
         # @param SourceType: 是否为多域名黑白名单
         # @type SourceType: String
 
-        attr_accessor :Domain, :Items, :DeleteAll, :SourceType
+        attr_accessor :Domain, :Items, :IsId, :DeleteAll, :SourceType
 
-        def initialize(domain=nil, items=nil, deleteall=nil, sourcetype=nil)
+        def initialize(domain=nil, items=nil, isid=nil, deleteall=nil, sourcetype=nil)
           @Domain = domain
           @Items = items
+          @IsId = isid
           @DeleteAll = deleteall
           @SourceType = sourcetype
         end
@@ -1971,6 +1995,7 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @Items = params['Items']
+          @IsId = params['IsId']
           @DeleteAll = params['DeleteAll']
           @SourceType = params['SourceType']
         end
@@ -2008,17 +2033,21 @@ module TencentCloud
         # @type Domain: String
         # @param Edition: clb-waf 或者 sprta-waf
         # @type Edition: String
+        # @param SessionID: 要删除的SessionID
+        # @type SessionID: Integer
 
-        attr_accessor :Domain, :Edition
+        attr_accessor :Domain, :Edition, :SessionID
 
-        def initialize(domain=nil, edition=nil)
+        def initialize(domain=nil, edition=nil, sessionid=nil)
           @Domain = domain
           @Edition = edition
+          @SessionID = sessionid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Edition = params['Edition']
+          @SessionID = params['SessionID']
         end
       end
 
@@ -2151,15 +2180,21 @@ module TencentCloud
         # @type Query: String
         # @param FieldName: 需要分析统计的字段名
         # @type FieldName: String
+        # @param Sort: 排序字段,升序asc,降序desc，默认降序desc
+        # @type Sort: String
+        # @param Count: 返回的top数，默认返回top5
+        # @type Count: Integer
 
-        attr_accessor :TopicId, :From, :To, :Query, :FieldName
+        attr_accessor :TopicId, :From, :To, :Query, :FieldName, :Sort, :Count
 
-        def initialize(topicid=nil, from=nil, to=nil, query=nil, fieldname=nil)
+        def initialize(topicid=nil, from=nil, to=nil, query=nil, fieldname=nil, sort=nil, count=nil)
           @TopicId = topicid
           @From = from
           @To = to
           @Query = query
           @FieldName = fieldname
+          @Sort = sort
+          @Count = count
         end
 
         def deserialize(params)
@@ -2168,6 +2203,8 @@ module TencentCloud
           @To = params['To']
           @Query = params['Query']
           @FieldName = params['FieldName']
+          @Sort = params['Sort']
+          @Count = params['Count']
         end
       end
 
@@ -2698,12 +2735,21 @@ module TencentCloud
         # @param ApiRiskEventCount: api风险事件数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiRiskEventCount: Integer
+        # @param IPBlackCount: 黑名单总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPBlackCount: Integer
+        # @param TamperCount: 防篡改总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TamperCount: Integer
+        # @param LeakCount: 信息泄露总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LeakCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :ApiRiskEventCount, :RequestId
+        attr_accessor :AccessCount, :AttackCount, :ACLCount, :CCCount, :BotCount, :ApiAssetsCount, :ApiRiskEventCount, :IPBlackCount, :TamperCount, :LeakCount, :RequestId
 
-        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, apiriskeventcount=nil, requestid=nil)
+        def initialize(accesscount=nil, attackcount=nil, aclcount=nil, cccount=nil, botcount=nil, apiassetscount=nil, apiriskeventcount=nil, ipblackcount=nil, tampercount=nil, leakcount=nil, requestid=nil)
           @AccessCount = accesscount
           @AttackCount = attackcount
           @ACLCount = aclcount
@@ -2711,6 +2757,9 @@ module TencentCloud
           @BotCount = botcount
           @ApiAssetsCount = apiassetscount
           @ApiRiskEventCount = apiriskeventcount
+          @IPBlackCount = ipblackcount
+          @TamperCount = tampercount
+          @LeakCount = leakcount
           @RequestId = requestid
         end
 
@@ -2722,6 +2771,9 @@ module TencentCloud
           @BotCount = params['BotCount']
           @ApiAssetsCount = params['ApiAssetsCount']
           @ApiRiskEventCount = params['ApiRiskEventCount']
+          @IPBlackCount = params['IPBlackCount']
+          @TamperCount = params['TamperCount']
+          @LeakCount = params['LeakCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3889,10 +3941,12 @@ module TencentCloud
         # @type Sort: String
         # @param Ip: ip
         # @type Ip: String
+        # @param ValidStatus: 生效状态
+        # @type ValidStatus: Integer
 
-        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus
 
-        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil)
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil)
           @Domain = domain
           @Count = count
           @ActionType = actiontype
@@ -3905,6 +3959,7 @@ module TencentCloud
           @Source = source
           @Sort = sort
           @Ip = ip
+          @ValidStatus = validstatus
         end
 
         def deserialize(params)
@@ -3920,6 +3975,7 @@ module TencentCloud
           @Source = params['Source']
           @Sort = params['Sort']
           @Ip = params['Ip']
+          @ValidStatus = params['ValidStatus']
         end
       end
 
@@ -4043,20 +4099,18 @@ module TencentCloud
         # @type Edition: String
         # @param InstanceID: WAF实例ID，不传则不过滤
         # @type InstanceID: String
-        # @param MetricName: 十三个值可选：
+        # @param MetricName: 十一个值可选：
         # access-峰值qps趋势图
         # botAccess- bot峰值qps趋势图
         # down-下行峰值带宽趋势图
         # up-上行峰值带宽趋势图
         # attack-Web攻击总数趋势图
         # cc-CC攻击总数趋势图
-        # StatusServerError-WAF返回给客户端状态码次数趋势图
-        # StatusClientError-WAF返回给客户端状态码次数趋势图
-        # StatusRedirect-WAF返回给客户端状态码次数趋势图
-        # StatusOk-WAF返回给客户端状态码次数趋势图
-        # UpstreamServerError-源站返回给WAF状态码次数趋势图
-        # UpstreamClientError-源站返回给WAF状态码次数趋势图
-        # UpstreamRedirect-源站返回给WAF状态码次数趋势图
+        # bw-黑IP攻击总数趋势图
+        # tamper-防篡改攻击总数趋势图
+        # leak-防泄露攻击总数趋势图
+        # acl-访问控制攻击总数趋势图
+        # http_status-状态码各次数趋势图
         # @type MetricName: String
 
         attr_accessor :FromTime, :ToTime, :Domain, :Edition, :InstanceID, :MetricName
@@ -4276,15 +4330,19 @@ module TencentCloud
       class DescribeRuleLimitRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
 
-        attr_accessor :Domain
+        attr_accessor :Domain, :InstanceId
 
-        def initialize(domain=nil)
+        def initialize(domain=nil, instanceid=nil)
           @Domain = domain
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -4549,15 +4607,19 @@ module TencentCloud
       class DescribeWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
 
-        attr_accessor :Domain
+        attr_accessor :Domain, :InstanceId
 
-        def initialize(domain=nil)
+        def initialize(domain=nil, instanceid=nil)
           @Domain = domain
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -4571,16 +4633,19 @@ module TencentCloud
         # @type DenyTimeThreshold: Integer
         # @param DefenseStatus: 自动封禁状态
         # @type DefenseStatus: Integer
+        # @param HWState: 重保护网域名状态
+        # @type HWState: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus, :RequestId
+        attr_accessor :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus, :HWState, :RequestId
 
-        def initialize(attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil, requestid=nil)
+        def initialize(attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil, hwstate=nil, requestid=nil)
           @AttackThreshold = attackthreshold
           @TimeThreshold = timethreshold
           @DenyTimeThreshold = denytimethreshold
           @DefenseStatus = defensestatus
+          @HWState = hwstate
           @RequestId = requestid
         end
 
@@ -4589,6 +4654,7 @@ module TencentCloud
           @TimeThreshold = params['TimeThreshold']
           @DenyTimeThreshold = params['DenyTimeThreshold']
           @DefenseStatus = params['DefenseStatus']
+          @HWState = params['HWState']
           @RequestId = params['RequestId']
         end
       end
@@ -5950,6 +6016,58 @@ module TencentCloud
         end
       end
 
+      # 混合云节点资源信息
+      class HybridPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # 一个实例的详细信息
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: id
@@ -6025,10 +6143,16 @@ module TencentCloud
         # @param IsAPISecurityTrial: 是否api 安全试用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAPISecurityTrial: Integer
+        # @param MajorEventsPkg: 重保包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MajorEventsPkg: :class:`Tencentcloud::Waf.v20180125.models.MajorEventsPkg`
+        # @param HybridPkg: 混合云子节点包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -6060,6 +6184,8 @@ module TencentCloud
           @Status = status
           @SandboxQps = sandboxqps
           @IsAPISecurityTrial = isapisecuritytrial
+          @MajorEventsPkg = majoreventspkg
+          @HybridPkg = hybridpkg
         end
 
         def deserialize(params)
@@ -6109,6 +6235,14 @@ module TencentCloud
           @Status = params['Status']
           @SandboxQps = params['SandboxQps']
           @IsAPISecurityTrial = params['IsAPISecurityTrial']
+          unless params['MajorEventsPkg'].nil?
+            @MajorEventsPkg = MajorEventsPkg.new
+            @MajorEventsPkg.deserialize(params['MajorEventsPkg'])
+          end
+          unless params['HybridPkg'].nil?
+            @HybridPkg = HybridPkg.new
+            @HybridPkg.deserialize(params['HybridPkg'])
+          end
         end
       end
 
@@ -6142,6 +6276,9 @@ module TencentCloud
 
       # ip黑白名单
       class IpAccessControlItem < TencentCloud::Common::AbstractModel
+        # @param Id: mongo表自增Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
         # @param ActionType: 动作
         # @type ActionType: Integer
         # @param Ip: ip
@@ -6155,25 +6292,32 @@ module TencentCloud
         # @type TsVersion: Integer
         # @param ValidTs: 有效截止时间戳
         # @type ValidTs: Integer
+        # @param ValidStatus: 生效状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidStatus: Integer
 
-        attr_accessor :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs
+        attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :ValidStatus
 
-        def initialize(actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil)
+        def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, validstatus=nil)
+          @Id = id
           @ActionType = actiontype
           @Ip = ip
           @Note = note
           @Source = source
           @TsVersion = tsversion
           @ValidTs = validts
+          @ValidStatus = validstatus
         end
 
         def deserialize(params)
+          @Id = params['Id']
           @ActionType = params['ActionType']
           @Ip = params['Ip']
           @Note = params['Note']
           @Source = params['Source']
           @TsVersion = params['TsVersion']
           @ValidTs = params['ValidTs']
+          @ValidStatus = params['ValidStatus']
         end
       end
 
@@ -6392,6 +6536,68 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @TimeStamp = params['TimeStamp']
+        end
+      end
+
+      # 重保防护资源信息
+      class MajorEventsPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param BillingItem: 计费项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingItem: String
+        # @param HWState: 护网包状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HWState: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem, :HWState
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, billingitem=nil, hwstate=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+          @RenewFlag = renewflag
+          @BillingItem = billingitem
+          @HWState = hwstate
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+          @RenewFlag = params['RenewFlag']
+          @BillingItem = params['BillingItem']
+          @HWState = params['HWState']
         end
       end
 
@@ -7944,31 +8150,43 @@ module TencentCloud
         # @type Cc: Integer
         # @param BotAccess: Bot qps
         # @type BotAccess: Integer
-        # @param StatusServerError: WAF返回给客户端状态码次数
+        # @param StatusServerError: WAF返回给客户端状态码5xx次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusServerError: Integer
-        # @param StatusClientError: WAF返回给客户端状态码次数
+        # @param StatusClientError: WAF返回给客户端状态码4xx次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusClientError: Integer
-        # @param StatusRedirect: WAF返回给客户端状态码次数
+        # @param StatusRedirect: WAF返回给客户端状态码302次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusRedirect: Integer
-        # @param StatusOk: WAF返回给客户端状态码次数
+        # @param StatusOk: WAF返回给客户端状态码202次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusOk: Integer
-        # @param UpstreamServerError: 源站返回给WAF状态码次数
+        # @param UpstreamServerError: 源站返回给WAF状态码5xx次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamServerError: Integer
-        # @param UpstreamClientError: 源站返回给WAF状态码次数
+        # @param UpstreamClientError: 源站返回给WAF状态码4xx次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamClientError: Integer
-        # @param UpstreamRedirect: 源站返回给WAF状态码次数
+        # @param UpstreamRedirect: 源站返回给WAF状态码302次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamRedirect: Integer
+        # @param BlackIP: 黑名单次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlackIP: Integer
+        # @param Tamper: 防篡改次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tamper: Integer
+        # @param Leak: 信息防泄露次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Leak: Integer
+        # @param ACL: 访问控制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ACL: Integer
 
-        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect
+        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL
 
-        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil)
+        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil, blackip=nil, tamper=nil, leak=nil, acl=nil)
           @Time = time
           @Access = access
           @Up = up
@@ -7983,6 +8201,10 @@ module TencentCloud
           @UpstreamServerError = upstreamservererror
           @UpstreamClientError = upstreamclienterror
           @UpstreamRedirect = upstreamredirect
+          @BlackIP = blackip
+          @Tamper = tamper
+          @Leak = leak
+          @ACL = acl
         end
 
         def deserialize(params)
@@ -8000,6 +8222,10 @@ module TencentCloud
           @UpstreamServerError = params['UpstreamServerError']
           @UpstreamClientError = params['UpstreamClientError']
           @UpstreamRedirect = params['UpstreamRedirect']
+          @BlackIP = params['BlackIP']
+          @Tamper = params['Tamper']
+          @Leak = params['Leak']
+          @ACL = params['ACL']
         end
       end
 
@@ -8887,10 +9113,14 @@ module TencentCloud
         # @type Type: Integer
         # @param EventId: 添加规则的来源事件id
         # @type EventId: String
+        # @param SessionApplied: 规则需要启用的SessionID
+        # @type SessionApplied: Array
+        # @param RuleId: 规则ID，新增时填0
+        # @type RuleId: Integer
 
-        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId
+        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId
 
-        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil)
+        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil)
           @Domain = domain
           @Name = name
           @Status = status
@@ -8906,6 +9136,8 @@ module TencentCloud
           @Edition = edition
           @Type = type
           @EventId = eventid
+          @SessionApplied = sessionapplied
+          @RuleId = ruleid
         end
 
         def deserialize(params)
@@ -8924,6 +9156,8 @@ module TencentCloud
           @Edition = params['Edition']
           @Type = params['Type']
           @EventId = params['EventId']
+          @SessionApplied = params['SessionApplied']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -8932,18 +9166,22 @@ module TencentCloud
         # @param Data: 一般为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
+        # @param RuleId: 操作的RuleId
+        # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :RuleId, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, ruleid=nil, requestid=nil)
           @Data = data
+          @RuleId = ruleid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @RuleId = params['RuleId']
           @RequestId = params['RequestId']
         end
       end
@@ -8954,16 +9192,19 @@ module TencentCloud
         # @type Domain: String
         # @param Items: ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
         # @type Items: Array
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
         # @param Edition: WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         # @type Edition: String
         # @param SourceType: 是否为多域名黑白名单，当为多域名的黑白名单时，取值为batch，否则为空
         # @type SourceType: String
 
-        attr_accessor :Domain, :Items, :Edition, :SourceType
+        attr_accessor :Domain, :Items, :InstanceId, :Edition, :SourceType
 
-        def initialize(domain=nil, items=nil, edition=nil, sourcetype=nil)
+        def initialize(domain=nil, items=nil, instanceid=nil, edition=nil, sourcetype=nil)
           @Domain = domain
           @Items = items
+          @InstanceId = instanceid
           @Edition = edition
           @SourceType = sourcetype
         end
@@ -8971,6 +9212,7 @@ module TencentCloud
         def deserialize(params)
           @Domain = params['Domain']
           @Items = params['Items']
+          @InstanceId = params['InstanceId']
           @Edition = params['Edition']
           @SourceType = params['SourceType']
         end
@@ -9020,10 +9262,14 @@ module TencentCloud
         # @type EndOffset: String
         # @param Edition: 版本
         # @type Edition: String
+        # @param SessionName: Session名
+        # @type SessionName: String
+        # @param SessionID: Session对应ID
+        # @type SessionID: Integer
 
-        attr_accessor :Domain, :Source, :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Edition
+        attr_accessor :Domain, :Source, :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Edition, :SessionName, :SessionID
 
-        def initialize(domain=nil, source=nil, category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, edition=nil)
+        def initialize(domain=nil, source=nil, category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, edition=nil, sessionname=nil, sessionid=nil)
           @Domain = domain
           @Source = source
           @Category = category
@@ -9032,6 +9278,8 @@ module TencentCloud
           @StartOffset = startoffset
           @EndOffset = endoffset
           @Edition = edition
+          @SessionName = sessionname
+          @SessionID = sessionid
         end
 
         def deserialize(params)
@@ -9043,6 +9291,8 @@ module TencentCloud
           @StartOffset = params['StartOffset']
           @EndOffset = params['EndOffset']
           @Edition = params['Edition']
+          @SessionName = params['SessionName']
+          @SessionID = params['SessionID']
         end
       end
 

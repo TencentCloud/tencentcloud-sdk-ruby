@@ -1872,10 +1872,13 @@ module TencentCloud
         # @type Order: String
         # @param Format: 日志导出数据格式。json，csv，默认为json
         # @type Format: String
+        # @param SyntaxRule: 语法规则,  默认值为0。
+        # 0：Lucene语法，1：CQL语法。
+        # @type SyntaxRule: Integer
 
-        attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format
+        attr_accessor :TopicId, :Count, :Query, :From, :To, :Order, :Format, :SyntaxRule
 
-        def initialize(topicid=nil, count=nil, query=nil, from=nil, to=nil, order=nil, format=nil)
+        def initialize(topicid=nil, count=nil, query=nil, from=nil, to=nil, order=nil, format=nil, syntaxrule=nil)
           @TopicId = topicid
           @Count = count
           @Query = query
@@ -1883,6 +1886,7 @@ module TencentCloud
           @To = to
           @Order = order
           @Format = format
+          @SyntaxRule = syntaxrule
         end
 
         def deserialize(params)
@@ -1893,6 +1897,7 @@ module TencentCloud
           @To = params['To']
           @Order = params['Order']
           @Format = params['Format']
+          @SyntaxRule = params['SyntaxRule']
         end
       end
 
