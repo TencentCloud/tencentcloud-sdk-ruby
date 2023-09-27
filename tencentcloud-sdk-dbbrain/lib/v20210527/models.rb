@@ -61,6 +61,39 @@ module TencentCloud
         end
       end
 
+      # mongodb慢查模板概览明细
+      class Aggregation < TencentCloud::Common::AbstractModel
+        # @param AvgExecTime: 平均执行时间（ms）。
+        # @type AvgExecTime: Integer
+        # @param AvgDocsExamined: 平均扫描行数。
+        # @type AvgDocsExamined: Integer
+        # @param SlowLogCount: 产生慢查次数（/天）。
+        # @type SlowLogCount: Integer
+        # @param SortCount: 内存排序次数。
+        # @type SortCount: Integer
+        # @param SlowLogs: 慢查模板概览。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlowLogs: Array
+
+        attr_accessor :AvgExecTime, :AvgDocsExamined, :SlowLogCount, :SortCount, :SlowLogs
+
+        def initialize(avgexectime=nil, avgdocsexamined=nil, slowlogcount=nil, sortcount=nil, slowlogs=nil)
+          @AvgExecTime = avgexectime
+          @AvgDocsExamined = avgdocsexamined
+          @SlowLogCount = slowlogcount
+          @SortCount = sortcount
+          @SlowLogs = slowlogs
+        end
+
+        def deserialize(params)
+          @AvgExecTime = params['AvgExecTime']
+          @AvgDocsExamined = params['AvgDocsExamined']
+          @SlowLogCount = params['SlowLogCount']
+          @SortCount = params['SortCount']
+          @SlowLogs = params['SlowLogs']
+        end
+      end
+
       # 通知模板
       class AlarmProfileList < TencentCloud::Common::AbstractModel
         # @param IsWebHook: 0-不是 1-是
@@ -1991,6 +2024,129 @@ module TencentCloud
         end
       end
 
+      # DescribeIndexRecommendAggregationSlowLogs请求参数结构体
+      class DescribeIndexRecommendAggregationSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括："mongodb" - 云数据库 。
+        # @type Product: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Db: 数据库名称。
+        # @type Db: String
+        # @param Collection: 表明。
+        # @type Collection: String
+        # @param Signs: 签名。
+        # @type Signs: Array
+
+        attr_accessor :Product, :InstanceId, :Db, :Collection, :Signs
+
+        def initialize(product=nil, instanceid=nil, db=nil, collection=nil, signs=nil)
+          @Product = product
+          @InstanceId = instanceid
+          @Db = db
+          @Collection = collection
+          @Signs = signs
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @Db = params['Db']
+          @Collection = params['Collection']
+          @Signs = params['Signs']
+        end
+      end
+
+      # DescribeIndexRecommendAggregationSlowLogs返回参数结构体
+      class DescribeIndexRecommendAggregationSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Aggregation: 查询实例慢查询聚合结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Aggregation: :class:`Tencentcloud::Dbbrain.v20210527.models.Aggregation`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Aggregation, :RequestId
+
+        def initialize(aggregation=nil, requestid=nil)
+          @Aggregation = aggregation
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Aggregation'].nil?
+            @Aggregation = Aggregation.new
+            @Aggregation.deserialize(params['Aggregation'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIndexRecommendInfo请求参数结构体
+      class DescribeIndexRecommendInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 服务产品类型，支持值包括："mongodb" - 云数据库 。
+        # @type Product: String
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :Product, :InstanceId
+
+        def initialize(product=nil, instanceid=nil)
+          @Product = product
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeIndexRecommendInfo返回参数结构体
+      class DescribeIndexRecommendInfoResponse < TencentCloud::Common::AbstractModel
+        # @param CollectionNum: 索引推荐的集合数量。
+        # @type CollectionNum: Integer
+        # @param IndexNum: 索引推荐的索引数量。
+        # @type IndexNum: Integer
+        # @param Items: 索引项。
+        # @type Items: Array
+        # @param Level: 优化级别，1-4，优先级从高到低。
+        # @type Level: Integer
+        # @param Optimized: 历史优化数。
+        # @type Optimized: Integer
+        # @param OptimizedCount: 累计优化条数。
+        # @type OptimizedCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CollectionNum, :IndexNum, :Items, :Level, :Optimized, :OptimizedCount, :RequestId
+
+        def initialize(collectionnum=nil, indexnum=nil, items=nil, level=nil, optimized=nil, optimizedcount=nil, requestid=nil)
+          @CollectionNum = collectionnum
+          @IndexNum = indexnum
+          @Items = items
+          @Level = level
+          @Optimized = optimized
+          @OptimizedCount = optimizedcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CollectionNum = params['CollectionNum']
+          @IndexNum = params['IndexNum']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              mongodbindex_tmp = MongoDBIndex.new
+              mongodbindex_tmp.deserialize(i)
+              @Items << mongodbindex_tmp
+            end
+          end
+          @Level = params['Level']
+          @Optimized = params['Optimized']
+          @OptimizedCount = params['OptimizedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMailProfile请求参数结构体
       class DescribeMailProfileRequest < TencentCloud::Common::AbstractModel
         # @param ProfileType: 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
@@ -2328,6 +2484,65 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisProcessList请求参数结构体
+      class DescribeRedisProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Redis 实例ID。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param Limit: 查询的Proxy节点数量上限，默认值为20，最大值为50。
+        # @type Limit: Integer
+        # @param Offset: Proxy节点的偏移量，默认值为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Product, :Limit, :Offset
+
+        def initialize(instanceid=nil, product=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRedisProcessList返回参数结构体
+      class DescribeRedisProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param ProxyCount: 该实例的Proxy节点数量，可用于分页查询。
+        # @type ProxyCount: Integer
+        # @param Processes: 实时会话详情列表。
+        # @type Processes: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxyCount, :Processes, :RequestId
+
+        def initialize(proxycount=nil, processes=nil, requestid=nil)
+          @ProxyCount = proxycount
+          @Processes = processes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProxyCount = params['ProxyCount']
+          unless params['Processes'].nil?
+            @Processes = []
+            params['Processes'].each do |i|
+              process_tmp = Process.new
+              process_tmp.deserialize(i)
+              @Processes << process_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3579,6 +3794,78 @@ module TencentCloud
         end
       end
 
+      # 推荐的索引
+      class IndexesToBuild < TencentCloud::Common::AbstractModel
+        # @param Id: 索引id，唯一标识一个索引。
+        # @type Id: Integer
+        # @param IndexCommand: 创建索引命令。
+        # @type IndexCommand: String
+        # @param IndexStr: 索引字符串。
+        # @type IndexStr: String
+        # @param Level: 优化级别，1-4，优先级从高到低。
+        # @type Level: Integer
+        # @param Score: 索引得分。
+        # @type Score: Integer
+        # @param Signs: 签名。
+        # @type Signs: Array
+        # @param Status: 0-待创建；1-创建中。
+        # @type Status: Integer
+
+        attr_accessor :Id, :IndexCommand, :IndexStr, :Level, :Score, :Signs, :Status
+
+        def initialize(id=nil, indexcommand=nil, indexstr=nil, level=nil, score=nil, signs=nil, status=nil)
+          @Id = id
+          @IndexCommand = indexcommand
+          @IndexStr = indexstr
+          @Level = level
+          @Score = score
+          @Signs = signs
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @IndexCommand = params['IndexCommand']
+          @IndexStr = params['IndexStr']
+          @Level = params['Level']
+          @Score = params['Score']
+          @Signs = params['Signs']
+          @Status = params['Status']
+        end
+      end
+
+      # 无效索引
+      class IndexesToDrop < TencentCloud::Common::AbstractModel
+        # @param IndexStr: 索引字符串。
+        # @type IndexStr: String
+        # @param Score: 索引得分。
+        # @type Score: Integer
+        # @param Reason: 无效原因。
+        # @type Reason: String
+        # @param IndexCommand: 删除索引命令。
+        # @type IndexCommand: String
+        # @param IndexName: 索引名。
+        # @type IndexName: String
+
+        attr_accessor :IndexStr, :Score, :Reason, :IndexCommand, :IndexName
+
+        def initialize(indexstr=nil, score=nil, reason=nil, indexcommand=nil, indexname=nil)
+          @IndexStr = indexstr
+          @Score = score
+          @Reason = reason
+          @IndexCommand = indexcommand
+          @IndexName = indexname
+        end
+
+        def deserialize(params)
+          @IndexStr = params['IndexStr']
+          @Score = params['Score']
+          @Reason = params['Reason']
+          @IndexCommand = params['IndexCommand']
+          @IndexName = params['IndexName']
+        end
+      end
+
       # 实例基础信息。
       class InstanceBasicInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -4186,6 +4473,62 @@ module TencentCloud
         end
       end
 
+      # Mongodb索引项
+      class MongoDBIndex < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 实例id。
+        # @type ClusterId: String
+        # @param Collection: 表名。
+        # @type Collection: String
+        # @param Db: 库名。
+        # @type Db: String
+        # @param Level: 优化级别，1-4，优先级从高到低。
+        # @type Level: Integer
+        # @param Score: 得分。
+        # @type Score: Integer
+        # @param IndexesToBuild: 推荐索引列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexesToBuild: Array
+        # @param IndexesToDrop: 无效索引列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexesToDrop: Array
+
+        attr_accessor :ClusterId, :Collection, :Db, :Level, :Score, :IndexesToBuild, :IndexesToDrop
+
+        def initialize(clusterid=nil, collection=nil, db=nil, level=nil, score=nil, indexestobuild=nil, indexestodrop=nil)
+          @ClusterId = clusterid
+          @Collection = collection
+          @Db = db
+          @Level = level
+          @Score = score
+          @IndexesToBuild = indexestobuild
+          @IndexesToDrop = indexestodrop
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Collection = params['Collection']
+          @Db = params['Db']
+          @Level = params['Level']
+          @Score = params['Score']
+          unless params['IndexesToBuild'].nil?
+            @IndexesToBuild = []
+            params['IndexesToBuild'].each do |i|
+              indexestobuild_tmp = IndexesToBuild.new
+              indexestobuild_tmp.deserialize(i)
+              @IndexesToBuild << indexestobuild_tmp
+            end
+          end
+          unless params['IndexesToDrop'].nil?
+            @IndexesToDrop = []
+            params['IndexesToDrop'].each do |i|
+              indexestodrop_tmp = IndexesToDrop.new
+              indexestodrop_tmp.deserialize(i)
+              @IndexesToDrop << indexestodrop_tmp
+            end
+          end
+        end
+      end
+
       # 监控数据（浮点型）
       class MonitorFloatMetric < TencentCloud::Common::AbstractModel
         # @param Metric: 指标名称。
@@ -4383,6 +4726,50 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实时会话详情。
+      class Process < TencentCloud::Common::AbstractModel
+        # @param Id: 会话 ID。
+        # @type Id: Integer
+        # @param Address: 访问来源，IP 地址和端口号。
+        # @type Address: String
+        # @param FileDescriptor: 文件描述符。
+        # @type FileDescriptor: Integer
+        # @param Name: 会话名称，使用 CLIENT SETNAME 命令设置。
+        # @type Name: String
+        # @param LastCommand: 最后一次执行的命令。
+        # @type LastCommand: String
+        # @param Age: 会话存活时间，单位：秒。
+        # @type Age: Integer
+        # @param Idle: 最后一次执行命令后空闲的时间，单位：秒。
+        # @type Idle: Integer
+        # @param ProxyId: 会话所属的 Proxy节点 ID。
+        # @type ProxyId: String
+
+        attr_accessor :Id, :Address, :FileDescriptor, :Name, :LastCommand, :Age, :Idle, :ProxyId
+
+        def initialize(id=nil, address=nil, filedescriptor=nil, name=nil, lastcommand=nil, age=nil, idle=nil, proxyid=nil)
+          @Id = id
+          @Address = address
+          @FileDescriptor = filedescriptor
+          @Name = name
+          @LastCommand = lastcommand
+          @Age = age
+          @Idle = idle
+          @ProxyId = proxyid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Address = params['Address']
+          @FileDescriptor = params['FileDescriptor']
+          @Name = params['Name']
+          @LastCommand = params['LastCommand']
+          @Age = params['Age']
+          @Idle = params['Idle']
+          @ProxyId = params['ProxyId']
         end
       end
 

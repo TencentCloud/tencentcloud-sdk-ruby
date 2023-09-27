@@ -725,6 +725,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询某张表的慢查模板概览
+
+        # @param request: Request instance for DescribeIndexRecommendAggregationSlowLogs.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeIndexRecommendAggregationSlowLogsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeIndexRecommendAggregationSlowLogsResponse`
+        def DescribeIndexRecommendAggregationSlowLogs(request)
+          body = send_request('DescribeIndexRecommendAggregationSlowLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIndexRecommendAggregationSlowLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例的索引推荐信息，包括索引统计相关信息，推荐索引列表，无效索引列表等。
+
+        # @param request: Request instance for DescribeIndexRecommendInfo.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeIndexRecommendInfoRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeIndexRecommendInfoResponse`
+        def DescribeIndexRecommendInfo(request)
+          body = send_request('DescribeIndexRecommendInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIndexRecommendInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
 
         # @param request: Request instance for DescribeMailProfile.
@@ -831,6 +879,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProxySessionKillTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 Redis 实例所有 proxy 节点的实时会话详情列表。
+
+        # @param request: Request instance for DescribeRedisProcessList.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisProcessListRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisProcessListResponse`
+        def DescribeRedisProcessList(request)
+          body = send_request('DescribeRedisProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisProcessListResponse.new
             model.deserialize(response['Response'])
             model
           else

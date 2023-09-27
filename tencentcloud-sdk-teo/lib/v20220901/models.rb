@@ -81,10 +81,13 @@ module TencentCloud
         # @param OwnershipVerification: 当域名需要进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+        # @param Certificate: 域名证书信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
 
-        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification, :Certificate
 
-        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil)
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil, certificate=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @DomainStatus = domainstatus
@@ -94,6 +97,7 @@ module TencentCloud
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
           @OwnershipVerification = ownershipverification
+          @Certificate = certificate
         end
 
         def deserialize(params)
@@ -111,6 +115,38 @@ module TencentCloud
           unless params['OwnershipVerification'].nil?
             @OwnershipVerification = OwnershipVerification.new
             @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+          unless params['Certificate'].nil?
+            @Certificate = AccelerationDomainCertificate.new
+            @Certificate.deserialize(params['Certificate'])
+          end
+        end
+      end
+
+      # 加速域名所对应的证书信息。
+      class AccelerationDomainCertificate < TencentCloud::Common::AbstractModel
+        # @param Mode: 配置证书的模式，取值有： <li>disable：不配置证书；</li> <li>eofreecert：配置 EdgeOne 免费证书；</li> <li>sslcert：配置 SSL 证书。</li>
+        # @type Mode: String
+        # @param List: 证书列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :Mode, :List
+
+        def initialize(mode=nil, list=nil)
+          @Mode = mode
+          @List = list
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              certificateinfo_tmp = CertificateInfo.new
+              certificateinfo_tmp.deserialize(i)
+              @List << certificateinfo_tmp
+            end
           end
         end
       end
@@ -1344,6 +1380,54 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Percent = params['Percent']
+        end
+      end
+
+      # https 服务端证书配置
+      class CertificateInfo < TencentCloud::Common::AbstractModel
+        # @param CertId: 服务器证书 ID。
+        # @type CertId: String
+        # @param Alias: 证书备注名。
+        # @type Alias: String
+        # @param Type: 证书类型，取值有：
+        # <li>default：默认证书；</li>
+        # <li>upload：用户上传；</li>
+        # <li>managed：腾讯云托管。</li>
+        # @type Type: String
+        # @param ExpireTime: 证书过期时间。
+        # @type ExpireTime: String
+        # @param DeployTime: 证书部署时间。
+        # @type DeployTime: String
+        # @param SignAlgo: 签名算法。
+        # @type SignAlgo: String
+        # @param Status: 证书状态，取值有：
+        # <li>deployed：已部署；</li>
+        # <li>processing：部署中；</li>
+        # <li>applying：申请中；</li>
+        # <li>failed：申请失败；</li>
+        # <li>issued：绑定失败。</li>
+        # @type Status: String
+
+        attr_accessor :CertId, :Alias, :Type, :ExpireTime, :DeployTime, :SignAlgo, :Status
+
+        def initialize(certid=nil, _alias=nil, type=nil, expiretime=nil, deploytime=nil, signalgo=nil, status=nil)
+          @CertId = certid
+          @Alias = _alias
+          @Type = type
+          @ExpireTime = expiretime
+          @DeployTime = deploytime
+          @SignAlgo = signalgo
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CertId = params['CertId']
+          @Alias = params['Alias']
+          @Type = params['Type']
+          @ExpireTime = params['ExpireTime']
+          @DeployTime = params['DeployTime']
+          @SignAlgo = params['SignAlgo']
+          @Status = params['Status']
         end
       end
 
