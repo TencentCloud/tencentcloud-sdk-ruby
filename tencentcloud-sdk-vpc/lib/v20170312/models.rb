@@ -11553,16 +11553,31 @@ module TencentCloud
 
       # DescribeVpcPeeringConnections返回参数结构体
       class DescribeVpcPeeringConnectionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 满足条件的对等连接实例个数。
+        # @type TotalCount: Integer
+        # @param PeerConnectionSet: 对等连接实例列表。
+        # @type PeerConnectionSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :PeerConnectionSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, peerconnectionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PeerConnectionSet = peerconnectionset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PeerConnectionSet'].nil?
+            @PeerConnectionSet = []
+            params['PeerConnectionSet'].each do |i|
+              peerconnection_tmp = PeerConnection.new
+              peerconnection_tmp.deserialize(i)
+              @PeerConnectionSet << peerconnection_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -17898,6 +17913,99 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 对等连接实例信息。
+      class PeerConnection < TencentCloud::Common::AbstractModel
+        # @param SourceVpcId: 本端VPC唯一ID。
+        # @type SourceVpcId: String
+        # @param PeerVpcId: 对端VPC唯一ID。
+        # @type PeerVpcId: String
+        # @param PeeringConnectionId: 对等连接唯一ID。
+        # @type PeeringConnectionId: String
+        # @param PeeringConnectionName: 对等连接名称。
+        # @type PeeringConnectionName: String
+        # @param State: 对等连接状态，PENDING，投放中；ACTIVE，使用中；REJECTED，已拒绝‘DELETED，已删除；FAILED，失败；EXPIRED，已过期；ISOLATED，隔离中。
+        # @type State: String
+        # @param IsNgw: 是否是新控制器，true: 是NewAfc；false:不是。
+        # @type IsNgw: Boolean
+        # @param Bandwidth: 对等连接带宽值。
+        # @type Bandwidth: Integer
+        # @param SourceRegion: 本端地域。
+        # @type SourceRegion: String
+        # @param DestinationRegion: 对端地域。
+        # @type DestinationRegion: String
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param AppId: 本端APPID。
+        # @type AppId: Integer
+        # @param PeerAppId: 对端APPID。
+        # @type PeerAppId: Integer
+        # @param ChargeType: 计费类型，POSTPAID_BY_DAY_MAX：日峰值计费；POSTPAID_BY_MONTH_95：月95计费。
+        # @type ChargeType: String
+        # @param SourceUin: 本端UIN。
+        # @type SourceUin: Integer
+        # @param DestinationUin: 对端UIN。
+        # @type DestinationUin: Integer
+        # @param TagSet: 资源标签数据。
+        # @type TagSet: Array
+        # @param QosLevel: 服务分级：PT、AU、AG。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QosLevel: String
+        # @param Type: 互通类型，VPC_PEER：VPC间互通；VPC_BM_PEER：VPC与黑石网络互通。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :SourceVpcId, :PeerVpcId, :PeeringConnectionId, :PeeringConnectionName, :State, :IsNgw, :Bandwidth, :SourceRegion, :DestinationRegion, :CreateTime, :AppId, :PeerAppId, :ChargeType, :SourceUin, :DestinationUin, :TagSet, :QosLevel, :Type
+
+        def initialize(sourcevpcid=nil, peervpcid=nil, peeringconnectionid=nil, peeringconnectionname=nil, state=nil, isngw=nil, bandwidth=nil, sourceregion=nil, destinationregion=nil, createtime=nil, appid=nil, peerappid=nil, chargetype=nil, sourceuin=nil, destinationuin=nil, tagset=nil, qoslevel=nil, type=nil)
+          @SourceVpcId = sourcevpcid
+          @PeerVpcId = peervpcid
+          @PeeringConnectionId = peeringconnectionid
+          @PeeringConnectionName = peeringconnectionname
+          @State = state
+          @IsNgw = isngw
+          @Bandwidth = bandwidth
+          @SourceRegion = sourceregion
+          @DestinationRegion = destinationregion
+          @CreateTime = createtime
+          @AppId = appid
+          @PeerAppId = peerappid
+          @ChargeType = chargetype
+          @SourceUin = sourceuin
+          @DestinationUin = destinationuin
+          @TagSet = tagset
+          @QosLevel = qoslevel
+          @Type = type
+        end
+
+        def deserialize(params)
+          @SourceVpcId = params['SourceVpcId']
+          @PeerVpcId = params['PeerVpcId']
+          @PeeringConnectionId = params['PeeringConnectionId']
+          @PeeringConnectionName = params['PeeringConnectionName']
+          @State = params['State']
+          @IsNgw = params['IsNgw']
+          @Bandwidth = params['Bandwidth']
+          @SourceRegion = params['SourceRegion']
+          @DestinationRegion = params['DestinationRegion']
+          @CreateTime = params['CreateTime']
+          @AppId = params['AppId']
+          @PeerAppId = params['PeerAppId']
+          @ChargeType = params['ChargeType']
+          @SourceUin = params['SourceUin']
+          @DestinationUin = params['DestinationUin']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+          @QosLevel = params['QosLevel']
+          @Type = params['Type']
         end
       end
 

@@ -306,8 +306,10 @@ module TencentCloud
       # 删除签名响应
       class DeleteSignStatus < TencentCloud::Common::AbstractModel
         # @param DeleteStatus: 删除状态信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteStatus: String
         # @param DeleteTime: 删除时间，UNIX 时间戳（单位：秒）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime
@@ -616,7 +618,7 @@ module TencentCloud
       class DescribeTemplateListStatus < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID。
         # @type TemplateId: Integer
-        # @param International: 是否国际/港澳台短信，其中0表示国内短信，1表示国际/港澳台短信。
+        # @param International: 是否国际/港澳台短信，其中0表示国内短信，1表示国际/港澳台短信，3表示该模板既支持国内短信也支持国际/港澳台短信。
         # @type International: Integer
         # @param StatusCode: 申请模板状态，其中0表示审核通过且已生效，1表示审核中，2表示审核通过待生效，-1表示审核未通过或审核失败。注：只有状态值为0时该模板才能使用。
         # @type StatusCode: Integer

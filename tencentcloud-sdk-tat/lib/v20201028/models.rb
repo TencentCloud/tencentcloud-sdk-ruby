@@ -769,7 +769,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
-        # @param HideOutput: 是否隐藏输出，取值范围：<br><li>True：隐藏输出 <br><li>False：不隐藏 <br>默认为 True。
+        # @param HideOutput: 是否隐藏输出，取值范围：<br><li>true：隐藏输出 <br><li>false：不隐藏 <br>默认为 false。
         # @type HideOutput: Boolean
 
         attr_accessor :InvocationTaskIds, :Filters, :Limit, :Offset, :HideOutput
@@ -1466,8 +1466,10 @@ module TencentCloud
         # @param TaskResult: 执行结果。
         # @type TaskResult: :class:`Tencentcloud::Tat.v20201028.models.TaskResult`
         # @param StartTime: 执行任务开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
         # @param EndTime: 执行任务结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
         # @param CreatedTime: 创建时间。
         # @type CreatedTime: String

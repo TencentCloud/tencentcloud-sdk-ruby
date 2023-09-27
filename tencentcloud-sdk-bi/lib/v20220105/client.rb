@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户角色信息
+
+        # @param request: Request instance for ModifyUserRole.
+        # @type request: :class:`Tencentcloud::bi::V20220105::ModifyUserRoleRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::ModifyUserRoleResponse`
+        def ModifyUserRole(request)
+          body = send_request('ModifyUserRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 项目-修改用户角色信息
 
         # @param request: Request instance for ModifyUserRoleProject.

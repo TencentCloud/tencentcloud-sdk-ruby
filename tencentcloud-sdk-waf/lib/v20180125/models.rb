@@ -1014,10 +1014,16 @@ module TencentCloud
         # @param RenewFlag: 续费标志
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
+        # @param BotCPWaf: 购买页bot6折
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotCPWaf: Integer
+        # @param BotNPWaf: 控制台买bot5折
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BotNPWaf: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag, :BotCPWaf, :BotNPWaf
 
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil, renewflag=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil, renewflag=nil, botcpwaf=nil, botnpwaf=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -1027,6 +1033,8 @@ module TencentCloud
           @UsedNum = usednum
           @Type = type
           @RenewFlag = renewflag
+          @BotCPWaf = botcpwaf
+          @BotNPWaf = botnpwaf
         end
 
         def deserialize(params)
@@ -1039,6 +1047,8 @@ module TencentCloud
           @UsedNum = params['UsedNum']
           @Type = params['Type']
           @RenewFlag = params['RenewFlag']
+          @BotCPWaf = params['BotCPWaf']
+          @BotNPWaf = params['BotNPWaf']
         end
       end
 

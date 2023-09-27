@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 资产列表
+        # 数据库资产列表
 
         # @param request: Request instance for DescribeDbAssets.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDbAssetsRequest`

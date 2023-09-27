@@ -2008,6 +2008,73 @@ module TencentCloud
         end
       end
 
+      # ModifyUserRole请求参数结构体
+      class ModifyUserRoleRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param RoleIdList: 角色ID 列表
+        # @type RoleIdList: Array
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param PhoneNumber: 手机号
+        # @type PhoneNumber: String
+        # @param AreaCode: 手机区号
+        # @type AreaCode: String
+
+        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode
+
+        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil)
+          @UserId = userid
+          @RoleIdList = roleidlist
+          @Email = email
+          @UserName = username
+          @PhoneNumber = phonenumber
+          @AreaCode = areacode
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoleIdList = params['RoleIdList']
+          @Email = params['Email']
+          @UserName = params['UserName']
+          @PhoneNumber = params['PhoneNumber']
+          @AreaCode = params['AreaCode']
+        end
+      end
+
+      # ModifyUserRole返回参数结构体
+      class ModifyUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Extra, :Msg, :Data, :RequestId
+
+        def initialize(extra=nil, msg=nil, data=nil, requestid=nil)
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 商业版本权限单元
       class PermissionComponent < TencentCloud::Common::AbstractModel
         # @param ModuleId: 权限值

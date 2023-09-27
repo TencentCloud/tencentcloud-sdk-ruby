@@ -659,7 +659,7 @@ module TencentCloud
       class TextTranslateResponse < TencentCloud::Common::AbstractModel
         # @param TargetText: 翻译后的文本
         # @type TargetText: String
-        # @param Source: 源语言，详见入参Target
+        # @param Source: 源语言，详见入参Source
         # @type Source: String
         # @param Target: 目标语言，详见入参Target
         # @type Target: String

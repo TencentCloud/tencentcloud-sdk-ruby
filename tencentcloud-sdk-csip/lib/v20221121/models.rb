@@ -2096,11 +2096,14 @@ module TencentCloud
       class DescribeDbAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param AssetTypes: 资产类型:MYSQL/MARIADB/REDIS/MONGODB/POSTGRES/CTS/ES/KAFKA/COS/CBS/CFS
+        # @type AssetTypes: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :AssetTypes
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, assettypes=nil)
           @Filter = filter
+          @AssetTypes = assettypes
         end
 
         def deserialize(params)
@@ -2108,6 +2111,7 @@ module TencentCloud
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
           end
+          @AssetTypes = params['AssetTypes']
         end
       end
 
@@ -4108,7 +4112,7 @@ module TencentCloud
         # @param EndTime: 任务结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ScanPlanContent: corn
+        # @param ScanPlanContent: cron格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanPlanContent: String
         # @param TaskType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义
@@ -4135,7 +4139,7 @@ module TencentCloud
         # @param AssetNumber: 资产数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetNumber: Integer
-        # @param ScanStatus: 扫描状态 0 初始值  1正在扫描  2扫描完成  3扫描出错
+        # @param ScanStatus: 扫描状态, 0-初始值，1-正在扫描，2-扫描完成，3-扫描出错，4-停止扫描
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanStatus: Integer
         # @param Percent: 任务进度
@@ -4216,10 +4220,13 @@ module TencentCloud
         # @param IsDelete: 是否可以删除，1-可以，0-不可以，对应多账户管理使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDelete: Integer
+        # @param SourceType: 任务源类型，0-默认，1-小助手，2-体检项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceType: Integer
 
-        attr_accessor :TaskName, :StartTime, :EndTime, :ScanPlanContent, :TaskType, :InsertTime, :TaskId, :SelfDefiningAssets, :PredictTime, :PredictEndTime, :ReportNumber, :AssetNumber, :ScanStatus, :Percent, :ScanItem, :ScanAssetType, :VSSTaskId, :CSPMTaskId, :CWPPOCId, :CWPBlId, :VSSTaskProcess, :CSPMTaskProcess, :CWPPOCProcess, :CWPBlProcess, :ErrorCode, :ErrorInfo, :StartDay, :Frequency, :CompleteNumber, :CompleteAssetNumber, :RiskCount, :Assets, :AppId, :UIN, :UserName, :TaskMode, :ScanFrom, :IsFree, :IsDelete
+        attr_accessor :TaskName, :StartTime, :EndTime, :ScanPlanContent, :TaskType, :InsertTime, :TaskId, :SelfDefiningAssets, :PredictTime, :PredictEndTime, :ReportNumber, :AssetNumber, :ScanStatus, :Percent, :ScanItem, :ScanAssetType, :VSSTaskId, :CSPMTaskId, :CWPPOCId, :CWPBlId, :VSSTaskProcess, :CSPMTaskProcess, :CWPPOCProcess, :CWPBlProcess, :ErrorCode, :ErrorInfo, :StartDay, :Frequency, :CompleteNumber, :CompleteAssetNumber, :RiskCount, :Assets, :AppId, :UIN, :UserName, :TaskMode, :ScanFrom, :IsFree, :IsDelete, :SourceType
 
-        def initialize(taskname=nil, starttime=nil, endtime=nil, scanplancontent=nil, tasktype=nil, inserttime=nil, taskid=nil, selfdefiningassets=nil, predicttime=nil, predictendtime=nil, reportnumber=nil, assetnumber=nil, scanstatus=nil, percent=nil, scanitem=nil, scanassettype=nil, vsstaskid=nil, cspmtaskid=nil, cwppocid=nil, cwpblid=nil, vsstaskprocess=nil, cspmtaskprocess=nil, cwppocprocess=nil, cwpblprocess=nil, errorcode=nil, errorinfo=nil, startday=nil, frequency=nil, completenumber=nil, completeassetnumber=nil, riskcount=nil, assets=nil, appid=nil, uin=nil, username=nil, taskmode=nil, scanfrom=nil, isfree=nil, isdelete=nil)
+        def initialize(taskname=nil, starttime=nil, endtime=nil, scanplancontent=nil, tasktype=nil, inserttime=nil, taskid=nil, selfdefiningassets=nil, predicttime=nil, predictendtime=nil, reportnumber=nil, assetnumber=nil, scanstatus=nil, percent=nil, scanitem=nil, scanassettype=nil, vsstaskid=nil, cspmtaskid=nil, cwppocid=nil, cwpblid=nil, vsstaskprocess=nil, cspmtaskprocess=nil, cwppocprocess=nil, cwpblprocess=nil, errorcode=nil, errorinfo=nil, startday=nil, frequency=nil, completenumber=nil, completeassetnumber=nil, riskcount=nil, assets=nil, appid=nil, uin=nil, username=nil, taskmode=nil, scanfrom=nil, isfree=nil, isdelete=nil, sourcetype=nil)
           @TaskName = taskname
           @StartTime = starttime
           @EndTime = endtime
@@ -4259,6 +4266,7 @@ module TencentCloud
           @ScanFrom = scanfrom
           @IsFree = isfree
           @IsDelete = isdelete
+          @SourceType = sourcetype
         end
 
         def deserialize(params)
@@ -4308,6 +4316,7 @@ module TencentCloud
           @ScanFrom = params['ScanFrom']
           @IsFree = params['IsFree']
           @IsDelete = params['IsDelete']
+          @SourceType = params['SourceType']
         end
       end
 
@@ -4691,15 +4700,19 @@ module TencentCloud
         # @param Region: 地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
+        # @param Arn: 多云资产唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Arn: String
 
-        attr_accessor :AssetName, :InstanceType, :AssetType, :Asset, :Region
+        attr_accessor :AssetName, :InstanceType, :AssetType, :Asset, :Region, :Arn
 
-        def initialize(assetname=nil, instancetype=nil, assettype=nil, asset=nil, region=nil)
+        def initialize(assetname=nil, instancetype=nil, assettype=nil, asset=nil, region=nil, arn=nil)
           @AssetName = assetname
           @InstanceType = instancetype
           @AssetType = assettype
           @Asset = asset
           @Region = region
+          @Arn = arn
         end
 
         def deserialize(params)
@@ -4708,6 +4721,7 @@ module TencentCloud
           @AssetType = params['AssetType']
           @Asset = params['Asset']
           @Region = params['Region']
+          @Arn = params['Arn']
         end
       end
 

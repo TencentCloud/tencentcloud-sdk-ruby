@@ -83,19 +83,53 @@ module TencentCloud
         end
       end
 
+      # 签署方信息，发起合同后可获取到对应的签署方信息，如角色ID，角色名称
+      class ApproverItem < TencentCloud::Common::AbstractModel
+        # @param SignId: 签署方唯一编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignId: String
+        # @param RecipientId: 签署方角色编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param ApproverRoleName: 签署方角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverRoleName: String
+
+        attr_accessor :SignId, :RecipientId, :ApproverRoleName
+
+        def initialize(signid=nil, recipientid=nil, approverrolename=nil)
+          @SignId = signid
+          @RecipientId = recipientid
+          @ApproverRoleName = approverrolename
+        end
+
+        def deserialize(params)
+          @SignId = params['SignId']
+          @RecipientId = params['RecipientId']
+          @ApproverRoleName = params['ApproverRoleName']
+        end
+      end
+
       # 签署人个性化能力信息
       class ApproverOption < TencentCloud::Common::AbstractModel
         # @param HideOneKeySign: 是否隐藏一键签署 默认false-不隐藏true-隐藏
         # @type HideOneKeySign: Boolean
+        # @param FillType: 签署人信息补充类型，默认无需补充。
 
-        attr_accessor :HideOneKeySign
+        # <ul><li> **1** : ( 动态签署人（可发起合同后再补充签署人信息）</li>
+        # </ul>
+        # @type FillType: Integer
 
-        def initialize(hideonekeysign=nil)
+        attr_accessor :HideOneKeySign, :FillType
+
+        def initialize(hideonekeysign=nil, filltype=nil)
           @HideOneKeySign = hideonekeysign
+          @FillType = filltype
         end
 
         def deserialize(params)
           @HideOneKeySign = params['HideOneKeySign']
+          @FillType = params['FillType']
         end
       end
 
@@ -1072,18 +1106,30 @@ module TencentCloud
         # @param FlowId: 合同签署流程ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
+        # @param Approvers: 签署方信息，如角色ID、角色名称等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :FlowId, :Approvers, :RequestId
 
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(flowid=nil, approvers=nil, requestid=nil)
           @FlowId = flowid
+          @Approvers = approvers
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approveritem_tmp = ApproverItem.new
+              approveritem_tmp.deserialize(i)
+              @Approvers << approveritem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3869,17 +3915,20 @@ module TencentCloud
         # @param TaskInfos: 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
         # 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
         # @type TaskInfos: Array
+        # @param FlowApprovers: 签署方信息，如角色ID、角色名称等
+        # @type FlowApprovers: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :TaskInfos, :RequestId
+        attr_accessor :FlowIds, :CustomerData, :ErrorMessages, :PreviewUrls, :TaskInfos, :FlowApprovers, :RequestId
 
-        def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, taskinfos=nil, requestid=nil)
+        def initialize(flowids=nil, customerdata=nil, errormessages=nil, previewurls=nil, taskinfos=nil, flowapprovers=nil, requestid=nil)
           @FlowIds = flowids
           @CustomerData = customerdata
           @ErrorMessages = errormessages
           @PreviewUrls = previewurls
           @TaskInfos = taskinfos
+          @FlowApprovers = flowapprovers
           @RequestId = requestid
         end
 
@@ -3894,6 +3943,14 @@ module TencentCloud
               taskinfo_tmp = TaskInfo.new
               taskinfo_tmp.deserialize(i)
               @TaskInfos << taskinfo_tmp
+            end
+          end
+          unless params['FlowApprovers'].nil?
+            @FlowApprovers = []
+            params['FlowApprovers'].each do |i|
+              flowapproveritem_tmp = FlowApproverItem.new
+              flowapproveritem_tmp.deserialize(i)
+              @FlowApprovers << flowapproveritem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4047,13 +4104,15 @@ module TencentCloud
         # - 2:合同签署页面更多操作的转他人处理按钮
         # - 3:签署成功页的查看详情按钮
         # @type Hides: Array
+        # @param RecipientIds: 签署节点ID，用于补充动态签署人，使用此参数需要与flow_ids数量一致
+        # @type RecipientIds: Array
 
-        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides
+        attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides, :RecipientIds
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 9
         deprecate :Operator=, :none, 2023, 9
 
-        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, hides=nil)
+        def initialize(agent=nil, flowids=nil, flowgroupid=nil, endpoint=nil, generatetype=nil, organizationname=nil, name=nil, mobile=nil, organizationopenid=nil, openid=nil, autojumpback=nil, jumpurl=nil, operator=nil, hides=nil, recipientids=nil)
           @Agent = agent
           @FlowIds = flowids
           @FlowGroupId = flowgroupid
@@ -4068,6 +4127,7 @@ module TencentCloud
           @JumpUrl = jumpurl
           @Operator = operator
           @Hides = hides
+          @RecipientIds = recipientids
         end
 
         def deserialize(params)
@@ -4091,6 +4151,7 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @Hides = params['Hides']
+          @RecipientIds = params['RecipientIds']
         end
       end
 
@@ -4791,10 +4852,13 @@ module TencentCloud
         # <br/>PERSON：个人签署人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApproveType: String
+        # @param ApproverRoleName: 自定义签署人角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverRoleName: String
 
-        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType
+        attr_accessor :ReceiptId, :ProxyOrganizationOpenId, :ProxyOperatorOpenId, :ProxyOrganizationName, :Mobile, :SignOrder, :ApproveName, :ApproveStatus, :ApproveMessage, :ApproveTime, :ApproveType, :ApproverRoleName
 
-        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil)
+        def initialize(receiptid=nil, proxyorganizationopenid=nil, proxyoperatoropenid=nil, proxyorganizationname=nil, mobile=nil, signorder=nil, approvename=nil, approvestatus=nil, approvemessage=nil, approvetime=nil, approvetype=nil, approverrolename=nil)
           @ReceiptId = receiptid
           @ProxyOrganizationOpenId = proxyorganizationopenid
           @ProxyOperatorOpenId = proxyoperatoropenid
@@ -4806,6 +4870,7 @@ module TencentCloud
           @ApproveMessage = approvemessage
           @ApproveTime = approvetime
           @ApproveType = approvetype
+          @ApproverRoleName = approverrolename
         end
 
         def deserialize(params)
@@ -4820,17 +4885,21 @@ module TencentCloud
           @ApproveMessage = params['ApproveMessage']
           @ApproveTime = params['ApproveTime']
           @ApproveType = params['ApproveType']
+          @ApproverRoleName = params['ApproverRoleName']
         end
       end
 
       # 创建签署流程签署人入参。
 
       # 其中签署方FlowApproverInfo需要传递的参数
-      # 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
-      # 1-个人：Name、Mobile必传
-      # 2-第三方平台子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
-      # 3-第三方平台子客企业不指定经办人：OrgName必传、OrgOpenId必传；
-      # 4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
+      # 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。
+
+      # 其他身份标识
+
+      # <ul><li>1-个人：Name、Mobile必传</li>
+      # <li>2-第三方平台子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；</li>
+      # <li>3-第三方平台子客企业不指定经办人：OrgName必传、OrgOpenId必传；</li>
+      # <li>4-非第三方平台子客企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。</li></ul>
 
       # RecipientId参数：
       # 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId。
@@ -4909,13 +4978,15 @@ module TencentCloud
 
         # 注：`限制印章控件或骑缝章控件情况下,仅本企业签署方可以指定具体印章（通过传递ComponentValue,支持多个），他方企业或个人只支持限制控件类型。`
         # @type AddSignComponentsLimits: Array
+        # @param ApproverRoleName: 自定义签署方角色名称
+        # @type ApproverRoleName: String
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 9
         deprecate :CallbackUrl=, :none, 2023, 9
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -4939,6 +5010,7 @@ module TencentCloud
           @SignId = signid
           @NotifyType = notifytype
           @AddSignComponentsLimits = addsigncomponentslimits
+          @ApproverRoleName = approverrolename
         end
 
         def deserialize(params)
@@ -4980,6 +5052,36 @@ module TencentCloud
               componentlimit_tmp = ComponentLimit.new
               componentlimit_tmp.deserialize(i)
               @AddSignComponentsLimits << componentlimit_tmp
+            end
+          end
+          @ApproverRoleName = params['ApproverRoleName']
+        end
+      end
+
+      # 签署方信息，如角色ID、角色名称等
+      class FlowApproverItem < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param Approvers: 签署方信息，如角色ID、角色名称等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approvers: Array
+
+        attr_accessor :FlowId, :Approvers
+
+        def initialize(flowid=nil, approvers=nil)
+          @FlowId = flowid
+          @Approvers = approvers
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approveritem_tmp = ApproverItem.new
+              approveritem_tmp.deserialize(i)
+              @Approvers << approveritem_tmp
             end
           end
         end
@@ -5550,13 +5652,18 @@ module TencentCloud
         # OPEN:开通
         # CLOSE:关闭
         # @type Operate: String
+        # @param Endpoint: 链接跳转类型，支持以下类型
+        # <ul><li>WEIXINAPP : 短链直接跳转到电子签小程序  (默认值)</li>
+        # <li>APP : 第三方APP或小程序跳转电子签小程序</li></ul>
+        # @type Endpoint: String
 
-        attr_accessor :Agent, :ServiceType, :Operate
+        attr_accessor :Agent, :ServiceType, :Operate, :Endpoint
 
-        def initialize(agent=nil, servicetype=nil, operate=nil)
+        def initialize(agent=nil, servicetype=nil, operate=nil, endpoint=nil)
           @Agent = agent
           @ServiceType = servicetype
           @Operate = operate
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -5566,6 +5673,7 @@ module TencentCloud
           end
           @ServiceType = params['ServiceType']
           @Operate = params['Operate']
+          @Endpoint = params['Endpoint']
         end
       end
 
@@ -6442,13 +6550,16 @@ module TencentCloud
         # @param FlowGroupId: 合同组签署链接对应的合同组id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowGroupId: String
+        # @param SignQrcodeUrl: 二维码，在生成动态签署人跳转封面页链接时返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignQrcodeUrl: String
 
-        attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId, :OpenId, :FlowGroupId
+        attr_accessor :SignUrl, :Deadline, :SignOrder, :SignId, :CustomUserId, :Name, :Mobile, :OrganizationName, :ApproverType, :IdCardNumber, :FlowId, :OpenId, :FlowGroupId, :SignQrcodeUrl
         extend Gem::Deprecate
         deprecate :CustomUserId, :none, 2023, 9
         deprecate :CustomUserId=, :none, 2023, 9
 
-        def initialize(signurl=nil, deadline=nil, signorder=nil, signid=nil, customuserid=nil, name=nil, mobile=nil, organizationname=nil, approvertype=nil, idcardnumber=nil, flowid=nil, openid=nil, flowgroupid=nil)
+        def initialize(signurl=nil, deadline=nil, signorder=nil, signid=nil, customuserid=nil, name=nil, mobile=nil, organizationname=nil, approvertype=nil, idcardnumber=nil, flowid=nil, openid=nil, flowgroupid=nil, signqrcodeurl=nil)
           @SignUrl = signurl
           @Deadline = deadline
           @SignOrder = signorder
@@ -6462,6 +6573,7 @@ module TencentCloud
           @FlowId = flowid
           @OpenId = openid
           @FlowGroupId = flowgroupid
+          @SignQrcodeUrl = signqrcodeurl
         end
 
         def deserialize(params)
@@ -6478,6 +6590,7 @@ module TencentCloud
           @FlowId = params['FlowId']
           @OpenId = params['OpenId']
           @FlowGroupId = params['FlowGroupId']
+          @SignQrcodeUrl = params['SignQrcodeUrl']
         end
       end
 

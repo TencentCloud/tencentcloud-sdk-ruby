@@ -823,7 +823,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取房间信息
+        # 获取房间配置信息
 
         # @param request: Request instance for DescribeRoom.
         # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeRoomRequest`

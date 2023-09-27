@@ -153,6 +153,8 @@ module TencentCloud
         # <li>   **3** :见证人</li></ul>
         # 注: `收据场景为白名单功能，使用前请联系对接的客户经理沟通。`
         # @type ApproverRole: Integer
+        # @param ApproverRoleName: 自定义签署人角色名：收款人、开具人、见证人
+        # @type ApproverRoleName: String
         # @param VerifyChannel: 签署意愿确认渠道，默认为WEIXINAPP:人脸识别
 
         # 注: 将要废弃, 用ApproverSignTypes签署人签署合同时的认证方式代替, 新客户可请用ApproverSignTypes来设置
@@ -208,9 +210,9 @@ module TencentCloud
         # 注：`限制印章控件或骑缝章控件情况下,仅本企业签署方可以指定具体印章（通过传递ComponentValue,支持多个），他方企业或个人只支持限制控件类型。`
         # @type AddSignComponentsLimits: Array
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -220,6 +222,7 @@ module TencentCloud
           @ApproverIdCardNumber = approveridcardnumber
           @NotifyType = notifytype
           @ApproverRole = approverrole
+          @ApproverRoleName = approverrolename
           @VerifyChannel = verifychannel
           @PreReadTime = prereadtime
           @UserId = userid
@@ -249,6 +252,7 @@ module TencentCloud
           @ApproverIdCardNumber = params['ApproverIdCardNumber']
           @NotifyType = params['NotifyType']
           @ApproverRole = params['ApproverRole']
+          @ApproverRoleName = params['ApproverRoleName']
           @VerifyChannel = params['VerifyChannel']
           @PreReadTime = params['PreReadTime']
           @UserId = params['UserId']
@@ -272,6 +276,33 @@ module TencentCloud
         end
       end
 
+      # 签署方信息，发起合同后可获取到对应的签署方信息，如角色ID，角色名称
+      class ApproverItem < TencentCloud::Common::AbstractModel
+        # @param SignId: 签署方唯一编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SignId: String
+        # @param RecipientId: 签署方角色编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param ApproverRoleName: 签署方角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverRoleName: String
+
+        attr_accessor :SignId, :RecipientId, :ApproverRoleName
+
+        def initialize(signid=nil, recipientid=nil, approverrolename=nil)
+          @SignId = signid
+          @RecipientId = recipientid
+          @ApproverRoleName = approverrolename
+        end
+
+        def deserialize(params)
+          @SignId = params['SignId']
+          @RecipientId = params['RecipientId']
+          @ApproverRoleName = params['ApproverRoleName']
+        end
+      end
+
       # 签署人个性化能力信息
       class ApproverOption < TencentCloud::Common::AbstractModel
         # @param NoRefuse: 签署方是否可以拒签
@@ -284,17 +315,24 @@ module TencentCloud
         # <ul><li> **false** : ( 默认)可以转他人处理</li>
         # <li> **true** :不可以转他人处理</li></ul>
         # @type NoTransfer: Boolean
+        # @param FillType: 签署人信息补充类型，默认无需补充。
 
-        attr_accessor :NoRefuse, :NoTransfer
+        # <ul><li> **1** : ( 动态签署人（可发起合同后再补充签署人信息）</li>
+        # </ul>
+        # @type FillType: Integer
 
-        def initialize(norefuse=nil, notransfer=nil)
+        attr_accessor :NoRefuse, :NoTransfer, :FillType
+
+        def initialize(norefuse=nil, notransfer=nil, filltype=nil)
           @NoRefuse = norefuse
           @NoTransfer = notransfer
+          @FillType = filltype
         end
 
         def deserialize(params)
           @NoRefuse = params['NoRefuse']
           @NoTransfer = params['NoTransfer']
+          @FillType = params['FillType']
         end
       end
 
@@ -535,9 +573,10 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 合同流程ID, 为32位字符串。
-        # 建议开发者保存此流程ID方便后续其他操作。
+
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # @type FlowId: String
-        # @param CancelMessage: 撤销此合同(流程)的原因，最长200个字。
+        # @param CancelMessage: 撤销此合同流程的原因，最多支持200个字符长度。只能由中文、字母、数字、中文标点和英文标点组成（不支持表情）。
         # @type CancelMessage: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -1382,20 +1421,32 @@ module TencentCloud
         # `2.当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewFileUrl: String
+        # @param Approvers: 签署方信息，如角色ID、角色名称等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocumentId, :PreviewFileUrl, :RequestId
+        attr_accessor :DocumentId, :PreviewFileUrl, :Approvers, :RequestId
 
-        def initialize(documentid=nil, previewfileurl=nil, requestid=nil)
+        def initialize(documentid=nil, previewfileurl=nil, approvers=nil, requestid=nil)
           @DocumentId = documentid
           @PreviewFileUrl = previewfileurl
+          @Approvers = approvers
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DocumentId = params['DocumentId']
           @PreviewFileUrl = params['PreviewFileUrl']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approveritem_tmp = ApproverItem.new
+              approveritem_tmp.deserialize(i)
+              @Approvers << approveritem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1503,15 +1554,21 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param FillApproverType: 签署人信息补充方式
 
-        attr_accessor :Operator, :FlowId, :Approvers, :Initiator, :Agent
+        # <ul><li>**0**: 补充或签人，支持补充多个企业经办签署人（默认）注: `不可补充个人签署人`</li>
+        # <li>**1**: 补充动态签署人，可补充企业和个人签署人。注: `每个签署方节点签署人是唯一的，一个节点只支持传入一个签署人信息`</li></ul>
+        # @type FillApproverType: Integer
 
-        def initialize(operator=nil, flowid=nil, approvers=nil, initiator=nil, agent=nil)
+        attr_accessor :Operator, :FlowId, :Approvers, :Initiator, :Agent, :FillApproverType
+
+        def initialize(operator=nil, flowid=nil, approvers=nil, initiator=nil, agent=nil, fillapprovertype=nil)
           @Operator = operator
           @FlowId = flowid
           @Approvers = approvers
           @Initiator = initiator
           @Agent = agent
+          @FillApproverType = fillapprovertype
         end
 
         def deserialize(params)
@@ -1533,6 +1590,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @FillApproverType = params['FillApproverType']
         end
       end
 
@@ -1745,20 +1803,32 @@ module TencentCloud
         # 注：如果是预览模式(即NeedPreview设置为true)时, 才会有此预览链接URL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
+        # @param Approvers: 签署方信息，如角色ID、角色名称等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Approvers: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :PreviewUrl, :RequestId
+        attr_accessor :FlowId, :PreviewUrl, :Approvers, :RequestId
 
-        def initialize(flowid=nil, previewurl=nil, requestid=nil)
+        def initialize(flowid=nil, previewurl=nil, approvers=nil, requestid=nil)
           @FlowId = flowid
           @PreviewUrl = previewurl
+          @Approvers = approvers
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
           @PreviewUrl = params['PreviewUrl']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              approveritem_tmp = ApproverItem.new
+              approveritem_tmp.deserialize(i)
+              @Approvers << approveritem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3452,10 +3522,12 @@ module TencentCloud
 
         # 注:  `字段为数组, 可以传值隐藏多个按钮`
         # @type Hides: Array
+        # @param RecipientId: 签署节点ID，用于生成动态签署人链接完成领取
+        # @type RecipientId: String
 
-        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides
+        attr_accessor :Operator, :OrganizationName, :Name, :Mobile, :EndPoint, :FlowId, :FlowGroupId, :PathType, :AutoJumpBack, :Agent, :Hides, :RecipientId
 
-        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil)
+        def initialize(operator=nil, organizationname=nil, name=nil, mobile=nil, endpoint=nil, flowid=nil, flowgroupid=nil, pathtype=nil, autojumpback=nil, agent=nil, hides=nil, recipientid=nil)
           @Operator = operator
           @OrganizationName = organizationname
           @Name = name
@@ -3467,6 +3539,7 @@ module TencentCloud
           @AutoJumpBack = autojumpback
           @Agent = agent
           @Hides = hides
+          @RecipientId = recipientid
         end
 
         def deserialize(params)
@@ -3487,6 +3560,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @Hides = params['Hides']
+          @RecipientId = params['RecipientId']
         end
       end
 
@@ -3498,18 +3572,22 @@ module TencentCloud
         # <li>如果EndPoint是**HTTP**，得到的链接类似于 `https://res.ess.tencent.cn/cdn/h5-activity/jump-mp.html?where=mini&from=SFY&id=yDwfEUUw**4rV6Avz&to=MVP_CONTRACT_COVER&name=%E9%83%**5%86%9B`，点击后会跳转到腾讯电子签小程序进行签署</li>
         # <li>如果EndPoint是**HTTP_SHORT_URL**，得到的链接类似于 `https://essurl.cn/2n**42Nd`，点击后会跳转到腾讯电子签小程序进行签署</li></ul>
         # @type SchemeUrl: String
+        # @param SchemeQrcodeUrl: 二维码，在生成动态签署人跳转封面页链接时返回
+        # @type SchemeQrcodeUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SchemeUrl, :RequestId
+        attr_accessor :SchemeUrl, :SchemeQrcodeUrl, :RequestId
 
-        def initialize(schemeurl=nil, requestid=nil)
+        def initialize(schemeurl=nil, schemeqrcodeurl=nil, requestid=nil)
           @SchemeUrl = schemeurl
+          @SchemeQrcodeUrl = schemeqrcodeurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SchemeUrl = params['SchemeUrl']
+          @SchemeQrcodeUrl = params['SchemeQrcodeUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -4295,10 +4373,10 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param BusinessType: 文件对应的业务类型，目前支持：
         # <ul>
-        # <li>FLOW 如需下载合同文件请选择此项</li>
-        # <li>TEMPLATE 如需下载模板文件请选择此项</li>
-        # <li>DOCUMENT 如需下载文档文件请选择此项</li>
-        # <li>SEAL 如需下载印章图片请选择此项</li>
+        # <li>**FLOW ** : 如需下载合同文件请选择此项</li>
+        # <li>**TEMPLATE ** : 如需下载模板文件请选择此项</li>
+        # <li>**DOCUMENT  **: 如需下载文档文件请选择此项</li>
+        # <li>**SEAL  **: 如需下载印章图片请选择此项</li>
         # </ul>
         # @type BusinessType: String
         # @param BusinessIds: 业务编号的数组，取值如下：
@@ -4378,7 +4456,7 @@ module TencentCloud
       # DescribeFileUrls返回参数结构体
       class DescribeFileUrlsResponse < TencentCloud::Common::AbstractModel
         # @param FileUrls: 文件URL信息；
-        # 链接不是永久链接，有效期5分钟后链接失效。
+        # 链接不是永久链接,  过期时间收UrlTtl入参的影响,  默认有效期5分钟后,  到期后链接失效。
         # @type FileUrls: Array
         # @param TotalCount: URL数量
         # @type TotalCount: Integer
@@ -5775,15 +5853,18 @@ module TencentCloud
         # @type ApproverName: String
         # @param ApproverMobile: 补充企业签署人员工手机号
         # @type ApproverMobile: String
+        # @param OrganizationName: 补充企业动态签署人时，需要指定对应企业名称
+        # @type OrganizationName: String
 
-        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile
+        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName
 
-        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil)
+        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil, organizationname=nil)
           @RecipientId = recipientid
           @ApproverSource = approversource
           @CustomUserId = customuserid
           @ApproverName = approvername
           @ApproverMobile = approvermobile
+          @OrganizationName = organizationname
         end
 
         def deserialize(params)
@@ -5792,6 +5873,7 @@ module TencentCloud
           @CustomUserId = params['CustomUserId']
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
+          @OrganizationName = params['OrganizationName']
         end
       end
 
@@ -5908,10 +5990,13 @@ module TencentCloud
         # @param SignId: 签署参与人在本流程中的编号ID（每个流程不同），可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignId: String
+        # @param ApproverRoleName: 自定义签署人角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverRoleName: String
 
-        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId
+        attr_accessor :ApproveMessage, :ApproveName, :ApproveStatus, :ReceiptId, :CustomUserId, :Mobile, :SignOrder, :ApproveTime, :ApproveType, :ApproverSource, :CustomApproverTag, :OrganizationId, :OrganizationName, :SignId, :ApproverRoleName
 
-        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil)
+        def initialize(approvemessage=nil, approvename=nil, approvestatus=nil, receiptid=nil, customuserid=nil, mobile=nil, signorder=nil, approvetime=nil, approvetype=nil, approversource=nil, customapprovertag=nil, organizationid=nil, organizationname=nil, signid=nil, approverrolename=nil)
           @ApproveMessage = approvemessage
           @ApproveName = approvename
           @ApproveStatus = approvestatus
@@ -5926,6 +6011,7 @@ module TencentCloud
           @OrganizationId = organizationid
           @OrganizationName = organizationname
           @SignId = signid
+          @ApproverRoleName = approverrolename
         end
 
         def deserialize(params)
@@ -5943,6 +6029,7 @@ module TencentCloud
           @OrganizationId = params['OrganizationId']
           @OrganizationName = params['OrganizationName']
           @SignId = params['SignId']
+          @ApproverRoleName = params['ApproverRoleName']
         end
       end
 
@@ -6689,11 +6776,14 @@ module TencentCloud
 
       # GetTaskResultApi请求参数结构体
       class GetTaskResultApiRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id，通过接口CreateConvertTaskApi或CreateMergeFileTask得到的返回任务id
+        # @param TaskId: 转换任务Id，通过接口<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务接口</a>或<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateMergeFileTask" target="_blank">创建多文件转换任务接口</a>
+        # 得到的转换任务id
         # @type TaskId: String
-        # @param Operator: 操作人信息,UserId必填
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param Organization: 暂未开放
         # @type Organization: :class:`Tencentcloud::Ess.v20201111.models.OrganizationInfo`
@@ -6732,20 +6822,20 @@ module TencentCloud
         # @param TaskId: 任务Id
         # @type TaskId: String
         # @param TaskStatus: 任务状态，需要关注的状态
-        # 0  :NeedTranform   - 任务已提交
-        # 4  :Processing     - 文档转换中
-        # 8  :TaskEnd        - 任务处理完成
-        # -2 :DownloadFailed - 下载失败
-        # -6 :ProcessFailed  - 转换失败
-        # -13:ProcessTimeout - 转换文件超时
+        # <ul><li>**0**  :NeedTranform   - 任务已提交</li>
+        # <li>**4**  :Processing     - 文档转换中</li>
+        # <li>**8**  :TaskEnd        - 任务处理完成</li>
+        # <li>**-2** :DownloadFailed - 下载失败</li>
+        # <li>**-6** :ProcessFailed  - 转换失败</li>
+        # <li>**-13**:ProcessTimeout - 转换文件超时</li></ul>
         # @type TaskStatus: Integer
         # @param TaskMessage: 状态描述，需要关注的状态
-        # NeedTranform   - 任务已提交
-        # Processing     - 文档转换中
-        # TaskEnd        - 任务处理完成
-        # DownloadFailed - 下载失败
-        # ProcessFailed  - 转换失败
-        # ProcessTimeout - 转换文件超时
+        # <ul><li> **NeedTranform** : 任务已提交</li>
+        # <li> **Processing** : 文档转换中</li>
+        # <li> **TaskEnd** : 任务处理完成</li>
+        # <li> **DownloadFailed** : 下载失败</li>
+        # <li> **ProcessFailed** : 转换失败</li>
+        # <li> **ProcessTimeout** : 转换文件超时</li></ul>
         # @type TaskMessage: String
         # @param ResourceId: 资源Id，也是FileId，用于文件发起时使用
         # @type ResourceId: String
@@ -8400,33 +8490,52 @@ module TencentCloud
 
       # UploadFiles请求参数结构体
       class UploadFilesRequest < TencentCloud::Common::AbstractModel
-        # @param BusinessType: 文件对应业务类型
-        # 1. TEMPLATE - 模板； 文件类型：.pdf/.doc/.docx/.html
-        # 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html
-        # 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
+        # @param BusinessType: 文件对应业务类型,可以选择的类型如下
+        # <ul><li> **TEMPLATE** : 此上传的文件用户生成合同模板，文件类型支持.pdf/.doc/.docx/.html格式，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li>
+        # <li> **DOCUMENT** : 此文件用来发起合同流程，文件类型支持.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html，如果非pdf文件需要通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/CreateConvertTaskApi" target="_blank">创建文件转换任务</a>转换后才能使用</li>
+        # <li> **DOCUMENT** : 此文件用于合同图片控件的填充，文件类型支持.jpg/.png</li>
+        # <li> **SEAL** : 此文件用于印章的生成，文件类型支持.jpg/.jpeg/.png</li></ul>
         # @type BusinessType: String
-        # @param Caller: 调用方信息，其中OperatorId为必填字段，即用户的UserId
+        # @param Caller: 执行本接口操作的员工信息。其中OperatorId为必填字段，即用户的UserId。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Caller: :class:`Tencentcloud::Ess.v20201111.models.Caller`
-        # @param FileInfos: 上传文件内容数组，最多支持20个文件
+        # @param FileInfos: 上传文件内容数组，最多支持上传20个文件。
         # @type FileInfos: Array
-        # @param FileType: 文件类型， 默认通过文件内容解析得到文件类型，客户可以显示的说明上传文件的类型。
-        # 如：PDF 表示上传的文件 xxx.pdf的文件类型是 PDF
+        # @param FileType: 文件类型， 默认通过文件内容和文件后缀一起解析得到文件类型，调用接口时可以显示的指定上传文件的类型。
+        # 可支持的指定类型如下:
+        # <ul><li>pdf</li>
+        # <li>doc</li>
+        # <li>docx</li>
+        # <li>xls</li>
+        # <li>xlsx</li>
+        # <li>html</li>
+        # <li>jpg</li>
+        # <li>jpeg</li>
+        # <li>png</li></ul>
+        # 如：pdf 表示上传的文件 张三入职合同.pdf的文件类型是 pdf
         # @type FileType: String
-        # @param CoverRect: 此参数只对 PDF 文件有效。是否将pdf灰色矩阵置白
-        # true--是，处理置白
-        # 默认为false--否，不处理
+        # @param CoverRect: 此参数仅对上传的PDF文件有效。其主要作用是确定是否将PDF中的灰色矩阵置为白色。
+        # <ul><li>**true**：将灰色矩阵置为白色。</li>
+        # <li>**false**：无需处理，不会将灰色矩阵置为白色（默认）。</li></ul>
+
+        # 注: `该参数仅在关键字定位时，需要去除关键字所在的灰框场景下使用。`
         # @type CoverRect: Boolean
         # @param CustomIds: 用户自定义ID数组，与上传文件一一对应
+
+        # 注: `历史遗留问题，已经废弃，调用接口时不用赋值`
         # @type CustomIds: Array
         # @param FileUrls: 不再使用，上传文件链接数组，最多支持20个URL
         # @type FileUrls: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
-        attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls
+        attr_accessor :BusinessType, :Caller, :FileInfos, :FileType, :CoverRect, :CustomIds, :FileUrls, :Agent
         extend Gem::Deprecate
         deprecate :FileUrls, :none, 2023, 9
         deprecate :FileUrls=, :none, 2023, 9
 
-        def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil)
+        def initialize(businesstype=nil, caller=nil, fileinfos=nil, filetype=nil, coverrect=nil, customids=nil, fileurls=nil, agent=nil)
           @BusinessType = businesstype
           @Caller = caller
           @FileInfos = fileinfos
@@ -8434,6 +8543,7 @@ module TencentCloud
           @CoverRect = coverrect
           @CustomIds = customids
           @FileUrls = fileurls
+          @Agent = agent
         end
 
         def deserialize(params)
@@ -8454,12 +8564,17 @@ module TencentCloud
           @CoverRect = params['CoverRect']
           @CustomIds = params['CustomIds']
           @FileUrls = params['FileUrls']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
         end
       end
 
       # UploadFiles返回参数结构体
       class UploadFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FileIds: 文件id数组
+        # @param FileIds: 文件资源ID数组，每个文件资源ID为32位字符串。
+        # 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
         # @type FileIds: Array
         # @param TotalCount: 上传成功文件数量
         # @type TotalCount: Integer
