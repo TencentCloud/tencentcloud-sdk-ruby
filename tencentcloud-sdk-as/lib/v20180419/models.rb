@@ -553,6 +553,42 @@ module TencentCloud
         end
       end
 
+      # CancelInstanceRefresh请求参数结构体
+      class CancelInstanceRefreshRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshActivityId: 刷新活动ID。
+        # @type RefreshActivityId: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshActivityId
+
+        def initialize(autoscalinggroupid=nil, refreshactivityid=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshActivityId = refreshactivityid
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @RefreshActivityId = params['RefreshActivityId']
+        end
+      end
+
+      # CancelInstanceRefresh返回参数结构体
+      class CancelInstanceRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ClearLaunchConfigurationAttributes请求参数结构体
       class ClearLaunchConfigurationAttributesRequest < TencentCloud::Common::AbstractModel
         # @param LaunchConfigurationId: 启动配置ID。
@@ -2162,6 +2198,77 @@ module TencentCloud
         end
       end
 
+      # DescribeRefreshActivities请求参数结构体
+      class DescribeRefreshActivitiesRequest < TencentCloud::Common::AbstractModel
+        # @param RefreshActivityIds: 刷新活动ID列表。ID形如：`asr-5l2ejpfo`。每次请求的上限为100。参数不支持同时指定`RefreshActivityIds`和`Filters`。
+        # @type RefreshActivityIds: Array
+        # @param Filters: 过滤条件。
+        # <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
+        # <li> refresh-activity-status-code - String - 是否必填：否 -（过滤条件）按照刷新活动状态过滤。（INIT：初始化中 | RUNNING：运行中 | SUCCESSFUL：活动成功 | FAILED_PAUSE：失败暂停 | AUTO_PAUSE：自动暂停 | MANUAL_PAUSE：手动暂停 | CANCELLED：活动取消 | FAILED：活动失败）</li>
+        # <li> refresh-activity-type - String - 是否必填：否 -（过滤条件）按照刷新活动类型过滤。（NORMAL：正常刷新活动 | ROLLBACK：回滚刷新活动）</li>
+        # <li> refresh-activity-id - String - 是否必填：否 -（过滤条件）按照刷新活动ID过滤。</li>
+        # <li> 每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定RefreshActivityIds和Filters。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :RefreshActivityIds, :Filters, :Limit, :Offset
+
+        def initialize(refreshactivityids=nil, filters=nil, limit=nil, offset=nil)
+          @RefreshActivityIds = refreshactivityids
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @RefreshActivityIds = params['RefreshActivityIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeRefreshActivities返回参数结构体
+      class DescribeRefreshActivitiesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的刷新活动数量。
+        # @type TotalCount: Integer
+        # @param RefreshActivitySet: 符合条件的刷新活动信息集合。
+        # @type RefreshActivitySet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RefreshActivitySet, :RequestId
+
+        def initialize(totalcount=nil, refreshactivityset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RefreshActivitySet = refreshactivityset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RefreshActivitySet'].nil?
+            @RefreshActivitySet = []
+            params['RefreshActivitySet'].each do |i|
+              refreshactivity_tmp = RefreshActivity.new
+              refreshactivity_tmp.deserialize(i)
+              @RefreshActivitySet << refreshactivity_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScalingPolicies请求参数结构体
       class DescribeScalingPoliciesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingPolicyIds: 按照一个或者多个告警策略ID查询。告警策略ID形如：asp-i9vkg894。每次请求的实例的上限为100。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
@@ -2571,6 +2678,47 @@ module TencentCloud
       # ExecuteScalingPolicy返回参数结构体
       class ExecuteScalingPolicyResponse < TencentCloud::Common::AbstractModel
         # @param ActivityId: 伸缩活动ID
+        # @type ActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivityId, :RequestId
+
+        def initialize(activityid=nil, requestid=nil)
+          @ActivityId = activityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExitStandby请求参数结构体
+      class ExitStandbyRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组 ID。
+        # @type AutoScalingGroupId: String
+        # @param InstanceIds: 备用中状态 CVM 实例列表。
+        # @type InstanceIds: Array
+
+        attr_accessor :AutoScalingGroupId, :InstanceIds
+
+        def initialize(autoscalinggroupid=nil, instanceids=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # ExitStandby返回参数结构体
+      class ExitStandbyResponse < TencentCloud::Common::AbstractModel
+        # @param ActivityId: 伸缩活动ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4178,6 +4326,177 @@ module TencentCloud
         end
       end
 
+      # 实例刷新活动。
+      class RefreshActivity < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组 ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshActivityId: 刷新活动 ID。
+        # @type RefreshActivityId: String
+        # @param OriginRefreshActivityId: 原始刷新活动ID，仅在回滚刷新活动中存在。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginRefreshActivityId: String
+        # @param RefreshBatchSet: 刷新批次信息列表。
+        # @type RefreshBatchSet: Array
+        # @param RefreshMode: 刷新模式。
+        # @type RefreshMode: String
+        # @param RefreshSettings: 实例更新设置参数。
+        # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
+        # @param ActivityType: 刷新活动类型。取值如下：<br><li>NORMAL：正常刷新活动</li><li>ROLLBACK：回滚刷新活动
+        # @type ActivityType: String
+        # @param Status: 刷新活动状态。取值如下：<br><li>INIT：初始化中</li><li>RUNNING：运行中</li><li>SUCCESSFUL：活动成功</li><li>FAILED_PAUSE：因刷新批次失败暂停</li><li>AUTO_PAUSE：因暂停策略自动暂停</li><li>MANUAL_PAUSE：手动暂停</li><li>CANCELLED：活动取消</li><li>FAILED：活动失败
+        # @type Status: String
+        # @param CurrentRefreshBatchNum: 当前刷新批次序号。例如，2 表示当前活动正在刷新第二批次的实例。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentRefreshBatchNum: Integer
+        # @param StartTime: 刷新活动开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 刷新活动结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CreatedTime: 刷新活动创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshActivityId, :OriginRefreshActivityId, :RefreshBatchSet, :RefreshMode, :RefreshSettings, :ActivityType, :Status, :CurrentRefreshBatchNum, :StartTime, :EndTime, :CreatedTime
+
+        def initialize(autoscalinggroupid=nil, refreshactivityid=nil, originrefreshactivityid=nil, refreshbatchset=nil, refreshmode=nil, refreshsettings=nil, activitytype=nil, status=nil, currentrefreshbatchnum=nil, starttime=nil, endtime=nil, createdtime=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshActivityId = refreshactivityid
+          @OriginRefreshActivityId = originrefreshactivityid
+          @RefreshBatchSet = refreshbatchset
+          @RefreshMode = refreshmode
+          @RefreshSettings = refreshsettings
+          @ActivityType = activitytype
+          @Status = status
+          @CurrentRefreshBatchNum = currentrefreshbatchnum
+          @StartTime = starttime
+          @EndTime = endtime
+          @CreatedTime = createdtime
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @RefreshActivityId = params['RefreshActivityId']
+          @OriginRefreshActivityId = params['OriginRefreshActivityId']
+          unless params['RefreshBatchSet'].nil?
+            @RefreshBatchSet = []
+            params['RefreshBatchSet'].each do |i|
+              refreshbatch_tmp = RefreshBatch.new
+              refreshbatch_tmp.deserialize(i)
+              @RefreshBatchSet << refreshbatch_tmp
+            end
+          end
+          @RefreshMode = params['RefreshMode']
+          unless params['RefreshSettings'].nil?
+            @RefreshSettings = RefreshSettings.new
+            @RefreshSettings.deserialize(params['RefreshSettings'])
+          end
+          @ActivityType = params['ActivityType']
+          @Status = params['Status']
+          @CurrentRefreshBatchNum = params['CurrentRefreshBatchNum']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CreatedTime = params['CreatedTime']
+        end
+      end
+
+      # 实例刷新批次信息，包含该批次的刷新状态、实例、起止时间等信息。
+      class RefreshBatch < TencentCloud::Common::AbstractModel
+        # @param RefreshBatchNum: 刷新批次序号。例如，2 表示当前批次实例会在第二批次进行实例刷新。
+        # @type RefreshBatchNum: Integer
+        # @param RefreshBatchStatus: 刷新批次状态。取值如下：<br><li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED:  刷新失败</li><li>PARTIALLY_SUCCESSFUL：批次部分成功</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功
+        # @type RefreshBatchStatus: String
+        # @param RefreshBatchRelatedInstanceSet: 刷新批次关联实例列表。
+        # @type RefreshBatchRelatedInstanceSet: Array
+        # @param StartTime: 刷新批次开始时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 刷新批次结束时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+
+        attr_accessor :RefreshBatchNum, :RefreshBatchStatus, :RefreshBatchRelatedInstanceSet, :StartTime, :EndTime
+
+        def initialize(refreshbatchnum=nil, refreshbatchstatus=nil, refreshbatchrelatedinstanceset=nil, starttime=nil, endtime=nil)
+          @RefreshBatchNum = refreshbatchnum
+          @RefreshBatchStatus = refreshbatchstatus
+          @RefreshBatchRelatedInstanceSet = refreshbatchrelatedinstanceset
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @RefreshBatchNum = params['RefreshBatchNum']
+          @RefreshBatchStatus = params['RefreshBatchStatus']
+          unless params['RefreshBatchRelatedInstanceSet'].nil?
+            @RefreshBatchRelatedInstanceSet = []
+            params['RefreshBatchRelatedInstanceSet'].each do |i|
+              refreshbatchrelatedinstance_tmp = RefreshBatchRelatedInstance.new
+              refreshbatchrelatedinstance_tmp.deserialize(i)
+              @RefreshBatchRelatedInstanceSet << refreshbatchrelatedinstance_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # 刷新批次关联实例，包含单个实例的刷新活动状态、对应伸缩活动等信息。
+      class RefreshBatchRelatedInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param InstanceStatus: 刷新实例状态。如果在刷新时实例被移出或销毁，状态会更新为 NOT_FOUND。取值如下：<br><li>WAITING：待刷新</li><li>INIT：初始化中</li><li>RUNNING：刷新中</li><li>FAILED：刷新失败</li><li>CANCELLED：已取消</li><li>SUCCESSFUL：刷新成功</li><li>NOT_FOUND：实例不存在
+        # @type InstanceStatus: String
+        # @param LastActivityId: 实例刷新中最近一次伸缩活动 ID，可通过 DescribeAutoScalingActivities 接口查询。
+        # 需注意伸缩活动与实例刷新活动不同，一次实例刷新活动可能包括多次伸缩活动。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastActivityId: String
+        # @param InstanceStatusMessage: 实例刷新状态信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatusMessage: String
+
+        attr_accessor :InstanceId, :InstanceStatus, :LastActivityId, :InstanceStatusMessage
+
+        def initialize(instanceid=nil, instancestatus=nil, lastactivityid=nil, instancestatusmessage=nil)
+          @InstanceId = instanceid
+          @InstanceStatus = instancestatus
+          @LastActivityId = lastactivityid
+          @InstanceStatusMessage = instancestatusmessage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceStatus = params['InstanceStatus']
+          @LastActivityId = params['LastActivityId']
+          @InstanceStatusMessage = params['InstanceStatusMessage']
+        end
+      end
+
+      # 实例刷新设置。
+      class RefreshSettings < TencentCloud::Common::AbstractModel
+        # @param RollingUpdateSettings: 滚动更新设置参数。RefreshMode 为滚动更新该参数必须填写。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollingUpdateSettings: :class:`Tencentcloud::As.v20180419.models.RollingUpdateSettings`
+        # @param CheckInstanceTargetHealth: 实例后端服务健康状态检查，默认为 FALSE。仅针对绑定应用型负载均衡器的伸缩组生效，开启该检查后，如刷新后实例未通过检查，负载均衡器端口权重始终为 0，且标记为刷新失败。取值范围如下：<br><li>TRUE：开启检查</li><li>FALSE：不开启检查
+        # @type CheckInstanceTargetHealth: Boolean
+
+        attr_accessor :RollingUpdateSettings, :CheckInstanceTargetHealth
+
+        def initialize(rollingupdatesettings=nil, checkinstancetargethealth=nil)
+          @RollingUpdateSettings = rollingupdatesettings
+          @CheckInstanceTargetHealth = checkinstancetargethealth
+        end
+
+        def deserialize(params)
+          unless params['RollingUpdateSettings'].nil?
+            @RollingUpdateSettings = RollingUpdateSettings.new
+            @RollingUpdateSettings.deserialize(params['RollingUpdateSettings'])
+          end
+          @CheckInstanceTargetHealth = params['CheckInstanceTargetHealth']
+        end
+      end
+
       # 与本次伸缩活动相关的实例信息。
       class RelatedInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -4239,6 +4558,117 @@ module TencentCloud
         def deserialize(params)
           @ActivityId = params['ActivityId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeInstanceRefresh请求参数结构体
+      class ResumeInstanceRefreshRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshActivityId: 刷新活动ID。
+        # @type RefreshActivityId: String
+        # @param ResumeMode: 当前批次刷新失败实例的恢复方式，如不存在失败实例，该参数无效。默认值为RETRY，取值范围如下：<br><li>RETRY: 重试当前批次刷新失败实例</li><li>CONTINUE: 跳过当前批次刷新失败实例
+        # @type ResumeMode: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshActivityId, :ResumeMode
+
+        def initialize(autoscalinggroupid=nil, refreshactivityid=nil, resumemode=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshActivityId = refreshactivityid
+          @ResumeMode = resumemode
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @RefreshActivityId = params['RefreshActivityId']
+          @ResumeMode = params['ResumeMode']
+        end
+      end
+
+      # ResumeInstanceRefresh返回参数结构体
+      class ResumeInstanceRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollbackInstanceRefresh请求参数结构体
+      class RollbackInstanceRefreshRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshSettings: 刷新设置。
+        # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
+        # @param OriginRefreshActivityId: 原始刷新活动 ID。
+        # @type OriginRefreshActivityId: String
+        # @param RefreshMode: 刷新模式，目前仅支持滚动更新，默认值为 ROLLING_UPDATE_RESET。
+        # @type RefreshMode: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshSettings, :OriginRefreshActivityId, :RefreshMode
+
+        def initialize(autoscalinggroupid=nil, refreshsettings=nil, originrefreshactivityid=nil, refreshmode=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshSettings = refreshsettings
+          @OriginRefreshActivityId = originrefreshactivityid
+          @RefreshMode = refreshmode
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          unless params['RefreshSettings'].nil?
+            @RefreshSettings = RefreshSettings.new
+            @RefreshSettings.deserialize(params['RefreshSettings'])
+          end
+          @OriginRefreshActivityId = params['OriginRefreshActivityId']
+          @RefreshMode = params['RefreshMode']
+        end
+      end
+
+      # RollbackInstanceRefresh返回参数结构体
+      class RollbackInstanceRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param RefreshActivityId: 刷新活动 ID。
+        # @type RefreshActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RefreshActivityId, :RequestId
+
+        def initialize(refreshactivityid=nil, requestid=nil)
+          @RefreshActivityId = refreshactivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RefreshActivityId = params['RefreshActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 滚动更新设置。
+      class RollingUpdateSettings < TencentCloud::Common::AbstractModel
+        # @param BatchNumber: 批次数量。批次数量为大于 0 的正整数，但不能大于待刷新实例数量。
+        # @type BatchNumber: Integer
+        # @param BatchPause: 批次间暂停策略。默认值为 Automatic，取值范围如下：<br><li>FIRST_BATCH_PAUSE：第一批次更新完成后暂停</li><li>BATCH_INTERVAL_PAUSE：批次间暂停</li><li>AUTOMATIC：不暂停
+        # @type BatchPause: String
+
+        attr_accessor :BatchNumber, :BatchPause
+
+        def initialize(batchnumber=nil, batchpause=nil)
+          @BatchNumber = batchnumber
+          @BatchPause = batchpause
+        end
+
+        def deserialize(params)
+          @BatchNumber = params['BatchNumber']
+          @BatchPause = params['BatchPause']
         end
       end
 
@@ -4681,6 +5111,53 @@ module TencentCloud
         end
       end
 
+      # StartInstanceRefresh请求参数结构体
+      class StartInstanceRefreshRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshSettings: 刷新设置。
+        # @type RefreshSettings: :class:`Tencentcloud::As.v20180419.models.RefreshSettings`
+        # @param RefreshMode: 刷新模式，目前仅支持滚动更新，默认值为 ROLLING_UPDATE_RESET。
+        # @type RefreshMode: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshSettings, :RefreshMode
+
+        def initialize(autoscalinggroupid=nil, refreshsettings=nil, refreshmode=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshSettings = refreshsettings
+          @RefreshMode = refreshmode
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          unless params['RefreshSettings'].nil?
+            @RefreshSettings = RefreshSettings.new
+            @RefreshSettings.deserialize(params['RefreshSettings'])
+          end
+          @RefreshMode = params['RefreshMode']
+        end
+      end
+
+      # StartInstanceRefresh返回参数结构体
+      class StartInstanceRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param RefreshActivityId: 刷新活动 ID。
+        # @type RefreshActivityId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RefreshActivityId, :RequestId
+
+        def initialize(refreshactivityid=nil, requestid=nil)
+          @RefreshActivityId = refreshactivityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RefreshActivityId = params['RefreshActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopAutoScalingInstances请求参数结构体
       class StopAutoScalingInstancesRequest < TencentCloud::Common::AbstractModel
         # @param AutoScalingGroupId: 伸缩组ID
@@ -4724,6 +5201,42 @@ module TencentCloud
 
         def deserialize(params)
           @ActivityId = params['ActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopInstanceRefresh请求参数结构体
+      class StopInstanceRefreshRequest < TencentCloud::Common::AbstractModel
+        # @param AutoScalingGroupId: 伸缩组ID。
+        # @type AutoScalingGroupId: String
+        # @param RefreshActivityId: 刷新活动ID。
+        # @type RefreshActivityId: String
+
+        attr_accessor :AutoScalingGroupId, :RefreshActivityId
+
+        def initialize(autoscalinggroupid=nil, refreshactivityid=nil)
+          @AutoScalingGroupId = autoscalinggroupid
+          @RefreshActivityId = refreshactivityid
+        end
+
+        def deserialize(params)
+          @AutoScalingGroupId = params['AutoScalingGroupId']
+          @RefreshActivityId = params['RefreshActivityId']
+        end
+      end
+
+      # StopInstanceRefresh返回参数结构体
+      class StopInstanceRefreshResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

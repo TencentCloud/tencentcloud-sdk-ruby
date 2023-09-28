@@ -2358,6 +2358,30 @@ module TencentCloud
         end
       end
 
+      # 安全网关自定义头部
+      class CustomHeader < TencentCloud::Common::AbstractModel
+        # @param RequestToAddList: 请求添加头部配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestToAddList: Array
+
+        attr_accessor :RequestToAddList
+
+        def initialize(requesttoaddlist=nil)
+          @RequestToAddList = requesttoaddlist
+        end
+
+        def deserialize(params)
+          unless params['RequestToAddList'].nil?
+            @RequestToAddList = []
+            params['RequestToAddList'].each do |i|
+              customrequesttoadd_tmp = CustomRequestToAdd.new
+              customrequesttoadd_tmp.deserialize(i)
+              @RequestToAddList << customrequesttoadd_tmp
+            end
+          end
+        end
+      end
+
       # 安全网关自定义日志配置
       class CustomLogConfig < TencentCloud::Common::AbstractModel
         # @param NeedReqBodyLog: 是否需要请求体
@@ -2391,6 +2415,33 @@ module TencentCloud
           @NeedRspHeaderLog = params['NeedRspHeaderLog']
           @LogSetId = params['LogSetId']
           @LogTopicId = params['LogTopicId']
+        end
+      end
+
+      # 安全网关请求自定义头部
+      class CustomRequestToAdd < TencentCloud::Common::AbstractModel
+        # @param Key: Header名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: Header值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param AppendAction: Header类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppendAction: String
+
+        attr_accessor :Key, :Value, :AppendAction
+
+        def initialize(key=nil, value=nil, appendaction=nil)
+          @Key = key
+          @Value = value
+          @AppendAction = appendaction
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @AppendAction = params['AppendAction']
         end
       end
 
@@ -8744,10 +8795,13 @@ module TencentCloud
         # @param GatewayRoutePathMatchType: 路径匹配类型，支持prefix(前缀匹配)，regex(正则匹配)， 默认prefix
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayRoutePathMatchType: String
+        # @param CustomHeader: 安全网关自定义头部
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomHeader: :class:`Tencentcloud::Tcb.v20180608.models.CustomHeader`
 
-        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId, :GatewayRoutePathMatchType
+        attr_accessor :GatewayRouteName, :GatewayRouteProtocol, :GatewayRouteAddr, :GatewayRouteDesc, :GatewayRouteClusterId, :GatewayRouteCreateTime, :FrequencyLimitConfig, :GatewayRouteServerType, :GatewayRouteServerName, :GatewayRewriteHost, :GatewayVersion, :GatewayRoutePath, :GatewayRouteMethod, :GatewayRoutePort, :GatewayRouteEnvId, :GatewayRoutePathMatchType, :CustomHeader
 
-        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil, gatewayrouteenvid=nil, gatewayroutepathmatchtype=nil)
+        def initialize(gatewayroutename=nil, gatewayrouteprotocol=nil, gatewayrouteaddr=nil, gatewayroutedesc=nil, gatewayrouteclusterid=nil, gatewayroutecreatetime=nil, frequencylimitconfig=nil, gatewayrouteservertype=nil, gatewayrouteservername=nil, gatewayrewritehost=nil, gatewayversion=nil, gatewayroutepath=nil, gatewayroutemethod=nil, gatewayrouteport=nil, gatewayrouteenvid=nil, gatewayroutepathmatchtype=nil, customheader=nil)
           @GatewayRouteName = gatewayroutename
           @GatewayRouteProtocol = gatewayrouteprotocol
           @GatewayRouteAddr = gatewayrouteaddr
@@ -8764,6 +8818,7 @@ module TencentCloud
           @GatewayRoutePort = gatewayrouteport
           @GatewayRouteEnvId = gatewayrouteenvid
           @GatewayRoutePathMatchType = gatewayroutepathmatchtype
+          @CustomHeader = customheader
         end
 
         def deserialize(params)
@@ -8790,6 +8845,10 @@ module TencentCloud
           @GatewayRoutePort = params['GatewayRoutePort']
           @GatewayRouteEnvId = params['GatewayRouteEnvId']
           @GatewayRoutePathMatchType = params['GatewayRoutePathMatchType']
+          unless params['CustomHeader'].nil?
+            @CustomHeader = CustomHeader.new
+            @CustomHeader.deserialize(params['CustomHeader'])
+          end
         end
       end
 

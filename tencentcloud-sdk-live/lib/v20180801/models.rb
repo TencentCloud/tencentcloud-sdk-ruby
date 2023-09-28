@@ -9268,6 +9268,9 @@ module TencentCloud
         # 注意：
         # 1. 单位：秒，配合FileIndex使用。
         # @type OffsetTime: Integer
+        # @param ToUrl: 目标 Url。
+        # 换目标地址，会断流重推到新地址。
+        # @type ToUrl: String
         # @param Comment: 任务备注。
         # @type Comment: String
         # @param BackupSourceType: 备源的类型：
@@ -9298,9 +9301,9 @@ module TencentCloud
         # 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
         # @type VodLocalMode: Integer
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
 
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -9313,6 +9316,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @FileIndex = fileindex
           @OffsetTime = offsettime
+          @ToUrl = tourl
           @Comment = comment
           @BackupSourceType = backupsourcetype
           @BackupSourceUrl = backupsourceurl
@@ -9333,6 +9337,7 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @FileIndex = params['FileIndex']
           @OffsetTime = params['OffsetTime']
+          @ToUrl = params['ToUrl']
           @Comment = params['Comment']
           @BackupSourceType = params['BackupSourceType']
           @BackupSourceUrl = params['BackupSourceUrl']

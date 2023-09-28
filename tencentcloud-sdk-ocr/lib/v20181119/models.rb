@@ -3519,7 +3519,7 @@ module TencentCloud
         # @type Confidence: Integer
         # @param Rect: 文本行在原图片中的像素坐标框。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”。
+        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”、“喷漆”、“其它”。
         # @type Color: String
 
         attr_accessor :Number, :Confidence, :Rect, :Color
@@ -3577,7 +3577,7 @@ module TencentCloud
         # @type Confidence: Integer
         # @param Rect: 文本行在原图片中的像素坐标框。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”。
+        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”、“喷漆”、“其它”。
         # @type Color: String
         # @param LicensePlateInfos: 全部车牌信息。
         # @type LicensePlateInfos: Array

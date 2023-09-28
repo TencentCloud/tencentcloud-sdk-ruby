@@ -3011,6 +3011,63 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationInfoChangeUrl请求参数结构体
+      class CreateOrganizationInfoChangeUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ChangeType: 企业信息变更类型，可选类型如下：
+        # <ul><li>**1**：企业超管变更</li><li>**2**：企业基础信息变更</li></ul>
+        # @type ChangeType: Integer
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :ChangeType, :Agent
+
+        def initialize(operator=nil, changetype=nil, agent=nil)
+          @Operator = operator
+          @ChangeType = changetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ChangeType = params['ChangeType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateOrganizationInfoChangeUrl返回参数结构体
+      class CreateOrganizationInfoChangeUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 创建的企业信息变更链接。
+        # @type Url: String
+        # @param ExpiredTime: 链接过期时间。链接7天有效。
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :ExpiredTime, :RequestId
+
+        def initialize(url=nil, expiredtime=nil, requestid=nil)
+          @Url = url
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ExpiredTime = params['ExpiredTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePersonAuthCertificateImage请求参数结构体
       class CreatePersonAuthCertificateImageRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。

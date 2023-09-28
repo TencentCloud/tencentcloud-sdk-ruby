@@ -4672,27 +4672,69 @@ module TencentCloud
 
       # CreateVpcPeeringConnection请求参数结构体
       class CreateVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param SourceVpcId: 本端VPC唯一ID。
+        # @type SourceVpcId: String
+        # @param PeeringConnectionName: 对等连接名称。
+        # @type PeeringConnectionName: String
+        # @param DestinationVpcId: 对端VPC唯一ID。
+        # @type DestinationVpcId: String
+        # @param DestinationUin: 对端用户UIN。
+        # @type DestinationUin: String
+        # @param DestinationRegion: 对端地域。
+        # @type DestinationRegion: String
+        # @param Bandwidth: 带宽上限，单位Mbps。
+        # @type Bandwidth: Integer
+        # @param Type: 互通类型，VPC_PEER：VPC间互通；VPC_BM_PEER：VPC与黑石网络互通。
+        # @type Type: String
+        # @param ChargeType: 计费模式，日峰值POSTPAID_BY_DAY_MAX，月95POSTPAID_BY_MONTH_95。
+        # @type ChargeType: String
+        # @param QosLevel: 服务分级：PT、AU、AG。
+        # @type QosLevel: String
 
+        attr_accessor :SourceVpcId, :PeeringConnectionName, :DestinationVpcId, :DestinationUin, :DestinationRegion, :Bandwidth, :Type, :ChargeType, :QosLevel
 
-        def initialize()
+        def initialize(sourcevpcid=nil, peeringconnectionname=nil, destinationvpcid=nil, destinationuin=nil, destinationregion=nil, bandwidth=nil, type=nil, chargetype=nil, qoslevel=nil)
+          @SourceVpcId = sourcevpcid
+          @PeeringConnectionName = peeringconnectionname
+          @DestinationVpcId = destinationvpcid
+          @DestinationUin = destinationuin
+          @DestinationRegion = destinationregion
+          @Bandwidth = bandwidth
+          @Type = type
+          @ChargeType = chargetype
+          @QosLevel = qoslevel
         end
 
         def deserialize(params)
+          @SourceVpcId = params['SourceVpcId']
+          @PeeringConnectionName = params['PeeringConnectionName']
+          @DestinationVpcId = params['DestinationVpcId']
+          @DestinationUin = params['DestinationUin']
+          @DestinationRegion = params['DestinationRegion']
+          @Bandwidth = params['Bandwidth']
+          @Type = params['Type']
+          @ChargeType = params['ChargeType']
+          @QosLevel = params['QosLevel']
         end
       end
 
       # CreateVpcPeeringConnection返回参数结构体
       class CreateVpcPeeringConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionId: 对等连接ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeeringConnectionId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :PeeringConnectionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(peeringconnectionid=nil, requestid=nil)
+          @PeeringConnectionId = peeringconnectionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @PeeringConnectionId = params['PeeringConnectionId']
           @RequestId = params['RequestId']
         end
       end
@@ -16810,12 +16852,29 @@ module TencentCloud
 
       # ModifyVpcPeeringConnection请求参数结构体
       class ModifyVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionId: 对等连接ID。
+        # @type PeeringConnectionId: String
+        # @param PeeringConnectionName: 对等连接名称。
+        # @type PeeringConnectionName: String
+        # @param Bandwidth: 带宽上限，单位Mbps。
+        # @type Bandwidth: Integer
+        # @param ChargeType: 计费模式，日峰值POSTPAID_BY_DAY_MAX，月95 POSTPAID_BY_MONTH_95。
+        # @type ChargeType: String
 
+        attr_accessor :PeeringConnectionId, :PeeringConnectionName, :Bandwidth, :ChargeType
 
-        def initialize()
+        def initialize(peeringconnectionid=nil, peeringconnectionname=nil, bandwidth=nil, chargetype=nil)
+          @PeeringConnectionId = peeringconnectionid
+          @PeeringConnectionName = peeringconnectionname
+          @Bandwidth = bandwidth
+          @ChargeType = chargetype
         end
 
         def deserialize(params)
+          @PeeringConnectionId = params['PeeringConnectionId']
+          @PeeringConnectionName = params['PeeringConnectionName']
+          @Bandwidth = params['Bandwidth']
+          @ChargeType = params['ChargeType']
         end
       end
 
@@ -18255,12 +18314,17 @@ module TencentCloud
 
       # RejectVpcPeeringConnection请求参数结构体
       class RejectVpcPeeringConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param PeeringConnectionId: 对等连接唯一ID。
+        # @type PeeringConnectionId: String
 
+        attr_accessor :PeeringConnectionId
 
-        def initialize()
+        def initialize(peeringconnectionid=nil)
+          @PeeringConnectionId = peeringconnectionid
         end
 
         def deserialize(params)
+          @PeeringConnectionId = params['PeeringConnectionId']
         end
       end
 

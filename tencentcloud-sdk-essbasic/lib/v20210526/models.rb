@@ -3674,6 +3674,33 @@ module TencentCloud
         end
       end
 
+      # CreateChannelOrganizationInfoChangeUrl请求参数结构体
+      class CreateChannelOrganizationInfoChangeUrlRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateChannelOrganizationInfoChangeUrl返回参数结构体
+      class CreateChannelOrganizationInfoChangeUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConsoleLoginUrl请求参数结构体
       class CreateConsoleLoginUrlRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用信息

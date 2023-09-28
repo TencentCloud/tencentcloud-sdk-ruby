@@ -711,6 +711,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateOrganizationInfoChangeUrl）用于创建企业信息变更链接，支持创建企业超管变更链接或企业基础信息变更链接，通过入参ChangeType指定。
+
+        # @param request: Request instance for CreateOrganizationInfoChangeUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateOrganizationInfoChangeUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateOrganizationInfoChangeUrlResponse`
+        def CreateOrganizationInfoChangeUrl(request)
+          body = send_request('CreateOrganizationInfoChangeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrganizationInfoChangeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取个人用户认证证书图片下载URL
 
         # 个人用户认证证书图片样式如下图

@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateChannelOrganizationInfoChangeUrl）用于创建子客企业信息变更链接，支持创建企业超管变更链接或企业基础信息变更链接，通过入参ChangeType指定。
+
+        # @param request: Request instance for CreateChannelOrganizationInfoChangeUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreateChannelOrganizationInfoChangeUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreateChannelOrganizationInfoChangeUrlResponse`
+        def CreateChannelOrganizationInfoChangeUrl(request)
+          body = send_request('CreateChannelOrganizationInfoChangeUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateChannelOrganizationInfoChangeUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。支持web控制台、电子签小程序和H5链接。登录链接是进入子客控制台的唯一入口。
         # 链接访问后，会根据企业的和员工的状态（企业根据ProxyOrganizationOpenId参数，员工根据OpenId参数判断），进入不同的流程，主要情况分类如下：
         # 1. 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。

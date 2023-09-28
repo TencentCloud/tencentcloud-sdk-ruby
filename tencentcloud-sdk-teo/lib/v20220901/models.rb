@@ -8385,14 +8385,7 @@ module TencentCloud
         # <li> exist: 存在； </li>
         # <li> notexist: 不存在。</li>
         # @type Operator: String
-        # @param Target: 匹配类型，取值有：
-        # <li> filename：文件名； </li>
-        # <li> extension：文件后缀； </li>
-        # <li> host：HOST； </li>
-        # <li> full_url：URL Full，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径； </li>
-        # <li> url：URL Path，当前站点下 URL 路径的请求； </li><li>client_country：客户端国家/地区；</li>
-        # <li> query_string：查询字符串，当前站点下请求URL的查询字符串； </li>
-        # <li> request_header：HTTP请求头部。 </li>
+        # @param Target: 匹配类型，取值有： <li> filename：文件名； </li> <li> extension：文件后缀； </li> <li> host：HOST； </li> <li> full_url：URL Full，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径； </li> <li> url：URL Path，当前站点下 URL 路径的请求； </li><li>client_country：客户端国家/地区；</li> <li> query_string：查询字符串，当前站点下请求URL的查询字符串； </li> <li> request_header：HTTP请求头部。 </li>
         # @type Target: String
         # @param Values: 对应匹配类型的参数值，仅在匹配类型为查询字符串或HTTP请求头并且运算符取值为存在或不存在时允许传空数组，对应匹配类型有：
         # <li> 文件后缀：jpg、txt等文件后缀；</li>
@@ -8416,6 +8409,9 @@ module TencentCloud
         # @type IgnoreNameCase: Boolean
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
+        extend Gem::Deprecate
+        deprecate :IgnoreNameCase, :none, 2023, 9
+        deprecate :IgnoreNameCase=, :none, 2023, 9
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

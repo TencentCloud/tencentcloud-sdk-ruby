@@ -5639,10 +5639,12 @@ module TencentCloud
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
         # @param ResilientStream: 延播平滑吐流配置信息。
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
+        # @param SecurityGroupIds: 绑定的输入安全组 ID。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
 
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -5654,6 +5656,7 @@ module TencentCloud
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -5686,6 +5689,7 @@ module TencentCloud
             @ResilientStream = ResilientStreamConf.new
             @ResilientStream.deserialize(params['ResilientStream'])
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -5854,10 +5858,12 @@ module TencentCloud
         # @type AllowIpList: Array
         # @param MaxConcurrent: 最大拉流并发数，最大4，默认4。
         # @type MaxConcurrent: Integer
+        # @param SecurityGroupIds: 绑定的输入安全组 ID。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -5867,6 +5873,7 @@ module TencentCloud
           @RTPSettings = rtpsettings
           @AllowIpList = allowiplist
           @MaxConcurrent = maxconcurrent
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -5888,6 +5895,7 @@ module TencentCloud
           end
           @AllowIpList = params['AllowIpList']
           @MaxConcurrent = params['MaxConcurrent']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -7996,10 +8004,13 @@ module TencentCloud
         # @param ResilientStream: 延播平滑吐流配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
+        # @param SecurityGroupIds: 绑定的输入安全组 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
+        attr_accessor :InputId, :InputName, :Description, :Protocol, :InputAddressList, :AllowIpList, :SRTSettings, :RTPSettings, :InputRegion, :RTMPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
 
-        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, protocol=nil, inputaddresslist=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, inputregion=nil, rtmpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -8015,6 +8026,7 @@ module TencentCloud
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -8061,6 +8073,7 @@ module TencentCloud
             @ResilientStream = ResilientStreamConf.new
             @ResilientStream.deserialize(params['ResilientStream'])
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -8316,10 +8329,13 @@ module TencentCloud
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.DescribeOutputHLSPullSettings`
         # @param MaxConcurrent: 最大拉流并发数，最大为4，默认4。
         # @type MaxConcurrent: Integer
+        # @param SecurityGroupIds: 绑定的安全组 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent
+        attr_accessor :OutputId, :OutputName, :OutputType, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -8335,6 +8351,7 @@ module TencentCloud
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
           @MaxConcurrent = maxconcurrent
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -8378,6 +8395,7 @@ module TencentCloud
             @HLSPullSettings.deserialize(params['HLSPullSettings'])
           end
           @MaxConcurrent = params['MaxConcurrent']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -14650,10 +14668,12 @@ module TencentCloud
         # @type HLSPullSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputHLSPullSettings`
         # @param ResilientStream: 延播平滑吐流配置信息。
         # @type ResilientStream: :class:`Tencentcloud::Mps.v20190612.models.ResilientStreamConf`
+        # @param SecurityGroupIds: 绑定的输入安全组 ID。 仅支持关联一组安全组。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds
 
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -14666,6 +14686,7 @@ module TencentCloud
           @RTSPPullSettings = rtsppullsettings
           @HLSPullSettings = hlspullsettings
           @ResilientStream = resilientstream
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -14699,6 +14720,7 @@ module TencentCloud
             @ResilientStream = ResilientStreamConf.new
             @ResilientStream.deserialize(params['ResilientStream'])
           end
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -14723,10 +14745,12 @@ module TencentCloud
         # @type AllowIpList: Array
         # @param MaxConcurrent: 最大拉流并发数，最大4，默认4。
         # @type MaxConcurrent: Integer
+        # @param SecurityGroupIds: 绑定的安全组 ID。 仅支持关联一组安全组。
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -14736,6 +14760,7 @@ module TencentCloud
           @RTMPSettings = rtmpsettings
           @AllowIpList = allowiplist
           @MaxConcurrent = maxconcurrent
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -14757,6 +14782,7 @@ module TencentCloud
           end
           @AllowIpList = params['AllowIpList']
           @MaxConcurrent = params['MaxConcurrent']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -15659,8 +15685,10 @@ module TencentCloud
       # SRT输出的监听地址。
       class OutputSRTSourceAddressResp < TencentCloud::Common::AbstractModel
         # @param Ip: 监听IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 监听端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
 
         attr_accessor :Ip, :Port
@@ -17418,8 +17446,10 @@ module TencentCloud
       # SRT输入源地址。
       class SRTSourceAddressResp < TencentCloud::Common::AbstractModel
         # @param Ip: 对端IP。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ip: String
         # @param Port: 对端端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
 
         attr_accessor :Ip, :Port

@@ -348,6 +348,28 @@ module TencentCloud
         end
       end
 
+      # 集群id与流程id的mapping
+      class ClusterIDToFlowID < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param FlowId: 流程id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+
+        attr_accessor :ClusterId, :FlowId
+
+        def initialize(clusterid=nil, flowid=nil)
+          @ClusterId = clusterid
+          @FlowId = flowid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @FlowId = params['FlowId']
+        end
+      end
+
       # 集群实例信息
       class ClusterInstancesInfo < TencentCloud::Common::AbstractModel
         # @param Id: ID号
@@ -1002,8 +1024,8 @@ module TencentCloud
         # @param CbsEncrypt: 集群维度CBS加密盘，默认0表示不加密，1表示加密
         # @type CbsEncrypt: Integer
         # @param MetaType: hive共享元数据库类型。取值范围：
-        # <li>EMR_NEW_META：表示集群默认创建</li>
-        # <li>EMR_EXIT_META：表示集群使用指定EMR-MetaDB。</li>
+        # <li>EMR_DEFAULT_META：表示集群默认创建</li>
+        # <li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li>
         # <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
         # @type MetaType: String
         # @param UnifyMetaInstanceId: EMR-MetaDB实例
@@ -3891,15 +3913,19 @@ module TencentCloud
         # @param PartSuccessList: 部分成功的资源id列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartSuccessList: Array
+        # @param ClusterToFlowIdList: 集群id与流程id的映射列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterToFlowIdList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessList, :FailList, :PartSuccessList, :RequestId
+        attr_accessor :SuccessList, :FailList, :PartSuccessList, :ClusterToFlowIdList, :RequestId
 
-        def initialize(successlist=nil, faillist=nil, partsuccesslist=nil, requestid=nil)
+        def initialize(successlist=nil, faillist=nil, partsuccesslist=nil, clustertoflowidlist=nil, requestid=nil)
           @SuccessList = successlist
           @FailList = faillist
           @PartSuccessList = partsuccesslist
+          @ClusterToFlowIdList = clustertoflowidlist
           @RequestId = requestid
         end
 
@@ -3907,6 +3933,14 @@ module TencentCloud
           @SuccessList = params['SuccessList']
           @FailList = params['FailList']
           @PartSuccessList = params['PartSuccessList']
+          unless params['ClusterToFlowIdList'].nil?
+            @ClusterToFlowIdList = []
+            params['ClusterToFlowIdList'].each do |i|
+              clusteridtoflowid_tmp = ClusterIDToFlowID.new
+              clusteridtoflowid_tmp.deserialize(i)
+              @ClusterToFlowIdList << clusteridtoflowid_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

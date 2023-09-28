@@ -845,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 预留券实例的购买会预先扣除本次实例购买所需金额，在调用本接口前请确保账户余额充足。
+
+        # @param request: Request instance for CreateReservedInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateReservedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateReservedInstancesResponse`
+        def CreateReservedInstances(request)
+          body = send_request('CreateReservedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateReservedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建边缘计算集群
 
         # @param request: Request instance for CreateTKEEdgeCluster.
@@ -1503,6 +1527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePrometheusTemplateSyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 预留券实例如符合退还规则，可通过本接口主动退还。
+
+        # @param request: Request instance for DeleteReservedInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteReservedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteReservedInstancesResponse`
+        def DeleteReservedInstances(request)
+          body = send_request('DeleteReservedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReservedInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2741,6 +2789,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询各个规格的 Pod 的抵扣率
+
+        # @param request: Request instance for DescribePodDeductionRate.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribePodDeductionRateRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribePodDeductionRateResponse`
+        def DescribePodDeductionRate(request)
+          body = send_request('DescribePodDeductionRate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePodDeductionRateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询可以用预留券抵扣的 Pod 信息。
+
+        # @param request: Request instance for DescribePodsBySpec.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribePodsBySpecRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribePodsBySpecResponse`
+        def DescribePodsBySpec(request)
+          body = send_request('DescribePodsBySpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePodsBySpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 包括 Pod 资源统计和绑定的预留券资源统计。
+
+        # @param request: Request instance for DescribePostNodeResources.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribePostNodeResourcesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribePostNodeResourcesResponse`
+        def DescribePostNodeResources(request)
+          body = send_request('DescribePostNodeResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePostNodeResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取关联目标集群的实例列表
 
         # @param request: Request instance for DescribePrometheusAgentInstances.
@@ -3197,6 +3317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 预留实例用量查询
+
+        # @param request: Request instance for DescribeRIUtilizationDetail.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeRIUtilizationDetailRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeRIUtilizationDetailResponse`
+        def DescribeRIUtilizationDetail(request)
+          body = send_request('DescribeRIUtilizationDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRIUtilizationDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取容器服务支持的所有地域
 
         # @param request: Request instance for DescribeRegions.
@@ -3207,6 +3351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRegionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预留实例列表
+
+        # @param request: Request instance for DescribeReservedInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeReservedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeReservedInstancesResponse`
+        def DescribeReservedInstances(request)
+          body = send_request('DescribeReservedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReservedInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4373,6 +4541,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改预留券的抵扣范围，抵扣范围取值：Region、Zone 和 Node。
+
+        # @param request: Request instance for ModifyReservedInstanceScope.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyReservedInstanceScopeRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyReservedInstanceScopeResponse`
+        def ModifyReservedInstanceScope(request)
+          body = send_request('ModifyReservedInstanceScope', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReservedInstanceScopeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 移出节点池节点，但保留在集群内
 
         # @param request: Request instance for RemoveNodeFromNodePool.
@@ -4383,6 +4575,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RemoveNodeFromNodePoolResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 续费时请确保账户余额充足。
+
+        # @param request: Request instance for RenewReservedInstances.
+        # @type request: :class:`Tencentcloud::tke::V20180525::RenewReservedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::RenewReservedInstancesResponse`
+        def RenewReservedInstances(request)
+          body = send_request('RenewReservedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewReservedInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

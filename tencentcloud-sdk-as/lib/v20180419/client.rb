@@ -79,6 +79,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消伸缩组的实例刷新活动。
+        # * 已刷新/正在刷新的批次不受影响，待刷新批次被取消
+        # * 刷新失败的实例保持备用中状态，需用户手动处理后尝试退出备用中状态或销毁
+        # * 取消后不允许回滚操作，也不支持恢复操作
+
+        # @param request: Request instance for CancelInstanceRefresh.
+        # @type request: :class:`Tencentcloud::as::V20180419::CancelInstanceRefreshRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::CancelInstanceRefreshResponse`
+        def CancelInstanceRefresh(request)
+          body = send_request('CancelInstanceRefresh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelInstanceRefreshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
 
         # @param request: Request instance for ClearLaunchConfigurationAttributes.
@@ -727,6 +754,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeRefreshActivities）用于查询伸缩组的实例刷新活动记录。
+
+        # @param request: Request instance for DescribeRefreshActivities.
+        # @type request: :class:`Tencentcloud::as::V20180419::DescribeRefreshActivitiesRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::DescribeRefreshActivitiesResponse`
+        def DescribeRefreshActivities(request)
+          body = send_request('DescribeRefreshActivities', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRefreshActivitiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeScalingPolicies）用于查询告警触发策略。
 
         # @param request: Request instance for DescribeScalingPolicies.
@@ -904,6 +955,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExecuteScalingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 伸缩组内实例退出备用中状态。
+        # * 备用中状态的实例负载均衡器权重值为 0，退出备用中状态后，权重值也会恢复
+        # * 对备用中状态实例进行开关机操作也会使其退出备用中状态
+
+        # @param request: Request instance for ExitStandby.
+        # @type request: :class:`Tencentcloud::as::V20180419::ExitStandbyRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::ExitStandbyResponse`
+        def ExitStandby(request)
+          body = send_request('ExitStandby', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExitStandbyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1169,6 +1246,58 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 恢复暂停状态的实例刷新活动，使其重试当前批次刷新失败实例或继续刷新后续批次，非暂停状态下调用该接口无效。
+
+        # @param request: Request instance for ResumeInstanceRefresh.
+        # @type request: :class:`Tencentcloud::as::V20180419::ResumeInstanceRefreshRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::ResumeInstanceRefreshResponse`
+        def ResumeInstanceRefresh(request)
+          body = send_request('ResumeInstanceRefresh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeInstanceRefreshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 回滚操作会生成一个新的实例刷新活动，该活动也支持分批次刷新以及暂停、恢复、取消操作，接口返回回滚活动的 RefreshActivityId。
+        # * 原活动中待刷新实例变更为已取消，忽略不存在实例，其他状态实例进入回滚流程
+        # * 原活动中正在刷新的实例不会立刻终止，刷新结束后再执行回滚活动
+        # * 暂停状态或最近一次成功的刷新活动支持回滚，其他状态不支持回滚
+        # * 原活动刷新方式为重装实例时，对于 ImageId参数，会自动恢复到回滚前镜像 ID；对于 UserData、EnhancedService、LoginSettings、 HostName 参数，依然会从启动配置中读取，需用户在回滚前自行修改启动配置
+
+        # @param request: Request instance for RollbackInstanceRefresh.
+        # @type request: :class:`Tencentcloud::as::V20180419::RollbackInstanceRefreshRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::RollbackInstanceRefreshResponse`
+        def RollbackInstanceRefresh(request)
+          body = send_request('RollbackInstanceRefresh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackInstanceRefreshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
         # * 伸缩组需要未处于活动中
         # * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
@@ -1279,6 +1408,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据启动配置中参数，刷新伸缩组内运行中状态 CVM 实例，返回实例刷新活动的 RefreshActivityId。
+        # * 对于重装实例的刷新方式（目前仅支持重装），重装时仅会从启动配置中获取 ImageId、UserData、EnhancedService、 HostName、LoginSettings 参数进行刷新，实例的其他参数不会刷新
+        # * 实例刷新期间（包括暂停状态），伸缩组会被停用。不建议刷新期间修改关联启动配置，否则会影响刷新参数，造成实例配置不一致
+        # * 滚动更新模式会分成多批次进行刷新实例，单批次中若存在刷新失败实例，活动会进入失败暂停状态
+        # * 若待刷新实例被移出或销毁，会被标记为 NOT_FOUND 状态，不阻塞实例刷新活动
+        # * 运行中状态实例与最新启动配置参数一致，实例也会再次刷新
+
+        # @param request: Request instance for StartInstanceRefresh.
+        # @type request: :class:`Tencentcloud::as::V20180419::StartInstanceRefreshRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::StartInstanceRefreshResponse`
+        def StartInstanceRefresh(request)
+          body = send_request('StartInstanceRefresh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartInstanceRefreshResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（StopAutoScalingInstances）用于关闭伸缩组内 CVM 实例。
         # * 关机方式采用`SOFT_FIRST`方式，表示在正常关闭失败后进行强制关闭
         # * 关闭`IN_SERVICE`状态的实例，会减少期望实例数，期望实例数不可低于设置的最小值
@@ -1293,6 +1451,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopAutoScalingInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 暂停正在执行的实例刷新活动。
+        # * 暂停状态下，伸缩组也会处于停用中状态
+        # * 当前正在更新的实例不会暂停，待更新的实例会暂停更新
+
+        # @param request: Request instance for StopInstanceRefresh.
+        # @type request: :class:`Tencentcloud::as::V20180419::StopInstanceRefreshRequest`
+        # @rtype: :class:`Tencentcloud::as::V20180419::StopInstanceRefreshResponse`
+        def StopInstanceRefresh(request)
+          body = send_request('StopInstanceRefresh', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopInstanceRefreshResponse.new
             model.deserialize(response['Response'])
             model
           else

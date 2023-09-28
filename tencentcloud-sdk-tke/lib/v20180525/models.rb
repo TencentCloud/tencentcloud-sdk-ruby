@@ -463,12 +463,16 @@ module TencentCloud
       # cuDNN的版本信息
       class CUDNN < TencentCloud::Common::AbstractModel
         # @param Version: cuDNN的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Name: cuDNN的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param DocName: cuDNN的Doc名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocName: String
         # @param DevName: cuDNN的Dev名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DevName: String
 
         attr_accessor :Version, :Name, :DocName, :DevName
@@ -3502,6 +3506,64 @@ module TencentCloud
         end
       end
 
+      # CreateReservedInstances请求参数结构体
+      class CreateReservedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceSpec: 预留券实例规格。
+        # @type ReservedInstanceSpec: :class:`Tencentcloud::Tke.v20180525.models.ReservedInstanceSpec`
+        # @param InstanceCount: 购买实例数量，一次最大购买数量为300。
+        # @type InstanceCount: Integer
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20180525.models.InstanceChargePrepaid`
+        # @param InstanceName: 预留券名称。
+        # @type InstanceName: String
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+
+        attr_accessor :ReservedInstanceSpec, :InstanceCount, :InstanceChargePrepaid, :InstanceName, :ClientToken
+
+        def initialize(reservedinstancespec=nil, instancecount=nil, instancechargeprepaid=nil, instancename=nil, clienttoken=nil)
+          @ReservedInstanceSpec = reservedinstancespec
+          @InstanceCount = instancecount
+          @InstanceChargePrepaid = instancechargeprepaid
+          @InstanceName = instancename
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          unless params['ReservedInstanceSpec'].nil?
+            @ReservedInstanceSpec = ReservedInstanceSpec.new
+            @ReservedInstanceSpec.deserialize(params['ReservedInstanceSpec'])
+          end
+          @InstanceCount = params['InstanceCount']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @InstanceName = params['InstanceName']
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # CreateReservedInstances返回参数结构体
+      class CreateReservedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceIds: 预留券实例 ID。
+        # @type ReservedInstanceIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedInstanceIds, :RequestId
+
+        def initialize(reservedinstanceids=nil, requestid=nil)
+          @ReservedInstanceIds = reservedinstanceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReservedInstanceIds = params['ReservedInstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTKEEdgeCluster请求参数结构体
       class CreateTKEEdgeClusterRequest < TencentCloud::Common::AbstractModel
         # @param K8SVersion: k8s版本号
@@ -4743,6 +4805,38 @@ module TencentCloud
 
       # DeletePrometheusTemplateSync返回参数结构体
       class DeletePrometheusTemplateSyncResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteReservedInstances请求参数结构体
+      class DeleteReservedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceIds: 预留券实例ID。
+        # @type ReservedInstanceIds: Array
+
+        attr_accessor :ReservedInstanceIds
+
+        def initialize(reservedinstanceids=nil)
+          @ReservedInstanceIds = reservedinstanceids
+        end
+
+        def deserialize(params)
+          @ReservedInstanceIds = params['ReservedInstanceIds']
+        end
+      end
+
+      # DeleteReservedInstances返回参数结构体
+      class DeleteReservedInstancesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7601,6 +7695,212 @@ module TencentCloud
         end
       end
 
+      # DescribePodDeductionRate请求参数结构体
+      class DescribePodDeductionRateRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName:  节点名称
+        # @type NodeName: String
+
+        attr_accessor :Zone, :ClusterId, :NodeName
+
+        def initialize(zone=nil, clusterid=nil, nodename=nil)
+          @Zone = zone
+          @ClusterId = clusterid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # DescribePodDeductionRate返回参数结构体
+      class DescribePodDeductionRateResponse < TencentCloud::Common::AbstractModel
+        # @param PodDeductionRateSet: 各个规格的 可被预留券抵扣的Pod 抵扣率
+        # @type PodDeductionRateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PodDeductionRateSet, :RequestId
+
+        def initialize(poddeductionrateset=nil, requestid=nil)
+          @PodDeductionRateSet = poddeductionrateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PodDeductionRateSet'].nil?
+            @PodDeductionRateSet = []
+            params['PodDeductionRateSet'].each do |i|
+              poddeductionrate_tmp = PodDeductionRate.new
+              poddeductionrate_tmp.deserialize(i)
+              @PodDeductionRateSet << poddeductionrate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePodsBySpec请求参数结构体
+      class DescribePodsBySpecRequest < TencentCloud::Common::AbstractModel
+        # @param Cpu: 核数
+        # @type Cpu: Float
+        # @param Memory: 内存
+        # @type Memory: Float
+        # @param GpuNum: 卡数，有0.25、0.5、1、2、4等
+        # @type GpuNum: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: pod-type
+        # 按照**【Pod 类型**】进行过滤。资源类型：intel、amd、v100、t4、a10\*gnv4、a10\*gnv4v等。
+        # 类型：String
+        # 必选：否
+
+        # pod-deduct
+        # 按照**【上个周期抵扣的Pod**】进行过滤。Values可不设置。
+        # 必选：否
+
+        # pod-not-deduct
+        # 按照**【上个周期未抵扣的Pod**】进行过滤。Values可不设置。
+        # 必选：否
+        # @type Filters: Array
+
+        attr_accessor :Cpu, :Memory, :GpuNum, :Zone, :ClusterId, :NodeName, :Offset, :Limit, :Filters
+
+        def initialize(cpu=nil, memory=nil, gpunum=nil, zone=nil, clusterid=nil, nodename=nil, offset=nil, limit=nil, filters=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @GpuNum = gpunum
+          @Zone = zone
+          @ClusterId = clusterid
+          @NodeName = nodename
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @GpuNum = params['GpuNum']
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePodsBySpec返回参数结构体
+      class DescribePodsBySpecResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: Pod 总数
+        # @type TotalCount: Integer
+        # @param PodSet: Pod 节点信息
+        # @type PodSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PodSet, :RequestId
+
+        def initialize(totalcount=nil, podset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PodSet = podset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PodSet'].nil?
+            @PodSet = []
+            params['PodSet'].each do |i|
+              podnodeinfo_tmp = PodNodeInfo.new
+              podnodeinfo_tmp.deserialize(i)
+              @PodSet << podnodeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePostNodeResources请求参数结构体
+      class DescribePostNodeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName:  节点名称
+        # @type NodeName: String
+
+        attr_accessor :ClusterId, :NodeName
+
+        def initialize(clusterid=nil, nodename=nil)
+          @ClusterId = clusterid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # DescribePostNodeResources返回参数结构体
+      class DescribePostNodeResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param PodSet: Pod详情
+        # @type PodSet: Array
+        # @param ReservedInstanceSet: 预留券详情
+        # @type ReservedInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PodSet, :ReservedInstanceSet, :RequestId
+
+        def initialize(podset=nil, reservedinstanceset=nil, requestid=nil)
+          @PodSet = podset
+          @ReservedInstanceSet = reservedinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PodSet'].nil?
+            @PodSet = []
+            params['PodSet'].each do |i|
+              supernoderesource_tmp = SuperNodeResource.new
+              supernoderesource_tmp.deserialize(i)
+              @PodSet << supernoderesource_tmp
+            end
+          end
+          unless params['ReservedInstanceSet'].nil?
+            @ReservedInstanceSet = []
+            params['ReservedInstanceSet'].each do |i|
+              supernoderesource_tmp = SuperNodeResource.new
+              supernoderesource_tmp.deserialize(i)
+              @ReservedInstanceSet << supernoderesource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusAgentInstances请求参数结构体
       class DescribePrometheusAgentInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -8753,6 +9053,81 @@ module TencentCloud
         end
       end
 
+      # DescribeRIUtilizationDetail请求参数结构体
+      class DescribeRIUtilizationDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: reserved-instance-id
+        # 按照**【预留实例ID**】进行过滤。预留实例ID形如：eksri-xxxxxxxx。
+        # 类型：String
+        # 必选：否
+
+        # begin-time
+        # 按照**【抵扣开始时间**】进行过滤。形如：2023-06-28 15:27:40。
+        # 类型：String
+        # 必选：否
+
+        # end-time
+        # 按照**【抵扣结束时间**】进行过滤。形如：2023-06-28 15:27:40。
+        # 类型：String
+        # 必选：否
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRIUtilizationDetail返回参数结构体
+      class DescribeRIUtilizationDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数。
+        # @type TotalCount: Integer
+        # @param RIUtilizationDetailSet: 详情。
+        # @type RIUtilizationDetailSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RIUtilizationDetailSet, :RequestId
+
+        def initialize(totalcount=nil, riutilizationdetailset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RIUtilizationDetailSet = riutilizationdetailset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RIUtilizationDetailSet'].nil?
+            @RIUtilizationDetailSet = []
+            params['RIUtilizationDetailSet'].each do |i|
+              riutilizationdetail_tmp = RIUtilizationDetail.new
+              riutilizationdetail_tmp.deserialize(i)
+              @RIUtilizationDetailSet << riutilizationdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -8791,6 +9166,132 @@ module TencentCloud
               regioninstance_tmp = RegionInstance.new
               regioninstance_tmp.deserialize(i)
               @RegionInstanceSet << regioninstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReservedInstances请求参数结构体
+      class DescribeReservedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Filters: status
+        # 按照**【状态**】进行过滤。状态：Creating、Active、Expired、Refunded。
+        # 类型：String
+        # 必选：否
+
+        # resource-type
+        # 按照**【资源类型**】进行过滤。资源类型：common、amd、v100、t4、a10\*gnv4、a10\*gnv4v等，common表示通用类型。
+        # 类型：String
+        # 必选：否
+
+        # cpu
+        # 按照**【核数**】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # memory
+        # 按照**【内存**】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # gpu
+        # 按照**【GPU卡数**】进行过滤，取值有0.25、0.5、1、2、4等。
+        # 类型：String
+        # 必选：否
+
+        # cluster-id
+        # 按照**【集群ID**】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # node-name
+        # 按照**【节点名称**】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # scope
+        # 按照**【可用区**】进行过滤。比如：ap-guangzhou-2，为空字符串表示地域抵扣范围。如果只过滤可用区抵扣范围，需要同时将cluster-id、node-name设置为空字符串。
+        # 类型：String
+        # 必选：否
+
+        # reserved-instance-id
+        # 按照**【预留实例ID**】进行过滤。预留实例ID形如：eksri-xxxxxxxx。
+        # 类型：String
+        # 必选：否
+
+        # reserved-instance-name
+        # 按照**【预留实例名称**】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # reserved-instance-deduct
+        # 按照**【上个周期抵扣的预留券**】进行过滤。Values可不设置。
+        # 必选：否
+
+        # reserved-instance-not-deduct
+        # 按照**【上个周期未抵扣的预留券**】进行过滤。Values可不设置。
+        # 必选：否
+        # @type Filters: Array
+        # @param OrderField: 排序字段。支持CreatedAt、ActiveAt、ExpireAt。默认值CreatedAt。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。顺序：ASC，倒序：DESC。默认值DESC。
+        # @type OrderDirection: String
+
+        attr_accessor :Offset, :Limit, :Filters, :OrderField, :OrderDirection
+
+        def initialize(offset=nil, limit=nil, filters=nil, orderfield=nil, orderdirection=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+        end
+      end
+
+      # DescribeReservedInstances返回参数结构体
+      class DescribeReservedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数。
+        # @type TotalCount: Integer
+        # @param ReservedInstanceSet: 预留实例列表。
+        # @type ReservedInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ReservedInstanceSet, :RequestId
+
+        def initialize(totalcount=nil, reservedinstanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ReservedInstanceSet = reservedinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ReservedInstanceSet'].nil?
+            @ReservedInstanceSet = []
+            params['ReservedInstanceSet'].each do |i|
+              reservedinstance_tmp = ReservedInstance.new
+              reservedinstance_tmp.deserialize(i)
+              @ReservedInstanceSet << reservedinstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9535,8 +10036,10 @@ module TencentCloud
       # GPU驱动和CUDA的版本信息
       class DriverVersion < TencentCloud::Common::AbstractModel
         # @param Version: GPU驱动或者CUDA的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
         # @param Name: GPU驱动或者CUDA的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
 
         attr_accessor :Version, :Name
@@ -11632,6 +12135,31 @@ module TencentCloud
         end
       end
 
+      # 包年包月配置
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
+        # @type Period: Integer
+        # @param RenewFlag: 自动续费标识。取值范围：
+        # NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        # NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+
+        # 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
       # CVM实例数据盘挂载配置
       class InstanceDataDiskMountSetting < TencentCloud::Common::AbstractModel
         # @param InstanceType: CVM实例类型
@@ -12736,10 +13264,12 @@ module TencentCloud
         # @type DeletionProtection: Boolean
         # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
         # @type DockerGraphPath: String
+        # @param PreStartUserScript: base64编码后的自定义脚本
+        # @type PreStartUserScript: String
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath, :PreStartUserScript
 
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, gpuargs=nil, userscript=nil, ignoreexistednode=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil, dockergraphpath=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, gpuargs=nil, userscript=nil, ignoreexistednode=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil, dockergraphpath=nil, prestartuserscript=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -12758,6 +13288,7 @@ module TencentCloud
           @Unschedulable = unschedulable
           @DeletionProtection = deletionprotection
           @DockerGraphPath = dockergraphpath
+          @PreStartUserScript = prestartuserscript
         end
 
         def deserialize(params)
@@ -12806,6 +13337,7 @@ module TencentCloud
           @Unschedulable = params['Unschedulable']
           @DeletionProtection = params['DeletionProtection']
           @DockerGraphPath = params['DockerGraphPath']
+          @PreStartUserScript = params['PreStartUserScript']
         end
       end
 
@@ -13330,6 +13862,45 @@ module TencentCloud
         end
       end
 
+      # ModifyReservedInstanceScope请求参数结构体
+      class ModifyReservedInstanceScopeRequest < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceIds: 预留券唯一 ID
+        # @type ReservedInstanceIds: Array
+        # @param ReservedInstanceScope: 预留券抵扣范围信息
+        # @type ReservedInstanceScope: :class:`Tencentcloud::Tke.v20180525.models.ReservedInstanceScope`
+
+        attr_accessor :ReservedInstanceIds, :ReservedInstanceScope
+
+        def initialize(reservedinstanceids=nil, reservedinstancescope=nil)
+          @ReservedInstanceIds = reservedinstanceids
+          @ReservedInstanceScope = reservedinstancescope
+        end
+
+        def deserialize(params)
+          @ReservedInstanceIds = params['ReservedInstanceIds']
+          unless params['ReservedInstanceScope'].nil?
+            @ReservedInstanceScope = ReservedInstanceScope.new
+            @ReservedInstanceScope.deserialize(params['ReservedInstanceScope'])
+          end
+        end
+      end
+
+      # ModifyReservedInstanceScope返回参数结构体
+      class ModifyReservedInstanceScopeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EKS Instance Nfs Volume
       class NfsVolume < TencentCloud::Common::AbstractModel
         # @param Name: nfs volume 数据卷名称
@@ -13439,10 +14010,28 @@ module TencentCloud
         # @param DeletionProtection: 删除保护开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeletionProtection: Boolean
+        # @param ExtraArgs: 节点配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.InstanceExtraArgs`
+        # @param GPUArgs: GPU驱动相关参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUArgs: :class:`Tencentcloud::Tke.v20180525.models.GPUArgs`
+        # @param DockerGraphPath: dockerd --graph 指定值, 默认为 /var/lib/docker
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DockerGraphPath: String
+        # @param DataDisks: 多盘数据盘挂载信息：新建节点时请确保购买CVM的参数传递了购买多个数据盘的信息，如CreateClusterInstances API的RunInstancesPara下的DataDisks也需要设置购买多个数据盘, 具体可以参考CreateClusterInstances接口的添加集群节点(多块数据盘)样例；添加已有节点时，请确保填写的分区信息在节点上真实存在
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataDisks: Array
+        # @param Unschedulable: 是否不可调度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unschedulable: Integer
+        # @param PreStartUserScript: 用户自定义脚本,在UserScript前执行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PreStartUserScript: String
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection, :ExtraArgs, :GPUArgs, :DockerGraphPath, :DataDisks, :Unschedulable, :PreStartUserScript
 
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil, extraargs=nil, gpuargs=nil, dockergraphpath=nil, datadisks=nil, unschedulable=nil, prestartuserscript=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -13463,6 +14052,12 @@ module TencentCloud
           @UserScript = userscript
           @Tags = tags
           @DeletionProtection = deletionprotection
+          @ExtraArgs = extraargs
+          @GPUArgs = gpuargs
+          @DockerGraphPath = dockergraphpath
+          @DataDisks = datadisks
+          @Unschedulable = unschedulable
+          @PreStartUserScript = prestartuserscript
         end
 
         def deserialize(params)
@@ -13510,6 +14105,25 @@ module TencentCloud
             end
           end
           @DeletionProtection = params['DeletionProtection']
+          unless params['ExtraArgs'].nil?
+            @ExtraArgs = InstanceExtraArgs.new
+            @ExtraArgs.deserialize(params['ExtraArgs'])
+          end
+          unless params['GPUArgs'].nil?
+            @GPUArgs = GPUArgs.new
+            @GPUArgs.deserialize(params['GPUArgs'])
+          end
+          @DockerGraphPath = params['DockerGraphPath']
+          unless params['DataDisks'].nil?
+            @DataDisks = []
+            params['DataDisks'].each do |i|
+              datadisk_tmp = DataDisk.new
+              datadisk_tmp.deserialize(i)
+              @DataDisks << datadisk_tmp
+            end
+          end
+          @Unschedulable = params['Unschedulable']
+          @PreStartUserScript = params['PreStartUserScript']
         end
       end
 
@@ -13611,6 +14225,48 @@ module TencentCloud
         end
       end
 
+      # 可被预留券抵扣的 Pod 某种规格的抵扣率
+      class PodDeductionRate < TencentCloud::Common::AbstractModel
+        # @param Cpu: Pod的 CPU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Memory: Pod 的内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Float
+        # @param Type:  Pod 的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param GpuNum:  Pod 的 GPU 卡数，Pod 类型为 GPU 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuNum: String
+        # @param TotalNum: 这种规格的 Pod总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalNum: Integer
+        # @param DeductionNum: 这种规格的 Pod被预留券抵扣的数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductionNum: Integer
+
+        attr_accessor :Cpu, :Memory, :Type, :GpuNum, :TotalNum, :DeductionNum
+
+        def initialize(cpu=nil, memory=nil, type=nil, gpunum=nil, totalnum=nil, deductionnum=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @Type = type
+          @GpuNum = gpunum
+          @TotalNum = totalnum
+          @DeductionNum = deductionnum
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Type = params['Type']
+          @GpuNum = params['GpuNum']
+          @TotalNum = params['TotalNum']
+          @DeductionNum = params['DeductionNum']
+        end
+      end
+
       # 某机型可支持的最大 VPC-CNI 模式的 Pod 数量
       class PodLimitsByType < TencentCloud::Common::AbstractModel
         # @param TKERouteENINonStaticIP: TKE共享网卡非固定IP模式可支持的Pod数量
@@ -13670,6 +14326,43 @@ module TencentCloud
             @PodLimits = PodLimitsByType.new
             @PodLimits.deserialize(params['PodLimits'])
           end
+        end
+      end
+
+      # Pod所在的节点信息
+      class PodNodeInfo < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param NodeName:  节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Name:  Pod 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :ClusterId, :NodeName, :Zone, :Namespace, :Name
+
+        def initialize(clusterid=nil, nodename=nil, zone=nil, namespace=nil, name=nil)
+          @ClusterId = clusterid
+          @NodeName = nodename
+          @Zone = zone
+          @Namespace = namespace
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+          @Zone = params['Zone']
+          @Namespace = params['Namespace']
+          @Name = params['Name']
         end
       end
 
@@ -15073,6 +15766,62 @@ module TencentCloud
         end
       end
 
+      # 预留券抵扣详情
+      class RIUtilizationDetail < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceId: 预留券ID
+        # @type ReservedInstanceId: String
+        # @param EksId: Pod唯一ID
+        # @type EksId: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Name: Pod的名称
+        # @type Name: String
+        # @param Namespace: Pod的命名空间
+        # @type Namespace: String
+        # @param Kind: 工作负载类型
+        # @type Kind: String
+        # @param KindName: 工作负载名称
+        # @type KindName: String
+        # @param Uid: Pod的uid
+        # @type Uid: String
+        # @param StartTime: 用量开始时间
+        # @type StartTime: String
+        # @param EndTime: 用量结束时间
+        # @type EndTime: String
+        # @param Product: 抵扣资源所属产品
+        # @type Product: String
+
+        attr_accessor :ReservedInstanceId, :EksId, :ClusterId, :Name, :Namespace, :Kind, :KindName, :Uid, :StartTime, :EndTime, :Product
+
+        def initialize(reservedinstanceid=nil, eksid=nil, clusterid=nil, name=nil, namespace=nil, kind=nil, kindname=nil, uid=nil, starttime=nil, endtime=nil, product=nil)
+          @ReservedInstanceId = reservedinstanceid
+          @EksId = eksid
+          @ClusterId = clusterid
+          @Name = name
+          @Namespace = namespace
+          @Kind = kind
+          @KindName = kindname
+          @Uid = uid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Product = product
+        end
+
+        def deserialize(params)
+          @ReservedInstanceId = params['ReservedInstanceId']
+          @EksId = params['EksId']
+          @ClusterId = params['ClusterId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Kind = params['Kind']
+          @KindName = params['KindName']
+          @Uid = params['Uid']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Product = params['Product']
+        end
+      end
+
       # 地域属性信息
       class RegionInstance < TencentCloud::Common::AbstractModel
         # @param RegionName: 地域名称
@@ -15362,6 +16111,181 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RenewReservedInstances请求参数结构体
+      class RenewReservedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceIds: 预留券实例ID，每次请求实例的上限为100。
+        # @type ReservedInstanceIds: Array
+        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20180525.models.InstanceChargePrepaid`
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
+
+        attr_accessor :ReservedInstanceIds, :InstanceChargePrepaid, :ClientToken
+
+        def initialize(reservedinstanceids=nil, instancechargeprepaid=nil, clienttoken=nil)
+          @ReservedInstanceIds = reservedinstanceids
+          @InstanceChargePrepaid = instancechargeprepaid
+          @ClientToken = clienttoken
+        end
+
+        def deserialize(params)
+          @ReservedInstanceIds = params['ReservedInstanceIds']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          @ClientToken = params['ClientToken']
+        end
+      end
+
+      # RenewReservedInstances返回参数结构体
+      class RenewReservedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 预留实例
+      class ReservedInstance < TencentCloud::Common::AbstractModel
+        # @param ReservedInstanceId: 预留实例ID
+        # @type ReservedInstanceId: String
+        # @param ReservedInstanceName: 预留实例名称
+        # @type ReservedInstanceName: String
+        # @param Status: 预留券状态
+        # @type Status: String
+        # @param TimeSpan: 有效期，单位：月
+        # @type TimeSpan: Integer
+        # @param ResourceType: 抵扣资源类型
+        # @type ResourceType: String
+        # @param Cpu: 资源核数
+        # @type Cpu: Float
+        # @param Memory: 资源内存，单位：Gi
+        # @type Memory: Float
+        # @param Scope: 预留券的范围，默认值region。
+        # @type Scope: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param ActiveAt: 生效时间
+        # @type ActiveAt: String
+        # @param ExpireAt: 过期时间
+        # @type ExpireAt: String
+        # @param GpuCount: GPU卡数
+        # @type GpuCount: String
+        # @param AutoRenewFlag: 自动续费标记
+        # @type AutoRenewFlag: Integer
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName: 节点名称
+        # @type NodeName: String
+        # @param DeductStatus:  上个周期预留券的抵扣状态，Deduct、NotDeduct
+        # @type DeductStatus: String
+
+        attr_accessor :ReservedInstanceId, :ReservedInstanceName, :Status, :TimeSpan, :ResourceType, :Cpu, :Memory, :Scope, :CreatedAt, :ActiveAt, :ExpireAt, :GpuCount, :AutoRenewFlag, :ClusterId, :NodeName, :DeductStatus
+
+        def initialize(reservedinstanceid=nil, reservedinstancename=nil, status=nil, timespan=nil, resourcetype=nil, cpu=nil, memory=nil, scope=nil, createdat=nil, activeat=nil, expireat=nil, gpucount=nil, autorenewflag=nil, clusterid=nil, nodename=nil, deductstatus=nil)
+          @ReservedInstanceId = reservedinstanceid
+          @ReservedInstanceName = reservedinstancename
+          @Status = status
+          @TimeSpan = timespan
+          @ResourceType = resourcetype
+          @Cpu = cpu
+          @Memory = memory
+          @Scope = scope
+          @CreatedAt = createdat
+          @ActiveAt = activeat
+          @ExpireAt = expireat
+          @GpuCount = gpucount
+          @AutoRenewFlag = autorenewflag
+          @ClusterId = clusterid
+          @NodeName = nodename
+          @DeductStatus = deductstatus
+        end
+
+        def deserialize(params)
+          @ReservedInstanceId = params['ReservedInstanceId']
+          @ReservedInstanceName = params['ReservedInstanceName']
+          @Status = params['Status']
+          @TimeSpan = params['TimeSpan']
+          @ResourceType = params['ResourceType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Scope = params['Scope']
+          @CreatedAt = params['CreatedAt']
+          @ActiveAt = params['ActiveAt']
+          @ExpireAt = params['ExpireAt']
+          @GpuCount = params['GpuCount']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+          @DeductStatus = params['DeductStatus']
+        end
+      end
+
+      # 预留券抵扣范围的描述信息，当抵扣范围为 Region 时，表示地域抵扣，其他参数不需要传；当抵扣范围为 Zone 时，表示可用区抵扣，Zone 参数必传；当抵扣范围为 Node 时，表示节点抵扣，参数 Zone、ClusterId和NodeName均必传。
+      class ReservedInstanceScope < TencentCloud::Common::AbstractModel
+        # @param Scope: 抵扣范围，取值：Region、Zone 和 Node
+        # @type Scope: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param NodeName:  节点名称
+        # @type NodeName: String
+
+        attr_accessor :Scope, :Zone, :ClusterId, :NodeName
+
+        def initialize(scope=nil, zone=nil, clusterid=nil, nodename=nil)
+          @Scope = scope
+          @Zone = zone
+          @ClusterId = clusterid
+          @NodeName = nodename
+        end
+
+        def deserialize(params)
+          @Scope = params['Scope']
+          @Zone = params['Zone']
+          @ClusterId = params['ClusterId']
+          @NodeName = params['NodeName']
+        end
+      end
+
+      # 预留券规格
+      class ReservedInstanceSpec < TencentCloud::Common::AbstractModel
+        # @param Type: 资源类型：common、amd、v100、t4、a10\*gnv4、a10\*gnv4v、a10\*pnv4、windows-common、windows-amd，common表示通用类型。
+        # @type Type: String
+        # @param Cpu: 核数
+        # @type Cpu: Float
+        # @param Memory: 内存
+        # @type Memory: Float
+        # @param Gpu: GPU卡数，当Type为GPU类型时设置。
+        # @type Gpu: Float
+
+        attr_accessor :Type, :Cpu, :Memory, :Gpu
+
+        def initialize(type=nil, cpu=nil, memory=nil, gpu=nil)
+          @Type = type
+          @Cpu = cpu
+          @Memory = memory
+          @Gpu = gpu
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Gpu = params['Gpu']
         end
       end
 
@@ -15988,6 +16912,43 @@ module TencentCloud
           @SecurityGroups = params['SecurityGroups']
           @Os = params['Os']
           @Arch = params['Arch']
+        end
+      end
+
+      # 超级节点上的资源统计
+      class SuperNodeResource < TencentCloud::Common::AbstractModel
+        # @param NodeName: 节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param Num: 节点上的资源总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Num: Integer
+        # @param Cpu: 节点上的总核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Float
+        # @param Memory: 节点上的总内存数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Float
+        # @param Gpu: 节点上的总 GPU 卡数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Gpu: Float
+
+        attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu
+
+        def initialize(nodename=nil, num=nil, cpu=nil, memory=nil, gpu=nil)
+          @NodeName = nodename
+          @Num = num
+          @Cpu = cpu
+          @Memory = memory
+          @Gpu = gpu
+        end
+
+        def deserialize(params)
+          @NodeName = params['NodeName']
+          @Num = params['Num']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Gpu = params['Gpu']
         end
       end
 
