@@ -5841,10 +5841,13 @@ module TencentCloud
         # @param InstanceId: 对存在的实例购买bot 或api 安全
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
+        # @param ResourceId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
 
-        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId
+        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId
 
-        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil)
+        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil, resourceid=nil)
           @TimeSpan = timespan
           @TimeUnit = timeunit
           @SubProductCode = subproductcode
@@ -5856,6 +5859,7 @@ module TencentCloud
           @LabelCounts = labelcounts
           @CurDeadline = curdeadline
           @InstanceId = instanceid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -5870,6 +5874,7 @@ module TencentCloud
           @LabelCounts = params['LabelCounts']
           @CurDeadline = params['CurDeadline']
           @InstanceId = params['InstanceId']
+          @ResourceId = params['ResourceId']
         end
       end
 
