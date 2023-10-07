@@ -94,7 +94,7 @@ begin
   req = DescribeInstancesRequest.new()
 
   # 填充请求参数,这里request对象的成员变量即对应接口的入参。
-  # 你可以通过官网接口文档或跳转到request对象的定义处查看请求参数的定义。
+  # 您可以通过官网接口文档或跳转到request对象的定义处查看请求参数的定义。
   respFilter = Filter.new()  # 创建Filter对象, 以zone的维度来查询cvm实例。
   respFilter.Name = "zone"
   respFilter.Values = ["ap-shanghai-1", "ap-shanghai-2"]
@@ -108,7 +108,7 @@ begin
   puts resp.serialize
 
   # 也可以取出单个值。
-  # 你可以通过官网接口文档或跳转到response对象的定义处查看返回字段的定义。
+  # 您可以通过官网接口文档或跳转到response对象的定义处查看返回字段的定义。
   puts resp.TotalCount
 rescue TencentCloudSDKException => e
   puts e.message  
