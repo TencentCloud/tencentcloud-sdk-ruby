@@ -2682,10 +2682,13 @@ module TencentCloud
         # @type GpuCount: Float
         # @param Frequency: 实例的CPU主频信息
         # @type Frequency: String
+        # @param StatusCategory: 描述库存情况。取值范围： <br><li> UnderStock：表示对应库存即将售罄<br><li> NormalStock：表示对应库存供应有保障<br><li> EnoughStock：表示对应库存非常充足<br><li> WithoutStock：表示对应库存已经售罄
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusCategory: String
 
-        attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark, :GpuCount, :Frequency
+        attr_accessor :Zone, :InstanceType, :InstanceChargeType, :NetworkCard, :Externals, :Cpu, :Memory, :InstanceFamily, :TypeName, :LocalDiskTypeList, :Status, :Price, :SoldOutReason, :InstanceBandwidth, :InstancePps, :StorageBlockAmount, :CpuType, :Gpu, :Fpga, :Remark, :GpuCount, :Frequency, :StatusCategory
 
-        def initialize(zone=nil, instancetype=nil, instancechargetype=nil, networkcard=nil, externals=nil, cpu=nil, memory=nil, instancefamily=nil, typename=nil, localdisktypelist=nil, status=nil, price=nil, soldoutreason=nil, instancebandwidth=nil, instancepps=nil, storageblockamount=nil, cputype=nil, gpu=nil, fpga=nil, remark=nil, gpucount=nil, frequency=nil)
+        def initialize(zone=nil, instancetype=nil, instancechargetype=nil, networkcard=nil, externals=nil, cpu=nil, memory=nil, instancefamily=nil, typename=nil, localdisktypelist=nil, status=nil, price=nil, soldoutreason=nil, instancebandwidth=nil, instancepps=nil, storageblockamount=nil, cputype=nil, gpu=nil, fpga=nil, remark=nil, gpucount=nil, frequency=nil, statuscategory=nil)
           @Zone = zone
           @InstanceType = instancetype
           @InstanceChargeType = instancechargetype
@@ -2708,6 +2711,7 @@ module TencentCloud
           @Remark = remark
           @GpuCount = gpucount
           @Frequency = frequency
+          @StatusCategory = statuscategory
         end
 
         def deserialize(params)
@@ -2746,6 +2750,7 @@ module TencentCloud
           @Remark = params['Remark']
           @GpuCount = params['GpuCount']
           @Frequency = params['Frequency']
+          @StatusCategory = params['StatusCategory']
         end
       end
 

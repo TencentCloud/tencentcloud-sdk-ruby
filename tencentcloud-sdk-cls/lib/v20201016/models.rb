@@ -5290,19 +5290,22 @@ module TencentCloud
 
       # GetAlarmLog请求参数结构体
       class GetAlarmLogRequest < TencentCloud::Common::AbstractModel
-        # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
+        # @param From: 要查询的执行详情的起始时间，Unix时间戳，单位ms
         # @type From: Integer
-        # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
+        # @param To: 要查询的执行详情的结束时间，Unix时间戳，单位ms
         # @type To: Integer
-        # @param Query: 查询语句，语句长度最大为1024
+        # @param Query: 查询过滤条件，例如：
+        # - 按告警策略ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971"`
+        # - 按监控对象ID查询：`monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b") `
+        # - 按告警策略ID及监控对象ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971" AND monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b")`
         # @type Query: String
-        # @param Limit: 单次查询返回的日志条数，最大值为1000
+        # @param Limit: 单次查询返回的执行详情条数，最大值为1000
         # @type Limit: Integer
-        # @param Context: 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
+        # @param Context: 加载更多详情时使用，透传上次返回的Context值，获取后续的执行详情
         # @type Context: String
-        # @param Sort: 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
+        # @param Sort: 执行详情是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
-        # @param UseNewAnalysis: 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
+        # @param UseNewAnalysis: 如果Query包含SQL语句，UseNewAnalysis为true时响应参数AnalysisRecords和Columns有效， UseNewAnalysis为false时响应参数AnalysisResults和ColNames有效
         # @type UseNewAnalysis: Boolean
 
         attr_accessor :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis
@@ -5330,25 +5333,25 @@ module TencentCloud
 
       # GetAlarmLog返回参数结构体
       class GetAlarmLogResponse < TencentCloud::Common::AbstractModel
-        # @param Context: 加载后续内容的Context
+        # @param Context: 加载后续详情的Context
         # @type Context: String
-        # @param ListOver: 日志查询结果是否全部返回
+        # @param ListOver: 指定时间范围内的告警执行详情是否完整返回
         # @type ListOver: Boolean
-        # @param Analysis: 返回的是否为分析结果
+        # @param Analysis: 返回的结果是否为SQL分析结果
         # @type Analysis: Boolean
         # @param ColNames: 如果Analysis为True，则返回分析结果的列名，否则为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColNames: Array
-        # @param Results: 日志查询结果；当Analysis为True时，可能返回为null
+        # @param Results: 执行详情查询结果；当Analysis为True时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
-        # @param AnalysisResults: 日志分析结果；当Analysis为False时，可能返回为null
+        # @param AnalysisResults: 执行详情统计分析结果；当Analysis为False时，可能返回为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
-        # @param AnalysisRecords: 新的日志分析结果; UseNewAnalysis为true有效
+        # @param AnalysisRecords: 执行详情统计分析结果; UseNewAnalysis为true有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisRecords: Array
-        # @param Columns: 日志分析的列属性; UseNewAnalysis为true有效
+        # @param Columns: 分析结果的列名， UseNewAnalysis为true有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Columns: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

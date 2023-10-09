@@ -6981,6 +6981,84 @@ module TencentCloud
         end
       end
 
+      # UpgradeDBInstanceMajorVersion请求参数结构体
+      class UpgradeDBInstanceMajorVersionRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID。
+        # @type DBInstanceId: String
+        # @param TargetDBKernelVersion: 目标内核版本号，可以通过API DescribeDBVersions获取可以升级的目标内核版本号。
+        # @type TargetDBKernelVersion: String
+        # @param UpgradeCheck: 是否为校验模式，若UpgradeCheck为True，表示仅进行内核版本兼容性检查，不会进行实质性的升级操作，对原实例无影响。检查结果可以通过升级日志查看。
+        # @type UpgradeCheck: Boolean
+        # @param BackupBeforeUpgrade: 升级前备份选项。True，表示升级前需要创建全量备份，False，表示升级前不需要创建全量备份。当实例已有备份集可以恢复到升级前的状态时，可选择False，否则需要指定为True。UpgradeCheck为True时，此参数无效。
+        # @type BackupBeforeUpgrade: Boolean
+        # @param StatisticsRefreshOption: 统计信息收集选项，对主例运行 ANALYZE 以在升级后更新系统统计信息。可选值包括，
+        # 0：不需要收集统计信息；
+        # 1：实例恢复写之前收集统计信息；
+        # 3：实例恢复写之后收集统计信息。
+        # UpgradeCheck为True时，此参数无效。
+        # @type StatisticsRefreshOption: Integer
+        # @param ExtensionUpgradeOption: 插件升级选项，pg_upgrade不会升级任何插件，需要在升级完成后在创建过插件的库上执行"ALTER EXTENSION UPDATE"。发起升级实例大版本时可以指定在实例恢复写前/后是否需要升级任务自动升级插件版本。可选值包括：
+        # 0：不需要自动升级插件；
+        # 1：恢复写之前升级插件；
+        # 2：恢复写之后升级插件。
+        # UpgradeCheck为True时，此参数无效。
+        # @type ExtensionUpgradeOption: Integer
+        # @param UpgradeTimeOption: 升级时间选项，升级过程中会有一段时间实例只读，并会有一次秒级闪断，发起升级时需要选择这段影响的时间窗。可选值包括：
+        # 0：自动执行，不需要指定时间窗；
+        # 1：指定本次升级任务的时间窗，通过参数UpgradeTimeBegin和UpgradeTimeEnd设置；
+        # 2：在实例运维时间窗内执行。
+        # UpgradeCheck为True时，此参数无效。
+        # @type UpgradeTimeOption: Integer
+        # @param UpgradeTimeBegin: 升级时间窗开始时间，时间格式：HH:MM:SS，例如：01:00:00。当UpgradeTimeOption为1时，该参数有效。
+        # UpgradeCheck为True时，此参数无效。
+        # @type UpgradeTimeBegin: String
+        # @param UpgradeTimeEnd: 升级时间窗截止时间，时间格式：HH:MM:SS，例如：02:00:00。当UpgradeTimeOption为1时，该参数有效。
+        # UpgradeCheck为True时，此参数无效。
+        # @type UpgradeTimeEnd: String
+
+        attr_accessor :DBInstanceId, :TargetDBKernelVersion, :UpgradeCheck, :BackupBeforeUpgrade, :StatisticsRefreshOption, :ExtensionUpgradeOption, :UpgradeTimeOption, :UpgradeTimeBegin, :UpgradeTimeEnd
+
+        def initialize(dbinstanceid=nil, targetdbkernelversion=nil, upgradecheck=nil, backupbeforeupgrade=nil, statisticsrefreshoption=nil, extensionupgradeoption=nil, upgradetimeoption=nil, upgradetimebegin=nil, upgradetimeend=nil)
+          @DBInstanceId = dbinstanceid
+          @TargetDBKernelVersion = targetdbkernelversion
+          @UpgradeCheck = upgradecheck
+          @BackupBeforeUpgrade = backupbeforeupgrade
+          @StatisticsRefreshOption = statisticsrefreshoption
+          @ExtensionUpgradeOption = extensionupgradeoption
+          @UpgradeTimeOption = upgradetimeoption
+          @UpgradeTimeBegin = upgradetimebegin
+          @UpgradeTimeEnd = upgradetimeend
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @TargetDBKernelVersion = params['TargetDBKernelVersion']
+          @UpgradeCheck = params['UpgradeCheck']
+          @BackupBeforeUpgrade = params['BackupBeforeUpgrade']
+          @StatisticsRefreshOption = params['StatisticsRefreshOption']
+          @ExtensionUpgradeOption = params['ExtensionUpgradeOption']
+          @UpgradeTimeOption = params['UpgradeTimeOption']
+          @UpgradeTimeBegin = params['UpgradeTimeBegin']
+          @UpgradeTimeEnd = params['UpgradeTimeEnd']
+        end
+      end
+
+      # UpgradeDBInstanceMajorVersion返回参数结构体
+      class UpgradeDBInstanceMajorVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeDBInstance请求参数结构体
       class UpgradeDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Memory: 升级后的实例内存大小，单位GB

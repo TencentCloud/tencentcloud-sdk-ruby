@@ -1013,6 +1013,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 证书托管接口已重构， 旧接口预下线， 近30天无请求
+
         # 云资源托管
 
         # @param request: Request instance for HostCertificate.

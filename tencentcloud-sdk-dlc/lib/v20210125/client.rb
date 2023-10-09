@@ -317,6 +317,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CheckDataEngineConfigPairsValidity）用于检查引擎用户自定义参数的有效性
+
+        # @param request: Request instance for CheckDataEngineConfigPairsValidity.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineConfigPairsValidityRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineConfigPairsValidityResponse`
+        def CheckDataEngineConfigPairsValidity(request)
+          body = send_request('CheckDataEngineConfigPairsValidity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckDataEngineConfigPairsValidityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CheckDataEngineImageCanBeRollback）用于查看集群是否能回滚。
+
+        # @param request: Request instance for CheckDataEngineImageCanBeRollback.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineImageCanBeRollbackRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineImageCanBeRollbackResponse`
+        def CheckDataEngineImageCanBeRollback(request)
+          body = send_request('CheckDataEngineImageCanBeRollback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckDataEngineImageCanBeRollbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CheckDataEngineImageCanBeUpgrade）用于查看集群镜像是否能够升级。
+
+        # @param request: Request instance for CheckDataEngineImageCanBeUpgrade.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineImageCanBeUpgradeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CheckDataEngineImageCanBeUpgradeResponse`
+        def CheckDataEngineImageCanBeUpgrade(request)
+          body = send_request('CheckDataEngineImageCanBeUpgrade', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckDataEngineImageCanBeUpgradeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 元数据锁检查
 
         # @param request: Request instance for CheckLockMetaData.
@@ -869,6 +941,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除数据引擎
+
+        # @param request: Request instance for DeleteDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteDataEngineResponse`
+        def DeleteDataEngine(request)
+          body = send_request('DeleteDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
 
         # @param request: Request instance for DeleteNotebookSession.
@@ -1095,6 +1191,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDMSTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口根据名称用于获取数据引擎详细信息
+
+        # @param request: Request instance for DescribeDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDataEngineResponse`
+        def DescribeDataEngine(request)
+          body = send_request('DescribeDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDataEngineImageVersions）用于获取独享集群大版本镜像列表。
+
+        # @param request: Request instance for DescribeDataEngineImageVersions.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataEngineImageVersionsRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDataEngineImageVersionsResponse`
+        def DescribeDataEngineImageVersions(request)
+          body = send_request('DescribeDataEngineImageVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataEngineImageVersionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeDataEnginePythonSparkImages）用于获取PYSPARK镜像列表
+
+        # @param request: Request instance for DescribeDataEnginePythonSparkImages.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataEnginePythonSparkImagesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDataEnginePythonSparkImagesResponse`
+        def DescribeDataEnginePythonSparkImages(request)
+          body = send_request('DescribeDataEnginePythonSparkImages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataEnginePythonSparkImagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1709,6 +1877,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户自定义引擎参数
+
+        # @param request: Request instance for DescribeUserDataEngineConfig.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUserDataEngineConfigRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUserDataEngineConfigResponse`
+        def DescribeUserDataEngineConfig(request)
+          body = send_request('DescribeUserDataEngineConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserDataEngineConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户详细信息
+
+        # @param request: Request instance for DescribeUserInfo.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUserInfoResponse`
+        def DescribeUserInfo(request)
+          body = send_request('DescribeUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列举用户角色信息
 
         # @param request: Request instance for DescribeUserRoles.
@@ -1719,6 +1935,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserRolesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户类型
+
+        # @param request: Request instance for DescribeUserType.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUserTypeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUserTypeResponse`
+        def DescribeUserType(request)
+          body = send_request('DescribeUserType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserTypeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1767,6 +2007,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeViewsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取工作组详细信息
+
+        # @param request: Request instance for DescribeWorkGroupInfo.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeWorkGroupInfoRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeWorkGroupInfoResponse`
+        def DescribeWorkGroupInfo(request)
+          body = send_request('DescribeWorkGroupInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWorkGroupInfoResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1997,6 +2261,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改引擎描述信息
+
+        # @param request: Request instance for ModifyDataEngineDescription.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyDataEngineDescriptionRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyDataEngineDescriptionResponse`
+        def ModifyDataEngineDescription(request)
+          body = send_request('ModifyDataEngineDescription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataEngineDescriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改数据治理事件阈值
 
         # @param request: Request instance for ModifyGovernEventRule.
@@ -2093,6 +2381,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户类型。只有管理员用户能够调用该接口进行操作
+
+        # @param request: Request instance for ModifyUserType.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyUserTypeRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyUserTypeResponse`
+        def ModifyUserType(request)
+          body = send_request('ModifyUserType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改工作组信息
 
         # @param request: Request instance for ModifyWorkGroup.
@@ -2141,6 +2453,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 续费数据引擎
+
+        # @param request: Request instance for RenewDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RenewDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RenewDataEngineResponse`
+        def RenewDataEngine(request)
+          body = send_request('RenewDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 上报元数据心跳
 
         # @param request: Request instance for ReportHeartbeatMetaData.
@@ -2151,6 +2487,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ReportHeartbeatMetaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重启引擎
+
+        # @param request: Request instance for RestartDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RestartDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RestartDataEngineResponse`
+        def RestartDataEngine(request)
+          body = send_request('RestartDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 回滚引擎镜像版本
+
+        # @param request: Request instance for RollbackDataEngineImage.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::RollbackDataEngineImageRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::RollbackDataEngineImageResponse`
+        def RollbackDataEngineImage(request)
+          body = send_request('RollbackDataEngineImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RollbackDataEngineImageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2213,6 +2597,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 切换引擎镜像版本
+
+        # @param request: Request instance for SwitchDataEngineImage.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::SwitchDataEngineImageRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::SwitchDataEngineImageResponse`
+        def SwitchDataEngineImage(request)
+          body = send_request('SwitchDataEngineImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchDataEngineImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑用户上的用户组
 
         # @param request: Request instance for UnbindWorkGroupsFromUser.
@@ -2261,6 +2669,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于更新数据引擎配置
+
+        # @param request: Request instance for UpdateDataEngine.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateDataEngineRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateDataEngineResponse`
+        def UpdateDataEngine(request)
+          body = send_request('UpdateDataEngine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户某种操作，触发引擎配置修改
+
+        # @param request: Request instance for UpdateDataEngineConfig.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateDataEngineConfigRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateDataEngineConfigResponse`
+        def UpdateDataEngineConfig(request)
+          body = send_request('UpdateDataEngineConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataEngineConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于更新行过滤规则。注意只能更新过滤规则，不能更新规格对象catalog，database和table。
 
         # @param request: Request instance for UpdateRowFilter.
@@ -2271,6 +2727,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateRowFilterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户引擎自定义配置
+
+        # @param request: Request instance for UpdateUserDataEngineConfig.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateUserDataEngineConfigRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateUserDataEngineConfigResponse`
+        def UpdateUserDataEngineConfig(request)
+          body = send_request('UpdateUserDataEngineConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUserDataEngineConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 升级引擎镜像
+
+        # @param request: Request instance for UpgradeDataEngineImage.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpgradeDataEngineImageRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpgradeDataEngineImageResponse`
+        def UpgradeDataEngineImage(request)
+          body = send_request('UpgradeDataEngineImage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeDataEngineImageResponse.new
             model.deserialize(response['Response'])
             model
           else

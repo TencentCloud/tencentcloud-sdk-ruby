@@ -7856,8 +7856,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2023, 9
-        deprecate :HealthStatusDetial=, :none, 2023, 9
+        deprecate :HealthStatusDetial, :none, 2023, 10
+        deprecate :HealthStatusDetial=, :none, 2023, 10
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

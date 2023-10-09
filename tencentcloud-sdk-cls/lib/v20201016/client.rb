@@ -1493,7 +1493,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取告警任务历史
+        # 本接口用于获取告警策略执行详情
 
         # @param request: Request instance for GetAlarmLog.
         # @type request: :class:`Tencentcloud::cls::V20201016::GetAlarmLogRequest`

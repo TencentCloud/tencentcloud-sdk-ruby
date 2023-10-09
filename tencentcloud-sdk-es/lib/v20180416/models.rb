@@ -1657,6 +1657,9 @@ module TencentCloud
         # @param IndexName: 索引名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
+        # @param IndexMetaJson: 索引元数据JSON
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexMetaJson: String
         # @param IndexStatus: 索引状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
@@ -1694,11 +1697,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexDocs: Integer
 
-        attr_accessor :IndexType, :IndexName, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId, :IndexDocs
+        attr_accessor :IndexType, :IndexName, :IndexMetaJson, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :AppId, :IndexDocs
 
-        def initialize(indextype=nil, indexname=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil, indexdocs=nil)
+        def initialize(indextype=nil, indexname=nil, indexmetajson=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, appid=nil, indexdocs=nil)
           @IndexType = indextype
           @IndexName = indexname
+          @IndexMetaJson = indexmetajson
           @IndexStatus = indexstatus
           @IndexStorage = indexstorage
           @IndexCreateTime = indexcreatetime
@@ -1716,6 +1720,7 @@ module TencentCloud
         def deserialize(params)
           @IndexType = params['IndexType']
           @IndexName = params['IndexName']
+          @IndexMetaJson = params['IndexMetaJson']
           @IndexStatus = params['IndexStatus']
           @IndexStorage = params['IndexStorage']
           @IndexCreateTime = params['IndexCreateTime']

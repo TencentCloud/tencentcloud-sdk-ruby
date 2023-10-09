@@ -968,6 +968,74 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateFlowApprovers请求参数结构体
+      class ChannelCreateFlowApproversRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 合同唯一编号
+        # @type FlowId: String
+        # @param Approvers: 补充企业签署人信息。
+
+        # - 如果发起方指定的补充签署人是企业签署人，则需要提供企业名称或者企业OpenId；
+
+        # - 如果不指定，则使用姓名和手机号进行补充。
+        # @type Approvers: Array
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param FillApproverType: 签署人信息补充方式
+
+        # <ul><li>**0**: 补充或签人，支持补充多个企业经办签署人（默认）注: `不可补充个人签署人`</li>
+        # <li>**1**: 补充动态签署人，可补充企业和个人签署人。注: `每个签署方节点签署人是唯一的，一个节点只支持传入一个签署人信息`</li></ul>
+        # @type FillApproverType: Integer
+
+        attr_accessor :Agent, :FlowId, :Approvers, :Operator, :FillApproverType
+
+        def initialize(agent=nil, flowid=nil, approvers=nil, operator=nil, fillapprovertype=nil)
+          @Agent = agent
+          @FlowId = flowid
+          @Approvers = approvers
+          @Operator = operator
+          @FillApproverType = fillapprovertype
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              fillapproverinfo_tmp = FillApproverInfo.new
+              fillapproverinfo_tmp.deserialize(i)
+              @Approvers << fillapproverinfo_tmp
+            end
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FillApproverType = params['FillApproverType']
+        end
+      end
+
+      # ChannelCreateFlowApprovers返回参数结构体
+      class ChannelCreateFlowApproversResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateFlowByFiles请求参数结构体
       class ChannelCreateFlowByFilesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
@@ -1603,6 +1671,68 @@ module TencentCloud
             @SignUrls = SignUrl.new
             @SignUrls.deserialize(params['SignUrls'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ChannelCreateOrganizationBatchSignUrl请求参数结构体
+      class ChannelCreateOrganizationBatchSignUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括子客企业及应用编、号等详细内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowIds: 请指定需执行批量签署的流程ID，数量范围为1-100。 您可登录腾讯电子签控制台，浏览 "合同"->"合同中心" 以查阅某一合同的FlowId（在页面中显示为合同ID）。 用户将利用链接对这些合同实施批量操作。
+        # @type FlowIds: Array
+        # @param OpenId: 第三方应用平台的用户openid。 您可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查阅某位员工的OpenId。 OpenId必须是传入合同（FlowId）中的签署人。 - 1. 若OpenId为空，Name和Mobile 必须提供。 - 2. 若OpenId 与 Name，Mobile均存在，将优先采用OpenId对应的员工。
+        # @type OpenId: String
+        # @param Name: 签署方经办人的姓名。
+        # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
+
+        # 注：`请确保和合同中填入的一致`
+        # @type Name: String
+        # @param Mobile: 员工手机号，必须与姓名一起使用。 如果OpenId为空，则此字段不能为空。同时，姓名和手机号码必须与传入合同（FlowId）中的签署人信息一致。
+        # @type Mobile: String
+
+        attr_accessor :Agent, :FlowIds, :OpenId, :Name, :Mobile
+
+        def initialize(agent=nil, flowids=nil, openid=nil, name=nil, mobile=nil)
+          @Agent = agent
+          @FlowIds = flowids
+          @OpenId = openid
+          @Name = name
+          @Mobile = mobile
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowIds = params['FlowIds']
+          @OpenId = params['OpenId']
+          @Name = params['Name']
+          @Mobile = params['Mobile']
+        end
+      end
+
+      # ChannelCreateOrganizationBatchSignUrl返回参数结构体
+      class ChannelCreateOrganizationBatchSignUrlResponse < TencentCloud::Common::AbstractModel
+        # @param SignUrl: 批量签署入口链接，用户可使用这个链接跳转到控制台页面对合同进行签署操作。
+        # @type SignUrl: String
+        # @param ExpiredTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+        # @type ExpiredTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SignUrl, :ExpiredTime, :RequestId
+
+        def initialize(signurl=nil, expiredtime=nil, requestid=nil)
+          @SignUrl = signurl
+          @ExpiredTime = expiredtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SignUrl = params['SignUrl']
+          @ExpiredTime = params['ExpiredTime']
           @RequestId = params['RequestId']
         end
       end
@@ -4126,6 +4256,7 @@ module TencentCloud
         # - NOT_CHANNEL：非第三方平台子客企业企业
         # - PERSON：个人
         # - FOLLOWER：关注方，目前是合同抄送方
+        # - RECIPIENT：获取RecipientId对应的签署链接，可用于生成动态签署人补充链接
         # @type GenerateType: String
         # @param OrganizationName: 非第三方平台子客企业参与方的企业名称，GenerateType为"NOT_CHANNEL"时必填
         # @type OrganizationName: String
@@ -4152,7 +4283,7 @@ module TencentCloud
         # - 2:合同签署页面更多操作的转他人处理按钮
         # - 3:签署成功页的查看详情按钮
         # @type Hides: Array
-        # @param RecipientIds: 签署节点ID，用于补充动态签署人，使用此参数需要与flow_ids数量一致
+        # @param RecipientIds: 签署节点ID，用于补充动态签署人，使用此参数需要与flow_ids数量一致并且一一对应
         # @type RecipientIds: Array
 
         attr_accessor :Agent, :FlowIds, :FlowGroupId, :Endpoint, :GenerateType, :OrganizationName, :Name, :Mobile, :OrganizationOpenId, :OpenId, :AutoJumpBack, :JumpUrl, :Operator, :Hides, :RecipientIds
@@ -4796,6 +4927,47 @@ module TencentCloud
         def deserialize(params)
           @UserId = params['UserId']
           @RoleIds = params['RoleIds']
+        end
+      end
+
+      # 指定补充签署人信息
+      # - RecipientId 必须指定
+      class FillApproverInfo < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+        # @type RecipientId: String
+        # @param OpenId: 指定企业经办签署人OpenId
+        # @type OpenId: String
+        # @param ApproverName: 签署人姓名
+        # @type ApproverName: String
+        # @param ApproverMobile: 签署人手机号码
+        # @type ApproverMobile: String
+        # @param OrganizationName: 企业名称
+        # @type OrganizationName: String
+        # @param OrganizationOpenId: 企业OpenId
+        # @type OrganizationOpenId: String
+        # @param NotChannelOrganization: 签署企业非渠道子客，默认为false，即表示同一渠道下的企业；如果为true，则目前表示接收方企业为SaaS企业, 为渠道子客时，organization_open_id+open_id 必传
+        # @type NotChannelOrganization: String
+
+        attr_accessor :RecipientId, :OpenId, :ApproverName, :ApproverMobile, :OrganizationName, :OrganizationOpenId, :NotChannelOrganization
+
+        def initialize(recipientid=nil, openid=nil, approvername=nil, approvermobile=nil, organizationname=nil, organizationopenid=nil, notchannelorganization=nil)
+          @RecipientId = recipientid
+          @OpenId = openid
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
+          @OrganizationName = organizationname
+          @OrganizationOpenId = organizationopenid
+          @NotChannelOrganization = notchannelorganization
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @OpenId = params['OpenId']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
+          @OrganizationName = params['OrganizationName']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @NotChannelOrganization = params['NotChannelOrganization']
         end
       end
 

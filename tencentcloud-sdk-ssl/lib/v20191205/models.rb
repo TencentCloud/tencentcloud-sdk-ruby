@@ -5909,8 +5909,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :OldCertificateId, :ResourceTypes, :Regions, :ResourceTypesRegions
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2023, 9
-        deprecate :Regions=, :none, 2023, 9
+        deprecate :Regions, :none, 2023, 10
+        deprecate :Regions=, :none, 2023, 10
 
         def initialize(certificateid=nil, oldcertificateid=nil, resourcetypes=nil, regions=nil, resourcetypesregions=nil)
           @CertificateId = certificateid

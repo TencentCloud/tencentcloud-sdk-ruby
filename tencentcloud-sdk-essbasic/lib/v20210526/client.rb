@@ -274,6 +274,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 适用场景：
+        # 当通过模板或文件发起合同时，若未指定企业签署人信息，则可调用此接口动态补充签署人。同一签署人只允许补充一人，最终实际签署人取决于谁先领取合同完成签署。
+
+        # 限制条件：
+        # 1. 本企业（发起方企业）企业签署人仅支持通过企业名称+姓名+手机号进行补充。
+        # 2. 个人签署人仅支持通过姓名+手机号进行补充。
+
+        # @param request: Request instance for ChannelCreateFlowApprovers.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowApproversRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowApproversResponse`
+        def ChannelCreateFlowApprovers(request)
+          body = send_request('ChannelCreateFlowApprovers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateFlowApproversResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口（ChannelCreateFlowByFiles）用于通过文件创建签署流程。此接口静默签能力不可直接使用，请联系客户经理申请使用
 
         # @param request: Request instance for ChannelCreateFlowByFiles.
@@ -452,6 +481,35 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ChannelCreateMultiFlowSignQRCodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过此接口，创建小程序批量签署链接，可以创建企业批量签署链接，员工只需点击链接即可跳转至控制台进行批量签署。
+
+        # 注：
+        # - 员工必须在企业下完成实名认证，且需作为批量签署合同的签署方或者领取方。
+        # - 仅支持传入待签署或者待领取的合同，待填写暂不支持。
+        # - 员工批量签署，支持多种签名方式，包括手写签名、临摹签名、系统签名、个人印章，暂不支持签批控件
+
+        # @param request: Request instance for ChannelCreateOrganizationBatchSignUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateOrganizationBatchSignUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateOrganizationBatchSignUrlResponse`
+        def ChannelCreateOrganizationBatchSignUrl(request)
+          body = send_request('ChannelCreateOrganizationBatchSignUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateOrganizationBatchSignUrlResponse.new
             model.deserialize(response['Response'])
             model
           else

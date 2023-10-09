@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2023, 9
-        deprecate :SegmentSet=, :none, 2023, 9
+        deprecate :SegmentSet, :none, 2023, 10
+        deprecate :SegmentSet=, :none, 2023, 10
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -11927,9 +11927,9 @@ module TencentCloud
       class EditMediaFileInfo < TencentCloud::Common::AbstractModel
         # @param FileId: 视频的 ID。
         # @type FileId: String
-        # @param StartTimeOffset: 视频剪辑的起始偏移时间偏移，单位：秒。
+        # @param StartTimeOffset: 视频剪辑起始的偏移时间，单位：秒。
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 视频剪辑的起始结束时间偏移，单位：秒。
+        # @param EndTimeOffset: 视频剪辑结束的偏移时间，单位：秒。
         # @type EndTimeOffset: Float
 
         attr_accessor :FileId, :StartTimeOffset, :EndTimeOffset
@@ -16545,8 +16545,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2023, 9
-        deprecate :Transitions=, :none, 2023, 9
+        deprecate :Transitions, :none, 2023, 10
+        deprecate :Transitions=, :none, 2023, 10
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -20354,8 +20354,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2023, 9
-        deprecate :ProductInstanceResourceSet=, :none, 2023, 9
+        deprecate :ProductInstanceResourceSet, :none, 2023, 10
+        deprecate :ProductInstanceResourceSet=, :none, 2023, 10
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype

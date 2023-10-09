@@ -759,6 +759,146 @@ module TencentCloud
         end
       end
 
+      # CheckDataEngineConfigPairsValidity请求参数结构体
+      class CheckDataEngineConfigPairsValidityRequest < TencentCloud::Common::AbstractModel
+        # @param ChildImageVersionId: 引擎小版本ID
+        # @type ChildImageVersionId: String
+        # @param DataEngineConfigPairs: 用户自定义参数
+        # @type DataEngineConfigPairs: Array
+        # @param ImageVersionId: 引擎大版本ID，存在小版本ID时仅需传入小版本ID，不存在时会获取当前大版本下最新的小版本ID。
+        # @type ImageVersionId: String
+
+        attr_accessor :ChildImageVersionId, :DataEngineConfigPairs, :ImageVersionId
+
+        def initialize(childimageversionid=nil, dataengineconfigpairs=nil, imageversionid=nil)
+          @ChildImageVersionId = childimageversionid
+          @DataEngineConfigPairs = dataengineconfigpairs
+          @ImageVersionId = imageversionid
+        end
+
+        def deserialize(params)
+          @ChildImageVersionId = params['ChildImageVersionId']
+          unless params['DataEngineConfigPairs'].nil?
+            @DataEngineConfigPairs = []
+            params['DataEngineConfigPairs'].each do |i|
+              dataengineconfigpair_tmp = DataEngineConfigPair.new
+              dataengineconfigpair_tmp.deserialize(i)
+              @DataEngineConfigPairs << dataengineconfigpair_tmp
+            end
+          end
+          @ImageVersionId = params['ImageVersionId']
+        end
+      end
+
+      # CheckDataEngineConfigPairsValidity返回参数结构体
+      class CheckDataEngineConfigPairsValidityResponse < TencentCloud::Common::AbstractModel
+        # @param IsAvailable: 参数有效性：ture:有效，false:至少存在一个无效参数；
+        # @type IsAvailable: Boolean
+        # @param UnavailableConfig: 无效参数集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnavailableConfig: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsAvailable, :UnavailableConfig, :RequestId
+
+        def initialize(isavailable=nil, unavailableconfig=nil, requestid=nil)
+          @IsAvailable = isavailable
+          @UnavailableConfig = unavailableconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsAvailable = params['IsAvailable']
+          @UnavailableConfig = params['UnavailableConfig']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckDataEngineImageCanBeRollback请求参数结构体
+      class CheckDataEngineImageCanBeRollbackRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎唯一id
+        # @type DataEngineId: String
+
+        attr_accessor :DataEngineId
+
+        def initialize(dataengineid=nil)
+          @DataEngineId = dataengineid
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+        end
+      end
+
+      # CheckDataEngineImageCanBeRollback返回参数结构体
+      class CheckDataEngineImageCanBeRollbackResponse < TencentCloud::Common::AbstractModel
+        # @param ToRecordId: 回滚后日志记录id
+        # @type ToRecordId: String
+        # @param FromRecordId: 回滚前日志记录id
+        # @type FromRecordId: String
+        # @param IsRollback: 是否能够回滚
+        # @type IsRollback: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ToRecordId, :FromRecordId, :IsRollback, :RequestId
+
+        def initialize(torecordid=nil, fromrecordid=nil, isrollback=nil, requestid=nil)
+          @ToRecordId = torecordid
+          @FromRecordId = fromrecordid
+          @IsRollback = isrollback
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ToRecordId = params['ToRecordId']
+          @FromRecordId = params['FromRecordId']
+          @IsRollback = params['IsRollback']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckDataEngineImageCanBeUpgrade请求参数结构体
+      class CheckDataEngineImageCanBeUpgradeRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 集群id
+        # @type DataEngineId: String
+
+        attr_accessor :DataEngineId
+
+        def initialize(dataengineid=nil)
+          @DataEngineId = dataengineid
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+        end
+      end
+
+      # CheckDataEngineImageCanBeUpgrade返回参数结构体
+      class CheckDataEngineImageCanBeUpgradeResponse < TencentCloud::Common::AbstractModel
+        # @param ChildImageVersionId: 当前大版本下，可升级的集群镜像小版本id
+        # @type ChildImageVersionId: String
+        # @param IsUpgrade: 是否能够升级
+        # @type IsUpgrade: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChildImageVersionId, :IsUpgrade, :RequestId
+
+        def initialize(childimageversionid=nil, isupgrade=nil, requestid=nil)
+          @ChildImageVersionId = childimageversionid
+          @IsUpgrade = isupgrade
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChildImageVersionId = params['ChildImageVersionId']
+          @IsUpgrade = params['IsUpgrade']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckLockMetaData请求参数结构体
       class CheckLockMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param LockId: 锁ID
@@ -1192,8 +1332,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2023, 9
-        deprecate :DefaultDataEngine=, :none, 2023, 9
+        deprecate :DefaultDataEngine, :none, 2023, 10
+        deprecate :DefaultDataEngine=, :none, 2023, 10
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil)
           @EngineType = enginetype
@@ -2926,6 +3066,55 @@ module TencentCloud
         end
       end
 
+      # 集群大版本镜像信息。
+      class DataEngineImageVersion < TencentCloud::Common::AbstractModel
+        # @param ImageVersionId: 镜像大版本ID
+        # @type ImageVersionId: String
+        # @param ImageVersion: 镜像大版本名称
+        # @type ImageVersion: String
+        # @param Description: 镜像大版本描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsPublic: 是否为公共版本：1：公共；2：私有
+        # @type IsPublic: Integer
+        # @param EngineType: 集群类型：SparkSQL/PrestoSQL/SparkBatch
+        # @type EngineType: String
+        # @param IsSharedEngine: 版本状态：1：初始化；2：上线；3：下线
+        # @type IsSharedEngine: Integer
+        # @param State: 版本状态：1：初始化；2：上线；3：下线
+        # @type State: Integer
+        # @param InsertTime: 插入时间
+        # @type InsertTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :ImageVersionId, :ImageVersion, :Description, :IsPublic, :EngineType, :IsSharedEngine, :State, :InsertTime, :UpdateTime
+
+        def initialize(imageversionid=nil, imageversion=nil, description=nil, ispublic=nil, enginetype=nil, issharedengine=nil, state=nil, inserttime=nil, updatetime=nil)
+          @ImageVersionId = imageversionid
+          @ImageVersion = imageversion
+          @Description = description
+          @IsPublic = ispublic
+          @EngineType = enginetype
+          @IsSharedEngine = issharedengine
+          @State = state
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ImageVersionId = params['ImageVersionId']
+          @ImageVersion = params['ImageVersion']
+          @Description = params['Description']
+          @IsPublic = params['IsPublic']
+          @EngineType = params['EngineType']
+          @IsSharedEngine = params['IsSharedEngine']
+          @State = params['State']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # DataEngine详细信息
       class DataEngineInfo < TencentCloud::Common::AbstractModel
         # @param DataEngineName: DataEngine名称
@@ -3626,6 +3815,38 @@ module TencentCloud
         end
       end
 
+      # DeleteDataEngine请求参数结构体
+      class DeleteDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineNames: 删除虚拟集群的名称数组
+        # @type DataEngineNames: Array
+
+        attr_accessor :DataEngineNames
+
+        def initialize(dataenginenames=nil)
+          @DataEngineNames = dataenginenames
+        end
+
+        def deserialize(params)
+          @DataEngineNames = params['DataEngineNames']
+        end
+      end
+
+      # DeleteDataEngine返回参数结构体
+      class DeleteDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNotebookSession请求参数结构体
       class DeleteNotebookSessionRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: Session唯一标识
@@ -4245,6 +4466,135 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataEngineImageVersions请求参数结构体
+      class DescribeDataEngineImageVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param EngineType: 引擎类型：SQL、SparkBatch
+        # @type EngineType: String
+
+        attr_accessor :EngineType
+
+        def initialize(enginetype=nil)
+          @EngineType = enginetype
+        end
+
+        def deserialize(params)
+          @EngineType = params['EngineType']
+        end
+      end
+
+      # DescribeDataEngineImageVersions返回参数结构体
+      class DescribeDataEngineImageVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param ImageParentVersions: 集群大版本镜像信息列表
+        # @type ImageParentVersions: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ImageParentVersions, :Total, :RequestId
+
+        def initialize(imageparentversions=nil, total=nil, requestid=nil)
+          @ImageParentVersions = imageparentversions
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ImageParentVersions'].nil?
+            @ImageParentVersions = []
+            params['ImageParentVersions'].each do |i|
+              dataengineimageversion_tmp = DataEngineImageVersion.new
+              dataengineimageversion_tmp.deserialize(i)
+              @ImageParentVersions << dataengineimageversion_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataEnginePythonSparkImages请求参数结构体
+      class DescribeDataEnginePythonSparkImagesRequest < TencentCloud::Common::AbstractModel
+        # @param ChildImageVersionId: 集群镜像小版本ID
+        # @type ChildImageVersionId: String
+
+        attr_accessor :ChildImageVersionId
+
+        def initialize(childimageversionid=nil)
+          @ChildImageVersionId = childimageversionid
+        end
+
+        def deserialize(params)
+          @ChildImageVersionId = params['ChildImageVersionId']
+        end
+      end
+
+      # DescribeDataEnginePythonSparkImages返回参数结构体
+      class DescribeDataEnginePythonSparkImagesResponse < TencentCloud::Common::AbstractModel
+        # @param PythonSparkImages: PYSPARK镜像信息列表
+        # @type PythonSparkImages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PythonSparkImages, :RequestId
+
+        def initialize(pythonsparkimages=nil, requestid=nil)
+          @PythonSparkImages = pythonsparkimages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PythonSparkImages'].nil?
+            @PythonSparkImages = []
+            params['PythonSparkImages'].each do |i|
+              pythonsparkimage_tmp = PythonSparkImage.new
+              pythonsparkimage_tmp.deserialize(i)
+              @PythonSparkImages << pythonsparkimage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataEngine请求参数结构体
+      class DescribeDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: House名称
+        # @type DataEngineName: String
+
+        attr_accessor :DataEngineName
+
+        def initialize(dataenginename=nil)
+          @DataEngineName = dataenginename
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+        end
+      end
+
+      # DescribeDataEngine返回参数结构体
+      class DescribeDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngine: 数据引擎详细信息
+        # @type DataEngine: :class:`Tencentcloud::Dlc.v20210125.models.DataEngineInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataEngine, :RequestId
+
+        def initialize(dataengine=nil, requestid=nil)
+          @DataEngine = dataengine
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataEngine'].nil?
+            @DataEngine = DataEngineInfo.new
+            @DataEngine.deserialize(params['DataEngine'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5722,6 +6072,128 @@ module TencentCloud
         end
       end
 
+      # DescribeUserDataEngineConfig请求参数结构体
+      class DescribeUserDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserDataEngineConfig返回参数结构体
+      class DescribeUserDataEngineConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserInfo请求参数结构体
+      class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id
+        # @type UserId: String
+        # @param Type: 查询的信息类型，Group：工作组 DataAuth：数据权限 EngineAuth:引擎权限
+        # @type Type: String
+        # @param Filters: 查询的过滤条件。
+
+        # 当Type为Group时，支持Key为workgroup-name的模糊搜索；
+
+        # 当Type为DataAuth时，支持key：
+
+        # policy-type：权限类型。
+
+        # policy-source：数据来源。
+
+        # data-name：库表的模糊搜索。
+
+        # 当Type为EngineAuth时，支持key：
+
+        # policy-type：权限类型。
+
+        # policy-source：数据来源。
+
+        # engine-name：库表的模糊搜索。
+        # @type Filters: Array
+        # @param SortBy: 排序字段。
+
+        # 当Type为Group时，支持create-time、group-name
+
+        # 当Type为DataAuth时，支持create-time
+
+        # 当Type为EngineAuth时，支持create-time
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
+        # @type Sorting: String
+        # @param Limit: 返回数量，默认20，最大值100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :UserId, :Type, :Filters, :SortBy, :Sorting, :Limit, :Offset
+
+        def initialize(userid=nil, type=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, offset=nil)
+          @UserId = userid
+          @Type = type
+          @Filters = filters
+          @SortBy = sortby
+          @Sorting = sorting
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Type = params['Type']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeUserInfo返回参数结构体
+      class DescribeUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UserInfo: 用户详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserInfo: :class:`Tencentcloud::Dlc.v20210125.models.UserDetailInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserInfo, :RequestId
+
+        def initialize(userinfo=nil, requestid=nil)
+          @UserInfo = userinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserInfo'].nil?
+            @UserInfo = UserDetailInfo.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserRoles请求参数结构体
       class DescribeUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 列举的数量限制
@@ -5781,6 +6253,43 @@ module TencentCloud
               @UserRoles << userrole_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserType请求参数结构体
+      class DescribeUserTypeRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID（UIN），如果不填默认为调用方的子UIN
+        # @type UserId: String
+
+        attr_accessor :UserId
+
+        def initialize(userid=nil)
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeUserType返回参数结构体
+      class DescribeUserTypeResponse < TencentCloud::Common::AbstractModel
+        # @param UserType: 用户类型。ADMIN：管理员 COMMON：普通用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserType, :RequestId
+
+        def initialize(usertype=nil, requestid=nil)
+          @UserType = usertype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserType = params['UserType']
           @RequestId = params['RequestId']
         end
       end
@@ -5943,6 +6452,101 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkGroupInfo请求参数结构体
+      class DescribeWorkGroupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # @type WorkGroupId: Integer
+        # @param Type: 查询信息类型：User：用户信息 DataAuth：数据权限 EngineAuth：引擎权限
+        # @type Type: String
+        # @param Filters: 查询的过滤条件。
+
+        # 当Type为User时，支持Key为user-name的模糊搜索；
+
+        # 当Type为DataAuth时，支持key：
+
+        # policy-type：权限类型。
+
+        # policy-source：数据来源。
+
+        # data-name：库表的模糊搜索。
+
+        # 当Type为EngineAuth时，支持key：
+
+        # policy-type：权限类型。
+
+        # policy-source：数据来源。
+
+        # engine-name：库表的模糊搜索。
+        # @type Filters: Array
+        # @param SortBy: 排序字段。
+
+        # 当Type为User时，支持create-time、user-name
+
+        # 当Type为DataAuth时，支持create-time
+
+        # 当Type为EngineAuth时，支持create-time
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc
+        # @type Sorting: String
+        # @param Limit: 返回数量，默认20，最大值100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :WorkGroupId, :Type, :Filters, :SortBy, :Sorting, :Limit, :Offset
+
+        def initialize(workgroupid=nil, type=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, offset=nil)
+          @WorkGroupId = workgroupid
+          @Type = type
+          @Filters = filters
+          @SortBy = sortby
+          @Sorting = sorting
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @Type = params['Type']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeWorkGroupInfo返回参数结构体
+      class DescribeWorkGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param WorkGroupInfo: 工作组详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupInfo: :class:`Tencentcloud::Dlc.v20210125.models.WorkGroupDetailInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkGroupInfo, :RequestId
+
+        def initialize(workgroupinfo=nil, requestid=nil)
+          @WorkGroupInfo = workgroupinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['WorkGroupInfo'].nil?
+            @WorkGroupInfo = WorkGroupDetailInfo.new
+            @WorkGroupInfo.deserialize(params['WorkGroupInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6830,6 +7434,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDataEngineDescription请求参数结构体
+      class ModifyDataEngineDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 要修改的引擎的名称
+        # @type DataEngineName: String
+        # @param Message: 引擎的描述信息，最大长度为250
+        # @type Message: String
+
+        attr_accessor :DataEngineName, :Message
+
+        def initialize(dataenginename=nil, message=nil)
+          @DataEngineName = dataenginename
+          @Message = message
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @Message = params['Message']
+        end
+      end
+
+      # ModifyDataEngineDescription返回参数结构体
+      class ModifyDataEngineDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGovernEventRule请求参数结构体
       class ModifyGovernEventRuleRequest < TencentCloud::Common::AbstractModel
 
@@ -7083,6 +7723,42 @@ module TencentCloud
 
       # ModifyUser返回参数结构体
       class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserType请求参数结构体
+      class ModifyUserTypeRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # @type UserId: String
+        # @param UserType: 用户要修改到的类型，ADMIN：管理员，COMMON：一般用户。
+        # @type UserType: String
+
+        attr_accessor :UserId, :UserType
+
+        def initialize(userid=nil, usertype=nil)
+          @UserId = userid
+          @UserType = usertype
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserType = params['UserType']
+        end
+      end
+
+      # ModifyUserType返回参数结构体
+      class ModifyUserTypeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7723,6 +8399,35 @@ module TencentCloud
         end
       end
 
+      # 策略集合
+      class Policys < TencentCloud::Common::AbstractModel
+        # @param PolicySet: 策略集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicySet: Array
+        # @param TotalCount: 策略总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :PolicySet, :TotalCount
+
+        def initialize(policyset=nil, totalcount=nil)
+          @PolicySet = policyset
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['PolicySet'].nil?
+            @PolicySet = []
+            params['PolicySet'].each do |i|
+              policy_tmp = Policy.new
+              policy_tmp.deserialize(i)
+              @PolicySet << policy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # Presto监控指标
       class PrestoMonitorMetrics < TencentCloud::Common::AbstractModel
         # @param LocalCacheHitRate: 	Alluxio本地缓存命中率
@@ -7762,6 +8467,43 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # python-spark镜像信息。
+      class PythonSparkImage < TencentCloud::Common::AbstractModel
+        # @param SparkImageId: spark镜像唯一id
+        # @type SparkImageId: String
+        # @param ChildImageVersionId: 集群小版本镜像id
+        # @type ChildImageVersionId: String
+        # @param SparkImageVersion: spark镜像名称
+        # @type SparkImageVersion: String
+        # @param Description: spark镜像描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :SparkImageId, :ChildImageVersionId, :SparkImageVersion, :Description, :CreateTime, :UpdateTime
+
+        def initialize(sparkimageid=nil, childimageversionid=nil, sparkimageversion=nil, description=nil, createtime=nil, updatetime=nil)
+          @SparkImageId = sparkimageid
+          @ChildImageVersionId = childimageversionid
+          @SparkImageVersion = sparkimageversion
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @SparkImageId = params['SparkImageId']
+          @ChildImageVersionId = params['ChildImageVersionId']
+          @SparkImageVersion = params['SparkImageVersion']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -7825,6 +8567,54 @@ module TencentCloud
         end
       end
 
+      # RenewDataEngine请求参数结构体
+      class RenewDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: CU队列名称
+        # @type DataEngineName: String
+        # @param TimeSpan: 续费时长，单位月，最少续费1一个月
+        # @type TimeSpan: Integer
+        # @param PayMode: 付费类型，默认为1，预付费
+        # @type PayMode: Integer
+        # @param TimeUnit: 单位，默认m，仅能填m
+        # @type TimeUnit: String
+        # @param RenewFlag: 自动续费标志，0，初始状态，默认不自动续费，若用户有预付费不停服特权，自动续费。1：自动续费。2：明确不自动续费。不传该参数默认为0
+        # @type RenewFlag: Integer
+
+        attr_accessor :DataEngineName, :TimeSpan, :PayMode, :TimeUnit, :RenewFlag
+
+        def initialize(dataenginename=nil, timespan=nil, paymode=nil, timeunit=nil, renewflag=nil)
+          @DataEngineName = dataenginename
+          @TimeSpan = timespan
+          @PayMode = paymode
+          @TimeUnit = timeunit
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
+          @TimeUnit = params['TimeUnit']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # RenewDataEngine返回参数结构体
+      class RenewDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReportHeartbeatMetaData请求参数结构体
       class ReportHeartbeatMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param DatasourceConnectionName: 数据源名称
@@ -7851,6 +8641,60 @@ module TencentCloud
 
       # ReportHeartbeatMetaData返回参数结构体
       class ReportHeartbeatMetaDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartDataEngine请求参数结构体
+      class RestartDataEngineRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RestartDataEngine返回参数结构体
+      class RestartDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RollbackDataEngineImage请求参数结构体
+      class RollbackDataEngineImageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RollbackDataEngineImage返回参数结构体
+      class RollbackDataEngineImageResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8403,6 +9247,33 @@ module TencentCloud
 
         def deserialize(params)
           @DataEngineName = params['DataEngineName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SwitchDataEngineImage请求参数结构体
+      class SwitchDataEngineImageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SwitchDataEngineImage返回参数结构体
+      class SwitchDataEngineImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -9243,6 +10114,127 @@ module TencentCloud
         end
       end
 
+      # UpdateDataEngineConfig请求参数结构体
+      class UpdateDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpdateDataEngineConfig返回参数结构体
+      class UpdateDataEngineConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataEngine请求参数结构体
+      class UpdateDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param Size: 资源大小
+        # @type Size: Integer
+        # @param MinClusters: 最小资源
+        # @type MinClusters: Integer
+        # @param MaxClusters: 最大资源
+        # @type MaxClusters: Integer
+        # @param AutoResume: 开启自动刷新：true：开启、false（默认）：关闭
+        # @type AutoResume: Boolean
+        # @param DataEngineName: 数据引擎名称
+        # @type DataEngineName: String
+        # @param Message: 相关信息
+        # @type Message: String
+        # @param AutoSuspend: 是否自定挂起集群：false（默认）：不自动挂起、true：自动挂起
+        # @type AutoSuspend: Boolean
+        # @param CrontabResumeSuspend: 定时启停集群策略：0（默认）：关闭定时策略、1：开启定时策略（注：定时启停策略与自动挂起策略互斥）
+        # @type CrontabResumeSuspend: Integer
+        # @param CrontabResumeSuspendStrategy: 定时启停策略，复杂类型：包含启停时间、挂起集群策略
+        # @type CrontabResumeSuspendStrategy: :class:`Tencentcloud::Dlc.v20210125.models.CrontabResumeSuspendStrategy`
+        # @param MaxConcurrency: 单个集群最大并发任务数，默认5
+        # @type MaxConcurrency: Integer
+        # @param TolerableQueueTime: 可容忍的排队时间，默认0。当任务排队的时间超过可容忍的时间时可能会触发扩容。如果该参数为0，则表示一旦有任务排队就可能立即触发扩容。
+        # @type TolerableQueueTime: Integer
+        # @param AutoSuspendTime: 集群自动挂起时间
+        # @type AutoSuspendTime: Integer
+        # @param ElasticSwitch: spark jar 包年包月集群是否开启弹性
+        # @type ElasticSwitch: Boolean
+        # @param ElasticLimit: spark jar 包年包月集群弹性上限
+        # @type ElasticLimit: Integer
+        # @param SessionResourceTemplate: Spark批作业集群Session资源配置模板
+        # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
+
+        attr_accessor :Size, :MinClusters, :MaxClusters, :AutoResume, :DataEngineName, :Message, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate
+
+        def initialize(size=nil, minclusters=nil, maxclusters=nil, autoresume=nil, dataenginename=nil, message=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil)
+          @Size = size
+          @MinClusters = minclusters
+          @MaxClusters = maxclusters
+          @AutoResume = autoresume
+          @DataEngineName = dataenginename
+          @Message = message
+          @AutoSuspend = autosuspend
+          @CrontabResumeSuspend = crontabresumesuspend
+          @CrontabResumeSuspendStrategy = crontabresumesuspendstrategy
+          @MaxConcurrency = maxconcurrency
+          @TolerableQueueTime = tolerablequeuetime
+          @AutoSuspendTime = autosuspendtime
+          @ElasticSwitch = elasticswitch
+          @ElasticLimit = elasticlimit
+          @SessionResourceTemplate = sessionresourcetemplate
+        end
+
+        def deserialize(params)
+          @Size = params['Size']
+          @MinClusters = params['MinClusters']
+          @MaxClusters = params['MaxClusters']
+          @AutoResume = params['AutoResume']
+          @DataEngineName = params['DataEngineName']
+          @Message = params['Message']
+          @AutoSuspend = params['AutoSuspend']
+          @CrontabResumeSuspend = params['CrontabResumeSuspend']
+          unless params['CrontabResumeSuspendStrategy'].nil?
+            @CrontabResumeSuspendStrategy = CrontabResumeSuspendStrategy.new
+            @CrontabResumeSuspendStrategy.deserialize(params['CrontabResumeSuspendStrategy'])
+          end
+          @MaxConcurrency = params['MaxConcurrency']
+          @TolerableQueueTime = params['TolerableQueueTime']
+          @AutoSuspendTime = params['AutoSuspendTime']
+          @ElasticSwitch = params['ElasticSwitch']
+          @ElasticLimit = params['ElasticLimit']
+          unless params['SessionResourceTemplate'].nil?
+            @SessionResourceTemplate = SessionResourceTemplate.new
+            @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
+        end
+      end
+
+      # UpdateDataEngine返回参数结构体
+      class UpdateDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateRowFilter请求参数结构体
       class UpdateRowFilterRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 行过滤策略的id，此值可以通过DescribeUserInfo或者DescribeWorkGroupInfo接口获取
@@ -9279,6 +10271,129 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUserDataEngineConfig请求参数结构体
+      class UpdateUserDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpdateUserDataEngineConfig返回参数结构体
+      class UpdateUserDataEngineConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeDataEngineImage请求参数结构体
+      class UpgradeDataEngineImageRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # UpgradeDataEngineImage返回参数结构体
+      class UpgradeDataEngineImageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户详细信息
+      class UserDetailInfo < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param Type: 返回的信息类型，Group：返回的当前用户的工作组信息；DataAuth：返回的当前用户的数据权限信息；EngineAuth：返回的当前用户的引擎权限信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param UserType: 用户类型：ADMIN：管理员 COMMON：一般用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserType: String
+        # @param UserDescription: 用户描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserDescription: String
+        # @param DataPolicyInfo: 数据权限信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param EnginePolicyInfo: 引擎权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnginePolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param WorkGroupInfo: 绑定到该用户的工作组集合信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupInfo: :class:`Tencentcloud::Dlc.v20210125.models.WorkGroups`
+        # @param UserAlias: 用户别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param RowFilterInfo: 行过滤集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowFilterInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+
+        attr_accessor :UserId, :Type, :UserType, :UserDescription, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupInfo, :UserAlias, :RowFilterInfo
+
+        def initialize(userid=nil, type=nil, usertype=nil, userdescription=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupinfo=nil, useralias=nil, rowfilterinfo=nil)
+          @UserId = userid
+          @Type = type
+          @UserType = usertype
+          @UserDescription = userdescription
+          @DataPolicyInfo = datapolicyinfo
+          @EnginePolicyInfo = enginepolicyinfo
+          @WorkGroupInfo = workgroupinfo
+          @UserAlias = useralias
+          @RowFilterInfo = rowfilterinfo
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Type = params['Type']
+          @UserType = params['UserType']
+          @UserDescription = params['UserDescription']
+          unless params['DataPolicyInfo'].nil?
+            @DataPolicyInfo = Policys.new
+            @DataPolicyInfo.deserialize(params['DataPolicyInfo'])
+          end
+          unless params['EnginePolicyInfo'].nil?
+            @EnginePolicyInfo = Policys.new
+            @EnginePolicyInfo.deserialize(params['EnginePolicyInfo'])
+          end
+          unless params['WorkGroupInfo'].nil?
+            @WorkGroupInfo = WorkGroups.new
+            @WorkGroupInfo.deserialize(params['WorkGroupInfo'])
+          end
+          @UserAlias = params['UserAlias']
+          unless params['RowFilterInfo'].nil?
+            @RowFilterInfo = Policys.new
+            @RowFilterInfo.deserialize(params['RowFilterInfo'])
+          end
         end
       end
 
@@ -9466,6 +10581,35 @@ module TencentCloud
         end
       end
 
+      # 用户信息集合
+      class Users < TencentCloud::Common::AbstractModel
+        # @param UserSet: 用户信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSet: Array
+        # @param TotalCount: 用户总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :UserSet, :TotalCount
+
+        def initialize(userset=nil, totalcount=nil)
+          @UserSet = userset
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['UserSet'].nil?
+            @UserSet = []
+            params['UserSet'].each do |i|
+              usermessage_tmp = UserMessage.new
+              usermessage_tmp.deserialize(i)
+              @UserSet << usermessage_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # 视图基本配置信息
       class ViewBaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 该视图所属数据库名字
@@ -9542,6 +10686,70 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # 工作组详细信息
+      class WorkGroupDetailInfo < TencentCloud::Common::AbstractModel
+        # @param WorkGroupId: 工作组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupId: Integer
+        # @param WorkGroupName: 工作组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupName: String
+        # @param Type: 包含的信息类型。User：用户信息；DataAuth：数据权限；EngineAuth:引擎权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param UserInfo: 工作组上绑定的用户集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserInfo: :class:`Tencentcloud::Dlc.v20210125.models.Users`
+        # @param DataPolicyInfo: 数据权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param EnginePolicyInfo: 引擎权限集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnginePolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param WorkGroupDescription: 工作组描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupDescription: String
+        # @param RowFilterInfo: 行过滤信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowFilterInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+
+        attr_accessor :WorkGroupId, :WorkGroupName, :Type, :UserInfo, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupDescription, :RowFilterInfo
+
+        def initialize(workgroupid=nil, workgroupname=nil, type=nil, userinfo=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupdescription=nil, rowfilterinfo=nil)
+          @WorkGroupId = workgroupid
+          @WorkGroupName = workgroupname
+          @Type = type
+          @UserInfo = userinfo
+          @DataPolicyInfo = datapolicyinfo
+          @EnginePolicyInfo = enginepolicyinfo
+          @WorkGroupDescription = workgroupdescription
+          @RowFilterInfo = rowfilterinfo
+        end
+
+        def deserialize(params)
+          @WorkGroupId = params['WorkGroupId']
+          @WorkGroupName = params['WorkGroupName']
+          @Type = params['Type']
+          unless params['UserInfo'].nil?
+            @UserInfo = Users.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['DataPolicyInfo'].nil?
+            @DataPolicyInfo = Policys.new
+            @DataPolicyInfo.deserialize(params['DataPolicyInfo'])
+          end
+          unless params['EnginePolicyInfo'].nil?
+            @EnginePolicyInfo = Policys.new
+            @EnginePolicyInfo.deserialize(params['EnginePolicyInfo'])
+          end
+          @WorkGroupDescription = params['WorkGroupDescription']
+          unless params['RowFilterInfo'].nil?
+            @RowFilterInfo = Policys.new
+            @RowFilterInfo.deserialize(params['RowFilterInfo'])
+          end
         end
       end
 
@@ -9656,6 +10864,35 @@ module TencentCloud
           @WorkGroupDescription = params['WorkGroupDescription']
           @Creator = params['Creator']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 工作组集合
+      class WorkGroups < TencentCloud::Common::AbstractModel
+        # @param WorkGroupSet: 工作组信息集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkGroupSet: Array
+        # @param TotalCount: 工作组总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+
+        attr_accessor :WorkGroupSet, :TotalCount
+
+        def initialize(workgroupset=nil, totalcount=nil)
+          @WorkGroupSet = workgroupset
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['WorkGroupSet'].nil?
+            @WorkGroupSet = []
+            params['WorkGroupSet'].each do |i|
+              workgroupmessage_tmp = WorkGroupMessage.new
+              workgroupmessage_tmp.deserialize(i)
+              @WorkGroupSet << workgroupmessage_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
         end
       end
 

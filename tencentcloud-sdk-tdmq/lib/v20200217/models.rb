@@ -5035,10 +5035,17 @@ module TencentCloud
         # @type QueryDlqMsg: Boolean
         # @param NumOfLatestMsg: 查询最近N条消息 最大不超过1024，默认-1为其他查询条件
         # @type NumOfLatestMsg: Integer
+        # @param Tag: TAG表达式
+        # @type Tag: String
+        # @param QueryDeadLetterMessage: 死信查询时该值为true，只对Rocketmq有效
+        # @type QueryDeadLetterMessage: Boolean
 
-        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
+        extend Gem::Deprecate
+        deprecate :QueryDlqMsg, :none, 2023, 10
+        deprecate :QueryDlqMsg=, :none, 2023, 10
 
-        def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil)
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
           @EnvironmentId = environmentid
           @TopicName = topicname
@@ -5051,6 +5058,8 @@ module TencentCloud
           @TaskRequestId = taskrequestid
           @QueryDlqMsg = querydlqmsg
           @NumOfLatestMsg = numoflatestmsg
+          @Tag = tag
+          @QueryDeadLetterMessage = querydeadlettermessage
         end
 
         def deserialize(params)
@@ -5066,6 +5075,8 @@ module TencentCloud
           @TaskRequestId = params['TaskRequestId']
           @QueryDlqMsg = params['QueryDlqMsg']
           @NumOfLatestMsg = params['NumOfLatestMsg']
+          @Tag = params['Tag']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
         end
       end
 
@@ -8542,6 +8553,97 @@ module TencentCloud
         end
       end
 
+      # RocketMQ消费组订阅信息
+      class RocketMQSubscription < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Type: 主题类型：
+        # Normal 普通,
+        # GlobalOrder 全局顺序,
+        # PartitionedOrder 局部顺序,
+        # Transaction 事务消息,
+        # DelayScheduled 延时消息,
+        # Retry 重试,
+        # DeadLetter 死信
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param PartitionNum: 分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionNum: Integer
+        # @param ExpressionType: 过滤模式，TAG，SQL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpressionType: String
+        # @param SubString: 过滤表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubString: String
+        # @param Status: 订阅状态：
+        # 0，订阅关系一致
+        # 1，订阅关系不一致
+        # 2，未知
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ConsumerLag: 消费堆积数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLag: Integer
+        # @param ClusterId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ConsumerGroup: 消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerGroup: String
+        # @param IsOnline: 是否在线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOnline: Boolean
+        # @param ConsumeType: 消费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumeType: Integer
+        # @param Consistency: 订阅一致性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: Integer
+        # @param LastUpdateTime: 最后消费进度更新时间，秒为单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param MaxRetryTimes: 最大重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetryTimes: Integer
+
+        attr_accessor :Topic, :Type, :PartitionNum, :ExpressionType, :SubString, :Status, :ConsumerLag, :ClusterId, :ConsumerGroup, :IsOnline, :ConsumeType, :Consistency, :LastUpdateTime, :MaxRetryTimes
+
+        def initialize(topic=nil, type=nil, partitionnum=nil, expressiontype=nil, substring=nil, status=nil, consumerlag=nil, clusterid=nil, consumergroup=nil, isonline=nil, consumetype=nil, consistency=nil, lastupdatetime=nil, maxretrytimes=nil)
+          @Topic = topic
+          @Type = type
+          @PartitionNum = partitionnum
+          @ExpressionType = expressiontype
+          @SubString = substring
+          @Status = status
+          @ConsumerLag = consumerlag
+          @ClusterId = clusterid
+          @ConsumerGroup = consumergroup
+          @IsOnline = isonline
+          @ConsumeType = consumetype
+          @Consistency = consistency
+          @LastUpdateTime = lastupdatetime
+          @MaxRetryTimes = maxretrytimes
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Type = params['Type']
+          @PartitionNum = params['PartitionNum']
+          @ExpressionType = params['ExpressionType']
+          @SubString = params['SubString']
+          @Status = params['Status']
+          @ConsumerLag = params['ConsumerLag']
+          @ClusterId = params['ClusterId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @IsOnline = params['IsOnline']
+          @ConsumeType = params['ConsumeType']
+          @Consistency = params['Consistency']
+          @LastUpdateTime = params['LastUpdateTime']
+          @MaxRetryTimes = params['MaxRetryTimes']
+        end
+      end
+
       # RocketMQ主题信息
       class RocketMQTopic < TencentCloud::Common::AbstractModel
         # @param Name: 主题名称
@@ -8559,10 +8661,19 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: 创建时间，以毫秒为单位
         # @type UpdateTime: Integer
+        # @param LastUpdateTime: 最后写入时间，单位为秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTime: Integer
+        # @param SubscriptionCount: 订阅数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionCount: Integer
+        # @param SubscriptionData: 订阅关系列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscriptionData: Array
 
-        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime, :LastUpdateTime, :SubscriptionCount, :SubscriptionData
 
-        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil)
           @Name = name
           @Type = type
           @GroupNum = groupnum
@@ -8570,6 +8681,9 @@ module TencentCloud
           @PartitionNum = partitionnum
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @LastUpdateTime = lastupdatetime
+          @SubscriptionCount = subscriptioncount
+          @SubscriptionData = subscriptiondata
         end
 
         def deserialize(params)
@@ -8580,6 +8694,16 @@ module TencentCloud
           @PartitionNum = params['PartitionNum']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @LastUpdateTime = params['LastUpdateTime']
+          @SubscriptionCount = params['SubscriptionCount']
+          unless params['SubscriptionData'].nil?
+            @SubscriptionData = []
+            params['SubscriptionData'].each do |i|
+              rocketmqsubscription_tmp = RocketMQSubscription.new
+              rocketmqsubscription_tmp.deserialize(i)
+              @SubscriptionData << rocketmqsubscription_tmp
+            end
+          end
         end
       end
 

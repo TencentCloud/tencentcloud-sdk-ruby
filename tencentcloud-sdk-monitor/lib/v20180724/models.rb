@@ -12413,15 +12413,19 @@ module TencentCloud
         # @type RegionId: Integer
         # @param ZoneName: 可用区名（目前为中文）
         # @type ZoneName: String
+        # @param ZoneResourceState: 可用区资源状态(0:资源不足，不可使用；1:资源足够)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneResourceState: Integer
 
-        attr_accessor :Zone, :ZoneId, :ZoneState, :RegionId, :ZoneName
+        attr_accessor :Zone, :ZoneId, :ZoneState, :RegionId, :ZoneName, :ZoneResourceState
 
-        def initialize(zone=nil, zoneid=nil, zonestate=nil, regionid=nil, zonename=nil)
+        def initialize(zone=nil, zoneid=nil, zonestate=nil, regionid=nil, zonename=nil, zoneresourcestate=nil)
           @Zone = zone
           @ZoneId = zoneid
           @ZoneState = zonestate
           @RegionId = regionid
           @ZoneName = zonename
+          @ZoneResourceState = zoneresourcestate
         end
 
         def deserialize(params)
@@ -12430,6 +12434,7 @@ module TencentCloud
           @ZoneState = params['ZoneState']
           @RegionId = params['RegionId']
           @ZoneName = params['ZoneName']
+          @ZoneResourceState = params['ZoneResourceState']
         end
       end
 

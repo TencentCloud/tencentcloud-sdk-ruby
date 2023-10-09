@@ -4952,7 +4952,7 @@ module TencentCloud
 
       # DescribeAddonValues返回参数结构体
       class DescribeAddonValuesResponse < TencentCloud::Common::AbstractModel
-        # @param Values: 参数列表，如果addon已安装，会使用已设置的的参数做渲染，是一个json格式的字符串
+        # @param Values: 参数列表，如果addon已安装，会使用已设置的参数做渲染，是一个json格式的字符串
         # @type Values: String
         # @param DefaultValues: addon支持的参数列表，使用默认值，是一个json格式的字符串
         # @type DefaultValues: String

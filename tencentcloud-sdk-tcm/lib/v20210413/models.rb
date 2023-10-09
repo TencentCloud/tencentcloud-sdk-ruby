@@ -152,14 +152,18 @@ module TencentCloud
         # @type Topic: String
         # @param NeedDelete: 是否删除
         # @type NeedDelete: Boolean
+        # @param Region: cls 主题创建的地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
 
-        attr_accessor :Enable, :LogSet, :Topic, :NeedDelete
+        attr_accessor :Enable, :LogSet, :Topic, :NeedDelete, :Region
 
-        def initialize(enable=nil, logset=nil, topic=nil, needdelete=nil)
+        def initialize(enable=nil, logset=nil, topic=nil, needdelete=nil, region=nil)
           @Enable = enable
           @LogSet = logset
           @Topic = topic
           @NeedDelete = needdelete
+          @Region = region
         end
 
         def deserialize(params)
@@ -167,6 +171,7 @@ module TencentCloud
           @LogSet = params['LogSet']
           @Topic = params['Topic']
           @NeedDelete = params['NeedDelete']
+          @Region = params['Region']
         end
       end
 

@@ -654,7 +654,7 @@ module TencentCloud
         end
       end
 
-      # 新增录像上云模版返回数据
+      # 新增录像上云模板返回数据
       class AddRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3331,7 +3331,7 @@ module TencentCloud
         end
       end
 
-      # 查询录像上云模版返回数据
+      # 查询录像上云模板返回数据
       class DescribeRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6935,7 +6935,7 @@ module TencentCloud
         end
       end
 
-      # 修改录像上云模版返回数据
+      # 修改录像上云模板返回数据
       class UpdateRecordBackupTemplateData < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。

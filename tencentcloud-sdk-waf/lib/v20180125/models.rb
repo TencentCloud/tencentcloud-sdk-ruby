@@ -3017,6 +3017,71 @@ module TencentCloud
         end
       end
 
+      # DescribeCertificateVerifyResult请求参数结构体
+      class DescribeCertificateVerifyResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param CertType: 证书类型
+        # @type CertType: Integer
+        # @param Certificate: 证书公钥
+        # @type Certificate: String
+        # @param CertID: 证书ID
+        # @type CertID: String
+        # @param PrivateKey: 私钥信息
+        # @type PrivateKey: String
+
+        attr_accessor :Domain, :CertType, :Certificate, :CertID, :PrivateKey
+
+        def initialize(domain=nil, certtype=nil, certificate=nil, certid=nil, privatekey=nil)
+          @Domain = domain
+          @CertType = certtype
+          @Certificate = certificate
+          @CertID = certid
+          @PrivateKey = privatekey
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @CertType = params['CertType']
+          @Certificate = params['Certificate']
+          @CertID = params['CertID']
+          @PrivateKey = params['PrivateKey']
+        end
+      end
+
+      # DescribeCertificateVerifyResult返回参数结构体
+      class DescribeCertificateVerifyResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态码
+        # @type Status: Integer
+        # @param Detail: 错误详情
+        # @type Detail: Array
+        # @param NotAfter: 过期时间
+        # @type NotAfter: String
+        # @param Changed: 证书是否改变:1有改变，0没有改变
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Changed: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Detail, :NotAfter, :Changed, :RequestId
+
+        def initialize(status=nil, detail=nil, notafter=nil, changed=nil, requestid=nil)
+          @Status = status
+          @Detail = detail
+          @NotAfter = notafter
+          @Changed = changed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Detail = params['Detail']
+          @NotAfter = params['NotAfter']
+          @Changed = params['Changed']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCiphersDetail请求参数结构体
       class DescribeCiphersDetailRequest < TencentCloud::Common::AbstractModel
 
