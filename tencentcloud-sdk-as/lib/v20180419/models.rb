@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2023, 9
-        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 9
+        deprecate :ActivityRelatedInstanceSet, :none, 2023, 10
+        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 10
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2617,8 +2617,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2023, 9
-        deprecate :AutomationService=, :none, 2023, 9
+        deprecate :AutomationService, :none, 2023, 10
+        deprecate :AutomationService=, :none, 2023, 10
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3028,10 +3028,7 @@ module TencentCloud
 
       # 云服务器实例名称（InstanceName）的相关设置
       class InstanceNameSettings < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 云服务器的实例名。
-
-        # 点号（.）和短横线（-）不能作为 InstanceName 的首尾字符，不能连续使用。
-        # 字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
+        # @param InstanceName: 云服务器的实例名。字符长度为[2, 108]。
         # @type InstanceName: String
         # @param InstanceNameStyle: 云服务器实例名的风格，取值范围包括 ORIGINAL 和 UNIQUE，默认为 ORIGINAL。
 

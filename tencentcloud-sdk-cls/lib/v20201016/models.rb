@@ -7259,7 +7259,7 @@ module TencentCloud
         # @param HotPeriod: 0：关闭日志沉降。
         # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
         # @type HotPeriod: Integer
-        # @param IsWebTracking: webtracking开关； false: 关闭 true: 开启
+        # @param IsWebTracking: 免鉴权开关； false: 关闭 true: 开启
         # @type IsWebTracking: Boolean
 
         attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking

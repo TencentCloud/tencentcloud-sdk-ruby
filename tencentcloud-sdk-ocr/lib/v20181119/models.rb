@@ -2224,8 +2224,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 9
-        deprecate :Angel=, :none, 2023, 9
+        deprecate :Angel, :none, 2023, 10
+        deprecate :Angel=, :none, 2023, 10
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -2335,8 +2335,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 9
-        deprecate :Angel=, :none, 2023, 9
+        deprecate :Angel, :none, 2023, 10
+        deprecate :Angel=, :none, 2023, 10
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -9304,10 +9304,12 @@ module TencentCloud
         # @type QRCodeMark: Integer
         # @param ReimburseOnlyMark: 是否仅供报销使用（0：没有，1：有）
         # @type ReimburseOnlyMark: Integer
+        # @param RefundMark: 是否有退票费标识（0：没有，1：有）
+        # @type RefundMark: Integer
 
-        attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark
+        attr_accessor :Title, :Number, :DateGetOn, :TimeGetOn, :Name, :StationGetOn, :StationGetOff, :Seat, :Total, :Kind, :SerialNumber, :UserID, :GateNumber, :TrainNumber, :HandlingFee, :OriginalFare, :TotalCn, :SeatNumber, :PickUpAddress, :TicketChange, :AdditionalFare, :ReceiptNumber, :QRCodeMark, :ReimburseOnlyMark, :RefundMark
 
-        def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil)
+        def initialize(title=nil, number=nil, dategeton=nil, timegeton=nil, name=nil, stationgeton=nil, stationgetoff=nil, seat=nil, total=nil, kind=nil, serialnumber=nil, userid=nil, gatenumber=nil, trainnumber=nil, handlingfee=nil, originalfare=nil, totalcn=nil, seatnumber=nil, pickupaddress=nil, ticketchange=nil, additionalfare=nil, receiptnumber=nil, qrcodemark=nil, reimburseonlymark=nil, refundmark=nil)
           @Title = title
           @Number = number
           @DateGetOn = dategeton
@@ -9332,6 +9334,7 @@ module TencentCloud
           @ReceiptNumber = receiptnumber
           @QRCodeMark = qrcodemark
           @ReimburseOnlyMark = reimburseonlymark
+          @RefundMark = refundmark
         end
 
         def deserialize(params)
@@ -9359,6 +9362,7 @@ module TencentCloud
           @ReceiptNumber = params['ReceiptNumber']
           @QRCodeMark = params['QRCodeMark']
           @ReimburseOnlyMark = params['ReimburseOnlyMark']
+          @RefundMark = params['RefundMark']
         end
       end
 

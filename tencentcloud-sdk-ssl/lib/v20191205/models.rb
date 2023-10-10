@@ -5896,34 +5896,55 @@ module TencentCloud
 
       # UpdateCertificateInstance请求参数结构体
       class UpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 一键更新新证书ID
-        # @type CertificateId: String
         # @param OldCertificateId: 一键更新原证书ID
         # @type OldCertificateId: String
         # @param ResourceTypes: 需要部署的资源类型，参数值可选：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb
         # @type ResourceTypes: Array
+        # @param CertificateId: 一键更新新证书ID
+        # @type CertificateId: String
         # @param Regions: 需要部署的地域列表（废弃）
         # @type Regions: Array
         # @param ResourceTypesRegions: 云资源需要部署的地域列表
         # @type ResourceTypesRegions: Array
+        # @param CertificatePublicKey: 证书公钥， 若上传证书公钥， 则CertificateId不用传
+        # @type CertificatePublicKey: String
+        # @param CertificatePrivateKey: 证书私钥，若上传证书公钥， 则证书私钥必填
+        # @type CertificatePrivateKey: String
+        # @param ExpiringNotificationSwitch: 旧证书是否忽略到期提醒  0:不忽略通知。1:忽略通知
+        # @type ExpiringNotificationSwitch: Integer
+        # @param Repeatable: 相同的证书是否允许重复上传，若上传证书公钥， 则可以配置该参数
+        # @type Repeatable: Boolean
+        # @param AllowDownload: 是否允许下载，若上传证书公钥， 则可以配置该参数
+        # @type AllowDownload: Boolean
+        # @param Tags: 标签列表，若上传证书公钥， 则可以配置该参数
+        # @type Tags: Array
+        # @param ProjectId: 项目 ID，若上传证书公钥， 则可以配置该参数
+        # @type ProjectId: Integer
 
-        attr_accessor :CertificateId, :OldCertificateId, :ResourceTypes, :Regions, :ResourceTypesRegions
+        attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
         deprecate :Regions, :none, 2023, 10
         deprecate :Regions=, :none, 2023, 10
 
-        def initialize(certificateid=nil, oldcertificateid=nil, resourcetypes=nil, regions=nil, resourcetypesregions=nil)
-          @CertificateId = certificateid
+        def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
           @ResourceTypes = resourcetypes
+          @CertificateId = certificateid
           @Regions = regions
           @ResourceTypesRegions = resourcetypesregions
+          @CertificatePublicKey = certificatepublickey
+          @CertificatePrivateKey = certificateprivatekey
+          @ExpiringNotificationSwitch = expiringnotificationswitch
+          @Repeatable = repeatable
+          @AllowDownload = allowdownload
+          @Tags = tags
+          @ProjectId = projectid
         end
 
         def deserialize(params)
-          @CertificateId = params['CertificateId']
           @OldCertificateId = params['OldCertificateId']
           @ResourceTypes = params['ResourceTypes']
+          @CertificateId = params['CertificateId']
           @Regions = params['Regions']
           unless params['ResourceTypesRegions'].nil?
             @ResourceTypesRegions = []
@@ -5933,6 +5954,20 @@ module TencentCloud
               @ResourceTypesRegions << resourcetyperegions_tmp
             end
           end
+          @CertificatePublicKey = params['CertificatePublicKey']
+          @CertificatePrivateKey = params['CertificatePrivateKey']
+          @ExpiringNotificationSwitch = params['ExpiringNotificationSwitch']
+          @Repeatable = params['Repeatable']
+          @AllowDownload = params['AllowDownload']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+          @ProjectId = params['ProjectId']
         end
       end
 

@@ -3945,6 +3945,46 @@ module TencentCloud
         end
       end
 
+      # ModifyUserManagerPwd请求参数结构体
+      class ModifyUserManagerPwdRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param UserName: 用户名
+        # @type UserName: String
+        # @param PassWord: 密码
+        # @type PassWord: String
+
+        attr_accessor :InstanceId, :UserName, :PassWord
+
+        def initialize(instanceid=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @UserName = username
+          @PassWord = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UserName = params['UserName']
+          @PassWord = params['PassWord']
+        end
+      end
+
+      # ModifyUserManagerPwd返回参数结构体
+      class ModifyUserManagerPwdResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多云盘参数
       class MultiDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 云盘类型

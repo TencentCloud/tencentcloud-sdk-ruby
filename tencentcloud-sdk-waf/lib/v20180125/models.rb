@@ -3474,6 +3474,49 @@ module TencentCloud
         end
       end
 
+      # DescribeDomainRules请求参数结构体
+      class DescribeDomainRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeDomainRules返回参数结构体
+      class DescribeDomainRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 规则列表详情
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :RequestId
+
+        def initialize(rules=nil, requestid=nil)
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              rule_tmp = Rule.new
+              rule_tmp.deserialize(i)
+              @Rules << rule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDomainVerifyResult请求参数结构体
       class DescribeDomainVerifyResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -4629,6 +4672,81 @@ module TencentCloud
               userdomaininfo_tmp = UserDomainInfo.new
               userdomaininfo_tmp.deserialize(i)
               @UsersInfo << userdomaininfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserSignatureRule请求参数结构体
+      class DescribeUserSignatureRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 每页容量
+        # @type Limit: Integer
+        # @param By: 排序字段，支持 signature_id, modify_time
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param Filters: 筛选条件，支持 MainClassName，SubClassID ,CveID, Status, ID;  ID为规则id
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUserSignatureRule返回参数结构体
+      class DescribeUserSignatureRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param Rules: 规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Rules, :RequestId
+
+        def initialize(total=nil, rules=nil, requestid=nil)
+          @Total = total
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              usersignaturerule_tmp = UserSignatureRule.new
+              usersignaturerule_tmp.deserialize(i)
+              @Rules << usersignaturerule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7802,6 +7920,33 @@ module TencentCloud
         end
       end
 
+      # ModifyModuleStatus请求参数结构体
+      class ModifyModuleStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyModuleStatus返回参数结构体
+      class ModifyModuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProtectionStatus请求参数结构体
       class ModifyProtectionStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -8055,6 +8200,93 @@ module TencentCloud
         end
       end
 
+      # ModifyUserLevel请求参数结构体
+      class ModifyUserLevelRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Level: 防护规则等级 300=standard，400=extended
+        # @type Level: Integer
+
+        attr_accessor :Domain, :Level
+
+        def initialize(domain=nil, level=nil)
+          @Domain = domain
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Level = params['Level']
+        end
+      end
+
+      # ModifyUserLevel返回参数结构体
+      class ModifyUserLevelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserSignatureRule请求参数结构体
+      class ModifyUserSignatureRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param MainClassID: 主类id
+        # @type MainClassID: String
+        # @param Status: 主类开关0=关闭，1=开启，2=只告警
+        # @type Status: Integer
+        # @param RuleID: 下发修改的规则列表
+        # @type RuleID: Array
+
+        attr_accessor :Domain, :MainClassID, :Status, :RuleID
+
+        def initialize(domain=nil, mainclassid=nil, status=nil, ruleid=nil)
+          @Domain = domain
+          @MainClassID = mainclassid
+          @Status = status
+          @RuleID = ruleid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @MainClassID = params['MainClassID']
+          @Status = params['Status']
+          unless params['RuleID'].nil?
+            @RuleID = []
+            params['RuleID'].each do |i|
+              requserrule_tmp = ReqUserRule.new
+              requserrule_tmp.deserialize(i)
+              @RuleID << requserrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserSignatureRule返回参数结构体
+      class ModifyUserSignatureRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyWafAutoDenyRules请求参数结构体
       class ModifyWafAutoDenyRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -8189,6 +8421,48 @@ module TencentCloud
           unless params['WafThreatenIntelligenceDetails'].nil?
             @WafThreatenIntelligenceDetails = WafThreatenIntelligenceDetails.new
             @WafThreatenIntelligenceDetails.deserialize(params['WafThreatenIntelligenceDetails'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWebshellStatus请求参数结构体
+      class ModifyWebshellStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Webshell: 域名webshell状态
+        # @type Webshell: :class:`Tencentcloud::Waf.v20180125.models.WebshellStatus`
+
+        attr_accessor :Webshell
+
+        def initialize(webshell=nil)
+          @Webshell = webshell
+        end
+
+        def deserialize(params)
+          unless params['Webshell'].nil?
+            @Webshell = WebshellStatus.new
+            @Webshell.deserialize(params['Webshell'])
+          end
+        end
+      end
+
+      # ModifyWebshellStatus返回参数结构体
+      class ModifyWebshellStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Success: 成功的状态码，需要JSON解码后再使用，返回的格式是{"域名":"状态"}，成功的状态码为Success，其它的为失败的状态码（yunapi定义的错误码）
+        # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Success, :RequestId
+
+        def initialize(success=nil, requestid=nil)
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Success'].nil?
+            @Success = ResponseCode.new
+            @Success.deserialize(params['Success'])
           end
           @RequestId = params['RequestId']
         end
@@ -8544,6 +8818,38 @@ module TencentCloud
         end
       end
 
+      # 用户规则更新输出规则子项
+      class ReqUserRule < TencentCloud::Common::AbstractModel
+        # @param Id: 特征序号
+        # @type Id: String
+        # @param Status: 规则开关
+        # 0：关
+        # 1：开
+        # 2：只告警
+        # @type Status: Integer
+        # @param Reason: 修改原因
+        # 0：无(兼容记录为空)
+        # 1：业务自身特性误报避免
+        # 2：规则误报上报
+        # 3：核心业务规则灰度
+        # 4：其它
+        # @type Reason: Integer
+
+        attr_accessor :Id, :Status, :Reason
+
+        def initialize(id=nil, status=nil, reason=nil)
+          @Id = id
+          @Status = status
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @Reason = params['Reason']
+        end
+      end
+
       # 响应体的返回码
       class ResponseCode < TencentCloud::Common::AbstractModel
         # @param Code: 如果成功则返回Success，失败则返回云api定义的错误码
@@ -8561,6 +8867,54 @@ module TencentCloud
         def deserialize(params)
           @Code = params['Code']
           @Message = params['Message']
+        end
+      end
+
+      # 规则列表详情
+      class Rule < TencentCloud::Common::AbstractModel
+        # @param Id: 规则id
+        # @type Id: Integer
+        # @param Type: 规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Level: 规则等级
+        # @type Level: String
+        # @param Description: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CVE: 规则防护的CVE编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVE: String
+        # @param Status: 规则的状态
+        # @type Status: Integer
+        # @param ModifyTime: 规则修改的时间
+        # @type ModifyTime: String
+        # @param AddTime: 门神规则新增/更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddTime: String
+
+        attr_accessor :Id, :Type, :Level, :Description, :CVE, :Status, :ModifyTime, :AddTime
+
+        def initialize(id=nil, type=nil, level=nil, description=nil, cve=nil, status=nil, modifytime=nil, addtime=nil)
+          @Id = id
+          @Type = type
+          @Level = level
+          @Description = description
+          @CVE = cve
+          @Status = status
+          @ModifyTime = modifytime
+          @AddTime = addtime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @Level = params['Level']
+          @Description = params['Description']
+          @CVE = params['CVE']
+          @Status = params['Status']
+          @ModifyTime = params['ModifyTime']
+          @AddTime = params['AddTime']
         end
       end
 
@@ -9453,6 +9807,62 @@ module TencentCloud
         end
       end
 
+      # 用户特征规则描述
+      class UserSignatureRule < TencentCloud::Common::AbstractModel
+        # @param ID: 特征ID
+        # @type ID: String
+        # @param Status: 规则开关
+        # @type Status: Integer
+        # @param MainClassID: 主类ID
+        # @type MainClassID: String
+        # @param SubClassID: 子类ID
+        # @type SubClassID: String
+        # @param CveID: CVE ID
+        # @type CveID: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 更新时间
+        # @type ModifyTime: String
+        # @param MainClassName: 主类名字，根据Language字段输出中文/英文
+        # @type MainClassName: String
+        # @param SubClassName: 子类名字，根据Language字段输出中文/英文，若子类id为00000000，此字段为空
+        # @type SubClassName: String
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param Reason: 0/1
+        # @type Reason: Integer
+
+        attr_accessor :ID, :Status, :MainClassID, :SubClassID, :CveID, :CreateTime, :ModifyTime, :MainClassName, :SubClassName, :Description, :Reason
+
+        def initialize(id=nil, status=nil, mainclassid=nil, subclassid=nil, cveid=nil, createtime=nil, modifytime=nil, mainclassname=nil, subclassname=nil, description=nil, reason=nil)
+          @ID = id
+          @Status = status
+          @MainClassID = mainclassid
+          @SubClassID = subclassid
+          @CveID = cveid
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @MainClassName = mainclassname
+          @SubClassName = subclassname
+          @Description = description
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Status = params['Status']
+          @MainClassID = params['MainClassID']
+          @SubClassID = params['SubClassID']
+          @CveID = params['CveID']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @MainClassName = params['MainClassName']
+          @SubClassName = params['SubClassName']
+          @Description = params['Description']
+          @Reason = params['Reason']
+        end
+      end
+
       # Vip信息
       class VipInfo < TencentCloud::Common::AbstractModel
         # @param Vip: Virtual IP
@@ -9561,6 +9971,26 @@ module TencentCloud
           @Tags = params['Tags']
           @DefenseStatus = params['DefenseStatus']
           @LastUpdateTime = params['LastUpdateTime']
+        end
+      end
+
+      # 域名的webshell开启状态
+      class WebshellStatus < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: webshell开关，1：开。0：关。2：观察
+        # @type Status: Integer
+
+        attr_accessor :Domain, :Status
+
+        def initialize(domain=nil, status=nil)
+          @Domain = domain
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
         end
       end
 

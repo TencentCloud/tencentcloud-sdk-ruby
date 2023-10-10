@@ -106,6 +106,9 @@ module TencentCloud
         # @type AsrFullTextConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrFullTextConfigureInfo`
         # @param AsrWordsConfigure: 语音关键词识别控制参数。
         # @type AsrWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrWordsConfigureInfo`
+        # @param TranslateConfigure: 语音翻译控制参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TranslateConfigure: :class:`Tencentcloud::Mps.v20190612.models.TranslateConfigureInfo`
         # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
@@ -116,9 +119,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
 
-        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :CreateTime, :UpdateTime, :Type
+        attr_accessor :Definition, :Name, :Comment, :FaceConfigure, :OcrFullTextConfigure, :OcrWordsConfigure, :AsrFullTextConfigure, :AsrWordsConfigure, :TranslateConfigure, :CreateTime, :UpdateTime, :Type
 
-        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, createtime=nil, updatetime=nil, type=nil)
+        def initialize(definition=nil, name=nil, comment=nil, faceconfigure=nil, ocrfulltextconfigure=nil, ocrwordsconfigure=nil, asrfulltextconfigure=nil, asrwordsconfigure=nil, translateconfigure=nil, createtime=nil, updatetime=nil, type=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -127,6 +130,7 @@ module TencentCloud
           @OcrWordsConfigure = ocrwordsconfigure
           @AsrFullTextConfigure = asrfulltextconfigure
           @AsrWordsConfigure = asrwordsconfigure
+          @TranslateConfigure = translateconfigure
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Type = type
@@ -155,6 +159,10 @@ module TencentCloud
           unless params['AsrWordsConfigure'].nil?
             @AsrWordsConfigure = AsrWordsConfigureInfo.new
             @AsrWordsConfigure.deserialize(params['AsrWordsConfigure'])
+          end
+          unless params['TranslateConfigure'].nil?
+            @TranslateConfigure = TranslateConfigureInfo.new
+            @TranslateConfigure.deserialize(params['TranslateConfigure'])
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
@@ -1455,8 +1463,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2023, 9
-        deprecate :OutputStorage=, :none, 2023, 9
+        deprecate :OutputStorage, :none, 2023, 10
+        deprecate :OutputStorage=, :none, 2023, 10
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset

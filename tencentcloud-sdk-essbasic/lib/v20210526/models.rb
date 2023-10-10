@@ -2275,6 +2275,87 @@ module TencentCloud
         end
       end
 
+      # ChannelCreateUserAutoSignSealUrl请求参数结构体
+      class ChannelCreateUserAutoSignSealUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 渠道应用相关信息。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li></ul>
+
+        # 注: `现在仅支持电子处方场景`
+        # @type SceneKey: String
+        # @param UserInfo: 自动签开通个人用户信息，包括名字，身份证等。
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param ExpiredTime: 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为当前时间往后30天。`如果不传，默认过期时间为当前时间往后7天。`
+        # @type ExpiredTime: Integer
+
+        attr_accessor :Agent, :SceneKey, :UserInfo, :Operator, :ExpiredTime
+
+        def initialize(agent=nil, scenekey=nil, userinfo=nil, operator=nil, expiredtime=nil)
+          @Agent = agent
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+          @Operator = operator
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # ChannelCreateUserAutoSignSealUrl返回参数结构体
+      class ChannelCreateUserAutoSignSealUrlResponse < TencentCloud::Common::AbstractModel
+        # @param AppId: 腾讯电子签小程序的AppId，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @type AppId: String
+        # @param AppOriginalId: 腾讯电子签小程序的原始Id，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @type AppOriginalId: String
+        # @param Url: 个人用户自动签的开通链接, 短链形式。过期时间受 `ExpiredTime` 参数控制。
+        # @type Url: String
+        # @param Path: 腾讯电子签小程序的跳转路径，用于其他小程序/APP等应用跳转至腾讯电子签小程序使用。
+        # @type Path: String
+        # @param QrCode: base64格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。
+        # @type QrCode: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AppId, :AppOriginalId, :Url, :Path, :QrCode, :RequestId
+
+        def initialize(appid=nil, apporiginalid=nil, url=nil, path=nil, qrcode=nil, requestid=nil)
+          @AppId = appid
+          @AppOriginalId = apporiginalid
+          @Url = url
+          @Path = path
+          @QrCode = qrcode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @AppOriginalId = params['AppOriginalId']
+          @Url = params['Url']
+          @Path = params['Path']
+          @QrCode = params['QrCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelCreateUserRoles请求参数结构体
       class ChannelCreateUserRolesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。

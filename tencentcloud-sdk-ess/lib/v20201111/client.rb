@@ -966,6 +966,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设置自动签印章小程序链接。
+
+        # 注意：
+        # <ul><li>需要<code>企业开通自动签</code>后使用。</li>
+        # <li>仅支持<code>已经开通了自动签的个人</code>更换自动签印章。</li>
+        # <li>链接有效期默认7天，<code>最多30天</code>。</li>
+        # <li>该接口的链接适用于<code>小程序</code>端。</li>
+        # <li>该接口不会扣除您的合同套餐，暂不参与计费。</li></ul>
+
+        # @param request: Request instance for CreateUserAutoSignSealUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateUserAutoSignSealUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateUserAutoSignSealUrlResponse`
+        def CreateUserAutoSignSealUrl(request)
+          body = send_request('CreateUserAutoSignSealUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserAutoSignSealUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用来设置本企业嵌入式页面个性化主题配置（例如是否展示电子签logo、定义主题色等），设置后获取的web签署界面都会使用此配置进行展示。
 
         # 如果多次调用，会以最后一次的配置为准

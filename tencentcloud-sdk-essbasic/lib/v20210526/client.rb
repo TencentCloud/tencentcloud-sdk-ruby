@@ -701,6 +701,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设置自动签印章小程序链接。
+
+        # 注意：
+        # <ul><li>需要<code>企业开通自动签</code>后使用。</li>
+        # <li>仅支持<code>已经开通了自动签的个人</code>更换自动签印章。</li>
+        # <li>链接有效期默认7天，<code>最多30天</code>。</li>
+        # <li>该接口的链接适用于<code>小程序</code>端。</li>
+        # <li>该接口不会扣除您的合同套餐，暂不参与计费。</li></ul>
+
+        # @param request: Request instance for ChannelCreateUserAutoSignSealUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateUserAutoSignSealUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateUserAutoSignSealUrlResponse`
+        def ChannelCreateUserAutoSignSealUrl(request)
+          body = send_request('ChannelCreateUserAutoSignSealUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelCreateUserAutoSignSealUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口，绑定员工角色，支持以电子签userId、客户系统userId两种方式调用。
 
         # @param request: Request instance for ChannelCreateUserRoles.

@@ -310,8 +310,10 @@ module TencentCloud
       # 删除签名响应
       class DeleteSignStatus < TencentCloud::Common::AbstractModel
         # @param DeleteStatus: 删除状态信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteStatus: String
         # @param DeleteTime: 删除时间，UNIX 时间戳（单位：秒）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteTime: Integer
 
         attr_accessor :DeleteStatus, :DeleteTime

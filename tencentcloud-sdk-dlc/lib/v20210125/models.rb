@@ -6927,6 +6927,38 @@ module TencentCloud
         end
       end
 
+      # FavorInfo
+      class FavorInfo < TencentCloud::Common::AbstractModel
+        # @param Priority: 优先事项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Catalog: Catalog名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalog: String
+        # @param DataBase: DataBase名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataBase: String
+        # @param Table: Table名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: String
+
+        attr_accessor :Priority, :Catalog, :DataBase, :Table
+
+        def initialize(priority=nil, catalog=nil, database=nil, table=nil)
+          @Priority = priority
+          @Catalog = catalog
+          @DataBase = database
+          @Table = table
+        end
+
+        def deserialize(params)
+          @Priority = params['Priority']
+          @Catalog = params['Catalog']
+          @DataBase = params['DataBase']
+          @Table = params['Table']
+        end
+      end
+
       # 查询列表过滤条件参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑或（OR）关系。
@@ -7021,6 +7053,48 @@ module TencentCloud
           unless params['Execution'].nil?
             @Execution = Execution.new
             @Execution.deserialize(params['Execution'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetOptimizerPolicy请求参数结构体
+      class GetOptimizerPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param SmartPolicy: 策略描述
+        # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
+
+        attr_accessor :SmartPolicy
+
+        def initialize(smartpolicy=nil)
+          @SmartPolicy = smartpolicy
+        end
+
+        def deserialize(params)
+          unless params['SmartPolicy'].nil?
+            @SmartPolicy = SmartPolicy.new
+            @SmartPolicy.deserialize(params['SmartPolicy'])
+          end
+        end
+      end
+
+      # GetOptimizerPolicy返回参数结构体
+      class GetOptimizerPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param SmartOptimizerPolicy: 智能优化策略
+        # @type SmartOptimizerPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerPolicy`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SmartOptimizerPolicy, :RequestId
+
+        def initialize(smartoptimizerpolicy=nil, requestid=nil)
+          @SmartOptimizerPolicy = smartoptimizerpolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SmartOptimizerPolicy'].nil?
+            @SmartOptimizerPolicy = SmartOptimizerPolicy.new
+            @SmartOptimizerPolicy.deserialize(params['SmartOptimizerPolicy'])
           end
           @RequestId = params['RequestId']
         end
@@ -8655,6 +8729,55 @@ module TencentCloud
         end
       end
 
+      # ResourceInfo
+      class ResourceInfo < TencentCloud::Common::AbstractModel
+        # @param AttributionType: 归属类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttributionType: String
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Name: 引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Instance: 如资源类型为spark-sql 取值为Name, 如为spark-batch 取值为session app_name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: String
+        # @param Favor: 亲和性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Favor: Array
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :AttributionType, :ResourceType, :Name, :Instance, :Favor, :Status
+
+        def initialize(attributiontype=nil, resourcetype=nil, name=nil, instance=nil, favor=nil, status=nil)
+          @AttributionType = attributiontype
+          @ResourceType = resourcetype
+          @Name = name
+          @Instance = instance
+          @Favor = favor
+          @Status = status
+        end
+
+        def deserialize(params)
+          @AttributionType = params['AttributionType']
+          @ResourceType = params['ResourceType']
+          @Name = params['Name']
+          @Instance = params['Instance']
+          unless params['Favor'].nil?
+            @Favor = []
+            params['Favor'].each do |i|
+              favorinfo_tmp = FavorInfo.new
+              favorinfo_tmp.deserialize(i)
+              @Favor << favorinfo_tmp
+            end
+          end
+          @Status = params['Status']
+        end
+      end
+
       # RestartDataEngine请求参数结构体
       class RestartDataEngineRequest < TencentCloud::Common::AbstractModel
 
@@ -8807,6 +8930,184 @@ module TencentCloud
           @ExecutorSize = params['ExecutorSize']
           @ExecutorNums = params['ExecutorNums']
           @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+        end
+      end
+
+      # SmartOptimizerIndexPolicy
+      class SmartOptimizerIndexPolicy < TencentCloud::Common::AbstractModel
+        # @param IndexEnable: 开启索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexEnable: String
+
+        attr_accessor :IndexEnable
+
+        def initialize(indexenable=nil)
+          @IndexEnable = indexenable
+        end
+
+        def deserialize(params)
+          @IndexEnable = params['IndexEnable']
+        end
+      end
+
+      # SmartOptimizerLifecyclePolicy
+      class SmartOptimizerLifecyclePolicy < TencentCloud::Common::AbstractModel
+        # @param LifecycleEnable: 生命周期启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifecycleEnable: String
+        # @param Expiration: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expiration: Integer
+        # @param DropTable: 是否删表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DropTable: Boolean
+
+        attr_accessor :LifecycleEnable, :Expiration, :DropTable
+
+        def initialize(lifecycleenable=nil, expiration=nil, droptable=nil)
+          @LifecycleEnable = lifecycleenable
+          @Expiration = expiration
+          @DropTable = droptable
+        end
+
+        def deserialize(params)
+          @LifecycleEnable = params['LifecycleEnable']
+          @Expiration = params['Expiration']
+          @DropTable = params['DropTable']
+        end
+      end
+
+      # SmartOptimizerPolicy
+      class SmartOptimizerPolicy < TencentCloud::Common::AbstractModel
+        # @param Inherit: 是否继承
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Inherit: String
+        # @param Resources: ResourceInfo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+        # @param Written: SmartOptimizerWrittenPolicy
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Written: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerWrittenPolicy`
+        # @param Lifecycle: SmartOptimizerLifecyclePolicy
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lifecycle: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerLifecyclePolicy`
+        # @param Index: SmartOptimizerIndexPolicy
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerIndexPolicy`
+
+        attr_accessor :Inherit, :Resources, :Written, :Lifecycle, :Index
+
+        def initialize(inherit=nil, resources=nil, written=nil, lifecycle=nil, index=nil)
+          @Inherit = inherit
+          @Resources = resources
+          @Written = written
+          @Lifecycle = lifecycle
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Inherit = params['Inherit']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              resourceinfo_tmp = ResourceInfo.new
+              resourceinfo_tmp.deserialize(i)
+              @Resources << resourceinfo_tmp
+            end
+          end
+          unless params['Written'].nil?
+            @Written = SmartOptimizerWrittenPolicy.new
+            @Written.deserialize(params['Written'])
+          end
+          unless params['Lifecycle'].nil?
+            @Lifecycle = SmartOptimizerLifecyclePolicy.new
+            @Lifecycle.deserialize(params['Lifecycle'])
+          end
+          unless params['Index'].nil?
+            @Index = SmartOptimizerIndexPolicy.new
+            @Index.deserialize(params['Index'])
+          end
+        end
+      end
+
+      # SmartOptimizerWrittenPolicy
+      class SmartOptimizerWrittenPolicy < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SmartPolicyRequest
+      class SmartPolicy < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 基础信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicyBaseInfo`
+        # @param Policy: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Policy: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerPolicy`
+
+        attr_accessor :BaseInfo, :Policy
+
+        def initialize(baseinfo=nil, policy=nil)
+          @BaseInfo = baseinfo
+          @Policy = policy
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = SmartPolicyBaseInfo.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
+          unless params['Policy'].nil?
+            @Policy = SmartOptimizerPolicy.new
+            @Policy.deserialize(params['Policy'])
+          end
+        end
+      end
+
+      # SmartPolicyBaseInfo
+      class SmartPolicyBaseInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: 用户uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param PolicyType: Catalog/Database/Table
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyType: String
+        # @param Catalog: Catalog名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalog: String
+        # @param Database: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Database: String
+        # @param Table: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: String
+        # @param AppId: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+
+        attr_accessor :Uin, :PolicyType, :Catalog, :Database, :Table, :AppId
+
+        def initialize(uin=nil, policytype=nil, catalog=nil, database=nil, table=nil, appid=nil)
+          @Uin = uin
+          @PolicyType = policytype
+          @Catalog = catalog
+          @Database = database
+          @Table = table
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @PolicyType = params['PolicyType']
+          @Catalog = params['Catalog']
+          @Database = params['Database']
+          @Table = params['Table']
+          @AppId = params['AppId']
         end
       end
 
@@ -9420,10 +9721,13 @@ module TencentCloud
         # @param DbGovernPolicyIsDisable: 库数据治理是否关闭，关闭：true，开启：false
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbGovernPolicyIsDisable: String
+        # @param SmartPolicy: 智能数据治理配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
 
-        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy
 
-        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil)
           @DatabaseName = databasename
           @TableName = tablename
           @DatasourceConnectionName = datasourceconnectionname
@@ -9434,6 +9738,7 @@ module TencentCloud
           @UserSubUin = usersubuin
           @GovernPolicy = governpolicy
           @DbGovernPolicyIsDisable = dbgovernpolicyisdisable
+          @SmartPolicy = smartpolicy
         end
 
         def deserialize(params)
@@ -9450,6 +9755,10 @@ module TencentCloud
             @GovernPolicy.deserialize(params['GovernPolicy'])
           end
           @DbGovernPolicyIsDisable = params['DbGovernPolicyIsDisable']
+          unless params['SmartPolicy'].nil?
+            @SmartPolicy = SmartPolicy.new
+            @SmartPolicy.deserialize(params['SmartPolicy'])
+          end
         end
       end
 

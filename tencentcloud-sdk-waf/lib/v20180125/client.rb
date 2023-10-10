@@ -1018,6 +1018,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 拉取域名的防护规则列表
+
+        # @param request: Request instance for DescribeDomainRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeDomainRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeDomainRulesResponse`
+        def DescribeDomainRules(request)
+          body = send_request('DescribeDomainRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取添加域名操作的结果
 
         # @param request: Request instance for DescribeDomainVerifyResult.
@@ -1508,6 +1532,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserDomainInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户特征规则列表
+
+        # @param request: Request instance for DescribeUserSignatureRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeUserSignatureRuleResponse`
+        def DescribeUserSignatureRule(request)
+          body = send_request('DescribeUserSignatureRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserSignatureRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2341,6 +2389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置某个domain下基础安全模块的开关
+
+        # @param request: Request instance for ModifyModuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyModuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyModuleStatusResponse`
+        def ModifyModuleStatus(request)
+          body = send_request('ModifyModuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # waf斯巴达-waf开关
 
         # @param request: Request instance for ModifyProtectionStatus.
@@ -2413,6 +2485,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户防护规则等级
+
+        # @param request: Request instance for ModifyUserLevel.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyUserLevelRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyUserLevelResponse`
+        def ModifyUserLevel(request)
+          body = send_request('ModifyUserLevel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserLevelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户防护规则，开启关闭具体的某条规则
+
+        # @param request: Request instance for ModifyUserSignatureRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyUserSignatureRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyUserSignatureRuleResponse`
+        def ModifyUserSignatureRule(request)
+          body = send_request('ModifyUserSignatureRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserSignatureRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改ip惩罚规则
 
         # @param request: Request instance for ModifyWafAutoDenyRules.
@@ -2471,6 +2591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyWafThreatenIntelligenceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置域名的webshell状态。
+
+        # @param request: Request instance for ModifyWebshellStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyWebshellStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyWebshellStatusResponse`
+        def ModifyWebshellStatus(request)
+          body = send_request('ModifyWebshellStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWebshellStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

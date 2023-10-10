@@ -463,6 +463,32 @@ module TencentCloud
 
         # 查询批次列表
 
+        # @param request: Request instance for DescribeCodeBatches.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCodeBatchesRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCodeBatchesResponse`
+        def DescribeCodeBatches(request)
+          body = send_request('DescribeCodeBatches', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCodeBatchesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询批次列表
+
+        # 旧版接口已经弃用，新业务请使用用新版的接口 DescribeCodeBatches
+
         # @param request: Request instance for DescribeCodeBatchs.
         # @type request: :class:`Tencentcloud::trp::V20210515::DescribeCodeBatchsRequest`
         # @rtype: :class:`Tencentcloud::trp::V20210515::DescribeCodeBatchsResponse`

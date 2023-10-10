@@ -37,6 +37,33 @@ module TencentCloud
         end
       end
 
+      # 应用性能观测产品中应用信息
+      class ApmServiceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param ServiceNameList: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNameList: Array
+        # @param RegionId: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+
+        attr_accessor :InstanceId, :ServiceNameList, :RegionId
+
+        def initialize(instanceid=nil, servicenamelist=nil, regionid=nil)
+          @InstanceId = instanceid
+          @ServiceNameList = servicenamelist
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceNameList = params['ServiceNameList']
+          @RegionId = params['RegionId']
+        end
+      end
+
       # CreateTaskFromTemplate请求参数结构体
       class CreateTaskFromTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 从经验库中查询到的经验模板ID
@@ -205,10 +232,16 @@ module TencentCloud
         # @type Tags: Array
         # @param Filters: 筛选条件
         # @type Filters: Array
+        # @param TaskId: 演练ID
+        # @type TaskId: Array
+        # @param ApplicationId: 关联应用ID筛选
+        # @type ApplicationId: Array
+        # @param ApplicationName: 关联应用筛选
+        # @type ApplicationName: Array
 
-        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags, :Filters
+        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName
 
-        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil)
           @Limit = limit
           @Offset = offset
           @TaskTitle = tasktitle
@@ -218,6 +251,9 @@ module TencentCloud
           @TaskEndTime = taskendtime
           @Tags = tags
           @Filters = filters
+          @TaskId = taskid
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -244,6 +280,9 @@ module TencentCloud
               @Filters << actionfilter_tmp
             end
           end
+          @TaskId = params['TaskId']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
         end
       end
 
@@ -685,10 +724,22 @@ module TencentCloud
         # @param TaskPlanTitle: 关联的演练计划名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskPlanTitle: String
+        # @param ApplicationId: 关联的应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 关联的应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param AlarmPolicy: 关联的告警指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmPolicy: Array
+        # @param ApmServiceList: 关联的APM服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmServiceList: Array
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -712,6 +763,10 @@ module TencentCloud
           @Tags = tags
           @TaskPlanId = taskplanid
           @TaskPlanTitle = taskplantitle
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @AlarmPolicy = alarmpolicy
+          @ApmServiceList = apmservicelist
         end
 
         def deserialize(params)
@@ -762,6 +817,17 @@ module TencentCloud
           end
           @TaskPlanId = params['TaskPlanId']
           @TaskPlanTitle = params['TaskPlanTitle']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @AlarmPolicy = params['AlarmPolicy']
+          unless params['ApmServiceList'].nil?
+            @ApmServiceList = []
+            params['ApmServiceList'].each do |i|
+              apmserviceinfo_tmp = ApmServiceInfo.new
+              apmserviceinfo_tmp.deserialize(i)
+              @ApmServiceList << apmserviceinfo_tmp
+            end
+          end
         end
       end
 
@@ -1184,10 +1250,16 @@ module TencentCloud
         # @param TaskExpect: 演练是否符合预期 1-符合预期 2-不符合预期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskExpect: Integer
+        # @param ApplicationId: 关联应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 关联应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1198,6 +1270,8 @@ module TencentCloud
           @TaskPreCheckStatus = taskprecheckstatus
           @TaskPreCheckSuccess = taskprechecksuccess
           @TaskExpect = taskexpect
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
         end
 
         def deserialize(params)
@@ -1211,6 +1285,8 @@ module TencentCloud
           @TaskPreCheckStatus = params['TaskPreCheckStatus']
           @TaskPreCheckSuccess = params['TaskPreCheckSuccess']
           @TaskExpect = params['TaskExpect']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
         end
       end
 
@@ -1333,10 +1409,16 @@ module TencentCloud
         # @param TemplateSource: 经验来源 0-自建 1-专家推荐
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateSource: Integer
+        # @param ApmServiceList: apm应用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmServiceList: Array
+        # @param AlarmPolicy: 告警指标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmPolicy: Array
 
-        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource
+        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy
 
-        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil)
+        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil, apmservicelist=nil, alarmpolicy=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
           @TemplateDescription = templatedescription
@@ -1353,6 +1435,8 @@ module TencentCloud
           @TemplatePolicy = templatepolicy
           @Tags = tags
           @TemplateSource = templatesource
+          @ApmServiceList = apmservicelist
+          @AlarmPolicy = alarmpolicy
         end
 
         def deserialize(params)
@@ -1396,6 +1480,15 @@ module TencentCloud
             end
           end
           @TemplateSource = params['TemplateSource']
+          unless params['ApmServiceList'].nil?
+            @ApmServiceList = []
+            params['ApmServiceList'].each do |i|
+              apmserviceinfo_tmp = ApmServiceInfo.new
+              apmserviceinfo_tmp.deserialize(i)
+              @ApmServiceList << apmserviceinfo_tmp
+            end
+          end
+          @AlarmPolicy = params['AlarmPolicy']
         end
       end
 

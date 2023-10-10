@@ -512,6 +512,9 @@ module TencentCloud
         # @param Line: 网络线路
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Line: Integer
+        # @param FreeServiceBandwidth: 不计费的业务带宽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FreeServiceBandwidth: Integer
         # @param ElasticServiceBandwidth: 弹性业务带宽开关
         # @type ElasticServiceBandwidth: Integer
         # @param GiftServiceBandWidth: 赠送的业务带宽
@@ -523,9 +526,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicPlusFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag
 
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, freeservicebandwidth=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -543,6 +546,7 @@ module TencentCloud
           @IpCountNewFlag = ipcountnewflag
           @VitalityVersion = vitalityversion
           @Line = line
+          @FreeServiceBandwidth = freeservicebandwidth
           @ElasticServiceBandwidth = elasticservicebandwidth
           @GiftServiceBandWidth = giftservicebandwidth
           @ModifyTime = modifytime
@@ -596,6 +600,7 @@ module TencentCloud
           @IpCountNewFlag = params['IpCountNewFlag']
           @VitalityVersion = params['VitalityVersion']
           @Line = params['Line']
+          @FreeServiceBandwidth = params['FreeServiceBandwidth']
           @ElasticServiceBandwidth = params['ElasticServiceBandwidth']
           @GiftServiceBandWidth = params['GiftServiceBandWidth']
           @ModifyTime = params['ModifyTime']

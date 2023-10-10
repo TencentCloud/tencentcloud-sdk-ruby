@@ -1553,6 +1553,77 @@ module TencentCloud
         end
       end
 
+      # DescribeCodeBatches请求参数结构体
+      class DescribeCodeBatchesRequest < TencentCloud::Common::AbstractModel
+        # @param MerchantId: 查询商户ID
+        # @type MerchantId: String
+        # @param ProductId: 查询商品ID
+        # @type ProductId: String
+        # @param Keyword: 查询关键字
+        # @type Keyword: String
+        # @param PageSize: 条数
+        # @type PageSize: Integer
+        # @param PageNumber: 页数
+        # @type PageNumber: Integer
+        # @param BatchType: 批次类型 0:溯源 1:营销
+        # @type BatchType: String
+        # @param CorpId: 企业ID
+        # @type CorpId: Integer
+
+        attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId
+
+        def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil)
+          @MerchantId = merchantid
+          @ProductId = productid
+          @Keyword = keyword
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @BatchType = batchtype
+          @CorpId = corpid
+        end
+
+        def deserialize(params)
+          @MerchantId = params['MerchantId']
+          @ProductId = params['ProductId']
+          @Keyword = params['Keyword']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @BatchType = params['BatchType']
+          @CorpId = params['CorpId']
+        end
+      end
+
+      # DescribeCodeBatches返回参数结构体
+      class DescribeCodeBatchesResponse < TencentCloud::Common::AbstractModel
+        # @param CodeBatches: 批次列表
+        # @type CodeBatches: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CodeBatches, :TotalCount, :RequestId
+
+        def initialize(codebatches=nil, totalcount=nil, requestid=nil)
+          @CodeBatches = codebatches
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CodeBatches'].nil?
+            @CodeBatches = []
+            params['CodeBatches'].each do |i|
+              codebatch_tmp = CodeBatch.new
+              codebatch_tmp.deserialize(i)
+              @CodeBatches << codebatch_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCodeBatchs请求参数结构体
       class DescribeCodeBatchsRequest < TencentCloud::Common::AbstractModel
         # @param MerchantId: 查询商户ID
@@ -2382,8 +2453,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2023, 9
-        deprecate :Products=, :none, 2023, 9
+        deprecate :Products, :none, 2023, 10
+        deprecate :Products=, :none, 2023, 10
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products

@@ -2213,6 +2213,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # GetOptimizerPolicy
+
+        # @param request: Request instance for GetOptimizerPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetOptimizerPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetOptimizerPolicyResponse`
+        def GetOptimizerPolicy(request)
+          body = send_request('GetOptimizerPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetOptimizerPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
 
         # @param request: Request instance for ListTaskJobLogDetail.

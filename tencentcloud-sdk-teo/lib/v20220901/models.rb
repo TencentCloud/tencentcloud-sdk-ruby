@@ -1274,8 +1274,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2023, 9
-        deprecate :IgnoreCacheControl=, :none, 2023, 9
+        deprecate :IgnoreCacheControl, :none, 2023, 10
+        deprecate :IgnoreCacheControl=, :none, 2023, 10
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -1895,75 +1895,6 @@ module TencentCloud
         end
       end
 
-      # CreateOriginGroup请求参数结构体
-      class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # @type ZoneId: String
-        # @param OriginType: 源站类型，取值有：
-        # <li>self：自有源站；</li>
-        # <li>third_party：第三方源站；</li>
-        # <li>cos：腾讯云COS源站。</li>
-        # @type OriginType: String
-        # @param OriginGroupName: 源站组名称。
-        # @type OriginGroupName: String
-        # @param ConfigurationType: 源站配置类型，当OriginType=self时，取值有：
-        # <li>area：按区域配置；</li>
-        # <li>weight： 按权重配置；</li>
-        # <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
-        # @type ConfigurationType: String
-        # @param OriginRecords: 源站记录信息。
-        # @type OriginRecords: Array
-        # @param HostHeader: 回源Host，仅当OriginType=self时可以设置。
-        # @type HostHeader: String
-
-        attr_accessor :ZoneId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :HostHeader
-
-        def initialize(zoneid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, hostheader=nil)
-          @ZoneId = zoneid
-          @OriginType = origintype
-          @OriginGroupName = origingroupname
-          @ConfigurationType = configurationtype
-          @OriginRecords = originrecords
-          @HostHeader = hostheader
-        end
-
-        def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @OriginType = params['OriginType']
-          @OriginGroupName = params['OriginGroupName']
-          @ConfigurationType = params['ConfigurationType']
-          unless params['OriginRecords'].nil?
-            @OriginRecords = []
-            params['OriginRecords'].each do |i|
-              originrecord_tmp = OriginRecord.new
-              originrecord_tmp.deserialize(i)
-              @OriginRecords << originrecord_tmp
-            end
-          end
-          @HostHeader = params['HostHeader']
-        end
-      end
-
-      # CreateOriginGroup返回参数结构体
-      class CreateOriginGroupResponse < TencentCloud::Common::AbstractModel
-        # @param OriginGroupId: 源站组ID。
-        # @type OriginGroupId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :OriginGroupId, :RequestId
-
-        def initialize(origingroupid=nil, requestid=nil)
-          @OriginGroupId = origingroupid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @OriginGroupId = params['OriginGroupId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreatePlanForZone请求参数结构体
       class CreatePlanForZoneRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。
@@ -2110,8 +2041,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2023, 9
-        deprecate :EncodeUrl=, :none, 2023, 9
+        deprecate :EncodeUrl, :none, 2023, 10
+        deprecate :EncodeUrl=, :none, 2023, 10
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
@@ -2341,10 +2272,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2023, 9
-        deprecate :AllowDuplicates=, :none, 2023, 9
-        deprecate :JumpStart, :none, 2023, 9
-        deprecate :JumpStart=, :none, 2023, 9
+        deprecate :AllowDuplicates, :none, 2023, 10
+        deprecate :AllowDuplicates=, :none, 2023, 10
+        deprecate :JumpStart, :none, 2023, 10
+        deprecate :JumpStart=, :none, 2023, 10
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -2729,42 +2660,6 @@ module TencentCloud
 
       # DeleteApplicationProxyRule返回参数结构体
       class DeleteApplicationProxyRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteOriginGroup请求参数结构体
-      class DeleteOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # @type ZoneId: String
-        # @param OriginGroupId: 源站组ID。
-        # @type OriginGroupId: String
-
-        attr_accessor :ZoneId, :OriginGroupId
-
-        def initialize(zoneid=nil, origingroupid=nil)
-          @ZoneId = zoneid
-          @OriginGroupId = origingroupid
-        end
-
-        def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @OriginGroupId = params['OriginGroupId']
-        end
-      end
-
-      # DeleteOriginGroup返回参数结构体
-      class DeleteOriginGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6621,8 +6516,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2023, 9
-        deprecate :ApplyType=, :none, 2023, 9
+        deprecate :ApplyType, :none, 2023, 10
+        deprecate :ApplyType=, :none, 2023, 10
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
@@ -6650,76 +6545,6 @@ module TencentCloud
 
       # ModifyHostsCertificate返回参数结构体
       class ModifyHostsCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyOriginGroup请求参数结构体
-      class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # @type ZoneId: String
-        # @param OriginGroupId: 源站组ID。
-        # @type OriginGroupId: String
-        # @param OriginType: 源站类型，取值有：
-        # <li>self：自有源站；</li>
-        # <li>third_party：第三方源站；</li>
-        # <li>cos：腾讯云COS源站。</li>
-        # @type OriginType: String
-        # @param OriginGroupName: 源站组名称。
-        # @type OriginGroupName: String
-        # @param ConfigurationType: 源站配置类型，当OriginType=self时，取值有：
-        # <li>area：按区域配置；</li>
-        # <li>weight： 按权重配置；</li>
-        # <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
-        # @type ConfigurationType: String
-        # @param OriginRecords: 源站记录信息。
-        # @type OriginRecords: Array
-        # @param HostHeader: 回源Host，仅当OriginType=self时可以设置。
-        # 不填写，表示使用已有配置。
-        # @type HostHeader: String
-
-        attr_accessor :ZoneId, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :HostHeader
-
-        def initialize(zoneid=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, hostheader=nil)
-          @ZoneId = zoneid
-          @OriginGroupId = origingroupid
-          @OriginType = origintype
-          @OriginGroupName = origingroupname
-          @ConfigurationType = configurationtype
-          @OriginRecords = originrecords
-          @HostHeader = hostheader
-        end
-
-        def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @OriginGroupId = params['OriginGroupId']
-          @OriginType = params['OriginType']
-          @OriginGroupName = params['OriginGroupName']
-          @ConfigurationType = params['ConfigurationType']
-          unless params['OriginRecords'].nil?
-            @OriginRecords = []
-            params['OriginRecords'].each do |i|
-              originrecord_tmp = OriginRecord.new
-              originrecord_tmp.deserialize(i)
-              @OriginRecords << originrecord_tmp
-            end
-          end
-          @HostHeader = params['HostHeader']
-        end
-      end
-
-      # ModifyOriginGroup返回参数结构体
-      class ModifyOriginGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8410,8 +8235,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2023, 9
-        deprecate :IgnoreNameCase=, :none, 2023, 9
+        deprecate :IgnoreNameCase, :none, 2023, 10
+        deprecate :IgnoreNameCase=, :none, 2023, 10
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator
