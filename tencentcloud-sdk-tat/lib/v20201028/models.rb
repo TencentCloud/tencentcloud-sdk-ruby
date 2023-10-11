@@ -522,6 +522,38 @@ module TencentCloud
         end
       end
 
+      # DeleteCommands请求参数结构体
+      class DeleteCommandsRequest < TencentCloud::Common::AbstractModel
+        # @param CommandIds: 待删除命令id
+        # @type CommandIds: Array
+
+        attr_accessor :CommandIds
+
+        def initialize(commandids=nil)
+          @CommandIds = commandids
+        end
+
+        def deserialize(params)
+          @CommandIds = params['CommandIds']
+        end
+      end
+
+      # DeleteCommands返回参数结构体
+      class DeleteCommandsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInvoker请求参数结构体
       class DeleteInvokerRequest < TencentCloud::Common::AbstractModel
         # @param InvokerId: 待删除的执行器ID。
@@ -1024,6 +1056,49 @@ module TencentCloud
         end
       end
 
+      # DescribeQuotas请求参数结构体
+      class DescribeQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceNames: 资源名称，目前有"COMMAND","REGISTER_CODE" 这两个指标
+        # @type ResourceNames: Array
+
+        attr_accessor :ResourceNames
+
+        def initialize(resourcenames=nil)
+          @ResourceNames = resourcenames
+        end
+
+        def deserialize(params)
+          @ResourceNames = params['ResourceNames']
+        end
+      end
+
+      # DescribeQuotas返回参数结构体
+      class DescribeQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param GeneralResourceQuotaSet: 资源额度列表
+        # @type GeneralResourceQuotaSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GeneralResourceQuotaSet, :RequestId
+
+        def initialize(generalresourcequotaset=nil, requestid=nil)
+          @GeneralResourceQuotaSet = generalresourcequotaset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GeneralResourceQuotaSet'].nil?
+            @GeneralResourceQuotaSet = []
+            params['GeneralResourceQuotaSet'].each do |i|
+              generalresourcequotaset_tmp = GeneralResourceQuotaSet.new
+              generalresourcequotaset_tmp.deserialize(i)
+              @GeneralResourceQuotaSet << generalresourcequotaset_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRegions请求参数结构体
       class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
 
@@ -1330,6 +1405,33 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # GeneralResourceQuotaSet数据结构
+      class GeneralResourceQuotaSet < TencentCloud::Common::AbstractModel
+        # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceQuotaUsed: 已使用额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceQuotaUsed: Integer
+        # @param ResourceQuotaTotal: 总额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceQuotaTotal: Integer
+
+        attr_accessor :ResourceName, :ResourceQuotaUsed, :ResourceQuotaTotal
+
+        def initialize(resourcename=nil, resourcequotaused=nil, resourcequotatotal=nil)
+          @ResourceName = resourcename
+          @ResourceQuotaUsed = resourcequotaused
+          @ResourceQuotaTotal = resourcequotatotal
+        end
+
+        def deserialize(params)
+          @ResourceName = params['ResourceName']
+          @ResourceQuotaUsed = params['ResourceQuotaUsed']
+          @ResourceQuotaTotal = params['ResourceQuotaTotal']
         end
       end
 

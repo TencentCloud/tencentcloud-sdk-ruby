@@ -893,6 +893,42 @@ module TencentCloud
         end
       end
 
+      # CreateResource请求参数结构体
+      class CreateResourceRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 部署堡垒机的VpcId
+        # @type VpcId: String
+        # @param SubnetId: 部署堡垒机的SubnetId
+        # @type SubnetId: String
+
+        attr_accessor :VpcId, :SubnetId
+
+        def initialize(vpcid=nil, subnetid=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # CreateResource返回参数结构体
+      class CreateResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserGroup请求参数结构体
       class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 用户组名，最大长度32字符
@@ -2941,6 +2977,70 @@ module TencentCloud
 
       # ModifyDevice返回参数结构体
       class ModifyDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyResource请求参数结构体
+      class ModifyResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 需要开通服务的资源ID
+        # @type ResourceId: String
+        # @param Status: 已废弃
+        # @type Status: String
+        # @param ModuleSet: 已废弃
+        # @type ModuleSet: Array
+        # @param ResourceEdition: 实例版本
+        # @type ResourceEdition: String
+        # @param ResourceNode: 资源节点数
+        # @type ResourceNode: Integer
+        # @param AutoRenewFlag: 自动续费
+        # @type AutoRenewFlag: Integer
+        # @param PackageBandwidth: 带宽扩展包个数(4M)
+        # @type PackageBandwidth: Integer
+        # @param PackageNode: 授权点数扩展包个数(50点)
+        # @type PackageNode: Integer
+        # @param LogDelivery: 日志投递
+        # @type LogDelivery: Integer
+
+        attr_accessor :ResourceId, :Status, :ModuleSet, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
+
+        def initialize(resourceid=nil, status=nil, moduleset=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
+          @ResourceId = resourceid
+          @Status = status
+          @ModuleSet = moduleset
+          @ResourceEdition = resourceedition
+          @ResourceNode = resourcenode
+          @AutoRenewFlag = autorenewflag
+          @PackageBandwidth = packagebandwidth
+          @PackageNode = packagenode
+          @LogDelivery = logdelivery
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Status = params['Status']
+          @ModuleSet = params['ModuleSet']
+          @ResourceEdition = params['ResourceEdition']
+          @ResourceNode = params['ResourceNode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @PackageBandwidth = params['PackageBandwidth']
+          @PackageNode = params['PackageNode']
+          @LogDelivery = params['LogDelivery']
+        end
+      end
+
+      # ModifyResource返回参数结构体
+      class ModifyResourceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

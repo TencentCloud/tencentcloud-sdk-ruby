@@ -1022,16 +1022,29 @@ module TencentCloud
 
       # ChannelCreateFlowApprovers返回参数结构体
       class ChannelCreateFlowApproversResponse < TencentCloud::Common::AbstractModel
+        # @param FillError: 批量补充签署人时，补充失败的报错说明
+        # 注:`目前仅补充动态签署人时会返回补充失败的原因`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FillError: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FillError, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(fillerror=nil, requestid=nil)
+          @FillError = fillerror
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['FillError'].nil?
+            @FillError = []
+            params['FillError'].each do |i|
+              fillerror_tmp = FillError.new
+              fillerror_tmp.deserialize(i)
+              @FillError << fillerror_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5049,6 +5062,28 @@ module TencentCloud
           @OrganizationName = params['OrganizationName']
           @OrganizationOpenId = params['OrganizationOpenId']
           @NotChannelOrganization = params['NotChannelOrganization']
+        end
+      end
+
+      # 批量补充签署人时，补充失败的报错说明
+      class FillError < TencentCloud::Common::AbstractModel
+        # @param RecipientId: 为签署方经办人在签署合同中的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。与入参中补充的签署人角色ID对应，批量补充部分失败返回对应的错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecipientId: String
+        # @param ErrMessage: 补充失败错误说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMessage: String
+
+        attr_accessor :RecipientId, :ErrMessage
+
+        def initialize(recipientid=nil, errmessage=nil)
+          @RecipientId = recipientid
+          @ErrMessage = errmessage
+        end
+
+        def deserialize(params)
+          @RecipientId = params['RecipientId']
+          @ErrMessage = params['ErrMessage']
         end
       end
 

@@ -8540,8 +8540,10 @@ module TencentCloud
       # 实例对象的维度组合
       class Dimension < TencentCloud::Common::AbstractModel
         # @param Name: 实例维度名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Value: 实例维度值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
         attr_accessor :Name, :Value

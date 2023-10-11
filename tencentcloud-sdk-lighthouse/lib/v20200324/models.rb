@@ -976,7 +976,8 @@ module TencentCloud
         # @type InstanceName: String
         # @param InstanceCount: 购买实例数量。包年包月实例取值范围：[1，30]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量
         # @type InstanceCount: Integer
-        # @param Zones: 可用区列表。默认为随机可用区
+        # @param Zones: 可用区列表。
+        # 不填此参数，表示为随机可用区。
         # @type Zones: Array
         # @param DryRun: 是否只预检此次请求。
         # true：发送检查请求，不会创建实例。检查项包括是否填写了必需参数，请求格式，业务限制和库存。
@@ -986,7 +987,7 @@ module TencentCloud
         # @type DryRun: Boolean
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param LoginConfiguration: 实例登录密码信息配置。本字段目前仅支持WINDOWS实例进行密码设置。默认缺失情况下代表用户选择实例创建后设置登录密码。
+        # @param LoginConfiguration: 实例登录密码信息配置。默认缺失情况下代表用户选择实例创建后设置登录密码。
         # @type LoginConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.LoginConfiguration`
         # @param Containers: 要创建的容器配置列表。
         # @type Containers: Array
@@ -994,10 +995,16 @@ module TencentCloud
         # @type AutoVoucher: Boolean
         # @param FirewallTemplateId: 防火墙模版ID。若不指定该参数，则使用默认防火墙策略。
         # @type FirewallTemplateId: String
+        # @param Tags: 标签键和标签值。
+        # 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。
+        # 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。
+        # 如果标签不存在会为您自动创建标签。
+        # 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId, :Tags
 
-        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil)
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil, tags=nil)
           @BundleId = bundleid
           @BlueprintId = blueprintid
           @InstanceChargePrepaid = instancechargeprepaid
@@ -1010,6 +1017,7 @@ module TencentCloud
           @Containers = containers
           @AutoVoucher = autovoucher
           @FirewallTemplateId = firewalltemplateid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1038,6 +1046,14 @@ module TencentCloud
           end
           @AutoVoucher = params['AutoVoucher']
           @FirewallTemplateId = params['FirewallTemplateId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

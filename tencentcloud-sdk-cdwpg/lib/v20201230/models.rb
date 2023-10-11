@@ -161,6 +161,76 @@ module TencentCloud
         end
       end
 
+      # DescribeSimpleInstances请求参数结构体
+      class DescribeSimpleInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param SearchInstanceId: 11
+        # @type SearchInstanceId: String
+        # @param SearchInstanceName: 11
+        # @type SearchInstanceName: String
+        # @param Offset: 11
+        # @type Offset: Integer
+        # @param Limit: 11
+        # @type Limit: Integer
+        # @param SearchTags: 11
+        # @type SearchTags: Array
+
+        attr_accessor :SearchInstanceId, :SearchInstanceName, :Offset, :Limit, :SearchTags
+
+        def initialize(searchinstanceid=nil, searchinstancename=nil, offset=nil, limit=nil, searchtags=nil)
+          @SearchInstanceId = searchinstanceid
+          @SearchInstanceName = searchinstancename
+          @Offset = offset
+          @Limit = limit
+          @SearchTags = searchtags
+        end
+
+        def deserialize(params)
+          @SearchInstanceId = params['SearchInstanceId']
+          @SearchInstanceName = params['SearchInstanceName']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchTags = params['SearchTags']
+        end
+      end
+
+      # DescribeSimpleInstances返回参数结构体
+      class DescribeSimpleInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param InstancesList: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancesList: Array
+        # @param ErrorMsg: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstancesList, :ErrorMsg, :RequestId
+
+        def initialize(totalcount=nil, instanceslist=nil, errormsg=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstancesList = instanceslist
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstancesList'].nil?
+            @InstancesList = []
+            params['InstancesList'].each do |i|
+              instancesimpleinfonew_tmp = InstanceSimpleInfoNew.new
+              instancesimpleinfonew_tmp.deserialize(i)
+              @InstancesList << instancesimpleinfonew_tmp
+            end
+          end
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyInstanceByApi请求参数结构体
       class DestroyInstanceByApiRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例名称，例如"cdwpg-xxxx"
@@ -198,6 +268,103 @@ module TencentCloud
           @FlowId = params['FlowId']
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 精简集群信息
+      class InstanceSimpleInfoNew < TencentCloud::Common::AbstractModel
+        # @param ID: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param InstanceId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Version: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Region: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param RegionId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+        # @param RegionDesc: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionDesc: String
+        # @param Zone: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: Integer
+        # @param ZoneDesc: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneDesc: String
+        # @param VpcId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param CreateTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param AccessInfo: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessInfo: String
+        # @param PayMode: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param RenewFlag: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Boolean
+
+        attr_accessor :ID, :InstanceId, :InstanceName, :Version, :Region, :RegionId, :RegionDesc, :Zone, :ZoneId, :ZoneDesc, :VpcId, :SubnetId, :CreateTime, :ExpireTime, :AccessInfo, :PayMode, :RenewFlag
+
+        def initialize(id=nil, instanceid=nil, instancename=nil, version=nil, region=nil, regionid=nil, regiondesc=nil, zone=nil, zoneid=nil, zonedesc=nil, vpcid=nil, subnetid=nil, createtime=nil, expiretime=nil, accessinfo=nil, paymode=nil, renewflag=nil)
+          @ID = id
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Version = version
+          @Region = region
+          @RegionId = regionid
+          @RegionDesc = regiondesc
+          @Zone = zone
+          @ZoneId = zoneid
+          @ZoneDesc = zonedesc
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @AccessInfo = accessinfo
+          @PayMode = paymode
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Version = params['Version']
+          @Region = params['Region']
+          @RegionId = params['RegionId']
+          @RegionDesc = params['RegionDesc']
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+          @ZoneDesc = params['ZoneDesc']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @AccessInfo = params['AccessInfo']
+          @PayMode = params['PayMode']
+          @RenewFlag = params['RenewFlag']
         end
       end
 

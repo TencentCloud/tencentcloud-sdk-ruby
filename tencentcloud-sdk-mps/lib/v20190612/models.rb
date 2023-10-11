@@ -684,16 +684,20 @@ module TencentCloud
         # @param HighlightTask: 视频内容分析集锦任务的查询结果，当任务类型为 Highlight时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighlightTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHighlightResult`
+        # @param DeLogoTask: 视频内容分析去水印任务的查询结果，当任务类型为 DeLogo 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
           @TagTask = tagtask
           @FrameTagTask = frametagtask
           @HighlightTask = highlighttask
+          @DeLogoTask = delogotask
         end
 
         def deserialize(params)
@@ -717,6 +721,10 @@ module TencentCloud
           unless params['HighlightTask'].nil?
             @HighlightTask = AiAnalysisTaskHighlightResult.new
             @HighlightTask.deserialize(params['HighlightTask'])
+          end
+          unless params['DeLogoTask'].nil?
+            @DeLogoTask = AiAnalysisTaskDelLogoResult.new
+            @DeLogoTask.deserialize(params['DeLogoTask'])
           end
         end
       end
@@ -887,6 +895,84 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = AiAnalysisTaskCoverOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 智能去水印任务输入类型
+      class AiAnalysisTaskDelLogoInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能去水印模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能去水印结果信息
+      class AiAnalysisTaskDelLogoOutput < TencentCloud::Common::AbstractModel
+        # @param Path: 去水印后文件的路径。
+        # @type Path: String
+        # @param OutputStorage: 去水印后文件的存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :Path, :OutputStorage
+
+        def initialize(path=nil, outputstorage=nil)
+          @Path = path
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 智能去水印结果类型
+      class AiAnalysisTaskDelLogoResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能去水印任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoInput`
+        # @param Output: 智能去水印任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskDelLogoInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskDelLogoOutput.new
             @Output.deserialize(params['Output'])
           end
         end

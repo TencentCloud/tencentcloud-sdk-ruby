@@ -153,6 +153,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除命令接口
+
+        # @param request: Request instance for DeleteCommands.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DeleteCommandsRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DeleteCommandsResponse`
+        def DeleteCommands(request)
+          body = send_request('DeleteCommands', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCommandsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于删除执行器。
 
         # @param request: Request instance for DeleteInvoker.
@@ -355,6 +379,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInvokersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口用于获取配额信息
+
+        # @param request: Request instance for DescribeQuotas.
+        # @type request: :class:`Tencentcloud::tat::V20201028::DescribeQuotasRequest`
+        # @rtype: :class:`Tencentcloud::tat::V20201028::DescribeQuotasResponse`
+        def DescribeQuotas(request)
+          body = send_request('DescribeQuotas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeQuotasResponse.new
             model.deserialize(response['Response'])
             model
           else

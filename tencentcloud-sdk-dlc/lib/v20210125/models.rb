@@ -3055,14 +3055,60 @@ module TencentCloud
         end
       end
 
-      # 引擎配置
-      class DataEngineConfigPair < TencentCloud::Common::AbstractModel
+      # 引擎配置信息
+      class DataEngineConfigInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param DataEngineConfigPairs: 用户自定义配置项集合
+        # @type DataEngineConfigPairs: Array
+        # @param SessionResourceTemplate: 作业集群资源参数配置模版
+        # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
+        attr_accessor :DataEngineId, :DataEngineConfigPairs, :SessionResourceTemplate
 
-        def initialize()
+        def initialize(dataengineid=nil, dataengineconfigpairs=nil, sessionresourcetemplate=nil)
+          @DataEngineId = dataengineid
+          @DataEngineConfigPairs = dataengineconfigpairs
+          @SessionResourceTemplate = sessionresourcetemplate
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          unless params['DataEngineConfigPairs'].nil?
+            @DataEngineConfigPairs = []
+            params['DataEngineConfigPairs'].each do |i|
+              dataengineconfigpair_tmp = DataEngineConfigPair.new
+              dataengineconfigpair_tmp.deserialize(i)
+              @DataEngineConfigPairs << dataengineconfigpair_tmp
+            end
+          end
+          unless params['SessionResourceTemplate'].nil?
+            @SessionResourceTemplate = SessionResourceTemplate.new
+            @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
+        end
+      end
+
+      # 引擎配置
+      class DataEngineConfigPair < TencentCloud::Common::AbstractModel
+        # @param ConfigItem: 配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigItem: String
+        # @param ConfigValue: 配置值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigValue: String
+
+        attr_accessor :ConfigItem, :ConfigValue
+
+        def initialize(configitem=nil, configvalue=nil)
+          @ConfigItem = configitem
+          @ConfigValue = configvalue
+        end
+
+        def deserialize(params)
+          @ConfigItem = params['ConfigItem']
+          @ConfigValue = params['ConfigValue']
         end
       end
 
@@ -6074,27 +6120,73 @@ module TencentCloud
 
       # DescribeUserDataEngineConfig请求参数结构体
       class DescribeUserDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+        # @param Sorting: 排序方式，desc表示倒序，asc表示正序
+        # @type Sorting: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param SortBy: 排序字段，支持如下字段类型，create-time
+        # @type SortBy: String
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,每种过滤参数支持的过滤值不超过5个。
+        # app-id - String - （appid过滤）
+        # engine-id - String - （引擎ID过滤）
+        # @type Filters: Array
 
+        attr_accessor :Sorting, :Limit, :Offset, :SortBy, :Filters
 
-        def initialize()
+        def initialize(sorting=nil, limit=nil, offset=nil, sortby=nil, filters=nil)
+          @Sorting = sorting
+          @Limit = limit
+          @Offset = offset
+          @SortBy = sortby
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Sorting = params['Sorting']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @SortBy = params['SortBy']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeUserDataEngineConfig返回参数结构体
       class DescribeUserDataEngineConfigResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngineConfigInstanceInfos: 用户引擎自定义配置项列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineConfigInstanceInfos: Array
+        # @param TotalCount: 配置项总数。
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DataEngineConfigInstanceInfos, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(dataengineconfiginstanceinfos=nil, totalcount=nil, requestid=nil)
+          @DataEngineConfigInstanceInfos = dataengineconfiginstanceinfos
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DataEngineConfigInstanceInfos'].nil?
+            @DataEngineConfigInstanceInfos = []
+            params['DataEngineConfigInstanceInfos'].each do |i|
+              dataengineconfiginstanceinfo_tmp = DataEngineConfigInstanceInfo.new
+              dataengineconfiginstanceinfo_tmp.deserialize(i)
+              @DataEngineConfigInstanceInfos << dataengineconfiginstanceinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -8780,12 +8872,21 @@ module TencentCloud
 
       # RestartDataEngine请求参数结构体
       class RestartDataEngineRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param ForcedOperation: 是否强制重启，忽略任务
+        # @type ForcedOperation: Boolean
 
+        attr_accessor :DataEngineId, :ForcedOperation
 
-        def initialize()
+        def initialize(dataengineid=nil, forcedoperation=nil)
+          @DataEngineId = dataengineid
+          @ForcedOperation = forcedoperation
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @ForcedOperation = params['ForcedOperation']
         end
       end
 
@@ -8807,12 +8908,25 @@ module TencentCloud
 
       # RollbackDataEngineImage请求参数结构体
       class RollbackDataEngineImageRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param FromRecordId: 检查是否能回滚的接口返回的FromRecordId参数
+        # @type FromRecordId: String
+        # @param ToRecordId: 检查是否能回滚的接口返回的ToRecordId参数
+        # @type ToRecordId: String
 
+        attr_accessor :DataEngineId, :FromRecordId, :ToRecordId
 
-        def initialize()
+        def initialize(dataengineid=nil, fromrecordid=nil, torecordid=nil)
+          @DataEngineId = dataengineid
+          @FromRecordId = fromrecordid
+          @ToRecordId = torecordid
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @FromRecordId = params['FromRecordId']
+          @ToRecordId = params['ToRecordId']
         end
       end
 
@@ -9554,12 +9668,21 @@ module TencentCloud
 
       # SwitchDataEngineImage请求参数结构体
       class SwitchDataEngineImageRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param NewImageVersionId: 新镜像版本ID
+        # @type NewImageVersionId: String
 
+        attr_accessor :DataEngineId, :NewImageVersionId
 
-        def initialize()
+        def initialize(dataengineid=nil, newimageversionid=nil)
+          @DataEngineId = dataengineid
+          @NewImageVersionId = newimageversionid
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @NewImageVersionId = params['NewImageVersionId']
         end
       end
 
@@ -10425,12 +10548,21 @@ module TencentCloud
 
       # UpdateDataEngineConfig请求参数结构体
       class UpdateDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineIds: 引擎ID
+        # @type DataEngineIds: Array
+        # @param DataEngineConfigCommand: 引擎配置命令，支持UpdateSparkSQLLakefsPath（更新原生表配置）、UpdateSparkSQLResultPath（更新结果路径配置）
+        # @type DataEngineConfigCommand: String
 
+        attr_accessor :DataEngineIds, :DataEngineConfigCommand
 
-        def initialize()
+        def initialize(dataengineids=nil, dataengineconfigcommand=nil)
+          @DataEngineIds = dataengineids
+          @DataEngineConfigCommand = dataengineconfigcommand
         end
 
         def deserialize(params)
+          @DataEngineIds = params['DataEngineIds']
+          @DataEngineConfigCommand = params['DataEngineConfigCommand']
         end
       end
 
@@ -10585,12 +10717,35 @@ module TencentCloud
 
       # UpdateUserDataEngineConfig请求参数结构体
       class UpdateUserDataEngineConfigRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param DataEngineConfigPairs: 引擎配置项
+        # @type DataEngineConfigPairs: Array
+        # @param SessionResourceTemplate: 作业引擎资源配置模版
+        # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
+        attr_accessor :DataEngineId, :DataEngineConfigPairs, :SessionResourceTemplate
 
-        def initialize()
+        def initialize(dataengineid=nil, dataengineconfigpairs=nil, sessionresourcetemplate=nil)
+          @DataEngineId = dataengineid
+          @DataEngineConfigPairs = dataengineconfigpairs
+          @SessionResourceTemplate = sessionresourcetemplate
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          unless params['DataEngineConfigPairs'].nil?
+            @DataEngineConfigPairs = []
+            params['DataEngineConfigPairs'].each do |i|
+              dataengineconfigpair_tmp = DataEngineConfigPair.new
+              dataengineconfigpair_tmp.deserialize(i)
+              @DataEngineConfigPairs << dataengineconfigpair_tmp
+            end
+          end
+          unless params['SessionResourceTemplate'].nil?
+            @SessionResourceTemplate = SessionResourceTemplate.new
+            @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
         end
       end
 
@@ -10612,12 +10767,17 @@ module TencentCloud
 
       # UpgradeDataEngineImage请求参数结构体
       class UpgradeDataEngineImageRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
 
+        attr_accessor :DataEngineId
 
-        def initialize()
+        def initialize(dataengineid=nil)
+          @DataEngineId = dataengineid
         end
 
         def deserialize(params)
+          @DataEngineId = params['DataEngineId']
         end
       end
 
