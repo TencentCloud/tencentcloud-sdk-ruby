@@ -8433,7 +8433,9 @@ module TencentCloud
         # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>AppName- string - 是否必填：否 - 应用名搜索</li>
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Type - int - 是否必填：否 - 类型	: 仅linux
         # 0: 全部
         # 1: 运维
@@ -8634,7 +8636,9 @@ module TencentCloud
         # @param Quuid: 服务器Quuid
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # @type Filters: Array
@@ -8804,9 +8808,10 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>MachineName- String - 是否必填：否 - 主机别名筛选</li>
+        # <li>IP- String - 是否必填：否 - 主机ip筛选</li>
+        # <li>InstanceID- String - 是否必填：否 - 主机实例ID筛选</li>
         # <li>User- string - 是否必填：否 - 运行用户</li>
-        # <li>Ip - String - 是否必填：否 - 绑定IP</li>
         # <li>Port - Int - 是否必填：否 - 端口</li>
         # <li>Name - Int - 是否必填：否 - 数据库名称
         # 0:全部
@@ -9215,7 +9220,9 @@ module TencentCloud
         # @param Quuid: 服务器Quuid
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # <li>IsAutoRun - string - 是否必填：否 - 是否开机自启动：0否，1是</li>
@@ -9361,7 +9368,9 @@ module TencentCloud
         # @param Quuid: 服务器Quuid
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name- string - 是否必填：否 - 包名</li>
         # <li>Type- uint - 是否必填：否 - 类型
         # 1: 应用程序
@@ -9667,7 +9676,9 @@ module TencentCloud
         # @param Quuid: 服务器Quuid
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>User- string - 是否必填：否 - 用户</li>
         # <li>Status- int - 是否必填：否 - 默认启用状态：0未启用， 1启用 </li>
         # @type Filters: Array
@@ -9791,7 +9802,9 @@ module TencentCloud
         # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>Port - uint64 - 是否必填：否 - 端口</li>
-        # <li>Ip - String - 是否必填：否 - 绑定IP</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>ProcessName - String - 是否必填：否 - 监听进程</li>
         # <li>Pid - uint64 - 是否必填：否 - PID</li>
         # <li>User - String - 是否必填：否 - 运行用户</li>
@@ -9921,7 +9934,9 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name - String - 是否必填：否 - 进程名</li>
         # <li>User - String - 是否必填：否 - 进程用户</li>
         # <li>Group - String - 是否必填：否 - 进程用户组</li>
@@ -10565,7 +10580,9 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name - String - 是否必填：否 - 账户名（模糊匹配）</li>
         # <li>NameStrict - String - 是否必填：否 - 账户名（严格匹配）</li>
         # <li>Uid - uint64 - 是否必填：否 - Uid</li>
@@ -10702,7 +10719,9 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name - String - 是否必填：否 - 应用名</li>
         # <li>Domain - String - 是否必填：否 - 站点域名</li>
         # <li>Type - int - 是否必填：否 - 服务类型：
@@ -10900,7 +10919,9 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name - String - 是否必填：否 - 框架名</li>
         # <li>NameStrict - String - 是否必填：否 - 框架名（严格匹配）</li>
         # <li>Lang - String - 是否必填：否 - 框架语言:java/python</li>
@@ -11084,7 +11105,9 @@ module TencentCloud
         # @param Quuid: 查询指定Quuid主机的信息
         # @type Quuid: String
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Name - String - 是否必填：否 - 域名</li>
         # <li>User - String - 是否必填：否 - 运行用户</li>
         # <li>Port - uint64 - 是否必填：否 - 站点端口</li>
@@ -26478,7 +26501,9 @@ module TencentCloud
         # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>AppName- string - 是否必填：否 - 应用名搜索</li>
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>Type - int - 是否必填：否 - 类型	: 仅linux
         # 0: 全部
         # 1: 运维
@@ -26920,7 +26945,9 @@ module TencentCloud
       # ExportAssetMachineList请求参数结构体
       class ExportAssetMachineListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        # <li>IP - String - 是否必填：否 - 主机ip</li>
+        # <li>MachineName - String - 是否必填：否 - 主机名称</li>
+        # <li>InstanceID - string - 是否必填：否 - 实例ID</li>
         # <li>OsType - String - 是否必填：否 - windows或linux</li>
         # <li>CpuLoad - Int - 是否必填：否 -
         # 0: 0%或未知  1: 0%～20%

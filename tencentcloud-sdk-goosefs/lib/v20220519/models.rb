@@ -972,7 +972,7 @@ module TencentCloud
       class GooseFSxAttribute < TencentCloud::Common::AbstractModel
         # @param Model: GooseFSx的型号
         # @type Model: String
-        # @param Capacity: 容量单位是GB, 比如4608(4.5TB)
+        # @param Capacity: 容量单位是GB, 例如4608(4.5TB)
         # @type Capacity: Integer
         # @param MappedBucketList: 要关联映射的bucket列表
         # @type MappedBucketList: Array
@@ -1014,7 +1014,7 @@ module TencentCloud
       class GooseFSxBuildElement < TencentCloud::Common::AbstractModel
         # @param Model: GooseFSx的型号
         # @type Model: String
-        # @param Capacity: 容量单位是GB, 比如4608(4.5TB)
+        # @param Capacity: 容量单位是GB, 例如4608(4.5TB)
         # @type Capacity: Integer
         # @param MappedBucketList: 要关联映射的bucket列表
         # @type MappedBucketList: Array

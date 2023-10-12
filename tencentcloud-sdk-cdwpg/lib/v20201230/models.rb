@@ -161,6 +161,77 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceState请求参数结构体
+      class DescribeInstanceStateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例名称
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceState返回参数结构体
+      class DescribeInstanceStateResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceState: 集群状态，例如：Serving
+        # @type InstanceState: String
+        # @param FlowCreateTime: 集群操作创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowCreateTime: String
+        # @param FlowName: 集群操作名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowProgress: 集群操作进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowProgress: Float
+        # @param InstanceStateDesc: 集群状态描述，例如：运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateDesc: String
+        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMsg: String
+        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param BackupStatus: 集群备份任务开启状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStatus: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :BackupStatus, :RequestId
+
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, backupstatus=nil, requestid=nil)
+          @InstanceState = instancestate
+          @FlowCreateTime = flowcreatetime
+          @FlowName = flowname
+          @FlowProgress = flowprogress
+          @InstanceStateDesc = instancestatedesc
+          @FlowMsg = flowmsg
+          @ProcessName = processname
+          @BackupStatus = backupstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceState = params['InstanceState']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
+          @InstanceStateDesc = params['InstanceStateDesc']
+          @FlowMsg = params['FlowMsg']
+          @ProcessName = params['ProcessName']
+          @BackupStatus = params['BackupStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSimpleInstances请求参数结构体
       class DescribeSimpleInstancesRequest < TencentCloud::Common::AbstractModel
         # @param SearchInstanceId: 11
@@ -365,6 +436,42 @@ module TencentCloud
           @AccessInfo = params['AccessInfo']
           @PayMode = params['PayMode']
           @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyInstance请求参数结构体
+      class ModifyInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param InstanceName: 新修改的实例名称
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :InstanceName
+
+        def initialize(instanceid=nil, instancename=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # ModifyInstance返回参数结构体
+      class ModifyInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

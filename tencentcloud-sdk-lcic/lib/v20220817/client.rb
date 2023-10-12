@@ -871,6 +871,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取课堂评分列表
+
+        # @param request: Request instance for DescribeScoreList.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeScoreListRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeScoreListResponse`
+        def DescribeScoreList(request)
+          body = send_request('DescribeScoreList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeScoreListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于获取指定应用ID下用户列表
 
         # @param request: Request instance for DescribeSdkAppIdUsers.

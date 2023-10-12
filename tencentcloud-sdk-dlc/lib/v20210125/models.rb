@@ -9750,15 +9750,22 @@ module TencentCloud
         # @type Default: String
         # @param NotNull: 字段是否是非空
         # @type NotNull: Boolean
+        # @param Precision: 表示整个 numeric 的长度,取值1-38
+        # @type Precision: Integer
+        # @param Scale: 表示小数部分的长度
+        # Scale小于Precision
+        # @type Scale: Integer
 
-        attr_accessor :Name, :Type, :Comment, :Default, :NotNull
+        attr_accessor :Name, :Type, :Comment, :Default, :NotNull, :Precision, :Scale
 
-        def initialize(name=nil, type=nil, comment=nil, default=nil, notnull=nil)
+        def initialize(name=nil, type=nil, comment=nil, default=nil, notnull=nil, precision=nil, scale=nil)
           @Name = name
           @Type = type
           @Comment = comment
           @Default = default
           @NotNull = notnull
+          @Precision = precision
+          @Scale = scale
         end
 
         def deserialize(params)
@@ -9767,6 +9774,8 @@ module TencentCloud
           @Comment = params['Comment']
           @Default = params['Default']
           @NotNull = params['NotNull']
+          @Precision = params['Precision']
+          @Scale = params['Scale']
         end
       end
 

@@ -271,7 +271,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建 Grafana 集成配置
+        # 创建 Grafana 集成配置，其中 Prometheus 集成不通过该接口创建，可参考 BindPrometheusManagedGrafana 接口
 
         # @param request: Request instance for CreateGrafanaIntegration.
         # @type request: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaIntegrationRequest`

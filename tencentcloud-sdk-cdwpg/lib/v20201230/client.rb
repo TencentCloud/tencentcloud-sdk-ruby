@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 集群详情页中显示集群状态、流程进度等
+
+        # @param request: Request instance for DescribeInstanceState.
+        # @type request: :class:`Tencentcloud::cdwpg::V20201230::DescribeInstanceStateRequest`
+        # @rtype: :class:`Tencentcloud::cdwpg::V20201230::DescribeInstanceStateResponse`
+        def DescribeInstanceState(request)
+          body = send_request('DescribeInstanceState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceStateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群实例列表
 
         # @param request: Request instance for DescribeSimpleInstances.
@@ -87,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyInstanceByApiResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改实例信息，目前为实例名称
+
+        # @param request: Request instance for ModifyInstance.
+        # @type request: :class:`Tencentcloud::cdwpg::V20201230::ModifyInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cdwpg::V20201230::ModifyInstanceResponse`
+        def ModifyInstance(request)
+          body = send_request('ModifyInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

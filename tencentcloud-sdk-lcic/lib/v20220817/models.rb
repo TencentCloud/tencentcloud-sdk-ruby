@@ -605,6 +605,43 @@ module TencentCloud
         end
       end
 
+      # 课堂评分字段
+      class ClassScoreItem < TencentCloud::Common::AbstractModel
+        # @param RoomId: 课堂iD
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoomId: Integer
+        # @param UserId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param CreateTime: 评分时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param Score: 课堂评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param ScoreMsg: 课堂评价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScoreMsg: String
+
+        attr_accessor :RoomId, :UserId, :CreateTime, :Score, :ScoreMsg
+
+        def initialize(roomid=nil, userid=nil, createtime=nil, score=nil, scoremsg=nil)
+          @RoomId = roomid
+          @UserId = userid
+          @CreateTime = createtime
+          @Score = score
+          @ScoreMsg = scoremsg
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @CreateTime = params['CreateTime']
+          @Score = params['Score']
+          @ScoreMsg = params['ScoreMsg']
+        end
+      end
+
       # CreateDocument请求参数结构体
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
@@ -2130,6 +2167,62 @@ module TencentCloud
           @RealEndTime = params['RealEndTime']
           @MessageCount = params['MessageCount']
           @MicCount = params['MicCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScoreList请求参数结构体
+      class DescribeScoreListRequest < TencentCloud::Common::AbstractModel
+        # @param RoomId: 课堂ID
+        # @type RoomId: Integer
+        # @param Page: 分页查询当前页数，从1开始递增
+        # @type Page: Integer
+        # @param Limit: 默认是10条
+        # @type Limit: Integer
+
+        attr_accessor :RoomId, :Page, :Limit
+
+        def initialize(roomid=nil, page=nil, limit=nil)
+          @RoomId = roomid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeScoreList返回参数结构体
+      class DescribeScoreListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Scores: 课堂评分列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scores: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Scores, :RequestId
+
+        def initialize(total=nil, scores=nil, requestid=nil)
+          @Total = total
+          @Scores = scores
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Scores'].nil?
+            @Scores = []
+            params['Scores'].each do |i|
+              classscoreitem_tmp = ClassScoreItem.new
+              classscoreitem_tmp.deserialize(i)
+              @Scores << classscoreitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

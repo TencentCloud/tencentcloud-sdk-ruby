@@ -1659,13 +1659,13 @@ module TencentCloud
       class CreateGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名
         # @type InstanceName: String
-        # @param VpcId: VPC ID
+        # @param VpcId: VPC ID (私有网络 ID)
         # @type VpcId: String
-        # @param SubnetIds: 子网 ID 数组
+        # @param SubnetIds: 子网 ID 数组(VPC ID下的子网 ID，只取第一个)
         # @type SubnetIds: Array
         # @param EnableInternet: 是否启用外网
         # @type EnableInternet: Boolean
-        # @param GrafanaInitPassword: Grafana 初始密码
+        # @param GrafanaInitPassword: Grafana 初始密码(国际站用户必填，国内站用户可不填，不填时会生成随机密码并给主账号发送通知)
         # @type GrafanaInitPassword: String
         # @param TagSpecification: 标签
         # @type TagSpecification: Array
@@ -1722,7 +1722,7 @@ module TencentCloud
       class CreateGrafanaIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param Kind: 集成类型，可在实例详情-云产品集成-集成列表查看。例如：tencent-cloud-prometheus
+        # @param Kind: 集成类型(接口DescribeGrafanaIntegrationOverviews返回的集成信息中的Code字段)
         # @type Kind: String
         # @param Content: 集成配置
         # @type Content: String
@@ -1769,9 +1769,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param ChannelName: 告警通道名称，例如：test
         # @type ChannelName: String
-        # @param OrgId: 默认为1，已废弃，请使用 OrganizationIds
+        # @param OrgId: 默认为1，建议使用 OrganizationIds
         # @type OrgId: Integer
-        # @param Receivers: 接受告警通道 ID 数组
+        # @param Receivers: 接受告警通道 ID 数组，值为告警管理/基础配置/通知模板中的模板 ID
         # @type Receivers: Array
         # @param ExtraOrgIds: 额外组织 ID 数组，已废弃，请使用 OrganizationIds
         # @type ExtraOrgIds: Array
@@ -2478,7 +2478,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param UserId: 用户账号 ID ，例如：10000000
         # @type UserId: String
-        # @param Role: 权限
+        # @param Role: 权限(只取数组中的第一个，其中 Organization 暂未使用，可不填)
         # @type Role: Array
         # @param Notes: 备注
         # @type Notes: String
@@ -2789,7 +2789,7 @@ module TencentCloud
 
       # DeleteGrafanaInstance请求参数结构体
       class DeleteGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIDs: 实例名数组
+        # @param InstanceIDs: 实例ID数组
         # @type InstanceIDs: Array
 
         attr_accessor :InstanceIDs
@@ -2857,7 +2857,7 @@ module TencentCloud
 
       # DeleteGrafanaNotificationChannel请求参数结构体
       class DeleteGrafanaNotificationChannelRequest < TencentCloud::Common::AbstractModel
-        # @param ChannelIDs: 通道 ID 数组。例如：nchannel-abcd1234
+        # @param ChannelIDs: 通道 ID 数组。例如：nchannel-abcd1234，通过 DescribeGrafanaChannels 获取
         # @type ChannelIDs: Array
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
@@ -4954,7 +4954,7 @@ module TencentCloud
         # @type ChannelName: String
         # @param ChannelIds: 告警通道 ID，例如：nchannel-abcd1234
         # @type ChannelIds: Array
-        # @param ChannelState: 告警通道状态
+        # @param ChannelState: 告警通道状态(不用填写，目前只有可用和删除状态，默认只能查询可用的告警通道)
         # @type ChannelState: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit, :ChannelName, :ChannelIds, :ChannelState
@@ -8998,7 +8998,7 @@ module TencentCloud
       class GrafanaAccountRole < TencentCloud::Common::AbstractModel
         # @param Organization: 组织
         # @type Organization: String
-        # @param Role: 权限
+        # @param Role: 权限(Admin、Editor、Viewer)
         # @type Role: String
 
         attr_accessor :Organization, :Role
@@ -9254,7 +9254,7 @@ module TencentCloud
 
       # InstallPlugins请求参数结构体
       class InstallPluginsRequest < TencentCloud::Common::AbstractModel
-        # @param Plugins: 插件信息
+        # @param Plugins: 插件信息(可通过 DescribePluginOverviews 接口获取)
         # @type Plugins: Array
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
@@ -13558,7 +13558,7 @@ module TencentCloud
       class UpdateGrafanaConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param Config: JSON 编码后的字符串
+        # @param Config: JSON 编码后的字符串，如 "{"server":{"root_url":"http://custom.domain"}}"
         # @type Config: String
 
         attr_accessor :InstanceId, :Config
@@ -13594,7 +13594,7 @@ module TencentCloud
       class UpdateGrafanaEnvironmentsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
-        # @param Envs: 环境变量字符串
+        # @param Envs: JSON 序列化后的环境变量字符串，如 "{\"key1\":\"key2\"}"
         # @type Envs: String
 
         attr_accessor :InstanceId, :Envs
@@ -13634,7 +13634,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Kind: 集成类型，可在实例详情-云产品集成-集成列表查看。例如：tencent-cloud-prometheus
         # @type Kind: String
-        # @param Content: 集成内容
+        # @param Content: 集成内容，请查看示例
         # @type Content: String
 
         attr_accessor :IntegrationId, :InstanceId, :Kind, :Content
@@ -13726,7 +13726,8 @@ module TencentCloud
       class UpdateGrafanaWhiteListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-abcdefgh
         # @type InstanceId: String
-        # @param Whitelist: 白名单数组，输入公网域名 IP ，例如：127.0.0.1，可通过接口 DescribeGrafanaWhiteList 查看
+        # @param Whitelist: 白名单数组，输入白名单 IP 或 CIDR，如：127.0.0.1或127.0.0.1/24
+        # 如有多个 IP 可换行输入
         # @type Whitelist: Array
 
         attr_accessor :InstanceId, :Whitelist
@@ -14068,7 +14069,7 @@ module TencentCloud
       class UpgradeGrafanaInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
-        # @param Alias: 版本别名，例如：v7.4.2
+        # @param Alias: 版本别名，目前固定为 v9.1.5
         # @type Alias: String
 
         attr_accessor :InstanceId, :Alias

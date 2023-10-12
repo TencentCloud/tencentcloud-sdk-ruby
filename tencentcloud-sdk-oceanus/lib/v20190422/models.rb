@@ -224,10 +224,13 @@ module TencentCloud
         # @param Orders: 订单信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Orders: Array
+        # @param SqlGateways: Gateway信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlGateways: Array
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -267,6 +270,7 @@ module TencentCloud
           @ArchGeneration = archgeneration
           @ClusterType = clustertype
           @Orders = orders
+          @SqlGateways = sqlgateways
         end
 
         def deserialize(params)
@@ -345,6 +349,14 @@ module TencentCloud
               order_tmp = Order.new
               order_tmp.deserialize(i)
               @Orders << order_tmp
+            end
+          end
+          unless params['SqlGateways'].nil?
+            @SqlGateways = []
+            params['SqlGateways'].each do |i|
+              sqlgatewayitem_tmp = SqlGatewayItem.new
+              sqlgatewayitem_tmp.deserialize(i)
+              @SqlGateways << sqlgatewayitem_tmp
             end
           end
         end
@@ -2155,6 +2167,38 @@ module TencentCloud
         end
       end
 
+      # Gateway引用资源信息
+      class GatewayRefItem < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 空间唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkspaceId: String
+        # @param ResourceId: 资源唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param Version: 版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+        # @param Type: 引用类型，0:用户资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+
+        attr_accessor :WorkspaceId, :ResourceId, :Version, :Type
+
+        def initialize(workspaceid=nil, resourceid=nil, version=nil, type=nil)
+          @WorkspaceId = workspaceid
+          @ResourceId = resourceid
+          @Version = version
+          @Type = type
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @ResourceId = params['ResourceId']
+          @Version = params['Version']
+          @Type = params['Type']
+        end
+      end
+
       # 作业配置详情
       class JobConfig < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -3407,6 +3451,77 @@ module TencentCloud
           @HeapMemory = params['HeapMemory']
           @OffHeapMemory = params['OffHeapMemory']
           @ManagedMemory = params['ManagedMemory']
+        end
+      end
+
+      # SqlGateway配置信息
+      class SqlGatewayItem < TencentCloud::Common::AbstractModel
+        # @param SerialId: 唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialId: String
+        # @param FlinkVersion: Flink内核版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlinkVersion: String
+        # @param Status: 状态，1.停止 2. 开启中 3. 开启 4. 开启失败 5. 停止中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreatorUin: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param ResourceRefs: 引用资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceRefs: Array
+        # @param CuSpec: Cu规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CuSpec: Float
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param Properties: 配置参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: Array
+
+        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties
+
+        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil)
+          @SerialId = serialid
+          @FlinkVersion = flinkversion
+          @Status = status
+          @CreatorUin = creatoruin
+          @ResourceRefs = resourcerefs
+          @CuSpec = cuspec
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @FlinkVersion = params['FlinkVersion']
+          @Status = params['Status']
+          @CreatorUin = params['CreatorUin']
+          unless params['ResourceRefs'].nil?
+            @ResourceRefs = []
+            params['ResourceRefs'].each do |i|
+              gatewayrefitem_tmp = GatewayRefItem.new
+              gatewayrefitem_tmp.deserialize(i)
+              @ResourceRefs << gatewayrefitem_tmp
+            end
+          end
+          @CuSpec = params['CuSpec']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
         end
       end
 

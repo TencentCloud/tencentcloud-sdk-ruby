@@ -1311,6 +1311,28 @@ module TencentCloud
         end
       end
 
+      # 视频通道码率返回结果
+      class BitRateInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelId: 通道Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
+        # @param Bitrate: 码率,单位:kbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bitrate: Float
+
+        attr_accessor :ChannelId, :Bitrate
+
+        def initialize(channelid=nil, bitrate=nil)
+          @ChannelId = channelid
+          @Bitrate = bitrate
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @Bitrate = params['Bitrate']
+        end
+      end
+
       # 人体识别结果详情
       class BodyAIResultInfo < TencentCloud::Common::AbstractModel
         # @param Time: 时间字符串
@@ -3948,6 +3970,69 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeDeviceData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询视频通道码率的返回结果列表
+      class DescribeVideoBitRateList < TencentCloud::Common::AbstractModel
+        # @param BitRates: 通道码率列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BitRates: Array
+
+        attr_accessor :BitRates
+
+        def initialize(bitrates=nil)
+          @BitRates = bitrates
+        end
+
+        def deserialize(params)
+          unless params['BitRates'].nil?
+            @BitRates = []
+            params['BitRates'].each do |i|
+              bitrateinfo_tmp = BitRateInfo.new
+              bitrateinfo_tmp.deserialize(i)
+              @BitRates << bitrateinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVideoBitRate请求参数结构体
+      class DescribeVideoBitRateRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelIds: 通道ID列表
+        # @type ChannelIds: Array
+
+        attr_accessor :ChannelIds
+
+        def initialize(channelids=nil)
+          @ChannelIds = channelids
+        end
+
+        def deserialize(params)
+          @ChannelIds = params['ChannelIds']
+        end
+      end
+
+      # DescribeVideoBitRate返回参数结构体
+      class DescribeVideoBitRateResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeVideoBitRateList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeVideoBitRateList.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

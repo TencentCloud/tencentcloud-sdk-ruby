@@ -3007,10 +3007,12 @@ module TencentCloud
         # @type DiskIds: Array
         # @param Hidden: 是否为隐藏可用区
         # @type Hidden: Boolean
+        # @param IsCoordinationNode: 是否充当协调节点的角色
+        # @type IsCoordinationNode: Boolean
 
-        attr_accessor :NodeId, :NodeIp, :Visible, :Break, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeRole, :NodeHttpIp, :JvmMemUsage, :ShardNum, :DiskIds, :Hidden
+        attr_accessor :NodeId, :NodeIp, :Visible, :Break, :DiskSize, :DiskUsage, :MemSize, :MemUsage, :CpuNum, :CpuUsage, :Zone, :NodeRole, :NodeHttpIp, :JvmMemUsage, :ShardNum, :DiskIds, :Hidden, :IsCoordinationNode
 
-        def initialize(nodeid=nil, nodeip=nil, visible=nil, _break=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, noderole=nil, nodehttpip=nil, jvmmemusage=nil, shardnum=nil, diskids=nil, hidden=nil)
+        def initialize(nodeid=nil, nodeip=nil, visible=nil, _break=nil, disksize=nil, diskusage=nil, memsize=nil, memusage=nil, cpunum=nil, cpuusage=nil, zone=nil, noderole=nil, nodehttpip=nil, jvmmemusage=nil, shardnum=nil, diskids=nil, hidden=nil, iscoordinationnode=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
           @Visible = visible
@@ -3028,6 +3030,7 @@ module TencentCloud
           @ShardNum = shardnum
           @DiskIds = diskids
           @Hidden = hidden
+          @IsCoordinationNode = iscoordinationnode
         end
 
         def deserialize(params)
@@ -3048,6 +3051,7 @@ module TencentCloud
           @ShardNum = params['ShardNum']
           @DiskIds = params['DiskIds']
           @Hidden = params['Hidden']
+          @IsCoordinationNode = params['IsCoordinationNode']
         end
       end
 

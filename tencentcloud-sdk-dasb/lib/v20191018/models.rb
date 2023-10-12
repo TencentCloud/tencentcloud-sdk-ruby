@@ -895,21 +895,53 @@ module TencentCloud
 
       # CreateResource请求参数结构体
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
+        # @param DeployRegion: 部署region
+        # @type DeployRegion: String
         # @param VpcId: 部署堡垒机的VpcId
         # @type VpcId: String
         # @param SubnetId: 部署堡垒机的SubnetId
         # @type SubnetId: String
+        # @param ResourceEdition: 资源类型。取值:standard/pro
+        # @type ResourceEdition: String
+        # @param ResourceNode: 资源节点数
+        # @type ResourceNode: Integer
+        # @param TimeUnit: 计费周期
+        # @type TimeUnit: String
+        # @param TimeSpan: 计费时长
+        # @type TimeSpan: Integer
+        # @param PayMode: 计费模式 1预付费
+        # @type PayMode: Integer
+        # @param AutoRenewFlag: 自动续费
+        # @type AutoRenewFlag: Integer
+        # @param DeployZone: 部署zone
+        # @type DeployZone: String
 
-        attr_accessor :VpcId, :SubnetId
+        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone
 
-        def initialize(vpcid=nil, subnetid=nil)
+        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil)
+          @DeployRegion = deployregion
           @VpcId = vpcid
           @SubnetId = subnetid
+          @ResourceEdition = resourceedition
+          @ResourceNode = resourcenode
+          @TimeUnit = timeunit
+          @TimeSpan = timespan
+          @PayMode = paymode
+          @AutoRenewFlag = autorenewflag
+          @DeployZone = deployzone
         end
 
         def deserialize(params)
+          @DeployRegion = params['DeployRegion']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @ResourceEdition = params['ResourceEdition']
+          @ResourceNode = params['ResourceNode']
+          @TimeUnit = params['TimeUnit']
+          @TimeSpan = params['TimeSpan']
+          @PayMode = params['PayMode']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @DeployZone = params['DeployZone']
         end
       end
 

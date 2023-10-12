@@ -1461,6 +1461,78 @@ module TencentCloud
         end
       end
 
+      # Clb类型防护对象
+      class ClbObject < TencentCloud::Common::AbstractModel
+        # @param ObjectId: 对象ID
+        # @type ObjectId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param PreciseDomains: 精准域名列表
+        # @type PreciseDomains: Array
+        # @param Status: WAF功能开关状态，0关闭1开启
+        # @type Status: Integer
+        # @param ClsStatus: WAF日志开关状态，0关闭1开启
+        # @type ClsStatus: Integer
+        # @param VirtualDomain: CLB对象对应的虚拟域名
+        # @type VirtualDomain: String
+        # @param ObjectName: 对象名称
+        # @type ObjectName: String
+        # @param PublicIp: 公网地址
+        # @type PublicIp: Array
+        # @param PrivateIp: 内网地址
+        # @type PrivateIp: Array
+        # @param VpcName: VPC名称
+        # @type VpcName: String
+        # @param Vpc: VPC ID
+        # @type Vpc: String
+        # @param InstanceLevel: waf实例等级，如果未绑定实例为0
+        # @type InstanceLevel: Integer
+        # @param PostCLSStatus: clb投递开关
+        # @type PostCLSStatus: Integer
+        # @param PostCKafkaStatus: kafka投递开关
+        # @type PostCKafkaStatus: Integer
+
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus
+
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil)
+          @ObjectId = objectid
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @PreciseDomains = precisedomains
+          @Status = status
+          @ClsStatus = clsstatus
+          @VirtualDomain = virtualdomain
+          @ObjectName = objectname
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @VpcName = vpcname
+          @Vpc = vpc
+          @InstanceLevel = instancelevel
+          @PostCLSStatus = postclsstatus
+          @PostCKafkaStatus = postckafkastatus
+        end
+
+        def deserialize(params)
+          @ObjectId = params['ObjectId']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @PreciseDomains = params['PreciseDomains']
+          @Status = params['Status']
+          @ClsStatus = params['ClsStatus']
+          @VirtualDomain = params['VirtualDomain']
+          @ObjectName = params['ObjectName']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @VpcName = params['VpcName']
+          @Vpc = params['Vpc']
+          @InstanceLevel = params['InstanceLevel']
+          @PostCLSStatus = params['PostCLSStatus']
+          @PostCKafkaStatus = params['PostCKafkaStatus']
+        end
+      end
+
       # CreateAccessExport请求参数结构体
       class CreateAccessExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -4200,6 +4272,62 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = IpHitItemsData.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeObjects请求参数结构体
+      class DescribeObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 支持的过滤器:
+        # 	ObjectId: clb实例ID
+        # 	VIP: clb实例的公网IP
+        # 	InstanceId: waf实例ID
+        # 	Domain: 精准域名
+        # 	Status: waf防护开关状态: 0关闭，1开启
+        # 	ClsStatus: waf日志开关: 0关闭，1开启
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeObjects返回参数结构体
+      class DescribeObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param ClbObjects: 对象列表
+        # @type ClbObjects: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClbObjects, :RequestId
+
+        def initialize(clbobjects=nil, requestid=nil)
+          @ClbObjects = clbobjects
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClbObjects'].nil?
+            @ClbObjects = []
+            params['ClbObjects'].each do |i|
+              clbobject_tmp = ClbObject.new
+              clbobject_tmp.deserialize(i)
+              @ClbObjects << clbobject_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -7933,6 +8061,50 @@ module TencentCloud
 
       # ModifyModuleStatus返回参数结构体
       class ModifyModuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyObject请求参数结构体
+      class ModifyObjectRequest < TencentCloud::Common::AbstractModel
+        # @param ObjectId: 修改对象标识
+        # @type ObjectId: String
+        # @param OpType: 改动作类型:Status修改开关，InstanceId绑定实例
+        # @type OpType: String
+        # @param Status: 新的Waf开关状态，如果和已有状态相同认为修改成功
+        # @type Status: Integer
+        # @param InstanceId: 新的实例ID，如果和已绑定的实例相同认为修改成功
+        # @type InstanceId: String
+
+        attr_accessor :ObjectId, :OpType, :Status, :InstanceId
+
+        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil)
+          @ObjectId = objectid
+          @OpType = optype
+          @Status = status
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ObjectId = params['ObjectId']
+          @OpType = params['OpType']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ModifyObject返回参数结构体
+      class ModifyObjectResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
