@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取端口视角的端口风险列表
+
+        # @param request: Request instance for DescribeRiskCenterPortViewPortRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRiskCenterPortViewPortRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeRiskCenterPortViewPortRiskListResponse`
+        def DescribeRiskCenterPortViewPortRiskList(request)
+          body = send_request('DescribeRiskCenterPortViewPortRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskCenterPortViewPortRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取风险服务列表
 
         # @param request: Request instance for DescribeRiskCenterServerRiskList.
@@ -447,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRiskCenterServerRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取漏洞视角的漏洞风险列表
+
+        # @param request: Request instance for DescribeRiskCenterVULViewVULRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRiskCenterVULViewVULRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeRiskCenterVULViewVULRiskListResponse`
+        def DescribeRiskCenterVULViewVULRiskList(request)
+          body = send_request('DescribeRiskCenterVULViewVULRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskCenterVULViewVULRiskListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -639,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改风险中心风险状态
+
+        # @param request: Request instance for ModifyRiskCenterRiskStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyRiskCenterRiskStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyRiskCenterRiskStatusResponse`
+        def ModifyRiskCenterRiskStatus(request)
+          body = send_request('ModifyRiskCenterRiskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRiskCenterRiskStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

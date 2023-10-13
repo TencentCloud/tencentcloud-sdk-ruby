@@ -1405,6 +1405,9 @@ module TencentCloud
         # @type SessionId: String
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
+        extend Gem::Deprecate
+        deprecate :InstanceId, :none, 2023, 10
+        deprecate :InstanceId=, :none, 2023, 10
 
         def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid
@@ -1582,6 +1585,74 @@ module TencentCloud
         end
       end
 
+      # DescribeIMCdrList请求参数结构体
+      class DescribeIMCdrListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param StartTimestamp: 起始时间（必填），Unix 秒级时间戳
+        # @type StartTimestamp: Integer
+        # @param EndTimestamp: 结束时间（必填），Unix 秒级时间戳
+        # @type EndTimestamp: Integer
+        # @param Limit: 返回记录条数，最大为100默认20
+        # @type Limit: Integer
+        # @param Offset: 返回记录偏移，默认为 0
+        # @type Offset: Integer
+        # @param Type: 1为全媒体，2为文本客服，不填则查询全部
+        # @type Type: Integer
+
+        attr_accessor :SdkAppId, :StartTimestamp, :EndTimestamp, :Limit, :Offset, :Type
+
+        def initialize(sdkappid=nil, starttimestamp=nil, endtimestamp=nil, limit=nil, offset=nil, type=nil)
+          @SdkAppId = sdkappid
+          @StartTimestamp = starttimestamp
+          @EndTimestamp = endtimestamp
+          @Limit = limit
+          @Offset = offset
+          @Type = type
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTimestamp = params['StartTimestamp']
+          @EndTimestamp = params['EndTimestamp']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeIMCdrList返回参数结构体
+      class DescribeIMCdrListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param IMCdrList: 服务记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IMCdrList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :IMCdrList, :RequestId
+
+        def initialize(totalcount=nil, imcdrlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @IMCdrList = imcdrlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['IMCdrList'].nil?
+            @IMCdrList = []
+            params['IMCdrList'].each do |i|
+              imcdrinfo_tmp = IMCdrInfo.new
+              imcdrinfo_tmp.deserialize(i)
+              @IMCdrList << imcdrinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIMCdrs请求参数结构体
       class DescribeIMCdrsRequest < TencentCloud::Common::AbstractModel
         # @param StartTimestamp: 起始时间（必填），Unix 秒级时间戳
@@ -1600,6 +1671,9 @@ module TencentCloud
         # @type Type: Integer
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
+        extend Gem::Deprecate
+        deprecate :InstanceId, :none, 2023, 10
+        deprecate :InstanceId=, :none, 2023, 10
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -1628,14 +1702,21 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param IMCdrs: 服务记录列表
         # @type IMCdrs: Array
+        # @param IMCdrList: 服务记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IMCdrList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :IMCdrs, :RequestId
+        attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
+        extend Gem::Deprecate
+        deprecate :IMCdrs, :none, 2023, 10
+        deprecate :IMCdrs=, :none, 2023, 10
 
-        def initialize(totalcount=nil, imcdrs=nil, requestid=nil)
+        def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
           @IMCdrs = imcdrs
+          @IMCdrList = imcdrlist
           @RequestId = requestid
         end
 
@@ -1647,6 +1728,14 @@ module TencentCloud
               imcdrinfo_tmp = IMCdrInfo.new
               imcdrinfo_tmp.deserialize(i)
               @IMCdrs << imcdrinfo_tmp
+            end
+          end
+          unless params['IMCdrList'].nil?
+            @IMCdrList = []
+            params['IMCdrList'].each do |i|
+              imcdrinfo_tmp = IMCdrInfo.new
+              imcdrinfo_tmp.deserialize(i)
+              @IMCdrList << imcdrinfo_tmp
             end
           end
           @RequestId = params['RequestId']

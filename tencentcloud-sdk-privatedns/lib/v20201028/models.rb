@@ -521,7 +521,7 @@ module TencentCloud
       class DeletePrivateZoneRecordRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 私有域ID
         # @type ZoneId: String
-        # @param RecordId: 记录ID
+        # @param RecordId: 记录ID（调用DescribePrivateZoneRecordList可获取到RecordId）
         # @type RecordId: String
         # @param RecordIdSet: 记录ID数组，RecordId 优先
         # @type RecordIdSet: Array

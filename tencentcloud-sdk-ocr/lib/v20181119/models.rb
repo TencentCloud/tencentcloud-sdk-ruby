@@ -7876,6 +7876,7 @@ module TencentCloud
         # RideHailingTransportLicense -- 网约车运输证
         # WayBill -- 快递运单
         # AccountOpeningPermit -- 银行开户许可证
+        # InvoiceEng -- 海外发票模版
         # @type ConfigId: String
 
         attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId
@@ -10696,7 +10697,7 @@ module TencentCloud
         # @param RegionCode: 地区编码，通用机打电子发票时必填。
         # 广东:4400，浙江:3300
         # @type RegionCode: String
-        # @param SellerTaxCode: 销方税号，通用机打电子发票必填
+        # @param SellerTaxCode: 销方税号，通用机打电子发票必填，区块链发票时必填
         # @type SellerTaxCode: String
         # @param EnableCommonElectronic: 是否开启通用机打电子发票，默认为关闭。
         # @type EnableCommonElectronic: Boolean
@@ -11005,9 +11006,9 @@ module TencentCloud
         # @type TaxtationOrgName: String
         # @param MotorTaxRate: 税率
         # @type MotorTaxRate: String
-        # @param MotorBankName: 开户行
+        # @param MotorBankName: 银行账号
         # @type MotorBankName: String
-        # @param MotorBankAccount: 账号
+        # @param MotorBankAccount: 开户行
         # @type MotorBankAccount: String
         # @param SellerAddress: 销售地址
         # @type SellerAddress: String

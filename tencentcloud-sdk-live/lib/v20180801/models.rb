@@ -1331,6 +1331,11 @@ module TencentCloud
         # @param ExtraCmd: 其他参数。
         # 示例: ignore_region  用于忽略传入地域, 内部按负载分配。
         # @type ExtraCmd: String
+        # @param SpecifyTaskId: 自定义任务 ID。
+        # 注：
+        # 1. 该自定义 ID 为可选参数，如果传入，请确保该账号下传入的 ID 唯一。
+        # 2. 该自定义 ID 用于防止重复发起请求时产生重复任务。后面也可以用 SpecifyTaskId 来修改或删除任务。
+        # @type SpecifyTaskId: String
         # @param Comment: 任务描述，限制 512 字节。
         # @type Comment: String
         # @param ToUrl: 完整目标 URL 地址。
@@ -1366,9 +1371,9 @@ module TencentCloud
         # @param RecordTemplateId: 录制模板 ID。
         # @type RecordTemplateId: String
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId
 
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1383,6 +1388,7 @@ module TencentCloud
           @VodRefreshType = vodrefreshtype
           @CallbackUrl = callbackurl
           @ExtraCmd = extracmd
+          @SpecifyTaskId = specifytaskid
           @Comment = comment
           @ToUrl = tourl
           @BackupSourceType = backupsourcetype
@@ -1407,6 +1413,7 @@ module TencentCloud
           @VodRefreshType = params['VodRefreshType']
           @CallbackUrl = params['CallbackUrl']
           @ExtraCmd = params['ExtraCmd']
+          @SpecifyTaskId = params['SpecifyTaskId']
           @Comment = params['Comment']
           @ToUrl = params['ToUrl']
           @BackupSourceType = params['BackupSourceType']
@@ -9271,6 +9278,10 @@ module TencentCloud
         # 注意：
         # 1. 单位：秒，配合FileIndex使用。
         # @type OffsetTime: Integer
+        # @param SpecifyTaskId: 指定任务 ID 修改任务。
+
+        # 注意：该自定义任务 ID 只有在创建任务时指定了，才可在此处修改时使用。否则请使用系统返回的任务 ID。
+        # @type SpecifyTaskId: String
         # @param ToUrl: 目标 Url。
         # 换目标地址，会断流重推到新地址。
         # @type ToUrl: String
@@ -9304,9 +9315,9 @@ module TencentCloud
         # 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
         # @type VodLocalMode: Integer
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :SpecifyTaskId, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
 
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, specifytaskid=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -9319,6 +9330,7 @@ module TencentCloud
           @CallbackUrl = callbackurl
           @FileIndex = fileindex
           @OffsetTime = offsettime
+          @SpecifyTaskId = specifytaskid
           @ToUrl = tourl
           @Comment = comment
           @BackupSourceType = backupsourcetype
@@ -9340,6 +9352,7 @@ module TencentCloud
           @CallbackUrl = params['CallbackUrl']
           @FileIndex = params['FileIndex']
           @OffsetTime = params['OffsetTime']
+          @SpecifyTaskId = params['SpecifyTaskId']
           @ToUrl = params['ToUrl']
           @Comment = params['Comment']
           @BackupSourceType = params['BackupSourceType']

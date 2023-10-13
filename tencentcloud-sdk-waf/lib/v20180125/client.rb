@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 供用户控制台调用，增加Tiga规则引擎白名单。
+
+        # @param request: Request instance for AddAttackWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddAttackWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddAttackWhiteRuleResponse`
+        def AddAttackWhiteRule(request)
+          body = send_request('AddAttackWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddAttackWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加访问控制（自定义策略）
 
         # @param request: Request instance for AddCustomRule.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAttackDownloadRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 供用户控制台调用，删除Tiga规则引擎白名单。
+
+        # @param request: Request instance for DeleteAttackWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteAttackWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteAttackWhiteRuleResponse`
+        def DeleteAttackWhiteRule(request)
+          body = send_request('DeleteAttackWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAttackWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -738,6 +786,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAttackOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户规则白名单列表
+
+        # @param request: Request instance for DescribeAttackWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAttackWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAttackWhiteRuleResponse`
+        def DescribeAttackWhiteRule(request)
+          body = send_request('DescribeAttackWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAttackWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2014,6 +2086,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAreaBanStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 供用户控制台调用，修改Tiga规则引擎白名单。
+
+        # @param request: Request instance for ModifyAttackWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyAttackWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyAttackWhiteRuleResponse`
+        def ModifyAttackWhiteRule(request)
+          body = send_request('ModifyAttackWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAttackWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

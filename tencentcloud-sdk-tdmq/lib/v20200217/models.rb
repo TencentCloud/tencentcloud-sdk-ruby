@@ -6767,7 +6767,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param TopicName: 主题名。
         # @type TopicName: String
-        # @param Partitions: 分区数，必须大于或者等于原分区数，若想维持原分区数请输入原数目，修改分区数仅对非全局顺序消息起效果，不允许超过128个分区。
+        # @param Partitions: 分区数，必须大于或者等于原分区数，若想维持原分区数请输入原数目，修改分区数仅对非全局顺序消息起效果，不允许超过32个分区。
         # @type Partitions: Integer
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String

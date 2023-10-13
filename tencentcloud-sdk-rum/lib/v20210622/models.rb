@@ -2194,7 +2194,7 @@ module TencentCloud
         # @type NetType: String
         # @param Device: 机型
         # @type Device: String
-        # @param IsAbroad: 是否海外
+        # @param IsAbroad: 显示是否海外
         # @type IsAbroad: String
         # @param Os: 操作系统
         # @type Os: String
@@ -2205,10 +2205,12 @@ module TencentCloud
         # @param GroupByType: group by 参数值枚举1:1m  2:5m  3:30m  4:1h
         #  5:1d
         # @type GroupByType: Integer
+        # @param IsNewData: 无需关注，是否查询zhiyan
+        # @type IsNewData: Integer
 
-        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType, :IsNewData
 
-        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, groupbytype=nil)
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, groupbytype=nil, isnewdata=nil)
           @StartTime = starttime
           @Type = type
           @EndTime = endtime
@@ -2231,6 +2233,7 @@ module TencentCloud
           @Browser = browser
           @Env = env
           @GroupByType = groupbytype
+          @IsNewData = isnewdata
         end
 
         def deserialize(params)
@@ -2256,6 +2259,7 @@ module TencentCloud
           @Browser = params['Browser']
           @Env = params['Env']
           @GroupByType = params['GroupByType']
+          @IsNewData = params['IsNewData']
         end
       end
 

@@ -161,6 +161,45 @@ module TencentCloud
         end
       end
 
+      # DescribeInstance请求参数结构体
+      class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstance返回参数结构体
+      class DescribeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceInfo: 实例描述信息
+        # @type InstanceInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.InstanceInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceInfo, :RequestId
+
+        def initialize(instanceinfo=nil, requestid=nil)
+          @InstanceInfo = instanceinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceState请求参数结构体
       class DescribeInstanceStateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例名称
@@ -342,6 +381,179 @@ module TencentCloud
         end
       end
 
+      # 云原生实例详情
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ID: ID值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param InstanceType: cdwpg-cn或者其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceName: cdwpg-cn或者其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Status: Running
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StatusDesc: 运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param InstanceStateInfo: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.InstanceStateInfo`
+        # @param InstanceID: -
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param CreateTime: 2022-09-05 20:00:01
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Region: ap-chongqing
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: ap
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param RegionDesc: region
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionDesc: String
+        # @param ZoneDesc: zone
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneDesc: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Version: v3
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Charset: 字符集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Charset: String
+        # @param EngineVersion: 引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineVersion: String
+        # @param GTMNodes: GTM节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GTMNodes: Array
+        # @param CNNodes: CN节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CNNodes: Array
+        # @param DNNodes: DN节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DNNodes: Array
+        # @param BackupStorage: 备份存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStorage: Array
+        # @param FNNodes: FN节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FNNodes: Array
+
+        attr_accessor :ID, :InstanceType, :InstanceName, :Status, :StatusDesc, :InstanceStateInfo, :InstanceID, :CreateTime, :Region, :Zone, :RegionDesc, :ZoneDesc, :Tags, :Version, :Charset, :EngineVersion, :GTMNodes, :CNNodes, :DNNodes, :BackupStorage, :FNNodes
+
+        def initialize(id=nil, instancetype=nil, instancename=nil, status=nil, statusdesc=nil, instancestateinfo=nil, instanceid=nil, createtime=nil, region=nil, zone=nil, regiondesc=nil, zonedesc=nil, tags=nil, version=nil, charset=nil, engineversion=nil, gtmnodes=nil, cnnodes=nil, dnnodes=nil, backupstorage=nil, fnnodes=nil)
+          @ID = id
+          @InstanceType = instancetype
+          @InstanceName = instancename
+          @Status = status
+          @StatusDesc = statusdesc
+          @InstanceStateInfo = instancestateinfo
+          @InstanceID = instanceid
+          @CreateTime = createtime
+          @Region = region
+          @Zone = zone
+          @RegionDesc = regiondesc
+          @ZoneDesc = zonedesc
+          @Tags = tags
+          @Version = version
+          @Charset = charset
+          @EngineVersion = engineversion
+          @GTMNodes = gtmnodes
+          @CNNodes = cnnodes
+          @DNNodes = dnnodes
+          @BackupStorage = backupstorage
+          @FNNodes = fnnodes
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceType = params['InstanceType']
+          @InstanceName = params['InstanceName']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          unless params['InstanceStateInfo'].nil?
+            @InstanceStateInfo = InstanceStateInfo.new
+            @InstanceStateInfo.deserialize(params['InstanceStateInfo'])
+          end
+          @InstanceID = params['InstanceID']
+          @CreateTime = params['CreateTime']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @RegionDesc = params['RegionDesc']
+          @ZoneDesc = params['ZoneDesc']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Version = params['Version']
+          @Charset = params['Charset']
+          @EngineVersion = params['EngineVersion']
+          unless params['GTMNodes'].nil?
+            @GTMNodes = []
+            params['GTMNodes'].each do |i|
+              instancenodegroup_tmp = InstanceNodeGroup.new
+              instancenodegroup_tmp.deserialize(i)
+              @GTMNodes << instancenodegroup_tmp
+            end
+          end
+          unless params['CNNodes'].nil?
+            @CNNodes = []
+            params['CNNodes'].each do |i|
+              instancenodegroup_tmp = InstanceNodeGroup.new
+              instancenodegroup_tmp.deserialize(i)
+              @CNNodes << instancenodegroup_tmp
+            end
+          end
+          unless params['DNNodes'].nil?
+            @DNNodes = []
+            params['DNNodes'].each do |i|
+              instancenodegroup_tmp = InstanceNodeGroup.new
+              instancenodegroup_tmp.deserialize(i)
+              @DNNodes << instancenodegroup_tmp
+            end
+          end
+          unless params['BackupStorage'].nil?
+            @BackupStorage = []
+            params['BackupStorage'].each do |i|
+              instancenodegroup_tmp = InstanceNodeGroup.new
+              instancenodegroup_tmp.deserialize(i)
+              @BackupStorage << instancenodegroup_tmp
+            end
+          end
+          unless params['FNNodes'].nil?
+            @FNNodes = []
+            params['FNNodes'].each do |i|
+              instancenodegroup_tmp = InstanceNodeGroup.new
+              instancenodegroup_tmp.deserialize(i)
+              @FNNodes << instancenodegroup_tmp
+            end
+          end
+        end
+      end
+
+      # 集群节点信息
+      class InstanceNodeGroup < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
       # 精简集群信息
       class InstanceSimpleInfoNew < TencentCloud::Common::AbstractModel
         # @param ID: 1
@@ -436,6 +648,68 @@ module TencentCloud
           @AccessInfo = params['AccessInfo']
           @PayMode = params['PayMode']
           @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # 集群状态抽象后的结构体
+      class InstanceStateInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceState: 集群状态，例如：Serving
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
+        # @param FlowCreateTime: 集群操作创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowCreateTime: String
+        # @param FlowName: 集群操作名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param FlowProgress: 集群操作进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowProgress: Integer
+        # @param InstanceStateDesc: 集群状态描述，例如：运行中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStateDesc: String
+        # @param FlowMsg: 集群流程错误信息，例如：“创建失败，资源不足”
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowMsg: String
+        # @param ProcessName: 当前步骤的名称，例如：”购买资源中“
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param BackupStatus: 集群是否有备份中任务，有为1,无为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStatus: Integer
+        # @param RequestId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+        # @param BackupOpenStatus: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupOpenStatus: Integer
+
+        attr_accessor :InstanceState, :FlowCreateTime, :FlowName, :FlowProgress, :InstanceStateDesc, :FlowMsg, :ProcessName, :BackupStatus, :RequestId, :BackupOpenStatus
+
+        def initialize(instancestate=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, instancestatedesc=nil, flowmsg=nil, processname=nil, backupstatus=nil, requestid=nil, backupopenstatus=nil)
+          @InstanceState = instancestate
+          @FlowCreateTime = flowcreatetime
+          @FlowName = flowname
+          @FlowProgress = flowprogress
+          @InstanceStateDesc = instancestatedesc
+          @FlowMsg = flowmsg
+          @ProcessName = processname
+          @BackupStatus = backupstatus
+          @RequestId = requestid
+          @BackupOpenStatus = backupopenstatus
+        end
+
+        def deserialize(params)
+          @InstanceState = params['InstanceState']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
+          @InstanceStateDesc = params['InstanceStateDesc']
+          @FlowMsg = params['FlowMsg']
+          @ProcessName = params['ProcessName']
+          @BackupStatus = params['BackupStatus']
+          @RequestId = params['RequestId']
+          @BackupOpenStatus = params['BackupOpenStatus']
         end
       end
 

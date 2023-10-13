@@ -625,7 +625,7 @@ module TencentCloud
         # @param AlarmPolicy: 告警策略。0-不告警，1-告警。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Integer
-        # @param Status: 模版状态。0-无任务 ，1-修改中。
+        # @param Status: 模板状态。0-无任务 ，1-修改中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param AffectedInstances: 规则模板应用在哪些在实例。
@@ -6769,7 +6769,7 @@ module TencentCloud
         # @param WanDomain: 外网域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanDomain: String
-        # @param WanIP: 外网Ip
+        # @param WanIP: 外网IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WanIP: String
         # @param WanPort: 外网端口

@@ -426,6 +426,65 @@ module TencentCloud
         end
       end
 
+      # AddAttackWhiteRule请求参数结构体
+      class AddAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SignatureId: 规则Id
+        # @type SignatureId: String
+        # @param Status: 规则状态
+        # @type Status: Integer
+        # @param Rules: 匹配规则项列表
+        # @type Rules: Array
+        # @param RuleId: 规则序号
+        # @type RuleId: Integer
+
+        attr_accessor :Domain, :SignatureId, :Status, :Rules, :RuleId
+
+        def initialize(domain=nil, signatureid=nil, status=nil, rules=nil, ruleid=nil)
+          @Domain = domain
+          @SignatureId = signatureid
+          @Status = status
+          @Rules = rules
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SignatureId = params['SignatureId']
+          @Status = params['Status']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              userwhiteruleitem_tmp = UserWhiteRuleItem.new
+              userwhiteruleitem_tmp.deserialize(i)
+              @Rules << userwhiteruleitem_tmp
+            end
+          end
+          @RuleId = params['RuleId']
+        end
+      end
+
+      # AddAttackWhiteRule返回参数结构体
+      class AddAttackWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则总数
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCustomRule请求参数结构体
       class AddCustomRuleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 规则名称
@@ -1796,6 +1855,47 @@ module TencentCloud
         end
       end
 
+      # DeleteAttackWhiteRule请求参数结构体
+      class DeleteAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 规则序号组
+        # @type Ids: Array
+        # @param Domain: 用户域名
+        # @type Domain: String
+
+        attr_accessor :Ids, :Domain
+
+        def initialize(ids=nil, domain=nil)
+          @Ids = ids
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteAttackWhiteRule返回参数结构体
+      class DeleteAttackWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param FailIds: 删除失败的规则序号组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailIds, :RequestId
+
+        def initialize(failids=nil, requestid=nil)
+          @FailIds = failids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailIds = params['FailIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCCRule请求参数结构体
       class DeleteCCRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -2856,6 +2956,81 @@ module TencentCloud
           @IPBlackCount = params['IPBlackCount']
           @TamperCount = params['TamperCount']
           @LeakCount = params['LeakCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAttackWhiteRule请求参数结构体
+      class DescribeAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Offset: 分页
+        # @type Offset: Integer
+        # @param Limit: 每页容量
+        # @type Limit: Integer
+        # @param By: 排序字段，支持user_id, signature_id, modify_time
+        # @type By: String
+        # @param Order: 排序方式
+        # @type Order: String
+        # @param Filters: 筛选条件，支持SignatureId, MatchContent
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAttackWhiteRule返回参数结构体
+      class DescribeAttackWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param List: 规则白名单列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              userwhiterule_tmp = UserWhiteRule.new
+              userwhiterule_tmp.deserialize(i)
+              @List << userwhiterule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7248,6 +7423,65 @@ module TencentCloud
         end
       end
 
+      # ModifyAttackWhiteRule请求参数结构体
+      class ModifyAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则序号
+        # @type RuleId: Integer
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SignatureId: 规则Id
+        # @type SignatureId: String
+        # @param Status: 规则状态
+        # @type Status: Integer
+        # @param Rules: 匹配规则项列表
+        # @type Rules: Array
+
+        attr_accessor :RuleId, :Domain, :SignatureId, :Status, :Rules
+
+        def initialize(ruleid=nil, domain=nil, signatureid=nil, status=nil, rules=nil)
+          @RuleId = ruleid
+          @Domain = domain
+          @SignatureId = signatureid
+          @Status = status
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Domain = params['Domain']
+          @SignatureId = params['SignatureId']
+          @Status = params['Status']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              userwhiteruleitem_tmp = UserWhiteRuleItem.new
+              userwhiteruleitem_tmp.deserialize(i)
+              @Rules << userwhiteruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAttackWhiteRule返回参数结构体
+      class ModifyAttackWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则总数
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyBotStatus请求参数结构体
       class ModifyBotStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -10032,6 +10266,74 @@ module TencentCloud
           @SubClassName = params['SubClassName']
           @Description = params['Description']
           @Reason = params['Reason']
+        end
+      end
+
+      # 用户规则白名单
+      class UserWhiteRule < TencentCloud::Common::AbstractModel
+        # @param WhiteRuleId: 白名单的id
+        # @type WhiteRuleId: Integer
+        # @param SignatureId: 规则id
+        # @type SignatureId: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param MatchField: 匹配域
+        # @type MatchField: String
+        # @param MatchMethod: 匹配方法
+        # @type MatchMethod: String
+        # @param MatchContent: 匹配内容
+        # @type MatchContent: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+
+        attr_accessor :WhiteRuleId, :SignatureId, :Status, :MatchField, :MatchMethod, :MatchContent, :CreateTime, :ModifyTime
+
+        def initialize(whiteruleid=nil, signatureid=nil, status=nil, matchfield=nil, matchmethod=nil, matchcontent=nil, createtime=nil, modifytime=nil)
+          @WhiteRuleId = whiteruleid
+          @SignatureId = signatureid
+          @Status = status
+          @MatchField = matchfield
+          @MatchMethod = matchmethod
+          @MatchContent = matchcontent
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @WhiteRuleId = params['WhiteRuleId']
+          @SignatureId = params['SignatureId']
+          @Status = params['Status']
+          @MatchField = params['MatchField']
+          @MatchMethod = params['MatchMethod']
+          @MatchContent = params['MatchContent']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 用户规则白名单规则子项
+      class UserWhiteRuleItem < TencentCloud::Common::AbstractModel
+        # @param MatchField: 匹配域
+        # @type MatchField: String
+        # @param MatchMethod: 匹配方法
+        # @type MatchMethod: String
+        # @param MatchContent: 匹配内容
+        # @type MatchContent: String
+
+        attr_accessor :MatchField, :MatchMethod, :MatchContent
+
+        def initialize(matchfield=nil, matchmethod=nil, matchcontent=nil)
+          @MatchField = matchfield
+          @MatchMethod = matchmethod
+          @MatchContent = matchcontent
+        end
+
+        def deserialize(params)
+          @MatchField = params['MatchField']
+          @MatchMethod = params['MatchMethod']
+          @MatchContent = params['MatchContent']
         end
       end
 
