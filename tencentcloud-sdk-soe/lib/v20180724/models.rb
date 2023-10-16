@@ -650,10 +650,15 @@ module TencentCloud
         # @type TextMode: Integer
         # @param Keyword: 主题词和关键词
         # @type Keyword: String
+        # @param COSBucketURL: 音频存储路径，支持通过子路径指定文件夹名称
+        # @type COSBucketURL: String
 
-        attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword
+        attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
+        extend Gem::Deprecate
+        deprecate :StorageMode, :none, 2023, 10
+        deprecate :StorageMode=, :none, 2023, 10
 
-        def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil)
+        def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
           @IsEnd = isend
           @VoiceFileType = voicefiletype
@@ -672,6 +677,7 @@ module TencentCloud
           @IsQuery = isquery
           @TextMode = textmode
           @Keyword = keyword
+          @COSBucketURL = cosbucketurl
         end
 
         def deserialize(params)
@@ -693,6 +699,7 @@ module TencentCloud
           @IsQuery = params['IsQuery']
           @TextMode = params['TextMode']
           @Keyword = params['Keyword']
+          @COSBucketURL = params['COSBucketURL']
         end
       end
 
@@ -729,6 +736,9 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
+        extend Gem::Deprecate
+        deprecate :AudioUrl, :none, 2023, 10
+        deprecate :AudioUrl=, :none, 2023, 10
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

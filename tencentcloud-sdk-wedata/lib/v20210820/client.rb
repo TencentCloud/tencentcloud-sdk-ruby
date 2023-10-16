@@ -800,7 +800,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  创建用户自定义函数
+        # 创建用户自定义函数
 
         # @param request: Request instance for CreateCustomFunction.
         # @type request: :class:`Tencentcloud::wedata::V20210820::CreateCustomFunctionRequest`
@@ -835,6 +835,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDataSourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编排空间-创建文件夹
+
+        # @param request: Request instance for CreateDsFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateDsFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateDsFolderResponse`
+        def CreateDsFolder(request)
+          body = send_request('CreateDsFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDsFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1295,6 +1319,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataSourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编排空间-删除文件夹
+
+        # @param request: Request instance for DeleteDsFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DeleteDsFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DeleteDsFolderResponse`
+        def DeleteDsFolder(request)
+          body = send_request('DeleteDsFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDsFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2515,6 +2563,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询目录树
+
+        # @param request: Request instance for DescribeDsFolderTree.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDsFolderTreeRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDsFolderTreeResponse`
+        def DescribeDsFolderTree(request)
+          body = send_request('DescribeDsFolderTree', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDsFolderTreeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询父目录树，用于工作流、任务定位
+
+        # @param request: Request instance for DescribeDsParentFolderTree.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDsParentFolderTreeRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDsParentFolderTreeResponse`
+        def DescribeDsParentFolderTree(request)
+          body = send_request('DescribeDsParentFolderTree', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDsParentFolderTreeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据项目ID和事件名称查看事件详情
 
         # @param request: Request instance for DescribeEvent.
@@ -3429,6 +3525,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 没用到
 
         # 获取kafka的topic信息
 
@@ -5572,6 +5670,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查找全部的文件夹
+
+        # @param request: Request instance for FindAllFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::FindAllFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::FindAllFolderResponse`
+        def FindAllFolder(request)
+          body = send_request('FindAllFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FindAllFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 实例批量置成功
 
@@ -6095,6 +6217,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDimensionWeightResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 数据开发模块-文件夹更新
+
+        # @param request: Request instance for ModifyDsFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyDsFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ModifyDsFolderResponse`
+        def ModifyDsFolder(request)
+          body = send_request('ModifyDsFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDsFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6680,6 +6826,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RobAndLockIntegrationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实例强制成功
+
+        # @param request: Request instance for RunForceSucScheduleInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::RunForceSucScheduleInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::RunForceSucScheduleInstancesResponse`
+        def RunForceSucScheduleInstances(request)
+          body = send_request('RunForceSucScheduleInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunForceSucScheduleInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 实例批量重跑
+
+        # @param request: Request instance for RunRerunScheduleInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::RunRerunScheduleInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::RunRerunScheduleInstancesResponse`
+        def RunRerunScheduleInstances(request)
+          body = send_request('RunRerunScheduleInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunRerunScheduleInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

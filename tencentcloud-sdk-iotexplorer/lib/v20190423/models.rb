@@ -3687,6 +3687,74 @@ module TencentCloud
         end
       end
 
+      # GetDeviceSumStatistics请求参数结构体
+      class GetDeviceSumStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ProductIds: 产品id列表，长度为0则拉取项目内全部产品
+        # @type ProductIds: Array
+
+        attr_accessor :ProjectId, :ProductIds
+
+        def initialize(projectid=nil, productids=nil)
+          @ProjectId = projectid
+          @ProductIds = productids
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProductIds = params['ProductIds']
+        end
+      end
+
+      # GetDeviceSumStatistics返回参数结构体
+      class GetDeviceSumStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param ActivationCount: 激活设备总数
+        # @type ActivationCount: Integer
+        # @param OnlineCount: 在线设备总数
+        # @type OnlineCount: Integer
+        # @param ActivationBeforeDay: 前一天激活设备数
+        # @type ActivationBeforeDay: Integer
+        # @param ActiveBeforeDay: 前一天活跃设备数
+        # @type ActiveBeforeDay: Integer
+        # @param ActivationWeekDayCount: 前一周激活设备数
+        # @type ActivationWeekDayCount: Integer
+        # @param ActiveWeekDayCount: 前一周活跃设备数
+        # @type ActiveWeekDayCount: Integer
+        # @param ActivationBeforeWeekDayCount: 上一周激活设备数
+        # @type ActivationBeforeWeekDayCount: Integer
+        # @param ActiveBeforeWeekDayCount: 上一周活跃设备数
+        # @type ActiveBeforeWeekDayCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActivationCount, :OnlineCount, :ActivationBeforeDay, :ActiveBeforeDay, :ActivationWeekDayCount, :ActiveWeekDayCount, :ActivationBeforeWeekDayCount, :ActiveBeforeWeekDayCount, :RequestId
+
+        def initialize(activationcount=nil, onlinecount=nil, activationbeforeday=nil, activebeforeday=nil, activationweekdaycount=nil, activeweekdaycount=nil, activationbeforeweekdaycount=nil, activebeforeweekdaycount=nil, requestid=nil)
+          @ActivationCount = activationcount
+          @OnlineCount = onlinecount
+          @ActivationBeforeDay = activationbeforeday
+          @ActiveBeforeDay = activebeforeday
+          @ActivationWeekDayCount = activationweekdaycount
+          @ActiveWeekDayCount = activeweekdaycount
+          @ActivationBeforeWeekDayCount = activationbeforeweekdaycount
+          @ActiveBeforeWeekDayCount = activebeforeweekdaycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActivationCount = params['ActivationCount']
+          @OnlineCount = params['OnlineCount']
+          @ActivationBeforeDay = params['ActivationBeforeDay']
+          @ActiveBeforeDay = params['ActiveBeforeDay']
+          @ActivationWeekDayCount = params['ActivationWeekDayCount']
+          @ActiveWeekDayCount = params['ActiveWeekDayCount']
+          @ActivationBeforeWeekDayCount = params['ActivationBeforeWeekDayCount']
+          @ActiveBeforeWeekDayCount = params['ActiveBeforeWeekDayCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetFamilyDeviceUserList请求参数结构体
       class GetFamilyDeviceUserListRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID

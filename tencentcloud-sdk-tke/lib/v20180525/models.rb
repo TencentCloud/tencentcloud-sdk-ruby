@@ -16529,7 +16529,7 @@ module TencentCloud
 
       # 描述了 “云自动化助手” 服务相关的信息
       class RunAutomationServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        # @param Enabled: 是否开启云自动化助手。取值范围：<br><li>true：表示开启云自动化助手服务<br><li>false：表示不开启云自动化助手服务<br><br>默认取值：false。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -16576,7 +16576,8 @@ module TencentCloud
 
       # 描述了 “云监控” 服务相关的信息
       class RunMonitorServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
+        # @param Enabled: 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>true：表示开启云监控服务<br><li>false：表示不开启云监控服务<br><br>默认取值：true。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled

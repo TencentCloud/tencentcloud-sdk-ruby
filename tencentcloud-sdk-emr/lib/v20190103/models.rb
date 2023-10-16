@@ -178,6 +178,64 @@ module TencentCloud
         end
       end
 
+      # 弹性扩缩容记录
+      class AutoScaleRecord < TencentCloud::Common::AbstractModel
+        # @param StrategyName: 扩缩容规则名。
+        # @type StrategyName: String
+        # @param ScaleAction: "SCALE_OUT"和"SCALE_IN"，分别表示扩容和缩容。
+        # @type ScaleAction: String
+        # @param ActionStatus: 取值为"SUCCESS","FAILED","PART_SUCCESS","IN_PROCESS"，分别表示成功、失败、部分成功和流程中。
+        # @type ActionStatus: String
+        # @param ActionTime: 流程触发时间。
+        # @type ActionTime: String
+        # @param ScaleInfo: 扩缩容相关描述信息。
+        # @type ScaleInfo: String
+        # @param ExpectScaleNum: 只在ScaleAction为SCALE_OUT时有效。
+        # @type ExpectScaleNum: Integer
+        # @param EndTime: 流程结束时间。
+        # @type EndTime: String
+        # @param StrategyType: 策略类型，按负载或者按时间，1表示负载伸缩，2表示时间伸缩
+        # @type StrategyType: Integer
+        # @param SpecInfo: 扩容时所使用规格信息。
+        # @type SpecInfo: String
+        # @param CompensateFlag: 补偿扩容，0表示不开启，1表示开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompensateFlag: Integer
+        # @param CompensateCount: 补偿次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompensateCount: Integer
+
+        attr_accessor :StrategyName, :ScaleAction, :ActionStatus, :ActionTime, :ScaleInfo, :ExpectScaleNum, :EndTime, :StrategyType, :SpecInfo, :CompensateFlag, :CompensateCount
+
+        def initialize(strategyname=nil, scaleaction=nil, actionstatus=nil, actiontime=nil, scaleinfo=nil, expectscalenum=nil, endtime=nil, strategytype=nil, specinfo=nil, compensateflag=nil, compensatecount=nil)
+          @StrategyName = strategyname
+          @ScaleAction = scaleaction
+          @ActionStatus = actionstatus
+          @ActionTime = actiontime
+          @ScaleInfo = scaleinfo
+          @ExpectScaleNum = expectscalenum
+          @EndTime = endtime
+          @StrategyType = strategytype
+          @SpecInfo = specinfo
+          @CompensateFlag = compensateflag
+          @CompensateCount = compensatecount
+        end
+
+        def deserialize(params)
+          @StrategyName = params['StrategyName']
+          @ScaleAction = params['ScaleAction']
+          @ActionStatus = params['ActionStatus']
+          @ActionTime = params['ActionTime']
+          @ScaleInfo = params['ScaleInfo']
+          @ExpectScaleNum = params['ExpectScaleNum']
+          @EndTime = params['EndTime']
+          @StrategyType = params['StrategyType']
+          @SpecInfo = params['SpecInfo']
+          @CompensateFlag = params['CompensateFlag']
+          @CompensateCount = params['CompensateCount']
+        end
+      end
+
       # 引导脚本
       class BootstrapAction < TencentCloud::Common::AbstractModel
         # @param Path: 脚本位置，支持cos上的文件，且只支持https协议。
@@ -1340,6 +1398,72 @@ module TencentCloud
         def deserialize(params)
           @ServiceName = params['ServiceName']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAutoScaleRecords请求参数结构体
+      class DescribeAutoScaleRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param Filters: 记录过滤参数，目前仅能为“StartTime”,“EndTime”和“StrategyName”。StartTime和EndTime支持2006-01-02 15:04:05 或者2006/01/02 15:04:05的时间格式
+        # @type Filters: Array
+        # @param Offset: 分页参数。
+        # @type Offset: Integer
+        # @param Limit: 分页参数。最大支持100
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @Filters << keyvalue_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAutoScaleRecords返回参数结构体
+      class DescribeAutoScaleRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总扩缩容记录数。
+        # @type TotalCount: Integer
+        # @param RecordList: 记录列表。
+        # @type RecordList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RecordList, :RequestId
+
+        def initialize(totalcount=nil, recordlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RecordList = recordlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              autoscalerecord_tmp = AutoScaleRecord.new
+              autoscalerecord_tmp.deserialize(i)
+              @RecordList << autoscalerecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3619,6 +3743,28 @@ module TencentCloud
           @ActionOnFailure = params['ActionOnFailure']
           @JobState = params['JobState']
           @ApplicationId = params['ApplicationId']
+        end
+      end
+
+      # 键值对，主要用来做Filter
+      class KeyValue < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

@@ -1325,14 +1325,16 @@ module TencentCloud
         # @type ScanPlanContent: String
         # @param SelfDefiningAssets: ip/域名/url数组
         # @type SelfDefiningAssets: Array
+        # @param ScanFrom: 请求发起源，默认为vss表示漏洞扫描服务，云安全中心的用户请填充csip
+        # @type ScanFrom: String
         # @param TaskAdvanceCFG: 高级配置
         # @type TaskAdvanceCFG: :class:`Tencentcloud::Csip.v20221121.models.TaskAdvanceCFG`
         # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
         # @type TaskMode: Integer
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
@@ -1340,6 +1342,7 @@ module TencentCloud
           @Assets = assets
           @ScanPlanContent = scanplancontent
           @SelfDefiningAssets = selfdefiningassets
+          @ScanFrom = scanfrom
           @TaskAdvanceCFG = taskadvancecfg
           @TaskMode = taskmode
         end
@@ -1359,6 +1362,7 @@ module TencentCloud
           end
           @ScanPlanContent = params['ScanPlanContent']
           @SelfDefiningAssets = params['SelfDefiningAssets']
+          @ScanFrom = params['ScanFrom']
           unless params['TaskAdvanceCFG'].nil?
             @TaskAdvanceCFG = TaskAdvanceCFG.new
             @TaskAdvanceCFG.deserialize(params['TaskAdvanceCFG'])

@@ -126,6 +126,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取集群的自动扩缩容的详细记录
+
+        # @param request: Request instance for DescribeAutoScaleRecords.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleRecordsRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleRecordsResponse`
+        def DescribeAutoScaleRecords(request)
+          body = send_request('DescribeAutoScaleRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoScaleRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群节点信息
 
         # @param request: Request instance for DescribeClusterNodes.
