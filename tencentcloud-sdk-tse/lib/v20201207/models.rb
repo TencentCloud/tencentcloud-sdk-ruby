@@ -159,19 +159,51 @@ module TencentCloud
         # @param SyncMode: 服务同步模式，all为全量同步，demand为按需同步
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncMode: String
+        # @param BindRegion: 绑定的kubernetes集群所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindRegion: String
 
-        attr_accessor :BoundClusterId, :BoundClusterType, :SyncMode
+        attr_accessor :BoundClusterId, :BoundClusterType, :SyncMode, :BindRegion
 
-        def initialize(boundclusterid=nil, boundclustertype=nil, syncmode=nil)
+        def initialize(boundclusterid=nil, boundclustertype=nil, syncmode=nil, bindregion=nil)
           @BoundClusterId = boundclusterid
           @BoundClusterType = boundclustertype
           @SyncMode = syncmode
+          @BindRegion = bindregion
         end
 
         def deserialize(params)
           @BoundClusterId = params['BoundClusterId']
           @BoundClusterType = params['BoundClusterType']
           @SyncMode = params['SyncMode']
+          @BindRegion = params['BindRegion']
+        end
+      end
+
+      # CLB多可用区信息
+      class CLBMultiRegion < TencentCloud::Common::AbstractModel
+        # @param CLBMultiZoneFlag: 是否启用多可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBMultiZoneFlag: Boolean
+        # @param CLBMasterZone: 主可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBMasterZone: String
+        # @param CLBSlaveZone: 备可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBSlaveZone: String
+
+        attr_accessor :CLBMultiZoneFlag, :CLBMasterZone, :CLBSlaveZone
+
+        def initialize(clbmultizoneflag=nil, clbmasterzone=nil, clbslavezone=nil)
+          @CLBMultiZoneFlag = clbmultizoneflag
+          @CLBMasterZone = clbmasterzone
+          @CLBSlaveZone = clbslavezone
+        end
+
+        def deserialize(params)
+          @CLBMultiZoneFlag = params['CLBMultiZoneFlag']
+          @CLBMasterZone = params['CLBMasterZone']
+          @CLBSlaveZone = params['CLBSlaveZone']
         end
       end
 
@@ -2929,21 +2961,37 @@ module TencentCloud
         # @param SpecId: 引擎在该地域的规格id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecId: String
-        # @param IntranetVpcInfos: 内网的网络信息
+        # @param IntranetVpcInfos: 客户端内网的网络信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntranetVpcInfos: Array
+        # @param ConsoleIntranetVpcInfos: 控制台内网的网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsoleIntranetVpcInfos: Array
         # @param EnableClientInternet: 是否开公网
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableClientInternet: Boolean
+        # @param LimiterIntranetVpcInfos: 限流客户端内网的网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimiterIntranetVpcInfos: Array
+        # @param MainRegion: 是否为主地域，仅在服务治理中心多地域有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainRegion: Boolean
+        # @param EKSClusterID: 该地域所在的EKS集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EKSClusterID: String
 
-        attr_accessor :EngineRegion, :Replica, :SpecId, :IntranetVpcInfos, :EnableClientInternet
+        attr_accessor :EngineRegion, :Replica, :SpecId, :IntranetVpcInfos, :ConsoleIntranetVpcInfos, :EnableClientInternet, :LimiterIntranetVpcInfos, :MainRegion, :EKSClusterID
 
-        def initialize(engineregion=nil, replica=nil, specid=nil, intranetvpcinfos=nil, enableclientinternet=nil)
+        def initialize(engineregion=nil, replica=nil, specid=nil, intranetvpcinfos=nil, consoleintranetvpcinfos=nil, enableclientinternet=nil, limiterintranetvpcinfos=nil, mainregion=nil, eksclusterid=nil)
           @EngineRegion = engineregion
           @Replica = replica
           @SpecId = specid
           @IntranetVpcInfos = intranetvpcinfos
+          @ConsoleIntranetVpcInfos = consoleintranetvpcinfos
           @EnableClientInternet = enableclientinternet
+          @LimiterIntranetVpcInfos = limiterintranetvpcinfos
+          @MainRegion = mainregion
+          @EKSClusterID = eksclusterid
         end
 
         def deserialize(params)
@@ -2958,7 +3006,25 @@ module TencentCloud
               @IntranetVpcInfos << vpcinfo_tmp
             end
           end
+          unless params['ConsoleIntranetVpcInfos'].nil?
+            @ConsoleIntranetVpcInfos = []
+            params['ConsoleIntranetVpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @ConsoleIntranetVpcInfos << vpcinfo_tmp
+            end
+          end
           @EnableClientInternet = params['EnableClientInternet']
+          unless params['LimiterIntranetVpcInfos'].nil?
+            @LimiterIntranetVpcInfos = []
+            params['LimiterIntranetVpcInfos'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @LimiterIntranetVpcInfos << vpcinfo_tmp
+            end
+          end
+          @MainRegion = params['MainRegion']
+          @EKSClusterID = params['EKSClusterID']
         end
       end
 
@@ -3229,12 +3295,15 @@ module TencentCloud
         # @param LimiterAddressInfos: 北极星限流server节点接入IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimiterAddressInfos: Array
+        # @param CLBMultiRegion: InternetAddress 的公网 CLB 多可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBMultiRegion: :class:`Tencentcloud::Tse.v20201207.models.CLBMultiRegion`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :LimiterAddressInfos, :RequestId
+        attr_accessor :IntranetAddress, :InternetAddress, :EnvAddressInfos, :ConsoleInternetAddress, :ConsoleIntranetAddress, :InternetBandWidth, :ConsoleInternetBandWidth, :LimiterAddressInfos, :CLBMultiRegion, :RequestId
 
-        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, limiteraddressinfos=nil, requestid=nil)
+        def initialize(intranetaddress=nil, internetaddress=nil, envaddressinfos=nil, consoleinternetaddress=nil, consoleintranetaddress=nil, internetbandwidth=nil, consoleinternetbandwidth=nil, limiteraddressinfos=nil, clbmultiregion=nil, requestid=nil)
           @IntranetAddress = intranetaddress
           @InternetAddress = internetaddress
           @EnvAddressInfos = envaddressinfos
@@ -3243,6 +3312,7 @@ module TencentCloud
           @InternetBandWidth = internetbandwidth
           @ConsoleInternetBandWidth = consoleinternetbandwidth
           @LimiterAddressInfos = limiteraddressinfos
+          @CLBMultiRegion = clbmultiregion
           @RequestId = requestid
         end
 
@@ -3268,6 +3338,10 @@ module TencentCloud
               polarislimiteraddress_tmp.deserialize(i)
               @LimiterAddressInfos << polarislimiteraddress_tmp
             end
+          end
+          unless params['CLBMultiRegion'].nil?
+            @CLBMultiRegion = CLBMultiRegion.new
+            @CLBMultiRegion.deserialize(params['CLBMultiRegion'])
           end
           @RequestId = params['RequestId']
         end
@@ -3486,13 +3560,19 @@ module TencentCloud
         # @type Replica: Integer
         # @param VpcInfos: 集群网络信息
         # @type VpcInfos: Array
+        # @param MainRegion: 是否为主地域
+        # @type MainRegion: Boolean
+        # @param SpecId: 引擎规格ID
+        # @type SpecId: String
 
-        attr_accessor :EngineRegion, :Replica, :VpcInfos
+        attr_accessor :EngineRegion, :Replica, :VpcInfos, :MainRegion, :SpecId
 
-        def initialize(engineregion=nil, replica=nil, vpcinfos=nil)
+        def initialize(engineregion=nil, replica=nil, vpcinfos=nil, mainregion=nil, specid=nil)
           @EngineRegion = engineregion
           @Replica = replica
           @VpcInfos = vpcinfos
+          @MainRegion = mainregion
+          @SpecId = specid
         end
 
         def deserialize(params)
@@ -3506,6 +3586,8 @@ module TencentCloud
               @VpcInfos << vpcinfo_tmp
             end
           end
+          @MainRegion = params['MainRegion']
+          @SpecId = params['SpecId']
         end
       end
 
@@ -3526,16 +3608,20 @@ module TencentCloud
         # @param InternetBandWidth: 客户端公网带宽
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetBandWidth: Integer
+        # @param CLBMultiRegion: 客户端公网CLB多可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLBMultiRegion: :class:`Tencentcloud::Tse.v20201207.models.CLBMultiRegion`
 
-        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet, :InternetBandWidth
+        attr_accessor :EnvName, :EnableConfigInternet, :ConfigInternetServiceIp, :ConfigIntranetAddress, :EnableConfigIntranet, :InternetBandWidth, :CLBMultiRegion
 
-        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil, internetbandwidth=nil)
+        def initialize(envname=nil, enableconfiginternet=nil, configinternetserviceip=nil, configintranetaddress=nil, enableconfigintranet=nil, internetbandwidth=nil, clbmultiregion=nil)
           @EnvName = envname
           @EnableConfigInternet = enableconfiginternet
           @ConfigInternetServiceIp = configinternetserviceip
           @ConfigIntranetAddress = configintranetaddress
           @EnableConfigIntranet = enableconfigintranet
           @InternetBandWidth = internetbandwidth
+          @CLBMultiRegion = clbmultiregion
         end
 
         def deserialize(params)
@@ -3545,6 +3631,10 @@ module TencentCloud
           @ConfigIntranetAddress = params['ConfigIntranetAddress']
           @EnableConfigIntranet = params['EnableConfigIntranet']
           @InternetBandWidth = params['InternetBandWidth']
+          unless params['CLBMultiRegion'].nil?
+            @CLBMultiRegion = CLBMultiRegion.new
+            @CLBMultiRegion.deserialize(params['CLBMultiRegion'])
+          end
         end
       end
 
@@ -5110,6 +5200,38 @@ module TencentCloud
         end
       end
 
+      # 北极星日志主题信息
+      class PolarisCLSTopicInfo < TencentCloud::Common::AbstractModel
+        # @param LogSetId: 日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSetId: String
+        # @param LogSetName: 日志集名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogSetName: String
+        # @param TopicId: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 日志主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+
+        attr_accessor :LogSetId, :LogSetName, :TopicId, :TopicName
+
+        def initialize(logsetid=nil, logsetname=nil, topicid=nil, topicname=nil)
+          @LogSetId = logsetid
+          @LogSetName = logsetname
+          @TopicId = topicid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @LogSetId = params['LogSetId']
+          @LogSetName = params['LogSetName']
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+        end
+      end
+
       # 查询Limiter的接入地址
       class PolarisLimiterAddress < TencentCloud::Common::AbstractModel
         # @param IntranetAddress: VPC接入IP列表
@@ -5274,10 +5396,13 @@ module TencentCloud
         # @param EnableClientIntranet: 引擎实例是否开启客户端内网访问地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableClientIntranet: Boolean
+        # @param StorageOption: 存储额外配置选项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageOption: Array
 
-        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet
+        attr_accessor :InstanceId, :Name, :Edition, :Status, :SpecId, :Replica, :Type, :VpcId, :SubnetIds, :EnableStorage, :StorageType, :StorageCapacity, :Paymode, :EKSClusterID, :CreateTime, :EnvInfos, :EngineRegion, :EnableInternet, :VpcInfos, :ServiceGovernanceInfos, :Tags, :EnableConsoleInternet, :EnableConsoleIntranet, :ConfigInfoVisible, :ConsoleDefaultPwd, :TradeType, :AutoRenewFlag, :CurDeadline, :IsolateTime, :RegionInfos, :EKSType, :FeatureVersion, :EnableClientIntranet, :StorageOption
 
-        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil)
+        def initialize(instanceid=nil, name=nil, edition=nil, status=nil, specid=nil, replica=nil, type=nil, vpcid=nil, subnetids=nil, enablestorage=nil, storagetype=nil, storagecapacity=nil, paymode=nil, eksclusterid=nil, createtime=nil, envinfos=nil, engineregion=nil, enableinternet=nil, vpcinfos=nil, servicegovernanceinfos=nil, tags=nil, enableconsoleinternet=nil, enableconsoleintranet=nil, configinfovisible=nil, consoledefaultpwd=nil, tradetype=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, regioninfos=nil, ekstype=nil, featureversion=nil, enableclientintranet=nil, storageoption=nil)
           @InstanceId = instanceid
           @Name = name
           @Edition = edition
@@ -5311,6 +5436,7 @@ module TencentCloud
           @EKSType = ekstype
           @FeatureVersion = featureversion
           @EnableClientIntranet = enableclientintranet
+          @StorageOption = storageoption
         end
 
         def deserialize(params)
@@ -5382,6 +5508,14 @@ module TencentCloud
           @EKSType = params['EKSType']
           @FeatureVersion = params['FeatureVersion']
           @EnableClientIntranet = params['EnableClientIntranet']
+          unless params['StorageOption'].nil?
+            @StorageOption = []
+            params['StorageOption'].each do |i|
+              storageoption_tmp = StorageOption.new
+              storageoption_tmp.deserialize(i)
+              @StorageOption << storageoption_tmp
+            end
+          end
         end
       end
 
@@ -5403,10 +5537,13 @@ module TencentCloud
         # @type PgwVpcInfos: Array
         # @param LimiterVpcInfos: 服务治理限流server引擎绑定的网络信息
         # @type LimiterVpcInfos: Array
+        # @param CLSTopics: 引擎关联CLS日志主题信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSTopics: Array
 
-        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos
+        attr_accessor :EngineRegion, :BoundK8SInfos, :VpcInfos, :AuthOpen, :Features, :MainPassword, :PgwVpcInfos, :LimiterVpcInfos, :CLSTopics
 
-        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil)
+        def initialize(engineregion=nil, boundk8sinfos=nil, vpcinfos=nil, authopen=nil, features=nil, mainpassword=nil, pgwvpcinfos=nil, limitervpcinfos=nil, clstopics=nil)
           @EngineRegion = engineregion
           @BoundK8SInfos = boundk8sinfos
           @VpcInfos = vpcinfos
@@ -5415,6 +5552,7 @@ module TencentCloud
           @MainPassword = mainpassword
           @PgwVpcInfos = pgwvpcinfos
           @LimiterVpcInfos = limitervpcinfos
+          @CLSTopics = clstopics
         end
 
         def deserialize(params)
@@ -5454,6 +5592,41 @@ module TencentCloud
               @LimiterVpcInfos << vpcinfo_tmp
             end
           end
+          unless params['CLSTopics'].nil?
+            @CLSTopics = []
+            params['CLSTopics'].each do |i|
+              polarisclstopicinfo_tmp = PolarisCLSTopicInfo.new
+              polarisclstopicinfo_tmp.deserialize(i)
+              @CLSTopics << polarisclstopicinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 存储的额外选项
+      class StorageOption < TencentCloud::Common::AbstractModel
+        # @param Name: 存储对象，分为snap和txn两种
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 存储类型，分为三类CLOUD_PREMIUM/CLOUD_SSD/CLOUD_SSD_PLUS，分别对应高性能云硬盘、SSD云硬盘、增强型SSD云硬盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Capacity: 存储容量，[50, 3200]的范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Capacity: Integer
+
+        attr_accessor :Name, :Type, :Capacity
+
+        def initialize(name=nil, type=nil, capacity=nil)
+          @Name = name
+          @Type = type
+          @Capacity = capacity
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Capacity = params['Capacity']
         end
       end
 

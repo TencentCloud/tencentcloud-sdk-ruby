@@ -1731,7 +1731,7 @@ module TencentCloud
       class BatchResumeIntegrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param TaskIds: 任务id
         # @type TaskIds: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型, 201为实时任务，202为离线任务
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
@@ -7899,7 +7899,7 @@ module TencentCloud
 
       # DescribeDataTypes请求参数结构体
       class DescribeDataTypesRequest < TencentCloud::Common::AbstractModel
-        # @param DatasourceType: 数据源类型，MYSQL|KAFKA等
+        # @param DatasourceType: 数据源类型，MYSQL|HIVE|KAFKA|POSTGRE|CDW|ORACLE|SQLSERVER|FTP|HDFS|ICEBERG|HBASE|TDSQL|TDSQLC|SPARK|VIRTUAL|TBASE|DB2|DM|GAUSSDB|GBASE|IMPALA|ES|S3_DATAINSIGHT|GREENPLUM|PHOENIX|SAP_HANA|SFTP|OCEANBASE|CLICKHOUSE|KUDU|VERTICA|REDIS|COS|DLC|DORIS|CKAFKA|MONGODB|FTP_FILE|HDFS_FILE|DTS_KAFKA|REST_API|FILE|TIDB|SYBASE|TCHOUSE_X 等
         # @type DatasourceType: String
         # @param ProjectId: 项目ID。
         # @type ProjectId: String
@@ -7948,7 +7948,7 @@ module TencentCloud
       class DescribeDatabaseInfoListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤参数
         # @type Filters: Array
-        # @param ConnectionType: 如果是hive这里写rpc，如果是其他类型不传
+        # @param ConnectionType: 连接类型
         # @type ConnectionType: String
 
         attr_accessor :Filters, :ConnectionType
@@ -10868,7 +10868,7 @@ module TencentCloud
         # @type TaskId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param TaskType: 任务类型：201. stream,   202. offline
+        # @param TaskType: 任务类型，201: 实时集成任务,   202：离线集成任务，不传默认值为201 实时任务类型
         # @type TaskType: Integer
         # @param InstanceVersion: 提交版本号
         # @type InstanceVersion: Integer
@@ -14773,11 +14773,11 @@ module TencentCloud
         # @type Name: String
         # @param DatabaseName: 数据库名称
         # @type DatabaseName: String
-        # @param MsType: 表类型
+        # @param MsType: 数据源的类型（例如MYSQL、HIVE、KAFKA等）
         # @type MsType: String
         # @param DatasourceId: 数据源id
         # @type DatasourceId: String
-        # @param ConnectionType: HIVE传rpc
+        # @param ConnectionType: 连接类型（示例值rpc）
         # @type ConnectionType: String
         # @param SchemaName: 元数据Database下的Schema名称
         # @type SchemaName: String
@@ -23199,10 +23199,16 @@ module TencentCloud
         # @param ExecutionStartTime: 调度执行开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
+        # @param TaskAutoSubmit: 是否自动提交
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskAutoSubmit: Boolean
+        # @param InstanceInitStrategy: 实例初始化策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceInitStrategy: String
 
-        attr_accessor :WorkflowName, :DependencyWorkflow, :StartTime, :EndTime, :CycleType, :CycleStep, :DelayTime, :CrontabExpression, :RetryWait, :Retriable, :TryLimit, :RunPriority, :ProductName, :SelfDepend, :TaskAction, :ExecutionEndTime, :ExecutionStartTime
+        attr_accessor :WorkflowName, :DependencyWorkflow, :StartTime, :EndTime, :CycleType, :CycleStep, :DelayTime, :CrontabExpression, :RetryWait, :Retriable, :TryLimit, :RunPriority, :ProductName, :SelfDepend, :TaskAction, :ExecutionEndTime, :ExecutionStartTime, :TaskAutoSubmit, :InstanceInitStrategy
 
-        def initialize(workflowname=nil, dependencyworkflow=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, delaytime=nil, crontabexpression=nil, retrywait=nil, retriable=nil, trylimit=nil, runpriority=nil, productname=nil, selfdepend=nil, taskaction=nil, executionendtime=nil, executionstarttime=nil)
+        def initialize(workflowname=nil, dependencyworkflow=nil, starttime=nil, endtime=nil, cycletype=nil, cyclestep=nil, delaytime=nil, crontabexpression=nil, retrywait=nil, retriable=nil, trylimit=nil, runpriority=nil, productname=nil, selfdepend=nil, taskaction=nil, executionendtime=nil, executionstarttime=nil, taskautosubmit=nil, instanceinitstrategy=nil)
           @WorkflowName = workflowname
           @DependencyWorkflow = dependencyworkflow
           @StartTime = starttime
@@ -23220,6 +23226,8 @@ module TencentCloud
           @TaskAction = taskaction
           @ExecutionEndTime = executionendtime
           @ExecutionStartTime = executionstarttime
+          @TaskAutoSubmit = taskautosubmit
+          @InstanceInitStrategy = instanceinitstrategy
         end
 
         def deserialize(params)
@@ -23240,6 +23248,8 @@ module TencentCloud
           @TaskAction = params['TaskAction']
           @ExecutionEndTime = params['ExecutionEndTime']
           @ExecutionStartTime = params['ExecutionStartTime']
+          @TaskAutoSubmit = params['TaskAutoSubmit']
+          @InstanceInitStrategy = params['InstanceInitStrategy']
         end
       end
 

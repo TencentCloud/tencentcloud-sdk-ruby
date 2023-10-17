@@ -2147,6 +2147,33 @@ module TencentCloud
         end
       end
 
+      # FetchSqlGatewayStatementResult请求参数结构体
+      class FetchSqlGatewayStatementResultRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # FetchSqlGatewayStatementResult返回参数结构体
+      class FetchSqlGatewayStatementResultResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询作业列表时的过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段
@@ -3296,6 +3323,33 @@ module TencentCloud
 
       # RunJobs返回参数结构体
       class RunJobsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RunSqlGatewayStatement请求参数结构体
+      class RunSqlGatewayStatementRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RunSqlGatewayStatement返回参数结构体
+      class RunSqlGatewayStatementResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

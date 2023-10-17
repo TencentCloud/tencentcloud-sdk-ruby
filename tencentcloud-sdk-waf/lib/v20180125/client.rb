@@ -800,6 +800,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定域名TOP N攻击类型
+
+        # @param request: Request instance for DescribeAttackType.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeAttackTypeRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeAttackTypeResponse`
+        def DescribeAttackType(request)
+          body = send_request('DescribeAttackType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAttackTypeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取用户规则白名单列表
 
         # @param request: Request instance for DescribeAttackWhiteRule.
@@ -1234,6 +1258,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询多种条件的聚类分析
+
+        # @param request: Request instance for DescribeHistogram.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeHistogramRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeHistogramResponse`
+        def DescribeHistogram(request)
+          body = send_request('DescribeHistogram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHistogramResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # clb-waf获取防护域名详情
 
         # @param request: Request instance for DescribeHost.
@@ -1556,6 +1604,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTlsVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Top5的攻击域名
+
+        # @param request: Request instance for DescribeTopAttackDomain.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeTopAttackDomainRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeTopAttackDomainResponse`
+        def DescribeTopAttackDomain(request)
+          body = send_request('DescribeTopAttackDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopAttackDomainResponse.new
             model.deserialize(response['Response'])
             model
           else

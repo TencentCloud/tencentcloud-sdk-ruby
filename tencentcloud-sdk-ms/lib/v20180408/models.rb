@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2023, 8
-        deprecate :CosTocken=, :none, 2023, 8
+        deprecate :CosTocken, :none, 2023, 10
+        deprecate :CosTocken=, :none, 2023, 10
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -823,10 +823,12 @@ module TencentCloud
         # @type AndroidPlan: :class:`Tencentcloud::Ms.v20180408.models.AndroidPlan`
         # @param AppletInfo: 小程序加固信息
         # @type AppletInfo: :class:`Tencentcloud::Ms.v20180408.models.AppletInfo`
+        # @param IOSInfo: iOS混淆信息
+        # @type IOSInfo: :class:`Tencentcloud::Ms.v20180408.models.IOSInfo`
 
-        attr_accessor :PlatformType, :OrderType, :EncryptOpType, :ResourceId, :AndroidAppInfo, :AndroidPlan, :AppletInfo
+        attr_accessor :PlatformType, :OrderType, :EncryptOpType, :ResourceId, :AndroidAppInfo, :AndroidPlan, :AppletInfo, :IOSInfo
 
-        def initialize(platformtype=nil, ordertype=nil, encryptoptype=nil, resourceid=nil, androidappinfo=nil, androidplan=nil, appletinfo=nil)
+        def initialize(platformtype=nil, ordertype=nil, encryptoptype=nil, resourceid=nil, androidappinfo=nil, androidplan=nil, appletinfo=nil, iosinfo=nil)
           @PlatformType = platformtype
           @OrderType = ordertype
           @EncryptOpType = encryptoptype
@@ -834,6 +836,7 @@ module TencentCloud
           @AndroidAppInfo = androidappinfo
           @AndroidPlan = androidplan
           @AppletInfo = appletinfo
+          @IOSInfo = iosinfo
         end
 
         def deserialize(params)
@@ -852,6 +855,10 @@ module TencentCloud
           unless params['AppletInfo'].nil?
             @AppletInfo = AppletInfo.new
             @AppletInfo.deserialize(params['AppletInfo'])
+          end
+          unless params['IOSInfo'].nil?
+            @IOSInfo = IOSInfo.new
+            @IOSInfo.deserialize(params['IOSInfo'])
           end
         end
       end
@@ -1960,6 +1967,39 @@ module TencentCloud
         end
       end
 
+      # iOS加固信息
+
+      # 	InfoPListUrl  string `json:"InfoPListUrl"`  //info.plist的url，必须保证不用权限校验就可以下载
+      # 	InfoPListSize int64  `json:"InfoPListSize"` //info.plist文件的大小
+      # 	InfoPListMd5  string `json:"InfoPListMd5"`  //info.plist文件的md5
+      # 	BuildType     string `json:"BuildType"`     //release: 需要INFO-PLIST文件，会生成工具部署安装包，并带有license文件，绑定机器；nobind不需要INFO-PLIST文件，不绑定机器
+      class IOSInfo < TencentCloud::Common::AbstractModel
+        # @param InfoPListUrl: info.plist的url，必须保证不用权限校验就可以下载
+        # @type InfoPListUrl: String
+        # @param InfoPListSize: info.plist文件的大小
+        # @type InfoPListSize: Integer
+        # @param InfoPListMd5: info.plist文件的md5
+        # @type InfoPListMd5: String
+        # @param BuildType: release: 需要INFO-PLIST文件，会生成工具部署安装包，并带有license文件，绑定机器；nobind不需要INFO-PLIST文件，不绑定机器
+        # @type BuildType: String
+
+        attr_accessor :InfoPListUrl, :InfoPListSize, :InfoPListMd5, :BuildType
+
+        def initialize(infoplisturl=nil, infoplistsize=nil, infoplistmd5=nil, buildtype=nil)
+          @InfoPListUrl = infoplisturl
+          @InfoPListSize = infoplistsize
+          @InfoPListMd5 = infoplistmd5
+          @BuildType = buildtype
+        end
+
+        def deserialize(params)
+          @InfoPListUrl = params['InfoPListUrl']
+          @InfoPListSize = params['InfoPListSize']
+          @InfoPListMd5 = params['InfoPListMd5']
+          @BuildType = params['BuildType']
+        end
+      end
+
       # 渠道合作IOS源码混淆配置
       class IOSPlan < TencentCloud::Common::AbstractModel
         # @param PlanId: 策略id
@@ -1979,16 +2019,72 @@ module TencentCloud
       # 渠道合作ios源码混淆加固结果
       class IOSResult < TencentCloud::Common::AbstractModel
         # @param ResultId: 加固任务结果Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultId: String
+        # @param OpUin: 用户uid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpUin: Integer
+        # @param EncryptType: 加固类型，这里为ios
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptType: String
+        # @param ResourceId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param EncryptState: 加固状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptState: Integer
+        # @param EncryptErrno: 业务错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptErrno: Integer
+        # @param EncryptErrDesc: 业务错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptErrDesc: String
+        # @param CreatTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatTime: String
+        # @param StartTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CostTime: 消耗时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostTime: Integer
+        # @param EncryptPkgUrl: 加固（混淆）包结果url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptPkgUrl: String
 
-        attr_accessor :ResultId
+        attr_accessor :ResultId, :OpUin, :EncryptType, :ResourceId, :EncryptState, :EncryptErrno, :EncryptErrDesc, :CreatTime, :StartTime, :EndTime, :CostTime, :EncryptPkgUrl
 
-        def initialize(resultid=nil)
+        def initialize(resultid=nil, opuin=nil, encrypttype=nil, resourceid=nil, encryptstate=nil, encrypterrno=nil, encrypterrdesc=nil, creattime=nil, starttime=nil, endtime=nil, costtime=nil, encryptpkgurl=nil)
           @ResultId = resultid
+          @OpUin = opuin
+          @EncryptType = encrypttype
+          @ResourceId = resourceid
+          @EncryptState = encryptstate
+          @EncryptErrno = encrypterrno
+          @EncryptErrDesc = encrypterrdesc
+          @CreatTime = creattime
+          @StartTime = starttime
+          @EndTime = endtime
+          @CostTime = costtime
+          @EncryptPkgUrl = encryptpkgurl
         end
 
         def deserialize(params)
           @ResultId = params['ResultId']
+          @OpUin = params['OpUin']
+          @EncryptType = params['EncryptType']
+          @ResourceId = params['ResourceId']
+          @EncryptState = params['EncryptState']
+          @EncryptErrno = params['EncryptErrno']
+          @EncryptErrDesc = params['EncryptErrDesc']
+          @CreatTime = params['CreatTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CostTime = params['CostTime']
+          @EncryptPkgUrl = params['EncryptPkgUrl']
         end
       end
 

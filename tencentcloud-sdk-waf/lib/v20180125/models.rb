@@ -2960,6 +2960,69 @@ module TencentCloud
         end
       end
 
+      # DescribeAttackType请求参数结构体
+      class DescribeAttackTypeRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 起始时间
+        # @type FromTime: String
+        # @param ToTime: 结束时间
+        # @type ToTime: String
+        # @param Host: 兼容Host，逐步淘汰Host字段
+        # @type Host: String
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
+        # @param Domain: 域名过滤，不传则不过滤，用于替代Host字段，逐步淘汰Host
+        # @type Domain: String
+
+        attr_accessor :FromTime, :ToTime, :Host, :Edition, :InstanceID, :Domain
+
+        def initialize(fromtime=nil, totime=nil, host=nil, edition=nil, instanceid=nil, domain=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @Host = host
+          @Edition = edition
+          @InstanceID = instanceid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @Host = params['Host']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeAttackType返回参数结构体
+      class DescribeAttackTypeResponse < TencentCloud::Common::AbstractModel
+        # @param Piechart: 数量
+        # @type Piechart: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Piechart, :RequestId
+
+        def initialize(piechart=nil, requestid=nil)
+          @Piechart = piechart
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Piechart'].nil?
+            @Piechart = []
+            params['Piechart'].each do |i|
+              piechartitem_tmp = PiechartItem.new
+              piechartitem_tmp.deserialize(i)
+              @Piechart << piechartitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAttackWhiteRule请求参数结构体
       class DescribeAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要查询的域名
@@ -4056,6 +4119,70 @@ module TencentCloud
         end
       end
 
+      # DescribeHistogram请求参数结构体
+      class DescribeHistogramRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 起始时间
+        # @type FromTime: String
+        # @param ToTime: 结束时间
+        # @type ToTime: String
+        # @param QueryField: 聚类字段，ip为ip聚合，art为响应耗时聚合，url为url聚合，local为ip转化的城市聚合
+        # @type QueryField: String
+        # @param Source: 条件，access为访问日志，attack为攻击日志
+        # @type Source: String
+        # @param Host: 兼容Host，逐步淘汰Host字段
+        # @type Host: String
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
+        # @param Domain: 域名过滤，不传则不过滤，用于替代Host字段，逐步淘汰Host
+        # @type Domain: String
+
+        attr_accessor :FromTime, :ToTime, :QueryField, :Source, :Host, :Edition, :InstanceID, :Domain
+
+        def initialize(fromtime=nil, totime=nil, queryfield=nil, source=nil, host=nil, edition=nil, instanceid=nil, domain=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @QueryField = queryfield
+          @Source = source
+          @Host = host
+          @Edition = edition
+          @InstanceID = instanceid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @QueryField = params['QueryField']
+          @Source = params['Source']
+          @Host = params['Host']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeHistogram返回参数结构体
+      class DescribeHistogramResponse < TencentCloud::Common::AbstractModel
+        # @param Histogram: 统计数据
+        # @type Histogram: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Histogram, :RequestId
+
+        def initialize(histogram=nil, requestid=nil)
+          @Histogram = histogram
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Histogram = params['Histogram']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHostLimit请求参数结构体
       class DescribeHostLimitRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 添加的域名
@@ -4866,6 +4993,76 @@ module TencentCloud
               tlsversion_tmp = TLSVersion.new
               tlsversion_tmp.deserialize(i)
               @TLS << tlsversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopAttackDomain请求参数结构体
+      class DescribeTopAttackDomainRequest < TencentCloud::Common::AbstractModel
+        # @param FromTime: 查询起始时间
+        # @type FromTime: String
+        # @param ToTime: 查询结束时间
+        # @type ToTime: String
+        # @param Count: TOP N,可从0-10选择，默认是10
+        # @type Count: Integer
+        # @param Edition: 只有两个值有效，sparta-waf，clb-waf，不传则不过滤
+        # @type Edition: String
+        # @param InstanceID: WAF实例ID，不传则不过滤
+        # @type InstanceID: String
+
+        attr_accessor :FromTime, :ToTime, :Count, :Edition, :InstanceID
+
+        def initialize(fromtime=nil, totime=nil, count=nil, edition=nil, instanceid=nil)
+          @FromTime = fromtime
+          @ToTime = totime
+          @Count = count
+          @Edition = edition
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @FromTime = params['FromTime']
+          @ToTime = params['ToTime']
+          @Count = params['Count']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeTopAttackDomain返回参数结构体
+      class DescribeTopAttackDomainResponse < TencentCloud::Common::AbstractModel
+        # @param CC: CC攻击域名列表
+        # @type CC: Array
+        # @param Web: Web攻击域名列表
+        # @type Web: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CC, :Web, :RequestId
+
+        def initialize(cc=nil, web=nil, requestid=nil)
+          @CC = cc
+          @Web = web
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CC'].nil?
+            @CC = []
+            params['CC'].each do |i|
+              kvint_tmp = KVInt.new
+              kvint_tmp.deserialize(i)
+              @CC << kvint_tmp
+            end
+          end
+          unless params['Web'].nil?
+            @Web = []
+            params['Web'].each do |i|
+              kvint_tmp = KVInt.new
+              kvint_tmp.deserialize(i)
+              @Web << kvint_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6882,6 +7079,26 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # Key-Value的形式，Value为Int
+      class KVInt < TencentCloud::Common::AbstractModel
+        # @param Key: Key
+        # @type Key: String
+        # @param Value: Value
+        # @type Value: Integer
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -8986,6 +9203,26 @@ module TencentCloud
           @Tamper = params['Tamper']
           @Leak = params['Leak']
           @ACL = params['ACL']
+        end
+      end
+
+      # 饼图数据类型
+      class PiechartItem < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # @type Type: String
+        # @param Count: 数量
+        # @type Count: Integer
+
+        attr_accessor :Type, :Count
+
+        def initialize(type=nil, count=nil)
+          @Type = type
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Count = params['Count']
         end
       end
 

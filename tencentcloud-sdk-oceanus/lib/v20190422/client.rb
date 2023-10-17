@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Sql Gateway的Statement执行结果
+
+        # @param request: Request instance for FetchSqlGatewayStatementResult.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::FetchSqlGatewayStatementResultRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::FetchSqlGatewayStatementResultResponse`
+        def FetchSqlGatewayStatementResult(request)
+          body = send_request('FetchSqlGatewayStatementResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FetchSqlGatewayStatementResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新作业属性，仅允许以下3种操作，不支持组合操作：
         # (1)	更新作业名称
         # (2)	更新作业备注
@@ -624,6 +648,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RunJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过Sql gateway执行satement
+
+        # @param request: Request instance for RunSqlGatewayStatement.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::RunSqlGatewayStatementRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::RunSqlGatewayStatementResponse`
+        def RunSqlGatewayStatement(request)
+          body = send_request('RunSqlGatewayStatement', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunSqlGatewayStatementResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1411,12 +1411,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2023, 9
-        deprecate :BusinessName=, :none, 2023, 9
-        deprecate :BusinessDept, :none, 2023, 9
-        deprecate :BusinessDept=, :none, 2023, 9
-        deprecate :BusinessOwner, :none, 2023, 9
-        deprecate :BusinessOwner=, :none, 2023, 9
+        deprecate :BusinessName, :none, 2023, 10
+        deprecate :BusinessName=, :none, 2023, 10
+        deprecate :BusinessDept, :none, 2023, 10
+        deprecate :BusinessDept=, :none, 2023, 10
+        deprecate :BusinessOwner, :none, 2023, 10
+        deprecate :BusinessOwner=, :none, 2023, 10
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -10607,8 +10607,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :RiskLatestTableId, :Status, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2023, 9
-        deprecate :RiskLatestTableId=, :none, 2023, 9
+        deprecate :RiskLatestTableId, :none, 2023, 10
+        deprecate :RiskLatestTableId=, :none, 2023, 10
 
         def initialize(dspaid=nil, risklatesttableid=nil, status=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid

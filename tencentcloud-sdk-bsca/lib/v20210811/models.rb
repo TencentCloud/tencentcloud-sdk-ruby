@@ -200,6 +200,31 @@ module TencentCloud
         end
       end
 
+      # 描述组件的一条版本信息。
+      class ComponentVersion < TencentCloud::Common::AbstractModel
+        # @param PURL: 该组件的PURL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
+        # @param LicenseExpression: 该组件版本的许可证表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseExpression: String
+
+        attr_accessor :PURL, :LicenseExpression
+
+        def initialize(purl=nil, licenseexpression=nil)
+          @PURL = purl
+          @LicenseExpression = licenseexpression
+        end
+
+        def deserialize(params)
+          unless params['PURL'].nil?
+            @PURL = PURL.new
+            @PURL.deserialize(params['PURL'])
+          end
+          @LicenseExpression = params['LicenseExpression']
+        end
+      end
+
       # 与输入组件相关的漏洞信息摘要信息。
       class ComponentVulnerabilitySummary < TencentCloud::Common::AbstractModel
         # @param PURL: 用于匹配漏洞的PURL
@@ -307,6 +332,52 @@ module TencentCloud
           unless params['Component'].nil?
             @Component = Component.new
             @Component.deserialize(params['Component'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKBComponentVersionList请求参数结构体
+      class DescribeKBComponentVersionListRequest < TencentCloud::Common::AbstractModel
+        # @param PURL: 要查询的组件 PURL
+        # @type PURL: :class:`Tencentcloud::Bsca.v20210811.models.PURL`
+
+        attr_accessor :PURL
+
+        def initialize(purl=nil)
+          @PURL = purl
+        end
+
+        def deserialize(params)
+          unless params['PURL'].nil?
+            @PURL = PURL.new
+            @PURL.deserialize(params['PURL'])
+          end
+        end
+      end
+
+      # DescribeKBComponentVersionList返回参数结构体
+      class DescribeKBComponentVersionListResponse < TencentCloud::Common::AbstractModel
+        # @param VersionList: 该组件的版本列表信息
+        # @type VersionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionList, :RequestId
+
+        def initialize(versionlist=nil, requestid=nil)
+          @VersionList = versionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              componentversion_tmp = ComponentVersion.new
+              componentversion_tmp.deserialize(i)
+              @VersionList << componentversion_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -698,6 +769,65 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # SearchKBComponent请求参数结构体
+      class SearchKBComponentRequest < TencentCloud::Common::AbstractModel
+        # @param Query: 需要搜索的组件名
+        # @type Query: String
+        # @param Protocol: 需要搜索的组件类型
+        # @type Protocol: String
+        # @param PageNumber: 分页参数，从 0 开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页参数，设置每页返回的结果数量
+        # @type PageSize: Integer
+
+        attr_accessor :Query, :Protocol, :PageNumber, :PageSize
+
+        def initialize(query=nil, protocol=nil, pagenumber=nil, pagesize=nil)
+          @Query = query
+          @Protocol = protocol
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Query = params['Query']
+          @Protocol = params['Protocol']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # SearchKBComponent返回参数结构体
+      class SearchKBComponentResponse < TencentCloud::Common::AbstractModel
+        # @param ComponentList: 满足搜索条件的组件列表
+        # @type ComponentList: Array
+        # @param Total: 满足搜索条件的总个数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ComponentList, :Total, :RequestId
+
+        def initialize(componentlist=nil, total=nil, requestid=nil)
+          @ComponentList = componentlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ComponentList'].nil?
+            @ComponentList = []
+            params['ComponentList'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @ComponentList << component_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
         end
       end
 
