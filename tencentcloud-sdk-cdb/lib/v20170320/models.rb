@@ -864,6 +864,34 @@ module TencentCloud
         end
       end
 
+      # CPU弹性扩容的自动扩容策略
+      class AutoStrategy < TencentCloud::Common::AbstractModel
+        # @param ExpandThreshold: 自动扩容阈值，可选值70、80、90，代表CPU利用率达到70%、80%、90%时后台进行自动扩容
+        # @type ExpandThreshold: Integer
+        # @param ExpandPeriod: 自动扩容观测周期，单位s，可选值1、3、5、10、15、30。后台会按照配置的周期进行扩容判断。
+        # @type ExpandPeriod: Integer
+        # @param ShrinkThreshold: 自动缩容阈值，可选值10、20、30，代表CPU利用率达到10%、20%、30%时后台进行自动缩容
+        # @type ShrinkThreshold: Integer
+        # @param ShrinkPeriod: 自动缩容观测周期，单位s，可选值5、10、15、30。后台会按照配置的周期进行缩容判断。
+        # @type ShrinkPeriod: Integer
+
+        attr_accessor :ExpandThreshold, :ExpandPeriod, :ShrinkThreshold, :ShrinkPeriod
+
+        def initialize(expandthreshold=nil, expandperiod=nil, shrinkthreshold=nil, shrinkperiod=nil)
+          @ExpandThreshold = expandthreshold
+          @ExpandPeriod = expandperiod
+          @ShrinkThreshold = shrinkthreshold
+          @ShrinkPeriod = shrinkperiod
+        end
+
+        def deserialize(params)
+          @ExpandThreshold = params['ExpandThreshold']
+          @ExpandPeriod = params['ExpandPeriod']
+          @ShrinkThreshold = params['ShrinkThreshold']
+          @ShrinkPeriod = params['ShrinkPeriod']
+        end
+      end
+
       # ECDB第二个从库的配置信息，只有ECDB实例才有这个字段
       class BackupConfig < TencentCloud::Common::AbstractModel
         # @param ReplicationMode: 第二个从库复制方式，可能的返回值：async-异步，semisync-半同步
@@ -9748,8 +9776,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2023, 9
-        deprecate :IsSucess=, :none, 2023, 9
+        deprecate :IsSucess, :none, 2023, 10
+        deprecate :IsSucess=, :none, 2023, 10
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -11296,12 +11324,33 @@ module TencentCloud
 
       # StartCpuExpand请求参数结构体
       class StartCpuExpandRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID 。
+        # @type InstanceId: String
+        # @param Type: 扩容类型。可选值：auto：代表进行自动扩容
+        # manual：代表进行手动扩容
+        # @type Type: String
+        # @param ExpandCpu: 手动扩容时，扩容的CPU核心数。Type 为 manual 时必传。
+        # @type ExpandCpu: Integer
+        # @param AutoStrategy: 自动扩容策略。Type 为 auto 时必传。
+        # @type AutoStrategy: :class:`Tencentcloud::Cdb.v20170320.models.AutoStrategy`
 
+        attr_accessor :InstanceId, :Type, :ExpandCpu, :AutoStrategy
 
-        def initialize()
+        def initialize(instanceid=nil, type=nil, expandcpu=nil, autostrategy=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @ExpandCpu = expandcpu
+          @AutoStrategy = autostrategy
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @ExpandCpu = params['ExpandCpu']
+          unless params['AutoStrategy'].nil?
+            @AutoStrategy = AutoStrategy.new
+            @AutoStrategy.deserialize(params['AutoStrategy'])
+          end
         end
       end
 

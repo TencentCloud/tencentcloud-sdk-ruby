@@ -8914,15 +8914,18 @@ module TencentCloud
         # @type PdfVerifyResults: Array
         # @param VerifySerialNo: 验签序列号, 为11为数组组成的字符串
         # @type VerifySerialNo: String
+        # @param PdfResourceMd5: 合同文件MD5哈希值
+        # @type PdfResourceMd5: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VerifyResult, :PdfVerifyResults, :VerifySerialNo, :RequestId
+        attr_accessor :VerifyResult, :PdfVerifyResults, :VerifySerialNo, :PdfResourceMd5, :RequestId
 
-        def initialize(verifyresult=nil, pdfverifyresults=nil, verifyserialno=nil, requestid=nil)
+        def initialize(verifyresult=nil, pdfverifyresults=nil, verifyserialno=nil, pdfresourcemd5=nil, requestid=nil)
           @VerifyResult = verifyresult
           @PdfVerifyResults = pdfverifyresults
           @VerifySerialNo = verifyserialno
+          @PdfResourceMd5 = pdfresourcemd5
           @RequestId = requestid
         end
 
@@ -8937,6 +8940,7 @@ module TencentCloud
             end
           end
           @VerifySerialNo = params['VerifySerialNo']
+          @PdfResourceMd5 = params['PdfResourceMd5']
           @RequestId = params['RequestId']
         end
       end

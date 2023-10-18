@@ -1637,6 +1637,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询Topic迁移状态列表，源集群和目标集群客户端数量信息需要配合DescribeRocketMQSmoothMigrationTaskTopicInsNum接口查询
+
+        # @param request: Request instance for DescribeRocketMQMigratingTopicList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQMigratingTopicListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQMigratingTopicListResponse`
+        def DescribeRocketMQMigratingTopicList(request)
+          body = send_request('DescribeRocketMQMigratingTopicList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQMigratingTopicListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # rocketmq消息详情
 
         # @param request: Request instance for DescribeRocketMQMsg.
@@ -1719,6 +1743,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRocketMQPublicAccessPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于获取RocketMQ平滑迁移任务详情
+
+        # @param request: Request instance for DescribeRocketMQSmoothMigrationTask.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskResponse`
+        def DescribeRocketMQSmoothMigrationTask(request)
+          body = send_request('DescribeRocketMQSmoothMigrationTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQSmoothMigrationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询RocketMQ平滑迁移任务列表
+
+        # @param request: Request instance for DescribeRocketMQSmoothMigrationTaskList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskListResponse`
+        def DescribeRocketMQSmoothMigrationTaskList(request)
+          body = send_request('DescribeRocketMQSmoothMigrationTaskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQSmoothMigrationTaskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 平滑迁移过程获取源集群group列表接口
+
+        # @param request: Request instance for DescribeRocketMQSourceClusterGroupList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterGroupListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterGroupListResponse`
+        def DescribeRocketMQSourceClusterGroupList(request)
+          body = send_request('DescribeRocketMQSourceClusterGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQSourceClusterGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 平滑迁移过程获取源集群topic列表接口
+
+        # @param request: Request instance for DescribeRocketMQSourceClusterTopicList.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterTopicListRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterTopicListResponse`
+        def DescribeRocketMQSourceClusterTopicList(request)
+          body = send_request('DescribeRocketMQSourceClusterTopicList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQSourceClusterTopicListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1887,6 +2007,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 输入迁移任务id和要导入的Group，导入后台
+
+        # @param request: Request instance for ImportRocketMQConsumerGroups.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ImportRocketMQConsumerGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ImportRocketMQConsumerGroupsResponse`
+        def ImportRocketMQConsumerGroups(request)
+          body = send_request('ImportRocketMQConsumerGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportRocketMQConsumerGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导入topic列表
+
+        # @param request: Request instance for ImportRocketMQTopics.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ImportRocketMQTopicsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ImportRocketMQTopicsResponse`
+        def ImportRocketMQTopics(request)
+          body = send_request('ImportRocketMQTopics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportRocketMQTopicsResponse.new
             model.deserialize(response['Response'])
             model
           else

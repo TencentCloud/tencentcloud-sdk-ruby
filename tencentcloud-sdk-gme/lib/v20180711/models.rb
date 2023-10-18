@@ -1093,7 +1093,7 @@ module TencentCloud
 
       # DescribeRealtimeScanConfig请求参数结构体
       class DescribeRealtimeScanConfigRequest < TencentCloud::Common::AbstractModel
-        # @param BizId: 应用ID
+        # @param BizId: 应用ID。
         # @type BizId: Integer
 
         attr_accessor :BizId
@@ -1115,9 +1115,11 @@ module TencentCloud
         # @type BizId: Integer
         # @param AuditType: 送检类型，0: 全量送审，1: 自定义送审
         # @type AuditType: Integer
-        # @param UserIdRegex: 用户号正则表达式
+        # @param UserIdRegex: 用户号正则表达式。
+        # 符合此正则表达式规则的用户号将被送检。示例：^6.*（表示所有以6开头的用户号将被送检）
         # @type UserIdRegex: Array
-        # @param RoomIdRegex: 房间号正则表达式
+        # @param RoomIdRegex: 房间号正则表达式。
+        # 符合此正则表达式规则的房间号将被送检。示例：^6.*（表示所有以6开头的房间号将被送检）
         # @type RoomIdRegex: Array
         # @param UserIdString: 用户号字符串，逗号分隔，示例："0001,0002,0003"
         # @type UserIdString: String

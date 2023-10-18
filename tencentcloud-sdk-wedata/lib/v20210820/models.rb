@@ -18504,6 +18504,50 @@ module TencentCloud
         end
       end
 
+      # GetFileInfo请求参数结构体
+      class GetFileInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param FilePath: 文件路径
+        # @type FilePath: String
+
+        attr_accessor :ProjectId, :FilePath
+
+        def initialize(projectid=nil, filepath=nil)
+          @ProjectId = projectid
+          @FilePath = filepath
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FilePath = params['FilePath']
+        end
+      end
+
+      # GetFileInfo返回参数结构体
+      class GetFileInfoResponse < TencentCloud::Common::AbstractModel
+        # @param UserFileInfo: 当前脚本信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserFileInfo: :class:`Tencentcloud::Wedata.v20210820.models.UserFileInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserFileInfo, :RequestId
+
+        def initialize(userfileinfo=nil, requestid=nil)
+          @UserFileInfo = userfileinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserFileInfo'].nil?
+            @UserFileInfo = UserFileInfo.new
+            @UserFileInfo.deserialize(params['UserFileInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetIntegrationNodeColumnSchema请求参数结构体
       class GetIntegrationNodeColumnSchemaRequest < TencentCloud::Common::AbstractModel
         # @param ColumnContent: 字段示例（json格式）

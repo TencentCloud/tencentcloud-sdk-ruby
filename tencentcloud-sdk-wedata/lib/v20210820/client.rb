@@ -5865,6 +5865,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开发空间-获取数据开发脚本信息
+
+        # @param request: Request instance for GetFileInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::GetFileInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::GetFileInfoResponse`
+        def GetFileInfo(request)
+          body = send_request('GetFileInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFileInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提取数据集成节点字段Schema
 
         # @param request: Request instance for GetIntegrationNodeColumnSchema.

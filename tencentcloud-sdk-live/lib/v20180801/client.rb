@@ -1243,6 +1243,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+
+        # 注意：
+        # 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+        # 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+
+        # @param request: Request instance for DescribeBackupStreamList.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeBackupStreamListRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeBackupStreamListResponse`
+        def DescribeBackupStreamList(request)
+          body = send_request('DescribeBackupStreamList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupStreamListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播播放带宽和流量数据查询。
 
         # @param request: Request instance for DescribeBillBandwidthAndFluxList.
@@ -3091,6 +3119,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启用择优调度。
+        # 注意：流维度的择优调度，当主备流结束后自动失效。
+
+        # @param request: Request instance for EnableOptimalSwitching.
+        # @type request: :class:`Tencentcloud::live::V20180801::EnableOptimalSwitchingRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::EnableOptimalSwitchingResponse`
+        def EnableOptimalSwitching(request)
+          body = send_request('EnableOptimalSwitching', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableOptimalSwitchingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止使用某个直播域名。
 
         # @param request: Request instance for ForbidLiveDomain.
@@ -3687,6 +3740,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopScreenshotTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口实现切换当前播放所使用的主备流。
+
+        # @param request: Request instance for SwitchBackupStream.
+        # @type request: :class:`Tencentcloud::live::V20180801::SwitchBackupStreamRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::SwitchBackupStreamResponse`
+        def SwitchBackupStream(request)
+          body = send_request('SwitchBackupStream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchBackupStreamResponse.new
             model.deserialize(response['Response'])
             model
           else

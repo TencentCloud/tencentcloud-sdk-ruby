@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义DNS Host
+
+        # @param request: Request instance for CreateCustomDnsHost.
+        # @type request: :class:`Tencentcloud::domain::V20180808::CreateCustomDnsHostRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::CreateCustomDnsHostResponse`
+        def CreateCustomDnsHost(request)
+          body = send_request('CreateCustomDnsHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomDnsHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
 
         # @param request: Request instance for CreateDomainBatch.

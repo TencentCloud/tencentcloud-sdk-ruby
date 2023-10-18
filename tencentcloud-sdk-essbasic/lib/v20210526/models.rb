@@ -3383,9 +3383,11 @@ module TencentCloud
 
       # ChannelVerifyPdf请求参数结构体
       class ChannelVerifyPdfRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程ID
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # @type FlowId: String
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -3416,18 +3418,35 @@ module TencentCloud
 
       # ChannelVerifyPdf返回参数结构体
       class ChannelVerifyPdfResponse < TencentCloud::Common::AbstractModel
-        # @param VerifyResult: 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
+        # @param VerifyResult: 验签结果代码，代码的含义如下：
+
+        # <ul><li>**1**：文件未被篡改，全部签名在腾讯电子签完成。</li>
+        # <li>**2**：文件未被篡改，部分签名在腾讯电子签完成。</li>
+        # <li>**3**：文件被篡改。</li>
+        # <li>**4**：异常：文件内没有签名域。</li>
+        # <li>**5**：异常：文件签名格式错误。</li></ul>
         # @type VerifyResult: Integer
-        # @param PdfVerifyResults: 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
+        # @param PdfVerifyResults: 验签结果详情，每个签名域对应的验签结果。状态值如下
+        # <ul><li> **1** :验签成功，在电子签签署</li>
+        # <li> **2** :验签成功，在其他平台签署</li>
+        # <li> **3** :验签失败</li>
+        # <li> **4** :pdf文件没有签名域</li>
+        # <li> **5** :文件签名格式错误</li></ul>
         # @type PdfVerifyResults: Array
+        # @param VerifySerialNo: 验签序列号, 为11为数组组成的字符串
+        # @type VerifySerialNo: String
+        # @param PdfResourceMd5: 合同文件MD5哈希值
+        # @type PdfResourceMd5: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VerifyResult, :PdfVerifyResults, :RequestId
+        attr_accessor :VerifyResult, :PdfVerifyResults, :VerifySerialNo, :PdfResourceMd5, :RequestId
 
-        def initialize(verifyresult=nil, pdfverifyresults=nil, requestid=nil)
+        def initialize(verifyresult=nil, pdfverifyresults=nil, verifyserialno=nil, pdfresourcemd5=nil, requestid=nil)
           @VerifyResult = verifyresult
           @PdfVerifyResults = pdfverifyresults
+          @VerifySerialNo = verifyserialno
+          @PdfResourceMd5 = pdfresourcemd5
           @RequestId = requestid
         end
 
@@ -3441,6 +3460,8 @@ module TencentCloud
               @PdfVerifyResults << pdfverifyresult_tmp
             end
           end
+          @VerifySerialNo = params['VerifySerialNo']
+          @PdfResourceMd5 = params['PdfResourceMd5']
           @RequestId = params['RequestId']
         end
       end

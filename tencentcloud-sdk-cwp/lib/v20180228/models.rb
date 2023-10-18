@@ -1289,7 +1289,7 @@ module TencentCloud
         # @type MachineWanIp: String
         # @param CpuSize: Cpu数量
         # @type CpuSize: Integer
-        # @param CpuLoad: Cpu使用率百分比
+        # @param CpuLoad: Cpu负载
         # @type CpuLoad: String
         # @param ProtectLevel: 防护级别：0基础版，1专业版，2旗舰版，3普惠版
         # @type ProtectLevel: Integer
@@ -1339,10 +1339,16 @@ module TencentCloud
         # @param MachineExtraInfo: 主机二外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param CpuLoadVul: CpuLoadVul
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuLoadVul: String
+        # @param FirstTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstTime: String
 
-        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :CpuSize, :CpuLoad, :ProtectLevel, :RiskStatus, :ProtectDays, :BuyTime, :EndTime, :CoreVersion, :OsType, :AgentVersion, :InstallTime, :BootTime, :LastLiveTime, :Producer, :SerialNumber, :NetCards, :Disks, :Status, :ProjectId, :DeviceVersion, :OfflineTime, :InstanceId, :UpdateTime, :MachineExtraInfo
+        attr_accessor :Quuid, :Uuid, :MachineIp, :MachineName, :OsInfo, :Cpu, :MemSize, :MemLoad, :DiskSize, :DiskLoad, :PartitionCount, :MachineWanIp, :CpuSize, :CpuLoad, :ProtectLevel, :RiskStatus, :ProtectDays, :BuyTime, :EndTime, :CoreVersion, :OsType, :AgentVersion, :InstallTime, :BootTime, :LastLiveTime, :Producer, :SerialNumber, :NetCards, :Disks, :Status, :ProjectId, :DeviceVersion, :OfflineTime, :InstanceId, :UpdateTime, :MachineExtraInfo, :CpuLoadVul, :FirstTime
 
-        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, cpusize=nil, cpuload=nil, protectlevel=nil, riskstatus=nil, protectdays=nil, buytime=nil, endtime=nil, coreversion=nil, ostype=nil, agentversion=nil, installtime=nil, boottime=nil, lastlivetime=nil, producer=nil, serialnumber=nil, netcards=nil, disks=nil, status=nil, projectid=nil, deviceversion=nil, offlinetime=nil, instanceid=nil, updatetime=nil, machineextrainfo=nil)
+        def initialize(quuid=nil, uuid=nil, machineip=nil, machinename=nil, osinfo=nil, cpu=nil, memsize=nil, memload=nil, disksize=nil, diskload=nil, partitioncount=nil, machinewanip=nil, cpusize=nil, cpuload=nil, protectlevel=nil, riskstatus=nil, protectdays=nil, buytime=nil, endtime=nil, coreversion=nil, ostype=nil, agentversion=nil, installtime=nil, boottime=nil, lastlivetime=nil, producer=nil, serialnumber=nil, netcards=nil, disks=nil, status=nil, projectid=nil, deviceversion=nil, offlinetime=nil, instanceid=nil, updatetime=nil, machineextrainfo=nil, cpuloadvul=nil, firsttime=nil)
           @Quuid = quuid
           @Uuid = uuid
           @MachineIp = machineip
@@ -1379,6 +1385,8 @@ module TencentCloud
           @InstanceId = instanceid
           @UpdateTime = updatetime
           @MachineExtraInfo = machineextrainfo
+          @CpuLoadVul = cpuloadvul
+          @FirstTime = firsttime
         end
 
         def deserialize(params)
@@ -1435,6 +1443,8 @@ module TencentCloud
             @MachineExtraInfo = MachineExtraInfo.new
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
+          @CpuLoadVul = params['CpuLoadVul']
+          @FirstTime = params['FirstTime']
         end
       end
 

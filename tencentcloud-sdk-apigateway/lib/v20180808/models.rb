@@ -6774,8 +6774,6 @@ module TencentCloud
 
       # ModifyAPIDoc请求参数结构体
       class ModifyAPIDocRequest < TencentCloud::Common::AbstractModel
-        # @param ApiDocId: API文档ID
-        # @type ApiDocId: String
         # @param ApiDocName: API文档名称
         # @type ApiDocName: String
         # @param ServiceId: 服务名称
@@ -6784,23 +6782,25 @@ module TencentCloud
         # @type Environment: String
         # @param ApiIds: 生成文档的API列表
         # @type ApiIds: Array
+        # @param ApiDocId: API文档ID
+        # @type ApiDocId: String
 
-        attr_accessor :ApiDocId, :ApiDocName, :ServiceId, :Environment, :ApiIds
+        attr_accessor :ApiDocName, :ServiceId, :Environment, :ApiIds, :ApiDocId
 
-        def initialize(apidocid=nil, apidocname=nil, serviceid=nil, environment=nil, apiids=nil)
-          @ApiDocId = apidocid
+        def initialize(apidocname=nil, serviceid=nil, environment=nil, apiids=nil, apidocid=nil)
           @ApiDocName = apidocname
           @ServiceId = serviceid
           @Environment = environment
           @ApiIds = apiids
+          @ApiDocId = apidocid
         end
 
         def deserialize(params)
-          @ApiDocId = params['ApiDocId']
           @ApiDocName = params['ApiDocName']
           @ServiceId = params['ServiceId']
           @Environment = params['Environment']
           @ApiIds = params['ApiIds']
+          @ApiDocId = params['ApiDocId']
         end
       end
 

@@ -398,6 +398,50 @@ module TencentCloud
         end
       end
 
+      # CreateCustomDnsHost请求参数结构体
+      class CreateCustomDnsHostRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名实例ID
+        # @type DomainId: String
+        # @param DnsName: Dns名称
+        # @type DnsName: String
+        # @param IpSet: IP地址列表
+        # @type IpSet: Array
+
+        attr_accessor :DomainId, :DnsName, :IpSet
+
+        def initialize(domainid=nil, dnsname=nil, ipset=nil)
+          @DomainId = domainid
+          @DnsName = dnsname
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DnsName = params['DnsName']
+          @IpSet = params['IpSet']
+        end
+      end
+
+      # CreateCustomDnsHost返回参数结构体
+      class CreateCustomDnsHostResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 异步任务ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDomainBatch请求参数结构体
       class CreateDomainBatchRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID。详情请查看：[获取模板列表](https://cloud.tencent.com/document/product/242/48940)

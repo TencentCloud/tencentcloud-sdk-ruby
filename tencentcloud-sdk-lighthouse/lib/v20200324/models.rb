@@ -721,7 +721,7 @@ module TencentCloud
         # @type DiskName: String
         # @param DiskCount: 云硬盘个数。取值范围: [1, 30]。默认值: 1。
         # @type DiskCount: Integer
-        # @param DiskBackupQuota: 指定云硬盘备份点配额，不传时默认为不带备份点配额。目前只支持不带或设置1个云硬盘备份点配额。
+        # @param DiskBackupQuota: 指定云硬盘备份点配额，取值范围: [0, 500]。不传时默认为不带备份点配额。
         # @type DiskBackupQuota: Integer
         # @param AutoVoucher: 是否自动使用代金券。默认不使用。
         # @type AutoVoucher: Boolean

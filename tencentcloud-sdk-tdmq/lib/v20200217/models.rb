@@ -4678,6 +4678,72 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQMigratingTopicList请求参数结构体
+      class DescribeRocketMQMigratingTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移任务名称
+        # @type TaskId: String
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Filters: 查询过滤器，支持topicname、MigrationStatus查询
+        # @type Filters: Array
+
+        attr_accessor :TaskId, :Limit, :Offset, :Filters
+
+        def initialize(taskid=nil, limit=nil, offset=nil, filters=nil)
+          @TaskId = taskid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQMigratingTopicList返回参数结构体
+      class DescribeRocketMQMigratingTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param MigrateTopics: 迁移topic列表
+        # @type MigrateTopics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MigrateTopics, :RequestId
+
+        def initialize(totalcount=nil, migratetopics=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MigrateTopics = migratetopics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MigrateTopics'].nil?
+            @MigrateTopics = []
+            params['MigrateTopics'].each do |i|
+              migratetopic_tmp = MigrateTopic.new
+              migratetopic_tmp.deserialize(i)
+              @MigrateTopics << migratetopic_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQMsg请求参数结构体
       class DescribeRocketMQMsgRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -5005,6 +5071,339 @@ module TencentCloud
           end
           @Bandwidth = params['Bandwidth']
           @PayMode = params['PayMode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQSmoothMigrationTaskList请求参数结构体
+      class DescribeRocketMQSmoothMigrationTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 查询起始偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询最大数量
+        # @type Limit: Integer
+        # @param Filters: 查询过滤器，
+        # 支持的字段如下
+        # TaskStatus, 支持多选
+        # ConnectionType，支持多选
+        # ClusterId，精确搜索
+        # TaskName，支持模糊搜索
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQSmoothMigrationTaskList返回参数结构体
+      class DescribeRocketMQSmoothMigrationTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务总数
+        # @type TotalCount: Integer
+        # @param Data: 任务列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              rocketmqsmoothmigrationtaskitem_tmp = RocketMQSmoothMigrationTaskItem.new
+              rocketmqsmoothmigrationtaskitem_tmp.deserialize(i)
+              @Data << rocketmqsmoothmigrationtaskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQSmoothMigrationTask请求参数结构体
+      class DescribeRocketMQSmoothMigrationTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeRocketMQSmoothMigrationTask返回参数结构体
+      class DescribeRocketMQSmoothMigrationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ClusterId: 目标集群ID
+        # @type ClusterId: String
+        # @param SourceClusterName: 源集群名称
+        # @type SourceClusterName: String
+        # @param ConnectionType: 网络连接类型，
+        # PUBLIC 公网
+        # VPC 私有网络
+        # OTHER 其它
+        # @type ConnectionType: String
+        # @param SourceClusterNameServer: 源集群NameServer地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceClusterNameServer: String
+        # @param VpcId: 源集群所在私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 源集群所在子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param EnableACL: 是否开启ACL
+        # @type EnableACL: Boolean
+        # @param AccessKey: 源集群AccessKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessKey: String
+        # @param SecretKey: 元集群SecretKey
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretKey: String
+        # @param TaskError: 配置源集群时发生的错误
+        # TIMEOUT 连接超时，
+        # SERVER_ERROR 服务错误，
+        # INTERNAL_ERROR 内部错误，
+        # CONNECT_NAMESERVER_ERROR 连接nameserver错误
+        # CONNECT_BROKER_ERROR 连接broker错误
+        # ACL_WRONG ACL信息不正确
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskError: String
+        # @param TaskStatus: 任务状态
+        # Configuration 迁移配置
+        # SourceConnecting 连接源集群中
+        # SourceConnectionFailure 连接源集群失败
+        # MetaDataImport 元数据导入
+        # EndpointSetup 切换接入点
+        # ServiceMigration 切流中
+        # Completed 已完成
+        # Cancelled 已取消
+        # @type TaskStatus: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicTypeDistribution: 主题类型分布情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicTypeDistribution: Array
+        # @param TopicStageDistribution: 主题迁移进度分布情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicStageDistribution: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskName, :ClusterId, :SourceClusterName, :ConnectionType, :SourceClusterNameServer, :VpcId, :SubnetId, :EnableACL, :AccessKey, :SecretKey, :TaskError, :TaskStatus, :TaskId, :TopicTypeDistribution, :TopicStageDistribution, :RequestId
+
+        def initialize(taskname=nil, clusterid=nil, sourceclustername=nil, connectiontype=nil, sourceclusternameserver=nil, vpcid=nil, subnetid=nil, enableacl=nil, accesskey=nil, secretkey=nil, taskerror=nil, taskstatus=nil, taskid=nil, topictypedistribution=nil, topicstagedistribution=nil, requestid=nil)
+          @TaskName = taskname
+          @ClusterId = clusterid
+          @SourceClusterName = sourceclustername
+          @ConnectionType = connectiontype
+          @SourceClusterNameServer = sourceclusternameserver
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @EnableACL = enableacl
+          @AccessKey = accesskey
+          @SecretKey = secretkey
+          @TaskError = taskerror
+          @TaskStatus = taskstatus
+          @TaskId = taskid
+          @TopicTypeDistribution = topictypedistribution
+          @TopicStageDistribution = topicstagedistribution
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @ClusterId = params['ClusterId']
+          @SourceClusterName = params['SourceClusterName']
+          @ConnectionType = params['ConnectionType']
+          @SourceClusterNameServer = params['SourceClusterNameServer']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @EnableACL = params['EnableACL']
+          @AccessKey = params['AccessKey']
+          @SecretKey = params['SecretKey']
+          @TaskError = params['TaskError']
+          @TaskStatus = params['TaskStatus']
+          @TaskId = params['TaskId']
+          unless params['TopicTypeDistribution'].nil?
+            @TopicTypeDistribution = []
+            params['TopicTypeDistribution'].each do |i|
+              rocketmqtopicdistribution_tmp = RocketMQTopicDistribution.new
+              rocketmqtopicdistribution_tmp.deserialize(i)
+              @TopicTypeDistribution << rocketmqtopicdistribution_tmp
+            end
+          end
+          unless params['TopicStageDistribution'].nil?
+            @TopicStageDistribution = []
+            params['TopicStageDistribution'].each do |i|
+              rocketmqmigrationtopicdistribution_tmp = RocketMQMigrationTopicDistribution.new
+              rocketmqmigrationtopicdistribution_tmp.deserialize(i)
+              @TopicStageDistribution << rocketmqmigrationtopicdistribution_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQSourceClusterGroupList请求参数结构体
+      class DescribeRocketMQSourceClusterGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param TaskId: 迁移任务名称
+        # @type TaskId: String
+        # @param Filters: 查询过滤器，支持字段groupName，imported
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :TaskId, :Filters
+
+        def initialize(limit=nil, offset=nil, taskid=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @TaskId = taskid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQSourceClusterGroupList返回参数结构体
+      class DescribeRocketMQSourceClusterGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param Groups: group列表
+        # @type Groups: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Groups, :TotalCount, :RequestId
+
+        def initialize(groups=nil, totalcount=nil, requestid=nil)
+          @Groups = groups
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rocketmqgroupconfigoutput_tmp = RocketMQGroupConfigOutput.new
+              rocketmqgroupconfigoutput_tmp.deserialize(i)
+              @Groups << rocketmqgroupconfigoutput_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQSourceClusterTopicList请求参数结构体
+      class DescribeRocketMQSourceClusterTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param TaskId: 迁移任务名
+        # @type TaskId: String
+        # @param Filters: 查询过滤器，支持字段如下
+        # TopicName,
+        # Type，Imported
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :TaskId, :Filters
+
+        def initialize(limit=nil, offset=nil, taskid=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @TaskId = taskid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @TaskId = params['TaskId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQSourceClusterTopicList返回参数结构体
+      class DescribeRocketMQSourceClusterTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param Topics: topic层列表
+        # @type Topics: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Topics, :TotalCount, :RequestId
+
+        def initialize(topics=nil, totalcount=nil, requestid=nil)
+          @Topics = topics
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              rocketmqtopicconfigoutput_tmp = RocketMQTopicConfigOutput.new
+              rocketmqtopicconfigoutput_tmp.deserialize(i)
+              @Topics << rocketmqtopicconfigoutput_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5721,6 +6120,92 @@ module TencentCloud
         end
       end
 
+      # ImportRocketMQConsumerGroups请求参数结构体
+      class ImportRocketMQConsumerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Groups: 导入topic
+        # @type Groups: Array
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :Groups, :TaskId
+
+        def initialize(groups=nil, taskid=nil)
+          @Groups = groups
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rocketmqgroupconfig_tmp = RocketMQGroupConfig.new
+              rocketmqgroupconfig_tmp.deserialize(i)
+              @Groups << rocketmqgroupconfig_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # ImportRocketMQConsumerGroups返回参数结构体
+      class ImportRocketMQConsumerGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImportRocketMQTopics请求参数结构体
+      class ImportRocketMQTopicsRequest < TencentCloud::Common::AbstractModel
+        # @param Topics: 导入topic
+        # @type Topics: Array
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :Topics, :TaskId
+
+        def initialize(topics=nil, taskid=nil)
+          @Topics = topics
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              rocketmqtopicconfig_tmp = RocketMQTopicConfig.new
+              rocketmqtopicconfig_tmp.deserialize(i)
+              @Topics << rocketmqtopicconfig_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # ImportRocketMQTopics返回参数结构体
+      class ImportRocketMQTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例节点分布信息
       class InstanceNodeDistribution < TencentCloud::Common::AbstractModel
         # @param ZoneName: 可用区
@@ -5846,6 +6331,60 @@ module TencentCloud
           @MaxPublishRateInBytes = params['MaxPublishRateInBytes']
           @MaxRetentionSizeInMB = params['MaxRetentionSizeInMB']
           @PublicAccessEnabled = params['PublicAccessEnabled']
+        end
+      end
+
+      # 迁移topic列表数据
+      class MigrateTopic < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param TopicName: topic名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param MigrationStatus: 迁移状态
+        # S_RW_D_NA 源集群读写
+        # S_RW_D_R 源集群读写目标集群读
+        # S_RW_D_RW 源集群读写目标集群读写
+        # S_R_D_RW 源集群读目标集群读写
+        # S_NA_D_RW 目标集群读写
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrationStatus: String
+        # @param HealthCheckPassed: 是否完成健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckPassed: Boolean
+        # @param HealthCheckError: 上次健康检查返回的错误信息，仅在HealthCheckPassed为false时有效。
+        # NotChecked 未执行检查，
+        # Unknown 未知错误,
+        # TopicNotImported 主题未导入,
+        #  TopicNotExistsInSourceCluster  主题在源集群中不存在,
+        #     TopicNotExistsInTargetCluster 主题在目标集群中不存在,
+        #     ConsumerConnectedOnTarget 目标集群上存在消费者连接,
+        #     SourceTopicHasNewMessagesIn5Minutes 源集群主题前5分钟内有新消息写入,
+        # TargetTopicHasNewMessagesIn5Minutes 目标集群主题前5分钟内有新消息写入,
+        #     SourceTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入,
+        # TargetTopicHasNoMessagesIn5Minutes 源集群前5分钟内没有新消息写入,
+        #     ConsumerGroupCountNotMatch 订阅组数量不一致,
+        #     SourceTopicHasUnconsumedMessages 源集群主题存在未消费消息,
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckError: String
+
+        attr_accessor :Namespace, :TopicName, :MigrationStatus, :HealthCheckPassed, :HealthCheckError
+
+        def initialize(namespace=nil, topicname=nil, migrationstatus=nil, healthcheckpassed=nil, healthcheckerror=nil)
+          @Namespace = namespace
+          @TopicName = topicname
+          @MigrationStatus = migrationstatus
+          @HealthCheckPassed = healthcheckpassed
+          @HealthCheckError = healthcheckerror
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @TopicName = params['TopicName']
+          @MigrationStatus = params['MigrationStatus']
+          @HealthCheckPassed = params['HealthCheckPassed']
+          @HealthCheckError = params['HealthCheckError']
         end
       end
 
@@ -8357,6 +8896,76 @@ module TencentCloud
         end
       end
 
+      # RocketMQ消费组配置信息
+      class RocketMQGroupConfig < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param GroupName: 消费组名称
+        # @type GroupName: String
+        # @param ConsumeBroadcastEnable: 是否开启广播消费
+        # @type ConsumeBroadcastEnable: Boolean
+        # @param ConsumeEnable: 是否开启消费
+        # @type ConsumeEnable: Boolean
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param ConsumerGroupType: 协议类型，支持以下枚举值
+        # TCP;
+        # HTTP;
+        # @type ConsumerGroupType: String
+
+        attr_accessor :Namespace, :GroupName, :ConsumeBroadcastEnable, :ConsumeEnable, :Remark, :ConsumerGroupType
+
+        def initialize(namespace=nil, groupname=nil, consumebroadcastenable=nil, consumeenable=nil, remark=nil, consumergrouptype=nil)
+          @Namespace = namespace
+          @GroupName = groupname
+          @ConsumeBroadcastEnable = consumebroadcastenable
+          @ConsumeEnable = consumeenable
+          @Remark = remark
+          @ConsumerGroupType = consumergrouptype
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @GroupName = params['GroupName']
+          @ConsumeBroadcastEnable = params['ConsumeBroadcastEnable']
+          @ConsumeEnable = params['ConsumeEnable']
+          @Remark = params['Remark']
+          @ConsumerGroupType = params['ConsumerGroupType']
+        end
+      end
+
+      # RocketMQ消费组配置信息
+      class RocketMQGroupConfigOutput < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param GroupName: 消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Imported: 导入状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Imported: Boolean
+        # @param Remark: remark
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :Namespace, :GroupName, :Imported, :Remark
+
+        def initialize(namespace=nil, groupname=nil, imported=nil, remark=nil)
+          @Namespace = namespace
+          @GroupName = groupname
+          @Imported = imported
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @GroupName = params['GroupName']
+          @Imported = params['Imported']
+          @Remark = params['Remark']
+        end
+      end
+
       # RocketMQ专享集群实例配置
       class RocketMQInstanceConfig < TencentCloud::Common::AbstractModel
         # @param MaxTpsPerNamespace: 单命名空间TPS上线
@@ -8461,6 +9070,28 @@ module TencentCloud
         end
       end
 
+      # 迁移主题的阶段分布
+      class RocketMQMigrationTopicDistribution < TencentCloud::Common::AbstractModel
+        # @param Stage: 迁移主题阶段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Stage: String
+        # @param Count: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :Stage, :Count
+
+        def initialize(stage=nil, count=nil)
+          @Stage = stage
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Stage = params['Stage']
+          @Count = params['Count']
+        end
+      end
+
       # rocketmq消息日志
       class RocketMQMsgLog < TencentCloud::Common::AbstractModel
         # @param MsgId: 消息id
@@ -8550,6 +9181,63 @@ module TencentCloud
           @PublicEndpoint = params['PublicEndpoint']
           @VpcEndpoint = params['VpcEndpoint']
           @InternalEndpoint = params['InternalEndpoint']
+        end
+      end
+
+      # RocketMQ平滑迁移任务
+      class RocketMQSmoothMigrationTaskItem < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param SourceClusterName: 源集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceClusterName: String
+        # @param ClusterId: 目标集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ConnectionType: 网络连接类型，
+        # PUBLIC 公网
+        # VPC 私有网络
+        # OTHER 其他
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionType: String
+        # @param SourceNameServer: 源集群NameServer地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceNameServer: String
+        # @param TaskStatus: 任务状态
+        # Configuration 迁移配置
+        # SourceConnecting 连接源集群中
+        # MetaDataImport 元数据导入
+        # EndpointSetup 切换接入点
+        # ServiceMigration 切流中
+        # Completed 已完成
+        # Cancelled 已取消
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: String
+
+        attr_accessor :TaskId, :TaskName, :SourceClusterName, :ClusterId, :ConnectionType, :SourceNameServer, :TaskStatus
+
+        def initialize(taskid=nil, taskname=nil, sourceclustername=nil, clusterid=nil, connectiontype=nil, sourcenameserver=nil, taskstatus=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @SourceClusterName = sourceclustername
+          @ClusterId = clusterid
+          @ConnectionType = connectiontype
+          @SourceNameServer = sourcenameserver
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @SourceClusterName = params['SourceClusterName']
+          @ClusterId = params['ClusterId']
+          @ConnectionType = params['ConnectionType']
+          @SourceNameServer = params['SourceNameServer']
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -8704,6 +9392,89 @@ module TencentCloud
               @SubscriptionData << rocketmqsubscription_tmp
             end
           end
+        end
+      end
+
+      # RocketMQ主题配置信息
+      class RocketMQTopicConfig < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param Type: 主题类型：
+        # Normal，普通
+        # PartitionedOrder, 分区顺序
+        # Transaction，事务消息
+        # DelayScheduled，延迟/定时消息
+        # @type Type: String
+        # @param Partitions: 分区个数
+        # @type Partitions: Integer
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :Namespace, :TopicName, :Type, :Partitions, :Remark
+
+        def initialize(namespace=nil, topicname=nil, type=nil, partitions=nil, remark=nil)
+          @Namespace = namespace
+          @TopicName = topicname
+          @Type = type
+          @Partitions = partitions
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @TopicName = params['TopicName']
+          @Type = params['Type']
+          @Partitions = params['Partitions']
+          @Remark = params['Remark']
+        end
+      end
+
+      # RocketMQ主题配置信息
+      class RocketMQTopicConfigOutput < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param Type: 主题类型：
+        # Normal，普通
+        # GlobalOrder， 全局顺序
+        # PartitionedOrder, 分区顺序
+        # Transaction，事务消息
+        # DelayScheduled，延迟/定时消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Partitions: 分区个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Imported: 是否导入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Imported: Boolean
+
+        attr_accessor :Namespace, :TopicName, :Type, :Partitions, :Remark, :Imported
+
+        def initialize(namespace=nil, topicname=nil, type=nil, partitions=nil, remark=nil, imported=nil)
+          @Namespace = namespace
+          @TopicName = topicname
+          @Type = type
+          @Partitions = partitions
+          @Remark = remark
+          @Imported = imported
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @TopicName = params['TopicName']
+          @Type = params['Type']
+          @Partitions = params['Partitions']
+          @Remark = params['Remark']
+          @Imported = params['Imported']
         end
       end
 

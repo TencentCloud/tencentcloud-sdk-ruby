@@ -260,6 +260,96 @@ module TencentCloud
         end
       end
 
+      # 主备流详细信息。
+      class BackupStreamDetailData < TencentCloud::Common::AbstractModel
+        # @param DomainName: 推流域名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
+        # @param AppName: 推流路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param PublishTime:  UTC 格式，例如：2018-06-29T19:00:00Z。
+        # 注意：和北京时间相差8小时。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublishTime: String
+        # @param UpstreamSequence: 推流唯一标识。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamSequence: String
+        # @param SourceFrom: 推流来源。示例：
+        # 直推流；
+        # 拉流转推(1234)；
+        # 注意：拉流转推来源括号中为拉流转推的任务
+        #  ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceFrom: String
+        # @param MasterFlag: 主备标识。
+        # 当前流为主流：1，
+        # 当前流为备流: 0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterFlag: Integer
+
+        attr_accessor :DomainName, :AppName, :PublishTime, :UpstreamSequence, :SourceFrom, :MasterFlag
+
+        def initialize(domainname=nil, appname=nil, publishtime=nil, upstreamsequence=nil, sourcefrom=nil, masterflag=nil)
+          @DomainName = domainname
+          @AppName = appname
+          @PublishTime = publishtime
+          @UpstreamSequence = upstreamsequence
+          @SourceFrom = sourcefrom
+          @MasterFlag = masterflag
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @AppName = params['AppName']
+          @PublishTime = params['PublishTime']
+          @UpstreamSequence = params['UpstreamSequence']
+          @SourceFrom = params['SourceFrom']
+          @MasterFlag = params['MasterFlag']
+        end
+      end
+
+      # 主备流分组信息。
+      class BackupStreamGroupInfo < TencentCloud::Common::AbstractModel
+        # @param StreamName: 流名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamName: String
+        # @param BackupList: 主备流信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupList: Array
+        # @param OptimalEnable: 是否对该流开启了择优调度。
+        # 0 - 未开启。
+        # 1 - 已开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptimalEnable: Integer
+        # @param HostGroupName: 域名分组的分组名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostGroupName: String
+
+        attr_accessor :StreamName, :BackupList, :OptimalEnable, :HostGroupName
+
+        def initialize(streamname=nil, backuplist=nil, optimalenable=nil, hostgroupname=nil)
+          @StreamName = streamname
+          @BackupList = backuplist
+          @OptimalEnable = optimalenable
+          @HostGroupName = hostgroupname
+        end
+
+        def deserialize(params)
+          @StreamName = params['StreamName']
+          unless params['BackupList'].nil?
+            @BackupList = []
+            params['BackupList'].each do |i|
+              backupstreamdetaildata_tmp = BackupStreamDetailData.new
+              backupstreamdetaildata_tmp.deserialize(i)
+              @BackupList << backupstreamdetaildata_tmp
+            end
+          end
+          @OptimalEnable = params['OptimalEnable']
+          @HostGroupName = params['HostGroupName']
+        end
+      end
+
       # 带宽信息
       class BandwidthInfo < TencentCloud::Common::AbstractModel
         # @param Time: 返回格式：
@@ -3431,6 +3521,50 @@ module TencentCloud
               billareainfo_tmp = BillAreaInfo.new
               billareainfo_tmp.deserialize(i)
               @DataInfoList << billareainfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupStreamList请求参数结构体
+      class DescribeBackupStreamListRequest < TencentCloud::Common::AbstractModel
+        # @param StreamName: 流名称，用于精确查询。
+        # @type StreamName: String
+
+        attr_accessor :StreamName
+
+        def initialize(streamname=nil)
+          @StreamName = streamname
+        end
+
+        def deserialize(params)
+          @StreamName = params['StreamName']
+        end
+      end
+
+      # DescribeBackupStreamList返回参数结构体
+      class DescribeBackupStreamListResponse < TencentCloud::Common::AbstractModel
+        # @param StreamInfoList: 主备流分组信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StreamInfoList, :RequestId
+
+        def initialize(streaminfolist=nil, requestid=nil)
+          @StreamInfoList = streaminfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StreamInfoList'].nil?
+            @StreamInfoList = []
+            params['StreamInfoList'].each do |i|
+              backupstreamgroupinfo_tmp = BackupStreamGroupInfo.new
+              backupstreamgroupinfo_tmp.deserialize(i)
+              @StreamInfoList << backupstreamgroupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8134,6 +8268,48 @@ module TencentCloud
         end
       end
 
+      # EnableOptimalSwitching请求参数结构体
+      class EnableOptimalSwitchingRequest < TencentCloud::Common::AbstractModel
+        # @param StreamName: 针对该流 ID 启用择优调度。
+        # @type StreamName: String
+        # @param EnableSwitch: 启用开关，默认为启用。
+        # 0 - 禁用。
+        # 1 - 启用。
+        # @type EnableSwitch: Integer
+        # @param HostGroupName: 要启用自动择优的流所属的域名分组名称。
+        # @type HostGroupName: String
+
+        attr_accessor :StreamName, :EnableSwitch, :HostGroupName
+
+        def initialize(streamname=nil, enableswitch=nil, hostgroupname=nil)
+          @StreamName = streamname
+          @EnableSwitch = enableswitch
+          @HostGroupName = hostgroupname
+        end
+
+        def deserialize(params)
+          @StreamName = params['StreamName']
+          @EnableSwitch = params['EnableSwitch']
+          @HostGroupName = params['HostGroupName']
+        end
+      end
+
+      # EnableOptimalSwitching返回参数结构体
+      class EnableOptimalSwitchingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # flv格式特殊配置
       class FlvSpecialParam < TencentCloud::Common::AbstractModel
         # @param UploadInRecording: 是否开启边录边传，仅flv格式有效。
@@ -11726,6 +11902,50 @@ module TencentCloud
           @AppName = params['AppName']
           @DomainName = params['DomainName']
           @PushToDelay = params['PushToDelay']
+        end
+      end
+
+      # SwitchBackupStream请求参数结构体
+      class SwitchBackupStreamRequest < TencentCloud::Common::AbstractModel
+        # @param PushDomainName: 推流域名。
+        # @type PushDomainName: String
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param UpstreamSequence: 查询接口获取到该流所有在推的上行 Sequence。指定要切到的目标上行 Sequence。
+        # @type UpstreamSequence: String
+
+        attr_accessor :PushDomainName, :AppName, :StreamName, :UpstreamSequence
+
+        def initialize(pushdomainname=nil, appname=nil, streamname=nil, upstreamsequence=nil)
+          @PushDomainName = pushdomainname
+          @AppName = appname
+          @StreamName = streamname
+          @UpstreamSequence = upstreamsequence
+        end
+
+        def deserialize(params)
+          @PushDomainName = params['PushDomainName']
+          @AppName = params['AppName']
+          @StreamName = params['StreamName']
+          @UpstreamSequence = params['UpstreamSequence']
+        end
+      end
+
+      # SwitchBackupStream返回参数结构体
+      class SwitchBackupStreamResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

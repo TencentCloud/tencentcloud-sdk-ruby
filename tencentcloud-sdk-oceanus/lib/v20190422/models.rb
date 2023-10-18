@@ -2149,27 +2149,77 @@ module TencentCloud
 
       # FetchSqlGatewayStatementResult请求参数结构体
       class FetchSqlGatewayStatementResultRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SessionId: Sql Gateway会话ID
+        # @type SessionId: String
+        # @param OperationHandleId: sql的查询id
+        # @type OperationHandleId: String
+        # @param ResultUri: 下一条结果的获取url，首次获取执行结果时可以为空，当获取下一批查询结果时需要传递
+        # @type ResultUri: String
 
+        attr_accessor :ClusterId, :SessionId, :OperationHandleId, :ResultUri
 
-        def initialize()
+        def initialize(clusterid=nil, sessionid=nil, operationhandleid=nil, resulturi=nil)
+          @ClusterId = clusterid
+          @SessionId = sessionid
+          @OperationHandleId = operationhandleid
+          @ResultUri = resulturi
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SessionId = params['SessionId']
+          @OperationHandleId = params['OperationHandleId']
+          @ResultUri = params['ResultUri']
         end
       end
 
       # FetchSqlGatewayStatementResult返回参数结构体
       class FetchSqlGatewayStatementResultResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMessage: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: Array
+        # @param ResultType: 返回类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultType: String
+        # @param IsQueryResult: 是否DQL结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsQueryResult: Boolean
+        # @param ResultKind: 结果类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultKind: String
+        # @param Results: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: :class:`Tencentcloud::Oceanus.v20190422.models.StatementResult`
+        # @param NextResultUri: 下一次请求的uri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextResultUri: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ErrorMessage, :ResultType, :IsQueryResult, :ResultKind, :Results, :NextResultUri, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(errormessage=nil, resulttype=nil, isqueryresult=nil, resultkind=nil, results=nil, nextresulturi=nil, requestid=nil)
+          @ErrorMessage = errormessage
+          @ResultType = resulttype
+          @IsQueryResult = isqueryresult
+          @ResultKind = resultkind
+          @Results = results
+          @NextResultUri = nextresulturi
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ErrorMessage = params['ErrorMessage']
+          @ResultType = params['ResultType']
+          @IsQueryResult = params['IsQueryResult']
+          @ResultKind = params['ResultKind']
+          unless params['Results'].nil?
+            @Results = StatementResult.new
+            @Results.deserialize(params['Results'])
+          end
+          @NextResultUri = params['NextResultUri']
           @RequestId = params['RequestId']
         end
       end
@@ -2708,6 +2758,33 @@ module TencentCloud
         end
       end
 
+      # SqlGateway返回LogicalType类型
+      class LogicalType < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param NullAble: 是否允许为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NullAble: Boolean
+        # @param Length: 长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+
+        attr_accessor :Type, :NullAble, :Length
+
+        def initialize(type=nil, nullable=nil, length=nil)
+          @Type = type
+          @NullAble = nullable
+          @Length = length
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @NullAble = params['NullAble']
+          @Length = params['Length']
+        end
+      end
+
       # ModifyJob请求参数结构体
       class ModifyJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -3185,6 +3262,58 @@ module TencentCloud
         end
       end
 
+      # Sql Gateway返回Column类型
+      class ResultColumn < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param LogicalType: 本地类型描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogicalType: :class:`Tencentcloud::Oceanus.v20190422.models.LogicalType`
+        # @param Comment: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+
+        attr_accessor :Name, :LogicalType, :Comment
+
+        def initialize(name=nil, logicaltype=nil, comment=nil)
+          @Name = name
+          @LogicalType = logicaltype
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['LogicalType'].nil?
+            @LogicalType = LogicalType.new
+            @LogicalType.deserialize(params['LogicalType'])
+          end
+          @Comment = params['Comment']
+        end
+      end
+
+      # Sql Gateway返回数据
+      class ResultData < TencentCloud::Common::AbstractModel
+        # @param Kind: 操作类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param Fields: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fields: Array
+
+        attr_accessor :Kind, :Fields
+
+        def initialize(kind=nil, fields=nil)
+          @Kind = kind
+          @Fields = fields
+        end
+
+        def deserialize(params)
+          @Kind = params['Kind']
+          @Fields = params['Fields']
+        end
+      end
+
       # 角色授权信息
       class RoleAuth < TencentCloud::Common::AbstractModel
         # @param AppId: 用户 AppID
@@ -3339,27 +3468,53 @@ module TencentCloud
 
       # RunSqlGatewayStatement请求参数结构体
       class RunSqlGatewayStatementRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Sql: 需要执行的sql，该sql会被Sql Gateway执行，当前支持的是paimon修改需求，因此主要是DDL语句
+        # @type Sql: String
+        # @param SessionId: Sql Gateway会话ID，可不填，如果不填则会自动创建一个会话ID，每个会话ID都有一个存活时间，测试环境为10分钟，线上默认是30分钟
+        # @type SessionId: String
 
+        attr_accessor :ClusterId, :Sql, :SessionId
 
-        def initialize()
+        def initialize(clusterid=nil, sql=nil, sessionid=nil)
+          @ClusterId = clusterid
+          @Sql = sql
+          @SessionId = sessionid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Sql = params['Sql']
+          @SessionId = params['SessionId']
         end
       end
 
       # RunSqlGatewayStatement返回参数结构体
       class RunSqlGatewayStatementResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMessage: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: Array
+        # @param SessionId: 会话id，若入参未传，则返回自动创建的会话id，若入参已经传递，则返回值与原传入值一致
+        # @type SessionId: String
+        # @param OperationHandleId: 返回执行id，可以根据该执行id和会话id获取执行结果
+        # @type OperationHandleId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ErrorMessage, :SessionId, :OperationHandleId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(errormessage=nil, sessionid=nil, operationhandleid=nil, requestid=nil)
+          @ErrorMessage = errormessage
+          @SessionId = sessionid
+          @OperationHandleId = operationhandleid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ErrorMessage = params['ErrorMessage']
+          @SessionId = params['SessionId']
+          @OperationHandleId = params['OperationHandleId']
           @RequestId = params['RequestId']
         end
       end
@@ -3574,6 +3729,47 @@ module TencentCloud
               property_tmp = Property.new
               property_tmp.deserialize(i)
               @Properties << property_tmp
+            end
+          end
+        end
+      end
+
+      # Sql Gateway 返回Result结构类型
+      class StatementResult < TencentCloud::Common::AbstractModel
+        # @param Columns: 返回结果列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+        # @param RowFormat: 格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowFormat: String
+        # @param Data: 结果值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Columns, :RowFormat, :Data
+
+        def initialize(columns=nil, rowformat=nil, data=nil)
+          @Columns = columns
+          @RowFormat = rowformat
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              resultcolumn_tmp = ResultColumn.new
+              resultcolumn_tmp.deserialize(i)
+              @Columns << resultcolumn_tmp
+            end
+          end
+          @RowFormat = params['RowFormat']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resultdata_tmp = ResultData.new
+              resultdata_tmp.deserialize(i)
+              @Data << resultdata_tmp
             end
           end
         end
