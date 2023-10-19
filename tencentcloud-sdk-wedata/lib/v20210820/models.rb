@@ -2199,17 +2199,22 @@ module TencentCloud
         # @param Message: 失败返回提示信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
+        # @param BaselineId: 基线Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaselineId: Integer
 
-        attr_accessor :Success, :Message
+        attr_accessor :Success, :Message, :BaselineId
 
-        def initialize(success=nil, message=nil)
+        def initialize(success=nil, message=nil, baselineid=nil)
           @Success = success
           @Message = message
+          @BaselineId = baselineid
         end
 
         def deserialize(params)
           @Success = params['Success']
           @Message = params['Message']
+          @BaselineId = params['BaselineId']
         end
       end
 
@@ -3897,7 +3902,7 @@ module TencentCloud
       class CreateHiveTableRequest < TencentCloud::Common::AbstractModel
         # @param DatasourceId: 数据源id
         # @type DatasourceId: String
-        # @param Database: 数据库
+        # @param Database: 数据库名称
         # @type Database: String
         # @param DDLSql: base64转码之后的建表语句
         # @type DDLSql: String

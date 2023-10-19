@@ -2290,12 +2290,14 @@ module TencentCloud
         # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
         # @param VODExportInfo: 导出的云点播媒资信息。当导出目标为 VOD 时必填。
         # @type VODExportInfo: :class:`Tencentcloud::Cme.v20191029.models.VODExportInfo`
+        # @param ExportExtensionArgs: 视频导出扩展参数。可以覆盖导出模板中的参数，灵活的指定导出规格及参数。
+        # @type ExportExtensionArgs: :class:`Tencentcloud::Cme.v20191029.models.VideoExportExtensionArgs`
         # @param Operator: 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，轨道数据中使用的媒资该操作者需要拥有使用权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :Definition, :ExportDestination, :TrackData, :AspectRatio, :CoverData, :CMEExportInfo, :VODExportInfo, :Operator
+        attr_accessor :Platform, :Definition, :ExportDestination, :TrackData, :AspectRatio, :CoverData, :CMEExportInfo, :VODExportInfo, :ExportExtensionArgs, :Operator
 
-        def initialize(platform=nil, definition=nil, exportdestination=nil, trackdata=nil, aspectratio=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+        def initialize(platform=nil, definition=nil, exportdestination=nil, trackdata=nil, aspectratio=nil, coverdata=nil, cmeexportinfo=nil, vodexportinfo=nil, exportextensionargs=nil, operator=nil)
           @Platform = platform
           @Definition = definition
           @ExportDestination = exportdestination
@@ -2304,6 +2306,7 @@ module TencentCloud
           @CoverData = coverdata
           @CMEExportInfo = cmeexportinfo
           @VODExportInfo = vodexportinfo
+          @ExportExtensionArgs = exportextensionargs
           @Operator = operator
         end
 
@@ -2321,6 +2324,10 @@ module TencentCloud
           unless params['VODExportInfo'].nil?
             @VODExportInfo = VODExportInfo.new
             @VODExportInfo.deserialize(params['VODExportInfo'])
+          end
+          unless params['ExportExtensionArgs'].nil?
+            @ExportExtensionArgs = VideoExportExtensionArgs.new
+            @ExportExtensionArgs.deserialize(params['ExportExtensionArgs'])
           end
           @Operator = params['Operator']
         end
@@ -2367,12 +2374,14 @@ module TencentCloud
         # @type CMEExportInfo: :class:`Tencentcloud::Cme.v20191029.models.CMEExportInfo`
         # @param VODExportInfo: 导出的云点播媒资信息。当导出目标为 VOD 时必填。
         # @type VODExportInfo: :class:`Tencentcloud::Cme.v20191029.models.VODExportInfo`
+        # @param ExportExtensionArgs: 视频导出扩展参数。可以覆盖导出模板中的参数，灵活的指定导出规格及参数。
+        # @type ExportExtensionArgs: :class:`Tencentcloud::Cme.v20191029.models.VideoExportExtensionArgs`
         # @param Operator: 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，则操作者需要有替换媒体及剪辑模板的权限。
         # @type Operator: String
 
-        attr_accessor :Platform, :TemplateId, :Definition, :ExportDestination, :SlotReplacements, :CMEExportInfo, :VODExportInfo, :Operator
+        attr_accessor :Platform, :TemplateId, :Definition, :ExportDestination, :SlotReplacements, :CMEExportInfo, :VODExportInfo, :ExportExtensionArgs, :Operator
 
-        def initialize(platform=nil, templateid=nil, definition=nil, exportdestination=nil, slotreplacements=nil, cmeexportinfo=nil, vodexportinfo=nil, operator=nil)
+        def initialize(platform=nil, templateid=nil, definition=nil, exportdestination=nil, slotreplacements=nil, cmeexportinfo=nil, vodexportinfo=nil, exportextensionargs=nil, operator=nil)
           @Platform = platform
           @TemplateId = templateid
           @Definition = definition
@@ -2380,6 +2389,7 @@ module TencentCloud
           @SlotReplacements = slotreplacements
           @CMEExportInfo = cmeexportinfo
           @VODExportInfo = vodexportinfo
+          @ExportExtensionArgs = exportextensionargs
           @Operator = operator
         end
 
@@ -2403,6 +2413,10 @@ module TencentCloud
           unless params['VODExportInfo'].nil?
             @VODExportInfo = VODExportInfo.new
             @VODExportInfo.deserialize(params['VODExportInfo'])
+          end
+          unless params['ExportExtensionArgs'].nil?
+            @ExportExtensionArgs = VideoExportExtensionArgs.new
+            @ExportExtensionArgs.deserialize(params['ExportExtensionArgs'])
           end
           @Operator = params['Operator']
         end

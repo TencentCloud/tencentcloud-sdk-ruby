@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云原生实例列表
+
+        # @param request: Request instance for DescribeInstances.
+        # @type request: :class:`Tencentcloud::cdwpg::V20201230::DescribeInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cdwpg::V20201230::DescribeInstancesResponse`
+        def DescribeInstances(request)
+          body = send_request('DescribeInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群实例列表
 
         # @param request: Request instance for DescribeSimpleInstances.

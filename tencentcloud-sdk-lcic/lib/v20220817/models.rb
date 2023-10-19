@@ -2610,6 +2610,26 @@ module TencentCloud
         end
       end
 
+      # 表情消息
+      class FaceMsgContent < TencentCloud::Common::AbstractModel
+        # @param Index: 表情索引，用户自定义。
+        # @type Index: Integer
+        # @param Data: 额外数据。
+        # @type Data: String
+
+        attr_accessor :Index, :Data
+
+        def initialize(index=nil, data=nil)
+          @Index = index
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Data = params['Data']
+        end
+      end
+
       # GetRoomEvent请求参数结构体
       class GetRoomEventRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
@@ -2929,6 +2949,77 @@ module TencentCloud
           @TeacherId = params['TeacherId']
           @GroupType = params['GroupType']
           @SubGroupIds = params['SubGroupIds']
+        end
+      end
+
+      # 单张图片信息
+      class ImageInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 图片类型：
+        # 1-原图
+        # 2-大图
+        # 3-缩略图
+        # @type Type: Integer
+        # @param Size: 图片数据大小，单位：字节。
+        # @type Size: Integer
+        # @param Width: 图片宽度，单位为像素。
+        # @type Width: Integer
+        # @param Height: 图片高度，单位为像素。
+        # @type Height: Integer
+        # @param URL: 图片下载地址。
+        # @type URL: String
+
+        attr_accessor :Type, :Size, :Width, :Height, :URL
+
+        def initialize(type=nil, size=nil, width=nil, height=nil, url=nil)
+          @Type = type
+          @Size = size
+          @Width = width
+          @Height = height
+          @URL = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Size = params['Size']
+          @Width = params['Width']
+          @Height = params['Height']
+          @URL = params['URL']
+        end
+      end
+
+      # 图片消息
+      class ImageMsgContent < TencentCloud::Common::AbstractModel
+        # @param UUID: 图片的唯一标识，客户端用于索引图片的键值。
+        # @type UUID: String
+        # @param ImageFormat: 图片格式。
+        # JPG = 1
+        # GIF = 2
+        # PNG = 3
+        # BMP = 4
+        # 其他 = 255
+        # @type ImageFormat: Integer
+        # @param ImageInfoList: 图片信息
+        # @type ImageInfoList: Array
+
+        attr_accessor :UUID, :ImageFormat, :ImageInfoList
+
+        def initialize(uuid=nil, imageformat=nil, imageinfolist=nil)
+          @UUID = uuid
+          @ImageFormat = imageformat
+          @ImageInfoList = imageinfolist
+        end
+
+        def deserialize(params)
+          @UUID = params['UUID']
+          @ImageFormat = params['ImageFormat']
+          unless params['ImageInfoList'].nil?
+            @ImageInfoList = []
+            params['ImageInfoList'].each do |i|
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @ImageInfoList << imageinfo_tmp
+            end
+          end
         end
       end
 
@@ -3486,6 +3577,46 @@ module TencentCloud
         end
       end
 
+      # 自定义消息结构
+      class MsgBody < TencentCloud::Common::AbstractModel
+        # @param MsgType: TIM 消息对象类型，目前支持的消息对象包括：
+        # TIMTextElem（文本消息）
+        # TIMFaceElem（表情消息）
+        # TIMImageElem（图像消息）
+        # @type MsgType: String
+        # @param TextMsgContent: 文本消息，当MsgType 为TIMTextElem（文本消息）必选。
+        # @type TextMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.TextMsgContent`
+        # @param FaceMsgContent: 表情消息，当MsgType 为TIMFaceElem（表情消息）必选。
+        # @type FaceMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.FaceMsgContent`
+        # @param ImageMsgContent: 图像消息，当MsgType为TIMImageElem（图像消息）必选。
+        # @type ImageMsgContent: :class:`Tencentcloud::Lcic.v20220817.models.ImageMsgContent`
+
+        attr_accessor :MsgType, :TextMsgContent, :FaceMsgContent, :ImageMsgContent
+
+        def initialize(msgtype=nil, textmsgcontent=nil, facemsgcontent=nil, imagemsgcontent=nil)
+          @MsgType = msgtype
+          @TextMsgContent = textmsgcontent
+          @FaceMsgContent = facemsgcontent
+          @ImageMsgContent = imagemsgcontent
+        end
+
+        def deserialize(params)
+          @MsgType = params['MsgType']
+          unless params['TextMsgContent'].nil?
+            @TextMsgContent = TextMsgContent.new
+            @TextMsgContent.deserialize(params['TextMsgContent'])
+          end
+          unless params['FaceMsgContent'].nil?
+            @FaceMsgContent = FaceMsgContent.new
+            @FaceMsgContent.deserialize(params['FaceMsgContent'])
+          end
+          unless params['ImageMsgContent'].nil?
+            @ImageMsgContent = ImageMsgContent.new
+            @ImageMsgContent.deserialize(params['ImageMsgContent'])
+          end
+        end
+      end
+
       # 房间问答问题详情
       class QuestionInfo < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
@@ -3793,6 +3924,101 @@ module TencentCloud
         end
       end
 
+      # SendRoomNormalMessage请求参数结构体
+      class SendRoomNormalMessageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param FromAccount: 管理员指定消息发送方账号（若需设置 FromAccount 信息，则该参数取值不能为空）
+        # @type FromAccount: String
+        # @param MsgBody: 自定义消息
+        # @type MsgBody: Array
+        # @param CloudCustomData: 消息自定义数据（云端保存，会发送到对端，程序卸载重装后还能拉取到）。
+        # @type CloudCustomData: String
+
+        attr_accessor :SdkAppId, :RoomId, :FromAccount, :MsgBody, :CloudCustomData
+
+        def initialize(sdkappid=nil, roomid=nil, fromaccount=nil, msgbody=nil, cloudcustomdata=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @FromAccount = fromaccount
+          @MsgBody = msgbody
+          @CloudCustomData = cloudcustomdata
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @FromAccount = params['FromAccount']
+          unless params['MsgBody'].nil?
+            @MsgBody = []
+            params['MsgBody'].each do |i|
+              msgbody_tmp = MsgBody.new
+              msgbody_tmp.deserialize(i)
+              @MsgBody << msgbody_tmp
+            end
+          end
+          @CloudCustomData = params['CloudCustomData']
+        end
+      end
+
+      # SendRoomNormalMessage返回参数结构体
+      class SendRoomNormalMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SendRoomNotificationMessage请求参数结构体
+      class SendRoomNotificationMessageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param MsgContent: 消息。
+        # @type MsgContent: String
+
+        attr_accessor :SdkAppId, :RoomId, :MsgContent
+
+        def initialize(sdkappid=nil, roomid=nil, msgcontent=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @MsgContent = msgcontent
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @MsgContent = params['MsgContent']
+        end
+      end
+
+      # SendRoomNotificationMessage返回参数结构体
+      class SendRoomNotificationMessageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetAppCustomContent请求参数结构体
       class SetAppCustomContentRequest < TencentCloud::Common::AbstractModel
         # @param CustomContent: 自定义内容。
@@ -3971,6 +4197,22 @@ module TencentCloud
         def deserialize(params)
           @Text = params['Text']
           @Color = params['Color']
+        end
+      end
+
+      # 文本消息
+      class TextMsgContent < TencentCloud::Common::AbstractModel
+        # @param Text: 文本消息。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
         end
       end
 

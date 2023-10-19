@@ -1205,6 +1205,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新网关上游实例列表，仅支持IPList服务类型
+
+        # @param request: Request instance for UpdateUpstreamTargets.
+        # @type request: :class:`Tencentcloud::tse::V20201207::UpdateUpstreamTargetsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::UpdateUpstreamTargetsResponse`
+        def UpdateUpstreamTargets(request)
+          body = send_request('UpdateUpstreamTargets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUpstreamTargetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

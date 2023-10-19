@@ -1594,6 +1594,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # waf斯巴达-获取防护域名信息
+
+        # @param request: Request instance for DescribeSpartaProtectionInfo.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeSpartaProtectionInfoRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeSpartaProtectionInfoResponse`
+        def DescribeSpartaProtectionInfo(request)
+          body = send_request('DescribeSpartaProtectionInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSpartaProtectionInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户TLS版本
 
         # @param request: Request instance for DescribeTlsVersion.
@@ -1700,6 +1724,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserDomainInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户防护规则等级
+
+        # @param request: Request instance for DescribeUserLevel.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeUserLevelRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeUserLevelResponse`
+        def DescribeUserLevel(request)
+          body = send_request('DescribeUserLevel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserLevelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1846,6 +1894,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWafThreatenIntelligenceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取域名的webshell状态
+
+        # @param request: Request instance for DescribeWebshellStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeWebshellStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeWebshellStatusResponse`
+        def DescribeWebshellStatus(request)
+          body = send_request('DescribeWebshellStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWebshellStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

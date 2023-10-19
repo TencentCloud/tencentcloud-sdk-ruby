@@ -1592,6 +1592,38 @@ module TencentCloud
         end
       end
 
+      # Clb-waf地域信息
+      class ClbWafRegionItem < TencentCloud::Common::AbstractModel
+        # @param Id: 地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Text: 地域中文说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Value: 地域英文全拼
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Code: 地域编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+
+        attr_accessor :Id, :Text, :Value, :Code
+
+        def initialize(id=nil, text=nil, value=nil, code=nil)
+          @Id = id
+          @Text = text
+          @Value = value
+          @Code = code
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Text = params['Text']
+          @Value = params['Value']
+          @Code = params['Code']
+        end
+      end
+
       # CreateAccessExport请求参数结构体
       class CreateAccessExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -4961,6 +4993,158 @@ module TencentCloud
         end
       end
 
+      # DescribeSpartaProtectionInfo请求参数结构体
+      class DescribeSpartaProtectionInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Edition: 版本
+        # @type Edition: String
+        # @param InstanceID: 实例
+        # @type InstanceID: String
+
+        attr_accessor :Domain, :Edition, :InstanceID
+
+        def initialize(domain=nil, edition=nil, instanceid=nil)
+          @Domain = domain
+          @Edition = edition
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeSpartaProtectionInfo返回参数结构体
+      class DescribeSpartaProtectionInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param Cname: cname取值
+        # @type Cname: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param SrcList: 源IP地址列表
+        # @type SrcList: Array
+        # @param CertType: 证书类型
+        # @type CertType: String
+        # @param Cert: 证书
+        # @type Cert: String
+        # @param PrivateKey: 私有密钥
+        # @type PrivateKey: String
+        # @param Sslid: ssl的id
+        # @type Sslid: String
+        # @param IsCdn: 是否是cdn
+        # @type IsCdn: String
+        # @param GrayAreas: 灰度区域列表
+        # @type GrayAreas: Array
+        # @param Engine: 引擎
+        # @type Engine: String
+        # @param HttpsRewrite: HTTPS重写
+        # @type HttpsRewrite: String
+        # @param UpstreamType: upstreamType取值
+        # @type UpstreamType: String
+        # @param UpstreamDomain: upstreamDomain取值
+        # @type UpstreamDomain: String
+        # @param UpstreamScheme: upstreamScheme取值
+        # @type UpstreamScheme: String
+        # @param IsHttp2: 是否是HTTP2
+        # @type IsHttp2: String
+        # @param IsWebsocket: 是否含有websocket
+        # @type IsWebsocket: String
+        # @param LoadBalance: loadBalance信息
+        # @type LoadBalance: String
+        # @param HttpsUpstreamPort: httpsUpstreamPort取值
+        # @type HttpsUpstreamPort: String
+        # @param Ports: port信息
+        # @type Ports: Array
+        # @param IsGray: 是否灰度
+        # @type IsGray: String
+        # @param Mode: 模式
+        # @type Mode: String
+        # @param Level: 防御等级,100,200,300
+        # @type Level: String
+        # @param IsKeepAlive: 与源站是否保持长连接
+        # @type IsKeepAlive: String
+        # @param Anycast: 0：BGP 1：Anycast
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Anycast: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :DomainId, :Cname, :Status, :SrcList, :CertType, :Cert, :PrivateKey, :Sslid, :IsCdn, :GrayAreas, :Engine, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :UpstreamScheme, :IsHttp2, :IsWebsocket, :LoadBalance, :HttpsUpstreamPort, :Ports, :IsGray, :Mode, :Level, :IsKeepAlive, :Anycast, :RequestId
+
+        def initialize(domain=nil, domainid=nil, cname=nil, status=nil, srclist=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, grayareas=nil, engine=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, upstreamscheme=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, httpsupstreamport=nil, ports=nil, isgray=nil, mode=nil, level=nil, iskeepalive=nil, anycast=nil, requestid=nil)
+          @Domain = domain
+          @DomainId = domainid
+          @Cname = cname
+          @Status = status
+          @SrcList = srclist
+          @CertType = certtype
+          @Cert = cert
+          @PrivateKey = privatekey
+          @Sslid = sslid
+          @IsCdn = iscdn
+          @GrayAreas = grayareas
+          @Engine = engine
+          @HttpsRewrite = httpsrewrite
+          @UpstreamType = upstreamtype
+          @UpstreamDomain = upstreamdomain
+          @UpstreamScheme = upstreamscheme
+          @IsHttp2 = ishttp2
+          @IsWebsocket = iswebsocket
+          @LoadBalance = loadbalance
+          @HttpsUpstreamPort = httpsupstreamport
+          @Ports = ports
+          @IsGray = isgray
+          @Mode = mode
+          @Level = level
+          @IsKeepAlive = iskeepalive
+          @Anycast = anycast
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+          @Cname = params['Cname']
+          @Status = params['Status']
+          @SrcList = params['SrcList']
+          @CertType = params['CertType']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
+          @Sslid = params['Sslid']
+          @IsCdn = params['IsCdn']
+          @GrayAreas = params['GrayAreas']
+          @Engine = params['Engine']
+          @HttpsRewrite = params['HttpsRewrite']
+          @UpstreamType = params['UpstreamType']
+          @UpstreamDomain = params['UpstreamDomain']
+          @UpstreamScheme = params['UpstreamScheme']
+          @IsHttp2 = params['IsHttp2']
+          @IsWebsocket = params['IsWebsocket']
+          @LoadBalance = params['LoadBalance']
+          @HttpsUpstreamPort = params['HttpsUpstreamPort']
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portitem_tmp = PortItem.new
+              portitem_tmp.deserialize(i)
+              @Ports << portitem_tmp
+            end
+          end
+          @IsGray = params['IsGray']
+          @Mode = params['Mode']
+          @Level = params['Level']
+          @IsKeepAlive = params['IsKeepAlive']
+          @Anycast = params['Anycast']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTlsVersion请求参数结构体
       class DescribeTlsVersionRequest < TencentCloud::Common::AbstractModel
 
@@ -5124,18 +5308,30 @@ module TencentCloud
         # @param Data: 地域（标准的ap-格式）列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
+        # @param RichDatas: 包含详细属性的地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RichDatas: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :RichDatas, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, richdatas=nil, requestid=nil)
           @Data = data
+          @RichDatas = richdatas
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          unless params['RichDatas'].nil?
+            @RichDatas = []
+            params['RichDatas'].each do |i|
+              clbwafregionitem_tmp = ClbWafRegionItem.new
+              clbwafregionitem_tmp.deserialize(i)
+              @RichDatas << clbwafregionitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5174,6 +5370,42 @@ module TencentCloud
               @UsersInfo << userdomaininfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserLevel请求参数结构体
+      class DescribeUserLevelRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeUserLevel返回参数结构体
+      class DescribeUserLevelResponse < TencentCloud::Common::AbstractModel
+        # @param Level: 300:正常 400:严格
+        # @type Level: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Level, :RequestId
+
+        def initialize(level=nil, requestid=nil)
+          @Level = level
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Level = params['Level']
           @RequestId = params['RequestId']
         end
       end
@@ -5474,6 +5706,46 @@ module TencentCloud
         end
       end
 
+      # DescribeWebshellStatus请求参数结构体
+      class DescribeWebshellStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Domain
+
+        def initialize(domain=nil)
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+        end
+      end
+
+      # DescribeWebshellStatus返回参数结构体
+      class DescribeWebshellStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: webshell域名
+        # @type Domain: String
+        # @param Status: 开关状态
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :Status, :RequestId
+
+        def initialize(domain=nil, status=nil, requestid=nil)
+          @Domain = domain
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # domain列表
       class DomainInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -5669,17 +5941,22 @@ module TencentCloud
         # @type Domain: String
         # @param Edition: 版本
         # @type Edition: String
+        # @param InstanceID: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
 
-        attr_accessor :Domain, :Edition
+        attr_accessor :Domain, :Edition, :InstanceID
 
-        def initialize(domain=nil, edition=nil)
+        def initialize(domain=nil, edition=nil, instanceid=nil)
           @Domain = domain
           @Edition = edition
+          @InstanceID = instanceid
         end
 
         def deserialize(params)
           @Domain = params['Domain']
           @Edition = params['Edition']
+          @InstanceID = params['InstanceID']
         end
       end
 

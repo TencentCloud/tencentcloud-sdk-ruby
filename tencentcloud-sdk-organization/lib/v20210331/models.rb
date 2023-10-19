@@ -220,6 +220,58 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationIdentity请求参数结构体
+      class CreateOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityAliasName: 身份名称
+        # @type IdentityAliasName: String
+        # @param IdentityPolicy: 身份策略
+        # @type IdentityPolicy: Array
+        # @param Description: 身份描述
+        # @type Description: String
+
+        attr_accessor :IdentityAliasName, :IdentityPolicy, :Description
+
+        def initialize(identityaliasname=nil, identitypolicy=nil, description=nil)
+          @IdentityAliasName = identityaliasname
+          @IdentityPolicy = identitypolicy
+          @Description = description
+        end
+
+        def deserialize(params)
+          @IdentityAliasName = params['IdentityAliasName']
+          unless params['IdentityPolicy'].nil?
+            @IdentityPolicy = []
+            params['IdentityPolicy'].each do |i|
+              identitypolicy_tmp = IdentityPolicy.new
+              identitypolicy_tmp.deserialize(i)
+              @IdentityPolicy << identitypolicy_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # CreateOrganizationIdentity返回参数结构体
+      class CreateOrganizationIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param IdentityId: 身份ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IdentityId, :RequestId
+
+        def initialize(identityid=nil, requestid=nil)
+          @IdentityId = identityid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IdentityId = params['IdentityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationMemberAuthIdentity请求参数结构体
       class CreateOrganizationMemberAuthIdentityRequest < TencentCloud::Common::AbstractModel
         # @param MemberUins: 成员uin列表。最多10个
@@ -378,6 +430,55 @@ module TencentCloud
         end
       end
 
+      # CreateOrganizationMembersPolicy请求参数结构体
+      class CreateOrganizationMembersPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUins: 成员Uin列表。最多10个
+        # @type MemberUins: Array
+        # @param PolicyName: 策略名。长度1～128个字符，支持英文字母、数字、符号+=,.@_-
+        # @type PolicyName: String
+        # @param IdentityId: 成员访问身份ID。
+        # @type IdentityId: Integer
+        # @param Description: 策略描述。最大长度为128个字符
+        # @type Description: String
+
+        attr_accessor :MemberUins, :PolicyName, :IdentityId, :Description
+
+        def initialize(memberuins=nil, policyname=nil, identityid=nil, description=nil)
+          @MemberUins = memberuins
+          @PolicyName = policyname
+          @IdentityId = identityid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @MemberUins = params['MemberUins']
+          @PolicyName = params['PolicyName']
+          @IdentityId = params['IdentityId']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateOrganizationMembersPolicy返回参数结构体
+      class CreateOrganizationMembersPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: 策略ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganization请求参数结构体
       class CreateOrganizationRequest < TencentCloud::Common::AbstractModel
 
@@ -409,6 +510,38 @@ module TencentCloud
         def deserialize(params)
           @OrgId = params['OrgId']
           @NickName = params['NickName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOrganizationIdentity请求参数结构体
+      class DeleteOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityId: 身份ID
+        # @type IdentityId: Integer
+
+        attr_accessor :IdentityId
+
+        def initialize(identityid=nil)
+          @IdentityId = identityid
+        end
+
+        def deserialize(params)
+          @IdentityId = params['IdentityId']
+        end
+      end
+
+      # DeleteOrganizationIdentity返回参数结构体
+      class DeleteOrganizationIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2018,6 +2151,53 @@ module TencentCloud
 
       # QuitOrganization返回参数结构体
       class QuitOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateOrganizationIdentity请求参数结构体
+      class UpdateOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param IdentityId: 身份ID
+        # @type IdentityId: Integer
+        # @param Description: 身份描述
+        # @type Description: String
+        # @param IdentityPolicy: 身份策略
+        # @type IdentityPolicy: Array
+
+        attr_accessor :IdentityId, :Description, :IdentityPolicy
+
+        def initialize(identityid=nil, description=nil, identitypolicy=nil)
+          @IdentityId = identityid
+          @Description = description
+          @IdentityPolicy = identitypolicy
+        end
+
+        def deserialize(params)
+          @IdentityId = params['IdentityId']
+          @Description = params['Description']
+          unless params['IdentityPolicy'].nil?
+            @IdentityPolicy = []
+            params['IdentityPolicy'].each do |i|
+              identitypolicy_tmp = IdentityPolicy.new
+              identitypolicy_tmp.deserialize(i)
+              @IdentityPolicy << identitypolicy_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateOrganizationIdentity返回参数结构体
+      class UpdateOrganizationIdentityResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

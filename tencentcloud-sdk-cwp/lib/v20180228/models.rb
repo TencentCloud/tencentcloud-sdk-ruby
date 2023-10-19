@@ -6569,12 +6569,37 @@ module TencentCloud
 
       # CreateWhiteListOrder请求参数结构体
       class CreateWhiteListOrderRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseType: 授权类型
+        # @type LicenseType: Integer
+        # @param LicenseNum: 授权数量,最小为1 最大99999
+        # @type LicenseNum: Integer
+        # @param Deadline: 到期时间,最小为1
+        # @type Deadline: Integer
+        # @param RuleName: 规则名称,大资产中心:asset_center
+        # @type RuleName: String
+        # @param RegionId: 地域, 1 广州 9新加坡, 默认为 1. 非必要情况不要选9
+        # @type RegionId: Integer
+        # @param ExtraParam: 额外参数,json字符串,包含ResourceId 资源ID,LicenseType 授权类型
+        # @type ExtraParam: String
 
+        attr_accessor :LicenseType, :LicenseNum, :Deadline, :RuleName, :RegionId, :ExtraParam
 
-        def initialize()
+        def initialize(licensetype=nil, licensenum=nil, deadline=nil, rulename=nil, regionid=nil, extraparam=nil)
+          @LicenseType = licensetype
+          @LicenseNum = licensenum
+          @Deadline = deadline
+          @RuleName = rulename
+          @RegionId = regionid
+          @ExtraParam = extraparam
         end
 
         def deserialize(params)
+          @LicenseType = params['LicenseType']
+          @LicenseNum = params['LicenseNum']
+          @Deadline = params['Deadline']
+          @RuleName = params['RuleName']
+          @RegionId = params['RegionId']
+          @ExtraParam = params['ExtraParam']
         end
       end
 
@@ -17132,12 +17157,17 @@ module TencentCloud
 
       # DescribeLicenseWhiteConfig请求参数结构体
       class DescribeLicenseWhiteConfigRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称,例如: cwp
+        # @type RuleName: String
 
+        attr_accessor :RuleName
 
-        def initialize()
+        def initialize(rulename=nil)
+          @RuleName = rulename
         end
 
         def deserialize(params)
+          @RuleName = params['RuleName']
         end
       end
 

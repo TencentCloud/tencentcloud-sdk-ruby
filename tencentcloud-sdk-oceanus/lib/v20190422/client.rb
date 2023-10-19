@@ -197,6 +197,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建工作空间
+
+        # @param request: Request instance for CreateWorkSpace.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateWorkSpaceRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateWorkSpaceResponse`
+        def CreateWorkSpace(request)
+          body = send_request('CreateWorkSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWorkSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 作业列表删除文件夹
+
+        # @param request: Request instance for DeleteFolders.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DeleteFoldersRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DeleteFoldersResponse`
+        def DeleteFolders(request)
+          body = send_request('DeleteFolders', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteFoldersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除作业配置
+
+        # @param request: Request instance for DeleteJobConfigs.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DeleteJobConfigsRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DeleteJobConfigsResponse`
+        def DeleteJobConfigs(request)
+          body = send_request('DeleteJobConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteJobConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除作业接口，批量操作数量上限20
 
         # @param request: Request instance for DeleteJobs.
@@ -605,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 自定义树状结构页面拖拽文件夹
+
+        # @param request: Request instance for ModifyFolder.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyFolderRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyFolderResponse`
+        def ModifyFolder(request)
+          body = send_request('ModifyFolder', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyFolderResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新作业属性，仅允许以下3种操作，不支持组合操作：
         # (1)	更新作业名称
         # (2)	更新作业备注
@@ -624,6 +720,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改工作空间
+
+        # @param request: Request instance for ModifyWorkSpace.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyWorkSpaceRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyWorkSpaceResponse`
+        def ModifyWorkSpace(request)
+          body = send_request('ModifyWorkSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyWorkSpaceResponse.new
             model.deserialize(response['Response'])
             model
           else

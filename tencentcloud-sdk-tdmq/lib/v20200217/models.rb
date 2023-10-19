@@ -4595,6 +4595,85 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQConsumerConnections请求参数结构体
+      class DescribeRocketMQConsumerConnectionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupId: 消费组ID
+        # @type GroupId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param SortedBy: 对查询结果排序，此为排序字段，目前支持Accumulative（消息堆积量）
+        # @type SortedBy: String
+        # @param SortOrder: 查询结果排序规则，ASC为升序，DESC为降序
+        # @type SortOrder: String
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Offset, :Limit, :SortedBy, :SortOrder
+
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, offset=nil, limit=nil, sortedby=nil, sortorder=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+          @SortedBy = sortedby
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SortedBy = params['SortedBy']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeRocketMQConsumerConnections返回参数结构体
+      class DescribeRocketMQConsumerConnectionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Connections: 在线消费者信息
+        # @type Connections: Array
+        # @param GroupDetail: 订阅组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupDetail: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQGroup`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Connections, :GroupDetail, :RequestId
+
+        def initialize(totalcount=nil, connections=nil, groupdetail=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Connections = connections
+          @GroupDetail = groupdetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Connections'].nil?
+            @Connections = []
+            params['Connections'].each do |i|
+              rocketmqconsumerconnection_tmp = RocketMQConsumerConnection.new
+              rocketmqconsumerconnection_tmp.deserialize(i)
+              @Connections << rocketmqconsumerconnection_tmp
+            end
+          end
+          unless params['GroupDetail'].nil?
+            @GroupDetail = RocketMQGroup.new
+            @GroupDetail.deserialize(params['GroupDetail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQGroups请求参数结构体
       class DescribeRocketMQGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -8816,6 +8895,38 @@ module TencentCloud
           @ProducedMsgNum = params['ProducedMsgNum']
           @ConsumedMsgNum = params['ConsumedMsgNum']
           @AccumulativeMsgNum = params['AccumulativeMsgNum']
+        end
+      end
+
+      # 在线消费者情况
+      class RocketMQConsumerConnection < TencentCloud::Common::AbstractModel
+        # @param ClientId: 消费者实例ID
+        # @type ClientId: String
+        # @param ClientAddr: 消费者实例的地址和端口
+        # @type ClientAddr: String
+        # @param Language: 消费者应用的语言版本
+        # @type Language: String
+        # @param Accumulative: 消息堆积量
+        # @type Accumulative: Integer
+        # @param Version: 消费端版本
+        # @type Version: String
+
+        attr_accessor :ClientId, :ClientAddr, :Language, :Accumulative, :Version
+
+        def initialize(clientid=nil, clientaddr=nil, language=nil, accumulative=nil, version=nil)
+          @ClientId = clientid
+          @ClientAddr = clientaddr
+          @Language = language
+          @Accumulative = accumulative
+          @Version = version
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientAddr = params['ClientAddr']
+          @Language = params['Language']
+          @Accumulative = params['Accumulative']
+          @Version = params['Version']
         end
       end
 

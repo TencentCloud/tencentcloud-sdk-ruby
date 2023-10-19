@@ -1279,6 +1279,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 1、按照指定身份发送消息，目前支持表情消息、图片消息、文本消息。
+
+        # @param request: Request instance for SendRoomNormalMessage.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SendRoomNormalMessageRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SendRoomNormalMessageResponse`
+        def SendRoomNormalMessage(request)
+          body = send_request('SendRoomNormalMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendRoomNormalMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # App 管理员可以通过该接口在群组中发送通知、公告等。目前仅支持文本消息。
+
+        # @param request: Request instance for SendRoomNotificationMessage.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::SendRoomNotificationMessageRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::SendRoomNotificationMessageResponse`
+        def SendRoomNotificationMessage(request)
+          body = send_request('SendRoomNotificationMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendRoomNotificationMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
 
         # @param request: Request instance for SetAppCustomContent.

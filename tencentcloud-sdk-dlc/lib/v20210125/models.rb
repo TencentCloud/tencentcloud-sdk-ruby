@@ -5033,6 +5033,33 @@ module TencentCloud
         end
       end
 
+      # DescribeLakeFsTaskResult请求参数结构体
+      class DescribeLakeFsTaskResultRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLakeFsTaskResult返回参数结构体
+      class DescribeLakeFsTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNotebookSessionLog请求参数结构体
       class DescribeNotebookSessionLogRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: Session唯一标识

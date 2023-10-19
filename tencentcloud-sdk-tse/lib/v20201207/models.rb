@@ -420,9 +420,12 @@ module TencentCloud
         # @param Description: 负载均衡的描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param SlaType: 负载均衡的规格类型，传 "SLA" 表示性能容量型，返回空为共享型
+        # @param SlaType: 负载均衡的规格类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SlaType: String
+        # @param SlaName: clb规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaName: String
         # @param Vip: clb vip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip: String
@@ -448,9 +451,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkId: String
 
-        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId
+        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId
 
-        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil)
+        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, slaname=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil)
           @ConsoleType = consoletype
           @HttpUrl = httpurl
           @HttpsUrl = httpsurl
@@ -463,6 +466,7 @@ module TencentCloud
           @VpcId = vpcid
           @Description = description
           @SlaType = slatype
+          @SlaName = slaname
           @Vip = vip
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @MultiZoneFlag = multizoneflag
@@ -489,6 +493,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @Description = params['Description']
           @SlaType = params['SlaType']
+          @SlaName = params['SlaName']
           @Vip = params['Vip']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @MultiZoneFlag = params['MultiZoneFlag']
@@ -1462,16 +1467,24 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayService返回参数结构体
       class CreateCloudNativeAPIGatewayServiceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 网关服务创建结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateGatewayServiceResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreateGatewayServiceResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1649,6 +1662,23 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建云原生网关服务结果
+      class CreateGatewayServiceResult < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 网关服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+
+        attr_accessor :ServiceId
+
+        def initialize(serviceid=nil)
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
         end
       end
 
@@ -3844,7 +3874,7 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
         # @param Description: 负载均衡描述
         # @type Description: String
-        # @param SlaType: 负载均衡的规格类型，传 "SLA" 表示性能容量型，不传为共享型。
+        # @param SlaType: 负载均衡的规格类型，支持clb.c2.medium、clb.c3.small、clb.c3.medium、clb.c4.small、clb.c4.medium、clb.c4.large、clb.c4.xlarge，不传为共享型。
         # @type SlaType: String
         # @param MultiZoneFlag: 负载均衡是否多可用区
         # @type MultiZoneFlag: Boolean
@@ -5786,6 +5816,58 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUpstreamTargets请求参数结构体
+      class UpdateUpstreamTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param Name: 服务名称或ID
+        # @type Name: String
+        # @param Targets: 实例列表
+        # @type Targets: Array
+
+        attr_accessor :GatewayId, :Name, :Targets
+
+        def initialize(gatewayid=nil, name=nil, targets=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @Targets = targets
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              kongtarget_tmp = KongTarget.new
+              kongtarget_tmp.deserialize(i)
+              @Targets << kongtarget_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateUpstreamTargets返回参数结构体
+      class UpdateUpstreamTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否更新成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

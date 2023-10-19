@@ -275,6 +275,49 @@ module TencentCloud
         end
       end
 
+      # BatchModifyTargetTag请求参数结构体
+      class BatchModifyTargetTagRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 负载均衡实例 ID。
+        # @type LoadBalancerId: String
+        # @param ModifyList: 要批量修改标签的列表。
+        # @type ModifyList: Array
+
+        attr_accessor :LoadBalancerId, :ModifyList
+
+        def initialize(loadbalancerid=nil, modifylist=nil)
+          @LoadBalancerId = loadbalancerid
+          @ModifyList = modifylist
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          unless params['ModifyList'].nil?
+            @ModifyList = []
+            params['ModifyList'].each do |i|
+              rstagrule_tmp = RsTagRule.new
+              rstagrule_tmp.deserialize(i)
+              @ModifyList << rstagrule_tmp
+            end
+          end
+        end
+      end
+
+      # BatchModifyTargetTag返回参数结构体
+      class BatchModifyTargetTagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchModifyTargetWeight请求参数结构体
       class BatchModifyTargetWeightRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例 ID。
@@ -381,16 +424,19 @@ module TencentCloud
         # @type Weight: Integer
         # @param LocationId: 七层规则 ID。
         # @type LocationId: String
+        # @param Tag: 标签。
+        # @type Tag: String
 
-        attr_accessor :ListenerId, :Port, :InstanceId, :EniIp, :Weight, :LocationId
+        attr_accessor :ListenerId, :Port, :InstanceId, :EniIp, :Weight, :LocationId, :Tag
 
-        def initialize(listenerid=nil, port=nil, instanceid=nil, eniip=nil, weight=nil, locationid=nil)
+        def initialize(listenerid=nil, port=nil, instanceid=nil, eniip=nil, weight=nil, locationid=nil, tag=nil)
           @ListenerId = listenerid
           @Port = port
           @InstanceId = instanceid
           @EniIp = eniip
           @Weight = weight
           @LocationId = locationid
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -400,6 +446,7 @@ module TencentCloud
           @EniIp = params['EniIp']
           @Weight = params['Weight']
           @LocationId = params['LocationId']
+          @Tag = params['Tag']
         end
       end
 
@@ -2587,7 +2634,7 @@ module TencentCloud
         # @param Filters: 查询集群中资源列表条件，详细的过滤条件如下：
         # <li> cluster-id - String - 是否必填：否 - （过滤条件）按照 集群 的唯一ID过滤，如 ："tgw-12345678","stgw-12345678","vpcgw-12345678"。</li>
         # <li> vip - String - 是否必填：否 - （过滤条件）按照vip过滤。</li>
-        # <li> loadblancer-id - String - 是否必填：否 - （过滤条件）按照负载均衡唯一ID过滤。</li>
+        # <li> loadbalancer-id - String - 是否必填：否 - （过滤条件）按照负载均衡唯一ID过滤。</li>
         # <li> idle - String 是否必填：否 - （过滤条件）按照是否闲置过滤，如"True","False"。</li>
         # @type Filters: Array
 
@@ -6982,6 +7029,41 @@ module TencentCloud
         end
       end
 
+      # 修改节点标签的数据类型
+      class RsTagRule < TencentCloud::Common::AbstractModel
+        # @param ListenerId: 负载均衡监听器 ID。
+        # @type ListenerId: String
+        # @param Targets: 要修改标签的后端机器列表。
+        # @type Targets: Array
+        # @param LocationId: 转发规则的ID，七层规则时需要此参数，4层规则不需要。
+        # @type LocationId: String
+        # @param Tag: 后端服务修改后的标签。此参数的优先级低于前述[Target](https://cloud.tencent.com/document/api/214/30694#Target)中的Tag参数，即最终的标签以Target中的Tag参数值为准，仅当Target中的Weight参数为空时，才以RsTagRule中的Tag参数为准。
+        # @type Tag: String
+
+        attr_accessor :ListenerId, :Targets, :LocationId, :Tag
+
+        def initialize(listenerid=nil, targets=nil, locationid=nil, tag=nil)
+          @ListenerId = listenerid
+          @Targets = targets
+          @LocationId = locationid
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @ListenerId = params['ListenerId']
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              target_tmp = Target.new
+              target_tmp.deserialize(i)
+              @Targets << target_tmp
+            end
+          end
+          @LocationId = params['LocationId']
+          @Tag = params['Tag']
+        end
+      end
+
       # 修改节点权重的数据类型
       class RsWeightRule < TencentCloud::Common::AbstractModel
         # @param ListenerId: 负载均衡监听器 ID。
@@ -7652,15 +7734,19 @@ module TencentCloud
         # 注意：参数 InstanceId、EniIp 有且只能传入其中一个参数。如果绑定双栈IPV6子机，则必须传该参数。如果是跨地域绑定，则必须传该参数，不支持传InstanceId参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniIp: String
+        # @param Tag: 标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
 
-        attr_accessor :Port, :Type, :InstanceId, :Weight, :EniIp
+        attr_accessor :Port, :Type, :InstanceId, :Weight, :EniIp, :Tag
 
-        def initialize(port=nil, type=nil, instanceid=nil, weight=nil, eniip=nil)
+        def initialize(port=nil, type=nil, instanceid=nil, weight=nil, eniip=nil, tag=nil)
           @Port = port
           @Type = type
           @InstanceId = instanceid
           @Weight = weight
           @EniIp = eniip
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -7669,6 +7755,7 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Weight = params['Weight']
           @EniIp = params['EniIp']
+          @Tag = params['Tag']
         end
       end
 
