@@ -4753,7 +4753,7 @@ module TencentCloud
 
       # DescribeDBSecurityGroups请求参数结构体
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例组ID
+        # @param InstanceId: 实例组ID。可以通过接口DescribeClusterInstanceGrps获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId

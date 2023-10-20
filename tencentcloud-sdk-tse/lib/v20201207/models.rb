@@ -3830,17 +3830,27 @@ module TencentCloud
         # @param HttpsPort: 监听的 https 端口范围。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpsPort: String
+        # @param TcpPort: 监听的 tcp 端口范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcpPort: String
+        # @param UdpPort: 监听的 udp 端口范围。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UdpPort: String
 
-        attr_accessor :HttpPort, :HttpsPort
+        attr_accessor :HttpPort, :HttpsPort, :TcpPort, :UdpPort
 
-        def initialize(httpport=nil, httpsport=nil)
+        def initialize(httpport=nil, httpsport=nil, tcpport=nil, udpport=nil)
           @HttpPort = httpport
           @HttpsPort = httpsport
+          @TcpPort = tcpport
+          @UdpPort = udpport
         end
 
         def deserialize(params)
           @HttpPort = params['HttpPort']
           @HttpsPort = params['HttpsPort']
+          @TcpPort = params['TcpPort']
+          @UdpPort = params['UdpPort']
         end
       end
 

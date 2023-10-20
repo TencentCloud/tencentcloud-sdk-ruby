@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除自定义DNS Host
+
+        # @param request: Request instance for DeleteCustomDnsHost.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DeleteCustomDnsHostRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DeleteCustomDnsHostResponse`
+        def DeleteCustomDnsHost(request)
+          body = send_request('DeleteCustomDnsHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomDnsHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于删除已验证的手机邮箱
 
         # @param request: Request instance for DeletePhoneEmail.
@@ -303,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBatchOperationLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询自定义DNS Host
+
+        # @param request: Request instance for DescribeCustomDnsHostSet.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeCustomDnsHostSetRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeCustomDnsHostSetResponse`
+        def DescribeCustomDnsHostSet(request)
+          body = send_request('DescribeCustomDnsHostSet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomDnsHostSetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -485,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改自定义DNS Host
+
+        # @param request: Request instance for ModifyCustomDnsHost.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ModifyCustomDnsHostRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ModifyCustomDnsHostResponse`
+        def ModifyCustomDnsHost(request)
+          body = send_request('ModifyCustomDnsHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomDnsHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
 
         # @param request: Request instance for ModifyDomainDNSBatch.
@@ -519,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDomainOwnerBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 国际站-修改DNS Host
+
+        # @param request: Request instance for ModifyIntlCustomDnsHost.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ModifyIntlCustomDnsHostRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ModifyIntlCustomDnsHostResponse`
+        def ModifyIntlCustomDnsHost(request)
+          body = send_request('ModifyIntlCustomDnsHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIntlCustomDnsHostResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -591,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetDomainAutoRenewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步自定义DNS Host
+
+        # @param request: Request instance for SyncCustomDnsHost.
+        # @type request: :class:`Tencentcloud::domain::V20180808::SyncCustomDnsHostRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::SyncCustomDnsHostResponse`
+        def SyncCustomDnsHost(request)
+          body = send_request('SyncCustomDnsHost', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncCustomDnsHostResponse.new
             model.deserialize(response['Response'])
             model
           else

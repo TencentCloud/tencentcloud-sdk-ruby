@@ -556,7 +556,6 @@ module TencentCloud
       # ChatCompletion请求参数结构体
       class ChatCompletionRequest < TencentCloud::Common::AbstractModel
         # @param Model: 对话的目标模型ID。
-        # 多行业多场景大模型在线体验聊天：tj_llm_clm-v1。
         # 自行部署的开源大模型聊天：部署的模型服务组ID，形如ms-xxyyzz。
         # @type Model: String
         # @param Messages: 输入对话历史。旧的对话在前，数组中最后一项应该为这次的问题。
@@ -7934,7 +7933,6 @@ module TencentCloud
         # @param Question: 问题描述
         # @type Question: String
         # @param ModelVersion: 会话模型版本。
-        # 多行业多场景大模型：填写 tj_llm_clm-v1。
         # 多行业客服大模型：填写demo_big_model_version_id。
         # 默认为demo_big_model_version_id，即多行业客服大模型。
         # @type ModelVersion: String
@@ -10106,8 +10104,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2023, 9
-        deprecate :StatefulSetCondition=, :none, 2023, 9
+        deprecate :StatefulSetCondition, :none, 2023, 10
+        deprecate :StatefulSetCondition=, :none, 2023, 10
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

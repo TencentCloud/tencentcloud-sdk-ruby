@@ -1506,6 +1506,64 @@ module TencentCloud
         end
       end
 
+      # DescribeUserRoleProjectList请求参数结构体
+      class DescribeUserRoleProjectListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 页数
+        # @type PageSize: Integer
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+
+        attr_accessor :PageNo, :PageSize, :ProjectId
+
+        def initialize(pageno=nil, pagesize=nil, projectid=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeUserRoleProjectList返回参数结构体
+      class DescribeUserRoleProjectListResponse < TencentCloud::Common::AbstractModel
+        # @param Extra: 扩展
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.UserRoleListData`
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Extra, :Data, :Msg, :RequestId
+
+        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+          @Extra = extra
+          @Data = data
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Extra = params['Extra']
+          unless params['Data'].nil?
+            @Data = UserRoleListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 报表嵌出数据结构-强鉴权
       class EmbedTokenInfo < TencentCloud::Common::AbstractModel
         # @param Id: 信息标识

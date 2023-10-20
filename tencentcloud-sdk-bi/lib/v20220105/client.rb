@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 项目内-用户角色列表
+
+        # @param request: Request instance for DescribeUserRoleProjectList.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribeUserRoleProjectListRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribeUserRoleProjectListResponse`
+        def DescribeUserRoleProjectList(request)
+          body = send_request('DescribeUserRoleProjectList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserRoleProjectListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新数据源
 
         # @param request: Request instance for ModifyDatasource.

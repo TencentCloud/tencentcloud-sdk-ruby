@@ -123,17 +123,28 @@ module TencentCloud
         # <ul><li> **1** : ( 动态签署人（可发起合同后再补充签署人信息）</li>
         # </ul>
         # @type FillType: Integer
+        # @param FlowReadLimit: 签署人阅读合同限制参数
+        #  <br/>取值：
+        # <ul>
+        # <li> LimitReadTimeAndBottom，阅读合同必须限制阅读时长并且必须阅读到底</li>
+        # <li> LimitReadTime，阅读合同仅限制阅读时长</li>
+        # <li> LimitBottom，阅读合同仅限制必须阅读到底</li>
+        # <li> NoReadTimeAndBottom，阅读合同不限制阅读时长且不限制阅读到底（白名单功能，请联系客户经理开白使用）</li>
+        # </ul>
+        # @type FlowReadLimit: String
 
-        attr_accessor :HideOneKeySign, :FillType
+        attr_accessor :HideOneKeySign, :FillType, :FlowReadLimit
 
-        def initialize(hideonekeysign=nil, filltype=nil)
+        def initialize(hideonekeysign=nil, filltype=nil, flowreadlimit=nil)
           @HideOneKeySign = hideonekeysign
           @FillType = filltype
+          @FlowReadLimit = flowreadlimit
         end
 
         def deserialize(params)
           @HideOneKeySign = params['HideOneKeySign']
           @FillType = params['FillType']
+          @FlowReadLimit = params['FlowReadLimit']
         end
       end
 

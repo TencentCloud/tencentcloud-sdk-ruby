@@ -157,7 +157,7 @@ module TencentCloud
 
       # 监听器绑定的后端服务的详细信息
       class Backend < TencentCloud::Common::AbstractModel
-        # @param Type: 后端服务的类型，可取：CVM、ENI
+        # @param Type: 后端服务的类型，可取：CVM、ENI、CCN
         # @type Type: String
         # @param InstanceId: 后端服务的唯一 ID，如 ins-abcd1234
         # @type InstanceId: String
@@ -180,10 +180,13 @@ module TencentCloud
         # @param EniId: 弹性网卡唯一ID，如 eni-1234abcd
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EniId: String
+        # @param Tag: 标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: String
 
-        attr_accessor :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId
+        attr_accessor :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId, :Tag
 
-        def initialize(type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil)
+        def initialize(type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil, tag=nil)
           @Type = type
           @InstanceId = instanceid
           @Port = port
@@ -193,6 +196,7 @@ module TencentCloud
           @InstanceName = instancename
           @RegisteredTime = registeredtime
           @EniId = eniid
+          @Tag = tag
         end
 
         def deserialize(params)
@@ -205,6 +209,7 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @RegisteredTime = params['RegisteredTime']
           @EniId = params['EniId']
+          @Tag = params['Tag']
         end
       end
 

@@ -642,6 +642,66 @@ module TencentCloud
         end
       end
 
+      # 自定义DNS Host
+      class CustomDnsHost < TencentCloud::Common::AbstractModel
+        # @param DnsName: DNS名称
+        # @type DnsName: String
+        # @param IpSet: IP地址列表
+        # @type IpSet: Array
+
+        attr_accessor :DnsName, :IpSet
+
+        def initialize(dnsname=nil, ipset=nil)
+          @DnsName = dnsname
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @DnsName = params['DnsName']
+          @IpSet = params['IpSet']
+        end
+      end
+
+      # DeleteCustomDnsHost请求参数结构体
+      class DeleteCustomDnsHostRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名实例ID
+        # @type DomainId: String
+        # @param DnsName: DNS名称
+        # @type DnsName: String
+
+        attr_accessor :DomainId, :DnsName
+
+        def initialize(domainid=nil, dnsname=nil)
+          @DomainId = domainid
+          @DnsName = dnsname
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DnsName = params['DnsName']
+        end
+      end
+
+      # DeleteCustomDnsHost返回参数结构体
+      class DeleteCustomDnsHostResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 异步任务ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeletePhoneEmail请求参数结构体
       class DeletePhoneEmailRequest < TencentCloud::Common::AbstractModel
         # @param Code: 手机或者邮箱
@@ -814,6 +874,62 @@ module TencentCloud
               @DomainBatchLogSet << domainbatchlogset_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomDnsHostSet请求参数结构体
+      class DescribeCustomDnsHostSetRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名实例ID
+        # @type DomainId: String
+        # @param Limit: 返回数量，默认为20，取值范围[1,100]
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :DomainId, :Limit, :Offset
+
+        def initialize(domainid=nil, limit=nil, offset=nil)
+          @DomainId = domainid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCustomDnsHostSet返回参数结构体
+      class DescribeCustomDnsHostSetResponse < TencentCloud::Common::AbstractModel
+        # @param DnsHostSet: 自定义DNS Host 列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DnsHostSet: Array
+        # @param TotalCount: 自定义DNS Host总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DnsHostSet, :TotalCount, :RequestId
+
+        def initialize(dnshostset=nil, totalcount=nil, requestid=nil)
+          @DnsHostSet = dnshostset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DnsHostSet'].nil?
+            @DnsHostSet = []
+            params['DnsHostSet'].each do |i|
+              customdnshost_tmp = CustomDnsHost.new
+              customdnshost_tmp.deserialize(i)
+              @DnsHostSet << customdnshost_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1548,6 +1664,50 @@ module TencentCloud
         end
       end
 
+      # ModifyCustomDnsHost请求参数结构体
+      class ModifyCustomDnsHostRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名实例ID
+        # @type DomainId: String
+        # @param DnsName: DNS名称
+        # @type DnsName: String
+        # @param IpSet: IP地址列表
+        # @type IpSet: Array
+
+        attr_accessor :DomainId, :DnsName, :IpSet
+
+        def initialize(domainid=nil, dnsname=nil, ipset=nil)
+          @DomainId = domainid
+          @DnsName = dnsname
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DnsName = params['DnsName']
+          @IpSet = params['IpSet']
+        end
+      end
+
+      # ModifyCustomDnsHost返回参数结构体
+      class ModifyCustomDnsHostResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 异步任务ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainDNSBatch请求参数结构体
       class ModifyDomainDNSBatchRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 批量操作的域名。
@@ -1619,6 +1779,50 @@ module TencentCloud
       # ModifyDomainOwnerBatch返回参数结构体
       class ModifyDomainOwnerBatchResponse < TencentCloud::Common::AbstractModel
         # @param LogId: 日志id
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIntlCustomDnsHost请求参数结构体
+      class ModifyIntlCustomDnsHostRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: String
+        # @param DnsName: DNS Host
+        # @type DnsName: String
+        # @param IpSet: IP地址
+        # @type IpSet: Array
+
+        attr_accessor :DomainId, :DnsName, :IpSet
+
+        def initialize(domainid=nil, dnsname=nil, ipset=nil)
+          @DomainId = domainid
+          @DnsName = dnsname
+          @IpSet = ipset
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @DnsName = params['DnsName']
+          @IpSet = params['IpSet']
+        end
+      end
+
+      # ModifyIntlCustomDnsHost返回参数结构体
+      class ModifyIntlCustomDnsHostResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 任务ID
         # @type LogId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1834,6 +2038,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SyncCustomDnsHost请求参数结构体
+      class SyncCustomDnsHostRequest < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名实例ID
+        # @type DomainId: String
+
+        attr_accessor :DomainId
+
+        def initialize(domainid=nil)
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # SyncCustomDnsHost返回参数结构体
+      class SyncCustomDnsHostResponse < TencentCloud::Common::AbstractModel
+        # @param LogId: 异步任务ID
+        # @type LogId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogId, :RequestId
+
+        def initialize(logid=nil, requestid=nil)
+          @LogId = logid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogId = params['LogId']
           @RequestId = params['RequestId']
         end
       end

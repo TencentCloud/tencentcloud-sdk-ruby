@@ -5035,27 +5035,39 @@ module TencentCloud
 
       # DescribeLakeFsTaskResult请求参数结构体
       class DescribeLakeFsTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param FsPath: 需要访问的任务结果路径
+        # @type FsPath: String
 
+        attr_accessor :FsPath
 
-        def initialize()
+        def initialize(fspath=nil)
+          @FsPath = fspath
         end
 
         def deserialize(params)
+          @FsPath = params['FsPath']
         end
       end
 
       # DescribeLakeFsTaskResult返回参数结构体
       class DescribeLakeFsTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param AccessToken: 路径的访问实例
+        # @type AccessToken: :class:`Tencentcloud::Dlc.v20210125.models.LakeFileSystemToken`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AccessToken, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(accesstoken=nil, requestid=nil)
+          @AccessToken = accesstoken
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AccessToken'].nil?
+            @AccessToken = LakeFileSystemToken.new
+            @AccessToken.deserialize(params['AccessToken'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7432,6 +7444,38 @@ module TencentCloud
           @Krb5Conf = params['Krb5Conf']
           @KeyTab = params['KeyTab']
           @ServicePrincipal = params['ServicePrincipal']
+        end
+      end
+
+      # LakeFileSystem使用的临时token
+      class LakeFileSystemToken < TencentCloud::Common::AbstractModel
+        # @param SecretId: Token使用的临时秘钥的ID
+        # @type SecretId: String
+        # @param SecretKey: Token使用的临时秘钥
+        # @type SecretKey: String
+        # @param Token: Token信息
+        # @type Token: String
+        # @param ExpiredTime: 过期时间
+        # @type ExpiredTime: Integer
+        # @param IssueTime: 颁布时间
+        # @type IssueTime: Integer
+
+        attr_accessor :SecretId, :SecretKey, :Token, :ExpiredTime, :IssueTime
+
+        def initialize(secretid=nil, secretkey=nil, token=nil, expiredtime=nil, issuetime=nil)
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @Token = token
+          @ExpiredTime = expiredtime
+          @IssueTime = issuetime
+        end
+
+        def deserialize(params)
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @Token = params['Token']
+          @ExpiredTime = params['ExpiredTime']
+          @IssueTime = params['IssueTime']
         end
       end
 
