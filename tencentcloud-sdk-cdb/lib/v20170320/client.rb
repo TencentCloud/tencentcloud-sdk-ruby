@@ -1464,6 +1464,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeDBInstanceLogToCLS)用于查询实例慢日志、错误日志投递CLS的配置，通过appId、Region以及实例ID过滤出当前实例日志投递CLS的配置。
+
+        # @param request: Request instance for DescribeDBInstanceLogToCLS.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeDBInstanceLogToCLSRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeDBInstanceLogToCLSResponse`
+        def DescribeDBInstanceLogToCLS(request)
+          body = send_request('DescribeDBInstanceLogToCLS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDBInstanceLogToCLSResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
 
         # @param request: Request instance for DescribeDBInstanceRebootTime.
@@ -2659,6 +2683,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCdbProxyParamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启/关闭CDB慢日志、错误日志投递CLS
+
+        # @param request: Request instance for ModifyDBInstanceLogToCLS.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyDBInstanceLogToCLSRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::ModifyDBInstanceLogToCLSResponse`
+        def ModifyDBInstanceLogToCLS(request)
+          body = send_request('ModifyDBInstanceLogToCLS', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceLogToCLSResponse.new
             model.deserialize(response['Response'])
             model
           else

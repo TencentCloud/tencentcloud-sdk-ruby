@@ -2747,10 +2747,13 @@ module TencentCloud
         # @param ResourcePackages: 实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePackages: Array
+        # @param InstanceIndexMode: 实例索引形态,可选值【mixedRowColumn（行列混存），onlyRowIndex（仅行存）】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIndexMode: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -2803,6 +2806,7 @@ module TencentCloud
           @SlaveZones = slavezones
           @InstanceNetInfo = instancenetinfo
           @ResourcePackages = resourcepackages
+          @InstanceIndexMode = instanceindexmode
         end
 
         def deserialize(params)
@@ -2886,6 +2890,7 @@ module TencentCloud
               @ResourcePackages << resourcepackage_tmp
             end
           end
+          @InstanceIndexMode = params['InstanceIndexMode']
         end
       end
 

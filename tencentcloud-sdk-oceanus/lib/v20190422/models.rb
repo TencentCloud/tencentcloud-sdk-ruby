@@ -452,12 +452,85 @@ module TencentCloud
 
       # session集群信息
       class ClusterSession < TencentCloud::Common::AbstractModel
+        # @param ClusterGroupSerialId: 集群SerialId
+        # @type ClusterGroupSerialId: String
+        # @param AppId: 创建者appId
+        # @type AppId: Integer
+        # @param OwnerUin: 创建者主账号
+        # @type OwnerUin: String
+        # @param CreatorUin: 创建者账号
+        # @type CreatorUin: String
+        # @param Region: 区域
+        # @type Region: String
+        # @param Zone: zone
+        # @type Zone: String
+        # @param Status: Session集群状态
+        # @type Status: Integer
+        # @param CuNum: Session集群消耗的cu数量
+        # @type CuNum: Float
+        # @param FlinkVersion: Session集群的Flink版本
+        # @type FlinkVersion: String
+        # @param WebUIUrl: session集群FlinkUi地址
+        # @type WebUIUrl: String
+        # @param Properties: session集群高级参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: Array
+        # @param JobManagerCuSpec: JobManager的规格
+        # @type JobManagerCuSpec: Float
+        # @param TaskManagerCuSpec: TaskManager的规格
+        # @type TaskManagerCuSpec: Float
+        # @param TaskManagerNum: TaskManager启动的数量
+        # @type TaskManagerNum: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
 
+        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime
 
-        def initialize()
+        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil)
+          @ClusterGroupSerialId = clustergroupserialid
+          @AppId = appid
+          @OwnerUin = owneruin
+          @CreatorUin = creatoruin
+          @Region = region
+          @Zone = zone
+          @Status = status
+          @CuNum = cunum
+          @FlinkVersion = flinkversion
+          @WebUIUrl = webuiurl
+          @Properties = properties
+          @JobManagerCuSpec = jobmanagercuspec
+          @TaskManagerCuSpec = taskmanagercuspec
+          @TaskManagerNum = taskmanagernum
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
+          @ClusterGroupSerialId = params['ClusterGroupSerialId']
+          @AppId = params['AppId']
+          @OwnerUin = params['OwnerUin']
+          @CreatorUin = params['CreatorUin']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Status = params['Status']
+          @CuNum = params['CuNum']
+          @FlinkVersion = params['FlinkVersion']
+          @WebUIUrl = params['WebUIUrl']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+          @JobManagerCuSpec = params['JobManagerCuSpec']
+          @TaskManagerCuSpec = params['TaskManagerCuSpec']
+          @TaskManagerNum = params['TaskManagerNum']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -1306,6 +1379,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWorkSpace请求参数结构体
+      class DeleteWorkSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :WorkSpaceId
+
+        def initialize(workspaceid=nil)
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DeleteWorkSpace返回参数结构体
+      class DeleteWorkSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param Delete: 是否删除
+        # @type Delete: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Delete, :RequestId
+
+        def initialize(delete=nil, requestid=nil)
+          @Delete = delete
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Delete = params['Delete']
           @RequestId = params['RequestId']
         end
       end

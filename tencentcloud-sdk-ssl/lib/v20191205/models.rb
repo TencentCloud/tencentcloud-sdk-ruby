@@ -1785,12 +1785,15 @@ module TencentCloud
         # @type Status: Integer
         # @param CacheTime: 当前结果缓存时间
         # @type CacheTime: String
+        # @param TSE: 关联tse资源详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TSE: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :RequestId
+        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :TSE, :RequestId
 
-        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, requestid=nil)
+        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, tse=nil, requestid=nil)
           @CLB = clb
           @CDN = cdn
           @WAF = waf
@@ -1803,6 +1806,7 @@ module TencentCloud
           @TEO = teo
           @Status = status
           @CacheTime = cachetime
+          @TSE = tse
           @RequestId = requestid
         end
 
@@ -1889,6 +1893,14 @@ module TencentCloud
           end
           @Status = params['Status']
           @CacheTime = params['CacheTime']
+          unless params['TSE'].nil?
+            @TSE = []
+            params['TSE'].each do |i|
+              tseinstancelist_tmp = TSEInstanceList.new
+              tseinstancelist_tmp.deserialize(i)
+              @TSE << tseinstancelist_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4291,6 +4303,43 @@ module TencentCloud
         end
       end
 
+      # 云原生网关证书信息
+      class GatewayCertificate < TencentCloud::Common::AbstractModel
+        # @param Id: 网关证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 网关证书名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param BindDomains: 绑定域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindDomains: Array
+        # @param CertSource: 证书来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertSource: String
+        # @param CertId: 当前绑定的SSL证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+
+        attr_accessor :Id, :Name, :BindDomains, :CertSource, :CertId
+
+        def initialize(id=nil, name=nil, binddomains=nil, certsource=nil, certid=nil)
+          @Id = id
+          @Name = name
+          @BindDomains = binddomains
+          @CertSource = certsource
+          @CertId = certid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @BindDomains = params['BindDomains']
+          @CertSource = params['CertSource']
+          @CertId = params['CertId']
+        end
+      end
+
       # HostCertificate请求参数结构体
       class HostCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书ID
@@ -5656,6 +5705,72 @@ module TencentCloud
               @Environments << tcbenvironments_tmp
             end
           end
+        end
+      end
+
+      # tse实例详情
+      class TSEInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GatewayName: 网关名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayName: String
+        # @param CertificateList: 网关证书列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertificateList: Array
+
+        attr_accessor :GatewayId, :GatewayName, :CertificateList
+
+        def initialize(gatewayid=nil, gatewayname=nil, certificatelist=nil)
+          @GatewayId = gatewayid
+          @GatewayName = gatewayname
+          @CertificateList = certificatelist
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GatewayName = params['GatewayName']
+          unless params['CertificateList'].nil?
+            @CertificateList = []
+            params['CertificateList'].each do |i|
+              gatewaycertificate_tmp = GatewayCertificate.new
+              gatewaycertificate_tmp.deserialize(i)
+              @CertificateList << gatewaycertificate_tmp
+            end
+          end
+        end
+      end
+
+      # TSE实例详情 - 异步关联云资源数据结构
+      class TSEInstanceList < TencentCloud::Common::AbstractModel
+        # @param InstanceList: TSE实例详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceList: Array
+        # @param TotalCount: 该地域下TSE实例总数
+        # @type TotalCount: Integer
+        # @param Region: 地域
+        # @type Region: String
+
+        attr_accessor :InstanceList, :TotalCount, :Region
+
+        def initialize(instancelist=nil, totalcount=nil, region=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+          @Region = region
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              tseinstancedetail_tmp = TSEInstanceDetail.new
+              tseinstancedetail_tmp.deserialize(i)
+              @InstanceList << tseinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Region = params['Region']
         end
       end
 

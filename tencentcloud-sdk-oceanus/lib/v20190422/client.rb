@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除工作空间
+
+        # @param request: Request instance for DeleteWorkSpace.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DeleteWorkSpaceRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DeleteWorkSpaceResponse`
+        def DeleteWorkSpace(request)
+          body = send_request('DeleteWorkSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWorkSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询集群
 
         # @param request: Request instance for DescribeClusters.

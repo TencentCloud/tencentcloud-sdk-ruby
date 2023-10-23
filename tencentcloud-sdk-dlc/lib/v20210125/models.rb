@@ -4101,6 +4101,50 @@ module TencentCloud
         end
       end
 
+      # DescribeAdvancedStoreLocation请求参数结构体
+      class DescribeAdvancedStoreLocationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAdvancedStoreLocation返回参数结构体
+      class DescribeAdvancedStoreLocationResponse < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否启用高级设置：0-否，1-是
+        # @type Enable: Integer
+        # @param StoreLocation: 查询结果保存cos路径
+        # @type StoreLocation: String
+        # @param HasLakeFs: 是否有托管存储权限
+        # @type HasLakeFs: Boolean
+        # @param LakeFsStatus: 托管存储状态，HasLakeFs等于true时，该值才有意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LakeFsStatus: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Enable, :StoreLocation, :HasLakeFs, :LakeFsStatus, :RequestId
+
+        def initialize(enable=nil, storelocation=nil, haslakefs=nil, lakefsstatus=nil, requestid=nil)
+          @Enable = enable
+          @StoreLocation = storelocation
+          @HasLakeFs = haslakefs
+          @LakeFsStatus = lakefsstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @StoreLocation = params['StoreLocation']
+          @HasLakeFs = params['HasLakeFs']
+          @LakeFsStatus = params['LakeFsStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDMSDatabase请求参数结构体
       class DescribeDMSDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param Name: 数据库名称
@@ -7676,6 +7720,42 @@ module TencentCloud
         def deserialize(params)
           @LockId = params['LockId']
           @LockState = params['LockState']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAdvancedStoreLocation请求参数结构体
+      class ModifyAdvancedStoreLocationRequest < TencentCloud::Common::AbstractModel
+        # @param StoreLocation: 查询结果保存cos路径
+        # @type StoreLocation: String
+        # @param Enable: 是否启用高级设置：0-否，1-是
+        # @type Enable: Integer
+
+        attr_accessor :StoreLocation, :Enable
+
+        def initialize(storelocation=nil, enable=nil)
+          @StoreLocation = storelocation
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @StoreLocation = params['StoreLocation']
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyAdvancedStoreLocation返回参数结构体
+      class ModifyAdvancedStoreLocationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -5700,14 +5700,21 @@ module TencentCloud
         # @type ProvederInstanceNum: Integer
         # @param ZoneInstanceInfoSet: Zone实例信息结构体数组
         # @type ZoneInstanceInfoSet: Array
+        # @param ProviderInstanceNum: 实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProviderInstanceNum: Integer
 
-        attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet
+        attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet, :ProviderInstanceNum
+        extend Gem::Deprecate
+        deprecate :ProvederInstanceNum, :none, 2023, 10
+        deprecate :ProvederInstanceNum=, :none, 2023, 10
 
-        def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil)
+        def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil, providerinstancenum=nil)
           @ProviderName = providername
           @ProviderNodeNum = providernodenum
           @ProvederInstanceNum = provederinstancenum
           @ZoneInstanceInfoSet = zoneinstanceinfoset
+          @ProviderInstanceNum = providerinstancenum
         end
 
         def deserialize(params)
@@ -5722,6 +5729,7 @@ module TencentCloud
               @ZoneInstanceInfoSet << zoneinstanceinfo_tmp
             end
           end
+          @ProviderInstanceNum = params['ProviderInstanceNum']
         end
       end
 

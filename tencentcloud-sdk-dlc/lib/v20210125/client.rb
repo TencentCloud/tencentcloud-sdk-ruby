@@ -1109,6 +1109,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询sql查询界面高级设置
+
+        # @param request: Request instance for DescribeAdvancedStoreLocation.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeAdvancedStoreLocationRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeAdvancedStoreLocationResponse`
+        def DescribeAdvancedStoreLocation(request)
+          body = send_request('DescribeAdvancedStoreLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAdvancedStoreLocationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DMS元数据获取库
 
         # @param request: Request instance for DescribeDMSDatabase.
@@ -2295,6 +2319,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = LockMetaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改sql查询界面高级设置。
+
+        # @param request: Request instance for ModifyAdvancedStoreLocation.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ModifyAdvancedStoreLocationRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ModifyAdvancedStoreLocationResponse`
+        def ModifyAdvancedStoreLocation(request)
+          body = send_request('ModifyAdvancedStoreLocation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAdvancedStoreLocationResponse.new
             model.deserialize(response['Response'])
             model
           else

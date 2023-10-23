@@ -1437,10 +1437,15 @@ module TencentCloud
         # TransTextRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResult`
+        # @param ObjectTask: 物体识别结果，当Type 为
 
-        attr_accessor :Type, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :OcrWordsTask, :OcrFullTextTask, :TransTextTask
+        # ObjectRecognition 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskObjectResult`
 
-        def initialize(type=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, ocrwordstask=nil, ocrfulltexttask=nil, transtexttask=nil)
+        attr_accessor :Type, :FaceTask, :AsrWordsTask, :AsrFullTextTask, :OcrWordsTask, :OcrFullTextTask, :TransTextTask, :ObjectTask
+
+        def initialize(type=nil, facetask=nil, asrwordstask=nil, asrfulltexttask=nil, ocrwordstask=nil, ocrfulltexttask=nil, transtexttask=nil, objecttask=nil)
           @Type = type
           @FaceTask = facetask
           @AsrWordsTask = asrwordstask
@@ -1448,6 +1453,7 @@ module TencentCloud
           @OcrWordsTask = ocrwordstask
           @OcrFullTextTask = ocrfulltexttask
           @TransTextTask = transtexttask
+          @ObjectTask = objecttask
         end
 
         def deserialize(params)
@@ -1475,6 +1481,10 @@ module TencentCloud
           unless params['TransTextTask'].nil?
             @TransTextTask = AiRecognitionTaskTransTextResult.new
             @TransTextTask.deserialize(params['TransTextTask'])
+          end
+          unless params['ObjectTask'].nil?
+            @ObjectTask = AiRecognitionTaskObjectResult.new
+            @ObjectTask.deserialize(params['ObjectTask'])
           end
         end
       end
@@ -1947,6 +1957,139 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+        end
+      end
+
+      # 物体识别结果。
+      class AiRecognitionTaskObjectResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 物体识别任务输入信息。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskObjectResultInput`
+        # @param Output: 物体识别任务输出信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskObjectResultOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiRecognitionTaskObjectResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiRecognitionTaskObjectResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 物体识别任务输入类型。
+      class AiRecognitionTaskObjectResultInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 物体识别模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 单个物体识别结果。
+      class AiRecognitionTaskObjectResultItem < TencentCloud::Common::AbstractModel
+        # @param Name: 识别的物体名称。
+        # @type Name: String
+        # @param SegmentSet: 物体出现的片段列表。
+        # @type SegmentSet: Array
+
+        attr_accessor :Name, :SegmentSet
+
+        def initialize(name=nil, segmentset=nil)
+          @Name = name
+          @SegmentSet = segmentset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['SegmentSet'].nil?
+            @SegmentSet = []
+            params['SegmentSet'].each do |i|
+              airecognitiontaskobjectseqmentitem_tmp = AiRecognitionTaskObjectSeqmentItem.new
+              airecognitiontaskobjectseqmentitem_tmp.deserialize(i)
+              @SegmentSet << airecognitiontaskobjectseqmentitem_tmp
+            end
+          end
+        end
+      end
+
+      # 智能物体识别输出。
+      class AiRecognitionTaskObjectResultOutput < TencentCloud::Common::AbstractModel
+        # @param ResultSet: 智能物体识别结果集。
+        # @type ResultSet: Array
+
+        attr_accessor :ResultSet
+
+        def initialize(resultset=nil)
+          @ResultSet = resultset
+        end
+
+        def deserialize(params)
+          unless params['ResultSet'].nil?
+            @ResultSet = []
+            params['ResultSet'].each do |i|
+              airecognitiontaskobjectresultitem_tmp = AiRecognitionTaskObjectResultItem.new
+              airecognitiontaskobjectresultitem_tmp.deserialize(i)
+              @ResultSet << airecognitiontaskobjectresultitem_tmp
+            end
+          end
+        end
+      end
+
+      # 物体识别结果片段。
+      class AiRecognitionTaskObjectSeqmentItem < TencentCloud::Common::AbstractModel
+        # @param StartTimeOffset: 识别片段起始的偏移时间，单位：秒。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 识别片段终止的偏移时间，单位：秒。
+        # @type EndTimeOffset: Float
+        # @param Confidence: 识别片段置信度。取值：0~100。
+        # @type Confidence: Float
+        # @param AreaCoordSet: 识别结果的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        # @type AreaCoordSet: Array
+
+        attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :AreaCoordSet
+
+        def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, areacoordset=nil)
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @Confidence = confidence
+          @AreaCoordSet = areacoordset
+        end
+
+        def deserialize(params)
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @Confidence = params['Confidence']
+          @AreaCoordSet = params['AreaCoordSet']
         end
       end
 

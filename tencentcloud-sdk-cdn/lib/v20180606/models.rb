@@ -3822,22 +3822,21 @@ module TencentCloud
       class DescribeCdnDomainLogsRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 指定域名查询
         # @type Domain: String
-        # @param StartTime: 开始时间，如 2019-09-04 00:00:00
+        # @param StartTime: 开始时间
         # @type StartTime: String
-        # @param EndTime: 结束时间，如 2019-09-04 12:00:00
+        # @param EndTime: 结束时间
         # @type EndTime: String
         # @param Offset: 分页查询偏移量，默认为 0
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认为 100，最大为 1000
         # @type Limit: Integer
-        # @param Area: 指定区域下载日志
-        # mainland：获取境内加速日志包下载链接
-        # overseas：获取境外加速日志包下载链接
-        # global：同时获取境内、境外加速日志包下载链接（分开打包）
-        # 不指定时默认为 mainland
+        # @param Area: 指定区域下载日志，默认为 mainland，可取值有：
+        # <li>mainland：获取境内加速日志包下载链接</li>
+        # <li>overseas：获取境外加速日志包下载链接</li>
+        # <li>global：同时获取境内、境外加速日志包下载链接（分开打包）</li>
         # @type Area: String
-        # @param LogType: 指定下载日志的类型，目前仅支持访问日志（access）。
-        # access：访问日志
+        # @param LogType: 指定下载日志的类型，可取值有：
+        # <li>access：访问日志</li>
         # @type LogType: String
 
         attr_accessor :Domain, :StartTime, :EndTime, :Offset, :Limit, :Area, :LogType

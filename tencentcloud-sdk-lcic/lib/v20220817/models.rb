@@ -882,10 +882,16 @@ module TencentCloud
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # @type LiveType: Integer
+        # @param RecordLiveUrl: 伪直播链接
+        # @type RecordLiveUrl: String
+        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
+        # @type EnableAutoStart: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -909,6 +915,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
           @EndDelayTime = enddelaytime
+          @LiveType = livetype
+          @RecordLiveUrl = recordliveurl
+          @EnableAutoStart = enableautostart
         end
 
         def deserialize(params)
@@ -935,6 +944,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
           @EndDelayTime = params['EndDelayTime']
+          @LiveType = params['LiveType']
+          @RecordLiveUrl = params['RecordLiveUrl']
+          @EnableAutoStart = params['EnableAutoStart']
         end
       end
 
@@ -2030,12 +2042,18 @@ module TencentCloud
         # @type VideoDuration: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # @type LiveType: Integer
+        # @param RecordLiveUrl: 伪直播链接
+        # @type RecordLiveUrl: String
+        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
+        # @type EnableAutoStart: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2059,6 +2077,9 @@ module TencentCloud
           @RoomType = roomtype
           @VideoDuration = videoduration
           @EndDelayTime = enddelaytime
+          @LiveType = livetype
+          @RecordLiveUrl = recordliveurl
+          @EnableAutoStart = enableautostart
           @RequestId = requestid
         end
 
@@ -2086,6 +2107,9 @@ module TencentCloud
           @RoomType = params['RoomType']
           @VideoDuration = params['VideoDuration']
           @EndDelayTime = params['EndDelayTime']
+          @LiveType = params['LiveType']
+          @RecordLiveUrl = params['RecordLiveUrl']
+          @EnableAutoStart = params['EnableAutoStart']
           @RequestId = params['RequestId']
         end
       end
@@ -3469,10 +3493,16 @@ module TencentCloud
         # @type RecordLayout: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # @type LiveType: Integer
+        # @param RecordLiveUrl: 伪直播链接
+        # @type RecordLiveUrl: String
+        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
+        # @type EnableAutoStart: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3494,6 +3524,9 @@ module TencentCloud
           @RoomType = roomtype
           @RecordLayout = recordlayout
           @EndDelayTime = enddelaytime
+          @LiveType = livetype
+          @RecordLiveUrl = recordliveurl
+          @EnableAutoStart = enableautostart
         end
 
         def deserialize(params)
@@ -3518,6 +3551,9 @@ module TencentCloud
           @RoomType = params['RoomType']
           @RecordLayout = params['RecordLayout']
           @EndDelayTime = params['EndDelayTime']
+          @LiveType = params['LiveType']
+          @RecordLiveUrl = params['RecordLiveUrl']
+          @EnableAutoStart = params['EnableAutoStart']
         end
       end
 
@@ -3755,10 +3791,16 @@ module TencentCloud
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # @type LiveType: Integer
+        # @param RecordLiveUrl: 伪直播回放链接
+        # @type RecordLiveUrl: String
+        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
+        # @type EnableAutoStart: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -3781,6 +3823,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
           @EndDelayTime = enddelaytime
+          @LiveType = livetype
+          @RecordLiveUrl = recordliveurl
+          @EnableAutoStart = enableautostart
         end
 
         def deserialize(params)
@@ -3806,6 +3851,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
           @EndDelayTime = params['EndDelayTime']
+          @LiveType = params['LiveType']
+          @RecordLiveUrl = params['RecordLiveUrl']
+          @EnableAutoStart = params['EnableAutoStart']
         end
       end
 
@@ -3867,10 +3915,19 @@ module TencentCloud
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndDelayTime: Integer
+        # @param LiveType: 直播方式：0 常规模式（默认）1 回放直播模式（伪直播）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveType: Integer
+        # @param RecordLiveUrl: 伪直播回放链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordLiveUrl: String
+        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAutoStart: Integer
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -3889,6 +3946,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
           @EndDelayTime = enddelaytime
+          @LiveType = livetype
+          @RecordLiveUrl = recordliveurl
+          @EnableAutoStart = enableautostart
         end
 
         def deserialize(params)
@@ -3910,6 +3970,9 @@ module TencentCloud
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
           @EndDelayTime = params['EndDelayTime']
+          @LiveType = params['LiveType']
+          @RecordLiveUrl = params['RecordLiveUrl']
+          @EnableAutoStart = params['EnableAutoStart']
         end
       end
 
