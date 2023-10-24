@@ -17,6 +17,33 @@
 module TencentCloud
   module Bsca
     module V20210811
+      # 受漏洞影响的组件信息。
+      class AffectedComponent < TencentCloud::Common::AbstractModel
+        # @param Name: 受漏洞影响的组件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param AffectedVersionList: 受漏洞影响的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AffectedVersionList: Array
+        # @param FixedVersionList: 修复此漏洞的版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixedVersionList: Array
+
+        attr_accessor :Name, :AffectedVersionList, :FixedVersionList
+
+        def initialize(name=nil, affectedversionlist=nil, fixedversionlist=nil)
+          @Name = name
+          @AffectedVersionList = affectedversionlist
+          @FixedVersionList = fixedversionlist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AffectedVersionList = params['AffectedVersionList']
+          @FixedVersionList = params['FixedVersionList']
+        end
+      end
+
       # CVSSv2.0详细信息。
       class CVSSV2Info < TencentCloud::Common::AbstractModel
         # @param CVSS: CVE评分。
@@ -480,21 +507,29 @@ module TencentCloud
 
       # DescribeKBVulnerability请求参数结构体
       class DescribeKBVulnerabilityRequest < TencentCloud::Common::AbstractModel
-        # @param CVEID: CVE ID列表（不能与Vul ID同时存在）
+        # @param CVEID: 根据CVE ID查询（不能与其他参数同时存在）
         # @type CVEID: Array
-        # @param VulID: Vul ID列表（不能与CVE ID 同时存在）
+        # @param VulID: 根据Vul ID查询（不能与其他参数同时存在）
         # @type VulID: Array
+        # @param CNVDID: 根据CNVD ID查询（不能与其他参数同时存在）
+        # @type CNVDID: Array
+        # @param CNNVDID: 根据CNNVD ID查询（不能与其他参数同时存在）
+        # @type CNNVDID: Array
 
-        attr_accessor :CVEID, :VulID
+        attr_accessor :CVEID, :VulID, :CNVDID, :CNNVDID
 
-        def initialize(cveid=nil, vulid=nil)
+        def initialize(cveid=nil, vulid=nil, cnvdid=nil, cnnvdid=nil)
           @CVEID = cveid
           @VulID = vulid
+          @CNVDID = cnvdid
+          @CNNVDID = cnnvdid
         end
 
         def deserialize(params)
           @CVEID = params['CVEID']
           @VulID = params['VulID']
+          @CNVDID = params['CNVDID']
+          @CNNVDID = params['CNNVDID']
         end
       end
 
@@ -859,10 +894,12 @@ module TencentCloud
         # @type CVSSv2Vector: String
         # @param CVSSv3Vector: 漏洞CVSSv3向量
         # @type CVSSv3Vector: String
+        # @param AffectedComponentList: 漏洞影响的组件列表，仅当查询单个漏洞时有效
+        # @type AffectedComponentList: Array
 
-        attr_accessor :Category, :CategoryType, :Description, :OfficialSolution, :ReferenceList, :DefenseSolution, :CVSSv2Info, :CVSSv3Info, :SubmitTime, :CWEID, :CVSSv2Vector, :CVSSv3Vector
+        attr_accessor :Category, :CategoryType, :Description, :OfficialSolution, :ReferenceList, :DefenseSolution, :CVSSv2Info, :CVSSv3Info, :SubmitTime, :CWEID, :CVSSv2Vector, :CVSSv3Vector, :AffectedComponentList
 
-        def initialize(category=nil, categorytype=nil, description=nil, officialsolution=nil, referencelist=nil, defensesolution=nil, cvssv2info=nil, cvssv3info=nil, submittime=nil, cweid=nil, cvssv2vector=nil, cvssv3vector=nil)
+        def initialize(category=nil, categorytype=nil, description=nil, officialsolution=nil, referencelist=nil, defensesolution=nil, cvssv2info=nil, cvssv3info=nil, submittime=nil, cweid=nil, cvssv2vector=nil, cvssv3vector=nil, affectedcomponentlist=nil)
           @Category = category
           @CategoryType = categorytype
           @Description = description
@@ -875,6 +912,7 @@ module TencentCloud
           @CWEID = cweid
           @CVSSv2Vector = cvssv2vector
           @CVSSv3Vector = cvssv3vector
+          @AffectedComponentList = affectedcomponentlist
         end
 
         def deserialize(params)
@@ -896,6 +934,14 @@ module TencentCloud
           @CWEID = params['CWEID']
           @CVSSv2Vector = params['CVSSv2Vector']
           @CVSSv3Vector = params['CVSSv3Vector']
+          unless params['AffectedComponentList'].nil?
+            @AffectedComponentList = []
+            params['AffectedComponentList'].each do |i|
+              affectedcomponent_tmp = AffectedComponent.new
+              affectedcomponent_tmp.deserialize(i)
+              @AffectedComponentList << affectedcomponent_tmp
+            end
+          end
         end
       end
 

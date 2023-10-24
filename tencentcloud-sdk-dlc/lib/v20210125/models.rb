@@ -2251,18 +2251,30 @@ module TencentCloud
       class CreateSparkSessionBatchSQLResponse < TencentCloud::Common::AbstractModel
         # @param BatchId: 批任务唯一标识
         # @type BatchId: String
+        # @param Statements: Statement任务列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Statements: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BatchId, :RequestId
+        attr_accessor :BatchId, :Statements, :RequestId
 
-        def initialize(batchid=nil, requestid=nil)
+        def initialize(batchid=nil, statements=nil, requestid=nil)
           @BatchId = batchid
+          @Statements = statements
           @RequestId = requestid
         end
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          unless params['Statements'].nil?
+            @Statements = []
+            params['Statements'].each do |i|
+              statementinformation_tmp = StatementInformation.new
+              statementinformation_tmp.deserialize(i)
+              @Statements << statementinformation_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9673,6 +9685,28 @@ module TencentCloud
               @Supplement << kvpair_tmp
             end
           end
+        end
+      end
+
+      # statement信息
+      class StatementInformation < TencentCloud::Common::AbstractModel
+        # @param TaskId: SQL任务唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param SQL: SQL内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SQL: String
+
+        attr_accessor :TaskId, :SQL
+
+        def initialize(taskid=nil, sql=nil)
+          @TaskId = taskid
+          @SQL = sql
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SQL = params['SQL']
         end
       end
 

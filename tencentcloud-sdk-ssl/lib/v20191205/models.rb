@@ -100,7 +100,7 @@ module TencentCloud
         # @type ValidityPeriod: String
         # @param CsrEncryptAlgo: 加密算法，支持 RSA及ECC。
         # @type CsrEncryptAlgo: String
-        # @param CsrKeyParameter: 密钥对参数，RSA仅支持2048。ECC仅支持prime256v1
+        # @param CsrKeyParameter: 密钥对参数，RSA仅支持2048。ECC仅支持prime256v1。加密算法选择ECC时，此参数必填
         # @type CsrKeyParameter: String
         # @param CsrKeyPassword: CSR 的加密密码。
         # @type CsrKeyPassword: String

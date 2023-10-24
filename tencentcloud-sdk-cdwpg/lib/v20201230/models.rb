@@ -41,17 +41,49 @@ module TencentCloud
         end
       end
 
+      # 磁盘信息
+      class CBSSpecInfo < TencentCloud::Common::AbstractModel
+        # @param DiskType: 盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param DiskSize: 大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param DiskCount: 个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskCount: Integer
+
+        attr_accessor :DiskType, :DiskSize, :DiskCount
+
+        def initialize(disktype=nil, disksize=nil, diskcount=nil)
+          @DiskType = disktype
+          @DiskSize = disksize
+          @DiskCount = diskcount
+        end
+
+        def deserialize(params)
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @DiskCount = params['DiskCount']
+        end
+      end
+
       # 计费时间参数
       class ChargeProperties < TencentCloud::Common::AbstractModel
         # @param RenewFlag: 1-需要自动续期
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewFlag: Integer
         # @param TimeSpan: 订单时间范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeSpan: Integer
         # @param TimeUnit: 时间单位，一般为h和m
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
         # @param PayMode: 计费类型0-按量计费，1-包年包月
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
         # @param ChargeType: PREPAID、POSTPAID_BY_HOUR
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChargeType: String
 
         attr_accessor :RenewFlag, :TimeSpan, :TimeUnit, :PayMode, :ChargeType
@@ -156,6 +188,49 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @InstanceId = params['InstanceId']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceInfo请求参数结构体
+      class DescribeInstanceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceInfo返回参数结构体
+      class DescribeInstanceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param SimpleInstanceInfo: 1
+        # @type SimpleInstanceInfo: :class:`Tencentcloud::Cdwpg.v20201230.models.SimpleInstanceInfo`
+        # @param ErrorMsg: 1
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SimpleInstanceInfo, :ErrorMsg, :RequestId
+
+        def initialize(simpleinstanceinfo=nil, errormsg=nil, requestid=nil)
+          @SimpleInstanceInfo = simpleinstanceinfo
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SimpleInstanceInfo'].nil?
+            @SimpleInstanceInfo = SimpleInstanceInfo.new
+            @SimpleInstanceInfo.deserialize(params['SimpleInstanceInfo'])
+          end
           @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
@@ -826,6 +901,41 @@ module TencentCloud
         end
       end
 
+      # 资源信息
+      class ResourceInfo < TencentCloud::Common::AbstractModel
+        # @param SpecName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+        # @param Count: 资源数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param DiskSpec: 磁盘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSpec: :class:`Tencentcloud::Cdwpg.v20201230.models.CBSSpecInfo`
+        # @param Type: 资源类型，DATA
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :SpecName, :Count, :DiskSpec, :Type
+
+        def initialize(specname=nil, count=nil, diskspec=nil, type=nil)
+          @SpecName = specname
+          @Count = count
+          @DiskSpec = diskspec
+          @Type = type
+        end
+
+        def deserialize(params)
+          @SpecName = params['SpecName']
+          @Count = params['Count']
+          unless params['DiskSpec'].nil?
+            @DiskSpec = CBSSpecInfo.new
+            @DiskSpec.deserialize(params['DiskSpec'])
+          end
+          @Type = params['Type']
+        end
+      end
+
       # 资源规格
       class ResourceSpecNew < TencentCloud::Common::AbstractModel
         # @param SpecName: 资源名称
@@ -878,6 +988,115 @@ module TencentCloud
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
           @AllValue = params['AllValue']
+        end
+      end
+
+      # 集群信息
+      class SimpleInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param InstanceId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param Version: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Region: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param UserVPCID: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserVPCID: String
+        # @param UserSubnetID: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSubnetID: String
+        # @param CreateTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ExpireTime: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param AccessInfo: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessInfo: String
+        # @param RenewFlag: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param ChargeProperties: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeProperties: :class:`Tencentcloud::Cdwpg.v20201230.models.ChargeProperties`
+        # @param Resources: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resources: Array
+        # @param Tags: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Status: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :ID, :InstanceId, :InstanceName, :Version, :Region, :Zone, :UserVPCID, :UserSubnetID, :CreateTime, :ExpireTime, :AccessInfo, :RenewFlag, :ChargeProperties, :Resources, :Tags, :Status
+
+        def initialize(id=nil, instanceid=nil, instancename=nil, version=nil, region=nil, zone=nil, uservpcid=nil, usersubnetid=nil, createtime=nil, expiretime=nil, accessinfo=nil, renewflag=nil, chargeproperties=nil, resources=nil, tags=nil, status=nil)
+          @ID = id
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @Version = version
+          @Region = region
+          @Zone = zone
+          @UserVPCID = uservpcid
+          @UserSubnetID = usersubnetid
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @AccessInfo = accessinfo
+          @RenewFlag = renewflag
+          @ChargeProperties = chargeproperties
+          @Resources = resources
+          @Tags = tags
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @Version = params['Version']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @UserVPCID = params['UserVPCID']
+          @UserSubnetID = params['UserSubnetID']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @AccessInfo = params['AccessInfo']
+          @RenewFlag = params['RenewFlag']
+          unless params['ChargeProperties'].nil?
+            @ChargeProperties = ChargeProperties.new
+            @ChargeProperties.deserialize(params['ChargeProperties'])
+          end
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              resourceinfo_tmp = ResourceInfo.new
+              resourceinfo_tmp.deserialize(i)
+              @Resources << resourceinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Status = params['Status']
         end
       end
 

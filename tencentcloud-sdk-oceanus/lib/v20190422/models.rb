@@ -227,10 +227,13 @@ module TencentCloud
         # @param SqlGateways: Gateway信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SqlGateways: Array
+        # @param WebUIType: 0 公网访问 // 1 内网访问
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebUIType: Integer
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -271,6 +274,7 @@ module TencentCloud
           @ClusterType = clustertype
           @Orders = orders
           @SqlGateways = sqlgateways
+          @WebUIType = webuitype
         end
 
         def deserialize(params)
@@ -359,6 +363,7 @@ module TencentCloud
               @SqlGateways << sqlgatewayitem_tmp
             end
           end
+          @WebUIType = params['WebUIType']
         end
       end
 
@@ -808,10 +813,18 @@ module TencentCloud
         # @type ExpertModeOn: Boolean
         # @param ExpertModeConfiguration: 专家模式的配置
         # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
+        # @param TraceModeOn: trace链路
+        # @type TraceModeOn: Boolean
+        # @param TraceModeConfiguration: trace链路配置
+        # @type TraceModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.TraceModeConfiguration`
+        # @param CheckpointRetainedNum: checkpoint保留个数
+        # @type CheckpointRetainedNum: Integer
+        # @param JobGraph: 算子拓扑图
+        # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -834,6 +847,10 @@ module TencentCloud
           @ClazzLevels = clazzlevels
           @ExpertModeOn = expertmodeon
           @ExpertModeConfiguration = expertmodeconfiguration
+          @TraceModeOn = tracemodeon
+          @TraceModeConfiguration = tracemodeconfiguration
+          @CheckpointRetainedNum = checkpointretainednum
+          @JobGraph = jobgraph
         end
 
         def deserialize(params)
@@ -882,6 +899,16 @@ module TencentCloud
           unless params['ExpertModeConfiguration'].nil?
             @ExpertModeConfiguration = ExpertModeConfiguration.new
             @ExpertModeConfiguration.deserialize(params['ExpertModeConfiguration'])
+          end
+          @TraceModeOn = params['TraceModeOn']
+          unless params['TraceModeConfiguration'].nil?
+            @TraceModeConfiguration = TraceModeConfiguration.new
+            @TraceModeConfiguration.deserialize(params['TraceModeConfiguration'])
+          end
+          @CheckpointRetainedNum = params['CheckpointRetainedNum']
+          unless params['JobGraph'].nil?
+            @JobGraph = JobGraph.new
+            @JobGraph.deserialize(params['JobGraph'])
           end
         end
       end
@@ -1581,14 +1608,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param RecordTypes: 2 是checkpoint
+        # 1 是触发savepoint
+        # 3 停止触发的savepoint
+        # @type RecordTypes: Array
 
-        attr_accessor :JobId, :Limit, :Offset, :WorkSpaceId
+        attr_accessor :JobId, :Limit, :Offset, :WorkSpaceId, :RecordTypes
 
-        def initialize(jobid=nil, limit=nil, offset=nil, workspaceid=nil)
+        def initialize(jobid=nil, limit=nil, offset=nil, workspaceid=nil, recordtypes=nil)
           @JobId = jobid
           @Limit = limit
           @Offset = offset
           @WorkSpaceId = workspaceid
+          @RecordTypes = recordtypes
         end
 
         def deserialize(params)
@@ -1596,6 +1628,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @WorkSpaceId = params['WorkSpaceId']
+          @RecordTypes = params['RecordTypes']
         end
       end
 
@@ -2106,32 +2139,138 @@ module TencentCloud
 
       # DescribeTreeJobs请求参数结构体
       class DescribeTreeJobsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 筛选条件字段
+        # @type Filters: Array
         # @param WorkSpaceId: 工作空间 Serialid
         # @type WorkSpaceId: String
 
-        attr_accessor :WorkSpaceId
+        attr_accessor :Filters, :WorkSpaceId
 
-        def initialize(workspaceid=nil)
+        def initialize(filters=nil, workspaceid=nil)
+          @Filters = filters
           @WorkSpaceId = workspaceid
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           @WorkSpaceId = params['WorkSpaceId']
         end
       end
 
       # DescribeTreeJobs返回参数结构体
       class DescribeTreeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param ParentId: 父节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param Id: 当前文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 当前文件夹名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param JobSet: 当前文件夹下的作业列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobSet: Array
+        # @param Children: 迭代子目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ParentId, :Id, :Name, :JobSet, :Children, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(parentid=nil, id=nil, name=nil, jobset=nil, children=nil, requestid=nil)
+          @ParentId = parentid
+          @Id = id
+          @Name = name
+          @JobSet = jobset
+          @Children = children
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ParentId = params['ParentId']
+          @Id = params['Id']
+          @Name = params['Name']
+          unless params['JobSet'].nil?
+            @JobSet = []
+            params['JobSet'].each do |i|
+              treejobsets_tmp = TreeJobSets.new
+              treejobsets_tmp.deserialize(i)
+              @JobSet << treejobsets_tmp
+            end
+          end
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              describetreejobsrsp_tmp = DescribeTreeJobsRsp.new
+              describetreejobsrsp_tmp.deserialize(i)
+              @Children << describetreejobsrsp_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义树结构遍历子节点
+      class DescribeTreeJobsRsp < TencentCloud::Common::AbstractModel
+        # @param ParentId: 父节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentId: String
+        # @param Id: 当前文件夹ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 当前文件夹名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param JobSet: 当前文件夹下的作业集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobSet: Array
+        # @param Children: 迭代子目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Children: Array
+        # @param RequestId: 请求ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RequestId: String
+
+        attr_accessor :ParentId, :Id, :Name, :JobSet, :Children, :RequestId
+
+        def initialize(parentid=nil, id=nil, name=nil, jobset=nil, children=nil, requestid=nil)
+          @ParentId = parentid
+          @Id = id
+          @Name = name
+          @JobSet = jobset
+          @Children = children
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ParentId = params['ParentId']
+          @Id = params['Id']
+          @Name = params['Name']
+          unless params['JobSet'].nil?
+            @JobSet = []
+            params['JobSet'].each do |i|
+              treejobsets_tmp = TreeJobSets.new
+              treejobsets_tmp.deserialize(i)
+              @JobSet << treejobsets_tmp
+            end
+          end
+          unless params['Children'].nil?
+            @Children = []
+            params['Children'].each do |i|
+              describetreejobsrsp_tmp = DescribeTreeJobsRsp.new
+              describetreejobsrsp_tmp.deserialize(i)
+              @Children << describetreejobsrsp_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2576,10 +2715,22 @@ module TencentCloud
         # @param ExpertModeConfiguration: 专家模式的配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpertModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.ExpertModeConfiguration`
+        # @param TraceModeOn: trace链路
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceModeOn: Boolean
+        # @param TraceModeConfiguration: trace链路配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TraceModeConfiguration: :class:`Tencentcloud::Oceanus.v20190422.models.TraceModeConfiguration`
+        # @param CheckpointRetainedNum: checkpoint保留个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckpointRetainedNum: Integer
+        # @param JobGraph: 算子拓扑图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -2604,6 +2755,10 @@ module TencentCloud
           @ClazzLevels = clazzlevels
           @ExpertModeOn = expertmodeon
           @ExpertModeConfiguration = expertmodeconfiguration
+          @TraceModeOn = tracemodeon
+          @TraceModeConfiguration = tracemodeconfiguration
+          @CheckpointRetainedNum = checkpointretainednum
+          @JobGraph = jobgraph
         end
 
         def deserialize(params)
@@ -2654,6 +2809,16 @@ module TencentCloud
           unless params['ExpertModeConfiguration'].nil?
             @ExpertModeConfiguration = ExpertModeConfiguration.new
             @ExpertModeConfiguration.deserialize(params['ExpertModeConfiguration'])
+          end
+          @TraceModeOn = params['TraceModeOn']
+          unless params['TraceModeConfiguration'].nil?
+            @TraceModeConfiguration = TraceModeConfiguration.new
+            @TraceModeConfiguration.deserialize(params['TraceModeConfiguration'])
+          end
+          @CheckpointRetainedNum = params['CheckpointRetainedNum']
+          unless params['JobGraph'].nil?
+            @JobGraph = JobGraph.new
+            @JobGraph.deserialize(params['JobGraph'])
           end
         end
       end
@@ -4214,6 +4379,70 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # {
+      #   "Rate": "0.01",  ///如1%转换为0.01
+      #   "Operator":  "1:OUT,2:IN_AND_OUT,3:IN"  ///如1%转换为0.01
+      # }
+      # Operator
+      # 算子ID顺序配置，可以对每个算子配置IN、OUT、IN_AND_OUT三个值，分别表示采集输入数据、采集输出数据、同时采集输入和输出数据，配置示例:
+      class TraceModeConfiguration < TencentCloud::Common::AbstractModel
+        # @param Rate: 如1%转换为0.01
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rate: String
+        # @param Operator: 按照算子ID顺序配置，可以对每个算子配置IN、OUT、IN_AND_OUT三个值，分别表示采集输入数据、采集输出数据、同时采集输入和输出数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+
+        attr_accessor :Rate, :Operator
+
+        def initialize(rate=nil, operator=nil)
+          @Rate = rate
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Rate = params['Rate']
+          @Operator = params['Operator']
+        end
+      end
+
+      # 自定义树结构出参作业列表
+      class TreeJobSets < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
+        # @param Name: 作业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param JobType: 作业类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobType: Integer
+        # @param RunningCu: 作业占用资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningCu: Float
+        # @param Status: 作业状态 启动或者停止或者暂停
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status
+
+        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil)
+          @JobId = jobid
+          @Name = name
+          @JobType = jobtype
+          @RunningCu = runningcu
+          @Status = status
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Name = params['Name']
+          @JobType = params['JobType']
+          @RunningCu = params['RunningCu']
+          @Status = params['Status']
         end
       end
 

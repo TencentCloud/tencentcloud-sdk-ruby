@@ -731,6 +731,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改任务运行时属性，此接口不同于配置类接口，不会进行状态机判断。
+
+        # @param request: Request instance for ModifyMigrateRuntimeAttribute.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifyMigrateRuntimeAttributeRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifyMigrateRuntimeAttributeResponse`
+        def ModifyMigrateRuntimeAttribute(request)
+          body = send_request('ModifyMigrateRuntimeAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMigrateRuntimeAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
 
         # @param request: Request instance for ModifyMigrationJob.

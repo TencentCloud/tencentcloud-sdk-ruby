@@ -2900,7 +2900,7 @@ module TencentCloud
       class DeletePolicyGroupRequest < TencentCloud::Common::AbstractModel
         # @param Module: 固定值，为"monitor"
         # @type Module: String
-        # @param GroupId: 策略组id
+        # @param GroupId: 策略组id,即1.0的告警策略id,可以从策略详情获取
         # @type GroupId: Array
 
         attr_accessor :Module, :GroupId

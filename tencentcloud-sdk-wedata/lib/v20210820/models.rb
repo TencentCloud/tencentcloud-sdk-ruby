@@ -11032,9 +11032,11 @@ module TencentCloud
         # @type TaskId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param TaskVersionPath: task version path
+        # @param TaskVersionPath: 该任务选定版本的存储路径：
+        # DescribeDsTaskVersionList 或者 DescribeDsTaskVersionInfo 返回的对应的 TaskInfo.TaskExt.Properties 下 Base64.encode($region | $bucket | $ftp.file.name) 值
         # @type TaskVersionPath: String
-        # @param TaskVersion: task version
+        # @param TaskVersion: 该任务选定版本id：
+        # DescribeDsTaskVersionList 或者 DescribeDsTaskVersionInfo 返回的对应的 VersionId 取值
         # @type TaskVersion: String
 
         attr_accessor :TaskId, :ProjectId, :TaskVersionPath, :TaskVersion

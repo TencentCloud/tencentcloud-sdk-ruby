@@ -178,7 +178,9 @@ module TencentCloud
 
       # 授权出错信息
       class AuthFailMessage < TencentCloud::Common::AbstractModel
-        # @param ProxyOrganizationOpenId: 第三方应用平台的子客企业OpenId
+        # @param ProxyOrganizationOpenId: 第三方平台子客企业的唯一标识，长度不能超过64，只能由字母和数字组成。开发者可自定义此字段的值，并需要保存此 ID 以便进行后续操作。
+
+        # 一个第三方平台子客企业主体与子客企业 ProxyOrganizationOpenId 是一一对应的，不可更改，不可重复使用。例如，可以使用企业名称的哈希值，或者社会统一信用代码的哈希值，或者随机哈希值。
         # @type ProxyOrganizationOpenId: String
         # @param Message: 错误信息
         # @type Message: String
@@ -1625,24 +1627,30 @@ module TencentCloud
 
       # ChannelCreateMultiFlowSignQRCode请求参数结构体
       class ChannelCreateMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。
-        # 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 合同模板ID，为32位字符串。
+        # 建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。
         # @type TemplateId: String
-        # @param FlowName: 签署流程名称，最大长度200个字符。
+        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。 该名称还将用于合同签署完成后的下载文件名。
         # @type FlowName: String
-        # @param MaxFlowNum: 最大可发起签署流程份数
-        # <br/>默认5份
-        # <br/>备注：发起签署流程数量超过此上限后，二维码自动失效。
+        # @param MaxFlowNum: 通过此二维码可发起的流程最大限额，如未明确指定，默认为5份。 一旦发起流程数超越该限制，该二维码将自动失效。
         # @type MaxFlowNum: Integer
-        # @param FlowEffectiveDay: 签署流程有效天数 默认7天 最高设置不超过30天
+        # @param FlowEffectiveDay: 合同流程的签署有效期限，若未设定签署截止日期，则默认为自合同流程创建起的7天内截止。 若在签署截止日期前未完成签署，合同状态将变更为已过期，从而导致合同无效。 最长设定期限不得超过30天。
         # @type FlowEffectiveDay: Integer
-        # @param QrEffectiveDay: 二维码有效天数 默认7天 最高设置不超过90天
+        # @param QrEffectiveDay: 二维码的有效期限，默认为7天，最高设定不得超过90天。 一旦超过二维码的有效期限，该二维码将自动失效。
         # @type QrEffectiveDay: Integer
-        # @param Restrictions: 指定的签署二维码签署人
-        # <br/>指定后，只允许知道的人操作和签署
+        # @param Restrictions: 指定签署人信息。 在指定签署人后，仅允许特定签署人通过扫描二维码进行签署。
         # @type Restrictions: Array
+        # @param ApproverComponentLimitTypes: 指定签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
+        # @type ApproverComponentLimitTypes: Array
         # @param CallbackUrl: 已废弃，回调配置统一使用企业应用管理-应用集成-第三方应用中的配置
         # <br/> 通过一码多扫二维码发起的合同，回调消息可参考文档 https://qian.tencent.com/developers/partner/callback_types_contracts_sign
         # <br/> 用户通过签署二维码发起合同时，因企业额度不足导致失败 会触发签署二维码相关回调,具体参考文档 https://qian.tencent.com/developers/partner/callback_types_commons#%E7%AD%BE%E7%BD%B2%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%9B%B8%E5%85%B3%E5%9B%9E%E8%B0%83
@@ -1651,10 +1659,8 @@ module TencentCloud
         # @type ApproverRestrictions: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverRestriction`
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param ApproverComponentLimitTypes: 指定签署方经办人控件类型是个人印章签署控件（SIGN_SIGNATURE） 时，可选的签名方式。
-        # @type ApproverComponentLimitTypes: Array
 
-        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :CallbackUrl, :ApproverRestrictions, :Operator, :ApproverComponentLimitTypes
+        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :ApproverComponentLimitTypes, :CallbackUrl, :ApproverRestrictions, :Operator
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 10
         deprecate :CallbackUrl=, :none, 2023, 10
@@ -1663,7 +1669,7 @@ module TencentCloud
         deprecate :Operator, :none, 2023, 10
         deprecate :Operator=, :none, 2023, 10
 
-        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, callbackurl=nil, approverrestrictions=nil, operator=nil, approvercomponentlimittypes=nil)
+        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, approvercomponentlimittypes=nil, callbackurl=nil, approverrestrictions=nil, operator=nil)
           @Agent = agent
           @TemplateId = templateid
           @FlowName = flowname
@@ -1671,10 +1677,10 @@ module TencentCloud
           @FlowEffectiveDay = floweffectiveday
           @QrEffectiveDay = qreffectiveday
           @Restrictions = restrictions
+          @ApproverComponentLimitTypes = approvercomponentlimittypes
           @CallbackUrl = callbackurl
           @ApproverRestrictions = approverrestrictions
           @Operator = operator
-          @ApproverComponentLimitTypes = approvercomponentlimittypes
         end
 
         def deserialize(params)
@@ -1695,6 +1701,14 @@ module TencentCloud
               @Restrictions << approverrestriction_tmp
             end
           end
+          unless params['ApproverComponentLimitTypes'].nil?
+            @ApproverComponentLimitTypes = []
+            params['ApproverComponentLimitTypes'].each do |i|
+              approvercomponentlimittype_tmp = ApproverComponentLimitType.new
+              approvercomponentlimittype_tmp.deserialize(i)
+              @ApproverComponentLimitTypes << approvercomponentlimittype_tmp
+            end
+          end
           @CallbackUrl = params['CallbackUrl']
           unless params['ApproverRestrictions'].nil?
             @ApproverRestrictions = ApproverRestriction.new
@@ -1704,22 +1718,14 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          unless params['ApproverComponentLimitTypes'].nil?
-            @ApproverComponentLimitTypes = []
-            params['ApproverComponentLimitTypes'].each do |i|
-              approvercomponentlimittype_tmp = ApproverComponentLimitType.new
-              approvercomponentlimittype_tmp.deserialize(i)
-              @ApproverComponentLimitTypes << approvercomponentlimittype_tmp
-            end
-          end
         end
       end
 
       # ChannelCreateMultiFlowSignQRCode返回参数结构体
       class ChannelCreateMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
-        # @param QrCode: 签署二维码对象
+        # @param QrCode: 签署二维码的基本信息，用于创建二维码，用户可扫描该二维码进行签署操作。
         # @type QrCode: :class:`Tencentcloud::Essbasic.v20210526.models.SignQrCode`
-        # @param SignUrls: 签署链接对象
+        # @param SignUrls: 流程签署二维码的签署信息，适用于客户系统整合二维码功能。通过链接，用户可直接访问电子签名小程序并签署合同。
         # @type SignUrls: :class:`Tencentcloud::Essbasic.v20210526.models.SignUrl`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3587,7 +3593,7 @@ module TencentCloud
       # 在通过文件发起合同时，对应的component有三种定位方式
       # 1. 绝对定位方式
       # 2. 表单域(FIELD)定位方式
-      # 3. 关键字(KEYWORD)定位方式
+      # 3. 关键字(KEYWORD)定位方式，使用关键字定位时，请确保PDF原始文件内是关键字以文字形式保存在PDF文件中，不支持对图片内文字进行关键字查找
       # 可以参考官网说明
       # https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.8D.E5.AE.9A.E4.BD.8D.E6.96.B9.E5.BC.8F.E8.AF.B4.E6.98.8E
       class Component < TencentCloud::Common::AbstractModel
@@ -3637,7 +3643,7 @@ module TencentCloud
         # @param GenerateMode: 控件生成的方式：
         # NORMAL - 普通控件
         # FIELD - 表单域
-        # KEYWORD - 关键字
+        # KEYWORD - 关键字（设置关键字时，请确保PDF原始文件内是关键字以文字形式保存在PDF文件中，不支持对图片内文字进行关键字查找）
         # @type GenerateMode: String
         # @param ComponentWidth: 参数控件宽度，默认100，单位px
         # 表单域和关键字转换控件不用填
@@ -6467,28 +6473,41 @@ module TencentCloud
 
       # OperateChannelTemplate请求参数结构体
       class OperateChannelTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。
-        # 此接口Agent.AppId必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param OperateType: 操作类型，
-        # 查询:"SELECT"，
-        # 删除:"DELETE"，
-        # 更新:"UPDATE"
+        # <ul>
+        # <li>查询:"SELECT"</li>
+        # <li>删除:"DELETE"</li>
+        # <li>更新:"UPDATE"</li>
+        # </ul>
         # @type OperateType: String
-        # @param TemplateId: 第三方应用平台模板库模板唯一标识
+        # @param TemplateId: 合同模板ID，为32位字符串。此处为第三方应用平台模板库模板ID，非子客模板ID。
         # @type TemplateId: String
-        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据.
-        # 支持多个， 用","进行分隔
+        # @param ProxyOrganizationOpenIds: 第三方平台子客企业的唯一标识，长度不能超过64，只能由字母和数字组成。开发者可自定义此字段的值，并需要保存此 ID 以便进行后续操作。
+
+        # 一个第三方平台子客企业主体与子客企业 ProxyOrganizationOpenId 是一一对应的，不可更改，不可重复使用。例如，可以使用企业名称的哈希值，或者社会统一信用代码的哈希值，或者随机哈希值。
         # @type ProxyOrganizationOpenIds: String
         # @param AuthTag: 模板可见性,
-        # 全部可见-"all",
-        #  部分可见-"part"
+        # <ul>
+        # <li>全部可见-"all"</li>
+        # <li>部分可见-"part"</li>
+        # </ul>
         # @type AuthTag: String
         # @param Available: 当OperateType=UPDATE时，可以通过设置此字段对模板启停用状态进行操作。
-        # 若此字段值为0，则不会修改模板Available，
-        # 1为启用模板，
-        # 2为停用模板。
-        # 启用后模板可以正常领取。停用后，推送方式为【自动推送】的模板则无法被子客使用，推送方式为【手动领取】的模板则无法出现被模板库被子客领用。如果Available更新失败，会直接返回错误。
+        # <ul>
+        # <li>若此字段值为0，则不会修改模板Available</li>
+        # <li>1为启用模板</li>
+        # <li>2为停用模板</li>
+        # </ul>
+        # 启用后模板可以正常领取。
+        # 停用后，推送方式为【自动推送】的模板则无法被子客使用，推送方式为【手动领取】的模板则无法出现被模板库被子客领用。
+        # 如果Available更新失败，会直接返回错误。
         # @type Available: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -6530,21 +6549,27 @@ module TencentCloud
         # @param AppId: 腾讯电子签颁发给第三方应用平台的应用ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
-        # @param TemplateId: 第三方应用平台模板库模板唯一标识
+        # @param TemplateId: 合同模板ID，为32位字符串。此处为第三方应用平台模板库模板ID，非子客模板ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
         # @param OperateResult: 描述模板可见性更改的结果，和参数中Available无关。
-        # 全部成功-"all-success",
-        # 部分成功-"part-success",
-        # 全部失败-"fail"，失败的会在FailMessageList中展示。
+        # <ul>
+        # <li>全部成功-"all-success"</li>
+        # <li>部分成功-"part-success"</li>
+        # <li>全部失败-"fail"，失败的会在FailMessageList中展示</li>
+        # </ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateResult: String
         # @param AuthTag: 模板可见性,
-        # 全部可见-"all",
-        # 部分可见-"part"
+        # <ul>
+        # <li>全部可见-"all"</li>
+        # <li>部分可见-"part"</li>
+        # </ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthTag: String
-        # @param ProxyOrganizationOpenIds: 合作企业方第三方机构唯一标识数据
+        # @param ProxyOrganizationOpenIds: 第三方平台子客企业的唯一标识，长度不能超过64，只能由字母和数字组成。开发者可自定义此字段的值，并需要保存此 ID 以便进行后续操作。
+
+        # 一个第三方平台子客企业主体与子客企业 ProxyOrganizationOpenId 是一一对应的，不可更改，不可重复使用。例如，可以使用企业名称的哈希值，或者社会统一信用代码的哈希值，或者随机哈希值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOrganizationOpenIds: Array
         # @param FailMessageList: 操作失败信息数组
@@ -7159,13 +7184,13 @@ module TencentCloud
         end
       end
 
-      # 一码多扫签署二维码对象
+      # 签署二维码的基本信息，用于创建二维码，用户可扫描该二维码进行签署操作。
       class SignQrCode < TencentCloud::Common::AbstractModel
-        # @param QrCodeId: 二维码id
+        # @param QrCodeId: 二维码ID，为32位字符串。
         # @type QrCodeId: String
-        # @param QrCodeUrl: 二维码url
+        # @param QrCodeUrl: 二维码URL，可通过转换二维码的工具或代码组件将此URL转化为二维码，以便用户扫描进行流程签署。
         # @type QrCodeUrl: String
-        # @param ExpiredTime: 二维码过期时间
+        # @param ExpiredTime: 二维码的有截止时间，格式为Unix标准时间戳（秒）。 一旦超过二维码的有效期限，该二维码将自动失效。
         # @type ExpiredTime: Integer
 
         attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
@@ -7183,13 +7208,13 @@ module TencentCloud
         end
       end
 
-      # 一码多扫签署二维码签署信息
+      # 流程签署二维码的签署信息，适用于客户系统整合二维码功能。 通过链接，用户可直接访问电子签名小程序并签署合同。
       class SignUrl < TencentCloud::Common::AbstractModel
-        # @param AppSignUrl: 小程序签署链接
+        # @param AppSignUrl: 跳转至电子签名小程序签署的链接地址。 适用于客户端APP及小程序直接唤起电子签名小程序。
         # @type AppSignUrl: String
-        # @param EffectiveTime: 签署链接有效时间
+        # @param EffectiveTime: 签署链接有效时间，格式类似"2022-08-05 15:55:01"
         # @type EffectiveTime: String
-        # @param HttpSignUrl: 移动端签署链接
+        # @param HttpSignUrl: 跳转至电子签名小程序签署的链接地址，格式类似于https://essurl.cn/xxx。 打开此链接将会展示H5中间页面，随后唤起电子签名小程序以进行合同签署。
         # @type HttpSignUrl: String
 
         attr_accessor :AppSignUrl, :EffectiveTime, :HttpSignUrl

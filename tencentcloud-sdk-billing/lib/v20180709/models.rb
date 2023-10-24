@@ -3886,10 +3886,14 @@ module TencentCloud
         # @type PayScene: String
         # @param Operator: 操作人，默认就是用户uin
         # @type Operator: String
+        # @param VoucherMainType: 代金券主类型 has_price 为有价现金券 no_price 为无价代金券
+        # @type VoucherMainType: String
+        # @param VoucherSubType: 代金券副类型 discount 为折扣券 deduct 为抵扣券
+        # @type VoucherSubType: String
 
-        attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator
+        attr_accessor :Limit, :Offset, :Status, :VoucherId, :CodeId, :ProductCode, :ActivityId, :VoucherName, :TimeFrom, :TimeTo, :SortField, :SortOrder, :PayMode, :PayScene, :Operator, :VoucherMainType, :VoucherSubType
 
-        def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil)
+        def initialize(limit=nil, offset=nil, status=nil, voucherid=nil, codeid=nil, productcode=nil, activityid=nil, vouchername=nil, timefrom=nil, timeto=nil, sortfield=nil, sortorder=nil, paymode=nil, payscene=nil, operator=nil, vouchermaintype=nil, vouchersubtype=nil)
           @Limit = limit
           @Offset = offset
           @Status = status
@@ -3905,6 +3909,8 @@ module TencentCloud
           @PayMode = paymode
           @PayScene = payscene
           @Operator = operator
+          @VoucherMainType = vouchermaintype
+          @VoucherSubType = vouchersubtype
         end
 
         def deserialize(params)
@@ -3923,6 +3929,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @PayScene = params['PayScene']
           @Operator = params['Operator']
+          @VoucherMainType = params['VoucherMainType']
+          @VoucherSubType = params['VoucherSubType']
         end
       end
 
