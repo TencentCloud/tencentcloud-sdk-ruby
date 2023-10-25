@@ -770,13 +770,13 @@ module TencentCloud
       class ImportTableFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 表格关联的项目ID。
         # @type ProjectId: String
-        # @param Name: 表格名称，支持20个字符内的英文字符、数字和下划线。
+        # @param Name: 表格名称。最多支持200个字符。
         # @type Name: String
         # @param CosUri: 表格文件Cos对象路径。
         # @type CosUri: String
         # @param DataType: 表格文件中每列的数据类型，支持的类型包括：Int、Float、String、File、Boolean、Array[Int]、Array[Float]、Array[String]、Array[File]、Array[Boolean]
         # @type DataType: Array
-        # @param Description: 表格描述。
+        # @param Description: 表格描述。最多支持500个字符。
         # @type Description: String
 
         attr_accessor :ProjectId, :Name, :CosUri, :DataType, :Description

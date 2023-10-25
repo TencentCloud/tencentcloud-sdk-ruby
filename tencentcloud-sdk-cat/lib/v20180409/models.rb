@@ -217,10 +217,12 @@ module TencentCloud
         # 首尔
         # 多伦多
         # @type City: Array
+        # @param ScrollID: es scroll查询id
+        # @type ScrollID: String
 
-        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City
+        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City, :ScrollID
 
-        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil)
+        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil, scrollid=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @TaskType = tasktype
@@ -234,6 +236,7 @@ module TencentCloud
           @Districts = districts
           @ErrorTypes = errortypes
           @City = city
+          @ScrollID = scrollid
         end
 
         def deserialize(params)
@@ -250,6 +253,7 @@ module TencentCloud
           @Districts = params['Districts']
           @ErrorTypes = params['ErrorTypes']
           @City = params['City']
+          @ScrollID = params['ScrollID']
         end
       end
 
@@ -259,14 +263,17 @@ module TencentCloud
         # @type DataSet: Array
         # @param TotalNumber: 符合条件的数据总数
         # @type TotalNumber: Integer
+        # @param ScrollID: es scroll查询的id
+        # @type ScrollID: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DataSet, :TotalNumber, :RequestId
+        attr_accessor :DataSet, :TotalNumber, :ScrollID, :RequestId
 
-        def initialize(dataset=nil, totalnumber=nil, requestid=nil)
+        def initialize(dataset=nil, totalnumber=nil, scrollid=nil, requestid=nil)
           @DataSet = dataset
           @TotalNumber = totalnumber
+          @ScrollID = scrollid
           @RequestId = requestid
         end
 
@@ -280,6 +287,7 @@ module TencentCloud
             end
           end
           @TotalNumber = params['TotalNumber']
+          @ScrollID = params['ScrollID']
           @RequestId = params['RequestId']
         end
       end

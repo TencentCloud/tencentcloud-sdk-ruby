@@ -9616,14 +9616,20 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最小值为1，最大值为100。
         # @type Limit: Integer
+        # @param OrderField: 排序字段。支持：NetworkAclId,NetworkAclName,CreatedTime
+        # @type OrderField: String
+        # @param OrderDirection: 排序方法。顺序：ASC，倒序：DESC。
+        # @type OrderDirection: String
 
-        attr_accessor :Filters, :NetworkAclIds, :Offset, :Limit
+        attr_accessor :Filters, :NetworkAclIds, :Offset, :Limit, :OrderField, :OrderDirection
 
-        def initialize(filters=nil, networkaclids=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, networkaclids=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil)
           @Filters = filters
           @NetworkAclIds = networkaclids
           @Offset = offset
           @Limit = limit
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
         end
 
         def deserialize(params)
@@ -9638,6 +9644,8 @@ module TencentCloud
           @NetworkAclIds = params['NetworkAclIds']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
         end
       end
 
@@ -17534,9 +17542,9 @@ module TencentCloud
         # @type CreatedTime: String
         # @param SubnetSet: 网络ACL关联的子网数组。
         # @type SubnetSet: Array
-        # @param IngressEntries: 网络ACl入站规则。
+        # @param IngressEntries: 该参数仅对三元组ACL有效，网络ACl入站规则。
         # @type IngressEntries: Array
-        # @param EgressEntries: 网络ACL出站规则。
+        # @param EgressEntries: 该参数仅对三元组ACL有效，网络ACL出站规则。
         # @type EgressEntries: Array
         # @param NetworkAclType: 网络ACL类型。三元组：'TRIPLE'   五元组：'QUINTUPLE'
         # @type NetworkAclType: String

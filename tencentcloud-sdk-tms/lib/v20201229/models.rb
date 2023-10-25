@@ -45,10 +45,13 @@ module TencentCloud
         # @param Tags: 该字段用于返回当前一级标签（Label）下的关键词、子标签及分数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param HitInfos: 该字段用于返回违规文本命中信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitInfos: Array
 
-        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags
+        attr_accessor :Label, :Suggestion, :Keywords, :Score, :LibType, :LibId, :LibName, :SubLabel, :Tags, :HitInfos
 
-        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil)
+        def initialize(label=nil, suggestion=nil, keywords=nil, score=nil, libtype=nil, libid=nil, libname=nil, sublabel=nil, tags=nil, hitinfos=nil)
           @Label = label
           @Suggestion = suggestion
           @Keywords = keywords
@@ -58,6 +61,7 @@ module TencentCloud
           @LibName = libname
           @SubLabel = sublabel
           @Tags = tags
+          @HitInfos = hitinfos
         end
 
         def deserialize(params)
@@ -75,6 +79,14 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
+            end
+          end
+          unless params['HitInfos'].nil?
+            @HitInfos = []
+            params['HitInfos'].each do |i|
+              hitinfo_tmp = HitInfo.new
+              hitinfo_tmp.deserialize(i)
+              @HitInfos << hitinfo_tmp
             end
           end
         end
@@ -119,6 +131,67 @@ module TencentCloud
           @IMEI = params['IMEI']
           @IDFA = params['IDFA']
           @IDFV = params['IDFV']
+        end
+      end
+
+      # 关键词命中位置信息
+      class HitInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 标识模型命中还是关键词命中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Keyword: 命中关键词
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keyword: String
+        # @param LibName: 自定义词库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibName: String
+        # @param Positions: 位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Positions: Array
+
+        attr_accessor :Type, :Keyword, :LibName, :Positions
+
+        def initialize(type=nil, keyword=nil, libname=nil, positions=nil)
+          @Type = type
+          @Keyword = keyword
+          @LibName = libname
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keyword = params['Keyword']
+          @LibName = params['LibName']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positions_tmp = Positions.new
+              positions_tmp.deserialize(i)
+              @Positions << positions_tmp
+            end
+          end
+        end
+      end
+
+      # 标识命中的违规关键词位置信息
+      class Positions < TencentCloud::Common::AbstractModel
+        # @param Start: 关键词起始位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Start: Integer
+        # @param End: 关键词结束位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type End: Integer
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
         end
       end
 

@@ -1386,12 +1386,13 @@ module TencentCloud
         # @param NeedPreview: 是否为预览模式，取值如下：
         # <ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li>
         # <li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。</li></ul>
-        # 注: `当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容`
+        # 注: `当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容，动态表格合成完后会触发文档合成完成的回调通知`
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览模式下产生的预览链接类型
         # <ul><li> **0** :(默认) 文件流 ,点开后后下载预览的合同PDF文件 </li>
-        # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>
-        # 注: `此参数在NeedPreview 为true时有效`
+        # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子。</li></ul>
+        # 注: `1.此参数在NeedPreview 为true时有效`
+        # `2.动态表格控件不支持H5链接方式预览`
         # @type PreviewType: Integer
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -1561,6 +1562,62 @@ module TencentCloud
 
         def deserialize(params)
           @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateExtendedServiceAuthInfos请求参数结构体
+      class CreateExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserIds: 本企业员工的id，需要已实名，正常在职员工
+        # @type UserIds: Array
+        # @param ExtendServiceType: 要查询的扩展服务类型。
+        # 默认为空，即查询当前支持的所有扩展服务信息。
+        # 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
+        # <ul><li>OPEN_SERVER_SIGN：企业自动签</li>
+        # </ul>
+        # @type ExtendServiceType: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :UserIds, :ExtendServiceType, :Agent
+
+        def initialize(operator=nil, userids=nil, extendservicetype=nil, agent=nil)
+          @Operator = operator
+          @UserIds = userids
+          @ExtendServiceType = extendservicetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserIds = params['UserIds']
+          @ExtendServiceType = params['ExtendServiceType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateExtendedServiceAuthInfos返回参数结构体
+      class CreateExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4175,6 +4232,62 @@ module TencentCloud
 
       # CreateWebThemeConfig返回参数结构体
       class CreateWebThemeConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteExtendedServiceAuthInfos请求参数结构体
+      class DeleteExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param UserIds: 本企业员工的id，需要已实名，正常在职员工
+        # @type UserIds: Array
+        # @param ExtendServiceType: 要查询的扩展服务类型。
+        # 默认为空，即查询当前支持的所有扩展服务信息。
+        # 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
+        # <ul><li>OPEN_SERVER_SIGN：企业自动签</li>
+        # </ul>
+        # @type ExtendServiceType: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :UserIds, :ExtendServiceType, :Agent
+
+        def initialize(operator=nil, userids=nil, extendservicetype=nil, agent=nil)
+          @Operator = operator
+          @UserIds = userids
+          @ExtendServiceType = extendservicetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @UserIds = params['UserIds']
+          @ExtendServiceType = params['ExtendServiceType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DeleteExtendedServiceAuthInfos返回参数结构体
+      class DeleteExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

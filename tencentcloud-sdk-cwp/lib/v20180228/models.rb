@@ -6577,18 +6577,21 @@ module TencentCloud
         # @type Deadline: Integer
         # @param RuleName: 规则名称,大资产中心:asset_center
         # @type RuleName: String
+        # @param SourceType: 订单类型, 1 试用 2 赠送 3 体验 4 SSL-证书赠送 5 cvm赠送
+        # @type SourceType: Integer
         # @param RegionId: 地域, 1 广州 9新加坡, 默认为 1. 非必要情况不要选9
         # @type RegionId: Integer
         # @param ExtraParam: 额外参数,json字符串,包含ResourceId 资源ID,LicenseType 授权类型
         # @type ExtraParam: String
 
-        attr_accessor :LicenseType, :LicenseNum, :Deadline, :RuleName, :RegionId, :ExtraParam
+        attr_accessor :LicenseType, :LicenseNum, :Deadline, :RuleName, :SourceType, :RegionId, :ExtraParam
 
-        def initialize(licensetype=nil, licensenum=nil, deadline=nil, rulename=nil, regionid=nil, extraparam=nil)
+        def initialize(licensetype=nil, licensenum=nil, deadline=nil, rulename=nil, sourcetype=nil, regionid=nil, extraparam=nil)
           @LicenseType = licensetype
           @LicenseNum = licensenum
           @Deadline = deadline
           @RuleName = rulename
+          @SourceType = sourcetype
           @RegionId = regionid
           @ExtraParam = extraparam
         end
@@ -6598,6 +6601,7 @@ module TencentCloud
           @LicenseNum = params['LicenseNum']
           @Deadline = params['Deadline']
           @RuleName = params['RuleName']
+          @SourceType = params['SourceType']
           @RegionId = params['RegionId']
           @ExtraParam = params['ExtraParam']
         end

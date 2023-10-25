@@ -506,9 +506,16 @@ module TencentCloud
 
       # ChannelCancelMultiFlowSignQRCode请求参数结构体
       class ChannelCancelMultiFlowSignQRCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param QrCodeId: 二维码id
+        # @param QrCodeId: 二维码ID，为32位字符串。
         # @type QrCodeId: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1276,18 +1283,29 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByFiles请求参数结构体
       class ChannelCreateFlowGroupByFilesRequest < TencentCloud::Common::AbstractModel
-        # @param FlowFileInfos: 每个子合同的发起所需的信息，数量限制2-50
+        # @param FlowFileInfos: 合同组中每个合同签署流程的信息，合同组中最少包含2个合同，不能超过50个合同。
         # @type FlowFileInfos: Array
-        # @param FlowGroupName: 合同组名称，长度不超过200个字符
+        # @param FlowGroupName: 合同组的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowGroupName: String
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
+
+        # 子客企业和子客企业中的员工比较走完创建和实名过程
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param ApproverVerifyType: 签署人校验方式
-        # VerifyCheck: 人脸识别（默认）
-        # MobileCheck：手机号验证
-        # 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
+        # @param ApproverVerifyType: 合同组中签署人校验和认证的方式：
+        # <ul><li>**VerifyCheck**：人脸识别（默认）</li>
+        # <li>**MobileCheck**：手机号验证</li></ul>
+        # 注意：
+        # `1. MobileCheck 方式，未实名的个人/自然人签署方无需进行人脸识别实名认证即可查看合同（但签署合同时仍然需要人脸实名），企业签署方需经过人脸认证。`
+        # `2. 合同组的校验和认证的方式会优先使用，会覆盖合同组中单个合同和合同签署方认证方式的限制配置。`
         # @type ApproverVerifyType: String
-        # @param FlowGroupOptions: 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
+        # @param FlowGroupOptions: 合同组的签署配置项信息，例如在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
         # @type FlowGroupOptions: :class:`Tencentcloud::Essbasic.v20210526.models.FlowGroupOptions`
         # @param Operator: 操作者的信息，此参数不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1334,10 +1352,14 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByFiles返回参数结构体
       class ChannelCreateFlowGroupByFilesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同组ID
+        # @param FlowGroupId: 合同组ID，为32位字符串。
+        # 建议开发者妥善保存此合同组ID，以便于顺利进行后续操作。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowGroupId: String
-        # @param FlowIds: 子合同ID列表
+        # @param FlowIds: 合同组中每个合同流程ID，每个ID均为32位字符串。
+
+        # 注:
+        # `此数组的顺序和入参中的FlowGroupInfos顺序回不一致`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -1360,11 +1382,20 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByTemplates请求参数结构体
       class ChannelCreateFlowGroupByTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
+
+        # 子客企业和子客企业中的员工比较走完创建和实名过程
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowInfos: 每个子合同的发起所需的信息，数量限制2-50（合同组暂不支持抄送功能）
+        # @param FlowInfos: 合同组中每个合同签署流程的信息，合同组中最少包含2个合同，不能超过50个合同。
         # @type FlowInfos: Array
-        # @param FlowGroupName: 合同组名称，长度不超过200个字符
+        # @param FlowGroupName: 合同组的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowGroupName: String
 
         attr_accessor :Agent, :FlowInfos, :FlowGroupName
@@ -1394,9 +1425,13 @@ module TencentCloud
 
       # ChannelCreateFlowGroupByTemplates返回参数结构体
       class ChannelCreateFlowGroupByTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowGroupId: 合同组ID
+        # @param FlowGroupId: 合同组ID，为32位字符串。
+        # 建议开发者妥善保存此合同组ID，以便于顺利进行后续操作。
         # @type FlowGroupId: String
-        # @param FlowIds: 子合同ID列表
+        # @param FlowIds: 合同组中每个合同流程ID，每个ID均为32位字符串。
+
+        # 注:
+        # `此数组的顺序和入参中的FlowInfos顺序回不一致`
         # @type FlowIds: Array
         # @param TaskInfos: 复杂文档合成任务（如，包含动态表格的预览任务）的任务信息数组；
         # 如果文档需要异步合成，此字段会返回该异步任务的任务信息，后续可以通过ChannelGetTaskResultApi接口查询任务详情；
@@ -1430,9 +1465,16 @@ module TencentCloud
 
       # ChannelCreateFlowReminds请求参数结构体
       class ChannelCreateFlowRemindsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowIds: 签署流程Id数组，最多100个，超过100不处理
+        # @param FlowIds: 需执行催办的签署流程ID数组，最多包含100个。
         # @type FlowIds: Array
 
         attr_accessor :Agent, :FlowIds
@@ -1453,7 +1495,7 @@ module TencentCloud
 
       # ChannelCreateFlowReminds返回参数结构体
       class ChannelCreateFlowRemindsResponse < TencentCloud::Common::AbstractModel
-        # @param RemindFlowRecords: 合同催办详情信息
+        # @param RemindFlowRecords: 合同催办结果的详细信息列表。
         # @type RemindFlowRecords: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4357,7 +4399,7 @@ module TencentCloud
         # @type SealImage: String
         # @param Operator: 操作者的信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param GenerateSource: 本接口支持上传图片印章及系统直接生成印章； 如果要使用系统生成印章，此值传：SealGenerateSourceSystem； 如果要使用图片上传请传字段 SealImage
+        # @param GenerateSource: 本接口支持上传图片印章及系统直接生成印章； 如果要使用系统生成印章，此值传：SealGenerateSourceSystem； 如果要使用图片上传，此字段置空并且传字段 SealImage
         # @type GenerateSource: String
         # @param SealType: 电子印章类型：
         # <ul><li>OFFICIAL-公章</li>
@@ -5367,21 +5409,21 @@ module TencentCloud
       # <td>场景一</td>
       # <td>第三方子企业A员工</td>
       # <td>第三方子企业A员工</td>
-      # <td>OpenId、OrgName、OrgOpenId必传 ,ApproverType设置为ORGANIZATION</td>
+      # <td>OpenId、OrganizationName、OrganizationOpenId必传 ,ApproverType设置为ORGANIZATION</td>
       # </tr>
 
       # <tr>
       # <td>场景二</td>
       # <td>第三方子企业A员工</td>
       # <td>第三方子企业B(不指定经办人)</td>
-      # <td>OrgName、OrgOpenId必传 ,ApproverType设置为ORGANIZATION</td>
+      # <td>OrganizationName、OrganizationOpenId必传 ,ApproverType设置为ORGANIZATION</td>
       # </tr>
 
       # <tr>
       # <td>场景三</td>
       # <td>第三方子企业A员工</td>
       # <td>第三方子企业B员工</td>
-      # <td>OpenId、OrgName、OrgOpenId必传, ApproverType设置为ORGANIZATION</td>
+      # <td>OpenId、OrganizationOpenId、OrganizationName必传, ApproverType设置为ORGANIZATION</td>
       # </tr>
 
       # <tr>
@@ -5395,7 +5437,7 @@ module TencentCloud
       # <td>场景五</td>
       # <td>第三方子企业A员工</td>
       # <td>SaaS平台企业员工</td>
-      # <td>Name、Mobile、OrgName必传，且NotChannelOrganization=True。 ApproverType设置为ORGANIZATION</td>
+      # <td>Name、Mobile、OrganizationName必传，且NotChannelOrganization=True。 ApproverType设置为ORGANIZATION</td>
       # </tr>
       # </tbody>
       # </table>
@@ -5804,15 +5846,13 @@ module TencentCloud
 
       # 合同组的配置项信息包括：在合同组签署过程中，是否需要对每个子合同进行独立的意愿确认。
       class FlowGroupOptions < TencentCloud::Common::AbstractModel
-        # @param SelfOrganizationApproverSignEach: 发起方企业经办人（即签署人为发起方企业员工）是否需要对子合同进行独立的意愿确认：
-        # fasle：发起方企业经办人签署时对所有子合同进行统一的意愿确认
-        # true：发起方企业经办人签署时需要对子合同进行独立的意愿确认
-        # 默认为fasle。
+        # @param SelfOrganizationApproverSignEach: 发起方企业经办人（即签署人为发起方企业员工）是否需要对子合同进行独立的意愿确认
+        # <ul><li>**false**（默认）：发起方企业经办人签署时对所有子合同进行统一的意愿确认。</li>
+        # <li>**true**：发起方企业经办人签署时需要对子合同进行独立的意愿确认。</li></ul>
         # @type SelfOrganizationApproverSignEach: Boolean
-        # @param OtherApproverSignEach: 非发起方企业经办人（即：签署人为个人或者不为发起方企业的员工）是否需要对子合同进行独立的意愿确认：
-        # fasle：非发起方企业经办人签署时对所有子合同进行统一的意愿确认
-        # true：非发起方企业经办人签署时需要对子合同进行独立的意愿确认
-        # 默认为false。
+        # @param OtherApproverSignEach: 非发起方企业经办人（即：签署人为个人或者不为发起方企业的员工）是否需要对子合同进行独立的意愿确认
+        # <ul><li>**false**（默认）：非发起方企业经办人签署时对所有子合同进行统一的意愿确认。</li>
+        # <li>**true**：非发起方企业经办人签署时需要对子合同进行独立的意愿确认。</li></ul>
         # @type OtherApproverSignEach: Boolean
 
         attr_accessor :SelfOrganizationApproverSignEach, :OtherApproverSignEach
@@ -7133,13 +7173,13 @@ module TencentCloud
         end
       end
 
-      # 催办接口返回详细信息
+      # 催办接口返回的详细信息。
       class RemindFlowRecords < TencentCloud::Common::AbstractModel
-        # @param CanRemind: 是否能够催办，true-是，false-否
+        # @param CanRemind: 合同流程是否可以催办： true - 可以，false - 不可以。 若无法催办，将返回RemindMessage以解释原因。
         # @type CanRemind: Boolean
-        # @param FlowId: 合同id
+        # @param FlowId: 合同流程ID，为32位字符串。
         # @type FlowId: String
-        # @param RemindMessage: 催办详情信息
+        # @param RemindMessage: 在合同流程无法催办的情况下，系统将返回RemindMessage以阐述原因。
         # @type RemindMessage: String
 
         attr_accessor :CanRemind, :FlowId, :RemindMessage
