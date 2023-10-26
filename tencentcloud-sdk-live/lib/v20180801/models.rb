@@ -535,7 +535,7 @@ module TencentCloud
         # @type StreamMixNotifyUrl: String
         # @param StreamEndNotifyUrl: 断流回调 URL。
         # @type StreamEndNotifyUrl: String
-        # @param RecordNotifyUrl: 录制回调 URL。
+        # @param RecordNotifyUrl: 录制文件回调 URL。
         # @type RecordNotifyUrl: String
         # @param SnapshotNotifyUrl: 截图回调 URL。
         # @type SnapshotNotifyUrl: String
@@ -1157,9 +1157,12 @@ module TencentCloud
         # @param StreamEndNotifyUrl: 断流回调 URL，
         # 相关协议文档：[事件消息通知](/document/product/267/32744)。
         # @type StreamEndNotifyUrl: String
-        # @param RecordNotifyUrl: 录制回调 URL，
+        # @param RecordNotifyUrl: 录制文件回调 URL，
         # 相关协议文档：[事件消息通知](/document/product/267/32744)。
         # @type RecordNotifyUrl: String
+        # @param RecordStatusNotifyUrl: 录制状态回调 URL ，
+        # 相关协议文档：[事件消息通知](/document/product/267/32744)。
+        # @type RecordStatusNotifyUrl: String
         # @param SnapshotNotifyUrl: 截图回调 URL，
         # 相关协议文档：[事件消息通知](/document/product/267/32744)。
         # @type SnapshotNotifyUrl: String
@@ -1176,14 +1179,15 @@ module TencentCloud
         # @param AudioAuditNotifyUrl: 音频审核回调 URL。
         # @type AudioAuditNotifyUrl: String
 
-        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
+        attr_accessor :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :StreamMixNotifyUrl, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
 
-        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
+        def initialize(templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, streammixnotifyurl=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
           @StreamEndNotifyUrl = streamendnotifyurl
           @RecordNotifyUrl = recordnotifyurl
+          @RecordStatusNotifyUrl = recordstatusnotifyurl
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
@@ -1198,6 +1202,7 @@ module TencentCloud
           @StreamBeginNotifyUrl = params['StreamBeginNotifyUrl']
           @StreamEndNotifyUrl = params['StreamEndNotifyUrl']
           @RecordNotifyUrl = params['RecordNotifyUrl']
+          @RecordStatusNotifyUrl = params['RecordStatusNotifyUrl']
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']
@@ -9076,8 +9081,10 @@ module TencentCloud
         # @type StreamBeginNotifyUrl: String
         # @param StreamEndNotifyUrl: 断流回调 URL。
         # @type StreamEndNotifyUrl: String
-        # @param RecordNotifyUrl: 录制回调 URL。
+        # @param RecordNotifyUrl: 录制文件回调 URL。
         # @type RecordNotifyUrl: String
+        # @param RecordStatusNotifyUrl: 录制状态回调 URL 。
+        # @type RecordStatusNotifyUrl: String
         # @param SnapshotNotifyUrl: 截图回调 URL。
         # @type SnapshotNotifyUrl: String
         # @param PornCensorshipNotifyUrl: 鉴黄回调 URL。
@@ -9090,15 +9097,16 @@ module TencentCloud
         # @param AudioAuditNotifyUrl: 音频审核回调 URL。
         # @type AudioAuditNotifyUrl: String
 
-        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
+        attr_accessor :TemplateId, :TemplateName, :Description, :StreamBeginNotifyUrl, :StreamEndNotifyUrl, :RecordNotifyUrl, :RecordStatusNotifyUrl, :SnapshotNotifyUrl, :PornCensorshipNotifyUrl, :CallbackKey, :PushExceptionNotifyUrl, :AudioAuditNotifyUrl
 
-        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
+        def initialize(templateid=nil, templatename=nil, description=nil, streambeginnotifyurl=nil, streamendnotifyurl=nil, recordnotifyurl=nil, recordstatusnotifyurl=nil, snapshotnotifyurl=nil, porncensorshipnotifyurl=nil, callbackkey=nil, pushexceptionnotifyurl=nil, audioauditnotifyurl=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Description = description
           @StreamBeginNotifyUrl = streambeginnotifyurl
           @StreamEndNotifyUrl = streamendnotifyurl
           @RecordNotifyUrl = recordnotifyurl
+          @RecordStatusNotifyUrl = recordstatusnotifyurl
           @SnapshotNotifyUrl = snapshotnotifyurl
           @PornCensorshipNotifyUrl = porncensorshipnotifyurl
           @CallbackKey = callbackkey
@@ -9113,6 +9121,7 @@ module TencentCloud
           @StreamBeginNotifyUrl = params['StreamBeginNotifyUrl']
           @StreamEndNotifyUrl = params['StreamEndNotifyUrl']
           @RecordNotifyUrl = params['RecordNotifyUrl']
+          @RecordStatusNotifyUrl = params['RecordStatusNotifyUrl']
           @SnapshotNotifyUrl = params['SnapshotNotifyUrl']
           @PornCensorshipNotifyUrl = params['PornCensorshipNotifyUrl']
           @CallbackKey = params['CallbackKey']

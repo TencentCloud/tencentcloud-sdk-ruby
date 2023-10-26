@@ -69,6 +69,24 @@ module TencentCloud
         # @param OriginDetail: 源站信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
+        # @param OriginProtocol: 回源协议，取值有：
+        # <li>FOLLOW: 协议跟随；</li>
+        # <li>HTTP: HTTP协议回源；</li>
+        # <li>HTTPS: HTTPS协议回源。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginProtocol: String
+        # @param HttpOriginPort: HTTP回源端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpOriginPort: Integer
+        # @param HttpsOriginPort: HTTPS回源端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsOriginPort: Integer
+        # @param IPv6Status: IPv6状态，取值有：
+        # <li>follow：遵循站点IPv6配置；</li>
+        # <li>on：开启状态；</li>
+        # <li>off：关闭状态。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6Status: String
         # @param Cname: CNAME 地址。
         # @type Cname: String
         # @param IdentificationStatus: 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
@@ -85,13 +103,17 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
 
-        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification, :Certificate
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :IPv6Status, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification, :Certificate
 
-        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil, certificate=nil)
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil, certificate=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @DomainStatus = domainstatus
           @OriginDetail = origindetail
+          @OriginProtocol = originprotocol
+          @HttpOriginPort = httporiginport
+          @HttpsOriginPort = httpsoriginport
+          @IPv6Status = ipv6status
           @Cname = cname
           @IdentificationStatus = identificationstatus
           @CreatedOn = createdon
@@ -108,6 +130,10 @@ module TencentCloud
             @OriginDetail = OriginDetail.new
             @OriginDetail.deserialize(params['OriginDetail'])
           end
+          @OriginProtocol = params['OriginProtocol']
+          @HttpOriginPort = params['HttpOriginPort']
+          @HttpsOriginPort = params['HttpsOriginPort']
+          @IPv6Status = params['IPv6Status']
           @Cname = params['Cname']
           @IdentificationStatus = params['IdentificationStatus']
           @CreatedOn = params['CreatedOn']
@@ -1625,13 +1651,33 @@ module TencentCloud
         # @type DomainName: String
         # @param OriginInfo: 源站信息。
         # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
+        # @param OriginProtocol: 回源协议，取值有：
+        # <li>FOLLOW: 协议跟随；</li>
+        # <li>HTTP: HTTP协议回源；</li>
+        # <li>HTTPS: HTTPS协议回源。</li>
+        # <li>不填默认为： FOLLOW。</li>
+        # @type OriginProtocol: String
+        # @param HttpOriginPort: HTTP回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTP时生效, 不填默认为80。
+        # @type HttpOriginPort: Integer
+        # @param HttpsOriginPort: HTTPS回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTPS时生效，不填默认为443。
+        # @type HttpsOriginPort: Integer
+        # @param IPv6Status: IPv6状态，取值有：
+        # <li>follow：遵循站点IPv6配置；</li>
+        # <li>on：开启状态；</li>
+        # <li>off：关闭状态。</li>
+        # <li>不填默认为：follow。</li>
+        # @type IPv6Status: String
 
-        attr_accessor :ZoneId, :DomainName, :OriginInfo
+        attr_accessor :ZoneId, :DomainName, :OriginInfo, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :IPv6Status
 
-        def initialize(zoneid=nil, domainname=nil, origininfo=nil)
+        def initialize(zoneid=nil, domainname=nil, origininfo=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @OriginInfo = origininfo
+          @OriginProtocol = originprotocol
+          @HttpOriginPort = httporiginport
+          @HttpsOriginPort = httpsoriginport
+          @IPv6Status = ipv6status
         end
 
         def deserialize(params)
@@ -1641,6 +1687,10 @@ module TencentCloud
             @OriginInfo = OriginInfo.new
             @OriginInfo.deserialize(params['OriginInfo'])
           end
+          @OriginProtocol = params['OriginProtocol']
+          @HttpOriginPort = params['HttpOriginPort']
+          @HttpsOriginPort = params['HttpsOriginPort']
+          @IPv6Status = params['IPv6Status']
         end
       end
 
@@ -1903,6 +1953,63 @@ module TencentCloud
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOriginGroup请求参数结构体
+      class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Name: 源站组名称，可输入1-200个字符，允许的字符为 a-z, A-Z, 0-9, _, - 。
+        # @type Name: String
+        # @param Type: 源站组类型，此参数必填，取值有：
+        # <li>GENERAL：通用型源站组，仅支持添加 IP/域名 源站，可以被域名服务、规则引擎、四层代理、通用型负载均衡引用；</li>
+        # <li>HTTP： HTTP专用型源站组，支持添加 IP/域名、对象存储源站，无法被四层代理引用。</li>
+        # @type Type: String
+        # @param Records: 源站记录信息，此参数必填。
+        # @type Records: Array
+
+        attr_accessor :ZoneId, :Name, :Type, :Records
+
+        def initialize(zoneid=nil, name=nil, type=nil, records=nil)
+          @ZoneId = zoneid
+          @Name = name
+          @Type = type
+          @Records = records
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              originrecord_tmp = OriginRecord.new
+              originrecord_tmp.deserialize(i)
+              @Records << originrecord_tmp
+            end
+          end
+        end
+      end
+
+      # CreateOriginGroup返回参数结构体
+      class CreateOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param OriginGroupId: 源站组ID。
+        # @type OriginGroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginGroupId, :RequestId
+
+        def initialize(origingroupid=nil, requestid=nil)
+          @OriginGroupId = origingroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginGroupId = params['OriginGroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -2214,8 +2321,10 @@ module TencentCloud
         # @param ZoneId: 共享 CNAME 所属站点的 ID。
         # @type ZoneId: String
         # @param SharedCNAMEPrefix: 共享 CNAME 前缀。请输入合法的域名前缀，例如"test-api"、"test-api.com"，限制输入 50 个字符。
-        # 共享 CNAME 完整格式为：<自定义前缀>+<zoneid中的12位随机字符串>+"share.eo.dnse[0-5].com"。例如前缀传入 example.com，EO 会为您创建共享 CNAME：example.com.sai2ig51kaa5.eo.dns2.com
-        # 示例值：example.com
+
+        # 共享 CNAME 完整格式为：<自定义前缀>+<zoneid中的12位随机字符串>+"share.eo.dnse[0-5].com"。
+
+        # 例如前缀传入 example.com，EO 会为您创建共享 CNAME：example.com.sai2ig51kaa5.share.eo.dnse2.com
         # @type SharedCNAMEPrefix: String
         # @param Description: 描述。可输入 1-50 个任意字符。
         # @type Description: String
@@ -2672,6 +2781,42 @@ module TencentCloud
 
       # DeleteApplicationProxyRule返回参数结构体
       class DeleteApplicationProxyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOriginGroup请求参数结构体
+      class DeleteOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param GroupId: 源站组ID，此参数必填。
+        # @type GroupId: String
+
+        attr_accessor :ZoneId, :GroupId
+
+        def initialize(zoneid=nil, groupid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteOriginGroup返回参数结构体
+      class DeleteOriginGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3571,23 +3716,27 @@ module TencentCloud
 
       # DescribeOriginGroup请求参数结构体
       class DescribeOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 分页查询偏移量，默认为0。
+        # @param ZoneId: 站点ID，此参数必填。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量，不填默认为0。
         # @type Offset: Integer
-        # @param Limit: 分页查询限制数目，默认为10，取值：1-1000。
+        # @param Limit: 分页查询限制数目，不填默认为20，取值：1-1000。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-20hzkd4rdmy0<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>origin-group-id<br>   按照【<strong>源站组ID</strong>】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>origin-group-name<br>   按照【<strong>源站组名称</strong>】进行过滤<br>   类型：String<br>   必选：否<br>   模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称</li>
+        # <li>origin-group-id<br>   按照【<strong>源站组ID</strong>】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a<br>   模糊查询：不支持</li><li>origin-group-name<br>   按照【<strong>源站组名称</strong>】进行过滤<br>   模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称</li>
         # @type Filters: Array
 
-        attr_accessor :Offset, :Limit, :Filters
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
 
-        def initialize(offset=nil, limit=nil, filters=nil)
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
           @Offset = offset
           @Limit = limit
           @Filters = filters
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
           @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['Filters'].nil?
@@ -6086,13 +6235,33 @@ module TencentCloud
         # @type DomainName: String
         # @param OriginInfo: 源站信息。
         # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
+        # @param OriginProtocol: 回源协议，取值有：
+        # <li>FOLLOW: 协议跟随；</li>
+        # <li>HTTP: HTTP协议回源；</li>
+        # <li>HTTPS: HTTPS协议回源。</li>
+        # <li>不填保持原有配置。</li>
+        # @type OriginProtocol: String
+        # @param HttpOriginPort: HTTP回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTP时生效, 不填保持原有配置。
+        # @type HttpOriginPort: Integer
+        # @param HttpsOriginPort: HTTPS回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTPS时生效，不填保持原有配置。
+        # @type HttpsOriginPort: Integer
+        # @param IPv6Status: IPv6状态，取值有：
+        # <li>follow：遵循站点IPv6配置；</li>
+        # <li>on：开启状态；</li>
+        # <li>off：关闭状态。</li>
+        # <li>不填保持原有配置。</li>
+        # @type IPv6Status: String
 
-        attr_accessor :ZoneId, :DomainName, :OriginInfo
+        attr_accessor :ZoneId, :DomainName, :OriginInfo, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :IPv6Status
 
-        def initialize(zoneid=nil, domainname=nil, origininfo=nil)
+        def initialize(zoneid=nil, domainname=nil, origininfo=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @OriginInfo = origininfo
+          @OriginProtocol = originprotocol
+          @HttpOriginPort = httporiginport
+          @HttpsOriginPort = httpsoriginport
+          @IPv6Status = ipv6status
         end
 
         def deserialize(params)
@@ -6102,6 +6271,10 @@ module TencentCloud
             @OriginInfo = OriginInfo.new
             @OriginInfo.deserialize(params['OriginInfo'])
           end
+          @OriginProtocol = params['OriginProtocol']
+          @HttpOriginPort = params['HttpOriginPort']
+          @HttpsOriginPort = params['HttpsOriginPort']
+          @IPv6Status = params['IPv6Status']
         end
       end
 
@@ -6560,6 +6733,63 @@ module TencentCloud
 
       # ModifyHostsCertificate返回参数结构体
       class ModifyHostsCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOriginGroup请求参数结构体
+      class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param GroupId: 源站组ID，此参数必填。
+        # @type GroupId: String
+        # @param Name: 源站组名称，不填保持原有配置，可输入1-200个字符，允许的字符为 a-z, A-Z, 0-9, _, - 。
+        # @type Name: String
+        # @param Type: 源站组类型，取值有：
+        # <li>GENERAL：通用型源站组，仅支持添加 IP/域名 源站，可以被域名服务、规则引擎、四层代理、通用型负载均衡引用；</li>
+        # <li>HTTP： HTTP专用型源站组，支持添加 IP/域名、对象存储源站，无法被四层代理引用。</li>不填保持原有配置。
+        # @type Type: String
+        # @param Records: 源站记录信息，不填保持原有配置。
+        # @type Records: Array
+
+        attr_accessor :ZoneId, :GroupId, :Name, :Type, :Records
+
+        def initialize(zoneid=nil, groupid=nil, name=nil, type=nil, records=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Name = name
+          @Type = type
+          @Records = records
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              originrecord_tmp = OriginRecord.new
+              originrecord_tmp.deserialize(i)
+              @Records << originrecord_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyOriginGroup返回参数结构体
+      class ModifyOriginGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7194,63 +7424,85 @@ module TencentCloud
 
       # 源站组信息
       class OriginGroup < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
-        # @type ZoneId: String
-        # @param ZoneName: 站点名称。
-        # @type ZoneName: String
-        # @param OriginGroupId: 源站组ID。
-        # @type OriginGroupId: String
-        # @param OriginType: 源站类型，取值有：
-        # <li>self：自有源站；</li>
-        # <li>third_party：第三方源站；</li>
-        # <li>cos：腾讯云COS源站。</li>
-        # @type OriginType: String
-        # @param OriginGroupName: 源站组名称。
-        # @type OriginGroupName: String
-        # @param ConfigurationType: 源站配置类型，当OriginType=self时，取值有：
-        # <li>area：按区域配置；</li>
-        # <li>weight： 按权重配置。</li>
-        # <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
-        # @type ConfigurationType: String
-        # @param OriginRecords: 源站记录信息。
-        # @type OriginRecords: Array
+        # @param GroupId: 源站组ID。
+        # @type GroupId: String
+        # @param Name: 源站组名称。
+        # @type Name: String
+        # @param Type: 源站组类型，取值有：
+        # <li>GENERAL：通用型源站组；</li>
+        # <li>HTTP： HTTP专用型源站组。</li>
+        # @type Type: String
+        # @param Records: 源站记录信息。
+        # @type Records: Array
+        # @param References: 源站组被引用实例列表。
+        # @type References: Array
+        # @param CreateTime: 源站组创建时间。
+        # @type CreateTime: String
         # @param UpdateTime: 源站组更新时间。
         # @type UpdateTime: String
-        # @param HostHeader: 当OriginType=self时，表示回源Host。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :ZoneName, :OriginGroupId, :OriginType, :OriginGroupName, :ConfigurationType, :OriginRecords, :UpdateTime, :HostHeader
+        attr_accessor :GroupId, :Name, :Type, :Records, :References, :CreateTime, :UpdateTime
 
-        def initialize(zoneid=nil, zonename=nil, origingroupid=nil, origintype=nil, origingroupname=nil, configurationtype=nil, originrecords=nil, updatetime=nil, hostheader=nil)
-          @ZoneId = zoneid
-          @ZoneName = zonename
-          @OriginGroupId = origingroupid
-          @OriginType = origintype
-          @OriginGroupName = origingroupname
-          @ConfigurationType = configurationtype
-          @OriginRecords = originrecords
+        def initialize(groupid=nil, name=nil, type=nil, records=nil, references=nil, createtime=nil, updatetime=nil)
+          @GroupId = groupid
+          @Name = name
+          @Type = type
+          @Records = records
+          @References = references
+          @CreateTime = createtime
           @UpdateTime = updatetime
-          @HostHeader = hostheader
         end
 
         def deserialize(params)
-          @ZoneId = params['ZoneId']
-          @ZoneName = params['ZoneName']
-          @OriginGroupId = params['OriginGroupId']
-          @OriginType = params['OriginType']
-          @OriginGroupName = params['OriginGroupName']
-          @ConfigurationType = params['ConfigurationType']
-          unless params['OriginRecords'].nil?
-            @OriginRecords = []
-            params['OriginRecords'].each do |i|
+          @GroupId = params['GroupId']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
               originrecord_tmp = OriginRecord.new
               originrecord_tmp.deserialize(i)
-              @OriginRecords << originrecord_tmp
+              @Records << originrecord_tmp
             end
           end
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              origingroupreference_tmp = OriginGroupReference.new
+              origingroupreference_tmp.deserialize(i)
+              @References << origingroupreference_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
-          @HostHeader = params['HostHeader']
+        end
+      end
+
+      # 源站组引用服务。
+      class OriginGroupReference < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 引用服务类型，取值有：
+        # <li>AccelerationDomain: 加速域名；</li>
+        # <li>RuleEngine: 规则引擎；</li>
+        # <li>Loadbalance: 负载均衡；</li>
+        # <li>ApplicationProxy: 四层代理。</li>
+        # @type InstanceType: String
+        # @param InstanceId: 引用类型的实例ID。
+        # @type InstanceId: String
+        # @param InstanceName: 应用类型的实例名称。
+        # @type InstanceName: String
+
+        attr_accessor :InstanceType, :InstanceId, :InstanceName
+
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil)
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
         end
       end
 
@@ -7364,56 +7616,39 @@ module TencentCloud
       class OriginRecord < TencentCloud::Common::AbstractModel
         # @param Record: 源站记录值，不包含端口信息，可以为：IPv4，IPv6，域名格式。
         # @type Record: String
+        # @param Type: 源站类型，取值有：
+        # <li>IP_DOMAIN：IPV4、IPV6、域名类型源站；</li>
+        # <li>COS：COS源。</li>
+        # <li>AWS_S3：AWS S3对象存储源站。</li>
+        # @type Type: String
         # @param RecordId: 源站记录ID。
         # @type RecordId: String
-        # @param Port: 源站端口，取值范围：[1-65535]。
-        # @type Port: Integer
-        # @param Weight: 当源站配置类型ConfigurationType=weight时，表示权重。
-        # 不配置权重信息时，所有源站组记录统一填写为0或者不填写，表示多个源站轮询回源。
-        # 配置权重信息时，取值为[1-100]，多个源站权重总和应为100，表示多个源站按照权重回源。
-        # 当源站配置类型ConfigurationType=proto时，表示权重。
-        # 不配置权重信息时，所有源站组记录统一填写为0或者不填写，表示多个源站轮询回源。
-        # 配置权重信息时，取值为[1-100]，源站组内Proto相同的多个源站权重总和应为100，表示多个源站按照权重回源。
+        # @param Weight: 源站权重，取值为0-100, 不填表示不设置权重，由系统自由调度，填0表示权重为0, 流量将不会调度到此源站。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param Proto: 当源站配置类型ConfigurationType=proto时，表示源站的协议类型，将按照客户端请求协议回到相应的源站，取值有：
-        # <li>http：HTTP协议源站；</li>
-        # <li>https：HTTPS协议源站。</li>
-        # @type Proto: String
-        # @param Area: 当源站配置类型ConfigurationType=area时，表示区域，为空表示全部地区。取值为iso-3166中alpha-2编码或者大洲区域代码。大洲区域代码取值为：
-        # <li>Asia：亚洲；</li>
-        # <li>Europe：欧洲；</li>
-        # <li>Africa：非洲；</li>
-        # <li>Oceania：大洋洲；</li>
-        # <li>Americas：美洲。</li>源站组记录中，至少需要有一项为全部地区。
-        # @type Area: Array
-        # @param Private: 当源站类型OriginType=third_part时有效
-        # 是否私有鉴权，取值有：
+        # @param Private: 是否私有鉴权，当源站类型 RecordType=COS/AWS_S3 时生效，取值有：
         # <li>true：使用私有鉴权；</li>
         # <li>false：不使用私有鉴权。</li>不填写，默认值为：false。
         # @type Private: Boolean
-        # @param PrivateParameters: 当源站类型Private=true时有效，表示私有鉴权使用参数。
+        # @param PrivateParameters: 私有鉴权参数，当源站类型Private=true时有效。
         # @type PrivateParameters: Array
 
-        attr_accessor :Record, :RecordId, :Port, :Weight, :Proto, :Area, :Private, :PrivateParameters
+        attr_accessor :Record, :Type, :RecordId, :Weight, :Private, :PrivateParameters
 
-        def initialize(record=nil, recordid=nil, port=nil, weight=nil, proto=nil, area=nil, private=nil, privateparameters=nil)
+        def initialize(record=nil, type=nil, recordid=nil, weight=nil, private=nil, privateparameters=nil)
           @Record = record
+          @Type = type
           @RecordId = recordid
-          @Port = port
           @Weight = weight
-          @Proto = proto
-          @Area = area
           @Private = private
           @PrivateParameters = privateparameters
         end
 
         def deserialize(params)
           @Record = params['Record']
+          @Type = params['Type']
           @RecordId = params['RecordId']
-          @Port = params['Port']
           @Weight = params['Weight']
-          @Proto = params['Proto']
-          @Area = params['Area']
           @Private = params['Private']
           unless params['PrivateParameters'].nil?
             @PrivateParameters = []
@@ -7575,11 +7810,13 @@ module TencentCloud
         end
       end
 
-      # 源站记录私有鉴权参数
+      # 对象存储源站记录私有鉴权参数
       class PrivateParameter < TencentCloud::Common::AbstractModel
         # @param Name: 私有鉴权参数名称，取值有：
         # <li>AccessKeyId：鉴权参数Access Key ID；</li>
-        # <li>SecretAccessKey：鉴权参数Secret Access Key。</li>
+        # <li>SecretAccessKey：鉴权参数Secret Access Key；</li>
+        # <li>SignatureVersion：鉴权版本，v2或者v4；</li>
+        # <li>Region：存储桶地域。</li>
         # @type Name: String
         # @param Value: 私有鉴权参数值。
         # @type Value: String

@@ -175,6 +175,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建源站组
+
+        # @param request: Request instance for CreateOriginGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateOriginGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateOriginGroupResponse`
+        def CreateOriginGroup(request)
+          body = send_request('CreateOriginGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOriginGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 为未购买套餐的站点购买套餐
 
         # @param request: Request instance for CreatePlanForZone.
@@ -429,6 +453,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApplicationProxyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除源站组，若源站组仍然被服务（例如：四层代理，域名服务，负载均衡，规则引起）引用，将不允许删除。
+
+        # @param request: Request instance for DeleteOriginGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteOriginGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteOriginGroupResponse`
+        def DeleteOriginGroup(request)
+          body = send_request('DeleteOriginGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOriginGroupResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1391,6 +1439,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyHostsCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改源站组
+
+        # @param request: Request instance for ModifyOriginGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyOriginGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyOriginGroupResponse`
+        def ModifyOriginGroup(request)
+          body = send_request('ModifyOriginGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOriginGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

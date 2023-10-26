@@ -6407,16 +6407,21 @@ module TencentCloud
 
       # CreateScanMalwareSetting返回参数结构体
       class CreateScanMalwareSettingResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -17185,16 +17190,37 @@ module TencentCloud
 
       # DescribeLicenseWhiteConfig返回参数结构体
       class DescribeLicenseWhiteConfigResponse < TencentCloud::Common::AbstractModel
+        # @param FlagShip: 旗舰版 配置信息
+        # @type FlagShip: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
+        # @param Professional: 专业版 配置信息
+        # @type Professional: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
+        # @param PrattWhitney: 普惠版 配置信息
+        # @type PrattWhitney: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FlagShip, :Professional, :PrattWhitney, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(flagship=nil, professional=nil, prattwhitney=nil, requestid=nil)
+          @FlagShip = flagship
+          @Professional = professional
+          @PrattWhitney = prattwhitney
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['FlagShip'].nil?
+            @FlagShip = VersionWhiteConfig.new
+            @FlagShip.deserialize(params['FlagShip'])
+          end
+          unless params['Professional'].nil?
+            @Professional = VersionWhiteConfig.new
+            @Professional.deserialize(params['Professional'])
+          end
+          unless params['PrattWhitney'].nil?
+            @PrattWhitney = VersionWhiteConfig.new
+            @PrattWhitney.deserialize(params['PrattWhitney'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -40580,6 +40606,34 @@ module TencentCloud
           @Type = params['Type']
           @SqlFlag = params['SqlFlag']
           @ContainZH = params['ContainZH']
+        end
+      end
+
+      # 授权版本白名单配置信息
+      class VersionWhiteConfig < TencentCloud::Common::AbstractModel
+        # @param Deadline: 到期天数
+        # @type Deadline: Integer
+        # @param LicenseNum: 授权数量
+        # @type LicenseNum: Integer
+        # @param IsApplyFor: 是否可申请
+        # @type IsApplyFor: Boolean
+        # @param SourceType: 类型
+        # @type SourceType: Integer
+
+        attr_accessor :Deadline, :LicenseNum, :IsApplyFor, :SourceType
+
+        def initialize(deadline=nil, licensenum=nil, isapplyfor=nil, sourcetype=nil)
+          @Deadline = deadline
+          @LicenseNum = licensenum
+          @IsApplyFor = isapplyfor
+          @SourceType = sourcetype
+        end
+
+        def deserialize(params)
+          @Deadline = params['Deadline']
+          @LicenseNum = params['LicenseNum']
+          @IsApplyFor = params['IsApplyFor']
+          @SourceType = params['SourceType']
         end
       end
 

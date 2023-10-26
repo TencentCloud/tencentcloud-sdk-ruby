@@ -5742,10 +5742,13 @@ module TencentCloud
         # @param UpdatedDate: 更新日期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedDate: String
+        # @param Dnssec: dnssec
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dnssec: String
 
-        attr_accessor :Contacts, :CreationDate, :ExpirationDate, :IsQcloud, :IsQcloudOwner, :NameServers, :Raw, :Registrar, :Status, :UpdatedDate
+        attr_accessor :Contacts, :CreationDate, :ExpirationDate, :IsQcloud, :IsQcloudOwner, :NameServers, :Raw, :Registrar, :Status, :UpdatedDate, :Dnssec
 
-        def initialize(contacts=nil, creationdate=nil, expirationdate=nil, isqcloud=nil, isqcloudowner=nil, nameservers=nil, raw=nil, registrar=nil, status=nil, updateddate=nil)
+        def initialize(contacts=nil, creationdate=nil, expirationdate=nil, isqcloud=nil, isqcloudowner=nil, nameservers=nil, raw=nil, registrar=nil, status=nil, updateddate=nil, dnssec=nil)
           @Contacts = contacts
           @CreationDate = creationdate
           @ExpirationDate = expirationdate
@@ -5756,6 +5759,7 @@ module TencentCloud
           @Registrar = registrar
           @Status = status
           @UpdatedDate = updateddate
+          @Dnssec = dnssec
         end
 
         def deserialize(params)
@@ -5772,6 +5776,7 @@ module TencentCloud
           @Registrar = params['Registrar']
           @Status = params['Status']
           @UpdatedDate = params['UpdatedDate']
+          @Dnssec = params['Dnssec']
         end
       end
 

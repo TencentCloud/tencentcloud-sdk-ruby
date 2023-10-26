@@ -6724,6 +6724,147 @@ module TencentCloud
         end
       end
 
+      # 计费下单接口出入参Goods
+      class Goods < TencentCloud::Common::AbstractModel
+        # @param PayMode: 付费类型，1:预付费，0:后付费
+        # @type PayMode: Integer
+        # @param GoodsNum: 商品数量
+        # @type GoodsNum: Integer
+        # @param GoodsDetail: 商品明细
+        # @type GoodsDetail: :class:`Tencentcloud::Waf.v20180125.models.GoodsDetail`
+        # @param ProjectId: 默认为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param GoodsCategoryId: 计费类目ID，对应cid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsCategoryId: Integer
+        # @param Platform: 平台类型，默认1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: Integer
+        # @param RegionId: 购买waf实例区域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+
+        attr_accessor :PayMode, :GoodsNum, :GoodsDetail, :ProjectId, :GoodsCategoryId, :Platform, :RegionId
+
+        def initialize(paymode=nil, goodsnum=nil, goodsdetail=nil, projectid=nil, goodscategoryid=nil, platform=nil, regionid=nil)
+          @PayMode = paymode
+          @GoodsNum = goodsnum
+          @GoodsDetail = goodsdetail
+          @ProjectId = projectid
+          @GoodsCategoryId = goodscategoryid
+          @Platform = platform
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+          @GoodsNum = params['GoodsNum']
+          unless params['GoodsDetail'].nil?
+            @GoodsDetail = GoodsDetail.new
+            @GoodsDetail.deserialize(params['GoodsDetail'])
+          end
+          @ProjectId = params['ProjectId']
+          @GoodsCategoryId = params['GoodsCategoryId']
+          @Platform = params['Platform']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # 产品明细
+      class GoodsDetail < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 时间间隔
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 单位，支持m、y、d
+        # @type TimeUnit: String
+        # @param ProductCode: 产品码
+        # @type ProductCode: String
+        # @param SubProductCode: 二级产品码
+        # @type SubProductCode: String
+        # @param Pid: 计费策略id
+        # @type Pid: Integer
+        # @param ProductInfo: waf产品码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductInfo: Array
+        # @param InstanceName: waf实例名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ElasticQps: QPS数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticQps: Integer
+        # @param FlexBill: 弹性账单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlexBill: Integer
+        # @param AutoRenewFlag: 1:自动续费，0:不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param RealRegion: waf购买的实际地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealRegion: Integer
+        # @param Type: Waf实例对应的二级产品码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param LabelTypes: 计费细项标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelTypes: Array
+        # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCounts: Array
+        # @param CurDeadline: 变配使用，实例到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param InstanceId: 对存在的实例购买bot 或api 安全
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :TimeSpan, :TimeUnit, :ProductCode, :SubProductCode, :Pid, :ProductInfo, :InstanceName, :ElasticQps, :FlexBill, :AutoRenewFlag, :RealRegion, :Type, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId
+
+        def initialize(timespan=nil, timeunit=nil, productcode=nil, subproductcode=nil, pid=nil, productinfo=nil, instancename=nil, elasticqps=nil, flexbill=nil, autorenewflag=nil, realregion=nil, type=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @Pid = pid
+          @ProductInfo = productinfo
+          @InstanceName = instancename
+          @ElasticQps = elasticqps
+          @FlexBill = flexbill
+          @AutoRenewFlag = autorenewflag
+          @RealRegion = realregion
+          @Type = type
+          @LabelTypes = labeltypes
+          @LabelCounts = labelcounts
+          @CurDeadline = curdeadline
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @Pid = params['Pid']
+          unless params['ProductInfo'].nil?
+            @ProductInfo = []
+            params['ProductInfo'].each do |i|
+              productinfo_tmp = ProductInfo.new
+              productinfo_tmp.deserialize(i)
+              @ProductInfo << productinfo_tmp
+            end
+          end
+          @InstanceName = params['InstanceName']
+          @ElasticQps = params['ElasticQps']
+          @FlexBill = params['FlexBill']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @RealRegion = params['RealRegion']
+          @Type = params['Type']
+          @LabelTypes = params['LabelTypes']
+          @LabelCounts = params['LabelCounts']
+          @CurDeadline = params['CurDeadline']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 产品明细
       class GoodsDetailNew < TencentCloud::Common::AbstractModel
         # @param TimeSpan: 时间间隔
@@ -8422,6 +8563,62 @@ module TencentCloud
         end
       end
 
+      # ModifyGenerateDeals请求参数结构体
+      class ModifyGenerateDealsRequest < TencentCloud::Common::AbstractModel
+        # @param Goods: 计费下单入参
+        # @type Goods: Array
+
+        attr_accessor :Goods
+
+        def initialize(goods=nil)
+          @Goods = goods
+        end
+
+        def deserialize(params)
+          unless params['Goods'].nil?
+            @Goods = []
+            params['Goods'].each do |i|
+              goods_tmp = Goods.new
+              goods_tmp.deserialize(i)
+              @Goods << goods_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGenerateDeals返回参数结构体
+      class ModifyGenerateDealsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 计费下单响应结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
+        # @param Status: 1:成功，0:失败
+        # @type Status: Integer
+        # @param ReturnMessage: 返回message
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Status, :ReturnMessage, :RequestId
+
+        def initialize(data=nil, status=nil, returnmessage=nil, requestid=nil)
+          @Data = data
+          @Status = status
+          @ReturnMessage = returnmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DealData.new
+            @Data.deserialize(params['Data'])
+          end
+          @Status = params['Status']
+          @ReturnMessage = params['ReturnMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyHostFlowMode请求参数结构体
       class ModifyHostFlowModeRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -9624,6 +9821,28 @@ module TencentCloud
         def deserialize(params)
           @Flow = params['Flow']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # waf产品
+      class ProductInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 

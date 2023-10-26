@@ -391,7 +391,7 @@ module TencentCloud
         # 如设置了该参数，将生效对应id的自学习定制模型；
         # 点击这里查看[自学习定制模型配置方法](https://cloud.tencent.com/document/product/1093/38416)
         # @type CustomizationId: String
-        # @param EmotionRecognition: **【增值付费功能】**情绪识别能力（目前仅支持16k_zh）
+        # @param EmotionRecognition: **【增值付费功能】**情绪识别能力（目前仅支持16k_zh,8k_zh）
         # 0：不开启；
         # 1：开启情绪识别，但不在文本展示情绪标签；
         # 2：开启情绪识别，并且在文本展示情绪标签（**该功能需要设置ResTextFormat 大于0**）
@@ -1257,12 +1257,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2023, 9
-        deprecate :ProjectId=, :none, 2023, 9
-        deprecate :SubServiceType, :none, 2023, 9
-        deprecate :SubServiceType=, :none, 2023, 9
-        deprecate :UsrAudioKey, :none, 2023, 9
-        deprecate :UsrAudioKey=, :none, 2023, 9
+        deprecate :ProjectId, :none, 2023, 10
+        deprecate :ProjectId=, :none, 2023, 10
+        deprecate :SubServiceType, :none, 2023, 10
+        deprecate :SubServiceType=, :none, 2023, 10
+        deprecate :UsrAudioKey, :none, 2023, 10
+        deprecate :UsrAudioKey=, :none, 2023, 10
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype

@@ -112,14 +112,26 @@ module TencentCloud
         # @param Analysis: 多维分析设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Analysis: Array
+        # @param GroupTriggerStatus: 分组触发状态。1：开启，0：关闭（默认）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupTriggerStatus: Boolean
+        # @param GroupTriggerCondition: 分组触发条件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupTriggerCondition: Array
+        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象;1:每个执行语句单独选择监控对象。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorObjectType: Integer
+        # @param AlarmLevel: 告警级别。0:警告(Warn);1:提醒(Info);2:紧急 (Critical)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: Integer
         # @param MultiConditions: 多触发条件。
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiConditions: Array
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :MultiConditions
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType, :AlarmLevel, :MultiConditions
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, multiconditions=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil, alarmlevel=nil, multiconditions=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -134,6 +146,10 @@ module TencentCloud
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
+          @GroupTriggerStatus = grouptriggerstatus
+          @GroupTriggerCondition = grouptriggercondition
+          @MonitorObjectType = monitorobjecttype
+          @AlarmLevel = alarmlevel
           @MultiConditions = multiconditions
         end
 
@@ -172,6 +188,10 @@ module TencentCloud
               @Analysis << analysisdimensional_tmp
             end
           end
+          @GroupTriggerStatus = params['GroupTriggerStatus']
+          @GroupTriggerCondition = params['GroupTriggerCondition']
+          @MonitorObjectType = params['MonitorObjectType']
+          @AlarmLevel = params['AlarmLevel']
           unless params['MultiConditions'].nil?
             @MultiConditions = []
             params['MultiConditions'].each do |i|
@@ -1340,7 +1360,11 @@ module TencentCloud
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
         # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         # @type TriggerCount: Integer
-        # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
+        # @param AlarmPeriod: 告警重复的周期。
+
+        # 单位是分钟。
+
+        # 取值范围是0~1440。
         # @type AlarmPeriod: Integer
         # @param AlarmNoticeIds: 关联的告警通知模板列表。
         # @type AlarmNoticeIds: Array
@@ -1350,14 +1374,24 @@ module TencentCloud
 
         # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         # @type Condition: String
+        # @param AlarmLevel: 告警级别。
+
+        # 0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
+
+        # 注意:
+        # - 不填则默认为0。
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
+        # @type AlarmLevel: Integer
         # @param MultiConditions: 多触发条件。
 
         #  注意:
-        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。</li>
+        # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
 
 
         # @type MultiConditions: Array
-        # @param Status: 是否开启告警策略。默认值为true
+        # @param Status: 是否开启告警策略。
+
+        # 默认值为true
         # @type Status: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
@@ -1365,10 +1399,26 @@ module TencentCloud
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
         # @param Analysis: 多维分析
         # @type Analysis: Array
+        # @param GroupTriggerStatus: 分组触发状态。
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :MultiConditions, :Status, :MessageTemplate, :CallBack, :Analysis
+        # 默认值false
+        # @type GroupTriggerStatus: Boolean
+        # @param GroupTriggerCondition: 分组触发条件。
+        # @type GroupTriggerCondition: Array
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, multiconditions=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
+        # 最大支持10个标签键值对，并且不能有重复的键值对。
+        # @type Tags: Array
+        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
+
+        # 不填则默认为0。
+
+        # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
+        # @type MonitorObjectType: Integer
+
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType
+
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -1376,11 +1426,16 @@ module TencentCloud
           @AlarmPeriod = alarmperiod
           @AlarmNoticeIds = alarmnoticeids
           @Condition = condition
+          @AlarmLevel = alarmlevel
           @MultiConditions = multiconditions
           @Status = status
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
+          @GroupTriggerStatus = grouptriggerstatus
+          @GroupTriggerCondition = grouptriggercondition
+          @Tags = tags
+          @MonitorObjectType = monitorobjecttype
         end
 
         def deserialize(params)
@@ -1401,6 +1456,7 @@ module TencentCloud
           @AlarmPeriod = params['AlarmPeriod']
           @AlarmNoticeIds = params['AlarmNoticeIds']
           @Condition = params['Condition']
+          @AlarmLevel = params['AlarmLevel']
           unless params['MultiConditions'].nil?
             @MultiConditions = []
             params['MultiConditions'].each do |i|
@@ -1423,6 +1479,17 @@ module TencentCloud
               @Analysis << analysisdimensional_tmp
             end
           end
+          @GroupTriggerStatus = params['GroupTriggerStatus']
+          @GroupTriggerCondition = params['GroupTriggerCondition']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @MonitorObjectType = params['MonitorObjectType']
         end
       end
 
@@ -6337,10 +6404,17 @@ module TencentCloud
         # @type CallBack: :class:`Tencentcloud::Cls.v20201016.models.CallBackInfo`
         # @param Analysis: 多维分析
         # @type Analysis: Array
+        # @param GroupTriggerStatus: 分组触发状态。true：开启，false：关闭（默认）
+        # @type GroupTriggerStatus: Boolean
+        # @param GroupTriggerCondition: 分组触发条件。
+        # @type GroupTriggerCondition: Array
+        # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
+        # <li> 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
+        # @type MonitorObjectType: Integer
 
-        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis
+        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType
 
-        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil)
+        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil)
           @AlarmId = alarmid
           @Name = name
           @MonitorTime = monitortime
@@ -6355,6 +6429,9 @@ module TencentCloud
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
+          @GroupTriggerStatus = grouptriggerstatus
+          @GroupTriggerCondition = grouptriggercondition
+          @MonitorObjectType = monitorobjecttype
         end
 
         def deserialize(params)
@@ -6399,6 +6476,9 @@ module TencentCloud
               @Analysis << analysisdimensional_tmp
             end
           end
+          @GroupTriggerStatus = params['GroupTriggerStatus']
+          @GroupTriggerCondition = params['GroupTriggerCondition']
+          @MonitorObjectType = params['MonitorObjectType']
         end
       end
 
