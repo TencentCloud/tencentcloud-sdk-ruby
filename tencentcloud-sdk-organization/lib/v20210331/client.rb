@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除成员账号
+
+        # @param request: Request instance for DeleteAccount.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteAccountRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteAccountResponse`
+        def DeleteAccount(request)
+          body = send_request('DeleteAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除企业组织
 
         # @param request: Request instance for DeleteOrganization.

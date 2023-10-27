@@ -2234,6 +2234,73 @@ module TencentCloud
         end
       end
 
+      # DescribePlanQRCodes请求参数结构体
+      class DescribePlanQRCodesRequest < TencentCloud::Common::AbstractModel
+        # @param PlanId: 计划ID
+        # @type PlanId: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :PlanId, :StartTime, :EndTime, :PageNo, :PageSize
+
+        def initialize(planid=nil, starttime=nil, endtime=nil, pageno=nil, pagesize=nil)
+          @PlanId = planid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNo = pageno
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @PlanId = params['PlanId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribePlanQRCodes返回参数结构体
+      class DescribePlanQRCodesResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回码
+        # @type Ret: Integer
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :Total, :Data, :RequestId
+
+        def initialize(ret=nil, total=nil, data=nil, requestid=nil)
+          @Ret = ret
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              planqrcode_tmp = PlanQRCode.new
+              planqrcode_tmp.deserialize(i)
+              @Data << planqrcode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductById请求参数结构体
       class DescribeProductByIdRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 商品ID
@@ -3630,6 +3697,28 @@ module TencentCloud
           @AppId = params['AppId']
           @AppPath = params['AppPath']
           @AppName = params['AppName']
+        end
+      end
+
+      # 安心计划二维码
+      class PlanQRCode < TencentCloud::Common::AbstractModel
+        # @param Url: 二维码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param Status: 状态，0:未激活 1:已激活 2:已冻结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Url, :Status
+
+        def initialize(url=nil, status=nil)
+          @Url = url
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Status = params['Status']
         end
       end
 

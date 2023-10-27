@@ -751,6 +751,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安心计划二维码列表
+
+        # @param request: Request instance for DescribePlanQRCodes.
+        # @type request: :class:`Tencentcloud::trp::V20210515::DescribePlanQRCodesRequest`
+        # @rtype: :class:`Tencentcloud::trp::V20210515::DescribePlanQRCodesResponse`
+        def DescribePlanQRCodes(request)
+          body = send_request('DescribePlanQRCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlanQRCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询商品信息
 
         # @param request: Request instance for DescribeProductById.

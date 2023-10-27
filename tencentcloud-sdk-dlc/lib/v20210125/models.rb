@@ -4896,10 +4896,12 @@ module TencentCloud
         # @type DatasourceConnectionNames: Array
         # @param DatasourceConnectionTypes: 连接类型，支持Mysql/HiveCos/Kafka/DataLakeCatalog
         # @type DatasourceConnectionTypes: Array
+        # @param HiveVersion: 返回指定hive版本的数据源，该参数指定后，会过滤掉该参数指定版本以外的hive数据源，非hive数据源正常返回
+        # @type HiveVersion: Array
 
-        attr_accessor :DatasourceConnectionIds, :Filters, :Offset, :Limit, :SortBy, :Sorting, :StartTime, :EndTime, :DatasourceConnectionNames, :DatasourceConnectionTypes
+        attr_accessor :DatasourceConnectionIds, :Filters, :Offset, :Limit, :SortBy, :Sorting, :StartTime, :EndTime, :DatasourceConnectionNames, :DatasourceConnectionTypes, :HiveVersion
 
-        def initialize(datasourceconnectionids=nil, filters=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, datasourceconnectionnames=nil, datasourceconnectiontypes=nil)
+        def initialize(datasourceconnectionids=nil, filters=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, datasourceconnectionnames=nil, datasourceconnectiontypes=nil, hiveversion=nil)
           @DatasourceConnectionIds = datasourceconnectionids
           @Filters = filters
           @Offset = offset
@@ -4910,6 +4912,7 @@ module TencentCloud
           @EndTime = endtime
           @DatasourceConnectionNames = datasourceconnectionnames
           @DatasourceConnectionTypes = datasourceconnectiontypes
+          @HiveVersion = hiveversion
         end
 
         def deserialize(params)
@@ -4930,6 +4933,7 @@ module TencentCloud
           @EndTime = params['EndTime']
           @DatasourceConnectionNames = params['DatasourceConnectionNames']
           @DatasourceConnectionTypes = params['DatasourceConnectionTypes']
+          @HiveVersion = params['HiveVersion']
         end
       end
 

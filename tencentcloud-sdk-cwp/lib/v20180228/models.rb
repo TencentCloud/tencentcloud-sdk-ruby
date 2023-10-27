@@ -4903,10 +4903,13 @@ module TencentCloud
         # @param Location: 地理位置中文名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
+        # @param RiskLevel: 威胁等级：0低危，1中危，2高危
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: Integer
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location, :RiskLevel
 
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil, risklevel=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -4930,6 +4933,7 @@ module TencentCloud
           @DataStatus = datastatus
           @MachineExtraInfo = machineextrainfo
           @Location = location
+          @RiskLevel = risklevel
         end
 
         def deserialize(params)
@@ -4959,6 +4963,7 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @Location = params['Location']
+          @RiskLevel = params['RiskLevel']
         end
       end
 
@@ -37739,7 +37744,7 @@ module TencentCloud
         # @type MachineName: String
         # @param ProcTree: 进程树
         # @type ProcTree: String
-        # @param DetectBy: 检测方法
+        # @param DetectBy: 检测方法: 0行为分析; 1命令特征检测
         # @type DetectBy: Integer
         # @param MachineExtraInfo:  主机额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -37747,10 +37752,13 @@ module TencentCloud
         # @param Pid: 进程id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pid: Integer
+        # @param RiskLevel: 威胁等级：0中危，1高危
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo, :Pid
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :DstIp, :DstPort, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :Status, :CreateTime, :MachineName, :ProcTree, :DetectBy, :MachineExtraInfo, :Pid, :RiskLevel
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil, pid=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, dstip=nil, dstport=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, status=nil, createtime=nil, machinename=nil, proctree=nil, detectby=nil, machineextrainfo=nil, pid=nil, risklevel=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -37773,6 +37781,7 @@ module TencentCloud
           @DetectBy = detectby
           @MachineExtraInfo = machineextrainfo
           @Pid = pid
+          @RiskLevel = risklevel
         end
 
         def deserialize(params)
@@ -37801,6 +37810,7 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @Pid = params['Pid']
+          @RiskLevel = params['RiskLevel']
         end
       end
 

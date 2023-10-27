@@ -6499,7 +6499,7 @@ module TencentCloud
         # @param DeviceId: 设备ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
-        # @param Code: 设备编码（即我们为设备生成的20位国标编码）
+        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
@@ -7360,10 +7360,12 @@ module TencentCloud
         # @type Port: Integer
         # @param Username: 设备用户名（仅网关接入支持）
         # @type Username: String
+        # @param ProtocolType: 网关设备接入协议（仅网关接入支持）
+        # @type ProtocolType: Integer
 
-        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username
+        attr_accessor :DeviceId, :Name, :TransportProtocol, :Password, :Description, :Ip, :Port, :Username, :ProtocolType
 
-        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil)
+        def initialize(deviceid=nil, name=nil, transportprotocol=nil, password=nil, description=nil, ip=nil, port=nil, username=nil, protocoltype=nil)
           @DeviceId = deviceid
           @Name = name
           @TransportProtocol = transportprotocol
@@ -7372,6 +7374,7 @@ module TencentCloud
           @Ip = ip
           @Port = port
           @Username = username
+          @ProtocolType = protocoltype
         end
 
         def deserialize(params)
@@ -7383,6 +7386,7 @@ module TencentCloud
           @Ip = params['Ip']
           @Port = params['Port']
           @Username = params['Username']
+          @ProtocolType = params['ProtocolType']
         end
       end
 

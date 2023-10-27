@@ -836,6 +836,227 @@ module TencentCloud
         end
       end
 
+      # CreateAlertCenterIsolate请求参数结构体
+      class CreateAlertCenterIsolateRequest < TencentCloud::Common::AbstractModel
+        # @param HandleAssetList: 处置对象,资产列表
+        # @type HandleAssetList: Array
+        # @param HandleTime: 处置时间
+        # 1  1天
+        # 7   7天
+        # -2 永久
+        # @type HandleTime: Integer
+        # @param AlertDirection: 当前日志方向： 0 出向 1 入向
+        # @type AlertDirection: Integer
+        # @param IsolateType: 隔离类型
+        # 1 互联网入站
+        # 2 互联网出站
+        # 4 内网访问
+        # @type IsolateType: Array
+        # @param OmMode: 运维模式 1 IP白名单 2 身份认证
+        # @type OmMode: Integer
+
+        attr_accessor :HandleAssetList, :HandleTime, :AlertDirection, :IsolateType, :OmMode
+
+        def initialize(handleassetlist=nil, handletime=nil, alertdirection=nil, isolatetype=nil, ommode=nil)
+          @HandleAssetList = handleassetlist
+          @HandleTime = handletime
+          @AlertDirection = alertdirection
+          @IsolateType = isolatetype
+          @OmMode = ommode
+        end
+
+        def deserialize(params)
+          @HandleAssetList = params['HandleAssetList']
+          @HandleTime = params['HandleTime']
+          @AlertDirection = params['AlertDirection']
+          @IsolateType = params['IsolateType']
+          @OmMode = params['OmMode']
+        end
+      end
+
+      # CreateAlertCenterIsolate返回参数结构体
+      class CreateAlertCenterIsolateResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回状态码：
+        # 0 成功
+        # 非0 失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息：
+        # success 成功
+        # 其他
+        # @type ReturnMsg: String
+        # @param Status: 处置状态码：
+        # 0  处置成功
+        # -1 通用错误，不用处理
+        # -3 表示重复，需重新刷新列表
+        # 其他
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAlertCenterOmit请求参数结构体
+      class CreateAlertCenterOmitRequest < TencentCloud::Common::AbstractModel
+        # @param HandleIdList: 处置对象,ID列表，  IdLists和IpList二选一
+        # @type HandleIdList: Array
+        # @param TableType: 忽略数据来源：
+        # AlertTable 告警中心  InterceptionTable拦截列表
+        # @type TableType: String
+
+        attr_accessor :HandleIdList, :TableType
+
+        def initialize(handleidlist=nil, tabletype=nil)
+          @HandleIdList = handleidlist
+          @TableType = tabletype
+        end
+
+        def deserialize(params)
+          @HandleIdList = params['HandleIdList']
+          @TableType = params['TableType']
+        end
+      end
+
+      # CreateAlertCenterOmit返回参数结构体
+      class CreateAlertCenterOmitResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回状态码：
+        # 0 成功
+        # 非0 失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息：
+        # success 成功
+        # 其他
+        # @type ReturnMsg: String
+        # @param Status: 处置状态码：
+        # 0  处置成功
+        # -1 通用错误，不用处理
+        # -3 表示重复，需重新刷新列表
+        # 其他
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAlertCenterRule请求参数结构体
+      class CreateAlertCenterRuleRequest < TencentCloud::Common::AbstractModel
+        # @param HandleTime: 处置时间
+        # 1  1天
+        # 7   7天
+        # -2 永久
+        # @type HandleTime: Integer
+        # @param HandleType: 处置类型
+        # 当HandleIdList 不为空时：1封禁 2放通
+        # 当HandleIpList 不为空时：3放通 4封禁
+        # @type HandleType: Integer
+        # @param AlertDirection: 当前日志方向： 0 出向 1 入向
+        # @type AlertDirection: Integer
+        # @param HandleDirection: 处置方向： 0出向 1入向 0,1出入向 3内网
+        # @type HandleDirection: String
+        # @param HandleIdList: 处置对象,ID列表，  IdLists和IpList二选一
+        # @type HandleIdList: Array
+        # @param HandleIpList: 处置对象,IP列表，  IdLists和IpList二选一
+        # @type HandleIpList: Array
+        # @param HandleComment: 处置描述
+        # @type HandleComment: String
+        # @param IgnoreReason: 放通原因:
+        # 0默认 1重复 2误报 3紧急放通
+        # @type IgnoreReason: Integer
+        # @param BlockDomain: 封禁域名-保留字段
+        # @type BlockDomain: String
+
+        attr_accessor :HandleTime, :HandleType, :AlertDirection, :HandleDirection, :HandleIdList, :HandleIpList, :HandleComment, :IgnoreReason, :BlockDomain
+
+        def initialize(handletime=nil, handletype=nil, alertdirection=nil, handledirection=nil, handleidlist=nil, handleiplist=nil, handlecomment=nil, ignorereason=nil, blockdomain=nil)
+          @HandleTime = handletime
+          @HandleType = handletype
+          @AlertDirection = alertdirection
+          @HandleDirection = handledirection
+          @HandleIdList = handleidlist
+          @HandleIpList = handleiplist
+          @HandleComment = handlecomment
+          @IgnoreReason = ignorereason
+          @BlockDomain = blockdomain
+        end
+
+        def deserialize(params)
+          @HandleTime = params['HandleTime']
+          @HandleType = params['HandleType']
+          @AlertDirection = params['AlertDirection']
+          @HandleDirection = params['HandleDirection']
+          @HandleIdList = params['HandleIdList']
+          @HandleIpList = params['HandleIpList']
+          @HandleComment = params['HandleComment']
+          @IgnoreReason = params['IgnoreReason']
+          @BlockDomain = params['BlockDomain']
+        end
+      end
+
+      # CreateAlertCenterRule返回参数结构体
+      class CreateAlertCenterRuleResponse < TencentCloud::Common::AbstractModel
+        # @param ReturnCode: 返回状态码：
+        # 0 成功
+        # 非0 失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: 返回信息：
+        # success 成功
+        # 其他
+        # @type ReturnMsg: String
+        # @param Status: 处置状态码：
+        # 0  处置成功
+        # -1 通用错误，不用处理
+        # -3 表示重复，需重新刷新列表
+        # 其他
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
+
+        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateBlockIgnoreRuleList请求参数结构体
       class CreateBlockIgnoreRuleListRequest < TencentCloud::Common::AbstractModel
         # @param Rules: 规则列表
@@ -4775,7 +4996,7 @@ module TencentCloud
         # @param FwInsRegion: 网络经过VPC防火墙CVM所在地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FwInsRegion: Array
-        # @param IpsAction: 0 观察 1 拦截 2 严格 3 关闭
+        # @param IpsAction: 0 观察 1 拦截 2 严格 3 关闭 4 不支持ips 前端展示tag
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpsAction: Integer
         # @param FwInsLst: 开关关联的防火墙实例列表
@@ -6867,10 +7088,19 @@ module TencentCloud
         # @param NeedProbeEngineUpdate: 是的需要升级引擎 支持 nat拨测 1需要 0不需要
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeedProbeEngineUpdate: Integer
+        # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficMode: String
+        # @param Zone: 实例主所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneBak: 实例备所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneBak: String
 
-        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate
+        attr_accessor :NatinsId, :NatinsName, :Region, :FwMode, :BandWidth, :InFlowMax, :OutFlowMax, :RegionZh, :EipAddress, :VpcIp, :Subnets, :Status, :RegionDetail, :ZoneZh, :ZoneZhBak, :RuleUsed, :RuleMax, :EngineVersion, :UpdateEnable, :NeedProbeEngineUpdate, :TrafficMode, :Zone, :ZoneBak
 
-        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil)
+        def initialize(natinsid=nil, natinsname=nil, region=nil, fwmode=nil, bandwidth=nil, inflowmax=nil, outflowmax=nil, regionzh=nil, eipaddress=nil, vpcip=nil, subnets=nil, status=nil, regiondetail=nil, zonezh=nil, zonezhbak=nil, ruleused=nil, rulemax=nil, engineversion=nil, updateenable=nil, needprobeengineupdate=nil, trafficmode=nil, zone=nil, zonebak=nil)
           @NatinsId = natinsid
           @NatinsName = natinsname
           @Region = region
@@ -6891,6 +7121,9 @@ module TencentCloud
           @EngineVersion = engineversion
           @UpdateEnable = updateenable
           @NeedProbeEngineUpdate = needprobeengineupdate
+          @TrafficMode = trafficmode
+          @Zone = zone
+          @ZoneBak = zonebak
         end
 
         def deserialize(params)
@@ -6914,6 +7147,9 @@ module TencentCloud
           @EngineVersion = params['EngineVersion']
           @UpdateEnable = params['UpdateEnable']
           @NeedProbeEngineUpdate = params['NeedProbeEngineUpdate']
+          @TrafficMode = params['TrafficMode']
+          @Zone = params['Zone']
+          @ZoneBak = params['ZoneBak']
         end
       end
 
@@ -8411,10 +8647,16 @@ module TencentCloud
         # @param BandWidth: 防火墙CVM带宽值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandWidth: Integer
+        # @param Zone: 实例主机所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param ZoneBak: 实例备机所在可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneBak: String
 
-        attr_accessor :FwInsId, :Region, :RegionZh, :RegionDetail, :ZoneZh, :ZoneZhBack, :BandWidth
+        attr_accessor :FwInsId, :Region, :RegionZh, :RegionDetail, :ZoneZh, :ZoneZhBack, :BandWidth, :Zone, :ZoneBak
 
-        def initialize(fwinsid=nil, region=nil, regionzh=nil, regiondetail=nil, zonezh=nil, zonezhback=nil, bandwidth=nil)
+        def initialize(fwinsid=nil, region=nil, regionzh=nil, regiondetail=nil, zonezh=nil, zonezhback=nil, bandwidth=nil, zone=nil, zonebak=nil)
           @FwInsId = fwinsid
           @Region = region
           @RegionZh = regionzh
@@ -8422,6 +8664,8 @@ module TencentCloud
           @ZoneZh = zonezh
           @ZoneZhBack = zonezhback
           @BandWidth = bandwidth
+          @Zone = zone
+          @ZoneBak = zonebak
         end
 
         def deserialize(params)
@@ -8432,6 +8676,8 @@ module TencentCloud
           @ZoneZh = params['ZoneZh']
           @ZoneZhBack = params['ZoneZhBack']
           @BandWidth = params['BandWidth']
+          @Zone = params['Zone']
+          @ZoneBak = params['ZoneBak']
         end
       end
 
@@ -8615,10 +8861,13 @@ module TencentCloud
         # @param UpdateEnable: 引擎是否可升级：0，不可升级；1，可升级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateEnable: Integer
+        # @param TrafficMode: 引擎运行模式，Normal:正常, OnlyRoute:透明模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficMode: String
 
-        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable
+        attr_accessor :FwInsName, :FwInsId, :FwMode, :JoinInsNum, :FwSwitchNum, :Status, :Time, :CcnId, :CcnName, :PeerConnectionId, :PeerConnectionName, :FwCvmLst, :JoinInsLst, :FwGateway, :FwGroupId, :RuleUsed, :RuleMax, :Width, :UserVpcWidth, :JoinInsIdLst, :FlowMax, :EngineVersion, :UpdateEnable, :TrafficMode
 
-        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil)
+        def initialize(fwinsname=nil, fwinsid=nil, fwmode=nil, joininsnum=nil, fwswitchnum=nil, status=nil, time=nil, ccnid=nil, ccnname=nil, peerconnectionid=nil, peerconnectionname=nil, fwcvmlst=nil, joininslst=nil, fwgateway=nil, fwgroupid=nil, ruleused=nil, rulemax=nil, width=nil, uservpcwidth=nil, joininsidlst=nil, flowmax=nil, engineversion=nil, updateenable=nil, trafficmode=nil)
           @FwInsName = fwinsname
           @FwInsId = fwinsid
           @FwMode = fwmode
@@ -8642,6 +8891,7 @@ module TencentCloud
           @FlowMax = flowmax
           @EngineVersion = engineversion
           @UpdateEnable = updateenable
+          @TrafficMode = trafficmode
         end
 
         def deserialize(params)
@@ -8689,6 +8939,7 @@ module TencentCloud
           @FlowMax = params['FlowMax']
           @EngineVersion = params['EngineVersion']
           @UpdateEnable = params['UpdateEnable']
+          @TrafficMode = params['TrafficMode']
         end
       end
 

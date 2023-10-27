@@ -11394,10 +11394,12 @@ module TencentCloud
         # @type AlarmType: String
         # @param ExecutorGroupIdList: 资源组id,多个资源组id之间以英文字符逗号分隔
         # @type ExecutorGroupIdList: String
+        # @param TaskTags: 任务标签
+        # @type TaskTags: Array
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags
 
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -11419,6 +11421,7 @@ module TencentCloud
           @TargetServiceType = targetservicetype
           @AlarmType = alarmtype
           @ExecutorGroupIdList = executorgroupidlist
+          @TaskTags = tasktags
         end
 
         def deserialize(params)
@@ -11443,6 +11446,14 @@ module TencentCloud
           @TargetServiceType = params['TargetServiceType']
           @AlarmType = params['AlarmType']
           @ExecutorGroupIdList = params['ExecutorGroupIdList']
+          unless params['TaskTags'].nil?
+            @TaskTags = []
+            params['TaskTags'].each do |i|
+              tasktag_tmp = TaskTag.new
+              tasktag_tmp.deserialize(i)
+              @TaskTags << tasktag_tmp
+            end
+          end
         end
       end
 
@@ -30734,6 +30745,26 @@ module TencentCloud
 
         def deserialize(params)
           @ScriptContent = params['ScriptContent']
+        end
+      end
+
+      # 任务标签，可用于检索任务的条件
+      class TaskTag < TencentCloud::Common::AbstractModel
+        # @param TagName: 标签名称
+        # @type TagName: String
+        # @param TagValues: 标签值列表
+        # @type TagValues: Array
+
+        attr_accessor :TagName, :TagValues
+
+        def initialize(tagname=nil, tagvalues=nil)
+          @TagName = tagname
+          @TagValues = tagvalues
+        end
+
+        def deserialize(params)
+          @TagName = params['TagName']
+          @TagValues = params['TagValues']
         end
       end
 

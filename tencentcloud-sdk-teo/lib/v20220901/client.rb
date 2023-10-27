@@ -175,7 +175,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建源站组
+        # 创建源站组，以源站组的方式管理业务源站。此处配置的源站组可于**添加加速域名**和**四层代理**等功能中引用。
 
         # @param request: Request instance for CreateOriginGroup.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateOriginGroupRequest`
@@ -995,6 +995,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定策略模板的绑定关系列表。
+
+        # @param request: Request instance for DescribeSecurityTemplateBindings.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSecurityTemplateBindingsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSecurityTemplateBindingsResponse`
+        def DescribeSecurityTemplateBindings(request)
+          body = send_request('DescribeSecurityTemplateBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityTemplateBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
 
         # @param request: Request instance for DescribeTimingL4Data.
@@ -1453,7 +1477,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改源站组
+        # 修改源站组配置，新提交的源站记录将会覆盖原有源站组中的源站记录。
 
         # @param request: Request instance for ModifyOriginGroup.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyOriginGroupRequest`

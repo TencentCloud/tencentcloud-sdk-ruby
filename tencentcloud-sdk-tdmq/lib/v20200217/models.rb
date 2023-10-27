@@ -4116,6 +4116,247 @@ module TencentCloud
         end
       end
 
+      # DescribeRabbitMQQueueDetail请求参数结构体
+      class DescribeRabbitMQQueueDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # @type VirtualHost: String
+        # @param QueueName: 队列名称
+        # @type QueueName: String
+
+        attr_accessor :InstanceId, :VirtualHost, :QueueName
+
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @QueueName = queuename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @QueueName = params['QueueName']
+        end
+      end
+
+      # DescribeRabbitMQQueueDetail返回参数结构体
+      class DescribeRabbitMQQueueDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 队列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualHost: String
+        # @param QueueName: 队列名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueName: String
+        # @param QueueType: 队列类型,取值classic或quorum
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueType: String
+        # @param Consumers: 在线消费者数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consumers: Integer
+        # @param Durable: 持久标记
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Durable: Boolean
+        # @param AutoDelete: 自动清除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoDelete: Boolean
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param MessageTTL: MessageTTL参数,classic类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageTTL: Integer
+        # @param AutoExpire: AutoExpire参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoExpire: Integer
+        # @param MaxLength: MaxLength参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxLength: Integer
+        # @param MaxLengthBytes: MaxLengthBytes参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxLengthBytes: Integer
+        # @param DeliveryLimit: DeliveryLimit参数,quorum类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeliveryLimit: Integer
+        # @param OverflowBehaviour: OverflowBehaviour参数,取值为drop-head, reject-publish或reject-publish-dlx
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OverflowBehaviour: String
+        # @param DeadLetterExchange: DeadLetterExchange参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterExchange: String
+        # @param DeadLetterRoutingKey: DeadLetterRoutingKey参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterRoutingKey: String
+        # @param SingleActiveConsumer: SingleActiveConsumer参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SingleActiveConsumer: Boolean
+        # @param MaximumPriority: MaximumPriority参数,classic类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaximumPriority: Integer
+        # @param LazyMode: LazyMode参数,classic类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LazyMode: Boolean
+        # @param MasterLocator: MasterLocator参数,classic类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterLocator: String
+        # @param MaxInMemoryLength: MaxInMemoryLength参数,quorum类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxInMemoryLength: Integer
+        # @param MaxInMemoryBytes: MaxInMemoryBytes参数,quorum类型专用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxInMemoryBytes: Integer
+        # @param CreateTime: 创建时间戳,单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param Node: 节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Node: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :RequestId
+
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, queuetype=nil, consumers=nil, durable=nil, autodelete=nil, remark=nil, messagettl=nil, autoexpire=nil, maxlength=nil, maxlengthbytes=nil, deliverylimit=nil, overflowbehaviour=nil, deadletterexchange=nil, deadletterroutingkey=nil, singleactiveconsumer=nil, maximumpriority=nil, lazymode=nil, masterlocator=nil, maxinmemorylength=nil, maxinmemorybytes=nil, createtime=nil, node=nil, requestid=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @QueueName = queuename
+          @QueueType = queuetype
+          @Consumers = consumers
+          @Durable = durable
+          @AutoDelete = autodelete
+          @Remark = remark
+          @MessageTTL = messagettl
+          @AutoExpire = autoexpire
+          @MaxLength = maxlength
+          @MaxLengthBytes = maxlengthbytes
+          @DeliveryLimit = deliverylimit
+          @OverflowBehaviour = overflowbehaviour
+          @DeadLetterExchange = deadletterexchange
+          @DeadLetterRoutingKey = deadletterroutingkey
+          @SingleActiveConsumer = singleactiveconsumer
+          @MaximumPriority = maximumpriority
+          @LazyMode = lazymode
+          @MasterLocator = masterlocator
+          @MaxInMemoryLength = maxinmemorylength
+          @MaxInMemoryBytes = maxinmemorybytes
+          @CreateTime = createtime
+          @Node = node
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @QueueName = params['QueueName']
+          @QueueType = params['QueueType']
+          @Consumers = params['Consumers']
+          @Durable = params['Durable']
+          @AutoDelete = params['AutoDelete']
+          @Remark = params['Remark']
+          @MessageTTL = params['MessageTTL']
+          @AutoExpire = params['AutoExpire']
+          @MaxLength = params['MaxLength']
+          @MaxLengthBytes = params['MaxLengthBytes']
+          @DeliveryLimit = params['DeliveryLimit']
+          @OverflowBehaviour = params['OverflowBehaviour']
+          @DeadLetterExchange = params['DeadLetterExchange']
+          @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
+          @SingleActiveConsumer = params['SingleActiveConsumer']
+          @MaximumPriority = params['MaximumPriority']
+          @LazyMode = params['LazyMode']
+          @MasterLocator = params['MasterLocator']
+          @MaxInMemoryLength = params['MaxInMemoryLength']
+          @MaxInMemoryBytes = params['MaxInMemoryBytes']
+          @CreateTime = params['CreateTime']
+          @Node = params['Node']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRabbitMQQueues请求参数结构体
+      class DescribeRabbitMQQueuesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param VirtualHost: Vhost参数
+        # @type VirtualHost: String
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+        # @param SearchWord: 搜索关键词
+        # @type SearchWord: String
+        # @param QueueType: 队列类型筛选，不填或 "all"：classic 和 quorum 队列；"classic"：筛选 classic 队列；"quorum"：筛选 quorum 队列
+        # @type QueueType: String
+        # @param SortElement: 排序依据的字段：
+        # MessageHeapCount - 消息堆积数；
+        # MessageRateInOut - 生产消费速率之和；
+        # MessageRateIn - 生产速率；
+        # MessageRateOut - 消费速率；
+        # @type SortElement: String
+        # @param SortOrder: 排序顺序，ascend 或 descend
+        # @type SortOrder: String
+
+        attr_accessor :InstanceId, :VirtualHost, :Offset, :Limit, :SearchWord, :QueueType, :SortElement, :SortOrder
+
+        def initialize(instanceid=nil, virtualhost=nil, offset=nil, limit=nil, searchword=nil, queuetype=nil, sortelement=nil, sortorder=nil)
+          @InstanceId = instanceid
+          @VirtualHost = virtualhost
+          @Offset = offset
+          @Limit = limit
+          @SearchWord = searchword
+          @QueueType = queuetype
+          @SortElement = sortelement
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VirtualHost = params['VirtualHost']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchWord = params['SearchWord']
+          @QueueType = params['QueueType']
+          @SortElement = params['SortElement']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeRabbitMQQueues返回参数结构体
+      class DescribeRabbitMQQueuesResponse < TencentCloud::Common::AbstractModel
+        # @param QueueInfoList: 列表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueInfoList: Array
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QueueInfoList, :TotalCount, :RequestId
+
+        def initialize(queueinfolist=nil, totalcount=nil, requestid=nil)
+          @QueueInfoList = queueinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QueueInfoList'].nil?
+            @QueueInfoList = []
+            params['QueueInfoList'].each do |i|
+              rabbitmqqueuelistinfo_tmp = RabbitMQQueueListInfo.new
+              rabbitmqqueuelistinfo_tmp.deserialize(i)
+              @QueueInfoList << rabbitmqqueuelistinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRabbitMQUser请求参数结构体
       class DescribeRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -8210,6 +8451,72 @@ module TencentCloud
         def deserialize(params)
           @VirtualHostName = params['VirtualHostName']
           @Description = params['Description']
+        end
+      end
+
+      # RabbitMQ队列列表消费者信息
+      class RabbitMQQueueListConsumerDetailInfo < TencentCloud::Common::AbstractModel
+        # @param ConsumersNumber: 消费者数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumersNumber: Integer
+
+        attr_accessor :ConsumersNumber
+
+        def initialize(consumersnumber=nil)
+          @ConsumersNumber = consumersnumber
+        end
+
+        def deserialize(params)
+          @ConsumersNumber = params['ConsumersNumber']
+        end
+      end
+
+      # RabbitMQ队列列表成员信息
+      class RabbitMQQueueListInfo < TencentCloud::Common::AbstractModel
+        # @param QueueName: 队列名
+        # @type QueueName: String
+        # @param Remark: 备注说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param ConsumerDetail: 消费者信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerDetail: :class:`Tencentcloud::Tdmq.v20200217.models.RabbitMQQueueListConsumerDetailInfo`
+        # @param QueueType: 队列类型，取值 "classic"，"quorum"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueType: String
+        # @param MessageHeapCount: 消息堆积数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageHeapCount: Integer
+        # @param MessageRateIn: 消息生产速率，每秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateIn: Float
+        # @param MessageRateOut: 消息消费速率，每秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageRateOut: Float
+
+        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut
+
+        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil)
+          @QueueName = queuename
+          @Remark = remark
+          @ConsumerDetail = consumerdetail
+          @QueueType = queuetype
+          @MessageHeapCount = messageheapcount
+          @MessageRateIn = messageratein
+          @MessageRateOut = messagerateout
+        end
+
+        def deserialize(params)
+          @QueueName = params['QueueName']
+          @Remark = params['Remark']
+          unless params['ConsumerDetail'].nil?
+            @ConsumerDetail = RabbitMQQueueListConsumerDetailInfo.new
+            @ConsumerDetail.deserialize(params['ConsumerDetail'])
+          end
+          @QueueType = params['QueueType']
+          @MessageHeapCount = params['MessageHeapCount']
+          @MessageRateIn = params['MessageRateIn']
+          @MessageRateOut = params['MessageRateOut']
         end
       end
 

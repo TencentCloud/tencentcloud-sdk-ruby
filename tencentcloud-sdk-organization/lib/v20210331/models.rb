@@ -514,6 +514,38 @@ module TencentCloud
         end
       end
 
+      # DeleteAccount请求参数结构体
+      class DeleteAccountRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员uin。
+        # @type MemberUin: Integer
+
+        attr_accessor :MemberUin
+
+        def initialize(memberuin=nil)
+          @MemberUin = memberuin
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+        end
+      end
+
+      # DeleteAccount返回参数结构体
+      class DeleteAccountResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOrganizationIdentity请求参数结构体
       class DeleteOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
         # @param IdentityId: 身份ID

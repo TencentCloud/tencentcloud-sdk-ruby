@@ -17,6 +17,63 @@
 module TencentCloud
   module Omics
     module V20221128
+      # 应用版本。
+      class ApplicationVersion < TencentCloud::Common::AbstractModel
+        # @param Type: 版本类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ApplicationVersionId: 版本ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationVersionId: String
+        # @param Name: 发布名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 发布描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Entrypoint: 入口文件。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Entrypoint: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreatorName: 创建者名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorName: String
+        # @param CreatorId: 创建者ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorId: String
+        # @param GitInfo: Git信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GitInfo: String
+
+        attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo
+
+        def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil)
+          @Type = type
+          @ApplicationVersionId = applicationversionid
+          @Name = name
+          @Description = description
+          @Entrypoint = entrypoint
+          @CreateTime = createtime
+          @CreatorName = creatorname
+          @CreatorId = creatorid
+          @GitInfo = gitinfo
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ApplicationVersionId = params['ApplicationVersionId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Entrypoint = params['Entrypoint']
+          @CreateTime = params['CreateTime']
+          @CreatorName = params['CreatorName']
+          @CreatorId = params['CreatorId']
+          @GitInfo = params['GitInfo']
+        end
+      end
+
       # 云服务器配置。
       class CVMOption < TencentCloud::Common::AbstractModel
         # @param Zone: 云服务器可用区。
@@ -34,6 +91,33 @@ module TencentCloud
         def deserialize(params)
           @Zone = params['Zone']
           @InstanceType = params['InstanceType']
+        end
+      end
+
+      # 缓存信息。
+      class CacheInfo < TencentCloud::Common::AbstractModel
+        # @param CacheClearDelay: 缓存清理时间(小时)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheClearDelay: Integer
+        # @param CacheClearTime: 缓存清理计划时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheClearTime: String
+        # @param CacheCleared: 缓存是否已被清理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CacheCleared: Boolean
+
+        attr_accessor :CacheClearDelay, :CacheClearTime, :CacheCleared
+
+        def initialize(cachecleardelay=nil, cachecleartime=nil, cachecleared=nil)
+          @CacheClearDelay = cachecleardelay
+          @CacheClearTime = cachecleartime
+          @CacheCleared = cachecleared
+        end
+
+        def deserialize(params)
+          @CacheClearDelay = params['CacheClearDelay']
+          @CacheClearTime = params['CacheClearTime']
+          @CacheCleared = params['CacheCleared']
         end
       end
 
@@ -676,23 +760,23 @@ module TencentCloud
       class GetRunCallsRequest < TencentCloud::Common::AbstractModel
         # @param RunUuid: 任务Uuid。
         # @type RunUuid: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: String
         # @param Path: 作业路径
         # @type Path: String
+        # @param ProjectId: 项目ID。
+        # @type ProjectId: String
 
-        attr_accessor :RunUuid, :ProjectId, :Path
+        attr_accessor :RunUuid, :Path, :ProjectId
 
-        def initialize(runuuid=nil, projectid=nil, path=nil)
+        def initialize(runuuid=nil, path=nil, projectid=nil)
           @RunUuid = runuuid
-          @ProjectId = projectid
           @Path = path
+          @ProjectId = projectid
         end
 
         def deserialize(params)
           @RunUuid = params['RunUuid']
-          @ProjectId = params['ProjectId']
           @Path = params['Path']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -818,6 +902,38 @@ module TencentCloud
         end
       end
 
+      # Nextflow选项。
+      class NFOption < TencentCloud::Common::AbstractModel
+        # @param Config: Config。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: String
+        # @param Profile: Profile。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Profile: String
+        # @param Report: Report。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Report: Boolean
+        # @param Resume: Resume。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resume: Boolean
+
+        attr_accessor :Config, :Profile, :Report, :Resume
+
+        def initialize(config=nil, profile=nil, report=nil, resume=nil)
+          @Config = config
+          @Profile = profile
+          @Report = report
+          @Resume = resume
+        end
+
+        def deserialize(params)
+          @Config = params['Config']
+          @Profile = params['Profile']
+          @Report = params['Report']
+          @Resume = params['Resume']
+        end
+      end
+
       # 云资源ID。
       class ResourceIds < TencentCloud::Common::AbstractModel
         # @param VPCId: 私有网络ID。
@@ -939,6 +1055,9 @@ module TencentCloud
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
         # @param ExecutionTime: 执行时间。
         # @type ExecutionTime: :class:`Tencentcloud::Omics.v20221128.models.ExecutionTime`
+        # @param Cache: 缓存信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cache: :class:`Tencentcloud::Omics.v20221128.models.CacheInfo`
         # @param ErrorMessage: 错误信息。
         # @type ErrorMessage: String
         # @param CreateTime: 创建时间。
@@ -946,9 +1065,9 @@ module TencentCloud
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
 
-        attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :ErrorMessage, :CreateTime, :UpdateTime
+        attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
 
-        def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, errormessage=nil, createtime=nil, updatetime=nil)
+        def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
           @ProjectId = projectid
           @ApplicationId = applicationid
@@ -961,6 +1080,7 @@ module TencentCloud
           @Input = input
           @Option = option
           @ExecutionTime = executiontime
+          @Cache = cache
           @ErrorMessage = errormessage
           @CreateTime = createtime
           @UpdateTime = updatetime
@@ -984,6 +1104,10 @@ module TencentCloud
           unless params['ExecutionTime'].nil?
             @ExecutionTime = ExecutionTime.new
             @ExecutionTime.deserialize(params['ExecutionTime'])
+          end
+          unless params['Cache'].nil?
+            @Cache = CacheInfo.new
+            @Cache.deserialize(params['Cache'])
           end
           @ErrorMessage = params['ErrorMessage']
           @CreateTime = params['CreateTime']
@@ -1099,8 +1223,11 @@ module TencentCloud
         # @type Status: String
         # @param Input: 任务输入。
         # @type Input: String
-        # @param Option: 运行选项。
+        # @param Option: WDL运行选项。
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
+        # @param NFOption: Nextflow运行选项。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
         # @param TotalRun: 任务总数量。
         # @type TotalRun: Integer
         # @param RunStatusCounts: 各状态任务的数量。
@@ -1113,10 +1240,22 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
+        # @param Creator: 创建者。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param CreatorId: 创建者ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorId: String
+        # @param ResultNotify: 运行结果通知方式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultNotify: String
+        # @param ApplicationVersion: 应用版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationVersion: :class:`Tencentcloud::Omics.v20221128.models.ApplicationVersion`
 
-        attr_accessor :RunGroupId, :ProjectId, :ProjectName, :ApplicationId, :ApplicationName, :ApplicationType, :EnvironmentId, :EnvironmentName, :TableId, :Name, :Description, :Status, :Input, :Option, :TotalRun, :RunStatusCounts, :ExecutionTime, :ErrorMessage, :CreateTime, :UpdateTime
+        attr_accessor :RunGroupId, :ProjectId, :ProjectName, :ApplicationId, :ApplicationName, :ApplicationType, :EnvironmentId, :EnvironmentName, :TableId, :Name, :Description, :Status, :Input, :Option, :NFOption, :TotalRun, :RunStatusCounts, :ExecutionTime, :ErrorMessage, :CreateTime, :UpdateTime, :Creator, :CreatorId, :ResultNotify, :ApplicationVersion
 
-        def initialize(rungroupid=nil, projectid=nil, projectname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, environmentid=nil, environmentname=nil, tableid=nil, name=nil, description=nil, status=nil, input=nil, option=nil, totalrun=nil, runstatuscounts=nil, executiontime=nil, errormessage=nil, createtime=nil, updatetime=nil)
+        def initialize(rungroupid=nil, projectid=nil, projectname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, environmentid=nil, environmentname=nil, tableid=nil, name=nil, description=nil, status=nil, input=nil, option=nil, nfoption=nil, totalrun=nil, runstatuscounts=nil, executiontime=nil, errormessage=nil, createtime=nil, updatetime=nil, creator=nil, creatorid=nil, resultnotify=nil, applicationversion=nil)
           @RunGroupId = rungroupid
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1131,12 +1270,17 @@ module TencentCloud
           @Status = status
           @Input = input
           @Option = option
+          @NFOption = nfoption
           @TotalRun = totalrun
           @RunStatusCounts = runstatuscounts
           @ExecutionTime = executiontime
           @ErrorMessage = errormessage
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Creator = creator
+          @CreatorId = creatorid
+          @ResultNotify = resultnotify
+          @ApplicationVersion = applicationversion
         end
 
         def deserialize(params)
@@ -1157,6 +1301,10 @@ module TencentCloud
             @Option = RunOption.new
             @Option.deserialize(params['Option'])
           end
+          unless params['NFOption'].nil?
+            @NFOption = NFOption.new
+            @NFOption.deserialize(params['NFOption'])
+          end
           @TotalRun = params['TotalRun']
           unless params['RunStatusCounts'].nil?
             @RunStatusCounts = []
@@ -1173,6 +1321,13 @@ module TencentCloud
           @ErrorMessage = params['ErrorMessage']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Creator = params['Creator']
+          @CreatorId = params['CreatorId']
+          @ResultNotify = params['ResultNotify']
+          unless params['ApplicationVersion'].nil?
+            @ApplicationVersion = ApplicationVersion.new
+            @ApplicationVersion.deserialize(params['ApplicationVersion'])
+          end
         end
       end
 
@@ -1238,10 +1393,13 @@ module TencentCloud
         # @param Stderr: 错误输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stderr: String
+        # @param Meta: 其他信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Meta: String
 
-        attr_accessor :RunType, :RunId, :ParentId, :JobId, :CallName, :ScatterIndex, :Input, :Output, :Status, :ErrorMessage, :StartTime, :SubmitTime, :EndTime, :Command, :Runtime, :Preprocess, :PostProcess, :CallCached, :Stdout, :Stderr
+        attr_accessor :RunType, :RunId, :ParentId, :JobId, :CallName, :ScatterIndex, :Input, :Output, :Status, :ErrorMessage, :StartTime, :SubmitTime, :EndTime, :Command, :Runtime, :Preprocess, :PostProcess, :CallCached, :Stdout, :Stderr, :Meta
 
-        def initialize(runtype=nil, runid=nil, parentid=nil, jobid=nil, callname=nil, scatterindex=nil, input=nil, output=nil, status=nil, errormessage=nil, starttime=nil, submittime=nil, endtime=nil, command=nil, runtime=nil, preprocess=nil, postprocess=nil, callcached=nil, stdout=nil, stderr=nil)
+        def initialize(runtype=nil, runid=nil, parentid=nil, jobid=nil, callname=nil, scatterindex=nil, input=nil, output=nil, status=nil, errormessage=nil, starttime=nil, submittime=nil, endtime=nil, command=nil, runtime=nil, preprocess=nil, postprocess=nil, callcached=nil, stdout=nil, stderr=nil, meta=nil)
           @RunType = runtype
           @RunId = runid
           @ParentId = parentid
@@ -1262,6 +1420,7 @@ module TencentCloud
           @CallCached = callcached
           @Stdout = stdout
           @Stderr = stderr
+          @Meta = meta
         end
 
         def deserialize(params)
@@ -1285,6 +1444,7 @@ module TencentCloud
           @CallCached = params['CallCached']
           @Stdout = params['Stdout']
           @Stderr = params['Stderr']
+          @Meta = params['Meta']
         end
       end
 

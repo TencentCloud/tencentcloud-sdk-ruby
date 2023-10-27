@@ -197,6 +197,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户告警中心-封隔离处置按钮
+
+        # @param request: Request instance for CreateAlertCenterIsolate.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterIsolateRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterIsolateResponse`
+        def CreateAlertCenterIsolate(request)
+          body = send_request('CreateAlertCenterIsolate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlertCenterIsolateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户告警中心-忽略处置按钮
+
+        # @param request: Request instance for CreateAlertCenterOmit.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterOmitRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterOmitResponse`
+        def CreateAlertCenterOmit(request)
+          body = send_request('CreateAlertCenterOmit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlertCenterOmitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用户告警中心-封禁、放通处置按钮
+
+        # @param request: Request instance for CreateAlertCenterRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateAlertCenterRuleResponse`
+        def CreateAlertCenterRule(request)
+          body = send_request('CreateAlertCenterRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlertCenterRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量添加入侵防御封禁列表、放通列表规则
 
         # @param request: Request instance for CreateBlockIgnoreRuleList.

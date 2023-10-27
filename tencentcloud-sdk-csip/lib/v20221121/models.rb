@@ -381,6 +381,28 @@ module TencentCloud
         end
       end
 
+      # 安全中心资产标签
+      class AssetTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签的key值,可以是字母、数字、下划线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 标签的vale值,可以是字母、数字、下划线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 资产视角配置风险
       class AssetViewCFGRisk < TencentCloud::Common::AbstractModel
         # @param Id: 唯一id
@@ -1275,17 +1297,28 @@ module TencentCloud
 
       # CreateDomainAndIp请求参数结构体
       class CreateDomainAndIpRequest < TencentCloud::Common::AbstractModel
-        # @param Content: -
+        # @param Content: 公网IP/域名
         # @type Content: Array
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Content
+        attr_accessor :Content, :Tags
 
-        def initialize(content=nil)
+        def initialize(content=nil, tags=nil)
           @Content = content
+          @Tags = tags
         end
 
         def deserialize(params)
           @Content = params['Content']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
+          end
         end
       end
 
@@ -1331,10 +1364,12 @@ module TencentCloud
         # @type TaskAdvanceCFG: :class:`Tencentcloud::Csip.v20221121.models.TaskAdvanceCFG`
         # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
         # @type TaskMode: Integer
+        # @param Tags: 资产标签
+        # @type Tags: :class:`Tencentcloud::Csip.v20221121.models.AssetTag`
 
-        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :Assets, :ScanPlanContent, :SelfDefiningAssets, :ScanFrom, :TaskAdvanceCFG, :TaskMode, :Tags
 
-        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil)
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, scanfrom=nil, taskadvancecfg=nil, taskmode=nil, tags=nil)
           @TaskName = taskname
           @ScanAssetType = scanassettype
           @ScanItem = scanitem
@@ -1345,6 +1380,7 @@ module TencentCloud
           @ScanFrom = scanfrom
           @TaskAdvanceCFG = taskadvancecfg
           @TaskMode = taskmode
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1368,6 +1404,10 @@ module TencentCloud
             @TaskAdvanceCFG.deserialize(params['TaskAdvanceCFG'])
           end
           @TaskMode = params['TaskMode']
+          unless params['Tags'].nil?
+            @Tags = AssetTag.new
+            @Tags.deserialize(params['Tags'])
+          end
         end
       end
 
@@ -1680,13 +1720,19 @@ module TencentCloud
         # @type RetainPath: Integer
         # @param IgnoreAsset: 以后是否忽略该资产，，1：忽略，其他：不忽略，默认不传为忽略
         # @type IgnoreAsset: Integer
+        # @param Tags: 资产标签
+        # @type Tags: Array
+        # @param Type: 删除类型，取值： ALL， 删除全部，将直接忽略Content的内容；                                           其他值 ,非全部，则Centent必填，  默认为其他值。
+        # @type Type: String
 
-        attr_accessor :Content, :RetainPath, :IgnoreAsset
+        attr_accessor :Content, :RetainPath, :IgnoreAsset, :Tags, :Type
 
-        def initialize(content=nil, retainpath=nil, ignoreasset=nil)
+        def initialize(content=nil, retainpath=nil, ignoreasset=nil, tags=nil, type=nil)
           @Content = content
           @RetainPath = retainpath
           @IgnoreAsset = ignoreasset
+          @Tags = tags
+          @Type = type
         end
 
         def deserialize(params)
@@ -1700,6 +1746,15 @@ module TencentCloud
           end
           @RetainPath = params['RetainPath']
           @IgnoreAsset = params['IgnoreAsset']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
+          end
+          @Type = params['Type']
         end
       end
 
@@ -2204,17 +2259,28 @@ module TencentCloud
       class DescribeDomainAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 安全中心自定义标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2356,17 +2422,28 @@ module TencentCloud
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: filte过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 安全中心自定义标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2479,17 +2556,28 @@ module TencentCloud
       class DescribeRiskCenterAssetViewCFGRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2595,17 +2683,28 @@ module TencentCloud
       class DescribeRiskCenterAssetViewPortRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2700,17 +2799,28 @@ module TencentCloud
       class DescribeRiskCenterAssetViewVULRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2805,17 +2915,28 @@ module TencentCloud
       class DescribeRiskCenterAssetViewWeakPasswordRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2910,17 +3031,28 @@ module TencentCloud
       class DescribeRiskCenterPortViewPortRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -2993,17 +3125,28 @@ module TencentCloud
       class DescribeRiskCenterServerRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -3054,17 +3197,28 @@ module TencentCloud
       class DescribeRiskCenterVULViewVULRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -3137,17 +3291,28 @@ module TencentCloud
       class DescribeRiskCenterWebsiteRiskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 资产标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              assettag_tmp = AssetTag.new
+              assettag_tmp.deserialize(i)
+              @Tags << assettag_tmp
+            end
           end
         end
       end
@@ -3287,17 +3452,28 @@ module TencentCloud
       class DescribeScanTaskListRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤内容
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :Filter
+        attr_accessor :Filter, :Tags
 
-        def initialize(filter=nil)
+        def initialize(filter=nil, tags=nil)
           @Filter = filter
+          @Tags = tags
         end
 
         def deserialize(params)
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
           end
         end
       end
@@ -3557,19 +3733,23 @@ module TencentCloud
 
       # DescribeTaskLogURL请求参数结构体
       class DescribeTaskLogURLRequest < TencentCloud::Common::AbstractModel
-        # @param ReportItemKeyList: 任务报告Id 列表
-        # @type ReportItemKeyList: Array
         # @param Type: 0: 预览， 1: 下载
         # @type Type: Integer
+        # @param ReportItemKeyList: 任务报告Id 列表
+        # @type ReportItemKeyList: Array
+        # @param ReportTaskIdList: 报告中任务id列表
+        # @type ReportTaskIdList: Array
 
-        attr_accessor :ReportItemKeyList, :Type
+        attr_accessor :Type, :ReportItemKeyList, :ReportTaskIdList
 
-        def initialize(reportitemkeylist=nil, type=nil)
-          @ReportItemKeyList = reportitemkeylist
+        def initialize(type=nil, reportitemkeylist=nil, reporttaskidlist=nil)
           @Type = type
+          @ReportItemKeyList = reportitemkeylist
+          @ReportTaskIdList = reporttaskidlist
         end
 
         def deserialize(params)
+          @Type = params['Type']
           unless params['ReportItemKeyList'].nil?
             @ReportItemKeyList = []
             params['ReportItemKeyList'].each do |i|
@@ -3578,7 +3758,14 @@ module TencentCloud
               @ReportItemKeyList << reportitemkey_tmp
             end
           end
-          @Type = params['Type']
+          unless params['ReportTaskIdList'].nil?
+            @ReportTaskIdList = []
+            params['ReportTaskIdList'].each do |i|
+              reporttaskidlist_tmp = ReportTaskIdList.new
+              reporttaskidlist_tmp.deserialize(i)
+              @ReportTaskIdList << reporttaskidlist_tmp
+            end
+          end
         end
       end
 
@@ -4324,6 +4511,26 @@ module TencentCloud
         end
       end
 
+      # 报告中的task_id list
+      class ReportTaskIdList < TencentCloud::Common::AbstractModel
+        # @param TaskIdList: 任务id列表
+        # @type TaskIdList: Array
+        # @param AppId: 租户ID
+        # @type AppId: String
+
+        attr_accessor :TaskIdList, :AppId
+
+        def initialize(taskidlist=nil, appid=nil)
+          @TaskIdList = taskidlist
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @TaskIdList = params['TaskIdList']
+          @AppId = params['AppId']
+        end
+      end
+
       # 风险中心状态处理Key
       class RiskCenterStatusKey < TencentCloud::Common::AbstractModel
         # @param Id: 风险ID
@@ -4959,6 +5166,28 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 主机标签信息
+      class Tags < TencentCloud::Common::AbstractModel
+        # @param TagKey: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

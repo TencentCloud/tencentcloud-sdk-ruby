@@ -1959,24 +1959,27 @@ module TencentCloud
 
       # CreateOriginGroup请求参数结构体
       class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID
         # @type ZoneId: String
-        # @param Name: 源站组名称，可输入1-200个字符，允许的字符为 a-z, A-Z, 0-9, _, - 。
+        # @param Name: 源站组名称，可输入1 - 200个字符，允许的字符为 a - z, A - Z, 0 - 9, _, - 。
         # @type Name: String
         # @param Type: 源站组类型，此参数必填，取值有：
-        # <li>GENERAL：通用型源站组，仅支持添加 IP/域名 源站，可以被域名服务、规则引擎、四层代理、通用型负载均衡引用；</li>
-        # <li>HTTP： HTTP专用型源站组，支持添加 IP/域名、对象存储源站，无法被四层代理引用。</li>
+        # <li>GENERAL：通用型源站组，仅支持添加 IP/域名 源站，可以被域名服务、规则引擎、四层代理、通用型负载均衡、HTTP 专用型负载均衡引用；</li>
+        # <li>HTTP： HTTP 专用型源站组，支持添加 IP/域名、对象存储源站作为源站，无法被四层代理引用，仅支持被添加加速域名、规则引擎-修改源站、HTTP 专用型负载均衡引用。</li>
         # @type Type: String
         # @param Records: 源站记录信息，此参数必填。
         # @type Records: Array
+        # @param HostHeader: 回源 Host Header，仅 Type = HTTP 时传入生效，规则引擎修改 Host Header 配置优先级高于源站组的 Host Header。
+        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :Name, :Type, :Records
+        attr_accessor :ZoneId, :Name, :Type, :Records, :HostHeader
 
-        def initialize(zoneid=nil, name=nil, type=nil, records=nil)
+        def initialize(zoneid=nil, name=nil, type=nil, records=nil, hostheader=nil)
           @ZoneId = zoneid
           @Name = name
           @Type = type
           @Records = records
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -1991,6 +1994,7 @@ module TencentCloud
               @Records << originrecord_tmp
             end
           end
+          @HostHeader = params['HostHeader']
         end
       end
 
@@ -4198,6 +4202,59 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityTemplateBindings请求参数结构体
+      class DescribeSecurityTemplateBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 要查询的站点 ID。
+        # @type ZoneId: String
+        # @param TemplateId: 要查询的策略模板 ID。
+        # @type TemplateId: Array
+
+        attr_accessor :ZoneId, :TemplateId
+
+        def initialize(zoneid=nil, templateid=nil)
+          @ZoneId = zoneid
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # DescribeSecurityTemplateBindings返回参数结构体
+      class DescribeSecurityTemplateBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param SecurityTemplate: 指定策略模板的绑定关系列表。
+
+        # 当某个站点中的域名包含在指定策略模板的绑定关系中时，绑定关系列表 `TemplateScope` 中会包含该站点的 `ZoneId`，和该站点下的和该策略模板有关的域名绑定关系。
+
+        # 注意：当没有任何域名正在绑定或已经绑定到指定策略模板时，绑定关系为空。即：返回结构体中，`TemplateScope` 数组长度为 0。
+
+        # 绑定关系中，同一域名可能在 `EntityStatus` 列表中重复出现，并标记为不同 `Status` 。例如，正在被绑定到其他策略模板的域名，会同时标记为 `online` 和 `pending` 。
+        # @type SecurityTemplate: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SecurityTemplate, :RequestId
+
+        def initialize(securitytemplate=nil, requestid=nil)
+          @SecurityTemplate = securitytemplate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SecurityTemplate'].nil?
+            @SecurityTemplate = []
+            params['SecurityTemplate'].each do |i|
+              securitytemplatebinding_tmp = SecurityTemplateBinding.new
+              securitytemplatebinding_tmp.deserialize(i)
+              @SecurityTemplate << securitytemplatebinding_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTimingL4Data请求参数结构体
       class DescribeTimingL4DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -5276,6 +5333,31 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @CustomResponseId = params['CustomResponseId']
+        end
+      end
+
+      # 安全实例状态。
+      class EntityStatus < TencentCloud::Common::AbstractModel
+        # @param Entity: 实例名，现在只有子域名。
+        # @type Entity: String
+        # @param Status: 实例配置下发状态，取值有：
+        # <li>online：配置已生效；</li><li>fail：配置失败；</li><li> process：配置下发中。</li>
+        # @type Status: String
+        # @param Message: 实例配置下发信息提示。
+        # @type Message: String
+
+        attr_accessor :Entity, :Status, :Message
+
+        def initialize(entity=nil, status=nil, message=nil)
+          @Entity = entity
+          @Status = status
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Entity = params['Entity']
+          @Status = params['Status']
+          @Message = params['Message']
         end
       end
 
@@ -6749,11 +6831,11 @@ module TencentCloud
 
       # ModifyOriginGroup请求参数结构体
       class ModifyOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID
         # @type ZoneId: String
-        # @param GroupId: 源站组ID，此参数必填。
+        # @param GroupId: 源站组 ID，此参数必填。
         # @type GroupId: String
-        # @param Name: 源站组名称，不填保持原有配置，可输入1-200个字符，允许的字符为 a-z, A-Z, 0-9, _, - 。
+        # @param Name: 源站组名称，不填保持原有配置，可输入1 - 200个字符，允许的字符为 a - z, A - Z, 0 - 9, _, - 。
         # @type Name: String
         # @param Type: 源站组类型，取值有：
         # <li>GENERAL：通用型源站组，仅支持添加 IP/域名 源站，可以被域名服务、规则引擎、四层代理、通用型负载均衡引用；</li>
@@ -6761,15 +6843,18 @@ module TencentCloud
         # @type Type: String
         # @param Records: 源站记录信息，不填保持原有配置。
         # @type Records: Array
+        # @param HostHeader: 回源 Host Header，仅 Type = HTTP 时生效， 不填或者填空表示不配置回源Host，规则引擎修改 Host Header 配置优先级高于源站组的 Host Header。
+        # @type HostHeader: String
 
-        attr_accessor :ZoneId, :GroupId, :Name, :Type, :Records
+        attr_accessor :ZoneId, :GroupId, :Name, :Type, :Records, :HostHeader
 
-        def initialize(zoneid=nil, groupid=nil, name=nil, type=nil, records=nil)
+        def initialize(zoneid=nil, groupid=nil, name=nil, type=nil, records=nil, hostheader=nil)
           @ZoneId = zoneid
           @GroupId = groupid
           @Name = name
           @Type = type
           @Records = records
+          @HostHeader = hostheader
         end
 
         def deserialize(params)
@@ -6785,6 +6870,7 @@ module TencentCloud
               @Records << originrecord_tmp
             end
           end
+          @HostHeader = params['HostHeader']
         end
       end
 
@@ -8923,6 +9009,33 @@ module TencentCloud
         end
       end
 
+      # 安全策略模板的绑定关系。
+      class SecurityTemplateBinding < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 模板ID
+        # @type TemplateId: String
+        # @param TemplateScope: 模板绑定状态。
+        # @type TemplateScope: Array
+
+        attr_accessor :TemplateId, :TemplateScope
+
+        def initialize(templateid=nil, templatescope=nil)
+          @TemplateId = templateid
+          @TemplateScope = templatescope
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          unless params['TemplateScope'].nil?
+            @TemplateScope = []
+            params['TemplateScope'].each do |i|
+              templatescope_tmp = TemplateScope.new
+              templatescope_tmp.deserialize(i)
+              @TemplateScope << templatescope_tmp
+            end
+          end
+        end
+      end
+
       # 安全类型配置项。
       class SecurityType < TencentCloud::Common::AbstractModel
         # @param Switch: 安全类型开关，取值为：
@@ -9359,6 +9472,35 @@ module TencentCloud
         def deserialize(params)
           @TemplateId = params['TemplateId']
           @TemplateName = params['TemplateName']
+        end
+      end
+
+      # 安全模板绑定域名状态
+      class TemplateScope < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param EntityStatus: 实例状态列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntityStatus: Array
+
+        attr_accessor :ZoneId, :EntityStatus
+
+        def initialize(zoneid=nil, entitystatus=nil)
+          @ZoneId = zoneid
+          @EntityStatus = entitystatus
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['EntityStatus'].nil?
+            @EntityStatus = []
+            params['EntityStatus'].each do |i|
+              entitystatus_tmp = EntityStatus.new
+              entitystatus_tmp.deserialize(i)
+              @EntityStatus << entitystatus_tmp
+            end
+          end
         end
       end
 

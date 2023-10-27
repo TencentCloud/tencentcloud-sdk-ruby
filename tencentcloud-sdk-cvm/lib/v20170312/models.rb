@@ -4546,7 +4546,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         # @type EnhancedService: :class:`Tencentcloud::Cvm.v20170312.models.EnhancedService`
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
         # @param HostName: 云服务器的主机名。<br><li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。<br><li>Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。<br><li>其他类型（Linux 等）实例：主机名字符长度为[2, 30]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
         # @type HostName: String
@@ -4556,10 +4556,12 @@ module TencentCloud
         # @type InstanceMarketOptions: :class:`Tencentcloud::Cvm.v20170312.models.InstanceMarketOptionsRequest`
         # @param HpcClusterId: 高性能计算集群ID。
         # @type HpcClusterId: String
+        # @param LaunchTemplate: 实例启动模板。
+        # @type LaunchTemplate: :class:`Tencentcloud::Cvm.v20170312.models.LaunchTemplate`
 
-        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId
+        attr_accessor :Placement, :ImageId, :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :VirtualPrivateCloud, :InternetAccessible, :InstanceCount, :InstanceName, :LoginSettings, :SecurityGroupIds, :EnhancedService, :ClientToken, :HostName, :TagSpecification, :InstanceMarketOptions, :HpcClusterId, :LaunchTemplate
 
-        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil)
+        def initialize(placement=nil, imageid=nil, instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, virtualprivatecloud=nil, internetaccessible=nil, instancecount=nil, instancename=nil, loginsettings=nil, securitygroupids=nil, enhancedservice=nil, clienttoken=nil, hostname=nil, tagspecification=nil, instancemarketoptions=nil, hpcclusterid=nil, launchtemplate=nil)
           @Placement = placement
           @ImageId = imageid
           @InstanceChargeType = instancechargetype
@@ -4579,6 +4581,7 @@ module TencentCloud
           @TagSpecification = tagspecification
           @InstanceMarketOptions = instancemarketoptions
           @HpcClusterId = hpcclusterid
+          @LaunchTemplate = launchtemplate
         end
 
         def deserialize(params)
@@ -4639,6 +4642,10 @@ module TencentCloud
             @InstanceMarketOptions.deserialize(params['InstanceMarketOptions'])
           end
           @HpcClusterId = params['HpcClusterId']
+          unless params['LaunchTemplate'].nil?
+            @LaunchTemplate = LaunchTemplate.new
+            @LaunchTemplate.deserialize(params['LaunchTemplate'])
+          end
         end
       end
 
@@ -5244,7 +5251,7 @@ module TencentCloud
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
         # @type InternetMaxBandwidthOut: Integer
-        # @param PublicIpAssigned: 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
+        # @param PublicIpAssigned: 是否分配公网IP。取值范围：<br><li>true：表示分配公网IP<br><li>false：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
         # @type PublicIpAssigned: Boolean
         # @param BandwidthPackageId: 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         # @type BandwidthPackageId: String
@@ -7486,7 +7493,7 @@ module TencentCloud
         # @param InstanceId: 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
         # @type InstanceId: String
         # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
-        # <br>默认取值：默认使用当前镜像。
+        # 默认取值：默认使用当前镜像。
         # @type ImageId: String
         # @param SystemDisk: 实例系统盘配置信息。系统盘为云盘的实例可以通过该参数指定重装后的系统盘大小来实现对系统盘的扩容操作。系统盘大小只支持扩容不支持缩容；重装只支持修改系统盘的大小，不能修改系统盘的类型。
         # @type SystemDisk: :class:`Tencentcloud::Cvm.v20170312.models.SystemDisk`
@@ -7968,7 +7975,7 @@ module TencentCloud
 
       # 描述了 “云安全” 服务相关的信息
       class RunSecurityServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        # @param Enabled: 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>true：表示开启云安全服务<br><li>false：表示不开启云安全服务<br><br>默认取值：true。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -8031,8 +8038,10 @@ module TencentCloud
       # 竞价相关选项
       class SpotMarketOptions < TencentCloud::Common::AbstractModel
         # @param MaxPrice: 竞价出价
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPrice: String
         # @param SpotInstanceType: 竞价请求类型，当前仅支持类型：one-time
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType

@@ -2760,7 +2760,7 @@ module TencentCloud
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
         # @type InternetMaxBandwidthOut: Integer
-        # @param PublicIpAssigned: 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
+        # @param PublicIpAssigned: 是否分配公网IP。取值范围：<br><li>true：表示分配公网IP<br><li>false：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
         # @type PublicIpAssigned: Boolean
         # @param BandwidthPackageId: 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         # @type BandwidthPackageId: String
@@ -3710,7 +3710,7 @@ module TencentCloud
 
       # 描述了 “云安全” 服务相关的信息
       class RunSecurityServiceEnabled < TencentCloud::Common::AbstractModel
-        # @param Enabled: 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        # @param Enabled: 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>true：表示开启云安全服务<br><li>false：表示不开启云安全服务<br><br>默认取值：true。
         # @type Enabled: Boolean
 
         attr_accessor :Enabled
@@ -3727,8 +3727,10 @@ module TencentCloud
       # 竞价相关选项
       class SpotMarketOptions < TencentCloud::Common::AbstractModel
         # @param MaxPrice: 竞价出价
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPrice: String
         # @param SpotInstanceType: 竞价请求类型，当前仅支持类型：one-time
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpotInstanceType: String
 
         attr_accessor :MaxPrice, :SpotInstanceType

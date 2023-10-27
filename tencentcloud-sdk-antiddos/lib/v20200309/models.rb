@@ -7823,7 +7823,7 @@ module TencentCloud
         end
       end
 
-      # 四七层规则的
+      # 四七层规则对应实例与IP的关系
       class RuleInstanceRelation < TencentCloud::Common::AbstractModel
         # @param EipList: 资源实例的IP
         # @type EipList: Array

@@ -2804,15 +2804,39 @@ module TencentCloud
       class DescribeAntiInfoLeakageRulesRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
+        # @param Offset: 翻页支持，读取偏移
+        # @type Offset: Integer
+        # @param Limit: 翻页支持，读取长度限制
+        # @type Limit: Integer
+        # @param Order: 排序方式，asc或者desc
+        # @type Order: String
+        # @param Filters: 过滤器,可以允许如下的值：
+        # RuleId,Match_field,Name,Action,Status
+        # @type Filters: Array
 
-        attr_accessor :Domain
+        attr_accessor :Domain, :Offset, :Limit, :Order, :Filters
 
-        def initialize(domain=nil)
+        def initialize(domain=nil, offset=nil, limit=nil, order=nil, filters=nil)
           @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @Filters = filters
         end
 
         def deserialize(params)
           @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
         end
       end
 

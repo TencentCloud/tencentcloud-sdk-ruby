@@ -1187,7 +1187,6 @@ module TencentCloud
       end
 
       # Span对象
-
       class Span < TencentCloud::Common::AbstractModel
         # @param TraceID: Trace Id
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1222,10 +1221,13 @@ module TencentCloud
         # @param StartTimeMillis: 产生时间戳(毫秒)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTimeMillis: Integer
+        # @param ParentSpanID: Parent Span Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSpanID: String
 
-        attr_accessor :TraceID, :Logs, :Tags, :Process, :Timestamp, :OperationName, :References, :StartTime, :Duration, :SpanID, :StartTimeMillis
+        attr_accessor :TraceID, :Logs, :Tags, :Process, :Timestamp, :OperationName, :References, :StartTime, :Duration, :SpanID, :StartTimeMillis, :ParentSpanID
 
-        def initialize(traceid=nil, logs=nil, tags=nil, process=nil, timestamp=nil, operationname=nil, references=nil, starttime=nil, duration=nil, spanid=nil, starttimemillis=nil)
+        def initialize(traceid=nil, logs=nil, tags=nil, process=nil, timestamp=nil, operationname=nil, references=nil, starttime=nil, duration=nil, spanid=nil, starttimemillis=nil, parentspanid=nil)
           @TraceID = traceid
           @Logs = logs
           @Tags = tags
@@ -1237,6 +1239,7 @@ module TencentCloud
           @Duration = duration
           @SpanID = spanid
           @StartTimeMillis = starttimemillis
+          @ParentSpanID = parentspanid
         end
 
         def deserialize(params)
@@ -1275,6 +1278,7 @@ module TencentCloud
           @Duration = params['Duration']
           @SpanID = params['SpanID']
           @StartTimeMillis = params['StartTimeMillis']
+          @ParentSpanID = params['ParentSpanID']
         end
       end
 

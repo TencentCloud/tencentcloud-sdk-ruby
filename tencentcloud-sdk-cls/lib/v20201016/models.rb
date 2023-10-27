@@ -6813,15 +6813,18 @@ module TencentCloud
         # @type EnableFlag: Integer
         # @param DstResources: 加工任务目的topic_id以及别名
         # @type DstResources: Array
+        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启
+        # @type HasServicesLog: Integer
 
-        attr_accessor :TaskId, :Name, :EtlContent, :EnableFlag, :DstResources
+        attr_accessor :TaskId, :Name, :EtlContent, :EnableFlag, :DstResources, :HasServicesLog
 
-        def initialize(taskid=nil, name=nil, etlcontent=nil, enableflag=nil, dstresources=nil)
+        def initialize(taskid=nil, name=nil, etlcontent=nil, enableflag=nil, dstresources=nil, hasserviceslog=nil)
           @TaskId = taskid
           @Name = name
           @EtlContent = etlcontent
           @EnableFlag = enableflag
           @DstResources = dstresources
+          @HasServicesLog = hasserviceslog
         end
 
         def deserialize(params)
@@ -6837,6 +6840,7 @@ module TencentCloud
               @DstResources << datatransformresouceinfo_tmp
             end
           end
+          @HasServicesLog = params['HasServicesLog']
         end
       end
 
