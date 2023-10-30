@@ -1279,6 +1279,7 @@ module TencentCloud
         # @type ImageUrl: String
         # @param CardSide: FRONT 为驾驶证主页正面（有红色印章的一面），
         # BACK 为驾驶证副页正面（有档案编号的一面）。
+        # DOUBLE 支持自动识别驾驶证正副页单面，和正副双面同框识别
         # 默认值为：FRONT。
         # @type CardSide: String
 
@@ -1299,7 +1300,7 @@ module TencentCloud
 
       # DriverLicenseOCR返回参数结构体
       class DriverLicenseOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 姓名
+        # @param Name: 驾驶证正页姓名
         # @type Name: String
         # @param Sex: 性别
         # @type Sex: String
@@ -1318,7 +1319,7 @@ module TencentCloud
         # @param EndDate: 有效期截止时间（新版驾驶证返回 YYYY-MM-DD，
         # 老版驾驶证返回有效期限 X年）
         # @type EndDate: String
-        # @param CardCode: 证号
+        # @param CardCode: 驾驶证正页证号
         # @type CardCode: String
         # @param ArchivesCode: 档案编号
         # @type ArchivesCode: String
@@ -1344,12 +1345,16 @@ module TencentCloud
         # @type CurrentTime: String
         # @param GenerateTime: 生成时间（仅电子驾驶证支持返回该字段）
         # @type GenerateTime: String
+        # @param BackPageName: 驾驶证副页姓名
+        # @type BackPageName: String
+        # @param BackPageCardCode: 驾驶证副页证号
+        # @type BackPageCardCode: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :RequestId
+        attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :BackPageName, :BackPageCardCode, :RequestId
 
-        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, currenttime=nil, generatetime=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nationality=nil, address=nil, dateofbirth=nil, dateoffirstissue=nil, _class=nil, startdate=nil, enddate=nil, cardcode=nil, archivescode=nil, record=nil, recognizewarncode=nil, recognizewarnmsg=nil, issuingauthority=nil, state=nil, cumulativescore=nil, currenttime=nil, generatetime=nil, backpagename=nil, backpagecardcode=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nationality = nationality
@@ -1369,6 +1374,8 @@ module TencentCloud
           @CumulativeScore = cumulativescore
           @CurrentTime = currenttime
           @GenerateTime = generatetime
+          @BackPageName = backpagename
+          @BackPageCardCode = backpagecardcode
           @RequestId = requestid
         end
 
@@ -1392,6 +1399,8 @@ module TencentCloud
           @CumulativeScore = params['CumulativeScore']
           @CurrentTime = params['CurrentTime']
           @GenerateTime = params['GenerateTime']
+          @BackPageName = params['BackPageName']
+          @BackPageCardCode = params['BackPageCardCode']
           @RequestId = params['RequestId']
         end
       end

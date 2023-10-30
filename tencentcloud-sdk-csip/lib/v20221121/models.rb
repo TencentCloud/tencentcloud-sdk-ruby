@@ -3796,6 +3796,97 @@ module TencentCloud
         end
       end
 
+      # DescribeVULRiskAdvanceCFGList请求参数结构体
+      class DescribeVULRiskAdvanceCFGListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param Filter: 过滤条件
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :TaskId, :Filter
+
+        def initialize(taskid=nil, filter=nil)
+          @TaskId = taskid
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeVULRiskAdvanceCFGList返回参数结构体
+      class DescribeVULRiskAdvanceCFGListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 配置项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RiskLevelLists: 风险等级过滤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevelLists: Array
+        # @param VULTypeLists: 漏洞类型过滤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VULTypeLists: Array
+        # @param CheckFromLists: 识别来源过滤列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckFromLists: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RiskLevelLists, :VULTypeLists, :CheckFromLists, :RequestId
+
+        def initialize(data=nil, totalcount=nil, risklevellists=nil, vultypelists=nil, checkfromlists=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RiskLevelLists = risklevellists
+          @VULTypeLists = vultypelists
+          @CheckFromLists = checkfromlists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vulriskadvancecfglist_tmp = VULRiskAdvanceCFGList.new
+              vulriskadvancecfglist_tmp.deserialize(i)
+              @Data << vulriskadvancecfglist_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['RiskLevelLists'].nil?
+            @RiskLevelLists = []
+            params['RiskLevelLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @RiskLevelLists << filterdataobject_tmp
+            end
+          end
+          unless params['VULTypeLists'].nil?
+            @VULTypeLists = []
+            params['VULTypeLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @VULTypeLists << filterdataobject_tmp
+            end
+          end
+          unless params['CheckFromLists'].nil?
+            @CheckFromLists = []
+            params['CheckFromLists'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @CheckFromLists << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVpcAssets请求参数结构体
       class DescribeVpcAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: 过滤参数
@@ -5457,6 +5548,77 @@ module TencentCloud
           @LogId = params['LogId']
           @TaskLogName = params['TaskLogName']
           @AppId = params['AppId']
+        end
+      end
+
+      # 漏洞风险高级配置列表
+      class VULRiskAdvanceCFGList < TencentCloud::Common::AbstractModel
+        # @param VULName: 漏洞名称
+        # @type VULName: String
+        # @param RiskLevel: 风险等级
+        # @type RiskLevel: String
+        # @param CheckFrom: 识别来源
+        # @type CheckFrom: String
+        # @param Enable: 是否启用，1-启用，0-禁用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param VULType: 风险类型
+        # @type VULType: String
+        # @param ImpactVersion: 影响版本
+        # @type ImpactVersion: String
+        # @param CVE: CVE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVE: String
+        # @param VULTag: 漏洞标签
+        # @type VULTag: Array
+        # @param FixMethod: 修复方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixMethod: Array
+        # @param ReleaseTime: 披露时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseTime: String
+        # @param EMGCVulType: 应急漏洞类型，1-应急漏洞，0-非应急漏洞
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EMGCVulType: Integer
+        # @param VULDescribe: 漏洞描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VULDescribe: String
+        # @param ImpactComponent: 影响组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImpactComponent: String
+
+        attr_accessor :VULName, :RiskLevel, :CheckFrom, :Enable, :VULType, :ImpactVersion, :CVE, :VULTag, :FixMethod, :ReleaseTime, :EMGCVulType, :VULDescribe, :ImpactComponent
+
+        def initialize(vulname=nil, risklevel=nil, checkfrom=nil, enable=nil, vultype=nil, impactversion=nil, cve=nil, vultag=nil, fixmethod=nil, releasetime=nil, emgcvultype=nil, vuldescribe=nil, impactcomponent=nil)
+          @VULName = vulname
+          @RiskLevel = risklevel
+          @CheckFrom = checkfrom
+          @Enable = enable
+          @VULType = vultype
+          @ImpactVersion = impactversion
+          @CVE = cve
+          @VULTag = vultag
+          @FixMethod = fixmethod
+          @ReleaseTime = releasetime
+          @EMGCVulType = emgcvultype
+          @VULDescribe = vuldescribe
+          @ImpactComponent = impactcomponent
+        end
+
+        def deserialize(params)
+          @VULName = params['VULName']
+          @RiskLevel = params['RiskLevel']
+          @CheckFrom = params['CheckFrom']
+          @Enable = params['Enable']
+          @VULType = params['VULType']
+          @ImpactVersion = params['ImpactVersion']
+          @CVE = params['CVE']
+          @VULTag = params['VULTag']
+          @FixMethod = params['FixMethod']
+          @ReleaseTime = params['ReleaseTime']
+          @EMGCVulType = params['EMGCVulType']
+          @VULDescribe = params['VULDescribe']
+          @ImpactComponent = params['ImpactComponent']
         end
       end
 

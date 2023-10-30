@@ -7061,6 +7061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改 SSL-VPN 服务端属性
+
+        # @param request: Request instance for ModifyVpnGatewaySslServer.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyVpnGatewaySslServerRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyVpnGatewaySslServerResponse`
+        def ModifyVpnGatewaySslServer(request)
+          body = send_request('ModifyVpnGatewaySslServer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVpnGatewaySslServerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
 
         # @param request: Request instance for NotifyRoutes.

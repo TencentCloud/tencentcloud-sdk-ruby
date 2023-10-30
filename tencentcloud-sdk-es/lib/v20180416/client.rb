@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询智能运维诊断结果报告
+
+        # @param request: Request instance for DescribeDiagnose.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeDiagnoseRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeDiagnoseResponse`
+        def DescribeDiagnose(request)
+          body = send_request('DescribeDiagnose', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDiagnoseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取索引列表
 
         # @param request: Request instance for DescribeIndexList.
@@ -279,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceOperationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例插件列表
+
+        # @param request: Request instance for DescribeInstancePluginList.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeInstancePluginListRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeInstancePluginListResponse`
+        def DescribeInstancePluginList(request)
+          body = send_request('DescribeInstancePluginList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancePluginListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -447,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DiagnoseInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看智能运维配置
+
+        # @param request: Request instance for GetDiagnoseSettings.
+        # @type request: :class:`Tencentcloud::es::V20180416::GetDiagnoseSettingsRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::GetDiagnoseSettingsResponse`
+        def GetDiagnoseSettings(request)
+          body = send_request('GetDiagnoseSettings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDiagnoseSettingsResponse.new
             model.deserialize(response['Response'])
             model
           else

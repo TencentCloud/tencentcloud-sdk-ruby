@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询漏洞风险高级配置
+
+        # @param request: Request instance for DescribeVULRiskAdvanceCFGList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeVULRiskAdvanceCFGListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeVULRiskAdvanceCFGListResponse`
+        def DescribeVULRiskAdvanceCFGList(request)
+          body = send_request('DescribeVULRiskAdvanceCFGList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVULRiskAdvanceCFGListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取vpc列表
 
         # @param request: Request instance for DescribeVpcAssets.

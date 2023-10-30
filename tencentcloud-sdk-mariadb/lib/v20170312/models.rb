@@ -435,7 +435,7 @@ module TencentCloud
 
       # CreateDBInstance请求参数结构体
       class CreateDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Zones: 实例节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
+        # @param Zones: 实例节点可用区分布，可填写多个可用区。
         # @type Zones: Array
         # @param NodeCount: 节点个数大小，可以通过 DescribeDBInstanceSpecs
         #  查询实例规格获得。
@@ -478,10 +478,12 @@ module TencentCloud
         # @type DcnRegion: String
         # @param DcnInstanceId: DCN源实例ID
         # @type DcnInstanceId: String
+        # @param DcnSyncMode: DCN同步模式，0：异步， 1：强同步
+        # @type DcnSyncMode: Integer
 
-        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId
+        attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Period, :Count, :AutoVoucher, :VoucherIds, :VpcId, :SubnetId, :ProjectId, :DbVersionId, :InstanceName, :SecurityGroupIds, :AutoRenewFlag, :Ipv6Flag, :ResourceTags, :InitParams, :DcnRegion, :DcnInstanceId, :DcnSyncMode
 
-        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil)
+        def initialize(zones=nil, nodecount=nil, memory=nil, storage=nil, period=nil, count=nil, autovoucher=nil, voucherids=nil, vpcid=nil, subnetid=nil, projectid=nil, dbversionid=nil, instancename=nil, securitygroupids=nil, autorenewflag=nil, ipv6flag=nil, resourcetags=nil, initparams=nil, dcnregion=nil, dcninstanceid=nil, dcnsyncmode=nil)
           @Zones = zones
           @NodeCount = nodecount
           @Memory = memory
@@ -502,6 +504,7 @@ module TencentCloud
           @InitParams = initparams
           @DcnRegion = dcnregion
           @DcnInstanceId = dcninstanceid
+          @DcnSyncMode = dcnsyncmode
         end
 
         def deserialize(params)
@@ -539,6 +542,7 @@ module TencentCloud
           end
           @DcnRegion = params['DcnRegion']
           @DcnInstanceId = params['DcnInstanceId']
+          @DcnSyncMode = params['DcnSyncMode']
         end
       end
 
@@ -620,10 +624,12 @@ module TencentCloud
         # @type RollbackInstanceId: String
         # @param RollbackTime: 回档时间
         # @type RollbackTime: String
+        # @param DcnSyncMode: DCN同步模式，0：异步， 1：强同步
+        # @type DcnSyncMode: Integer
 
-        attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime
+        attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
 
-        def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil)
+        def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Storage = storage
@@ -649,6 +655,7 @@ module TencentCloud
           @SlaveHostIds = slavehostids
           @RollbackInstanceId = rollbackinstanceid
           @RollbackTime = rollbacktime
+          @DcnSyncMode = dcnsyncmode
         end
 
         def deserialize(params)
@@ -691,6 +698,7 @@ module TencentCloud
           @SlaveHostIds = params['SlaveHostIds']
           @RollbackInstanceId = params['RollbackInstanceId']
           @RollbackTime = params['RollbackTime']
+          @DcnSyncMode = params['DcnSyncMode']
         end
       end
 
@@ -758,7 +766,7 @@ module TencentCloud
         # @type RollbackInstanceId: String
         # @param RollbackTime: 回档时间
         # @type RollbackTime: String
-        # @param DcnSyncMode: DCN同步模式，0：普通DCN同步，1：一致性同步
+        # @param DcnSyncMode: DCN同步模式，0：异步， 1：强同步
         # @type DcnSyncMode: Integer
 
         attr_accessor :Zones, :NodeCount, :Memory, :Storage, :Count, :ProjectId, :VpcId, :SubnetId, :DbVersionId, :InstanceName, :SecurityGroupIds, :Ipv6Flag, :ResourceTags, :DcnRegion, :DcnInstanceId, :InitParams, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
@@ -1428,10 +1436,28 @@ module TencentCloud
         # @type ReplicaStatus: :class:`Tencentcloud::Mariadb.v20170312.models.DCNReplicaStatus`
         # @param EncryptStatus: 是否开启了 kms
         # @type EncryptStatus: Integer
+        # @param DcnStatusDesc: 实例DCN状态描述信息
+        # @type DcnStatusDesc: String
+        # @param PolarisInstanceId: DCN实例绑定的北极星服务所属的北极星实例Id，若未绑定则为空
+        # @type PolarisInstanceId: String
+        # @param PolarisInstanceName: DCN实例绑定的北极星服务所属的北极星实例名，若未绑定则为空
+        # @type PolarisInstanceName: String
+        # @param PolarisNamespace: DCN实例绑定的北极星服务所属的北极星命名空间，若未绑定则为空
+        # @type PolarisNamespace: String
+        # @param PolarisService: DCN实例绑定的北极星服务，若未绑定则为空
+        # @type PolarisService: String
+        # @param PolarisServiceStatus: DCN实例在北极星服务中的状态 0:未开启; 1:已开启; 2:已隔离; 3:切换中
+        # @type PolarisServiceStatus: Integer
+        # @param PolarisServiceStatusDesc: DCN实例在北极星服务中的状态的描述信息
+        # @type PolarisServiceStatusDesc: String
+        # @param PolarisRegion: 北极星管控地址
+        # @type PolarisRegion: String
+        # @param IsDcnSwitchSupported: 是否支持DCN切换
+        # @type IsDcnSwitchSupported: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType, :ReplicaConfig, :ReplicaStatus, :EncryptStatus
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :Vip, :Vipv6, :Vport, :Status, :StatusDesc, :DcnFlag, :DcnStatus, :Cpu, :Memory, :Storage, :PayMode, :CreateTime, :PeriodEndTime, :InstanceType, :ReplicaConfig, :ReplicaStatus, :EncryptStatus, :DcnStatusDesc, :PolarisInstanceId, :PolarisInstanceName, :PolarisNamespace, :PolarisService, :PolarisServiceStatus, :PolarisServiceStatusDesc, :PolarisRegion, :IsDcnSwitchSupported
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil, replicaconfig=nil, replicastatus=nil, encryptstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, vip=nil, vipv6=nil, vport=nil, status=nil, statusdesc=nil, dcnflag=nil, dcnstatus=nil, cpu=nil, memory=nil, storage=nil, paymode=nil, createtime=nil, periodendtime=nil, instancetype=nil, replicaconfig=nil, replicastatus=nil, encryptstatus=nil, dcnstatusdesc=nil, polarisinstanceid=nil, polarisinstancename=nil, polarisnamespace=nil, polarisservice=nil, polarisservicestatus=nil, polarisservicestatusdesc=nil, polarisregion=nil, isdcnswitchsupported=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -1453,6 +1479,15 @@ module TencentCloud
           @ReplicaConfig = replicaconfig
           @ReplicaStatus = replicastatus
           @EncryptStatus = encryptstatus
+          @DcnStatusDesc = dcnstatusdesc
+          @PolarisInstanceId = polarisinstanceid
+          @PolarisInstanceName = polarisinstancename
+          @PolarisNamespace = polarisnamespace
+          @PolarisService = polarisservice
+          @PolarisServiceStatus = polarisservicestatus
+          @PolarisServiceStatusDesc = polarisservicestatusdesc
+          @PolarisRegion = polarisregion
+          @IsDcnSwitchSupported = isdcnswitchsupported
         end
 
         def deserialize(params)
@@ -1483,6 +1518,15 @@ module TencentCloud
             @ReplicaStatus.deserialize(params['ReplicaStatus'])
           end
           @EncryptStatus = params['EncryptStatus']
+          @DcnStatusDesc = params['DcnStatusDesc']
+          @PolarisInstanceId = params['PolarisInstanceId']
+          @PolarisInstanceName = params['PolarisInstanceName']
+          @PolarisNamespace = params['PolarisNamespace']
+          @PolarisService = params['PolarisService']
+          @PolarisServiceStatus = params['PolarisServiceStatus']
+          @PolarisServiceStatusDesc = params['PolarisServiceStatusDesc']
+          @PolarisRegion = params['PolarisRegion']
+          @IsDcnSwitchSupported = params['IsDcnSwitchSupported']
         end
       end
 
@@ -2000,12 +2044,16 @@ module TencentCloud
         # @type ReservedNetResources: Array
         # @param IsPhysicalReplicationSupported: 是否支持物理复制
         # @type IsPhysicalReplicationSupported: Boolean
+        # @param IsDcnStrongSyncSupported: 是否支持强同步DCN
+        # @type IsDcnStrongSyncSupported: Integer
+        # @param IsDcnSwitchSupported: 是否支持DCN切换
+        # @type IsDcnSwitchSupported: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :Vip, :Vport, :IsTmp, :NodeCount, :Region, :Zone, :VpcId, :SubnetId, :WanStatus, :WanDomain, :WanVip, :WanPort, :ProjectId, :TdsqlVersion, :Memory, :Storage, :MasterZone, :SlaveZones, :AutoRenewFlag, :ExclusterId, :PayMode, :CreateTime, :IsAuditSupported, :PeriodEndTime, :Machine, :StorageUsage, :LogStorage, :IsEncryptSupported, :Vip6, :Cpu, :Pid, :Qps, :Ipv6Flag, :WanVipv6, :WanStatusIpv6, :WanPortIpv6, :DbEngine, :DbVersion, :ResourceTags, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :NodesInfo, :IsMaxUserConnectionsSupported, :DbVersionId, :EncryptStatus, :ReplicaConfig, :ReplicaStatus, :ExclusterType, :RsAccessStrategy, :ReservedNetResources, :IsPhysicalReplicationSupported, :IsDcnStrongSyncSupported, :IsDcnSwitchSupported, :RequestId
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, vip=nil, vport=nil, istmp=nil, nodecount=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, wanstatus=nil, wandomain=nil, wanvip=nil, wanport=nil, projectid=nil, tdsqlversion=nil, memory=nil, storage=nil, masterzone=nil, slavezones=nil, autorenewflag=nil, exclusterid=nil, paymode=nil, createtime=nil, isauditsupported=nil, periodendtime=nil, machine=nil, storageusage=nil, logstorage=nil, isencryptsupported=nil, vip6=nil, cpu=nil, pid=nil, qps=nil, ipv6flag=nil, wanvipv6=nil, wanstatusipv6=nil, wanportipv6=nil, dbengine=nil, dbversion=nil, resourcetags=nil, dcnflag=nil, dcnstatus=nil, dcndstnum=nil, instancetype=nil, nodesinfo=nil, ismaxuserconnectionssupported=nil, dbversionid=nil, encryptstatus=nil, replicaconfig=nil, replicastatus=nil, exclustertype=nil, rsaccessstrategy=nil, reservednetresources=nil, isphysicalreplicationsupported=nil, isdcnstrongsyncsupported=nil, isdcnswitchsupported=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2063,6 +2111,8 @@ module TencentCloud
           @RsAccessStrategy = rsaccessstrategy
           @ReservedNetResources = reservednetresources
           @IsPhysicalReplicationSupported = isphysicalreplicationsupported
+          @IsDcnStrongSyncSupported = isdcnstrongsyncsupported
+          @IsDcnSwitchSupported = isdcnswitchsupported
           @RequestId = requestid
         end
 
@@ -2151,6 +2201,8 @@ module TencentCloud
             end
           end
           @IsPhysicalReplicationSupported = params['IsPhysicalReplicationSupported']
+          @IsDcnStrongSyncSupported = params['IsDcnStrongSyncSupported']
+          @IsDcnSwitchSupported = params['IsDcnSwitchSupported']
           @RequestId = params['RequestId']
         end
       end

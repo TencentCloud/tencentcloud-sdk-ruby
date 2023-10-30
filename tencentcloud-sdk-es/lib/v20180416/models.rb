@@ -706,6 +706,61 @@ module TencentCloud
         end
       end
 
+      # DescribeDiagnose请求参数结构体
+      class DescribeDiagnoseRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param Date: 报告日期，格式20210301
+        # @type Date: String
+        # @param Limit: 报告返回份数
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Date, :Limit
+
+        def initialize(instanceid=nil, date=nil, limit=nil)
+          @InstanceId = instanceid
+          @Date = date
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDiagnose返回参数结构体
+      class DescribeDiagnoseResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 诊断报告个数
+        # @type Total: Integer
+        # @param DiagnoseResults: 诊断报告列表
+        # @type DiagnoseResults: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :DiagnoseResults, :RequestId
+
+        def initialize(total=nil, diagnoseresults=nil, requestid=nil)
+          @Total = total
+          @DiagnoseResults = diagnoseresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['DiagnoseResults'].nil?
+            @DiagnoseResults = []
+            params['DiagnoseResults'].each do |i|
+              diagnoseresult_tmp = DiagnoseResult.new
+              diagnoseresult_tmp.deserialize(i)
+              @DiagnoseResults << diagnoseresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIndexList请求参数结构体
       class DescribeIndexListRequest < TencentCloud::Common::AbstractModel
         # @param IndexType: 索引类型。auto：自治索引；normal：普通索引
@@ -985,6 +1040,113 @@ module TencentCloud
               operation_tmp = Operation.new
               operation_tmp.deserialize(i)
               @Operations << operation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 插件信息
+      class DescribeInstancePluginInfo < TencentCloud::Common::AbstractModel
+        # @param PluginName: 插件名
+        # @type PluginName: String
+        # @param PluginVersion: 插件版本
+        # @type PluginVersion: String
+        # @param PluginDesc: 插件描述
+        # @type PluginDesc: String
+        # @param Status: 插件状态：-2 已卸载 -1 卸载中 0 安装中 1 已安装
+        # @type Status: Integer
+        # @param Removable: 插件是否可卸载
+        # @type Removable: Boolean
+        # @param PluginType: 0：系统插件
+        # @type PluginType: Integer
+        # @param PluginUpdateTime: 插件变更时间
+        # @type PluginUpdateTime: String
+
+        attr_accessor :PluginName, :PluginVersion, :PluginDesc, :Status, :Removable, :PluginType, :PluginUpdateTime
+
+        def initialize(pluginname=nil, pluginversion=nil, plugindesc=nil, status=nil, removable=nil, plugintype=nil, pluginupdatetime=nil)
+          @PluginName = pluginname
+          @PluginVersion = pluginversion
+          @PluginDesc = plugindesc
+          @Status = status
+          @Removable = removable
+          @PluginType = plugintype
+          @PluginUpdateTime = pluginupdatetime
+        end
+
+        def deserialize(params)
+          @PluginName = params['PluginName']
+          @PluginVersion = params['PluginVersion']
+          @PluginDesc = params['PluginDesc']
+          @Status = params['Status']
+          @Removable = params['Removable']
+          @PluginType = params['PluginType']
+          @PluginUpdateTime = params['PluginUpdateTime']
+        end
+      end
+
+      # DescribeInstancePluginList请求参数结构体
+      class DescribeInstancePluginListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 分页起始值, 默认值0
+        # @type Offset: Integer
+        # @param Limit: 分页大小，默认值10
+        # @type Limit: Integer
+        # @param OrderBy: 排序字段<li>1：插件名 pluginName
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式<li>0：升序 asc</li><li>1：降序 desc</li>
+        # @type OrderByType: String
+        # @param PluginType: 0：系统插件
+        # @type PluginType: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit, :OrderBy, :OrderByType, :PluginType
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, orderby=nil, orderbytype=nil, plugintype=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @PluginType = plugintype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          @PluginType = params['PluginType']
+        end
+      end
+
+      # DescribeInstancePluginList返回参数结构体
+      class DescribeInstancePluginListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回的插件个数
+        # @type TotalCount: Integer
+        # @param PluginList: 插件信息列表
+        # @type PluginList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PluginList, :RequestId
+
+        def initialize(totalcount=nil, pluginlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PluginList = pluginlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PluginList'].nil?
+            @PluginList = []
+            params['PluginList'].each do |i|
+              describeinstanceplugininfo_tmp = DescribeInstancePluginInfo.new
+              describeinstanceplugininfo_tmp.deserialize(i)
+              @PluginList << describeinstanceplugininfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1469,6 +1631,156 @@ module TencentCloud
         end
       end
 
+      # 智能运维支持的诊断项和元信息
+      class DiagnoseJobMeta < TencentCloud::Common::AbstractModel
+        # @param JobName: 智能运维诊断项英文名
+        # @type JobName: String
+        # @param JobZhName: 智能运维诊断项中文名
+        # @type JobZhName: String
+        # @param JobDescription: 智能运维诊断项描述
+        # @type JobDescription: String
+
+        attr_accessor :JobName, :JobZhName, :JobDescription
+
+        def initialize(jobname=nil, jobzhname=nil, jobdescription=nil)
+          @JobName = jobname
+          @JobZhName = jobzhname
+          @JobDescription = jobdescription
+        end
+
+        def deserialize(params)
+          @JobName = params['JobName']
+          @JobZhName = params['JobZhName']
+          @JobDescription = params['JobDescription']
+        end
+      end
+
+      # 智能运维诊断项结果
+      class DiagnoseJobResult < TencentCloud::Common::AbstractModel
+        # @param JobName: 诊断项名
+        # @type JobName: String
+        # @param Status: 诊断项状态：-2失败，-1待重试，0运行中，1成功
+        # @type Status: Integer
+        # @param Score: 诊断项得分
+        # @type Score: Integer
+        # @param Summary: 诊断摘要
+        # @type Summary: String
+        # @param Advise: 诊断建议
+        # @type Advise: String
+        # @param Detail: 诊断详情
+        # @type Detail: String
+        # @param MetricDetails: 诊断指标详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDetails: Array
+        # @param LogDetails: 诊断日志详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogDetails: Array
+        # @param SettingDetails: 诊断配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SettingDetails: Array
+
+        attr_accessor :JobName, :Status, :Score, :Summary, :Advise, :Detail, :MetricDetails, :LogDetails, :SettingDetails
+
+        def initialize(jobname=nil, status=nil, score=nil, summary=nil, advise=nil, detail=nil, metricdetails=nil, logdetails=nil, settingdetails=nil)
+          @JobName = jobname
+          @Status = status
+          @Score = score
+          @Summary = summary
+          @Advise = advise
+          @Detail = detail
+          @MetricDetails = metricdetails
+          @LogDetails = logdetails
+          @SettingDetails = settingdetails
+        end
+
+        def deserialize(params)
+          @JobName = params['JobName']
+          @Status = params['Status']
+          @Score = params['Score']
+          @Summary = params['Summary']
+          @Advise = params['Advise']
+          @Detail = params['Detail']
+          unless params['MetricDetails'].nil?
+            @MetricDetails = []
+            params['MetricDetails'].each do |i|
+              metricdetail_tmp = MetricDetail.new
+              metricdetail_tmp.deserialize(i)
+              @MetricDetails << metricdetail_tmp
+            end
+          end
+          unless params['LogDetails'].nil?
+            @LogDetails = []
+            params['LogDetails'].each do |i|
+              logdetail_tmp = LogDetail.new
+              logdetail_tmp.deserialize(i)
+              @LogDetails << logdetail_tmp
+            end
+          end
+          unless params['SettingDetails'].nil?
+            @SettingDetails = []
+            params['SettingDetails'].each do |i|
+              settingdetail_tmp = SettingDetail.new
+              settingdetail_tmp.deserialize(i)
+              @SettingDetails << settingdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 智能运维诊断结果
+      class DiagnoseResult < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+        # @param RequestId: 诊断报告ID
+        # @type RequestId: String
+        # @param CreateTime: 诊断触发时间
+        # @type CreateTime: String
+        # @param Completed: 诊断是否完成
+        # @type Completed: Boolean
+        # @param Score: 诊断总得分
+        # @type Score: Integer
+        # @param JobType: 诊断类型，2 定时诊断，3 客户手动触发诊断
+        # @type JobType: Integer
+        # @param JobParam: 诊断参数，如诊断时间，诊断索引等
+        # @type JobParam: :class:`Tencentcloud::Es.v20180416.models.JobParam`
+        # @param JobResults: 诊断项结果列表
+        # @type JobResults: Array
+
+        attr_accessor :InstanceId, :RequestId, :CreateTime, :Completed, :Score, :JobType, :JobParam, :JobResults
+
+        def initialize(instanceid=nil, requestid=nil, createtime=nil, completed=nil, score=nil, jobtype=nil, jobparam=nil, jobresults=nil)
+          @InstanceId = instanceid
+          @RequestId = requestid
+          @CreateTime = createtime
+          @Completed = completed
+          @Score = score
+          @JobType = jobtype
+          @JobParam = jobparam
+          @JobResults = jobresults
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+          @CreateTime = params['CreateTime']
+          @Completed = params['Completed']
+          @Score = params['Score']
+          @JobType = params['JobType']
+          unless params['JobParam'].nil?
+            @JobParam = JobParam.new
+            @JobParam.deserialize(params['JobParam'])
+          end
+          unless params['JobResults'].nil?
+            @JobResults = []
+            params['JobResults'].each do |i|
+              diagnosejobresult_tmp = DiagnoseJobResult.new
+              diagnosejobresult_tmp.deserialize(i)
+              @JobResults << diagnosejobresult_tmp
+            end
+          end
+        end
+      end
+
       # ik插件词典信息
       class DictInfo < TencentCloud::Common::AbstractModel
         # @param Key: 词典键值
@@ -1490,6 +1802,26 @@ module TencentCloud
           @Key = params['Key']
           @Name = params['Name']
           @Size = params['Size']
+        end
+      end
+
+      # 智能运维指标维度
+      class Dimension < TencentCloud::Common::AbstractModel
+        # @param Key: 智能运维指标维度Key
+        # @type Key: String
+        # @param Value: 智能运维指标维度值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -1610,6 +1942,65 @@ module TencentCloud
         def deserialize(params)
           @BlackIpList = params['BlackIpList']
           @WhiteIpList = params['WhiteIpList']
+        end
+      end
+
+      # GetDiagnoseSettings请求参数结构体
+      class GetDiagnoseSettingsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # GetDiagnoseSettings返回参数结构体
+      class GetDiagnoseSettingsResponse < TencentCloud::Common::AbstractModel
+        # @param DiagnoseJobMetas: 智能运维诊断项和元信息
+        # @type DiagnoseJobMetas: Array
+        # @param Status: 0：开启智能运维；-1：关闭智能运维
+        # @type Status: Integer
+        # @param CronTime: 智能运维每天定时巡检时间
+        # @type CronTime: String
+        # @param Count: 智能运维当天已手动触发诊断次数
+        # @type Count: Integer
+        # @param MaxCount: 智能运维每天最大可手动触发次数
+        # @type MaxCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DiagnoseJobMetas, :Status, :CronTime, :Count, :MaxCount, :RequestId
+
+        def initialize(diagnosejobmetas=nil, status=nil, crontime=nil, count=nil, maxcount=nil, requestid=nil)
+          @DiagnoseJobMetas = diagnosejobmetas
+          @Status = status
+          @CronTime = crontime
+          @Count = count
+          @MaxCount = maxcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DiagnoseJobMetas'].nil?
+            @DiagnoseJobMetas = []
+            params['DiagnoseJobMetas'].each do |i|
+              diagnosejobmeta_tmp = DiagnoseJobMeta.new
+              diagnosejobmeta_tmp.deserialize(i)
+              @DiagnoseJobMetas << diagnosejobmeta_tmp
+            end
+          end
+          @Status = params['Status']
+          @CronTime = params['CronTime']
+          @Count = params['Count']
+          @MaxCount = params['MaxCount']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2360,6 +2751,31 @@ module TencentCloud
         end
       end
 
+      # 智能运维诊断参数
+      class JobParam < TencentCloud::Common::AbstractModel
+        # @param Jobs: 诊断项列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Jobs: Array
+        # @param Indices: 诊断索引
+        # @type Indices: String
+        # @param Interval: 历史诊断时间
+        # @type Interval: Integer
+
+        attr_accessor :Jobs, :Indices, :Interval
+
+        def initialize(jobs=nil, indices=nil, interval=nil)
+          @Jobs = jobs
+          @Indices = indices
+          @Interval = interval
+        end
+
+        def deserialize(params)
+          @Jobs = params['Jobs']
+          @Indices = params['Indices']
+          @Interval = params['Interval']
+        end
+      end
+
       # OperationDetail使用此结构的数组描述新旧配置
       class KeyValue < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -2485,6 +2901,30 @@ module TencentCloud
           @LocalDiskType = params['LocalDiskType']
           @LocalDiskSize = params['LocalDiskSize']
           @LocalDiskCount = params['LocalDiskCount']
+        end
+      end
+
+      # 智能运维日志详情
+      class LogDetail < TencentCloud::Common::AbstractModel
+        # @param Key: 日志异常名
+        # @type Key: String
+        # @param Advise: 日志异常处理建议
+        # @type Advise: String
+        # @param Count: 日志异常名出现次数
+        # @type Count: Integer
+
+        attr_accessor :Key, :Advise, :Count
+
+        def initialize(key=nil, advise=nil, count=nil)
+          @Key = key
+          @Advise = advise
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Advise = params['Advise']
+          @Count = params['Count']
         end
       end
 
@@ -2866,6 +3306,60 @@ module TencentCloud
           @MasterNodeMemSize = params['MasterNodeMemSize']
           @MasterNodeDiskSize = params['MasterNodeDiskSize']
           @MasterNodeDiskType = params['MasterNodeDiskType']
+        end
+      end
+
+      # 智能运维指标
+      class Metric < TencentCloud::Common::AbstractModel
+        # @param Dimensions: 指标维度族
+        # @type Dimensions: Array
+        # @param Value: 指标值
+        # @type Value: Float
+
+        attr_accessor :Dimensions, :Value
+
+        def initialize(dimensions=nil, value=nil)
+          @Dimensions = dimensions
+          @Value = value
+        end
+
+        def deserialize(params)
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimension_tmp = Dimension.new
+              dimension_tmp.deserialize(i)
+              @Dimensions << dimension_tmp
+            end
+          end
+          @Value = params['Value']
+        end
+      end
+
+      # 智能运维指标详情
+      class MetricDetail < TencentCloud::Common::AbstractModel
+        # @param Key: 指标详情名
+        # @type Key: String
+        # @param Metrics: 指标详情值
+        # @type Metrics: Array
+
+        attr_accessor :Key, :Metrics
+
+        def initialize(key=nil, metrics=nil)
+          @Key = key
+          @Metrics = metrics
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metric_tmp = Metric.new
+              metric_tmp.deserialize(i)
+              @Metrics << metric_tmp
+            end
+          end
         end
       end
 
@@ -3483,6 +3977,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能运维集群配置详情
+      class SettingDetail < TencentCloud::Common::AbstractModel
+        # @param Key: 配置key
+        # @type Key: String
+        # @param Value: 配置当前值
+        # @type Value: String
+        # @param Advise: 配置处理建议
+        # @type Advise: String
+
+        attr_accessor :Key, :Value, :Advise
+
+        def initialize(key=nil, value=nil, advise=nil)
+          @Key = key
+          @Value = value
+          @Advise = advise
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Advise = params['Advise']
         end
       end
 

@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询任务详情文件。
+
+        # @param request: Request instance for GetRunMetadataFile.
+        # @type request: :class:`Tencentcloud::omics::V20221128::GetRunMetadataFileRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::GetRunMetadataFileResponse`
+        def GetRunMetadataFile(request)
+          body = send_request('GetRunMetadataFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRunMetadataFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询任务详情。
 
         # @param request: Request instance for GetRunStatus.
@@ -303,6 +327,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RunApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 运行工作流。
+
+        # @param request: Request instance for RunWorkflow.
+        # @type request: :class:`Tencentcloud::omics::V20221128::RunWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::RunWorkflowResponse`
+        def RunWorkflow(request)
+          body = send_request('RunWorkflow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RunWorkflowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 终止任务批次。
+
+        # @param request: Request instance for TerminateRunGroup.
+        # @type request: :class:`Tencentcloud::omics::V20221128::TerminateRunGroupRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::TerminateRunGroupResponse`
+        def TerminateRunGroup(request)
+          body = send_request('TerminateRunGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateRunGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

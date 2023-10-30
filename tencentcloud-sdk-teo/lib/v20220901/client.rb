@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 操作安全策略模板，支持将域名绑定或换绑到指定的策略模板，或者从指定的策略模板解绑。
+
+        # @param request: Request instance for BindSecurityTemplateToEntity.
+        # @type request: :class:`Tencentcloud::teo::V20220901::BindSecurityTemplateToEntityRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::BindSecurityTemplateToEntityResponse`
+        def BindSecurityTemplateToEntity(request)
+          body = send_request('BindSecurityTemplateToEntity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindSecurityTemplateToEntityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将未绑定套餐的站点绑定到已有套餐
 
         # @param request: Request instance for BindZoneToPlan.

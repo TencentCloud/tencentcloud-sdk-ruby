@@ -313,6 +313,7 @@ module TencentCloud
       # DescribeRunGroups请求参数结构体
       class DescribeRunGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
         # @type ProjectId: String
         # @param Limit: 返回数量，默认为10，最大值为100。
         # @type Limit: Integer
@@ -382,6 +383,7 @@ module TencentCloud
       # DescribeRuns请求参数结构体
       class DescribeRunsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
         # @type ProjectId: String
         # @param Limit: 返回数量，默认为10，最大值为100。
         # @type Limit: Integer
@@ -763,6 +765,7 @@ module TencentCloud
         # @param Path: 作业路径
         # @type Path: String
         # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
         # @type ProjectId: String
 
         attr_accessor :RunUuid, :Path, :ProjectId
@@ -807,11 +810,66 @@ module TencentCloud
         end
       end
 
+      # GetRunMetadataFile请求参数结构体
+      class GetRunMetadataFileRequest < TencentCloud::Common::AbstractModel
+        # @param RunUuid: 任务Uuid。
+        # @type RunUuid: String
+        # @param Key: 需要获取的文件名。
+
+        # 默认支持以下文件：
+        # - nextflow.log
+
+        # 提交时NFOption中report指定为true时，额外支持以下文件：
+        # - execution_report.html
+        # - execution_timeline.html
+        # - execution_trace.txt
+        # - pipeline_dag.html
+        # @type Key: String
+        # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
+        # @type ProjectId: String
+
+        attr_accessor :RunUuid, :Key, :ProjectId
+
+        def initialize(runuuid=nil, key=nil, projectid=nil)
+          @RunUuid = runuuid
+          @Key = key
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @RunUuid = params['RunUuid']
+          @Key = params['Key']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # GetRunMetadataFile返回参数结构体
+      class GetRunMetadataFileResponse < TencentCloud::Common::AbstractModel
+        # @param CosSignedUrl: 文件预签名链接，一分钟内有效。
+        # @type CosSignedUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosSignedUrl, :RequestId
+
+        def initialize(cossignedurl=nil, requestid=nil)
+          @CosSignedUrl = cossignedurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CosSignedUrl = params['CosSignedUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRunStatus请求参数结构体
       class GetRunStatusRequest < TencentCloud::Common::AbstractModel
         # @param RunUuid: 任务Uuid。
         # @type RunUuid: String
         # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
         # @type ProjectId: String
 
         attr_accessor :RunUuid, :ProjectId
@@ -847,6 +905,38 @@ module TencentCloud
             @Metadata.deserialize(params['Metadata'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Git信息。
+      class GitInfo < TencentCloud::Common::AbstractModel
+        # @param GitHttpPath: Git地址。
+        # @type GitHttpPath: String
+        # @param GitUserName: Git用户名。
+        # @type GitUserName: String
+        # @param GitTokenOrPassword: Git密码或者Token。
+        # @type GitTokenOrPassword: String
+        # @param Branch: 分支。
+        # @type Branch: String
+        # @param Tag: 标签。
+        # @type Tag: String
+
+        attr_accessor :GitHttpPath, :GitUserName, :GitTokenOrPassword, :Branch, :Tag
+
+        def initialize(githttppath=nil, gitusername=nil, gittokenorpassword=nil, branch=nil, tag=nil)
+          @GitHttpPath = githttppath
+          @GitUserName = gitusername
+          @GitTokenOrPassword = gittokenorpassword
+          @Branch = branch
+          @Tag = tag
+        end
+
+        def deserialize(params)
+          @GitHttpPath = params['GitHttpPath']
+          @GitUserName = params['GitUserName']
+          @GitTokenOrPassword = params['GitTokenOrPassword']
+          @Branch = params['Branch']
+          @Tag = params['Tag']
         end
       end
 
@@ -1066,6 +1156,9 @@ module TencentCloud
         # @type UpdateTime: String
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
+        extend Gem::Deprecate
+        deprecate :Option, :none, 2023, 10
+        deprecate :Option=, :none, 2023, 10
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1504,6 +1597,90 @@ module TencentCloud
         end
       end
 
+      # RunWorkflow请求参数结构体
+      class RunWorkflowRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 任务批次名称。
+        # @type Name: String
+        # @param EnvironmentId: 投递环境ID。
+        # @type EnvironmentId: String
+        # @param GitSource: 工作流Git仓库信息。
+        # @type GitSource: :class:`Tencentcloud::Omics.v20221128.models.GitInfo`
+        # @param Type: 工作流类型。
+
+        # 支持类型：
+        # - NEXTFLOW
+        # @type Type: String
+        # @param NFOption: Nextflow选项。
+        # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
+        # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
+        # @type ProjectId: String
+        # @param Description: 任务批次描述。
+        # @type Description: String
+        # @param InputBase64: 任务输入JSON。需要进行base64编码。
+        # （InputBase64和InputCosUri必选其一）
+        # @type InputBase64: String
+        # @param InputCosUri: 任务输入COS地址。
+        # （InputBase64和InputCosUri必选其一）
+        # @type InputCosUri: String
+        # @param CacheClearDelay: 任务缓存清理时间。不填表示不清理。
+        # @type CacheClearDelay: Integer
+
+        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay
+
+        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil)
+          @Name = name
+          @EnvironmentId = environmentid
+          @GitSource = gitsource
+          @Type = type
+          @NFOption = nfoption
+          @ProjectId = projectid
+          @Description = description
+          @InputBase64 = inputbase64
+          @InputCosUri = inputcosuri
+          @CacheClearDelay = cachecleardelay
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EnvironmentId = params['EnvironmentId']
+          unless params['GitSource'].nil?
+            @GitSource = GitInfo.new
+            @GitSource.deserialize(params['GitSource'])
+          end
+          @Type = params['Type']
+          unless params['NFOption'].nil?
+            @NFOption = NFOption.new
+            @NFOption.deserialize(params['NFOption'])
+          end
+          @ProjectId = params['ProjectId']
+          @Description = params['Description']
+          @InputBase64 = params['InputBase64']
+          @InputCosUri = params['InputCosUri']
+          @CacheClearDelay = params['CacheClearDelay']
+        end
+      end
+
+      # RunWorkflow返回参数结构体
+      class RunWorkflowResponse < TencentCloud::Common::AbstractModel
+        # @param RunGroupId: 任务批次ID。
+        # @type RunGroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RunGroupId, :RequestId
+
+        def initialize(rungroupid=nil, requestid=nil)
+          @RunGroupId = rungroupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RunGroupId = params['RunGroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件存储配置。
       class StorageOption < TencentCloud::Common::AbstractModel
         # @param StorageType: 文件存储类型，取值范围：
@@ -1629,6 +1806,43 @@ module TencentCloud
         def deserialize(params)
           @TableRowUuid = params['TableRowUuid']
           @Content = params['Content']
+        end
+      end
+
+      # TerminateRunGroup请求参数结构体
+      class TerminateRunGroupRequest < TencentCloud::Common::AbstractModel
+        # @param RunGroupId: 任务批次ID。
+        # @type RunGroupId: String
+        # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
+        # @type ProjectId: String
+
+        attr_accessor :RunGroupId, :ProjectId
+
+        def initialize(rungroupid=nil, projectid=nil)
+          @RunGroupId = rungroupid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @RunGroupId = params['RunGroupId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # TerminateRunGroup返回参数结构体
+      class TerminateRunGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

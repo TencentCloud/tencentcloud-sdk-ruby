@@ -17137,6 +17137,82 @@ module TencentCloud
         end
       end
 
+      # ModifyVpnGatewaySslServer请求参数结构体
+      class ModifyVpnGatewaySslServerRequest < TencentCloud::Common::AbstractModel
+        # @param SslVpnServerId: SSL-VPN SERVER 实例ID
+        # @type SslVpnServerId: String
+        # @param SslVpnServerName: SSL-VPN SERVER NAME
+        # @type SslVpnServerName: String
+        # @param LocalAddress: 本端地址
+        # @type LocalAddress: Array
+        # @param RemoteAddress: 客户端地址
+        # @type RemoteAddress: String
+        # @param SslVpnProtocol: SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP
+        # @type SslVpnProtocol: String
+        # @param SslVpnPort: SSL VPN服务端监听协议端口。
+        # @type SslVpnPort: Integer
+        # @param EncryptAlgorithm: 加密算法。可选 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'NONE'。默认NONE
+        # @type EncryptAlgorithm: String
+        # @param IntegrityAlgorithm: 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
+        # @type IntegrityAlgorithm: String
+        # @param Compress: 是否支持压缩。当前仅支持不支持压缩。默认False
+        # @type Compress: Boolean
+        # @param SsoEnabled: 是否开启SSO认证，默认False
+        # @type SsoEnabled: Boolean
+        # @param SamlData: SAML-DATA
+        # @type SamlData: String
+
+        attr_accessor :SslVpnServerId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :SsoEnabled, :SamlData
+
+        def initialize(sslvpnserverid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, ssoenabled=nil, samldata=nil)
+          @SslVpnServerId = sslvpnserverid
+          @SslVpnServerName = sslvpnservername
+          @LocalAddress = localaddress
+          @RemoteAddress = remoteaddress
+          @SslVpnProtocol = sslvpnprotocol
+          @SslVpnPort = sslvpnport
+          @EncryptAlgorithm = encryptalgorithm
+          @IntegrityAlgorithm = integrityalgorithm
+          @Compress = compress
+          @SsoEnabled = ssoenabled
+          @SamlData = samldata
+        end
+
+        def deserialize(params)
+          @SslVpnServerId = params['SslVpnServerId']
+          @SslVpnServerName = params['SslVpnServerName']
+          @LocalAddress = params['LocalAddress']
+          @RemoteAddress = params['RemoteAddress']
+          @SslVpnProtocol = params['SslVpnProtocol']
+          @SslVpnPort = params['SslVpnPort']
+          @EncryptAlgorithm = params['EncryptAlgorithm']
+          @IntegrityAlgorithm = params['IntegrityAlgorithm']
+          @Compress = params['Compress']
+          @SsoEnabled = params['SsoEnabled']
+          @SamlData = params['SamlData']
+        end
+      end
+
+      # ModifyVpnGatewaySslServer返回参数结构体
+      class ModifyVpnGatewaySslServerResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 异步任务TASKID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询nat路由的返回路由对象
       class NatDirectConnectGatewayRoute < TencentCloud::Common::AbstractModel
         # @param DestinationCidrBlock: 子网的 `IPv4` `CIDR`

@@ -943,6 +943,59 @@ module TencentCloud
         end
       end
 
+      # BindSecurityTemplateToEntity请求参数结构体
+      class BindSecurityTemplateToEntityRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 需要绑定或解绑的策略模板所属站点 ID。
+        # @type ZoneId: String
+        # @param Entities: 绑定至策略模板（或者从策略模板解绑）的域名列表。
+        # @type Entities: Array
+        # @param Operate: 绑定或解绑操作选项，取值有：
+        # <li>bind：绑定域名至策略模板；</li>
+        # <li>unbind-keep-policy：将域名从策略模板解绑，解绑时保留当前策略；</li>
+        # <li>unbind-use-default：将域名从策略模板解绑，并使用默认空白策略。</li>注意：解绑操作当前仅支持单个域名解绑。即：当 Operate 参数取值为 unbind-keep-policy 或 unbind-use-default 时，Entities 参数列表仅支持填写一个域名。
+        # @type Operate: String
+        # @param TemplateId: 指定绑定或解绑的策略模板 ID 。
+        # @type TemplateId: String
+        # @param OverWrite: 如指定的域名已经绑定了策略模板，是否替换该模板。支持下列取值：
+        # <li>true： 替换域名当前绑定的模板；</li>
+        # <li>false：不替换域名当前绑定的模板。</li>注意：当选择不替换已有策略模板时，若指定域名已经绑定策略模板，API 将返回错误。
+        # @type OverWrite: Boolean
+
+        attr_accessor :ZoneId, :Entities, :Operate, :TemplateId, :OverWrite
+
+        def initialize(zoneid=nil, entities=nil, operate=nil, templateid=nil, overwrite=nil)
+          @ZoneId = zoneid
+          @Entities = entities
+          @Operate = operate
+          @TemplateId = templateid
+          @OverWrite = overwrite
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Entities = params['Entities']
+          @Operate = params['Operate']
+          @TemplateId = params['TemplateId']
+          @OverWrite = params['OverWrite']
+        end
+      end
+
+      # BindSecurityTemplateToEntity返回参数结构体
+      class BindSecurityTemplateToEntityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindZoneToPlan请求参数结构体
       class BindZoneToPlanRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 未绑定套餐的站点ID。
