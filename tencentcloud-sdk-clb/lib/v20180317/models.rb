@@ -6168,11 +6168,14 @@ module TencentCloud
       class ModifyLoadBalancerSlaRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerSla: 负载均衡实例信息。
         # @type LoadBalancerSla: Array
+        # @param Force: 是否强制升级，默认否。
+        # @type Force: Boolean
 
-        attr_accessor :LoadBalancerSla
+        attr_accessor :LoadBalancerSla, :Force
 
-        def initialize(loadbalancersla=nil)
+        def initialize(loadbalancersla=nil, force=nil)
           @LoadBalancerSla = loadbalancersla
+          @Force = force
         end
 
         def deserialize(params)
@@ -6184,6 +6187,7 @@ module TencentCloud
               @LoadBalancerSla << slaupdateparam_tmp
             end
           end
+          @Force = params['Force']
         end
       end
 

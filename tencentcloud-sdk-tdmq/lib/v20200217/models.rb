@@ -5728,6 +5728,70 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQSubscriptions请求参数结构体
+      class DescribeRocketMQSubscriptionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param Group: 消费组名称
+        # @type Group: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询限制条数
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :Namespace, :Group, :Offset, :Limit
+
+        def initialize(clusterid=nil, namespace=nil, group=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @Group = group
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRocketMQSubscriptions返回参数结构体
+      class DescribeRocketMQSubscriptionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Subscriptions: 订阅关系列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subscriptions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Subscriptions, :RequestId
+
+        def initialize(totalcount=nil, subscriptions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Subscriptions = subscriptions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Subscriptions'].nil?
+            @Subscriptions = []
+            params['Subscriptions'].each do |i|
+              rocketmqsubscription_tmp = RocketMQSubscription.new
+              rocketmqsubscription_tmp.deserialize(i)
+              @Subscriptions << rocketmqsubscription_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQTopicMsgs请求参数结构体
       class DescribeRocketMQTopicMsgsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID

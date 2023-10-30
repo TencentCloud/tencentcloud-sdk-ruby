@@ -3399,18 +3399,20 @@ module TencentCloud
         # @type SingleInvoiceInfos: :class:`Tencentcloud::Ocr.v20181119.models.SingleInvoiceItem`
         # @param Page: 发票处于识别图片或PDF文件中的页教，默认从1开始。
         # @type Page: Integer
-        # @param SubType: 发票详细类型，详见上方 SubType 返回值说明
+        # @param SubType: 发票详细类型，详见票据识别（高级版）接口文档说明中 SubType 返回值说明
         # @type SubType: String
-        # @param TypeDescription: 发票类型描述，详见上方 TypeDescription  返回值说明
+        # @param TypeDescription: 发票类型描述，详见票据识别（高级版）接口文档说明中 TypeDescription  返回值说明
         # @type TypeDescription: String
         # @param CutImage: 切割单图文件，Base64编码后的切图后的图片文件，开启 EnableCutImage 后进行返回
         # @type CutImage: String
         # @param SubTypeDescription: 发票详细类型描述，详见上方 SubType 返回值说明
         # @type SubTypeDescription: String
+        # @param ItemPolygon: 该发票中所有字段坐标信息。包括字段英文名称、字段值所在位置四点坐标、字段所属行号，具体内容请点击左侧链接。
+        # @type ItemPolygon: Array
 
-        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription
+        attr_accessor :Code, :Type, :Polygon, :Angle, :SingleInvoiceInfos, :Page, :SubType, :TypeDescription, :CutImage, :SubTypeDescription, :ItemPolygon
 
-        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil)
+        def initialize(code=nil, type=nil, polygon=nil, angle=nil, singleinvoiceinfos=nil, page=nil, subtype=nil, typedescription=nil, cutimage=nil, subtypedescription=nil, itempolygon=nil)
           @Code = code
           @Type = type
           @Polygon = polygon
@@ -3421,6 +3423,7 @@ module TencentCloud
           @TypeDescription = typedescription
           @CutImage = cutimage
           @SubTypeDescription = subtypedescription
+          @ItemPolygon = itempolygon
         end
 
         def deserialize(params)
@@ -3440,6 +3443,14 @@ module TencentCloud
           @TypeDescription = params['TypeDescription']
           @CutImage = params['CutImage']
           @SubTypeDescription = params['SubTypeDescription']
+          unless params['ItemPolygon'].nil?
+            @ItemPolygon = []
+            params['ItemPolygon'].each do |i|
+              itempolygoninfo_tmp = ItemPolygonInfo.new
+              itempolygoninfo_tmp.deserialize(i)
+              @ItemPolygon << itempolygoninfo_tmp
+            end
+          end
         end
       end
 
@@ -3496,6 +3507,33 @@ module TencentCloud
             @Value = Value.new
             @Value.deserialize(params['Value'])
           end
+        end
+      end
+
+      # 发票字段坐标信息。包括字段英文名称、字段值所在位置的四点坐标、字段所属行号，具体内容请点击左侧链接。
+      class ItemPolygonInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 发票的英文字段名称（如Title）
+        # @type Key: String
+        # @param Polygon: 字段值所在位置的四点坐标
+        # @type Polygon: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param Row: 字段属于第几行，用于相同字段的排版，如发票明细表格项目，普通字段使用默认值为-1，表示无列排版。
+        # @type Row: Integer
+
+        attr_accessor :Key, :Polygon, :Row
+
+        def initialize(key=nil, polygon=nil, row=nil)
+          @Key = key
+          @Polygon = polygon
+          @Row = row
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          unless params['Polygon'].nil?
+            @Polygon = Polygon.new
+            @Polygon.deserialize(params['Polygon'])
+          end
+          @Row = params['Row']
         end
       end
 
@@ -5748,10 +5786,12 @@ module TencentCloud
         # @type EnableMultiplePage: Boolean
         # @param EnableCutImage: 是否返回切割图片base64，默认值为false。
         # @type EnableCutImage: Boolean
+        # @param EnableItemPolygon: 是否打开字段坐标返回。默认为false。
+        # @type EnableItemPolygon: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage
+        attr_accessor :ImageBase64, :ImageUrl, :Types, :EnableOther, :EnablePdf, :PdfPageNumber, :EnableMultiplePage, :EnableCutImage, :EnableItemPolygon
 
-        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil)
+        def initialize(imagebase64=nil, imageurl=nil, types=nil, enableother=nil, enablepdf=nil, pdfpagenumber=nil, enablemultiplepage=nil, enablecutimage=nil, enableitempolygon=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @Types = types
@@ -5760,6 +5800,7 @@ module TencentCloud
           @PdfPageNumber = pdfpagenumber
           @EnableMultiplePage = enablemultiplepage
           @EnableCutImage = enablecutimage
+          @EnableItemPolygon = enableitempolygon
         end
 
         def deserialize(params)
@@ -5771,6 +5812,7 @@ module TencentCloud
           @PdfPageNumber = params['PdfPageNumber']
           @EnableMultiplePage = params['EnableMultiplePage']
           @EnableCutImage = params['EnableCutImage']
+          @EnableItemPolygon = params['EnableItemPolygon']
         end
       end
 

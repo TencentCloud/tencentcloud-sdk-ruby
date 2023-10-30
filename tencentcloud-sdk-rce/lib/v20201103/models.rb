@@ -636,10 +636,13 @@ module TencentCloud
         # @param ConstId: 唯一ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConstId: String
+        # @param RiskInformation: 扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskInformation: String
 
-        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId
+        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId, :RiskInformation
 
-        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil, constid=nil)
+        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil, constid=nil, riskinformation=nil)
           @UserId = userid
           @PostTime = posttime
           @AssociateAccount = associateaccount
@@ -647,6 +650,7 @@ module TencentCloud
           @RiskLevel = risklevel
           @RiskType = risktype
           @ConstId = constid
+          @RiskInformation = riskinformation
         end
 
         def deserialize(params)
@@ -657,6 +661,7 @@ module TencentCloud
           @RiskLevel = params['RiskLevel']
           @RiskType = params['RiskType']
           @ConstId = params['ConstId']
+          @RiskInformation = params['RiskInformation']
         end
       end
 

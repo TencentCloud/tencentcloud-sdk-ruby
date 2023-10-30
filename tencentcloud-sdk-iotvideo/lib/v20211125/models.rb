@@ -4844,17 +4844,21 @@ module TencentCloud
         # @type VideoURL: String
         # @param ExpireTime: 播放链接过期时间
         # @type ExpireTime: Integer
+        # @param ChannelId: 通道ID 非NVR设备不填 NVR设备必填 默认为无
+        # @type ChannelId: Integer
 
-        attr_accessor :VideoURL, :ExpireTime
+        attr_accessor :VideoURL, :ExpireTime, :ChannelId
 
-        def initialize(videourl=nil, expiretime=nil)
+        def initialize(videourl=nil, expiretime=nil, channelid=nil)
           @VideoURL = videourl
           @ExpireTime = expiretime
+          @ChannelId = channelid
         end
 
         def deserialize(params)
           @VideoURL = params['VideoURL']
           @ExpireTime = params['ExpireTime']
+          @ChannelId = params['ChannelId']
         end
       end
 

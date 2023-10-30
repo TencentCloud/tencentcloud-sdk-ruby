@@ -1925,6 +1925,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于获取RocketMQ消费组订阅关系数据
+
+        # @param request: Request instance for DescribeRocketMQSubscriptions.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSubscriptionsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSubscriptionsResponse`
+        def DescribeRocketMQSubscriptions(request)
+          body = send_request('DescribeRocketMQSubscriptions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQSubscriptionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # rocketmq 消息查询
 
         # @param request: Request instance for DescribeRocketMQTopicMsgs.

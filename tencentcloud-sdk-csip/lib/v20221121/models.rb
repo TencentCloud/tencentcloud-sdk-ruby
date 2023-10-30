@@ -5553,6 +5553,8 @@ module TencentCloud
 
       # 漏洞风险高级配置列表
       class VULRiskAdvanceCFGList < TencentCloud::Common::AbstractModel
+        # @param RiskId: 风险ID
+        # @type RiskId: String
         # @param VULName: 漏洞名称
         # @type VULName: String
         # @param RiskLevel: 风险等级
@@ -5587,9 +5589,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactComponent: String
 
-        attr_accessor :VULName, :RiskLevel, :CheckFrom, :Enable, :VULType, :ImpactVersion, :CVE, :VULTag, :FixMethod, :ReleaseTime, :EMGCVulType, :VULDescribe, :ImpactComponent
+        attr_accessor :RiskId, :VULName, :RiskLevel, :CheckFrom, :Enable, :VULType, :ImpactVersion, :CVE, :VULTag, :FixMethod, :ReleaseTime, :EMGCVulType, :VULDescribe, :ImpactComponent
 
-        def initialize(vulname=nil, risklevel=nil, checkfrom=nil, enable=nil, vultype=nil, impactversion=nil, cve=nil, vultag=nil, fixmethod=nil, releasetime=nil, emgcvultype=nil, vuldescribe=nil, impactcomponent=nil)
+        def initialize(riskid=nil, vulname=nil, risklevel=nil, checkfrom=nil, enable=nil, vultype=nil, impactversion=nil, cve=nil, vultag=nil, fixmethod=nil, releasetime=nil, emgcvultype=nil, vuldescribe=nil, impactcomponent=nil)
+          @RiskId = riskid
           @VULName = vulname
           @RiskLevel = risklevel
           @CheckFrom = checkfrom
@@ -5606,6 +5609,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RiskId = params['RiskId']
           @VULName = params['VULName']
           @RiskLevel = params['RiskLevel']
           @CheckFrom = params['CheckFrom']

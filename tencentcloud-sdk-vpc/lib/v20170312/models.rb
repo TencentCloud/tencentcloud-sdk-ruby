@@ -1665,6 +1665,67 @@ module TencentCloud
         end
       end
 
+      # BgpConfig
+      class BgpConfig < TencentCloud::Common::AbstractModel
+        # @param TunnelCidr: BGP隧道网段。
+        # @type TunnelCidr: String
+        # @param LocalBgpIp: 云端BGP地址。必须从BGP隧道网段内分配。
+        # @type LocalBgpIp: String
+        # @param RemoteBgpIp: 用户端BGP地址。必须从BGP隧道网段内分配。
+        # @type RemoteBgpIp: String
+
+        attr_accessor :TunnelCidr, :LocalBgpIp, :RemoteBgpIp
+
+        def initialize(tunnelcidr=nil, localbgpip=nil, remotebgpip=nil)
+          @TunnelCidr = tunnelcidr
+          @LocalBgpIp = localbgpip
+          @RemoteBgpIp = remotebgpip
+        end
+
+        def deserialize(params)
+          @TunnelCidr = params['TunnelCidr']
+          @LocalBgpIp = params['LocalBgpIp']
+          @RemoteBgpIp = params['RemoteBgpIp']
+        end
+      end
+
+      # VPN通道BGP配置
+      class BgpConfigAndAsn < TencentCloud::Common::AbstractModel
+        # @param TunnelCidr: BGP通道CIDR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TunnelCidr: String
+        # @param LocalBgpIp: 本端BGP IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalBgpIp: String
+        # @param RemoteBgpIp: 对端BGP IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteBgpIp: String
+        # @param LocalBgpAsn: 本端BGP ASN号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalBgpAsn: String
+        # @param RemoteBgpAsn: 对端BGP ASN号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteBgpAsn: String
+
+        attr_accessor :TunnelCidr, :LocalBgpIp, :RemoteBgpIp, :LocalBgpAsn, :RemoteBgpAsn
+
+        def initialize(tunnelcidr=nil, localbgpip=nil, remotebgpip=nil, localbgpasn=nil, remotebgpasn=nil)
+          @TunnelCidr = tunnelcidr
+          @LocalBgpIp = localbgpip
+          @RemoteBgpIp = remotebgpip
+          @LocalBgpAsn = localbgpasn
+          @RemoteBgpAsn = remotebgpasn
+        end
+
+        def deserialize(params)
+          @TunnelCidr = params['TunnelCidr']
+          @LocalBgpIp = params['LocalBgpIp']
+          @RemoteBgpIp = params['RemoteBgpIp']
+          @LocalBgpAsn = params['LocalBgpAsn']
+          @RemoteBgpAsn = params['RemoteBgpAsn']
+        end
+      end
+
       # 云联网（CCN）对象
       class CCN < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网唯一ID
@@ -2886,13 +2947,16 @@ module TencentCloud
         # @type IpAddress: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         # @type Tags: Array
+        # @param BgpAsn: BGP ASN。ASN取值范围为1- 4294967295，其中139341、45090和58835不可用。
+        # @type BgpAsn: Integer
 
-        attr_accessor :CustomerGatewayName, :IpAddress, :Tags
+        attr_accessor :CustomerGatewayName, :IpAddress, :Tags, :BgpAsn
 
-        def initialize(customergatewayname=nil, ipaddress=nil, tags=nil)
+        def initialize(customergatewayname=nil, ipaddress=nil, tags=nil, bgpasn=nil)
           @CustomerGatewayName = customergatewayname
           @IpAddress = ipaddress
           @Tags = tags
+          @BgpAsn = bgpasn
         end
 
         def deserialize(params)
@@ -2906,6 +2970,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @BgpAsn = params['BgpAsn']
         end
       end
 
@@ -4805,6 +4870,26 @@ module TencentCloud
         end
       end
 
+      # 创建路由添加的指向此通道的路由
+      class CreateVpnConnRoute < TencentCloud::Common::AbstractModel
+        # @param DestinationCidrBlock: 目的端IDC网段
+        # @type DestinationCidrBlock: String
+        # @param Priority: 优先级；可选值0，100。
+        # @type Priority: Integer
+
+        attr_accessor :DestinationCidrBlock, :Priority
+
+        def initialize(destinationcidrblock=nil, priority=nil)
+          @DestinationCidrBlock = destinationcidrblock
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @Priority = params['Priority']
+        end
+      end
+
       # CreateVpnConnection请求参数结构体
       class CreateVpnConnectionRequest < TencentCloud::Common::AbstractModel
         # @param VpnGatewayId: VPN网关实例ID。
@@ -4842,10 +4927,14 @@ module TencentCloud
         # @type DpdTimeout: String
         # @param DpdAction: DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
         # @type DpdAction: String
+        # @param Route: 创建通道路由信息。
+        # @type Route: :class:`Tencentcloud::Vpc.v20170312.models.CreateVpnConnRoute`
+        # @param BgpConfig: BGP配置。
+        # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfig`
 
-        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction
+        attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig
 
-        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil)
+        def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil)
           @VpnGatewayId = vpngatewayid
           @CustomerGatewayId = customergatewayid
           @VpnConnectionName = vpnconnectionname
@@ -4863,6 +4952,8 @@ module TencentCloud
           @DpdEnable = dpdenable
           @DpdTimeout = dpdtimeout
           @DpdAction = dpdaction
+          @Route = route
+          @BgpConfig = bgpconfig
         end
 
         def deserialize(params)
@@ -4903,6 +4994,14 @@ module TencentCloud
           @DpdEnable = params['DpdEnable']
           @DpdTimeout = params['DpdTimeout']
           @DpdAction = params['DpdAction']
+          unless params['Route'].nil?
+            @Route = CreateVpnConnRoute.new
+            @Route.deserialize(params['Route'])
+          end
+          unless params['BgpConfig'].nil?
+            @BgpConfig = BgpConfig.new
+            @BgpConfig.deserialize(params['BgpConfig'])
+          end
         end
       end
 
@@ -5338,14 +5437,17 @@ module TencentCloud
         # @type IpAddress: String
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
+        # @param BgpAsn: BGP ASN。
+        # @type BgpAsn: Integer
 
-        attr_accessor :CustomerGatewayId, :CustomerGatewayName, :IpAddress, :CreatedTime
+        attr_accessor :CustomerGatewayId, :CustomerGatewayName, :IpAddress, :CreatedTime, :BgpAsn
 
-        def initialize(customergatewayid=nil, customergatewayname=nil, ipaddress=nil, createdtime=nil)
+        def initialize(customergatewayid=nil, customergatewayname=nil, ipaddress=nil, createdtime=nil, bgpasn=nil)
           @CustomerGatewayId = customergatewayid
           @CustomerGatewayName = customergatewayname
           @IpAddress = ipaddress
           @CreatedTime = createdtime
+          @BgpAsn = bgpasn
         end
 
         def deserialize(params)
@@ -5353,6 +5455,7 @@ module TencentCloud
           @CustomerGatewayName = params['CustomerGatewayName']
           @IpAddress = params['IpAddress']
           @CreatedTime = params['CreatedTime']
+          @BgpAsn = params['BgpAsn']
         end
       end
 
@@ -14121,28 +14224,40 @@ module TencentCloud
       # IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
       class IKEOptionsSpecification < TencentCloud::Common::AbstractModel
         # @param PropoEncryAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBS-192', 'AES-CBC-256', 'DES-CBC'，'SM4', 默认为3DES-CBC
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropoEncryAlgorithm: String
         # @param PropoAuthenAlgorithm: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为MD5
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PropoAuthenAlgorithm: String
         # @param ExchangeMode: 协商模式：可选值：'AGGRESSIVE', 'MAIN'，默认为MAIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExchangeMode: String
         # @param LocalIdentity: 本端标识类型：可选值：'ADDRESS', 'FQDN'，默认为ADDRESS
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalIdentity: String
         # @param RemoteIdentity: 对端标识类型：可选值：'ADDRESS', 'FQDN'，默认为ADDRESS
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteIdentity: String
         # @param LocalAddress: 本端标识，当LocalIdentity选为ADDRESS时，LocalAddress必填。localAddress默认为vpn网关公网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalAddress: String
         # @param RemoteAddress: 对端标识，当RemoteIdentity选为ADDRESS时，RemoteAddress必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteAddress: String
         # @param LocalFqdnName: 本端标识，当LocalIdentity选为FQDN时，LocalFqdnName必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalFqdnName: String
         # @param RemoteFqdnName: 对端标识，当remoteIdentity选为FQDN时，RemoteFqdnName必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteFqdnName: String
         # @param DhGroupName: DH group，指定IKE交换密钥时使用的DH组，可选值：'GROUP1', 'GROUP2', 'GROUP5', 'GROUP14', 'GROUP24'，
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DhGroupName: String
         # @param IKESaLifetimeSeconds: IKE SA Lifetime，单位：秒，设置IKE SA的生存周期，取值范围：60-604800
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IKESaLifetimeSeconds: Integer
         # @param IKEVersion: IKE版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IKEVersion: String
 
         attr_accessor :PropoEncryAlgorithm, :PropoAuthenAlgorithm, :ExchangeMode, :LocalIdentity, :RemoteIdentity, :LocalAddress, :RemoteAddress, :LocalFqdnName, :RemoteFqdnName, :DhGroupName, :IKESaLifetimeSeconds, :IKEVersion
@@ -14181,14 +14296,19 @@ module TencentCloud
       # IPSec配置，腾讯云提供IPSec安全会话设置
       class IPSECOptionsSpecification < TencentCloud::Common::AbstractModel
         # @param EncryptAlgorithm: 加密算法，可选值：'3DES-CBC', 'AES-CBC-128', 'AES-CBC-192', 'AES-CBC-256', 'DES-CBC', 'SM4', 'NULL'， 默认为AES-CBC-128
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptAlgorithm: String
         # @param IntegrityAlgorith: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntegrityAlgorith: String
         # @param IPSECSaLifetimeSeconds: IPsec SA lifetime(s)：单位秒，取值范围：180-604800
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPSECSaLifetimeSeconds: Integer
         # @param PfsDhGroup: PFS：可选值：'NULL', 'DH-GROUP1', 'DH-GROUP2', 'DH-GROUP5', 'DH-GROUP14', 'DH-GROUP24'，默认为NULL
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PfsDhGroup: String
         # @param IPSECSaLifetimeTraffic: IPsec SA lifetime(KB)：单位KB，取值范围：2560-604800
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPSECSaLifetimeTraffic: Integer
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic
@@ -19889,8 +20009,10 @@ module TencentCloud
       # SecurityPolicyDatabase策略
       class SecurityPolicyDatabase < TencentCloud::Common::AbstractModel
         # @param LocalCidrBlock: 本端网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocalCidrBlock: String
         # @param RemoteCidrBlock: 对端网段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RemoteCidrBlock: Array
 
         attr_accessor :LocalCidrBlock, :RemoteCidrBlock
@@ -21338,10 +21460,13 @@ module TencentCloud
         # @param NegotiationType: 协商类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NegotiationType: String
+        # @param BgpConfig: Bgp配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BgpConfig: :class:`Tencentcloud::Vpc.v20170312.models.BgpConfigAndAsn`
 
-        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType
+        attr_accessor :VpnConnectionId, :VpnConnectionName, :VpcId, :VpnGatewayId, :CustomerGatewayId, :PreShareKey, :VpnProto, :EncryptProto, :RouteType, :CreatedTime, :State, :NetStatus, :SecurityPolicyDatabaseSet, :IKEOptionsSpecification, :IPSECOptionsSpecification, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :HealthCheckStatus, :DpdEnable, :DpdTimeout, :DpdAction, :TagSet, :NegotiationType, :BgpConfig
 
-        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, tagset=nil, negotiationtype=nil)
+        def initialize(vpnconnectionid=nil, vpnconnectionname=nil, vpcid=nil, vpngatewayid=nil, customergatewayid=nil, presharekey=nil, vpnproto=nil, encryptproto=nil, routetype=nil, createdtime=nil, state=nil, netstatus=nil, securitypolicydatabaseset=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, healthcheckstatus=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, tagset=nil, negotiationtype=nil, bgpconfig=nil)
           @VpnConnectionId = vpnconnectionid
           @VpnConnectionName = vpnconnectionname
           @VpcId = vpcid
@@ -21366,6 +21491,7 @@ module TencentCloud
           @DpdAction = dpdaction
           @TagSet = tagset
           @NegotiationType = negotiationtype
+          @BgpConfig = bgpconfig
         end
 
         def deserialize(params)
@@ -21413,6 +21539,10 @@ module TencentCloud
             end
           end
           @NegotiationType = params['NegotiationType']
+          unless params['BgpConfig'].nil?
+            @BgpConfig = BgpConfigAndAsn.new
+            @BgpConfig.deserialize(params['BgpConfig'])
+          end
         end
       end
 

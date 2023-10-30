@@ -28208,10 +28208,12 @@ module TencentCloud
         # @type RunParams: String
         # @param ConfParams: 高级设置
         # @type ConfParams: String
+        # @param ScriptEncryption: 脚本内容是否base64加密
+        # @type ScriptEncryption: Boolean
 
-        attr_accessor :DatabaseType, :DatasourceId, :GroupId, :ScriptId, :ProjectId, :DatabaseName, :EngineId, :ScriptContent, :ResourceQueue, :DatasourceType, :ComputeResource, :RunParams, :ConfParams
+        attr_accessor :DatabaseType, :DatasourceId, :GroupId, :ScriptId, :ProjectId, :DatabaseName, :EngineId, :ScriptContent, :ResourceQueue, :DatasourceType, :ComputeResource, :RunParams, :ConfParams, :ScriptEncryption
 
-        def initialize(databasetype=nil, datasourceid=nil, groupid=nil, scriptid=nil, projectid=nil, databasename=nil, engineid=nil, scriptcontent=nil, resourcequeue=nil, datasourcetype=nil, computeresource=nil, runparams=nil, confparams=nil)
+        def initialize(databasetype=nil, datasourceid=nil, groupid=nil, scriptid=nil, projectid=nil, databasename=nil, engineid=nil, scriptcontent=nil, resourcequeue=nil, datasourcetype=nil, computeresource=nil, runparams=nil, confparams=nil, scriptencryption=nil)
           @DatabaseType = databasetype
           @DatasourceId = datasourceid
           @GroupId = groupid
@@ -28225,6 +28227,7 @@ module TencentCloud
           @ComputeResource = computeresource
           @RunParams = runparams
           @ConfParams = confparams
+          @ScriptEncryption = scriptencryption
         end
 
         def deserialize(params)
@@ -28241,6 +28244,7 @@ module TencentCloud
           @ComputeResource = params['ComputeResource']
           @RunParams = params['RunParams']
           @ConfParams = params['ConfParams']
+          @ScriptEncryption = params['ScriptEncryption']
         end
       end
 
