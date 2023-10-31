@@ -330,8 +330,8 @@ module TencentCloud
 
         attr_accessor :EcmRegion, :NetworkInterfaceId, :Ipv6Addresses, :Ipv6AddressCount, :ISPType, :SkipCheckIPv6Address, :SkipAllocateBandwidth, :Ipv6ISP
         extend Gem::Deprecate
-        deprecate :Ipv6ISP, :none, 2023, 10
-        deprecate :Ipv6ISP=, :none, 2023, 10
+        deprecate :Ipv6ISP, :none, 2023, 11
+        deprecate :Ipv6ISP=, :none, 2023, 11
 
         def initialize(ecmregion=nil, networkinterfaceid=nil, ipv6addresses=nil, ipv6addresscount=nil, isptype=nil, skipcheckipv6address=nil, skipallocatebandwidth=nil, ipv6isp=nil)
           @EcmRegion = ecmregion
@@ -1488,15 +1488,15 @@ module TencentCloud
       class CreateModuleRequest < TencentCloud::Common::AbstractModel
         # @param ModuleName: 模块名称，如视频直播模块。限制：模块名称不得以空格开头，长度不得超过60个字符。
         # @type ModuleName: String
-        # @param DefaultBandWidth: 默认带宽，单位：Mbps。范围不得超过带宽上下限，详看DescribeConfig。
+        # @param DefaultBandWidth: 默认带宽，单位：Mbps。范围不得超过带宽上下限，详看[DescribeConfig](https://cloud.tencent.com/document/product/1108/42572)。
         # @type DefaultBandWidth: Integer
         # @param DefaultImageId: 默认镜像。
         # @type DefaultImageId: String
         # @param InstanceType: 机型ID。
         # @type InstanceType: String
-        # @param DefaultSystemDiskSize: 默认系统盘大小，单位：GB，默认大小为50GB。范围不得超过系统盘上下限制，详看DescribeConfig。
+        # @param DefaultSystemDiskSize: 默认系统盘大小，单位：GB，默认大小为50GB。范围不得超过系统盘上下限制，详看[DescribeConfig](https://cloud.tencent.com/document/product/1108/42572)。
         # @type DefaultSystemDiskSize: Integer
-        # @param DefaultDataDiskSize: 默认数据盘大小，单位：GB。范围不得超过数据盘范围大小，详看DescribeConfig。
+        # @param DefaultDataDiskSize: 默认数据盘大小，单位：GB。范围不得超过数据盘范围大小，详看[DescribeConfig](https://cloud.tencent.com/document/product/1108/42572)。
         # @type DefaultDataDiskSize: Integer
         # @param CloseIpDirect: 是否关闭IP直通。取值范围：
         # true：表示关闭IP直通
@@ -1506,7 +1506,7 @@ module TencentCloud
         # @type TagSpecification: Array
         # @param SecurityGroups: 模块默认安全组列表
         # @type SecurityGroups: Array
-        # @param DefaultBandWidthIn: 默认入带宽，单位：Mbps。范围不得超过带宽上下限，详看DescribeConfig。
+        # @param DefaultBandWidthIn: 默认入带宽，单位：Mbps。范围不得超过带宽上下限，详看[DescribeConfig](https://cloud.tencent.com/document/product/1108/42572)。
         # @type DefaultBandWidthIn: Integer
         # @param DisableWanIp: 是否禁止分配外网IP
         # @type DisableWanIp: Boolean
@@ -5706,8 +5706,8 @@ module TencentCloud
 
         attr_accessor :ProviderName, :ProviderNodeNum, :ProvederInstanceNum, :ZoneInstanceInfoSet, :ProviderInstanceNum
         extend Gem::Deprecate
-        deprecate :ProvederInstanceNum, :none, 2023, 10
-        deprecate :ProvederInstanceNum=, :none, 2023, 10
+        deprecate :ProvederInstanceNum, :none, 2023, 11
+        deprecate :ProvederInstanceNum=, :none, 2023, 11
 
         def initialize(providername=nil, providernodenum=nil, provederinstancenum=nil, zoneinstanceinfoset=nil, providerinstancenum=nil)
           @ProviderName = providername

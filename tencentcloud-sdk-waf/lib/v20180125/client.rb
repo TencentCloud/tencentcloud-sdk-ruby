@@ -461,6 +461,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 废弃接口，无有效调用
+
         # 删除访问日志下载记录
 
         # @param request: Request instance for DeleteDownloadRecord.

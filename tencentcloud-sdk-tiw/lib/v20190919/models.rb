@@ -1183,18 +1183,22 @@ module TencentCloud
         # @type Status: String
         # @param Progress: 当前进度,取值范围为0~100
         # @type Progress: Integer
+        # @param Errs: 错误列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :IsOK, :ResultUrl, :Slides, :Status, :Progress, :RequestId
+        attr_accessor :TaskId, :IsOK, :ResultUrl, :Slides, :Status, :Progress, :Errs, :RequestId
 
-        def initialize(taskid=nil, isok=nil, resulturl=nil, slides=nil, status=nil, progress=nil, requestid=nil)
+        def initialize(taskid=nil, isok=nil, resulturl=nil, slides=nil, status=nil, progress=nil, errs=nil, requestid=nil)
           @TaskId = taskid
           @IsOK = isok
           @ResultUrl = resulturl
           @Slides = slides
           @Status = status
           @Progress = progress
+          @Errs = errs
           @RequestId = requestid
         end
 
@@ -1212,6 +1216,14 @@ module TencentCloud
           end
           @Status = params['Status']
           @Progress = params['Progress']
+          unless params['Errs'].nil?
+            @Errs = []
+            params['Errs'].each do |i|
+              ppterr_tmp = PPTErr.new
+              ppterr_tmp.deserialize(i)
+              @Errs << ppterr_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

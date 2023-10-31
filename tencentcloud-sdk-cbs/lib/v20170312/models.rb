@@ -1095,10 +1095,12 @@ module TencentCloud
         # @type DiskUsage: String
         # @param CPU: 实例CPU核数。
         # @type CPU: Integer
+        # @param DedicatedClusterId: 专用集群ID。
+        # @type DedicatedClusterId: String
 
-        attr_accessor :InquiryType, :DiskChargeType, :InstanceFamilies, :DiskTypes, :Zones, :Memory, :DiskUsage, :CPU
+        attr_accessor :InquiryType, :DiskChargeType, :InstanceFamilies, :DiskTypes, :Zones, :Memory, :DiskUsage, :CPU, :DedicatedClusterId
 
-        def initialize(inquirytype=nil, diskchargetype=nil, instancefamilies=nil, disktypes=nil, zones=nil, memory=nil, diskusage=nil, cpu=nil)
+        def initialize(inquirytype=nil, diskchargetype=nil, instancefamilies=nil, disktypes=nil, zones=nil, memory=nil, diskusage=nil, cpu=nil, dedicatedclusterid=nil)
           @InquiryType = inquirytype
           @DiskChargeType = diskchargetype
           @InstanceFamilies = instancefamilies
@@ -1107,6 +1109,7 @@ module TencentCloud
           @Memory = memory
           @DiskUsage = diskusage
           @CPU = cpu
+          @DedicatedClusterId = dedicatedclusterid
         end
 
         def deserialize(params)
@@ -1118,6 +1121,7 @@ module TencentCloud
           @Memory = params['Memory']
           @DiskUsage = params['DiskUsage']
           @CPU = params['CPU']
+          @DedicatedClusterId = params['DedicatedClusterId']
         end
       end
 

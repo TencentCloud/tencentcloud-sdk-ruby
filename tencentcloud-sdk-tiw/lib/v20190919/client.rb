@@ -419,7 +419,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询PPT检测任务的执行进度或结果
+        # 查询PPT检测任务的执行进度或结果，支持查询最近半年内的任务结果
 
         # @param request: Request instance for DescribePPTCheck.
         # @type request: :class:`Tencentcloud::tiw::V20190919::DescribePPTCheckRequest`

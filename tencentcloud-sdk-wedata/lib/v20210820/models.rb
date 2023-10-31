@@ -2301,8 +2301,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 10
-        deprecate :TaskId=, :none, 2023, 10
+        deprecate :TaskId, :none, 2023, 11
+        deprecate :TaskId=, :none, 2023, 11
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil)
           @ProjectId = projectid
@@ -5299,6 +5299,113 @@ module TencentCloud
         end
       end
 
+      # 数据源元数据
+      class DatabaseMeta < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param MetastoreType: 技术类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param DatasourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatasourceId: 数据源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param ProjectName: 项目英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param Category: 数据源类别：绑定引擎、绑定数据库,可用值:DB,ENGINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+        # @param Description: 数据源描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Instance: 数据源引擎的实例ID，如CDB实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: String
+        # @param Region: 数据源引擎所属区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: 数据源数据源的可见性，1为可见、0为不可见。默认为1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param DatabaseName: db名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param ProjectDisplayName: 项目中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+        # @param OwnerAccountName: 责任人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerAccountName: String
+        # @param DisplayName: 数据来源展示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param DatabaseId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param Catalog: 数据来源类型：hive/mysql/hbase等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Catalog: String
+        # @param StorageSize: 存储量大小,单位为 byte
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param StorageSizeWithUnit: 格式化后的存储量大小，带单位，如 12B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSizeWithUnit: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :ProjectId, :MetastoreType, :DatasourceName, :DatasourceId, :ProjectName, :Category, :Description, :Instance, :Region, :Status, :DatabaseName, :ProjectDisplayName, :OwnerAccountName, :DisplayName, :DatabaseId, :Catalog, :StorageSize, :StorageSizeWithUnit, :CreateTime
+
+        def initialize(projectid=nil, metastoretype=nil, datasourcename=nil, datasourceid=nil, projectname=nil, category=nil, description=nil, instance=nil, region=nil, status=nil, databasename=nil, projectdisplayname=nil, owneraccountname=nil, displayname=nil, databaseid=nil, catalog=nil, storagesize=nil, storagesizewithunit=nil, createtime=nil)
+          @ProjectId = projectid
+          @MetastoreType = metastoretype
+          @DatasourceName = datasourcename
+          @DatasourceId = datasourceid
+          @ProjectName = projectname
+          @Category = category
+          @Description = description
+          @Instance = instance
+          @Region = region
+          @Status = status
+          @DatabaseName = databasename
+          @ProjectDisplayName = projectdisplayname
+          @OwnerAccountName = owneraccountname
+          @DisplayName = displayname
+          @DatabaseId = databaseid
+          @Catalog = catalog
+          @StorageSize = storagesize
+          @StorageSizeWithUnit = storagesizewithunit
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @MetastoreType = params['MetastoreType']
+          @DatasourceName = params['DatasourceName']
+          @DatasourceId = params['DatasourceId']
+          @ProjectName = params['ProjectName']
+          @Category = params['Category']
+          @Description = params['Description']
+          @Instance = params['Instance']
+          @Region = params['Region']
+          @Status = params['Status']
+          @DatabaseName = params['DatabaseName']
+          @ProjectDisplayName = params['ProjectDisplayName']
+          @OwnerAccountName = params['OwnerAccountName']
+          @DisplayName = params['DisplayName']
+          @DatabaseId = params['DatabaseId']
+          @Catalog = params['Catalog']
+          @StorageSize = params['StorageSize']
+          @StorageSizeWithUnit = params['StorageSizeWithUnit']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 数据源对象
       class DatasourceBaseInfo < TencentCloud::Common::AbstractModel
         # @param DatabaseNames: 若数据源列表为绑定数据库，则为db名称
@@ -7997,6 +8104,68 @@ module TencentCloud
               databaseinfo_tmp = DatabaseInfo.new
               databaseinfo_tmp.deserialize(i)
               @DatabaseInfo << databaseinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabaseMetas请求参数结构体
+      class DescribeDatabaseMetasRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤字段，projectIds/msTypes/createTime/modifiedTime
+        # @type Filters: Array
+        # @param OrderFields: 排序字段，如name
+        # @type OrderFields: Array
+
+        attr_accessor :Filters, :OrderFields
+
+        def initialize(filters=nil, orderfields=nil)
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDatabaseMetas返回参数结构体
+      class DescribeDatabaseMetasResponse < TencentCloud::Common::AbstractModel
+        # @param DatabaseMeta: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseMeta: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DatabaseMeta, :RequestId
+
+        def initialize(databasemeta=nil, requestid=nil)
+          @DatabaseMeta = databasemeta
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DatabaseMeta'].nil?
+            @DatabaseMeta = []
+            params['DatabaseMeta'].each do |i|
+              databasemeta_tmp = DatabaseMeta.new
+              databasemeta_tmp.deserialize(i)
+              @DatabaseMeta << databasemeta_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16486,8 +16655,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2023, 10
-        deprecate :DimType=, :none, 2023, 10
+        deprecate :DimType, :none, 2023, 11
+        deprecate :DimType=, :none, 2023, 11
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -27787,10 +27956,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2023, 10
-        deprecate :SourceObjectDataTypeName=, :none, 2023, 10
-        deprecate :SourceObjectValue, :none, 2023, 10
-        deprecate :SourceObjectValue=, :none, 2023, 10
+        deprecate :SourceObjectDataTypeName, :none, 2023, 11
+        deprecate :SourceObjectDataTypeName=, :none, 2023, 11
+        deprecate :SourceObjectValue, :none, 2023, 11
+        deprecate :SourceObjectValue=, :none, 2023, 11
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename

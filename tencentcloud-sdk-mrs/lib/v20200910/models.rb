@@ -6837,8 +6837,8 @@ module TencentCloud
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2023, 10
-        deprecate :IsthmusThicknese=, :none, 2023, 10
+        deprecate :IsthmusThicknese, :none, 2023, 11
+        deprecate :IsthmusThicknese=, :none, 2023, 11
 
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
@@ -7429,8 +7429,8 @@ module TencentCloud
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
         extend Gem::Deprecate
-        deprecate :MenstruallHistoryText, :none, 2023, 10
-        deprecate :MenstruallHistoryText=, :none, 2023, 10
+        deprecate :MenstruallHistoryText, :none, 2023, 11
+        deprecate :MenstruallHistoryText=, :none, 2023, 11
 
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
@@ -11025,8 +11025,8 @@ module TencentCloud
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2023, 10
-        deprecate :IsthmusThicknese=, :none, 2023, 10
+        deprecate :IsthmusThicknese, :none, 2023, 11
+        deprecate :IsthmusThicknese=, :none, 2023, 11
 
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type
@@ -11268,6 +11268,114 @@ module TencentCloud
             @IsthmusThickness = Size.new
             @IsthmusThickness.deserialize(params['IsthmusThickness'])
           end
+        end
+      end
+
+      # TurnPDFToObjectAsyncGetResult请求参数结构体
+      class TurnPDFToObjectAsyncGetResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 加密任务ID。在上一步通过TurnPDFToObjectAsync 接口返回的TaskID。
+        # 1、建议在上一步调用TurnPDFToObjectAsync接口传入PDF之后，等5-10分钟再调用此接口获取 json 结果。如果任务还没完成，可以等待几分钟之后再重新调用此接口获取 json 结果。
+        # 2、临时加密存储的 json 结果会 24 小时后定时自动删除，因此TaskID 仅 24 小时内有效。
+        # 3、TaskID 与腾讯云的账号绑定，通过 TurnPDFToObjectAsync 传入 PDF 文件和通过 TurnPDFToObjectAsyncGetResult 获取 json 结果，必须是同一个腾讯云账号，否则无法获取到 json 结果。
+        # @type TaskID: String
+
+        attr_accessor :TaskID
+
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+        end
+      end
+
+      # TurnPDFToObjectAsyncGetResult返回参数结构体
+      class TurnPDFToObjectAsyncGetResultResponse < TencentCloud::Common::AbstractModel
+        # @param Template: 报告结构化结果
+        # @type Template: :class:`Tencentcloud::Mrs.v20200910.models.Template`
+        # @param TextTypeList: 多级分类结果
+        # @type TextTypeList: Array
+        # @param Block: 报告结构化结果(体检报告PDF结构化接口返回的 json 内容非常多，建议通过本地代码调用)
+        # @type Block: :class:`Tencentcloud::Mrs.v20200910.models.Block`
+        # @param IsBlock: 是否使用Block字段
+        # @type IsBlock: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Template, :TextTypeList, :Block, :IsBlock, :RequestId
+
+        def initialize(template=nil, texttypelist=nil, block=nil, isblock=nil, requestid=nil)
+          @Template = template
+          @TextTypeList = texttypelist
+          @Block = block
+          @IsBlock = isblock
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Template'].nil?
+            @Template = Template.new
+            @Template.deserialize(params['Template'])
+          end
+          unless params['TextTypeList'].nil?
+            @TextTypeList = []
+            params['TextTypeList'].each do |i|
+              texttype_tmp = TextType.new
+              texttype_tmp.deserialize(i)
+              @TextTypeList << texttype_tmp
+            end
+          end
+          unless params['Block'].nil?
+            @Block = Block.new
+            @Block.deserialize(params['Block'])
+          end
+          @IsBlock = params['IsBlock']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TurnPDFToObjectAsync请求参数结构体
+      class TurnPDFToObjectAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param PdfInfo: 体检报告PDF文件信息, 目前只支持传PDF文件的Base64编码字符(PDF文件不能超过10MB，如果超过建议先压缩PDF，再转成base64)
+        # @type PdfInfo: :class:`Tencentcloud::Mrs.v20200910.models.PdfInfo`
+
+        attr_accessor :PdfInfo
+
+        def initialize(pdfinfo=nil)
+          @PdfInfo = pdfinfo
+        end
+
+        def deserialize(params)
+          unless params['PdfInfo'].nil?
+            @PdfInfo = PdfInfo.new
+            @PdfInfo.deserialize(params['PdfInfo'])
+          end
+        end
+      end
+
+      # TurnPDFToObjectAsync返回参数结构体
+      class TurnPDFToObjectAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 加密任务ID。
+        # 1、此 ID 是经过加密生成，是用于获取 PDF 返回 json 的凭证，需要由客户存储该 TaskID。
+        # 2、建议在获取到TaskID 后，5-10分钟后再调用 TurnPDFToObjectAsyncGetResult 接口获取 json 结果。
+        # 3、使用此接口，腾讯不会存储传入的 PDF 文件，但是会临时加密存储对应的 json 结果。如果不希望腾讯临时加密存储 json 结果，请使用 TurnPDFToObject 接口。
+        # 4、加密存储的 json 结果会24小时后定时自动删除，因此TaskID 仅 24 小时内有效，请在24小时内调用接口 TurnPDFToObjectAsyncGetResult 获取对应 json 结果。
+        # 5、TaskID 与腾讯云的账号绑定，通过 TurnPDFToObjectAsync 传入PDF文件和通过 TurnPDFToObjectAsyncGetResult 获取 json 结果，必须是同一个腾讯云账号。即其它人就算获取到 TaskID 也无法获取到 json 结果。
+        # @type TaskID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskID = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @RequestId = params['RequestId']
         end
       end
 

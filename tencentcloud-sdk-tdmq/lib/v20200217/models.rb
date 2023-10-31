@@ -5825,8 +5825,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2023, 10
-        deprecate :QueryDlqMsg=, :none, 2023, 10
+        deprecate :QueryDlqMsg, :none, 2023, 11
+        deprecate :QueryDlqMsg=, :none, 2023, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -8328,10 +8328,16 @@ module TencentCloud
         # @type ExceptionInformation: String
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
         # @type ClusterStatus: Integer
+        # @param AutoRenewFlag: 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param MirrorQueuePolicyFlag: 是否开启镜像队列策略。1表示开启，0表示没开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MirrorQueuePolicyFlag: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -8350,6 +8356,8 @@ module TencentCloud
           @ExchangeNumber = exchangenumber
           @ExceptionInformation = exceptioninformation
           @ClusterStatus = clusterstatus
+          @AutoRenewFlag = autorenewflag
+          @MirrorQueuePolicyFlag = mirrorqueuepolicyflag
         end
 
         def deserialize(params)
@@ -8378,6 +8386,8 @@ module TencentCloud
           @ExchangeNumber = params['ExchangeNumber']
           @ExceptionInformation = params['ExceptionInformation']
           @ClusterStatus = params['ClusterStatus']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @MirrorQueuePolicyFlag = params['MirrorQueuePolicyFlag']
         end
       end
 

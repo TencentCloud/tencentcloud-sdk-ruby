@@ -3162,6 +3162,54 @@ module TencentCloud
         end
       end
 
+      # DescribeBillingResourceInstanceRunningJobs请求参数结构体
+      class DescribeBillingResourceInstanceRunningJobsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
+        # @param ResourceInstanceId: 资源组节点id
+        # @type ResourceInstanceId: String
+
+        attr_accessor :ResourceGroupId, :ResourceInstanceId
+
+        def initialize(resourcegroupid=nil, resourceinstanceid=nil)
+          @ResourceGroupId = resourcegroupid
+          @ResourceInstanceId = resourceinstanceid
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceInstanceId = params['ResourceInstanceId']
+        end
+      end
+
+      # DescribeBillingResourceInstanceRunningJobs返回参数结构体
+      class DescribeBillingResourceInstanceRunningJobsResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceInstanceRunningJobInfos: 资源组节点运行中的任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceInstanceRunningJobInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceInstanceRunningJobInfos, :RequestId
+
+        def initialize(resourceinstancerunningjobinfos=nil, requestid=nil)
+          @ResourceInstanceRunningJobInfos = resourceinstancerunningjobinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceInstanceRunningJobInfos'].nil?
+            @ResourceInstanceRunningJobInfos = []
+            params['ResourceInstanceRunningJobInfos'].each do |i|
+              resourceinstancerunningjobinfo_tmp = ResourceInstanceRunningJobInfo.new
+              resourceinstancerunningjobinfo_tmp.deserialize(i)
+              @ResourceInstanceRunningJobInfos << resourceinstancerunningjobinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillingSpecsPrice请求参数结构体
       class DescribeBillingSpecsPriceRequest < TencentCloud::Common::AbstractModel
         # @param SpecsParam: 询价参数，支持批量询价
@@ -7639,6 +7687,38 @@ module TencentCloud
         end
       end
 
+      # 资源组节点运行任务信息
+      class ResourceInstanceRunningJobInfo < TencentCloud::Common::AbstractModel
+        # @param PodName: pod名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodName: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务自定义名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+
+        attr_accessor :PodName, :TaskType, :TaskId, :TaskName
+
+        def initialize(podname=nil, tasktype=nil, taskid=nil, taskname=nil)
+          @PodName = podname
+          @TaskType = tasktype
+          @TaskId = taskid
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @PodName = params['PodName']
+          @TaskType = params['TaskType']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+        end
+      end
+
       # RestartModelAccelerateTask请求参数结构体
       class RestartModelAccelerateTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelAccTaskId: 模型加速任务ID
@@ -10104,8 +10184,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2023, 10
-        deprecate :StatefulSetCondition=, :none, 2023, 10
+        deprecate :StatefulSetCondition, :none, 2023, 11
+        deprecate :StatefulSetCondition=, :none, 2023, 11
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

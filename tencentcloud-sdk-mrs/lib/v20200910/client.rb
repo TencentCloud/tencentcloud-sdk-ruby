@@ -152,6 +152,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 体检报告PDF文件结构化-异步接口
+
+        # @param request: Request instance for TurnPDFToObjectAsync.
+        # @type request: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectAsyncRequest`
+        # @rtype: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectAsyncResponse`
+        def TurnPDFToObjectAsync(request)
+          body = send_request('TurnPDFToObjectAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TurnPDFToObjectAsyncResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 体检报告PDF文件结构化异步获取结果接口
+
+        # @param request: Request instance for TurnPDFToObjectAsyncGetResult.
+        # @type request: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectAsyncGetResultRequest`
+        # @rtype: :class:`Tencentcloud::mrs::V20200910::TurnPDFToObjectAsyncGetResultResponse`
+        def TurnPDFToObjectAsyncGetResult(request)
+          body = send_request('TurnPDFToObjectAsyncGetResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TurnPDFToObjectAsyncGetResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end
