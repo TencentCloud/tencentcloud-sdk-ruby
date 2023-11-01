@@ -1661,6 +1661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取消费详情列表
+
+        # @param request: Request instance for DescribeRocketMQConsumeStats.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQConsumeStatsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQConsumeStatsResponse`
+        def DescribeRocketMQConsumeStats(request)
+          body = send_request('DescribeRocketMQConsumeStats', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQConsumeStatsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定消费组下当前客户端的连接情况
 
         # @param request: Request instance for DescribeRocketMQConsumerConnections.
@@ -2893,6 +2917,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindCmqDeadLetterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Rocketmq消费验证
+
+        # @param request: Request instance for VerifyRocketMQConsume.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::VerifyRocketMQConsumeRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::VerifyRocketMQConsumeResponse`
+        def VerifyRocketMQConsume(request)
+          body = send_request('VerifyRocketMQConsume', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyRocketMQConsumeResponse.new
             model.deserialize(response['Response'])
             model
           else

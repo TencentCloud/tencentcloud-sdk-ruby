@@ -919,6 +919,58 @@ module TencentCloud
         end
       end
 
+      # 消费详情
+      class ConsumerStats < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param BrokerName: 所属Broker
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerName: String
+        # @param QueueId: 队列编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueId: Integer
+        # @param ConsumerClientId: 消费者ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerClientId: String
+        # @param ConsumerOffset: 消费位点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerOffset: Integer
+        # @param BrokerOffset: 服务端位点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BrokerOffset: Integer
+        # @param DiffTotal: 消息堆积条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffTotal: Integer
+        # @param LastTimestamp: 最近消费时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTimestamp: Integer
+
+        attr_accessor :TopicName, :BrokerName, :QueueId, :ConsumerClientId, :ConsumerOffset, :BrokerOffset, :DiffTotal, :LastTimestamp
+
+        def initialize(topicname=nil, brokername=nil, queueid=nil, consumerclientid=nil, consumeroffset=nil, brokeroffset=nil, difftotal=nil, lasttimestamp=nil)
+          @TopicName = topicname
+          @BrokerName = brokername
+          @QueueId = queueid
+          @ConsumerClientId = consumerclientid
+          @ConsumerOffset = consumeroffset
+          @BrokerOffset = brokeroffset
+          @DiffTotal = difftotal
+          @LastTimestamp = lasttimestamp
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @BrokerName = params['BrokerName']
+          @QueueId = params['QueueId']
+          @ConsumerClientId = params['ConsumerClientId']
+          @ConsumerOffset = params['ConsumerOffset']
+          @BrokerOffset = params['BrokerOffset']
+          @DiffTotal = params['DiffTotal']
+          @LastTimestamp = params['LastTimestamp']
+        end
+      end
+
       # 消费进度详情
       class ConsumersSchedule < TencentCloud::Common::AbstractModel
         # @param Partitions: 当前分区id。
@@ -4832,6 +4884,57 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQConsumeStats请求参数结构体
+      class DescribeRocketMQConsumeStatsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 实例ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param ConsumerGroup: 消费组
+        # @type ConsumerGroup: String
+
+        attr_accessor :ClusterId, :NamespaceId, :ConsumerGroup
+
+        def initialize(clusterid=nil, namespaceid=nil, consumergroup=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # DescribeRocketMQConsumeStats返回参数结构体
+      class DescribeRocketMQConsumeStatsResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerStatsList: 消费详情列表
+        # @type ConsumerStatsList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerStatsList, :RequestId
+
+        def initialize(consumerstatslist=nil, requestid=nil)
+          @ConsumerStatsList = consumerstatslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConsumerStatsList'].nil?
+            @ConsumerStatsList = []
+            params['ConsumerStatsList'].each do |i|
+              consumerstats_tmp = ConsumerStats.new
+              consumerstats_tmp.deserialize(i)
+              @ConsumerStatsList << consumerstats_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10842,6 +10945,58 @@ module TencentCloud
 
       # UnbindCmqDeadLetter返回参数结构体
       class UnbindCmqDeadLetterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyRocketMQConsume请求参数结构体
+      class VerifyRocketMQConsumeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param GroupId: 消费组ID
+        # @type GroupId: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param TopicName: topic名称
+        # @type TopicName: String
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :MsgId, :ClientId, :TopicName
+
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, msgid=nil, clientid=nil, topicname=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @MsgId = msgid
+          @ClientId = clientid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @MsgId = params['MsgId']
+          @ClientId = params['ClientId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # VerifyRocketMQConsume返回参数结构体
+      class VerifyRocketMQConsumeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

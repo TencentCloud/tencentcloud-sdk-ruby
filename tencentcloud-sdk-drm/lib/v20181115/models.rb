@@ -297,6 +297,58 @@ module TencentCloud
         end
       end
 
+      # DescribeDRMLicense请求参数结构体
+      class DescribeDRMLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param DrmType: 使用的DRM方案类型，接口取值 NORMALAES 。
+        # @type DrmType: String
+        # @param Tracks: 加密的track列表，接口取值 SD 。
+        # @type Tracks: Array
+        # @param ContentId: 一个加密内容的唯一标识。
+        # @type ContentId: String
+        # @param ContentType: 内容类型。接口取值 LiveVideo 。
+        # @type ContentType: String
+
+        attr_accessor :DrmType, :Tracks, :ContentId, :ContentType
+
+        def initialize(drmtype=nil, tracks=nil, contentid=nil, contenttype=nil)
+          @DrmType = drmtype
+          @Tracks = tracks
+          @ContentId = contentid
+          @ContentType = contenttype
+        end
+
+        def deserialize(params)
+          @DrmType = params['DrmType']
+          @Tracks = params['Tracks']
+          @ContentId = params['ContentId']
+          @ContentType = params['ContentType']
+        end
+      end
+
+      # DescribeDRMLicense返回参数结构体
+      class DescribeDRMLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param ContentId: 内容ID。
+        # @type ContentId: String
+        # @param TXEncryptionToken: 加密密钥。
+        # @type TXEncryptionToken: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ContentId, :TXEncryptionToken, :RequestId
+
+        def initialize(contentid=nil, txencryptiontoken=nil, requestid=nil)
+          @ContentId = contentid
+          @TXEncryptionToken = txencryptiontoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ContentId = params['ContentId']
+          @TXEncryptionToken = params['TXEncryptionToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFairPlayPem请求参数结构体
       class DescribeFairPlayPemRequest < TencentCloud::Common::AbstractModel
         # @param BailorId: 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
