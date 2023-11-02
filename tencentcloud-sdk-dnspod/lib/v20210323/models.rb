@@ -573,6 +573,50 @@ module TencentCloud
         end
       end
 
+      # CreateDomainCustomLine请求参数结构体
+      class CreateDomainCustomLineRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Name: 自定义线路名称
+        # @type Name: String
+        # @param Area: 自定义线路IP段，用-分割
+        # @type Area: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :Name, :Area, :DomainId
+
+        def initialize(domain=nil, name=nil, area=nil, domainid=nil)
+          @Domain = domain
+          @Name = name
+          @Area = area
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Name = params['Name']
+          @Area = params['Area']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # CreateDomainCustomLine返回参数结构体
+      class CreateDomainCustomLineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateDomainGroup请求参数结构体
       class CreateDomainGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupName: 域名分组
@@ -1013,6 +1057,38 @@ module TencentCloud
         end
       end
 
+      # 自定义线路详情
+      class CustomLineInfo < TencentCloud::Common::AbstractModel
+        # @param DomainId: 域名ID
+        # @type DomainId: Integer
+        # @param Name: 自定义线路名称
+        # @type Name: String
+        # @param Area: 自定义线路IP段
+        # @type Area: String
+        # @param UseCount: 已使用IP段个数
+        # @type UseCount: Integer
+        # @param MaxCount: 允许使用IP段最大个数
+        # @type MaxCount: Integer
+
+        attr_accessor :DomainId, :Name, :Area, :UseCount, :MaxCount
+
+        def initialize(domainid=nil, name=nil, area=nil, usecount=nil, maxcount=nil)
+          @DomainId = domainid
+          @Name = name
+          @Area = area
+          @UseCount = usecount
+          @MaxCount = maxcount
+        end
+
+        def deserialize(params)
+          @DomainId = params['DomainId']
+          @Name = params['Name']
+          @Area = params['Area']
+          @UseCount = params['UseCount']
+          @MaxCount = params['MaxCount']
+        end
+      end
+
       # 子订单号列表
       class Deals < TencentCloud::Common::AbstractModel
         # @param DealId: 子订单ID
@@ -1149,6 +1225,46 @@ module TencentCloud
               @DetailList << deletedomainbatchdetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDomainCustomLine请求参数结构体
+      class DeleteDomainCustomLineRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Name: 自定义线路名称
+        # @type Name: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :Name, :DomainId
+
+        def initialize(domain=nil, name=nil, domainid=nil)
+          @Domain = domain
+          @Name = name
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Name = params['Name']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DeleteDomainCustomLine返回参数结构体
+      class DeleteDomainCustomLineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1674,6 +1790,57 @@ module TencentCloud
               @AliasData << domainaliasanalyticsitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDomainCustomLineList请求参数结构体
+      class DescribeDomainCustomLineListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeDomainCustomLineList返回参数结构体
+      class DescribeDomainCustomLineListResponse < TencentCloud::Common::AbstractModel
+        # @param LineList: 自定义线路列表
+        # @type LineList: Array
+        # @param AvailableCount: 可添加的自定义线路条数
+        # @type AvailableCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LineList, :AvailableCount, :RequestId
+
+        def initialize(linelist=nil, availablecount=nil, requestid=nil)
+          @LineList = linelist
+          @AvailableCount = availablecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LineList'].nil?
+            @LineList = []
+            params['LineList'].each do |i|
+              customlineinfo_tmp = CustomLineInfo.new
+              customlineinfo_tmp.deserialize(i)
+              @LineList << customlineinfo_tmp
+            end
+          end
+          @AvailableCount = params['AvailableCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3896,6 +4063,54 @@ module TencentCloud
           @DomainId = params['DomainId']
           @LockCode = params['LockCode']
           @LockEnd = params['LockEnd']
+        end
+      end
+
+      # ModifyDomainCustomLine请求参数结构体
+      class ModifyDomainCustomLineRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Name: 修改后的自定义线路名称，如果不修改名称，需要和PreName保持一致
+        # @type Name: String
+        # @param Area: 自定义线路IP段，用-分割
+        # @type Area: String
+        # @param PreName: 修改前的自定义线路名称
+        # @type PreName: String
+        # @param DomainId: 域名ID，如果传了DomainId，系统将会忽略Domain参数，优先使用DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :Name, :Area, :PreName, :DomainId
+
+        def initialize(domain=nil, name=nil, area=nil, prename=nil, domainid=nil)
+          @Domain = domain
+          @Name = name
+          @Area = area
+          @PreName = prename
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Name = params['Name']
+          @Area = params['Area']
+          @PreName = params['PreName']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # ModifyDomainCustomLine返回参数结构体
+      class ModifyDomainCustomLineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建域名的自定义线路
+
+        # @param request: Request instance for CreateDomainCustomLine.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateDomainCustomLineRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateDomainCustomLineResponse`
+        def CreateDomainCustomLine(request)
+          body = send_request('CreateDomainCustomLine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainCustomLineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建域名分组
 
         # @param request: Request instance for CreateDomainGroup.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除域名的自定义线路
+
+        # @param request: Request instance for DeleteDomainCustomLine.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteDomainCustomLineRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DeleteDomainCustomLineResponse`
+        def DeleteDomainCustomLine(request)
+          body = send_request('DeleteDomainCustomLine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDomainCustomLineResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -567,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDomainAnalyticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取域名的自定义线路列表
+
+        # @param request: Request instance for DescribeDomainCustomLineList.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainCustomLineListRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::DescribeDomainCustomLineListResponse`
+        def DescribeDomainCustomLineList(request)
+          body = send_request('DescribeDomainCustomLineList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDomainCustomLineListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1167,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DownloadSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改域名的自定义线路
+
+        # @param request: Request instance for ModifyDomainCustomLine.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainCustomLineRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainCustomLineResponse`
+        def ModifyDomainCustomLine(request)
+          body = send_request('ModifyDomainCustomLine', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainCustomLineResponse.new
             model.deserialize(response['Response'])
             model
           else

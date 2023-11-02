@@ -9915,8 +9915,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2023, 10
-        deprecate :IsSucess=, :none, 2023, 10
+        deprecate :IsSucess, :none, 2023, 11
+        deprecate :IsSucess=, :none, 2023, 11
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

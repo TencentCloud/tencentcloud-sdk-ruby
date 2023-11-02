@@ -2117,6 +2117,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 消息查询
+
+        # @param request: Request instance for DescribeTopicMsgs.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeTopicMsgsRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeTopicMsgsResponse`
+        def DescribeTopicMsgs(request)
+          body = send_request('DescribeTopicMsgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicMsgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取环境下主题列表
 
         # @param request: Request instance for DescribeTopics.

@@ -6330,6 +6330,81 @@ module TencentCloud
         end
       end
 
+      # DescribeTopicMsgs请求参数结构体
+      class DescribeTopicMsgsRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param TopicName: 主题名。
+        # @type TopicName: String
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :TopicName, :StartTime, :EndTime, :Offset, :Limit, :MsgId, :ClusterId
+
+        def initialize(environmentid=nil, topicname=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, msgid=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @MsgId = msgid
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @MsgId = params['MsgId']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeTopicMsgs返回参数结构体
+      class DescribeTopicMsgsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总记录数。
+        # @type TotalCount: Integer
+        # @param TopicMsgLogSets: 消息日志列表。
+        # @type TopicMsgLogSets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TopicMsgLogSets, :RequestId
+
+        def initialize(totalcount=nil, topicmsglogsets=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TopicMsgLogSets = topicmsglogsets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TopicMsgLogSets'].nil?
+            @TopicMsgLogSets = []
+            params['TopicMsgLogSets'].each do |i|
+              msglog_tmp = MsgLog.new
+              msglog_tmp.deserialize(i)
+              @TopicMsgLogSets << msglog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）名称。
@@ -7844,6 +7919,34 @@ module TencentCloud
           @Partitions = params['Partitions']
           @Remark = params['Remark']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 消息日志
+      class MsgLog < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ProducerName: 生产者名称。
+        # @type ProducerName: String
+        # @param ProduceTime: 生产时间。
+        # @type ProduceTime: String
+        # @param ProducerAddr: 生产客户端地址。
+        # @type ProducerAddr: String
+
+        attr_accessor :MsgId, :ProducerName, :ProduceTime, :ProducerAddr
+
+        def initialize(msgid=nil, producername=nil, producetime=nil, produceraddr=nil)
+          @MsgId = msgid
+          @ProducerName = producername
+          @ProduceTime = producetime
+          @ProducerAddr = produceraddr
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @ProducerName = params['ProducerName']
+          @ProduceTime = params['ProduceTime']
+          @ProducerAddr = params['ProducerAddr']
         end
       end
 

@@ -1974,6 +1974,28 @@ module TencentCloud
         end
       end
 
+      # 跨租户弹性网卡下Pod调用信息
+      class CrossTenantENIInfo < TencentCloud::Common::AbstractModel
+        # @param PrimaryIP: Pod IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrimaryIP: String
+        # @param Port: Pod Port
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+
+        attr_accessor :PrimaryIP, :Port
+
+        def initialize(primaryip=nil, port=nil)
+          @PrimaryIP = primaryip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @PrimaryIP = params['PrimaryIP']
+          @Port = params['Port']
+        end
+      end
+
       # 自定义指标
       class CustomTrainingData < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名
@@ -7269,10 +7291,13 @@ module TencentCloud
         # @param ContainerInfos: 容器列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerInfos: Array
+        # @param CrossTenantENIInfo: 容器调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossTenantENIInfo: :class:`Tencentcloud::Tione.v20211111.models.CrossTenantENIInfo`
 
-        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos
+        attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo
 
-        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil)
+        def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil)
           @Name = name
           @Uid = uid
           @ChargeType = chargetype
@@ -7281,6 +7306,7 @@ module TencentCloud
           @CreateTime = createtime
           @Containers = containers
           @ContainerInfos = containerinfos
+          @CrossTenantENIInfo = crosstenanteniinfo
         end
 
         def deserialize(params)
@@ -7301,6 +7327,10 @@ module TencentCloud
               container_tmp.deserialize(i)
               @ContainerInfos << container_tmp
             end
+          end
+          unless params['CrossTenantENIInfo'].nil?
+            @CrossTenantENIInfo = CrossTenantENIInfo.new
+            @CrossTenantENIInfo.deserialize(params['CrossTenantENIInfo'])
           end
         end
       end

@@ -519,13 +519,14 @@ module TencentCloud
 
       # 人脸图片和待被融合的素材模板图的人脸位置信息。
       class MergeInfo < TencentCloud::Common::AbstractModel
-        # @param Image: 输入图片base64
+        # @param Image: 输入图片base64。
         # @type Image: String
-        # @param Url: 输入图片url
+        # @param Url: 输入图片url。
+        # Url、Image必须提供一个，如果都提供，只使用 Url。
         # @type Url: String
-        # @param InputImageFaceRect: 上传的图片人脸位置信息（人脸框）
+        # @param InputImageFaceRect: 输入图片人脸位置信息（人脸框）。不填默认取输入图中最大人脸。
         # @type InputImageFaceRect: :class:`Tencentcloud::Facefusion.v20181201.models.FaceRect`
-        # @param TemplateFaceID: 控制台上传的素材人脸ID，不填默认取最大人脸
+        # @param TemplateFaceID: 素材人脸ID，不填默认取素材中最大人脸。
         # @type TemplateFaceID: String
 
         attr_accessor :Image, :Url, :InputImageFaceRect, :TemplateFaceID

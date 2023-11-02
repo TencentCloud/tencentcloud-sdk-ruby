@@ -9315,7 +9315,7 @@ module TencentCloud
         # <li>on：开启；</li>
         # <li>off：关闭。</li>
         # @type Switch: String
-        # @param AllowClientIPList: 允许的客户端来源。支持填写 IPV4 以及 IPV6 的 IP/IP 段，不填则表示允许任意客户端 IP。
+        # @param AllowClientIPList: 允许的客户端来源。支持填写 IPV4 以及 IPV6 的 IP/IP 段。
         # @type AllowClientIPList: Array
         # @param ExpireTime: Debug 功能到期时间。超出设置的时间，则功能失效。
         # @type ExpireTime: String

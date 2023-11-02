@@ -3704,15 +3704,19 @@ module TencentCloud
         # @param NotViewNumber: 待查看数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NotViewNumber: Integer
+        # @param ReportTemplateNumber: 报告模板数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportTemplateNumber: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Data, :NotViewNumber, :RequestId
+        attr_accessor :TotalCount, :Data, :NotViewNumber, :ReportTemplateNumber, :RequestId
 
-        def initialize(totalcount=nil, data=nil, notviewnumber=nil, requestid=nil)
+        def initialize(totalcount=nil, data=nil, notviewnumber=nil, reporttemplatenumber=nil, requestid=nil)
           @TotalCount = totalcount
           @Data = data
           @NotViewNumber = notviewnumber
+          @ReportTemplateNumber = reporttemplatenumber
           @RequestId = requestid
         end
 
@@ -3727,6 +3731,7 @@ module TencentCloud
             end
           end
           @NotViewNumber = params['NotViewNumber']
+          @ReportTemplateNumber = params['ReportTemplateNumber']
           @RequestId = params['RequestId']
         end
       end
@@ -5485,10 +5490,16 @@ module TencentCloud
         # @param UserName: 用户名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserName: String
+        # @param ReportType: 报告类型： 1安全体检 2日报 3周报 4月报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReportType: Integer
+        # @param TemplateId: 报告模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: Integer
 
-        attr_accessor :TaskLogName, :TaskLogId, :AssetsNumber, :RiskNumber, :Time, :Status, :TaskName, :StartTime, :TaskCenterTaskId, :AppId, :UIN, :UserName
+        attr_accessor :TaskLogName, :TaskLogId, :AssetsNumber, :RiskNumber, :Time, :Status, :TaskName, :StartTime, :TaskCenterTaskId, :AppId, :UIN, :UserName, :ReportType, :TemplateId
 
-        def initialize(tasklogname=nil, tasklogid=nil, assetsnumber=nil, risknumber=nil, time=nil, status=nil, taskname=nil, starttime=nil, taskcentertaskid=nil, appid=nil, uin=nil, username=nil)
+        def initialize(tasklogname=nil, tasklogid=nil, assetsnumber=nil, risknumber=nil, time=nil, status=nil, taskname=nil, starttime=nil, taskcentertaskid=nil, appid=nil, uin=nil, username=nil, reporttype=nil, templateid=nil)
           @TaskLogName = tasklogname
           @TaskLogId = tasklogid
           @AssetsNumber = assetsnumber
@@ -5501,6 +5512,8 @@ module TencentCloud
           @AppId = appid
           @UIN = uin
           @UserName = username
+          @ReportType = reporttype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -5516,6 +5529,8 @@ module TencentCloud
           @AppId = params['AppId']
           @UIN = params['UIN']
           @UserName = params['UserName']
+          @ReportType = params['ReportType']
+          @TemplateId = params['TemplateId']
         end
       end
 

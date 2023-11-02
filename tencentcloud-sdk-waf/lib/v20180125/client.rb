@@ -704,6 +704,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 废弃接口
+
         # 获取防篡改url
 
         # @param request: Request instance for DescribeAntiFakeUrl.
@@ -899,6 +901,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 没有在使用。
 
         # Waf  CC V2 Query接口
 
