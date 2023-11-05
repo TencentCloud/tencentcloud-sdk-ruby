@@ -2419,10 +2419,16 @@ module TencentCloud
         # @type UserAccessDesc: String
         # @param CreateTime: 数据库创建时间
         # @type CreateTime: String
+        # @param IsFullTextEnabled: 是否全文启用 0：否 1：是
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsFullTextEnabled: String
 
-        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime
+        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
+        extend Gem::Deprecate
+        deprecate :IsFulltextEnabled, :none, 2023, 11
+        deprecate :IsFulltextEnabled=, :none, 2023, 11
 
-        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil)
+        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
           @CollationName = collationname
           @IsAutoCleanupOn = isautocleanupon
@@ -2442,6 +2448,7 @@ module TencentCloud
           @StateDesc = statedesc
           @UserAccessDesc = useraccessdesc
           @CreateTime = createtime
+          @IsFullTextEnabled = isfulltextenabled
         end
 
         def deserialize(params)
@@ -2464,6 +2471,7 @@ module TencentCloud
           @StateDesc = params['StateDesc']
           @UserAccessDesc = params['UserAccessDesc']
           @CreateTime = params['CreateTime']
+          @IsFullTextEnabled = params['IsFullTextEnabled']
         end
       end
 
@@ -5087,14 +5095,20 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Slowlogs: 慢查询日志信息列表
         # @type Slowlogs: Array
+        # @param SlowLogs: 慢查询日志信息列表
+        # @type SlowLogs: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Slowlogs, :RequestId
+        attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
+        extend Gem::Deprecate
+        deprecate :Slowlogs, :none, 2023, 11
+        deprecate :Slowlogs=, :none, 2023, 11
 
-        def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
+        def initialize(totalcount=nil, slowlogs=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
           @Slowlogs = slowlogs
+          @SlowLogs = slowlogs
           @RequestId = requestid
         end
 
@@ -5106,6 +5120,14 @@ module TencentCloud
               slowloginfo_tmp = SlowlogInfo.new
               slowloginfo_tmp.deserialize(i)
               @Slowlogs << slowloginfo_tmp
+            end
+          end
+          unless params['SlowLogs'].nil?
+            @SlowLogs = []
+            params['SlowLogs'].each do |i|
+              slowlog_tmp = SlowLog.new
+              slowlog_tmp.deserialize(i)
+              @SlowLogs << slowlog_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5150,12 +5172,17 @@ module TencentCloud
         # @type StartTime: String
         # @param ExpiredTime: 临时密钥到期时间
         # @type ExpiredTime: String
+        # @param CosSecurityToken: 临时密钥Token
+        # @type CosSecurityToken: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :RequestId
+        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
+        extend Gem::Deprecate
+        deprecate :XCosSecurityToken, :none, 2023, 11
+        deprecate :XCosSecurityToken=, :none, 2023, 11
 
-        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, requestid=nil)
+        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
           @Region = region
           @Path = path
@@ -5164,6 +5191,7 @@ module TencentCloud
           @XCosSecurityToken = xcossecuritytoken
           @StartTime = starttime
           @ExpiredTime = expiredtime
+          @CosSecurityToken = cossecuritytoken
           @RequestId = requestid
         end
 
@@ -5176,6 +5204,7 @@ module TencentCloud
           @XCosSecurityToken = params['XCosSecurityToken']
           @StartTime = params['StartTime']
           @ExpiredTime = params['ExpiredTime']
+          @CosSecurityToken = params['CosSecurityToken']
           @RequestId = params['RequestId']
         end
       end
@@ -5222,12 +5251,17 @@ module TencentCloud
         # @type StartTime: String
         # @param ExpiredTime: 临时密钥到期时间
         # @type ExpiredTime: String
+        # @param CosSecurityToken: 临时密钥Token
+        # @type CosSecurityToken: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :RequestId
+        attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
+        extend Gem::Deprecate
+        deprecate :XCosSecurityToken, :none, 2023, 11
+        deprecate :XCosSecurityToken=, :none, 2023, 11
 
-        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, requestid=nil)
+        def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
           @Region = region
           @Path = path
@@ -5236,6 +5270,7 @@ module TencentCloud
           @XCosSecurityToken = xcossecuritytoken
           @StartTime = starttime
           @ExpiredTime = expiredtime
+          @CosSecurityToken = cossecuritytoken
           @RequestId = requestid
         end
 
@@ -5248,6 +5283,7 @@ module TencentCloud
           @XCosSecurityToken = params['XCosSecurityToken']
           @StartTime = params['StartTime']
           @ExpiredTime = params['ExpiredTime']
+          @CosSecurityToken = params['CosSecurityToken']
           @RequestId = params['RequestId']
         end
       end
@@ -6418,20 +6454,27 @@ module TencentCloud
         # @type Errno: Integer
         # @param Msg: 返回错误信息
         # @type Msg: String
+        # @param Code: 返回错误码
+        # @type Code: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Errno, :Msg, :RequestId
+        attr_accessor :Errno, :Msg, :Code, :RequestId
+        extend Gem::Deprecate
+        deprecate :Errno, :none, 2023, 11
+        deprecate :Errno=, :none, 2023, 11
 
-        def initialize(errno=nil, msg=nil, requestid=nil)
+        def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
           @Msg = msg
+          @Code = code
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Errno = params['Errno']
           @Msg = params['Msg']
+          @Code = params['Code']
           @RequestId = params['RequestId']
         end
       end
@@ -8375,6 +8418,51 @@ module TencentCloud
         def deserialize(params)
           @SlaveZone = params['SlaveZone']
           @SlaveZoneName = params['SlaveZoneName']
+        end
+      end
+
+      # 慢查询日志文件信息
+      class SlowLog < TencentCloud::Common::AbstractModel
+        # @param Id: 慢查询日志文件唯一标识
+        # @type Id: Integer
+        # @param StartTime: 文件生成的开始时间
+        # @type StartTime: String
+        # @param EndTime: 文件生成的结束时间
+        # @type EndTime: String
+        # @param Size: 文件大小（KB）
+        # @type Size: Integer
+        # @param Count: 文件中log条数
+        # @type Count: Integer
+        # @param InternalAddr: 内网下载地址
+        # @type InternalAddr: String
+        # @param ExternalAddr: 外网下载地址
+        # @type ExternalAddr: String
+        # @param Status: 状态（1成功 2失败）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Id, :StartTime, :EndTime, :Size, :Count, :InternalAddr, :ExternalAddr, :Status
+
+        def initialize(id=nil, starttime=nil, endtime=nil, size=nil, count=nil, internaladdr=nil, externaladdr=nil, status=nil)
+          @Id = id
+          @StartTime = starttime
+          @EndTime = endtime
+          @Size = size
+          @Count = count
+          @InternalAddr = internaladdr
+          @ExternalAddr = externaladdr
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Size = params['Size']
+          @Count = params['Count']
+          @InternalAddr = params['InternalAddr']
+          @ExternalAddr = params['ExternalAddr']
+          @Status = params['Status']
         end
       end
 

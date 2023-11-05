@@ -919,6 +919,75 @@ module TencentCloud
         end
       end
 
+      # 消费日志
+      class ConsumerLog < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ConsumerGroup: 消费组。
+        # @type ConsumerGroup: String
+        # @param ConsumerName: 消费组名称。
+        # @type ConsumerName: String
+        # @param ConsumeTime: 消费时间。
+        # @type ConsumeTime: String
+        # @param ConsumerAddr: 消费者客户端地址。
+        # @type ConsumerAddr: String
+        # @param ConsumeUseTime: 消费耗时（毫秒）。
+        # @type ConsumeUseTime: Integer
+        # @param Status: 消费状态。
+        # @type Status: String
+
+        attr_accessor :MsgId, :ConsumerGroup, :ConsumerName, :ConsumeTime, :ConsumerAddr, :ConsumeUseTime, :Status
+
+        def initialize(msgid=nil, consumergroup=nil, consumername=nil, consumetime=nil, consumeraddr=nil, consumeusetime=nil, status=nil)
+          @MsgId = msgid
+          @ConsumerGroup = consumergroup
+          @ConsumerName = consumername
+          @ConsumeTime = consumetime
+          @ConsumerAddr = consumeraddr
+          @ConsumeUseTime = consumeusetime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @ConsumerName = params['ConsumerName']
+          @ConsumeTime = params['ConsumeTime']
+          @ConsumerAddr = params['ConsumerAddr']
+          @ConsumeUseTime = params['ConsumeUseTime']
+          @Status = params['Status']
+        end
+      end
+
+      # 消费信息
+      class ConsumerLogs < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ConsumerLogSets: 消费日志。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLogSets: Array
+
+        attr_accessor :TotalCount, :ConsumerLogSets
+
+        def initialize(totalcount=nil, consumerlogsets=nil)
+          @TotalCount = totalcount
+          @ConsumerLogSets = consumerlogsets
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConsumerLogSets'].nil?
+            @ConsumerLogSets = []
+            params['ConsumerLogSets'].each do |i|
+              consumerlog_tmp = ConsumerLog.new
+              consumerlog_tmp.deserialize(i)
+              @ConsumerLogSets << consumerlog_tmp
+            end
+          end
+        end
+      end
+
       # 消费详情
       class ConsumerStats < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名
@@ -3701,6 +3770,86 @@ module TencentCloud
               environment_tmp.deserialize(i)
               @EnvironmentSet << environment_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMsgTrace请求参数结构体
+      class DescribeMsgTraceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）。
+        # @type EnvironmentId: String
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ProduceTime: 消息生产时间。
+        # @type ProduceTime: String
+        # @param Offset: 起始下标，不填默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，不填则默认为10，最大值为20。
+        # @type Limit: Integer
+        # @param SubscriptionName: 消费组名称模糊匹配。
+        # @type SubscriptionName: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :MsgId, :ProduceTime, :Offset, :Limit, :SubscriptionName, :ClusterId
+
+        def initialize(environmentid=nil, msgid=nil, producetime=nil, offset=nil, limit=nil, subscriptionname=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @MsgId = msgid
+          @ProduceTime = producetime
+          @Offset = offset
+          @Limit = limit
+          @SubscriptionName = subscriptionname
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @MsgId = params['MsgId']
+          @ProduceTime = params['ProduceTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SubscriptionName = params['SubscriptionName']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeMsgTrace返回参数结构体
+      class DescribeMsgTraceResponse < TencentCloud::Common::AbstractModel
+        # @param ProducerLog: 生产信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerLog: :class:`Tencentcloud::Tdmq.v20200217.models.ProducerLog`
+        # @param ServerLog: 服务方信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerLog: :class:`Tencentcloud::Tdmq.v20200217.models.ServerLog`
+        # @param ConsumerLogs: 消费信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumerLogs: :class:`Tencentcloud::Tdmq.v20200217.models.ConsumerLogs`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProducerLog, :ServerLog, :ConsumerLogs, :RequestId
+
+        def initialize(producerlog=nil, serverlog=nil, consumerlogs=nil, requestid=nil)
+          @ProducerLog = producerlog
+          @ServerLog = serverlog
+          @ConsumerLogs = consumerlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProducerLog'].nil?
+            @ProducerLog = ProducerLog.new
+            @ProducerLog.deserialize(params['ProducerLog'])
+          end
+          unless params['ServerLog'].nil?
+            @ServerLog = ServerLog.new
+            @ServerLog.deserialize(params['ServerLog'])
+          end
+          unless params['ConsumerLogs'].nil?
+            @ConsumerLogs = ConsumerLogs.new
+            @ConsumerLogs.deserialize(params['ConsumerLogs'])
           end
           @RequestId = params['RequestId']
         end
@@ -8027,6 +8176,42 @@ module TencentCloud
         end
       end
 
+      # 消息生产信息
+      class ProducerLog < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ProducerName: 生产者名称。
+        # @type ProducerName: String
+        # @param ProduceTime: 消息生产时间。
+        # @type ProduceTime: String
+        # @param ProducerAddr: 生产者客户端。
+        # @type ProducerAddr: String
+        # @param ProduceUseTime: 生产耗时（秒）。
+        # @type ProduceUseTime: Integer
+        # @param Status: 状态。
+        # @type Status: String
+
+        attr_accessor :MsgId, :ProducerName, :ProduceTime, :ProducerAddr, :ProduceUseTime, :Status
+
+        def initialize(msgid=nil, producername=nil, producetime=nil, produceraddr=nil, produceusetime=nil, status=nil)
+          @MsgId = msgid
+          @ProducerName = producername
+          @ProduceTime = producetime
+          @ProducerAddr = produceraddr
+          @ProduceUseTime = produceusetime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @ProducerName = params['ProducerName']
+          @ProduceTime = params['ProduceTime']
+          @ProducerAddr = params['ProducerAddr']
+          @ProduceUseTime = params['ProduceUseTime']
+          @Status = params['Status']
+        end
+      end
+
       # rabbitmq Prometheus信息
       class PrometheusEndpointInfo < TencentCloud::Common::AbstractModel
         # @param PrometheusEndpointStatus: Prometheus开关的状态。
@@ -10600,6 +10785,26 @@ module TencentCloud
           @Result = params['Result']
           @MsgId = params['MsgId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 服务方信息
+      class ServerLog < TencentCloud::Common::AbstractModel
+        # @param SaveTime: 存储时间。
+        # @type SaveTime: String
+        # @param Status: 状态。
+        # @type Status: String
+
+        attr_accessor :SaveTime, :Status
+
+        def initialize(savetime=nil, status=nil)
+          @SaveTime = savetime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @SaveTime = params['SaveTime']
+          @Status = params['Status']
         end
       end
 

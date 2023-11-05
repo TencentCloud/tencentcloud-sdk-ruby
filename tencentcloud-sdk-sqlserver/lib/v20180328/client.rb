@@ -1013,7 +1013,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBs）用于查询数据库列表。
+        # 本接口（DescribeDBs）用于查询数据库列表。**已废弃，请使用接口DescribeDatabases**
 
         # @param request: Request instance for DescribeDBs.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBsRequest`
@@ -1037,7 +1037,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
+        # 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号。**此接口已废弃，请使用DescribeDatabasesNormal。**
 
         # @param request: Request instance for DescribeDBsNormal.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBsNormalRequest`
@@ -2093,7 +2093,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+        # 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)。**本接口已废弃，请使用接口ModifyDatabaseShrinkMDF**。
 
         # @param request: Request instance for ModifyDatabaseMdf.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseMdfRequest`

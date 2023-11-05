@@ -1677,10 +1677,12 @@ module TencentCloud
         # @type InstanceName: String
         # @param ProjectId: 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
         # @type ProjectId: Integer
+        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务、自动化助手服务。
+        # @type EnhancedService: :class:`Tencentcloud::Thpc.v20230321.models.EnhancedService`
 
-        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId
+        attr_accessor :InstanceChargeType, :InstanceChargePrepaid, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :InstanceName, :ProjectId, :EnhancedService
 
-        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil)
+        def initialize(instancechargetype=nil, instancechargeprepaid=nil, instancetype=nil, systemdisk=nil, datadisks=nil, internetaccessible=nil, instancename=nil, projectid=nil, enhancedservice=nil)
           @InstanceChargeType = instancechargetype
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceType = instancetype
@@ -1689,6 +1691,7 @@ module TencentCloud
           @InternetAccessible = internetaccessible
           @InstanceName = instancename
           @ProjectId = projectid
+          @EnhancedService = enhancedservice
         end
 
         def deserialize(params)
@@ -1716,6 +1719,10 @@ module TencentCloud
           end
           @InstanceName = params['InstanceName']
           @ProjectId = params['ProjectId']
+          unless params['EnhancedService'].nil?
+            @EnhancedService = EnhancedService.new
+            @EnhancedService.deserialize(params['EnhancedService'])
+          end
         end
       end
 
