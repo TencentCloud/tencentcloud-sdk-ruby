@@ -188,6 +188,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CancelShareBlueprintAcrossAccounts）用于取消镜像跨账号共享。
+        # 指定的镜像ID必须为自定义镜像，且指定账号ID必须已进行共享。
+
+        # @param request: Request instance for CancelShareBlueprintAcrossAccounts.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::CancelShareBlueprintAcrossAccountsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::CancelShareBlueprintAcrossAccountsResponse`
+        def CancelShareBlueprintAcrossAccounts(request)
+          body = send_request('CancelShareBlueprintAcrossAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelShareBlueprintAcrossAccountsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (CreateBlueprint) 用于创建镜像。
 
         # @param request: Request instance for CreateBlueprint.
@@ -2512,6 +2537,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RunDockerContainersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ShareBlueprintAcrossAccounts）用于跨账号共享镜像。
+        # 仅支持共享自定义镜像， 且用于共享的镜像状态必须为NORMAL。
+        # 共享的账号必须为主账号。
+
+        # @param request: Request instance for ShareBlueprintAcrossAccounts.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ShareBlueprintAcrossAccountsRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ShareBlueprintAcrossAccountsResponse`
+        def ShareBlueprintAcrossAccounts(request)
+          body = send_request('ShareBlueprintAcrossAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ShareBlueprintAcrossAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else

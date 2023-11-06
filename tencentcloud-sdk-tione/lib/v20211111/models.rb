@@ -4929,7 +4929,7 @@ module TencentCloud
         # @param TotalCount: 数量
         # @type TotalCount: Integer
         # @param PodInfoList: pod详细信息
-        # @type PodInfoList: :class:`Tencentcloud::Tione.v20211111.models.PodInfo`
+        # @type PodInfoList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4946,8 +4946,12 @@ module TencentCloud
           @PodNames = params['PodNames']
           @TotalCount = params['TotalCount']
           unless params['PodInfoList'].nil?
-            @PodInfoList = PodInfo.new
-            @PodInfoList.deserialize(params['PodInfoList'])
+            @PodInfoList = []
+            params['PodInfoList'].each do |i|
+              podinfo_tmp = PodInfo.new
+              podinfo_tmp.deserialize(i)
+              @PodInfoList << podinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

@@ -908,6 +908,79 @@ module TencentCloud
         end
       end
 
+      # API安全资源信息
+      class ApiPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedNum: Integer
+        # @param RenewFlag: 续费标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param BillingItem: 计费项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingItem: String
+        # @param APICPWaf: 1 API安全6折
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APICPWaf: Integer
+        # @param APINPWaf: 1 表示5折折扣
+        # 2 表示4折折扣
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APINPWaf: Integer
+        # @param IsAPISecurityTrial: api安全7天试用标识。1试用。0没试用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAPISecurityTrial: Integer
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem, :APICPWaf, :APINPWaf, :IsAPISecurityTrial
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, billingitem=nil, apicpwaf=nil, apinpwaf=nil, isapisecuritytrial=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+          @RenewFlag = renewflag
+          @BillingItem = billingitem
+          @APICPWaf = apicpwaf
+          @APINPWaf = apinpwaf
+          @IsAPISecurityTrial = isapisecuritytrial
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+          @RenewFlag = params['RenewFlag']
+          @BillingItem = params['BillingItem']
+          @APICPWaf = params['APICPWaf']
+          @APINPWaf = params['APINPWaf']
+          @IsAPISecurityTrial = params['IsAPISecurityTrial']
+        end
+      end
+
       # 攻击日志详情
       class AttackLogInfo < TencentCloud::Common::AbstractModel
         # @param Content: 攻击日志的详情内容
@@ -1079,10 +1152,13 @@ module TencentCloud
         # @param BotNPWaf: 控制台买bot5折
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotNPWaf: Integer
+        # @param IsBotTrial: 7天bot试用标识 1 试用 0 没有试用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsBotTrial: Integer
 
-        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag, :BotCPWaf, :BotNPWaf
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :Type, :RenewFlag, :BotCPWaf, :BotNPWaf, :IsBotTrial
 
-        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil, renewflag=nil, botcpwaf=nil, botnpwaf=nil)
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, type=nil, renewflag=nil, botcpwaf=nil, botnpwaf=nil, isbottrial=nil)
           @ResourceIds = resourceids
           @Status = status
           @Region = region
@@ -1094,6 +1170,7 @@ module TencentCloud
           @RenewFlag = renewflag
           @BotCPWaf = botcpwaf
           @BotNPWaf = botnpwaf
+          @IsBotTrial = isbottrial
         end
 
         def deserialize(params)
@@ -1108,6 +1185,7 @@ module TencentCloud
           @RenewFlag = params['RenewFlag']
           @BotCPWaf = params['BotCPWaf']
           @BotNPWaf = params['BotNPWaf']
+          @IsBotTrial = params['IsBotTrial']
         end
       end
 
@@ -4635,6 +4713,33 @@ module TencentCloud
         end
       end
 
+      # DescribeModuleStatus请求参数结构体
+      class DescribeModuleStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeModuleStatus返回参数结构体
+      class DescribeModuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeObjects请求参数结构体
       class DescribeObjectsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 支持的过滤器:
@@ -7289,10 +7394,13 @@ module TencentCloud
         # @param HybridPkg: 混合云子节点包
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HybridPkg: :class:`Tencentcloud::Waf.v20180125.models.HybridPkg`
+        # @param ApiPkg: API安全资源包
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiPkg: :class:`Tencentcloud::Waf.v20180125.models.ApiPkg`
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -7326,6 +7434,7 @@ module TencentCloud
           @IsAPISecurityTrial = isapisecuritytrial
           @MajorEventsPkg = majoreventspkg
           @HybridPkg = hybridpkg
+          @ApiPkg = apipkg
         end
 
         def deserialize(params)
@@ -7382,6 +7491,10 @@ module TencentCloud
           unless params['HybridPkg'].nil?
             @HybridPkg = HybridPkg.new
             @HybridPkg.deserialize(params['HybridPkg'])
+          end
+          unless params['ApiPkg'].nil?
+            @ApiPkg = ApiPkg.new
+            @ApiPkg.deserialize(params['ApiPkg'])
           end
         end
       end

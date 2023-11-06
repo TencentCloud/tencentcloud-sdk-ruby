@@ -5586,15 +5586,19 @@ module TencentCloud
       class DeleteDataSourcesRequest < TencentCloud::Common::AbstractModel
         # @param Ids: id列表
         # @type Ids: Array
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
 
-        attr_accessor :Ids
+        attr_accessor :Ids, :ProjectId
 
-        def initialize(ids=nil)
+        def initialize(ids=nil, projectid=nil)
           @Ids = ids
+          @ProjectId = projectid
         end
 
         def deserialize(params)
           @Ids = params['Ids']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -8753,10 +8757,12 @@ module TencentCloud
         # @type IncludeWorkflow: Boolean
         # @param IncludeTask: 是否包含任务
         # @type IncludeTask: Boolean
+        # @param IncludeVirtualTask: 是否包含虚拟任务，当 IncludeTask 为 true 的时候，该参数才生效，默认为 true
+        # @type IncludeVirtualTask: Boolean
 
-        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask
+        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask, :IncludeVirtualTask
 
-        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil)
+        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil, includevirtualtask=nil)
           @ProjectId = projectid
           @FirstLevelPull = firstlevelpull
           @FolderId = folderid
@@ -8764,6 +8770,7 @@ module TencentCloud
           @Keyword = keyword
           @IncludeWorkflow = includeworkflow
           @IncludeTask = includetask
+          @IncludeVirtualTask = includevirtualtask
         end
 
         def deserialize(params)
@@ -8774,6 +8781,7 @@ module TencentCloud
           @Keyword = params['Keyword']
           @IncludeWorkflow = params['IncludeWorkflow']
           @IncludeTask = params['IncludeTask']
+          @IncludeVirtualTask = params['IncludeVirtualTask']
         end
       end
 
@@ -21948,10 +21956,12 @@ module TencentCloud
         # @type COSBucket: String
         # @param COSRegion: cos region
         # @type COSRegion: String
+        # @param ProjectId: 操作项目id
+        # @type ProjectId: String
 
-        attr_accessor :Name, :Category, :Type, :ID, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :COSBucket, :COSRegion
+        attr_accessor :Name, :Category, :Type, :ID, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :COSBucket, :COSRegion, :ProjectId
 
-        def initialize(name=nil, category=nil, type=nil, id=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, cosbucket=nil, cosregion=nil)
+        def initialize(name=nil, category=nil, type=nil, id=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, cosbucket=nil, cosregion=nil, projectid=nil)
           @Name = name
           @Category = category
           @Type = type
@@ -21970,6 +21980,7 @@ module TencentCloud
           @OwnerProjectIdent = ownerprojectident
           @COSBucket = cosbucket
           @COSRegion = cosregion
+          @ProjectId = projectid
         end
 
         def deserialize(params)
@@ -21991,6 +22002,7 @@ module TencentCloud
           @OwnerProjectIdent = params['OwnerProjectIdent']
           @COSBucket = params['COSBucket']
           @COSRegion = params['COSRegion']
+          @ProjectId = params['ProjectId']
         end
       end
 

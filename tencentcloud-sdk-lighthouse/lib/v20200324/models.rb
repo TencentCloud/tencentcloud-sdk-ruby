@@ -551,6 +551,42 @@ module TencentCloud
         end
       end
 
+      # CancelShareBlueprintAcrossAccounts请求参数结构体
+      class CancelShareBlueprintAcrossAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像ID, 可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。
+        # @type BlueprintId: String
+        # @param AccountIds: 接收共享镜像的账号ID列表。帐号ID不同于QQ号，查询用户帐号ID请查看帐号信息中的帐号ID栏。账号个数取值最大为10。
+        # @type AccountIds: Array
+
+        attr_accessor :BlueprintId, :AccountIds
+
+        def initialize(blueprintid=nil, accountids=nil)
+          @BlueprintId = blueprintid
+          @AccountIds = accountids
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @AccountIds = params['AccountIds']
+        end
+      end
+
+      # CancelShareBlueprintAcrossAccounts返回参数结构体
+      class CancelShareBlueprintAcrossAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云联网关联的实例列表。
       class CcnAttachedInstance < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网ID。
@@ -6929,6 +6965,42 @@ module TencentCloud
           @SceneId = params['SceneId']
           @DisplayName = params['DisplayName']
           @Description = params['Description']
+        end
+      end
+
+      # ShareBlueprintAcrossAccounts请求参数结构体
+      class ShareBlueprintAcrossAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: 镜像ID, 可以通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回的BlueprintId获取。
+        # @type BlueprintId: String
+        # @param AccountIds: 接收共享镜像的账号Id列表。帐号ID不同于QQ号，查询用户帐号ID请查看帐号信息中的帐号ID栏。账号个数取值最大为10。
+        # @type AccountIds: Array
+
+        attr_accessor :BlueprintId, :AccountIds
+
+        def initialize(blueprintid=nil, accountids=nil)
+          @BlueprintId = blueprintid
+          @AccountIds = accountids
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
+          @AccountIds = params['AccountIds']
+        end
+      end
+
+      # ShareBlueprintAcrossAccounts返回参数结构体
+      class ShareBlueprintAcrossAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
