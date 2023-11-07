@@ -1247,6 +1247,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询企业使用情况
+
+        # @param request: Request instance for DescribeBillUsageDetail.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeBillUsageDetailRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeBillUsageDetailResponse`
+        def DescribeBillUsageDetail(request)
+          body = send_request('DescribeBillUsageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBillUsageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
         # 1. 企业自动签
         # 2. 企业与港澳台居民签署合同

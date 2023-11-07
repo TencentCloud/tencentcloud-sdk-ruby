@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单设备的实时流量统计指标
+
+        # @param request: Request instance for GetNetMonitor.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetNetMonitorRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetNetMonitorResponse`
+        def GetNetMonitor(request)
+          body = send_request('GetNetMonitor', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetNetMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取公钥用于验签
 
         # @param request: Request instance for GetPublicKey.

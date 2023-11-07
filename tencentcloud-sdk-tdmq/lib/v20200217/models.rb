@@ -4926,7 +4926,7 @@ module TencentCloud
         # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterInfo`
         # @param ClusterConfig: 集群配置
         # @type ClusterConfig: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterConfig`
-        # @param ClusterStats: 集群最近使用量
+        # @param ClusterStats: 集群最近使用量，即将废弃，请使用云监控获取相关数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStats: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterRecentStats`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -9483,10 +9483,13 @@ module TencentCloud
         # @param MaxQueuesPerTopic: 单个主题最大队列数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxQueuesPerTopic: Integer
+        # @param TopicDistribution: topic分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicDistribution: Array
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution
 
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -9497,6 +9500,7 @@ module TencentCloud
           @MaxRetentionTime = maxretentiontime
           @MaxLatencyTime = maxlatencytime
           @MaxQueuesPerTopic = maxqueuespertopic
+          @TopicDistribution = topicdistribution
         end
 
         def deserialize(params)
@@ -9510,6 +9514,14 @@ module TencentCloud
           @MaxRetentionTime = params['MaxRetentionTime']
           @MaxLatencyTime = params['MaxLatencyTime']
           @MaxQueuesPerTopic = params['MaxQueuesPerTopic']
+          unless params['TopicDistribution'].nil?
+            @TopicDistribution = []
+            params['TopicDistribution'].each do |i|
+              rocketmqtopicdistribution_tmp = RocketMQTopicDistribution.new
+              rocketmqtopicdistribution_tmp.deserialize(i)
+              @TopicDistribution << rocketmqtopicdistribution_tmp
+            end
+          end
         end
       end
 
@@ -9591,10 +9603,28 @@ module TencentCloud
         # @param HttpInternalEndpoint: HTTP协议内部接入地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HttpInternalEndpoint: String
+        # @param AclEnabled: 是否开启ACL鉴权，专享实例支持关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclEnabled: Boolean
+        # @param PublicClbId: 公网CLB实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicClbId: String
+        # @param Vip: vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param VpcId: 所属VPC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SupportMigration: 是否支持迁移
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportMigration: Boolean
+        # @param InstanceStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败，6 - 变配中，7 - 变配失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatus: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -9612,6 +9642,12 @@ module TencentCloud
           @HttpVpcEndpoint = httpvpcendpoint
           @InternalEndpoint = internalendpoint
           @HttpInternalEndpoint = httpinternalendpoint
+          @AclEnabled = aclenabled
+          @PublicClbId = publicclbid
+          @Vip = vip
+          @VpcId = vpcid
+          @SupportMigration = supportmigration
+          @InstanceStatus = instancestatus
         end
 
         def deserialize(params)
@@ -9639,6 +9675,12 @@ module TencentCloud
           @HttpVpcEndpoint = params['HttpVpcEndpoint']
           @InternalEndpoint = params['InternalEndpoint']
           @HttpInternalEndpoint = params['HttpInternalEndpoint']
+          @AclEnabled = params['AclEnabled']
+          @PublicClbId = params['PublicClbId']
+          @Vip = params['Vip']
+          @VpcId = params['VpcId']
+          @SupportMigration = params['SupportMigration']
+          @InstanceStatus = params['InstanceStatus']
         end
       end
 
@@ -11034,8 +11076,10 @@ module TencentCloud
       # 标签的key/value的类型
       class Tag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签的key的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagKey: String
         # @param TagValue: 标签的Value的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

@@ -929,6 +929,62 @@ module TencentCloud
         end
       end
 
+      # GetNetMonitor请求参数结构体
+      class GetNetMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Metrics: 统计指标（上行速率："TxRate":bit/s，下行速率："RxRate":bit/s，丢包："Loss":%，时延："RTT":ms）
+        # @type Metrics: String
+
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :Metrics
+
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, metrics=nil)
+          @DeviceId = deviceid
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Metrics = metrics
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Metrics = params['Metrics']
+        end
+      end
+
+      # GetNetMonitor返回参数结构体
+      class GetNetMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorData: 监控数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorData: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorData, :RequestId
+
+        def initialize(monitordata=nil, requestid=nil)
+          @MonitorData = monitordata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MonitorData'].nil?
+            @MonitorData = []
+            params['MonitorData'].each do |i|
+              monitordata_tmp = MonitorData.new
+              monitordata_tmp.deserialize(i)
+              @MonitorData << monitordata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetPublicKey请求参数结构体
       class GetPublicKeyRequest < TencentCloud::Common::AbstractModel
 
@@ -1010,6 +1066,39 @@ module TencentCloud
         end
       end
 
+      # 流量监控指标
+      class MonitorData < TencentCloud::Common::AbstractModel
+        # @param Time: 时间点：s
+        # @type Time: String
+        # @param BusinessMetrics: 业务指标（bps/ms/%）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessMetrics: Float
+        # @param SlotNetInfo: 网卡状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlotNetInfo: Array
+
+        attr_accessor :Time, :BusinessMetrics, :SlotNetInfo
+
+        def initialize(time=nil, businessmetrics=nil, slotnetinfo=nil)
+          @Time = time
+          @BusinessMetrics = businessmetrics
+          @SlotNetInfo = slotnetinfo
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @BusinessMetrics = params['BusinessMetrics']
+          unless params['SlotNetInfo'].nil?
+            @SlotNetInfo = []
+            params['SlotNetInfo'].each do |i|
+              slotnetinfo_tmp = SlotNetInfo.new
+              slotnetinfo_tmp.deserialize(i)
+              @SlotNetInfo << slotnetinfo_tmp
+            end
+          end
+        end
+      end
+
       # 网络详细信息
       class NetDetails < TencentCloud::Common::AbstractModel
         # @param Current: 流量值（bit）
@@ -1055,6 +1144,33 @@ module TencentCloud
           @Loss = params['Loss']
           @Jitter = params['Jitter']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 网卡流量指标数据
+      class SlotNetInfo < TencentCloud::Common::AbstractModel
+        # @param NetInfoName: 网卡名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetInfoName: String
+        # @param PublicIP: 公网IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIP: String
+        # @param Current: 指标数据（bps/ms/%）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Current: Float
+
+        attr_accessor :NetInfoName, :PublicIP, :Current
+
+        def initialize(netinfoname=nil, publicip=nil, current=nil)
+          @NetInfoName = netinfoname
+          @PublicIP = publicip
+          @Current = current
+        end
+
+        def deserialize(params)
+          @NetInfoName = params['NetInfoName']
+          @PublicIP = params['PublicIP']
+          @Current = params['Current']
         end
       end
 

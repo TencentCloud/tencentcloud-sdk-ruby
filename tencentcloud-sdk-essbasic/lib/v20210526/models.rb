@@ -2982,12 +2982,14 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 查询的关键字段，支持Key-Values查询。可选键值如下：
         # <ul>
-        #   <li>Key:**"Status"**，根据实名状态查询员工，Values可选：
-        #     <ul><li>**["IsVerified"]**：查询已实名的员工</li><li>**["QuiteJob"]**：查询离职员工</li></ul></li>
-        #   <li>Key:**"StaffOpenId"**，根据第三方系统用户OpenId查询员工，Values为第三方系统用户OpenId列表：**["OpenId1","OpenId2",...]**</li>
+        #   <li>Key:**"Status"**，Values: **["IsVerified"]**, 查询已实名的员工</li>
+        #   <li>Key:**"Status"**，Values: **["QuiteJob"]**, 查询离职员工</li>
+        #   <li>Key:**"StaffOpenId"**，Values: **["OpenId1","OpenId2",...]**, 根据第三方系统用户OpenId查询员工</li>
         # </ul>
+        # 注: `同名字的Key的过滤条件会冲突,  只能填写一个`
         # @type Filters: Array
-        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。页码从 0 开始，即首页为 0，最大20000。
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。
+        # 页码从 0 开始，即首页为 0，最大20000。
         # @type Offset: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -7122,8 +7124,8 @@ module TencentCloud
         # @param SignerName: 申请证书的主体的名字
 
         # 如果是在腾讯电子签平台签署, 则对应的主体的名字个数如下
-        # **企业**:  ESS@企业名称@编码
-        # **个人**: ESS@个人姓名@证件号@808854
+        # **企业**:  ESS@企业名称@平台生成的数字编码
+        # **个人**: ESS@个人姓名@证件号@平台生成的数字编码
 
         # 如果在其他平台签署的, 主体的名字参考其他平台的说明
         # @type SignerName: String
@@ -8010,30 +8012,43 @@ module TencentCloud
 
       # SyncProxyOrganization请求参数结构体
       class SyncProxyOrganizationRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
-        # 此接口Agent.AppId、Agent.ProxyOrganizationOpenId必填
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param ProxyOrganizationName: 第三方平台子客企业名称，最大长度64个字符
+        # @param ProxyOrganizationName: 第三方平台子客企业名称，请确认该名称与企业营业执照中注册的名称一致。
+        # 注: `如果名称中包含英文括号()，请使用中文括号（）代替。`
         # @type ProxyOrganizationName: String
         # @param BusinessLicense: 营业执照正面照(PNG或JPG) base64格式, 大小不超过5M
         # @type BusinessLicense: String
         # @param UniformSocialCreditCode: 第三方平台子客企业统一社会信用代码，最大长度200个字符
         # @type UniformSocialCreditCode: String
-        # @param ProxyLegalName: 第三方平台子客企业法人/负责人姓名
+        # @param ProxyLegalName: 第三方平台子客企业法定代表人的名字
         # @type ProxyLegalName: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param ProxyLegalIdCardType: 第三方平台子客企业法人/负责人证件类型，默认居民身份证（ID_CARD）类型，暂不支持其他类型
+        # @param ProxyLegalIdCardType: 第三方平台子客企业法定代表人的证件类型，支持以下类型
+        # <ul><li>ID_CARD : 居民身份证 (默认值)</li></ul>
+        # 注: `现在仅支持ID_CARD居民身份证类型`
         # @type ProxyLegalIdCardType: String
-        # @param ProxyLegalIdCardNumber: 第三方平台子客企业法人/负责人证件号
+        # @param ProxyLegalIdCardNumber: 第三方平台子客企业法定代表人的证件号码, 应符合以下规则
+        # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
         # @type ProxyLegalIdCardNumber: String
+        # @param ProxyAddress: 第三方平台子客企业详细住所，最大长度500个字符
 
-        attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :ProxyLegalName, :Operator, :ProxyLegalIdCardType, :ProxyLegalIdCardNumber
+        # 注：`需要符合省市区详情的格式例如： XX省XX市XX区街道具体地址`
+        # @type ProxyAddress: String
+
+        attr_accessor :Agent, :ProxyOrganizationName, :BusinessLicense, :UniformSocialCreditCode, :ProxyLegalName, :Operator, :ProxyLegalIdCardType, :ProxyLegalIdCardNumber, :ProxyAddress
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 11
         deprecate :Operator=, :none, 2023, 11
 
-        def initialize(agent=nil, proxyorganizationname=nil, businesslicense=nil, uniformsocialcreditcode=nil, proxylegalname=nil, operator=nil, proxylegalidcardtype=nil, proxylegalidcardnumber=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, businesslicense=nil, uniformsocialcreditcode=nil, proxylegalname=nil, operator=nil, proxylegalidcardtype=nil, proxylegalidcardnumber=nil, proxyaddress=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @BusinessLicense = businesslicense
@@ -8042,6 +8057,7 @@ module TencentCloud
           @Operator = operator
           @ProxyLegalIdCardType = proxylegalidcardtype
           @ProxyLegalIdCardNumber = proxylegalidcardnumber
+          @ProxyAddress = proxyaddress
         end
 
         def deserialize(params)
@@ -8059,6 +8075,7 @@ module TencentCloud
           end
           @ProxyLegalIdCardType = params['ProxyLegalIdCardType']
           @ProxyLegalIdCardNumber = params['ProxyLegalIdCardNumber']
+          @ProxyAddress = params['ProxyAddress']
         end
       end
 

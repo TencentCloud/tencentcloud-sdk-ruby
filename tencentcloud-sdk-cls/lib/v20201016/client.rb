@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于数据加工DSL函数的语法校验。
+
+        # @param request: Request instance for CheckFunction.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CheckFunctionRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CheckFunctionResponse`
+        def CheckFunction(request)
+          body = send_request('CheckFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于校验Kafka服务集群是否可以正常访问
 
         # @param request: Request instance for CheckRechargeKafkaServer.

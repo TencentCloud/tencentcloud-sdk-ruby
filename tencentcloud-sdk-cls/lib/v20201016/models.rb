@@ -580,6 +580,61 @@ module TencentCloud
         end
       end
 
+      # CheckFunction请求参数结构体
+      class CheckFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param EtlContent: 用户输入的加工语句
+        # @type EtlContent: String
+        # @param DstResources: 加工任务目的topic_id以及别名
+        # @type DstResources: Array
+        # @param FuncType: 数据加工目标主题的类型. 1 固定主题 2动态创建
+        # @type FuncType: Integer
+
+        attr_accessor :EtlContent, :DstResources, :FuncType
+
+        def initialize(etlcontent=nil, dstresources=nil, functype=nil)
+          @EtlContent = etlcontent
+          @DstResources = dstresources
+          @FuncType = functype
+        end
+
+        def deserialize(params)
+          @EtlContent = params['EtlContent']
+          unless params['DstResources'].nil?
+            @DstResources = []
+            params['DstResources'].each do |i|
+              datatransformresouceinfo_tmp = DataTransformResouceInfo.new
+              datatransformresouceinfo_tmp.deserialize(i)
+              @DstResources << datatransformresouceinfo_tmp
+            end
+          end
+          @FuncType = params['FuncType']
+        end
+      end
+
+      # CheckFunction返回参数结构体
+      class CheckFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 失败错误码
+        # @type ErrorCode: Integer
+        # @param ErrorMsg: 失败错误信息
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :ErrorMsg, :RequestId
+
+        def initialize(errorcode=nil, errormsg=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckRechargeKafkaServer请求参数结构体
       class CheckRechargeKafkaServerRequest < TencentCloud::Common::AbstractModel
         # @param KafkaType: 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka

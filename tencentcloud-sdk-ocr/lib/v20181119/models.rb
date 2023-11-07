@@ -2233,8 +2233,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 10
-        deprecate :Angel=, :none, 2023, 10
+        deprecate :Angel, :none, 2023, 11
+        deprecate :Angel=, :none, 2023, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -2344,8 +2344,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 10
-        deprecate :Angel=, :none, 2023, 10
+        deprecate :Angel, :none, 2023, 11
+        deprecate :Angel=, :none, 2023, 11
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -10054,10 +10054,20 @@ module TencentCloud
         # @type TaxBureau: String
         # @param TrafficFreeFlag: 通行费标志:Y、是;N、否
         # @type TrafficFreeFlag: String
+        # @param RedLetterInvoiceMark: 是否为红票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedLetterInvoiceMark: Boolean
+        # @param IssuingTypeMark: 开具类型标识（0: 委托代开，1：自开，2：代开，3：代办退税
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IssuingTypeMark: Integer
+        # @param SellerAgentName: 代开销售方名称
+        # @type SellerAgentName: String
+        # @param SellerAgentTaxID: 代开销售方税号
+        # @type SellerAgentTaxID: String
 
-        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag
+        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag, :RedLetterInvoiceMark, :IssuingTypeMark, :SellerAgentName, :SellerAgentTaxID
 
-        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil)
+        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil, redletterinvoicemark=nil, issuingtypemark=nil, selleragentname=nil, selleragenttaxid=nil)
           @Code = code
           @Number = number
           @Date = date
@@ -10083,6 +10093,10 @@ module TencentCloud
           @Items = items
           @TaxBureau = taxbureau
           @TrafficFreeFlag = trafficfreeflag
+          @RedLetterInvoiceMark = redletterinvoicemark
+          @IssuingTypeMark = issuingtypemark
+          @SellerAgentName = selleragentname
+          @SellerAgentTaxID = selleragenttaxid
         end
 
         def deserialize(params)
@@ -10118,6 +10132,10 @@ module TencentCloud
           end
           @TaxBureau = params['TaxBureau']
           @TrafficFreeFlag = params['TrafficFreeFlag']
+          @RedLetterInvoiceMark = params['RedLetterInvoiceMark']
+          @IssuingTypeMark = params['IssuingTypeMark']
+          @SellerAgentName = params['SellerAgentName']
+          @SellerAgentTaxID = params['SellerAgentTaxID']
         end
       end
 

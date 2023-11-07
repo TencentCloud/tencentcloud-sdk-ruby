@@ -3376,12 +3376,44 @@ module TencentCloud
 
       # DescribeCCRuleList请求参数结构体
       class DescribeCCRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的API所属的域名
+        # @type Domain: String
+        # @param Offset: 偏移
+        # @type Offset: Integer
+        # @param Limit: 容量
+        # @type Limit: Integer
+        # @param By: 目前支持根据ts_version排序
+        # @type By: String
+        # @param Filters: 过滤数组,name可以是如下的值： RuleID,ParamName,Url,Action,Method,Source,Status
+        # @type Filters: Array
+        # @param Order: asc或者desc
+        # @type Order: String
 
+        attr_accessor :Domain, :Offset, :Limit, :By, :Filters, :Order
 
-        def initialize()
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, filters=nil, order=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Filters = filters
+          @Order = order
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+          @Order = params['Order']
         end
       end
 

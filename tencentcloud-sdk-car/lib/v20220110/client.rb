@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁会话
+        # 销毁会话。如果该会话开启了云端推流，那么销毁会话时会结束云端推流。
 
         # @param request: Request instance for DestroySession.
         # @type request: :class:`Tencentcloud::car::V20220110::DestroySessionRequest`

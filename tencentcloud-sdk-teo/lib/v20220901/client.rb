@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于加速域名绑定或解绑共享 CNAME，该功能白名单内测中。
+
+        # @param request: Request instance for BindSharedCNAME.
+        # @type request: :class:`Tencentcloud::teo::V20220901::BindSharedCNAMERequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::BindSharedCNAMEResponse`
+        def BindSharedCNAME(request)
+          body = send_request('BindSharedCNAME', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindSharedCNAMEResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 将未绑定套餐的站点绑定到已有套餐
 
         # @param request: Request instance for BindZoneToPlan.
@@ -345,7 +369,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建共享 CNAME
+        # 用于创建共享 CNAME，该功能白名单内测中。
 
         # @param request: Request instance for CreateSharedCNAME.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateSharedCNAMERequest`
@@ -549,6 +573,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSecurityIPGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除共享 CNAME，该功能白名单内测中。
+
+        # @param request: Request instance for DeleteSharedCNAME.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteSharedCNAMERequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteSharedCNAMEResponse`
+        def DeleteSharedCNAME(request)
+          body = send_request('DeleteSharedCNAME', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSharedCNAMEResponse.new
             model.deserialize(response['Response'])
             model
           else

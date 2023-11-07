@@ -460,6 +460,76 @@ module TencentCloud
         end
       end
 
+      # 用户计费使用情况详情
+      class BillUsageDetail < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: String
+        # @param OperatorName: 经办人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperatorName: String
+        # @param CreateOrganizationName: 发起方组织机构名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateOrganizationName: String
+        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
+        # 该名称还将用于合同签署完成后的下载文件名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowName: String
+        # @param Status: 0 还没有发起 1等待签署 2部分签署 3拒签 4已签署 5已过期 6已撤销 7还没有预发起 8等待填写 9部分填写 10拒填 11已解除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param QuotaType: 套餐类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaType: String
+        # @param UseCount: 合同使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseCount: Integer
+        # @param CostTime: 消耗的时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostTime: Integer
+        # @param QuotaName: 套餐名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaName: String
+        # @param CostType:  消耗类型	1.扣费 2.撤销返还
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CostType: Integer
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :FlowId, :OperatorName, :CreateOrganizationName, :FlowName, :Status, :QuotaType, :UseCount, :CostTime, :QuotaName, :CostType, :Remark
+
+        def initialize(flowid=nil, operatorname=nil, createorganizationname=nil, flowname=nil, status=nil, quotatype=nil, usecount=nil, costtime=nil, quotaname=nil, costtype=nil, remark=nil)
+          @FlowId = flowid
+          @OperatorName = operatorname
+          @CreateOrganizationName = createorganizationname
+          @FlowName = flowname
+          @Status = status
+          @QuotaType = quotatype
+          @UseCount = usecount
+          @CostTime = costtime
+          @QuotaName = quotaname
+          @CostType = costtype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @OperatorName = params['OperatorName']
+          @CreateOrganizationName = params['CreateOrganizationName']
+          @FlowName = params['FlowName']
+          @Status = params['Status']
+          @QuotaType = params['QuotaType']
+          @UseCount = params['UseCount']
+          @CostTime = params['CostTime']
+          @QuotaName = params['QuotaName']
+          @CostType = params['CostType']
+          @Remark = params['Remark']
+        end
+      end
+
       # BindEmployeeUserIdWithClientOpenId请求参数结构体
       class BindEmployeeUserIdWithClientOpenIdRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
@@ -3941,7 +4011,7 @@ module TencentCloud
         # @param SealType: 电子印章类型 , 可选类型如下:
         # <ul><li>**OFFICIAL**: (默认)公章</li>
         # <li>**CONTRACT**: 合同专用章;</li>
-        # <li>**FINANCE**: 合财务专用章;</li>
+        # <li>**FINANCE**: 财务专用章;</li>
         # <li>**PERSONNEL**: 人事专用章</li>
         # </ul>
         # 注: `同企业下只能有一个公章, 重复创建会报错`
@@ -4690,6 +4760,92 @@ module TencentCloud
         end
       end
 
+      # DescribeBillUsageDetail请求参数结构体
+      class DescribeBillUsageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 查询开始时间，时间跨度不能大于31天
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间，时间跨度不能大于31天
+        # @type EndTime: String
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
+        # @type Offset: Integer
+        # @param Limit: 指定分页每页返回的数据条数，如果不传默认为 50，单页最大支持 50。
+        # @type Limit: Integer
+        # @param QuotaType: 查询的套餐类型 （选填 ）不传则查询所有套餐；
+        # 对应关系如下
+        # CloudEnterprise-企业版合同
+        # SingleSignature-单方签章
+        # CloudProve-签署报告
+        # CloudOnlineSign-腾讯会议在线签约
+        # ChannelWeCard-微工卡
+        # SignFlow-合同套餐
+        # SignFace-签署意愿（人脸识别）
+        # SignPassword-签署意愿（密码）
+        # SignSMS-签署意愿（短信）
+        # PersonalEssAuth-签署人实名（腾讯电子签认证）
+        # PersonalThirdAuth-签署人实名（信任第三方认证）
+        # OrgEssAuth-签署企业实名
+        # FlowNotify-短信通知
+        # AuthService-企业工商信息查询
+        # @type QuotaType: String
+        # @param Agent: 非必填，查询某个渠道企业的消耗情况。
+        # 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :QuotaType, :Agent
+
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, quotatype=nil, agent=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @QuotaType = quotatype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @QuotaType = params['QuotaType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # DescribeBillUsageDetail返回参数结构体
+      class DescribeBillUsageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Details: 消耗详情
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Details, :RequestId
+
+        def initialize(total=nil, details=nil, requestid=nil)
+          @Total = total
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              billusagedetail_tmp = BillUsageDetail.new
+              billusagedetail_tmp.deserialize(i)
+              @Details << billusagedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExtendedServiceAuthInfos请求参数结构体
       class DescribeExtendedServiceAuthInfosRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -5346,6 +5502,7 @@ module TencentCloud
         #   <li>Key:**"UserId"**，根据用户ID查询员工，Values为指定的用户ID：**["UserId"]**</li>
         #   <li>Key:**"UserWeWorkOpenId"**，根据用户企微账号ID查询员工，Values为指定用户的企微账号ID：**["UserWeWorkOpenId"]**</li>
         #   <li>Key:**"StaffOpenId"**，根据第三方系统用户OpenId查询员工，Values为第三方系统用户OpenId列表：**["OpenId1","OpenId2",...]**</li>
+        #   <li>Key:**"RoleId"**，根据电子签角色ID查询员工，Values为指定的角色ID，满足其中任意一个角色即可：**["RoleId1","RoleId2",...]**</li>
         # </ul>
         # @type Filters: Array
         # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。页码从 0 开始，即首页为 0，最大20000。

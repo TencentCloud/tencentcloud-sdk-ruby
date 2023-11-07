@@ -996,6 +996,75 @@ module TencentCloud
         end
       end
 
+      # 共享 CNAME 和接入域名的绑定关系
+      class BindSharedCNAMEMap < TencentCloud::Common::AbstractModel
+        # @param SharedCNAME: 需要绑定或解绑的共享 CNAME。
+        # @type SharedCNAME: String
+        # @param DomainNames: 加速域名，可传递多个，最多20个。
+        # @type DomainNames: Array
+
+        attr_accessor :SharedCNAME, :DomainNames
+
+        def initialize(sharedcname=nil, domainnames=nil)
+          @SharedCNAME = sharedcname
+          @DomainNames = domainnames
+        end
+
+        def deserialize(params)
+          @SharedCNAME = params['SharedCNAME']
+          @DomainNames = params['DomainNames']
+        end
+      end
+
+      # BindSharedCNAME请求参数结构体
+      class BindSharedCNAMERequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 加速域名所属站点 ID。
+        # @type ZoneId: String
+        # @param BindType: 绑定类型，取值有：
+        # <li>bind：绑定；</li>
+        # <li>unbind：解绑。</li>
+        # @type BindType: String
+        # @param BindSharedCNAMEMaps: 接入域名与共享 CNAME 的绑定关系。
+        # @type BindSharedCNAMEMaps: Array
+
+        attr_accessor :ZoneId, :BindType, :BindSharedCNAMEMaps
+
+        def initialize(zoneid=nil, bindtype=nil, bindsharedcnamemaps=nil)
+          @ZoneId = zoneid
+          @BindType = bindtype
+          @BindSharedCNAMEMaps = bindsharedcnamemaps
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @BindType = params['BindType']
+          unless params['BindSharedCNAMEMaps'].nil?
+            @BindSharedCNAMEMaps = []
+            params['BindSharedCNAMEMaps'].each do |i|
+              bindsharedcnamemap_tmp = BindSharedCNAMEMap.new
+              bindsharedcnamemap_tmp.deserialize(i)
+              @BindSharedCNAMEMaps << bindsharedcnamemap_tmp
+            end
+          end
+        end
+      end
+
+      # BindSharedCNAME返回参数结构体
+      class BindSharedCNAMEResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindZoneToPlan请求参数结构体
       class BindZoneToPlanRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 未绑定套餐的站点ID。
@@ -2379,9 +2448,9 @@ module TencentCloud
         # @type ZoneId: String
         # @param SharedCNAMEPrefix: 共享 CNAME 前缀。请输入合法的域名前缀，例如"test-api"、"test-api.com"，限制输入 50 个字符。
 
-        # 共享 CNAME 完整格式为：<自定义前缀>+<zoneid中的12位随机字符串>+"share.eo.dnse[0-5].com"。
+        # 共享 CNAME 完整格式为：<自定义前缀>+<zoneid中的12位随机字符串>+"share.dnse[0-5].com"。
 
-        # 例如前缀传入 example.com，EO 会为您创建共享 CNAME：example.com.sai2ig51kaa5.share.eo.dnse2.com
+        # 例如前缀传入 example.com，EO 会为您创建共享 CNAME：example.com.sai2ig51kaa5.share.dnse2.com。
         # @type SharedCNAMEPrefix: String
         # @param Description: 描述。可输入 1-50 个任意字符。
         # @type Description: String
@@ -2403,7 +2472,7 @@ module TencentCloud
 
       # CreateSharedCNAME返回参数结构体
       class CreateSharedCNAMEResponse < TencentCloud::Common::AbstractModel
-        # @param SharedCNAME: 共享 CNAME。格式为：<自定义前缀>+<ZoneId中的12位随机字符串>+"share.eo.dnse[0-5].com"
+        # @param SharedCNAME: 共享 CNAME。格式为：<自定义前缀>+<ZoneId中的12位随机字符串>+"share.dnse[0-5].com"。
         # @type SharedCNAME: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2946,6 +3015,42 @@ module TencentCloud
 
       # DeleteSecurityIPGroup返回参数结构体
       class DeleteSecurityIPGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSharedCNAME请求参数结构体
+      class DeleteSharedCNAMERequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 共享 CNAME 所属站点 ID。
+        # @type ZoneId: String
+        # @param SharedCNAME: 需要删除的共享 CNAME。
+        # @type SharedCNAME: String
+
+        attr_accessor :ZoneId, :SharedCNAME
+
+        def initialize(zoneid=nil, sharedcname=nil)
+          @ZoneId = zoneid
+          @SharedCNAME = sharedcname
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @SharedCNAME = params['SharedCNAME']
+        end
+      end
+
+      # DeleteSharedCNAME返回参数结构体
+      class DeleteSharedCNAMEResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
