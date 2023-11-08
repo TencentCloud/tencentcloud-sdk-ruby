@@ -17132,19 +17132,23 @@ module TencentCloud
         # @type VpnGatewayName: String
         # @param InstanceChargeType: VPN网关计费模式，目前只支持预付费（即包年包月）到后付费（即按量计费）的转换。即参数只支持：POSTPAID_BY_HOUR。
         # @type InstanceChargeType: String
+        # @param BgpAsn: BGP ASN。ASN取值范围为1- 4294967295，默认值64551，其中139341、45090和58835不可用。
+        # @type BgpAsn: Integer
 
-        attr_accessor :VpnGatewayId, :VpnGatewayName, :InstanceChargeType
+        attr_accessor :VpnGatewayId, :VpnGatewayName, :InstanceChargeType, :BgpAsn
 
-        def initialize(vpngatewayid=nil, vpngatewayname=nil, instancechargetype=nil)
+        def initialize(vpngatewayid=nil, vpngatewayname=nil, instancechargetype=nil, bgpasn=nil)
           @VpnGatewayId = vpngatewayid
           @VpnGatewayName = vpngatewayname
           @InstanceChargeType = instancechargetype
+          @BgpAsn = bgpasn
         end
 
         def deserialize(params)
           @VpnGatewayId = params['VpnGatewayId']
           @VpnGatewayName = params['VpnGatewayName']
           @InstanceChargeType = params['InstanceChargeType']
+          @BgpAsn = params['BgpAsn']
         end
       end
 

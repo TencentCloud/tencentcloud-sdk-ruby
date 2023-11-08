@@ -264,7 +264,7 @@ module TencentCloud
         # @param ObjectItems: 对象列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObjectItems: Array
-        # @param AdvancedObjects: 高级对象类型，如account(账号),index(索引),shardkey(片建，后面可能会调整),schema(库表结构)
+        # @param AdvancedObjects: 高级对象类型，如account(账号),index(索引),shardkey(片键，后面可能会调整),schema(库表结构)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedObjects: Array
 

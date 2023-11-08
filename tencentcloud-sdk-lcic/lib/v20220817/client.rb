@@ -847,6 +847,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据房间ID获取群组中被禁言的用户列表。
+
+        # @param request: Request instance for DescribeRoomForbiddenUser.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeRoomForbiddenUserRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeRoomForbiddenUserResponse`
+        def DescribeRoomForbiddenUser(request)
+          body = send_request('DescribeRoomForbiddenUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoomForbiddenUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间统计信息，仅可在房间结束后调用。
 
         # @param request: Request instance for DescribeRoomStatistics.
@@ -977,6 +1001,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EndRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 禁止指定房间中某些用户在一段时间内发言。
+        # 取消对某些用户的禁言。
+        # 被禁言用户退出房间之后再进入同一房间，禁言仍然有效。
+
+        # @param request: Request instance for ForbidSendMsg.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::ForbidSendMsgRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::ForbidSendMsgResponse`
+        def ForbidSendMsg(request)
+          body = send_request('ForbidSendMsg', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ForbidSendMsgResponse.new
             model.deserialize(response['Response'])
             model
           else

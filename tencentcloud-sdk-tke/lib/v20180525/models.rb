@@ -18168,7 +18168,7 @@ module TencentCloud
         end
       end
 
-      # 虚拟节点
+      # 超级节点
       class VirtualNodeSpec < TencentCloud::Common::AbstractModel
         # @param DisplayName: 节点展示名称
         # @type DisplayName: String

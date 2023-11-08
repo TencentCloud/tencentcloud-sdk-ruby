@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建专业集群——预付费，仅通过api调用
+
+        # @param request: Request instance for CreateProCluster.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateProClusterRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateProClusterResponse`
+        def CreateProCluster(request)
+          body = send_request('CreateProCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建RabbitMQ的用户
 
         # @param request: Request instance for CreateRabbitMQUser.

@@ -437,7 +437,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建虚拟节点
+        # 创建按量计费超级节点
 
         # @param request: Request instance for CreateClusterVirtualNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterVirtualNodeRequest`
@@ -461,7 +461,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建虚拟节点池
+        # 创建超级节点池
 
         # @param request: Request instance for CreateClusterVirtualNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::CreateClusterVirtualNodePoolRequest`
@@ -1133,7 +1133,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除虚拟节点
+        # 删除超级节点
 
         # @param request: Request instance for DeleteClusterVirtualNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeleteClusterVirtualNodeRequest`
@@ -1157,7 +1157,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除虚拟节点池
+        # 删除超级节点池
 
         # @param request: Request instance for DeleteClusterVirtualNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::DeleteClusterVirtualNodePoolRequest`
@@ -2261,7 +2261,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看虚拟节点列表
+        # 查看超级节点列表
 
         # @param request: Request instance for DescribeClusterVirtualNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterVirtualNodeRequest`
@@ -2285,7 +2285,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查看虚拟节点池列表
+        # 查看超级节点池列表
 
         # @param request: Request instance for DescribeClusterVirtualNodePools.
         # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterVirtualNodePoolsRequest`
@@ -3725,7 +3725,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 驱逐虚拟节点
+        # 驱逐超级节点
 
         # @param request: Request instance for DrainClusterVirtualNode.
         # @type request: :class:`Tencentcloud::tke::V20180525::DrainClusterVirtualNodeRequest`
@@ -4277,7 +4277,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改虚拟节点池
+        # 修改超级节点池
 
         # @param request: Request instance for ModifyClusterVirtualNodePool.
         # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterVirtualNodePoolRequest`

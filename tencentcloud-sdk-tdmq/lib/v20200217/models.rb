@@ -1489,6 +1489,102 @@ module TencentCloud
         end
       end
 
+      # CreateProCluster请求参数结构体
+      class CreateProClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: 多可用区部署选择三个可用区，示例"200002","200003","200004"
+
+        # 单可用区部署选择一个可用区，示例"200002"
+        # @type ZoneIds: String
+        # @param ProductName: 集群规格代号
+        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
+        # @type ProductName: String
+        # @param StorageSize: 存储规格
+        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
+        # @type StorageSize: Integer
+        # @param AutoRenewFlag: 1: true，开启自动按月续费
+
+        # 0: false，关闭自动按月续费
+        # @type AutoRenewFlag: Integer
+        # @param TimeSpan: 购买时长，取值范围：1～50
+        # @type TimeSpan: Integer
+        # @param Tags: 集群的标签列表(已废弃)
+        # @type Tags: Array
+        # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
+        # @type ClusterName: String
+        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @type AutoVoucher: Integer
+        # @param Vpcs: vpc网络标签
+        # @type Vpcs: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
+
+        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :Tags, :ClusterName, :AutoVoucher, :Vpcs
+
+        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, tags=nil, clustername=nil, autovoucher=nil, vpcs=nil)
+          @ZoneIds = zoneids
+          @ProductName = productname
+          @StorageSize = storagesize
+          @AutoRenewFlag = autorenewflag
+          @TimeSpan = timespan
+          @Tags = tags
+          @ClusterName = clustername
+          @AutoVoucher = autovoucher
+          @Vpcs = vpcs
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          @ProductName = params['ProductName']
+          @StorageSize = params['StorageSize']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @TimeSpan = params['TimeSpan']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ClusterName = params['ClusterName']
+          @AutoVoucher = params['AutoVoucher']
+          unless params['Vpcs'].nil?
+            @Vpcs = VpcInfo.new
+            @Vpcs.deserialize(params['Vpcs'])
+          end
+        end
+      end
+
+      # CreateProCluster返回参数结构体
+      class CreateProClusterResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 子订单号
+        # @type DealName: String
+        # @param BigDealId: 订单号
+        # @type BigDealId: String
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :BigDealId, :ClusterId, :ClusterName, :RequestId
+
+        def initialize(dealname=nil, bigdealid=nil, clusterid=nil, clustername=nil, requestid=nil)
+          @DealName = dealname
+          @BigDealId = bigdealid
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @BigDealId = params['BigDealId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRabbitMQUser请求参数结构体
       class CreateRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id

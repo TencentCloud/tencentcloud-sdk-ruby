@@ -535,6 +535,9 @@ module TencentCloud
         # @param FromIp: source ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromIp: String
+        # @param SessionTime: 该命令所属会话的会话开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionTime: String
         # @param SessTime: 该命令所属会话的会话开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
@@ -554,9 +557,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
 
-        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        extend Gem::Deprecate
+        deprecate :SessTime, :none, 2023, 11
+        deprecate :SessTime=, :none, 2023, 11
 
-        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
           @Cmd = cmd
           @Time = time
           @TimeOffset = timeoffset
@@ -566,6 +572,7 @@ module TencentCloud
           @Account = account
           @InstanceId = instanceid
           @FromIp = fromip
+          @SessionTime = sessiontime
           @SessTime = sesstime
           @ConfirmTime = confirmtime
           @UserDepartmentId = userdepartmentid
@@ -584,6 +591,7 @@ module TencentCloud
           @Account = params['Account']
           @InstanceId = params['InstanceId']
           @FromIp = params['FromIp']
+          @SessionTime = params['SessionTime']
           @SessTime = params['SessTime']
           @ConfirmTime = params['ConfirmTime']
           @UserDepartmentId = params['UserDepartmentId']
@@ -947,16 +955,21 @@ module TencentCloud
 
       # CreateResource返回参数结构体
       class CreateResourceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 实例Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ResourceId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(resourceid=nil, requestid=nil)
+          @ResourceId = resourceid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ResourceId = params['ResourceId']
           @RequestId = params['RequestId']
         end
       end
@@ -2702,16 +2715,21 @@ module TencentCloud
 
       # ImportExternalDevice返回参数结构体
       class ImportExternalDeviceResponse < TencentCloud::Common::AbstractModel
+        # @param DeviceIdSet: 资产ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceIdSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DeviceIdSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(deviceidset=nil, requestid=nil)
+          @DeviceIdSet = deviceidset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DeviceIdSet = params['DeviceIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -3675,7 +3693,10 @@ module TencentCloud
         # @param FromIp: source ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FromIp: String
-        # @param SessTime: 该命令所属会话的会话开始时间
+        # @param SessionTime: 该命令所属会话的会话开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionTime: String
+        # @param SessTime: 该命令所属会话的会话开始时间（废弃，使用SessionTime）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessTime: String
         # @param ConfirmTime: 复核时间
@@ -3694,9 +3715,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        extend Gem::Deprecate
+        deprecate :SessTime, :none, 2023, 11
+        deprecate :SessTime=, :none, 2023, 11
 
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -3710,6 +3734,7 @@ module TencentCloud
           @TimeOffset = timeoffset
           @Account = account
           @FromIp = fromip
+          @SessionTime = sessiontime
           @SessTime = sesstime
           @ConfirmTime = confirmtime
           @UserDepartmentId = userdepartmentid
@@ -3732,6 +3757,7 @@ module TencentCloud
           @TimeOffset = params['TimeOffset']
           @Account = params['Account']
           @FromIp = params['FromIp']
+          @SessionTime = params['SessionTime']
           @SessTime = params['SessTime']
           @ConfirmTime = params['ConfirmTime']
           @UserDepartmentId = params['UserDepartmentId']

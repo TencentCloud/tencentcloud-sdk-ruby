@@ -3116,6 +3116,42 @@ module TencentCloud
         end
       end
 
+      # UpdateFileSystemBandwidthLimit请求参数结构体
+      class UpdateFileSystemBandwidthLimitRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID
+        # @type FileSystemId: String
+        # @param BandwidthLimit: 文件系统带宽，仅吞吐型可填。单位MiB/s，最小为1GiB/s，最大200GiB/s。
+        # @type BandwidthLimit: Integer
+
+        attr_accessor :FileSystemId, :BandwidthLimit
+
+        def initialize(filesystemid=nil, bandwidthlimit=nil)
+          @FileSystemId = filesystemid
+          @BandwidthLimit = bandwidthlimit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @BandwidthLimit = params['BandwidthLimit']
+        end
+      end
+
+      # UpdateFileSystemBandwidthLimit返回参数结构体
+      class UpdateFileSystemBandwidthLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件系统配额信息
       class UserQuota < TencentCloud::Common::AbstractModel
         # @param UserType: 指定配额类型，包括Uid、Gid

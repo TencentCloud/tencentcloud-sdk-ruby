@@ -4029,12 +4029,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2023, 10
-        deprecate :ResourceId=, :none, 2023, 10
-        deprecate :BindStatus, :none, 2023, 10
-        deprecate :BindStatus=, :none, 2023, 10
-        deprecate :TriggerAttribute, :none, 2023, 10
-        deprecate :TriggerAttribute=, :none, 2023, 10
+        deprecate :ResourceId, :none, 2023, 11
+        deprecate :ResourceId=, :none, 2023, 11
+        deprecate :BindStatus, :none, 2023, 11
+        deprecate :BindStatus=, :none, 2023, 11
+        deprecate :TriggerAttribute, :none, 2023, 11
+        deprecate :TriggerAttribute=, :none, 2023, 11
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4195,12 +4195,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2023, 10
-        deprecate :ResourceId=, :none, 2023, 10
-        deprecate :BindStatus, :none, 2023, 10
-        deprecate :BindStatus=, :none, 2023, 10
-        deprecate :TriggerAttribute, :none, 2023, 10
-        deprecate :TriggerAttribute=, :none, 2023, 10
+        deprecate :ResourceId, :none, 2023, 11
+        deprecate :ResourceId=, :none, 2023, 11
+        deprecate :BindStatus, :none, 2023, 11
+        deprecate :BindStatus=, :none, 2023, 11
+        deprecate :TriggerAttribute, :none, 2023, 11
+        deprecate :TriggerAttribute=, :none, 2023, 11
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable

@@ -4747,27 +4747,56 @@ module TencentCloud
 
       # DescribeModuleStatus请求参数结构体
       class DescribeModuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询状态的域名
+        # @type Domain: String
 
+        attr_accessor :Domain
 
-        def initialize()
+        def initialize(domain=nil)
+          @Domain = domain
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
         end
       end
 
       # DescribeModuleStatus返回参数结构体
       class DescribeModuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param WebSecurity: WEB安全规则是否开启
+        # @type WebSecurity: Integer
+        # @param AccessControl: 访问控制规则是否开启
+        # @type AccessControl: Integer
+        # @param CcProtection: CC防护是否开启
+        # @type CcProtection: Integer
+        # @param AntiTamper: 网页防篡改是否开启
+        # @type AntiTamper: Integer
+        # @param AntiLeakage: 信息防泄漏是否开启
+        # @type AntiLeakage: Integer
+        # @param ApiProtection: API安全是否开启
+        # @type ApiProtection: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :WebSecurity, :AccessControl, :CcProtection, :AntiTamper, :AntiLeakage, :ApiProtection, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(websecurity=nil, accesscontrol=nil, ccprotection=nil, antitamper=nil, antileakage=nil, apiprotection=nil, requestid=nil)
+          @WebSecurity = websecurity
+          @AccessControl = accesscontrol
+          @CcProtection = ccprotection
+          @AntiTamper = antitamper
+          @AntiLeakage = antileakage
+          @ApiProtection = apiprotection
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @WebSecurity = params['WebSecurity']
+          @AccessControl = params['AccessControl']
+          @CcProtection = params['CcProtection']
+          @AntiTamper = params['AntiTamper']
+          @AntiLeakage = params['AntiLeakage']
+          @ApiProtection = params['ApiProtection']
           @RequestId = params['RequestId']
         end
       end
@@ -9144,12 +9173,41 @@ module TencentCloud
 
       # ModifyModuleStatus请求参数结构体
       class ModifyModuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要设置的domain
+        # @type Domain: String
+        # @param WebSecurity: WEB 安全模块开关，0或1
+        # @type WebSecurity: Integer
+        # @param AccessControl: 访问控制模块开关，0或者1
+        # @type AccessControl: Integer
+        # @param CcProtection: CC模块开关，0或者1
+        # @type CcProtection: Integer
+        # @param ApiProtection: API安全模块开关，0或者1
+        # @type ApiProtection: Integer
+        # @param AntiTamper: 防篡改模块开关，0或者1
+        # @type AntiTamper: Integer
+        # @param AntiLeakage: 防泄漏模块开关，0或者1
+        # @type AntiLeakage: Integer
 
+        attr_accessor :Domain, :WebSecurity, :AccessControl, :CcProtection, :ApiProtection, :AntiTamper, :AntiLeakage
 
-        def initialize()
+        def initialize(domain=nil, websecurity=nil, accesscontrol=nil, ccprotection=nil, apiprotection=nil, antitamper=nil, antileakage=nil)
+          @Domain = domain
+          @WebSecurity = websecurity
+          @AccessControl = accesscontrol
+          @CcProtection = ccprotection
+          @ApiProtection = apiprotection
+          @AntiTamper = antitamper
+          @AntiLeakage = antileakage
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
+          @WebSecurity = params['WebSecurity']
+          @AccessControl = params['AccessControl']
+          @CcProtection = params['CcProtection']
+          @ApiProtection = params['ApiProtection']
+          @AntiTamper = params['AntiTamper']
+          @AntiLeakage = params['AntiLeakage']
         end
       end
 

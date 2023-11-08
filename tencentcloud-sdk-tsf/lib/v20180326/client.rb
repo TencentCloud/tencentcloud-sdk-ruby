@@ -2695,7 +2695,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 镜像仓库列表
+        # 查询镜像仓库列表
 
         # @param request: Request instance for DescribeImageRepository.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeImageRepositoryRequest`

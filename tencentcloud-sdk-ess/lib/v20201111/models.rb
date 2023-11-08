@@ -467,7 +467,8 @@ module TencentCloud
         # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
-        # @param OperatorName: 经办人名称
+        # @param OperatorName: 合同经办人名称
+        # 如果有多个经办人用分号隔开。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperatorName: String
         # @param CreateOrganizationName: 发起方组织机构名称
@@ -477,22 +478,50 @@ module TencentCloud
         # 该名称还将用于合同签署完成后的下载文件名。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowName: String
-        # @param Status: 0 还没有发起 1等待签署 2部分签署 3拒签 4已签署 5已过期 6已撤销 7还没有预发起 8等待填写 9部分填写 10拒填 11已解除
+        # @param Status: 当前合同状态,如下是状态码对应的状态。
+        # 0-还没有发起
+        # 1-等待签署
+        # 2-部分签署
+        # 3-拒签
+        # 4-已签署
+        # 5-已过期
+        # 6-已撤销
+        # 7-还没有预发起
+        # 8-等待填写
+        # 9-部分填写
+        # 10-拒填
+        # 11-已解除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param QuotaType: 套餐类型
+        # 对应关系如下
+        # CloudEnterprise-企业版合同
+        # SingleSignature-单方签章
+        # CloudProve-签署报告
+        # CloudOnlineSign-腾讯会议在线签约
+        # ChannelWeCard-微工卡
+        # SignFlow-合同套餐
+        # SignFace-签署意愿（人脸识别）
+        # SignPassword-签署意愿（密码）
+        # SignSMS-签署意愿（短信）
+        # PersonalEssAuth-签署人实名（腾讯电子签认证）
+        # PersonalThirdAuth-签署人实名（信任第三方认证）
+        # OrgEssAuth-签署企业实名
+        # FlowNotify-短信通知
+        # AuthService-企业工商信息查询
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaType: String
         # @param UseCount: 合同使用量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseCount: Integer
-        # @param CostTime: 消耗的时间戳
+        # @param CostTime: 消耗的时间戳，格式为Unix标准时间戳（秒）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CostTime: Integer
-        # @param QuotaName: 套餐名称
+        # @param QuotaName: 消耗的套餐名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QuotaName: String
-        # @param CostType:  消耗类型	1.扣费 2.撤销返还
+        # @param CostType: 消耗类型
+        # 1.扣费 2.撤销返还
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CostType: Integer
         # @param Remark: 备注
@@ -3570,18 +3599,22 @@ module TencentCloud
       class CreatePrepareFlowResponse < TencentCloud::Common::AbstractModel
         # @param Url: 发起流程的web页面链接，有效期5分钟
         # @type Url: String
+        # @param FlowId: 创建的合同id（还未实际发起），每次调用会生成新的id，用户可以记录此字段对应后续页面发起的合同，若在页面上未成功发起，则此字段无效。
+        # @type FlowId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Url, :RequestId
+        attr_accessor :Url, :FlowId, :RequestId
 
-        def initialize(url=nil, requestid=nil)
+        def initialize(url=nil, flowid=nil, requestid=nil)
           @Url = url
+          @FlowId = flowid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Url = params['Url']
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -4762,9 +4795,9 @@ module TencentCloud
 
       # DescribeBillUsageDetail请求参数结构体
       class DescribeBillUsageDetailRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间，时间跨度不能大于31天
+        # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，时间跨度不能大于31天
+        # @param EndTime: 查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于31天
         # @type EndTime: String
         # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
         # @type Offset: Integer
@@ -4787,8 +4820,8 @@ module TencentCloud
         # FlowNotify-短信通知
         # AuthService-企业工商信息查询
         # @type QuotaType: String
-        # @param Agent: 非必填，查询某个渠道企业的消耗情况。
-        # 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
 
         attr_accessor :StartTime, :EndTime, :Offset, :Limit, :QuotaType, :Agent

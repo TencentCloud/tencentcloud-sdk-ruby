@@ -1960,6 +1960,54 @@ module TencentCloud
         end
       end
 
+      # DescribeRoomForbiddenUser请求参数结构体
+      class DescribeRoomForbiddenUserRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeRoomForbiddenUser返回参数结构体
+      class DescribeRoomForbiddenUserResponse < TencentCloud::Common::AbstractModel
+        # @param MutedAccountList: 禁言用户信息数组，内容包括被禁言的成员 ID，及其被禁言到的时间（使用 UTC 时间，即世界协调时间）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MutedAccountList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MutedAccountList, :RequestId
+
+        def initialize(mutedaccountlist=nil, requestid=nil)
+          @MutedAccountList = mutedaccountlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MutedAccountList'].nil?
+            @MutedAccountList = []
+            params['MutedAccountList'].each do |i|
+              mutedaccountlist_tmp = MutedAccountList.new
+              mutedaccountlist_tmp.deserialize(i)
+              @MutedAccountList << mutedaccountlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoom请求参数结构体
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
@@ -2651,6 +2699,50 @@ module TencentCloud
         def deserialize(params)
           @Index = params['Index']
           @Data = params['Data']
+        end
+      end
+
+      # ForbidSendMsg请求参数结构体
+      class ForbidSendMsgRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @type SdkAppId: Integer
+        # @param RoomId: 房间ID。
+        # @type RoomId: Integer
+        # @param MembersAccount: 需要禁言的用户账号，最多支持500个账号
+        # @type MembersAccount: Array
+        # @param MuteTime: 需禁言时间，单位为秒，为0时表示取消禁言，4294967295为永久禁言。
+        # @type MuteTime: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :MembersAccount, :MuteTime
+
+        def initialize(sdkappid=nil, roomid=nil, membersaccount=nil, mutetime=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @MembersAccount = membersaccount
+          @MuteTime = mutetime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @MembersAccount = params['MembersAccount']
+          @MuteTime = params['MuteTime']
+        end
+      end
+
+      # ForbidSendMsg返回参数结构体
+      class ForbidSendMsgResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3653,6 +3745,28 @@ module TencentCloud
         end
       end
 
+      # 禁言用户信息数组，内容包括被禁言的成员 ID，及其被禁言到的时间（使用 UTC 时间，即世界协调时间）
+      class MutedAccountList < TencentCloud::Common::AbstractModel
+        # @param MemberAccount: 用户 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberAccount: String
+        # @param MutedUntil: 禁言到的时间（使用 UTC 时间，即世界协调时间）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MutedUntil: Integer
+
+        attr_accessor :MemberAccount, :MutedUntil
+
+        def initialize(memberaccount=nil, muteduntil=nil)
+          @MemberAccount = memberaccount
+          @MutedUntil = muteduntil
+        end
+
+        def deserialize(params)
+          @MemberAccount = params['MemberAccount']
+          @MutedUntil = params['MutedUntil']
+        end
+      end
+
       # 房间问答问题详情
       class QuestionInfo < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
@@ -3999,15 +4113,18 @@ module TencentCloud
         # @type MsgBody: Array
         # @param CloudCustomData: 消息自定义数据（云端保存，会发送到对端，程序卸载重装后还能拉取到）。
         # @type CloudCustomData: String
+        # @param NickName: 昵称，当FromAccount没有在房间中，需要填写NickName，当FromAccount在房间中，填写NickName无意义
+        # @type NickName: String
 
-        attr_accessor :SdkAppId, :RoomId, :FromAccount, :MsgBody, :CloudCustomData
+        attr_accessor :SdkAppId, :RoomId, :FromAccount, :MsgBody, :CloudCustomData, :NickName
 
-        def initialize(sdkappid=nil, roomid=nil, fromaccount=nil, msgbody=nil, cloudcustomdata=nil)
+        def initialize(sdkappid=nil, roomid=nil, fromaccount=nil, msgbody=nil, cloudcustomdata=nil, nickname=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @FromAccount = fromaccount
           @MsgBody = msgbody
           @CloudCustomData = cloudcustomdata
+          @NickName = nickname
         end
 
         def deserialize(params)
@@ -4023,6 +4140,7 @@ module TencentCloud
             end
           end
           @CloudCustomData = params['CloudCustomData']
+          @NickName = params['NickName']
         end
       end
 

@@ -2325,10 +2325,19 @@ module TencentCloud
         # @param GatewayConfig: Envoy网关服务配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GatewayConfig: :class:`Tencentcloud::Tsf.v20180326.models.GatewayConfig`
+        # @param ContainerName: 容器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param AdditionalContainerList: 附加容器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalContainerList: Array
+        # @param InternalContainerList: 内部容器列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalContainerList: Array
 
-        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType, :WarmupSetting, :GatewayConfig
+        attr_accessor :GroupId, :GroupName, :InstanceNum, :CurrentNum, :Server, :Reponame, :TagName, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :AccessType, :ProtocolPorts, :UpdateType, :UpdateIvl, :JvmOpts, :SubnetId, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :Envs, :HealthCheckSettings, :DeployAgent, :Alias, :DisableService, :HeadlessService, :TcrRepoInfo, :VolumeInfos, :VolumeMountInfos, :KubeInjectEnable, :RepoType, :WarmupSetting, :GatewayConfig, :ContainerName, :AdditionalContainerList, :InternalContainerList
 
-        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil, warmupsetting=nil, gatewayconfig=nil)
+        def initialize(groupid=nil, groupname=nil, instancenum=nil, currentnum=nil, server=nil, reponame=nil, tagname=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, accesstype=nil, protocolports=nil, updatetype=nil, updateivl=nil, jvmopts=nil, subnetid=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, envs=nil, healthchecksettings=nil, deployagent=nil, _alias=nil, disableservice=nil, headlessservice=nil, tcrrepoinfo=nil, volumeinfos=nil, volumemountinfos=nil, kubeinjectenable=nil, repotype=nil, warmupsetting=nil, gatewayconfig=nil, containername=nil, additionalcontainerlist=nil, internalcontainerlist=nil)
           @GroupId = groupid
           @GroupName = groupname
           @InstanceNum = instancenum
@@ -2367,6 +2376,9 @@ module TencentCloud
           @RepoType = repotype
           @WarmupSetting = warmupsetting
           @GatewayConfig = gatewayconfig
+          @ContainerName = containername
+          @AdditionalContainerList = additionalcontainerlist
+          @InternalContainerList = internalcontainerlist
         end
 
         def deserialize(params)
@@ -2447,6 +2459,23 @@ module TencentCloud
           unless params['GatewayConfig'].nil?
             @GatewayConfig = GatewayConfig.new
             @GatewayConfig.deserialize(params['GatewayConfig'])
+          end
+          @ContainerName = params['ContainerName']
+          unless params['AdditionalContainerList'].nil?
+            @AdditionalContainerList = []
+            params['AdditionalContainerList'].each do |i|
+              groupcontainerinfo_tmp = GroupContainerInfo.new
+              groupcontainerinfo_tmp.deserialize(i)
+              @AdditionalContainerList << groupcontainerinfo_tmp
+            end
+          end
+          unless params['InternalContainerList'].nil?
+            @InternalContainerList = []
+            params['InternalContainerList'].each do |i|
+              groupcontainerinfo_tmp = GroupContainerInfo.new
+              groupcontainerinfo_tmp.deserialize(i)
+              @InternalContainerList << groupcontainerinfo_tmp
+            end
           end
         end
       end
@@ -8723,16 +8752,19 @@ module TencentCloud
         # @type ApplicationId: String
         # @param TcrRepoInfo: TcrRepoInfo值
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param RepoName: 镜像仓库
+        # @type RepoName: String
 
-        attr_accessor :SearchWord, :Offset, :Limit, :RepoType, :ApplicationId, :TcrRepoInfo
+        attr_accessor :SearchWord, :Offset, :Limit, :RepoType, :ApplicationId, :TcrRepoInfo, :RepoName
 
-        def initialize(searchword=nil, offset=nil, limit=nil, repotype=nil, applicationid=nil, tcrrepoinfo=nil)
+        def initialize(searchword=nil, offset=nil, limit=nil, repotype=nil, applicationid=nil, tcrrepoinfo=nil, reponame=nil)
           @SearchWord = searchword
           @Offset = offset
           @Limit = limit
           @RepoType = repotype
           @ApplicationId = applicationid
           @TcrRepoInfo = tcrrepoinfo
+          @RepoName = reponame
         end
 
         def deserialize(params)
@@ -8745,6 +8777,7 @@ module TencentCloud
             @TcrRepoInfo = TcrRepoInfo.new
             @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
           end
+          @RepoName = params['RepoName']
         end
       end
 
@@ -8787,10 +8820,12 @@ module TencentCloud
         # @type RepoType: String
         # @param TcrRepoInfo: TcrRepoInfo值
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param RepoName: 仓库名
+        # @type RepoName: String
 
-        attr_accessor :ApplicationId, :Offset, :Limit, :QueryImageIdFlag, :SearchWord, :RepoType, :TcrRepoInfo
+        attr_accessor :ApplicationId, :Offset, :Limit, :QueryImageIdFlag, :SearchWord, :RepoType, :TcrRepoInfo, :RepoName
 
-        def initialize(applicationid=nil, offset=nil, limit=nil, queryimageidflag=nil, searchword=nil, repotype=nil, tcrrepoinfo=nil)
+        def initialize(applicationid=nil, offset=nil, limit=nil, queryimageidflag=nil, searchword=nil, repotype=nil, tcrrepoinfo=nil, reponame=nil)
           @ApplicationId = applicationid
           @Offset = offset
           @Limit = limit
@@ -8798,6 +8833,7 @@ module TencentCloud
           @SearchWord = searchword
           @RepoType = repotype
           @TcrRepoInfo = tcrrepoinfo
+          @RepoName = reponame
         end
 
         def deserialize(params)
@@ -8811,6 +8847,7 @@ module TencentCloud
             @TcrRepoInfo = TcrRepoInfo.new
             @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
           end
+          @RepoName = params['RepoName']
         end
       end
 
@@ -12452,6 +12489,124 @@ module TencentCloud
           unless params['Quantile'].nil?
             @Quantile = QuantileEntity.new
             @Quantile.deserialize(params['Quantile'])
+          end
+        end
+      end
+
+      # 部署组容器信息
+      class GroupContainerInfo < TencentCloud::Common::AbstractModel
+        # @param TagName: 镜像版本名称
+        # @type TagName: String
+        # @param ContainerName: 容器名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param RepoName: 镜像名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoName: String
+        # @param RepoType: 仓库类型,tcr，address，personal，默认personal
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepoType: String
+        # @param TcrRepoInfo: tcr仓库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
+        # @param Server: 镜像server
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Server: String
+        # @param SecretName: 凭证名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
+        # @param JvmOpts: jvm 参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JvmOpts: String
+        # @param CpuLimit: 容器最大的 CPU 核数，对应 K8S 的 limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuLimit: String
+        # @param CpuRequest: 容器分配的 CPU 核数，对应 K8S 的 request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuRequest: String
+        # @param MemRequest: 容器分配的内存 MiB 数，对应 K8S 的 request
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemRequest: String
+        # @param MemLimit: 容器最大的内存 MiB 数，对应 K8S 的 limit
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemLimit: String
+        # @param HealthCheckSettings: 健康检查配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheckSettings: :class:`Tencentcloud::Tsf.v20180326.models.HealthCheckSettings`
+        # @param Envs: 环境变量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Envs: Array
+        # @param UserEnvs: 环境变量,作为入参时不用填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserEnvs: Array
+        # @param VolumeMountInfoList: 数据卷挂载点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeMountInfoList: Array
+
+        attr_accessor :TagName, :ContainerName, :RepoName, :RepoType, :TcrRepoInfo, :Server, :SecretName, :JvmOpts, :CpuLimit, :CpuRequest, :MemRequest, :MemLimit, :HealthCheckSettings, :Envs, :UserEnvs, :VolumeMountInfoList
+
+        def initialize(tagname=nil, containername=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, server=nil, secretname=nil, jvmopts=nil, cpulimit=nil, cpurequest=nil, memrequest=nil, memlimit=nil, healthchecksettings=nil, envs=nil, userenvs=nil, volumemountinfolist=nil)
+          @TagName = tagname
+          @ContainerName = containername
+          @RepoName = reponame
+          @RepoType = repotype
+          @TcrRepoInfo = tcrrepoinfo
+          @Server = server
+          @SecretName = secretname
+          @JvmOpts = jvmopts
+          @CpuLimit = cpulimit
+          @CpuRequest = cpurequest
+          @MemRequest = memrequest
+          @MemLimit = memlimit
+          @HealthCheckSettings = healthchecksettings
+          @Envs = envs
+          @UserEnvs = userenvs
+          @VolumeMountInfoList = volumemountinfolist
+        end
+
+        def deserialize(params)
+          @TagName = params['TagName']
+          @ContainerName = params['ContainerName']
+          @RepoName = params['RepoName']
+          @RepoType = params['RepoType']
+          unless params['TcrRepoInfo'].nil?
+            @TcrRepoInfo = TcrRepoInfo.new
+            @TcrRepoInfo.deserialize(params['TcrRepoInfo'])
+          end
+          @Server = params['Server']
+          @SecretName = params['SecretName']
+          @JvmOpts = params['JvmOpts']
+          @CpuLimit = params['CpuLimit']
+          @CpuRequest = params['CpuRequest']
+          @MemRequest = params['MemRequest']
+          @MemLimit = params['MemLimit']
+          unless params['HealthCheckSettings'].nil?
+            @HealthCheckSettings = HealthCheckSettings.new
+            @HealthCheckSettings.deserialize(params['HealthCheckSettings'])
+          end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @Envs << env_tmp
+            end
+          end
+          unless params['UserEnvs'].nil?
+            @UserEnvs = []
+            params['UserEnvs'].each do |i|
+              env_tmp = Env.new
+              env_tmp.deserialize(i)
+              @UserEnvs << env_tmp
+            end
+          end
+          unless params['VolumeMountInfoList'].nil?
+            @VolumeMountInfoList = []
+            params['VolumeMountInfoList'].each do |i|
+              volumemountinfo_tmp = VolumeMountInfo.new
+              volumemountinfo_tmp.deserialize(i)
+              @VolumeMountInfoList << volumemountinfo_tmp
+            end
           end
         end
       end
