@@ -226,6 +226,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开发者需要指定使用的DRM类型取值 NORMALAES、和需要加密的Track类型取值 SD,ContentType取值 LiveVideo
+
+        # @param request: Request instance for GenerateTDRMKey.
+        # @type request: :class:`Tencentcloud::drm::V20181115::GenerateTDRMKeyRequest`
+        # @rtype: :class:`Tencentcloud::drm::V20181115::GenerateTDRMKeyResponse`
+        def GenerateTDRMKey(request)
+          body = send_request('GenerateTDRMKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GenerateTDRMKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
         # 如需使用fairplay方案，请务必先设置私钥。
 

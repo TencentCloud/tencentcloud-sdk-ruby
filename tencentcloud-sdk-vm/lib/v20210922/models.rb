@@ -340,7 +340,8 @@ module TencentCloud
 
       # CreateVideoModerationTask请求参数结构体
       class CreateVideoModerationTaskRequest < TencentCloud::Common::AbstractModel
-        # @param BizType: 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
+        # @param BizType: 该字段表示策略的具体编号，用于接口调度，在[内容安全控制台](https://console.cloud.tencent.com/cms/clouds/manage)中可配置。若不传入Biztype参数（留空），则代表采用默认的识别策略；传入则会在审核时根据业务场景采取不同的审核策略。
+        # 备注：Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。
         # @type BizType: String
         # @param Type: 任务类型：可选VIDEO（点播视频），LIVE_VIDEO（直播视频）
         # @type Type: String
@@ -477,9 +478,14 @@ module TencentCloud
         # @param AudioSegments: 该字段用于返回视频中音频审核的结果，详细返回内容敬请参考AudioSegments数据结构的描述。<br>备注：数据有效期为24小时，如需要延长存储时间，请在已配置的COS储存桶中设置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioSegments: Array
-        # @param ErrorType: 当任务状态为Error时，返回对应错误的类型，取值：**DECODE_ERROR**: 解码失败。（输入资源中可能包含无法解码的视频）
+        # @param ErrorType: 当任务状态为Error时，返回对应错误的类型，取值：
+        # **DECODE_ERROR**: 解码失败。（输入资源中可能包含无法解码的视频）
         # **URL_ERROR**：下载地址验证失败。
-        # **TIMEOUT_ERROR**：处理超时。任务状态非Error时默认返回为空。
+        # **TIMEOUT_ERROR**：处理超时。
+        # **CALLBACK_ERRORR**：回调错误。
+        # **MODERATION_ERROR**：审核失败。
+        # **URL_NOT_SUPPORTED**：源文件太大或没有图片音频帧
+        # 任务状态非Error时默认返回为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorType: String
         # @param ErrorDescription: 当任务状态为Error时，该字段用于返回对应错误的详细描述，任务状态非Error时默认返回为空。
@@ -494,12 +500,15 @@ module TencentCloud
         # @param Asrs: 该字段用于返回音频文件识别出的对应文本内容。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Asrs: Array
+        # @param SegmentCosUrlList: 该字段用于返回检测结果明细数据相关的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentCosUrlList: :class:`Tencentcloud::Vm.v20210922.models.SegmentCosUrlList`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :TryInSeconds, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :AudioText, :Asrs, :RequestId
+        attr_accessor :TaskId, :DataId, :BizType, :Name, :Status, :Type, :Suggestion, :Labels, :MediaInfo, :InputInfo, :CreatedAt, :UpdatedAt, :TryInSeconds, :ImageSegments, :AudioSegments, :ErrorType, :ErrorDescription, :Label, :AudioText, :Asrs, :SegmentCosUrlList, :RequestId
 
-        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, tryinseconds=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, audiotext=nil, asrs=nil, requestid=nil)
+        def initialize(taskid=nil, dataid=nil, biztype=nil, name=nil, status=nil, type=nil, suggestion=nil, labels=nil, mediainfo=nil, inputinfo=nil, createdat=nil, updatedat=nil, tryinseconds=nil, imagesegments=nil, audiosegments=nil, errortype=nil, errordescription=nil, label=nil, audiotext=nil, asrs=nil, segmentcosurllist=nil, requestid=nil)
           @TaskId = taskid
           @DataId = dataid
           @BizType = biztype
@@ -520,6 +529,7 @@ module TencentCloud
           @Label = label
           @AudioText = audiotext
           @Asrs = asrs
+          @SegmentCosUrlList = segmentcosurllist
           @RequestId = requestid
         end
 
@@ -577,6 +587,10 @@ module TencentCloud
               rcbasr_tmp.deserialize(i)
               @Asrs << rcbasr_tmp
             end
+          end
+          unless params['SegmentCosUrlList'].nil?
+            @SegmentCosUrlList = SegmentCosUrlList.new
+            @SegmentCosUrlList.deserialize(params['SegmentCosUrlList'])
           end
           @RequestId = params['RequestId']
         end
@@ -753,7 +767,7 @@ module TencentCloud
         # @param Score: 分数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
-        # @param Names: 如果命中场景为涉政，则该数据为人物姓名列表，否则null
+        # @param Names: 人物名称列表，如未识别，则为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Names: Array
         # @param Text: 图片OCR文本
@@ -1035,6 +1049,43 @@ module TencentCloud
         end
       end
 
+      # 明细数据相关的cos url
+      class SegmentCosUrlList < TencentCloud::Common::AbstractModel
+        # @param ImageAllUrl: 全量图片片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageAllUrl: String
+        # @param AudioAllUrl: 全量音频片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioAllUrl: String
+        # @param ImageBlockUrl: 违规图片片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageBlockUrl: String
+        # @param AudioBlockUrl: 违规音频片段的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioBlockUrl: String
+        # @param AsrUrl: 全量音频识别文本的cos url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrUrl: String
+
+        attr_accessor :ImageAllUrl, :AudioAllUrl, :ImageBlockUrl, :AudioBlockUrl, :AsrUrl
+
+        def initialize(imageallurl=nil, audioallurl=nil, imageblockurl=nil, audioblockurl=nil, asrurl=nil)
+          @ImageAllUrl = imageallurl
+          @AudioAllUrl = audioallurl
+          @ImageBlockUrl = imageblockurl
+          @AudioBlockUrl = audioblockurl
+          @AsrUrl = asrurl
+        end
+
+        def deserialize(params)
+          @ImageAllUrl = params['ImageAllUrl']
+          @AudioAllUrl = params['AudioAllUrl']
+          @ImageBlockUrl = params['ImageBlockUrl']
+          @AudioBlockUrl = params['AudioBlockUrl']
+          @AsrUrl = params['AsrUrl']
+        end
+      end
+
       #  数据存储信息
       class StorageInfo < TencentCloud::Common::AbstractModel
         # @param Type: 类型 可选：
@@ -1259,19 +1310,24 @@ module TencentCloud
         # @param Score: 得分，分数是 0 ～ 100
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Score: Integer
+        # @param SubLabel: 命中的二级标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubLabel: String
 
-        attr_accessor :Label, :Suggestion, :Score
+        attr_accessor :Label, :Suggestion, :Score, :SubLabel
 
-        def initialize(label=nil, suggestion=nil, score=nil)
+        def initialize(label=nil, suggestion=nil, score=nil, sublabel=nil)
           @Label = label
           @Suggestion = suggestion
           @Score = score
+          @SubLabel = sublabel
         end
 
         def deserialize(params)
           @Label = params['Label']
           @Suggestion = params['Suggestion']
           @Score = params['Score']
+          @SubLabel = params['SubLabel']
         end
       end
 

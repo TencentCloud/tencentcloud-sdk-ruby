@@ -1043,6 +1043,7 @@ module TencentCloud
         end
 
         # 更新文件系统带宽
+        # 仅吞吐型支持此接口
 
         # @param request: Request instance for UpdateFileSystemBandwidthLimit.
         # @type request: :class:`Tencentcloud::cfs::V20190719::UpdateFileSystemBandwidthLimitRequest`

@@ -228,6 +228,8 @@ module TencentCloud
         # @type TaskStartTime: String
         # @param TaskEndTime: 结束时间，固定格式%Y-%m-%d %H:%M:%S
         # @type TaskEndTime: String
+        # @param TaskUpdateTime: 更新时间，固定格式%Y-%m-%d %H:%M:%S
+        # @type TaskUpdateTime: String
         # @param Tags: 标签对
         # @type Tags: Array
         # @param Filters: 筛选条件
@@ -238,10 +240,12 @@ module TencentCloud
         # @type ApplicationId: Array
         # @param ApplicationName: 关联应用筛选
         # @type ApplicationName: Array
+        # @param TaskStatusList: 任务状态筛选--支持多选 任务状态(1001 -- 未开始 1002 -- 进行中 1003 -- 暂停中 1004 -- 任务结束)
+        # @type TaskStatusList: Array
 
-        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName
+        attr_accessor :Limit, :Offset, :TaskTitle, :TaskTag, :TaskStatus, :TaskStartTime, :TaskEndTime, :TaskUpdateTime, :Tags, :Filters, :TaskId, :ApplicationId, :ApplicationName, :TaskStatusList
 
-        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil)
+        def initialize(limit=nil, offset=nil, tasktitle=nil, tasktag=nil, taskstatus=nil, taskstarttime=nil, taskendtime=nil, taskupdatetime=nil, tags=nil, filters=nil, taskid=nil, applicationid=nil, applicationname=nil, taskstatuslist=nil)
           @Limit = limit
           @Offset = offset
           @TaskTitle = tasktitle
@@ -249,11 +253,13 @@ module TencentCloud
           @TaskStatus = taskstatus
           @TaskStartTime = taskstarttime
           @TaskEndTime = taskendtime
+          @TaskUpdateTime = taskupdatetime
           @Tags = tags
           @Filters = filters
           @TaskId = taskid
           @ApplicationId = applicationid
           @ApplicationName = applicationname
+          @TaskStatusList = taskstatuslist
         end
 
         def deserialize(params)
@@ -264,6 +270,7 @@ module TencentCloud
           @TaskStatus = params['TaskStatus']
           @TaskStartTime = params['TaskStartTime']
           @TaskEndTime = params['TaskEndTime']
+          @TaskUpdateTime = params['TaskUpdateTime']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -283,6 +290,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @ApplicationId = params['ApplicationId']
           @ApplicationName = params['ApplicationName']
+          @TaskStatusList = params['TaskStatusList']
         end
       end
 
@@ -736,10 +744,13 @@ module TencentCloud
         # @param ApmServiceList: 关联的APM服务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApmServiceList: Array
+        # @param VerifyId: 关联的隐患验证项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyId: Integer
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -767,6 +778,7 @@ module TencentCloud
           @ApplicationName = applicationname
           @AlarmPolicy = alarmpolicy
           @ApmServiceList = apmservicelist
+          @VerifyId = verifyid
         end
 
         def deserialize(params)
@@ -828,6 +840,7 @@ module TencentCloud
               @ApmServiceList << apmserviceinfo_tmp
             end
           end
+          @VerifyId = params['VerifyId']
         end
       end
 
@@ -1256,10 +1269,16 @@ module TencentCloud
         # @param ApplicationName: 关联应用名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationName: String
+        # @param VerifyId: 验证项ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VerifyId: Integer
+        # @param TaskStatusType: 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatusType: Integer
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -1272,6 +1291,8 @@ module TencentCloud
           @TaskExpect = taskexpect
           @ApplicationId = applicationid
           @ApplicationName = applicationname
+          @VerifyId = verifyid
+          @TaskStatusType = taskstatustype
         end
 
         def deserialize(params)
@@ -1287,6 +1308,8 @@ module TencentCloud
           @TaskExpect = params['TaskExpect']
           @ApplicationId = params['ApplicationId']
           @ApplicationName = params['ApplicationName']
+          @VerifyId = params['VerifyId']
+          @TaskStatusType = params['TaskStatusType']
         end
       end
 

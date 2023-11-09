@@ -582,6 +582,94 @@ module TencentCloud
         end
       end
 
+      # 用户计费使用情况详情
+      class ChannelBillUsageDetail < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # @type FlowId: String
+        # @param OperatorName: 合同经办人名称
+        # 如果有多个经办人用分号隔开。
+        # @type OperatorName: String
+        # @param CreateOrganizationName: 发起方组织机构名称
+        # @type CreateOrganizationName: String
+        # @param FlowName: 合同流程的名称。
+        # @type FlowName: String
+        # @param FlowStatus: 合同流程当前的签署状态, 会存在下列的状态值
+        # <ul>
+        # <li>**INIT**: 合同创建</li>
+        # <li>**PART**: 合同签署中(至少有一个签署方已经签署)</li>
+        # <li>**REJECT**: 合同拒签</li>
+        # <li>**ALL**: 合同签署完成</li>
+        # <li>**DEADLINE**: 合同流签(合同过期)</li>
+        # <li>**CANCEL**: 合同撤回</li>
+        # <li>**RELIEVED**: 解除协议（已解除）</li>
+        # <li>**WILLEXPIRE**: 合同即将过期</li>
+        # <li>**EXCEPTION**: 合同异常</li>
+        # </ul>
+        # @type FlowStatus: String
+        # @param QuotaType: 查询的套餐类型
+        # 对应关系如下:
+        # <ul>
+        # <li>**CloudEnterprise**: 企业版合同</li>
+        # <li>**SingleSignature**: 单方签章</li>
+        # <li>**CloudProve**: 签署报告</li>
+        # <li>**CloudOnlineSign**: 腾讯会议在线签约</li>
+        # <li>**ChannelWeCard**: 微工卡</li>
+        # <li>**SignFlow**: 合同套餐</li>
+        # <li>**SignFace**: 签署意愿（人脸识别）</li>
+        # <li>**SignPassword**: 签署意愿（密码）</li>
+        # <li>**SignSMS**: 签署意愿（短信）</li>
+        # <li>**PersonalEssAuth**: 签署人实名（腾讯电子签认证）</li>
+        # <li>**PersonalThirdAuth**: 签署人实名（信任第三方认证）</li>
+        # <li>**OrgEssAuth**: 签署企业实名</li>
+        # <li>**FlowNotify**: 短信通知</li>
+        # <li>**AuthService**: 企业工商信息查询</li>
+        # </ul>
+        # @type QuotaType: String
+        # @param UseCount: 合同使用量
+        # 注: `如果消耗类型是撤销返还，此值为负值代表返还的合同数量`
+        # @type UseCount: Integer
+        # @param CostTime: 消耗的时间戳，格式为Unix标准时间戳（秒）。
+        # @type CostTime: Integer
+        # @param QuotaName: 消耗的套餐名称
+        # @type QuotaName: String
+        # @param CostType: 消耗类型
+        # **1**.扣费
+        # **2**.撤销返还
+        # @type CostType: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :FlowId, :OperatorName, :CreateOrganizationName, :FlowName, :FlowStatus, :QuotaType, :UseCount, :CostTime, :QuotaName, :CostType, :Remark
+
+        def initialize(flowid=nil, operatorname=nil, createorganizationname=nil, flowname=nil, flowstatus=nil, quotatype=nil, usecount=nil, costtime=nil, quotaname=nil, costtype=nil, remark=nil)
+          @FlowId = flowid
+          @OperatorName = operatorname
+          @CreateOrganizationName = createorganizationname
+          @FlowName = flowname
+          @FlowStatus = flowstatus
+          @QuotaType = quotatype
+          @UseCount = usecount
+          @CostTime = costtime
+          @QuotaName = quotaname
+          @CostType = costtype
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @OperatorName = params['OperatorName']
+          @CreateOrganizationName = params['CreateOrganizationName']
+          @FlowName = params['FlowName']
+          @FlowStatus = params['FlowStatus']
+          @QuotaType = params['QuotaType']
+          @UseCount = params['UseCount']
+          @CostTime = params['CostTime']
+          @QuotaName = params['QuotaName']
+          @CostType = params['CostType']
+          @Remark = params['Remark']
+        end
+      end
+
       # ChannelCancelFlow请求参数结构体
       class ChannelCancelFlowRequest < TencentCloud::Common::AbstractModel
         # @param FlowId: 要撤销的合同流程ID
@@ -662,12 +750,13 @@ module TencentCloud
 
         # 此接口下面信息必填。
         # <ul>
-        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
-        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
-        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
         # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param QrCodeId: 二维码ID，为32位字符串。
+        # @param QrCodeId: 需要取消签署的二维码ID，为32位字符串。由[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/partnerApis/templates/ChannelCreateMultiFlowSignQRCode)返回
         # @type QrCodeId: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1040,10 +1129,17 @@ module TencentCloud
 
       # ChannelCreateBoundFlows请求参数结构体
       class ChannelCreateBoundFlowsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息
-        # 此接口Agent.AppId、Agent.ProxyOrganizationOpenId 和 Agent. ProxyOperator.OpenId 必填
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证,  合同会领取给对应的Agent.ProxyOperator.OpenId指定的员工来处理
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowIds: 领取的合同id列表
+        # @param FlowIds: 需要领取的合同流程的ID列表
         # @type FlowIds: Array
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -1948,13 +2044,13 @@ module TencentCloud
 
         # 此接口下面信息必填。
         # <ul>
-        # <li>渠道应用标识:  Agent.ProxyOrganizationOpenId</li>
-        # <li>第三方平台子客企业标识: Agent. ProxyOperator.OpenId</li>
-        # <li>第三方平台子客企业中的员工标识: Agent.AppId</li>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
         # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param TemplateId: 合同模板ID，为32位字符串。
-        # 建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。
         # @type TemplateId: String
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。 该名称还将用于合同签署完成后的下载文件名。
         # @type FlowName: String
@@ -3097,6 +3193,101 @@ module TencentCloud
         end
       end
 
+      # ChannelDescribeBillUsageDetail请求参数结构体
+      class ChannelDescribeBillUsageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于31天
+        # @type EndTime: String
+        # @param QuotaType: 查询的套餐类型 （选填 ）不传则查询所有套餐；
+        # 目前支持:
+        # <ul>
+        # <li>**CloudEnterprise**: 企业版合同</li>
+        # <li>**SingleSignature**: 单方签章</li>
+        # <li>**CloudProve**: 签署报告</li>
+        # <li>**CloudOnlineSign**: 腾讯会议在线签约</li>
+        # <li>**ChannelWeCard**: 微工卡</li>
+        # <li>**SignFlow**: 合同套餐</li>
+        # <li>**SignFace**: 签署意愿（人脸识别）</li>
+        # <li>**SignPassword**: 签署意愿（密码）</li>
+        # <li>**SignSMS**: 签署意愿（短信）</li>
+        # <li>**PersonalEssAuth**: 签署人实名（腾讯电子签认证）</li>
+        # <li>**PersonalThirdAuth**: 签署人实名（信任第三方认证）</li>
+        # <li>**OrgEssAuth**: 签署企业实名</li>
+        # <li>**FlowNotify**: 短信通知</li>
+        # <li>**AuthService**: 企业工商信息查询</li>
+        # </ul>
+        # @type QuotaType: String
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
+        # @type Offset: Integer
+        # @param Limit: 指定分页每页返回的数据条数，如果不传默认为 50，单页最大支持 50。
+        # @type Limit: Integer
+
+        attr_accessor :Agent, :StartTime, :EndTime, :QuotaType, :Offset, :Limit
+
+        def initialize(agent=nil, starttime=nil, endtime=nil, quotatype=nil, offset=nil, limit=nil)
+          @Agent = agent
+          @StartTime = starttime
+          @EndTime = endtime
+          @QuotaType = quotatype
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QuotaType = params['QuotaType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # ChannelDescribeBillUsageDetail返回参数结构体
+      class ChannelDescribeBillUsageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回查询记录总数
+        # @type Total: Integer
+        # @param Details: 消耗记录详情
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Details, :RequestId
+
+        def initialize(total=nil, details=nil, requestid=nil)
+          @Total = total
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              channelbillusagedetail_tmp = ChannelBillUsageDetail.new
+              channelbillusagedetail_tmp.deserialize(i)
+              @Details << channelbillusagedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDescribeEmployees请求参数结构体
       class ChannelDescribeEmployeesRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -3203,9 +3394,17 @@ module TencentCloud
 
       # ChannelDescribeFlowComponents请求参数结构体
       class ChannelDescribeFlowComponentsRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowId: 电子签流程的Id
+        # @param FlowId: 需要获取填写控件填写内容的合同流程ID
         # @type FlowId: String
 
         attr_accessor :Agent, :FlowId
@@ -3226,8 +3425,7 @@ module TencentCloud
 
       # ChannelDescribeFlowComponents返回参数结构体
       class ChannelDescribeFlowComponentsResponse < TencentCloud::Common::AbstractModel
-        # @param RecipientComponentInfos: 流程关联的填写控件信息，控件会按照参与方进行分类。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RecipientComponentInfos: 合同填写控件信息列表，填写控件会按照参与方角色进行分类。
         # @type RecipientComponentInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5588,20 +5786,32 @@ module TencentCloud
 
       # DescribeUsage请求参数结构体
       class DescribeUsageRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用信息，此接口Agent.AppId必填
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # </ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param StartDate: 开始时间，例如：2021-03-21
+        # @param StartDate: 查询日期范围的开始时间, 查询会包含此日期的数据 , 格式为yyyy-mm-dd (例如：2021-03-21)
+
+        # 注: `查询日期范围区间长度大于90天`。
         # @type StartDate: String
-        # @param EndDate: 结束时间，例如：2021-06-21；
-        # 开始时间到结束时间的区间长度小于等于90天。
+        # @param EndDate: 查询日期范围的结束时间, 查询会包含此日期的数据 , 格式为yyyy-mm-dd (例如：2021-04-21)
+
+        # 注: `查询日期范围区间长度大于90天`。
         # @type EndDate: String
         # @param NeedAggregate: 是否汇总数据，默认不汇总。
-        # 不汇总：返回在统计区间内第三方平台下所有企业的每日明细，即每个企业N条数据，N为统计天数；
-        # 汇总：返回在统计区间内第三方平台下所有企业的汇总后数据，即每个企业一条数据；
+        # <ul><li> **true** :  汇总数据,  即每个企业一条数据, 对日志范围内的数据相加</li>
+        # <li> **false** :  不会总数据,  返回企业每日明细,   按日期返回每个企业的数据(如果企业对应天数没有操作则无此企业此日期的数据)</li></ul>
         # @type NeedAggregate: Boolean
-        # @param Limit: 单次返回的最多条目数量。默认为1000，且不能超过1000。
+        # @param Limit: 指定每页返回的数据条数，和Offset参数配合使用。
+
+        # 注: `默认值为1000，单页做大值为1000`
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认是0。
+        # @param Offset: 查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。
+
+        # 注：`offset从0开始，即第一页为0。`
         # @type Offset: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -5819,20 +6029,19 @@ module TencentCloud
 
       # 文档内的填充控件返回结构体，返回控件的基本信息和填写内容值
       class FilledComponent < TencentCloud::Common::AbstractModel
-        # @param ComponentId: 控件Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ComponentId: 填写控件ID
         # @type ComponentId: String
         # @param ComponentName: 控件名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentName: String
-        # @param ComponentFillStatus: 控件填写状态；0-未填写；1-已填写
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ComponentFillStatus: 此填写控件的填写状态
+        #  **0** : 此填写控件**未填写**
+        # **1** : 此填写控件**已填写**
         # @type ComponentFillStatus: String
         # @param ComponentValue: 控件填写内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentValue: String
         # @param ImageUrl: 图片填充控件下载链接，如果是图片填充控件时，这里返回图片的下载链接。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+
+        # 注: `链接不是永久链接,  默认有效期5分钟后, 到期后链接失效`
         # @type ImageUrl: String
 
         attr_accessor :ComponentId, :ComponentName, :ComponentFillStatus, :ComponentValue, :ImageUrl
@@ -7685,16 +7894,20 @@ module TencentCloud
 
       # 参与方填写控件信息
       class RecipientComponentInfo < TencentCloud::Common::AbstractModel
-        # @param RecipientId: 参与方Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param RecipientId: 参与方的角色ID
         # @type RecipientId: String
         # @param RecipientFillStatus: 参与方填写状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
+
+        # <ul><li> **0** : 还没有填写</li>
+        # <li> **1** : 已经填写</li></ul>
         # @type RecipientFillStatus: String
-        # @param IsPromoter: 是否发起方
+        # @param IsPromoter: 此角色是否是发起方角色
+
+        # <ul><li> **true** : 是发起方角色</li>
+        # <li> **false** : 不是发起方角色</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPromoter: Boolean
-        # @param Components: 填写控件内容
+        # @param Components: 此角色的填写控件列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Components: Array
 
@@ -7891,10 +8104,13 @@ module TencentCloud
       # 签署二维码的基本信息，用于创建二维码，用户可扫描该二维码进行签署操作。
       class SignQrCode < TencentCloud::Common::AbstractModel
         # @param QrCodeId: 二维码ID，为32位字符串。
+
+        # 注: 需要保留此二维码ID, 用于后序通过<a href="https://qian.tencent.com/developers/partnerApis/templates/ChannelCancelMultiFlowSignQRCode" target="_blank">取消一码多扫二维码</a>关闭这个二维码的签署功能。
         # @type QrCodeId: String
         # @param QrCodeUrl: 二维码URL，可通过转换二维码的工具或代码组件将此URL转化为二维码，以便用户扫描进行流程签署。
         # @type QrCodeUrl: String
-        # @param ExpiredTime: 二维码的有截止时间，格式为Unix标准时间戳（秒）。 一旦超过二维码的有效期限，该二维码将自动失效。
+        # @param ExpiredTime: 二维码的有截止时间，格式为Unix标准时间戳（秒），可以通过入参的QrEffectiveDay来设置有效期，默认为7天有效期。
+        # 一旦超过二维码的有效期限，该二维码将自动失效。
         # @type ExpiredTime: Integer
 
         attr_accessor :QrCodeId, :QrCodeUrl, :ExpiredTime
@@ -8566,17 +8782,17 @@ module TencentCloud
 
       # 用量明细
       class UsageDetail < TencentCloud::Common::AbstractModel
-        # @param ProxyOrganizationOpenId: 子客企业唯一标识
+        # @param ProxyOrganizationOpenId: 子客企业标识
         # @type ProxyOrganizationOpenId: String
         # @param ProxyOrganizationName: 子客企业名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyOrganizationName: String
-        # @param Date: 日期，当需要汇总数据时日期为空
+        # @param Date: 对应的消耗日期, **如果是汇总数据则为1970-01-01**
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Date: String
-        # @param Usage: 消耗数量
+        # @param Usage: 消耗合同数量
         # @type Usage: Integer
-        # @param Cancel: 撤回数量
+        # @param Cancel: 撤回合同数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cancel: Integer
         # @param FlowChannel: 消耗渠道

@@ -1909,9 +1909,9 @@ module TencentCloud
         # - unserviced:停服中
         # - upgrading:升级中
         # @type LifeCycleState: String
-        # @param SizeByte: 文件系统已使用容量,单位Byte
+        # @param SizeByte: 文件系统已使用容量。单位：Byte
         # @type SizeByte: Integer
-        # @param SizeLimit: 文件系统最大空间限制,GiB
+        # @param SizeLimit: 文件系统最大空间限制。单位:GiB
         # @type SizeLimit: Integer
         # @param ZoneId: 区域 ID
         # @type ZoneId: Integer
@@ -1938,6 +1938,7 @@ module TencentCloud
         # @param BandwidthLimit: 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s
         # @type BandwidthLimit: Float
         # @param Capacity: 文件系统总容量
+        # 单位:GiB
         # @type Capacity: Integer
         # @param Tags: 文件系统标签列表
         # @type Tags: Array

@@ -3031,13 +3031,13 @@ module TencentCloud
 
       # CommitRuleGroupExecResult请求参数结构体
       class CommitRuleGroupExecResultRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: preject id
+        # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param RuleGroupExecId: rule group exec id
+        # @param RuleGroupExecId: 规则组执行ID
         # @type RuleGroupExecId: Integer
-        # @param RuleGroupState: group exec state
+        # @param RuleGroupState: 规则组执行状态
         # @type RuleGroupState: String
-        # @param RuleExecResults: runner rule exec result list
+        # @param RuleExecResults: 规则执行结果集合
         # @type RuleExecResults: Array
 
         attr_accessor :ProjectId, :RuleGroupExecId, :RuleGroupState, :RuleExecResults
@@ -16016,7 +16016,7 @@ module TencentCloud
 
       # DescribeTemplateDimCount请求参数结构体
       class DescribeTemplateDimCountRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 模版类型
+        # @param Type: 模板类型
         # @type Type: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -22530,7 +22530,7 @@ module TencentCloud
         # @type RuleTemplateId: Integer
         # @param Type: 规则类型 1.系统模版, 2.自定义模版, 3.自定义SQL
         # @type Type: Integer
-        # @param QualityDim: 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
+        # @param QualityDim: 规则所属质量维度（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性）
         # @type QualityDim: Integer
         # @param SourceObjectDataTypeName: 源字段详细类型，int、string
         # @type SourceObjectDataTypeName: String
@@ -22647,11 +22647,11 @@ module TencentCloud
 
       # ModifyRuleTemplate请求参数结构体
       class ModifyRuleTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: Integer
-        # @param Type: 模版类型  1.系统模版   2.自定义模版
+        # @param Type: 模板类型  1.系统模板   2.自定义模板
         # @type Type: Integer
-        # @param Name: 模版名称
+        # @param Name: 模板名称
         # @type Name: String
         # @param QualityDim: 质量检测维度 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性
         # @type QualityDim: Integer

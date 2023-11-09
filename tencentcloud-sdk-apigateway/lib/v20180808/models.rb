@@ -412,8 +412,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ApiId, :ApiDesc, :Path, :Method, :CreatedTime, :ModifiedTime, :ApiName, :UniqVpcId, :ApiType, :Protocol, :IsDebugAfterCharge, :AuthType, :ApiBusinessType, :AuthRelationApiId, :RelationBuniessApiIds, :OauthConfig, :TokenLocation
         extend Gem::Deprecate
-        deprecate :RelationBuniessApiIds, :none, 2023, 10
-        deprecate :RelationBuniessApiIds=, :none, 2023, 10
+        deprecate :RelationBuniessApiIds, :none, 2023, 11
+        deprecate :RelationBuniessApiIds=, :none, 2023, 11
 
         def initialize(serviceid=nil, apiid=nil, apidesc=nil, path=nil, method=nil, createdtime=nil, modifiedtime=nil, apiname=nil, uniqvpcid=nil, apitype=nil, protocol=nil, isdebugaftercharge=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, relationbuniessapiids=nil, oauthconfig=nil, tokenlocation=nil)
           @ServiceId = serviceid
@@ -3139,8 +3139,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :VpcId, :UniqVpcId, :ApiType, :Protocol, :IsDebugAfterCharge, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :RelationBuniessApiIds, :Tags, :Path, :Method
         extend Gem::Deprecate
-        deprecate :RelationBuniessApiIds, :none, 2023, 10
-        deprecate :RelationBuniessApiIds=, :none, 2023, 10
+        deprecate :RelationBuniessApiIds, :none, 2023, 11
+        deprecate :RelationBuniessApiIds=, :none, 2023, 11
 
         def initialize(serviceid=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, vpcid=nil, uniqvpcid=nil, apitype=nil, protocol=nil, isdebugaftercharge=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, relationbuniessapiids=nil, tags=nil, path=nil, method=nil)
           @ServiceId = serviceid
@@ -3993,8 +3993,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ApiId, :ApiDesc, :CreatedTime, :ModifiedTime, :ApiName, :VpcId, :UniqVpcId, :ApiType, :Protocol, :IsDebugAfterCharge, :AuthType, :ApiBusinessType, :AuthRelationApiId, :OauthConfig, :RelationBuniessApiIds, :Tags, :Path, :Method
         extend Gem::Deprecate
-        deprecate :RelationBuniessApiIds, :none, 2023, 10
-        deprecate :RelationBuniessApiIds=, :none, 2023, 10
+        deprecate :RelationBuniessApiIds, :none, 2023, 11
+        deprecate :RelationBuniessApiIds=, :none, 2023, 11
 
         def initialize(serviceid=nil, apiid=nil, apidesc=nil, createdtime=nil, modifiedtime=nil, apiname=nil, vpcid=nil, uniqvpcid=nil, apitype=nil, protocol=nil, isdebugaftercharge=nil, authtype=nil, apibusinesstype=nil, authrelationapiid=nil, oauthconfig=nil, relationbuniessapiids=nil, tags=nil, path=nil, method=nil)
           @ServiceId = serviceid
@@ -4454,8 +4454,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :ServiceId, :Filters, :Limit, :ConText, :Sort, :Query, :LogQuerys
         extend Gem::Deprecate
-        deprecate :LogQuerys, :none, 2023, 10
-        deprecate :LogQuerys=, :none, 2023, 10
+        deprecate :LogQuerys, :none, 2023, 11
+        deprecate :LogQuerys=, :none, 2023, 11
 
         def initialize(starttime=nil, endtime=nil, serviceid=nil, filters=nil, limit=nil, context=nil, sort=nil, query=nil, logquerys=nil)
           @StartTime = starttime
@@ -7926,8 +7926,8 @@ module TencentCloud
 
         attr_accessor :Name, :Value, :Default, :Unit, :Type, :Minimum, :Maximum, :ModifedTime, :ValueString, :DefaultValueString, :Range
         extend Gem::Deprecate
-        deprecate :ModifedTime, :none, 2023, 10
-        deprecate :ModifedTime=, :none, 2023, 10
+        deprecate :ModifedTime, :none, 2023, 11
+        deprecate :ModifedTime=, :none, 2023, 11
 
         def initialize(name=nil, value=nil, default=nil, unit=nil, type=nil, minimum=nil, maximum=nil, modifedtime=nil, valuestring=nil, defaultvaluestring=nil, range=nil)
           @Name = name
