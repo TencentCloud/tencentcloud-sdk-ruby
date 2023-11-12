@@ -17,6 +17,43 @@
 module TencentCloud
   module Trocket
     module V20230308
+      # 消费组信息
+      class ConsumeGroupItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param ConsumeEnable: 是否开启消费
+        # @type ConsumeEnable: Boolean
+        # @param ConsumeMessageOrderly: 顺序投递：true
+        # 并发投递：false
+        # @type ConsumeMessageOrderly: Boolean
+        # @param MaxRetryTimes: 最大重试次数
+        # @type MaxRetryTimes: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark
+
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil)
+          @InstanceId = instanceid
+          @ConsumerGroup = consumergroup
+          @ConsumeEnable = consumeenable
+          @ConsumeMessageOrderly = consumemessageorderly
+          @MaxRetryTimes = maxretrytimes
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ConsumerGroup = params['ConsumerGroup']
+          @ConsumeEnable = params['ConsumeEnable']
+          @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @MaxRetryTimes = params['MaxRetryTimes']
+          @Remark = params['Remark']
+        end
+      end
+
       # CreateConsumerGroup请求参数结构体
       class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -429,6 +466,77 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerGroupList请求参数结构体
+      class DescribeConsumerGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+        # @param FromTopic: 查询指定主题下的消费组
+        # @type FromTopic: String
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Filters, :FromTopic
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, filters=nil, fromtopic=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @FromTopic = fromtopic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @FromTopic = params['FromTopic']
+        end
+      end
+
+      # DescribeConsumerGroupList返回参数结构体
+      class DescribeConsumerGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 消费组列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              consumegroupitem_tmp = ConsumeGroupItem.new
+              consumegroupitem_tmp.deserialize(i)
+              @Data << consumegroupitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

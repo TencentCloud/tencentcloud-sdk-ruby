@@ -1353,9 +1353,17 @@ module TencentCloud
 
       # ChannelCreateFlowApprovers请求参数结构体
       class ChannelCreateFlowApproversRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 渠道应用相关信息
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowId: 合同唯一编号
+        # @param FlowId: 合同流程ID，为32位字符串。 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
         # @type FlowId: String
         # @param Approvers: 补充企业签署人信息。
 
@@ -2228,7 +2236,14 @@ module TencentCloud
 
       # ChannelCreateOrganizationModifyQrCode请求参数结构体
       class ChannelCreateOrganizationModifyQrCodeRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+
+        # 渠道应用标识: Agent.AppId
+        # 第三方平台子客企业标识: Agent.ProxyOrganizationOpenId
+        # 第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
 
         attr_accessor :Agent
@@ -2588,7 +2603,15 @@ module TencentCloud
       class ChannelCreateRoleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 角色名称，最大长度为20个字符，仅限中文、字母、数字和下划线组成。
         # @type Name: String
-        # @param Agent: 代理企业和员工的信息。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Description: 角色描述，最大长度为50个字符
         # @type Description: String
@@ -3032,7 +3055,15 @@ module TencentCloud
 
       # ChannelDeleteRole请求参数结构体
       class ChannelDeleteRoleRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 代理企业和员工的信息。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param RoleIds: 角色id，最多20个
         # @type RoleIds: Array
@@ -3528,7 +3559,15 @@ module TencentCloud
 
       # ChannelDescribeRoles请求参数结构体
       class ChannelDescribeRolesRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param Limit: 指定每页多少条数据，单页最大200
         # @type Limit: String
@@ -3925,7 +3964,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleName: String
         # @param RoleStatus: 角色状态：1-启用；2-禁用
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleStatus: Integer
         # @param PermissionGroups: 权限树
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5904,17 +5942,19 @@ module TencentCloud
       class ExtentServiceAuthInfo < TencentCloud::Common::AbstractModel
         # @param Type: 扩展服务类型
         # <ul>
-        #   <li>AUTO_SIGN             企业自动签（自动签署）</li>
+        # <li>AUTO_SIGN             企业自动签（自动签署）</li>
         # <li>  OVERSEA_SIGN          企业与港澳台居民*签署合同</li>
         # <li>  MOBILE_CHECK_APPROVER 使用手机号验证签署方身份</li>
-        #  <li> PAGING_SEAL           骑缝章</li>
-        #  <li> DOWNLOAD_FLOW         授权渠道下载合同 </li>
+        # <li> PAGING_SEAL           骑缝章</li>
+        # <li> DOWNLOAD_FLOW         授权渠道下载合同 </li>
         # <li>AGE_LIMIT_EXPANSION 拓宽签署方年龄限制</li>
         # </ul>
         # @type Type: String
         # @param Name: 扩展服务名称
         # @type Name: String
-        # @param Status: 扩展服务的开通状态： ENABLE：开通 DISABLE：未开通
+        # @param Status: 扩展服务的开通状态
+        # **ENABLE**：开通
+        # **DISABLE**：未开通
         # @type Status: String
         # @param OperatorOpenId: 操作扩展服务的操作人第三方应用平台的用户openid
         # 注意：此字段可能返回 null，表示取不到有效值。

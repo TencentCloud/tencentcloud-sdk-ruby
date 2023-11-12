@@ -4581,6 +4581,78 @@ module TencentCloud
         end
       end
 
+      # DescribeDataEngineEvents请求参数结构体
+      class DescribeDataEngineEventsRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 虚拟集群名称
+        # @type DataEngineName: String
+        # @param Limit: 返回数量，默认为10，最大为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+
+        attr_accessor :DataEngineName, :Limit, :Offset
+
+        def initialize(dataenginename=nil, limit=nil, offset=nil)
+          @DataEngineName = dataenginename
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeDataEngineEvents返回参数结构体
+      class DescribeDataEngineEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 事件详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param Page: 分页号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
+        # @param Size: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param TotalPages: 总页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPages: Integer
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :Page, :Size, :TotalPages, :TotalCount, :RequestId
+
+        def initialize(events=nil, page=nil, size=nil, totalpages=nil, totalcount=nil, requestid=nil)
+          @Events = events
+          @Page = page
+          @Size = size
+          @TotalPages = totalpages
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              houseeventsinfo_tmp = HouseEventsInfo.new
+              houseeventsinfo_tmp.deserialize(i)
+              @Events << houseeventsinfo_tmp
+            end
+          end
+          @Page = params['Page']
+          @Size = params['Size']
+          @TotalPages = params['TotalPages']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataEngineImageVersions请求参数结构体
       class DescribeDataEngineImageVersionsRequest < TencentCloud::Common::AbstractModel
         # @param EngineType: 引擎类型：SQL、SparkBatch
@@ -7376,6 +7448,33 @@ module TencentCloud
             @KerberosInfo.deserialize(params['KerberosInfo'])
           end
           @KerberosEnable = params['KerberosEnable']
+        end
+      end
+
+      # 集群事件日志
+      class HouseEventsInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 事件时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: Array
+        # @param EventsAction: 事件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventsAction: Array
+        # @param ClusterInfo: 集群信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterInfo: Array
+
+        attr_accessor :Time, :EventsAction, :ClusterInfo
+
+        def initialize(time=nil, eventsaction=nil, clusterinfo=nil)
+          @Time = time
+          @EventsAction = eventsaction
+          @ClusterInfo = clusterinfo
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @EventsAction = params['EventsAction']
+          @ClusterInfo = params['ClusterInfo']
         end
       end
 

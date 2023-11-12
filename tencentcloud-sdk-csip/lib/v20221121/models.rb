@@ -521,7 +521,7 @@ module TencentCloud
         # @type Suggestion: Integer
         # @param Status: 状态，0未处理、1已处置、2已忽略
         # @type Status: Integer
-        # @param Id: 资产唯一id
+        # @param Id: 风险ID
         # @type Id: String
         # @param Index: 前端索引
         # @type Index: String
@@ -537,7 +537,7 @@ module TencentCloud
         # @param Uin: 用户uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: String
-        # @param From: 来源
+        # @param From: 识别来源，详细看枚举返回。
         # @type From: String
 
         attr_accessor :Port, :AffectAsset, :Level, :InstanceType, :Protocol, :Component, :Service, :RecentTime, :FirstTime, :Suggestion, :Status, :Id, :Index, :InstanceId, :InstanceName, :AppId, :Nick, :Uin, :From

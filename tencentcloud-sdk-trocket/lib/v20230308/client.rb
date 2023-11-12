@@ -245,6 +245,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取消费组列表，Filter参数使用说明如下：
+
+        # 1. ConsumerGroupName，名称模糊查询
+        # 2. ConsumeMessageOrderly，投递顺序性。"true":顺序投递；"false":并发投递
+
+        # @param request: Request instance for DescribeConsumerGroupList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerGroupListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeConsumerGroupListResponse`
+        def DescribeConsumerGroupList(request)
+          body = send_request('DescribeConsumerGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConsumerGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例信息
 
         # @param request: Request instance for DescribeInstance.
