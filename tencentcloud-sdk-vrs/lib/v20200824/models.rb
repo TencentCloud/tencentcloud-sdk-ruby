@@ -96,7 +96,7 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param ModelType: 模型类型 1:在线 2:离线  默认为1
         # @type ModelType: Integer
-        # @param TaskType: 任务类型 0:默认类型 1:轻量级复刻
+        # @param TaskType: 任务类型 0:轻量版复刻
         # 默认为0
         # @type TaskType: Integer
         # @param VPRAudioId: 校验音频ID

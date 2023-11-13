@@ -8945,7 +8945,7 @@ module TencentCloud
       class ModifyDBInstanceLogToCLSRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param LogType: 日志类型：errorLog/slowLog
+        # @param LogType: 日志类型：error/slowLog
         # @type LogType: String
         # @param Status: 投递状态：ON/OFF
         # @type Status: String

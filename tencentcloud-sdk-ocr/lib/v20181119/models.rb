@@ -4246,19 +4246,24 @@ module TencentCloud
         # @type ImageUrl: String
         # @param RetProfile: 是否返回头像。默认不返回。
         # @type RetProfile: Boolean
+        # @param CardSide: 图片正反面
+        # FRONT：正面、BACK：反面，默认为FRONT
+        # @type CardSide: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :RetProfile
+        attr_accessor :ImageBase64, :ImageUrl, :RetProfile, :CardSide
 
-        def initialize(imagebase64=nil, imageurl=nil, retprofile=nil)
+        def initialize(imagebase64=nil, imageurl=nil, retprofile=nil, cardside=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @RetProfile = retprofile
+          @CardSide = cardside
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
           @RetProfile = params['RetProfile']
+          @CardSide = params['CardSide']
         end
       end
 
@@ -4286,12 +4291,14 @@ module TencentCloud
         # @type Type: String
         # @param Profile: RetProfile为True时返回头像字段， Base64编码
         # @type Profile: String
+        # @param MainlandTravelPermitBackInfos: 背面字段信息
+        # @type MainlandTravelPermitBackInfos: :class:`Tencentcloud::Ocr.v20181119.models.MainlandTravelPermitBackInfos`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :RequestId
+        attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :MainlandTravelPermitBackInfos, :RequestId
 
-        def initialize(name=nil, englishname=nil, sex=nil, birthday=nil, issueauthority=nil, validdate=nil, number=nil, issueaddress=nil, issuenumber=nil, type=nil, profile=nil, requestid=nil)
+        def initialize(name=nil, englishname=nil, sex=nil, birthday=nil, issueauthority=nil, validdate=nil, number=nil, issueaddress=nil, issuenumber=nil, type=nil, profile=nil, mainlandtravelpermitbackinfos=nil, requestid=nil)
           @Name = name
           @EnglishName = englishname
           @Sex = sex
@@ -4303,6 +4310,7 @@ module TencentCloud
           @IssueNumber = issuenumber
           @Type = type
           @Profile = profile
+          @MainlandTravelPermitBackInfos = mainlandtravelpermitbackinfos
           @RequestId = requestid
         end
 
@@ -4318,7 +4326,43 @@ module TencentCloud
           @IssueNumber = params['IssueNumber']
           @Type = params['Type']
           @Profile = params['Profile']
+          unless params['MainlandTravelPermitBackInfos'].nil?
+            @MainlandTravelPermitBackInfos = MainlandTravelPermitBackInfos.new
+            @MainlandTravelPermitBackInfos.deserialize(params['MainlandTravelPermitBackInfos'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 港澳台来往内地通行证背面字段信息
+      class MainlandTravelPermitBackInfos < TencentCloud::Common::AbstractModel
+        # @param Type: String	证件类别， 如：台湾居民来往大陆通行证、港澳居民来往内地通行证。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 卡证背面的中文姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param IDNumber: 卡证背面的身份证号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IDNumber: String
+        # @param HistoryNumber: 历史通行证号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HistoryNumber: String
+
+        attr_accessor :Type, :Name, :IDNumber, :HistoryNumber
+
+        def initialize(type=nil, name=nil, idnumber=nil, historynumber=nil)
+          @Type = type
+          @Name = name
+          @IDNumber = idnumber
+          @HistoryNumber = historynumber
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @IDNumber = params['IDNumber']
+          @HistoryNumber = params['HistoryNumber']
         end
       end
 

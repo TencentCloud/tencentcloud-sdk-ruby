@@ -14880,6 +14880,81 @@ module TencentCloud
         end
       end
 
+      # DescribeTableMetas请求参数结构体
+      class DescribeTableMetasRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Filters: 过滤字段
+        # @type Filters: Array
+        # @param OrderFields: 排序字段
+        # @type OrderFields: Array
+
+        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields
+
+        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTableMetas返回参数结构体
+      class DescribeTableMetasResponse < TencentCloud::Common::AbstractModel
+        # @param TableMetas: 表元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableMetas: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableMetas, :TotalCount, :RequestId
+
+        def initialize(tablemetas=nil, totalcount=nil, requestid=nil)
+          @TableMetas = tablemetas
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableMetas'].nil?
+            @TableMetas = []
+            params['TableMetas'].each do |i|
+              tablemeta_tmp = TableMeta.new
+              tablemeta_tmp.deserialize(i)
+              @TableMetas << tablemeta_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableQualityDetails请求参数结构体
       class DescribeTableQualityDetailsRequest < TencentCloud::Common::AbstractModel
         # @param StatisticsDate: 统计日期
@@ -27520,6 +27595,83 @@ module TencentCloud
         end
       end
 
+      # 表字段信息
+      class SearchColumnDocVO < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ChineseName: 字段中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChineseName: String
+        # @param Type: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Length: 字段类型长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+        # @param Precision: 字段类型精度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Precision: Integer
+        # @param Scale: 字段类型scale
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scale: Integer
+        # @param DefaultValue: 字段默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultValue: String
+        # @param Description: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Position: 字段的顺序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param IsPartition: 是否为分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
+        # @param ColumnKey: 列上的索引类型 主键: PRI,唯一索引: UNI,一般索引: MUL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnKey: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifiedTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifiedTime: String
+
+        attr_accessor :Name, :ChineseName, :Type, :Length, :Precision, :Scale, :DefaultValue, :Description, :Position, :IsPartition, :ColumnKey, :CreateTime, :ModifiedTime
+
+        def initialize(name=nil, chinesename=nil, type=nil, length=nil, precision=nil, scale=nil, defaultvalue=nil, description=nil, position=nil, ispartition=nil, columnkey=nil, createtime=nil, modifiedtime=nil)
+          @Name = name
+          @ChineseName = chinesename
+          @Type = type
+          @Length = length
+          @Precision = precision
+          @Scale = scale
+          @DefaultValue = defaultvalue
+          @Description = description
+          @Position = position
+          @IsPartition = ispartition
+          @ColumnKey = columnkey
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ChineseName = params['ChineseName']
+          @Type = params['Type']
+          @Length = params['Length']
+          @Precision = params['Precision']
+          @Scale = params['Scale']
+          @DefaultValue = params['DefaultValue']
+          @Description = params['Description']
+          @Position = params['Position']
+          @IsPartition = params['IsPartition']
+          @ColumnKey = params['ColumnKey']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
       # 查询实例条件
       class SearchCondition < TencentCloud::Common::AbstractModel
         # @param Instance: 查询框架，必选
@@ -28870,6 +29022,38 @@ module TencentCloud
         end
       end
 
+      # 过去七天（不算当天）表的热度值
+      class TableHeat < TencentCloud::Common::AbstractModel
+        # @param TableId: 表ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param DayTime: 统计日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayTime: String
+        # @param Heat: 表热度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Heat: Float
+        # @param MaxHeat: 表热度最大值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxHeat: Float
+
+        attr_accessor :TableId, :DayTime, :Heat, :MaxHeat
+
+        def initialize(tableid=nil, daytime=nil, heat=nil, maxheat=nil)
+          @TableId = tableid
+          @DayTime = daytime
+          @Heat = heat
+          @MaxHeat = maxheat
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @DayTime = params['DayTime']
+          @Heat = params['Heat']
+          @MaxHeat = params['MaxHeat']
+        end
+      end
+
       # 元数据表详细信息
       class TableInfo < TencentCloud::Common::AbstractModel
         # @param TableId: 表Id
@@ -29020,6 +29204,310 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Tasks = params['Tasks']
+        end
+      end
+
+      # 表的元数据信息
+      class TableMeta < TencentCloud::Common::AbstractModel
+        # @param TableId: 表的全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TableOwnerName: 责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerName: String
+        # @param DatasourceId: 数据源全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param ClusterName: 所属集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param DatasourceName: 数据源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatabaseName: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TablePath: 表路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePath: String
+        # @param TableNameCn: 表中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNameCn: String
+        # @param MetastoreId: 元数据租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreId: Integer
+        # @param MetastoreType: 技术类型，可用值:HIVE,MYSQL,KAFKA, HBASE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param Description: 表描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ColumnSeparator: 列分隔符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnSeparator: String
+        # @param StorageFormat: 存储格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageFormat: String
+        # @param StorageSize: 存储量，字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param TableType: 表类型，如hive MANAGED_TABLE;EXTERNAL_TABLE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableType: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 最近数据变更时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param DdlModifyTime: 最近DDL变更时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DdlModifyTime: String
+        # @param LastAccessTime: 数据最后访问时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastAccessTime: String
+        # @param ProjectName: 所属项目英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param BizCatalogIds: 所属数据目录id（可能多个）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizCatalogIds: Array
+        # @param BizCatalogNames: 所属数据目录（可能多个）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizCatalogNames: Array
+        # @param HasFavorite: true已收藏/false表示未收藏状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasFavorite: Boolean
+        # @param LifeCycleTime: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeCycleTime: Integer
+        # @param StorageSizeWithUnit: 存储量，已转为适合的单位展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSizeWithUnit: String
+        # @param InstanceId: 数据源引擎的实例ID：如EMR集群实例ID/数据源实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param TechnologyType: 数据来源技术类型：HIVE/MYSQL/HBASE/KAFKA等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TechnologyType: String
+        # @param TableNameEn: 表英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNameEn: String
+        # @param ProjectId: 项目Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param Partitions: Kafka Topic 分区数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: String
+        # @param ReplicationFactor: Kafka Topic 副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationFactor: String
+        # @param ProjectDisplayName: 所属项目英中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+        # @param DataModifyTime: 数据最后修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataModifyTime: String
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param HasAdminAuthority: 当前用户是否有管理员权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAdminAuthority: Boolean
+        # @param DatasourceDisplayName: 数据源展示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceDisplayName: String
+        # @param DatabaseId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param FavoriteCount: 租户下对表的收藏总次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FavoriteCount: Integer
+        # @param LikeCount: 租户下对表的点赞总次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LikeCount: Integer
+        # @param HasLike: true已点赞/false表示未点赞状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasLike: Boolean
+        # @param TablePropertyScore: 表的资产评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePropertyScore: :class:`Tencentcloud::Wedata.v20210820.models.TablePropertyScore`
+        # @param TableHeat: 表的热度值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableHeat: :class:`Tencentcloud::Wedata.v20210820.models.TableHeat`
+        # @param OwnerProjectId: 数据源ownerProjectId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerProjectId: String
+        # @param TableOwnerId: 表负责人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerId: String
+        # @param DataSourceCategory: 系统源-CLUSTER, DB-自定义源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceCategory: String
+        # @param Columns: 表字段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+
+        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns
+
+        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil)
+          @TableId = tableid
+          @TableName = tablename
+          @TableOwnerName = tableownername
+          @DatasourceId = datasourceid
+          @ClusterName = clustername
+          @DatasourceName = datasourcename
+          @DatabaseName = databasename
+          @TablePath = tablepath
+          @TableNameCn = tablenamecn
+          @MetastoreId = metastoreid
+          @MetastoreType = metastoretype
+          @Description = description
+          @ColumnSeparator = columnseparator
+          @StorageFormat = storageformat
+          @StorageSize = storagesize
+          @TableType = tabletype
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @DdlModifyTime = ddlmodifytime
+          @LastAccessTime = lastaccesstime
+          @ProjectName = projectname
+          @BizCatalogIds = bizcatalogids
+          @BizCatalogNames = bizcatalognames
+          @HasFavorite = hasfavorite
+          @LifeCycleTime = lifecycletime
+          @StorageSizeWithUnit = storagesizewithunit
+          @InstanceId = instanceid
+          @TechnologyType = technologytype
+          @TableNameEn = tablenameen
+          @ProjectId = projectid
+          @Partitions = partitions
+          @ReplicationFactor = replicationfactor
+          @ProjectDisplayName = projectdisplayname
+          @DataModifyTime = datamodifytime
+          @ClusterId = clusterid
+          @HasAdminAuthority = hasadminauthority
+          @DatasourceDisplayName = datasourcedisplayname
+          @DatabaseId = databaseid
+          @FavoriteCount = favoritecount
+          @LikeCount = likecount
+          @HasLike = haslike
+          @TablePropertyScore = tablepropertyscore
+          @TableHeat = tableheat
+          @OwnerProjectId = ownerprojectid
+          @TableOwnerId = tableownerid
+          @DataSourceCategory = datasourcecategory
+          @Columns = columns
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @TableName = params['TableName']
+          @TableOwnerName = params['TableOwnerName']
+          @DatasourceId = params['DatasourceId']
+          @ClusterName = params['ClusterName']
+          @DatasourceName = params['DatasourceName']
+          @DatabaseName = params['DatabaseName']
+          @TablePath = params['TablePath']
+          @TableNameCn = params['TableNameCn']
+          @MetastoreId = params['MetastoreId']
+          @MetastoreType = params['MetastoreType']
+          @Description = params['Description']
+          @ColumnSeparator = params['ColumnSeparator']
+          @StorageFormat = params['StorageFormat']
+          @StorageSize = params['StorageSize']
+          @TableType = params['TableType']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @DdlModifyTime = params['DdlModifyTime']
+          @LastAccessTime = params['LastAccessTime']
+          @ProjectName = params['ProjectName']
+          @BizCatalogIds = params['BizCatalogIds']
+          @BizCatalogNames = params['BizCatalogNames']
+          @HasFavorite = params['HasFavorite']
+          @LifeCycleTime = params['LifeCycleTime']
+          @StorageSizeWithUnit = params['StorageSizeWithUnit']
+          @InstanceId = params['InstanceId']
+          @TechnologyType = params['TechnologyType']
+          @TableNameEn = params['TableNameEn']
+          @ProjectId = params['ProjectId']
+          @Partitions = params['Partitions']
+          @ReplicationFactor = params['ReplicationFactor']
+          @ProjectDisplayName = params['ProjectDisplayName']
+          @DataModifyTime = params['DataModifyTime']
+          @ClusterId = params['ClusterId']
+          @HasAdminAuthority = params['HasAdminAuthority']
+          @DatasourceDisplayName = params['DatasourceDisplayName']
+          @DatabaseId = params['DatabaseId']
+          @FavoriteCount = params['FavoriteCount']
+          @LikeCount = params['LikeCount']
+          @HasLike = params['HasLike']
+          unless params['TablePropertyScore'].nil?
+            @TablePropertyScore = TablePropertyScore.new
+            @TablePropertyScore.deserialize(params['TablePropertyScore'])
+          end
+          unless params['TableHeat'].nil?
+            @TableHeat = TableHeat.new
+            @TableHeat.deserialize(params['TableHeat'])
+          end
+          @OwnerProjectId = params['OwnerProjectId']
+          @TableOwnerId = params['TableOwnerId']
+          @DataSourceCategory = params['DataSourceCategory']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              searchcolumndocvo_tmp = SearchColumnDocVO.new
+              searchcolumndocvo_tmp.deserialize(i)
+              @Columns << searchcolumndocvo_tmp
+            end
+          end
+        end
+      end
+
+      # 按天更新的表的资产评分
+      class TablePropertyScore < TencentCloud::Common::AbstractModel
+        # @param TableId: 表ID
+        # @type TableId: String
+        # @param DayTime: 统计日期
+        # @type DayTime: String
+        # @param Integrity: 表完整性评分
+        # @type Integrity: Float
+        # @param Safety: 表保障性评分
+        # @type Safety: Float
+        # @param Timeliness: 表及时性评分
+        # @type Timeliness: Float
+        # @param Stability: 表稳定性评分
+        # @type Stability: Float
+        # @param Normative: 表规范性评分
+        # @type Normative: Float
+        # @param Average: 资产评分平均分
+        # @type Average: Float
+
+        attr_accessor :TableId, :DayTime, :Integrity, :Safety, :Timeliness, :Stability, :Normative, :Average
+
+        def initialize(tableid=nil, daytime=nil, integrity=nil, safety=nil, timeliness=nil, stability=nil, normative=nil, average=nil)
+          @TableId = tableid
+          @DayTime = daytime
+          @Integrity = integrity
+          @Safety = safety
+          @Timeliness = timeliness
+          @Stability = stability
+          @Normative = normative
+          @Average = average
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @DayTime = params['DayTime']
+          @Integrity = params['Integrity']
+          @Safety = params['Safety']
+          @Timeliness = params['Timeliness']
+          @Stability = params['Stability']
+          @Normative = params['Normative']
+          @Average = params['Average']
         end
       end
 

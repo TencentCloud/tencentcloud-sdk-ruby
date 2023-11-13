@@ -1465,10 +1465,12 @@ module TencentCloud
         # @type VodLocalMode: Integer
         # @param RecordTemplateId: 录制模板 ID。
         # @type RecordTemplateId: String
+        # @param BackupToUrl: 新的目标地址，用于任务同时推两路场景。
+        # @type BackupToUrl: String
 
-        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId
+        attr_accessor :SourceType, :SourceUrls, :DomainName, :AppName, :StreamName, :StartTime, :EndTime, :Operator, :PushArgs, :CallbackEvents, :VodLoopTimes, :VodRefreshType, :CallbackUrl, :ExtraCmd, :SpecifyTaskId, :Comment, :ToUrl, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :RecordTemplateId, :BackupToUrl
 
-        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil)
+        def initialize(sourcetype=nil, sourceurls=nil, domainname=nil, appname=nil, streamname=nil, starttime=nil, endtime=nil, operator=nil, pushargs=nil, callbackevents=nil, vodlooptimes=nil, vodrefreshtype=nil, callbackurl=nil, extracmd=nil, specifytaskid=nil, comment=nil, tourl=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, recordtemplateid=nil, backuptourl=nil)
           @SourceType = sourcetype
           @SourceUrls = sourceurls
           @DomainName = domainname
@@ -1491,6 +1493,7 @@ module TencentCloud
           @WatermarkList = watermarklist
           @VodLocalMode = vodlocalmode
           @RecordTemplateId = recordtemplateid
+          @BackupToUrl = backuptourl
         end
 
         def deserialize(params)
@@ -1523,6 +1526,7 @@ module TencentCloud
           end
           @VodLocalMode = params['VodLocalMode']
           @RecordTemplateId = params['RecordTemplateId']
+          @BackupToUrl = params['BackupToUrl']
         end
       end
 
@@ -9512,10 +9516,13 @@ module TencentCloud
         # 1 - 启用。
         # 注意：启用本地模式后，会将源列表中的 MP4 文件进行本地下载，优先使用本地已下载文件进行推流，提高点播源推流稳定性。使用本地下载文件推流时，会产生增值费用。
         # @type VodLocalMode: Integer
+        # @param BackupToUrl: 新的目标地址。传空值，则取消该地址的推流。
+        # 传入新值，则替换原有地址。
+        # @type BackupToUrl: String
 
-        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :SpecifyTaskId, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode
+        attr_accessor :TaskId, :Operator, :SourceUrls, :StartTime, :EndTime, :VodLoopTimes, :VodRefreshType, :Status, :CallbackEvents, :CallbackUrl, :FileIndex, :OffsetTime, :SpecifyTaskId, :ToUrl, :Comment, :BackupSourceType, :BackupSourceUrl, :WatermarkList, :VodLocalMode, :BackupToUrl
 
-        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, specifytaskid=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil)
+        def initialize(taskid=nil, operator=nil, sourceurls=nil, starttime=nil, endtime=nil, vodlooptimes=nil, vodrefreshtype=nil, status=nil, callbackevents=nil, callbackurl=nil, fileindex=nil, offsettime=nil, specifytaskid=nil, tourl=nil, comment=nil, backupsourcetype=nil, backupsourceurl=nil, watermarklist=nil, vodlocalmode=nil, backuptourl=nil)
           @TaskId = taskid
           @Operator = operator
           @SourceUrls = sourceurls
@@ -9535,6 +9542,7 @@ module TencentCloud
           @BackupSourceUrl = backupsourceurl
           @WatermarkList = watermarklist
           @VodLocalMode = vodlocalmode
+          @BackupToUrl = backuptourl
         end
 
         def deserialize(params)
@@ -9564,6 +9572,7 @@ module TencentCloud
             end
           end
           @VodLocalMode = params['VodLocalMode']
+          @BackupToUrl = params['BackupToUrl']
         end
       end
 

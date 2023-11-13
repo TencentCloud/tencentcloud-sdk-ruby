@@ -8419,11 +8419,12 @@ module TencentCloud
       class DescribeStatisticDataRequest < TencentCloud::Common::AbstractModel
         # @param Module: 所属模块，固定值，为monitor
         # @type Module: String
-        # @param Namespace: 命名空间，目前只支持QCE/TKE2
+        # @param Namespace: 命名空间，目前支持QCE/TKE2(Conditions必填),QCE/KEEWIDB,QCE/CAMP
         # @type Namespace: String
         # @param MetricNames: 指标名列表
         # @type MetricNames: Array
         # @param Conditions: 维度条件，操作符支持=、in
+        # 配置文档参考：https://cloud.tencent.com/document/product/248/53821
         # @type Conditions: Array
         # @param Period: 统计粒度。默认取值为300，单位为s；可选的值为60、300、3600、86400
         # 受存储时长限制，统计粒度与统计的时间范围有关：

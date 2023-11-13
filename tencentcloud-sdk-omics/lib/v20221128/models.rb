@@ -128,17 +128,31 @@ module TencentCloud
         # @param Type: 计算集群类型，取值范围：
         # - KUBERNETES
         # @type Type: String
+        # @param ResourceQuota: 资源配额。
+        # @type ResourceQuota: :class:`Tencentcloud::Omics.v20221128.models.ResourceQuota`
+        # @param LimitRange: 限制范围。
+        # @type LimitRange: :class:`Tencentcloud::Omics.v20221128.models.LimitRange`
 
-        attr_accessor :Zone, :Type
+        attr_accessor :Zone, :Type, :ResourceQuota, :LimitRange
 
-        def initialize(zone=nil, type=nil)
+        def initialize(zone=nil, type=nil, resourcequota=nil, limitrange=nil)
           @Zone = zone
           @Type = type
+          @ResourceQuota = resourcequota
+          @LimitRange = limitrange
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @Type = params['Type']
+          unless params['ResourceQuota'].nil?
+            @ResourceQuota = ResourceQuota.new
+            @ResourceQuota.deserialize(params['ResourceQuota'])
+          end
+          unless params['LimitRange'].nil?
+            @LimitRange = LimitRange.new
+            @LimitRange.deserialize(params['LimitRange'])
+          end
         end
       end
 
@@ -150,13 +164,16 @@ module TencentCloud
         # @type Config: :class:`Tencentcloud::Omics.v20221128.models.EnvironmentConfig`
         # @param Description: 环境描述。
         # @type Description: String
+        # @param IsDefault: 是否为默认环境。
+        # @type IsDefault: Boolean
 
-        attr_accessor :Name, :Config, :Description
+        attr_accessor :Name, :Config, :Description, :IsDefault
 
-        def initialize(name=nil, config=nil, description=nil)
+        def initialize(name=nil, config=nil, description=nil, isdefault=nil)
           @Name = name
           @Config = config
           @Description = description
+          @IsDefault = isdefault
         end
 
         def deserialize(params)
@@ -166,6 +183,7 @@ module TencentCloud
             @Config.deserialize(params['Config'])
           end
           @Description = params['Description']
+          @IsDefault = params['IsDefault']
         end
       end
 
@@ -672,15 +690,18 @@ module TencentCloud
         # @type StorageOption: :class:`Tencentcloud::Omics.v20221128.models.StorageOption`
         # @param CVMOption: 云服务器配置。
         # @type CVMOption: :class:`Tencentcloud::Omics.v20221128.models.CVMOption`
+        # @param SecurityGroupOption: 安全组配置。
+        # @type SecurityGroupOption: :class:`Tencentcloud::Omics.v20221128.models.SecurityGroupOption`
 
-        attr_accessor :VPCOption, :ClusterOption, :DatabaseOption, :StorageOption, :CVMOption
+        attr_accessor :VPCOption, :ClusterOption, :DatabaseOption, :StorageOption, :CVMOption, :SecurityGroupOption
 
-        def initialize(vpcoption=nil, clusteroption=nil, databaseoption=nil, storageoption=nil, cvmoption=nil)
+        def initialize(vpcoption=nil, clusteroption=nil, databaseoption=nil, storageoption=nil, cvmoption=nil, securitygroupoption=nil)
           @VPCOption = vpcoption
           @ClusterOption = clusteroption
           @DatabaseOption = databaseoption
           @StorageOption = storageoption
           @CVMOption = cvmoption
+          @SecurityGroupOption = securitygroupoption
         end
 
         def deserialize(params)
@@ -703,6 +724,10 @@ module TencentCloud
           unless params['CVMOption'].nil?
             @CVMOption = CVMOption.new
             @CVMOption.deserialize(params['CVMOption'])
+          end
+          unless params['SecurityGroupOption'].nil?
+            @SecurityGroupOption = SecurityGroupOption.new
+            @SecurityGroupOption.deserialize(params['SecurityGroupOption'])
           end
         end
       end
@@ -992,6 +1017,28 @@ module TencentCloud
         end
       end
 
+      # 资源限制范围。
+      class LimitRange < TencentCloud::Common::AbstractModel
+        # @param MaxCPU: 最大CPU设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxCPU: String
+        # @param MaxMemory: 最大内存设置（单位：Mi，Gi，Ti，M，G，T）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxMemory: String
+
+        attr_accessor :MaxCPU, :MaxMemory
+
+        def initialize(maxcpu=nil, maxmemory=nil)
+          @MaxCPU = maxcpu
+          @MaxMemory = maxmemory
+        end
+
+        def deserialize(params)
+          @MaxCPU = params['MaxCPU']
+          @MaxMemory = params['MaxMemory']
+        end
+      end
+
       # Nextflow选项。
       class NFOption < TencentCloud::Common::AbstractModel
         # @param Config: Config。
@@ -1080,6 +1127,33 @@ module TencentCloud
         end
       end
 
+      # 资源配额。
+      class ResourceQuota < TencentCloud::Common::AbstractModel
+        # @param CPULimit: CPU Limit设置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPULimit: String
+        # @param MemoryLimit: 内存Limit设置（单位：Mi，Gi，Ti，M，G，T）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemoryLimit: String
+        # @param Pods: Pods数量设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pods: String
+
+        attr_accessor :CPULimit, :MemoryLimit, :Pods
+
+        def initialize(cpulimit=nil, memorylimit=nil, pods=nil)
+          @CPULimit = cpulimit
+          @MemoryLimit = memorylimit
+          @Pods = pods
+        end
+
+        def deserialize(params)
+          @CPULimit = params['CPULimit']
+          @MemoryLimit = params['MemoryLimit']
+          @Pods = params['Pods']
+        end
+      end
+
       # RetryRuns请求参数结构体
       class RetryRunsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 关联项目ID。
@@ -1157,8 +1231,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2023, 10
-        deprecate :Option=, :none, 2023, 10
+        deprecate :Option, :none, 2023, 11
+        deprecate :Option=, :none, 2023, 11
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1681,6 +1755,22 @@ module TencentCloud
         end
       end
 
+      # 安全组配置。
+      class SecurityGroupOption < TencentCloud::Common::AbstractModel
+        # @param SecurityGroupId: 安全组ID。
+        # @type SecurityGroupId: String
+
+        attr_accessor :SecurityGroupId
+
+        def initialize(securitygroupid=nil)
+          @SecurityGroupId = securitygroupid
+        end
+
+        def deserialize(params)
+          @SecurityGroupId = params['SecurityGroupId']
+        end
+      end
+
       # 文件存储配置。
       class StorageOption < TencentCloud::Common::AbstractModel
         # @param StorageType: 文件存储类型，取值范围：
@@ -1848,6 +1938,10 @@ module TencentCloud
 
       # 私有网络配置。
       class VPCOption < TencentCloud::Common::AbstractModel
+        # @param VPCId: 私有网络ID（VPCId和VPCCIDRBlock必选其一。若使用VPCId，则使用现用私有网络；若使用VPCCIDRBlock，则创建新的私有网络）
+        # @type VPCId: String
+        # @param SubnetId: 子网ID（SubnetId和SubnetZone&SubnetCIDRBlock必选其一。若使用SubnetId，则使用现用子网；若使用SubnetZone&SubnetCIDRBlock，则创建新的子网）
+        # @type SubnetId: String
         # @param SubnetZone: 子网可用区。
         # @type SubnetZone: String
         # @param VPCCIDRBlock: 私有网络CIDR。
@@ -1855,15 +1949,19 @@ module TencentCloud
         # @param SubnetCIDRBlock: 子网CIDR。
         # @type SubnetCIDRBlock: String
 
-        attr_accessor :SubnetZone, :VPCCIDRBlock, :SubnetCIDRBlock
+        attr_accessor :VPCId, :SubnetId, :SubnetZone, :VPCCIDRBlock, :SubnetCIDRBlock
 
-        def initialize(subnetzone=nil, vpccidrblock=nil, subnetcidrblock=nil)
+        def initialize(vpcid=nil, subnetid=nil, subnetzone=nil, vpccidrblock=nil, subnetcidrblock=nil)
+          @VPCId = vpcid
+          @SubnetId = subnetid
           @SubnetZone = subnetzone
           @VPCCIDRBlock = vpccidrblock
           @SubnetCIDRBlock = subnetcidrblock
         end
 
         def deserialize(params)
+          @VPCId = params['VPCId']
+          @SubnetId = params['SubnetId']
           @SubnetZone = params['SubnetZone']
           @VPCCIDRBlock = params['VPCCIDRBlock']
           @SubnetCIDRBlock = params['SubnetCIDRBlock']

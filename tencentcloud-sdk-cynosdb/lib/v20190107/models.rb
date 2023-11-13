@@ -4332,6 +4332,62 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterDatabases请求参数结构体
+      class DescribeClusterDatabasesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页限制数量
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :Offset, :Limit
+
+        def initialize(clusterid=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusterDatabases返回参数结构体
+      class DescribeClusterDatabasesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Databases: 数据库列表
+        # @type Databases: Array
+        # @param Limit: 分页限制数
+        # @type Limit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Offset, :Databases, :Limit, :RequestId
+
+        def initialize(totalcount=nil, offset=nil, databases=nil, limit=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Offset = offset
+          @Databases = databases
+          @Limit = limit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Offset = params['Offset']
+          @Databases = params['Databases']
+          @Limit = params['Limit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterDetailDatabases请求参数结构体
       class DescribeClusterDetailDatabasesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

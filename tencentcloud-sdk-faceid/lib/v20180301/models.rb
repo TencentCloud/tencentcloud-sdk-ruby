@@ -17,6 +17,30 @@
 module TencentCloud
   module Faceid
     module V20180301
+      # 疑似攻击风险详情
+      class AttackRiskDetail < TencentCloud::Common::AbstractModel
+        # @param Type: 疑似的攻击痕迹类型
+        # SuspectedSpoofingAttack：翻拍攻击
+        # SuspectedSynthesisImage：疑似合成图片
+        # SuspectedSynthesisVideo：疑似合成视频
+        # SuspectedeAnomalyAttack：人脸特征疑似非真人
+        # SuspectedAdversarialAttack：疑似对抗样本攻击
+        # SuspectedBlackIndustry：疑似黑产攻击
+        # SuspectedWatermark：疑似存在水印
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
       # BankCard2EVerification请求参数结构体
       class BankCard2EVerificationRequest < TencentCloud::Common::AbstractModel
         # @param Name: 姓名
@@ -663,6 +687,73 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DetectAIFakeFaces请求参数结构体
+      class DetectAIFakeFacesRequest < TencentCloud::Common::AbstractModel
+        # @param FaceInput: 传入需要进行检测的带有人脸的图片或视频，使用base64编码的形式。
+
+        # 图片的Base64值：
+        # 建议整体图像480x640的分辨率，脸部 大小 100X100 以上；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+
+        # 视频的Base64值：
+        # Base64编码后的大小不超过8M，支持mp4、avi、flv格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @type FaceInput: String
+        # @param FaceInputType: 传入的类型
+        # 1- 传入的是图片类型
+        # 2- 传入的是视频类型
+        # 其他 - 返回错误码InvalidParameter
+        # @type FaceInputType: Integer
+
+        attr_accessor :FaceInput, :FaceInputType
+
+        def initialize(faceinput=nil, faceinputtype=nil)
+          @FaceInput = faceinput
+          @FaceInputType = faceinputtype
+        end
+
+        def deserialize(params)
+          @FaceInput = params['FaceInput']
+          @FaceInputType = params['FaceInputType']
+        end
+      end
+
+      # DetectAIFakeFaces返回参数结构体
+      class DetectAIFakeFacesResponse < TencentCloud::Common::AbstractModel
+        # @param AttackRiskLevel: 检测到的图片是否存在攻击：
+        # Low：无攻击风险
+        # Mid：中度疑似攻击
+        # High：高度疑似攻击
+        # @type AttackRiskLevel: String
+        # @param AttackRiskDetailList: 检测到疑似的攻击痕迹列表
+        # 说明：未检测到攻击痕迹时，返回空数组
+        # 此出参仅作为结果判断的参考，实际应用仍建议使用AttackRiskLevel的结果。
+        # @type AttackRiskDetailList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AttackRiskLevel, :AttackRiskDetailList, :RequestId
+
+        def initialize(attackrisklevel=nil, attackriskdetaillist=nil, requestid=nil)
+          @AttackRiskLevel = attackrisklevel
+          @AttackRiskDetailList = attackriskdetaillist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AttackRiskLevel = params['AttackRiskLevel']
+          unless params['AttackRiskDetailList'].nil?
+            @AttackRiskDetailList = []
+            params['AttackRiskDetailList'].each do |i|
+              attackriskdetail_tmp = AttackRiskDetail.new
+              attackriskdetail_tmp.deserialize(i)
+              @AttackRiskDetailList << attackriskdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

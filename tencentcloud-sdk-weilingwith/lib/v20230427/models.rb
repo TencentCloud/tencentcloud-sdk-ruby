@@ -44,6 +44,107 @@ module TencentCloud
         end
       end
 
+      # 应用描述
+      class ApplicationInfo < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用分配的appId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param Name: 应用中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Address: 应用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Address: String
+        # @param ApplicationLogo: 应用logo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationLogo: :class:`Tencentcloud::Weilingwith.v20230427.models.ApplicationLogo`
+        # @param Type: 应用类型，0:saas应用 1:平台应用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param EnglishName: engine
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnglishName: String
+        # @param Description: 能源管理应用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :ApplicationId, :Name, :Address, :ApplicationLogo, :Type, :EnglishName, :Description
+
+        def initialize(applicationid=nil, name=nil, address=nil, applicationlogo=nil, type=nil, englishname=nil, description=nil)
+          @ApplicationId = applicationid
+          @Name = name
+          @Address = address
+          @ApplicationLogo = applicationlogo
+          @Type = type
+          @EnglishName = englishname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @Name = params['Name']
+          @Address = params['Address']
+          unless params['ApplicationLogo'].nil?
+            @ApplicationLogo = ApplicationLogo.new
+            @ApplicationLogo.deserialize(params['ApplicationLogo'])
+          end
+          @Type = params['Type']
+          @EnglishName = params['EnglishName']
+          @Description = params['Description']
+        end
+      end
+
+      # 应用列表
+      class ApplicationList < TencentCloud::Common::AbstractModel
+        # @param ApplicationInfoList: 应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationInfoList: Array
+        # @param TotalCount: 当前查询条件命中的数据总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: String
+
+        attr_accessor :ApplicationInfoList, :TotalCount
+
+        def initialize(applicationinfolist=nil, totalcount=nil)
+          @ApplicationInfoList = applicationinfolist
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['ApplicationInfoList'].nil?
+            @ApplicationInfoList = []
+            params['ApplicationInfoList'].each do |i|
+              applicationinfo_tmp = ApplicationInfo.new
+              applicationinfo_tmp.deserialize(i)
+              @ApplicationInfoList << applicationinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # 应用logo
+      class ApplicationLogo < TencentCloud::Common::AbstractModel
+        # @param FileId: logo图片对应的fileId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileId: String
+        # @param Url: logo图片地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :FileId, :Url
+
+        def initialize(fileid=nil, url=nil)
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Url = params['Url']
+        end
+      end
+
       # BatchCreateDevice请求参数结构体
       class BatchCreateDeviceRequest < TencentCloud::Common::AbstractModel
 
@@ -397,27 +498,55 @@ module TencentCloud
 
       # DescribeApplicationList请求参数结构体
       class DescribeApplicationListRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 项目空间id，本次查询返回的应用均关联至该空间
+        # @type WorkspaceId: Integer
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param ApplicationId: 应用id数组，可选，填了则表示根据id批量查询
+        # @type ApplicationId: Array
+        # @param PageNumber: 请求页号
+        # @type PageNumber: Integer
+        # @param PageSize: 页容量，默认为10
+        # @type PageSize: Integer
 
+        attr_accessor :WorkspaceId, :ApplicationToken, :ApplicationId, :PageNumber, :PageSize
 
-        def initialize()
+        def initialize(workspaceid=nil, applicationtoken=nil, applicationid=nil, pagenumber=nil, pagesize=nil)
+          @WorkspaceId = workspaceid
+          @ApplicationToken = applicationtoken
+          @ApplicationId = applicationid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @ApplicationToken = params['ApplicationToken']
+          @ApplicationId = params['ApplicationId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
         end
       end
 
       # DescribeApplicationList返回参数结构体
       class DescribeApplicationListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 应用列表
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.ApplicationList`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ApplicationList.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -586,27 +715,71 @@ module TencentCloud
 
       # DescribeDeviceShadowList请求参数结构体
       class DescribeDeviceShadowListRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param WIDSet: WID
+        # @type WIDSet: Array
+        # @param PageNumber: 分页查询，第几页
+        # @type PageNumber: Integer
+        # @param PageSize: 每页条数
+        # @type PageSize: Integer
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param DeviceTypeSet: 设备类型code
+        # @type DeviceTypeSet: Array
+        # @param ProductIdSet: 产品 pid
+        # @type ProductIdSet: Array
+        # @param SpaceCodeSet: 空间层级，（支持空间多层，比如具体建筑、具体楼层）
+        # @type SpaceCodeSet: Array
+        # @param DeviceTagSet: 设备标签名
+        # @type DeviceTagSet: Array
 
+        attr_accessor :WorkspaceId, :WIDSet, :PageNumber, :PageSize, :ApplicationToken, :DeviceTypeSet, :ProductIdSet, :SpaceCodeSet, :DeviceTagSet
 
-        def initialize()
+        def initialize(workspaceid=nil, widset=nil, pagenumber=nil, pagesize=nil, applicationtoken=nil, devicetypeset=nil, productidset=nil, spacecodeset=nil, devicetagset=nil)
+          @WorkspaceId = workspaceid
+          @WIDSet = widset
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ApplicationToken = applicationtoken
+          @DeviceTypeSet = devicetypeset
+          @ProductIdSet = productidset
+          @SpaceCodeSet = spacecodeset
+          @DeviceTagSet = devicetagset
         end
 
         def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @WIDSet = params['WIDSet']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ApplicationToken = params['ApplicationToken']
+          @DeviceTypeSet = params['DeviceTypeSet']
+          @ProductIdSet = params['ProductIdSet']
+          @SpaceCodeSet = params['SpaceCodeSet']
+          @DeviceTagSet = params['DeviceTagSet']
         end
       end
 
       # DescribeDeviceShadowList返回参数结构体
       class DescribeDeviceShadowListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取设备影子结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.DeviceShadowRes`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DeviceShadowRes.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1430,12 +1603,54 @@ module TencentCloud
 
       # DescribeVideoRecordStream请求参数结构体
       class DescribeVideoRecordStreamRequest < TencentCloud::Common::AbstractModel
+        # @param WID: 设备唯一标识
+        # @type WID: String
+        # @param Protocol: 枚举如下：
+        # flvsh
+        # rtmp
+        # hls
+        # webrtc
+        # raw (视频原始帧)
+        # @type Protocol: String
+        # @param StartTime: 开始时间（精确到毫秒）
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间（精确到毫秒）
+        # @type EndTime: Integer
+        # @param PlayBackRate: 倍速 0.5、1、2、4
+        # @type PlayBackRate: Float
+        # @param WorkspaceId: 工作空间id
+        # @type WorkspaceId: Integer
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param Stream: 流的唯一标识，播放链接尾缀
+        # @type Stream: String
+        # @param Env: 公有云私有化项目传0或者不传；混合云项目一般传空间id
+        # @type Env: String
 
+        attr_accessor :WID, :Protocol, :StartTime, :EndTime, :PlayBackRate, :WorkspaceId, :ApplicationToken, :Stream, :Env
 
-        def initialize()
+        def initialize(wid=nil, protocol=nil, starttime=nil, endtime=nil, playbackrate=nil, workspaceid=nil, applicationtoken=nil, stream=nil, env=nil)
+          @WID = wid
+          @Protocol = protocol
+          @StartTime = starttime
+          @EndTime = endtime
+          @PlayBackRate = playbackrate
+          @WorkspaceId = workspaceid
+          @ApplicationToken = applicationtoken
+          @Stream = stream
+          @Env = env
         end
 
         def deserialize(params)
+          @WID = params['WID']
+          @Protocol = params['Protocol']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PlayBackRate = params['PlayBackRate']
+          @WorkspaceId = params['WorkspaceId']
+          @ApplicationToken = params['ApplicationToken']
+          @Stream = params['Stream']
+          @Env = params['Env']
         end
       end
 
@@ -1568,6 +1783,77 @@ module TencentCloud
         end
       end
 
+      # 设备影子信息
+      class DeviceShadowInfo < TencentCloud::Common::AbstractModel
+        # @param WID: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WID: String
+        # @param DeviceShadow: 设备影子数据,返回有效数据为"x-json:"后字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceShadow: String
+        # @param DeviceShadowUpdateTime: 设备影子更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceShadowUpdateTime: String
+
+        attr_accessor :WID, :DeviceShadow, :DeviceShadowUpdateTime
+
+        def initialize(wid=nil, deviceshadow=nil, deviceshadowupdatetime=nil)
+          @WID = wid
+          @DeviceShadow = deviceshadow
+          @DeviceShadowUpdateTime = deviceshadowupdatetime
+        end
+
+        def deserialize(params)
+          @WID = params['WID']
+          @DeviceShadow = params['DeviceShadow']
+          @DeviceShadowUpdateTime = params['DeviceShadowUpdateTime']
+        end
+      end
+
+      # 设备影子查询列表
+      class DeviceShadowRes < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 第几页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 每页条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalPage: 总页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPage: Integer
+        # @param TotalRow: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalRow: Integer
+        # @param Set: 设备影子列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Set: Array
+
+        attr_accessor :PageNumber, :PageSize, :TotalPage, :TotalRow, :Set
+
+        def initialize(pagenumber=nil, pagesize=nil, totalpage=nil, totalrow=nil, set=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalPage = totalpage
+          @TotalRow = totalrow
+          @Set = set
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalPage = params['TotalPage']
+          @TotalRow = params['TotalRow']
+          unless params['Set'].nil?
+            @Set = []
+            params['Set'].each do |i|
+              deviceshadowinfo_tmp = DeviceShadowInfo.new
+              deviceshadowinfo_tmp.deserialize(i)
+              @Set << deviceshadowinfo_tmp
+            end
+          end
+        end
+      end
+
       # ModifyDeviceName请求参数结构体
       class ModifyDeviceNameRequest < TencentCloud::Common::AbstractModel
 
@@ -1686,7 +1972,7 @@ module TencentCloud
         # @param RealName: 用户名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealName: String
-        # @param UserType: 用户类型
+        # @param UserType: 用户类型，1-超级管理员；2-1号管理员；3-普通管理员；99-普通用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserType: String
         # @param TenantId: 所属租户ID
@@ -1785,7 +2071,7 @@ module TencentCloud
         # @param RealName: 用户名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RealName: String
-        # @param UserType: 用户类型
+        # @param UserType: 用户类型，1-超级管理员；2-1号管理员；3-普通管理员；99-普通用户
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserType: String
         # @param TenantId: 所属租户ID
@@ -1800,7 +2086,7 @@ module TencentCloud
         # @param Phone: 电话
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
-        # @param Status: 用户状态
+        # @param Status: 用户状态，0待审核，1正常启用，2禁用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param CreateAt: 创建时间
@@ -1809,13 +2095,13 @@ module TencentCloud
         # @param UpdateAt: 更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateAt: Integer
-        # @param BelongTeam: 是否属于团队
+        # @param BelongTeam: 是否属于团队，0不可用，1属于，2不属
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongTeam: Integer
-        # @param DepartmentId: ID
+        # @param DepartmentId: 部门ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentId: String
-        # @param DepartmentName: 名称
+        # @param DepartmentName: 部门名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DepartmentName: String
         # @param DepartmentUserId: 子账户ID
