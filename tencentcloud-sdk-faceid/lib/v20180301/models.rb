@@ -1335,10 +1335,12 @@ module TencentCloud
         # @type IsEncrypt: Boolean
         # @param Encryption: 是否需要对返回中的敏感信息进行加密。仅指定加密算法Algorithm即可，其余字段传入默认值。其中敏感信息包括：Response.Text.IdCard、Response.Text.Name、Response.Text.OcrIdCard、Response.Text.OcrName
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+        # @param IsEncryptResponse: 是否对回包整体进行加密
+        # @type IsEncryptResponse: Boolean
 
-        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption
+        attr_accessor :BizToken, :RuleId, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar, :IsEncrypt, :Encryption, :IsEncryptResponse
 
-        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil)
+        def initialize(biztoken=nil, ruleid=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil, isencrypt=nil, encryption=nil, isencryptresponse=nil)
           @BizToken = biztoken
           @RuleId = ruleid
           @InfoType = infotype
@@ -1347,6 +1349,7 @@ module TencentCloud
           @IsNeedIdCardAvatar = isneedidcardavatar
           @IsEncrypt = isencrypt
           @Encryption = encryption
+          @IsEncryptResponse = isencryptresponse
         end
 
         def deserialize(params)
@@ -1361,6 +1364,7 @@ module TencentCloud
             @Encryption = Encryption.new
             @Encryption.deserialize(params['Encryption'])
           end
+          @IsEncryptResponse = params['IsEncryptResponse']
         end
       end
 
@@ -1390,12 +1394,15 @@ module TencentCloud
         # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionActionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionActionResult`
+        # @param EncryptedBody: 加密后的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptedBody: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :EncryptedBody, :RequestId
 
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, encryptedbody=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
@@ -1404,6 +1411,7 @@ module TencentCloud
           @IntentionVerifyData = intentionverifydata
           @IntentionQuestionResult = intentionquestionresult
           @IntentionActionResult = intentionactionresult
+          @EncryptedBody = encryptedbody
           @RequestId = requestid
         end
 
@@ -1440,6 +1448,7 @@ module TencentCloud
             @IntentionActionResult = IntentionActionResult.new
             @IntentionActionResult.deserialize(params['IntentionActionResult'])
           end
+          @EncryptedBody = params['EncryptedBody']
           @RequestId = params['RequestId']
         end
       end
