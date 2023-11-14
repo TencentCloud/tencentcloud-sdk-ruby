@@ -900,7 +900,29 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 没有在使用。
+        # Waf 斯巴达版本查询cc自动封堵状态
+
+        # @param request: Request instance for DescribeCCAutoStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeCCAutoStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeCCAutoStatusResponse`
+        def DescribeCCAutoStatus(request)
+          body = send_request('DescribeCCAutoStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCCAutoStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
 
         # Waf  CC V2 Query接口
 
@@ -2897,30 +2919,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 配置WAF自动封禁模块状态
-
-        # @param request: Request instance for ModifyWafAutoDenyStatus.
-        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyWafAutoDenyStatusRequest`
-        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyWafAutoDenyStatusResponse`
-        def ModifyWafAutoDenyStatus(request)
-          body = send_request('ModifyWafAutoDenyStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyWafAutoDenyStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 配置WAF威胁情报封禁模块详情
 
         # @param request: Request instance for ModifyWafThreatenIntelligence.
@@ -3099,6 +3097,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchElasticModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Waf 斯巴达版本更新cc自动封堵状态
+
+        # @param request: Request instance for UpsertCCAutoStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::UpsertCCAutoStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::UpsertCCAutoStatusResponse`
+        def UpsertCCAutoStatus(request)
+          body = send_request('UpsertCCAutoStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpsertCCAutoStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

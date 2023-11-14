@@ -2,11 +2,11 @@
 
 require 'tencentcloud-sdk-common'
 
-require_relative 'v20201014/client'
-require_relative 'v20201014/models'
-
 require_relative 'v20190929/client'
 require_relative 'v20190929/models'
+
+require_relative 'v20201014/client'
+require_relative 'v20201014/models'
 
 module TencentCloud
   module Mgobe
