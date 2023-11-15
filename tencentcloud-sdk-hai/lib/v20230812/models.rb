@@ -102,6 +102,42 @@ module TencentCloud
         end
       end
 
+      # TerminateInstances请求参数结构体
+      class TerminateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
+        # @param DryRun: 默认为False，True代表只验证接口连通性
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceIds, :DryRun
+
+        def initialize(instanceids=nil, dryrun=nil)
+          @InstanceIds = instanceids
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # TerminateInstances返回参数结构体
+      class TerminateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
     end
   end
 end

@@ -4657,10 +4657,10 @@ module TencentCloud
 
       # 扫描任务详情
       class ScanTaskInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务日志Id
+        # @param TaskId: 任务Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务日志名称
+        # @param TaskName: 任务名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
         # @param Status: 任务状态码：1等待开始  2正在扫描  3扫描出错 4扫描完成
@@ -4669,13 +4669,13 @@ module TencentCloud
         # @param Progress: 任务进度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
-        # @param TaskTime: 对应的展示时间
+        # @param TaskTime: 任务完成时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTime: String
-        # @param ReportId: 报表id
+        # @param ReportId: 报告ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportId: String
-        # @param ReportName: 报表名称
+        # @param ReportName: 报告名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportName: String
         # @param ScanPlan: 扫描计划，0-周期任务,1-立即扫描,2-定时扫描,3-自定义
@@ -5337,7 +5337,7 @@ module TencentCloud
         # @param AssetName: 资产名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
-        # @param InstanceType: 	资产类型
+        # @param InstanceType: 资产类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param AssetType: 资产分类
@@ -5466,7 +5466,7 @@ module TencentCloud
         # @param RiskNumber: 安全风险数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskNumber: Integer
-        # @param Time: 报告生成时间,任务结束时间
+        # @param Time: 报告生成时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
         # @param Status: 任务状态码：0 初始值  1正在扫描  2扫描完成  3扫描出错，4停止，5暂停，6该任务已被重启过
@@ -5655,11 +5655,11 @@ module TencentCloud
         # @type RecentTime: String
         # @param FirstTime: 首次识别时间
         # @type FirstTime: String
-        # @param AffectAssetCount: 状态，0未处理、1已处置、2已忽略
+        # @param AffectAssetCount: 影响资产数量
         # @type AffectAssetCount: Integer
-        # @param Id: 资产唯一id
+        # @param Id: 风险ID
         # @type Id: String
-        # @param From: 资产子类型
+        # @param From: 扫描来源，具体看接口返回枚举类型
         # @type From: String
         # @param Index: 前端索引
         # @type Index: String
@@ -5671,15 +5671,15 @@ module TencentCloud
         # @type CVE: String
         # @param Describe: 描述
         # @type Describe: String
-        # @param Payload: 负载
+        # @param Payload: 漏洞payload
         # @type Payload: String
-        # @param AppName: 版本名
+        # @param AppName: 漏洞影响组件
         # @type AppName: String
-        # @param References: 相关引用
+        # @param References: 技术参考
         # @type References: String
-        # @param AppVersion: 版本
+        # @param AppVersion: 漏洞影响版本
         # @type AppVersion: String
-        # @param VULURL: 漏洞链接
+        # @param VULURL: 风险点
         # @type VULURL: String
         # @param Nick: 用户昵称
         # 注意：此字段可能返回 null，表示取不到有效值。

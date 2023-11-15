@@ -18995,19 +18995,24 @@ module TencentCloud
         # <li>2：双声道</li>
         # 默认值：2。
         # @type AudioChannel: Integer
+        # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
+        # 当取值为 0，将自动设置音频码率。
+        # @type Bitrate: Integer
 
-        attr_accessor :Codec, :SampleRate, :AudioChannel
+        attr_accessor :Codec, :SampleRate, :AudioChannel, :Bitrate
 
-        def initialize(codec=nil, samplerate=nil, audiochannel=nil)
+        def initialize(codec=nil, samplerate=nil, audiochannel=nil, bitrate=nil)
           @Codec = codec
           @SampleRate = samplerate
           @AudioChannel = audiochannel
+          @Bitrate = bitrate
         end
 
         def deserialize(params)
           @Codec = params['Codec']
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
+          @Bitrate = params['Bitrate']
         end
       end
 

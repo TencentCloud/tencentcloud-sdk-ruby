@@ -695,8 +695,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2023, 10
-        deprecate :MaxReplicas=, :none, 2023, 10
+        deprecate :MaxReplicas, :none, 2023, 11
+        deprecate :MaxReplicas=, :none, 2023, 11
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -758,14 +758,14 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2023, 10
-        deprecate :CreateTime=, :none, 2023, 10
-        deprecate :ModifyTime, :none, 2023, 10
-        deprecate :ModifyTime=, :none, 2023, 10
-        deprecate :StrategyId, :none, 2023, 10
-        deprecate :StrategyId=, :none, 2023, 10
-        deprecate :AutoScalerId, :none, 2023, 10
-        deprecate :AutoScalerId=, :none, 2023, 10
+        deprecate :CreateTime, :none, 2023, 11
+        deprecate :CreateTime=, :none, 2023, 11
+        deprecate :ModifyTime, :none, 2023, 11
+        deprecate :ModifyTime=, :none, 2023, 11
+        deprecate :StrategyId, :none, 2023, 11
+        deprecate :StrategyId=, :none, 2023, 11
+        deprecate :AutoScalerId, :none, 2023, 11
+        deprecate :AutoScalerId=, :none, 2023, 11
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -852,12 +852,12 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2023, 10
-        deprecate :CreateTime=, :none, 2023, 10
-        deprecate :ModifyTime, :none, 2023, 10
-        deprecate :ModifyTime=, :none, 2023, 10
-        deprecate :StrategyId, :none, 2023, 10
-        deprecate :StrategyId=, :none, 2023, 10
+        deprecate :CreateTime, :none, 2023, 11
+        deprecate :CreateTime=, :none, 2023, 11
+        deprecate :ModifyTime, :none, 2023, 11
+        deprecate :ModifyTime=, :none, 2023, 11
+        deprecate :StrategyId, :none, 2023, 11
+        deprecate :StrategyId=, :none, 2023, 11
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -997,10 +997,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2023, 10
-        deprecate :Key=, :none, 2023, 10
-        deprecate :Crt, :none, 2023, 10
-        deprecate :Crt=, :none, 2023, 10
+        deprecate :Key, :none, 2023, 11
+        deprecate :Key=, :none, 2023, 11
+        deprecate :Crt, :none, 2023, 11
+        deprecate :Crt=, :none, 2023, 11
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -1277,8 +1277,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 10
-        deprecate :ForceHttps=, :none, 2023, 10
+        deprecate :ForceHttps, :none, 2023, 11
+        deprecate :ForceHttps=, :none, 2023, 11
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -2897,6 +2897,49 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudNativeAPIGatewayUpstream请求参数结构体
+      class DescribeCloudNativeAPIGatewayUpstreamRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param ServiceName: 服务名字
+        # @type ServiceName: String
+
+        attr_accessor :GatewayId, :ServiceName
+
+        def initialize(gatewayid=nil, servicename=nil)
+          @GatewayId = gatewayid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # DescribeCloudNativeAPIGatewayUpstream返回参数结构体
+      class DescribeCloudNativeAPIGatewayUpstreamResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 无
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.KongUpstreamList`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = KongUpstreamList.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGateways请求参数结构体
       class DescribeCloudNativeAPIGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 返回数量，默认为 20，最大值为 100。
@@ -3447,6 +3490,50 @@ module TencentCloud
         end
       end
 
+      # DescribeUpstreamHealthCheckConfig请求参数结构体
+      class DescribeUpstreamHealthCheckConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 网关服务名称
+        # @type Name: String
+
+        attr_accessor :GatewayId, :Name
+
+        def initialize(gatewayid=nil, name=nil)
+          @GatewayId = gatewayid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeUpstreamHealthCheckConfig返回参数结构体
+      class DescribeUpstreamHealthCheckConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.UpstreamHealthCheckConfig`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = UpstreamHealthCheckConfig.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZookeeperReplicas请求参数结构体
       class DescribeZookeeperReplicasRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例ID
@@ -3960,6 +4047,33 @@ module TencentCloud
         end
       end
 
+      # Kong网关主动健康检查配置
+      class KongActiveHealthCheck < TencentCloud::Common::AbstractModel
+        # @param HealthyInterval: 主动健康检查健康探测间隔，单位：秒，0表示不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyInterval: Integer
+        # @param UnHealthyInterval: 主动健康检查异常探测间隔，单位：秒，0表示不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnHealthyInterval: Integer
+        # @param HttpPath: 在 GET HTTP 请求中使用的路径，以作为主动运行状况检查的探测器运行。默认： ”/”。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpPath: String
+
+        attr_accessor :HealthyInterval, :UnHealthyInterval, :HttpPath
+
+        def initialize(healthyinterval=nil, unhealthyinterval=nil, httppath=nil)
+          @HealthyInterval = healthyinterval
+          @UnHealthyInterval = unhealthyinterval
+          @HttpPath = httppath
+        end
+
+        def deserialize(params)
+          @HealthyInterval = params['HealthyInterval']
+          @UnHealthyInterval = params['UnHealthyInterval']
+          @HttpPath = params['HttpPath']
+        end
+      end
+
       # 云原生网关证书
       class KongCertificate < TencentCloud::Common::AbstractModel
         # @param Cert: 无
@@ -3994,8 +4108,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2023, 10
-        deprecate :Pages=, :none, 2023, 10
+        deprecate :Pages, :none, 2023, 11
+        deprecate :Pages=, :none, 2023, 11
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -4086,6 +4200,23 @@ module TencentCloud
         end
       end
 
+      # Kong网关被动健康检查配置
+      class KongPassiveHealthCheck < TencentCloud::Common::AbstractModel
+        # @param Type: 后端target协议类型，被动健康检查支持http和tcp，主动健康检查支持http
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
       # 云原生网关路由信息
       class KongRoutePreview < TencentCloud::Common::AbstractModel
         # @param ID: 服务ID
@@ -4136,8 +4267,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 10
-        deprecate :ForceHttps=, :none, 2023, 10
+        deprecate :ForceHttps, :none, 2023, 11
+        deprecate :ForceHttps=, :none, 2023, 11
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -4527,6 +4658,64 @@ module TencentCloud
         end
       end
 
+      # kong后端upstream列表
+      class KongUpstreamList < TencentCloud::Common::AbstractModel
+        # @param UpstreamList: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamList: Array
+
+        attr_accessor :UpstreamList
+
+        def initialize(upstreamlist=nil)
+          @UpstreamList = upstreamlist
+        end
+
+        def deserialize(params)
+          unless params['UpstreamList'].nil?
+            @UpstreamList = []
+            params['UpstreamList'].each do |i|
+              kongupstreampreview_tmp = KongUpstreamPreview.new
+              kongupstreampreview_tmp.deserialize(i)
+              @UpstreamList << kongupstreampreview_tmp
+            end
+          end
+        end
+      end
+
+      # 云原生网关Upstream信息
+      class KongUpstreamPreview < TencentCloud::Common::AbstractModel
+        # @param ID: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 服务名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Target: 后端配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Target: Array
+
+        attr_accessor :ID, :Name, :Target
+
+        def initialize(id=nil, name=nil, target=nil)
+          @ID = id
+          @Name = name
+          @Target = target
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          unless params['Target'].nil?
+            @Target = []
+            params['Target'].each do |i|
+              kongtarget_tmp = KongTarget.new
+              kongtarget_tmp.deserialize(i)
+              @Target << kongtarget_tmp
+            end
+          end
+        end
+      end
+
       # 获取云原生API网关实例列表响应结果。
       class ListCloudNativeAPIGatewayResult < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数。
@@ -4644,10 +4833,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2023, 10
-        deprecate :Name=, :none, 2023, 10
-        deprecate :BindDomains, :none, 2023, 10
-        deprecate :BindDomains=, :none, 2023, 10
+        deprecate :Name, :none, 2023, 11
+        deprecate :Name=, :none, 2023, 11
+        deprecate :BindDomains, :none, 2023, 11
+        deprecate :BindDomains=, :none, 2023, 11
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -4831,8 +5020,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2023, 10
-        deprecate :ForceHttps=, :none, 2023, 10
+        deprecate :ForceHttps, :none, 2023, 11
+        deprecate :ForceHttps=, :none, 2023, 11
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -5051,6 +5240,59 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUpstreamNodeStatus请求参数结构体
+      class ModifyUpstreamNodeStatusRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+        # @param Host: 访问IP地址或域名
+        # @type Host: String
+        # @param Port: 访问端口
+        # @type Port: Integer
+        # @param Status: HEALTHY或UNHEALTHY
+        # @type Status: String
+
+        attr_accessor :GatewayId, :ServiceName, :Host, :Port, :Status
+
+        def initialize(gatewayid=nil, servicename=nil, host=nil, port=nil, status=nil)
+          @GatewayId = gatewayid
+          @ServiceName = servicename
+          @Host = host
+          @Port = port
+          @Status = status
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServiceName = params['ServiceName']
+          @Host = params['Host']
+          @Port = params['Port']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyUpstreamNodeStatus返回参数结构体
+      class ModifyUpstreamNodeStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -5830,6 +6072,54 @@ module TencentCloud
         end
       end
 
+      # UpdateUpstreamHealthCheckConfig请求参数结构体
+      class UpdateUpstreamHealthCheckConfigRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Name: 网关服务名称
+        # @type Name: String
+        # @param HealthCheckConfig: 健康检查配置
+        # @type HealthCheckConfig: :class:`Tencentcloud::Tse.v20201207.models.UpstreamHealthCheckConfig`
+
+        attr_accessor :GatewayId, :Name, :HealthCheckConfig
+
+        def initialize(gatewayid=nil, name=nil, healthcheckconfig=nil)
+          @GatewayId = gatewayid
+          @Name = name
+          @HealthCheckConfig = healthcheckconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Name = params['Name']
+          unless params['HealthCheckConfig'].nil?
+            @HealthCheckConfig = UpstreamHealthCheckConfig.new
+            @HealthCheckConfig.deserialize(params['HealthCheckConfig'])
+          end
+        end
+      end
+
+      # UpdateUpstreamHealthCheckConfig返回参数结构体
+      class UpdateUpstreamHealthCheckConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateUpstreamTargets请求参数结构体
       class UpdateUpstreamTargetsRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID
@@ -5879,6 +6169,69 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云原生网关健康检查配置
+      class UpstreamHealthCheckConfig < TencentCloud::Common::AbstractModel
+        # @param EnableActiveHealthCheck: 开启主动健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableActiveHealthCheck: Boolean
+        # @param ActiveHealthCheck: 主动健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveHealthCheck: :class:`Tencentcloud::Tse.v20201207.models.KongActiveHealthCheck`
+        # @param EnablePassiveHealthCheck: 开启被动健康检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnablePassiveHealthCheck: Boolean
+        # @param PassiveHealthCheck: 被动健康检查配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassiveHealthCheck: :class:`Tencentcloud::Tse.v20201207.models.KongPassiveHealthCheck`
+        # @param Successes: 连续健康阈值，单位：次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Successes: Integer
+        # @param Failures: 连续异常阈值，单位：次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Failures: Integer
+        # @param Timeouts: 超时阈值，单位：次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeouts: Integer
+        # @param HealthyHttpStatuses: 健康HTTP状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyHttpStatuses: Array
+        # @param UnhealthyHttpStatuses: 异常HTTP状态码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnhealthyHttpStatuses: Array
+
+        attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses
+
+        def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil)
+          @EnableActiveHealthCheck = enableactivehealthcheck
+          @ActiveHealthCheck = activehealthcheck
+          @EnablePassiveHealthCheck = enablepassivehealthcheck
+          @PassiveHealthCheck = passivehealthcheck
+          @Successes = successes
+          @Failures = failures
+          @Timeouts = timeouts
+          @HealthyHttpStatuses = healthyhttpstatuses
+          @UnhealthyHttpStatuses = unhealthyhttpstatuses
+        end
+
+        def deserialize(params)
+          @EnableActiveHealthCheck = params['EnableActiveHealthCheck']
+          unless params['ActiveHealthCheck'].nil?
+            @ActiveHealthCheck = KongActiveHealthCheck.new
+            @ActiveHealthCheck.deserialize(params['ActiveHealthCheck'])
+          end
+          @EnablePassiveHealthCheck = params['EnablePassiveHealthCheck']
+          unless params['PassiveHealthCheck'].nil?
+            @PassiveHealthCheck = KongPassiveHealthCheck.new
+            @PassiveHealthCheck.deserialize(params['PassiveHealthCheck'])
+          end
+          @Successes = params['Successes']
+          @Failures = params['Failures']
+          @Timeouts = params['Timeouts']
+          @HealthyHttpStatuses = params['HealthyHttpStatuses']
+          @UnhealthyHttpStatuses = params['UnhealthyHttpStatuses']
         end
       end
 

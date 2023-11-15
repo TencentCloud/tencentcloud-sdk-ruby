@@ -15557,17 +15557,21 @@ module TencentCloud
         # @type CustomerGatewayId: String
         # @param CustomerGatewayName: 对端网关名称，可任意命名，但不得超过60个字符。
         # @type CustomerGatewayName: String
+        # @param BgpAsn: BGP ASN。只有开启BGP白名单才可以修改此参数。
+        # @type BgpAsn: Integer
 
-        attr_accessor :CustomerGatewayId, :CustomerGatewayName
+        attr_accessor :CustomerGatewayId, :CustomerGatewayName, :BgpAsn
 
-        def initialize(customergatewayid=nil, customergatewayname=nil)
+        def initialize(customergatewayid=nil, customergatewayname=nil, bgpasn=nil)
           @CustomerGatewayId = customergatewayid
           @CustomerGatewayName = customergatewayname
+          @BgpAsn = bgpasn
         end
 
         def deserialize(params)
           @CustomerGatewayId = params['CustomerGatewayId']
           @CustomerGatewayName = params['CustomerGatewayName']
+          @BgpAsn = params['BgpAsn']
         end
       end
 

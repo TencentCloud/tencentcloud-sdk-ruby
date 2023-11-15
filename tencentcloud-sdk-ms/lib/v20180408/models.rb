@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2023, 10
-        deprecate :CosTocken=, :none, 2023, 10
+        deprecate :CosTocken, :none, 2023, 11
+        deprecate :CosTocken=, :none, 2023, 11
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -2270,10 +2270,26 @@ module TencentCloud
         # @type AntiScreenshot: Integer
         # @param AntiSSL: SSL证书防窃取，0关闭，1开启
         # @type AntiSSL: Integer
+        # @param SetFile: Dex分离，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetFile: String
+        # @param FileSign: Dex签名校验，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSign: String
+        # @param AntiRoot: root检测，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AntiRoot: String
 
-        attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL
+        attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL, :SetFile, :FileSign, :AntiRoot
+        extend Gem::Deprecate
+        deprecate :SeperateDex, :none, 2023, 11
+        deprecate :SeperateDex=, :none, 2023, 11
+        deprecate :DexSig, :none, 2023, 11
+        deprecate :DexSig=, :none, 2023, 11
+        deprecate :AntiQemuRoot, :none, 2023, 11
+        deprecate :AntiQemuRoot=, :none, 2023, 11
 
-        def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil)
+        def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, setfile=nil, filesign=nil, antiroot=nil)
           @ApkSizeOpt = apksizeopt
           @Dex = dex
           @So = so
@@ -2290,6 +2306,9 @@ module TencentCloud
           @AntiAssets = antiassets
           @AntiScreenshot = antiscreenshot
           @AntiSSL = antissl
+          @SetFile = setfile
+          @FileSign = filesign
+          @AntiRoot = antiroot
         end
 
         def deserialize(params)
@@ -2312,6 +2331,9 @@ module TencentCloud
           @AntiAssets = params['AntiAssets']
           @AntiScreenshot = params['AntiScreenshot']
           @AntiSSL = params['AntiSSL']
+          @SetFile = params['SetFile']
+          @FileSign = params['FileSign']
+          @AntiRoot = params['AntiRoot']
         end
       end
 

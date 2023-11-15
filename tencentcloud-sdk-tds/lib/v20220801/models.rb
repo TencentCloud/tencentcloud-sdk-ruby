@@ -279,12 +279,14 @@ module TencentCloud
         # @type SceneRiskInfos: Array
         # @param SuggestionLevel: 建议等级。1-极差，2-较差，3-中等，4-良好，5-优秀
         # @type SuggestionLevel: Integer
+        # @param Unionid: 图灵盾统一ID
+        # @type Unionid: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :SceneRiskInfos, :SuggestionLevel, :RequestId
+        attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :SceneRiskInfos, :SuggestionLevel, :Unionid, :RequestId
 
-        def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, sceneriskinfos=nil, suggestionlevel=nil, requestid=nil)
+        def initialize(appversion=nil, brand=nil, clientip=nil, model=nil, networktype=nil, packagename=nil, platform=nil, systemversion=nil, sdkbuildno=nil, riskinfos=nil, histriskinfos=nil, openid=nil, sceneriskinfos=nil, suggestionlevel=nil, unionid=nil, requestid=nil)
           @AppVersion = appversion
           @Brand = brand
           @ClientIp = clientip
@@ -299,6 +301,7 @@ module TencentCloud
           @Openid = openid
           @SceneRiskInfos = sceneriskinfos
           @SuggestionLevel = suggestionlevel
+          @Unionid = unionid
           @RequestId = requestid
         end
 
@@ -338,6 +341,7 @@ module TencentCloud
             end
           end
           @SuggestionLevel = params['SuggestionLevel']
+          @Unionid = params['Unionid']
           @RequestId = params['RequestId']
         end
       end

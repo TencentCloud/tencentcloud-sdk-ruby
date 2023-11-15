@@ -2479,6 +2479,46 @@ module TencentCloud
         end
       end
 
+      # DeleteProClusters请求参数结构体
+      class DeleteProClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群Id列表
+        # @type ClusterIds: Array
+
+        attr_accessor :ClusterIds
+
+        def initialize(clusterids=nil)
+          @ClusterIds = clusterids
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+        end
+      end
+
+      # DeleteProClusters返回参数结构体
+      class DeleteProClustersResponse < TencentCloud::Common::AbstractModel
+        # @param DealNames: 退还实例订单号
+        # @type DealNames: Array
+        # @param ClusterIds: 集群ID
+        # @type ClusterIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealNames, :ClusterIds, :RequestId
+
+        def initialize(dealnames=nil, clusterids=nil, requestid=nil)
+          @DealNames = dealnames
+          @ClusterIds = clusterids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealNames = params['DealNames']
+          @ClusterIds = params['ClusterIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRabbitMQUser请求参数结构体
       class DeleteRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id

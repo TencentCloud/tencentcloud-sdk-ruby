@@ -3096,15 +3096,20 @@ module TencentCloud
         # @type Config: String
         # @param EnableRecognitionRectify: 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
         # @type EnableRecognitionRectify: Boolean
+        # @param EnableReflectDetail: 默认值为false。
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify
+        # 此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的"ReflectWarn":true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。
+        # @type EnableReflectDetail: Boolean
 
-        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil)
+        attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail
+
+        def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardSide = cardside
           @Config = config
           @EnableRecognitionRectify = enablerecognitionrectify
+          @EnableReflectDetail = enablereflectdetail
         end
 
         def deserialize(params)
@@ -3113,6 +3118,7 @@ module TencentCloud
           @CardSide = params['CardSide']
           @Config = params['Config']
           @EnableRecognitionRectify = params['EnableRecognitionRectify']
+          @EnableReflectDetail = params['EnableReflectDetail']
         end
       end
 
@@ -3151,12 +3157,14 @@ module TencentCloud
         # -9106	身份证疑似存在PS痕迹告警，
         # -9107       身份证反光告警。
         # @type AdvancedInfo: String
+        # @param ReflectDetailInfos: 反光点覆盖区域详情结果，具体内容请点击左侧链接
+        # @type ReflectDetailInfos: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :RequestId
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :ReflectDetailInfos, :RequestId
 
-        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, advancedinfo=nil, requestid=nil)
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, advancedinfo=nil, reflectdetailinfos=nil, requestid=nil)
           @Name = name
           @Sex = sex
           @Nation = nation
@@ -3166,6 +3174,7 @@ module TencentCloud
           @Authority = authority
           @ValidDate = validdate
           @AdvancedInfo = advancedinfo
+          @ReflectDetailInfos = reflectdetailinfos
           @RequestId = requestid
         end
 
@@ -3179,6 +3188,14 @@ module TencentCloud
           @Authority = params['Authority']
           @ValidDate = params['ValidDate']
           @AdvancedInfo = params['AdvancedInfo']
+          unless params['ReflectDetailInfos'].nil?
+            @ReflectDetailInfos = []
+            params['ReflectDetailInfos'].each do |i|
+              reflectdetailinfo_tmp = ReflectDetailInfo.new
+              reflectdetailinfo_tmp.deserialize(i)
+              @ReflectDetailInfos << reflectdetailinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7348,6 +7365,25 @@ module TencentCloud
           @Y = params['Y']
           @Width = params['Width']
           @Height = params['Height']
+        end
+      end
+
+      # 反光点覆盖区域详情结果
+      class ReflectDetailInfo < TencentCloud::Common::AbstractModel
+        # @param Position: NationalEmblem 国徽位置
+        # Portrait 人像照片位置
+        # RecognitionField 识别字段位置
+        # Others 其他位置
+        # @type Position: String
+
+        attr_accessor :Position
+
+        def initialize(position=nil)
+          @Position = position
+        end
+
+        def deserialize(params)
+          @Position = params['Position']
         end
       end
 

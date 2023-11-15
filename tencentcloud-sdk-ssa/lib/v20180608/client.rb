@@ -125,30 +125,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 资产测绘-测绘列表
-
-        # @param request: Request instance for DescribeAssetsMappingList.
-        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeAssetsMappingListRequest`
-        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeAssetsMappingListResponse`
-        def DescribeAssetsMappingList(request)
-          body = send_request('DescribeAssetsMappingList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAssetsMappingListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 云安全配置管理资产组列表
 
         # @param request: Request instance for DescribeCheckConfigAssetList.
@@ -389,30 +365,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取安全事件列表
-
-        # @param request: Request instance for DescribeSafetyEventList.
-        # @type request: :class:`Tencentcloud::ssa::V20180608::DescribeSafetyEventListRequest`
-        # @rtype: :class:`Tencentcloud::ssa::V20180608::DescribeSafetyEventListResponse`
-        def DescribeSafetyEventList(request)
-          body = send_request('DescribeSafetyEventList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSafetyEventListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 返回告警详情
 
         # @param request: Request instance for DescribeSocAlertDetails.
@@ -567,30 +519,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVulListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询【通用字段】【泄露监测数据列表】
-
-        # @param request: Request instance for SaDivulgeDataQueryPub.
-        # @type request: :class:`Tencentcloud::ssa::V20180608::SaDivulgeDataQueryPubRequest`
-        # @rtype: :class:`Tencentcloud::ssa::V20180608::SaDivulgeDataQueryPubResponse`
-        def SaDivulgeDataQueryPub(request)
-          body = send_request('SaDivulgeDataQueryPub', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SaDivulgeDataQueryPubResponse.new
             model.deserialize(response['Response'])
             model
           else

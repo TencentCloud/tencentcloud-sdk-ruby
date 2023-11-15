@@ -793,15 +793,19 @@ module TencentCloud
         # @type IpString: String
         # @param Type: 1 ip模板
         # 5 域名模板
+        # 6 协议端口模板
         # @type Type: Integer
+        # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议，Type=6时必填
+        # @type ProtocolType: String
 
-        attr_accessor :Name, :Detail, :IpString, :Type
+        attr_accessor :Name, :Detail, :IpString, :Type, :ProtocolType
 
-        def initialize(name=nil, detail=nil, ipstring=nil, type=nil)
+        def initialize(name=nil, detail=nil, ipstring=nil, type=nil, protocoltype=nil)
           @Name = name
           @Detail = detail
           @IpString = ipstring
           @Type = type
+          @ProtocolType = protocoltype
         end
 
         def deserialize(params)
@@ -809,6 +813,7 @@ module TencentCloud
           @Detail = params['Detail']
           @IpString = params['IpString']
           @Type = params['Type']
+          @ProtocolType = params['ProtocolType']
         end
       end
 
@@ -2401,16 +2406,22 @@ module TencentCloud
         # @type SearchValue: String
         # @param Uuid: 检索地址模板唯一id
         # @type Uuid: String
+        # @param TemplateType: 1：ip模板，5：域名模板，6：协议端口模板
+        # @type TemplateType: String
+        # @param TemplateId: 模板Id
+        # @type TemplateId: String
 
-        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue, :Uuid
+        attr_accessor :Offset, :Limit, :By, :Order, :SearchValue, :Uuid, :TemplateType, :TemplateId
 
-        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil, uuid=nil)
+        def initialize(offset=nil, limit=nil, by=nil, order=nil, searchvalue=nil, uuid=nil, templatetype=nil, templateid=nil)
           @Offset = offset
           @Limit = limit
           @By = by
           @Order = order
           @SearchValue = searchvalue
           @Uuid = uuid
+          @TemplateType = templatetype
+          @TemplateId = templateid
         end
 
         def deserialize(params)
@@ -2420,6 +2431,8 @@ module TencentCloud
           @Order = params['Order']
           @SearchValue = params['SearchValue']
           @Uuid = params['Uuid']
+          @TemplateType = params['TemplateType']
+          @TemplateId = params['TemplateId']
         end
       end
 
@@ -2431,15 +2444,24 @@ module TencentCloud
         # @type Data: Array
         # @param NameList: 模板名称列表
         # @type NameList: Array
+        # @param IpTemplateCount: Ip地址模板数量
+        # @type IpTemplateCount: Integer
+        # @param DomainTemplateCount: 域名地址模板数量
+        # @type DomainTemplateCount: Integer
+        # @param PortTemplateCount: 协议端口模板数量
+        # @type PortTemplateCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :NameList, :RequestId
+        attr_accessor :Total, :Data, :NameList, :IpTemplateCount, :DomainTemplateCount, :PortTemplateCount, :RequestId
 
-        def initialize(total=nil, data=nil, namelist=nil, requestid=nil)
+        def initialize(total=nil, data=nil, namelist=nil, iptemplatecount=nil, domaintemplatecount=nil, porttemplatecount=nil, requestid=nil)
           @Total = total
           @Data = data
           @NameList = namelist
+          @IpTemplateCount = iptemplatecount
+          @DomainTemplateCount = domaintemplatecount
+          @PortTemplateCount = porttemplatecount
           @RequestId = requestid
         end
 
@@ -2454,6 +2476,9 @@ module TencentCloud
             end
           end
           @NameList = params['NameList']
+          @IpTemplateCount = params['IpTemplateCount']
+          @DomainTemplateCount = params['DomainTemplateCount']
+          @PortTemplateCount = params['PortTemplateCount']
           @RequestId = params['RequestId']
         end
       end
@@ -4714,10 +4739,13 @@ module TencentCloud
         # @param SwitchWeight: 开关权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SwitchWeight: Integer
+        # @param Domain: 域名化CLB的域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
 
-        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight
+        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain
 
-        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil)
+        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil, domain=nil)
           @PublicIp = publicip
           @PublicIpType = publiciptype
           @InstanceId = instanceid
@@ -4739,6 +4767,7 @@ module TencentCloud
           @EndpointIp = endpointip
           @SwitchMode = switchmode
           @SwitchWeight = switchweight
+          @Domain = domain
         end
 
         def deserialize(params)
@@ -4763,6 +4792,7 @@ module TencentCloud
           @EndpointIp = params['EndpointIp']
           @SwitchMode = params['SwitchMode']
           @SwitchWeight = params['SwitchWeight']
+          @Domain = params['Domain']
         end
       end
 
@@ -5412,15 +5442,18 @@ module TencentCloud
         # @param Type: 1 ip模板
         # 5 域名模板
         # @type Type: Integer
+        # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议。Type=6时必填。
+        # @type ProtocolType: String
 
-        attr_accessor :Uuid, :Name, :Detail, :IpString, :Type
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :Type, :ProtocolType
 
-        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, type=nil)
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, type=nil, protocoltype=nil)
           @Uuid = uuid
           @Name = name
           @Detail = detail
           @IpString = ipstring
           @Type = type
+          @ProtocolType = protocoltype
         end
 
         def deserialize(params)
@@ -5429,6 +5462,7 @@ module TencentCloud
           @Detail = params['Detail']
           @IpString = params['IpString']
           @Type = params['Type']
+          @ProtocolType = params['ProtocolType']
         end
       end
 
@@ -8482,10 +8516,16 @@ module TencentCloud
         # @param RulesNum: 关联规则条数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RulesNum: Integer
+        # @param TemplateId: 模板Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtocolType: String
 
-        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType
 
-        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil)
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil, templateid=nil, protocoltype=nil)
           @Uuid = uuid
           @Name = name
           @Detail = detail
@@ -8494,6 +8534,8 @@ module TencentCloud
           @UpdateTime = updatetime
           @Type = type
           @RulesNum = rulesnum
+          @TemplateId = templateid
+          @ProtocolType = protocoltype
         end
 
         def deserialize(params)
@@ -8505,6 +8547,8 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @Type = params['Type']
           @RulesNum = params['RulesNum']
+          @TemplateId = params['TemplateId']
+          @ProtocolType = params['ProtocolType']
         end
       end
 

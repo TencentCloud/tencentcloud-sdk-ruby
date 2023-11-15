@@ -2603,7 +2603,7 @@ module TencentCloud
 
       # QueryExternalContactDetail请求参数结构体
       class QueryExternalContactDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ExternalUserId: 外部联系人的userid，注意不是企业成员的帐号
+        # @param ExternalUserId: 外部联系人的userid，注意不是企业成员的账号
         # @type ExternalUserId: String
         # @param Cursor: 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填。当客户在企业内的跟进人超过500人时需要使用cursor参数进行分页获取
         # @type Cursor: String

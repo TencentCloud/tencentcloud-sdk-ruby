@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除域名共享
+        # 按账号删除域名共享
 
         # @param request: Request instance for DeleteShareDomain.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::DeleteShareDomainRequest`

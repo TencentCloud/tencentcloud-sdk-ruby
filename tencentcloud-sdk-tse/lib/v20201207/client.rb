@@ -725,6 +725,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取云原生网关服务详情下的Upstream列表
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayUpstream.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayUpstreamRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayUpstreamResponse`
+        def DescribeCloudNativeAPIGatewayUpstream(request)
+          body = send_request('DescribeCloudNativeAPIGatewayUpstream', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayUpstreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云原生API网关实例列表
 
         # @param request: Request instance for DescribeCloudNativeAPIGateways.
@@ -879,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSREInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取云原生网关服务健康检查配置
+
+        # @param request: Request instance for DescribeUpstreamHealthCheckConfig.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeUpstreamHealthCheckConfigRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeUpstreamHealthCheckConfigResponse`
+        def DescribeUpstreamHealthCheckConfig(request)
+          body = send_request('DescribeUpstreamHealthCheckConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUpstreamHealthCheckConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1133,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改云原生网关上游实例节点健康状态
+
+        # @param request: Request instance for ModifyUpstreamNodeStatus.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyUpstreamNodeStatusRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyUpstreamNodeStatusResponse`
+        def ModifyUpstreamNodeStatus(request)
+          body = send_request('ModifyUpstreamNodeStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUpstreamNodeStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改云原生网关证书信息
 
         # @param request: Request instance for UpdateCloudNativeAPIGatewayCertificateInfo.
@@ -1191,6 +1263,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateEngineInternetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新云原生网关健康检查配置
+
+        # @param request: Request instance for UpdateUpstreamHealthCheckConfig.
+        # @type request: :class:`Tencentcloud::tse::V20201207::UpdateUpstreamHealthCheckConfigRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::UpdateUpstreamHealthCheckConfigResponse`
+        def UpdateUpstreamHealthCheckConfig(request)
+          body = send_request('UpdateUpstreamHealthCheckConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUpstreamHealthCheckConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
