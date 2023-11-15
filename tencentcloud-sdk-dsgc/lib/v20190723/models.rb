@@ -1411,12 +1411,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2023, 10
-        deprecate :BusinessName=, :none, 2023, 10
-        deprecate :BusinessDept, :none, 2023, 10
-        deprecate :BusinessDept=, :none, 2023, 10
-        deprecate :BusinessOwner, :none, 2023, 10
-        deprecate :BusinessOwner=, :none, 2023, 10
+        deprecate :BusinessName, :none, 2023, 11
+        deprecate :BusinessName=, :none, 2023, 11
+        deprecate :BusinessDept, :none, 2023, 11
+        deprecate :BusinessDept=, :none, 2023, 11
+        deprecate :BusinessOwner, :none, 2023, 11
+        deprecate :BusinessOwner=, :none, 2023, 11
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -6444,15 +6444,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 过滤条件
         # @type Filters: Array
+        # @param CreditScore: 可信分排序，ASC升序
+        # DESC降序
+        # @type CreditScore: String
 
-        attr_accessor :DspaId, :ComplianceId, :Offset, :Limit, :Filters
+        attr_accessor :DspaId, :ComplianceId, :Offset, :Limit, :Filters, :CreditScore
 
-        def initialize(dspaid=nil, complianceid=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(dspaid=nil, complianceid=nil, offset=nil, limit=nil, filters=nil, creditscore=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @CreditScore = creditscore
         end
 
         def deserialize(params)
@@ -6468,6 +6472,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @CreditScore = params['CreditScore']
         end
       end
 
@@ -6793,17 +6798,22 @@ module TencentCloud
         # @type DspaId: String
         # @param ComplianceId: 合规组Id
         # @type ComplianceId: Integer
+        # @param CreditScore: 可信分排序，ASC-升序
+        # DESC降序
+        # @type CreditScore: String
 
-        attr_accessor :DspaId, :ComplianceId
+        attr_accessor :DspaId, :ComplianceId, :CreditScore
 
-        def initialize(dspaid=nil, complianceid=nil)
+        def initialize(dspaid=nil, complianceid=nil, creditscore=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
+          @CreditScore = creditscore
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @ComplianceId = params['ComplianceId']
+          @CreditScore = params['CreditScore']
         end
       end
 
@@ -9306,10 +9316,19 @@ module TencentCloud
         # @param CategoryFullPath: 分类路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
+        # @param IdentifyType: 0.系统识别，1人工打标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentifyType: Integer
+        # @param CheckStatus: 0未核查 1已核查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckStatus: Integer
+        # @param IsSensitiveData: 0非敏感，1敏感
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSensitiveData: Integer
 
-        attr_accessor :DataSourceId, :DbType, :DbName, :TableName, :FieldName, :RuleName, :CategoryName, :LevelRiskName, :LevelRiskScore, :TrustedScore, :ResourceRegion, :FieldResultId, :RuleId, :LevelId, :CategoryId, :DataSourceName, :SafeGuard, :CategoryFullPath
+        attr_accessor :DataSourceId, :DbType, :DbName, :TableName, :FieldName, :RuleName, :CategoryName, :LevelRiskName, :LevelRiskScore, :TrustedScore, :ResourceRegion, :FieldResultId, :RuleId, :LevelId, :CategoryId, :DataSourceName, :SafeGuard, :CategoryFullPath, :IdentifyType, :CheckStatus, :IsSensitiveData
 
-        def initialize(datasourceid=nil, dbtype=nil, dbname=nil, tablename=nil, fieldname=nil, rulename=nil, categoryname=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, resourceregion=nil, fieldresultid=nil, ruleid=nil, levelid=nil, categoryid=nil, datasourcename=nil, safeguard=nil, categoryfullpath=nil)
+        def initialize(datasourceid=nil, dbtype=nil, dbname=nil, tablename=nil, fieldname=nil, rulename=nil, categoryname=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, resourceregion=nil, fieldresultid=nil, ruleid=nil, levelid=nil, categoryid=nil, datasourcename=nil, safeguard=nil, categoryfullpath=nil, identifytype=nil, checkstatus=nil, issensitivedata=nil)
           @DataSourceId = datasourceid
           @DbType = dbtype
           @DbName = dbname
@@ -9328,6 +9347,9 @@ module TencentCloud
           @DataSourceName = datasourcename
           @SafeGuard = safeguard
           @CategoryFullPath = categoryfullpath
+          @IdentifyType = identifytype
+          @CheckStatus = checkstatus
+          @IsSensitiveData = issensitivedata
         end
 
         def deserialize(params)
@@ -9352,6 +9374,9 @@ module TencentCloud
             @SafeGuard.deserialize(params['SafeGuard'])
           end
           @CategoryFullPath = params['CategoryFullPath']
+          @IdentifyType = params['IdentifyType']
+          @CheckStatus = params['CheckStatus']
+          @IsSensitiveData = params['IsSensitiveData']
         end
       end
 
@@ -9720,10 +9745,14 @@ module TencentCloud
         # @param RuleName: 规则名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuleName: String
+        # @param IdentifyType: 0系统识别，1人工打标
+        # @type IdentifyType: Integer
+        # @param CheckStatus: 0未核查，1已核查
+        # @type CheckStatus: Integer
 
-        attr_accessor :FieldResultId, :DataSourceId, :DataSourceName, :DataSourceType, :ResourceRegion, :IndexName, :FieldName, :CategoryId, :CategoryName, :CategoryArr, :LevelId, :LevelRiskName, :LevelRiskScore, :TrustedScore, :RuleId, :RuleName
+        attr_accessor :FieldResultId, :DataSourceId, :DataSourceName, :DataSourceType, :ResourceRegion, :IndexName, :FieldName, :CategoryId, :CategoryName, :CategoryArr, :LevelId, :LevelRiskName, :LevelRiskScore, :TrustedScore, :RuleId, :RuleName, :IdentifyType, :CheckStatus
 
-        def initialize(fieldresultid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, resourceregion=nil, indexname=nil, fieldname=nil, categoryid=nil, categoryname=nil, categoryarr=nil, levelid=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, ruleid=nil, rulename=nil)
+        def initialize(fieldresultid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, resourceregion=nil, indexname=nil, fieldname=nil, categoryid=nil, categoryname=nil, categoryarr=nil, levelid=nil, levelriskname=nil, levelriskscore=nil, trustedscore=nil, ruleid=nil, rulename=nil, identifytype=nil, checkstatus=nil)
           @FieldResultId = fieldresultid
           @DataSourceId = datasourceid
           @DataSourceName = datasourcename
@@ -9740,6 +9769,8 @@ module TencentCloud
           @TrustedScore = trustedscore
           @RuleId = ruleid
           @RuleName = rulename
+          @IdentifyType = identifytype
+          @CheckStatus = checkstatus
         end
 
         def deserialize(params)
@@ -9759,6 +9790,8 @@ module TencentCloud
           @TrustedScore = params['TrustedScore']
           @RuleId = params['RuleId']
           @RuleName = params['RuleName']
+          @IdentifyType = params['IdentifyType']
+          @CheckStatus = params['CheckStatus']
         end
       end
 
@@ -10607,8 +10640,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :RiskLatestTableId, :Status, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2023, 10
-        deprecate :RiskLatestTableId=, :none, 2023, 10
+        deprecate :RiskLatestTableId, :none, 2023, 11
+        deprecate :RiskLatestTableId=, :none, 2023, 11
 
         def initialize(dspaid=nil, risklatesttableid=nil, status=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
@@ -11274,10 +11307,18 @@ module TencentCloud
         # @type DestCategoryId: Integer
         # @param DestLevelId: 调整后新的分级ID
         # @type DestLevelId: Integer
+        # @param SrcRuleId: 调整前的规则id（系统识别的id）
+        # @type SrcRuleId: Integer
+        # @param SrcCategoryId: 调整前的规则id（系统识别的id）
+        # @type SrcCategoryId: Integer
+        # @param SrcLevelId: 调整前的等级id
+        # @type SrcLevelId: Integer
+        # @param IdentifyType: 0系统识别，1人工打标
+        # @type IdentifyType: Integer
 
-        attr_accessor :DspaId, :FieldResultId, :ComplianceId, :IsSetNonSensitiveField, :DestRuleId, :DestCategoryId, :DestLevelId
+        attr_accessor :DspaId, :FieldResultId, :ComplianceId, :IsSetNonSensitiveField, :DestRuleId, :DestCategoryId, :DestLevelId, :SrcRuleId, :SrcCategoryId, :SrcLevelId, :IdentifyType
 
-        def initialize(dspaid=nil, fieldresultid=nil, complianceid=nil, issetnonsensitivefield=nil, destruleid=nil, destcategoryid=nil, destlevelid=nil)
+        def initialize(dspaid=nil, fieldresultid=nil, complianceid=nil, issetnonsensitivefield=nil, destruleid=nil, destcategoryid=nil, destlevelid=nil, srcruleid=nil, srccategoryid=nil, srclevelid=nil, identifytype=nil)
           @DspaId = dspaid
           @FieldResultId = fieldresultid
           @ComplianceId = complianceid
@@ -11285,6 +11326,10 @@ module TencentCloud
           @DestRuleId = destruleid
           @DestCategoryId = destcategoryid
           @DestLevelId = destlevelid
+          @SrcRuleId = srcruleid
+          @SrcCategoryId = srccategoryid
+          @SrcLevelId = srclevelid
+          @IdentifyType = identifytype
         end
 
         def deserialize(params)
@@ -11295,6 +11340,10 @@ module TencentCloud
           @DestRuleId = params['DestRuleId']
           @DestCategoryId = params['DestCategoryId']
           @DestLevelId = params['DestLevelId']
+          @SrcRuleId = params['SrcRuleId']
+          @SrcCategoryId = params['SrcCategoryId']
+          @SrcLevelId = params['SrcLevelId']
+          @IdentifyType = params['IdentifyType']
         end
       end
 
@@ -11330,10 +11379,19 @@ module TencentCloud
         # @type DestCategoryId: Integer
         # @param DestLevelId: 调整后新的分级ID
         # @type DestLevelId: Integer
+        # @param SrcRuleId: 调整前的规则ID
+        # @type SrcRuleId: Integer
+        # @param SrcCategoryId: 调整之前的分类id
+        # @type SrcCategoryId: Integer
+        # @param SrcLevelId: 调整之前的分级id
+        # @type SrcLevelId: Integer
+        # @param IdentifyType: 识别方式
+        # 0-系统识别，1-人工打标
+        # @type IdentifyType: Integer
 
-        attr_accessor :DspaId, :FieldResultId, :ComplianceId, :IsSetNonSensitiveField, :DestRuleId, :DestCategoryId, :DestLevelId
+        attr_accessor :DspaId, :FieldResultId, :ComplianceId, :IsSetNonSensitiveField, :DestRuleId, :DestCategoryId, :DestLevelId, :SrcRuleId, :SrcCategoryId, :SrcLevelId, :IdentifyType
 
-        def initialize(dspaid=nil, fieldresultid=nil, complianceid=nil, issetnonsensitivefield=nil, destruleid=nil, destcategoryid=nil, destlevelid=nil)
+        def initialize(dspaid=nil, fieldresultid=nil, complianceid=nil, issetnonsensitivefield=nil, destruleid=nil, destcategoryid=nil, destlevelid=nil, srcruleid=nil, srccategoryid=nil, srclevelid=nil, identifytype=nil)
           @DspaId = dspaid
           @FieldResultId = fieldresultid
           @ComplianceId = complianceid
@@ -11341,6 +11399,10 @@ module TencentCloud
           @DestRuleId = destruleid
           @DestCategoryId = destcategoryid
           @DestLevelId = destlevelid
+          @SrcRuleId = srcruleid
+          @SrcCategoryId = srccategoryid
+          @SrcLevelId = srclevelid
+          @IdentifyType = identifytype
         end
 
         def deserialize(params)
@@ -11351,6 +11413,10 @@ module TencentCloud
           @DestRuleId = params['DestRuleId']
           @DestCategoryId = params['DestCategoryId']
           @DestLevelId = params['DestLevelId']
+          @SrcRuleId = params['SrcRuleId']
+          @SrcCategoryId = params['SrcCategoryId']
+          @SrcLevelId = params['SrcLevelId']
+          @IdentifyType = params['IdentifyType']
         end
       end
 

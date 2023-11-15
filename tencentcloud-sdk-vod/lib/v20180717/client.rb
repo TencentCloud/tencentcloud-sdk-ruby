@@ -432,6 +432,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建即时转码模板。
+
+        # @param request: Request instance for CreateJustInTimeTranscodeTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateJustInTimeTranscodeTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateJustInTimeTranscodeTemplateResponse`
+        def CreateJustInTimeTranscodeTemplate(request)
+          body = send_request('CreateJustInTimeTranscodeTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、不适宜视频识别等视频处理。
 
         # @param request: Request instance for CreatePersonSample.
@@ -1029,6 +1053,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteImageSpriteTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除即时转码模板。
+
+        # @param request: Request instance for DeleteJustInTimeTranscodeTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteJustInTimeTranscodeTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteJustInTimeTranscodeTemplateResponse`
+        def DeleteJustInTimeTranscodeTemplate(request)
+          body = send_request('DeleteJustInTimeTranscodeTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteJustInTimeTranscodeTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1962,6 +2010,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeImageSpriteTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取即时转码模板列表。
+
+        # @param request: Request instance for DescribeJustInTimeTranscodeTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeJustInTimeTranscodeTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeJustInTimeTranscodeTemplatesResponse`
+        def DescribeJustInTimeTranscodeTemplates(request)
+          body = send_request('DescribeJustInTimeTranscodeTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJustInTimeTranscodeTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3124,6 +3196,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyImageSpriteTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改即时转码模板。
+
+        # @param request: Request instance for ModifyJustInTimeTranscodeTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyJustInTimeTranscodeTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyJustInTimeTranscodeTemplateResponse`
+        def ModifyJustInTimeTranscodeTemplate(request)
+          body = send_request('ModifyJustInTimeTranscodeTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyJustInTimeTranscodeTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

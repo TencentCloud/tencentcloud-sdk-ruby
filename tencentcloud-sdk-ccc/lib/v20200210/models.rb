@@ -2120,9 +2120,9 @@ module TencentCloud
 
       # DescribeTelCallInfo请求参数结构体
       class DescribeTelCallInfoRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 时间戳
+        # @param StartTimeStamp: 起始时间戳，Unix 时间戳(查询维度仅支持天，比如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 时间戳，查询时间范围最大为90天
+        # @param EndTimeStamp: 结束时间戳，Unix 时间戳，查询时间范围最大为90天(查询维度仅支持天，比如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
         # @type EndTimeStamp: Integer
         # @param SdkAppIdList: 应用ID列表，多个ID时，返回值为多个ID使用总和
         # @type SdkAppIdList: Array

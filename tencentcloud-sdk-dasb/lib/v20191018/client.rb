@@ -1085,6 +1085,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户组
+
+        # @param request: Request instance for ModifyUserGroup.
+        # @type request: :class:`Tencentcloud::dasb::V20191018::ModifyUserGroupRequest`
+        # @rtype: :class:`Tencentcloud::dasb::V20191018::ModifyUserGroupResponse`
+        def ModifyUserGroup(request)
+          body = send_request('ModifyUserGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 清除设备账号绑定密码
 
         # @param request: Request instance for ResetDeviceAccountPassword.

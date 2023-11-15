@@ -3105,6 +3105,46 @@ module TencentCloud
         end
       end
 
+      # ModifyUserGroup请求参数结构体
+      class ModifyUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 用户组ID
+        # @type Id: Integer
+        # @param Name: 用户组名
+        # @type Name: String
+        # @param DepartmentId: 用户组所属的部门ID，如：1.2.3
+        # @type DepartmentId: String
+
+        attr_accessor :Id, :Name, :DepartmentId
+
+        def initialize(id=nil, name=nil, departmentid=nil)
+          @Id = id
+          @Name = name
+          @DepartmentId = departmentid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @DepartmentId = params['DepartmentId']
+        end
+      end
+
+      # ModifyUserGroup返回参数结构体
+      class ModifyUserGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUser请求参数结构体
       class ModifyUserRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户ID

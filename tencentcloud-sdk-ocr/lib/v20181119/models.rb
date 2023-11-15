@@ -4785,8 +4785,12 @@ module TencentCloud
         # @type FormName: String
         # @param Issuer: 开票人
         # @type Issuer: String
-        # @param TaxNum: 完税凭证号码
+        # @param TaxNum: 进口证明书号
         # @type TaxNum: String
+        # @param TaxPayNum: 完税凭证号码
+        # @type TaxPayNum: String
+        # @param TaxCode: 税控码
+        # @type TaxCode: String
         # @param MaxPeopleNum: 限乘人数
         # @type MaxPeopleNum: String
         # @param Origin: 产地
@@ -4798,9 +4802,9 @@ module TencentCloud
         # @param QRCodeMark: 是否存在二维码（1：有，0：无）
         # @type QRCodeMark: Integer
 
-        attr_accessor :Title, :Code, :Number, :Date, :PretaxAmount, :Total, :TotalCn, :Seller, :SellerTaxID, :SellerTel, :SellerAddress, :SellerBank, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerID, :TaxAuthorities, :TaxAuthoritiesCode, :VIN, :VehicleModel, :VehicleEngineCode, :CertificateNumber, :InspectionNumber, :MachineID, :VehicleType, :Kind, :Province, :City, :Tax, :TaxRate, :CompanySealMark, :Tonnage, :Remark, :FormType, :FormName, :Issuer, :TaxNum, :MaxPeopleNum, :Origin, :MachineCode, :MachineNumber, :QRCodeMark
+        attr_accessor :Title, :Code, :Number, :Date, :PretaxAmount, :Total, :TotalCn, :Seller, :SellerTaxID, :SellerTel, :SellerAddress, :SellerBank, :SellerBankAccount, :Buyer, :BuyerTaxID, :BuyerID, :TaxAuthorities, :TaxAuthoritiesCode, :VIN, :VehicleModel, :VehicleEngineCode, :CertificateNumber, :InspectionNumber, :MachineID, :VehicleType, :Kind, :Province, :City, :Tax, :TaxRate, :CompanySealMark, :Tonnage, :Remark, :FormType, :FormName, :Issuer, :TaxNum, :TaxPayNum, :TaxCode, :MaxPeopleNum, :Origin, :MachineCode, :MachineNumber, :QRCodeMark
 
-        def initialize(title=nil, code=nil, number=nil, date=nil, pretaxamount=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, sellertel=nil, selleraddress=nil, sellerbank=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyerid=nil, taxauthorities=nil, taxauthoritiescode=nil, vin=nil, vehiclemodel=nil, vehicleenginecode=nil, certificatenumber=nil, inspectionnumber=nil, machineid=nil, vehicletype=nil, kind=nil, province=nil, city=nil, tax=nil, taxrate=nil, companysealmark=nil, tonnage=nil, remark=nil, formtype=nil, formname=nil, issuer=nil, taxnum=nil, maxpeoplenum=nil, origin=nil, machinecode=nil, machinenumber=nil, qrcodemark=nil)
+        def initialize(title=nil, code=nil, number=nil, date=nil, pretaxamount=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, sellertel=nil, selleraddress=nil, sellerbank=nil, sellerbankaccount=nil, buyer=nil, buyertaxid=nil, buyerid=nil, taxauthorities=nil, taxauthoritiescode=nil, vin=nil, vehiclemodel=nil, vehicleenginecode=nil, certificatenumber=nil, inspectionnumber=nil, machineid=nil, vehicletype=nil, kind=nil, province=nil, city=nil, tax=nil, taxrate=nil, companysealmark=nil, tonnage=nil, remark=nil, formtype=nil, formname=nil, issuer=nil, taxnum=nil, taxpaynum=nil, taxcode=nil, maxpeoplenum=nil, origin=nil, machinecode=nil, machinenumber=nil, qrcodemark=nil)
           @Title = title
           @Code = code
           @Number = number
@@ -4838,6 +4842,8 @@ module TencentCloud
           @FormName = formname
           @Issuer = issuer
           @TaxNum = taxnum
+          @TaxPayNum = taxpaynum
+          @TaxCode = taxcode
           @MaxPeopleNum = maxpeoplenum
           @Origin = origin
           @MachineCode = machinecode
@@ -4883,6 +4889,8 @@ module TencentCloud
           @FormName = params['FormName']
           @Issuer = params['Issuer']
           @TaxNum = params['TaxNum']
+          @TaxPayNum = params['TaxPayNum']
+          @TaxCode = params['TaxCode']
           @MaxPeopleNum = params['MaxPeopleNum']
           @Origin = params['Origin']
           @MachineCode = params['MachineCode']
@@ -9988,10 +9996,30 @@ module TencentCloud
         # @type FormName: String
         # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
         # @type CompanySealMark: Integer
+        # @param AuctionOrgName: 经营拍卖单位
+        # @type AuctionOrgName: String
+        # @param AuctionOrgAddress: 经营拍卖单位地址
+        # @type AuctionOrgAddress: String
+        # @param AuctionOrgTaxID: 经营拍卖单位纳税人识别号
+        # @type AuctionOrgTaxID: String
+        # @param AuctionOrgBankAccount: 经营拍卖单位开户银行账号
+        # @type AuctionOrgBankAccount: String
+        # @param AuctionOrgPhone: 经营拍卖单位电话
+        # @type AuctionOrgPhone: String
+        # @param Issuer: 开票人
+        # @type Issuer: String
+        # @param TaxCode: 税控码
+        # @type TaxCode: String
+        # @param MachineSerialNumber: 机器编号
+        # @type MachineSerialNumber: String
+        # @param MachineCode: 机打发票代码
+        # @type MachineCode: String
+        # @param MachineNumber: 机打发票号码
+        # @type MachineNumber: String
 
-        attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Total, :TotalCn, :Seller, :SellerTel, :SellerTaxID, :SellerAddress, :Buyer, :BuyerID, :BuyerAddress, :BuyerTel, :CompanyName, :CompanyTaxID, :CompanyBankAccount, :CompanyTel, :CompanyAddress, :TransferAdministrationName, :LicensePlate, :RegistrationNumber, :VIN, :VehicleModel, :Kind, :Province, :City, :VehicleType, :Remark, :FormType, :FormName, :CompanySealMark
+        attr_accessor :Title, :QRCodeMark, :Code, :Number, :Date, :Total, :TotalCn, :Seller, :SellerTel, :SellerTaxID, :SellerAddress, :Buyer, :BuyerID, :BuyerAddress, :BuyerTel, :CompanyName, :CompanyTaxID, :CompanyBankAccount, :CompanyTel, :CompanyAddress, :TransferAdministrationName, :LicensePlate, :RegistrationNumber, :VIN, :VehicleModel, :Kind, :Province, :City, :VehicleType, :Remark, :FormType, :FormName, :CompanySealMark, :AuctionOrgName, :AuctionOrgAddress, :AuctionOrgTaxID, :AuctionOrgBankAccount, :AuctionOrgPhone, :Issuer, :TaxCode, :MachineSerialNumber, :MachineCode, :MachineNumber
 
-        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, total=nil, totalcn=nil, seller=nil, sellertel=nil, sellertaxid=nil, selleraddress=nil, buyer=nil, buyerid=nil, buyeraddress=nil, buyertel=nil, companyname=nil, companytaxid=nil, companybankaccount=nil, companytel=nil, companyaddress=nil, transferadministrationname=nil, licenseplate=nil, registrationnumber=nil, vin=nil, vehiclemodel=nil, kind=nil, province=nil, city=nil, vehicletype=nil, remark=nil, formtype=nil, formname=nil, companysealmark=nil)
+        def initialize(title=nil, qrcodemark=nil, code=nil, number=nil, date=nil, total=nil, totalcn=nil, seller=nil, sellertel=nil, sellertaxid=nil, selleraddress=nil, buyer=nil, buyerid=nil, buyeraddress=nil, buyertel=nil, companyname=nil, companytaxid=nil, companybankaccount=nil, companytel=nil, companyaddress=nil, transferadministrationname=nil, licenseplate=nil, registrationnumber=nil, vin=nil, vehiclemodel=nil, kind=nil, province=nil, city=nil, vehicletype=nil, remark=nil, formtype=nil, formname=nil, companysealmark=nil, auctionorgname=nil, auctionorgaddress=nil, auctionorgtaxid=nil, auctionorgbankaccount=nil, auctionorgphone=nil, issuer=nil, taxcode=nil, machineserialnumber=nil, machinecode=nil, machinenumber=nil)
           @Title = title
           @QRCodeMark = qrcodemark
           @Code = code
@@ -10025,6 +10053,16 @@ module TencentCloud
           @FormType = formtype
           @FormName = formname
           @CompanySealMark = companysealmark
+          @AuctionOrgName = auctionorgname
+          @AuctionOrgAddress = auctionorgaddress
+          @AuctionOrgTaxID = auctionorgtaxid
+          @AuctionOrgBankAccount = auctionorgbankaccount
+          @AuctionOrgPhone = auctionorgphone
+          @Issuer = issuer
+          @TaxCode = taxcode
+          @MachineSerialNumber = machineserialnumber
+          @MachineCode = machinecode
+          @MachineNumber = machinenumber
         end
 
         def deserialize(params)
@@ -10061,6 +10099,16 @@ module TencentCloud
           @FormType = params['FormType']
           @FormName = params['FormName']
           @CompanySealMark = params['CompanySealMark']
+          @AuctionOrgName = params['AuctionOrgName']
+          @AuctionOrgAddress = params['AuctionOrgAddress']
+          @AuctionOrgTaxID = params['AuctionOrgTaxID']
+          @AuctionOrgBankAccount = params['AuctionOrgBankAccount']
+          @AuctionOrgPhone = params['AuctionOrgPhone']
+          @Issuer = params['Issuer']
+          @TaxCode = params['TaxCode']
+          @MachineSerialNumber = params['MachineSerialNumber']
+          @MachineCode = params['MachineCode']
+          @MachineNumber = params['MachineNumber']
         end
       end
 

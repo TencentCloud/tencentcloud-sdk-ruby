@@ -462,6 +462,40 @@ module TencentCloud
         end
       end
 
+      # GetVRSVoiceTypes请求参数结构体
+      class GetVRSVoiceTypesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetVRSVoiceTypes返回参数结构体
+      class GetVRSVoiceTypesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据
+        # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.VoiceTypeListData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoiceTypeListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 训练文本
       class TrainingText < TencentCloud::Common::AbstractModel
         # @param TextId: 文本ID
@@ -503,6 +537,72 @@ module TencentCloud
               trainingtext_tmp = TrainingText.new
               trainingtext_tmp.deserialize(i)
               @TrainingTextList << trainingtext_tmp
+            end
+          end
+        end
+      end
+
+      # 复刻音色详情
+      class VoiceTypeInfo < TencentCloud::Common::AbstractModel
+        # @param VoiceType: 音色id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceType: Integer
+        # @param VoiceName: 音色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceName: String
+        # @param VoiceGender: 音色性别: 1-male 2-female
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceGender: Integer
+        # @param TaskType: 复刻类型: 0-轻量版复刻 1-基础版复刻
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: Integer
+        # @param TaskID: 复刻任务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskID: String
+        # @param DateCreated: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateCreated: String
+
+        attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated
+
+        def initialize(voicetype=nil, voicename=nil, voicegender=nil, tasktype=nil, taskid=nil, datecreated=nil)
+          @VoiceType = voicetype
+          @VoiceName = voicename
+          @VoiceGender = voicegender
+          @TaskType = tasktype
+          @TaskID = taskid
+          @DateCreated = datecreated
+        end
+
+        def deserialize(params)
+          @VoiceType = params['VoiceType']
+          @VoiceName = params['VoiceName']
+          @VoiceGender = params['VoiceGender']
+          @TaskType = params['TaskType']
+          @TaskID = params['TaskID']
+          @DateCreated = params['DateCreated']
+        end
+      end
+
+      # 音色信息列表
+      class VoiceTypeListData < TencentCloud::Common::AbstractModel
+        # @param VoiceTypeList: 音色信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceTypeList: Array
+
+        attr_accessor :VoiceTypeList
+
+        def initialize(voicetypelist=nil)
+          @VoiceTypeList = voicetypelist
+        end
+
+        def deserialize(params)
+          unless params['VoiceTypeList'].nil?
+            @VoiceTypeList = []
+            params['VoiceTypeList'].each do |i|
+              voicetypeinfo_tmp = VoiceTypeInfo.new
+              voicetypeinfo_tmp.deserialize(i)
+              @VoiceTypeList << voicetypeinfo_tmp
             end
           end
         end

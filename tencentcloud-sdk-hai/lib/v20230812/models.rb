@@ -17,6 +17,777 @@
 module TencentCloud
   module Hai
     module V20230812
+      # 应用信息
+      class ApplicationInfo < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用id
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param Description: 应用描述
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ConfigEnvironment: 应用的环境配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigEnvironment: String
+        # @param MinSystemDiskSize: 系统盘大小下限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinSystemDiskSize: Integer
+
+        attr_accessor :ApplicationId, :ApplicationName, :Description, :ConfigEnvironment, :MinSystemDiskSize
+
+        def initialize(applicationid=nil, applicationname=nil, description=nil, configenvironment=nil, minsystemdisksize=nil)
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @Description = description
+          @ConfigEnvironment = configenvironment
+          @MinSystemDiskSize = minsystemdisksize
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @Description = params['Description']
+          @ConfigEnvironment = params['ConfigEnvironment']
+          @MinSystemDiskSize = params['MinSystemDiskSize']
+        end
+      end
+
+      # DescribeApplications请求参数结构体
+      class DescribeApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationIds: 应用id列表
+        # @type ApplicationIds: Array
+        # @param Filters: 过滤器，跟ApplicationIds不能共用，支持的filter主要有：
+        # application-id，精确匹配
+        # scene-id，精确匹配
+        # application-name，模糊匹配
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回量，默认为20
+        # MC：1000
+        # 用户：100
+        # @type Limit: Integer
+
+        attr_accessor :ApplicationIds, :Filters, :Offset, :Limit
+
+        def initialize(applicationids=nil, filters=nil, offset=nil, limit=nil)
+          @ApplicationIds = applicationids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ApplicationIds = params['ApplicationIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeApplications返回参数结构体
+      class DescribeApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 应用总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ApplicationSet: 分页返回的应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ApplicationSet, :RequestId
+
+        def initialize(totalcount=nil, applicationset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ApplicationSet = applicationset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ApplicationSet'].nil?
+            @ApplicationSet = []
+            params['ApplicationSet'].each do |i|
+              applicationinfo_tmp = ApplicationInfo.new
+              applicationinfo_tmp.deserialize(i)
+              @ApplicationSet << applicationinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceNetworkStatus请求参数结构体
+      class DescribeInstanceNetworkStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID数组，单次请求最多不超过100个实例
+        # @type InstanceIds: Array
+
+        attr_accessor :InstanceIds
+
+        def initialize(instanceids=nil)
+          @InstanceIds = instanceids
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # DescribeInstanceNetworkStatus返回参数结构体
+      class DescribeInstanceNetworkStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果集长度
+        # @type TotalCount: Integer
+        # @param NetworkStatusSet: 查询结果集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkStatusSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NetworkStatusSet, :RequestId
+
+        def initialize(totalcount=nil, networkstatusset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NetworkStatusSet = networkstatusset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NetworkStatusSet'].nil?
+            @NetworkStatusSet = []
+            params['NetworkStatusSet'].each do |i|
+              networkstatus_tmp = NetworkStatus.new
+              networkstatus_tmp.deserialize(i)
+              @NetworkStatusSet << networkstatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstances请求参数结构体
+      class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例元组
+        # @type InstanceIds: Array
+        # @param Filters: 描述键值对过滤器，用于条件过滤查询。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 返回量，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :InstanceIds, :Filters, :Offset, :Limit
+
+        def initialize(instanceids=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceIds = instanceids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeInstances返回参数结构体
+      class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例总数
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param InstanceSet: 分页实例详情
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceSet, :RequestId
+
+        def initialize(totalcount=nil, instanceset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceSet = instanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instance_tmp = Instance.new
+              instance_tmp.deserialize(i)
+              @InstanceSet << instance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegions请求参数结构体
+      class DescribeRegionsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRegions返回参数结构体
+      class DescribeRegionsResponse < TencentCloud::Common::AbstractModel
+        # @param RegionSet: 地域列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RegionSet, :RequestId
+
+        def initialize(regionset=nil, requestid=nil)
+          @RegionSet = regionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RegionSet'].nil?
+            @RegionSet = []
+            params['RegionSet'].each do |i|
+              regioninfo_tmp = RegionInfo.new
+              regioninfo_tmp.deserialize(i)
+              @RegionSet << regioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeScenes请求参数结构体
+      class DescribeScenesRequest < TencentCloud::Common::AbstractModel
+        # @param SceneIds: ["sc-abcdefgh"]
+        # @type SceneIds: Array
+
+        attr_accessor :SceneIds
+
+        def initialize(sceneids=nil)
+          @SceneIds = sceneids
+        end
+
+        def deserialize(params)
+          @SceneIds = params['SceneIds']
+        end
+      end
+
+      # DescribeScenes返回参数结构体
+      class DescribeScenesResponse < TencentCloud::Common::AbstractModel
+        # @param SceneSet: scene info
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SceneSet, :RequestId
+
+        def initialize(sceneset=nil, requestid=nil)
+          @SceneSet = sceneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SceneSet'].nil?
+            @SceneSet = []
+            params['SceneSet'].each do |i|
+              sceneinfo_tmp = SceneInfo.new
+              sceneinfo_tmp.deserialize(i)
+              @SceneSet << sceneinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceLoginSettings请求参数结构体
+      class DescribeServiceLoginSettingsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+
+        attr_accessor :InstanceId, :ServiceName
+
+        def initialize(instanceid=nil, servicename=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # DescribeServiceLoginSettings返回参数结构体
+      class DescribeServiceLoginSettingsResponse < TencentCloud::Common::AbstractModel
+        # @param LoginSettings: 服务登录配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginSettings: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoginSettings, :RequestId
+
+        def initialize(loginsettings=nil, requestid=nil)
+          @LoginSettings = loginsettings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoginSettings'].nil?
+            @LoginSettings = []
+            params['LoginSettings'].each do |i|
+              loginsetting_tmp = LoginSetting.new
+              loginsetting_tmp.deserialize(i)
+              @LoginSettings << loginsetting_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # - 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+      # - 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # InquirePriceRunInstances请求参数结构体
+      class InquirePriceRunInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param BundleType: 算力套餐类型
+        # @type BundleType: String
+        # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
+        # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
+        # @param InstanceCount: 购买实例数量。
+        # @type InstanceCount: Integer
+        # @param InstanceName: 实例显示名称
+        # @type InstanceName: String
+        # @param ClientToken: 幂等请求token
+        # @type ClientToken: String
+        # @param DryRun: DryRun为True就是只验接口连通性，默认为False
+        # @type DryRun: Boolean
+
+        attr_accessor :ApplicationId, :BundleType, :SystemDisk, :InstanceCount, :InstanceName, :ClientToken, :DryRun
+
+        def initialize(applicationid=nil, bundletype=nil, systemdisk=nil, instancecount=nil, instancename=nil, clienttoken=nil, dryrun=nil)
+          @ApplicationId = applicationid
+          @BundleType = bundletype
+          @SystemDisk = systemdisk
+          @InstanceCount = instancecount
+          @InstanceName = instancename
+          @ClientToken = clienttoken
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @BundleType = params['BundleType']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @InstanceCount = params['InstanceCount']
+          @InstanceName = params['InstanceName']
+          @ClientToken = params['ClientToken']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # InquirePriceRunInstances返回参数结构体
+      class InquirePriceRunInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 发货参数对应的价格组合，当DryRun=True，会返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Price: :class:`Tencentcloud::Hai.v20230812.models.Price`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = Price.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 实例信息
+      class Instance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InstanceState: 实例状态：
+        # PENDING：表示创建中
+        # LAUNCH_FAILED：表示创建失败
+        # RUNNING：表示运行中
+        # ARREAR：表示欠费隔离
+        # TERMINATING：表示销毁中。
+        # TERMINATED：表示已销毁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
+        # @param ApplicationName: 应用名称
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param BundleName: 算力套餐名称
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BundleName: String
+        # @param GPUCount: 实例所包含的GPU卡数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUCount: Integer
+        # @param GPUPerformance: 算力
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUPerformance: String
+        # @param GPUMemory: 显存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUMemory: String
+        # @param CPU: CPU核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CPU: String
+        # @param Memory: 内存
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: String
+        # @param SystemDisk: 系统盘数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SystemDisk: :class:`Tencentcloud::Hai.v20230812.models.SystemDisk`
+        # @param PrivateIpAddresses: 内网ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateIpAddresses: Array
+        # @param PublicIpAddresses: 公网ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicIpAddresses: Array
+        # @param SecurityGroupIds: 安全组ID
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param LatestOperation: 实例最新操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperation: String
+        # @param LatestOperationState: 实例最新操作状态：
+        # SUCCESS：表示操作成功
+        # OPERATING：表示操作执行中
+        # FAILED：表示操作失败
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestOperationState: String
+        # @param CreateTime: 实例创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param MaxOutBandwidth: 公网出带宽上限，默认5Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxOutBandwidth: String
+        # @param MaxFreeTraffic: 每月免费流量，默认1000G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxFreeTraffic: String
+        # @param ConfigurationEnvironment: 应用配置环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigurationEnvironment: String
+        # @param LoginServices: 实例包含的登录服务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginServices: Array
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceState, :ApplicationName, :BundleName, :GPUCount, :GPUPerformance, :GPUMemory, :CPU, :Memory, :SystemDisk, :PrivateIpAddresses, :PublicIpAddresses, :SecurityGroupIds, :LatestOperation, :LatestOperationState, :CreateTime, :MaxOutBandwidth, :MaxFreeTraffic, :ConfigurationEnvironment, :LoginServices
+
+        def initialize(instanceid=nil, instancename=nil, instancestate=nil, applicationname=nil, bundlename=nil, gpucount=nil, gpuperformance=nil, gpumemory=nil, cpu=nil, memory=nil, systemdisk=nil, privateipaddresses=nil, publicipaddresses=nil, securitygroupids=nil, latestoperation=nil, latestoperationstate=nil, createtime=nil, maxoutbandwidth=nil, maxfreetraffic=nil, configurationenvironment=nil, loginservices=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceState = instancestate
+          @ApplicationName = applicationname
+          @BundleName = bundlename
+          @GPUCount = gpucount
+          @GPUPerformance = gpuperformance
+          @GPUMemory = gpumemory
+          @CPU = cpu
+          @Memory = memory
+          @SystemDisk = systemdisk
+          @PrivateIpAddresses = privateipaddresses
+          @PublicIpAddresses = publicipaddresses
+          @SecurityGroupIds = securitygroupids
+          @LatestOperation = latestoperation
+          @LatestOperationState = latestoperationstate
+          @CreateTime = createtime
+          @MaxOutBandwidth = maxoutbandwidth
+          @MaxFreeTraffic = maxfreetraffic
+          @ConfigurationEnvironment = configurationenvironment
+          @LoginServices = loginservices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceState = params['InstanceState']
+          @ApplicationName = params['ApplicationName']
+          @BundleName = params['BundleName']
+          @GPUCount = params['GPUCount']
+          @GPUPerformance = params['GPUPerformance']
+          @GPUMemory = params['GPUMemory']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = SystemDisk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          @PrivateIpAddresses = params['PrivateIpAddresses']
+          @PublicIpAddresses = params['PublicIpAddresses']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @LatestOperation = params['LatestOperation']
+          @LatestOperationState = params['LatestOperationState']
+          @CreateTime = params['CreateTime']
+          @MaxOutBandwidth = params['MaxOutBandwidth']
+          @MaxFreeTraffic = params['MaxFreeTraffic']
+          @ConfigurationEnvironment = params['ConfigurationEnvironment']
+          unless params['LoginServices'].nil?
+            @LoginServices = []
+            params['LoginServices'].each do |i|
+              loginservice_tmp = LoginService.new
+              loginservice_tmp.deserialize(i)
+              @LoginServices << loginservice_tmp
+            end
+          end
+        end
+      end
+
+      # 套餐价格
+      class ItemPrice < TencentCloud::Common::AbstractModel
+        # @param UnitPrice: 原单价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnitPrice: Float
+        # @param DiscountUnitPrice: 折扣后单价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiscountUnitPrice: Float
+        # @param Discount: 折扣
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Discount: Float
+        # @param ChargeUnit: 单位：时
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeUnit: String
+        # @param Amount: 商品数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Integer
+
+        attr_accessor :UnitPrice, :DiscountUnitPrice, :Discount, :ChargeUnit, :Amount
+
+        def initialize(unitprice=nil, discountunitprice=nil, discount=nil, chargeunit=nil, amount=nil)
+          @UnitPrice = unitprice
+          @DiscountUnitPrice = discountunitprice
+          @Discount = discount
+          @ChargeUnit = chargeunit
+          @Amount = amount
+        end
+
+        def deserialize(params)
+          @UnitPrice = params['UnitPrice']
+          @DiscountUnitPrice = params['DiscountUnitPrice']
+          @Discount = params['Discount']
+          @ChargeUnit = params['ChargeUnit']
+          @Amount = params['Amount']
+        end
+      end
+
+      # 登录服务详情
+      class LoginService < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 登录方式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+
+        attr_accessor :ServiceName
+
+        def initialize(servicename=nil)
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # 某服务的登录配置
+      class LoginSetting < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param Url: 服务登录url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :ServiceName, :Url
+
+        def initialize(servicename=nil, url=nil)
+          @ServiceName = servicename
+          @Url = url
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @Url = params['Url']
+        end
+      end
+
+      # HAI 实例的网络配置和消耗情况
+      class NetworkStatus < TencentCloud::Common::AbstractModel
+        # @param InstanceId: HAI 的实例 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param AddressIp: 公网 IP 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AddressIp: String
+        # @param Bandwidth: 出带宽上限，单位Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param TotalTrafficAmount: 流量包总量，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTrafficAmount: Float
+        # @param RemainingTrafficAmount: 流量包剩余量，单位GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainingTrafficAmount: Float
+
+        attr_accessor :InstanceId, :AddressIp, :Bandwidth, :TotalTrafficAmount, :RemainingTrafficAmount
+
+        def initialize(instanceid=nil, addressip=nil, bandwidth=nil, totaltrafficamount=nil, remainingtrafficamount=nil)
+          @InstanceId = instanceid
+          @AddressIp = addressip
+          @Bandwidth = bandwidth
+          @TotalTrafficAmount = totaltrafficamount
+          @RemainingTrafficAmount = remainingtrafficamount
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AddressIp = params['AddressIp']
+          @Bandwidth = params['Bandwidth']
+          @TotalTrafficAmount = params['TotalTrafficAmount']
+          @RemainingTrafficAmount = params['RemainingTrafficAmount']
+        end
+      end
+
+      # 费用数据结构体
+      class Price < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 实例价格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+        # @param CloudDiskPrice: 云盘价格信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudDiskPrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+
+        attr_accessor :InstancePrice, :CloudDiskPrice
+
+        def initialize(instanceprice=nil, clouddiskprice=nil)
+          @InstancePrice = instanceprice
+          @CloudDiskPrice = clouddiskprice
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = ItemPrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['CloudDiskPrice'].nil?
+            @CloudDiskPrice = ItemPrice.new
+            @CloudDiskPrice.deserialize(params['CloudDiskPrice'])
+          end
+        end
+      end
+
+      # 地域列表
+      class RegionInfo < TencentCloud::Common::AbstractModel
+        # @param Region: ap-guangzhou
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param RegionName: 华南地区(广州)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
+        # @param RegionState: 地域是否可用状态
+        # AVAILABLE：可用
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionState: String
+        # @param ScholarRocketSupportState: 学术加速是否支持：
+        # NO_NEED_SUPPORT表示不需支持；NOT_SUPPORT_YET表示暂未支持；ALREADY_SUPPORT表示已经支持。对于ALREADY_SUPPORT的地域才需进一步调用DescribeScholarRocketStatus查看学术加速是开启还是关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScholarRocketSupportState: String
+
+        attr_accessor :Region, :RegionName, :RegionState, :ScholarRocketSupportState
+
+        def initialize(region=nil, regionname=nil, regionstate=nil, scholarrocketsupportstate=nil)
+          @Region = region
+          @RegionName = regionname
+          @RegionState = regionstate
+          @ScholarRocketSupportState = scholarrocketsupportstate
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @RegionName = params['RegionName']
+          @RegionState = params['RegionState']
+          @ScholarRocketSupportState = params['ScholarRocketSupportState']
+        end
+      end
+
       # RunInstances请求参数结构体
       class RunInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID
@@ -77,6 +848,30 @@ module TencentCloud
         def deserialize(params)
           @InstanceIdSet = params['InstanceIdSet']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 场景详情
+      class SceneInfo < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景id
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneId: String
+        # @param SceneName: 场景名
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneName: String
+
+        attr_accessor :SceneId, :SceneName
+
+        def initialize(sceneid=nil, scenename=nil)
+          @SceneId = sceneid
+          @SceneName = scenename
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @SceneName = params['SceneName']
         end
       end
 

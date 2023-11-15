@@ -833,7 +833,7 @@ module TencentCloud
       class MediaInfo < TencentCloud::Common::AbstractModel
         # @param Codecs: 该字段用于返回传入的媒体文件的编码格式，如wav、mp3、aac、flac、amr、3gp、 m4a、wma、ogg、ape等。
         # @type Codecs: String
-        # @param Duration: 该字段用于返回对传入的流媒体文件进行分片的片段时长，单位为秒。**默认值为15秒**，支持用户自定义配置。
+        # @param Duration: 该字段用于返回对传入的流媒体文件进行分片的片段时长，单位为毫秒。**默认值为15秒**，支持用户自定义配置。
         # @type Duration: Integer
         # @param Width: *内测中，敬请期待*
         # @type Width: Integer
@@ -863,7 +863,7 @@ module TencentCloud
 
       # 呻吟低俗检测结果
       class MoanResult < TencentCloud::Common::AbstractModel
-        # @param Label: 固定取值为Moan（呻吟/娇喘），如音频中无复杂类型「MoanResult」的返回则代表改音频中无呻吟/娇喘相关违规内容；
+        # @param Label: 固定取值为Moan（呻吟/娇喘），如音频中无复杂类型「MoanResult」的返回则代表该音频中无呻吟/娇喘相关违规内容；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Score: 机器判断当前分类的置信度，取值范围：0~100。分数越高，表示越有可能属于当前分类。
@@ -1188,10 +1188,10 @@ module TencentCloud
 
       # 音频文本内容审核结果
       class TextResult < TencentCloud::Common::AbstractModel
-        # @param Label: 恶意标签，Normal：正常，Porn：色情，Abuse：谩骂，Ad：广告，Custom：自定义词库。
+        # @param Label: 恶意标签，Normal：正常，Porn：色情，Abuse：谩骂，Ad：广告。
         # 以及其他令人反感、不安全或不适宜的内容类型。
 
-        # 如音频中无复杂类型「TextResults」的返回则代表改音频中无相关违规内容；
+        # 如音频中无复杂类型「TextResults」的返回则代表该音频中无相关违规内容；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Label: String
         # @param Keywords: 命中的关键词，为空则代表该违规内容出自于模型的判断；

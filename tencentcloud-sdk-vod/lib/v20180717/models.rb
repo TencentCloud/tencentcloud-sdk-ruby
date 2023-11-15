@@ -6396,6 +6396,60 @@ module TencentCloud
         end
       end
 
+      # CreateJustInTimeTranscodeTemplate请求参数结构体
+      class CreateJustInTimeTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名字，长度限制64个字符。
+        # @type Name: String
+        # @param VideoConfigure: 视频参数配置。
+        # @type VideoConfigure: :class:`Tencentcloud::Vod.v20180717.models.VideoConfigureInfo`
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param WatermarkConfigure: 水印参数配置。
+        # @type WatermarkConfigure: :class:`Tencentcloud::Vod.v20180717.models.WatermarkConfigureInfo`
+        # @param Comment: 模板描述，长度限制256个字符。
+        # @type Comment: String
+
+        attr_accessor :Name, :VideoConfigure, :SubAppId, :WatermarkConfigure, :Comment
+
+        def initialize(name=nil, videoconfigure=nil, subappid=nil, watermarkconfigure=nil, comment=nil)
+          @Name = name
+          @VideoConfigure = videoconfigure
+          @SubAppId = subappid
+          @WatermarkConfigure = watermarkconfigure
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['VideoConfigure'].nil?
+            @VideoConfigure = VideoConfigureInfo.new
+            @VideoConfigure.deserialize(params['VideoConfigure'])
+          end
+          @SubAppId = params['SubAppId']
+          unless params['WatermarkConfigure'].nil?
+            @WatermarkConfigure = WatermarkConfigureInfo.new
+            @WatermarkConfigure.deserialize(params['WatermarkConfigure'])
+          end
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateJustInTimeTranscodeTemplate返回参数结构体
+      class CreateJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePersonSample请求参数结构体
       class CreatePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 素材名称，长度限制：20 个字符。
@@ -7929,6 +7983,42 @@ module TencentCloud
 
       # DeleteImageSpriteTemplate返回参数结构体
       class DeleteImageSpriteTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteJustInTimeTranscodeTemplate请求参数结构体
+      class DeleteJustInTimeTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名字。
+        # @type Name: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Name, :SubAppId
+
+        def initialize(name=nil, subappid=nil)
+          @Name = name
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteJustInTimeTranscodeTemplate返回参数结构体
+      class DeleteJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9930,6 +10020,71 @@ module TencentCloud
               imagespritetemplate_tmp = ImageSpriteTemplate.new
               imagespritetemplate_tmp.deserialize(i)
               @ImageSpriteTemplateSet << imagespritetemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJustInTimeTranscodeTemplates请求参数结构体
+      class DescribeJustInTimeTranscodeTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Names: 模板名过滤条件，数组长度限制：100。
+        # @type Names: Array
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param Type: 模板类型过滤条件，可选值：
+        # <li>Preset：系统预置任务流模板；</li>
+        # <li>Custom：用户自定义任务流模板。</li>
+        # @type Type: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :Names, :SubAppId, :Type, :Offset, :Limit
+
+        def initialize(names=nil, subappid=nil, type=nil, offset=nil, limit=nil)
+          @Names = names
+          @SubAppId = subappid
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+          @SubAppId = params['SubAppId']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeJustInTimeTranscodeTemplates返回参数结构体
+      class DescribeJustInTimeTranscodeTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param JustInTimeTranscodeTemplateSet: 模板详情列表。
+        # @type JustInTimeTranscodeTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :JustInTimeTranscodeTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, justintimetranscodetemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @JustInTimeTranscodeTemplateSet = justintimetranscodetemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['JustInTimeTranscodeTemplateSet'].nil?
+            @JustInTimeTranscodeTemplateSet = []
+            params['JustInTimeTranscodeTemplateSet'].each do |i|
+              justintimetranscodetemplate_tmp = JustInTimeTranscodeTemplate.new
+              justintimetranscodetemplate_tmp.deserialize(i)
+              @JustInTimeTranscodeTemplateSet << justintimetranscodetemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14112,6 +14267,46 @@ module TencentCloud
         end
       end
 
+      # 即时转码模板详情。
+      class JustInTimeTranscodeTemplate < TencentCloud::Common::AbstractModel
+        # @param Type: 模板类型。
+        # @type Type: String
+        # @param Name: 模板名。
+        # @type Name: String
+        # @param Comment: 模板描述。
+        # @type Comment: String
+        # @param VideoConfigure: 视频参数配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoConfigure: :class:`Tencentcloud::Vod.v20180717.models.VideoConfigureInfo`
+        # @param WatermarkConfigure: 水印参数配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WatermarkConfigure: :class:`Tencentcloud::Vod.v20180717.models.WatermarkConfigureData`
+
+        attr_accessor :Type, :Name, :Comment, :VideoConfigure, :WatermarkConfigure
+
+        def initialize(type=nil, name=nil, comment=nil, videoconfigure=nil, watermarkconfigure=nil)
+          @Type = type
+          @Name = name
+          @Comment = comment
+          @VideoConfigure = videoconfigure
+          @WatermarkConfigure = watermarkconfigure
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['VideoConfigure'].nil?
+            @VideoConfigure = VideoConfigureInfo.new
+            @VideoConfigure.deserialize(params['VideoConfigure'])
+          end
+          unless params['WatermarkConfigure'].nil?
+            @WatermarkConfigure = WatermarkConfigureData.new
+            @WatermarkConfigure.deserialize(params['WatermarkConfigure'])
+          end
+        end
+      end
+
       # License 请求次数统计数据。
       class LicenseUsageDataItem < TencentCloud::Common::AbstractModel
         # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
@@ -17411,6 +17606,60 @@ module TencentCloud
 
       # ModifyImageSpriteTemplate返回参数结构体
       class ModifyImageSpriteTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyJustInTimeTranscodeTemplate请求参数结构体
+      class ModifyJustInTimeTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 模板名字。
+        # @type Name: String
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param VideoConfigure: 视频参数配置。
+        # @type VideoConfigure: :class:`Tencentcloud::Vod.v20180717.models.VideoConfigureInfoForUpdate`
+        # @param WatermarkConfigure: 水印参数配置。
+        # @type WatermarkConfigure: :class:`Tencentcloud::Vod.v20180717.models.WatermarkConfigureInfoForUpdate`
+        # @param Comment: 模板描述，长度限制256个字符。
+        # @type Comment: String
+
+        attr_accessor :Name, :SubAppId, :VideoConfigure, :WatermarkConfigure, :Comment
+
+        def initialize(name=nil, subappid=nil, videoconfigure=nil, watermarkconfigure=nil, comment=nil)
+          @Name = name
+          @SubAppId = subappid
+          @VideoConfigure = videoconfigure
+          @WatermarkConfigure = watermarkconfigure
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @SubAppId = params['SubAppId']
+          unless params['VideoConfigure'].nil?
+            @VideoConfigure = VideoConfigureInfoForUpdate.new
+            @VideoConfigure.deserialize(params['VideoConfigure'])
+          end
+          unless params['WatermarkConfigure'].nil?
+            @WatermarkConfigure = WatermarkConfigureInfoForUpdate.new
+            @WatermarkConfigure.deserialize(params['WatermarkConfigure'])
+          end
+          @Comment = params['Comment']
+        end
+      end
+
+      # ModifyJustInTimeTranscodeTemplate返回参数结构体
+      class ModifyJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -26299,6 +26548,96 @@ module TencentCloud
         end
       end
 
+      # 即时转码视频模板配置。
+      class VideoConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 1920]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+
+        # 默认值：0。
+        # @type Width: Integer
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 1920]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+
+        # 默认值：0。
+        # @type Height: Integer
+        # @param ResolutionAdaptive: 分辨率自适应，可选值：
+        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
+        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+
+        # 默认值：open。
+        # @type ResolutionAdaptive: String
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 10000]，单位：kbps。
+        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # @type Bitrate: Integer
+
+        attr_accessor :Width, :Height, :ResolutionAdaptive, :Bitrate
+
+        def initialize(width=nil, height=nil, resolutionadaptive=nil, bitrate=nil)
+          @Width = width
+          @Height = height
+          @ResolutionAdaptive = resolutionadaptive
+          @Bitrate = bitrate
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @ResolutionAdaptive = params['ResolutionAdaptive']
+          @Bitrate = params['Bitrate']
+        end
+      end
+
+      # 即时转码视频模板更新配置。
+      class VideoConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 1920]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+
+        # 默认值：0。
+        # @type Width: Integer
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 1920]，单位：px。
+        # <li>当 Width、Height 均为 0，则分辨率同源；</li>
+        # <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
+        # <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
+        # <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+
+        # 默认值：0。
+        # @type Height: Integer
+        # @param ResolutionAdaptive: 分辨率自适应，可选值：
+        # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
+        # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+
+        # 默认值：open。
+        # @type ResolutionAdaptive: String
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 10000]，单位：kbps。
+        # 当取值为 0，表示视频码率和原始视频保持一致。
+        # @type Bitrate: Integer
+
+        attr_accessor :Width, :Height, :ResolutionAdaptive, :Bitrate
+
+        def initialize(width=nil, height=nil, resolutionadaptive=nil, bitrate=nil)
+          @Width = width
+          @Height = height
+          @ResolutionAdaptive = resolutionadaptive
+          @Bitrate = bitrate
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @ResolutionAdaptive = params['ResolutionAdaptive']
+          @Bitrate = params['Bitrate']
+        end
+      end
+
       # 视频降噪控制参数
       class VideoDenoiseInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 视频降噪控制开关，可选值：
@@ -26653,6 +26992,126 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 即时转码水印模板配置。
+      class WatermarkConfigureData < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否启用水印。可取值：
+        # <li>ON：表示启用水印；</li>
+        # <li>OFF：表示关闭水印。</li>
+        # @type Switch: String
+        # @param Url: 水印 Url。
+        # @type Url: String
+        # @param Width: 水印的宽度。
+        # <li>字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
+        # @type Width: String
+        # @param Height: 水印的高度。
+        # <li>字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
+        # @type Height: String
+        # @param XPos: 水印原点距离视频图像坐标原点的水平位置。字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        # @type XPos: String
+        # @param YPos: 水印原点距离视频图像坐标原点的垂直位置。当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%。
+        # @type YPos: String
+
+        attr_accessor :Switch, :Url, :Width, :Height, :XPos, :YPos
+
+        def initialize(switch=nil, url=nil, width=nil, height=nil, xpos=nil, ypos=nil)
+          @Switch = switch
+          @Url = url
+          @Width = width
+          @Height = height
+          @XPos = xpos
+          @YPos = ypos
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Url = params['Url']
+          @Width = params['Width']
+          @Height = params['Height']
+          @XPos = params['XPos']
+          @YPos = params['YPos']
+        end
+      end
+
+      # 即时转码水印模板配置。
+      class WatermarkConfigureInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否启用水印。可取值：
+        # <li>ON：表示启用水印；</li>
+        # <li>OFF：表示关闭水印。</li>
+        # @type Switch: String
+        # @param ImageContent: 水印图片 Base64 编码后的字符串。支持 jpeg、png 图片格式。
+        # @type ImageContent: String
+        # @param Width: 水印的宽度。
+        # <li>字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
+        # @type Width: String
+        # @param Height: 水印的高度。
+        # <li>字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
+        # @type Height: String
+        # @param XPos: 水印原点距离视频图像坐标原点的水平位置。字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        # @type XPos: String
+        # @param YPos: 水印原点距离视频图像坐标原点的垂直位置。当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%。
+        # @type YPos: String
+
+        attr_accessor :Switch, :ImageContent, :Width, :Height, :XPos, :YPos
+
+        def initialize(switch=nil, imagecontent=nil, width=nil, height=nil, xpos=nil, ypos=nil)
+          @Switch = switch
+          @ImageContent = imagecontent
+          @Width = width
+          @Height = height
+          @XPos = xpos
+          @YPos = ypos
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ImageContent = params['ImageContent']
+          @Width = params['Width']
+          @Height = params['Height']
+          @XPos = params['XPos']
+          @YPos = params['YPos']
+        end
+      end
+
+      # 即时转码水印模板更新配置。
+      class WatermarkConfigureInfoForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否启用水印。可取值：
+        # <li>ON：表示启用水印；</li>
+        # <li>OFF：表示关闭水印。</li>
+        # @type Switch: String
+        # @param ImageContent: 水印图片 Base64 编码后的字符串。支持 jpeg、png 图片格式。
+        # @type ImageContent: String
+        # @param Width: 水印的宽度。
+        # <li>字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
+        # @type Width: String
+        # @param Height: 水印的高度。
+        # <li>字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
+        # @type Height: String
+        # @param XPos: 水印原点距离视频图像坐标原点的水平位置。字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        # @type XPos: String
+        # @param YPos: 水印原点距离视频图像坐标原点的垂直位置。当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%。
+        # @type YPos: String
+
+        attr_accessor :Switch, :ImageContent, :Width, :Height, :XPos, :YPos
+
+        def initialize(switch=nil, imagecontent=nil, width=nil, height=nil, xpos=nil, ypos=nil)
+          @Switch = switch
+          @ImageContent = imagecontent
+          @Width = width
+          @Height = height
+          @XPos = xpos
+          @YPos = ypos
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ImageContent = params['ImageContent']
+          @Width = params['Width']
+          @Height = params['Height']
+          @XPos = params['XPos']
+          @YPos = params['YPos']
         end
       end
 

@@ -25,19 +25,31 @@ module TencentCloud
         # @type ApiDocName: String
         # @param ApiDocStatus: API文档构建状态
         # @type ApiDocStatus: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus
+        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus, :Tags
 
-        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil)
+        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil, tags=nil)
           @ApiDocId = apidocid
           @ApiDocName = apidocname
           @ApiDocStatus = apidocstatus
+          @Tags = tags
         end
 
         def deserialize(params)
           @ApiDocId = params['ApiDocId']
           @ApiDocName = params['ApiDocName']
           @ApiDocStatus = params['ApiDocStatus']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -71,10 +83,13 @@ module TencentCloud
         # @type ServiceName: String
         # @param ApiNames: 生成API文档的API名称
         # @type ApiNames: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus, :ApiCount, :ViewCount, :ReleaseCount, :ApiDocUri, :SharePassword, :UpdatedTime, :ServiceId, :Environment, :ApiIds, :ServiceName, :ApiNames
+        attr_accessor :ApiDocId, :ApiDocName, :ApiDocStatus, :ApiCount, :ViewCount, :ReleaseCount, :ApiDocUri, :SharePassword, :UpdatedTime, :ServiceId, :Environment, :ApiIds, :ServiceName, :ApiNames, :Tags
 
-        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil, apicount=nil, viewcount=nil, releasecount=nil, apidocuri=nil, sharepassword=nil, updatedtime=nil, serviceid=nil, environment=nil, apiids=nil, servicename=nil, apinames=nil)
+        def initialize(apidocid=nil, apidocname=nil, apidocstatus=nil, apicount=nil, viewcount=nil, releasecount=nil, apidocuri=nil, sharepassword=nil, updatedtime=nil, serviceid=nil, environment=nil, apiids=nil, servicename=nil, apinames=nil, tags=nil)
           @ApiDocId = apidocid
           @ApiDocName = apidocname
           @ApiDocStatus = apidocstatus
@@ -89,6 +104,7 @@ module TencentCloud
           @ApiIds = apiids
           @ServiceName = servicename
           @ApiNames = apinames
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -106,6 +122,14 @@ module TencentCloud
           @ApiIds = params['ApiIds']
           @ServiceName = params['ServiceName']
           @ApiNames = params['ApiNames']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -840,10 +864,13 @@ module TencentCloud
         # @type Status: Integer
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # @type CreatedTime: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :AccessKeyId, :AccessKeySecret, :AccessKeyType, :SecretName, :ModifiedTime, :Status, :CreatedTime
+        attr_accessor :AccessKeyId, :AccessKeySecret, :AccessKeyType, :SecretName, :ModifiedTime, :Status, :CreatedTime, :Tags
 
-        def initialize(accesskeyid=nil, accesskeysecret=nil, accesskeytype=nil, secretname=nil, modifiedtime=nil, status=nil, createdtime=nil)
+        def initialize(accesskeyid=nil, accesskeysecret=nil, accesskeytype=nil, secretname=nil, modifiedtime=nil, status=nil, createdtime=nil, tags=nil)
           @AccessKeyId = accesskeyid
           @AccessKeySecret = accesskeysecret
           @AccessKeyType = accesskeytype
@@ -851,6 +878,7 @@ module TencentCloud
           @ModifiedTime = modifiedtime
           @Status = status
           @CreatedTime = createdtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -861,6 +889,14 @@ module TencentCloud
           @ModifiedTime = params['ModifiedTime']
           @Status = params['Status']
           @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -960,10 +996,13 @@ module TencentCloud
         # @param ServiceName: 服务名称。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceName: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :ServiceId, :ApiId, :ApiName, :Path, :Method, :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :Environment, :InUseRequestNum, :MaxRequestNum, :MaxRequestNumPreSec, :CreatedTime, :ModifiedTime, :ServiceName
+        attr_accessor :ServiceId, :ApiId, :ApiName, :Path, :Method, :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :Environment, :InUseRequestNum, :MaxRequestNum, :MaxRequestNumPreSec, :CreatedTime, :ModifiedTime, :ServiceName, :Tags
 
-        def initialize(serviceid=nil, apiid=nil, apiname=nil, path=nil, method=nil, usageplanid=nil, usageplanname=nil, usageplandesc=nil, environment=nil, inuserequestnum=nil, maxrequestnum=nil, maxrequestnumpresec=nil, createdtime=nil, modifiedtime=nil, servicename=nil)
+        def initialize(serviceid=nil, apiid=nil, apiname=nil, path=nil, method=nil, usageplanid=nil, usageplanname=nil, usageplandesc=nil, environment=nil, inuserequestnum=nil, maxrequestnum=nil, maxrequestnumpresec=nil, createdtime=nil, modifiedtime=nil, servicename=nil, tags=nil)
           @ServiceId = serviceid
           @ApiId = apiid
           @ApiName = apiname
@@ -979,6 +1018,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
           @ServiceName = servicename
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -997,6 +1037,14 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
           @ServiceName = params['ServiceName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1713,14 +1761,17 @@ module TencentCloud
         # @type Environment: String
         # @param ApiIds: 生成文档的API列表
         # @type ApiIds: Array
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :ApiDocName, :ServiceId, :Environment, :ApiIds
+        attr_accessor :ApiDocName, :ServiceId, :Environment, :ApiIds, :Tags
 
-        def initialize(apidocname=nil, serviceid=nil, environment=nil, apiids=nil)
+        def initialize(apidocname=nil, serviceid=nil, environment=nil, apiids=nil, tags=nil)
           @ApiDocName = apidocname
           @ServiceId = serviceid
           @Environment = environment
           @ApiIds = apiids
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1728,6 +1779,14 @@ module TencentCloud
           @ServiceId = params['ServiceId']
           @Environment = params['Environment']
           @ApiIds = params['ApiIds']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1808,14 +1867,17 @@ module TencentCloud
         # @type AccessKeyId: String
         # @param AccessKeySecret: 用户自定义密钥 Key，AccessKeyType 为 manual 时必传。长度为10 - 50字符，由字母、数字、英文下划线。
         # @type AccessKeySecret: String
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :SecretName, :AccessKeyType, :AccessKeyId, :AccessKeySecret
+        attr_accessor :SecretName, :AccessKeyType, :AccessKeyId, :AccessKeySecret, :Tags
 
-        def initialize(secretname=nil, accesskeytype=nil, accesskeyid=nil, accesskeysecret=nil)
+        def initialize(secretname=nil, accesskeytype=nil, accesskeyid=nil, accesskeysecret=nil, tags=nil)
           @SecretName = secretname
           @AccessKeyType = accesskeytype
           @AccessKeyId = accesskeyid
           @AccessKeySecret = accesskeysecret
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1823,6 +1885,14 @@ module TencentCloud
           @AccessKeyType = params['AccessKeyType']
           @AccessKeyId = params['AccessKeyId']
           @AccessKeySecret = params['AccessKeySecret']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2605,14 +2675,17 @@ module TencentCloud
         # @type MaxRequestNum: Integer
         # @param MaxRequestNumPreSec: 每秒请求限制数，取值范围为-1或者[1, 2000]，默认-1，表示不开启。
         # @type MaxRequestNumPreSec: Integer
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :UsagePlanName, :UsagePlanDesc, :MaxRequestNum, :MaxRequestNumPreSec
+        attr_accessor :UsagePlanName, :UsagePlanDesc, :MaxRequestNum, :MaxRequestNumPreSec, :Tags
 
-        def initialize(usageplanname=nil, usageplandesc=nil, maxrequestnum=nil, maxrequestnumpresec=nil)
+        def initialize(usageplanname=nil, usageplandesc=nil, maxrequestnum=nil, maxrequestnumpresec=nil, tags=nil)
           @UsagePlanName = usageplanname
           @UsagePlanDesc = usageplandesc
           @MaxRequestNum = maxrequestnum
           @MaxRequestNumPreSec = maxrequestnumpresec
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2620,6 +2693,14 @@ module TencentCloud
           @UsagePlanDesc = params['UsagePlanDesc']
           @MaxRequestNum = params['MaxRequestNum']
           @MaxRequestNumPreSec = params['MaxRequestNumPreSec']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -9763,10 +9844,13 @@ module TencentCloud
         # @param BindEnvironments: 绑定环境详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindEnvironments: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :MaxRequestNumPreSec, :MaxRequestNum, :CreatedTime, :ModifiedTime, :BindSecretIdTotalCount, :BindSecretIds, :BindEnvironmentTotalCount, :BindEnvironments
+        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :MaxRequestNumPreSec, :MaxRequestNum, :CreatedTime, :ModifiedTime, :BindSecretIdTotalCount, :BindSecretIds, :BindEnvironmentTotalCount, :BindEnvironments, :Tags
 
-        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, maxrequestnumpresec=nil, maxrequestnum=nil, createdtime=nil, modifiedtime=nil, bindsecretidtotalcount=nil, bindsecretids=nil, bindenvironmenttotalcount=nil, bindenvironments=nil)
+        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, maxrequestnumpresec=nil, maxrequestnum=nil, createdtime=nil, modifiedtime=nil, bindsecretidtotalcount=nil, bindsecretids=nil, bindenvironmenttotalcount=nil, bindenvironments=nil, tags=nil)
           @UsagePlanId = usageplanid
           @UsagePlanName = usageplanname
           @UsagePlanDesc = usageplandesc
@@ -9778,6 +9862,7 @@ module TencentCloud
           @BindSecretIds = bindsecretids
           @BindEnvironmentTotalCount = bindenvironmenttotalcount
           @BindEnvironments = bindenvironments
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -9797,6 +9882,14 @@ module TencentCloud
               usageplanbindenvironment_tmp = UsagePlanBindEnvironment.new
               usageplanbindenvironment_tmp.deserialize(i)
               @BindEnvironments << usageplanbindenvironment_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -9825,10 +9918,13 @@ module TencentCloud
         # @param ModifiedTime: 最后修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedTime: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
 
-        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :MaxRequestNumPreSec, :MaxRequestNum, :CreatedTime, :ModifiedTime
+        attr_accessor :UsagePlanId, :UsagePlanName, :UsagePlanDesc, :MaxRequestNumPreSec, :MaxRequestNum, :CreatedTime, :ModifiedTime, :Tags
 
-        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, maxrequestnumpresec=nil, maxrequestnum=nil, createdtime=nil, modifiedtime=nil)
+        def initialize(usageplanid=nil, usageplanname=nil, usageplandesc=nil, maxrequestnumpresec=nil, maxrequestnum=nil, createdtime=nil, modifiedtime=nil, tags=nil)
           @UsagePlanId = usageplanid
           @UsagePlanName = usageplanname
           @UsagePlanDesc = usageplandesc
@@ -9836,6 +9932,7 @@ module TencentCloud
           @MaxRequestNum = maxrequestnum
           @CreatedTime = createdtime
           @ModifiedTime = modifiedtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -9846,6 +9943,14 @@ module TencentCloud
           @MaxRequestNum = params['MaxRequestNum']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

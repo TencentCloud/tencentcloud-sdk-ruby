@@ -605,7 +605,7 @@ module TencentCloud
         # @type FirstTime: String
         # @param Status: 状态，0未处理、1已处置、2已忽略
         # @type Status: Integer
-        # @param Id: 资产唯一id
+        # @param Id: 风险ID
         # @type Id: String
         # @param Index: 前端索引
         # @type Index: String
@@ -625,25 +625,25 @@ module TencentCloud
         # @type VULType: String
         # @param Port: 端口
         # @type Port: String
-        # @param Describe: 描述
+        # @param Describe: 漏洞描述
         # @type Describe: String
-        # @param AppName: 版本名
+        # @param AppName: 漏洞影响组件
         # @type AppName: String
-        # @param References: 相关信息
+        # @param References: 技术参考
         # @type References: String
-        # @param AppVersion: 版本
+        # @param AppVersion: 漏洞影响版本
         # @type AppVersion: String
-        # @param VULURL: 漏洞url
+        # @param VULURL: 风险点
         # @type VULURL: String
         # @param VULName: 漏洞名称
         # @type VULName: String
         # @param CVE: cve
         # @type CVE: String
-        # @param Fix: 修复建议
+        # @param Fix: 修复方案
         # @type Fix: String
         # @param POCId: pocid
         # @type POCId: String
-        # @param From: 来源
+        # @param From: 扫描来源
         # @type From: String
         # @param CWPVersion: 主机版本
         # @type CWPVersion: Integer
@@ -653,7 +653,7 @@ module TencentCloud
         # @type IsSupportDetect: Boolean
         # @param InstanceUUID: 实例uuid
         # @type InstanceUUID: String
-        # @param Payload: 负载
+        # @param Payload: 攻击载荷
         # @type Payload: String
         # @param EMGCVulType: 应急漏洞类型，1-应急漏洞，0-非应急漏洞
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3061,7 +3061,7 @@ module TencentCloud
       class DescribeRiskCenterPortViewPortRiskListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param Data: 资产视角的端口风险列表
+        # @param Data: 端口视角的端口风险列表
         # @type Data: Array
         # @param LevelLists: 危险等级列表
         # @type LevelLists: Array
@@ -3321,7 +3321,7 @@ module TencentCloud
       class DescribeRiskCenterWebsiteRiskListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param Data: 资产视角的端口风险列表
+        # @param Data: 内容风险列表
         # @type Data: Array
         # @param StatusLists: 状态列表
         # @type StatusLists: Array
@@ -4750,7 +4750,7 @@ module TencentCloud
         # @param TaskId: 任务ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param SelfDefiningAssets: 排除扫描资产信息
+        # @param SelfDefiningAssets: 自定义指定扫描资产信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelfDefiningAssets: Array
         # @param PredictTime: 预估时间
@@ -4774,7 +4774,7 @@ module TencentCloud
         # @param ScanItem: port/poc/weakpass/webcontent/configrisk
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanItem: String
-        # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫
+        # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫，3-自定义指定资产扫描
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScanAssetType: Integer
         # @param VSSTaskId: vss子任务id

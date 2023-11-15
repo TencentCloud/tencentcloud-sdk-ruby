@@ -3593,6 +3593,114 @@ module TencentCloud
         end
       end
 
+      # DescribeEvents请求参数结构体
+      class DescribeEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测
+        # 枚举值：
+        # - TRAIN
+        # - NOTEBOOK
+        # - INFER
+        # - BATCH
+        # @type Service: String
+        # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：
+        # - Service类型为TRAIN：
+        #   调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId
+        # - Service类型为NOTEBOOK：
+        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName
+        # - Service类型为INFER：
+        #   调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId
+        # - Service类型为BATCH：
+        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
+        # @type ServiceId: String
+        # @param StartTime: 查询事件最早发生的时间（RFC3339格式的时间字符串），默认值为当前时间的前一天
+        # @type StartTime: String
+        # @param EndTime: 查询事件最晚发生的时间（RFC3339格式的时间字符串），默认值为当前时间
+        # @type EndTime: String
+        # @param Limit: 分页Limit，默认值为100，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 分页Offset，默认值为0
+        # @type Offset: Integer
+        # @param Order: 排列顺序（可选值为ASC, DESC ），默认为DESC
+        # @type Order: String
+        # @param OrderField: 排序的依据字段（可选值为FirstTimestamp, LastTimestamp），默认值为LastTimestamp
+        # @type OrderField: String
+        # @param Filters: 过滤条件
+        # 注意:
+        # 1. Filter.Name：目前支持ResourceKind（按事件关联的资源类型过滤）；Type（按事件类型过滤）
+        # 2. Filter.Values：
+        # 对于Name为ResourceKind，Values的可选取值为Deployment, Replicaset, Pod等K8S资源类型；
+        # 对于Name为Type，Values的可选取值仅为Normal或者Warning；
+        # Values为多个的时候表示同时满足
+        # 3. Filter. Negative和Filter. Fuzzy没有使用
+        # @type Filters: Array
+
+        attr_accessor :Service, :ServiceId, :StartTime, :EndTime, :Limit, :Offset, :Order, :OrderField, :Filters
+
+        def initialize(service=nil, serviceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, order=nil, orderfield=nil, filters=nil)
+          @Service = service
+          @ServiceId = serviceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderField = orderfield
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @ServiceId = params['ServiceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeEvents返回参数结构体
+      class DescribeEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 事件的列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param TotalCount: 此次查询的事件的个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :TotalCount, :RequestId
+
+        def initialize(events=nil, totalcount=nil, requestid=nil)
+          @Events = events
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              event_tmp = Event.new
+              event_tmp.deserialize(i)
+              @Events << event_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInferTemplates请求参数结构体
       class DescribeInferTemplatesRequest < TencentCloud::Common::AbstractModel
 
@@ -3683,7 +3791,12 @@ module TencentCloud
 
       # DescribeLogs请求参数结构体
       class DescribeLogsRequest < TencentCloud::Common::AbstractModel
-        # @param Service: 查询哪个服务的事件（可选值为TRAIN, NOTEBOOK, INFER）
+        # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测
+        # 枚举值：
+        # - TRAIN
+        # - NOTEBOOK
+        # - INFER
+        # - BATCH
         # @type Service: String
         # @param StartTime: 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
         # @type StartTime: String
@@ -3691,7 +3804,26 @@ module TencentCloud
         # @type EndTime: String
         # @param Limit: 日志查询条数，默认值100，最大值100
         # @type Limit: Integer
-        # @param PodName: 查询哪个Pod的日志（支持结尾通配符*)
+        # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：
+        # - Service类型为TRAIN：
+        #   调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId
+        # - Service类型为NOTEBOOK：
+        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName
+        # - Service类型为INFER：
+        #   调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId
+        # - Service类型为BATCH：
+        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
+        # @type ServiceId: String
+        # @param PodName: Pod的名称，即需要查询服务对应的Pod，和Service参数对应，不同Service的PodName获取方式不同，具体如下：
+        # - Service类型为TRAIN：
+        #   调用[DescribeTrainingTaskPods接口](/document/product/851/75088)查询训练任务pod列表，PodName为接口返回值中Response.PodNames
+        # - Service类型为NOTEBOOK：
+        #   调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，PodName为接口返回值中Response.NotebookDetail.PodName
+        # - Service类型为INFER：
+        #   调用[DescribeModelService接口](/document/product/851/82287)查询单个服务详情，PodName为接口返回值中Response.Service.ServiceInfo.PodInfos
+        # - Service类型为BATCH：
+        #   调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，PodName为接口返回值中Response.BatchTaskDetail. PodList
+        # 注：支持结尾通配符*
         # @type PodName: String
         # @param Order: 排序方向（可选值为ASC, DESC ），默认为DESC
         # @type Order: String
@@ -3706,13 +3838,14 @@ module TencentCloud
         # 3. Filter. Negative和Filter. Fuzzy没有使用
         # @type Filters: Array
 
-        attr_accessor :Service, :StartTime, :EndTime, :Limit, :PodName, :Order, :OrderField, :Context, :Filters
+        attr_accessor :Service, :StartTime, :EndTime, :Limit, :ServiceId, :PodName, :Order, :OrderField, :Context, :Filters
 
-        def initialize(service=nil, starttime=nil, endtime=nil, limit=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil)
+        def initialize(service=nil, starttime=nil, endtime=nil, limit=nil, serviceid=nil, podname=nil, order=nil, orderfield=nil, context=nil, filters=nil)
           @Service = service
           @StartTime = starttime
           @EndTime = endtime
           @Limit = limit
+          @ServiceId = serviceid
           @PodName = podname
           @Order = order
           @OrderField = orderfield
@@ -3725,6 +3858,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
+          @ServiceId = params['ServiceId']
           @PodName = params['PodName']
           @Order = params['Order']
           @OrderField = params['OrderField']
@@ -5169,6 +5303,58 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # K8s的Event
+      class Event < TencentCloud::Common::AbstractModel
+        # @param Id: 事件的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Message: 事件的具体信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param FirstTimestamp: 事件第一次发生的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstTimestamp: String
+        # @param LastTimestamp: 事件最后一次发生的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastTimestamp: String
+        # @param Count: 事件发生的次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Type: 事件的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param ResourceKind: 事件关联的资源的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceKind: String
+        # @param ResourceName: 事件关联的资源的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+
+        attr_accessor :Id, :Message, :FirstTimestamp, :LastTimestamp, :Count, :Type, :ResourceKind, :ResourceName
+
+        def initialize(id=nil, message=nil, firsttimestamp=nil, lasttimestamp=nil, count=nil, type=nil, resourcekind=nil, resourcename=nil)
+          @Id = id
+          @Message = message
+          @FirstTimestamp = firsttimestamp
+          @LastTimestamp = lasttimestamp
+          @Count = count
+          @Type = type
+          @ResourceKind = resourcekind
+          @ResourceName = resourcename
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Message = params['Message']
+          @FirstTimestamp = params['FirstTimestamp']
+          @LastTimestamp = params['LastTimestamp']
+          @Count = params['Count']
+          @Type = params['Type']
+          @ResourceKind = params['ResourceKind']
+          @ResourceName = params['ResourceName']
         end
       end
 

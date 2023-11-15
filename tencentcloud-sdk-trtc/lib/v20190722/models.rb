@@ -2366,7 +2366,7 @@ module TencentCloud
 
       # 转推参数。
       class McuPublishCdnParam < TencentCloud::Common::AbstractModel
-        # @param PublishCdnUrl: CDN转推URL。
+        # @param PublishCdnUrl: CDN转推URL。注：若更新转推时，URL有任何变化，都会断流重推。
         # @type PublishCdnUrl: String
         # @param IsTencentCdn: 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。注意：1，为避免误产生转推费用，该参数建议明确填写，转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明；2，国内站默认只支持转推腾讯云CDN，如您有转推第三方CDN需求，请联系腾讯云技术支持。
         # @type IsTencentCdn: Integer
@@ -2499,16 +2499,19 @@ module TencentCloud
         # @type LocationY: Integer
         # @param ZOrder: 水印在输出时的层级，不填默认为0。
         # @type ZOrder: Integer
+        # @param DynamicPosType: 动态水印类型，默认为0。0:关闭；1:随机位置，每秒变动一次；2:边界扫描反弹，每帧变动一次。
+        # @type DynamicPosType: Integer
 
-        attr_accessor :WaterMarkUrl, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :ZOrder
+        attr_accessor :WaterMarkUrl, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :ZOrder, :DynamicPosType
 
-        def initialize(watermarkurl=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, zorder=nil)
+        def initialize(watermarkurl=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, zorder=nil, dynamicpostype=nil)
           @WaterMarkUrl = watermarkurl
           @WaterMarkWidth = watermarkwidth
           @WaterMarkHeight = watermarkheight
           @LocationX = locationx
           @LocationY = locationy
           @ZOrder = zorder
+          @DynamicPosType = dynamicpostype
         end
 
         def deserialize(params)
@@ -2518,6 +2521,7 @@ module TencentCloud
           @LocationX = params['LocationX']
           @LocationY = params['LocationY']
           @ZOrder = params['ZOrder']
+          @DynamicPosType = params['DynamicPosType']
         end
       end
 
@@ -2569,10 +2573,12 @@ module TencentCloud
         # @type FontColor: String
         # @param BackGroundColor: 字体背景色，不配置默认为透明。常用的颜色有： 红色：0xcc0033。 黄色：0xcc9900。 绿色：0xcccc33。 蓝色：0x99CCFF。 黑色：0x000000。 白色：0xFFFFFF。 灰色：0x999999。
         # @type BackGroundColor: String
+        # @param DynamicPosType: 动态水印类型，默认为0。0:关闭；1:随机位置，每秒变动一次；2:边界扫描反弹，每帧变动一次。
+        # @type DynamicPosType: Integer
 
-        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor
+        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor, :DynamicPosType
 
-        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
+        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, dynamicpostype=nil)
           @Text = text
           @WaterMarkWidth = watermarkwidth
           @WaterMarkHeight = watermarkheight
@@ -2581,6 +2587,7 @@ module TencentCloud
           @FontSize = fontsize
           @FontColor = fontcolor
           @BackGroundColor = backgroundcolor
+          @DynamicPosType = dynamicpostype
         end
 
         def deserialize(params)
@@ -2592,6 +2599,7 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @BackGroundColor = params['BackGroundColor']
+          @DynamicPosType = params['DynamicPosType']
         end
       end
 

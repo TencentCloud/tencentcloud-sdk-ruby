@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取网站风险列表
+        # 获取内容风险列表
 
         # @param request: Request instance for DescribeRiskCenterWebsiteRiskList.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeRiskCenterWebsiteRiskListRequest`

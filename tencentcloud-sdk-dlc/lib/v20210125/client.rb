@@ -1949,6 +1949,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询可更新配置的引擎列表
+
+        # @param request: Request instance for DescribeUpdatableDataEngines.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUpdatableDataEnginesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUpdatableDataEnginesResponse`
+        def DescribeUpdatableDataEngines(request)
+          body = send_request('DescribeUpdatableDataEngines', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUpdatableDataEnginesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户自定义引擎参数
 
         # @param request: Request instance for DescribeUserDataEngineConfig.

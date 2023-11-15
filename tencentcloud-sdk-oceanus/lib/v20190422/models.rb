@@ -2277,17 +2277,36 @@ module TencentCloud
 
       # DescribeTreeResources请求参数结构体
       class DescribeTreeResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 筛选条件字段
+        # @type Filters: Array
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param Offset: 分页游标
+        # @type Offset: Integer
+        # @param Limit: 单页显示数
+        # @type Limit: Integer
 
-        attr_accessor :WorkSpaceId
+        attr_accessor :Filters, :WorkSpaceId, :Offset, :Limit
 
-        def initialize(workspaceid=nil)
+        def initialize(filters=nil, workspaceid=nil, offset=nil, limit=nil)
+          @Filters = filters
           @WorkSpaceId = workspaceid
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           @WorkSpaceId = params['WorkSpaceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 

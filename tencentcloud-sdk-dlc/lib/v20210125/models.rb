@@ -1293,7 +1293,7 @@ module TencentCloud
         # @type Size: Integer
         # @param PayMode: 计费类型，后付费：0，预付费：1。当前只支持后付费，不填默认为后付费。
         # @type PayMode: Integer
-        # @param TimeSpan: 资源使用时长，后付费：固定填3600，预付费：最少填1，代表购买资源一个月，最长不超过120。默认3600
+        # @param TimeSpan: 资源使用时长，后付费：固定填3600，预付费：最少填1，代表购买资源一个月，最长不超过120。默认1
         # @type TimeSpan: Integer
         # @param TimeUnit: 资源使用时长的单位，后付费：s，预付费：m。默认为s
         # @type TimeUnit: String
@@ -1331,13 +1331,17 @@ module TencentCloud
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
         # @param AutoAuthorization: 自动授权
         # @type AutoAuthorization: Boolean
+        # @param EngineNetworkId: 引擎网络ID
+        # @type EngineNetworkId: String
+        # @param EngineGeneration: 引擎世代，SuperSQL：代表supersql引擎，Native：代表标准引擎。默认值为SuperSQL
+        # @type EngineGeneration: String
 
-        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization
+        attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
         deprecate :DefaultDataEngine, :none, 2023, 11
         deprecate :DefaultDataEngine=, :none, 2023, 11
 
-        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil)
+        def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
           @DataEngineName = dataenginename
           @ClusterType = clustertype
@@ -1369,6 +1373,8 @@ module TencentCloud
           @ElasticLimit = elasticlimit
           @SessionResourceTemplate = sessionresourcetemplate
           @AutoAuthorization = autoauthorization
+          @EngineNetworkId = enginenetworkid
+          @EngineGeneration = enginegeneration
         end
 
         def deserialize(params)
@@ -1423,6 +1429,8 @@ module TencentCloud
             @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
           end
           @AutoAuthorization = params['AutoAuthorization']
+          @EngineNetworkId = params['EngineNetworkId']
+          @EngineGeneration = params['EngineGeneration']
         end
       end
 
@@ -3068,6 +3076,58 @@ module TencentCloud
             @Asset = Asset.new
             @Asset.deserialize(params['Asset'])
           end
+        end
+      end
+
+      # DataEngine基本信息
+      class DataEngineBasicInfo < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: DataEngine名称
+        # @type DataEngineName: String
+        # @param State: 数据引擎状态  -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中
+        # @type State: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+        # @param Message: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param DataEngineId: 引擎id
+        # @type DataEngineId: String
+        # @param DataEngineType: 引擎类型，有效值：PrestoSQL/SparkSQL/SparkBatch
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineType: String
+        # @param AppId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param UserUin: 账号ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserUin: String
+
+        attr_accessor :DataEngineName, :State, :CreateTime, :UpdateTime, :Message, :DataEngineId, :DataEngineType, :AppId, :UserUin
+
+        def initialize(dataenginename=nil, state=nil, createtime=nil, updatetime=nil, message=nil, dataengineid=nil, dataenginetype=nil, appid=nil, useruin=nil)
+          @DataEngineName = dataenginename
+          @State = state
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Message = message
+          @DataEngineId = dataengineid
+          @DataEngineType = dataenginetype
+          @AppId = appid
+          @UserUin = useruin
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Message = params['Message']
+          @DataEngineId = params['DataEngineId']
+          @DataEngineType = params['DataEngineType']
+          @AppId = params['AppId']
+          @UserUin = params['UserUin']
         end
       end
 
@@ -4816,10 +4876,14 @@ module TencentCloud
         # @type EngineType: String
         # @param DatasourceConnectionNameSet: 网络配置列表，若传入该参数，则返回网络配置关联的计算引擎
         # @type DatasourceConnectionNameSet: Array
+        # @param EngineGeneration: 引擎版本，有效值：Native/SuperSQL，为空时默认获取SuperSQL引擎
+        # @type EngineGeneration: String
+        # @param EngineTypeDetail: 引擎类型，支持：SparkSQL、SparkBatch、PrestoSQL、Kyuubi
+        # @type EngineTypeDetail: String
 
-        attr_accessor :Offset, :Filters, :SortBy, :Sorting, :Limit, :DatasourceConnectionName, :ExcludePublicEngine, :AccessTypes, :EngineExecType, :EngineType, :DatasourceConnectionNameSet
+        attr_accessor :Offset, :Filters, :SortBy, :Sorting, :Limit, :DatasourceConnectionName, :ExcludePublicEngine, :AccessTypes, :EngineExecType, :EngineType, :DatasourceConnectionNameSet, :EngineGeneration, :EngineTypeDetail
 
-        def initialize(offset=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, datasourceconnectionname=nil, excludepublicengine=nil, accesstypes=nil, engineexectype=nil, enginetype=nil, datasourceconnectionnameset=nil)
+        def initialize(offset=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, datasourceconnectionname=nil, excludepublicengine=nil, accesstypes=nil, engineexectype=nil, enginetype=nil, datasourceconnectionnameset=nil, enginegeneration=nil, enginetypedetail=nil)
           @Offset = offset
           @Filters = filters
           @SortBy = sortby
@@ -4831,6 +4895,8 @@ module TencentCloud
           @EngineExecType = engineexectype
           @EngineType = enginetype
           @DatasourceConnectionNameSet = datasourceconnectionnameset
+          @EngineGeneration = enginegeneration
+          @EngineTypeDetail = enginetypedetail
         end
 
         def deserialize(params)
@@ -4852,6 +4918,8 @@ module TencentCloud
           @EngineExecType = params['EngineExecType']
           @EngineType = params['EngineType']
           @DatasourceConnectionNameSet = params['DatasourceConnectionNameSet']
+          @EngineGeneration = params['EngineGeneration']
+          @EngineTypeDetail = params['EngineTypeDetail']
         end
       end
 
@@ -6304,6 +6372,53 @@ module TencentCloud
             @TasksOverview = TasksOverview.new
             @TasksOverview.deserialize(params['TasksOverview'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUpdatableDataEngines请求参数结构体
+      class DescribeUpdatableDataEnginesRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineConfigCommand: 引擎配置操作命令，UpdateSparkSQLLakefsPath 更新托管表路径，UpdateSparkSQLResultPath 更新结果桶路径
+        # @type DataEngineConfigCommand: String
+
+        attr_accessor :DataEngineConfigCommand
+
+        def initialize(dataengineconfigcommand=nil)
+          @DataEngineConfigCommand = dataengineconfigcommand
+        end
+
+        def deserialize(params)
+          @DataEngineConfigCommand = params['DataEngineConfigCommand']
+        end
+      end
+
+      # DescribeUpdatableDataEngines返回参数结构体
+      class DescribeUpdatableDataEnginesResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngineBasicInfos: 集群基础信息
+        # @type DataEngineBasicInfos: Array
+        # @param TotalCount: 集群个数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataEngineBasicInfos, :TotalCount, :RequestId
+
+        def initialize(dataenginebasicinfos=nil, totalcount=nil, requestid=nil)
+          @DataEngineBasicInfos = dataenginebasicinfos
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataEngineBasicInfos'].nil?
+            @DataEngineBasicInfos = []
+            params['DataEngineBasicInfos'].each do |i|
+              dataenginebasicinfo_tmp = DataEngineBasicInfo.new
+              dataenginebasicinfo_tmp.deserialize(i)
+              @DataEngineBasicInfos << dataenginebasicinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
