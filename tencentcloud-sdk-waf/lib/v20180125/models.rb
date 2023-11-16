@@ -10667,10 +10667,22 @@ module TencentCloud
         # @type Source: String
         # @param TsVersion: 更新时间戳
         # @type TsVersion: String
+        # @param SessionId: SessionID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: Integer
+        # @param SessionName: Session名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionName: String
+        # @param SessionInUsed: Session是否正在被启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionInUsed: Boolean
+        # @param RelatedRuleID: Session关联的CC规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedRuleID: Array
 
-        attr_accessor :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Source, :TsVersion
+        attr_accessor :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Source, :TsVersion, :SessionId, :SessionName, :SessionInUsed, :RelatedRuleID
 
-        def initialize(category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, source=nil, tsversion=nil)
+        def initialize(category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, source=nil, tsversion=nil, sessionid=nil, sessionname=nil, sessioninused=nil, relatedruleid=nil)
           @Category = category
           @KeyOrStartMat = keyorstartmat
           @EndMat = endmat
@@ -10678,6 +10690,10 @@ module TencentCloud
           @EndOffset = endoffset
           @Source = source
           @TsVersion = tsversion
+          @SessionId = sessionid
+          @SessionName = sessionname
+          @SessionInUsed = sessioninused
+          @RelatedRuleID = relatedruleid
         end
 
         def deserialize(params)
@@ -10688,6 +10704,10 @@ module TencentCloud
           @EndOffset = params['EndOffset']
           @Source = params['Source']
           @TsVersion = params['TsVersion']
+          @SessionId = params['SessionId']
+          @SessionName = params['SessionName']
+          @SessionInUsed = params['SessionInUsed']
+          @RelatedRuleID = params['RelatedRuleID']
         end
       end
 
