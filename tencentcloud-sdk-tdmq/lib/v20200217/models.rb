@@ -10355,10 +10355,13 @@ module TencentCloud
         # @param MaxRetryTimes: 最大重试次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxRetryTimes: Integer
+        # @param ClientProtocol: 协议类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientProtocol: String
 
-        attr_accessor :Topic, :Type, :PartitionNum, :ExpressionType, :SubString, :Status, :ConsumerLag, :ClusterId, :ConsumerGroup, :IsOnline, :ConsumeType, :Consistency, :LastUpdateTime, :MaxRetryTimes
+        attr_accessor :Topic, :Type, :PartitionNum, :ExpressionType, :SubString, :Status, :ConsumerLag, :ClusterId, :ConsumerGroup, :IsOnline, :ConsumeType, :Consistency, :LastUpdateTime, :MaxRetryTimes, :ClientProtocol
 
-        def initialize(topic=nil, type=nil, partitionnum=nil, expressiontype=nil, substring=nil, status=nil, consumerlag=nil, clusterid=nil, consumergroup=nil, isonline=nil, consumetype=nil, consistency=nil, lastupdatetime=nil, maxretrytimes=nil)
+        def initialize(topic=nil, type=nil, partitionnum=nil, expressiontype=nil, substring=nil, status=nil, consumerlag=nil, clusterid=nil, consumergroup=nil, isonline=nil, consumetype=nil, consistency=nil, lastupdatetime=nil, maxretrytimes=nil, clientprotocol=nil)
           @Topic = topic
           @Type = type
           @PartitionNum = partitionnum
@@ -10373,6 +10376,7 @@ module TencentCloud
           @Consistency = consistency
           @LastUpdateTime = lastupdatetime
           @MaxRetryTimes = maxretrytimes
+          @ClientProtocol = clientprotocol
         end
 
         def deserialize(params)
@@ -10390,6 +10394,7 @@ module TencentCloud
           @Consistency = params['Consistency']
           @LastUpdateTime = params['LastUpdateTime']
           @MaxRetryTimes = params['MaxRetryTimes']
+          @ClientProtocol = params['ClientProtocol']
         end
       end
 
@@ -10600,10 +10605,16 @@ module TencentCloud
         # @param Retention: 实例消息保留时间，小时为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Retention: Integer
+        # @param AclEnabled: 是否开启ACL鉴权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclEnabled: Boolean
+        # @param DestroyTime: 销毁时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestroyTime: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :MaxRetention, :MinRetention, :Retention
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :MaxRetention, :MinRetention, :Retention, :AclEnabled, :DestroyTime
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, maxretention=nil, minretention=nil, retention=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, maxretention=nil, minretention=nil, retention=nil, aclenabled=nil, destroytime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -10621,6 +10632,8 @@ module TencentCloud
           @MaxRetention = maxretention
           @MinRetention = minretention
           @Retention = retention
+          @AclEnabled = aclenabled
+          @DestroyTime = destroytime
         end
 
         def deserialize(params)
@@ -10641,6 +10654,8 @@ module TencentCloud
           @MaxRetention = params['MaxRetention']
           @MinRetention = params['MinRetention']
           @Retention = params['Retention']
+          @AclEnabled = params['AclEnabled']
+          @DestroyTime = params['DestroyTime']
         end
       end
 

@@ -475,7 +475,7 @@ module TencentCloud
 
       # GetVRSVoiceTypes返回参数结构体
       class GetVRSVoiceTypesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 数据
+        # @param Data: 复刻音色信息
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.VoiceTypeListData`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -545,22 +545,16 @@ module TencentCloud
       # 复刻音色详情
       class VoiceTypeInfo < TencentCloud::Common::AbstractModel
         # @param VoiceType: 音色id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceType: Integer
         # @param VoiceName: 音色名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceName: String
         # @param VoiceGender: 音色性别: 1-male 2-female
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoiceGender: Integer
         # @param TaskType: 复刻类型: 0-轻量版复刻 1-基础版复刻
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: Integer
         # @param TaskID: 复刻任务 ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskID: String
         # @param DateCreated: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DateCreated: String
 
         attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated

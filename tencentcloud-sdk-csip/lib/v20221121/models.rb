@@ -4052,7 +4052,7 @@ module TencentCloud
         # @param SeverIp: 解析ip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SeverIp: Array
-        # @param BotCount: boi访问数量
+        # @param BotCount: bot攻击数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotCount: Integer
         # @param WeakPassword: 弱口令风险
@@ -4091,7 +4091,7 @@ module TencentCloud
         # @param VerifyStatus: 待确认资产的认证状态，0-待认证，1-认证成功，2-认证中，3-txt认证失败，4-人工认证失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyStatus: Integer
-        # @param BotAccessCount: bot访问数据
+        # @param BotAccessCount: bot访问数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BotAccessCount: Integer
 
@@ -5934,7 +5934,7 @@ module TencentCloud
         # @type Values: Array
         # @param OperatorType: 中台定义：
         # 1等于 2大于 3小于 4大于等于 5小于等于 6不等于 9模糊匹配 13非模糊匹配 14按位与
-        # 精确匹配填 7 模糊匹配填9 兼容 中台定的结构
+        # 精确匹配填 7 模糊匹配填9
         # @type OperatorType: Integer
 
         attr_accessor :Name, :Values, :OperatorType

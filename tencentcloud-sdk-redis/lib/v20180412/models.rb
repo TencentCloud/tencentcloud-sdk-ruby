@@ -3960,11 +3960,11 @@ module TencentCloud
 
       # 热Key详细信息
       class HotKeyInfo < TencentCloud::Common::AbstractModel
-        # @param Key: 热Key
+        # @param Key: 热 Key 的名称。
         # @type Key: String
-        # @param Type: 类型
+        # @param Type: Key 类型。
         # @type Type: String
-        # @param Count: 数量
+        # @param Count: 某段时间内热 Key 的访问次数
         # @type Count: Integer
 
         attr_accessor :Key, :Type, :Count

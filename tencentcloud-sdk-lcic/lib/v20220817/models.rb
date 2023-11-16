@@ -3253,7 +3253,7 @@ module TencentCloud
       class LoginUserResponse < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id。
         # @type UserId: String
-        # @param Token: 登录/注册成功后返回登录态token。有效期7天。
+        # @param Token: 注册成功后返回登录态token，有效期7天。token过期后可以通过调用“登录”或“源账号登录”进行更新。
         # @type Token: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -17,15 +17,15 @@
 module TencentCloud
   module Dasb
     module V20191018
-      # 权限控制模版对象
+      # 权限控制模板对象
       class ACTemplate < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: String
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
-        # @param Description: 模版描述
+        # @param Description: 模板描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
 

@@ -1897,6 +1897,74 @@ module TencentCloud
         end
       end
 
+      # 跨地域备份实时统计列表项
+      class CrossSummaryDetailRes < TencentCloud::Common::AbstractModel
+        # @param Status: 实例状态
+        # @type Status: Integer
+        # @param Region: 实例所属地域
+        # @type Region: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param CrossBackupEnabled: 跨地域备份状态 enable-开启，disable-关闭
+        # @type CrossBackupEnabled: String
+        # @param CrossRegions: 跨地域备份目标地域
+        # @type CrossRegions: Array
+        # @param LastBackupStartTime: 最新备份开始时间
+        # @type LastBackupStartTime: String
+        # @param CrossBackupSaveDays: 跨地域备份保留天数
+        # @type CrossBackupSaveDays: Integer
+        # @param DataBackupSpace: 跨地域数据备份总空间
+        # @type DataBackupSpace: Integer
+        # @param DataBackupCount: 跨地域数据备份文件总个数
+        # @type DataBackupCount: Integer
+        # @param LogBackupSpace: 跨地域日志备份总空间
+        # @type LogBackupSpace: Integer
+        # @param LogBackupCount: 跨地域日志备份文件总个数
+        # @type LogBackupCount: Integer
+        # @param ActualUsedSpace: 跨地域备份总空间
+        # @type ActualUsedSpace: Integer
+        # @param ActualUsedCount: 跨地域备份总个数
+        # @type ActualUsedCount: Integer
+
+        attr_accessor :Status, :Region, :InstanceId, :Name, :CrossBackupEnabled, :CrossRegions, :LastBackupStartTime, :CrossBackupSaveDays, :DataBackupSpace, :DataBackupCount, :LogBackupSpace, :LogBackupCount, :ActualUsedSpace, :ActualUsedCount
+
+        def initialize(status=nil, region=nil, instanceid=nil, name=nil, crossbackupenabled=nil, crossregions=nil, lastbackupstarttime=nil, crossbackupsavedays=nil, databackupspace=nil, databackupcount=nil, logbackupspace=nil, logbackupcount=nil, actualusedspace=nil, actualusedcount=nil)
+          @Status = status
+          @Region = region
+          @InstanceId = instanceid
+          @Name = name
+          @CrossBackupEnabled = crossbackupenabled
+          @CrossRegions = crossregions
+          @LastBackupStartTime = lastbackupstarttime
+          @CrossBackupSaveDays = crossbackupsavedays
+          @DataBackupSpace = databackupspace
+          @DataBackupCount = databackupcount
+          @LogBackupSpace = logbackupspace
+          @LogBackupCount = logbackupcount
+          @ActualUsedSpace = actualusedspace
+          @ActualUsedCount = actualusedcount
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @CrossBackupEnabled = params['CrossBackupEnabled']
+          @CrossRegions = params['CrossRegions']
+          @LastBackupStartTime = params['LastBackupStartTime']
+          @CrossBackupSaveDays = params['CrossBackupSaveDays']
+          @DataBackupSpace = params['DataBackupSpace']
+          @DataBackupCount = params['DataBackupCount']
+          @LogBackupSpace = params['LogBackupSpace']
+          @LogBackupCount = params['LogBackupCount']
+          @ActualUsedSpace = params['ActualUsedSpace']
+          @ActualUsedCount = params['ActualUsedCount']
+        end
+      end
+
       # 数据库创建信息
       class DBCreateInfo < TencentCloud::Common::AbstractModel
         # @param DBName: 数据库名
@@ -3215,6 +3283,257 @@ module TencentCloud
         end
       end
 
+      # DescribeBackupMonitor请求参数结构体
+      class DescribeBackupMonitorRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 备份空间使用详情开始时间
+        # @type StartTime: String
+        # @param EndTime: 备份空间使用详情结束时间
+        # @type EndTime: String
+        # @param Type: 备份趋势查询类型，local-本地备份，cross-跨地域备份
+        # @type Type: String
+
+        attr_accessor :StartTime, :EndTime, :Type
+
+        def initialize(starttime=nil, endtime=nil, type=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeBackupMonitor返回参数结构体
+      class DescribeBackupMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param TimeStamp: 备份趋势图时间轴
+        # @type TimeStamp: Array
+        # @param FreeSpace: 免费备份空间
+        # @type FreeSpace: Array
+        # @param ActualUsedSpace: 实际总备份空间
+        # @type ActualUsedSpace: Array
+        # @param LogBackupSpace: 日志备份空间
+        # @type LogBackupSpace: Array
+        # @param DataBackupSpace: 数据备份空间
+        # @type DataBackupSpace: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TimeStamp, :FreeSpace, :ActualUsedSpace, :LogBackupSpace, :DataBackupSpace, :RequestId
+
+        def initialize(timestamp=nil, freespace=nil, actualusedspace=nil, logbackupspace=nil, databackupspace=nil, requestid=nil)
+          @TimeStamp = timestamp
+          @FreeSpace = freespace
+          @ActualUsedSpace = actualusedspace
+          @LogBackupSpace = logbackupspace
+          @DataBackupSpace = databackupspace
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TimeStamp = params['TimeStamp']
+          @FreeSpace = params['FreeSpace']
+          @ActualUsedSpace = params['ActualUsedSpace']
+          @LogBackupSpace = params['LogBackupSpace']
+          @DataBackupSpace = params['DataBackupSpace']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupStatistical请求参数结构体
+      class DescribeBackupStatisticalRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页返回，每页返回的数目，取值为1-100，默认值为100
+        # @type Limit: Integer
+        # @param Offset: 分页返回，页编号，默认值为第0页。
+        # @type Offset: Integer
+        # @param InstanceIdSet: 一个或者多个实例ID。实例ID，格式如：mssql-si2823jyl。
+        # @type InstanceIdSet: Array
+        # @param InstanceNameSet: 实例名称列表，模糊查询。
+        # @type InstanceNameSet: Array
+        # @param OrderBy: 排序字段，默认default，则按照备份空间降序。
+        # default 按照备份空间排序
+        # data 数据备份排序
+        # log 日志备份排序
+        # auto 自动备份排序
+        # manual 手动备份排序
+        # @type OrderBy: String
+        # @param OrderByType: 默认降序，[desc-降序，asc-升序]。
+        # @type OrderByType: String
+
+        attr_accessor :Limit, :Offset, :InstanceIdSet, :InstanceNameSet, :OrderBy, :OrderByType
+
+        def initialize(limit=nil, offset=nil, instanceidset=nil, instancenameset=nil, orderby=nil, orderbytype=nil)
+          @Limit = limit
+          @Offset = offset
+          @InstanceIdSet = instanceidset
+          @InstanceNameSet = instancenameset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @InstanceIdSet = params['InstanceIdSet']
+          @InstanceNameSet = params['InstanceNameSet']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeBackupStatistical返回参数结构体
+      class DescribeBackupStatisticalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的实例总数。分页返回的话，这个值指的是所有符合条件的实例的个数，而非当前根据Limit和Offset值返回的实例个数。
+        # @type TotalCount: Integer
+        # @param Items: 实例列表。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              summarydetailres_tmp = SummaryDetailRes.new
+              summarydetailres_tmp.deserialize(i)
+              @Items << summarydetailres_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupSummary请求参数结构体
+      class DescribeBackupSummaryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBackupSummary返回参数结构体
+      class DescribeBackupSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param FreeSpace: 实际免费总空间，单位(KB)。
+        # @type FreeSpace: Integer
+        # @param ActualUsedSpace: 备份实际使用空间，单位(KB)。
+        # @type ActualUsedSpace: Integer
+        # @param BackupFilesTotal: 备份文件总个数。
+        # @type BackupFilesTotal: Integer
+        # @param BillingSpace: 备份占用收费空间，单位(KB)。
+        # @type BillingSpace: Integer
+        # @param DataBackupSpace: 数据备份使用空间，单位(KB)。
+        # @type DataBackupSpace: Integer
+        # @param DataBackupCount: 数据备份文件总个数。
+        # @type DataBackupCount: Integer
+        # @param ManualBackupSpace: 数据备份中手动备份使用空间，单位(KB)。
+        # @type ManualBackupSpace: Integer
+        # @param ManualBackupCount: 数据备份中手动备份文件总个数。
+        # @type ManualBackupCount: Integer
+        # @param AutoBackupSpace: 数据备份中自动备份使用空间，单位(KB)。
+        # @type AutoBackupSpace: Integer
+        # @param AutoBackupCount: 数据备份中自动备份文件总个数。
+        # @type AutoBackupCount: Integer
+        # @param LogBackupSpace: 日志备份使用空间，单位(KB)。
+        # @type LogBackupSpace: Integer
+        # @param LogBackupCount: 日志备份文件总个数。
+        # @type LogBackupCount: Integer
+        # @param EstimatedAmount: 预估收费金额，单位（元/小时）。
+        # @type EstimatedAmount: Float
+        # @param LocalBackupFilesTotal: 本地备份文件总个数
+        # @type LocalBackupFilesTotal: Integer
+        # @param CrossBackupFilesTotal: 跨地域备份文件总个数
+        # @type CrossBackupFilesTotal: Integer
+        # @param CrossBillingSpace: 跨地域备份占用收费空间，单位（KB）
+        # @type CrossBillingSpace: Integer
+        # @param CrossAutoBackupSpace: 跨地域自动数据备份使用空间，单位（KB）
+        # @type CrossAutoBackupSpace: Integer
+        # @param CrossAutoBackupCount: 跨地域自动数据备份文件总个数
+        # @type CrossAutoBackupCount: Integer
+        # @param LocalLogBackupSpace: 本地日志备份使用空间，单位（KB）
+        # @type LocalLogBackupSpace: Integer
+        # @param LocalLogBackupCount: 本地日志备份文件总个数
+        # @type LocalLogBackupCount: Integer
+        # @param CrossLogBackupSpace: 跨地域日志备份使用空间，单位（KB）
+        # @type CrossLogBackupSpace: Integer
+        # @param CrossLogBackupCount: 跨地域日志备份文件总个数
+        # @type CrossLogBackupCount: Integer
+        # @param CrossEstimatedAmount: 跨地域备份预估收费金额，单位（元/小时）
+        # @type CrossEstimatedAmount: Float
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FreeSpace, :ActualUsedSpace, :BackupFilesTotal, :BillingSpace, :DataBackupSpace, :DataBackupCount, :ManualBackupSpace, :ManualBackupCount, :AutoBackupSpace, :AutoBackupCount, :LogBackupSpace, :LogBackupCount, :EstimatedAmount, :LocalBackupFilesTotal, :CrossBackupFilesTotal, :CrossBillingSpace, :CrossAutoBackupSpace, :CrossAutoBackupCount, :LocalLogBackupSpace, :LocalLogBackupCount, :CrossLogBackupSpace, :CrossLogBackupCount, :CrossEstimatedAmount, :RequestId
+
+        def initialize(freespace=nil, actualusedspace=nil, backupfilestotal=nil, billingspace=nil, databackupspace=nil, databackupcount=nil, manualbackupspace=nil, manualbackupcount=nil, autobackupspace=nil, autobackupcount=nil, logbackupspace=nil, logbackupcount=nil, estimatedamount=nil, localbackupfilestotal=nil, crossbackupfilestotal=nil, crossbillingspace=nil, crossautobackupspace=nil, crossautobackupcount=nil, locallogbackupspace=nil, locallogbackupcount=nil, crosslogbackupspace=nil, crosslogbackupcount=nil, crossestimatedamount=nil, requestid=nil)
+          @FreeSpace = freespace
+          @ActualUsedSpace = actualusedspace
+          @BackupFilesTotal = backupfilestotal
+          @BillingSpace = billingspace
+          @DataBackupSpace = databackupspace
+          @DataBackupCount = databackupcount
+          @ManualBackupSpace = manualbackupspace
+          @ManualBackupCount = manualbackupcount
+          @AutoBackupSpace = autobackupspace
+          @AutoBackupCount = autobackupcount
+          @LogBackupSpace = logbackupspace
+          @LogBackupCount = logbackupcount
+          @EstimatedAmount = estimatedamount
+          @LocalBackupFilesTotal = localbackupfilestotal
+          @CrossBackupFilesTotal = crossbackupfilestotal
+          @CrossBillingSpace = crossbillingspace
+          @CrossAutoBackupSpace = crossautobackupspace
+          @CrossAutoBackupCount = crossautobackupcount
+          @LocalLogBackupSpace = locallogbackupspace
+          @LocalLogBackupCount = locallogbackupcount
+          @CrossLogBackupSpace = crosslogbackupspace
+          @CrossLogBackupCount = crosslogbackupcount
+          @CrossEstimatedAmount = crossestimatedamount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FreeSpace = params['FreeSpace']
+          @ActualUsedSpace = params['ActualUsedSpace']
+          @BackupFilesTotal = params['BackupFilesTotal']
+          @BillingSpace = params['BillingSpace']
+          @DataBackupSpace = params['DataBackupSpace']
+          @DataBackupCount = params['DataBackupCount']
+          @ManualBackupSpace = params['ManualBackupSpace']
+          @ManualBackupCount = params['ManualBackupCount']
+          @AutoBackupSpace = params['AutoBackupSpace']
+          @AutoBackupCount = params['AutoBackupCount']
+          @LogBackupSpace = params['LogBackupSpace']
+          @LogBackupCount = params['LogBackupCount']
+          @EstimatedAmount = params['EstimatedAmount']
+          @LocalBackupFilesTotal = params['LocalBackupFilesTotal']
+          @CrossBackupFilesTotal = params['CrossBackupFilesTotal']
+          @CrossBillingSpace = params['CrossBillingSpace']
+          @CrossAutoBackupSpace = params['CrossAutoBackupSpace']
+          @CrossAutoBackupCount = params['CrossAutoBackupCount']
+          @LocalLogBackupSpace = params['LocalLogBackupSpace']
+          @LocalLogBackupCount = params['LocalLogBackupCount']
+          @CrossLogBackupSpace = params['CrossLogBackupSpace']
+          @CrossLogBackupCount = params['CrossLogBackupCount']
+          @CrossEstimatedAmount = params['CrossEstimatedAmount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupUploadSize请求参数结构体
       class DescribeBackupUploadSizeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 导入目标实例ID
@@ -3434,6 +3753,81 @@ module TencentCloud
               businessintelligencefile_tmp = BusinessIntelligenceFile.new
               businessintelligencefile_tmp.deserialize(i)
               @BackupMigrationSet << businessintelligencefile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCrossBackupStatistical请求参数结构体
+      class DescribeCrossBackupStatisticalRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页,页数
+        # @type Offset: Integer
+        # @param Limit: 分页，页大小
+        # @type Limit: Integer
+        # @param InstanceIdSet: 实例ID列表
+        # @type InstanceIdSet: Array
+        # @param InstanceNameSet: 实例名称列表
+        # @type InstanceNameSet: Array
+        # @param CrossBackupStatus: 跨地域备份状态，enable-开启，disable-关闭
+        # @type CrossBackupStatus: String
+        # @param CrossRegion: 跨地域备份目标地域
+        # @type CrossRegion: String
+        # @param OrderBy: 排序字段，默认default-按照备份空间降序排序，data-按照数据备份排序，log-按照日志备份培训
+        # @type OrderBy: String
+        # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
+        # @type OrderByType: String
+
+        attr_accessor :Offset, :Limit, :InstanceIdSet, :InstanceNameSet, :CrossBackupStatus, :CrossRegion, :OrderBy, :OrderByType
+
+        def initialize(offset=nil, limit=nil, instanceidset=nil, instancenameset=nil, crossbackupstatus=nil, crossregion=nil, orderby=nil, orderbytype=nil)
+          @Offset = offset
+          @Limit = limit
+          @InstanceIdSet = instanceidset
+          @InstanceNameSet = instancenameset
+          @CrossBackupStatus = crossbackupstatus
+          @CrossRegion = crossregion
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceIdSet = params['InstanceIdSet']
+          @InstanceNameSet = params['InstanceNameSet']
+          @CrossBackupStatus = params['CrossBackupStatus']
+          @CrossRegion = params['CrossRegion']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+        end
+      end
+
+      # DescribeCrossBackupStatistical返回参数结构体
+      class DescribeCrossBackupStatisticalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 跨地域备份概览实时统计总条数
+        # @type TotalCount: Integer
+        # @param Items: 跨地域备份概览实时统计列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              crosssummarydetailres_tmp = CrossSummaryDetailRes.new
+              crosssummarydetailres_tmp.deserialize(i)
+              @Items << crosssummarydetailres_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3905,6 +4299,120 @@ module TencentCloud
 
       # DescribeDBs返回参数结构体
       class DescribeDBsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据库数量
+        # @type TotalCount: Integer
+        # @param DBInstances: 实例数据库列表
+        # @type DBInstances: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DBInstances, :RequestId
+
+        def initialize(totalcount=nil, dbinstances=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DBInstances = dbinstances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DBInstances'].nil?
+            @DBInstances = []
+            params['DBInstances'].each do |i|
+              instancedbdetail_tmp = InstanceDBDetail.new
+              instancedbdetail_tmp.deserialize(i)
+              @DBInstances << instancedbdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabasesNormal请求参数结构体
+      class DescribeDatabasesNormalRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，形如mssql-7vfv3rk3
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeDatabasesNormal返回参数结构体
+      class DescribeDatabasesNormalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 表示当前实例下的数据库总个数
+        # @type TotalCount: Integer
+        # @param DBList: 返回数据库的详细配置信息，例如：数据库是否开启CDC、CT等
+        # @type DBList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DBList, :RequestId
+
+        def initialize(totalcount=nil, dblist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DBList = dblist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DBList'].nil?
+            @DBList = []
+            params['DBList'].each do |i|
+              dbnormaldetail_tmp = DbNormalDetail.new
+              dbnormaldetail_tmp.deserialize(i)
+              @DBList << dbnormaldetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDatabases请求参数结构体
+      class DescribeDatabasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIdSet: 实例ID
+        # @type InstanceIdSet: Array
+        # @param Limit: 分页返回，每页返回的数目，取值为1-100，默认值为20
+        # @type Limit: Integer
+        # @param Offset: 分页返回，页编号，默认值为第0页
+        # @type Offset: Integer
+        # @param Name: 数据库名称
+        # @type Name: String
+        # @param OrderByType: 排序规则（desc-降序，asc-升序），默认desc
+        # @type OrderByType: String
+        # @param Encryption: 是否已开启TDE加密，enable-已加密，disable-未加密
+        # @type Encryption: String
+
+        attr_accessor :InstanceIdSet, :Limit, :Offset, :Name, :OrderByType, :Encryption
+
+        def initialize(instanceidset=nil, limit=nil, offset=nil, name=nil, orderbytype=nil, encryption=nil)
+          @InstanceIdSet = instanceidset
+          @Limit = limit
+          @Offset = offset
+          @Name = name
+          @OrderByType = orderbytype
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @InstanceIdSet = params['InstanceIdSet']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Name = params['Name']
+          @OrderByType = params['OrderByType']
+          @Encryption = params['Encryption']
+        end
+      end
+
+      # DescribeDatabases返回参数结构体
+      class DescribeDatabasesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数据库数量
         # @type TotalCount: Integer
         # @param DBInstances: 实例数据库列表
@@ -5006,6 +5514,66 @@ module TencentCloud
               @RegionSet << regioninfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRegularBackupPlan请求参数结构体
+      class DescribeRegularBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param RegularBackupSaveDays: 定期备份保留天数 [90 - 3650]天，默认365天
+        # @type RegularBackupSaveDays: Integer
+        # @param RegularBackupStrategy: 定期备份策略 years-每年，quarters-每季度，months-每月，默认months
+        # @type RegularBackupStrategy: String
+        # @param RegularBackupCounts: 定期备份保留个数，默认1个
+        # @type RegularBackupCounts: Integer
+        # @param RegularBackupStartTime: 定期备份开始日期，格式-YYYY-MM-DD 默认当前日期
+        # @type RegularBackupStartTime: String
+        # @param BackupCycle: 常规备份周期
+        # @type BackupCycle: Array
+
+        attr_accessor :InstanceId, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BackupCycle
+
+        def initialize(instanceid=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, backupcycle=nil)
+          @InstanceId = instanceid
+          @RegularBackupSaveDays = regularbackupsavedays
+          @RegularBackupStrategy = regularbackupstrategy
+          @RegularBackupCounts = regularbackupcounts
+          @RegularBackupStartTime = regularbackupstarttime
+          @BackupCycle = backupcycle
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RegularBackupSaveDays = params['RegularBackupSaveDays']
+          @RegularBackupStrategy = params['RegularBackupStrategy']
+          @RegularBackupCounts = params['RegularBackupCounts']
+          @RegularBackupStartTime = params['RegularBackupStartTime']
+          @BackupCycle = params['BackupCycle']
+        end
+      end
+
+      # DescribeRegularBackupPlan返回参数结构体
+      class DescribeRegularBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param SaveModePeriod: 常规备份计划
+        # @type SaveModePeriod: Array
+        # @param SaveModeRegular: 定期备份计划
+        # @type SaveModeRegular: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SaveModePeriod, :SaveModeRegular, :RequestId
+
+        def initialize(savemodeperiod=nil, savemoderegular=nil, requestid=nil)
+          @SaveModePeriod = savemodeperiod
+          @SaveModeRegular = savemoderegular
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SaveModePeriod = params['SaveModePeriod']
+          @SaveModeRegular = params['SaveModeRegular']
           @RequestId = params['RequestId']
         end
       end
@@ -6479,6 +7047,58 @@ module TencentCloud
         end
       end
 
+      # ModifyCrossBackupStrategy请求参数结构体
+      class ModifyCrossBackupStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param CrossBackupEnabled: 跨地域备份开关(数据备份&日志备份) enable-开启，disable-关闭
+        # @type CrossBackupEnabled: String
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param InstanceIdSet: 实例ID列表
+        # @type InstanceIdSet: Array
+        # @param CrossBackupSaveDays: 跨地域备份保留天数，取值：7~1830，默认7天
+        # @type CrossBackupSaveDays: Integer
+        # @param CrossBackupRegion: 跨地域备份的目标地域ID，最多两个，最少一个
+        # @type CrossBackupRegion: Array
+        # @param CleanUpCrossBackup: 是否立即清理跨地域备份(数据备份&日志备份) ，只有在BackupEnabled = disable时有效。1-是，0-否，默认：0
+        # @type CleanUpCrossBackup: Integer
+
+        attr_accessor :CrossBackupEnabled, :InstanceId, :InstanceIdSet, :CrossBackupSaveDays, :CrossBackupRegion, :CleanUpCrossBackup
+
+        def initialize(crossbackupenabled=nil, instanceid=nil, instanceidset=nil, crossbackupsavedays=nil, crossbackupregion=nil, cleanupcrossbackup=nil)
+          @CrossBackupEnabled = crossbackupenabled
+          @InstanceId = instanceid
+          @InstanceIdSet = instanceidset
+          @CrossBackupSaveDays = crossbackupsavedays
+          @CrossBackupRegion = crossbackupregion
+          @CleanUpCrossBackup = cleanupcrossbackup
+        end
+
+        def deserialize(params)
+          @CrossBackupEnabled = params['CrossBackupEnabled']
+          @InstanceId = params['InstanceId']
+          @InstanceIdSet = params['InstanceIdSet']
+          @CrossBackupSaveDays = params['CrossBackupSaveDays']
+          @CrossBackupRegion = params['CrossBackupRegion']
+          @CleanUpCrossBackup = params['CleanUpCrossBackup']
+        end
+      end
+
+      # ModifyCrossBackupStrategy返回参数结构体
+      class ModifyCrossBackupStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBEncryptAttributes请求参数结构体
       class ModifyDBEncryptAttributesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -6934,6 +7554,46 @@ module TencentCloud
 
       # ModifyDatabaseMdf返回参数结构体
       class ModifyDatabaseMdfResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 流程ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDatabaseShrinkMDF请求参数结构体
+      class ModifyDatabaseShrinkMDFRequest < TencentCloud::Common::AbstractModel
+        # @param DBNames: 数据库名数组
+        # @type DBNames: Array
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :DBNames, :InstanceId
+
+        def initialize(dbnames=nil, instanceid=nil)
+          @DBNames = dbnames
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @DBNames = params['DBNames']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ModifyDatabaseShrinkMDF返回参数结构体
+      class ModifyDatabaseShrinkMDFResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 流程ID
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -8808,6 +9468,74 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 备份概览实时统计项
+      class SummaryDetailRes < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域标识
+        # @type RegionId: Integer
+        # @param Status: 实例状态。1：申请中2：运行中3：受限运行中 (主备切换中)4：已隔离5：回收中6：已回收7：任务执行中 (实例做备份、回档等操作)8：已下线9：实例扩容中10：实例迁移中
+        # @type Status: Integer
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param ActualUsedSpace: 备份空间
+        # @type ActualUsedSpace: Integer
+        # @param DataBackupSpace: 数据备份空间
+        # @type DataBackupSpace: Integer
+        # @param DataBackupCount: 数据备份文件总个数
+        # @type DataBackupCount: Integer
+        # @param LogBackupSpace: 日志备份空间
+        # @type LogBackupSpace: Integer
+        # @param LogBackupCount: 日志备份文件总个数
+        # @type LogBackupCount: Integer
+        # @param AutoBackupSpace: 自动备份空间
+        # @type AutoBackupSpace: Integer
+        # @param AutoBackupCount: 自动备份文件总个数
+        # @type AutoBackupCount: Integer
+        # @param ManualBackupSpace: 手动备份空间
+        # @type ManualBackupSpace: Integer
+        # @param ManualBackupCount: 手动备份文件总个数
+        # @type ManualBackupCount: Integer
+        # @param Region: 实例所属地域码
+        # @type Region: String
+
+        attr_accessor :RegionId, :Status, :InstanceId, :Name, :ActualUsedSpace, :DataBackupSpace, :DataBackupCount, :LogBackupSpace, :LogBackupCount, :AutoBackupSpace, :AutoBackupCount, :ManualBackupSpace, :ManualBackupCount, :Region
+
+        def initialize(regionid=nil, status=nil, instanceid=nil, name=nil, actualusedspace=nil, databackupspace=nil, databackupcount=nil, logbackupspace=nil, logbackupcount=nil, autobackupspace=nil, autobackupcount=nil, manualbackupspace=nil, manualbackupcount=nil, region=nil)
+          @RegionId = regionid
+          @Status = status
+          @InstanceId = instanceid
+          @Name = name
+          @ActualUsedSpace = actualusedspace
+          @DataBackupSpace = databackupspace
+          @DataBackupCount = databackupcount
+          @LogBackupSpace = logbackupspace
+          @LogBackupCount = logbackupcount
+          @AutoBackupSpace = autobackupspace
+          @AutoBackupCount = autobackupcount
+          @ManualBackupSpace = manualbackupspace
+          @ManualBackupCount = manualbackupcount
+          @Region = region
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @ActualUsedSpace = params['ActualUsedSpace']
+          @DataBackupSpace = params['DataBackupSpace']
+          @DataBackupCount = params['DataBackupCount']
+          @LogBackupSpace = params['LogBackupSpace']
+          @LogBackupCount = params['LogBackupCount']
+          @AutoBackupSpace = params['AutoBackupSpace']
+          @AutoBackupCount = params['AutoBackupCount']
+          @ManualBackupSpace = params['ManualBackupSpace']
+          @ManualBackupCount = params['ManualBackupCount']
+          @Region = params['Region']
         end
       end
 

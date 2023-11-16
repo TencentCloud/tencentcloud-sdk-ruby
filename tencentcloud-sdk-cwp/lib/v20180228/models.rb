@@ -4711,8 +4711,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2023, 10
-        deprecate :Decription=, :none, 2023, 10
+        deprecate :Decription, :none, 2023, 11
+        deprecate :Decription=, :none, 2023, 11
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -28465,8 +28465,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2023, 10
-        deprecate :Fileds=, :none, 2023, 10
+        deprecate :Fileds, :none, 2023, 11
+        deprecate :Fileds=, :none, 2023, 11
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

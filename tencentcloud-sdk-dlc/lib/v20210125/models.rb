@@ -6137,6 +6137,95 @@ module TencentCloud
         end
       end
 
+      # DescribeTablesName请求参数结构体
+      class DescribeTablesNameRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 列出该数据库下所属数据表。
+        # @type DatabaseName: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 数据偏移量，从0开始，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为其一
+        # table-name - String - （过滤条件）数据表名称,形如：table-001。
+        # table-id - String - （过滤条件）table id形如：12342。
+        # @type Filters: Array
+        # @param DatasourceConnectionName: 指定查询的数据源名称，默认为DataLakeCatalog
+        # @type DatasourceConnectionName: String
+        # @param StartTime: 起始时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
+        # @type StartTime: String
+        # @param EndTime: 终止时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
+        # @type EndTime: String
+        # @param Sort: 排序字段，支持：CreateTime（创建时间）、UpdateTime（更新时间）、StorageSize（存储空间）、RecordCount（行数）、Name（表名称）（不传则默认按name升序）
+        # @type Sort: String
+        # @param Asc: 排序字段，false：降序（默认）；true：升序
+        # @type Asc: Boolean
+        # @param TableType: table type，表类型查询,可用值:EXTERNAL_TABLE,INDEX_TABLE,MANAGED_TABLE,MATERIALIZED_VIEW,TABLE,VIEW,VIRTUAL_VIEW
+        # @type TableType: String
+        # @param TableFormat: 筛选字段-表格式：不传（默认）为查全部；LAKEFS：托管表；ICEBERG：非托管iceberg表；HIVE：非托管hive表；OTHER：非托管其它；
+        # @type TableFormat: String
+
+        attr_accessor :DatabaseName, :Limit, :Offset, :Filters, :DatasourceConnectionName, :StartTime, :EndTime, :Sort, :Asc, :TableType, :TableFormat
+
+        def initialize(databasename=nil, limit=nil, offset=nil, filters=nil, datasourceconnectionname=nil, starttime=nil, endtime=nil, sort=nil, asc=nil, tabletype=nil, tableformat=nil)
+          @DatabaseName = databasename
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @DatasourceConnectionName = datasourceconnectionname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Sort = sort
+          @Asc = asc
+          @TableType = tabletype
+          @TableFormat = tableformat
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Sort = params['Sort']
+          @Asc = params['Asc']
+          @TableType = params['TableType']
+          @TableFormat = params['TableFormat']
+        end
+      end
+
+      # DescribeTablesName返回参数结构体
+      class DescribeTablesNameResponse < TencentCloud::Common::AbstractModel
+        # @param TableNameList: 数据表名称对象列表。
+        # @type TableNameList: Array
+        # @param TotalCount: 实例总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableNameList, :TotalCount, :RequestId
+
+        def initialize(tablenamelist=nil, totalcount=nil, requestid=nil)
+          @TableNameList = tablenamelist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TableNameList = params['TableNameList']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTables请求参数结构体
       class DescribeTablesRequest < TencentCloud::Common::AbstractModel
         # @param DatabaseName: 列出该数据库下所属数据表。

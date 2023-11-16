@@ -1797,10 +1797,12 @@ module TencentCloud
         # @type DataSource: String
         # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
         # @type CallbackUrl: String
+        # @param PreTrainModel: 太极预训练模型ID
+        # @type PreTrainModel: :class:`Tencentcloud::Tione.v20211111.models.PreTrainModel`
 
-        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl
+        attr_accessor :Name, :ChargeType, :ResourceConfigInfos, :FrameworkName, :FrameworkVersion, :FrameworkEnvironment, :ResourceGroupId, :Tags, :ImageInfo, :CodePackagePath, :StartCmdInfo, :TrainingMode, :DataConfigs, :VpcId, :SubnetId, :Output, :LogConfig, :TuningParameters, :LogEnable, :Remark, :DataSource, :CallbackUrl, :PreTrainModel
 
-        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil)
+        def initialize(name=nil, chargetype=nil, resourceconfiginfos=nil, frameworkname=nil, frameworkversion=nil, frameworkenvironment=nil, resourcegroupid=nil, tags=nil, imageinfo=nil, codepackagepath=nil, startcmdinfo=nil, trainingmode=nil, dataconfigs=nil, vpcid=nil, subnetid=nil, output=nil, logconfig=nil, tuningparameters=nil, logenable=nil, remark=nil, datasource=nil, callbackurl=nil, pretrainmodel=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConfigInfos = resourceconfiginfos
@@ -1823,6 +1825,7 @@ module TencentCloud
           @Remark = remark
           @DataSource = datasource
           @CallbackUrl = callbackurl
+          @PreTrainModel = pretrainmodel
         end
 
         def deserialize(params)
@@ -1884,6 +1887,10 @@ module TencentCloud
           @Remark = params['Remark']
           @DataSource = params['DataSource']
           @CallbackUrl = params['CallbackUrl']
+          unless params['PreTrainModel'].nil?
+            @PreTrainModel = PreTrainModel.new
+            @PreTrainModel.deserialize(params['PreTrainModel'])
+          end
         end
       end
 
@@ -7589,6 +7596,28 @@ module TencentCloud
         def deserialize(params)
           @X = params['X']
           @Y = params['Y']
+        end
+      end
+
+      # 太极任务预训练模型信息
+      class PreTrainModel < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelName: 模型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+
+        attr_accessor :ModelId, :ModelName
+
+        def initialize(modelid=nil, modelname=nil)
+          @ModelId = modelid
+          @ModelName = modelname
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelName = params['ModelName']
         end
       end
 

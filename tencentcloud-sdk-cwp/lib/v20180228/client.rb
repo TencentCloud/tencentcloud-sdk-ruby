@@ -11963,7 +11963,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  一键检测
+        # 漏洞一键检测
 
         # @param request: Request instance for ScanVul.
         # @type request: :class:`Tencentcloud::cwp::V20180228::ScanVulRequest`
