@@ -4002,21 +4002,21 @@ module TencentCloud
 
       # MLIDPassportOCR返回参数结构体
       class MLIDPassportOCRResponse < TencentCloud::Common::AbstractModel
-        # @param ID: 护照ID
+        # @param ID: 护照ID（机读码区的解析结果）
         # @type ID: String
-        # @param Name: 姓名
+        # @param Name: 姓名（机读码区的解析结果）
         # @type Name: String
-        # @param DateOfBirth: 出生日期
+        # @param DateOfBirth: 出生日期（机读码区的解析结果）
         # @type DateOfBirth: String
-        # @param Sex: 性别（F女，M男）
+        # @param Sex: 性别（F女，M男）（机读码区的解析结果）
         # @type Sex: String
-        # @param DateOfExpiration: 有效期
+        # @param DateOfExpiration: 有效期（机读码区的解析结果）
         # @type DateOfExpiration: String
-        # @param IssuingCountry: 发行国
+        # @param IssuingCountry: 发行国（机读码区的解析结果）
         # @type IssuingCountry: String
-        # @param Nationality: 国家地区代码
+        # @param Nationality: 国家地区代码（机读码区的解析结果）
         # @type Nationality: String
-        # @param Warn: 告警码
+        # @param Warn: 告警码：
         # -9103	证照翻拍告警
         # -9102	证照复印件告警（包括黑白复印件、彩色复印件）
         # -9106       证件遮挡告警
@@ -4037,18 +4037,22 @@ module TencentCloud
         # @type CodeSet: String
         # @param CodeCrc: 最下方第二行 MRZ Code 序列
         # @type CodeCrc: String
-        # @param Surname: 姓
+        # @param Surname: 姓（机读码区的解析结果）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Surname: String
-        # @param GivenName: 名
+        # @param GivenName: 名（机读码区的解析结果）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GivenName: String
+        # @param Type: 类型（机读码区的解析结果）
+        # @type Type: String
+        # @param PassportRecognizeInfos: 信息区证件内容
+        # @type PassportRecognizeInfos: :class:`Tencentcloud::Ocr.v20181119.models.PassportRecognizeInfos`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :RequestId
 
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -4063,6 +4067,8 @@ module TencentCloud
           @CodeCrc = codecrc
           @Surname = surname
           @GivenName = givenname
+          @Type = type
+          @PassportRecognizeInfos = passportrecognizeinfos
           @RequestId = requestid
         end
 
@@ -4081,6 +4087,11 @@ module TencentCloud
           @CodeCrc = params['CodeCrc']
           @Surname = params['Surname']
           @GivenName = params['GivenName']
+          @Type = params['Type']
+          unless params['PassportRecognizeInfos'].nil?
+            @PassportRecognizeInfos = PassportRecognizeInfos.new
+            @PassportRecognizeInfos.deserialize(params['PassportRecognizeInfos'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5359,6 +5370,62 @@ module TencentCloud
           @FamilyName = params['FamilyName']
           @FirstName = params['FirstName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 信息区证件内容
+      class PassportRecognizeInfos < TencentCloud::Common::AbstractModel
+        # @param Type: 证件类型（护照信息页识别结果）
+        # @type Type: String
+        # @param IssuingCountry: 发行国家（护照信息页识别结果）
+        # @type IssuingCountry: String
+        # @param PassportID: 护照号码（护照信息页识别结果）
+        # @type PassportID: String
+        # @param Surname: 姓（护照信息页识别结果）
+        # @type Surname: String
+        # @param GivenName: 名（护照信息页识别结果）
+        # @type GivenName: String
+        # @param Name: 姓名（护照信息页识别结果）
+        # @type Name: String
+        # @param Nationality: 国籍信息（护照信息页识别结果）
+        # @type Nationality: String
+        # @param DateOfBirth: 出生日期（护照信息页识别结果）
+        # @type DateOfBirth: String
+        # @param Sex: 性别（护照信息页识别结果）
+        # @type Sex: String
+        # @param DateOfIssuance: 发行日期（护照信息页识别结果）
+        # @type DateOfIssuance: String
+        # @param DateOfExpiration: 截止日期（护照信息页识别结果）
+        # @type DateOfExpiration: String
+
+        attr_accessor :Type, :IssuingCountry, :PassportID, :Surname, :GivenName, :Name, :Nationality, :DateOfBirth, :Sex, :DateOfIssuance, :DateOfExpiration
+
+        def initialize(type=nil, issuingcountry=nil, passportid=nil, surname=nil, givenname=nil, name=nil, nationality=nil, dateofbirth=nil, sex=nil, dateofissuance=nil, dateofexpiration=nil)
+          @Type = type
+          @IssuingCountry = issuingcountry
+          @PassportID = passportid
+          @Surname = surname
+          @GivenName = givenname
+          @Name = name
+          @Nationality = nationality
+          @DateOfBirth = dateofbirth
+          @Sex = sex
+          @DateOfIssuance = dateofissuance
+          @DateOfExpiration = dateofexpiration
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @IssuingCountry = params['IssuingCountry']
+          @PassportID = params['PassportID']
+          @Surname = params['Surname']
+          @GivenName = params['GivenName']
+          @Name = params['Name']
+          @Nationality = params['Nationality']
+          @DateOfBirth = params['DateOfBirth']
+          @Sex = params['Sex']
+          @DateOfIssuance = params['DateOfIssuance']
+          @DateOfExpiration = params['DateOfExpiration']
         end
       end
 

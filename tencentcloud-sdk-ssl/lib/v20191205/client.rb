@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 证书查询关联资源
+        # 证书查询关联资源， 最新查询接口请使用CreateCertificateBindResourceSyncTask， 可以查询更多支持的云资源
 
         # @param request: Request instance for DescribeDeployedResources.
         # @type request: :class:`Tencentcloud::ssl::V20191205::DescribeDeployedResourcesRequest`

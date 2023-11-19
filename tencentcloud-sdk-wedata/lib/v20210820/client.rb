@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量创建任务版本Ds
+
+        # @param request: Request instance for BatchCreateTaskVersionDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::BatchCreateTaskVersionDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::BatchCreateTaskVersionDsResponse`
+        def BatchCreateTaskVersionDs(request)
+          body = send_request('BatchCreateTaskVersionDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchCreateTaskVersionDsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除集成任务
 
         # @param request: Request instance for BatchDeleteIntegrationTasks.
@@ -1211,6 +1235,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建任务版本
+
+        # @param request: Request instance for CreateTaskVersionDs.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::CreateTaskVersionDsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::CreateTaskVersionDsResponse`
+        def CreateTaskVersionDs(request)
+          body = send_request('CreateTaskVersionDs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTaskVersionDsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 创建工作流
 
@@ -1873,6 +1921,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAllUsedVersionSonResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取待审批列表
+
+        # @param request: Request instance for DescribeApproveList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeApproveListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeApproveListResponse`
+        def DescribeApproveList(request)
+          body = send_request('DescribeApproveList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApproveListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6192,6 +6264,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = MakeUpWorkflowNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改审批单状态
+
+        # @param request: Request instance for ModifyApproveStatus.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::ModifyApproveStatusRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::ModifyApproveStatusResponse`
+        def ModifyApproveStatus(request)
+          body = send_request('ModifyApproveStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApproveStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
