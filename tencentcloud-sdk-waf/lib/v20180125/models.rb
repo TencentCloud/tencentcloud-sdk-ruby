@@ -51,17 +51,24 @@ module TencentCloud
         # @type BTime: Integer
         # @param Count: 日志条数
         # @type Count: Integer
+        # @param BeginTime: 时间，单位ms
+        # @type BeginTime: Integer
 
-        attr_accessor :BTime, :Count
+        attr_accessor :BTime, :Count, :BeginTime
+        extend Gem::Deprecate
+        deprecate :BTime, :none, 2023, 11
+        deprecate :BTime=, :none, 2023, 11
 
-        def initialize(btime=nil, count=nil)
+        def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
           @Count = count
+          @BeginTime = begintime
         end
 
         def deserialize(params)
           @BTime = params['BTime']
           @Count = params['Count']
+          @BeginTime = params['BeginTime']
         end
       end
 
@@ -1721,10 +1728,16 @@ module TencentCloud
         # @type PostCLSStatus: Integer
         # @param PostCKafkaStatus: kafka投递开关
         # @type PostCKafkaStatus: Integer
+        # @param Type: 对象类型：CLB:负载均衡器，TSE:云原生网关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Region: 对象地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1740,6 +1753,8 @@ module TencentCloud
           @InstanceLevel = instancelevel
           @PostCLSStatus = postclsstatus
           @PostCKafkaStatus = postckafkastatus
+          @Type = type
+          @Region = region
         end
 
         def deserialize(params)
@@ -1758,6 +1773,8 @@ module TencentCloud
           @InstanceLevel = params['InstanceLevel']
           @PostCLSStatus = params['PostCLSStatus']
           @PostCKafkaStatus = params['PostCKafkaStatus']
+          @Type = params['Type']
+          @Region = params['Region']
         end
       end
 
@@ -3831,10 +3848,19 @@ module TencentCloud
         # @param EventId: 事件id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventId: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ValidStatus: 生效状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidStatus: Integer
+        # @param Source: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
 
-        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source
 
-        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil)
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil)
           @ActionType = actiontype
           @Bypass = bypass
           @CreateTime = createtime
@@ -3846,6 +3872,9 @@ module TencentCloud
           @Status = status
           @Strategies = strategies
           @EventId = eventid
+          @ModifyTime = modifytime
+          @ValidStatus = validstatus
+          @Source = source
         end
 
         def deserialize(params)
@@ -3867,6 +3896,9 @@ module TencentCloud
             end
           end
           @EventId = params['EventId']
+          @ModifyTime = params['ModifyTime']
+          @ValidStatus = params['ValidStatus']
+          @Source = params['Source']
         end
       end
 
@@ -4736,10 +4768,19 @@ module TencentCloud
         # @type Ip: String
         # @param ValidStatus: 生效状态
         # @type ValidStatus: Integer
+        # @param ValidTimeStampMin: 最小有效时间的时间戳
+        # @type ValidTimeStampMin: String
+        # @param ValidTimeStampMax: 最大有效时间的时间戳
+        # @type ValidTimeStampMax: String
 
-        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus
+        attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax
+        extend Gem::Deprecate
+        deprecate :VtsMin, :none, 2023, 11
+        deprecate :VtsMin=, :none, 2023, 11
+        deprecate :VtsMax, :none, 2023, 11
+        deprecate :VtsMax=, :none, 2023, 11
 
-        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil)
+        def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
           @Count = count
           @ActionType = actiontype
@@ -4753,6 +4794,8 @@ module TencentCloud
           @Sort = sort
           @Ip = ip
           @ValidStatus = validstatus
+          @ValidTimeStampMin = validtimestampmin
+          @ValidTimeStampMax = validtimestampmax
         end
 
         def deserialize(params)
@@ -4769,6 +4812,8 @@ module TencentCloud
           @Sort = params['Sort']
           @Ip = params['Ip']
           @ValidStatus = params['ValidStatus']
+          @ValidTimeStampMin = params['ValidTimeStampMin']
+          @ValidTimeStampMax = params['ValidTimeStampMax']
         end
       end
 
@@ -4822,10 +4867,19 @@ module TencentCloud
         # @type Sort: String
         # @param Ip: IP
         # @type Ip: String
+        # @param ValidTimeStampMin: 有效时间最小时间戳
+        # @type ValidTimeStampMin: Integer
+        # @param ValidTimeStampMax: 有效时间最大时间戳
+        # @type ValidTimeStampMax: Integer
 
-        attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip
+        attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
+        extend Gem::Deprecate
+        deprecate :VtsMin, :none, 2023, 11
+        deprecate :VtsMin=, :none, 2023, 11
+        deprecate :VtsMax, :none, 2023, 11
+        deprecate :VtsMax=, :none, 2023, 11
 
-        def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil)
+        def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
           @Count = count
           @Category = category
@@ -4838,6 +4892,8 @@ module TencentCloud
           @Name = name
           @Sort = sort
           @Ip = ip
+          @ValidTimeStampMin = validtimestampmin
+          @ValidTimeStampMax = validtimestampmax
         end
 
         def deserialize(params)
@@ -4853,6 +4909,8 @@ module TencentCloud
           @Name = params['Name']
           @Sort = params['Sort']
           @Ip = params['Ip']
+          @ValidTimeStampMin = params['ValidTimeStampMin']
+          @ValidTimeStampMax = params['ValidTimeStampMax']
         end
       end
 
@@ -4910,18 +4968,21 @@ module TencentCloud
         # @type AntiLeakage: Integer
         # @param ApiProtection: API安全是否开启
         # @type ApiProtection: Integer
+        # @param RateLimit: 限流模块开关
+        # @type RateLimit: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WebSecurity, :AccessControl, :CcProtection, :AntiTamper, :AntiLeakage, :ApiProtection, :RequestId
+        attr_accessor :WebSecurity, :AccessControl, :CcProtection, :AntiTamper, :AntiLeakage, :ApiProtection, :RateLimit, :RequestId
 
-        def initialize(websecurity=nil, accesscontrol=nil, ccprotection=nil, antitamper=nil, antileakage=nil, apiprotection=nil, requestid=nil)
+        def initialize(websecurity=nil, accesscontrol=nil, ccprotection=nil, antitamper=nil, antileakage=nil, apiprotection=nil, ratelimit=nil, requestid=nil)
           @WebSecurity = websecurity
           @AccessControl = accesscontrol
           @CcProtection = ccprotection
           @AntiTamper = antitamper
           @AntiLeakage = antileakage
           @ApiProtection = apiprotection
+          @RateLimit = ratelimit
           @RequestId = requestid
         end
 
@@ -4932,6 +4993,7 @@ module TencentCloud
           @AntiTamper = params['AntiTamper']
           @AntiLeakage = params['AntiLeakage']
           @ApiProtection = params['ApiProtection']
+          @RateLimit = params['RateLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -5004,7 +5066,7 @@ module TencentCloud
         # @type Edition: String
         # @param InstanceID: WAF实例ID，不传则不过滤
         # @type InstanceID: String
-        # @param MetricName: 十一个值可选：
+        # @param MetricName: 十二个值可选：
         # access-峰值qps趋势图
         # botAccess- bot峰值qps趋势图
         # down-下行峰值带宽趋势图
@@ -5016,6 +5078,7 @@ module TencentCloud
         # leak-防泄露攻击总数趋势图
         # acl-访问控制攻击总数趋势图
         # http_status-状态码各次数趋势图
+        # wx_access-微信小程序峰值qps趋势图
         # @type MetricName: String
 
         attr_accessor :FromTime, :ToTime, :Domain, :Edition, :InstanceID, :MetricName
@@ -8072,9 +8135,9 @@ module TencentCloud
 
       # ModifyAccessPeriod请求参数结构体
       class ModifyAccessPeriodRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 访问日志保存期限，范围为[1, 30]
+        # @param Period: 访问日志保存期限，范围为[1, 180]
         # @type Period: Integer
-        # @param TopicId: 日志主题
+        # @param TopicId: 日志主题，新版本不需要再传
         # @type TopicId: String
 
         attr_accessor :Period, :TopicId
@@ -9322,10 +9385,12 @@ module TencentCloud
         # @type AntiTamper: Integer
         # @param AntiLeakage: 防泄漏模块开关，0或者1
         # @type AntiLeakage: Integer
+        # @param RateLimit: 限流模块开关，0或1
+        # @type RateLimit: Integer
 
-        attr_accessor :Domain, :WebSecurity, :AccessControl, :CcProtection, :ApiProtection, :AntiTamper, :AntiLeakage
+        attr_accessor :Domain, :WebSecurity, :AccessControl, :CcProtection, :ApiProtection, :AntiTamper, :AntiLeakage, :RateLimit
 
-        def initialize(domain=nil, websecurity=nil, accesscontrol=nil, ccprotection=nil, apiprotection=nil, antitamper=nil, antileakage=nil)
+        def initialize(domain=nil, websecurity=nil, accesscontrol=nil, ccprotection=nil, apiprotection=nil, antitamper=nil, antileakage=nil, ratelimit=nil)
           @Domain = domain
           @WebSecurity = websecurity
           @AccessControl = accesscontrol
@@ -9333,6 +9398,7 @@ module TencentCloud
           @ApiProtection = apiprotection
           @AntiTamper = antitamper
           @AntiLeakage = antileakage
+          @RateLimit = ratelimit
         end
 
         def deserialize(params)
@@ -9343,6 +9409,7 @@ module TencentCloud
           @ApiProtection = params['ApiProtection']
           @AntiTamper = params['AntiTamper']
           @AntiLeakage = params['AntiLeakage']
+          @RateLimit = params['RateLimit']
         end
       end
 
@@ -9954,10 +10021,13 @@ module TencentCloud
         # @param ACL: 访问控制
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ACL: Integer
+        # @param WxAccess: 小程序 qps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WxAccess: Integer
 
-        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL
+        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL, :WxAccess
 
-        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil, blackip=nil, tamper=nil, leak=nil, acl=nil)
+        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil, blackip=nil, tamper=nil, leak=nil, acl=nil, wxaccess=nil)
           @Time = time
           @Access = access
           @Up = up
@@ -9976,6 +10046,7 @@ module TencentCloud
           @Tamper = tamper
           @Leak = leak
           @ACL = acl
+          @WxAccess = wxaccess
         end
 
         def deserialize(params)
@@ -9997,6 +10068,7 @@ module TencentCloud
           @Tamper = params['Tamper']
           @Leak = params['Leak']
           @ACL = params['ACL']
+          @WxAccess = params['WxAccess']
         end
       end
 
@@ -11184,20 +11256,25 @@ module TencentCloud
         # @param FailedCount: 添加或修改失败的数目
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedCount: Integer
+        # @param Ids: 添加或修改的IP数据Id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ids: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FailedItems, :FailedCount, :RequestId
+        attr_accessor :FailedItems, :FailedCount, :Ids, :RequestId
 
-        def initialize(faileditems=nil, failedcount=nil, requestid=nil)
+        def initialize(faileditems=nil, failedcount=nil, ids=nil, requestid=nil)
           @FailedItems = faileditems
           @FailedCount = failedcount
+          @Ids = ids
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FailedItems = params['FailedItems']
           @FailedCount = params['FailedCount']
+          @Ids = params['Ids']
           @RequestId = params['RequestId']
         end
       end
@@ -11259,18 +11336,23 @@ module TencentCloud
         # @param Data: 结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
+        # @param SessionID: SessionID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionID: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :SessionID, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, sessionid=nil, requestid=nil)
           @Data = data
+          @SessionID = sessionid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @SessionID = params['SessionID']
           @RequestId = params['RequestId']
         end
       end

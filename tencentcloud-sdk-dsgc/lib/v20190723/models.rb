@@ -85,7 +85,7 @@ module TencentCloud
         # @type CreatedTime: String
         # @param Status: 评估项启用状态，启用/未启用，取值draft / launched
         # @type Status: String
-        # @param TemplateCount: 评估项关联的模版数量
+        # @param TemplateCount: 评估项关联的模板数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateCount: Integer
 
@@ -123,9 +123,9 @@ module TencentCloud
         # @param RiskDescription: 风险项描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskDescription: String
-        # @param TemplateId: 评估模版Id
+        # @param TemplateId: 评估模板Id
         # @type TemplateId: String
-        # @param TemplateName: 评估模版名称
+        # @param TemplateName: 评估模板名称
         # @type TemplateName: String
         # @param ControlItemId: 评估项Id
         # @type ControlItemId: String
@@ -240,7 +240,7 @@ module TencentCloud
         # @param RiskType: 风险类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: String
-        # @param ReferTemplateCount: 关联模版个数
+        # @param ReferTemplateCount: 关联模板个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferTemplateCount: Integer
         # @param SupportDataSource: 支持的数据源
@@ -249,7 +249,7 @@ module TencentCloud
         # @param RiskSide: 风险面
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskSide: String
-        # @param ReferTemplateList: 关联模版列表
+        # @param ReferTemplateList: 关联模板列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReferTemplateList: Array
 
@@ -303,13 +303,13 @@ module TencentCloud
         # @type BusinessDept: String
         # @param BusinessOwner: 业务负责人
         # @type BusinessOwner: String
-        # @param TemplateId: 评估模版Id
+        # @param TemplateId: 评估模板Id
         # @type TemplateId: String
-        # @param TemplateName: 评估模版名称
+        # @param TemplateName: 评估模板名称
         # @type TemplateName: String
-        # @param ComplianceGroupId: 分类分级模版Id
+        # @param ComplianceGroupId: 分类分级模板Id
         # @type ComplianceGroupId: Integer
-        # @param ComplianceGroupName: 分类分级模版名称
+        # @param ComplianceGroupName: 分类分级模板名称
         # @type ComplianceGroupName: String
         # @param ControlItemCount: 评估项数量
         # @type ControlItemCount: Integer
@@ -329,7 +329,7 @@ module TencentCloud
         # @type DiscoveryCondition: :class:`Tencentcloud::Dsgc.v20190723.models.DiscoveryCondition`
         # @param ErrorInfo: 评估任务失败信息
         # @type ErrorInfo: String
-        # @param TemplateUid: 模版主键id
+        # @param TemplateUid: 模板主键id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateUid: Integer
         # @param ProgressPercent: 进度百分比
@@ -400,24 +400,24 @@ module TencentCloud
         # @param Id: id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: Integer
-        # @param TemplateId: 评估模版Id
+        # @param TemplateId: 评估模板Id
         # @type TemplateId: String
-        # @param TemplateName: 评估模版名称
+        # @param TemplateName: 评估模板名称
         # @type TemplateName: String
         # @param Description: 描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Source: 模版来源，内置/用户自定，取值（system，user）
+        # @param Source: 模板来源，内置/用户自定，取值（system，user）
         # @type Source: String
-        # @param UseType: 模版类型，自动化/半自动化/问卷，取值（auto，semi-auto，law）等
+        # @param UseType: 模板类型，自动化/半自动化/问卷，取值（auto，semi-auto，law）等
         # @type UseType: String
-        # @param CreatedTime: 评估模版创建时间
+        # @param CreatedTime: 评估模板创建时间
         # @type CreatedTime: String
-        # @param ControlItemCount: 模版关联的评估项数量
+        # @param ControlItemCount: 模板关联的评估项数量
         # @type ControlItemCount: Integer
-        # @param AppliedItemCount: 模版已启用的评估项数量
+        # @param AppliedItemCount: 模板已启用的评估项数量
         # @type AppliedItemCount: Integer
-        # @param Status: 模版启用状态，草稿/已启用，取值draft / launched
+        # @param Status: 模板启用状态，草稿/已启用，取值draft / launched
         # @type Status: String
         # @param SupportDataSource: 支持的数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9146,7 +9146,7 @@ module TencentCloud
         # @type DbTotalQuota: Integer
         # @param CosTotalQuota: COS已购配额。
         # @type CosTotalQuota: Integer
-        # @param CosQuotaUnit: COS配额单位，比如TB。
+        # @param CosQuotaUnit: COS配额单位，例如:TB。
         # @type CosQuotaUnit: String
         # @param RenewFlag: 0: 默认状态(用户未设置)
         # 1: 开启自动续费
@@ -11733,10 +11733,10 @@ module TencentCloud
 
       # 数据资产报告-各种key-value的展示数据结构
       class Note < TencentCloud::Common::AbstractModel
-        # @param Key: 通用key，比如分类名称
+        # @param Key: 通用key，例如分类名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: 通用value，比如分类个数
+        # @param Value: 通用value，例如分类个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: Integer
 
@@ -12353,7 +12353,7 @@ module TencentCloud
         # @param RiskLevelDescription: 风险级别描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevelDescription: String
-        # @param IdentifyComplianceName: 引用的分类分级模版
+        # @param IdentifyComplianceName: 引用的分类分级模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceName: String
         # @param Type: 类型，区分自定义还是系统内置
@@ -12829,10 +12829,10 @@ module TencentCloud
 
       # 评估模版的详情数据
       class TemplateInfo < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateId: Integer
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateName: String
 

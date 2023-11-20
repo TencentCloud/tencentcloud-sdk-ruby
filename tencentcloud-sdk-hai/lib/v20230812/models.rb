@@ -181,7 +181,7 @@ module TencentCloud
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例元组
         # @type InstanceIds: Array
-        # @param Filters: 描述键值对过滤器，用于条件过滤查询。
+        # @param Filters: 描述键值对过滤器，用于条件过滤查询。目前支持的过滤器有：instance-id，实例id；instance-state，实例状态
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -288,7 +288,7 @@ module TencentCloud
 
       # DescribeScenes请求参数结构体
       class DescribeScenesRequest < TencentCloud::Common::AbstractModel
-        # @param SceneIds: ["sc-abcdefgh"]
+        # @param SceneIds: 场景id列表
         # @type SceneIds: Array
 
         attr_accessor :SceneIds
@@ -304,7 +304,7 @@ module TencentCloud
 
       # DescribeScenes返回参数结构体
       class DescribeScenesResponse < TencentCloud::Common::AbstractModel
-        # @param SceneSet: scene info
+        # @param SceneSet: 场景详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SceneSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -539,7 +539,7 @@ module TencentCloud
         # @param MaxOutBandwidth: 公网出带宽上限，默认5Mbps
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxOutBandwidth: String
-        # @param MaxFreeTraffic: 每月免费流量，默认1000G
+        # @param MaxFreeTraffic: 每月免费流量，默认500G
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxFreeTraffic: String
         # @param ConfigurationEnvironment: 应用配置环境

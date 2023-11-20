@@ -1182,6 +1182,92 @@ module TencentCloud
         end
       end
 
+      # ImportSourceClusterConsumerGroups请求参数结构体
+      class ImportSourceClusterConsumerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param GroupList: 待导入的消费组列表
+        # @type GroupList: Array
+
+        attr_accessor :TaskId, :GroupList
+
+        def initialize(taskid=nil, grouplist=nil)
+          @TaskId = taskid
+          @GroupList = grouplist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['GroupList'].nil?
+            @GroupList = []
+            params['GroupList'].each do |i|
+              sourceclustergroupconfig_tmp = SourceClusterGroupConfig.new
+              sourceclustergroupconfig_tmp.deserialize(i)
+              @GroupList << sourceclustergroupconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ImportSourceClusterConsumerGroups返回参数结构体
+      class ImportSourceClusterConsumerGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImportSourceClusterTopics请求参数结构体
+      class ImportSourceClusterTopicsRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TopicList: 待导入的主题列表
+        # @type TopicList: Array
+
+        attr_accessor :TaskId, :TopicList
+
+        def initialize(taskid=nil, topiclist=nil)
+          @TaskId = taskid
+          @TopicList = topiclist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          unless params['TopicList'].nil?
+            @TopicList = []
+            params['TopicList'].each do |i|
+              sourceclustertopicconfig_tmp = SourceClusterTopicConfig.new
+              sourceclustertopicconfig_tmp.deserialize(i)
+              @TopicList << sourceclustertopicconfig_tmp
+            end
+          end
+        end
+      end
+
+      # ImportSourceClusterTopics返回参数结构体
+      class ImportSourceClusterTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例列表页中的实例信息
       class InstanceItem < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1563,6 +1649,111 @@ module TencentCloud
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # 消费组配置信息
+      class SourceClusterGroupConfig < TencentCloud::Common::AbstractModel
+        # @param GroupName: 消费组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Imported: 是否已导入，作为入参时无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Imported: Boolean
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param ImportStatus: 导入状态
+        # Unknown 未知
+        # Success 成功
+        # Failure 失败
+        # AlreadyExists 已存在
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportStatus: String
+
+        attr_accessor :GroupName, :Remark, :Imported, :Namespace, :ImportStatus
+
+        def initialize(groupname=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil)
+          @GroupName = groupname
+          @Remark = remark
+          @Imported = imported
+          @Namespace = namespace
+          @ImportStatus = importstatus
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @Remark = params['Remark']
+          @Imported = params['Imported']
+          @Namespace = params['Namespace']
+          @ImportStatus = params['ImportStatus']
+        end
+      end
+
+      # 源集群主题配置
+      class SourceClusterTopicConfig < TencentCloud::Common::AbstractModel
+        # @param TopicName: 主题名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param TopicType: 主题类型，
+        # 5.x版本
+        # UNSPECIFIED 未指定
+        # NORMAL 普通消息
+        # FIFO 顺序消息
+        # DELAY 延迟消息
+        # TRANSACTION 事务消息
+
+        # 4.x版本
+        # Normal 普通消息
+        # PartitionedOrder 分区顺序消息
+        # Transaction 事务消息
+        # DelayScheduled 延时消息
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicType: String
+        # @param QueueNum: 队列数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueueNum: Integer
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+        # @param Imported: 是否已导入，作为入参时无效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Imported: Boolean
+        # @param Namespace: 命名空间，仅4.x集群有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param ImportStatus: 导入状态，
+        # Unknown 未知，
+        # AlreadyExists 已存在，
+        # Success 成功，
+        # Failure 失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportStatus: String
+
+        attr_accessor :TopicName, :TopicType, :QueueNum, :Remark, :Imported, :Namespace, :ImportStatus
+
+        def initialize(topicname=nil, topictype=nil, queuenum=nil, remark=nil, imported=nil, namespace=nil, importstatus=nil)
+          @TopicName = topicname
+          @TopicType = topictype
+          @QueueNum = queuenum
+          @Remark = remark
+          @Imported = imported
+          @Namespace = namespace
+          @ImportStatus = importstatus
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @TopicType = params['TopicType']
+          @QueueNum = params['QueueNum']
+          @Remark = params['Remark']
+          @Imported = params['Imported']
+          @Namespace = params['Namespace']
+          @ImportStatus = params['ImportStatus']
         end
       end
 

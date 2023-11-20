@@ -1507,27 +1507,27 @@ module TencentCloud
         # @type AutoRenewFlag: Integer
         # @param TimeSpan: 购买时长，取值范围：1～50
         # @type TimeSpan: Integer
-        # @param Tags: 集群的标签列表(已废弃)
-        # @type Tags: Array
         # @param ClusterName: 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过64个字符。
         # @type ClusterName: String
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
         # @param Vpcs: vpc网络标签
         # @type Vpcs: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
+        # @param Tags: 集群的标签列表(已废弃)
+        # @type Tags: Array
 
-        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :Tags, :ClusterName, :AutoVoucher, :Vpcs
+        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :Vpcs, :Tags
 
-        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, tags=nil, clustername=nil, autovoucher=nil, vpcs=nil)
+        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, vpcs=nil, tags=nil)
           @ZoneIds = zoneids
           @ProductName = productname
           @StorageSize = storagesize
           @AutoRenewFlag = autorenewflag
           @TimeSpan = timespan
-          @Tags = tags
           @ClusterName = clustername
           @AutoVoucher = autovoucher
           @Vpcs = vpcs
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1536,6 +1536,12 @@ module TencentCloud
           @StorageSize = params['StorageSize']
           @AutoRenewFlag = params['AutoRenewFlag']
           @TimeSpan = params['TimeSpan']
+          @ClusterName = params['ClusterName']
+          @AutoVoucher = params['AutoVoucher']
+          unless params['Vpcs'].nil?
+            @Vpcs = VpcInfo.new
+            @Vpcs.deserialize(params['Vpcs'])
+          end
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -1543,12 +1549,6 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
-          end
-          @ClusterName = params['ClusterName']
-          @AutoVoucher = params['AutoVoucher']
-          unless params['Vpcs'].nil?
-            @Vpcs = VpcInfo.new
-            @Vpcs.deserialize(params['Vpcs'])
           end
         end
       end

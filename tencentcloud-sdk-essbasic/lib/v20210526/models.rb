@@ -1377,21 +1377,21 @@ module TencentCloud
 
         # - 如果不指定，则使用姓名和手机号进行补充。
         # @type Approvers: Array
-        # @param Operator: 操作人信息
-        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
         # @param FillApproverType: 签署人信息补充方式
 
-        # <ul><li>**1**: 补充动态签署人，可补充企业和个人签署人。注: `每个签署方节点签署人是唯一的，一个节点只支持传入一个签署人信息`</li></ul>
+        # <ul><li>**1**: 表示往未指定签署人的节点，添加一个明确的签署人，支持企业或个人签署方。</li></ul>
         # @type FillApproverType: Integer
+        # @param Operator: 操作人信息
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :Agent, :FlowId, :Approvers, :Operator, :FillApproverType
+        attr_accessor :Agent, :FlowId, :Approvers, :FillApproverType, :Operator
 
-        def initialize(agent=nil, flowid=nil, approvers=nil, operator=nil, fillapprovertype=nil)
+        def initialize(agent=nil, flowid=nil, approvers=nil, fillapprovertype=nil, operator=nil)
           @Agent = agent
           @FlowId = flowid
           @Approvers = approvers
-          @Operator = operator
           @FillApproverType = fillapprovertype
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -1408,11 +1408,11 @@ module TencentCloud
               @Approvers << fillapproverinfo_tmp
             end
           end
+          @FillApproverType = params['FillApproverType']
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FillApproverType = params['FillApproverType']
         end
       end
 
@@ -4937,7 +4937,7 @@ module TencentCloud
         # `如果预览的文件中指定了动态表格控件，此时此接口返回的是合成前的文档预览链接，合成完成后的文档预览链接需要通过回调通知的方式或使用返回的TaskInfo中的TaskId通过ChannelGetTaskResultApi接口查询得到`
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览模式下产生的预览链接类型
-        # <ul><li> **0** :(默认) 文件流 ,点开后后下载预览的合同PDF文件 </li>
+        # <ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li>
         # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>
         # 注: `此参数在NeedPreview 为true时有效`
         # @type PreviewType: Integer
@@ -6365,7 +6365,7 @@ module TencentCloud
         # @type PreReadTime: Integer
         # @param JumpUrl: 签署完前端跳转的url，此字段的用法场景请联系客户经理确认
         # @type JumpUrl: String
-        # @param ApproverOption: 可以控制签署方在签署合同时能否进行某些操作，例如拒签、转交他人等。
+        # @param ApproverOption: 可以控制签署方在签署合同时能否进行某些操作，例如拒签、转交他人、是否为动态补充签署人等。
         # 详细操作可以参考开发者中心的ApproverOption结构体。
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverOption`
         # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要

@@ -564,10 +564,24 @@ module TencentCloud
         # @type Status: String
         # @param ApproveTypeName: 审批类型名称
         # @type ApproveTypeName: String
+        # @param ErrorMessage: 审批异常或者失败信息
+        # @type ErrorMessage: String
+        # @param ApplyName: 申请名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplyName: String
+        # @param ApproverId: 审批人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverId: String
+        # @param ApproverName: 审批人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproverName: String
+        # @param ApproveProjectName: 审批所属项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveProjectName: String
 
-        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName
+        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName
 
-        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil)
+        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil)
           @ApplicantId = applicantid
           @ApplicantName = applicantname
           @Remark = remark
@@ -580,6 +594,11 @@ module TencentCloud
           @ApproveClassificationName = approveclassificationname
           @Status = status
           @ApproveTypeName = approvetypename
+          @ErrorMessage = errormessage
+          @ApplyName = applyname
+          @ApproverId = approverid
+          @ApproverName = approvername
+          @ApproveProjectName = approveprojectname
         end
 
         def deserialize(params)
@@ -595,6 +614,11 @@ module TencentCloud
           @ApproveClassificationName = params['ApproveClassificationName']
           @Status = params['Status']
           @ApproveTypeName = params['ApproveTypeName']
+          @ErrorMessage = params['ErrorMessage']
+          @ApplyName = params['ApplyName']
+          @ApproverId = params['ApproverId']
+          @ApproverName = params['ApproverName']
+          @ApproveProjectName = params['ApproveProjectName']
         end
       end
 
@@ -615,6 +639,30 @@ module TencentCloud
         def deserialize(params)
           @ApproveId = params['ApproveId']
           @Success = params['Success']
+        end
+      end
+
+      # 审批分类
+      class ApproveType < TencentCloud::Common::AbstractModel
+        # @param Type: 申请分类key
+        # @type Type: String
+        # @param TypeName: 类型名称
+        # @type TypeName: String
+        # @param Classification: 申请类型key
+        # @type Classification: String
+
+        attr_accessor :Type, :TypeName, :Classification
+
+        def initialize(type=nil, typename=nil, classification=nil)
+          @Type = type
+          @TypeName = typename
+          @Classification = classification
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TypeName = params['TypeName']
+          @Classification = params['Classification']
         end
       end
 
@@ -7504,6 +7552,49 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = DescribeApply.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApproveTypeList请求参数结构体
+      class DescribeApproveTypeListRequest < TencentCloud::Common::AbstractModel
+        # @param Classification: 类型key
+        # @type Classification: String
+
+        attr_accessor :Classification
+
+        def initialize(classification=nil)
+          @Classification = classification
+        end
+
+        def deserialize(params)
+          @Classification = params['Classification']
+        end
+      end
+
+      # DescribeApproveTypeList返回参数结构体
+      class DescribeApproveTypeListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 获取审批分类列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              approvetype_tmp = ApproveType.new
+              approvetype_tmp.deserialize(i)
+              @Data << approvetype_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

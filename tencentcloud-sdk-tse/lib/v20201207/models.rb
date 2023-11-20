@@ -4517,16 +4517,24 @@ module TencentCloud
         # @param Source: Target的来源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Source: String
+        # @param CvmInstanceId: CVM实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstanceId: String
+        # @param CvmInstanceName: CVM实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstanceName: String
 
-        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source
+        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source, :CvmInstanceId, :CvmInstanceName
 
-        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil)
+        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil, cvminstanceid=nil, cvminstancename=nil)
           @Host = host
           @Port = port
           @Weight = weight
           @Health = health
           @CreatedTime = createdtime
           @Source = source
+          @CvmInstanceId = cvminstanceid
+          @CvmInstanceName = cvminstancename
         end
 
         def deserialize(params)
@@ -4536,6 +4544,8 @@ module TencentCloud
           @Health = params['Health']
           @CreatedTime = params['CreatedTime']
           @Source = params['Source']
+          @CvmInstanceId = params['CvmInstanceId']
+          @CvmInstanceName = params['CvmInstanceName']
         end
       end
 

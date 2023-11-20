@@ -77,6 +77,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Fabric某区块的详细信息
+
+        # @param request: Request instance for DescribeFabricBlock.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::DescribeFabricBlockRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::DescribeFabricBlockResponse`
+        def DescribeFabricBlock(request)
+          body = send_request('DescribeFabricBlock', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFabricBlockResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Fabric交易的详细信息
+
+        # @param request: Request instance for DescribeFabricTransaction.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::DescribeFabricTransactionRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::DescribeFabricTransactionResponse`
+        def DescribeFabricTransaction(request)
+          body = send_request('DescribeFabricTransaction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFabricTransactionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 下载用户证书
 
         # @param request: Request instance for DownloadUserCert.
@@ -341,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用Fabric用户合约执行交易
+
+        # @param request: Request instance for InvokeFabricChaincode.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::InvokeFabricChaincodeRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::InvokeFabricChaincodeResponse`
+        def InvokeFabricChaincode(request)
+          body = send_request('InvokeFabricChaincode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeFabricChaincodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询交易
 
         # @param request: Request instance for Query.
@@ -495,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryChainMakerTransactionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用Fabric用户合约查询
+
+        # @param request: Request instance for QueryFabricChaincode.
+        # @type request: :class:`Tencentcloud::tbaas::V20180416::QueryFabricChaincodeRequest`
+        # @rtype: :class:`Tencentcloud::tbaas::V20180416::QueryFabricChaincodeResponse`
+        def QueryFabricChaincode(request)
+          body = send_request('QueryFabricChaincode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryFabricChaincodeResponse.new
             model.deserialize(response['Response'])
             model
           else

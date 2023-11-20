@@ -429,6 +429,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导入消费者组列表
+
+        # @param request: Request instance for ImportSourceClusterConsumerGroups.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::ImportSourceClusterConsumerGroupsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::ImportSourceClusterConsumerGroupsResponse`
+        def ImportSourceClusterConsumerGroups(request)
+          body = send_request('ImportSourceClusterConsumerGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportSourceClusterConsumerGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导入topic列表
+
+        # @param request: Request instance for ImportSourceClusterTopics.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::ImportSourceClusterTopicsRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::ImportSourceClusterTopicsResponse`
+        def ImportSourceClusterTopics(request)
+          body = send_request('ImportSourceClusterTopics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportSourceClusterTopicsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改消费组属性
 
         # @param request: Request instance for ModifyConsumerGroup.

@@ -1901,6 +1901,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群自定义参数
+
+        # @param request: Request instance for DescribeClusterExtraArgs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterExtraArgsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterExtraArgsResponse`
+        def DescribeClusterExtraArgs(request)
+          body = send_request('DescribeClusterExtraArgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterExtraArgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户单个Region下的所有集群巡检结果概览信息
 
         # @param request: Request instance for DescribeClusterInspectionResultsOverview.
@@ -2727,6 +2751,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeExternalClusterSpecResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看开启第三方节点池配置信息
+
+        # @param request: Request instance for DescribeExternalNodeSupportConfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeSupportConfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeExternalNodeSupportConfigResponse`
+        def DescribeExternalNodeSupportConfig(request)
+          body = send_request('DescribeExternalNodeSupportConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExternalNodeSupportConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取eniipamd组件信息
+
+        # @param request: Request instance for DescribeIPAMD.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeIPAMDRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeIPAMDResponse`
+        def DescribeIPAMD(request)
+          body = send_request('DescribeIPAMD', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIPAMDResponse.new
             model.deserialize(response['Response'])
             model
           else

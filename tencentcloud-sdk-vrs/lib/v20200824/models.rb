@@ -556,16 +556,19 @@ module TencentCloud
         # @type TaskID: String
         # @param DateCreated: 创建时间
         # @type DateCreated: String
+        # @param IsDeployed: 部署状态。若已部署，则可通过语音合成接口调用该音色
+        # @type IsDeployed: Boolean
 
-        attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated
+        attr_accessor :VoiceType, :VoiceName, :VoiceGender, :TaskType, :TaskID, :DateCreated, :IsDeployed
 
-        def initialize(voicetype=nil, voicename=nil, voicegender=nil, tasktype=nil, taskid=nil, datecreated=nil)
+        def initialize(voicetype=nil, voicename=nil, voicegender=nil, tasktype=nil, taskid=nil, datecreated=nil, isdeployed=nil)
           @VoiceType = voicetype
           @VoiceName = voicename
           @VoiceGender = voicegender
           @TaskType = tasktype
           @TaskID = taskid
           @DateCreated = datecreated
+          @IsDeployed = isdeployed
         end
 
         def deserialize(params)
@@ -575,6 +578,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @TaskID = params['TaskID']
           @DateCreated = params['DateCreated']
+          @IsDeployed = params['IsDeployed']
         end
       end
 

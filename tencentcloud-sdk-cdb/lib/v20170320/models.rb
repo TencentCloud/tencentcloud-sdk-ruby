@@ -10531,19 +10531,23 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param ModifyPayType: 如果需要将按量计费实例续费为包年包月的实例，该入参的值需要指定为 "PREPAID" 。
         # @type ModifyPayType: String
+        # @param AutoRenew: 自动续费标记，0表示不自动续费，1表示进行自动续费
+        # @type AutoRenew: Integer
 
-        attr_accessor :InstanceId, :TimeSpan, :ModifyPayType
+        attr_accessor :InstanceId, :TimeSpan, :ModifyPayType, :AutoRenew
 
-        def initialize(instanceid=nil, timespan=nil, modifypaytype=nil)
+        def initialize(instanceid=nil, timespan=nil, modifypaytype=nil, autorenew=nil)
           @InstanceId = instanceid
           @TimeSpan = timespan
           @ModifyPayType = modifypaytype
+          @AutoRenew = autorenew
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @TimeSpan = params['TimeSpan']
           @ModifyPayType = params['ModifyPayType']
+          @AutoRenew = params['AutoRenew']
         end
       end
 

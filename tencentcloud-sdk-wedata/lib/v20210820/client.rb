@@ -1959,6 +1959,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取审批分类列表
+
+        # @param request: Request instance for DescribeApproveTypeList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeApproveTypeListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeApproveTypeListResponse`
+        def DescribeApproveTypeList(request)
+          body = send_request('DescribeApproveTypeList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApproveTypeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询基线DAG
 
         # @param request: Request instance for DescribeBaselineAllTaskDag.

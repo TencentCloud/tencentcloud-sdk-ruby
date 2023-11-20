@@ -5489,12 +5489,15 @@ module TencentCloud
         # @param SecurityGroup: 外网安全组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecurityGroup: String
+        # @param ClusterIntranetSubnetId: 内网访问所属子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterIntranetSubnetId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :ClusterExternalDomain, :ClusterIntranetDomain, :SecurityGroup, :RequestId
+        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :ClusterExternalDomain, :ClusterIntranetDomain, :SecurityGroup, :ClusterIntranetSubnetId, :RequestId
 
-        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, clusterexternaldomain=nil, clusterintranetdomain=nil, securitygroup=nil, requestid=nil)
+        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, clusterexternaldomain=nil, clusterintranetdomain=nil, securitygroup=nil, clusterintranetsubnetid=nil, requestid=nil)
           @CertificationAuthority = certificationauthority
           @ClusterExternalEndpoint = clusterexternalendpoint
           @ClusterIntranetEndpoint = clusterintranetendpoint
@@ -5503,6 +5506,7 @@ module TencentCloud
           @ClusterExternalDomain = clusterexternaldomain
           @ClusterIntranetDomain = clusterintranetdomain
           @SecurityGroup = securitygroup
+          @ClusterIntranetSubnetId = clusterintranetsubnetid
           @RequestId = requestid
         end
 
@@ -5515,6 +5519,47 @@ module TencentCloud
           @ClusterExternalDomain = params['ClusterExternalDomain']
           @ClusterIntranetDomain = params['ClusterIntranetDomain']
           @SecurityGroup = params['SecurityGroup']
+          @ClusterIntranetSubnetId = params['ClusterIntranetSubnetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterExtraArgs请求参数结构体
+      class DescribeClusterExtraArgsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterExtraArgs返回参数结构体
+      class DescribeClusterExtraArgsResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterExtraArgs: 集群自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterExtraArgs, :RequestId
+
+        def initialize(clusterextraargs=nil, requestid=nil)
+          @ClusterExtraArgs = clusterextraargs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterExtraArgs'].nil?
+            @ClusterExtraArgs = ClusterExtraArgs.new
+            @ClusterExtraArgs.deserialize(params['ClusterExtraArgs'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7574,6 +7619,168 @@ module TencentCloud
         def deserialize(params)
           @Spec = params['Spec']
           @Expiration = params['Expiration']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExternalNodeSupportConfig请求参数结构体
+      class DescribeExternalNodeSupportConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeExternalNodeSupportConfig返回参数结构体
+      class DescribeExternalNodeSupportConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterCIDR: 用于分配集群容器和服务 IP 的 CIDR，不得与 VPC CIDR 冲突，也不得与同 VPC 内其他集群 CIDR 冲突。且网段范围必须在内网网段内，例如:10.1.0.0/14, 192.168.0.1/18,172.16.0.0/16。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterCIDR: String
+        # @param NetworkType: 集群网络插件类型，支持：CiliumBGP、CiliumVXLan
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkType: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Enabled: 是否开启第三方节点专线连接支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param AS: 节点所属交换机的BGP AS 号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AS: String
+        # @param SwitchIP: 节点所属交换机的交换机 IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchIP: String
+        # @param Status: 开启第三方节点池状态
+        # @type Status: String
+        # @param FailedReason: 如果开启失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedReason: String
+        # @param Master: 内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Master: String
+        # @param Proxy: 镜像仓库代理地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Proxy: String
+        # @param Progress: 用于记录开启第三方节点的过程进行到哪一步了
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Array
+        # @param EnabledPublicConnect: 是否开启第三方节点公网连接支持
+        # @type EnabledPublicConnect: Boolean
+        # @param PublicConnectUrl: 公网连接地址
+        # @type PublicConnectUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterCIDR, :NetworkType, :SubnetId, :Enabled, :AS, :SwitchIP, :Status, :FailedReason, :Master, :Proxy, :Progress, :EnabledPublicConnect, :PublicConnectUrl, :RequestId
+
+        def initialize(clustercidr=nil, networktype=nil, subnetid=nil, enabled=nil, as=nil, switchip=nil, status=nil, failedreason=nil, master=nil, proxy=nil, progress=nil, enabledpublicconnect=nil, publicconnecturl=nil, requestid=nil)
+          @ClusterCIDR = clustercidr
+          @NetworkType = networktype
+          @SubnetId = subnetid
+          @Enabled = enabled
+          @AS = as
+          @SwitchIP = switchip
+          @Status = status
+          @FailedReason = failedreason
+          @Master = master
+          @Proxy = proxy
+          @Progress = progress
+          @EnabledPublicConnect = enabledpublicconnect
+          @PublicConnectUrl = publicconnecturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterCIDR = params['ClusterCIDR']
+          @NetworkType = params['NetworkType']
+          @SubnetId = params['SubnetId']
+          @Enabled = params['Enabled']
+          @AS = params['AS']
+          @SwitchIP = params['SwitchIP']
+          @Status = params['Status']
+          @FailedReason = params['FailedReason']
+          @Master = params['Master']
+          @Proxy = params['Proxy']
+          unless params['Progress'].nil?
+            @Progress = []
+            params['Progress'].each do |i|
+              step_tmp = Step.new
+              step_tmp.deserialize(i)
+              @Progress << step_tmp
+            end
+          end
+          @EnabledPublicConnect = params['EnabledPublicConnect']
+          @PublicConnectUrl = params['PublicConnectUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIPAMD请求参数结构体
+      class DescribeIPAMDRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeIPAMD返回参数结构体
+      class DescribeIPAMDResponse < TencentCloud::Common::AbstractModel
+        # @param EnableIPAMD: 是否安装了eniipamd组件
+        # @type EnableIPAMD: Boolean
+        # @param EnableCustomizedPodCidr: 是否开启自定义podcidr，默认为false，已安装eniipamd组件才意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCustomizedPodCidr: Boolean
+        # @param DisableVpcCniMode: 是否不开启vpccni模式，默认为false，已安装eniipamd组件才意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisableVpcCniMode: Boolean
+        # @param Phase: 组件状态，已安装eniipamd组件才会有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Phase: String
+        # @param Reason: 错误信息，已安装eniipamd组件且状态为非running才会有错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+        # @param SubnetIds: 子网信息，已安装eniipamd组件才会有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnableIPAMD, :EnableCustomizedPodCidr, :DisableVpcCniMode, :Phase, :Reason, :SubnetIds, :RequestId
+
+        def initialize(enableipamd=nil, enablecustomizedpodcidr=nil, disablevpccnimode=nil, phase=nil, reason=nil, subnetids=nil, requestid=nil)
+          @EnableIPAMD = enableipamd
+          @EnableCustomizedPodCidr = enablecustomizedpodcidr
+          @DisableVpcCniMode = disablevpccnimode
+          @Phase = phase
+          @Reason = reason
+          @SubnetIds = subnetids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnableIPAMD = params['EnableIPAMD']
+          @EnableCustomizedPodCidr = params['EnableCustomizedPodCidr']
+          @DisableVpcCniMode = params['DisableVpcCniMode']
+          @Phase = params['Phase']
+          @Reason = params['Reason']
+          @SubnetIds = params['SubnetIds']
           @RequestId = params['RequestId']
         end
       end
@@ -16881,6 +17088,42 @@ module TencentCloud
           @SucceedInstanceIds = params['SucceedInstanceIds']
           @FailedInstanceIds = params['FailedInstanceIds']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 执行步骤信息
+      class Step < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # @type Name: String
+        # @param StartAt: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param EndAt: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndAt: String
+        # @param Status: 当前状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Message: 执行信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Name, :StartAt, :EndAt, :Status, :Message
+
+        def initialize(name=nil, startat=nil, endat=nil, status=nil, message=nil)
+          @Name = name
+          @StartAt = startat
+          @EndAt = endat
+          @Status = status
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          @Status = params['Status']
+          @Message = params['Message']
         end
       end
 

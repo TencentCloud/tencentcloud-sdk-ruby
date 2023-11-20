@@ -261,6 +261,157 @@ module TencentCloud
         end
       end
 
+      # DescribeFabricBlock请求参数结构体
+      class DescribeFabricBlockRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChannelId: 通道ID，可在通道列表或通道详情获取
+        # @type ChannelId: String
+        # @param BlockHeight: 区块高度，从0开始
+        # @type BlockHeight: Integer
+
+        attr_accessor :ClusterId, :ChannelId, :BlockHeight
+
+        def initialize(clusterid=nil, channelid=nil, blockheight=nil)
+          @ClusterId = clusterid
+          @ChannelId = channelid
+          @BlockHeight = blockheight
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChannelId = params['ChannelId']
+          @BlockHeight = params['BlockHeight']
+        end
+      end
+
+      # DescribeFabricBlock返回参数结构体
+      class DescribeFabricBlockResponse < TencentCloud::Common::AbstractModel
+        # @param BlockHeight: 区块高度
+        # @type BlockHeight: Integer
+        # @param BlockHash: 区块Hash
+        # @type BlockHash: String
+        # @param PreBlockHash: 前置区块Hash
+        # @type PreBlockHash: String
+        # @param TxCount: 区块中交易数量
+        # @type TxCount: Integer
+        # @param TransactionList: 区块中交易列表
+        # @type TransactionList: Array
+        # @param CreateTimestamp: 创建时间戳
+        # @type CreateTimestamp: String
+        # @param ProposerOrg: 提案组织
+        # @type ProposerOrg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlockHeight, :BlockHash, :PreBlockHash, :TxCount, :TransactionList, :CreateTimestamp, :ProposerOrg, :RequestId
+
+        def initialize(blockheight=nil, blockhash=nil, preblockhash=nil, txcount=nil, transactionlist=nil, createtimestamp=nil, proposerorg=nil, requestid=nil)
+          @BlockHeight = blockheight
+          @BlockHash = blockhash
+          @PreBlockHash = preblockhash
+          @TxCount = txcount
+          @TransactionList = transactionlist
+          @CreateTimestamp = createtimestamp
+          @ProposerOrg = proposerorg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BlockHeight = params['BlockHeight']
+          @BlockHash = params['BlockHash']
+          @PreBlockHash = params['PreBlockHash']
+          @TxCount = params['TxCount']
+          unless params['TransactionList'].nil?
+            @TransactionList = []
+            params['TransactionList'].each do |i|
+              transaction_tmp = Transaction.new
+              transaction_tmp.deserialize(i)
+              @TransactionList << transaction_tmp
+            end
+          end
+          @CreateTimestamp = params['CreateTimestamp']
+          @ProposerOrg = params['ProposerOrg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFabricTransaction请求参数结构体
+      class DescribeFabricTransactionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情或列表中获取
+        # @type ClusterId: String
+        # @param ChannelId: 通道ID，可在通道列表或通道详情获取
+        # @type ChannelId: String
+        # @param TxId: 交易ID
+        # @type TxId: String
+
+        attr_accessor :ClusterId, :ChannelId, :TxId
+
+        def initialize(clusterid=nil, channelid=nil, txid=nil)
+          @ClusterId = clusterid
+          @ChannelId = channelid
+          @TxId = txid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChannelId = params['ChannelId']
+          @TxId = params['TxId']
+        end
+      end
+
+      # DescribeFabricTransaction返回参数结构体
+      class DescribeFabricTransactionResponse < TencentCloud::Common::AbstractModel
+        # @param TxId: 交易ID
+        # @type TxId: String
+        # @param TxHash: 交易Hash
+        # @type TxHash: String
+        # @param TxStatus: 交易状态
+        # @type TxStatus: String
+        # @param JoinOrgList: 参与的组织列表
+        # @type JoinOrgList: Array
+        # @param Sender: 交易发送者
+        # @type Sender: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param BlockHeight: 区块高度
+        # @type BlockHeight: Integer
+        # @param ChaincodeName: 交易所属合约
+        # @type ChaincodeName: String
+        # @param TransactionData: 交易数据，base64编码，解码后为json化的字符串
+        # @type TransactionData: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TxId, :TxHash, :TxStatus, :JoinOrgList, :Sender, :CreateTime, :BlockHeight, :ChaincodeName, :TransactionData, :RequestId
+
+        def initialize(txid=nil, txhash=nil, txstatus=nil, joinorglist=nil, sender=nil, createtime=nil, blockheight=nil, chaincodename=nil, transactiondata=nil, requestid=nil)
+          @TxId = txid
+          @TxHash = txhash
+          @TxStatus = txstatus
+          @JoinOrgList = joinorglist
+          @Sender = sender
+          @CreateTime = createtime
+          @BlockHeight = blockheight
+          @ChaincodeName = chaincodename
+          @TransactionData = transactiondata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TxId = params['TxId']
+          @TxHash = params['TxHash']
+          @TxStatus = params['TxStatus']
+          @JoinOrgList = params['JoinOrgList']
+          @Sender = params['Sender']
+          @CreateTime = params['CreateTime']
+          @BlockHeight = params['BlockHeight']
+          @ChaincodeName = params['ChaincodeName']
+          @TransactionData = params['TransactionData']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DownloadUserCert请求参数结构体
       class DownloadUserCertRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：cert_mng
@@ -1076,6 +1227,70 @@ module TencentCloud
         end
       end
 
+      # InvokeFabricChaincode请求参数结构体
+      class InvokeFabricChaincodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情获取
+        # @type ClusterId: String
+        # @param ChannelId: 通道ID，可在通道列表或通道详情获取
+        # @type ChannelId: String
+        # @param ChaincodeName: 合约名称，可在合约列表或合约详情获取
+        # @type ChaincodeName: String
+        # @param FuncName: 合约方法
+        # @type FuncName: String
+        # @param FuncParam: 合约方法入参
+        # @type FuncParam: Array
+        # @param WithAsyncResult: 是否异步执行，如果异步执行，可使用返回值中的交易TxID查询执行结果
+        # @type WithAsyncResult: Boolean
+
+        attr_accessor :ClusterId, :ChannelId, :ChaincodeName, :FuncName, :FuncParam, :WithAsyncResult
+
+        def initialize(clusterid=nil, channelid=nil, chaincodename=nil, funcname=nil, funcparam=nil, withasyncresult=nil)
+          @ClusterId = clusterid
+          @ChannelId = channelid
+          @ChaincodeName = chaincodename
+          @FuncName = funcname
+          @FuncParam = funcparam
+          @WithAsyncResult = withasyncresult
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChannelId = params['ChannelId']
+          @ChaincodeName = params['ChaincodeName']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+          @WithAsyncResult = params['WithAsyncResult']
+        end
+      end
+
+      # InvokeFabricChaincode返回参数结构体
+      class InvokeFabricChaincodeResponse < TencentCloud::Common::AbstractModel
+        # @param TxId: 交易ID
+        # @type TxId: String
+        # @param TxStatus: 交易状态
+        # @type TxStatus: String
+        # @param TxResult: 交易结果
+        # @type TxResult: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TxId, :TxStatus, :TxResult, :RequestId
+
+        def initialize(txid=nil, txstatus=nil, txresult=nil, requestid=nil)
+          @TxId = txid
+          @TxStatus = txstatus
+          @TxResult = txresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TxId = params['TxId']
+          @TxStatus = params['TxStatus']
+          @TxResult = params['TxResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Invoke请求参数结构体
       class InvokeRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：transaction
@@ -1517,6 +1732,66 @@ module TencentCloud
         end
       end
 
+      # QueryFabricChaincode请求参数结构体
+      class QueryFabricChaincodeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 网络ID，可在区块链网络详情获取
+        # @type ClusterId: String
+        # @param ChannelId: 通道ID，可在通道列表或通道详情获取
+        # @type ChannelId: String
+        # @param ChaincodeName: 合约名称，可在合约列表或合约详情获取
+        # @type ChaincodeName: String
+        # @param FuncName: 合约方法
+        # @type FuncName: String
+        # @param FuncParam: 合约方法入参
+        # @type FuncParam: Array
+
+        attr_accessor :ClusterId, :ChannelId, :ChaincodeName, :FuncName, :FuncParam
+
+        def initialize(clusterid=nil, channelid=nil, chaincodename=nil, funcname=nil, funcparam=nil)
+          @ClusterId = clusterid
+          @ChannelId = channelid
+          @ChaincodeName = chaincodename
+          @FuncName = funcname
+          @FuncParam = funcparam
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ChannelId = params['ChannelId']
+          @ChaincodeName = params['ChaincodeName']
+          @FuncName = params['FuncName']
+          @FuncParam = params['FuncParam']
+        end
+      end
+
+      # QueryFabricChaincode返回参数结构体
+      class QueryFabricChaincodeResponse < TencentCloud::Common::AbstractModel
+        # @param TxId: 交易ID
+        # @type TxId: String
+        # @param TxStatus: 交易状态
+        # @type TxStatus: String
+        # @param TxResult: 交易结果
+        # @type TxResult: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TxId, :TxStatus, :TxResult, :RequestId
+
+        def initialize(txid=nil, txstatus=nil, txresult=nil, requestid=nil)
+          @TxId = txid
+          @TxStatus = txstatus
+          @TxResult = txresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TxId = params['TxId']
+          @TxStatus = params['TxStatus']
+          @TxResult = params['TxResult']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Query请求参数结构体
       class QueryRequest < TencentCloud::Common::AbstractModel
         # @param Module: 模块名，固定字段：transaction
@@ -1661,6 +1936,48 @@ module TencentCloud
           @RetMsg = params['RetMsg']
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 交易显示概述信息
+      class Transaction < TencentCloud::Common::AbstractModel
+        # @param TxId: 交易ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxId: String
+        # @param ChaincodeName: 合约名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChaincodeName: String
+        # @param Sender: 交易发送者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sender: String
+        # @param CreateTime: 交易创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param BlockHeight: 交易所在区块高度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlockHeight: Integer
+        # @param TxIndex: 交易在区块中的序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TxIndex: Integer
+
+        attr_accessor :TxId, :ChaincodeName, :Sender, :CreateTime, :BlockHeight, :TxIndex
+
+        def initialize(txid=nil, chaincodename=nil, sender=nil, createtime=nil, blockheight=nil, txindex=nil)
+          @TxId = txid
+          @ChaincodeName = chaincodename
+          @Sender = sender
+          @CreateTime = createtime
+          @BlockHeight = blockheight
+          @TxIndex = txindex
+        end
+
+        def deserialize(params)
+          @TxId = params['TxId']
+          @ChaincodeName = params['ChaincodeName']
+          @Sender = params['Sender']
+          @CreateTime = params['CreateTime']
+          @BlockHeight = params['BlockHeight']
+          @TxIndex = params['TxIndex']
         end
       end
 
