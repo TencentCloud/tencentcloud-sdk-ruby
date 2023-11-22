@@ -1948,6 +1948,7 @@ module TencentCloud
         # * 修改密钥对ID所指定的密钥对的名称和描述信息。
         # * 密钥对名称不能和已经存在的密钥对的名称重复。
         # * 密钥对ID是密钥对的唯一标识，不可修改。
+        # * 密钥对名称和描述信息必须指定其中之一，也支持同时指定。
 
         # @param request: Request instance for ModifyKeyPairAttribute.
         # @type request: :class:`Tencentcloud::cvm::V20170312::ModifyKeyPairAttributeRequest`

@@ -3362,6 +3362,65 @@ module TencentCloud
         end
       end
 
+      # 列的元数据
+      class ColumnMeta < TencentCloud::Common::AbstractModel
+        # @param NameEn: 字段英文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameEn: String
+        # @param NameCn: 字段中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NameCn: String
+        # @param Type: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Description: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Position: 字段序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param IsPartition: 是否为分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
+        # @param Name: 字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ColumnFamiliesFieldSet: HBase列簇属性集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnFamiliesFieldSet: Array
+
+        attr_accessor :NameEn, :NameCn, :Type, :Description, :Position, :IsPartition, :Name, :ColumnFamiliesFieldSet
+
+        def initialize(nameen=nil, namecn=nil, type=nil, description=nil, position=nil, ispartition=nil, name=nil, columnfamiliesfieldset=nil)
+          @NameEn = nameen
+          @NameCn = namecn
+          @Type = type
+          @Description = description
+          @Position = position
+          @IsPartition = ispartition
+          @Name = name
+          @ColumnFamiliesFieldSet = columnfamiliesfieldset
+        end
+
+        def deserialize(params)
+          @NameEn = params['NameEn']
+          @NameCn = params['NameCn']
+          @Type = params['Type']
+          @Description = params['Description']
+          @Position = params['Position']
+          @IsPartition = params['IsPartition']
+          @Name = params['Name']
+          unless params['ColumnFamiliesFieldSet'].nil?
+            @ColumnFamiliesFieldSet = []
+            params['ColumnFamiliesFieldSet'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @ColumnFamiliesFieldSet << pair_tmp
+            end
+          end
+        end
+      end
+
       # CommitExportTask请求参数结构体
       class CommitExportTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -8376,6 +8435,88 @@ module TencentCloud
             @ColumnAggregationLineage = ColumnAggregationLineage.new
             @ColumnAggregationLineage.deserialize(params['ColumnAggregationLineage'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeColumnsMeta请求参数结构体
+      class DescribeColumnsMetaRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 表ID
+        # @type TableId: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param FilterSet: 过滤器
+        # @type FilterSet: Array
+        # @param OrderFieldSet: 排序字段
+        # @type OrderFieldSet: Array
+        # @param IsPartitionQuery: 是否查询分区字段，默认false
+        # @type IsPartitionQuery: Boolean
+
+        attr_accessor :TableId, :PageNumber, :PageSize, :FilterSet, :OrderFieldSet, :IsPartitionQuery
+
+        def initialize(tableid=nil, pagenumber=nil, pagesize=nil, filterset=nil, orderfieldset=nil, ispartitionquery=nil)
+          @TableId = tableid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @FilterSet = filterset
+          @OrderFieldSet = orderfieldset
+          @IsPartitionQuery = ispartitionquery
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['FilterSet'].nil?
+            @FilterSet = []
+            params['FilterSet'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterSet << filter_tmp
+            end
+          end
+          unless params['OrderFieldSet'].nil?
+            @OrderFieldSet = []
+            params['OrderFieldSet'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFieldSet << orderfield_tmp
+            end
+          end
+          @IsPartitionQuery = params['IsPartitionQuery']
+        end
+      end
+
+      # DescribeColumnsMeta返回参数结构体
+      class DescribeColumnsMetaResponse < TencentCloud::Common::AbstractModel
+        # @param ColumnMetaSet: 分页返回的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnMetaSet: Array
+        # @param TotalCount: 总记录数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ColumnMetaSet, :TotalCount, :RequestId
+
+        def initialize(columnmetaset=nil, totalcount=nil, requestid=nil)
+          @ColumnMetaSet = columnmetaset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ColumnMetaSet'].nil?
+            @ColumnMetaSet = []
+            params['ColumnMetaSet'].each do |i|
+              columnmeta_tmp = ColumnMeta.new
+              columnmeta_tmp.deserialize(i)
+              @ColumnMetaSet << columnmeta_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -24907,6 +25048,26 @@ module TencentCloud
           @OwnerUserIds = params['OwnerUserIds']
           @DbName = params['DbName']
           @SubmitErrorMsg = params['SubmitErrorMsg']
+        end
+      end
+
+      # 键值对
+      class Pair < TencentCloud::Common::AbstractModel
+        # @param Key: 键名
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

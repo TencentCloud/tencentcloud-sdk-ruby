@@ -149,6 +149,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口未使用
+
         # 创建自定义账户
 
         # @param request: Request instance for CreateCustomAccount.
@@ -676,6 +678,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口未使用
 
         # 删除自定义账号
 
@@ -1278,6 +1282,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口未使用
 
         # 查询自定义账号
 
@@ -2358,6 +2364,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 接口未使用
 
         # 更新自定义账户
 

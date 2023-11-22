@@ -2371,7 +2371,7 @@ module TencentCloud
         # @param MultiZoneInfo: 多可用区网络信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiZoneInfo: Array
-        # @param DeployMode: 部署模式<li>0：单可用区</li><li>1：多可用区</li>
+        # @param DeployMode: 部署模式<li>0：单可用区</li><li>1：多可用区，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeployMode: Integer
         # @param PublicAccess: ES公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭
@@ -2475,7 +2475,7 @@ module TencentCloud
         # @param ProcessPercent: 流程进度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessPercent: Float
-        # @param KibanaAlteringPublicAccess: Kibana的altering外网告警策略<li>OPEN：开启</li><li>CLOSE：关闭
+        # @param KibanaAlteringPublicAccess: Kibana的alerting外网告警策略<li>OPEN：开启</li><li>CLOSE：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KibanaAlteringPublicAccess: String
         # @param HasKernelUpgrade: 本月是否有内核可以更新：false-无，true-有
@@ -2484,10 +2484,16 @@ module TencentCloud
         # @param CdcId: cdcId，使用cdc子网时传递
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcId: String
+        # @param KibanaPrivateVip: kibana内网vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaPrivateVip: String
+        # @param CustomKibanaPrivateUrl: 自定义kibana内网url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomKibanaPrivateUrl: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -2571,6 +2577,8 @@ module TencentCloud
           @KibanaAlteringPublicAccess = kibanaalteringpublicaccess
           @HasKernelUpgrade = haskernelupgrade
           @CdcId = cdcid
+          @KibanaPrivateVip = kibanaprivatevip
+          @CustomKibanaPrivateUrl = customkibanaprivateurl
         end
 
         def deserialize(params)
@@ -2716,6 +2724,8 @@ module TencentCloud
           @KibanaAlteringPublicAccess = params['KibanaAlteringPublicAccess']
           @HasKernelUpgrade = params['HasKernelUpgrade']
           @CdcId = params['CdcId']
+          @KibanaPrivateVip = params['KibanaPrivateVip']
+          @CustomKibanaPrivateUrl = params['CustomKibanaPrivateUrl']
         end
       end
 
@@ -3722,10 +3732,16 @@ module TencentCloud
         # @param Version: 版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param PrivateVip: web服务内网vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateVip: String
+        # @param CustomPrivateUrl: 自定义cerebro内网url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomPrivateUrl: String
 
-        attr_accessor :Type, :Status, :PublicUrl, :PrivateUrl, :PublicAccess, :PrivateAccess, :Version
+        attr_accessor :Type, :Status, :PublicUrl, :PrivateUrl, :PublicAccess, :PrivateAccess, :Version, :PrivateVip, :CustomPrivateUrl
 
-        def initialize(type=nil, status=nil, publicurl=nil, privateurl=nil, publicaccess=nil, privateaccess=nil, version=nil)
+        def initialize(type=nil, status=nil, publicurl=nil, privateurl=nil, publicaccess=nil, privateaccess=nil, version=nil, privatevip=nil, customprivateurl=nil)
           @Type = type
           @Status = status
           @PublicUrl = publicurl
@@ -3733,6 +3749,8 @@ module TencentCloud
           @PublicAccess = publicaccess
           @PrivateAccess = privateaccess
           @Version = version
+          @PrivateVip = privatevip
+          @CustomPrivateUrl = customprivateurl
         end
 
         def deserialize(params)
@@ -3743,6 +3761,8 @@ module TencentCloud
           @PublicAccess = params['PublicAccess']
           @PrivateAccess = params['PrivateAccess']
           @Version = params['Version']
+          @PrivateVip = params['PrivateVip']
+          @CustomPrivateUrl = params['CustomPrivateUrl']
         end
       end
 
@@ -3789,19 +3809,23 @@ module TencentCloud
         # @type ForceRestart: Boolean
         # @param RestartMode: 重启模式：0 滚动重启； 1 全量重启
         # @type RestartMode: Integer
+        # @param UpgradeKernel: 重启时选择是否升级内核patch版本
+        # @type UpgradeKernel: Boolean
 
-        attr_accessor :InstanceId, :ForceRestart, :RestartMode
+        attr_accessor :InstanceId, :ForceRestart, :RestartMode, :UpgradeKernel
 
-        def initialize(instanceid=nil, forcerestart=nil, restartmode=nil)
+        def initialize(instanceid=nil, forcerestart=nil, restartmode=nil, upgradekernel=nil)
           @InstanceId = instanceid
           @ForceRestart = forcerestart
           @RestartMode = restartmode
+          @UpgradeKernel = upgradekernel
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ForceRestart = params['ForceRestart']
           @RestartMode = params['RestartMode']
+          @UpgradeKernel = params['UpgradeKernel']
         end
       end
 
@@ -4424,10 +4448,14 @@ module TencentCloud
         # OPEN 开启
         # CLOSE 关闭
         # @type KibanaAlteringPublicAccess: String
+        # @param KibanaPrivateDomain: kibana内网自定义域名
+        # @type KibanaPrivateDomain: String
+        # @param CerebroPrivateDomain: cerebro内网自定义域名
+        # @type CerebroPrivateDomain: String
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -4460,6 +4488,8 @@ module TencentCloud
           @EsConfigSet = esconfigset
           @OperationDuration = operationduration
           @KibanaAlteringPublicAccess = kibanaalteringpublicaccess
+          @KibanaPrivateDomain = kibanaprivatedomain
+          @CerebroPrivateDomain = cerebroprivatedomain
         end
 
         def deserialize(params)
@@ -4527,6 +4557,8 @@ module TencentCloud
             @OperationDuration.deserialize(params['OperationDuration'])
           end
           @KibanaAlteringPublicAccess = params['KibanaAlteringPublicAccess']
+          @KibanaPrivateDomain = params['KibanaPrivateDomain']
+          @CerebroPrivateDomain = params['CerebroPrivateDomain']
         end
       end
 

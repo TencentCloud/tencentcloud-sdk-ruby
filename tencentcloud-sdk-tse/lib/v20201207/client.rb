@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 WAF 防护域名
+
+        # @param request: Request instance for DeleteWafDomains.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteWafDomainsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteWafDomainsResponse`
+        def DeleteWafDomains(request)
+          body = send_request('DeleteWafDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWafDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取云原生API网关实例信息
 
         # @param request: Request instance for DescribeCloudNativeAPIGateway.
@@ -975,6 +999,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUpstreamHealthCheckConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 WAF 防护域名
+
+        # @param request: Request instance for DescribeWafDomains.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeWafDomainsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeWafDomainsResponse`
+        def DescribeWafDomains(request)
+          body = send_request('DescribeWafDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWafDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取 WAF 防护状态
+
+        # @param request: Request instance for DescribeWafProtection.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeWafProtectionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeWafProtectionResponse`
+        def DescribeWafProtection(request)
+          body = send_request('DescribeWafProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWafProtectionResponse.new
             model.deserialize(response['Response'])
             model
           else

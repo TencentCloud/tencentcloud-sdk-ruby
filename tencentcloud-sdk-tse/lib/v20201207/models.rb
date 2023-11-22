@@ -2222,6 +2222,42 @@ module TencentCloud
         end
       end
 
+      # DeleteWafDomains请求参数结构体
+      class DeleteWafDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Domains: WAF 防护域名列表
+        # @type Domains: Array
+
+        attr_accessor :GatewayId, :Domains
+
+        def initialize(gatewayid=nil, domains=nil)
+          @GatewayId = gatewayid
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Domains = params['Domains']
+        end
+      end
+
+      # DeleteWafDomains返回参数结构体
+      class DeleteWafDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudNativeAPIGatewayCanaryRules请求参数结构体
       class DescribeCloudNativeAPIGatewayCanaryRulesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -3611,6 +3647,163 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWafDomains请求参数结构体
+      class DescribeWafDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+
+        attr_accessor :GatewayId
+
+        def initialize(gatewayid=nil)
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeWafDomains返回参数结构体
+      class DescribeWafDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 已被 WAF 防护域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeWafDomainsResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeWafDomainsResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取WAF保护域名列表
+      class DescribeWafDomainsResult < TencentCloud::Common::AbstractModel
+        # @param Domains: WAF防护域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domains: Array
+
+        attr_accessor :Domains
+
+        def initialize(domains=nil)
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+        end
+      end
+
+      # DescribeWafProtection请求参数结构体
+      class DescribeWafProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Type:  防护资源的类型。
+        # - Global  实例
+        # - Service  服务
+        # - Route  路由
+        # - Object  对象
+        # @type Type: String
+        # @param TypeList: 防护资源类型列表，支持查询多个类型（Global、Service、Route、Object）。为空时，默认查询Global类型。
+        # @type TypeList: Array
+
+        attr_accessor :GatewayId, :Type, :TypeList
+        extend Gem::Deprecate
+        deprecate :Type, :none, 2023, 11
+        deprecate :Type=, :none, 2023, 11
+
+        def initialize(gatewayid=nil, type=nil, typelist=nil)
+          @GatewayId = gatewayid
+          @Type = type
+          @TypeList = typelist
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Type = params['Type']
+          @TypeList = params['TypeList']
+        end
+      end
+
+      # DescribeWafProtection返回参数结构体
+      class DescribeWafProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 保护状态
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribeWafProtectionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeWafProtectionResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取WAF保护资源状态
+      class DescribeWafProtectionResult < TencentCloud::Common::AbstractModel
+        # @param GlobalStatus: 全局防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalStatus: String
+        # @param ServicesStatus: 服务防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServicesStatus: Array
+        # @param RouteStatus: 路由防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteStatus: Array
+        # @param ObjectStatus: 对象防护状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectStatus: String
+
+        attr_accessor :GlobalStatus, :ServicesStatus, :RouteStatus, :ObjectStatus
+
+        def initialize(globalstatus=nil, servicesstatus=nil, routestatus=nil, objectstatus=nil)
+          @GlobalStatus = globalstatus
+          @ServicesStatus = servicesstatus
+          @RouteStatus = routestatus
+          @ObjectStatus = objectstatus
+        end
+
+        def deserialize(params)
+          @GlobalStatus = params['GlobalStatus']
+          unless params['ServicesStatus'].nil?
+            @ServicesStatus = []
+            params['ServicesStatus'].each do |i|
+              servicewafstatus_tmp = ServiceWafStatus.new
+              servicewafstatus_tmp.deserialize(i)
+              @ServicesStatus << servicewafstatus_tmp
+            end
+          end
+          unless params['RouteStatus'].nil?
+            @RouteStatus = []
+            params['RouteStatus'].each do |i|
+              routewafstatus_tmp = RouteWafStatus.new
+              routewafstatus_tmp.deserialize(i)
+              @RouteStatus << routewafstatus_tmp
+            end
+          end
+          @ObjectStatus = params['ObjectStatus']
         end
       end
 
@@ -5719,6 +5912,58 @@ module TencentCloud
         end
       end
 
+      # 路由 WAF 状态
+      class RouteWafStatus < TencentCloud::Common::AbstractModel
+        # @param Name: 路由的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: 路由的 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Status:  路由是否开启 WAF 防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Methods: 方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Methods: Array
+        # @param Paths: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paths: Array
+        # @param Hosts: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hosts: Array
+        # @param ServiceName: 路由对应服务的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ServiceId: 路由对应服务的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+
+        attr_accessor :Name, :Id, :Status, :Methods, :Paths, :Hosts, :ServiceName, :ServiceId
+
+        def initialize(name=nil, id=nil, status=nil, methods=nil, paths=nil, hosts=nil, servicename=nil, serviceid=nil)
+          @Name = name
+          @Id = id
+          @Status = status
+          @Methods = methods
+          @Paths = paths
+          @Hosts = hosts
+          @ServiceName = servicename
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
+          @Status = params['Status']
+          @Methods = params['Methods']
+          @Paths = params['Paths']
+          @Hosts = params['Hosts']
+          @ServiceName = params['ServiceName']
+          @ServiceId = params['ServiceId']
+        end
+      end
+
       # 微服务注册引擎实例
       class SREInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -6016,6 +6261,38 @@ module TencentCloud
               @CLSTopics << polarisclstopicinfo_tmp
             end
           end
+        end
+      end
+
+      # 服务的 WAF 状态
+      class ServiceWafStatus < TencentCloud::Common::AbstractModel
+        # @param Name:  服务的名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Id: 服务的 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Type: 服务的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status:  服务是否开启 WAF 防护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Name, :Id, :Type, :Status
+
+        def initialize(name=nil, id=nil, type=nil, status=nil)
+          @Name = name
+          @Id = id
+          @Type = type
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Id = params['Id']
+          @Type = params['Type']
+          @Status = params['Status']
         end
       end
 

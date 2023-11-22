@@ -2223,6 +2223,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询表的所有列元数据
+
+        # @param request: Request instance for DescribeColumnsMeta.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeColumnsMetaRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeColumnsMetaResponse`
+        def DescribeColumnsMeta(request)
+          body = send_request('DescribeColumnsMeta', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeColumnsMetaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询数据来源列表
 
         # @param request: Request instance for DescribeDataBases.

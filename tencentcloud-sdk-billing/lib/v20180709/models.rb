@@ -1780,10 +1780,12 @@ module TencentCloud
         # @type PromiseUseAmount: Integer
         # @param SpecifyEffectTime: 节省计划的指定生效时间，若不传则为当前下单时间。传参数格式:"2023-10-01 00:00:00"，仅支持指定日期的0点时刻
         # @type SpecifyEffectTime: String
+        # @param ClientToken: 可重入ID
+        # @type ClientToken: String
 
-        attr_accessor :RegionId, :ZoneId, :PrePayType, :TimeSpan, :TimeUnit, :CommodityCode, :PromiseUseAmount, :SpecifyEffectTime
+        attr_accessor :RegionId, :ZoneId, :PrePayType, :TimeSpan, :TimeUnit, :CommodityCode, :PromiseUseAmount, :SpecifyEffectTime, :ClientToken
 
-        def initialize(regionid=nil, zoneid=nil, prepaytype=nil, timespan=nil, timeunit=nil, commoditycode=nil, promiseuseamount=nil, specifyeffecttime=nil)
+        def initialize(regionid=nil, zoneid=nil, prepaytype=nil, timespan=nil, timeunit=nil, commoditycode=nil, promiseuseamount=nil, specifyeffecttime=nil, clienttoken=nil)
           @RegionId = regionid
           @ZoneId = zoneid
           @PrePayType = prepaytype
@@ -1792,6 +1794,7 @@ module TencentCloud
           @CommodityCode = commoditycode
           @PromiseUseAmount = promiseuseamount
           @SpecifyEffectTime = specifyeffecttime
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -1803,6 +1806,7 @@ module TencentCloud
           @CommodityCode = params['CommodityCode']
           @PromiseUseAmount = params['PromiseUseAmount']
           @SpecifyEffectTime = params['SpecifyEffectTime']
+          @ClientToken = params['ClientToken']
         end
       end
 

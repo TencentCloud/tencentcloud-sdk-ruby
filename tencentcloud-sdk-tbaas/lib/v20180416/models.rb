@@ -454,20 +454,27 @@ module TencentCloud
         # @type CertName: String
         # @param CertCtx: 证书内容
         # @type CertCtx: String
+        # @param Cert: 证书内容
+        # @type Cert: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertName, :CertCtx, :RequestId
+        attr_accessor :CertName, :CertCtx, :Cert, :RequestId
+        extend Gem::Deprecate
+        deprecate :CertCtx, :none, 2023, 11
+        deprecate :CertCtx=, :none, 2023, 11
 
-        def initialize(certname=nil, certctx=nil, requestid=nil)
+        def initialize(certname=nil, certctx=nil, cert=nil, requestid=nil)
           @CertName = certname
           @CertCtx = certctx
+          @Cert = cert
           @RequestId = requestid
         end
 
         def deserialize(params)
           @CertName = params['CertName']
           @CertCtx = params['CertCtx']
+          @Cert = params['Cert']
           @RequestId = params['RequestId']
         end
       end
@@ -1356,20 +1363,27 @@ module TencentCloud
         # @type Txid: String
         # @param Events: 交易执行结果
         # @type Events: String
+        # @param TxId: 交易ID
+        # @type TxId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Txid, :Events, :RequestId
+        attr_accessor :Txid, :Events, :TxId, :RequestId
+        extend Gem::Deprecate
+        deprecate :Txid, :none, 2023, 11
+        deprecate :Txid=, :none, 2023, 11
 
-        def initialize(txid=nil, events=nil, requestid=nil)
+        def initialize(txid=nil, events=nil, txid=nil, requestid=nil)
           @Txid = txid
           @Events = events
+          @TxId = txid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Txid = params['Txid']
           @Events = params['Events']
+          @TxId = params['TxId']
           @RequestId = params['RequestId']
         end
       end
