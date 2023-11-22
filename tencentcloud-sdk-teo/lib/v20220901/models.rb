@@ -4024,10 +4024,9 @@ module TencentCloud
         # <li>l7Flow_flux: 访问请求上行+下行流量；</li>
         # <li>l7Flow_bandwidth：访问请求上行+下行带宽。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合。
-        # 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
-        # @param Domains: 查询的域名集合，不填默认查询所有子域名。
+        # @param Domains: 查询的域名集合，此参数已经废弃。
         # @type Domains: Array
         # @param Protocol: 查询的协议类型，取值有：
         # <li>http: http协议；</li>
@@ -4043,6 +4042,7 @@ module TencentCloud
         # @type Interval: String
         # @param Filters: 过滤条件，详细的过滤条件Key值如下：
         # <li>socket<br>   按照【<strong>HTTP协议类型</strong>】进行过滤。<br>   对应的Value可选项如下：<br>   HTTP：HTTP 协议；<br>   HTTPS：HTTPS协议；<br>   QUIC：QUIC协议。</li>
+        # <li>domain<br>   按照【<strong>域名</strong>】进行过滤。</li>
         # <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。</li>
         # <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。</li>
         # @type Filters: Array
@@ -4120,6 +4120,9 @@ module TencentCloud
 
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # 必填参数。
+        # @type ZoneId: String
         # @param StartTime: 查询起始时间。
         # @type StartTime: String
         # @param EndTime: 查询结束时间。
@@ -4128,13 +4131,13 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        # <li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li>
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。<br>   类型：String<br>   必选：否。<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤。<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li>
         # @type Filters: Array
 
-        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :Filters
+        attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
 
-        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(zoneid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
           @StartTime = starttime
           @EndTime = endtime
           @Offset = offset
@@ -4143,6 +4146,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Offset = params['Offset']
@@ -4191,7 +4195,8 @@ module TencentCloud
 
       # DescribePurgeTasks请求参数结构体
       class DescribePurgeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 字段已废弃，请使用Filters中的zone-id。
+        # @param ZoneId: 站点ID。
+        # 必填参数。
         # @type ZoneId: String
         # @param StartTime: 查询起始时间。
         # @type StartTime: String
@@ -4201,7 +4206,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查限制数目，默认值：20，最大值：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-xxx，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤，domains形如：www.qq.com<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname<br>   purge_cache_tag：CacheTag</li>
+        # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤，domains形如：www.qq.com<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname<br>   purge_cache_tag：CacheTag</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -4423,12 +4428,9 @@ module TencentCloud
         # <li>l4Flow_connections: 访问连接数；</li>
         # <li>l4Flow_flux: 访问总流量；</li>
         # <li>l4Flow_inFlux: 访问入流量；</li>
-        # <li>l4Flow_outFlux: 访问出流量；</li>
-        # <li> l4Flow_outPkt: 访问出包量。</li>
+        # <li>l4Flow_outFlux: 访问出流量。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合。
-        # 若不填写，默认选择全部站点，且最多只能查询近30天的数据；
-        # 若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例列表, 不填表示选择全部实例。
         # @type ProxyIds: Array
@@ -4519,16 +4521,15 @@ module TencentCloud
         # @param EndTime: 结束时间。
         # @type EndTime: String
         # @param MetricNames: 指标列表，取值有:
-        # <li>l7Flow_outFlux: Edgeone响应流量；</li>
-        # <li>l7Flow_inFlux: Edgeone请求流量；</li>
-        # <li>l7Flow_outBandwidth: Edgeone响应带宽；</li>
-        # <li>l7Flow_inBandwidth：Edgeone请求带宽；</li>
+        # <li>l7Flow_outFlux: Edgeone 响应流量；</li>
+        # <li>l7Flow_inFlux: Edgeone 请求流量；</li>
+        # <li>l7Flow_outBandwidth: Edgeone 响应带宽；</li>
+        # <li>l7Flow_inBandwidth：Edgeone 请求带宽；</li>
         # <li>l7Flow_request: 访问请求数；</li>
         # <li>l7Flow_flux: 访问请求上行+下行流量；</li>
         # <li>l7Flow_bandwidth：访问请求上行+下行带宽。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合。
-        # 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
+        # @param ZoneIds: 站点 ID 集合, 此参数必填。
         # @type ZoneIds: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>
@@ -4634,7 +4635,7 @@ module TencentCloud
         # <li>l7Cache_request：响应请求数；</li>
         # <li> l7Cache_outBandwidth：响应带宽。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
         # @param Filters: 过滤条件，详细的过滤条件如下：
         # <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
@@ -4747,7 +4748,7 @@ module TencentCloud
         # <li> l7Flow_request_ua_browser：按浏览器类型维度统计请求数指标；</li>
         # <li> l7Flow_request_us_os：按操作系统类型维度统计请求数指标。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个数据，最大值为1000，不填默认默认为: 10， 表示查询前top10的数据。
         # @type Limit: Integer
@@ -4858,7 +4859,7 @@ module TencentCloud
         # <li> l7Cache_outFlux_resourceType：资源类型；</li>
         # <li> l7Cache_outFlux_statusCode：状态码。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点id集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个数据，最大值为1000，不填默认默认为10， 表示查询前top 10的数据。
         # @type Limit: Integer
@@ -5298,7 +5299,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例 ID 集合。
         # @type ProxyIds: Array
@@ -5365,7 +5366,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
+        # @param ZoneIds: 站点ID集合，此参数必填。
         # @type ZoneIds: Array
         # @param Domains: 子域名集合，不填默认选择全部子域名。
         # @type Domains: Array

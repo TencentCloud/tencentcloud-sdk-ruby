@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取护栏触发日志
+
+        # @param request: Request instance for DescribeTaskPolicyTriggerLog.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::DescribeTaskPolicyTriggerLogRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::DescribeTaskPolicyTriggerLogResponse`
+        def DescribeTaskPolicyTriggerLog(request)
+          body = send_request('DescribeTaskPolicyTriggerLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTaskPolicyTriggerLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询经验库
 
         # @param request: Request instance for DescribeTemplate.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyTaskRunStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于触发混沌演练护栏（类型为触发和恢复2种）
+
+        # @param request: Request instance for TriggerPolicy.
+        # @type request: :class:`Tencentcloud::cfg::V20210820::TriggerPolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfg::V20210820::TriggerPolicyResponse`
+        def TriggerPolicy(request)
+          body = send_request('TriggerPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

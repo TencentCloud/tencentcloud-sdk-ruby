@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 关闭 WAF 防护
+
+        # @param request: Request instance for CloseWafProtection.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CloseWafProtectionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CloseWafProtectionResponse`
+        def CloseWafProtection(request)
+          body = send_request('CloseWafProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseWafProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建云原生API网关实例
 
         # @param request: Request instance for CreateCloudNativeAPIGateway.
@@ -231,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateNativeGatewayServerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 新建 WAF 防护域名
+
+        # @param request: Request instance for CreateWafDomains.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateWafDomainsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateWafDomainsResponse`
+        def CreateWafDomains(request)
+          body = send_request('CreateWafDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWafDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1191,6 +1239,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUpstreamNodeStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启 WAF 防护
+
+        # @param request: Request instance for OpenWafProtection.
+        # @type request: :class:`Tencentcloud::tse::V20201207::OpenWafProtectionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::OpenWafProtectionResponse`
+        def OpenWafProtection(request)
+          body = send_request('OpenWafProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenWafProtectionResponse.new
             model.deserialize(response['Response'])
             model
           else

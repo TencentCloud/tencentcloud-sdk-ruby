@@ -224,6 +224,50 @@ module TencentCloud
         end
       end
 
+      # CloseWafProtection请求参数结构体
+      class CloseWafProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Type:  防护资源的类型。
+        # - Global  实例
+        # - Service  服务
+        # - Route  路由
+        # - Object  对象
+        # @type Type: String
+        # @param List: 当资源类型 Type 是 Service 或 Route 的时候，传入的服务或路由的列表
+        # @type List: Array
+
+        attr_accessor :GatewayId, :Type, :List
+
+        def initialize(gatewayid=nil, type=nil, list=nil)
+          @GatewayId = gatewayid
+          @Type = type
+          @List = list
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Type = params['Type']
+          @List = params['List']
+        end
+      end
+
+      # CloseWafProtection返回参数结构体
+      class CloseWafProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 灰度规则列表
       class CloudAPIGatewayCanaryRuleList < TencentCloud::Common::AbstractModel
         # @param CanaryRuleList: 灰度规则
@@ -1749,6 +1793,42 @@ module TencentCloud
             @Result = CreateCloudNativeAPIGatewayServerGroupResult.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWafDomains请求参数结构体
+      class CreateWafDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Domains: WAF 防护域名列表
+        # @type Domains: Array
+
+        attr_accessor :GatewayId, :Domains
+
+        def initialize(gatewayid=nil, domains=nil)
+          @GatewayId = gatewayid
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Domains = params['Domains']
+        end
+      end
+
+      # CreateWafDomains返回参数结构体
+      class CreateWafDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5489,6 +5569,50 @@ module TencentCloud
           @Mode = params['Mode']
           @CidrWhiteList = params['CidrWhiteList']
           @CidrBlackList = params['CidrBlackList']
+        end
+      end
+
+      # OpenWafProtection请求参数结构体
+      class OpenWafProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID
+        # @type GatewayId: String
+        # @param Type:  防护资源的类型。
+        # - Global  实例
+        # - Service  服务
+        # - Route  路由
+        # - Object  对象（接口暂不支持）
+        # @type Type: String
+        # @param List: 当资源类型 Type 是 Service 或 Route 的时候，传入的服务或路由的列表
+        # @type List: Array
+
+        attr_accessor :GatewayId, :Type, :List
+
+        def initialize(gatewayid=nil, type=nil, list=nil)
+          @GatewayId = gatewayid
+          @Type = type
+          @List = list
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Type = params['Type']
+          @List = params['List']
+        end
+      end
+
+      # OpenWafProtection返回参数结构体
+      class OpenWafProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

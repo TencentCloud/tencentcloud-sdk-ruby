@@ -325,6 +325,58 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskPolicyTriggerLog请求参数结构体
+      class DescribeTaskPolicyTriggerLogRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 演练ID
+        # @type TaskId: Integer
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param PageSize: 页数量
+        # @type PageSize: Integer
+
+        attr_accessor :TaskId, :Page, :PageSize
+
+        def initialize(taskid=nil, page=nil, pagesize=nil)
+          @TaskId = taskid
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeTaskPolicyTriggerLog返回参数结构体
+      class DescribeTaskPolicyTriggerLogResponse < TencentCloud::Common::AbstractModel
+        # @param TriggerLogs: 触发日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerLogs: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TriggerLogs, :RequestId
+
+        def initialize(triggerlogs=nil, requestid=nil)
+          @TriggerLogs = triggerlogs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TriggerLogs'].nil?
+            @TriggerLogs = []
+            params['TriggerLogs'].each do |i|
+              policytriggerlog_tmp = PolicyTriggerLog.new
+              policytriggerlog_tmp.deserialize(i)
+              @TriggerLogs << policytriggerlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTask请求参数结构体
       class DescribeTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -629,6 +681,43 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 护栏策略触发日志
+      class PolicyTriggerLog < TencentCloud::Common::AbstractModel
+        # @param TaskId: 演练ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param TriggerType: 类型，0--触发，1--恢复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TriggerType: Integer
+        # @param Content: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param CreatTime: 触发时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatTime: String
+
+        attr_accessor :TaskId, :Name, :TriggerType, :Content, :CreatTime
+
+        def initialize(taskid=nil, name=nil, triggertype=nil, content=nil, creattime=nil)
+          @TaskId = taskid
+          @Name = name
+          @TriggerType = triggertype
+          @Content = content
+          @CreatTime = creattime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @TriggerType = params['TriggerType']
+          @Content = params['Content']
+          @CreatTime = params['CreatTime']
         end
       end
 
@@ -1752,6 +1841,58 @@ module TencentCloud
           @TemplatePolicyIdList = params['TemplatePolicyIdList']
           @TemplatePolicyRule = params['TemplatePolicyRule']
           @TemplatePolicyDealType = params['TemplatePolicyDealType']
+        end
+      end
+
+      # TriggerPolicy请求参数结构体
+      class TriggerPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 混沌演练ID
+        # @type TaskId: Integer
+        # @param Name: 名称
+        # @type Name: String
+        # @param Content: 触发内容
+        # @type Content: String
+        # @param TriggerType: 触发类型，0--触发；1--恢复
+        # @type TriggerType: Integer
+
+        attr_accessor :TaskId, :Name, :Content, :TriggerType
+
+        def initialize(taskid=nil, name=nil, content=nil, triggertype=nil)
+          @TaskId = taskid
+          @Name = name
+          @Content = content
+          @TriggerType = triggertype
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @Content = params['Content']
+          @TriggerType = params['TriggerType']
+        end
+      end
+
+      # TriggerPolicy返回参数结构体
+      class TriggerPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 演练ID
+        # @type TaskId: Integer
+        # @param Success: 是否触发成功
+        # @type Success: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Success, :RequestId
+
+        def initialize(taskid=nil, success=nil, requestid=nil)
+          @TaskId = taskid
+          @Success = success
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Success = params['Success']
+          @RequestId = params['RequestId']
         end
       end
 

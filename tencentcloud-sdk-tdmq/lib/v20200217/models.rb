@@ -364,10 +364,16 @@ module TencentCloud
         # 1: 包年包月
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param ProjectName: 项目名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode, :ProjectId, :ProjectName
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil, projectid=nil, projectname=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -395,6 +401,8 @@ module TencentCloud
           @PublicAccessEnabled = publicaccessenabled
           @Tags = tags
           @PayMode = paymode
+          @ProjectId = projectid
+          @ProjectName = projectname
         end
 
         def deserialize(params)
@@ -432,6 +440,8 @@ module TencentCloud
             end
           end
           @PayMode = params['PayMode']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
         end
       end
 
@@ -1511,14 +1521,14 @@ module TencentCloud
         # @type ClusterName: String
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
-        # @param Vpcs: vpc网络标签
-        # @type Vpcs: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
+        # @param Vpc: vpc网络标签
+        # @type Vpc: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
         # @param Tags: 集群的标签列表(已废弃)
         # @type Tags: Array
 
-        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :Vpcs, :Tags
+        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :Vpc, :Tags
 
-        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, vpcs=nil, tags=nil)
+        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, vpc=nil, tags=nil)
           @ZoneIds = zoneids
           @ProductName = productname
           @StorageSize = storagesize
@@ -1526,7 +1536,7 @@ module TencentCloud
           @TimeSpan = timespan
           @ClusterName = clustername
           @AutoVoucher = autovoucher
-          @Vpcs = vpcs
+          @Vpc = vpc
           @Tags = tags
         end
 
@@ -1538,9 +1548,9 @@ module TencentCloud
           @TimeSpan = params['TimeSpan']
           @ClusterName = params['ClusterName']
           @AutoVoucher = params['AutoVoucher']
-          unless params['Vpcs'].nil?
-            @Vpcs = VpcInfo.new
-            @Vpcs.deserialize(params['Vpcs'])
+          unless params['Vpc'].nil?
+            @Vpc = VpcInfo.new
+            @Vpc.deserialize(params['Vpc'])
           end
           unless params['Tags'].nil?
             @Tags = []

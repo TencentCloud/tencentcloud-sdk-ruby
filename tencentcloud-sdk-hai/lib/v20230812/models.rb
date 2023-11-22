@@ -883,17 +883,22 @@ module TencentCloud
         # @param DiskSize: 系统盘大小，单位：GB。默认值为 80
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskSize: Integer
+        # @param DiskName: 系统盘分区盘符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskName: String
 
-        attr_accessor :DiskType, :DiskSize
+        attr_accessor :DiskType, :DiskSize, :DiskName
 
-        def initialize(disktype=nil, disksize=nil)
+        def initialize(disktype=nil, disksize=nil, diskname=nil)
           @DiskType = disktype
           @DiskSize = disksize
+          @DiskName = diskname
         end
 
         def deserialize(params)
           @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @DiskName = params['DiskName']
         end
       end
 

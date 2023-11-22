@@ -4756,9 +4756,9 @@ module TencentCloud
         # @type CtsMin: Integer
         # @param CtsMax: 最大创建时间的时间戳
         # @type CtsMax: Integer
-        # @param OffSet: 分页开始条数
+        # @param OffSet: 分页偏移量，取Limit整数倍。最小值为0，最大值= Total/Limit向上取整
         # @type OffSet: Integer
-        # @param Limit: 每页的条数
+        # @param Limit: 每页返回的数量
         # @type Limit: Integer
         # @param Source: 来源
         # @type Source: String

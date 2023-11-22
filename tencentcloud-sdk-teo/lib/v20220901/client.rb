@@ -947,7 +947,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
+        # 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。此接口待废弃，请使用 <a href="https://cloud.tencent.com/document/product/1552/80648">DescribeTimingL7AnalysisData</a> 接口。
 
         # @param request: Request instance for DescribeOverviewL7Data.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeOverviewL7DataRequest`
@@ -971,7 +971,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询预热任务状态
+        # DescribePrefetchTasks 用于查询预热任务提交历史记录及执行进度，通过 CreatePrefetchTasks 接口提交的任务可通过此接口进行查询。
 
         # @param request: Request instance for DescribePrefetchTasks.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribePrefetchTasksRequest`
@@ -995,7 +995,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询清除缓存历史记录
+        # DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 CreatePurgeTasks 接口提交的任务均可通过此接口进行查询。
 
         # @param request: Request instance for DescribePurgeTasks.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribePurgeTasksRequest`

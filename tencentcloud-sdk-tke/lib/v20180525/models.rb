@@ -7759,18 +7759,22 @@ module TencentCloud
         # @param SubnetIds: 子网信息，已安装eniipamd组件才会有值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubnetIds: Array
+        # @param ClaimExpiredDuration: 固定ip回收时间，已安装eniipamd组件才会有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClaimExpiredDuration: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnableIPAMD, :EnableCustomizedPodCidr, :DisableVpcCniMode, :Phase, :Reason, :SubnetIds, :RequestId
+        attr_accessor :EnableIPAMD, :EnableCustomizedPodCidr, :DisableVpcCniMode, :Phase, :Reason, :SubnetIds, :ClaimExpiredDuration, :RequestId
 
-        def initialize(enableipamd=nil, enablecustomizedpodcidr=nil, disablevpccnimode=nil, phase=nil, reason=nil, subnetids=nil, requestid=nil)
+        def initialize(enableipamd=nil, enablecustomizedpodcidr=nil, disablevpccnimode=nil, phase=nil, reason=nil, subnetids=nil, claimexpiredduration=nil, requestid=nil)
           @EnableIPAMD = enableipamd
           @EnableCustomizedPodCidr = enablecustomizedpodcidr
           @DisableVpcCniMode = disablevpccnimode
           @Phase = phase
           @Reason = reason
           @SubnetIds = subnetids
+          @ClaimExpiredDuration = claimexpiredduration
           @RequestId = requestid
         end
 
@@ -7781,6 +7785,7 @@ module TencentCloud
           @Phase = params['Phase']
           @Reason = params['Reason']
           @SubnetIds = params['SubnetIds']
+          @ClaimExpiredDuration = params['ClaimExpiredDuration']
           @RequestId = params['RequestId']
         end
       end
