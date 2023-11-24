@@ -5982,10 +5982,12 @@ module TencentCloud
         # @param SpecFeatures: 计费项特性列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecFeatures: Array
+        # @param CvmInstanceId: 纳管cvmid
+        # @type CvmInstanceId: String
 
-        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures
+        attr_accessor :InstanceId, :UsedResource, :TotalResource, :InstanceStatus, :SubUin, :CreateTime, :ExpireTime, :AutoRenewFlag, :SpecId, :SpecAlias, :SpecFeatures, :CvmInstanceId
 
-        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil)
+        def initialize(instanceid=nil, usedresource=nil, totalresource=nil, instancestatus=nil, subuin=nil, createtime=nil, expiretime=nil, autorenewflag=nil, specid=nil, specalias=nil, specfeatures=nil, cvminstanceid=nil)
           @InstanceId = instanceid
           @UsedResource = usedresource
           @TotalResource = totalresource
@@ -5997,6 +5999,7 @@ module TencentCloud
           @SpecId = specid
           @SpecAlias = specalias
           @SpecFeatures = specfeatures
+          @CvmInstanceId = cvminstanceid
         end
 
         def deserialize(params)
@@ -6017,6 +6020,7 @@ module TencentCloud
           @SpecId = params['SpecId']
           @SpecAlias = params['SpecAlias']
           @SpecFeatures = params['SpecFeatures']
+          @CvmInstanceId = params['CvmInstanceId']
         end
       end
 

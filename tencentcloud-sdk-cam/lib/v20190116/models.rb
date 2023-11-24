@@ -946,7 +946,8 @@ module TencentCloud
 
       # CreateServiceLinkedRole请求参数结构体
       class CreateServiceLinkedRoleRequest < TencentCloud::Common::AbstractModel
-        # @param QCSServiceName: 授权服务，附加了此角色的腾讯云服务主体。
+        # @param QCSServiceName: 填写此角色的腾讯云服务载体，具体可查询文档（角色载体）字段
+        # https://cloud.tencent.com/document/product/598/85165
         # @type QCSServiceName: Array
         # @param CustomSuffix: 自定义后缀，根据您提供的字符串，与服务提供的前缀组合在一起以形成完整的角色名称。
         # @type CustomSuffix: String

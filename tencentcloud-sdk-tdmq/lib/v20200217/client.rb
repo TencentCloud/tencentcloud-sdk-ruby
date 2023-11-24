@@ -677,6 +677,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 接口支持删除多个集群，目前已废弃
+
         # 删除专业集群——预付费，仅通过API 调用，支持同时删除多个集群
 
         # @param request: Request instance for DeleteProClusters.

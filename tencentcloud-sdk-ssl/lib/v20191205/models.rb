@@ -447,16 +447,20 @@ module TencentCloud
         # @param SMCert: 是否是国密证书
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SMCert: Integer
+        # @param CompanyType: 公司类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompanyType: Integer
 
-        attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert
+        attr_accessor :DomainNumber, :OriginCertificateId, :ReplacedBy, :ReplacedFor, :RenewOrder, :SMCert, :CompanyType
 
-        def initialize(domainnumber=nil, origincertificateid=nil, replacedby=nil, replacedfor=nil, reneworder=nil, smcert=nil)
+        def initialize(domainnumber=nil, origincertificateid=nil, replacedby=nil, replacedfor=nil, reneworder=nil, smcert=nil, companytype=nil)
           @DomainNumber = domainnumber
           @OriginCertificateId = origincertificateid
           @ReplacedBy = replacedby
           @ReplacedFor = replacedfor
           @RenewOrder = reneworder
           @SMCert = smcert
+          @CompanyType = companytype
         end
 
         def deserialize(params)
@@ -466,6 +470,7 @@ module TencentCloud
           @ReplacedFor = params['ReplacedFor']
           @RenewOrder = params['RenewOrder']
           @SMCert = params['SMCert']
+          @CompanyType = params['CompanyType']
         end
       end
 
@@ -548,7 +553,7 @@ module TencentCloud
         # @param IsVulnerability: 是否启用了漏洞扫描功能。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVulnerability: Boolean
-        # @param RenewAble: 是否可重颁发证书。
+        # @param RenewAble: 是否可续费。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RenewAble: Boolean
         # @param ProjectInfo: 项目信息。
@@ -596,10 +601,34 @@ module TencentCloud
         # @param HostingRenewCertId: 托管新证书ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostingRenewCertId: String
+        # @param HasRenewOrder: 存在的续费证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasRenewOrder: String
+        # @param ReplaceOriCertIsDelete: 重颁发证书原证书是否删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplaceOriCertIsDelete: Boolean
+        # @param IsExpiring: 是否即将过期， 证书即将到期的30天内为即将过期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExpiring: Boolean
+        # @param DVAuthDeadline: DV证书添加验证截止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DVAuthDeadline: String
+        # @param ValidationPassedTime: 域名验证通过时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValidationPassedTime: String
+        # @param CertSANs: 证书关联的多域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertSANs: Array
+        # @param AwaitingValidationMsg: 域名验证驳回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AwaitingValidationMsg: String
+        # @param AllowDownload: 是否允许下载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowDownload: Boolean
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -641,6 +670,14 @@ module TencentCloud
           @HostingStatus = hostingstatus
           @HostingCompleteTime = hostingcompletetime
           @HostingRenewCertId = hostingrenewcertid
+          @HasRenewOrder = hasreneworder
+          @ReplaceOriCertIsDelete = replaceoricertisdelete
+          @IsExpiring = isexpiring
+          @DVAuthDeadline = dvauthdeadline
+          @ValidationPassedTime = validationpassedtime
+          @CertSANs = certsans
+          @AwaitingValidationMsg = awaitingvalidationmsg
+          @AllowDownload = allowdownload
         end
 
         def deserialize(params)
@@ -701,6 +738,14 @@ module TencentCloud
           @HostingStatus = params['HostingStatus']
           @HostingCompleteTime = params['HostingCompleteTime']
           @HostingRenewCertId = params['HostingRenewCertId']
+          @HasRenewOrder = params['HasRenewOrder']
+          @ReplaceOriCertIsDelete = params['ReplaceOriCertIsDelete']
+          @IsExpiring = params['IsExpiring']
+          @DVAuthDeadline = params['DVAuthDeadline']
+          @ValidationPassedTime = params['ValidationPassedTime']
+          @CertSANs = params['CertSANs']
+          @AwaitingValidationMsg = params['AwaitingValidationMsg']
+          @AllowDownload = params['AllowDownload']
         end
       end
 

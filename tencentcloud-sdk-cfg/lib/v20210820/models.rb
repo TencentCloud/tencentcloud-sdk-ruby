@@ -836,10 +836,13 @@ module TencentCloud
         # @param VerifyId: 关联的隐患验证项ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VerifyId: Integer
+        # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDealType: Integer
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskStatusType, :TaskProtectStrategy, :TaskCreateTime, :TaskUpdateTime, :TaskGroups, :TaskStartTime, :TaskEndTime, :TaskExpect, :TaskSummary, :TaskMode, :TaskPauseDuration, :TaskOwnerUin, :TaskRegionId, :TaskMonitors, :TaskPolicy, :Tags, :TaskPlanId, :TaskPlanTitle, :ApplicationId, :ApplicationName, :AlarmPolicy, :ApmServiceList, :VerifyId, :PolicyDealType
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskstatustype=nil, taskprotectstrategy=nil, taskcreatetime=nil, taskupdatetime=nil, taskgroups=nil, taskstarttime=nil, taskendtime=nil, taskexpect=nil, tasksummary=nil, taskmode=nil, taskpauseduration=nil, taskowneruin=nil, taskregionid=nil, taskmonitors=nil, taskpolicy=nil, tags=nil, taskplanid=nil, taskplantitle=nil, applicationid=nil, applicationname=nil, alarmpolicy=nil, apmservicelist=nil, verifyid=nil, policydealtype=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -868,6 +871,7 @@ module TencentCloud
           @AlarmPolicy = alarmpolicy
           @ApmServiceList = apmservicelist
           @VerifyId = verifyid
+          @PolicyDealType = policydealtype
         end
 
         def deserialize(params)
@@ -930,6 +934,7 @@ module TencentCloud
             end
           end
           @VerifyId = params['VerifyId']
+          @PolicyDealType = params['PolicyDealType']
         end
       end
 
@@ -947,16 +952,19 @@ module TencentCloud
         # @type TaskPauseDuration: Integer
         # @param Tags: 演练标签信息，不填则默认取经验标签
         # @type Tags: Array
+        # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
+        # @type PolicyDealType: Integer
 
-        attr_accessor :TaskGroupsConfig, :TaskTitle, :TaskDescription, :TaskMode, :TaskPauseDuration, :Tags
+        attr_accessor :TaskGroupsConfig, :TaskTitle, :TaskDescription, :TaskMode, :TaskPauseDuration, :Tags, :PolicyDealType
 
-        def initialize(taskgroupsconfig=nil, tasktitle=nil, taskdescription=nil, taskmode=nil, taskpauseduration=nil, tags=nil)
+        def initialize(taskgroupsconfig=nil, tasktitle=nil, taskdescription=nil, taskmode=nil, taskpauseduration=nil, tags=nil, policydealtype=nil)
           @TaskGroupsConfig = taskgroupsconfig
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
           @TaskMode = taskmode
           @TaskPauseDuration = taskpauseduration
           @Tags = tags
+          @PolicyDealType = policydealtype
         end
 
         def deserialize(params)
@@ -980,6 +988,7 @@ module TencentCloud
               @Tags << tagwithcreate_tmp
             end
           end
+          @PolicyDealType = params['PolicyDealType']
         end
       end
 
@@ -1527,10 +1536,13 @@ module TencentCloud
         # @param AlarmPolicy: 告警指标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmPolicy: Array
+        # @param PolicyDealType: 护栏处理方式，1--顺序回滚，2--演练暂停
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyDealType: Integer
 
-        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy
+        attr_accessor :TemplateId, :TemplateTitle, :TemplateDescription, :TemplateTag, :TemplateIsUsed, :TemplateCreateTime, :TemplateUpdateTime, :TemplateMode, :TemplatePauseDuration, :TemplateOwnerUin, :TemplateRegionId, :TemplateGroups, :TemplateMonitors, :TemplatePolicy, :Tags, :TemplateSource, :ApmServiceList, :AlarmPolicy, :PolicyDealType
 
-        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil, apmservicelist=nil, alarmpolicy=nil)
+        def initialize(templateid=nil, templatetitle=nil, templatedescription=nil, templatetag=nil, templateisused=nil, templatecreatetime=nil, templateupdatetime=nil, templatemode=nil, templatepauseduration=nil, templateowneruin=nil, templateregionid=nil, templategroups=nil, templatemonitors=nil, templatepolicy=nil, tags=nil, templatesource=nil, apmservicelist=nil, alarmpolicy=nil, policydealtype=nil)
           @TemplateId = templateid
           @TemplateTitle = templatetitle
           @TemplateDescription = templatedescription
@@ -1549,6 +1561,7 @@ module TencentCloud
           @TemplateSource = templatesource
           @ApmServiceList = apmservicelist
           @AlarmPolicy = alarmpolicy
+          @PolicyDealType = policydealtype
         end
 
         def deserialize(params)
@@ -1601,6 +1614,7 @@ module TencentCloud
             end
           end
           @AlarmPolicy = params['AlarmPolicy']
+          @PolicyDealType = params['PolicyDealType']
         end
       end
 

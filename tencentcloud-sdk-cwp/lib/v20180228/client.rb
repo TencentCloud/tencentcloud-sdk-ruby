@@ -10472,7 +10472,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        #  用于设置新增主机自动开通专业防护配置。
+        # 用于设置新增主机自动开通专业防护配置。
 
         # @param request: Request instance for ModifyAutoOpenProVersionConfig.
         # @type request: :class:`Tencentcloud::cwp::V20180228::ModifyAutoOpenProVersionConfigRequest`

@@ -1765,6 +1765,51 @@ module TencentCloud
         end
       end
 
+      # 配置组版本信息。
+      class ConfigGroupVersionInfo < TencentCloud::Common::AbstractModel
+        # @param VersionId: 版本 ID。
+        # @type VersionId: String
+        # @param VersionNumber: 版本号。
+        # @type VersionNumber: String
+        # @param GroupId: 配置组 ID。
+        # @type GroupId: String
+        # @param GroupType: 配置组类型。取值有：
+        # <li>l7_acceleration ：七层加速配置组。</li>
+        # <li>edge_functions ：边缘函数配置组。</li>
+        # @type GroupType: String
+        # @param Description: 版本描述。
+        # @type Description: String
+        # @param Status: 版本状态，取值有：
+        # <li>creating：创建中；</li>
+        # <li>inactive：未生效；</li>
+        # <li>active：已生效。</li>
+        # @type Status: String
+        # @param CreateTime: 版本创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type CreateTime: String
+
+        attr_accessor :VersionId, :VersionNumber, :GroupId, :GroupType, :Description, :Status, :CreateTime
+
+        def initialize(versionid=nil, versionnumber=nil, groupid=nil, grouptype=nil, description=nil, status=nil, createtime=nil)
+          @VersionId = versionid
+          @VersionNumber = versionnumber
+          @GroupId = groupid
+          @GroupType = grouptype
+          @Description = description
+          @Status = status
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
+          @VersionNumber = params['VersionNumber']
+          @GroupId = params['GroupId']
+          @GroupType = params['GroupType']
+          @Description = params['Description']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # CreateAccelerationDomain请求参数结构体
       class CreateAccelerationDomainRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 加速域名所属站点 ID。
@@ -2075,6 +2120,54 @@ module TencentCloud
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConfigGroupVersion请求参数结构体
+      class CreateConfigGroupVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GroupId: 待新建版本的配置组 ID。
+        # @type GroupId: String
+        # @param Content: 待导入的配置内容。要求采用 JSON 格式，按照 UTF-8 方式进行编码。配置文件内容可参考下方示例。
+        # @type Content: String
+        # @param Description: 版本描述，可输入最大长度为 50 个字符，可以通过本字段填写该版本的使用场景等。
+        # @type Description: String
+
+        attr_accessor :ZoneId, :GroupId, :Content, :Description
+
+        def initialize(zoneid=nil, groupid=nil, content=nil, description=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Content = content
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Content = params['Content']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateConfigGroupVersion返回参数结构体
+      class CreateConfigGroupVersionResponse < TencentCloud::Common::AbstractModel
+        # @param VersionId: 版本 ID。
+        # @type VersionId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionId, :RequestId
+
+        def initialize(versionid=nil, requestid=nil)
+          @VersionId = versionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VersionId = params['VersionId']
           @RequestId = params['RequestId']
         end
       end
@@ -3097,6 +3190,108 @@ module TencentCloud
         end
       end
 
+      # DeployConfigGroupVersion请求参数结构体
+      class DeployConfigGroupVersionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param EnvId: 环境 ID。请填写版本需要发布到的环境 ID。
+        # @type EnvId: String
+        # @param ConfigGroupVersionInfos: 需要发布的版本信息。可以同时变更多个不同配置组的版本，每个配置组一次仅支持变更一个版本。
+        # @type ConfigGroupVersionInfos: Array
+        # @param Description: 变更说明。用于描述此次变更的内容、原因，最大支持 100 个字符。
+        # @type Description: String
+
+        attr_accessor :ZoneId, :EnvId, :ConfigGroupVersionInfos, :Description
+
+        def initialize(zoneid=nil, envid=nil, configgroupversioninfos=nil, description=nil)
+          @ZoneId = zoneid
+          @EnvId = envid
+          @ConfigGroupVersionInfos = configgroupversioninfos
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @EnvId = params['EnvId']
+          unless params['ConfigGroupVersionInfos'].nil?
+            @ConfigGroupVersionInfos = []
+            params['ConfigGroupVersionInfos'].each do |i|
+              configgroupversioninfo_tmp = ConfigGroupVersionInfo.new
+              configgroupversioninfo_tmp.deserialize(i)
+              @ConfigGroupVersionInfos << configgroupversioninfo_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
+      # DeployConfigGroupVersion返回参数结构体
+      class DeployConfigGroupVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RecordId: 发布记录 ID。
+        # @type RecordId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordId, :RequestId
+
+        def initialize(recordid=nil, requestid=nil)
+          @RecordId = recordid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 配置组版本发布记录详情。
+      class DeployRecord < TencentCloud::Common::AbstractModel
+        # @param ConfigGroupVersionInfos: 发布版本的详细信息。
+        # @type ConfigGroupVersionInfos: Array
+        # @param DeployTime: 发布时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type DeployTime: String
+        # @param Status: 发布状态，取值有：
+        # <li> deploying ：发布中；</li>
+        # <li>failure ：发布失败；</li>
+        # <li>success： 发布成功。</li>
+        # @type Status: String
+        # @param Message: 发布结果信息。
+        # @type Message: String
+        # @param RecordId: 发布记录 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param Description: 变更说明。
+        # @type Description: String
+
+        attr_accessor :ConfigGroupVersionInfos, :DeployTime, :Status, :Message, :RecordId, :Description
+
+        def initialize(configgroupversioninfos=nil, deploytime=nil, status=nil, message=nil, recordid=nil, description=nil)
+          @ConfigGroupVersionInfos = configgroupversioninfos
+          @DeployTime = deploytime
+          @Status = status
+          @Message = message
+          @RecordId = recordid
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['ConfigGroupVersionInfos'].nil?
+            @ConfigGroupVersionInfos = []
+            params['ConfigGroupVersionInfos'].each do |i|
+              configgroupversioninfo_tmp = ConfigGroupVersionInfo.new
+              configgroupversioninfo_tmp.deserialize(i)
+              @ConfigGroupVersionInfos << configgroupversioninfo_tmp
+            end
+          end
+          @DeployTime = params['DeployTime']
+          @Status = params['Status']
+          @Message = params['Message']
+          @RecordId = params['RecordId']
+          @Description = params['Description']
+        end
+      end
+
       # DescribeAccelerationDomains请求参数结构体
       class DescribeAccelerationDomainsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 加速域名所属站点 ID。
@@ -3349,6 +3544,124 @@ module TencentCloud
               planinfo_tmp = PlanInfo.new
               planinfo_tmp.deserialize(i)
               @PlanInfo << planinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigGroupVersionDetail请求参数结构体
+      class DescribeConfigGroupVersionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param VersionId: 版本 ID。
+        # @type VersionId: String
+
+        attr_accessor :ZoneId, :VersionId
+
+        def initialize(zoneid=nil, versionid=nil)
+          @ZoneId = zoneid
+          @VersionId = versionid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @VersionId = params['VersionId']
+        end
+      end
+
+      # DescribeConfigGroupVersionDetail返回参数结构体
+      class DescribeConfigGroupVersionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigGroupVersionInfo: 版本信息。
+        # @type ConfigGroupVersionInfo: :class:`Tencentcloud::Teo.v20220901.models.ConfigGroupVersionInfo`
+        # @param Content: 版本文件的内容。以 JSON 格式返回。
+        # @type Content: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigGroupVersionInfo, :Content, :RequestId
+
+        def initialize(configgroupversioninfo=nil, content=nil, requestid=nil)
+          @ConfigGroupVersionInfo = configgroupversioninfo
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConfigGroupVersionInfo'].nil?
+            @ConfigGroupVersionInfo = ConfigGroupVersionInfo.new
+            @ConfigGroupVersionInfo.deserialize(params['ConfigGroupVersionInfo'])
+          end
+          @Content = params['Content']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigGroupVersions请求参数结构体
+      class DescribeConfigGroupVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GroupId: 配置组 ID。
+        # @type GroupId: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20，该参数不填写时，返回所选配置组下的所有版本信息。详细的过滤条件如下：
+        # <li>version-id：按照版本 ID 进行过滤；</li>
+        # @type Filters: Array
+        # @param Offset: 分页查询偏移量。默认值为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值为 20，最大值为 100。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :GroupId, :Filters, :Offset, :Limit
+
+        def initialize(zoneid=nil, groupid=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeConfigGroupVersions返回参数结构体
+      class DescribeConfigGroupVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 版本总数。
+        # @type TotalCount: Integer
+        # @param ConfigGroupVersionInfos: 版本信息列表。
+        # @type ConfigGroupVersionInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigGroupVersionInfos, :RequestId
+
+        def initialize(totalcount=nil, configgroupversioninfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigGroupVersionInfos = configgroupversioninfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigGroupVersionInfos'].nil?
+            @ConfigGroupVersionInfos = []
+            params['ConfigGroupVersionInfos'].each do |i|
+              configgroupversioninfo_tmp = ConfigGroupVersionInfo.new
+              configgroupversioninfo_tmp.deserialize(i)
+              @ConfigGroupVersionInfos << configgroupversioninfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3740,6 +4053,116 @@ module TencentCloud
               defaultservercertinfo_tmp = DefaultServerCertInfo.new
               defaultservercertinfo_tmp.deserialize(i)
               @DefaultServerCertInfo << defaultservercertinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeployHistory请求参数结构体
+      class DescribeDeployHistoryRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param EnvId: 环境 ID。
+        # @type EnvId: String
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20，详细的过滤条件如下：
+        # <li>record-id：按照发布记录 ID 进行过滤进行过滤。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :EnvId, :Filters
+
+        def initialize(zoneid=nil, envid=nil, filters=nil)
+          @ZoneId = zoneid
+          @EnvId = envid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @EnvId = params['EnvId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDeployHistory返回参数结构体
+      class DescribeDeployHistoryResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 发布记录总数。
+        # @type TotalCount: Integer
+        # @param Records: 发布记录详情。
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Records, :RequestId
+
+        def initialize(totalcount=nil, records=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              deployrecord_tmp = DeployRecord.new
+              deployrecord_tmp.deserialize(i)
+              @Records << deployrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnvironments请求参数结构体
+      class DescribeEnvironmentsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeEnvironments返回参数结构体
+      class DescribeEnvironmentsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 环境总数。
+        # @type TotalCount: Integer
+        # @param EnvInfos: 环境列表。
+        # @type EnvInfos: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :EnvInfos, :RequestId
+
+        def initialize(totalcount=nil, envinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @EnvInfos = envinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['EnvInfos'].nil?
+            @EnvInfos = []
+            params['EnvInfos'].each do |i|
+              envinfo_tmp = EnvInfo.new
+              envinfo_tmp.deserialize(i)
+              @EnvInfos << envinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5517,6 +5940,61 @@ module TencentCloud
           @Entity = params['Entity']
           @Status = params['Status']
           @Message = params['Message']
+        end
+      end
+
+      # 环境信息。
+      class EnvInfo < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID。
+        # @type EnvId: String
+        # @param EnvType: 环境类型，取值有：
+        # <li>production: 生产环境；</li><li>staging: 测试环境。</li>
+        # @type EnvType: String
+        # @param Status: 环境状态，取值有：
+        # <li>creating：创建中；</li>
+        # <li>running：稳定运行中，可进行版本变更；</li>
+        # <li>version_deploying：版本部署中，不能进行新的变更。</li>
+        # @type Status: String
+        # @param Scope: 当前环境的配置生效范围：
+        # <li>当 EnvType 取值为 production 时，该参数值为 ["ALL"]，代表全网生效；</li>
+        # <li>当 EnvType 取值为 staging 时，会返回测试节点 IP，可用于绑定 host 测试。</li>
+        # @type Scope: Array
+        # @param CurrentConfigGroupVersionInfos: 当前环境中各配置组实际生效的版本，根据 Status 的取值有以下两种情况：
+        # <li>当 Status 取值为 version_deploying 时，本字段返回的值为执行变更动作之前生效的版本，即新版本部署期间，实际生效的版本为执行变更动作之前的版本；</li>
+        # <li>当 Status 取值为 running 时，本字段返回的值即为当前实际生效的版本。</li>
+        # @type CurrentConfigGroupVersionInfos: Array
+        # @param CreateTime: 创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type UpdateTime: String
+
+        attr_accessor :EnvId, :EnvType, :Status, :Scope, :CurrentConfigGroupVersionInfos, :CreateTime, :UpdateTime
+
+        def initialize(envid=nil, envtype=nil, status=nil, scope=nil, currentconfiggroupversioninfos=nil, createtime=nil, updatetime=nil)
+          @EnvId = envid
+          @EnvType = envtype
+          @Status = status
+          @Scope = scope
+          @CurrentConfigGroupVersionInfos = currentconfiggroupversioninfos
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @EnvType = params['EnvType']
+          @Status = params['Status']
+          @Scope = params['Scope']
+          unless params['CurrentConfigGroupVersionInfos'].nil?
+            @CurrentConfigGroupVersionInfos = []
+            params['CurrentConfigGroupVersionInfos'].each do |i|
+              configgroupversioninfo_tmp = ConfigGroupVersionInfo.new
+              configgroupversioninfo_tmp.deserialize(i)
+              @CurrentConfigGroupVersionInfos << configgroupversioninfo_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

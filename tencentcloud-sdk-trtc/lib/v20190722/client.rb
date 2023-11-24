@@ -379,6 +379,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 您可以查询转推任务的状态。
+
+        # @param request: Request instance for DescribeStreamIngest.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeStreamIngestRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeStreamIngestResponse`
+        def DescribeStreamIngest(request)
+          body = send_request('DescribeStreamIngest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStreamIngestResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询TRTC监控仪表盘-数据大盘质量指标（包括下列指标）
         # joinSuccessRate：加入频道成功率。
         # joinSuccessIn5sRate：5s内加入频道成功率。
@@ -1137,6 +1161,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 将一个在线媒体流推到TRTC房间。
+
+        # @param request: Request instance for StartStreamIngest.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StartStreamIngestRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StartStreamIngestResponse`
+        def StartStreamIngest(request)
+          body = send_request('StartStreamIngest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartStreamIngestResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口说明：结束云端混流
 
         # @param request: Request instance for StopMCUMixTranscode.
@@ -1195,6 +1243,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopPublishCdnStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 停止一个拉流转推任务。
+
+        # @param request: Request instance for StopStreamIngest.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::StopStreamIngestRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::StopStreamIngestResponse`
+        def StopStreamIngest(request)
+          body = send_request('StopStreamIngest', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopStreamIngestResponse.new
             model.deserialize(response['Response'])
             model
           else

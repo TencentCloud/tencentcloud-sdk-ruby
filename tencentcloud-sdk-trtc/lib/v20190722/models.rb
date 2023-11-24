@@ -129,6 +129,30 @@ module TencentCloud
         end
       end
 
+      # 音频转码参数
+      class AudioEncodeParams < TencentCloud::Common::AbstractModel
+        # @param SampleRate: 音频采样率，取值为[48000, 44100]，单位是Hz。
+        # @type SampleRate: Integer
+        # @param Channel: 音频声道数，取值范围[1,2]，1表示音频为单声道，2表示音频为双声道。
+        # @type Channel: Integer
+        # @param BitRate: 音频码率，取值范围[8,500]，单位为kbps。
+        # @type BitRate: Integer
+
+        attr_accessor :SampleRate, :Channel, :BitRate
+
+        def initialize(samplerate=nil, channel=nil, bitrate=nil)
+          @SampleRate = samplerate
+          @Channel = channel
+          @BitRate = bitrate
+        end
+
+        def deserialize(params)
+          @SampleRate = params['SampleRate']
+          @Channel = params['Channel']
+          @BitRate = params['BitRate']
+        end
+      end
+
       # 录制音频转码参数。
       class AudioParams < TencentCloud::Common::AbstractModel
         # @param SampleRate: 音频采样率枚举值:(注意1 代表48000HZ, 2 代表44100HZ, 3 代表16000HZ)
@@ -1019,6 +1043,49 @@ module TencentCloud
               @ScaleList << scaleinfomation_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStreamIngest请求参数结构体
+      class DescribeStreamIngestRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId，和任务的房间所对应的SDKAppId相同
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务的唯一Id，在启动任务成功后会返回。
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeStreamIngest返回参数结构体
+      class DescribeStreamIngestResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务的状态信息。
+        # InProgress：表示当前任务正在进行中。
+        # NotExist：表示当前任务不存在。
+        # 示例值：InProgress
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -3766,6 +3833,83 @@ module TencentCloud
         end
       end
 
+      # StartStreamIngest请求参数结构体
+      class StartStreamIngestRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和录制的房间所对应的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，录制的TRTC房间所对应的RoomId。
+        # @type RoomId: String
+        # @param RoomIdType: TRTC房间号的类型。
+        # 【*注意】必须和录制的房间所对应的RoomId类型相同:
+        # 0: 字符串类型的RoomId
+        # 1: 32位整型的RoomId（默认）
+        # @type RoomIdType: Integer
+        # @param UserId: 拉流转推机器人的UserId，用于进房发起拉流转推任务。
+        # @type UserId: String
+        # @param UserSig: 拉流转推机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # @type UserSig: String
+        # @param SourceUrl: 源流URL。示例值：https://a.b/test.mp4
+        # @type SourceUrl: Array
+        # @param PrivateMapKey: TRTC房间权限加密串，只有在TRTC控制台启用了高级权限控制的时候需要携带，在TRTC控制台如果开启高级权限控制后，TRTC 的后台服务系统会校验一个叫做 [PrivateMapKey] 的“权限票据”，权限票据中包含了一个加密后的 RoomId 和一个加密后的“权限位列表”。由于 PrivateMapKey 中包含 RoomId，所以只提供了 UserSig 没有提供 PrivateMapKey 时，并不能进入指定的房间。
+        # @type PrivateMapKey: String
+        # @param VideoEncodeParams: 视频编码参数。可选，如果不填，保持原始流的参数。
+        # @type VideoEncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.VideoEncodeParams`
+        # @param AudioEncodeParams: 音频编码参数。可选，如果不填，保持原始流的参数。
+        # @type AudioEncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.AudioEncodeParams`
+
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :SourceUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams
+
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, sourceurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @RoomIdType = roomidtype
+          @UserId = userid
+          @UserSig = usersig
+          @SourceUrl = sourceurl
+          @PrivateMapKey = privatemapkey
+          @VideoEncodeParams = videoencodeparams
+          @AudioEncodeParams = audioencodeparams
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @RoomIdType = params['RoomIdType']
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @SourceUrl = params['SourceUrl']
+          @PrivateMapKey = params['PrivateMapKey']
+          unless params['VideoEncodeParams'].nil?
+            @VideoEncodeParams = VideoEncodeParams.new
+            @VideoEncodeParams.deserialize(params['VideoEncodeParams'])
+          end
+          unless params['AudioEncodeParams'].nil?
+            @AudioEncodeParams = AudioEncodeParams.new
+            @AudioEncodeParams.deserialize(params['AudioEncodeParams'])
+          end
+        end
+      end
+
+      # StartStreamIngest返回参数结构体
+      class StartStreamIngestResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 拉流转推的任务 ID。任务 ID 是对一次拉流转推生命周期过程的唯一标识，结束任务时会失去意义。任务 ID 需要业务保存下来，作为下次针对这个任务操作的参数。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopMCUMixTranscodeByStrRoomId请求参数结构体
       class StopMCUMixTranscodeByStrRoomIdRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SDKAppId。
@@ -3874,6 +4018,42 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopStreamIngest请求参数结构体
+      class StopStreamIngestRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SDKAppId，和任务的房间所对应的SDKAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 任务的唯一Id，在启动任务成功后会返回。
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopStreamIngest返回参数结构体
+      class StopStreamIngestResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4299,6 +4479,38 @@ module TencentCloud
         # @param BitRate: 输出流码率，音视频输出时必填。取值范围[1,10000]，单位为kbps。
         # @type BitRate: Integer
         # @param Gop: 输出流gop，音视频输出时必填。取值范围[1,5]，单位为秒。
+        # @type Gop: Integer
+
+        attr_accessor :Width, :Height, :Fps, :BitRate, :Gop
+
+        def initialize(width=nil, height=nil, fps=nil, bitrate=nil, gop=nil)
+          @Width = width
+          @Height = height
+          @Fps = fps
+          @BitRate = bitrate
+          @Gop = gop
+        end
+
+        def deserialize(params)
+          @Width = params['Width']
+          @Height = params['Height']
+          @Fps = params['Fps']
+          @BitRate = params['BitRate']
+          @Gop = params['Gop']
+        end
+      end
+
+      # 视频转码参数
+      class VideoEncodeParams < TencentCloud::Common::AbstractModel
+        # @param Width: 宽。取值范围[0,1920]，单位为像素值。
+        # @type Width: Integer
+        # @param Height: 高。取值范围[0,1080]，单位为像素值。
+        # @type Height: Integer
+        # @param Fps: 帧率。取值范围[1,60]，表示帧率可选范围为1到60fps。
+        # @type Fps: Integer
+        # @param BitRate: 码率。取值范围[1,10000]，单位为kbps。
+        # @type BitRate: Integer
+        # @param Gop: gop。取值范围[1,2]，单位为秒。
         # @type Gop: Integer
 
         attr_accessor :Width, :Height, :Fps, :BitRate, :Gop

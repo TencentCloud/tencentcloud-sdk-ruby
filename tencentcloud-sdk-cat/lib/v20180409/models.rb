@@ -21,13 +21,13 @@ module TencentCloud
       class CreateProbeTasksRequest < TencentCloud::Common::AbstractModel
         # @param BatchTasks: 批量任务名-地址
         # @type BatchTasks: Array
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型，如1、2、3、4、5、6、7；1-页面性能、2-文件上传、3-文件下载、4-端口性能、5-网络质量、6-音视频体验、7-域名whois
         # @type TaskType: Integer
-        # @param Nodes: 拨测节点
+        # @param Nodes: 拨测节点，如10001，具体拨测地域运营商对应的拨测点编号可联系云拨测确认。
         # @type Nodes: Array
         # @param Interval: 拨测间隔
         # @type Interval: Integer
-        # @param Parameters: 拨测参数
+        # @param Parameters: 拨测参数，如{}，详细可参考云拨测官方文档。
         # @type Parameters: String
         # @param TaskCategory: 任务分类
         # <li>1 = PC</li>
@@ -37,16 +37,18 @@ module TencentCloud
         # @type Cron: String
         # @param Tag: 资源标签值
         # @type Tag: Array
-        # @param ProbeType: 测试类型，包含定时测试与即时测试
+        # @param ProbeType: 测试类型，包含定时测试与即时测试。1-定时拨测，其它表示即时拨测。
         # @type ProbeType: Integer
-        # @param PluginSource: 插件类型
+        # @param PluginSource: 插件类型，如CDN，详情参考云拨测官方文档。
         # @type PluginSource: String
         # @param ClientNum: 客户端ID
         # @type ClientNum: String
+        # @param NodeIpType: 拨测点IP类型：0-不限制IP类型，1-IPv4，2-IPv6
+        # @type NodeIpType: Integer
 
-        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum
+        attr_accessor :BatchTasks, :TaskType, :Nodes, :Interval, :Parameters, :TaskCategory, :Cron, :Tag, :ProbeType, :PluginSource, :ClientNum, :NodeIpType
 
-        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil)
+        def initialize(batchtasks=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, taskcategory=nil, cron=nil, tag=nil, probetype=nil, pluginsource=nil, clientnum=nil, nodeiptype=nil)
           @BatchTasks = batchtasks
           @TaskType = tasktype
           @Nodes = nodes
@@ -58,6 +60,7 @@ module TencentCloud
           @ProbeType = probetype
           @PluginSource = pluginsource
           @ClientNum = clientnum
+          @NodeIpType = nodeiptype
         end
 
         def deserialize(params)
@@ -86,6 +89,7 @@ module TencentCloud
           @ProbeType = params['ProbeType']
           @PluginSource = params['PluginSource']
           @ClientNum = params['ClientNum']
+          @NodeIpType = params['NodeIpType']
         end
       end
 
@@ -288,6 +292,58 @@ module TencentCloud
           end
           @TotalNumber = params['TotalNumber']
           @ScrollID = params['ScrollID']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstantTasks请求参数结构体
+      class DescribeInstantTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 数量
+        # @type Limit: Integer
+        # @param Offset: 起始位置
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInstantTasks返回参数结构体
+      class DescribeInstantTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :Total, :RequestId
+
+        def initialize(tasks=nil, total=nil, requestid=nil)
+          @Tasks = tasks
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              singleinstanttask_tmp = SingleInstantTask.new
+              singleinstanttask_tmp.deserialize(i)
+              @Tasks << singleinstanttask_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -879,6 +935,9 @@ module TencentCloud
         # @type TaskType: Integer
         # @param Nodes: 拨测节点列表
         # @type Nodes: Array
+        # @param NodeIpType: 拨测任务所选的拨测点IP类型，0-不限，1-IPv4，2-IPv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeIpType: Integer
         # @param Interval: 拨测间隔
         # @type Interval: Integer
         # @param Parameters: 拨测参数
@@ -923,13 +982,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInfoList: Array
 
-        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList
+        attr_accessor :Name, :TaskId, :TaskType, :Nodes, :NodeIpType, :Interval, :Parameters, :Status, :TargetAddress, :PayMode, :OrderState, :TaskCategory, :CreatedAt, :Cron, :CronState, :TagInfoList
 
-        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil)
+        def initialize(name=nil, taskid=nil, tasktype=nil, nodes=nil, nodeiptype=nil, interval=nil, parameters=nil, status=nil, targetaddress=nil, paymode=nil, orderstate=nil, taskcategory=nil, createdat=nil, cron=nil, cronstate=nil, taginfolist=nil)
           @Name = name
           @TaskId = taskid
           @TaskType = tasktype
           @Nodes = nodes
+          @NodeIpType = nodeiptype
           @Interval = interval
           @Parameters = parameters
           @Status = status
@@ -948,6 +1008,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @TaskType = params['TaskType']
           @Nodes = params['Nodes']
+          @NodeIpType = params['NodeIpType']
           @Interval = params['Interval']
           @Parameters = params['Parameters']
           @Status = params['Status']
@@ -1039,6 +1100,50 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 单个即时拨测任务信息
+      class SingleInstantTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TargetAddress: 任务地址
+        # @type TargetAddress: String
+        # @param TaskType: 任务类型
+        # @type TaskType: Integer
+        # @param ProbeTime: 测试时间
+        # @type ProbeTime: Integer
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param SuccessRate: 成功率
+        # @type SuccessRate: Float
+        # @param NodeCount: 节点数量
+        # @type NodeCount: Integer
+        # @param TaskCategory: 节点类型
+        # @type TaskCategory: Integer
+
+        attr_accessor :TaskId, :TargetAddress, :TaskType, :ProbeTime, :Status, :SuccessRate, :NodeCount, :TaskCategory
+
+        def initialize(taskid=nil, targetaddress=nil, tasktype=nil, probetime=nil, status=nil, successrate=nil, nodecount=nil, taskcategory=nil)
+          @TaskId = taskid
+          @TargetAddress = targetaddress
+          @TaskType = tasktype
+          @ProbeTime = probetime
+          @Status = status
+          @SuccessRate = successrate
+          @NodeCount = nodecount
+          @TaskCategory = taskcategory
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TargetAddress = params['TargetAddress']
+          @TaskType = params['TaskType']
+          @ProbeTime = params['ProbeTime']
+          @Status = params['Status']
+          @SuccessRate = params['SuccessRate']
+          @NodeCount = params['NodeCount']
+          @TaskCategory = params['TaskCategory']
         end
       end
 
@@ -1179,29 +1284,32 @@ module TencentCloud
 
       # UpdateProbeTaskConfigurationList请求参数结构体
       class UpdateProbeTaskConfigurationListRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIds: 任务 ID
+        # @param TaskIds: 任务 ID，如task-n1wchki8
         # @type TaskIds: Array
-        # @param Nodes: 拨测节点
+        # @param Nodes: 拨测节点，如10001，详细地区运营商拨测编号请联系云拨测。
         # @type Nodes: Array
-        # @param Interval: 拨测间隔
+        # @param Interval: 拨测间隔，如30，单位为分钟。
         # @type Interval: Integer
-        # @param Parameters: 拨测参数
+        # @param Parameters: 拨测参数，详细参数配置可参考云拨测官网文档。
         # @type Parameters: String
         # @param Cron: 定时任务cron表达式
         # @type Cron: String
         # @param ResourceIDs: 预付费套餐id
         # 需要与taskId对应
         # @type ResourceIDs: Array
+        # @param NodeIpType: 拨测节点的IP类型，0-不限，1-IPv4，2-IPv6
+        # @type NodeIpType: Integer
 
-        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs
+        attr_accessor :TaskIds, :Nodes, :Interval, :Parameters, :Cron, :ResourceIDs, :NodeIpType
 
-        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil)
+        def initialize(taskids=nil, nodes=nil, interval=nil, parameters=nil, cron=nil, resourceids=nil, nodeiptype=nil)
           @TaskIds = taskids
           @Nodes = nodes
           @Interval = interval
           @Parameters = parameters
           @Cron = cron
           @ResourceIDs = resourceids
+          @NodeIpType = nodeiptype
         end
 
         def deserialize(params)
@@ -1211,6 +1319,7 @@ module TencentCloud
           @Parameters = params['Parameters']
           @Cron = params['Cron']
           @ResourceIDs = params['ResourceIDs']
+          @NodeIpType = params['NodeIpType']
         end
       end
 

@@ -79,6 +79,26 @@ module TencentCloud
         end
       end
 
+      # 告警分类信息
+      class AlarmClassification < TencentCloud::Common::AbstractModel
+        # @param Key: 分类键
+        # @type Key: String
+        # @param Value: 分类值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # 告警策略描述
       class AlarmInfo < TencentCloud::Common::AbstractModel
         # @param Name: 告警策略名称。
@@ -1448,6 +1468,8 @@ module TencentCloud
 
         # 默认值为true
         # @type Status: Boolean
+        # @param Enable: 是否开启告警策略。默认值为true
+        # @type Enable: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
         # @param CallBack: 用户自定义回调
@@ -1470,10 +1492,18 @@ module TencentCloud
 
         # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
         # @type MonitorObjectType: Integer
+        # @param Classifications: 告警附加分类信息列表。
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType
+        # Classifications元素个数不能超过20个。
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil)
+        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，字符规则 ^[a-z]([a-z0-9_]{0,49})$。
+
+        # Classifications元素的Value长度不能超过200个字符。
+        # @type Classifications: Array
+
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
+
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -1484,6 +1514,7 @@ module TencentCloud
           @AlarmLevel = alarmlevel
           @MultiConditions = multiconditions
           @Status = status
+          @Enable = enable
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
@@ -1491,6 +1522,7 @@ module TencentCloud
           @GroupTriggerCondition = grouptriggercondition
           @Tags = tags
           @MonitorObjectType = monitorobjecttype
+          @Classifications = classifications
         end
 
         def deserialize(params)
@@ -1521,6 +1553,7 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+          @Enable = params['Enable']
           @MessageTemplate = params['MessageTemplate']
           unless params['CallBack'].nil?
             @CallBack = CallBackInfo.new
@@ -1545,6 +1578,14 @@ module TencentCloud
             end
           end
           @MonitorObjectType = params['MonitorObjectType']
+          unless params['Classifications'].nil?
+            @Classifications = []
+            params['Classifications'].each do |i|
+              alarmclassification_tmp = AlarmClassification.new
+              alarmclassification_tmp.deserialize(i)
+              @Classifications << alarmclassification_tmp
+            end
+          end
         end
       end
 
@@ -2520,7 +2561,7 @@ module TencentCloud
         # @param HotPeriod: 0：关闭日志沉降。
         # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
         # @type HotPeriod: Integer
-        # @param IsWebTracking: webtracking开关； false: 关闭 true： 开启
+        # @param IsWebTracking: 免鉴权开关； false: 关闭 true： 开启
         # @type IsWebTracking: Boolean
 
         attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :IsWebTracking
@@ -6341,6 +6382,28 @@ module TencentCloud
         end
       end
 
+      # 过滤器
+      class MetricLabel < TencentCloud::Common::AbstractModel
+        # @param Key: 指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 指标内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyAlarmNotice请求参数结构体
       class ModifyAlarmNoticeRequest < TencentCloud::Common::AbstractModel
         # @param AlarmNoticeId: 通知渠道组ID。
@@ -6457,6 +6520,8 @@ module TencentCloud
         # @type AlarmTargets: Array
         # @param Status: 是否开启告警策略。
         # @type Status: Boolean
+        # @param Enable: 是否开启告警策略。默认值为true
+        # @type Enable: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
         # @param CallBack: 用户自定义回调
@@ -6467,13 +6532,20 @@ module TencentCloud
         # @type GroupTriggerStatus: Boolean
         # @param GroupTriggerCondition: 分组触发条件。
         # @type GroupTriggerCondition: Array
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的告警策略。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @type Tags: Array
         # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
-        # <li> 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
+        # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
         # @type MonitorObjectType: Integer
+        # @param Classifications: 告警附加分类信息列表。
+        # Classifications元素个数不能超过20个。
+        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 `^[a-z]([a-z0-9_]{0,49})$`。
+        # Classifications元素的Value长度不能超过200个字符。
+        # @type Classifications: Array
 
-        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :MonitorObjectType
+        attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
 
-        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, monitorobjecttype=nil)
+        def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
           @Name = name
           @MonitorTime = monitortime
@@ -6485,12 +6557,15 @@ module TencentCloud
           @AlarmNoticeIds = alarmnoticeids
           @AlarmTargets = alarmtargets
           @Status = status
+          @Enable = enable
           @MessageTemplate = messagetemplate
           @CallBack = callback
           @Analysis = analysis
           @GroupTriggerStatus = grouptriggerstatus
           @GroupTriggerCondition = grouptriggercondition
+          @Tags = tags
           @MonitorObjectType = monitorobjecttype
+          @Classifications = classifications
         end
 
         def deserialize(params)
@@ -6522,6 +6597,7 @@ module TencentCloud
             end
           end
           @Status = params['Status']
+          @Enable = params['Enable']
           @MessageTemplate = params['MessageTemplate']
           unless params['CallBack'].nil?
             @CallBack = CallBackInfo.new
@@ -6537,7 +6613,23 @@ module TencentCloud
           end
           @GroupTriggerStatus = params['GroupTriggerStatus']
           @GroupTriggerCondition = params['GroupTriggerCondition']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @MonitorObjectType = params['MonitorObjectType']
+          unless params['Classifications'].nil?
+            @Classifications = []
+            params['Classifications'].each do |i|
+              alarmclassification_tmp = AlarmClassification.new
+              alarmclassification_tmp.deserialize(i)
+              @Classifications << alarmclassification_tmp
+            end
+          end
         end
       end
 
@@ -8118,14 +8210,27 @@ module TencentCloud
         # @type BizType: Integer
         # @param MetricName: 指标名称
         # @type MetricName: String
+        # @param MetricNames: 指标名称
+        # BizType为1时，优先使用MetricNames字段信息。多指标只能填充到MetricNames字段，单指标建议填充到MetricNames字段
+        # @type MetricNames: Array
+        # @param MetricLabels: 指标项
+        # @type MetricLabels: Array
+        # @param CustomTime: 自定义时间
+        # @type CustomTime: String
+        # @param CustomMetricLabels: 自定义标签
+        # @type CustomMetricLabels: Array
 
-        attr_accessor :TopicId, :Region, :BizType, :MetricName
+        attr_accessor :TopicId, :Region, :BizType, :MetricName, :MetricNames, :MetricLabels, :CustomTime, :CustomMetricLabels
 
-        def initialize(topicid=nil, region=nil, biztype=nil, metricname=nil)
+        def initialize(topicid=nil, region=nil, biztype=nil, metricname=nil, metricnames=nil, metriclabels=nil, customtime=nil, custommetriclabels=nil)
           @TopicId = topicid
           @Region = region
           @BizType = biztype
           @MetricName = metricname
+          @MetricNames = metricnames
+          @MetricLabels = metriclabels
+          @CustomTime = customtime
+          @CustomMetricLabels = custommetriclabels
         end
 
         def deserialize(params)
@@ -8133,6 +8238,17 @@ module TencentCloud
           @Region = params['Region']
           @BizType = params['BizType']
           @MetricName = params['MetricName']
+          @MetricNames = params['MetricNames']
+          @MetricLabels = params['MetricLabels']
+          @CustomTime = params['CustomTime']
+          unless params['CustomMetricLabels'].nil?
+            @CustomMetricLabels = []
+            params['CustomMetricLabels'].each do |i|
+              metriclabel_tmp = MetricLabel.new
+              metriclabel_tmp.deserialize(i)
+              @CustomMetricLabels << metriclabel_tmp
+            end
+          end
         end
       end
 
@@ -8878,10 +8994,20 @@ module TencentCloud
         # 热存储为 hotPeriod, 冷存储则为 Period-hotPeriod。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HotPeriod: Integer
+        # @param BizType: 主题类型。
+        # - 0: 日志主题
+        # - 1: 指标主题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizType: Integer
+        # @param IsWebTracking: 免鉴权开关。
+        # - false: 关闭
+        # - true: 开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsWebTracking: Boolean
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -8898,6 +9024,8 @@ module TencentCloud
           @SubAssumerName = subassumername
           @Describes = describes
           @HotPeriod = hotperiod
+          @BizType = biztype
+          @IsWebTracking = iswebtracking
         end
 
         def deserialize(params)
@@ -8924,6 +9052,8 @@ module TencentCloud
           @SubAssumerName = params['SubAssumerName']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @BizType = params['BizType']
+          @IsWebTracking = params['IsWebTracking']
         end
       end
 

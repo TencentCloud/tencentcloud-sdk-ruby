@@ -17019,12 +17019,14 @@ module TencentCloud
         # @type AutoRepurchaseRenewSwitch: Boolean
         # @param DestroyOrderNum: 已销毁订单数
         # @type DestroyOrderNum: Integer
+        # @param RepurchaseRenewSwitch: 是否自动续费开关,true 开启,false 关闭
+        # @type RepurchaseRenewSwitch: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RequestId
+        attr_accessor :LicenseCnt, :AvailableLicenseCnt, :AvailableProVersionLicenseCnt, :AvailableFlagshipVersionLicenseCnt, :NearExpiryLicenseCnt, :ExpireLicenseCnt, :AutoOpenStatus, :ProtectType, :IsOpenStatusHistory, :UsedLicenseCnt, :NotExpiredLicenseCnt, :FlagshipVersionLicenseCnt, :ProVersionLicenseCnt, :CwpVersionLicenseCnt, :AvailableLHLicenseCnt, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :DestroyOrderNum, :RepurchaseRenewSwitch, :RequestId
 
-        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, requestid=nil)
+        def initialize(licensecnt=nil, availablelicensecnt=nil, availableproversionlicensecnt=nil, availableflagshipversionlicensecnt=nil, nearexpirylicensecnt=nil, expirelicensecnt=nil, autoopenstatus=nil, protecttype=nil, isopenstatushistory=nil, usedlicensecnt=nil, notexpiredlicensecnt=nil, flagshipversionlicensecnt=nil, proversionlicensecnt=nil, cwpversionlicensecnt=nil, availablelhlicensecnt=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, destroyordernum=nil, repurchaserenewswitch=nil, requestid=nil)
           @LicenseCnt = licensecnt
           @AvailableLicenseCnt = availablelicensecnt
           @AvailableProVersionLicenseCnt = availableproversionlicensecnt
@@ -17043,6 +17045,7 @@ module TencentCloud
           @AutoRepurchaseSwitch = autorepurchaseswitch
           @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
           @DestroyOrderNum = destroyordernum
+          @RepurchaseRenewSwitch = repurchaserenewswitch
           @RequestId = requestid
         end
 
@@ -17065,6 +17068,7 @@ module TencentCloud
           @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
           @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
           @DestroyOrderNum = params['DestroyOrderNum']
+          @RepurchaseRenewSwitch = params['RepurchaseRenewSwitch']
           @RequestId = params['RequestId']
         end
       end
@@ -33084,19 +33088,23 @@ module TencentCloud
         # @type AutoRepurchaseSwitch: Integer
         # @param AutoRepurchaseRenewSwitch: 自动加购的订单是否自动续费,默认0 ,0关闭, 1开启
         # @type AutoRepurchaseRenewSwitch: Integer
+        # @param RepurchaseRenewSwitch: 手动购买的订单是否自动续费,默认0, 0关闭 ,1 开启
+        # @type RepurchaseRenewSwitch: Integer
 
-        attr_accessor :Status, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch
+        attr_accessor :Status, :AutoRepurchaseSwitch, :AutoRepurchaseRenewSwitch, :RepurchaseRenewSwitch
 
-        def initialize(status=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil)
+        def initialize(status=nil, autorepurchaseswitch=nil, autorepurchaserenewswitch=nil, repurchaserenewswitch=nil)
           @Status = status
           @AutoRepurchaseSwitch = autorepurchaseswitch
           @AutoRepurchaseRenewSwitch = autorepurchaserenewswitch
+          @RepurchaseRenewSwitch = repurchaserenewswitch
         end
 
         def deserialize(params)
           @Status = params['Status']
           @AutoRepurchaseSwitch = params['AutoRepurchaseSwitch']
           @AutoRepurchaseRenewSwitch = params['AutoRepurchaseRenewSwitch']
+          @RepurchaseRenewSwitch = params['RepurchaseRenewSwitch']
         end
       end
 

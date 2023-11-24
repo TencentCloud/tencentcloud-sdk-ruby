@@ -430,7 +430,7 @@ module TencentCloud
         # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。
 
         # <ul><li>**0**: (默认) 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`</li>
-        # </ul>
+        # <li>**1**: 不绑定自动签账号许可开通，后续使用合同份额进行合同发起</li></ul>
         # @type LicenseType: Integer
 
         attr_accessor :UserInfo, :CertInfoCallback, :UserDefineSeal, :SealImgCallback, :CallbackUrl, :VerifyChannels, :LicenseType
@@ -786,9 +786,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li></ul>
-
-        # 注: `现在仅支持电子处方场景`
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
         # @param UserInfo: 预撤销链接的用户信息，包含姓名、证件类型、证件号码等信息。
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
@@ -1561,14 +1559,14 @@ module TencentCloud
         # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 合同流程ID，为32位字符串。
-        # 此接口的合同流程ID需要由<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateFlow" target="_blank">创建签署流程</a>接口创建得到。
+        # 此接口的合同流程ID需要由[创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlow)接口创建得到。
         # @type FlowId: String
         # @param TemplateId: 用户配置的合同模板ID，会基于此模板创建合同文档，为32位字符串。
         # 可登录腾讯电子签控制台，在 "模板"->"模板中心"->"列表展示设置"选中模板 ID 中查看某个模板的TemplateId(在页面中展示为模板ID)。
         # @type TemplateId: String
         # @param FileNames: 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起。设置后流程对应的文件名称当前设置的值。
         # @type FileNames: Array
-        # @param FormFields: 电子文档的填写控件的填充内容。具体方式可以参考<a href="https://qian.tencent.com/developers/companyApis/dataTypes/#formfield" target="_blank">FormField</a>结构体的定义。
+        # @param FormFields: 电子文档的填写控件的填充内容。具体方式可以参考[FormField](https://qian.tencent.com/developers/companyApis/dataTypes/#formfield)结构体的定义。
         # @type FormFields: Array
         # @param NeedPreview: 是否为预览模式，取值如下：
         # <ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li>
@@ -1576,7 +1574,7 @@ module TencentCloud
         # 注: `当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容，动态表格合成完后会触发文档合成完成的回调通知`
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览模式下产生的预览链接类型
-        # <ul><li> **0** :(默认) 文件流 ,点开后后下载预览的合同PDF文件 </li>
+        # <ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li>
         # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子。</li></ul>
         # 注: `1.此参数在NeedPreview 为true时有效`
         # `2.动态表格控件不支持H5链接方式预览`
@@ -1632,7 +1630,7 @@ module TencentCloud
         # @param DocumentId: 合同流程的底层电子文档ID，为32位字符串。
 
         # 注:
-        # 后续需用同样的FlowId再次调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/StartFlow" target="_blank">发起签署流程</a>，合同才能进入签署环节
+        # 后续需用同样的FlowId再次调用[发起签署流程](https://qian.tencent.com/developers/companyApis/startFlows/StartFlow)，合同才能进入签署环节
         # @type DocumentId: String
         # @param PreviewFileUrl: 合同预览链接URL。
 
@@ -1914,7 +1912,7 @@ module TencentCloud
 
         # 如果合同流程是有序签署，Approvers列表中参与人的顺序就是默认的签署顺序，请确保列表中参与人的顺序符合实际签署顺序。
         # @type Approvers: Array
-        # @param FileIds: 本合同流程需包含的PDF文件资源编号列表，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取PDF文件资源编号。
+        # @param FileIds: 本合同流程需包含的PDF文件资源编号列表，通过[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获取PDF文件资源编号。
 
         # 注:  `目前，此接口仅支持单个文件发起。`
         # @type FileIds: Array
@@ -1941,7 +1939,7 @@ module TencentCloud
         # <li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。</li></ul>
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览模式下产生的预览链接类型
-        # <ul><li> **0** :(默认) 文件流 ,点开后后下载预览的合同PDF文件 </li>
+        # <ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li>
         # <li> **1** :H5链接 ,点开后在浏览器中展示合同的样子</li></ul>
         # 注: `此参数在NeedPreview 为true时有效`
         # @type PreviewType: Integer
@@ -1981,7 +1979,7 @@ module TencentCloud
         # @type NeedSignReview: Boolean
         # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。
 
-        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
         # @type UserData: String
         # @param ApproverVerifyType: 指定个人签署方查看合同的校验方式
         # <ul><li>   **VerifyCheck**  :（默认）人脸识别,人脸识别后才能合同内容 </li>
@@ -3364,8 +3362,6 @@ module TencentCloud
         # @type UserName: String
         # @param IdCardType: 证件类型，支持以下类型
         # <ul><li> ID_CARD  : 居民身份证 (默认值)</li>
-        # <li> PASSPORT  : 护照</li>
-        # <li> FOREIGN_ID_CARD  : 外国人永久居留身份证</li>
         # <li> HONGKONG_AND_MACAO  : 港澳居民来往内地通行证</li>
         # <li> HONGKONG_MACAO_AND_TAIWAN  : 港澳台居民居住证(格式同居民身份证)</li></ul>
         # @type IdCardType: String
@@ -3377,15 +3373,21 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
 
-        attr_accessor :Operator, :UserName, :IdCardType, :IdCardNumber, :Agent
+        # 注: `不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN`
+        # @type SceneKey: String
 
-        def initialize(operator=nil, username=nil, idcardtype=nil, idcardnumber=nil, agent=nil)
+        attr_accessor :Operator, :UserName, :IdCardType, :IdCardNumber, :Agent, :SceneKey
+
+        def initialize(operator=nil, username=nil, idcardtype=nil, idcardnumber=nil, agent=nil, scenekey=nil)
           @Operator = operator
           @UserName = username
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
           @Agent = agent
+          @SceneKey = scenekey
         end
 
         def deserialize(params)
@@ -3400,6 +3402,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @SceneKey = params['SceneKey']
         end
       end
 
@@ -3669,13 +3672,18 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param LicenseType: 设置用户开通自动签时是否绑定个人自动签账号许可。一旦绑定后，将扣减购买的个人自动签账号许可一次（1年有效期），不可解绑释放。不传默认为绑定自动签账号许可。 0-绑定个人自动签账号许可，开通后将扣减购买的个人自动签账号许可一次 1-不绑定，发起合同时将按标准合同套餐进行扣减
         # @type LicenseType: Integer
+        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
 
-        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent, :LicenseType
+        # 注: `不传默认为处方单场景，即E_PRESCRIPTION_AUTO_SIGN`
+        # @type SceneKey: String
+
+        attr_accessor :UserName, :IdCardNumber, :SealName, :Operator, :IdCardType, :SealImage, :SealImageCompress, :Mobile, :EnableAutoSign, :SealColor, :ProcessSeal, :FileId, :Agent, :LicenseType, :SceneKey
         extend Gem::Deprecate
         deprecate :SealImage, :none, 2023, 11
         deprecate :SealImage=, :none, 2023, 11
 
-        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil, licensetype=nil)
+        def initialize(username=nil, idcardnumber=nil, sealname=nil, operator=nil, idcardtype=nil, sealimage=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, sealcolor=nil, processseal=nil, fileid=nil, agent=nil, licensetype=nil, scenekey=nil)
           @UserName = username
           @IdCardNumber = idcardnumber
           @SealName = sealname
@@ -3690,6 +3698,7 @@ module TencentCloud
           @FileId = fileid
           @Agent = agent
           @LicenseType = licensetype
+          @SceneKey = scenekey
         end
 
         def deserialize(params)
@@ -3713,6 +3722,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @LicenseType = params['LicenseType']
+          @SceneKey = params['SceneKey']
         end
       end
 
@@ -3839,7 +3849,7 @@ module TencentCloud
         # @param Mobile: 合同流程里边签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。
         # @type Mobile: String
         # @param IdCardType: 证件类型，支持以下类型
-        # <ul><li>ID_CARD : 居民身份证(默认值)</li>
+        # <ul><li>ID_CARD : 居民身份证</li>
         # <li>HONGKONG_AND_MACAO : 港澳居民来往内地通行证</li>
         # <li>HONGKONG_MACAO_AND_TAIWAN : 港澳台居民居住证(格式同居民身份证)</li></ul>
         # @type IdCardType: String
@@ -4210,9 +4220,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li></ul>
-
-        # 注: `现在仅支持电子处方场景`
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
         # @param AutoSignConfig: 自动签开通配置信息, 包括开通的人员的信息等
         # @type AutoSignConfig: :class:`Tencentcloud::Ess.v20201111.models.AutoSignConfig`
@@ -4222,7 +4230,7 @@ module TencentCloud
         # @type UrlType: String
         # @param NotifyType: 是否通知开通方，通知类型:
         # <ul><li>默认不设置为不通知开通方</li>
-        # <li>**SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li><ul>
+        # <li>**SMS** :  短信通知 ,如果需要短信通知则NotifyAddress填写对方的手机号</li></ul>
         # @type NotifyType: String
         # @param NotifyAddress: 如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项
         # @type NotifyAddress: String
@@ -4322,9 +4330,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li></ul>
-
-        # 注: `现在仅支持电子处方场景`
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
         # @param UserInfo: 自动签开通个人用户信息, 包括名字,身份证等。
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
@@ -5050,7 +5056,7 @@ module TencentCloud
       # DescribeFileUrls返回参数结构体
       class DescribeFileUrlsResponse < TencentCloud::Common::AbstractModel
         # @param FileUrls: 文件URL信息；
-        # 链接不是永久链接,  过期时间收UrlTtl入参的影响,  默认有效期5分钟后,  到期后链接失效。
+        # 链接不是永久链接,  过期时间受UrlTtl入参的影响,  默认有效期5分钟后,  到期后链接失效。
         # @type FileUrls: Array
         # @param TotalCount: URL数量
         # @type TotalCount: Integer
@@ -5953,8 +5959,7 @@ module TencentCloud
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param SceneKey: 证书使用场景，可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** : 电子处方场景</li></ul>
-        # 注: `现在仅支持电子处方场景`
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
 
         attr_accessor :Operator, :UserInfo, :Agent, :SceneKey
@@ -6064,9 +6069,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** : 电子处方场景</li></ul>
-
-        # 注: `现在仅支持电子处方场景`
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
         # @param UserInfo: 要查询状态的用户信息, 包括名字,身份证等
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
@@ -6144,7 +6147,7 @@ module TencentCloud
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** 电子处方</li></ul>
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
         # @param UserInfo: 需要关闭自动签的个人的信息，如姓名，证件信息等。
         # @type UserInfo: :class:`Tencentcloud::Ess.v20201111.models.UserThreeFactor`
@@ -6835,7 +6838,7 @@ module TencentCloud
         # @type CustomApproverTag: String
         # @param RegisterInfo: 已经废弃, 快速注册相关信息
         # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
-        # @param ApproverOption: 签署人个性化能力值，如是否可以转发他人处理、是否可以拒签等功能开关。
+        # @param ApproverOption: 签署人个性化能力值，如是否可以转发他人处理、是否可以拒签、是否为动态补充签署人等功能开关。
         # @type ApproverOption: :class:`Tencentcloud::Ess.v20201111.models.ApproverOption`
         # @param JumpUrl: 签署完前端跳转的url，暂未使用
         # @type JumpUrl: String
@@ -7578,17 +7581,22 @@ module TencentCloud
         # CurrentOrg：在普通企业场景下返回此值；或者在集团企业的场景下，返回此值代表归属子企业
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BelongTo: String
+        # @param MainOrganizationId: 集团主企业id，当前企业为集团子企业时，该字段有值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainOrganizationId: String
 
-        attr_accessor :UserId, :BelongTo
+        attr_accessor :UserId, :BelongTo, :MainOrganizationId
 
-        def initialize(userid=nil, belongto=nil)
+        def initialize(userid=nil, belongto=nil, mainorganizationid=nil)
           @UserId = userid
           @BelongTo = belongto
+          @MainOrganizationId = mainorganizationid
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @BelongTo = params['BelongTo']
+          @MainOrganizationId = params['MainOrganizationId']
         end
       end
 

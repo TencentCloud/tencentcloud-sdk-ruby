@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取历史即时拨测任务
+
+        # @param request: Request instance for DescribeInstantTasks.
+        # @type request: :class:`Tencentcloud::cat::V20180409::DescribeInstantTasksRequest`
+        # @rtype: :class:`Tencentcloud::cat::V20180409::DescribeInstantTasksResponse`
+        def DescribeInstantTasks(request)
+          body = send_request('DescribeInstantTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstantTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取拨测节点
 
         # @param request: Request instance for DescribeNodes.

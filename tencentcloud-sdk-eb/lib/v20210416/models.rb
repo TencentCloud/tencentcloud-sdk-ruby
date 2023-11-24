@@ -273,14 +273,18 @@ module TencentCloud
         # @param DTSParams: data transfer service (DTS)参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DTSParams: :class:`Tencentcloud::Eb.v20210416.models.DTSParams`
+        # @param TDMQParams: tdmq参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TDMQParams: :class:`Tencentcloud::Eb.v20210416.models.TDMQParams`
 
-        attr_accessor :ResourceDescription, :APIGWParams, :CkafkaParams, :DTSParams
+        attr_accessor :ResourceDescription, :APIGWParams, :CkafkaParams, :DTSParams, :TDMQParams
 
-        def initialize(resourcedescription=nil, apigwparams=nil, ckafkaparams=nil, dtsparams=nil)
+        def initialize(resourcedescription=nil, apigwparams=nil, ckafkaparams=nil, dtsparams=nil, tdmqparams=nil)
           @ResourceDescription = resourcedescription
           @APIGWParams = apigwparams
           @CkafkaParams = ckafkaparams
           @DTSParams = dtsparams
+          @TDMQParams = tdmqparams
         end
 
         def deserialize(params)
@@ -296,6 +300,10 @@ module TencentCloud
           unless params['DTSParams'].nil?
             @DTSParams = DTSParams.new
             @DTSParams.deserialize(params['DTSParams'])
+          end
+          unless params['TDMQParams'].nil?
+            @TDMQParams = TDMQParams.new
+            @TDMQParams.deserialize(params['TDMQParams'])
           end
         end
       end
@@ -563,12 +571,26 @@ module TencentCloud
 
       # Data Transfer Service参数
       class DTSParams < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroupName: Consumer Group Name
+        # @type ConsumerGroupName: String
+        # @param Account: 账户名
+        # @type Account: String
+        # @param Password: 密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
 
+        attr_accessor :ConsumerGroupName, :Account, :Password
 
-        def initialize()
+        def initialize(consumergroupname=nil, account=nil, password=nil)
+          @ConsumerGroupName = consumergroupname
+          @Account = account
+          @Password = password
         end
 
         def deserialize(params)
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @Account = params['Account']
+          @Password = params['Password']
         end
       end
 
@@ -2170,6 +2192,28 @@ module TencentCloud
           @Subject = params['Subject']
           @Region = params['Region']
           @Status = params['Status']
+        end
+      end
+
+      # TDMQ参数详情
+      class TDMQParams < TencentCloud::Common::AbstractModel
+        # @param ClusterType: 集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param ClusterEndPoint: 集群支撑网接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterEndPoint: String
+
+        attr_accessor :ClusterType, :ClusterEndPoint
+
+        def initialize(clustertype=nil, clusterendpoint=nil)
+          @ClusterType = clustertype
+          @ClusterEndPoint = clusterendpoint
+        end
+
+        def deserialize(params)
+          @ClusterType = params['ClusterType']
+          @ClusterEndPoint = params['ClusterEndPoint']
         end
       end
 

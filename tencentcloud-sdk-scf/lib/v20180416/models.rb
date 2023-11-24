@@ -1810,18 +1810,27 @@ module TencentCloud
         # @param TraceEnable: 是否开启事件追踪
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TraceEnable: String
+        # @param ImageConfig: 镜像配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageConfig: :class:`Tencentcloud::Scf.v20180416.models.ImageConfig`
         # @param ProtocolType: HTTP函数支持的访问协议。当前支持WebSockets协议。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: String
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议配置的参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
+        # @param DnsCache: 是否开启DNS缓存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DnsCache: String
+        # @param IntranetConfig: 内网访问配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntranetConfig: :class:`Tencentcloud::Scf.v20180416.models.IntranetConfigOut`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :ProtocolType, :ProtocolParams, :RequestId
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :ImageConfig, :ProtocolType, :ProtocolParams, :DnsCache, :IntranetConfig, :RequestId
 
-        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, protocoltype=nil, protocolparams=nil, requestid=nil)
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, protocoltype=nil, protocolparams=nil, dnscache=nil, intranetconfig=nil, requestid=nil)
           @ModTime = modtime
           @CodeInfo = codeinfo
           @Description = description
@@ -1864,8 +1873,11 @@ module TencentCloud
           @StatusReasons = statusreasons
           @AsyncRunEnable = asyncrunenable
           @TraceEnable = traceenable
+          @ImageConfig = imageconfig
           @ProtocolType = protocoltype
           @ProtocolParams = protocolparams
+          @DnsCache = dnscache
+          @IntranetConfig = intranetconfig
           @RequestId = requestid
         end
 
@@ -1961,10 +1973,19 @@ module TencentCloud
           end
           @AsyncRunEnable = params['AsyncRunEnable']
           @TraceEnable = params['TraceEnable']
+          unless params['ImageConfig'].nil?
+            @ImageConfig = ImageConfig.new
+            @ImageConfig.deserialize(params['ImageConfig'])
+          end
           @ProtocolType = params['ProtocolType']
           unless params['ProtocolParams'].nil?
             @ProtocolParams = ProtocolParams.new
             @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
+          @DnsCache = params['DnsCache']
+          unless params['IntranetConfig'].nil?
+            @IntranetConfig = IntranetConfigOut.new
+            @IntranetConfig.deserialize(params['IntranetConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -2225,9 +2246,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContainerImageAccelerate: Boolean
         # @param ImagePort: 镜像函数端口设置
+        # 默认值: 9000
         # -1: 无端口镜像函数
-        # 0: 默认端口，当前默认端口是9000
-        # 其他: 特殊端口
+        # 其他: 取值范围 0 ~ 65535
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImagePort: Integer
 
@@ -2275,6 +2296,29 @@ module TencentCloud
         def deserialize(params)
           @DynamicEnabled = params['DynamicEnabled']
           @MaxConcurrency = params['MaxConcurrency']
+        end
+      end
+
+      # 内网配置
+      class IntranetConfigOut < TencentCloud::Common::AbstractModel
+        # @param IpFixed: 是否启用固定内网IP
+        # ENABLE 为启用
+        # DISABLE 为不启用
+        # @type IpFixed: String
+        # @param IpAddress: 若已启用固定内网IP，则该字段返回使用的IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpAddress: Array
+
+        attr_accessor :IpFixed, :IpAddress
+
+        def initialize(ipfixed=nil, ipaddress=nil)
+          @IpFixed = ipfixed
+          @IpAddress = ipaddress
+        end
+
+        def deserialize(params)
+          @IpFixed = params['IpFixed']
+          @IpAddress = params['IpAddress']
         end
       end
 

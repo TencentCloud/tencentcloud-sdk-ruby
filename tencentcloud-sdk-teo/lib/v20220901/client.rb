@@ -223,6 +223,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在版本管理模式下，用于创建指定配置组的新版本。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for CreateConfigGroupVersion.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateConfigGroupVersionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateConfigGroupVersionResponse`
+        def CreateConfigGroupVersion(request)
+          body = send_request('CreateConfigGroupVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConfigGroupVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建源站组，以源站组的方式管理业务源站。此处配置的源站组可于**添加加速域名**和**四层代理**等功能中引用。
 
         # @param request: Request instance for CreateOriginGroup.
@@ -635,6 +659,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 在版本管理模式下，用于版本发布，可通过 EnvId 将版本发布至测试环境或生产环境。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for DeployConfigGroupVersion.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeployConfigGroupVersionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeployConfigGroupVersionResponse`
+        def DeployConfigGroupVersion(request)
+          body = send_request('DeployConfigGroupVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployConfigGroupVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 您可以通过本接口查看站点下的域名信息，包括加速域名、源站以及域名状态等信息。您可以查看站点下全部域名的信息，也可以指定过滤条件查询对应的域名信息。
 
         # @param request: Request instance for DescribeAccelerationDomains.
@@ -717,6 +765,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAvailablePlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在版本管理模式下，用于获取版本的详细信息，包括版本 ID、描述、状态、创建时间、所属配置组信息以及版本配置文件的内容。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for DescribeConfigGroupVersionDetail.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeConfigGroupVersionDetailRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeConfigGroupVersionDetailResponse`
+        def DescribeConfigGroupVersionDetail(request)
+          body = send_request('DescribeConfigGroupVersionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigGroupVersionDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在版本管理模式下，用于查询指定配置组的版本列表。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for DescribeConfigGroupVersions.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeConfigGroupVersionsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeConfigGroupVersionsResponse`
+        def DescribeConfigGroupVersions(request)
+          body = send_request('DescribeConfigGroupVersions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConfigGroupVersionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -837,6 +933,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDefaultCertificatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在版本管理模式下，用于查询生产/测试环境的版本发布历史。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for DescribeDeployHistory.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDeployHistoryRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDeployHistoryResponse`
+        def DescribeDeployHistory(request)
+          body = send_request('DescribeDeployHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeployHistoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在版本管理模式下，用于查询环境信息，可获取环境 ID、类型、当前生效版本等。版本管理功能内测中，当前仅白名单开放。
+
+        # @param request: Request instance for DescribeEnvironments.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeEnvironmentsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeEnvironmentsResponse`
+        def DescribeEnvironments(request)
+          body = send_request('DescribeEnvironments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvironmentsResponse.new
             model.deserialize(response['Response'])
             model
           else
