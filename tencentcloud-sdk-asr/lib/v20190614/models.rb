@@ -164,6 +164,7 @@ module TencentCloud
         # • 16k_ar：阿拉伯语；
         # • 16k_es：西班牙语；
         # • 16k_hi：印地语；
+        # • 16k_fr：法语；
         # @type EngineType: String
         # @param Url: 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls, m3u8)
         # @type Url: String
@@ -317,6 +318,7 @@ module TencentCloud
         # • 16k_ar：阿拉伯语；
         # • 16k_es：西班牙语；
         # • 16k_hi：印地语；
+        # • 16k_fr：法语；
         # • 16k_zh_medical：中文医疗引擎
         # @type EngineModelType: String
         # @param ChannelNum: 识别声道数
@@ -1211,6 +1213,7 @@ module TencentCloud
         # • 16k_ar：阿拉伯语；
         # • 16k_es：西班牙语；
         # • 16k_hi：印地语；
+        # • 16k_fr：法语；
         # • 16k_zh_dialect：多方言，支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
         # @type EngSerViceType: String
         # @param SourceType: 语音数据来源。0：语音 URL；1：语音数据（post body）。
@@ -1260,12 +1263,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2023, 10
-        deprecate :ProjectId=, :none, 2023, 10
-        deprecate :SubServiceType, :none, 2023, 10
-        deprecate :SubServiceType=, :none, 2023, 10
-        deprecate :UsrAudioKey, :none, 2023, 10
-        deprecate :UsrAudioKey=, :none, 2023, 10
+        deprecate :ProjectId, :none, 2023, 11
+        deprecate :ProjectId=, :none, 2023, 11
+        deprecate :SubServiceType, :none, 2023, 11
+        deprecate :SubServiceType=, :none, 2023, 11
+        deprecate :UsrAudioKey, :none, 2023, 11
+        deprecate :UsrAudioKey=, :none, 2023, 11
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype

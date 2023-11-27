@@ -1435,40 +1435,30 @@ module TencentCloud
         # @type MonitorTime: :class:`Tencentcloud::Cls.v20201016.models.MonitorTime`
         # @param TriggerCount: 持续周期。持续满足触发条件TriggerCount个周期后，再进行告警；最小值为1，最大值为10。
         # @type TriggerCount: Integer
-        # @param AlarmPeriod: 告警重复的周期。
-
-        # 单位是分钟。
-
-        # 取值范围是0~1440。
+        # @param AlarmPeriod: 告警重复的周期，单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
         # @param AlarmNoticeIds: 关联的告警通知模板列表。
         # @type AlarmNoticeIds: Array
-        # @param Condition: 触发条件。
-
+        # @param Condition: 触发条件
         #  注意:
-
         # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         # @type Condition: String
-        # @param AlarmLevel: 告警级别。
-
+        # @param AlarmLevel: 告警级别
         # 0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)。
-
         # 注意:
         # - 不填则默认为0。
         # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
         # @type AlarmLevel: Integer
-        # @param MultiConditions: 多触发条件。
-
+        # @param MultiConditions: 多触发条件
         #  注意:
         # - Condition和AlarmLevel是一组配置，MultiConditions是另一组配置，2组配置互斥。
 
 
         # @type MultiConditions: Array
         # @param Status: 是否开启告警策略。
-
         # 默认值为true
         # @type Status: Boolean
-        # @param Enable: 是否开启告警策略。默认值为true
+        # @param Enable: 该参数已废弃，请使用Status参数控制是否开启告警策略。
         # @type Enable: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
@@ -1477,7 +1467,6 @@ module TencentCloud
         # @param Analysis: 多维分析
         # @type Analysis: Array
         # @param GroupTriggerStatus: 分组触发状态。
-
         # 默认值false
         # @type GroupTriggerStatus: Boolean
         # @param GroupTriggerCondition: 分组触发条件。
@@ -1487,17 +1476,12 @@ module TencentCloud
         # 最大支持10个标签键值对，并且不能有重复的键值对。
         # @type Tags: Array
         # @param MonitorObjectType: 监控对象类型。0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
-
         # 不填则默认为0。
-
         # 当值为1时，AlarmTargets元素个数不能超过10个，AlarmTargets中的Number必须是从1开始的连续正整数，不能重复。
         # @type MonitorObjectType: Integer
         # @param Classifications: 告警附加分类信息列表。
-
         # Classifications元素个数不能超过20个。
-
-        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，字符规则 ^[a-z]([a-z0-9_]{0,49})$。
-
+        # Classifications元素的Key不能为空，不能重复，长度不能超过50个字符，符合正则 `^[a-z]([a-z0-9_]{0,49})$`。
         # Classifications元素的Value长度不能超过200个字符。
         # @type Classifications: Array
 
@@ -6572,7 +6556,7 @@ module TencentCloud
         # @type AlarmTargets: Array
         # @param Status: 是否开启告警策略。
         # @type Status: Boolean
-        # @param Enable: 是否开启告警策略。默认值为true
+        # @param Enable: 该参数已废弃，请使用Status参数控制是否开启告警策略。
         # @type Enable: Boolean
         # @param MessageTemplate: 用户自定义告警内容
         # @type MessageTemplate: String
@@ -8263,13 +8247,13 @@ module TencentCloud
         # @param MetricName: 指标名称
         # @type MetricName: String
         # @param MetricNames: 指标名称
-        # BizType为1时，优先使用MetricNames字段信息。多指标只能填充到MetricNames字段，单指标建议填充到MetricNames字段
+        # BizType为1时，优先使用MetricNames字段多指标只能填充到MetricNames字段，单指标建议填充到MetricName字段
         # @type MetricNames: Array
-        # @param MetricLabels: 指标项
+        # @param MetricLabels: 指标标签，从SQL结果字段中选择，一般是分组(group by) 的字段。
         # @type MetricLabels: Array
-        # @param CustomTime: 自定义时间
+        # @param CustomTime: 指标时间戳，默认值为SQL查询时间范围的左侧时间点，您也可以指定其他字段（类型为uinx时间，精度毫秒）为指标时间戳。
         # @type CustomTime: String
-        # @param CustomMetricLabels: 自定义标签
+        # @param CustomMetricLabels: 除了MetricLabels，您还可以使用该参数，为指标补充静态的标签。
         # @type CustomMetricLabels: Array
 
         attr_accessor :TopicId, :Region, :BizType, :MetricName, :MetricNames, :MetricLabels, :CustomTime, :CustomMetricLabels

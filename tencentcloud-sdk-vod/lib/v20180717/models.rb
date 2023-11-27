@@ -11985,15 +11985,19 @@ module TencentCloud
         # @param CertExpireTime: 证书过期时间。
         # <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
         # @type CertExpireTime: String
+        # @param CloudCertId: 腾讯云 SSL 产品中的证书 ID。
+        # @type CloudCertId: String
 
-        attr_accessor :CertExpireTime
+        attr_accessor :CertExpireTime, :CloudCertId
 
-        def initialize(certexpiretime=nil)
+        def initialize(certexpiretime=nil, cloudcertid=nil)
           @CertExpireTime = certexpiretime
+          @CloudCertId = cloudcertid
         end
 
         def deserialize(params)
           @CertExpireTime = params['CertExpireTime']
+          @CloudCertId = params['CloudCertId']
         end
       end
 
@@ -14906,8 +14910,6 @@ module TencentCloud
         # <li>Image: 图片文件</li>
         # @type Category: String
         # @param Status: 文件状态：Normal：正常，Forbidden：封禁。
-
-        # *注意：此字段暂不支持。
         # @type Status: String
         # @param StorageClass: 媒体文件的存储类别：
         # <li> STANDARD：标准存储。</li>

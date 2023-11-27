@@ -215,6 +215,67 @@ module TencentCloud
         end
       end
 
+      # 情感分析结果
+      class SentimentAnalysis < TencentCloud::Common::AbstractModel
+        # @param Label: 情感标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: String
+        # @param Score: 标签分数，取值范围0到100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: Integer
+        # @param Detail: 情感分析明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: :class:`Tencentcloud::Tms.v20201229.models.SentimentDetail`
+        # @param Code: 响应码，成功为"OK"，失败为"InternalError"
+        # @type Code: String
+        # @param Message: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Label, :Score, :Detail, :Code, :Message
+
+        def initialize(label=nil, score=nil, detail=nil, code=nil, message=nil)
+          @Label = label
+          @Score = score
+          @Detail = detail
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Score = params['Score']
+          unless params['Detail'].nil?
+            @Detail = SentimentDetail.new
+            @Detail.deserialize(params['Detail'])
+          end
+          @Code = params['Code']
+          @Message = params['Message']
+        end
+      end
+
+      # 情感分析明细
+      class SentimentDetail < TencentCloud::Common::AbstractModel
+        # @param Positive: 正向分数，取值范围0到100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Positive: Integer
+        # @param Negative: 负向分数，取值范围0到100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Negative: Integer
+
+        attr_accessor :Positive, :Negative
+
+        def initialize(positive=nil, negative=nil)
+          @Positive = positive
+          @Negative = negative
+        end
+
+        def deserialize(params)
+          @Positive = params['Positive']
+          @Negative = params['Negative']
+        end
+      end
+
       # 该字段用于返回审核结果明细字段的标签及分数
       class Tag < TencentCloud::Common::AbstractModel
         # @param Keyword: 该字段用于返回命中的关键词
@@ -311,12 +372,15 @@ module TencentCloud
         # @param ContextText: 该字段用于返回上下文关联文本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContextText: String
+        # @param SentimentAnalysis: 情感分析结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SentimentAnalysis: :class:`Tencentcloud::Tms.v20201229.models.SentimentAnalysis`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :RequestId
+        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :SentimentAnalysis, :RequestId
 
-        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, requestid=nil)
+        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, sentimentanalysis=nil, requestid=nil)
           @BizType = biztype
           @Label = label
           @Suggestion = suggestion
@@ -328,6 +392,7 @@ module TencentCloud
           @DataId = dataid
           @SubLabel = sublabel
           @ContextText = contexttext
+          @SentimentAnalysis = sentimentanalysis
           @RequestId = requestid
         end
 
@@ -357,6 +422,10 @@ module TencentCloud
           @DataId = params['DataId']
           @SubLabel = params['SubLabel']
           @ContextText = params['ContextText']
+          unless params['SentimentAnalysis'].nil?
+            @SentimentAnalysis = SentimentAnalysis.new
+            @SentimentAnalysis.deserialize(params['SentimentAnalysis'])
+          end
           @RequestId = params['RequestId']
         end
       end

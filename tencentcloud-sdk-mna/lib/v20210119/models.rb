@@ -17,6 +17,92 @@
 module TencentCloud
   module Mna
     module V20210119
+      # 激活设备
+      class ActivateHardware < TencentCloud::Common::AbstractModel
+        # @param Vendor: 厂商名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vendor: String
+        # @param SN: 设备SN序列号
+        # @type SN: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DataKey: 设备密钥
+        # @type DataKey: String
+
+        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey
+
+        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil)
+          @Vendor = vendor
+          @SN = sn
+          @DeviceName = devicename
+          @Description = description
+          @DataKey = datakey
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @SN = params['SN']
+          @DeviceName = params['DeviceName']
+          @Description = params['Description']
+          @DataKey = params['DataKey']
+        end
+      end
+
+      # ActivateHardware请求参数结构体
+      class ActivateHardwareRequest < TencentCloud::Common::AbstractModel
+        # @param Hardware: 待激活的设备列表
+        # @type Hardware: Array
+
+        attr_accessor :Hardware
+
+        def initialize(hardware=nil)
+          @Hardware = hardware
+        end
+
+        def deserialize(params)
+          unless params['Hardware'].nil?
+            @Hardware = []
+            params['Hardware'].each do |i|
+              activatehardware_tmp = ActivateHardware.new
+              activatehardware_tmp.deserialize(i)
+              @Hardware << activatehardware_tmp
+            end
+          end
+        end
+      end
+
+      # ActivateHardware返回参数结构体
+      class ActivateHardwareResponse < TencentCloud::Common::AbstractModel
+        # @param HardwareInfo: 完成激活的设备信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HardwareInfo, :RequestId
+
+        def initialize(hardwareinfo=nil, requestid=nil)
+          @HardwareInfo = hardwareinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HardwareInfo'].nil?
+            @HardwareInfo = []
+            params['HardwareInfo'].each do |i|
+              activatehardware_tmp = ActivateHardware.new
+              activatehardware_tmp.deserialize(i)
+              @HardwareInfo << activatehardware_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddDevice请求参数结构体
       class AddDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceName: 新建设备的名称
@@ -70,6 +156,56 @@ module TencentCloud
           @DataKey = params['DataKey']
           @DeviceId = params['DeviceId']
           @Signature = params['Signature']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddHardware请求参数结构体
+      class AddHardwareRequest < TencentCloud::Common::AbstractModel
+        # @param Hardware: 硬件列表
+        # @type Hardware: Array
+
+        attr_accessor :Hardware
+
+        def initialize(hardware=nil)
+          @Hardware = hardware
+        end
+
+        def deserialize(params)
+          unless params['Hardware'].nil?
+            @Hardware = []
+            params['Hardware'].each do |i|
+              hardware_tmp = Hardware.new
+              hardware_tmp.deserialize(i)
+              @Hardware << hardware_tmp
+            end
+          end
+        end
+      end
+
+      # AddHardware返回参数结构体
+      class AddHardwareResponse < TencentCloud::Common::AbstractModel
+        # @param Hardware: 硬件设备
+        # @type Hardware: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Hardware, :RequestId
+
+        def initialize(hardware=nil, requestid=nil)
+          @Hardware = hardware
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Hardware'].nil?
+            @Hardware = []
+            params['Hardware'].each do |i|
+              hardware_tmp = Hardware.new
+              hardware_tmp.deserialize(i)
+              @Hardware << hardware_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -870,6 +1006,65 @@ module TencentCloud
         end
       end
 
+      # GetHardwareList请求参数结构体
+      class GetHardwareListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页面设备数量
+        # @type PageSize: Integer
+        # @param Keyword: 关键字
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # GetHardwareList返回参数结构体
+      class GetHardwareListResponse < TencentCloud::Common::AbstractModel
+        # @param HardwareInfos: 硬件信息列表
+        # @type HardwareInfos: Array
+        # @param Length: 硬件总数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HardwareInfos, :Length, :TotalPage, :RequestId
+
+        def initialize(hardwareinfos=nil, length=nil, totalpage=nil, requestid=nil)
+          @HardwareInfos = hardwareinfos
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['HardwareInfos'].nil?
+            @HardwareInfos = []
+            params['HardwareInfos'].each do |i|
+              hardwareinfo_tmp = HardwareInfo.new
+              hardwareinfo_tmp.deserialize(i)
+              @HardwareInfos << hardwareinfo_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetMultiFlowStatistic请求参数结构体
       class GetMultiFlowStatisticRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备id列表，单次最多请求10个设备
@@ -1066,6 +1261,164 @@ module TencentCloud
         end
       end
 
+      # GetVendorHardware请求参数结构体
+      class GetVendorHardwareRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 页面数量
+        # @type PageSize: Integer
+        # @param Keyword: 关键字
+        # @type Keyword: String
+        # @param Status: 激活状态，
+        # 空：全部；
+        # 1:待激活；
+        # 2:已激活；
+        # @type Status: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Keyword, :Status
+
+        def initialize(pagenumber=nil, pagesize=nil, keyword=nil, status=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Keyword = keyword
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Keyword = params['Keyword']
+          @Status = params['Status']
+        end
+      end
+
+      # GetVendorHardware返回参数结构体
+      class GetVendorHardwareResponse < TencentCloud::Common::AbstractModel
+        # @param VendorHardware: 硬件信息列表
+        # @type VendorHardware: Array
+        # @param Length: 设备总数
+        # @type Length: Integer
+        # @param TotalPage: 总页数
+        # @type TotalPage: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VendorHardware, :Length, :TotalPage, :RequestId
+
+        def initialize(vendorhardware=nil, length=nil, totalpage=nil, requestid=nil)
+          @VendorHardware = vendorhardware
+          @Length = length
+          @TotalPage = totalpage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VendorHardware'].nil?
+            @VendorHardware = []
+            params['VendorHardware'].each do |i|
+              vendorhardware_tmp = VendorHardware.new
+              vendorhardware_tmp.deserialize(i)
+              @VendorHardware << vendorhardware_tmp
+            end
+          end
+          @Length = params['Length']
+          @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 新建Hardware入参
+      class Hardware < TencentCloud::Common::AbstractModel
+        # @param SN: 硬件序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SN: String
+        # @param LicenseChargingMode: license计费模式：
+        # 1，租户月付费
+        # 2，厂商月付费
+        # 3，license永久授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseChargingMode: Integer
+        # @param Description: 设备描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param HardwareId: 硬件ID，入参无需传递
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareId: String
+
+        attr_accessor :SN, :LicenseChargingMode, :Description, :HardwareId
+
+        def initialize(sn=nil, licensechargingmode=nil, description=nil, hardwareid=nil)
+          @SN = sn
+          @LicenseChargingMode = licensechargingmode
+          @Description = description
+          @HardwareId = hardwareid
+        end
+
+        def deserialize(params)
+          @SN = params['SN']
+          @LicenseChargingMode = params['LicenseChargingMode']
+          @Description = params['Description']
+          @HardwareId = params['HardwareId']
+        end
+      end
+
+      # 硬件信息
+      class HardwareInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param ActiveTime: 激活时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveTime: String
+        # @param LastOnlineTime: 最后在线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastOnlineTime: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param VendorDescription: 厂商备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VendorDescription: String
+        # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseChargingMode: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param SN: 硬件序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SN: String
+
+        attr_accessor :DeviceId, :DeviceName, :ActiveTime, :LastOnlineTime, :Description, :VendorDescription, :LicenseChargingMode, :CreateTime, :SN
+
+        def initialize(deviceid=nil, devicename=nil, activetime=nil, lastonlinetime=nil, description=nil, vendordescription=nil, licensechargingmode=nil, createtime=nil, sn=nil)
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @ActiveTime = activetime
+          @LastOnlineTime = lastonlinetime
+          @Description = description
+          @VendorDescription = vendordescription
+          @LicenseChargingMode = licensechargingmode
+          @CreateTime = createtime
+          @SN = sn
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @ActiveTime = params['ActiveTime']
+          @LastOnlineTime = params['LastOnlineTime']
+          @Description = params['Description']
+          @VendorDescription = params['VendorDescription']
+          @LicenseChargingMode = params['LicenseChargingMode']
+          @CreateTime = params['CreateTime']
+          @SN = params['SN']
+        end
+      end
+
       # 流量监控指标
       class MonitorData < TencentCloud::Common::AbstractModel
         # @param Time: 时间点：s
@@ -1249,6 +1602,46 @@ module TencentCloud
         end
       end
 
+      # UpdateHardware请求参数结构体
+      class UpdateHardwareRequest < TencentCloud::Common::AbstractModel
+        # @param HardwareId: 硬件ID
+        # @type HardwareId: String
+        # @param SN: 硬件序列号
+        # @type SN: String
+        # @param Description: 设备备注
+        # @type Description: String
+
+        attr_accessor :HardwareId, :SN, :Description
+
+        def initialize(hardwareid=nil, sn=nil, description=nil)
+          @HardwareId = hardwareid
+          @SN = sn
+          @Description = description
+        end
+
+        def deserialize(params)
+          @HardwareId = params['HardwareId']
+          @SN = params['SN']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateHardware返回参数结构体
+      class UpdateHardwareResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 更新设备网络状态信息
       class UpdateNetInfo < TencentCloud::Common::AbstractModel
         # @param Type: 网络类型：
@@ -1280,6 +1673,63 @@ module TencentCloud
           @UploadLimit = params['UploadLimit']
           @DownloadLimit = params['DownloadLimit']
           @NetInfoName = params['NetInfoName']
+        end
+      end
+
+      # 厂商硬件详细信息
+      class VendorHardware < TencentCloud::Common::AbstractModel
+        # @param HardwareId: 硬件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HardwareId: String
+        # @param SN: 硬件序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SN: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 激活状态， 空：全部； 1:待激活； 2:已激活
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ActiveTime: 激活时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActiveTime: String
+        # @param Description: 厂商备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DeviceId: 设备id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param LicenseChargingMode: license计费模式： 1，租户月付费 2，厂商月付费 3，license永久授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseChargingMode: Integer
+        # @param LastOnlineTime: 最后在线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastOnlineTime: String
+
+        attr_accessor :HardwareId, :SN, :CreateTime, :Status, :ActiveTime, :Description, :DeviceId, :LicenseChargingMode, :LastOnlineTime
+
+        def initialize(hardwareid=nil, sn=nil, createtime=nil, status=nil, activetime=nil, description=nil, deviceid=nil, licensechargingmode=nil, lastonlinetime=nil)
+          @HardwareId = hardwareid
+          @SN = sn
+          @CreateTime = createtime
+          @Status = status
+          @ActiveTime = activetime
+          @Description = description
+          @DeviceId = deviceid
+          @LicenseChargingMode = licensechargingmode
+          @LastOnlineTime = lastonlinetime
+        end
+
+        def deserialize(params)
+          @HardwareId = params['HardwareId']
+          @SN = params['SN']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @ActiveTime = params['ActiveTime']
+          @Description = params['Description']
+          @DeviceId = params['DeviceId']
+          @LicenseChargingMode = params['LicenseChargingMode']
+          @LastOnlineTime = params['LastOnlineTime']
         end
       end
 

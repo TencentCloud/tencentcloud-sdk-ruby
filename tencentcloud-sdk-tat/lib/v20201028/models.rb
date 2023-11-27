@@ -411,9 +411,9 @@ module TencentCloud
       class CreateRegisterCodeRequest < TencentCloud::Common::AbstractModel
         # @param Description: 注册码描述。
         # @type Description: String
-        # @param InstanceNamePrefix: 注册实列名称前缀。
+        # @param InstanceNamePrefix: 注册实例名称前缀。
         # @type InstanceNamePrefix: String
-        # @param RegisterLimit: 该注册码允许注册的实列数目。默认限制为10个。
+        # @param RegisterLimit: 该注册码允许注册的实例数目。默认限制为10个。
         # @type RegisterLimit: Integer
         # @param EffectiveTime: 该注册码的有效时间，单位为小时。默认为4小时。
         # @type EffectiveTime: Integer

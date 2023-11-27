@@ -3921,17 +3921,21 @@ module TencentCloud
         # @type QueryType: String
         # @param GroupId: 资产组id  全部传0
         # @type GroupId: String
+        # @param ShowType: all  包含子组 own自己
+        # @type ShowType: String
 
-        attr_accessor :QueryType, :GroupId
+        attr_accessor :QueryType, :GroupId, :ShowType
 
-        def initialize(querytype=nil, groupid=nil)
+        def initialize(querytype=nil, groupid=nil, showtype=nil)
           @QueryType = querytype
           @GroupId = groupid
+          @ShowType = showtype
         end
 
         def deserialize(params)
           @QueryType = params['QueryType']
           @GroupId = params['GroupId']
+          @ShowType = params['ShowType']
         end
       end
 

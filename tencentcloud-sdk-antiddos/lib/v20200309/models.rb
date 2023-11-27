@@ -2988,19 +2988,23 @@ module TencentCloud
         # @type IdList: Array
         # @param FilterRegion: 地域名称
         # @type FilterRegion: Integer
+        # @param CnameWafIdList: cnameWaf资源
+        # @type CnameWafIdList: Array
 
-        attr_accessor :IpList, :IdList, :FilterRegion
+        attr_accessor :IpList, :IdList, :FilterRegion, :CnameWafIdList
 
-        def initialize(iplist=nil, idlist=nil, filterregion=nil)
+        def initialize(iplist=nil, idlist=nil, filterregion=nil, cnamewafidlist=nil)
           @IpList = iplist
           @IdList = idlist
           @FilterRegion = filterregion
+          @CnameWafIdList = cnamewafidlist
         end
 
         def deserialize(params)
           @IpList = params['IpList']
           @IdList = params['IdList']
           @FilterRegion = params['FilterRegion']
+          @CnameWafIdList = params['CnameWafIdList']
         end
       end
 
@@ -3014,14 +3018,18 @@ module TencentCloud
         # @param CLBData: 域名化资产的名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CLBData: Array
+        # @param CnameWafData: cnamewaf资源状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CnameWafData: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :CLBData, :RequestId
+        attr_accessor :Data, :CLBData, :CnameWafData, :RequestId
 
-        def initialize(data=nil, clbdata=nil, requestid=nil)
+        def initialize(data=nil, clbdata=nil, cnamewafdata=nil, requestid=nil)
           @Data = data
           @CLBData = clbdata
+          @CnameWafData = cnamewafdata
           @RequestId = requestid
         end
 
@@ -3040,6 +3048,14 @@ module TencentCloud
               keyvalue_tmp = KeyValue.new
               keyvalue_tmp.deserialize(i)
               @CLBData << keyvalue_tmp
+            end
+          end
+          unless params['CnameWafData'].nil?
+            @CnameWafData = []
+            params['CnameWafData'].each do |i|
+              keyvalue_tmp = KeyValue.new
+              keyvalue_tmp.deserialize(i)
+              @CnameWafData << keyvalue_tmp
             end
           end
           @RequestId = params['RequestId']

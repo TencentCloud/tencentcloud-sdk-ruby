@@ -11357,7 +11357,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param EndPointServiceIds: 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         # @type EndPointServiceIds: Array
-        # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
+        # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
         # @type IsListAuthorizedEndPointService: Boolean
 
         attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService
@@ -13737,10 +13737,16 @@ module TencentCloud
         # @type CreateTime: String
         # @param ServiceType: 挂载的PAAS服务类型，CLB,CDB,CRS
         # @type ServiceType: String
+        # @param ServiceUin: Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceUin: String
+        # @param BusinessIpType: 服务IP类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessIpType: Integer
 
-        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType
+        attr_accessor :EndPointServiceId, :VpcId, :ServiceOwner, :ServiceName, :ServiceVip, :ServiceInstanceId, :AutoAcceptFlag, :EndPointCount, :EndPointSet, :CreateTime, :ServiceType, :ServiceUin, :BusinessIpType
 
-        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil)
+        def initialize(endpointserviceid=nil, vpcid=nil, serviceowner=nil, servicename=nil, servicevip=nil, serviceinstanceid=nil, autoacceptflag=nil, endpointcount=nil, endpointset=nil, createtime=nil, servicetype=nil, serviceuin=nil, businessiptype=nil)
           @EndPointServiceId = endpointserviceid
           @VpcId = vpcid
           @ServiceOwner = serviceowner
@@ -13752,6 +13758,8 @@ module TencentCloud
           @EndPointSet = endpointset
           @CreateTime = createtime
           @ServiceType = servicetype
+          @ServiceUin = serviceuin
+          @BusinessIpType = businessiptype
         end
 
         def deserialize(params)
@@ -13773,6 +13781,8 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @ServiceType = params['ServiceType']
+          @ServiceUin = params['ServiceUin']
+          @BusinessIpType = params['BusinessIpType']
         end
       end
 

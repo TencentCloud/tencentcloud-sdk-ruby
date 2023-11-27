@@ -1501,10 +1501,10 @@ module TencentCloud
 
       # CreateProCluster请求参数结构体
       class CreateProClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneIds: 多可用区部署选择三个可用区，示例"200002","200003","200004"
+        # @param ZoneIds: 多可用区部署选择三个可用区，示例[200002,200003,200004]
 
-        # 单可用区部署选择一个可用区，示例"200002"
-        # @type ZoneIds: String
+        # 单可用区部署选择一个可用区，示例[200002]
+        # @type ZoneIds: Array
         # @param ProductName: 集群规格代号
         # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
         # @type ProductName: String
@@ -2485,6 +2485,42 @@ module TencentCloud
 
         def deserialize(params)
           @EnvironmentIds = params['EnvironmentIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProCluster请求参数结构体
+      class DeleteProClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群Id
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteProCluster返回参数结构体
+      class DeleteProClusterResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 退还实例订单号
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end

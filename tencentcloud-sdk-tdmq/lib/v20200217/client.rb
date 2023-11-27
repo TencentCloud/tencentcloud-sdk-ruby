@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除专业集群——预付费，仅通过API 调用
+
+        # @param request: Request instance for DeleteProCluster.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteProClusterRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteProClusterResponse`
+        def DeleteProCluster(request)
+          body = send_request('DeleteProCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口支持删除多个集群，目前已废弃
 
         # 删除专业集群——预付费，仅通过API 调用，支持同时删除多个集群

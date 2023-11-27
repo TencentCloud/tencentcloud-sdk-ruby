@@ -4279,7 +4279,7 @@ module TencentCloud
         # 默认为1(人脸认证 ),2(签署密码)
 
         # 注:
-        # 1. 用<font color='red'>模版创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color='red'>在创建合同重新指定无效</font>
+        # 1. 用<font color='red'>模板创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color='red'>在创建合同重新指定无效</font>
         # 2. 运营商三要素认证方式对手机号运营商及前缀有限制,可以参考[运营商支持列表类](https://qian.tencent.com/developers/partner/mobile_support)得到具体的支持说明
         # @type ApproverSignTypes: Array
 
@@ -6486,7 +6486,7 @@ module TencentCloud
         # 默认为1(人脸认证 ),2(签署密码)
 
         # 注:
-        # 1. 用<font color='red'>模版创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color='red'>在创建合同重新指定无效</font>
+        # 1. 用<font color='red'>模板创建合同场景</font>, 签署人的认证方式需要在配置模板的时候指定, <font color='red'>在创建合同重新指定无效</font>
         # 2. 运营商三要素认证方式对手机号运营商及前缀有限制,可以参考[运营商支持列表类](https://qian.tencent.com/developers/partner/mobile_support)得到具体的支持说明
         # @type ApproverSignTypes: Array
         # @param SignId: 签署ID
@@ -6992,8 +6992,6 @@ module TencentCloud
 
         # @type CustomShowMap: String
         # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
-
-        # 注:`此功能为白名单功能，使用前请联系对接的客户经理沟通。`
         # @type CcInfos: Array
         # @param NeedSignReview: 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
         # <ul><li> **false**：（默认）不需要审批，直接签署。</li>
