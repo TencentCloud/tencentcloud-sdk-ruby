@@ -225,7 +225,7 @@ module TencentCloud
 
       # ClearCmqQueue请求参数结构体
       class ClearCmqQueueRequest < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type QueueName: String
 
         attr_accessor :QueueName
@@ -257,9 +257,9 @@ module TencentCloud
 
       # ClearCmqSubscriptionFilterTags请求参数结构体
       class ClearCmqSubscriptionFilterTagsRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         # @type TopicName: String
-        # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type SubscriptionName: String
 
         attr_accessor :TopicName, :SubscriptionName
@@ -1258,9 +1258,9 @@ module TencentCloud
 
       # CreateCmqSubscribe请求参数结构体
       class CreateCmqSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         # @type TopicName: String
-        # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type SubscriptionName: String
         # @param Protocol: 订阅的协议，目前支持两种协议：http、queue。使用http协议，用户需自己搭建接受消息的web server。使用queue，消息会自动推送到CMQ queue，用户可以并发地拉取消息。
         # @type Protocol: String
@@ -1322,7 +1322,7 @@ module TencentCloud
 
       # CreateCmqTopic请求参数结构体
       class CreateCmqTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         # @type TopicName: String
         # @param MaxMsgSize: 消息最大长度。取值范围 1024-65536 Byte（即1-64K），默认值 65536。
         # @type MaxMsgSize: Integer
@@ -2311,7 +2311,7 @@ module TencentCloud
 
       # DeleteCmqQueue请求参数结构体
       class DeleteCmqQueueRequest < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type QueueName: String
 
         attr_accessor :QueueName
@@ -2343,9 +2343,9 @@ module TencentCloud
 
       # DeleteCmqSubscribe请求参数结构体
       class DeleteCmqSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type TopicName: String
-        # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type SubscriptionName: String
 
         attr_accessor :TopicName, :SubscriptionName
@@ -2379,7 +2379,7 @@ module TencentCloud
 
       # DeleteCmqTopic请求参数结构体
       class DeleteCmqTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type TopicName: String
 
         attr_accessor :TopicName
@@ -7335,7 +7335,7 @@ module TencentCloud
 
       # ModifyCmqQueueAttribute请求参数结构体
       class ModifyCmqQueueAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type QueueName: String
         # @param MaxMsgHeapNum: 最大堆积消息数。取值范围在公测期间为 1,000,000 - 10,000,000，正式上线后范围可达到 1000,000-1000,000,000。默认取值在公测期间为 10,000,000，正式上线后为 100,000,000。
         # @type MaxMsgHeapNum: Integer
@@ -7427,7 +7427,7 @@ module TencentCloud
 
       # ModifyCmqSubscriptionAttribute请求参数结构体
       class ModifyCmqSubscriptionAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         # @type TopicName: String
         # @param SubscriptionName: 订阅名字，在单个地域同一帐号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type SubscriptionName: String
@@ -7481,7 +7481,7 @@ module TencentCloud
 
       # ModifyCmqTopicAttribute请求参数结构体
       class ModifyCmqTopicAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type TopicName: String
         # @param MaxMsgSize: 消息最大长度。取值范围1024 - 65536 Byte（即1 - 64K），默认值65536。
         # @type MaxMsgSize: Integer
@@ -9572,7 +9572,7 @@ module TencentCloud
 
       # RewindCmqQueue请求参数结构体
       class RewindCmqQueueRequest < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         # @type QueueName: String
         # @param StartConsumeTime: 设定该时间，则（Batch）receiveMessage接口，会按照生产消息的先后顺序消费该时间戳以后的消息。
         # @type StartConsumeTime: Integer

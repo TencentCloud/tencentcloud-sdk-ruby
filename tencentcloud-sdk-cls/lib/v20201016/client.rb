@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建投递SCF任务
+
+        # @param request: Request instance for CreateDeliverCloudFunction.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateDeliverCloudFunctionRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateDeliverCloudFunctionResponse`
+        def CreateDeliverCloudFunction(request)
+          body = send_request('CreateDeliverCloudFunction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeliverCloudFunctionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
 
         # @param request: Request instance for CreateExport.

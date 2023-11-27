@@ -338,85 +338,6 @@ module TencentCloud
         end
       end
 
-      # CreateCustomAccount请求参数结构体
-      class CreateCustomAccountRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
-        # @type RegistryId: String
-        # @param Name: 自定义的账户名
-        # @type Name: String
-        # @param Permissions: 策略列表
-        # @type Permissions: Array
-        # @param Description: 自定义的账户描述
-        # @type Description: String
-        # @param Duration: 有效期(单位：天)，从当前时间开始计算，优先级高于ExpiresAt
-        # @type Duration: Integer
-        # @param ExpiresAt: 自定义的账户过期时间（时间戳，单位:毫秒）
-        # @type ExpiresAt: Integer
-        # @param Disable: 是否禁用自定义的账户
-        # @type Disable: Boolean
-
-        attr_accessor :RegistryId, :Name, :Permissions, :Description, :Duration, :ExpiresAt, :Disable
-
-        def initialize(registryid=nil, name=nil, permissions=nil, description=nil, duration=nil, expiresat=nil, disable=nil)
-          @RegistryId = registryid
-          @Name = name
-          @Permissions = permissions
-          @Description = description
-          @Duration = duration
-          @ExpiresAt = expiresat
-          @Disable = disable
-        end
-
-        def deserialize(params)
-          @RegistryId = params['RegistryId']
-          @Name = params['Name']
-          unless params['Permissions'].nil?
-            @Permissions = []
-            params['Permissions'].each do |i|
-              permission_tmp = Permission.new
-              permission_tmp.deserialize(i)
-              @Permissions << permission_tmp
-            end
-          end
-          @Description = params['Description']
-          @Duration = params['Duration']
-          @ExpiresAt = params['ExpiresAt']
-          @Disable = params['Disable']
-        end
-      end
-
-      # CreateCustomAccount返回参数结构体
-      class CreateCustomAccountResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 自定义用户名（会自动加上前缀tcr$）
-        # @type Name: String
-        # @param Password: 自定义用户密码，仅展示一次，请注意留存
-        # @type Password: String
-        # @param ExpiresAt: 自定义用户失效时间（时间戳）
-        # @type ExpiresAt: Integer
-        # @param CreateTime: 自定义用户创建时间
-        # @type CreateTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Name, :Password, :ExpiresAt, :CreateTime, :RequestId
-
-        def initialize(name=nil, password=nil, expiresat=nil, createtime=nil, requestid=nil)
-          @Name = name
-          @Password = password
-          @ExpiresAt = expiresat
-          @CreateTime = createtime
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Password = params['Password']
-          @ExpiresAt = params['ExpiresAt']
-          @CreateTime = params['CreateTime']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateImageAccelerationService请求参数结构体
       class CreateImageAccelerationServiceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
@@ -1526,42 +1447,6 @@ module TencentCloud
 
       # DeleteApplicationTriggerPersonal返回参数结构体
       class DeleteApplicationTriggerPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteCustomAccount请求参数结构体
-      class DeleteCustomAccountRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
-        # @type RegistryId: String
-        # @param Name: 自定义的账户名
-        # @type Name: String
-
-        attr_accessor :RegistryId, :Name
-
-        def initialize(registryid=nil, name=nil)
-          @RegistryId = registryid
-          @Name = name
-        end
-
-        def deserialize(params)
-          @RegistryId = params['RegistryId']
-          @Name = params['Name']
-        end
-      end
-
-      # DeleteCustomAccount返回参数结构体
-      class DeleteCustomAccountResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5249,69 +5134,6 @@ module TencentCloud
 
       # ModifyApplicationTriggerPersonal返回参数结构体
       class ModifyApplicationTriggerPersonalResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # ModifyCustomAccount请求参数结构体
-      class ModifyCustomAccountRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
-        # @type RegistryId: String
-        # @param Name: 自定义的账户名
-        # @type Name: String
-        # @param Description: 自定义的账户描述
-        # @type Description: String
-        # @param Duration: 有效期(单位：天)，从当前时间开始计算，优先级高于ExpiresAt
-        # @type Duration: Integer
-        # @param ExpiresAt: 自定义的账户过期时间（时间戳）
-        # @type ExpiresAt: Integer
-        # @param Disable: 是否禁用自定义的账户
-        # @type Disable: Boolean
-        # @param Permissions: 策略列表
-        # @type Permissions: Array
-
-        attr_accessor :RegistryId, :Name, :Description, :Duration, :ExpiresAt, :Disable, :Permissions
-
-        def initialize(registryid=nil, name=nil, description=nil, duration=nil, expiresat=nil, disable=nil, permissions=nil)
-          @RegistryId = registryid
-          @Name = name
-          @Description = description
-          @Duration = duration
-          @ExpiresAt = expiresat
-          @Disable = disable
-          @Permissions = permissions
-        end
-
-        def deserialize(params)
-          @RegistryId = params['RegistryId']
-          @Name = params['Name']
-          @Description = params['Description']
-          @Duration = params['Duration']
-          @ExpiresAt = params['ExpiresAt']
-          @Disable = params['Disable']
-          unless params['Permissions'].nil?
-            @Permissions = []
-            params['Permissions'].each do |i|
-              permission_tmp = Permission.new
-              permission_tmp.deserialize(i)
-              @Permissions << permission_tmp
-            end
-          end
-        end
-      end
-
-      # ModifyCustomAccount返回参数结构体
-      class ModifyCustomAccountResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

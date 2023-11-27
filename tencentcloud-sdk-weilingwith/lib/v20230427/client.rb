@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量消息上报
+        # 批量上报应用消息
 
         # @param request: Request instance for BatchReportAppMessage.
         # @type request: :class:`Tencentcloud::weilingwith::V20230427::BatchReportAppMessageRequest`
@@ -1325,7 +1325,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 单条消息上报
+        # 上报应用消息
 
         # @param request: Request instance for ReportAppMessage.
         # @type request: :class:`Tencentcloud::weilingwith::V20230427::ReportAppMessageRequest`

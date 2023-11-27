@@ -2746,10 +2746,16 @@ module TencentCloud
         # @param JobGraph: 算子拓扑图
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobGraph: :class:`Tencentcloud::Oceanus.v20190422.models.JobGraph`
+        # @param EsServerlessIndex: es索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsServerlessIndex: String
+        # @param EsServerlessSpace: es空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsServerlessSpace: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -2778,6 +2784,8 @@ module TencentCloud
           @TraceModeConfiguration = tracemodeconfiguration
           @CheckpointRetainedNum = checkpointretainednum
           @JobGraph = jobgraph
+          @EsServerlessIndex = esserverlessindex
+          @EsServerlessSpace = esserverlessspace
         end
 
         def deserialize(params)
@@ -2839,6 +2847,8 @@ module TencentCloud
             @JobGraph = JobGraph.new
             @JobGraph.deserialize(params['JobGraph'])
           end
+          @EsServerlessIndex = params['EsServerlessIndex']
+          @EsServerlessSpace = params['EsServerlessSpace']
         end
       end
 

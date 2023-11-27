@@ -2019,6 +2019,58 @@ module TencentCloud
         end
       end
 
+      # CreateDeliverCloudFunction请求参数结构体
+      class CreateDeliverCloudFunctionRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 投递规则属于的 topic id
+        # @type TopicId: String
+        # @param FunctionName: 投递的云函数名字
+        # @type FunctionName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Qualifier: 函数版本
+        # @type Qualifier: String
+        # @param Timeout: 投递最长等待时间，单位：秒
+        # @type Timeout: Integer
+        # @param MaxMsgNum: 投递最大消息数
+        # @type MaxMsgNum: Integer
+
+        attr_accessor :TopicId, :FunctionName, :Namespace, :Qualifier, :Timeout, :MaxMsgNum
+
+        def initialize(topicid=nil, functionname=nil, namespace=nil, qualifier=nil, timeout=nil, maxmsgnum=nil)
+          @TopicId = topicid
+          @FunctionName = functionname
+          @Namespace = namespace
+          @Qualifier = qualifier
+          @Timeout = timeout
+          @MaxMsgNum = maxmsgnum
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @FunctionName = params['FunctionName']
+          @Namespace = params['Namespace']
+          @Qualifier = params['Qualifier']
+          @Timeout = params['Timeout']
+          @MaxMsgNum = params['MaxMsgNum']
+        end
+      end
+
+      # CreateDeliverCloudFunction返回参数结构体
+      class CreateDeliverCloudFunctionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID

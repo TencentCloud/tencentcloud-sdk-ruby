@@ -735,7 +735,6 @@ module TencentCloud
         # 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
         # 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
 
-
         # @param request: Request instance for ModifyJob.
         # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyJobRequest`
         # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyJobResponse`

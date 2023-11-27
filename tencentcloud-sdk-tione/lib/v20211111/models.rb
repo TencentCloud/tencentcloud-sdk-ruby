@@ -3099,6 +3099,92 @@ module TencentCloud
         end
       end
 
+      # DescribeBillingResourceGroup请求参数结构体
+      class DescribeBillingResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 资源组id, 取值为创建资源组接口(CreateBillingResourceGroup)响应中的ResourceGroupId
+        # @type ResourceGroupId: String
+        # @param Filters: 过滤条件
+        # 注意:
+        # 1. Filter.Name 只支持以下枚举值:
+        #     InstanceId (资源组节点id)
+        #     InstanceStatus (资源组节点状态)
+        # 2. Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询
+        # 3. 每次请求的Filters的上限为10，Filter.Values的上限为100
+        # @type Filters: Array
+        # @param Offset: 分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10....即每页左边为闭区间; 默认0
+        # @type Offset: Integer
+        # @param Limit: 分页查询每页大小，最大30; 默认20
+        # @type Limit: Integer
+        # @param Order: 排序方向; 枚举值: ASC | DESC；默认DESC
+        # @type Order: String
+        # @param OrderField: 排序字段; 枚举值: CreateTime (创建时间) ｜ ExpireTime (到期时间)；默认CreateTime
+        # @type OrderField: String
+
+        attr_accessor :ResourceGroupId, :Filters, :Offset, :Limit, :Order, :OrderField
+
+        def initialize(resourcegroupid=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+          @ResourceGroupId = resourcegroupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @OrderField = orderfield
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+        end
+      end
+
+      # DescribeBillingResourceGroup返回参数结构体
+      class DescribeBillingResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 资源组节点总数； 注意接口是分页拉取的，total是指资源组节点总数，不是本次返回中InstanceSet数组的大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param InstanceSet: 资源组节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSet: Array
+        # @param ResourceGroupSWType: 资源组纳管类型
+        # @type ResourceGroupSWType: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceSet, :ResourceGroupSWType, :RequestId
+
+        def initialize(totalcount=nil, instanceset=nil, resourcegroupswtype=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceSet = instanceset
+          @ResourceGroupSWType = resourcegroupswtype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instance_tmp = Instance.new
+              instance_tmp.deserialize(i)
+              @InstanceSet << instance_tmp
+            end
+          end
+          @ResourceGroupSWType = params['ResourceGroupSWType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBillingResourceGroups请求参数结构体
       class DescribeBillingResourceGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Type: 资源组类型; 枚举值 TRAIN:训练 INFERENCE:推理

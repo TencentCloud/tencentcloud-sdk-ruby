@@ -245,6 +245,46 @@ module TencentCloud
         end
       end
 
+      # 自定义规则评估结果
+      class Evaluation < TencentCloud::Common::AbstractModel
+        # @param ComplianceResourceId: 已评估资源ID。长度为0~256个字符
+        # @type ComplianceResourceId: String
+        # @param ComplianceResourceType: 已评估资源类型。
+        # 支持:
+        # QCS::CVM::Instance、 QCS::CBS::Disk、QCS::VPC::Vpc、QCS::VPC::Subnet、QCS::VPC::SecurityGroup、 QCS::CAM::User、QCS::CAM::Group、QCS::CAM::Policy、QCS::CAM::Role、QCS::COS::Bucket
+        # @type ComplianceResourceType: String
+        # @param ComplianceRegion: 已评估资源地域。
+        # 长度为0~32个字符
+        # @type ComplianceRegion: String
+        # @param ComplianceType: 合规类型。取值：
+        # COMPLIANT：合规、
+        # NON_COMPLIANT：不合规
+        # @type ComplianceType: String
+        # @param Annotation: 不合规资源的补充信息。
+        # @type Annotation: :class:`Tencentcloud::Config.v20220802.models.Annotation`
+
+        attr_accessor :ComplianceResourceId, :ComplianceResourceType, :ComplianceRegion, :ComplianceType, :Annotation
+
+        def initialize(complianceresourceid=nil, complianceresourcetype=nil, complianceregion=nil, compliancetype=nil, annotation=nil)
+          @ComplianceResourceId = complianceresourceid
+          @ComplianceResourceType = complianceresourcetype
+          @ComplianceRegion = complianceregion
+          @ComplianceType = compliancetype
+          @Annotation = annotation
+        end
+
+        def deserialize(params)
+          @ComplianceResourceId = params['ComplianceResourceId']
+          @ComplianceResourceType = params['ComplianceResourceType']
+          @ComplianceRegion = params['ComplianceRegion']
+          @ComplianceType = params['ComplianceType']
+          unless params['Annotation'].nil?
+            @Annotation = Annotation.new
+            @Annotation.deserialize(params['Annotation'])
+          end
+        end
+      end
+
       # 参数值
       class InputParameter < TencentCloud::Common::AbstractModel
         # @param ParameterKey: 参数名
@@ -459,6 +499,49 @@ module TencentCloud
               @Items << configrule_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # PutEvaluations请求参数结构体
+      class PutEvaluationsRequest < TencentCloud::Common::AbstractModel
+        # @param ResultToken: 回调令牌。从自定义规则所选的scf云函数Context中取参数ResultToken值
+        # @type ResultToken: String
+        # @param Evaluations: 自定义规则评估结果信息。
+        # @type Evaluations: Array
+
+        attr_accessor :ResultToken, :Evaluations
+
+        def initialize(resulttoken=nil, evaluations=nil)
+          @ResultToken = resulttoken
+          @Evaluations = evaluations
+        end
+
+        def deserialize(params)
+          @ResultToken = params['ResultToken']
+          unless params['Evaluations'].nil?
+            @Evaluations = []
+            params['Evaluations'].each do |i|
+              evaluation_tmp = Evaluation.new
+              evaluation_tmp.deserialize(i)
+              @Evaluations << evaluation_tmp
+            end
+          end
+        end
+      end
+
+      # PutEvaluations返回参数结构体
+      class PutEvaluationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
