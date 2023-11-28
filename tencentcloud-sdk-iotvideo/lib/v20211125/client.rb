@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量拉取云存事件缩略图
+
+        # @param request: Request instance for DescribeCloudStorageThumbnailList.
+        # @type request: :class:`Tencentcloud::iotvideo::V20211125::DescribeCloudStorageThumbnailListRequest`
+        # @rtype: :class:`Tencentcloud::iotvideo::V20211125::DescribeCloudStorageThumbnailListResponse`
+        def DescribeCloudStorageThumbnailList(request)
+          body = send_request('DescribeCloudStorageThumbnailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudStorageThumbnailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取某一天云存时间轴
 
         # @param request: Request instance for DescribeCloudStorageTime.

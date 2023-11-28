@@ -101,7 +101,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 复制合规组模版
+        # 复制合规组模板
 
         # @param request: Request instance for CopyDSPATemplate.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::CopyDSPATemplateRequest`
@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 风险评估模版---创建风险评估模版
+        # 风险评估模板---创建风险评估模板
 
         # @param request: Request instance for CreateDSPAAssessmentRiskTemplate.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::CreateDSPAAssessmentRiskTemplateRequest`
@@ -1429,7 +1429,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 风险项页面--查看评估模版详情
+        # 风险项页面--查看评估模板详情
 
         # @param request: Request instance for DescribeDSPAAssessmentRiskTemplateDetail.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskTemplateDetailRequest`
@@ -1453,7 +1453,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 风险模版页面--查询风险模版中的脆弱项配置
+        # 风险模板页面--查询风险模板中的脆弱项配置
 
         # @param request: Request instance for DescribeDSPAAssessmentRiskTemplateVulnerableList.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentRiskTemplateVulnerableListRequest`
@@ -2998,7 +2998,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 风险模版---修改风险模版
+        # 风险模板---修改风险模板
 
         # @param request: Request instance for ModifyDSPAAssessmentRiskTemplate.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::ModifyDSPAAssessmentRiskTemplateRequest`

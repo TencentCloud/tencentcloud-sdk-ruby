@@ -1794,6 +1794,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 生成渠道子客用印申请审批小程序链接，链接类型（通过H5唤起小程序方式查看）
+
+        # @param request: Request instance for DescribeChannelSealPolicyWorkflowUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelSealPolicyWorkflowUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelSealPolicyWorkflowUrlResponse`
+        def DescribeChannelSealPolicyWorkflowUrl(request)
+          body = send_request('DescribeChannelSealPolicyWorkflowUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelSealPolicyWorkflowUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业扩展服务的开通和授权情况，当前支持查询以下内容：
         # 1. 企业自动签
         # 2. 企业与港澳台居民签署合同

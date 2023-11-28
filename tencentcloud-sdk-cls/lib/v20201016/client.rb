@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取制定机器组下的机器状态
+        # 获取指定机器组下的机器状态
 
         # @param request: Request instance for DescribeMachines.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeMachinesRequest`

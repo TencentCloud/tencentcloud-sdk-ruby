@@ -12450,6 +12450,15 @@ module TencentCloud
 
       # 视频流配置信息
       class EditMediaVideoStream < TencentCloud::Common::AbstractModel
+        # @param Codec: 视频流的编码格式，可选值：
+        # <li>libx264：H.264 编码；</li>
+        # <li>libx265：H.265 编码；</li>
+        # <li>av1：AOMedia Video 1 编码；</li>
+        # <li>H.266：H.266 编码。</li>
+        # @type Codec: String
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
+        # 当取值为 0 或不填时，表示自动选择最佳视频码率。
+        # @type Bitrate: Integer
         # @param ResolutionAdaptive: 分辨率自适应，可选值：
         # <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         # <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
@@ -12474,9 +12483,11 @@ module TencentCloud
         # 默认值为 0。
         # @type Fps: Integer
 
-        attr_accessor :ResolutionAdaptive, :Width, :Height, :Fps
+        attr_accessor :Codec, :Bitrate, :ResolutionAdaptive, :Width, :Height, :Fps
 
-        def initialize(resolutionadaptive=nil, width=nil, height=nil, fps=nil)
+        def initialize(codec=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, fps=nil)
+          @Codec = codec
+          @Bitrate = bitrate
           @ResolutionAdaptive = resolutionadaptive
           @Width = width
           @Height = height
@@ -12484,6 +12495,8 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Codec = params['Codec']
+          @Bitrate = params['Bitrate']
           @ResolutionAdaptive = params['ResolutionAdaptive']
           @Width = params['Width']
           @Height = params['Height']
@@ -24337,6 +24350,33 @@ module TencentCloud
 
       # SetDrmKeyProviderInfo返回参数结构体
       class SetDrmKeyProviderInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetVodDomainCertificate请求参数结构体
+      class SetVodDomainCertificateRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SetVodDomainCertificate返回参数结构体
+      class SetVodDomainCertificateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

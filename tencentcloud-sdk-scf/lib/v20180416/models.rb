@@ -499,10 +499,14 @@ module TencentCloud
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
         # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
         # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
+        # @param DnsCache: 是否开启Dns缓存能力。只支持EVENT函数。默认为FALSE，TRUE 为开启，FALSE为关闭
+        # @type DnsCache: String
+        # @param IntranetConfig: 内网访问配置
+        # @type IntranetConfig: :class:`Tencentcloud::Scf.v20180416.models.IntranetConfigIn`
 
-        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :AutoDeployClsTopicIndex, :AutoCreateClsTopic, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig
+        attr_accessor :FunctionName, :Code, :Handler, :Description, :MemorySize, :Timeout, :Environment, :Runtime, :VpcConfig, :Namespace, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Type, :CodeSource, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :Tags, :AsyncRunEnable, :TraceEnable, :AutoDeployClsTopicIndex, :AutoCreateClsTopic, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig, :DnsCache, :IntranetConfig
 
-        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, autodeployclstopicindex=nil, autocreateclstopic=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
+        def initialize(functionname=nil, code=nil, handler=nil, description=nil, memorysize=nil, timeout=nil, environment=nil, runtime=nil, vpcconfig=nil, namespace=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, type=nil, codesource=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, tags=nil, asyncrunenable=nil, traceenable=nil, autodeployclstopicindex=nil, autocreateclstopic=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil, dnscache=nil, intranetconfig=nil)
           @FunctionName = functionname
           @Code = code
           @Handler = handler
@@ -532,6 +536,8 @@ module TencentCloud
           @ProtocolType = protocoltype
           @ProtocolParams = protocolparams
           @InstanceConcurrencyConfig = instanceconcurrencyconfig
+          @DnsCache = dnscache
+          @IntranetConfig = intranetconfig
         end
 
         def deserialize(params)
@@ -601,6 +607,11 @@ module TencentCloud
           unless params['InstanceConcurrencyConfig'].nil?
             @InstanceConcurrencyConfig = InstanceConcurrencyConfig.new
             @InstanceConcurrencyConfig.deserialize(params['InstanceConcurrencyConfig'])
+          end
+          @DnsCache = params['DnsCache']
+          unless params['IntranetConfig'].nil?
+            @IntranetConfig = IntranetConfigIn.new
+            @IntranetConfig.deserialize(params['IntranetConfig'])
           end
         end
       end
@@ -2296,6 +2307,24 @@ module TencentCloud
         def deserialize(params)
           @DynamicEnabled = params['DynamicEnabled']
           @MaxConcurrency = params['MaxConcurrency']
+        end
+      end
+
+      # 内网配置
+      class IntranetConfigIn < TencentCloud::Common::AbstractModel
+        # @param IpFixed: 是否开启固定内网IP
+        # ENABLE 为开启
+        # DISABLE 为不开启
+        # @type IpFixed: String
+
+        attr_accessor :IpFixed
+
+        def initialize(ipfixed=nil)
+          @IpFixed = ipfixed
+        end
+
+        def deserialize(params)
+          @IpFixed = params['IpFixed']
         end
       end
 

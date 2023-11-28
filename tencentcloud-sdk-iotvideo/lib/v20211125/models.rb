@@ -2545,6 +2545,57 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageThumbnailList请求参数结构体
+      class DescribeCloudStorageThumbnailListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ThumbnailList: 缩略图文件名列表
+        # @type ThumbnailList: Array
+
+        attr_accessor :ProductId, :DeviceName, :ThumbnailList
+
+        def initialize(productid=nil, devicename=nil, thumbnaillist=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ThumbnailList = thumbnaillist
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ThumbnailList = params['ThumbnailList']
+        end
+      end
+
+      # DescribeCloudStorageThumbnailList返回参数结构体
+      class DescribeCloudStorageThumbnailListResponse < TencentCloud::Common::AbstractModel
+        # @param ThumbnailURLInfoList: 缩略图访问地址
+        # @type ThumbnailURLInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ThumbnailURLInfoList, :RequestId
+
+        def initialize(thumbnailurlinfolist=nil, requestid=nil)
+          @ThumbnailURLInfoList = thumbnailurlinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ThumbnailURLInfoList'].nil?
+            @ThumbnailURLInfoList = []
+            params['ThumbnailURLInfoList'].each do |i|
+              thumbnailurlinfolist_tmp = ThumbnailURLInfoList.new
+              thumbnailurlinfolist_tmp.deserialize(i)
+              @ThumbnailURLInfoList << thumbnailurlinfolist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStorageThumbnail请求参数结构体
       class DescribeCloudStorageThumbnailRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -6137,6 +6188,28 @@ module TencentCloud
           @UserSig = params['UserSig']
           @StrRoomId = params['StrRoomId']
           @PrivateMapKey = params['PrivateMapKey']
+        end
+      end
+
+      # 缩略图信息
+      class ThumbnailURLInfoList < TencentCloud::Common::AbstractModel
+        # @param ThumbnailURL: 缩略图访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ThumbnailURL: String
+        # @param ExpireTime: 缩略图访问地址的过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+
+        attr_accessor :ThumbnailURL, :ExpireTime
+
+        def initialize(thumbnailurl=nil, expiretime=nil)
+          @ThumbnailURL = thumbnailurl
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @ThumbnailURL = params['ThumbnailURL']
+          @ExpireTime = params['ExpireTime']
         end
       end
 

@@ -11149,18 +11149,29 @@ module TencentCloud
       class DescribeAssetSyncLastTimeResponse < TencentCloud::Common::AbstractModel
         # @param AssetSyncLastTime: 资产最近同步时间
         # @type AssetSyncLastTime: String
+        # @param TaskStatus: 任务状态
+        # PENDING:待处理
+        # PROCESSING:处理中
+        # PROCESSED:已完成
+        # @type TaskStatus: String
+        # @param TaskProcess: 任务进度(百分比)
+        # @type TaskProcess: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AssetSyncLastTime, :RequestId
+        attr_accessor :AssetSyncLastTime, :TaskStatus, :TaskProcess, :RequestId
 
-        def initialize(assetsynclasttime=nil, requestid=nil)
+        def initialize(assetsynclasttime=nil, taskstatus=nil, taskprocess=nil, requestid=nil)
           @AssetSyncLastTime = assetsynclasttime
+          @TaskStatus = taskstatus
+          @TaskProcess = taskprocess
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AssetSyncLastTime = params['AssetSyncLastTime']
+          @TaskStatus = params['TaskStatus']
+          @TaskProcess = params['TaskProcess']
           @RequestId = params['RequestId']
         end
       end
@@ -15845,12 +15856,16 @@ module TencentCloud
         # @type NodeID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param Namespace: Namespace
+        # @type Namespace: String
+        # @param WorkloadType: 工作负载类型
+        # @type WorkloadType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventID, :EventType, :EventCount, :FoundTime, :LatestFoundTime, :ContainerID, :ContainerName, :ContainerNetStatus, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ImageID, :ImageName, :HostName, :HostIP, :PublicIP, :PodName, :Description, :Solution, :Reference, :Address, :City, :MatchRuleType, :FeatureLabel, :ProcessAuthority, :ProcessMd5, :ProcessStartUser, :ProcessUserGroup, :ProcessPath, :ProcessTree, :ProcessParam, :ParentProcessStartUser, :ParentProcessUserGroup, :ParentProcessPath, :ParentProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :HostID, :EventStatus, :OperationTime, :Remark, :NodeType, :NodeName, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterID, :PodIP, :PodStatus, :NodeUniqueID, :NodeID, :ClusterName, :RequestId
+        attr_accessor :EventID, :EventType, :EventCount, :FoundTime, :LatestFoundTime, :ContainerID, :ContainerName, :ContainerNetStatus, :ContainerStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ImageID, :ImageName, :HostName, :HostIP, :PublicIP, :PodName, :Description, :Solution, :Reference, :Address, :City, :MatchRuleType, :FeatureLabel, :ProcessAuthority, :ProcessMd5, :ProcessStartUser, :ProcessUserGroup, :ProcessPath, :ProcessTree, :ProcessParam, :ParentProcessStartUser, :ParentProcessUserGroup, :ParentProcessPath, :ParentProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :HostID, :EventStatus, :OperationTime, :Remark, :NodeType, :NodeName, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterID, :PodIP, :PodStatus, :NodeUniqueID, :NodeID, :ClusterName, :Namespace, :WorkloadType, :RequestId
 
-        def initialize(eventid=nil, eventtype=nil, eventcount=nil, foundtime=nil, latestfoundtime=nil, containerid=nil, containername=nil, containernetstatus=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, imageid=nil, imagename=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, solution=nil, reference=nil, address=nil, city=nil, matchruletype=nil, featurelabel=nil, processauthority=nil, processmd5=nil, processstartuser=nil, processusergroup=nil, processpath=nil, processtree=nil, processparam=nil, parentprocessstartuser=nil, parentprocessusergroup=nil, parentprocesspath=nil, parentprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, hostid=nil, eventstatus=nil, operationtime=nil, remark=nil, nodetype=nil, nodename=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clusterid=nil, podip=nil, podstatus=nil, nodeuniqueid=nil, nodeid=nil, clustername=nil, requestid=nil)
+        def initialize(eventid=nil, eventtype=nil, eventcount=nil, foundtime=nil, latestfoundtime=nil, containerid=nil, containername=nil, containernetstatus=nil, containerstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, imageid=nil, imagename=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, solution=nil, reference=nil, address=nil, city=nil, matchruletype=nil, featurelabel=nil, processauthority=nil, processmd5=nil, processstartuser=nil, processusergroup=nil, processpath=nil, processtree=nil, processparam=nil, parentprocessstartuser=nil, parentprocessusergroup=nil, parentprocesspath=nil, parentprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, hostid=nil, eventstatus=nil, operationtime=nil, remark=nil, nodetype=nil, nodename=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clusterid=nil, podip=nil, podstatus=nil, nodeuniqueid=nil, nodeid=nil, clustername=nil, namespace=nil, workloadtype=nil, requestid=nil)
           @EventID = eventid
           @EventType = eventtype
           @EventCount = eventcount
@@ -15905,6 +15920,8 @@ module TencentCloud
           @NodeUniqueID = nodeuniqueid
           @NodeID = nodeid
           @ClusterName = clustername
+          @Namespace = namespace
+          @WorkloadType = workloadtype
           @RequestId = requestid
         end
 
@@ -15963,6 +15980,8 @@ module TencentCloud
           @NodeUniqueID = params['NodeUniqueID']
           @NodeID = params['NodeID']
           @ClusterName = params['ClusterName']
+          @Namespace = params['Namespace']
+          @WorkloadType = params['WorkloadType']
           @RequestId = params['RequestId']
         end
       end
@@ -18156,12 +18175,16 @@ module TencentCloud
         # @type NodeID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param Namespace: Namespace
+        # @type Namespace: String
+        # @param WorkloadType: 工作负载类型
+        # @type WorkloadType: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :PodName, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :CheckPlatform, :FileAccessTime, :FileModifyTime, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterID, :PodIP, :PodStatus, :NodeUniqueID, :NodeType, :NodeID, :ClusterName, :RequestId
+        attr_accessor :ImageId, :ImageName, :CreateTime, :Size, :FilePath, :ModifyTime, :VirusName, :RiskLevel, :ContainerName, :ContainerId, :HostName, :HostId, :ProcessName, :ProcessPath, :ProcessMd5, :ProcessId, :ProcessArgv, :ProcessChan, :ProcessAccountGroup, :ProcessStartAccount, :ProcessFileAuthority, :SourceType, :Tags, :HarmDescribe, :SuggestScheme, :Mark, :FileName, :FileMd5, :EventType, :PodName, :Status, :SubStatus, :HostIP, :ClientIP, :PProcessStartUser, :PProcessUserGroup, :PProcessPath, :PProcessParam, :AncestorProcessStartUser, :AncestorProcessUserGroup, :AncestorProcessPath, :AncestorProcessParam, :OperationTime, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :CheckPlatform, :FileAccessTime, :FileModifyTime, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :ClusterID, :PodIP, :PodStatus, :NodeUniqueID, :NodeType, :NodeID, :ClusterName, :Namespace, :WorkloadType, :RequestId
 
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, podname=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, checkplatform=nil, fileaccesstime=nil, filemodifytime=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clusterid=nil, podip=nil, podstatus=nil, nodeuniqueid=nil, nodetype=nil, nodeid=nil, clustername=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, filepath=nil, modifytime=nil, virusname=nil, risklevel=nil, containername=nil, containerid=nil, hostname=nil, hostid=nil, processname=nil, processpath=nil, processmd5=nil, processid=nil, processargv=nil, processchan=nil, processaccountgroup=nil, processstartaccount=nil, processfileauthority=nil, sourcetype=nil, tags=nil, harmdescribe=nil, suggestscheme=nil, mark=nil, filename=nil, filemd5=nil, eventtype=nil, podname=nil, status=nil, substatus=nil, hostip=nil, clientip=nil, pprocessstartuser=nil, pprocessusergroup=nil, pprocesspath=nil, pprocessparam=nil, ancestorprocessstartuser=nil, ancestorprocessusergroup=nil, ancestorprocesspath=nil, ancestorprocessparam=nil, operationtime=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, checkplatform=nil, fileaccesstime=nil, filemodifytime=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, clusterid=nil, podip=nil, podstatus=nil, nodeuniqueid=nil, nodetype=nil, nodeid=nil, clustername=nil, namespace=nil, workloadtype=nil, requestid=nil)
           @ImageId = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -18221,6 +18244,8 @@ module TencentCloud
           @NodeType = nodetype
           @NodeID = nodeid
           @ClusterName = clustername
+          @Namespace = namespace
+          @WorkloadType = workloadtype
           @RequestId = requestid
         end
 
@@ -18284,6 +18309,8 @@ module TencentCloud
           @NodeType = params['NodeType']
           @NodeID = params['NodeID']
           @ClusterName = params['ClusterName']
+          @Namespace = params['Namespace']
+          @WorkloadType = params['WorkloadType']
           @RequestId = params['RequestId']
         end
       end
@@ -25890,10 +25917,14 @@ module TencentCloud
         # @type NodeUniqueID: String
         # @param HostID: uuid
         # @type HostID: String
+        # @param Namespace: Namespace
+        # @type Namespace: String
+        # @param WorkloadType: WorkloadType
+        # @type WorkloadType: String
 
-        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime, :HostIP, :ClientIP, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :NodeID, :NodeType, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :PodName, :PodIP, :PodStatus, :ClusterID, :ClusterName, :NodeUniqueID, :HostID
+        attr_accessor :EventId, :FoundTime, :ContainerId, :ContainerName, :ImageId, :ImageName, :NodeName, :Status, :EventName, :EventType, :EventCount, :LatestFoundTime, :HostIP, :ClientIP, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :NodeID, :NodeType, :NodeSubNetID, :NodeSubNetName, :NodeSubNetCIDR, :PodName, :PodIP, :PodStatus, :ClusterID, :ClusterName, :NodeUniqueID, :HostID, :Namespace, :WorkloadType
 
-        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil, hostip=nil, clientip=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, nodeid=nil, nodetype=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, podname=nil, podip=nil, podstatus=nil, clusterid=nil, clustername=nil, nodeuniqueid=nil, hostid=nil)
+        def initialize(eventid=nil, foundtime=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, nodename=nil, status=nil, eventname=nil, eventtype=nil, eventcount=nil, latestfoundtime=nil, hostip=nil, clientip=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, nodeid=nil, nodetype=nil, nodesubnetid=nil, nodesubnetname=nil, nodesubnetcidr=nil, podname=nil, podip=nil, podstatus=nil, clusterid=nil, clustername=nil, nodeuniqueid=nil, hostid=nil, namespace=nil, workloadtype=nil)
           @EventId = eventid
           @FoundTime = foundtime
           @ContainerId = containerid
@@ -25923,6 +25954,8 @@ module TencentCloud
           @ClusterName = clustername
           @NodeUniqueID = nodeuniqueid
           @HostID = hostid
+          @Namespace = namespace
+          @WorkloadType = workloadtype
         end
 
         def deserialize(params)
@@ -25955,6 +25988,8 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @NodeUniqueID = params['NodeUniqueID']
           @HostID = params['HostID']
+          @Namespace = params['Namespace']
+          @WorkloadType = params['WorkloadType']
         end
       end
 
@@ -28186,10 +28221,14 @@ module TencentCloud
         # @type ClusterID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param Namespace: Namespace
+        # @type Namespace: String
+        # @param WorkloadType: 工作负载
+        # @type WorkloadType: String
 
-        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :SourcePort, :EventID, :HostName, :HostIP, :PublicIP, :PodName, :Description, :OfficialSolution, :NetworkPayload, :PID, :MainClass, :StackTrace, :ServerAccount, :ServerPort, :ServerExe, :ServerArg, :QUUID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :JNDIUrl, :RaspDetail, :NodeSubNetName, :NodeSubNetCIDR, :PodIP, :NodeType, :NodeID, :NodeUniqueID, :NodeSubNetID, :ClusterID, :ClusterName
+        attr_accessor :CVEID, :VulName, :PocID, :EventType, :SourceIP, :City, :EventCount, :ContainerID, :ContainerName, :ImageID, :ImageName, :Status, :SourcePort, :EventID, :HostName, :HostIP, :PublicIP, :PodName, :Description, :OfficialSolution, :NetworkPayload, :PID, :MainClass, :StackTrace, :ServerAccount, :ServerPort, :ServerExe, :ServerArg, :QUUID, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :JNDIUrl, :RaspDetail, :NodeSubNetName, :NodeSubNetCIDR, :PodIP, :NodeType, :NodeID, :NodeUniqueID, :NodeSubNetID, :ClusterID, :ClusterName, :Namespace, :WorkloadType
 
-        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, sourceport=nil, eventid=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, officialsolution=nil, networkpayload=nil, pid=nil, mainclass=nil, stacktrace=nil, serveraccount=nil, serverport=nil, serverexe=nil, serverarg=nil, quuid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, jndiurl=nil, raspdetail=nil, nodesubnetname=nil, nodesubnetcidr=nil, podip=nil, nodetype=nil, nodeid=nil, nodeuniqueid=nil, nodesubnetid=nil, clusterid=nil, clustername=nil)
+        def initialize(cveid=nil, vulname=nil, pocid=nil, eventtype=nil, sourceip=nil, city=nil, eventcount=nil, containerid=nil, containername=nil, imageid=nil, imagename=nil, status=nil, sourceport=nil, eventid=nil, hostname=nil, hostip=nil, publicip=nil, podname=nil, description=nil, officialsolution=nil, networkpayload=nil, pid=nil, mainclass=nil, stacktrace=nil, serveraccount=nil, serverport=nil, serverexe=nil, serverarg=nil, quuid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, jndiurl=nil, raspdetail=nil, nodesubnetname=nil, nodesubnetcidr=nil, podip=nil, nodetype=nil, nodeid=nil, nodeuniqueid=nil, nodesubnetid=nil, clusterid=nil, clustername=nil, namespace=nil, workloadtype=nil)
           @CVEID = cveid
           @VulName = vulname
           @PocID = pocid
@@ -28234,6 +28273,8 @@ module TencentCloud
           @NodeSubNetID = nodesubnetid
           @ClusterID = clusterid
           @ClusterName = clustername
+          @Namespace = namespace
+          @WorkloadType = workloadtype
         end
 
         def deserialize(params)
@@ -28288,6 +28329,8 @@ module TencentCloud
           @NodeSubNetID = params['NodeSubNetID']
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
+          @Namespace = params['Namespace']
+          @WorkloadType = params['WorkloadType']
         end
       end
 

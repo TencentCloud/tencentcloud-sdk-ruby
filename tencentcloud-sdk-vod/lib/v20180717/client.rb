@@ -4173,6 +4173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置点播域名 HTTPS 证书。
+
+        # @param request: Request instance for SetVodDomainCertificate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::SetVodDomainCertificateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::SetVodDomainCertificateResponse`
+        def SetVodDomainCertificate(request)
+          body = send_request('SetVodDomainCertificate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetVodDomainCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对 HLS 视频进行按时间段裁剪，实时生成一个新的视频（HLS 格式），开发者可以将其立即分享出去，或者长久保存起来。
 
         # 腾讯云点播支持两种剪辑模式：

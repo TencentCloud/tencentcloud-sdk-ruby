@@ -1029,7 +1029,7 @@ module TencentCloud
 
       # CopyDSPATemplate返回参数结构体
       class CopyDSPATemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1291,7 +1291,7 @@ module TencentCloud
         # @type DspaId: String
         # @param RiskLevelName: 风险等级名称
         # @type RiskLevelName: String
-        # @param IdentifyComplianceId: 识别模版
+        # @param IdentifyComplianceId: 识别模板
         # @type IdentifyComplianceId: Integer
         # @param RiskLevelRule: 风险等级矩阵
         # @type RiskLevelRule: Array
@@ -1394,7 +1394,7 @@ module TencentCloud
         # @type DspaId: String
         # @param Name: 评估任务名称。1-20个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字
         # @type Name: String
-        # @param TemplateId: 评估模版Id，格式“template-xxxxxxxx”
+        # @param TemplateId: 评估模板Id，格式“template-xxxxxxxx”
         # @type TemplateId: String
         # @param BusinessName: 评估业务名称。1-60个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字
         # @type BusinessName: String
@@ -1402,7 +1402,7 @@ module TencentCloud
         # @type BusinessDept: String
         # @param BusinessOwner: 业务负责人。1-60个字符，仅允许输入中文、英文字母、数字、'_'、'-'，并且开头和结尾需为中文、英文字母或者数字
         # @type BusinessOwner: String
-        # @param ComplianceId: 分类分级模版Id
+        # @param ComplianceId: 分类分级模板Id
         # @type ComplianceId: Integer
         # @param DiscoveryCondition: 敏感数据扫描数据源条件。
         # @type DiscoveryCondition: :class:`Tencentcloud::Dsgc.v20190723.models.DiscoveryCondition`
@@ -3509,7 +3509,7 @@ module TencentCloud
       class DescribeDSPAAssessmentHighRiskTop10OverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例Id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
         # @param Filter: 过滤条件， rdb（数据库）cos（对象存储）
         # 不传就是全部
@@ -3562,7 +3562,7 @@ module TencentCloud
       class DescribeDSPAAssessmentLatestRiskDetailInfoRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例Id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
         # @param RiskId: 风险id
         # @type RiskId: Integer
@@ -3593,10 +3593,10 @@ module TencentCloud
         # @param AssetName: 资产对象名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssetName: String
-        # @param AssessmentTemplateId: 风险评估模版id
+        # @param AssessmentTemplateId: 风险评估模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssessmentTemplateId: Integer
-        # @param IdentifyTemplateId: 分类分级的模版id
+        # @param IdentifyTemplateId: 分类分级的模板id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyTemplateId: Integer
         # @param RiskType: 风险类型
@@ -3725,7 +3725,7 @@ module TencentCloud
       class DescribeDSPAAssessmentLatestRiskListRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例Id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
         # @param Limit: 限制条数
         # @type Limit: Integer
@@ -3821,7 +3821,7 @@ module TencentCloud
       class DescribeDSPAAssessmentNewDiscoveredRiskOverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -3869,7 +3869,7 @@ module TencentCloud
       class DescribeDSPAAssessmentPendingRiskOverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -3917,7 +3917,7 @@ module TencentCloud
       class DescribeDSPAAssessmentProcessingRiskOverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -3965,7 +3965,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskAmountOverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -4105,7 +4105,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期
         # @type EndTime: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: String
 
         attr_accessor :DspaId, :StartTime, :EndTime, :TemplateId
@@ -4157,7 +4157,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskDistributionOverviewRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例Id
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
         # @param Filter: 风险资产分布的过滤条件
         # （rdb，cos，不传就筛选全部）
@@ -4304,7 +4304,7 @@ module TencentCloud
         # @param IdentifyComplianceId: 分类分级id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentifyComplianceId: Integer
-        # @param IdentifyComplianceName: 分类分级模版名称
+        # @param IdentifyComplianceName: 分类分级模板名称
         # @type IdentifyComplianceName: String
         # @param RiskLevelMatrix: 风险数据
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -4404,7 +4404,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时日期
         # @type EndTime: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: String
 
         attr_accessor :DspaId, :StartTime, :EndTime, :TemplateId
@@ -4552,7 +4552,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskSideDistributedRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: DSPA实例ID
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -4600,7 +4600,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskSideListRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: DSPA实例ID
         # @type DspaId: String
-        # @param TemplateId: 评估模版id
+        # @param TemplateId: 评估模板id
         # @type TemplateId: Integer
 
         attr_accessor :DspaId, :TemplateId
@@ -4648,7 +4648,7 @@ module TencentCloud
       class DescribeDSPAAssessmentRiskTemplateDetailRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # @type TemplateId: Integer
         # @param Limit: 限制条数
         # @type Limit: Integer
@@ -4674,11 +4674,11 @@ module TencentCloud
 
       # DescribeDSPAAssessmentRiskTemplateDetail返回参数结构体
       class DescribeDSPAAssessmentRiskTemplateDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # @type TemplateId: Integer
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # @type TemplateName: String
-        # @param TemplateDescription: 模版的描述
+        # @param TemplateDescription: 模板的描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateDescription: String
         # @param RiskLevelId: 风险等级
@@ -4949,7 +4949,7 @@ module TencentCloud
       class DescribeDSPAAssessmentTemplateControlItemsRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: DSPA实例Id。格式“dspa-xxxxxxxx”
         # @type DspaId: String
-        # @param TemplateId: 评估模版Id。格式“template-xxxxxxxx”
+        # @param TemplateId: 评估模板Id。格式“template-xxxxxxxx”
         # @type TemplateId: String
         # @param Offset: 偏移量。默认为0
         # @type Offset: Integer
@@ -4994,7 +4994,7 @@ module TencentCloud
       class DescribeDSPAAssessmentTemplateControlItemsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的评估项数目
         # @type TotalCount: Integer
-        # @param Items: 模版关联的评估项列表
+        # @param Items: 模板关联的评估项列表
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10197,7 +10197,7 @@ module TencentCloud
         # @type DbRemainQuota: Integer
         # @param CosRemainQuota: 用户可用的COS存储量配额。
         # @type CosRemainQuota: Float
-        # @param CosQuotaUnit: COS存储量单位，比如TB。
+        # @param CosQuotaUnit: COS存储量单位，例如TB。
         # @type CosQuotaUnit: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10781,11 +10781,11 @@ module TencentCloud
       class ModifyDSPAAssessmentRiskTemplateRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: dspa实例id
         # @type DspaId: String
-        # @param TemplateName: 模版名称
+        # @param TemplateName: 模板名称
         # @type TemplateName: String
-        # @param TemplateDescription: 模版的描述
+        # @param TemplateDescription: 模板的描述
         # @type TemplateDescription: String
-        # @param TemplateId: 模版id
+        # @param TemplateId: 模板id
         # @type TemplateId: Integer
         # @param RiskLevelId: 修改的风险等级id
         # @type RiskLevelId: Integer

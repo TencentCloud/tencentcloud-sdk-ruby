@@ -5580,6 +5580,56 @@ module TencentCloud
         end
       end
 
+      # DescribeChannelSealPolicyWorkflowUrl请求参数结构体
+      class DescribeChannelSealPolicyWorkflowUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+
+        # 渠道应用标识: Agent.AppId
+        # 第三方平台子客企业标识: Agent.ProxyOrganizationOpenId
+        # 第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param WorkflowInstanceId: 用印审批单的ID，可通过用印申请回调获取。
+        # @type WorkflowInstanceId: String
+
+        attr_accessor :Agent, :WorkflowInstanceId
+
+        def initialize(agent=nil, workflowinstanceid=nil)
+          @Agent = agent
+          @WorkflowInstanceId = workflowinstanceid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @WorkflowInstanceId = params['WorkflowInstanceId']
+        end
+      end
+
+      # DescribeChannelSealPolicyWorkflowUrl返回参数结构体
+      class DescribeChannelSealPolicyWorkflowUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WorkflowUrl: 用印审批小程序链接，链接类型（通过H5唤起小程序方式查看），一年内有效。
+        # @type WorkflowUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WorkflowUrl, :RequestId
+
+        def initialize(workflowurl=nil, requestid=nil)
+          @WorkflowUrl = workflowurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WorkflowUrl = params['WorkflowUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExtendedServiceAuthInfo请求参数结构体
       class DescribeExtendedServiceAuthInfoRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。

@@ -11218,7 +11218,8 @@ module TencentCloud
 
       # UpsertIpAccessControl请求参数结构体
       class UpsertIpAccessControlRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: 具体域名如：test.qcloudwaf.com
+        # 全局域名为：global
         # @type Domain: String
         # @param Items: ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
         # @type Items: Array
