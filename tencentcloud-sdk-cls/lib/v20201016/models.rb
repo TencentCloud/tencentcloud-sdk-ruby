@@ -2323,7 +2323,7 @@ module TencentCloud
         # @type ServiceLogging: Boolean
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
-        # @param OSType: 系统类型，默认0，0：Linux，1: windows
+        # @param OSType: 系统类型，默认0，0：Linux，1: Windows
         # @type OSType: Integer
 
         attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags, :OSType
@@ -5347,7 +5347,7 @@ module TencentCloud
         # @type PathRegex: String
         # @param MetaTags: 用户自定义元数据信息，MetadataType为2时必填
         # @type MetaTags: Array
-        # @param EventLogRules: windows事件日志采集
+        # @param EventLogRules: Windows事件日志采集
         # @type EventLogRules: Array
 
         attr_accessor :TimeKey, :TimeFormat, :Delimiter, :LogRegex, :BeginRegex, :Keys, :FilterKeyRegex, :UnMatchUpLoadSwitch, :UnMatchLogKey, :Backtracking, :IsGBK, :JsonStandard, :Protocol, :Address, :ParseProtocol, :MetadataType, :PathRegex, :MetaTags, :EventLogRules

@@ -1033,6 +1033,123 @@ module TencentCloud
         end
       end
 
+      # DescribeCaptchaRceResult请求参数结构体
+      class DescribeCaptchaRceResultRequest < TencentCloud::Common::AbstractModel
+        # @param CaptchaType: 固定填值：9。可在控制台配置不同验证码类型。
+        # @type CaptchaType: Integer
+        # @param Ticket: 前端回调函数返回的用户验证票据
+        # @type Ticket: String
+        # @param UserIp: 业务侧获取到的验证码使用者的外网IP
+        # @type UserIp: String
+        # @param Randstr: 前端回调函数返回的随机字符串
+        # @type Randstr: String
+        # @param CaptchaAppId: 验证码应用ID。登录 [验证码控制台](https://console.cloud.tencent.com/captcha/graphical)，在验证列表的【密钥】列，即可查看到CaptchaAppId。
+        # @type CaptchaAppId: Integer
+        # @param AppSecretKey: 验证码应用密钥。登录 [验证码控制台](https://console.cloud.tencent.com/captcha/graphical)，在验证列表的【密钥】列，即可查看到AppSecretKey。AppSecretKey属于服务器端校验验证码票据的密钥，请妥善保密，请勿泄露给第三方。
+        # @type AppSecretKey: String
+        # @param BusinessId: 预留字段
+        # @type BusinessId: Integer
+        # @param SceneId: 预留字段
+        # @type SceneId: Integer
+        # @param MacAddress: mac 地址或设备唯一标识
+        # @type MacAddress: String
+        # @param Imei: 手机设备号
+        # @type Imei: String
+        # @param NeedGetCaptchaTime: 是否返回前端获取验证码时间，取值1：需要返回
+        # @type NeedGetCaptchaTime: Integer
+
+        attr_accessor :CaptchaType, :Ticket, :UserIp, :Randstr, :CaptchaAppId, :AppSecretKey, :BusinessId, :SceneId, :MacAddress, :Imei, :NeedGetCaptchaTime
+
+        def initialize(captchatype=nil, ticket=nil, userip=nil, randstr=nil, captchaappid=nil, appsecretkey=nil, businessid=nil, sceneid=nil, macaddress=nil, imei=nil, needgetcaptchatime=nil)
+          @CaptchaType = captchatype
+          @Ticket = ticket
+          @UserIp = userip
+          @Randstr = randstr
+          @CaptchaAppId = captchaappid
+          @AppSecretKey = appsecretkey
+          @BusinessId = businessid
+          @SceneId = sceneid
+          @MacAddress = macaddress
+          @Imei = imei
+          @NeedGetCaptchaTime = needgetcaptchatime
+        end
+
+        def deserialize(params)
+          @CaptchaType = params['CaptchaType']
+          @Ticket = params['Ticket']
+          @UserIp = params['UserIp']
+          @Randstr = params['Randstr']
+          @CaptchaAppId = params['CaptchaAppId']
+          @AppSecretKey = params['AppSecretKey']
+          @BusinessId = params['BusinessId']
+          @SceneId = params['SceneId']
+          @MacAddress = params['MacAddress']
+          @Imei = params['Imei']
+          @NeedGetCaptchaTime = params['NeedGetCaptchaTime']
+        end
+      end
+
+      # DescribeCaptchaRceResult返回参数结构体
+      class DescribeCaptchaRceResultResponse < TencentCloud::Common::AbstractModel
+        # @param CaptchaCode: 1 OK 验证通过
+        # 7 captcha no match 传入的Randstr不合法，请检查Randstr是否与前端返回的Randstr一致
+        # 8 ticket expired 传入的Ticket已过期（Ticket有效期5分钟），请重新生成Ticket、Randstr进行校验
+        # 9 ticket reused 传入的Ticket被重复使用，请重新生成Ticket、Randstr进行校验
+        # 15 decrypt fail 传入的Ticket不合法，请检查Ticket是否与前端返回的Ticket一致
+        # 16 appid-ticket mismatch 传入的CaptchaAppId错误，请检查CaptchaAppId是否与前端传入的CaptchaAppId一致，并且保障CaptchaAppId是从验证码控制台【验证管理】->【基础配置】中获取
+        # 21 diff 票据校验异常，可能的原因是（1）若Ticket包含terror前缀，一般是由于用户网络较差，导致前端自动容灾，而生成了容灾票据，业务侧可根据需要进行跳过或二次处理。（2）若Ticket不包含terror前缀，则是由于验证码风控系统发现请求有安全风险，业务侧可根据需要进行拦截。
+        # 100 appid-secretkey-ticket mismatch 参数校验错误，（1）请检查CaptchaAppId与AppSecretKey是否正确，CaptchaAppId、AppSecretKey需要在验证码控制台【验证管理】>【基础配置】中获取（2）请检查传入的Ticket是否由传入的CaptchaAppId生成
+        # @type CaptchaCode: Integer
+        # @param CaptchaMsg: 状态描述及验证错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaptchaMsg: String
+        # @param EvilLevel: 无感验证模式下，该参数返回验证结果：
+        # EvilLevel=0 请求无恶意
+        # EvilLevel=100 请求有恶意
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvilLevel: Integer
+        # @param GetCaptchaTime: 前端获取验证码时间，时间戳格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GetCaptchaTime: Integer
+        # @param EvilBitmap: 拦截类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EvilBitmap: Integer
+        # @param SubmitCaptchaTime: 提交验证码时间
+        # @type SubmitCaptchaTime: Integer
+        # @param RceResult: rce检测结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RceResult: :class:`Tencentcloud::Captcha.v20190722.models.RceResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RceResult, :RequestId
+
+        def initialize(captchacode=nil, captchamsg=nil, evillevel=nil, getcaptchatime=nil, evilbitmap=nil, submitcaptchatime=nil, rceresult=nil, requestid=nil)
+          @CaptchaCode = captchacode
+          @CaptchaMsg = captchamsg
+          @EvilLevel = evillevel
+          @GetCaptchaTime = getcaptchatime
+          @EvilBitmap = evilbitmap
+          @SubmitCaptchaTime = submitcaptchatime
+          @RceResult = rceresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CaptchaCode = params['CaptchaCode']
+          @CaptchaMsg = params['CaptchaMsg']
+          @EvilLevel = params['EvilLevel']
+          @GetCaptchaTime = params['GetCaptchaTime']
+          @EvilBitmap = params['EvilBitmap']
+          @SubmitCaptchaTime = params['SubmitCaptchaTime']
+          unless params['RceResult'].nil?
+            @RceResult = RceResult.new
+            @RceResult.deserialize(params['RceResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCaptchaResult请求参数结构体
       class DescribeCaptchaResultRequest < TencentCloud::Common::AbstractModel
         # @param CaptchaType: 固定填值：9。可在控制台配置不同验证码类型。
@@ -1580,6 +1697,58 @@ module TencentCloud
           @UserIp = params['UserIp']
           @RiskLevel = params['RiskLevel']
           @RiskType = params['RiskType']
+        end
+      end
+
+      # 验证码拼装Rce结果，Rce结果部分
+      class RceResult < TencentCloud::Common::AbstractModel
+        # @param UserId: 用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param PostTime: 操作时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostTime: Integer
+        # @param AssociateAccount: 业务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateAccount: String
+        # @param UserIp: 用户Ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIp: String
+        # @param RiskLevel: 风险等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskLevel: String
+        # @param RiskType: 风险类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskType: Array
+        # @param ConstId: 设备唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConstId: String
+        # @param RiskInformation: 风险扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskInformation: String
+
+        attr_accessor :UserId, :PostTime, :AssociateAccount, :UserIp, :RiskLevel, :RiskType, :ConstId, :RiskInformation
+
+        def initialize(userid=nil, posttime=nil, associateaccount=nil, userip=nil, risklevel=nil, risktype=nil, constid=nil, riskinformation=nil)
+          @UserId = userid
+          @PostTime = posttime
+          @AssociateAccount = associateaccount
+          @UserIp = userip
+          @RiskLevel = risklevel
+          @RiskType = risktype
+          @ConstId = constid
+          @RiskInformation = riskinformation
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @PostTime = params['PostTime']
+          @AssociateAccount = params['AssociateAccount']
+          @UserIp = params['UserIp']
+          @RiskLevel = params['RiskLevel']
+          @RiskType = params['RiskType']
+          @ConstId = params['ConstId']
+          @RiskInformation = params['RiskInformation']
         end
       end
 

@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Rce融合验证核查验证码票据结果(Web及APP)
+
+        # @param request: Request instance for DescribeCaptchaRceResult.
+        # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaRceResultRequest`
+        # @rtype: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaRceResultResponse`
+        def DescribeCaptchaRceResult(request)
+          body = send_request('DescribeCaptchaRceResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCaptchaRceResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 核查验证码票据结果(Web及APP)
 
         # @param request: Request instance for DescribeCaptchaResult.

@@ -762,6 +762,37 @@ module TencentCloud
         end
       end
 
+      # 设备付费模式信息
+      class DevicePayModeInfo < TencentCloud::Common::AbstractModel
+        # @param DeviceId: 设备ID
+        # @type DeviceId: String
+        # @param PayMode: 付费模式。
+        # 1：预付费流量包
+        # 0：按流量后付费
+        # @type PayMode: Integer
+        # @param PayModeDesc: 付费模式描述
+        # @type PayModeDesc: String
+        # @param ResourceId: 流量包ID，仅当付费模式为流量包类型时才有。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+
+        attr_accessor :DeviceId, :PayMode, :PayModeDesc, :ResourceId
+
+        def initialize(deviceid=nil, paymode=nil, paymodedesc=nil, resourceid=nil)
+          @DeviceId = deviceid
+          @PayMode = paymode
+          @PayModeDesc = paymodedesc
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @DeviceId = params['DeviceId']
+          @PayMode = params['PayMode']
+          @PayModeDesc = params['PayModeDesc']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # 用户期望门限
       class ExpectedThreshold < TencentCloud::Common::AbstractModel
         # @param RTT: 期望发起加速的时延阈值
@@ -827,6 +858,109 @@ module TencentCloud
           @MaxValue = params['MaxValue']
           @AvgValue = params['AvgValue']
           @TotalValue = params['TotalValue']
+        end
+      end
+
+      # 流量包信息
+      class FlowPackageInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 流量包的唯一资源ID
+        # @type ResourceId: String
+        # @param AppId: 流量包所属的用户AppId
+        # @type AppId: Integer
+        # @param PackageType: 流量包规格类型。可取值如下：
+        # DEVICE_1_FLOW_20G、DEVICE_2_FLOW_50G、
+        # DEVICE_3_FLOW_100G、
+        # DEVICE_5_FLOW_500G，分别代表20G、50G、100G、500G档位的流量包。
+        # 档位也影响流量包可绑定的设备数量上限：
+        # 20G：最多绑定1个设备
+        # 50G：最多绑定2个设备
+        # 100G：最多绑定3个设备
+        # 500G：最多绑定5个设备
+        # @type PackageType: String
+        # @param Status: 流量包状态，0：未生效，1：有效期内，2：已过期
+        # @type Status: Integer
+        # @param ActiveTime: 生效时间，Unix时间戳格式，单位：秒
+        # @type ActiveTime: Integer
+        # @param ExpireTime: 过期时间，Unix时间戳格式，单位：秒
+        # @type ExpireTime: Integer
+        # @param DeviceList: 流量包绑定的设备ID列表
+        # @type DeviceList: Array
+        # @param CapacitySize: 流量包总容量，单位：MB
+        # @type CapacitySize: Integer
+        # @param CapacityRemain: 流量包余量，单位：MB
+        # @type CapacityRemain: Integer
+        # @param RenewFlag: 自动续费标识。true代表自动续费，false代表不自动续费
+        # @type RenewFlag: Boolean
+
+        attr_accessor :ResourceId, :AppId, :PackageType, :Status, :ActiveTime, :ExpireTime, :DeviceList, :CapacitySize, :CapacityRemain, :RenewFlag
+
+        def initialize(resourceid=nil, appid=nil, packagetype=nil, status=nil, activetime=nil, expiretime=nil, devicelist=nil, capacitysize=nil, capacityremain=nil, renewflag=nil)
+          @ResourceId = resourceid
+          @AppId = appid
+          @PackageType = packagetype
+          @Status = status
+          @ActiveTime = activetime
+          @ExpireTime = expiretime
+          @DeviceList = devicelist
+          @CapacitySize = capacitysize
+          @CapacityRemain = capacityremain
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @AppId = params['AppId']
+          @PackageType = params['PackageType']
+          @Status = params['Status']
+          @ActiveTime = params['ActiveTime']
+          @ExpireTime = params['ExpireTime']
+          @DeviceList = params['DeviceList']
+          @CapacitySize = params['CapacitySize']
+          @CapacityRemain = params['CapacityRemain']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # GetDevicePayMode请求参数结构体
+      class GetDevicePayModeRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIdList: 设备ID列表
+        # @type DeviceIdList: Array
+
+        attr_accessor :DeviceIdList
+
+        def initialize(deviceidlist=nil)
+          @DeviceIdList = deviceidlist
+        end
+
+        def deserialize(params)
+          @DeviceIdList = params['DeviceIdList']
+        end
+      end
+
+      # GetDevicePayMode返回参数结构体
+      class GetDevicePayModeResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 结果信息
+        # @type Result: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              devicepaymodeinfo_tmp = DevicePayModeInfo.new
+              devicepaymodeinfo_tmp.deserialize(i)
+              @Result << devicepaymodeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -931,6 +1065,69 @@ module TencentCloud
           end
           @Length = params['Length']
           @TotalPage = params['TotalPage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFlowPackages请求参数结构体
+      class GetFlowPackagesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 每页个数
+        # @type PageSize: Integer
+        # @param ResourceId: 流量包的唯一资源ID
+        # @type ResourceId: String
+        # @param DeviceId: 流量包绑定的设备ID
+        # @type DeviceId: String
+        # @param Status: 流量包状态，0：未生效，1：有效期内，2：已过期
+        # @type Status: Integer
+
+        attr_accessor :PageNumber, :PageSize, :ResourceId, :DeviceId, :Status
+
+        def initialize(pagenumber=nil, pagesize=nil, resourceid=nil, deviceid=nil, status=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ResourceId = resourceid
+          @DeviceId = deviceid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ResourceId = params['ResourceId']
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+        end
+      end
+
+      # GetFlowPackages返回参数结构体
+      class GetFlowPackagesResponse < TencentCloud::Common::AbstractModel
+        # @param PackageList: 流量包列表
+        # @type PackageList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PackageList, :Total, :RequestId
+
+        def initialize(packagelist=nil, total=nil, requestid=nil)
+          @PackageList = packagelist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PackageList'].nil?
+            @PackageList = []
+            params['PackageList'].each do |i|
+              flowpackageinfo_tmp = FlowPackageInfo.new
+              flowpackageinfo_tmp.deserialize(i)
+              @PackageList << flowpackageinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1419,6 +1616,42 @@ module TencentCloud
         end
       end
 
+      # ModifyPackageRenewFlag请求参数结构体
+      class ModifyPackageRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 流量包的唯一资源ID
+        # @type ResourceId: String
+        # @param RenewFlag: 自动续费标识。true代表自动续费，false代表不自动续费
+        # @type RenewFlag: Boolean
+
+        attr_accessor :ResourceId, :RenewFlag
+
+        def initialize(resourceid=nil, renewflag=nil)
+          @ResourceId = resourceid
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # ModifyPackageRenewFlag返回参数结构体
+      class ModifyPackageRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 流量监控指标
       class MonitorData < TencentCloud::Common::AbstractModel
         # @param Time: 时间点：s
@@ -1497,6 +1730,66 @@ module TencentCloud
           @Loss = params['Loss']
           @Jitter = params['Jitter']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # OrderFlowPackage请求参数结构体
+      class OrderFlowPackageRequest < TencentCloud::Common::AbstractModel
+        # @param PackageType: 流量包规格类型。可取值如下：
+        # DEVICE_1_FLOW_20G、DEVICE_2_FLOW_50G、
+        # DEVICE_3_FLOW_100G、
+        # DEVICE_5_FLOW_500G，分别代表20G、50G、100G、500G档位的流量包。
+        # 档位也影响流量包可绑定的设备数量上限：
+        # 20G：最多绑定1个设备
+        # 50G：最多绑定2个设备
+        # 100G：最多绑定3个设备
+        # 500G：最多绑定5个设备
+        # @type PackageType: String
+        # @param DeviceList: 流量包绑定的设备ID列表。捆绑设备个数上限取决于包的规格档位：
+        # 20G：最多绑定1个设备
+        # 50G：最多绑定2个设备
+        # 100G：最多绑定3个设备
+        # 500G：最多绑定5个设备
+        # @type DeviceList: Array
+        # @param AutoRenewFlag: 是否自动续费
+        # @type AutoRenewFlag: Boolean
+        # @param PackageRegion: 区域标识，0：国内，1：国外
+        # @type PackageRegion: Integer
+
+        attr_accessor :PackageType, :DeviceList, :AutoRenewFlag, :PackageRegion
+
+        def initialize(packagetype=nil, devicelist=nil, autorenewflag=nil, packageregion=nil)
+          @PackageType = packagetype
+          @DeviceList = devicelist
+          @AutoRenewFlag = autorenewflag
+          @PackageRegion = packageregion
+        end
+
+        def deserialize(params)
+          @PackageType = params['PackageType']
+          @DeviceList = params['DeviceList']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @PackageRegion = params['PackageRegion']
+        end
+      end
+
+      # OrderFlowPackage返回参数结构体
+      class OrderFlowPackageResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 流量包的唯一资源ID
+        # @type ResourceId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :RequestId
+
+        def initialize(resourceid=nil, requestid=nil)
+          @ResourceId = resourceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @RequestId = params['RequestId']
         end
       end
 

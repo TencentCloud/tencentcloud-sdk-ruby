@@ -2597,6 +2597,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeDBInstancesAttribute）用于开启\关闭\更新SSL加密
+
+        # @param request: Request instance for ModifyDBInstanceSSL.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceSSLRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceSSLResponse`
+        def ModifyDBInstanceSSL(request)
+          body = send_request('ModifyDBInstanceSSL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceSSLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
 
         # @param request: Request instance for ModifyDBInstanceSecurityGroups.

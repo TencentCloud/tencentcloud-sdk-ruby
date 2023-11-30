@@ -341,6 +341,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建入侵防御规则白名单接口
+
+        # @param request: Request instance for CreateIdsWhiteRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateIdsWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateIdsWhiteRuleResponse`
+        def CreateIdsWhiteRule(request)
+          body = send_request('CreateIdsWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIdsWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建NAT防火墙实例（Region参数必填）
 
         # @param request: Request instance for CreateNatFwInstance.
@@ -519,6 +543,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBlockIgnoreRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除入侵防御规则白名单接口
+
+        # @param request: Request instance for DeleteIdsWhiteRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteIdsWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteIdsWhiteRuleResponse`
+        def DeleteIdsWhiteRule(request)
+          body = send_request('DeleteIdsWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteIdsWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1047,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIPStatusListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询入侵防御规则白名单接口
+
+        # @param request: Request instance for DescribeIdsWhiteRule.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeIdsWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeIdsWhiteRuleResponse`
+        def DescribeIdsWhiteRule(request)
+          body = send_request('DescribeIdsWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIdsWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

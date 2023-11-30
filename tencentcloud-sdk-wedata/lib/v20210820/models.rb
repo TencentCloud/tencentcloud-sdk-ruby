@@ -264,10 +264,19 @@ module TencentCloud
         # @param SendResult: 发送结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SendResult: String
+        # @param MonitorObjectId: 监控对象id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorObjectId: String
+        # @param MonitorObjectName: 监控对象名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorObjectName: String
+        # @param Threshold: 指标阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Float
 
-        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult
+        attr_accessor :AlarmId, :AlarmTime, :TaskId, :RegularName, :AlarmLevel, :AlarmWay, :AlarmRecipientId, :ProjectId, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :InstanceId, :TaskName, :IsSendSuccess, :MessageId, :Operator, :RegularId, :AlarmRecipientName, :TaskType, :SendResult, :MonitorObjectId, :MonitorObjectName, :Threshold
 
-        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil)
+        def initialize(alarmid=nil, alarmtime=nil, taskid=nil, regularname=nil, alarmlevel=nil, alarmway=nil, alarmrecipientid=nil, projectid=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, instanceid=nil, taskname=nil, issendsuccess=nil, messageid=nil, operator=nil, regularid=nil, alarmrecipientname=nil, tasktype=nil, sendresult=nil, monitorobjectid=nil, monitorobjectname=nil, threshold=nil)
           @AlarmId = alarmid
           @AlarmTime = alarmtime
           @TaskId = taskid
@@ -289,6 +298,9 @@ module TencentCloud
           @AlarmRecipientName = alarmrecipientname
           @TaskType = tasktype
           @SendResult = sendresult
+          @MonitorObjectId = monitorobjectid
+          @MonitorObjectName = monitorobjectname
+          @Threshold = threshold
         end
 
         def deserialize(params)
@@ -313,6 +325,9 @@ module TencentCloud
           @AlarmRecipientName = params['AlarmRecipientName']
           @TaskType = params['TaskType']
           @SendResult = params['SendResult']
+          @MonitorObjectId = params['MonitorObjectId']
+          @MonitorObjectName = params['MonitorObjectName']
+          @Threshold = params['Threshold']
         end
       end
 
@@ -358,7 +373,7 @@ module TencentCloud
         # @param Id: 指标id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param AlarmIndicator: 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        # @param AlarmIndicator: 告警指标,0任务失败,1任务运行超时,2任务停止,3任务暂停, 4读取速度,5写入速度,6读取吞吐 7写入吞吐, 8脏数据字节数,9脏数据条数,10任务异常,11任务检测异常, 12重启次数, 13任务延时, 14近20分内的重启次数 15传输延迟,16业务延迟, 50离线包CPU使用率, 51离线包内存使用率, 52离线包并行度使用率, 53离线包排队中的实例数, 54实时包资源使用率, 55实时包运行中的任务数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmIndicator: Integer
         # @param AlarmIndicatorDesc: 告警指标描述
@@ -370,7 +385,7 @@ module TencentCloud
         # @param EstimatedTime: 预计的超时时间，分钟级别
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EstimatedTime: Integer
-        # @param Operator: 实时任务告警需要的参数
+        # @param Operator: 告警阈值的算子,1 大于,2 小于
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: Integer
         # @param AlarmIndicatorUnit: 告警指标阈值单位：ms(毫秒)、s(秒)、min(分钟)
@@ -378,14 +393,17 @@ module TencentCloud
         # @type AlarmIndicatorUnit: String
         # @param Duration: 告警周期
         # @type Duration: Integer
-        # @param DurationUnit: 告警周期单位
+        # @param DurationUnit: 告警周期单位:hour,minute,day
         # @type DurationUnit: String
         # @param MaxTimes: 周期内最多告警次数
         # @type MaxTimes: Integer
+        # @param Threshold: 指标阈值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Float
 
-        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit, :Duration, :DurationUnit, :MaxTimes
+        attr_accessor :Id, :AlarmIndicator, :AlarmIndicatorDesc, :TriggerType, :EstimatedTime, :Operator, :AlarmIndicatorUnit, :Duration, :DurationUnit, :MaxTimes, :Threshold
 
-        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil, duration=nil, durationunit=nil, maxtimes=nil)
+        def initialize(id=nil, alarmindicator=nil, alarmindicatordesc=nil, triggertype=nil, estimatedtime=nil, operator=nil, alarmindicatorunit=nil, duration=nil, durationunit=nil, maxtimes=nil, threshold=nil)
           @Id = id
           @AlarmIndicator = alarmindicator
           @AlarmIndicatorDesc = alarmindicatordesc
@@ -396,6 +414,7 @@ module TencentCloud
           @Duration = duration
           @DurationUnit = durationunit
           @MaxTimes = maxtimes
+          @Threshold = threshold
         end
 
         def deserialize(params)
@@ -409,6 +428,7 @@ module TencentCloud
           @Duration = params['Duration']
           @DurationUnit = params['DurationUnit']
           @MaxTimes = params['MaxTimes']
+          @Threshold = params['Threshold']
         end
       end
 
@@ -2616,14 +2636,17 @@ module TencentCloud
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param InchargeIds: 责任人Id（多个责任人用小写分号隔开）
+        # @type InchargeIds: String
 
-        attr_accessor :TaskIds, :Incharge, :TaskType, :ProjectId
+        attr_accessor :TaskIds, :Incharge, :TaskType, :ProjectId, :InchargeIds
 
-        def initialize(taskids=nil, incharge=nil, tasktype=nil, projectid=nil)
+        def initialize(taskids=nil, incharge=nil, tasktype=nil, projectid=nil, inchargeids=nil)
           @TaskIds = taskids
           @Incharge = incharge
           @TaskType = tasktype
           @ProjectId = projectid
+          @InchargeIds = inchargeids
         end
 
         def deserialize(params)
@@ -2631,6 +2654,7 @@ module TencentCloud
           @Incharge = params['Incharge']
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
+          @InchargeIds = params['InchargeIds']
         end
       end
 
@@ -2790,18 +2814,21 @@ module TencentCloud
         # @type Id: String
         # @param TaskType: 任务类型:201.实时,202.离线
         # @type TaskType: Integer
+        # @param MonitorType: 监控对象类型(1:所有任务,2:指定任务,3:指定责任人,4:指定资源组)
+        # @type MonitorType: Integer
 
-        attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType
+        attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 11
-        deprecate :TaskId=, :none, 2023, 11
+        deprecate :TaskId, :none, 2023, 12
+        deprecate :TaskId=, :none, 2023, 12
 
-        def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil)
+        def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
           @AlarmRegularName = alarmregularname
           @TaskId = taskid
           @Id = id
           @TaskType = tasktype
+          @MonitorType = monitortype
         end
 
         def deserialize(params)
@@ -2810,6 +2837,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Id = params['Id']
           @TaskType = params['TaskType']
+          @MonitorType = params['MonitorType']
         end
       end
 
@@ -7160,6 +7188,12 @@ module TencentCloud
 
       # DescribeAlarmEvents请求参数结构体
       class DescribeAlarmEventsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param PageNumber: 当前页
+        # @type PageNumber: Integer
+        # @param PageSize: 每页记录数
+        # @type PageSize: Integer
         # @param Filters: 过滤条件(key可以是：AlarmLevel,AlarmIndicator,KeyWord)
         # @type Filters: Array
         # @param OrderFields: 排序字段（AlarmTime）
@@ -7170,27 +7204,27 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
-        # @param ProjectId: 项目ID
-        # @type ProjectId: String
-        # @param PageNumber: 当前页
-        # @type PageNumber: Integer
-        # @param PageSize: 每页记录数
-        # @type PageSize: Integer
+        # @param MonitorType: 监控对象类型(1:所有任务,2:指定任务,3:指定责任人,4:指定资源组)
+        # @type MonitorType: Integer
 
-        attr_accessor :Filters, :OrderFields, :TaskType, :StartTime, :EndTime, :ProjectId, :PageNumber, :PageSize
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :TaskType, :StartTime, :EndTime, :MonitorType
 
-        def initialize(filters=nil, orderfields=nil, tasktype=nil, starttime=nil, endtime=nil, projectid=nil, pagenumber=nil, pagesize=nil)
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, tasktype=nil, starttime=nil, endtime=nil, monitortype=nil)
+          @ProjectId = projectid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
           @Filters = filters
           @OrderFields = orderfields
           @TaskType = tasktype
           @StartTime = starttime
           @EndTime = endtime
-          @ProjectId = projectid
-          @PageNumber = pagenumber
-          @PageSize = pagesize
+          @MonitorType = monitortype
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -7210,9 +7244,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
-          @ProjectId = params['ProjectId']
-          @PageNumber = params['PageNumber']
-          @PageSize = params['PageSize']
+          @MonitorType = params['MonitorType']
         end
       end
 
@@ -7268,10 +7300,12 @@ module TencentCloud
         # @type AlarmRecipientName: String
         # @param AlarmTime: 告警时间
         # @type AlarmTime: String
+        # @param MonitorType: 监控对象类型(1:所有任务,2:指定任务,3:指定责任人,4:指定资源组)
+        # @type MonitorType: Integer
 
-        attr_accessor :AlarmId, :PageNumber, :PageSize, :ProjectId, :MessageId, :TaskType, :AlarmRecipient, :AlarmRecipientName, :AlarmTime
+        attr_accessor :AlarmId, :PageNumber, :PageSize, :ProjectId, :MessageId, :TaskType, :AlarmRecipient, :AlarmRecipientName, :AlarmTime, :MonitorType
 
-        def initialize(alarmid=nil, pagenumber=nil, pagesize=nil, projectid=nil, messageid=nil, tasktype=nil, alarmrecipient=nil, alarmrecipientname=nil, alarmtime=nil)
+        def initialize(alarmid=nil, pagenumber=nil, pagesize=nil, projectid=nil, messageid=nil, tasktype=nil, alarmrecipient=nil, alarmrecipientname=nil, alarmtime=nil, monitortype=nil)
           @AlarmId = alarmid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -7281,6 +7315,7 @@ module TencentCloud
           @AlarmRecipient = alarmrecipient
           @AlarmRecipientName = alarmrecipientname
           @AlarmTime = alarmtime
+          @MonitorType = monitortype
         end
 
         def deserialize(params)
@@ -7293,6 +7328,7 @@ module TencentCloud
           @AlarmRecipient = params['AlarmRecipient']
           @AlarmRecipientName = params['AlarmRecipientName']
           @AlarmTime = params['AlarmTime']
+          @MonitorType = params['MonitorType']
         end
       end
 
@@ -8717,19 +8753,19 @@ module TencentCloud
 
       # DescribeDataSourceInfoList请求参数结构体
       class DescribeDataSourceInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 工作空间id
+        # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
         # @param PageSize: 页数
         # @type PageSize: Integer
-        # @param Filters: 可选过滤条件，Filter可选配置(参考): "Name": { "type": "string", "description": "数据源名称" }, "Type": { "type": "string", "description": "类型" }, "ClusterId": { "type": "string", "description": "集群id" }, "CategoryId": { "type": "string", "description": "分类，项目或空间id" }
+        # @param Filters: 过滤条件（暂不支持）
         # @type Filters: :class:`Tencentcloud::Wedata.v20210820.models.Filter`
         # @param OrderFields: 排序配置
         # @type OrderFields: :class:`Tencentcloud::Wedata.v20210820.models.OrderField`
-        # @param Type: 数据源类型
+        # @param Type: 数据源类型，必选（如MYSQL、DLC等）
         # @type Type: String
-        # @param DatasourceName: 数据源名称过滤用
+        # @param DatasourceName: 数据源名称过滤
         # @type DatasourceName: String
 
         attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :Type, :DatasourceName
@@ -9779,7 +9815,10 @@ module TencentCloud
       class DescribeEventCasesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param Category: 事件实例目录
+        # @param Category: 事件实例目录,示例取值:
+        # - 已过期: expired
+        # - 未过期: consuming
+        # - 全部: all
         # @type Category: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -9793,7 +9832,11 @@ module TencentCloud
         # @type EventSubType: String
         # @param EventBroadcastType: 事件广播类型
         # @type EventBroadcastType: String
-        # @param Status: 事件实例状态
+        # @param Status: 事件实例状态,示例取值:
+        # - 已消费: COMSUMED
+        # - 已过期: EXPIRED
+        # - 待消费: ACTIVE
+        # - 消费中: CONSUMING
         # @type Status: String
         # @param CreationTimeStart: 事件实例最小创建时间
         # @type CreationTimeStart: String
@@ -9809,10 +9852,23 @@ module TencentCloud
         # @type LogTimeEnd: String
         # @param Dimension: 事件实例数据时间
         # @type Dimension: String
+        # @param TimeToLive: 事件实例有效时间
+        # @type TimeToLive: String
+        # @param SortItem: 排序字段
+        # @type SortItem: String
+        # @param SortType: 排序顺序
+        # @type SortType: String
 
-        attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension
+        attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
+        extend Gem::Deprecate
+        deprecate :EventType, :none, 2023, 12
+        deprecate :EventType=, :none, 2023, 12
+        deprecate :EventBroadcastType, :none, 2023, 12
+        deprecate :EventBroadcastType=, :none, 2023, 12
+        deprecate :Status, :none, 2023, 12
+        deprecate :Status=, :none, 2023, 12
 
-        def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil)
+        def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
           @Category = category
           @PageNumber = pagenumber
@@ -9829,6 +9885,9 @@ module TencentCloud
           @LogTimeStart = logtimestart
           @LogTimeEnd = logtimeend
           @Dimension = dimension
+          @TimeToLive = timetolive
+          @SortItem = sortitem
+          @SortType = sorttype
         end
 
         def deserialize(params)
@@ -9848,6 +9907,9 @@ module TencentCloud
           @LogTimeStart = params['LogTimeStart']
           @LogTimeEnd = params['LogTimeEnd']
           @Dimension = params['Dimension']
+          @TimeToLive = params['TimeToLive']
+          @SortItem = params['SortItem']
+          @SortType = params['SortType']
         end
       end
 
@@ -17646,8 +17708,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2023, 11
-        deprecate :DimType=, :none, 2023, 11
+        deprecate :DimType, :none, 2023, 12
+        deprecate :DimType=, :none, 2023, 12
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -18225,6 +18287,50 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 事件连续时间实例信息
+      class EventBatchCaseDTO < TencentCloud::Common::AbstractModel
+        # @param CaseId: 事件实例id
+        # @type CaseId: String
+        # @param Name: 事件名
+        # @type Name: String
+        # @param StartDimension: 事件触发起始时间
+        # @type StartDimension: String
+        # @param CreationTs: 创建时间
+        # @type CreationTs: String
+        # @param ConsumerId: 消费者id
+        # @type ConsumerId: String
+        # @param Description: 描述信息
+        # @type Description: String
+        # @param EndDimension: 事件触发结束时间
+        # @type EndDimension: String
+        # @param EventSubType: 事件周期
+        # @type EventSubType: String
+
+        attr_accessor :CaseId, :Name, :StartDimension, :CreationTs, :ConsumerId, :Description, :EndDimension, :EventSubType
+
+        def initialize(caseid=nil, name=nil, startdimension=nil, creationts=nil, consumerid=nil, description=nil, enddimension=nil, eventsubtype=nil)
+          @CaseId = caseid
+          @Name = name
+          @StartDimension = startdimension
+          @CreationTs = creationts
+          @ConsumerId = consumerid
+          @Description = description
+          @EndDimension = enddimension
+          @EventSubType = eventsubtype
+        end
+
+        def deserialize(params)
+          @CaseId = params['CaseId']
+          @Name = params['Name']
+          @StartDimension = params['StartDimension']
+          @CreationTs = params['CreationTs']
+          @ConsumerId = params['ConsumerId']
+          @Description = params['Description']
+          @EndDimension = params['EndDimension']
+          @EventSubType = params['EventSubType']
         end
       end
 
@@ -29388,10 +29494,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2023, 11
-        deprecate :SourceObjectDataTypeName=, :none, 2023, 11
-        deprecate :SourceObjectValue, :none, 2023, 11
-        deprecate :SourceObjectValue=, :none, 2023, 11
+        deprecate :SourceObjectDataTypeName, :none, 2023, 12
+        deprecate :SourceObjectDataTypeName=, :none, 2023, 12
+        deprecate :SourceObjectValue, :none, 2023, 12
+        deprecate :SourceObjectValue=, :none, 2023, 12
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename
@@ -34353,12 +34459,15 @@ module TencentCloud
         # @type ProjectId: String
         # @param EventCaseList: 事件实例信息
         # @type EventCaseList: Array
+        # @param EventBatchCaseList: 事件实例信息(连续时间)
+        # @type EventBatchCaseList: Array
 
-        attr_accessor :ProjectId, :EventCaseList
+        attr_accessor :ProjectId, :EventCaseList, :EventBatchCaseList
 
-        def initialize(projectid=nil, eventcaselist=nil)
+        def initialize(projectid=nil, eventcaselist=nil, eventbatchcaselist=nil)
           @ProjectId = projectid
           @EventCaseList = eventcaselist
+          @EventBatchCaseList = eventbatchcaselist
         end
 
         def deserialize(params)
@@ -34369,6 +34478,14 @@ module TencentCloud
               eventcasedto_tmp = EventCaseDTO.new
               eventcasedto_tmp.deserialize(i)
               @EventCaseList << eventcasedto_tmp
+            end
+          end
+          unless params['EventBatchCaseList'].nil?
+            @EventBatchCaseList = []
+            params['EventBatchCaseList'].each do |i|
+              eventbatchcasedto_tmp = EventBatchCaseDTO.new
+              eventbatchcasedto_tmp.deserialize(i)
+              @EventBatchCaseList << eventbatchcasedto_tmp
             end
           end
         end

@@ -1231,8 +1231,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2023, 11
-        deprecate :Option=, :none, 2023, 11
+        deprecate :Option, :none, 2023, 12
+        deprecate :Option=, :none, 2023, 12
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1294,7 +1294,7 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param InputBase64: 任务输入JSON。需要进行base64编码。
         # @type InputBase64: String
-        # @param CacheClearDelay: 任务缓存清理时间。不填表示不清理。
+        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填表示不清理。
         # @type CacheClearDelay: Integer
         # @param Option: 运行选项。
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
@@ -1697,7 +1697,7 @@ module TencentCloud
         # @param InputCosUri: 任务输入COS地址。
         # （InputBase64和InputCosUri必选其一）
         # @type InputCosUri: String
-        # @param CacheClearDelay: 任务缓存清理时间。不填表示不清理。
+        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填表示不清理。
         # @type CacheClearDelay: Integer
 
         attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay

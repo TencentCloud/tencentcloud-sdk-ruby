@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备付费模式
+
+        # @param request: Request instance for GetDevicePayMode.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetDevicePayModeRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetDevicePayModeResponse`
+        def GetDevicePayMode(request)
+          body = send_request('GetDevicePayMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDevicePayModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取设备信息列表
 
         # @param request: Request instance for GetDevices.
@@ -255,6 +279,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取流量包列表
+
+        # @param request: Request instance for GetFlowPackages.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowPackagesRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowPackagesResponse`
+        def GetFlowPackages(request)
+          body = send_request('GetFlowPackages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowPackagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -293,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 租户获取厂商硬件列表
+        # 获取厂商硬件列表
 
         # @param request: Request instance for GetHardwareList.
         # @type request: :class:`Tencentcloud::mna::V20210119::GetHardwareListRequest`
@@ -423,6 +471,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetVendorHardwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 可开启/关闭流量包自动续费，不影响当前周期正在生效的流量包。
+
+        # @param request: Request instance for ModifyPackageRenewFlag.
+        # @type request: :class:`Tencentcloud::mna::V20210119::ModifyPackageRenewFlagRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::ModifyPackageRenewFlagResponse`
+        def ModifyPackageRenewFlag(request)
+          body = send_request('ModifyPackageRenewFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPackageRenewFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 购买预付费流量包
+
+        # @param request: Request instance for OrderFlowPackage.
+        # @type request: :class:`Tencentcloud::mna::V20210119::OrderFlowPackageRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::OrderFlowPackageResponse`
+        def OrderFlowPackage(request)
+          body = send_request('OrderFlowPackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OrderFlowPackageResponse.new
             model.deserialize(response['Response'])
             model
           else

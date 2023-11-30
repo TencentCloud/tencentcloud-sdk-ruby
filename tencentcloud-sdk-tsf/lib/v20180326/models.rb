@@ -7302,7 +7302,7 @@ module TencentCloud
 
       # DescribeConfigTemplate请求参数结构体
       class DescribeConfigTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateId: 无
+        # @param ConfigTemplateId: 配置模板Id
         # @type ConfigTemplateId: String
 
         attr_accessor :ConfigTemplateId
@@ -7318,7 +7318,7 @@ module TencentCloud
 
       # DescribeConfigTemplate返回参数结构体
       class DescribeConfigTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: Result
+        # @param Result: 导入结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigTemplate`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -14979,7 +14979,7 @@ module TencentCloud
 
       # ModifyLane返回参数结构体
       class ModifyLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 编辑成功: true / 编辑失败: false
+        # @param Result: 更新成功: true / 更新失败: false
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19997,7 +19997,7 @@ module TencentCloud
 
       # UpdateConfigTemplate返回参数结构体
       class UpdateConfigTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 结果true：成功；false：失败；
+        # @param Result: 更新成功: true / 更新失败: false
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

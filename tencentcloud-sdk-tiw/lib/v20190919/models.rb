@@ -214,61 +214,6 @@ module TencentCloud
         end
       end
 
-      # CreateOfflineRecord请求参数结构体
-      class CreateOfflineRecordRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 客户的SdkAppId
-        # @type SdkAppId: Integer
-        # @param RoomId: 录制任务对应的房间号
-        # @type RoomId: Integer
-        # @param GroupId: 录制任务对应的群组Id
-        # @type GroupId: String
-        # @param MixStream: 混流参数配置
-        # 目前课后录制暂未支持自定义混流布局Custom参数
-        # @type MixStream: :class:`Tencentcloud::Tiw.v20190919.models.MixStream`
-        # @param Whiteboard: 白板参数配置
-        # @type Whiteboard: :class:`Tencentcloud::Tiw.v20190919.models.Whiteboard`
-
-        attr_accessor :SdkAppId, :RoomId, :GroupId, :MixStream, :Whiteboard
-
-        def initialize(sdkappid=nil, roomid=nil, groupid=nil, mixstream=nil, whiteboard=nil)
-          @SdkAppId = sdkappid
-          @RoomId = roomid
-          @GroupId = groupid
-          @MixStream = mixstream
-          @Whiteboard = whiteboard
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @RoomId = params['RoomId']
-          @GroupId = params['GroupId']
-          unless params['MixStream'].nil?
-            @MixStream = MixStream.new
-            @MixStream.deserialize(params['MixStream'])
-          end
-          unless params['Whiteboard'].nil?
-            @Whiteboard = Whiteboard.new
-            @Whiteboard.deserialize(params['Whiteboard'])
-          end
-        end
-      end
-
-      # CreateOfflineRecord返回参数结构体
-      class CreateOfflineRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreatePPTCheckTask请求参数结构体
       class CreatePPTCheckTaskRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 客户的SdkAppId
@@ -429,10 +374,12 @@ module TencentCloud
         # 2. 自动翻页：移除PPT上所有的自动翻页设置，并设置为单击鼠标翻页
         # 3. 已损坏音视频：移除PPT上对损坏音视频的引用
         # @type AutoHandleUnsupportedElement: Boolean
+        # @param ExcelParam: Excel表格转码参数，可设置转码时表格纸张大小及纸张方向等参数（仅对转码文件为Excel表格文件的静态转码任务生效）
+        # @type ExcelParam: :class:`Tencentcloud::Tiw.v20190919.models.ExcelParam`
 
-        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority, :MinScaleResolution, :AutoHandleUnsupportedElement
+        attr_accessor :SdkAppId, :Url, :IsStaticPPT, :MinResolution, :ThumbnailResolution, :CompressFileType, :ExtraData, :Priority, :MinScaleResolution, :AutoHandleUnsupportedElement, :ExcelParam
 
-        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil, minscaleresolution=nil, autohandleunsupportedelement=nil)
+        def initialize(sdkappid=nil, url=nil, isstaticppt=nil, minresolution=nil, thumbnailresolution=nil, compressfiletype=nil, extradata=nil, priority=nil, minscaleresolution=nil, autohandleunsupportedelement=nil, excelparam=nil)
           @SdkAppId = sdkappid
           @Url = url
           @IsStaticPPT = isstaticppt
@@ -443,6 +390,7 @@ module TencentCloud
           @Priority = priority
           @MinScaleResolution = minscaleresolution
           @AutoHandleUnsupportedElement = autohandleunsupportedelement
+          @ExcelParam = excelparam
         end
 
         def deserialize(params)
@@ -456,6 +404,10 @@ module TencentCloud
           @Priority = params['Priority']
           @MinScaleResolution = params['MinScaleResolution']
           @AutoHandleUnsupportedElement = params['AutoHandleUnsupportedElement']
+          unless params['ExcelParam'].nil?
+            @ExcelParam = ExcelParam.new
+            @ExcelParam.deserialize(params['ExcelParam'])
+          end
         end
       end
 
@@ -861,74 +813,6 @@ module TencentCloud
 
       # DescribeIMApplications返回参数结构体
       class DescribeIMApplicationsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOfflineRecordCallback请求参数结构体
-      class DescribeOfflineRecordCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用的SdkAppId
-        # @type SdkAppId: Integer
-
-        attr_accessor :SdkAppId
-
-        def initialize(sdkappid=nil)
-          @SdkAppId = sdkappid
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-        end
-      end
-
-      # DescribeOfflineRecordCallback返回参数结构体
-      class DescribeOfflineRecordCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOfflineRecord请求参数结构体
-      class DescribeOfflineRecordRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 客户的SdkAppId
-        # @type SdkAppId: Integer
-        # @param TaskId: 课后录制任务的Id
-        # @type TaskId: String
-
-        attr_accessor :SdkAppId, :TaskId
-
-        def initialize(sdkappid=nil, taskid=nil)
-          @SdkAppId = sdkappid
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # DescribeOfflineRecord返回参数结构体
-      class DescribeOfflineRecordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2574,6 +2458,33 @@ module TencentCloud
         end
       end
 
+      # Excel转码相关参数
+      class ExcelParam < TencentCloud::Common::AbstractModel
+        # @param PaperSize: 表格转码纸张（画布）大小，默认为0。
+        # 0 -- A4
+        # 1 -- A2
+        # 2 -- A0
+
+        # 注：当设置的值超出合法取值范围时，将采用默认值。
+        # @type PaperSize: Integer
+        # @param PaperDirection: 表格文件转换纸张方向，默认为0。
+        # 0 -- 代表垂直方向
+        # 非0 -- 代表水平方向
+        # @type PaperDirection: Integer
+
+        attr_accessor :PaperSize, :PaperDirection
+
+        def initialize(papersize=nil, paperdirection=nil)
+          @PaperSize = papersize
+          @PaperDirection = paperdirection
+        end
+
+        def deserialize(params)
+          @PaperSize = params['PaperSize']
+          @PaperDirection = params['PaperDirection']
+        end
+      end
+
       # 实时录制中出现的用户视频流断流次数统计
       class Interrupt < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -3286,42 +3197,6 @@ module TencentCloud
           @Progress = params['Progress']
           @FileURL = params['FileURL']
           @RoomID = params['RoomID']
-        end
-      end
-
-      # SetOfflineRecordCallback请求参数结构体
-      class SetOfflineRecordCallbackRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 客户的SdkAppId
-        # @type SdkAppId: Integer
-        # @param Callback: 课后录制任务结果回调地址，如果传空字符串会删除原来的回调地址配置，回调地址仅支持 http或https协议，即回调地址以http://或https://开头
-        # @type Callback: String
-
-        attr_accessor :SdkAppId, :Callback
-
-        def initialize(sdkappid=nil, callback=nil)
-          @SdkAppId = sdkappid
-          @Callback = callback
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @Callback = params['Callback']
-        end
-      end
-
-      # SetOfflineRecordCallback返回参数结构体
-      class SetOfflineRecordCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 

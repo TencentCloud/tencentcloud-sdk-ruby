@@ -14330,15 +14330,22 @@ module TencentCloud
         # @param IPSECSaLifetimeTraffic: IPsec SA lifetime(KB)：单位KB，取值范围：2560-604800
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPSECSaLifetimeTraffic: Integer
+        # @param IntegrityAlgorithm: 认证算法：可选值：'MD5', 'SHA1'，'SHA-256' 默认为
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntegrityAlgorithm: String
 
-        attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic
+        attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
+        extend Gem::Deprecate
+        deprecate :IntegrityAlgorith, :none, 2023, 12
+        deprecate :IntegrityAlgorith=, :none, 2023, 12
 
-        def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil)
+        def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
           @IntegrityAlgorith = integrityalgorith
           @IPSECSaLifetimeSeconds = ipsecsalifetimeseconds
           @PfsDhGroup = pfsdhgroup
           @IPSECSaLifetimeTraffic = ipsecsalifetimetraffic
+          @IntegrityAlgorithm = integrityalgorithm
         end
 
         def deserialize(params)
@@ -14347,6 +14354,7 @@ module TencentCloud
           @IPSECSaLifetimeSeconds = params['IPSECSaLifetimeSeconds']
           @PfsDhGroup = params['PfsDhGroup']
           @IPSECSaLifetimeTraffic = params['IPSECSaLifetimeTraffic']
+          @IntegrityAlgorithm = params['IntegrityAlgorithm']
         end
       end
 

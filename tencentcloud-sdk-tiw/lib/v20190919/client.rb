@@ -77,32 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 课后录制服务已下线
-
-        # 创建课后录制任务
-
-        # @param request: Request instance for CreateOfflineRecord.
-        # @type request: :class:`Tencentcloud::tiw::V20190919::CreateOfflineRecordRequest`
-        # @rtype: :class:`Tencentcloud::tiw::V20190919::CreateOfflineRecordResponse`
-        def CreateOfflineRecord(request)
-          body = send_request('CreateOfflineRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateOfflineRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 检测PPT文件，识别PPT中包含的动态转码任务（Transcode）不支持的元素
 
         # @param request: Request instance for CreatePPTCheckTask.
@@ -305,58 +279,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIMApplicationsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 课后录制服务已下线
-
-        # 查询课后录制任务的进度与录制结果等相关信息
-
-        # @param request: Request instance for DescribeOfflineRecord.
-        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeOfflineRecordRequest`
-        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeOfflineRecordResponse`
-        def DescribeOfflineRecord(request)
-          body = send_request('DescribeOfflineRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeOfflineRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 课后录制服务已下线
-
-        # 查询课后录制回调地址
-
-        # @param request: Request instance for DescribeOfflineRecordCallback.
-        # @type request: :class:`Tencentcloud::tiw::V20190919::DescribeOfflineRecordCallbackRequest`
-        # @rtype: :class:`Tencentcloud::tiw::V20190919::DescribeOfflineRecordCallbackResponse`
-        def DescribeOfflineRecordCallback(request)
-          body = send_request('DescribeOfflineRecordCallback', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeOfflineRecordCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1177,32 +1099,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResumeOnlineRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 课后录制服务已下线
-
-        # 设置课后录制回调地址
-
-        # @param request: Request instance for SetOfflineRecordCallback.
-        # @type request: :class:`Tencentcloud::tiw::V20190919::SetOfflineRecordCallbackRequest`
-        # @rtype: :class:`Tencentcloud::tiw::V20190919::SetOfflineRecordCallbackResponse`
-        def SetOfflineRecordCallback(request)
-          body = send_request('SetOfflineRecordCallback', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SetOfflineRecordCallbackResponse.new
             model.deserialize(response['Response'])
             model
           else

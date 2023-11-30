@@ -465,6 +465,33 @@ module TencentCloud
         end
       end
 
+      # 告警状态返回结构体
+      class AlarmStatusData < TencentCloud::Common::AbstractModel
+        # @param StatusID: 告警状态ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusID: String
+        # @param StatusName: 告警状态名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusName: String
+        # @param StatusType: 告警状态类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusType: String
+
+        attr_accessor :StatusID, :StatusName, :StatusType
+
+        def initialize(statusid=nil, statusname=nil, statustype=nil)
+          @StatusID = statusid
+          @StatusName = statusname
+          @StatusType = statustype
+        end
+
+        def deserialize(params)
+          @StatusID = params['StatusID']
+          @StatusName = params['StatusName']
+          @StatusType = params['StatusType']
+        end
+      end
+
       # 告警类型详情信息
       class AlarmTypeDetailInfo < TencentCloud::Common::AbstractModel
         # @param Id: 告警类型id
@@ -2132,27 +2159,67 @@ module TencentCloud
 
       # DescribeAlarmStatusList请求参数结构体
       class DescribeAlarmStatusListRequest < TencentCloud::Common::AbstractModel
+        # @param ApplicationToken: 应用token
+        # @type ApplicationToken: String
+        # @param WorkspaceId: 工作空间ID
+        # @type WorkspaceId: String
 
+        attr_accessor :ApplicationToken, :WorkspaceId
 
-        def initialize()
+        def initialize(applicationtoken=nil, workspaceid=nil)
+          @ApplicationToken = applicationtoken
+          @WorkspaceId = workspaceid
         end
 
         def deserialize(params)
+          @ApplicationToken = params['ApplicationToken']
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # 告警状态列表返回
+      class DescribeAlarmStatusListRes < TencentCloud::Common::AbstractModel
+        # @param List: 告警状态返回结构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type List: Array
+
+        attr_accessor :List
+
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              alarmstatusdata_tmp = AlarmStatusData.new
+              alarmstatusdata_tmp.deserialize(i)
+              @List << alarmstatusdata_tmp
+            end
+          end
         end
       end
 
       # DescribeAlarmStatusList返回参数结构体
       class DescribeAlarmStatusListResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 告警状态返回结构
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.DescribeAlarmStatusListRes`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeAlarmStatusListRes.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end

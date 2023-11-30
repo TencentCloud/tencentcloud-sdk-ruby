@@ -1328,18 +1328,31 @@ module TencentCloud
         # @type HiddenComponents: Boolean
         # @param Operator: 渠道操作者信息
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param UserData: 用户自定义参数
+        # <ul>
+        # <li>目前仅支持EmbedType=CREATE_TEMPLATE时传入</li>
+        # <li>指定后，创建，编辑，删除模版时，回调都会携带该userData</li>
+        # <li>支持的格式：json字符串的BASE64编码字符串</li>
+        # <li>示例：<ul>
+        #                  <li>json字符串：{"ComeFrom":"xxx"}，BASE64编码：eyJDb21lRnJvbSI6Inh4eCJ9</li>
+        #                  <li>eyJDb21lRnJvbSI6Inh4eCJ9，为符合要求的userData数据格式</li>
+        # </ul>
+        # </li>
+        # </ul>
+        # @type UserData: String
 
-        attr_accessor :Agent, :EmbedType, :BusinessId, :HiddenComponents, :Operator
+        attr_accessor :Agent, :EmbedType, :BusinessId, :HiddenComponents, :Operator, :UserData
         extend Gem::Deprecate
         deprecate :Operator, :none, 2023, 11
         deprecate :Operator=, :none, 2023, 11
 
-        def initialize(agent=nil, embedtype=nil, businessid=nil, hiddencomponents=nil, operator=nil)
+        def initialize(agent=nil, embedtype=nil, businessid=nil, hiddencomponents=nil, operator=nil, userdata=nil)
           @Agent = agent
           @EmbedType = embedtype
           @BusinessId = businessid
           @HiddenComponents = hiddencomponents
           @Operator = operator
+          @UserData = userdata
         end
 
         def deserialize(params)
@@ -1354,6 +1367,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @UserData = params['UserData']
         end
       end
 
@@ -2312,9 +2326,15 @@ module TencentCloud
 
       # ChannelCreatePrepareFlow请求参数结构体
       class ChannelCreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 合同模板ID，为32位字符串。
+        # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
+        # <ul>
+        # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
+        # <li>模板Id</li>
+        # </ul>
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，此接口固定为**1**表示为用模板发起
+        # @param ResourceType: 资源类型，取值有：
+        # <ul><li> **1**：模板</li>
+        # <li> **2**：文件（默认值）</li></ul>
         # @type ResourceType: Integer
         # @param FlowInfo: 要创建的合同信息
         # @type FlowInfo: :class:`Tencentcloud::Essbasic.v20210526.models.BaseFlowInfo`
@@ -2332,7 +2352,8 @@ module TencentCloud
         # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
         # @param FlowApproverList: 合同签署人信息
         # @type FlowApproverList: Array
-        # @param FlowId: 用过去已经通过此接口发起的合同的ID复制个新的合同创建链接
+        # @param FlowId: 合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接
+        # 注: `该参数必须是一个待发起审核的合同id，并且还未审核通过`
         # @type FlowId: String
         # @param NeedPreview: 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
         # @type NeedPreview: Boolean
@@ -4977,10 +4998,15 @@ module TencentCloud
         # **true**：禁止编辑填写控件
         # **false**：（默认）允许编辑填写控件
         # @type ForbidEditFillComponent: Boolean
+        # @param SkipUploadFile: 跳过上传文件步骤
 
-        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent
+        # **true**：跳过
+        # **false**：（默认）不跳过，需要传ResourceId
+        # @type SkipUploadFile: String
 
-        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil)
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile
+
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil)
           @CanEditFlow = caneditflow
           @HideShowFlowName = hideshowflowname
           @HideShowFlowType = hideshowflowtype
@@ -4988,6 +5014,7 @@ module TencentCloud
           @CanSkipAddApprover = canskipaddapprover
           @CustomCreateFlowDescription = customcreateflowdescription
           @ForbidEditFillComponent = forbideditfillcomponent
+          @SkipUploadFile = skipuploadfile
         end
 
         def deserialize(params)
@@ -4998,6 +5025,7 @@ module TencentCloud
           @CanSkipAddApprover = params['CanSkipAddApprover']
           @CustomCreateFlowDescription = params['CustomCreateFlowDescription']
           @ForbidEditFillComponent = params['ForbidEditFillComponent']
+          @SkipUploadFile = params['SkipUploadFile']
         end
       end
 

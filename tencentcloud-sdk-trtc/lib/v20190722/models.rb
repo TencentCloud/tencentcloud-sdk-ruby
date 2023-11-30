@@ -4619,10 +4619,14 @@ module TencentCloud
         # @type FontColor: String
         # @param BackGroundColor: 水印文字的背景色，为空代表背景透明，默认为空
         # @type BackGroundColor: String
+        # @param Font: 文字水印的字体，支持设置以下值：
+        # 1. Tencent （默认）
+        # 2. SourceHanSans
+        # @type Font: String
 
-        attr_accessor :Top, :Left, :Width, :Height, :Chars, :FontSize, :FontColor, :BackGroundColor
+        attr_accessor :Top, :Left, :Width, :Height, :Chars, :FontSize, :FontColor, :BackGroundColor, :Font
 
-        def initialize(top=nil, left=nil, width=nil, height=nil, chars=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil)
+        def initialize(top=nil, left=nil, width=nil, height=nil, chars=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, font=nil)
           @Top = top
           @Left = left
           @Width = width
@@ -4631,6 +4635,7 @@ module TencentCloud
           @FontSize = fontsize
           @FontColor = fontcolor
           @BackGroundColor = backgroundcolor
+          @Font = font
         end
 
         def deserialize(params)
@@ -4642,6 +4647,7 @@ module TencentCloud
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
           @BackGroundColor = params['BackGroundColor']
+          @Font = params['Font']
         end
       end
 
@@ -4719,17 +4725,23 @@ module TencentCloud
         # @type Pos: Integer
         # @param TimeZone: 显示时间戳的时区，默认东八区
         # @type TimeZone: Integer
+        # @param Font: 文字水印的字体，支持设置以下值：
+        # 1. Tencent （默认）
+        # 2. SourceHanSans
+        # @type Font: String
 
-        attr_accessor :Pos, :TimeZone
+        attr_accessor :Pos, :TimeZone, :Font
 
-        def initialize(pos=nil, timezone=nil)
+        def initialize(pos=nil, timezone=nil, font=nil)
           @Pos = pos
           @TimeZone = timezone
+          @Font = font
         end
 
         def deserialize(params)
           @Pos = params['Pos']
           @TimeZone = params['TimeZone']
+          @Font = params['Font']
         end
       end
 
