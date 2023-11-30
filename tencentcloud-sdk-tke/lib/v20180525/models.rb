@@ -7907,6 +7907,54 @@ module TencentCloud
         end
       end
 
+      # DescribeLogSwitches请求参数结构体
+      class DescribeLogSwitchesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表
+        # @type ClusterIds: Array
+        # @param ClusterType: 集群类型，tke 或eks
+        # @type ClusterType: String
+
+        attr_accessor :ClusterIds, :ClusterType
+
+        def initialize(clusterids=nil, clustertype=nil)
+          @ClusterIds = clusterids
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeLogSwitches返回参数结构体
+      class DescribeLogSwitchesResponse < TencentCloud::Common::AbstractModel
+        # @param SwitchSet: 集群日志开关集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchSet: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SwitchSet, :RequestId
+
+        def initialize(switchset=nil, requestid=nil)
+          @SwitchSet = switchset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SwitchSet'].nil?
+            @SwitchSet = []
+            params['SwitchSet'].each do |i|
+              switch_tmp = Switch.new
+              switch_tmp.deserialize(i)
+              @SwitchSet << switch_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePodDeductionRate请求参数结构体
       class DescribePodDeductionRateRequest < TencentCloud::Common::AbstractModel
         # @param Zone: 可用区
@@ -17198,6 +17246,96 @@ module TencentCloud
           @Cpu = params['Cpu']
           @Memory = params['Memory']
           @Gpu = params['Gpu']
+        end
+      end
+
+      # 集群日志开关集合
+      class Switch < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Audit: 审计开关的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Audit: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
+        # @param Event: 事件开关的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Event: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
+        # @param Log: 普通日志的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Log: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
+        # @param MasterLog: master 日志详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterLog: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
+
+        attr_accessor :ClusterId, :Audit, :Event, :Log, :MasterLog
+
+        def initialize(clusterid=nil, audit=nil, event=nil, log=nil, masterlog=nil)
+          @ClusterId = clusterid
+          @Audit = audit
+          @Event = event
+          @Log = log
+          @MasterLog = masterlog
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Audit'].nil?
+            @Audit = SwitchInfo.new
+            @Audit.deserialize(params['Audit'])
+          end
+          unless params['Event'].nil?
+            @Event = SwitchInfo.new
+            @Event.deserialize(params['Event'])
+          end
+          unless params['Log'].nil?
+            @Log = SwitchInfo.new
+            @Log.deserialize(params['Log'])
+          end
+          unless params['MasterLog'].nil?
+            @MasterLog = SwitchInfo.new
+            @MasterLog.deserialize(params['MasterLog'])
+          end
+        end
+      end
+
+      # 日志开关详细信息
+      class SwitchInfo < TencentCloud::Common::AbstractModel
+        # @param Enable: 开启标识符 true代表开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param LogsetId: CLS日志集ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+        # @param TopicId: CLS日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param Version: 当前log-agent版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param UpgradeAble: 是否可升级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeAble: Boolean
+        # @param TopicRegion: CLS日志主题所属region
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicRegion: String
+
+        attr_accessor :Enable, :LogsetId, :TopicId, :Version, :UpgradeAble, :TopicRegion
+
+        def initialize(enable=nil, logsetid=nil, topicid=nil, version=nil, upgradeable=nil, topicregion=nil)
+          @Enable = enable
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @Version = version
+          @UpgradeAble = upgradeable
+          @TopicRegion = topicregion
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @Version = params['Version']
+          @UpgradeAble = params['UpgradeAble']
+          @TopicRegion = params['TopicRegion']
         end
       end
 

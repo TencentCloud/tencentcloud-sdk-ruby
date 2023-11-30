@@ -625,10 +625,22 @@ module TencentCloud
         # @param AllowDownload: 是否允许下载
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowDownload: Boolean
+        # @param IsDNSPODResolve: 证书域名是否全部在DNSPOD托管解析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDNSPODResolve: Boolean
+        # @param IsPackage: 是否是权益点购买的证书
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPackage: Boolean
+        # @param KeyPasswordCustomFlag: 是否存在私钥密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyPasswordCustomFlag: Boolean
+        # @param SupportDownloadType: 支持下载的WEB服务器类型： nginx、apache、iis、tomcat、jks、root、other
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportDownloadType: :class:`Tencentcloud::Ssl.v20191205.models.SupportDownloadType`
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload
+        attr_accessor :OwnerUin, :ProjectId, :From, :PackageType, :CertificateType, :ProductZhName, :Domain, :Alias, :Status, :CertificateExtra, :VulnerabilityStatus, :StatusMsg, :VerifyType, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :CertificateId, :SubjectAltName, :PackageTypeName, :StatusName, :IsVip, :IsDv, :IsWildcard, :IsVulnerability, :RenewAble, :ProjectInfo, :BoundResource, :Deployable, :Tags, :IsIgnore, :IsSM, :EncryptAlgorithm, :CAEncryptAlgorithms, :CAEndTimes, :CACommonNames, :PreAuditInfo, :AutoRenewFlag, :HostingStatus, :HostingCompleteTime, :HostingRenewCertId, :HasRenewOrder, :ReplaceOriCertIsDelete, :IsExpiring, :DVAuthDeadline, :ValidationPassedTime, :CertSANs, :AwaitingValidationMsg, :AllowDownload, :IsDNSPODResolve, :IsPackage, :KeyPasswordCustomFlag, :SupportDownloadType
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, packagetype=nil, certificatetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, certificateextra=nil, vulnerabilitystatus=nil, statusmsg=nil, verifytype=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, certificateid=nil, subjectaltname=nil, packagetypename=nil, statusname=nil, isvip=nil, isdv=nil, iswildcard=nil, isvulnerability=nil, renewable=nil, projectinfo=nil, boundresource=nil, deployable=nil, tags=nil, isignore=nil, issm=nil, encryptalgorithm=nil, caencryptalgorithms=nil, caendtimes=nil, cacommonnames=nil, preauditinfo=nil, autorenewflag=nil, hostingstatus=nil, hostingcompletetime=nil, hostingrenewcertid=nil, hasreneworder=nil, replaceoricertisdelete=nil, isexpiring=nil, dvauthdeadline=nil, validationpassedtime=nil, certsans=nil, awaitingvalidationmsg=nil, allowdownload=nil, isdnspodresolve=nil, ispackage=nil, keypasswordcustomflag=nil, supportdownloadtype=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -678,6 +690,10 @@ module TencentCloud
           @CertSANs = certsans
           @AwaitingValidationMsg = awaitingvalidationmsg
           @AllowDownload = allowdownload
+          @IsDNSPODResolve = isdnspodresolve
+          @IsPackage = ispackage
+          @KeyPasswordCustomFlag = keypasswordcustomflag
+          @SupportDownloadType = supportdownloadtype
         end
 
         def deserialize(params)
@@ -746,6 +762,13 @@ module TencentCloud
           @CertSANs = params['CertSANs']
           @AwaitingValidationMsg = params['AwaitingValidationMsg']
           @AllowDownload = params['AllowDownload']
+          @IsDNSPODResolve = params['IsDNSPODResolve']
+          @IsPackage = params['IsPackage']
+          @KeyPasswordCustomFlag = params['KeyPasswordCustomFlag']
+          unless params['SupportDownloadType'].nil?
+            @SupportDownloadType = SupportDownloadType.new
+            @SupportDownloadType.deserialize(params['SupportDownloadType'])
+          end
         end
       end
 
@@ -5478,6 +5501,46 @@ module TencentCloud
         end
       end
 
+      # 支持下载的类型
+      class SupportDownloadType < TencentCloud::Common::AbstractModel
+        # @param NGINX: 是否可以下载nginx可用格式
+        # @type NGINX: Boolean
+        # @param APACHE: 是否可以下载apache可用格式
+        # @type APACHE: Boolean
+        # @param TOMCAT: 是否可以下载tomcat可用格式
+        # @type TOMCAT: Boolean
+        # @param IIS: 是否可以下载iis可用格式
+        # @type IIS: Boolean
+        # @param JKS: 是否可以下载JKS可用格式
+        # @type JKS: Boolean
+        # @param OTHER: 是否可以下载其他格式
+        # @type OTHER: Boolean
+        # @param ROOT: 是否可以下载根证书
+        # @type ROOT: Boolean
+
+        attr_accessor :NGINX, :APACHE, :TOMCAT, :IIS, :JKS, :OTHER, :ROOT
+
+        def initialize(nginx=nil, apache=nil, tomcat=nil, iis=nil, jks=nil, other=nil, root=nil)
+          @NGINX = nginx
+          @APACHE = apache
+          @TOMCAT = tomcat
+          @IIS = iis
+          @JKS = jks
+          @OTHER = other
+          @ROOT = root
+        end
+
+        def deserialize(params)
+          @NGINX = params['NGINX']
+          @APACHE = params['APACHE']
+          @TOMCAT = params['TOMCAT']
+          @IIS = params['IIS']
+          @JKS = params['JKS']
+          @OTHER = params['OTHER']
+          @ROOT = params['ROOT']
+        end
+      end
+
       # 异步任务证书关联云资源结果
       class SyncTaskBindResourceResult < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -6056,29 +6119,29 @@ module TencentCloud
 
       # UpdateCertificateInstance请求参数结构体
       class UpdateCertificateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param OldCertificateId: 一键更新原证书ID
+        # @param OldCertificateId: 一键更新原证书ID， 查询绑定该证书的云资源然后进行证书更新
         # @type OldCertificateId: String
-        # @param ResourceTypes: 需要部署的资源类型，参数值可选：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb
+        # @param ResourceTypes: 需要部署的资源类型，参数值可选（小写）：clb、cdn、waf、live、ddos、teo、apigateway、vod、tke、tcb、tse
         # @type ResourceTypes: Array
-        # @param CertificateId: 一键更新新证书ID
+        # @param CertificateId: 一键更新新证书ID，不传该则证书公钥和私钥必传
         # @type CertificateId: String
         # @param Regions: 需要部署的地域列表（废弃）
         # @type Regions: Array
-        # @param ResourceTypesRegions: 云资源需要部署的地域列表
+        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，如：clb、tke、apigateway、waf、tcb、tse等
         # @type ResourceTypesRegions: Array
         # @param CertificatePublicKey: 证书公钥， 若上传证书公钥， 则CertificateId不用传
         # @type CertificatePublicKey: String
-        # @param CertificatePrivateKey: 证书私钥，若上传证书公钥， 则证书私钥必填
+        # @param CertificatePrivateKey: 证书私钥，若上传证书公钥， 则CertificateId不用传
         # @type CertificatePrivateKey: String
-        # @param ExpiringNotificationSwitch: 旧证书是否忽略到期提醒  0:不忽略通知。1:忽略通知
+        # @param ExpiringNotificationSwitch: 旧证书是否忽略到期提醒  0:不忽略通知。1:忽略通知，忽略OldCertificateId到期提醒
         # @type ExpiringNotificationSwitch: Integer
-        # @param Repeatable: 相同的证书是否允许重复上传，若上传证书公钥， 则可以配置该参数
+        # @param Repeatable: 相同的证书是否允许重复上传，若选择上传证书， 则可以配置该参数
         # @type Repeatable: Boolean
-        # @param AllowDownload: 是否允许下载，若上传证书公钥， 则可以配置该参数
+        # @param AllowDownload: 是否允许下载，若选择上传证书， 则可以配置该参数
         # @type AllowDownload: Boolean
-        # @param Tags: 标签列表，若上传证书公钥， 则可以配置该参数
+        # @param Tags: 标签列表，若选择上传证书， 则可以配置该参数
         # @type Tags: Array
-        # @param ProjectId: 项目 ID，若上传证书公钥， 则可以配置该参数
+        # @param ProjectId: 项目 ID，若选择上传证书， 则可以配置该参数
         # @type ProjectId: Integer
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
@@ -6138,20 +6201,32 @@ module TencentCloud
         # @type DeployRecordId: Integer
         # @param DeployStatus: 部署状态，1表示部署成功，0表示部署失败
         # @type DeployStatus: Integer
+        # @param UpdateSyncProgress: 更新异步创建任务进度详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateSyncProgress: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeployRecordId, :DeployStatus, :RequestId
+        attr_accessor :DeployRecordId, :DeployStatus, :UpdateSyncProgress, :RequestId
 
-        def initialize(deployrecordid=nil, deploystatus=nil, requestid=nil)
+        def initialize(deployrecordid=nil, deploystatus=nil, updatesyncprogress=nil, requestid=nil)
           @DeployRecordId = deployrecordid
           @DeployStatus = deploystatus
+          @UpdateSyncProgress = updatesyncprogress
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DeployRecordId = params['DeployRecordId']
           @DeployStatus = params['DeployStatus']
+          unless params['UpdateSyncProgress'].nil?
+            @UpdateSyncProgress = []
+            params['UpdateSyncProgress'].each do |i|
+              updatesyncprogress_tmp = UpdateSyncProgress.new
+              updatesyncprogress_tmp.deserialize(i)
+              @UpdateSyncProgress << updatesyncprogress_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6416,6 +6491,72 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 更新异步任务进度
+      class UpdateSyncProgress < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param UpdateSyncProgressRegions: 地域结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateSyncProgressRegions: Array
+        # @param Status: 异步更新进度状态：0， 待处理， 1 已处理， 3 处理中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :ResourceType, :UpdateSyncProgressRegions, :Status
+
+        def initialize(resourcetype=nil, updatesyncprogressregions=nil, status=nil)
+          @ResourceType = resourcetype
+          @UpdateSyncProgressRegions = updatesyncprogressregions
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          unless params['UpdateSyncProgressRegions'].nil?
+            @UpdateSyncProgressRegions = []
+            params['UpdateSyncProgressRegions'].each do |i|
+              updatesyncprogressregion_tmp = UpdateSyncProgressRegion.new
+              updatesyncprogressregion_tmp.deserialize(i)
+              @UpdateSyncProgressRegions << updatesyncprogressregion_tmp
+            end
+          end
+          @Status = params['Status']
+        end
+      end
+
+      # 更新异步任务进度
+      class UpdateSyncProgressRegion < TencentCloud::Common::AbstractModel
+        # @param Region: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param OffsetCount: 执行完成数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffsetCount: Integer
+        # @param Status: 异步更新进度状态：0， 待处理， 1 已处理， 3 处理中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Region, :TotalCount, :OffsetCount, :Status
+
+        def initialize(region=nil, totalcount=nil, offsetcount=nil, status=nil)
+          @Region = region
+          @TotalCount = totalcount
+          @OffsetCount = offsetcount
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @TotalCount = params['TotalCount']
+          @OffsetCount = params['OffsetCount']
+          @Status = params['Status']
         end
       end
 

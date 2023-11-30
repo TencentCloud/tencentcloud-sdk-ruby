@@ -500,17 +500,25 @@ module TencentCloud
         # @type InNetLimit: Integer
         # @param OutNetLimit: 单分片出流量带宽限制，单位：MB。
         # @type OutNetLimit: Integer
-        # @param ClientLimit: 单分片连接数限制。
+        # @param ClientLimit: 实例当前单分片连接数限制。
         # @type ClientLimit: Integer
+        # @param ClientLimitMin: 单分片连接数限制最小值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientLimitMin: Integer
+        # @param ClientLimitMax: 单分片连接数限制最大值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientLimitMax: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InNetLimit, :OutNetLimit, :ClientLimit, :RequestId
+        attr_accessor :InNetLimit, :OutNetLimit, :ClientLimit, :ClientLimitMin, :ClientLimitMax, :RequestId
 
-        def initialize(innetlimit=nil, outnetlimit=nil, clientlimit=nil, requestid=nil)
+        def initialize(innetlimit=nil, outnetlimit=nil, clientlimit=nil, clientlimitmin=nil, clientlimitmax=nil, requestid=nil)
           @InNetLimit = innetlimit
           @OutNetLimit = outnetlimit
           @ClientLimit = clientlimit
+          @ClientLimitMin = clientlimitmin
+          @ClientLimitMax = clientlimitmax
           @RequestId = requestid
         end
 
@@ -518,6 +526,8 @@ module TencentCloud
           @InNetLimit = params['InNetLimit']
           @OutNetLimit = params['OutNetLimit']
           @ClientLimit = params['ClientLimit']
+          @ClientLimitMin = params['ClientLimitMin']
+          @ClientLimitMax = params['ClientLimitMax']
           @RequestId = params['RequestId']
         end
       end
@@ -2661,16 +2671,19 @@ module TencentCloud
         # @type VpcId: String
         # @param Vip: 修改后的 VIP 地址。
         # @type Vip: String
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :SubnetId, :VpcId, :Vip, :RequestId
+        attr_accessor :Status, :SubnetId, :VpcId, :Vip, :TaskId, :RequestId
 
-        def initialize(status=nil, subnetid=nil, vpcid=nil, vip=nil, requestid=nil)
+        def initialize(status=nil, subnetid=nil, vpcid=nil, vip=nil, taskid=nil, requestid=nil)
           @Status = status
           @SubnetId = subnetid
           @VpcId = vpcid
           @Vip = vip
+          @TaskId = taskid
           @RequestId = requestid
         end
 
@@ -2679,6 +2692,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @VpcId = params['VpcId']
           @Vip = params['Vip']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

@@ -1757,6 +1757,209 @@ module TencentCloud
         end
       end
 
+      # 电子发票（机票行程单）
+      class ElectronicFlightTicketFull < TencentCloud::Common::AbstractModel
+        # @param UserName: 旅客姓名
+        # @type UserName: String
+        # @param UserID: 有效身份证件号码
+        # @type UserID: String
+        # @param Endorsement: 签注
+        # @type Endorsement: String
+        # @param GPOrder: GP单号
+        # @type GPOrder: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param Fare: 票价
+        # @type Fare: String
+        # @param FuelSurcharge: 燃油附加费
+        # @type FuelSurcharge: String
+        # @param TaxRate: 增值税税率
+        # @type TaxRate: String
+        # @param Tax: 增值税税额
+        # @type Tax: String
+        # @param DevelopmentFund: 民航发展基金
+        # @type DevelopmentFund: String
+        # @param OtherTax: 其他税费
+        # @type OtherTax: String
+        # @param Total: 合计
+        # @type Total: String
+        # @param ElectronicTicketNum: 电子客票号码
+        # @type ElectronicTicketNum: String
+        # @param VerificationCode: 验证码
+        # @type VerificationCode: String
+        # @param PromptInformation: 提示信息
+        # @type PromptInformation: String
+        # @param Insurance: 保险费
+        # @type Insurance: String
+        # @param Issuer: 填开单位
+        # @type Issuer: String
+        # @param Date: 填开时间
+        # @type Date: String
+        # @param DomesticInternationalTag: 国内国际标识
+        # @type DomesticInternationalTag: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param Seller: 销售方名称
+        # @type Seller: String
+        # @param BuyerTaxID: 统一社会信用代码
+        # @type BuyerTaxID: String
+        # @param FlightItems: 机票详细信息元组
+        # @type FlightItems: Array
+
+        attr_accessor :UserName, :UserID, :Endorsement, :GPOrder, :Number, :Fare, :FuelSurcharge, :TaxRate, :Tax, :DevelopmentFund, :OtherTax, :Total, :ElectronicTicketNum, :VerificationCode, :PromptInformation, :Insurance, :Issuer, :Date, :DomesticInternationalTag, :Buyer, :Seller, :BuyerTaxID, :FlightItems
+
+        def initialize(username=nil, userid=nil, endorsement=nil, gporder=nil, number=nil, fare=nil, fuelsurcharge=nil, taxrate=nil, tax=nil, developmentfund=nil, othertax=nil, total=nil, electronicticketnum=nil, verificationcode=nil, promptinformation=nil, insurance=nil, issuer=nil, date=nil, domesticinternationaltag=nil, buyer=nil, seller=nil, buyertaxid=nil, flightitems=nil)
+          @UserName = username
+          @UserID = userid
+          @Endorsement = endorsement
+          @GPOrder = gporder
+          @Number = number
+          @Fare = fare
+          @FuelSurcharge = fuelsurcharge
+          @TaxRate = taxrate
+          @Tax = tax
+          @DevelopmentFund = developmentfund
+          @OtherTax = othertax
+          @Total = total
+          @ElectronicTicketNum = electronicticketnum
+          @VerificationCode = verificationcode
+          @PromptInformation = promptinformation
+          @Insurance = insurance
+          @Issuer = issuer
+          @Date = date
+          @DomesticInternationalTag = domesticinternationaltag
+          @Buyer = buyer
+          @Seller = seller
+          @BuyerTaxID = buyertaxid
+          @FlightItems = flightitems
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @UserID = params['UserID']
+          @Endorsement = params['Endorsement']
+          @GPOrder = params['GPOrder']
+          @Number = params['Number']
+          @Fare = params['Fare']
+          @FuelSurcharge = params['FuelSurcharge']
+          @TaxRate = params['TaxRate']
+          @Tax = params['Tax']
+          @DevelopmentFund = params['DevelopmentFund']
+          @OtherTax = params['OtherTax']
+          @Total = params['Total']
+          @ElectronicTicketNum = params['ElectronicTicketNum']
+          @VerificationCode = params['VerificationCode']
+          @PromptInformation = params['PromptInformation']
+          @Insurance = params['Insurance']
+          @Issuer = params['Issuer']
+          @Date = params['Date']
+          @DomesticInternationalTag = params['DomesticInternationalTag']
+          @Buyer = params['Buyer']
+          @Seller = params['Seller']
+          @BuyerTaxID = params['BuyerTaxID']
+          unless params['FlightItems'].nil?
+            @FlightItems = []
+            params['FlightItems'].each do |i|
+              flightiteminfo_tmp = FlightItemInfo.new
+              flightiteminfo_tmp.deserialize(i)
+              @FlightItems << flightiteminfo_tmp
+            end
+          end
+        end
+      end
+
+      # 电子发票（火车票）
+      class ElectronicTrainTicketFull < TencentCloud::Common::AbstractModel
+        # @param TypeOfVoucher: 电子发票类型
+        # @type TypeOfVoucher: String
+        # @param ElectronicTicketNum: 电子客票号
+        # @type ElectronicTicketNum: String
+        # @param Date: 开票日期
+        # @type Date: String
+        # @param StationGetOn: 始发站
+        # @type StationGetOn: String
+        # @param StationGetOff: 到达站
+        # @type StationGetOff: String
+        # @param TrainNumber: 火车号
+        # @type TrainNumber: String
+        # @param DateGetOn: 乘车日期
+        # @type DateGetOn: String
+        # @param TimeGetOn: 始发时间
+        # @type TimeGetOn: String
+        # @param Seat: 座位类型
+        # @type Seat: String
+        # @param SeatNumber: 座位号
+        # @type SeatNumber: String
+        # @param Fare: 票价
+        # @type Fare: String
+        # @param Number: 发票号码
+        # @type Number: String
+        # @param UserID: 身份证号
+        # @type UserID: String
+        # @param UserName: 乘车人姓名
+        # @type UserName: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param TaxRate: 税率
+        # @type TaxRate: String
+        # @param Tax: 税额
+        # @type Tax: String
+        # @param Buyer: 购买方名称
+        # @type Buyer: String
+        # @param BuyerTaxID: 统一社会信用代码
+        # @type BuyerTaxID: String
+        # @param OriginalNumber: 原发票号码
+        # @type OriginalNumber: String
+
+        attr_accessor :TypeOfVoucher, :ElectronicTicketNum, :Date, :StationGetOn, :StationGetOff, :TrainNumber, :DateGetOn, :TimeGetOn, :Seat, :SeatNumber, :Fare, :Number, :UserID, :UserName, :Total, :TaxRate, :Tax, :Buyer, :BuyerTaxID, :OriginalNumber
+
+        def initialize(typeofvoucher=nil, electronicticketnum=nil, date=nil, stationgeton=nil, stationgetoff=nil, trainnumber=nil, dategeton=nil, timegeton=nil, seat=nil, seatnumber=nil, fare=nil, number=nil, userid=nil, username=nil, total=nil, taxrate=nil, tax=nil, buyer=nil, buyertaxid=nil, originalnumber=nil)
+          @TypeOfVoucher = typeofvoucher
+          @ElectronicTicketNum = electronicticketnum
+          @Date = date
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @TrainNumber = trainnumber
+          @DateGetOn = dategeton
+          @TimeGetOn = timegeton
+          @Seat = seat
+          @SeatNumber = seatnumber
+          @Fare = fare
+          @Number = number
+          @UserID = userid
+          @UserName = username
+          @Total = total
+          @TaxRate = taxrate
+          @Tax = tax
+          @Buyer = buyer
+          @BuyerTaxID = buyertaxid
+          @OriginalNumber = originalnumber
+        end
+
+        def deserialize(params)
+          @TypeOfVoucher = params['TypeOfVoucher']
+          @ElectronicTicketNum = params['ElectronicTicketNum']
+          @Date = params['Date']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @TrainNumber = params['TrainNumber']
+          @DateGetOn = params['DateGetOn']
+          @TimeGetOn = params['TimeGetOn']
+          @Seat = params['Seat']
+          @SeatNumber = params['SeatNumber']
+          @Fare = params['Fare']
+          @Number = params['Number']
+          @UserID = params['UserID']
+          @UserName = params['UserName']
+          @Total = params['Total']
+          @TaxRate = params['TaxRate']
+          @Tax = params['Tax']
+          @Buyer = params['Buyer']
+          @BuyerTaxID = params['BuyerTaxID']
+          @OriginalNumber = params['OriginalNumber']
+        end
+      end
+
       # EnglishOCR请求参数结构体
       class EnglishOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -2294,6 +2497,54 @@ module TencentCloud
           @StationGetOff = params['StationGetOff']
           @Allow = params['Allow']
           @FareBasis = params['FareBasis']
+        end
+      end
+
+      # 机票详细信息元组
+      class FlightItemInfo < TencentCloud::Common::AbstractModel
+        # @param TerminalGetOn: 出发站
+        # @type TerminalGetOn: String
+        # @param TerminalGetOff: 到达站
+        # @type TerminalGetOff: String
+        # @param Carrier: 承运人
+        # @type Carrier: String
+        # @param FlightNumber: 航班号
+        # @type FlightNumber: String
+        # @param Seat: 座位等级
+        # @type Seat: String
+        # @param DateGetOn: 乘机日期
+        # @type DateGetOn: String
+        # @param TimeGetOn: 乘机时间
+        # @type TimeGetOn: String
+        # @param FareBasis: 客票级别/客票类别
+        # @type FareBasis: String
+        # @param Allow: 免费行李额
+        # @type Allow: String
+
+        attr_accessor :TerminalGetOn, :TerminalGetOff, :Carrier, :FlightNumber, :Seat, :DateGetOn, :TimeGetOn, :FareBasis, :Allow
+
+        def initialize(terminalgeton=nil, terminalgetoff=nil, carrier=nil, flightnumber=nil, seat=nil, dategeton=nil, timegeton=nil, farebasis=nil, allow=nil)
+          @TerminalGetOn = terminalgeton
+          @TerminalGetOff = terminalgetoff
+          @Carrier = carrier
+          @FlightNumber = flightnumber
+          @Seat = seat
+          @DateGetOn = dategeton
+          @TimeGetOn = timegeton
+          @FareBasis = farebasis
+          @Allow = allow
+        end
+
+        def deserialize(params)
+          @TerminalGetOn = params['TerminalGetOn']
+          @TerminalGetOff = params['TerminalGetOff']
+          @Carrier = params['Carrier']
+          @FlightNumber = params['FlightNumber']
+          @Seat = params['Seat']
+          @DateGetOn = params['DateGetOn']
+          @TimeGetOn = params['TimeGetOn']
+          @FareBasis = params['FareBasis']
+          @Allow = params['Allow']
         end
       end
 
@@ -8109,10 +8360,16 @@ module TencentCloud
         # @param VatSalesList: 增值税销货清单
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VatSalesList: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoiceInfo`
+        # @param ElectronicTrainTicketFull: 电子发票（火车票）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicTrainTicketFull: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicTrainTicketFull`
+        # @param ElectronicFlightTicketFull: 电子发票（机票行程单）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicFlightTicketFull: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicFlightTicketFull`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -8138,6 +8395,8 @@ module TencentCloud
           @MedicalOutpatientInvoice = medicaloutpatientinvoice
           @MedicalHospitalizedInvoice = medicalhospitalizedinvoice
           @VatSalesList = vatsaleslist
+          @ElectronicTrainTicketFull = electronictrainticketfull
+          @ElectronicFlightTicketFull = electronicflightticketfull
         end
 
         def deserialize(params)
@@ -8240,6 +8499,14 @@ module TencentCloud
           unless params['VatSalesList'].nil?
             @VatSalesList = VatInvoiceInfo.new
             @VatSalesList.deserialize(params['VatSalesList'])
+          end
+          unless params['ElectronicTrainTicketFull'].nil?
+            @ElectronicTrainTicketFull = ElectronicTrainTicketFull.new
+            @ElectronicTrainTicketFull.deserialize(params['ElectronicTrainTicketFull'])
+          end
+          unless params['ElectronicFlightTicketFull'].nil?
+            @ElectronicFlightTicketFull = ElectronicFlightTicketFull.new
+            @ElectronicFlightTicketFull.deserialize(params['ElectronicFlightTicketFull'])
           end
         end
       end

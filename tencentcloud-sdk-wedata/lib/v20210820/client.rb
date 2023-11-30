@@ -7468,6 +7468,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 事件管理-触发事件
+
+        # @param request: Request instance for TriggerDsEvent.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::TriggerDsEventRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::TriggerDsEventResponse`
+        def TriggerDsEvent(request)
+          body = send_request('TriggerDsEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TriggerDsEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 触发事件
 

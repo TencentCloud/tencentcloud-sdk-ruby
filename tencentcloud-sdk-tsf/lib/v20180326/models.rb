@@ -5337,7 +5337,7 @@ module TencentCloud
 
       # DeleteLane返回参数结构体
       class DeleteLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true / false
+        # @param Result: 删除成功: true / 删除失败: false
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6803,7 +6803,7 @@ module TencentCloud
 
       # DescribeBasicResourceUsage请求参数结构体
       class DescribeBasicResourceUsageRequest < TencentCloud::Common::AbstractModel
-        # @param All: 是否无视权限查询全租户的，默认 true。注：无论 true 还是 false，PackageSpaceUsed 和 ConsulInstanceCount  都是全租户的
+        # @param All: 是否拥有权限查询全租户的，默认 true。注：无论 true 还是 false，PackageSpaceUsed 和 ConsulInstanceCount  都是全租户的
         # @type All: Boolean
 
         attr_accessor :All
@@ -10712,7 +10712,7 @@ module TencentCloud
         # @type NamespaceTypeList: Array
         # @param NamespaceName: 通过命名空间名精确过滤
         # @type NamespaceName: String
-        # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认，命名空间。1：非默认命名空间
+        # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认命名空间。1：非默认命名空间
         # @type IsDefault: String
         # @param DisableProgramAuthCheck: 无
         # @type DisableProgramAuthCheck: Boolean
@@ -14722,7 +14722,8 @@ module TencentCloud
 
       # ModifyApplication返回参数结构体
       class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true/false
+        # @param Result: true：操作成功
+        # false：操作失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -14978,7 +14979,7 @@ module TencentCloud
 
       # ModifyLane返回参数结构体
       class ModifyLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态
+        # @param Result: 编辑成功: true / 编辑失败: false
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

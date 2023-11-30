@@ -420,6 +420,78 @@ module TencentCloud
         end
       end
 
+      # AssignMangedTableProperties请求参数结构体
+      class AssignMangedTablePropertiesRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+        # @param Columns: 表字段信息
+        # @type Columns: Array
+        # @param Partitions: 表分区信息
+        # @type Partitions: Array
+        # @param Properties: 表属性信息
+        # @type Properties: Array
+        # @param UpsertKeys: V2 upsert表 upsert键
+        # @type UpsertKeys: Array
+
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Properties, :UpsertKeys
+
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, properties=nil, upsertkeys=nil)
+          @TableBaseInfo = tablebaseinfo
+          @Columns = columns
+          @Partitions = partitions
+          @Properties = properties
+          @UpsertKeys = upsertkeys
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tcolumn_tmp = TColumn.new
+              tcolumn_tmp.deserialize(i)
+              @Columns << tcolumn_tmp
+            end
+          end
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              tpartition_tmp = TPartition.new
+              tpartition_tmp.deserialize(i)
+              @Partitions << tpartition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+          @UpsertKeys = params['UpsertKeys']
+        end
+      end
+
+      # AssignMangedTableProperties返回参数结构体
+      class AssignMangedTablePropertiesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AttachUserPolicy请求参数结构体
       class AttachUserPolicyRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。

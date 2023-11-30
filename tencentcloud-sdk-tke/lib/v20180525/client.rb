@@ -2861,6 +2861,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群日志（审计、事件、普通日志）开关列表
+
+        # @param request: Request instance for DescribeLogSwitches.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeLogSwitchesRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeLogSwitchesResponse`
+        def DescribeLogSwitches(request)
+          body = send_request('DescribeLogSwitches', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogSwitchesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询各个规格的 Pod 的抵扣率
 
         # @param request: Request instance for DescribePodDeductionRate.

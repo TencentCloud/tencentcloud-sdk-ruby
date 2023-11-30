@@ -394,7 +394,7 @@ module TencentCloud
         # @type FunctionVersion: String
         # @param Namespace: 函数所在的命名空间
         # @type Namespace: String
-        # @param RoutingConfig: 别名的请求路由配置
+        # @param RoutingConfig: 别名的路由信息，需要为别名指定附加版本时，必须提供此参数；	  附加版本指的是：除主版本 FunctionVersion 外，为此别名再指定一个函数可正常使用的版本；   这里附加版本中的 Version 值 不能是别名指向的主版本；  要注意的是：如果想要某个版本的流量全部指向这个别名，不需配置此参数； 目前一个别名最多只能指定一个附加版本
         # @type RoutingConfig: :class:`Tencentcloud::Scf.v20180416.models.RoutingConfig`
         # @param Description: 别名的描述信息
         # @type Description: String
@@ -3914,6 +3914,7 @@ module TencentCloud
       end
 
       # 别名的版本路由配置
+      # 其中：随机权重路由附加版本和规则路由附加版本不可以同时配置
       class RoutingConfig < TencentCloud::Common::AbstractModel
         # @param AdditionalVersionWeights: 随机权重路由附加版本
         # @type AdditionalVersionWeights: Array
@@ -4318,7 +4319,7 @@ module TencentCloud
         # @type FunctionVersion: String
         # @param Namespace: 函数所在的命名空间
         # @type Namespace: String
-        # @param RoutingConfig: 别名的路由信息，需要为别名指定附加版本时，必须提供此参数
+        # @param RoutingConfig: 别名的路由信息，需要为别名指定附加版本时，必须提供此参数；	  附加版本指的是：除主版本 FunctionVersion 外，为此别名再指定一个函数可正常使用的版本；   这里附加版本中的 Version 值 不能是别名指向的主版本；  要注意的是：如果想要某个版本的流量全部指向这个别名，不需配置此参数； 目前一个别名最多只能指定一个附加版本
         # @type RoutingConfig: :class:`Tencentcloud::Scf.v20180416.models.RoutingConfig`
         # @param Description: 别名的描述
         # @type Description: String
@@ -4487,10 +4488,14 @@ module TencentCloud
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
         # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
         # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
+        # @param DnsCache: 是否开启Dns缓存能力。只支持EVENT函数。默认为FALSE，TRUE 为开启，FALSE为关闭
+        # @type DnsCache: String
+        # @param IntranetConfig: 内网访问配置
+        # @type IntranetConfig: :class:`Tencentcloud::Scf.v20180416.models.IntranetConfigIn`
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams, :InstanceConcurrencyConfig
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams, :InstanceConcurrencyConfig, :DnsCache, :IntranetConfig
 
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil, instanceconcurrencyconfig=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil, instanceconcurrencyconfig=nil, dnscache=nil, intranetconfig=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -4512,6 +4517,8 @@ module TencentCloud
           @InitTimeout = inittimeout
           @ProtocolParams = protocolparams
           @InstanceConcurrencyConfig = instanceconcurrencyconfig
+          @DnsCache = dnscache
+          @IntranetConfig = intranetconfig
         end
 
         def deserialize(params)
@@ -4563,6 +4570,11 @@ module TencentCloud
           unless params['InstanceConcurrencyConfig'].nil?
             @InstanceConcurrencyConfig = InstanceConcurrencyConfig.new
             @InstanceConcurrencyConfig.deserialize(params['InstanceConcurrencyConfig'])
+          end
+          @DnsCache = params['DnsCache']
+          unless params['IntranetConfig'].nil?
+            @IntranetConfig = IntranetConfigIn.new
+            @IntranetConfig.deserialize(params['IntranetConfig'])
           end
         end
       end

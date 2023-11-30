@@ -5593,12 +5593,19 @@ module TencentCloud
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param WorkflowInstanceId: 用印审批单的ID，可通过用印申请回调获取。
         # @type WorkflowInstanceId: String
+        # @param Endpoint: 生成链接的类型：
+        # 生成链接的类型
+        # <ul><li>**LongLink**：(默认)长链接，H5跳转到电子签小程序链接，链接有效期为1年</li>
+        # <li>**ShortLink**：H5跳转到电子签小程序链接，一般用于发送短信中带的链接，打开后进入腾讯电子签小程序，链接有效期为7天</li>
+        # <li>**App**：第三方APP或小程序跳转电子签小程序链接，一般用于贵方小程序或者APP跳转过来，打开后进入腾讯电子签小程序，链接有效期为1年</li></ul>
+        # @type Endpoint: String
 
-        attr_accessor :Agent, :WorkflowInstanceId
+        attr_accessor :Agent, :WorkflowInstanceId, :Endpoint
 
-        def initialize(agent=nil, workflowinstanceid=nil)
+        def initialize(agent=nil, workflowinstanceid=nil, endpoint=nil)
           @Agent = agent
           @WorkflowInstanceId = workflowinstanceid
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -5607,12 +5614,13 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @WorkflowInstanceId = params['WorkflowInstanceId']
+          @Endpoint = params['Endpoint']
         end
       end
 
       # DescribeChannelSealPolicyWorkflowUrl返回参数结构体
       class DescribeChannelSealPolicyWorkflowUrlResponse < TencentCloud::Common::AbstractModel
-        # @param WorkflowUrl: 用印审批小程序链接，链接类型（通过H5唤起小程序方式查看），一年内有效。
+        # @param WorkflowUrl: 用印审批小程序链接，链接类型（通过H5唤起小程序或通过APP跳转方式查看）。
         # @type WorkflowUrl: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -4002,10 +4002,16 @@ module TencentCloud
         # @param DischargeInstruction: 出院医嘱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DischargeInstruction: String
+        # @param AdmissionDiagnosis: 入院诊断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionDiagnosis: String
 
-        attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction
+        attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis
+        extend Gem::Deprecate
+        deprecate :AdmissionDignosis, :none, 2023, 11
+        deprecate :AdmissionDignosis=, :none, 2023, 11
 
-        def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil)
+        def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil)
           @AdmissionTime = admissiontime
           @DischargeTime = dischargetime
           @AdmissionDays = admissiondays
@@ -4014,6 +4020,7 @@ module TencentCloud
           @DiagnosisTreatment = diagnosistreatment
           @DischargeDiagnosis = dischargediagnosis
           @DischargeInstruction = dischargeinstruction
+          @AdmissionDiagnosis = admissiondiagnosis
         end
 
         def deserialize(params)
@@ -4025,6 +4032,7 @@ module TencentCloud
           @DiagnosisTreatment = params['DiagnosisTreatment']
           @DischargeDiagnosis = params['DischargeDiagnosis']
           @DischargeInstruction = params['DischargeInstruction']
+          @AdmissionDiagnosis = params['AdmissionDiagnosis']
         end
       end
 
@@ -4585,12 +4593,19 @@ module TencentCloud
         # @param Version: 版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param TableIndicators: 检验报告V3结论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableIndicators: Array
 
-        attr_accessor :TableIndictors, :Version
+        attr_accessor :TableIndictors, :Version, :TableIndicators
+        extend Gem::Deprecate
+        deprecate :TableIndictors, :none, 2023, 11
+        deprecate :TableIndictors=, :none, 2023, 11
 
-        def initialize(tableindictors=nil, version=nil)
+        def initialize(tableindictors=nil, version=nil, tableindicators=nil)
           @TableIndictors = tableindictors
           @Version = version
+          @TableIndicators = tableindicators
         end
 
         def deserialize(params)
@@ -4603,6 +4618,14 @@ module TencentCloud
             end
           end
           @Version = params['Version']
+          unless params['TableIndicators'].nil?
+            @TableIndicators = []
+            params['TableIndicators'].each do |i|
+              tableindicators_tmp = TableIndicators.new
+              tableindicators_tmp.deserialize(i)
+              @TableIndicators << tableindicators_tmp
+            end
+          end
         end
       end
 
@@ -10443,10 +10466,16 @@ module TencentCloud
         # @param ObservationDays: 观测天数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ObservationDays: String
+        # @param AdmissionCondition: 入院
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdmissionCondition: String
 
-        attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays
+        attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
+        extend Gem::Deprecate
+        deprecate :DmissionCondition, :none, 2023, 11
+        deprecate :DmissionCondition=, :none, 2023, 11
 
-        def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil)
+        def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition
           @ChiefComplaint = chiefcomplaint
           @DiseasePresent = diseasepresent
@@ -10474,6 +10503,7 @@ module TencentCloud
           @DeathDate = deathdate
           @RelapseDate = relapsedate
           @ObservationDays = observationdays
+          @AdmissionCondition = admissioncondition
         end
 
         def deserialize(params)
@@ -10504,6 +10534,7 @@ module TencentCloud
           @DeathDate = params['DeathDate']
           @RelapseDate = params['RelapseDate']
           @ObservationDays = params['ObservationDays']
+          @AdmissionCondition = params['AdmissionCondition']
         end
       end
 

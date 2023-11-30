@@ -2075,6 +2075,45 @@ module TencentCloud
         end
       end
 
+      # 批量操作结果，带失败原因
+      class BatchOpsDTO < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param SuccessCount: 成功数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailCount: Integer
+        # @param FailMessageList: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailMessageList: Array
+
+        attr_accessor :TotalCount, :SuccessCount, :FailCount, :FailMessageList
+
+        def initialize(totalcount=nil, successcount=nil, failcount=nil, failmessagelist=nil)
+          @TotalCount = totalcount
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @FailMessageList = failmessagelist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          unless params['FailMessageList'].nil?
+            @FailMessageList = []
+            params['FailMessageList'].each do |i|
+              failmessage_tmp = FailMessage.new
+              failmessage_tmp.deserialize(i)
+              @FailMessageList << failmessage_tmp
+            end
+          end
+        end
+      end
+
       # BatchRerunIntegrationTaskInstances请求参数结构体
       class BatchRerunIntegrationTaskInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Instances: 实例信息
@@ -18399,6 +18438,42 @@ module TencentCloud
         end
       end
 
+      # 事件实例信息
+      class EventCaseDTO < TencentCloud::Common::AbstractModel
+        # @param CaseId: 事件实例id
+        # @type CaseId: String
+        # @param Name: 事件名
+        # @type Name: String
+        # @param Dimension: 事件格式
+        # @type Dimension: String
+        # @param CreationTs: 创建时间
+        # @type CreationTs: String
+        # @param ConsumerId: 消费者id
+        # @type ConsumerId: String
+        # @param Description: 描述信息
+        # @type Description: String
+
+        attr_accessor :CaseId, :Name, :Dimension, :CreationTs, :ConsumerId, :Description
+
+        def initialize(caseid=nil, name=nil, dimension=nil, creationts=nil, consumerid=nil, description=nil)
+          @CaseId = caseid
+          @Name = name
+          @Dimension = dimension
+          @CreationTs = creationts
+          @ConsumerId = consumerid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @CaseId = params['CaseId']
+          @Name = params['Name']
+          @Dimension = params['Dimension']
+          @CreationTs = params['CreationTs']
+          @ConsumerId = params['ConsumerId']
+          @Description = params['Description']
+        end
+      end
+
       # EventCaseOpsDto
       class EventCaseOpsDto < TencentCloud::Common::AbstractModel
         # @param CaseId: 案例ID
@@ -18736,6 +18811,28 @@ module TencentCloud
           @SchedulerTaskId = params['SchedulerTaskId']
           @SchedulerCurRunDate = params['SchedulerCurRunDate']
           @FilePath = params['FilePath']
+        end
+      end
+
+      # 错误处理结果信息
+      class FailMessage < TencentCloud::Common::AbstractModel
+        # @param Key: 数据唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param ErrorMessage: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+
+        attr_accessor :Key, :ErrorMessage
+
+        def initialize(key=nil, errormessage=nil)
+          @Key = key
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 
@@ -34247,6 +34344,57 @@ module TencentCloud
           @TableId = params['TableId']
           @TableName = params['TableName']
           @Cnt = params['Cnt']
+        end
+      end
+
+      # TriggerDsEvent请求参数结构体
+      class TriggerDsEventRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param EventCaseList: 事件实例信息
+        # @type EventCaseList: Array
+
+        attr_accessor :ProjectId, :EventCaseList
+
+        def initialize(projectid=nil, eventcaselist=nil)
+          @ProjectId = projectid
+          @EventCaseList = eventcaselist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          unless params['EventCaseList'].nil?
+            @EventCaseList = []
+            params['EventCaseList'].each do |i|
+              eventcasedto_tmp = EventCaseDTO.new
+              eventcasedto_tmp.deserialize(i)
+              @EventCaseList << eventcasedto_tmp
+            end
+          end
+        end
+      end
+
+      # TriggerDsEvent返回参数结构体
+      class TriggerDsEventResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.BatchOpsDTO`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BatchOpsDTO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
