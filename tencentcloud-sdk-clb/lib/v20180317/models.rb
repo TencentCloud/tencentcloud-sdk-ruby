@@ -19,7 +19,7 @@ module TencentCloud
     module V20180317
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Associations: 绑定的关系数组。
+        # @param Associations: 绑定的关系数组。一次请求最多支持20个。
         # @type Associations: Array
 
         attr_accessor :Associations
@@ -7956,8 +7956,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2023, 11
-        deprecate :HealthStatusDetial=, :none, 2023, 11
+        deprecate :HealthStatusDetial, :none, 2023, 12
+        deprecate :HealthStatusDetial=, :none, 2023, 12
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

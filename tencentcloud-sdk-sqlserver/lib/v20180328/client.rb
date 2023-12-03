@@ -2597,7 +2597,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeDBInstancesAttribute）用于开启\关闭\更新SSL加密
+        # 本接口（ModifyDBInstanceSSL）用于开启\关闭\更新SSL加密
 
         # @param request: Request instance for ModifyDBInstanceSSL.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDBInstanceSSLRequest`

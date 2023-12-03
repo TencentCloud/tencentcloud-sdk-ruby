@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2023, 11
-        deprecate :SegmentSet=, :none, 2023, 11
+        deprecate :SegmentSet, :none, 2023, 12
+        deprecate :SegmentSet=, :none, 2023, 12
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -12610,12 +12610,13 @@ module TencentCloud
         # <li>ComposeMediaComplete：制作媒体文件完成；</li>
         # <li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li>
         # <li>RemoveWatermark：智能去除水印完成。</li>
-        # <li>RebuildMediaComplete：音画质重生完成事件。</li>
+        # <li>RebuildMediaComplete：音画质重生完成事件（不推荐使用）。</li>
         # <li>ReviewAudioVideoComplete：音视频审核完成；</li>
         # <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
         # <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
         # <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
-        # <li>QualityInspectComplete：音画质检测完成。</li>
+        # <li>QualityInspectComplete：音画质检测完成；</li>
+        # <li>QualityEnhanceComplete：音画质重生任务完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -12692,10 +12693,13 @@ module TencentCloud
         # @param QualityInspectCompleteEvent: 音画质检测完成事件，当事件类型为 QualityInspectComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityInspectCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.QualityInspectTask`
+        # @param QualityEnhanceCompleteEvent: 音画质重生完成事件，当事件类型为 QualityEnhanceComplete 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityEnhanceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.QualityEnhanceTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -12721,6 +12725,7 @@ module TencentCloud
           @ReduceMediaBitrateCompleteEvent = reducemediabitratecompleteevent
           @DescribeFileAttributesCompleteEvent = describefileattributescompleteevent
           @QualityInspectCompleteEvent = qualityinspectcompleteevent
+          @QualityEnhanceCompleteEvent = qualityenhancecompleteevent
         end
 
         def deserialize(params)
@@ -12817,6 +12822,10 @@ module TencentCloud
           unless params['QualityInspectCompleteEvent'].nil?
             @QualityInspectCompleteEvent = QualityInspectTask.new
             @QualityInspectCompleteEvent.deserialize(params['QualityInspectCompleteEvent'])
+          end
+          unless params['QualityEnhanceCompleteEvent'].nil?
+            @QualityEnhanceCompleteEvent = QualityEnhanceTask.new
+            @QualityEnhanceCompleteEvent.deserialize(params['QualityEnhanceCompleteEvent'])
           end
         end
       end
@@ -16764,8 +16773,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2023, 11
-        deprecate :Transitions=, :none, 2023, 11
+        deprecate :Transitions, :none, 2023, 12
+        deprecate :Transitions=, :none, 2023, 12
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -20632,8 +20641,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2023, 11
-        deprecate :ProductInstanceResourceSet=, :none, 2023, 11
+        deprecate :ProductInstanceResourceSet, :none, 2023, 12
+        deprecate :ProductInstanceResourceSet=, :none, 2023, 12
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
