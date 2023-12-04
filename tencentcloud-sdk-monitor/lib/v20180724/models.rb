@@ -145,10 +145,34 @@ module TencentCloud
         # @param AlarmLevel: 告警等级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlarmLevel: String
+        # @param ShieldFlag: 是否有配置告警屏蔽规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShieldFlag: Integer
+        # @param AlarmShieldingType: 屏蔽类型（英文）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldingType: String
+        # @param AlarmShieldingTime: 屏蔽时间（英文）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldingTime: String
+        # @param AlarmShieldingShowType: 屏蔽类型（中文）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldingShowType: String
+        # @param AlarmShieldingShowTime: 屏蔽时间（中文）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldingShowTime: String
+        # @param AlarmShieldReason: 屏蔽原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldReason: String
+        # @param InternalDimensions: 告警实例的维度信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalDimensions: String
+        # @param MetricName: 指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
 
-        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions, :AlarmLevel
+        attr_accessor :AlarmId, :MonitorType, :Namespace, :AlarmObject, :Content, :FirstOccurTime, :LastOccurTime, :AlarmStatus, :PolicyId, :PolicyName, :VPC, :ProjectId, :ProjectName, :InstanceGroup, :ReceiverUids, :ReceiverGroups, :NoticeWays, :OriginId, :AlarmType, :EventId, :Region, :PolicyExists, :MetricsInfo, :Dimensions, :AlarmLevel, :ShieldFlag, :AlarmShieldingType, :AlarmShieldingTime, :AlarmShieldingShowType, :AlarmShieldingShowTime, :AlarmShieldReason, :InternalDimensions, :MetricName
 
-        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil, alarmlevel=nil)
+        def initialize(alarmid=nil, monitortype=nil, namespace=nil, alarmobject=nil, content=nil, firstoccurtime=nil, lastoccurtime=nil, alarmstatus=nil, policyid=nil, policyname=nil, vpc=nil, projectid=nil, projectname=nil, instancegroup=nil, receiveruids=nil, receivergroups=nil, noticeways=nil, originid=nil, alarmtype=nil, eventid=nil, region=nil, policyexists=nil, metricsinfo=nil, dimensions=nil, alarmlevel=nil, shieldflag=nil, alarmshieldingtype=nil, alarmshieldingtime=nil, alarmshieldingshowtype=nil, alarmshieldingshowtime=nil, alarmshieldreason=nil, internaldimensions=nil, metricname=nil)
           @AlarmId = alarmid
           @MonitorType = monitortype
           @Namespace = namespace
@@ -174,6 +198,14 @@ module TencentCloud
           @MetricsInfo = metricsinfo
           @Dimensions = dimensions
           @AlarmLevel = alarmlevel
+          @ShieldFlag = shieldflag
+          @AlarmShieldingType = alarmshieldingtype
+          @AlarmShieldingTime = alarmshieldingtime
+          @AlarmShieldingShowType = alarmshieldingshowtype
+          @AlarmShieldingShowTime = alarmshieldingshowtime
+          @AlarmShieldReason = alarmshieldreason
+          @InternalDimensions = internaldimensions
+          @MetricName = metricname
         end
 
         def deserialize(params)
@@ -216,6 +248,14 @@ module TencentCloud
           end
           @Dimensions = params['Dimensions']
           @AlarmLevel = params['AlarmLevel']
+          @ShieldFlag = params['ShieldFlag']
+          @AlarmShieldingType = params['AlarmShieldingType']
+          @AlarmShieldingTime = params['AlarmShieldingTime']
+          @AlarmShieldingShowType = params['AlarmShieldingShowType']
+          @AlarmShieldingShowTime = params['AlarmShieldingShowTime']
+          @AlarmShieldReason = params['AlarmShieldReason']
+          @InternalDimensions = params['InternalDimensions']
+          @MetricName = params['MetricName']
         end
       end
 
@@ -1774,22 +1814,22 @@ module TencentCloud
         # @type InstanceId: String
         # @param ChannelName: 告警通道名称，例如：test
         # @type ChannelName: String
-        # @param OrgId: 默认为1，建议使用 OrganizationIds
-        # @type OrgId: Integer
         # @param Receivers: 接受告警通道 ID 数组，值为告警管理/基础配置/通知模板中的模板 ID
         # @type Receivers: Array
+        # @param OrgId: 默认为1，建议使用 OrganizationIds
+        # @type OrgId: Integer
         # @param ExtraOrgIds: 额外组织 ID 数组，已废弃，请使用 OrganizationIds
         # @type ExtraOrgIds: Array
         # @param OrganizationIds: 生效的所有组织 ID 数组，默认为 ["1"]
         # @type OrganizationIds: Array
 
-        attr_accessor :InstanceId, :ChannelName, :OrgId, :Receivers, :ExtraOrgIds, :OrganizationIds
+        attr_accessor :InstanceId, :ChannelName, :Receivers, :OrgId, :ExtraOrgIds, :OrganizationIds
 
-        def initialize(instanceid=nil, channelname=nil, orgid=nil, receivers=nil, extraorgids=nil, organizationids=nil)
+        def initialize(instanceid=nil, channelname=nil, receivers=nil, orgid=nil, extraorgids=nil, organizationids=nil)
           @InstanceId = instanceid
           @ChannelName = channelname
-          @OrgId = orgid
           @Receivers = receivers
+          @OrgId = orgid
           @ExtraOrgIds = extraorgids
           @OrganizationIds = organizationids
         end
@@ -1797,8 +1837,8 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ChannelName = params['ChannelName']
-          @OrgId = params['OrgId']
           @Receivers = params['Receivers']
+          @OrgId = params['OrgId']
           @ExtraOrgIds = params['ExtraOrgIds']
           @OrganizationIds = params['OrganizationIds']
         end
@@ -3552,7 +3592,7 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 结束时间，默认当前时间戳。对应 `FirstOccurTime` 告警首次出现时间，告警历史的 `FirstOccurTime` 早于 `EndTime` 才可能被搜索到。
         # @type EndTime: Integer
-        # @param MonitorTypes: 根据监控类型过滤，不选默认查所有类型。"MT_QCE"=云产品监控，支持的枚举值有："MT_QCE"=云产品监控；"MT_TAW"=应用性能观测；"MT_RUM"=前端性能监控；"MT_PROBE"=云拨测
+        # @param MonitorTypes: 根据监控类型过滤，不选默认查所有类型。"MT_QCE"=云产品监控，支持的枚举值有："MT_QCE"=云产品监控；"MT_TAW"=应用性能监控；"MT_RUM"=前端性能监控；"MT_PROBE"=云拨测
         # @type MonitorTypes: Array
         # @param AlarmObject: 根据告警对象过滤 字符串模糊搜索
         # @type AlarmObject: String
@@ -13682,22 +13722,22 @@ module TencentCloud
         # @type ChannelId: String
         # @param InstanceId: Grafana 实例 ID，例如：grafana-12345678
         # @type InstanceId: String
-        # @param ChannelName: 告警通道名称，例如：test
-        # @type ChannelName: String
         # @param Receivers: 接受告警通道 ID 数组
         # @type Receivers: Array
+        # @param ChannelName: 告警通道名称，已废弃，名称不可修改。
+        # @type ChannelName: String
         # @param ExtraOrgIds: 已废弃，请使用 OrganizationIds
         # @type ExtraOrgIds: Array
         # @param OrganizationIds: 生效的组织 ID 数组
         # @type OrganizationIds: Array
 
-        attr_accessor :ChannelId, :InstanceId, :ChannelName, :Receivers, :ExtraOrgIds, :OrganizationIds
+        attr_accessor :ChannelId, :InstanceId, :Receivers, :ChannelName, :ExtraOrgIds, :OrganizationIds
 
-        def initialize(channelid=nil, instanceid=nil, channelname=nil, receivers=nil, extraorgids=nil, organizationids=nil)
+        def initialize(channelid=nil, instanceid=nil, receivers=nil, channelname=nil, extraorgids=nil, organizationids=nil)
           @ChannelId = channelid
           @InstanceId = instanceid
-          @ChannelName = channelname
           @Receivers = receivers
+          @ChannelName = channelname
           @ExtraOrgIds = extraorgids
           @OrganizationIds = organizationids
         end
@@ -13705,8 +13745,8 @@ module TencentCloud
         def deserialize(params)
           @ChannelId = params['ChannelId']
           @InstanceId = params['InstanceId']
-          @ChannelName = params['ChannelName']
           @Receivers = params['Receivers']
+          @ChannelName = params['ChannelName']
           @ExtraOrgIds = params['ExtraOrgIds']
           @OrganizationIds = params['OrganizationIds']
         end

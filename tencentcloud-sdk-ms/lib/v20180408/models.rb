@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2023, 11
-        deprecate :CosTocken=, :none, 2023, 11
+        deprecate :CosTocken, :none, 2023, 12
+        deprecate :CosTocken=, :none, 2023, 12
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -1871,6 +1871,58 @@ module TencentCloud
         end
       end
 
+      # DestroyResourceInstances请求参数结构体
+      class DestroyResourceInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: ResourceId 资源id，在创建订单时，返回的resourceId
+        # @type ResourceId: String
+        # @param AppPkgName: 资源绑定的包名，为了防止误删除，需要指定绑定时的包名
+        # @type AppPkgName: String
+
+        attr_accessor :ResourceId, :AppPkgName
+
+        def initialize(resourceid=nil, apppkgname=nil)
+          @ResourceId = resourceid
+          @AppPkgName = apppkgname
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @AppPkgName = params['AppPkgName']
+        end
+      end
+
+      # DestroyResourceInstances返回参数结构体
+      class DestroyResourceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param Result: 返回状态
+        # @type Result: String
+        # @param PlatformType: 平台类型  1.android安卓加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        # @type PlatformType: Integer
+        # @param OrderType: 订单采购类型 1-免费试用 2-按年收费 3-按次收费
+        # @type OrderType: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceId, :Result, :PlatformType, :OrderType, :RequestId
+
+        def initialize(resourceid=nil, result=nil, platformtype=nil, ordertype=nil, requestid=nil)
+          @ResourceId = resourceid
+          @Result = result
+          @PlatformType = platformtype
+          @OrderType = ordertype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Result = params['Result']
+          @PlatformType = params['PlatformType']
+          @OrderType = params['OrderType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 渠道合作加固结果信息
       class EncryptResults < TencentCloud::Common::AbstractModel
         # @param PlatformType: 平台类型枚举值  1-android加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
@@ -2282,12 +2334,12 @@ module TencentCloud
 
         attr_accessor :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :SeperateDex, :Db, :DexSig, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiQemuRoot, :AntiAssets, :AntiScreenshot, :AntiSSL, :SetFile, :FileSign, :AntiRoot
         extend Gem::Deprecate
-        deprecate :SeperateDex, :none, 2023, 11
-        deprecate :SeperateDex=, :none, 2023, 11
-        deprecate :DexSig, :none, 2023, 11
-        deprecate :DexSig=, :none, 2023, 11
-        deprecate :AntiQemuRoot, :none, 2023, 11
-        deprecate :AntiQemuRoot=, :none, 2023, 11
+        deprecate :SeperateDex, :none, 2023, 12
+        deprecate :SeperateDex=, :none, 2023, 12
+        deprecate :DexSig, :none, 2023, 12
+        deprecate :DexSig=, :none, 2023, 12
+        deprecate :AntiQemuRoot, :none, 2023, 12
+        deprecate :AntiQemuRoot=, :none, 2023, 12
 
         def initialize(apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, seperatedex=nil, db=nil, dexsig=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiqemuroot=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, setfile=nil, filesign=nil, antiroot=nil)
           @ApkSizeOpt = apksizeopt

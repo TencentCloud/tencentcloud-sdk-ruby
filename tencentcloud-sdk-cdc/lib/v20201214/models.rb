@@ -1436,7 +1436,7 @@ module TencentCloud
 
       # CDC宿主机的详细信息
       class HostInfo < TencentCloud::Common::AbstractModel
-        # @param HostIp: 宿主机IP
+        # @param HostIp: 宿主机IP（废弃）
         # @type HostIp: String
         # @param ServiceType: 云服务类型
         # @type ServiceType: String

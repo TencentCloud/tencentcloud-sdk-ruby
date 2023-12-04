@@ -1233,13 +1233,13 @@ module TencentCloud
         # @param AccountMode: 资源所属账号 为空或self(表示本账号内资源)、other(表示其他账户资源)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountMode: String
-        # @param TmpSecretId: 临时密钥Id
+        # @param TmpSecretId: 临时密钥Id，可通过 获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretId: String
-        # @param TmpSecretKey: 临时密钥Key
+        # @param TmpSecretKey: 临时密钥Key，可通过 获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretKey: String
-        # @param TmpToken: 临时Token
+        # @param TmpToken: 临时Token，可通过 获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
 
@@ -1544,7 +1544,7 @@ module TencentCloud
         # @param Databases: 迁移对象，当 ObjectMode 为 partial 时，不为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Databases: Array
-        # @param AdvancedObjects: 高级对象类型，如trigger、function、procedure、event
+        # @param AdvancedObjects: 高级对象类型，如trigger、function、procedure、event。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedObjects: Array
 
@@ -2757,13 +2757,13 @@ module TencentCloud
         # @param RoleExternalId: 外部角色id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoleExternalId: String
-        # @param TmpSecretId: 临时密钥Id，如果为跨账号实例此项必填
+        # @param TmpSecretId: 临时密钥Id，可通过获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretId: String
-        # @param TmpSecretKey: 临时密钥Key，如果为跨账号实例此项必填
+        # @param TmpSecretKey: 临时密钥Key，可通过获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195，，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpSecretKey: String
-        # @param TmpToken: 临时Token，如果为跨账号实例此项必填
+        # @param TmpToken: 临时Token，可通过获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195，，如果为跨账号实例此项必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
         # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
@@ -3766,7 +3766,7 @@ module TencentCloud
         # @param Databases: 同步对象，当 Mode 为 Partial 时，不为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Databases: Array
-        # @param AdvancedObjects: 高级对象类型，如function、procedure，当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
+        # @param AdvancedObjects: 高级对象类型，如function、procedure。注意：如果要迁移同步高级对象，此配置中应该包含对应的高级对象类型。当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedObjects: Array
         # @param OnlineDDL: OnlineDDL类型，冗余字段不做配置用途

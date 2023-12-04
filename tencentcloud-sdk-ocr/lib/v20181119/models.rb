@@ -682,12 +682,15 @@ module TencentCloud
         # @type IsDuplication: Integer
         # @param RegistrationDate: 登记日期
         # @type RegistrationDate: String
+        # @param Angle:  图片旋转角度(角度制)，文本的水平方向为0度；顺时针为正，角度范围是0-360度
+
+        # @type Angle: Float
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :RequestId
 
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -702,6 +705,7 @@ module TencentCloud
           @RecognizeWarnMsg = recognizewarnmsg
           @IsDuplication = isduplication
           @RegistrationDate = registrationdate
+          @Angle = angle
           @RequestId = requestid
         end
 
@@ -720,6 +724,7 @@ module TencentCloud
           @RecognizeWarnMsg = params['RecognizeWarnMsg']
           @IsDuplication = params['IsDuplication']
           @RegistrationDate = params['RegistrationDate']
+          @Angle = params['Angle']
           @RequestId = params['RequestId']
         end
       end
@@ -2663,8 +2668,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 11
-        deprecate :Angel=, :none, 2023, 11
+        deprecate :Angel, :none, 2023, 12
+        deprecate :Angel=, :none, 2023, 12
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -2774,8 +2779,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 11
-        deprecate :Angel=, :none, 2023, 11
+        deprecate :Angel, :none, 2023, 12
+        deprecate :Angel=, :none, 2023, 12
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections

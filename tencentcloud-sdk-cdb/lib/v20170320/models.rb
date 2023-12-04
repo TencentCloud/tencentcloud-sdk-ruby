@@ -2677,7 +2677,7 @@ module TencentCloud
         # @type DeployGroupId: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
+        # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC_V2" - ONTKE单节点实例。 不指定则默认为通用型实例。
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板id。
         # @type ParamTemplateId: Integer
@@ -2880,7 +2880,7 @@ module TencentCloud
         # @type DeployGroupId: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。 不指定则默认为通用型实例。
+        # @param DeviceType: 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC_V2" - ONTKE单节点实例。 不指定则默认为通用型实例。
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板id。
         # @type ParamTemplateId: Integer
@@ -10622,8 +10622,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2023, 11
-        deprecate :IsSucess=, :none, 2023, 11
+        deprecate :IsSucess, :none, 2023, 12
+        deprecate :IsSucess=, :none, 2023, 12
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

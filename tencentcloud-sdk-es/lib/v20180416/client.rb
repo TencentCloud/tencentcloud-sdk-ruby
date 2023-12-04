@@ -557,6 +557,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 集群续费询价接口，续费前通过调用该接口，可获取集群续费的价格。
+
+        # @param request: Request instance for InquirePriceRenewInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::InquirePriceRenewInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::InquirePriceRenewInstanceResponse`
+        def InquirePriceRenewInstance(request)
+          body = send_request('InquirePriceRenewInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceRenewInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改绑定VIP的安全组，传安全组id列表
 
         # @param request: Request instance for ModifyEsVipSecurityGroup.

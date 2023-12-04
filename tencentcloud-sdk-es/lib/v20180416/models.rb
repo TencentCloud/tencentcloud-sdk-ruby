@@ -255,7 +255,7 @@ module TencentCloud
         # 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
         # @type NodeType: String
         # @param DiskType: 已废弃请使用NodeInfoList
-        # 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li>默认值CLOUD_SSD
+        # 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li> CLOUD_HSSD：增强型SSD云硬盘</li><li> CLOUD_BSSD：通用型SSD云硬盘</li>默认值CLOUD_SSD
         # @type DiskType: String
         # @param DiskSize: 已废弃请使用NodeInfoList
         # 节点磁盘容量（单位GB）
@@ -280,7 +280,7 @@ module TencentCloud
         # @type MasterNodeDiskSize: Integer
         # @param ClusterNameInConf: 集群配置文件中的ClusterName（系统默认配置为实例ID，暂不支持自定义）
         # @type ClusterNameInConf: String
-        # @param DeployMode: 集群部署方式<li>0：单可用区部署</li><li>1：多可用区部署</li>默认为0
+        # @param DeployMode: 集群部署方式<li>0：单可用区部署</li><li>1：多可用区部署，北京、上海、上海金融、广州、南京、香港、新加坡、法兰克福（白名单控制）</li>默认为0
         # @type DeployMode: Integer
         # @param MultiZoneInfo: 多可用区部署时可用区的详细信息(DeployMode为1时必传)
         # @type MultiZoneInfo: Array
@@ -2261,6 +2261,54 @@ module TencentCloud
           @NumberOfShards = params['NumberOfShards']
           @NumberOfReplicas = params['NumberOfReplicas']
           @RefreshInterval = params['RefreshInterval']
+        end
+      end
+
+      # InquirePriceRenewInstance请求参数结构体
+      class InquirePriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # InquirePriceRenewInstance返回参数结构体
+      class InquirePriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param OriginalPrice: 刊例价，即集群原始价格
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 折后价
+        # @type DiscountPrice: Float
+        # @param Discount: 折扣，如65折
+        # @type Discount: Float
+        # @param Currency: 货币，如CNY代表人民币
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OriginalPrice, :DiscountPrice, :Discount, :Currency, :RequestId
+
+        def initialize(originalprice=nil, discountprice=nil, discount=nil, currency=nil, requestid=nil)
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
+          @Discount = discount
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
+          @Discount = params['Discount']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
         end
       end
 
