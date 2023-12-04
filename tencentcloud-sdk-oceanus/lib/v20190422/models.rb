@@ -1528,6 +1528,79 @@ module TencentCloud
         end
       end
 
+      # DescribeFolder请求参数结构体
+      class DescribeFolderRequest < TencentCloud::Common::AbstractModel
+        # @param FolderId: folder id
+        # @type FolderId: String
+        # @param WorkSpaceId: workspace id
+        # @type WorkSpaceId: String
+        # @param FolderType: 1:资源文件夹
+        # 其他:作业文件夹
+        # @type FolderType: Integer
+
+        attr_accessor :FolderId, :WorkSpaceId, :FolderType
+
+        def initialize(folderid=nil, workspaceid=nil, foldertype=nil)
+          @FolderId = folderid
+          @WorkSpaceId = workspaceid
+          @FolderType = foldertype
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+          @WorkSpaceId = params['WorkSpaceId']
+          @FolderType = params['FolderType']
+        end
+      end
+
+      # DescribeFolder返回参数结构体
+      class DescribeFolderResponse < TencentCloud::Common::AbstractModel
+        # @param FolderId: folder id
+        # @type FolderId: String
+        # @param FolderName: folder name
+        # @type FolderName: String
+        # @param ParentId: 父文件夹id
+        # @type ParentId: String
+        # @param FolderType: 文件夹类型
+        # @type FolderType: Integer
+        # @param WorkSpaceId: workspace id
+        # @type WorkSpaceId: String
+        # @param SubFolderInfo: 子文件夹信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubFolderInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FolderId, :FolderName, :ParentId, :FolderType, :WorkSpaceId, :SubFolderInfo, :RequestId
+
+        def initialize(folderid=nil, foldername=nil, parentid=nil, foldertype=nil, workspaceid=nil, subfolderinfo=nil, requestid=nil)
+          @FolderId = folderid
+          @FolderName = foldername
+          @ParentId = parentid
+          @FolderType = foldertype
+          @WorkSpaceId = workspaceid
+          @SubFolderInfo = subfolderinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+          @FolderName = params['FolderName']
+          @ParentId = params['ParentId']
+          @FolderType = params['FolderType']
+          @WorkSpaceId = params['WorkSpaceId']
+          unless params['SubFolderInfo'].nil?
+            @SubFolderInfo = []
+            params['SubFolderInfo'].each do |i|
+              subfolderinfo_tmp = SubFolderInfo.new
+              subfolderinfo_tmp.deserialize(i)
+              @SubFolderInfo << subfolderinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobConfigs请求参数结构体
       class DescribeJobConfigsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id
@@ -4358,6 +4431,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 子目录信息
+      class SubFolderInfo < TencentCloud::Common::AbstractModel
+        # @param FolderId: folder id
+        # @type FolderId: String
+        # @param FolderName: folder name
+        # @type FolderName: String
+
+        attr_accessor :FolderId, :FolderName
+
+        def initialize(folderid=nil, foldername=nil)
+          @FolderId = folderid
+          @FolderName = foldername
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+          @FolderName = params['FolderName']
         end
       end
 
