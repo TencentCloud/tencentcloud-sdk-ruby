@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2023, 11
-        deprecate :Idcard=, :none, 2023, 11
+        deprecate :Idcard, :none, 2023, 12
+        deprecate :Idcard=, :none, 2023, 12
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2353,6 +2353,71 @@ module TencentCloud
         end
       end
 
+      # ImageRecognitionV2请求参数结构体
+      class ImageRecognitionV2Request < TencentCloud::Common::AbstractModel
+        # @param IdCard: 身份证号
+        # @type IdCard: String
+        # @param Name: 姓名。中文请使用UTF-8编码。
+        # @type Name: String
+        # @param ImageBase64: 用于人脸比对的照片，图片的Base64值；
+        # Base64编码后的图片数据大小不超过3M，仅支持jpg、png格式。
+        # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
+        # @type ImageBase64: String
+        # @param Optional: 本接口不需要传递此参数。
+        # @type Optional: String
+        # @param Encryption: 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
+
+        attr_accessor :IdCard, :Name, :ImageBase64, :Optional, :Encryption
+
+        def initialize(idcard=nil, name=nil, imagebase64=nil, optional=nil, encryption=nil)
+          @IdCard = idcard
+          @Name = name
+          @ImageBase64 = imagebase64
+          @Optional = optional
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @IdCard = params['IdCard']
+          @Name = params['Name']
+          @ImageBase64 = params['ImageBase64']
+          @Optional = params['Optional']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+        end
+      end
+
+      # ImageRecognitionV2返回参数结构体
+      class ImageRecognitionV2Response < TencentCloud::Common::AbstractModel
+        # @param Sim: 相似度，取值范围 [0.00, 100.00]。推荐相似度大于等于70时可判断为同一人，可根据具体场景自行调整阈值（阈值70的误通过率为千分之一，阈值80的误通过率是万分之一）
+        # @type Sim: Float
+        # @param Result: 业务错误码，成功情况返回Success, 错误情况请参考下方错误码 列表中FailedOperation部分
+        # @type Result: String
+        # @param Description: 业务结果描述。
+        # @type Description: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Sim, :Result, :Description, :RequestId
+
+        def initialize(sim=nil, result=nil, description=nil, requestid=nil)
+          @Sim = sim
+          @Result = result
+          @Description = description
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Sim = params['Sim']
+          @Result = params['Result']
+          @Description = params['Description']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 意愿核身（点头确认模式）配置
       class IntentionActionConfig < TencentCloud::Common::AbstractModel
         # @param Text: 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为150个字符。
@@ -2560,8 +2625,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2023, 11
-        deprecate :AsrResultSimilarity=, :none, 2023, 11
+        deprecate :AsrResultSimilarity, :none, 2023, 12
+        deprecate :AsrResultSimilarity=, :none, 2023, 12
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

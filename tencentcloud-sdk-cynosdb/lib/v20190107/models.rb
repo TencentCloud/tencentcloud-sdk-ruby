@@ -9000,10 +9000,13 @@ module TencentCloud
         # @param ExpireTime: 失效时间：2022-08-01 00:00:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
+        # @param HistoryBindResourceInfos: 资源包历史绑定（已解绑）实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HistoryBindResourceInfos: Array
 
-        attr_accessor :AppId, :PackageId, :PackageName, :PackageType, :PackageRegion, :Status, :PackageTotalSpec, :PackageUsedSpec, :HasQuota, :BindInstanceInfos, :StartTime, :ExpireTime
+        attr_accessor :AppId, :PackageId, :PackageName, :PackageType, :PackageRegion, :Status, :PackageTotalSpec, :PackageUsedSpec, :HasQuota, :BindInstanceInfos, :StartTime, :ExpireTime, :HistoryBindResourceInfos
 
-        def initialize(appid=nil, packageid=nil, packagename=nil, packagetype=nil, packageregion=nil, status=nil, packagetotalspec=nil, packageusedspec=nil, hasquota=nil, bindinstanceinfos=nil, starttime=nil, expiretime=nil)
+        def initialize(appid=nil, packageid=nil, packagename=nil, packagetype=nil, packageregion=nil, status=nil, packagetotalspec=nil, packageusedspec=nil, hasquota=nil, bindinstanceinfos=nil, starttime=nil, expiretime=nil, historybindresourceinfos=nil)
           @AppId = appid
           @PackageId = packageid
           @PackageName = packagename
@@ -9016,6 +9019,7 @@ module TencentCloud
           @BindInstanceInfos = bindinstanceinfos
           @StartTime = starttime
           @ExpireTime = expiretime
+          @HistoryBindResourceInfos = historybindresourceinfos
         end
 
         def deserialize(params)
@@ -9038,6 +9042,14 @@ module TencentCloud
           end
           @StartTime = params['StartTime']
           @ExpireTime = params['ExpireTime']
+          unless params['HistoryBindResourceInfos'].nil?
+            @HistoryBindResourceInfos = []
+            params['HistoryBindResourceInfos'].each do |i|
+              bindinstanceinfo_tmp = BindInstanceInfo.new
+              bindinstanceinfo_tmp.deserialize(i)
+              @HistoryBindResourceInfos << bindinstanceinfo_tmp
+            end
+          end
         end
       end
 

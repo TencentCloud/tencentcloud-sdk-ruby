@@ -239,10 +239,12 @@ module TencentCloud
         # @type DataOriginProjectId: String
         # @param DataOriginDatasourceId: 第三方数据源id
         # @type DataOriginDatasourceId: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
 
-        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId
+        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId
 
-        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil)
+        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil)
           @ServiceType = servicetype
           @DbType = dbtype
           @Charset = charset
@@ -262,6 +264,7 @@ module TencentCloud
           @DataOrigin = dataorigin
           @DataOriginProjectId = dataoriginprojectid
           @DataOriginDatasourceId = dataorigindatasourceid
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -284,6 +287,7 @@ module TencentCloud
           @DataOrigin = params['DataOrigin']
           @DataOriginProjectId = params['DataOriginProjectId']
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -459,10 +463,12 @@ module TencentCloud
         # @type UserCorpId: String
         # @param UserId: 使用者Id(仅用于多用户)
         # @type UserId: String
+        # @param TicketNum: 访问次数限制，限制范围1-99999，为空则不设置访问次数限制
+        # @type TicketNum: Integer
 
-        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId
+        attr_accessor :ProjectId, :PageId, :Scope, :ExpireTime, :ExtraParam, :UserCorpId, :UserId, :TicketNum
 
-        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil)
+        def initialize(projectid=nil, pageid=nil, scope=nil, expiretime=nil, extraparam=nil, usercorpid=nil, userid=nil, ticketnum=nil)
           @ProjectId = projectid
           @PageId = pageid
           @Scope = scope
@@ -470,6 +476,7 @@ module TencentCloud
           @ExtraParam = extraparam
           @UserCorpId = usercorpid
           @UserId = userid
+          @TicketNum = ticketnum
         end
 
         def deserialize(params)
@@ -480,6 +487,7 @@ module TencentCloud
           @ExtraParam = params['ExtraParam']
           @UserCorpId = params['UserCorpId']
           @UserId = params['UserId']
+          @TicketNum = params['TicketNum']
         end
       end
 
@@ -1605,10 +1613,13 @@ module TencentCloud
         # @param UserId: 使用者Id(仅用于多用户)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
+        # @param TicketNum: 访问次数限制，限制范围1-99999，为空则不设置访问次数限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TicketNum: Integer
 
-        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId
+        attr_accessor :Id, :BIToken, :ProjectId, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :PageId, :ExtraParam, :Scope, :ExpireTime, :UserCorpId, :UserId, :TicketNum
 
-        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil)
+        def initialize(id=nil, bitoken=nil, projectid=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, pageid=nil, extraparam=nil, scope=nil, expiretime=nil, usercorpid=nil, userid=nil, ticketnum=nil)
           @Id = id
           @BIToken = bitoken
           @ProjectId = projectid
@@ -1622,6 +1633,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @UserCorpId = usercorpid
           @UserId = userid
+          @TicketNum = ticketnum
         end
 
         def deserialize(params)
@@ -1638,6 +1650,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @UserCorpId = params['UserCorpId']
           @UserId = params['UserId']
+          @TicketNum = params['TicketNum']
         end
       end
 
@@ -1720,10 +1733,12 @@ module TencentCloud
         # @type DataOriginProjectId: String
         # @param DataOriginDatasourceId: 第三方数据源id
         # @type DataOriginDatasourceId: String
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
 
-        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Id, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId
+        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Id, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId
 
-        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, id=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil)
+        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, id=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil)
           @ServiceType = servicetype
           @DbType = dbtype
           @Charset = charset
@@ -1744,6 +1759,7 @@ module TencentCloud
           @DataOrigin = dataorigin
           @DataOriginProjectId = dataoriginprojectid
           @DataOriginDatasourceId = dataorigindatasourceid
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -1767,6 +1783,7 @@ module TencentCloud
           @DataOrigin = params['DataOrigin']
           @DataOriginProjectId = params['DataOriginProjectId']
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
+          @ClusterId = params['ClusterId']
         end
       end
 

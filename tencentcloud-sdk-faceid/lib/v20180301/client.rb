@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
+
+        # @param request: Request instance for ImageRecognitionV2.
+        # @type request: :class:`Tencentcloud::faceid::V20180301::ImageRecognitionV2Request`
+        # @rtype: :class:`Tencentcloud::faceid::V20180301::ImageRecognitionV2Response`
+        def ImageRecognitionV2(request)
+          body = send_request('ImageRecognitionV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImageRecognitionV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 活体检测
 
         # @param request: Request instance for Liveness.
