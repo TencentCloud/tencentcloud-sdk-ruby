@@ -4239,6 +4239,49 @@ module TencentCloud
         end
       end
 
+      # DescribeIPRegion请求参数结构体
+      class DescribeIPRegionRequest < TencentCloud::Common::AbstractModel
+        # @param IPs: 待查询的 IP 列表，支持 IPV4 和 IPV6，最大可查询 100 条。
+        # @type IPs: Array
+
+        attr_accessor :IPs
+
+        def initialize(ips=nil)
+          @IPs = ips
+        end
+
+        def deserialize(params)
+          @IPs = params['IPs']
+        end
+      end
+
+      # DescribeIPRegion返回参数结构体
+      class DescribeIPRegionResponse < TencentCloud::Common::AbstractModel
+        # @param IPRegionInfo: IP 归属信息列表。
+        # @type IPRegionInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IPRegionInfo, :RequestId
+
+        def initialize(ipregioninfo=nil, requestid=nil)
+          @IPRegionInfo = ipregioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IPRegionInfo'].nil?
+            @IPRegionInfo = []
+            params['IPRegionInfo'].each do |i|
+              ipregioninfo_tmp = IPRegionInfo.new
+              ipregioninfo_tmp.deserialize(i)
+              @IPRegionInfo << ipregioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIdentifications请求参数结构体
       class DescribeIdentificationsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
@@ -6527,6 +6570,28 @@ module TencentCloud
           @GroupId = params['GroupId']
           @Name = params['Name']
           @Content = params['Content']
+        end
+      end
+
+      # IP 归属信息查询
+      class IPRegionInfo < TencentCloud::Common::AbstractModel
+        # @param IP: IP 地址，IPV4 或 IPV6。
+        # @type IP: String
+        # @param IsEdgeOneIP: IP 是否属于 EdgeOne 节点，取值有：
+        # <li>yes：该 IP 属于 EdgeOne 节点；</li>
+        # <li>no：该 IP 不属于 EdgeOne 节点。</li>
+        # @type IsEdgeOneIP: String
+
+        attr_accessor :IP, :IsEdgeOneIP
+
+        def initialize(ip=nil, isedgeoneip=nil)
+          @IP = ip
+          @IsEdgeOneIP = isedgeoneip
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @IsEdgeOneIP = params['IsEdgeOneIP']
         end
       end
 

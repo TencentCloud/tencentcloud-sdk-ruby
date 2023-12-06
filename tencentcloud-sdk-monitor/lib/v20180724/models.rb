@@ -3260,7 +3260,7 @@ module TencentCloud
 
       # DeleteRecordingRules请求参数结构体
       class DeleteRecordingRulesRequest < TencentCloud::Common::AbstractModel
-        # @param RuleIds: 规则 ID 列表
+        # @param RuleIds: 规则 ID 列表(规则 ID 可通过 DescribeRecordingRules 接口获取)
         # @type RuleIds: Array
         # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
@@ -4929,14 +4929,14 @@ module TencentCloud
       class DescribeExporterIntegrationsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param KubeType: Kubernetes 集群类型，取值如下：
+        # @param KubeType: Kubernetes 集群类型，可不填。取值如下：
         # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群<EKS> </li>
-        # <li> 3= Prometheus管理的弹性集群<MEKS> </li>
+        # <li> 2=弹性集群(EKS) </li>
+        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 集群 ID，可不填
         # @type ClusterId: String
-        # @param Kind: 类型
+        # @param Kind: 类型(不填返回全部集成。可通过 DescribePrometheusIntegrations 接口获取，取每一项中的 ExporterType 字段)
         # @type Kind: String
         # @param Name: 名字
         # @type Name: String
@@ -11131,11 +11131,11 @@ module TencentCloud
 
       # 托管Prometheus agent信息
       class PrometheusAgentInfo < TencentCloud::Common::AbstractModel
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型。可填入tke、eks、tkeedge、tdcc，分别代表标准集群、弹性集群、边缘集群、注册集群
         # @type ClusterType: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: 集成容器服务中关联的集群ID
         # @type ClusterId: String
-        # @param Describe: 备注
+        # @param Describe: 该参数未使用，不需要填写
         # @type Describe: String
 
         attr_accessor :ClusterType, :ClusterId, :Describe
@@ -13380,7 +13380,7 @@ module TencentCloud
 
       # UpdateAlertRule请求参数结构体
       class UpdateAlertRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: Prometheus 报警规则 ID
+        # @param RuleId: Prometheus 高警规则 ID
         # @type RuleId: String
         # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
@@ -13390,13 +13390,13 @@ module TencentCloud
         # <li>3=RuleDisabled</li>
         # 默认状态码为 2 启用。
         # @type RuleState: Integer
-        # @param RuleName: 报警规则名称
+        # @param RuleName: 告警规则名称
         # @type RuleName: String
-        # @param Expr: 报警规则表达式
+        # @param Expr: 告警规则表达式
         # @type Expr: String
-        # @param Duration: 报警规则持续时间
+        # @param Duration: 告警规则持续时间
         # @type Duration: String
-        # @param Receivers: 报警规则接收组列表
+        # @param Receivers: 告警规则接收组列表(当前规则绑定的接收组列表可通过 DescribeAlertRules 接口获取；用户已有的接收组列表可通过 DescribeAlarmNotices 接口获取)
         # @type Receivers: Array
         # @param Labels: 报警规则标签列表
         # @type Labels: Array
@@ -13404,7 +13404,7 @@ module TencentCloud
 
         # 告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description。
         # @type Annotations: Array
-        # @param Type: 报警策略模板分类
+        # @param Type: 报警策略模板分类(自定义，可不填)
         # @type Type: String
 
         attr_accessor :RuleId, :InstanceId, :RuleState, :RuleName, :Expr, :Duration, :Receivers, :Labels, :Annotations, :Type
@@ -13551,18 +13551,18 @@ module TencentCloud
 
       # UpdateExporterIntegration请求参数结构体
       class UpdateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID
+        # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
-        # @param Kind: 类型
+        # @param Kind: 类型(可通过 DescribeExporterIntegrations 获取对应集成的 Kind)
         # @type Kind: String
-        # @param Content: 配置内容
+        # @param Content: 配置内容(可通过 DescribeExporterIntegrations 接口获取对应集成的 Content，并在此基础上做修改)
         # @type Content: String
-        # @param KubeType: Kubernetes 集群类型，取值如下：
+        # @param KubeType: Kubernetes 集群类型，可不填。取值如下：
         # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群<EKS> </li>
-        # <li> 3= Prometheus管理的弹性集群<MEKS> </li>
+        # <li> 2=弹性集群(EKS) </li>
+        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 集群 ID，可不填
         # @type ClusterId: String
 
         attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId
@@ -13849,13 +13849,13 @@ module TencentCloud
 
       # UpdatePrometheusScrapeJob请求参数结构体
       class UpdatePrometheusScrapeJobRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID，例如：prom-abcd1234
+        # @param InstanceId: Prometheus 实例 ID(可通过 DescribePrometheusInstances 接口获取)
         # @type InstanceId: String
-        # @param AgentId: Agent ID，例如：agent-abcd1234，可在控制台 Agent 管理中获取
+        # @param AgentId: Agent ID(可通过DescribePrometheusAgents 接口获取)
         # @type AgentId: String
-        # @param JobId: 抓取任务 ID，例如：job-abcd1234，可在控制台 Agent 管理-抓取任务配置中获取
+        # @param JobId: 抓取任务 ID(可通过 DescribePrometheusScrapeJobs 接口获取)
         # @type JobId: String
-        # @param Config: 抓取任务配置，格式：job_name:xx
+        # @param Config: 抓取任务配置
         # @type Config: String
 
         attr_accessor :InstanceId, :AgentId, :JobId, :Config
@@ -13897,9 +13897,9 @@ module TencentCloud
         # @type Name: String
         # @param Group: 聚合规则组内容，格式为 yaml，通过 base64 进行编码。
         # @type Group: String
-        # @param InstanceId: Prometheus 实例 ID
+        # @param InstanceId: Prometheus 实例 ID(可通过 DescribePrometheusInstances 接口获取)
         # @type InstanceId: String
-        # @param RuleId: Prometheus 聚合规则 ID
+        # @param RuleId: Prometheus 聚合规则 ID(可通过 DescribeRecordingRules 接口获取)
         # @type RuleId: String
         # @param RuleState: 规则状态码，取值如下：
         # <li>1=RuleDeleted</li>

@@ -9703,10 +9703,16 @@ module TencentCloud
         # @type IncludeTask: Boolean
         # @param IncludeVirtualTask: 是否包含虚拟任务，当 IncludeTask 为 true 的时候，该参数才生效，默认为 true
         # @type IncludeVirtualTask: Boolean
+        # @param TaskFolderId: 任务目录id
+        # @type TaskFolderId: String
+        # @param DisplayType: classification.分类展示  catalog.目录展示
+        # @type DisplayType: String
+        # @param IncludeTaskFolder: 是否包含任务目录
+        # @type IncludeTaskFolder: Boolean
 
-        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask, :IncludeVirtualTask
+        attr_accessor :ProjectId, :FirstLevelPull, :FolderId, :WorkflowId, :Keyword, :IncludeWorkflow, :IncludeTask, :IncludeVirtualTask, :TaskFolderId, :DisplayType, :IncludeTaskFolder
 
-        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil, includevirtualtask=nil)
+        def initialize(projectid=nil, firstlevelpull=nil, folderid=nil, workflowid=nil, keyword=nil, includeworkflow=nil, includetask=nil, includevirtualtask=nil, taskfolderid=nil, displaytype=nil, includetaskfolder=nil)
           @ProjectId = projectid
           @FirstLevelPull = firstlevelpull
           @FolderId = folderid
@@ -9715,6 +9721,9 @@ module TencentCloud
           @IncludeWorkflow = includeworkflow
           @IncludeTask = includetask
           @IncludeVirtualTask = includevirtualtask
+          @TaskFolderId = taskfolderid
+          @DisplayType = displaytype
+          @IncludeTaskFolder = includetaskfolder
         end
 
         def deserialize(params)
@@ -9726,6 +9735,9 @@ module TencentCloud
           @IncludeWorkflow = params['IncludeWorkflow']
           @IncludeTask = params['IncludeTask']
           @IncludeVirtualTask = params['IncludeVirtualTask']
+          @TaskFolderId = params['TaskFolderId']
+          @DisplayType = params['DisplayType']
+          @IncludeTaskFolder = params['IncludeTaskFolder']
         end
       end
 
@@ -9766,14 +9778,17 @@ module TencentCloud
         # @type WorkflowId: String
         # @param TaskId: 任务id
         # @type TaskId: String
+        # @param DisplayType:  classification:分类展示  catalog:目录展示
+        # @type DisplayType: String
 
-        attr_accessor :ProjectId, :FolderId, :WorkflowId, :TaskId
+        attr_accessor :ProjectId, :FolderId, :WorkflowId, :TaskId, :DisplayType
 
-        def initialize(projectid=nil, folderid=nil, workflowid=nil, taskid=nil)
+        def initialize(projectid=nil, folderid=nil, workflowid=nil, taskid=nil, displaytype=nil)
           @ProjectId = projectid
           @FolderId = folderid
           @WorkflowId = workflowid
           @TaskId = taskid
+          @DisplayType = displaytype
         end
 
         def deserialize(params)
@@ -9781,6 +9796,7 @@ module TencentCloud
           @FolderId = params['FolderId']
           @WorkflowId = params['WorkflowId']
           @TaskId = params['TaskId']
+          @DisplayType = params['DisplayType']
         end
       end
 

@@ -204,7 +204,7 @@ module TencentCloud
 
       # bgp参数，包括Asn，AuthKey
       class BgpPeer < TencentCloud::Common::AbstractModel
-        # @param Asn: 用户侧，BGP Asn
+        # @param Asn: 用户侧BGP ASN
         # @type Asn: Integer
         # @param AuthKey: 用户侧BGP密钥
         # @type AuthKey: String
@@ -356,54 +356,47 @@ module TencentCloud
 
       # CreateDirectConnectTunnel请求参数结构体
       class CreateDirectConnectTunnelRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectId: 专线 ID，例如：dc-kd7d06of
+        # @param DirectConnectId: 物理专线ID，例如：dc-kd7d06of。
         # @type DirectConnectId: String
-        # @param DirectConnectTunnelName: 专用通道名称
+        # @param DirectConnectTunnelName: 专用通道名称。
         # @type DirectConnectTunnelName: String
-        # @param DirectConnectOwnerAccount: 物理专线 owner，缺省为当前客户（物理专线 owner）
-        # 共享专线时这里需要填写共享专线的开发商账号 ID
+        # @param DirectConnectOwnerAccount: 物理专线owner，缺省为当前客户（物理专线 owner）
+        # 共享专线时这里需要填写共享专线的开发商账号 ID。
         # @type DirectConnectOwnerAccount: String
-        # @param NetworkType: 网络类型，分别为VPC、BMVPC，CCN，默认是VPC
-        # VPC：私有网络
-        # BMVPC：黑石网络
-        # CCN：云联网
+        # @param NetworkType: 网络类型，枚举：VPC、BMVPC、CCN；默认为VPC。VPC：私有网络；BMVPC：黑石网络；CCN：云联网）。
         # @type NetworkType: String
-        # @param NetworkRegion: 网络地域
+        # @param NetworkRegion: 网络地域。
         # @type NetworkRegion: String
-        # @param VpcId: 私有网络统一 ID 或者黑石网络统一 ID
+        # @param VpcId: 私有网络统一ID或黑石网络统一ID。
         # @type VpcId: String
-        # @param DirectConnectGatewayId: 专线网关 ID，例如 dcg-d545ddf
+        # @param DirectConnectGatewayId: 专线网关ID，例如 dcg-d545ddf。
         # @type DirectConnectGatewayId: String
-        # @param Bandwidth: 专线带宽，单位：Mbps
-        # 默认是物理专线带宽值
+        # @param Bandwidth: 专线带宽，单位：Mbps；默认是物理专线带宽值。
         # @type Bandwidth: Integer
-        # @param RouteType: BGP ：BGP路由
-        # STATIC：静态
-        # 默认为 BGP 路由
+        # @param RouteType: 路由类型，枚举：BGP、STATIC；默认为BGP 。（BGP ：BGP路由；STATIC：静态）。
         # @type RouteType: String
-        # @param BgpPeer: BgpPeer，用户侧bgp信息，包括Asn和AuthKey
+        # @param BgpPeer: BgpPeer，用户侧bgp信息，包括Asn和AuthKey。
         # @type BgpPeer: :class:`Tencentcloud::Dc.v20180410.models.BgpPeer`
-        # @param RouteFilterPrefixes: 静态路由，用户IDC的网段地址
+        # @param RouteFilterPrefixes: 静态路由，用户IDC的网段地址。
         # @type RouteFilterPrefixes: Array
-        # @param Vlan: vlan，范围：0 ~ 3000
-        # 0：不开启子接口
-        # 默认值是非0
+        # @param Vlan: vlan，范围：0 ~ 3000。
+        # 0：不开启子接口，默认值是非0。
         # @type Vlan: Integer
-        # @param TencentAddress: TencentAddress，腾讯侧互联 IP
+        # @param TencentAddress: TencentAddress，腾讯侧互联 IP。
         # @type TencentAddress: String
-        # @param CustomerAddress: CustomerAddress，用户侧互联 IP
+        # @param CustomerAddress: CustomerAddress，用户侧互联 IP。
         # @type CustomerAddress: String
-        # @param TencentBackupAddress: TencentBackupAddress，腾讯侧备用互联 IP
+        # @param TencentBackupAddress: TencentBackupAddress，腾讯侧备用互联 IP。
         # @type TencentBackupAddress: String
-        # @param CloudAttachId: 高速上云服务ID
+        # @param CloudAttachId: 高速上云服务ID。
         # @type CloudAttachId: String
-        # @param BfdEnable: 是否开启BFD
+        # @param BfdEnable: 是否开启BFD。
         # @type BfdEnable: Integer
-        # @param NqaEnable: 是否开启NQA
+        # @param NqaEnable: 是否开启NQA。
         # @type NqaEnable: Integer
-        # @param BfdInfo: BFD配置信息
+        # @param BfdInfo: BFD配置信息。
         # @type BfdInfo: :class:`Tencentcloud::Dc.v20180410.models.BFDInfo`
-        # @param NqaInfo: NQA配置信息
+        # @param NqaInfo: NQA配置信息。
         # @type NqaInfo: :class:`Tencentcloud::Dc.v20180410.models.NQAInfo`
 
         attr_accessor :DirectConnectId, :DirectConnectTunnelName, :DirectConnectOwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :Bandwidth, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :TencentBackupAddress, :CloudAttachId, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo
@@ -473,7 +466,7 @@ module TencentCloud
 
       # CreateDirectConnectTunnel返回参数结构体
       class CreateDirectConnectTunnelResponse < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelIdSet: 专用通道ID
+        # @param DirectConnectTunnelIdSet: 专用通道ID。
         # @type DirectConnectTunnelIdSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

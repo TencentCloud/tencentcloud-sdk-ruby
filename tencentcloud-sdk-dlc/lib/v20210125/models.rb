@@ -1410,8 +1410,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2023, 11
-        deprecate :DefaultDataEngine=, :none, 2023, 11
+        deprecate :DefaultDataEngine, :none, 2023, 12
+        deprecate :DefaultDataEngine=, :none, 2023, 12
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -3210,7 +3210,7 @@ module TencentCloud
         # @type DataEngineId: String
         # @param DataEngineConfigPairs: 用户自定义配置项集合
         # @type DataEngineConfigPairs: Array
-        # @param SessionResourceTemplate: 作业集群资源参数配置模版
+        # @param SessionResourceTemplate: 作业集群资源参数配置模板
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
 
         attr_accessor :DataEngineId, :DataEngineConfigPairs, :SessionResourceTemplate
@@ -7894,9 +7894,9 @@ module TencentCloud
 
       # LakeFileSystem使用的临时token
       class LakeFileSystemToken < TencentCloud::Common::AbstractModel
-        # @param SecretId: Token使用的临时秘钥的ID
+        # @param SecretId: Token使用的临时密钥的ID
         # @type SecretId: String
-        # @param SecretKey: Token使用的临时秘钥
+        # @param SecretKey: Token使用的临时密钥
         # @type SecretKey: String
         # @param Token: Token信息
         # @type Token: String
@@ -10563,10 +10563,13 @@ module TencentCloud
         # @param MapMaterializedViewName: xxxx
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MapMaterializedViewName: String
+        # @param HeatValue: 访问热点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeatValue: Integer
 
-        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount, :MapMaterializedViewName
+        attr_accessor :TableBaseInfo, :Columns, :Partitions, :Location, :Properties, :ModifiedTime, :CreateTime, :InputFormat, :StorageSize, :RecordCount, :MapMaterializedViewName, :HeatValue
 
-        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil, mapmaterializedviewname=nil)
+        def initialize(tablebaseinfo=nil, columns=nil, partitions=nil, location=nil, properties=nil, modifiedtime=nil, createtime=nil, inputformat=nil, storagesize=nil, recordcount=nil, mapmaterializedviewname=nil, heatvalue=nil)
           @TableBaseInfo = tablebaseinfo
           @Columns = columns
           @Partitions = partitions
@@ -10578,6 +10581,7 @@ module TencentCloud
           @StorageSize = storagesize
           @RecordCount = recordcount
           @MapMaterializedViewName = mapmaterializedviewname
+          @HeatValue = heatvalue
         end
 
         def deserialize(params)
@@ -10616,6 +10620,7 @@ module TencentCloud
           @StorageSize = params['StorageSize']
           @RecordCount = params['RecordCount']
           @MapMaterializedViewName = params['MapMaterializedViewName']
+          @HeatValue = params['HeatValue']
         end
       end
 
@@ -10774,10 +10779,13 @@ module TencentCloud
         # @param PrestoMonitorMetrics: presto任务指标数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrestoMonitorMetrics: :class:`Tencentcloud::Dlc.v20210125.models.PrestoMonitorMetrics`
+        # @param ResultFormat: 结果文件格式：默认为csv
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultFormat: String
 
-        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat
 
-        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil)
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil)
           @DatabaseName = databasename
           @DataAmount = dataamount
           @Id = id
@@ -10818,6 +10826,7 @@ module TencentCloud
           @CommonMetrics = commonmetrics
           @SparkMonitorMetrics = sparkmonitormetrics
           @PrestoMonitorMetrics = prestomonitormetrics
+          @ResultFormat = resultformat
         end
 
         def deserialize(params)
@@ -10870,6 +10879,7 @@ module TencentCloud
             @PrestoMonitorMetrics = PrestoMonitorMetrics.new
             @PrestoMonitorMetrics.deserialize(params['PrestoMonitorMetrics'])
           end
+          @ResultFormat = params['ResultFormat']
         end
       end
 

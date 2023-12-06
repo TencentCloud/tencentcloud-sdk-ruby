@@ -108,13 +108,16 @@ module TencentCloud
         # @type VpcSet: Array
         # @param AccountVpcSet: 本次新增关联账户vpc信息
         # @type AccountVpcSet: Array
+        # @param Sync: 是否为同步操作
+        # @type Sync: Boolean
 
-        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :Sync
 
-        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, sync=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
           @AccountVpcSet = accountvpcset
+          @Sync = sync
         end
 
         def deserialize(params)
@@ -135,6 +138,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfo_tmp
             end
           end
+          @Sync = params['Sync']
         end
       end
 
@@ -146,15 +150,19 @@ module TencentCloud
         # @type VpcSet: Array
         # @param AccountVpcSet: 本次新增的关联账号vpc
         # @type AccountVpcSet: Array
+        # @param UniqId: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :RequestId
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :UniqId, :RequestId
 
-        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, requestid=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, uniqid=nil, requestid=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
           @AccountVpcSet = accountvpcset
+          @UniqId = uniqid
           @RequestId = requestid
         end
 
@@ -176,6 +184,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfo_tmp
             end
           end
+          @UniqId = params['UniqId']
           @RequestId = params['RequestId']
         end
       end
@@ -601,13 +610,16 @@ module TencentCloud
         # @type VpcSet: Array
         # @param AccountVpcSet: 本次删除的关联账户VPC
         # @type AccountVpcSet: Array
+        # @param Sync: 是否为同步操作
+        # @type Sync: Boolean
 
-        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :Sync
 
-        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, sync=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
           @AccountVpcSet = accountvpcset
+          @Sync = sync
         end
 
         def deserialize(params)
@@ -628,6 +640,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfo_tmp
             end
           end
+          @Sync = params['Sync']
         end
       end
 
@@ -639,15 +652,19 @@ module TencentCloud
         # @type VpcSet: Array
         # @param AccountVpcSet: 本次删除的关联账户的VPC
         # @type AccountVpcSet: Array
+        # @param UniqId: 唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :RequestId
+        attr_accessor :ZoneId, :VpcSet, :AccountVpcSet, :UniqId, :RequestId
 
-        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, requestid=nil)
+        def initialize(zoneid=nil, vpcset=nil, accountvpcset=nil, uniqid=nil, requestid=nil)
           @ZoneId = zoneid
           @VpcSet = vpcset
           @AccountVpcSet = accountvpcset
+          @UniqId = uniqid
           @RequestId = requestid
         end
 
@@ -669,6 +686,7 @@ module TencentCloud
               @AccountVpcSet << accountvpcinfo_tmp
             end
           end
+          @UniqId = params['UniqId']
           @RequestId = params['RequestId']
         end
       end

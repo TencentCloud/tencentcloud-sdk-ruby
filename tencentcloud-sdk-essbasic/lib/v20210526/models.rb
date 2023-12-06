@@ -5002,7 +5002,7 @@ module TencentCloud
 
         # **true**：跳过
         # **false**：（默认）不跳过，需要传ResourceId
-        # @type SkipUploadFile: String
+        # @type SkipUploadFile: Boolean
 
         attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile
 

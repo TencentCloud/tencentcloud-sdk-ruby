@@ -104,7 +104,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于创建专用通道的接口
+        # 创建专用通道。
 
         # @param request: Request instance for CreateDirectConnectTunnel.
         # @type request: :class:`Tencentcloud::dc::V20180410::CreateDirectConnectTunnelRequest`

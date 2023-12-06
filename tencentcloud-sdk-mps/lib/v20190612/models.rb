@@ -668,6 +668,8 @@ module TencentCloud
         # <li>Tag：智能标签</li>
         # <li>FrameTag：智能按帧标签</li>
         # <li>Highlight：智能精彩集锦</li>
+        # <li>DeLogo：智能去水印</li>
+        # <li>Description：大模型摘要</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -687,10 +689,13 @@ module TencentCloud
         # @param DeLogoTask: 视频内容分析去水印任务的查询结果，当任务类型为 DeLogo 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeLogoTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoResult`
+        # @param DescriptionTask: 视频内容分析摘要任务的查询结果，当任务类型为 Description 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DescriptionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :DescriptionTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, descriptiontask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -698,6 +703,7 @@ module TencentCloud
           @FrameTagTask = frametagtask
           @HighlightTask = highlighttask
           @DeLogoTask = delogotask
+          @DescriptionTask = descriptiontask
         end
 
         def deserialize(params)
@@ -725,6 +731,10 @@ module TencentCloud
           unless params['DeLogoTask'].nil?
             @DeLogoTask = AiAnalysisTaskDelLogoResult.new
             @DeLogoTask.deserialize(params['DeLogoTask'])
+          end
+          unless params['DescriptionTask'].nil?
+            @DescriptionTask = AiAnalysisTaskDescriptionResult.new
+            @DescriptionTask.deserialize(params['DescriptionTask'])
           end
         end
       end
@@ -973,6 +983,84 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = AiAnalysisTaskDelLogoOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 智能分类任务输入类型
+      class AiAnalysisTaskDescriptionInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能描述模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能描述结果信息
+      class AiAnalysisTaskDescriptionOutput < TencentCloud::Common::AbstractModel
+        # @param DescriptionSet: 视频智能描述列表。
+        # @type DescriptionSet: Array
+
+        attr_accessor :DescriptionSet
+
+        def initialize(descriptionset=nil)
+          @DescriptionSet = descriptionset
+        end
+
+        def deserialize(params)
+          unless params['DescriptionSet'].nil?
+            @DescriptionSet = []
+            params['DescriptionSet'].each do |i|
+              mediaaianalysisdescriptionitem_tmp = MediaAiAnalysisDescriptionItem.new
+              mediaaianalysisdescriptionitem_tmp.deserialize(i)
+              @DescriptionSet << mediaaianalysisdescriptionitem_tmp
+            end
+          end
+        end
+      end
+
+      # 智能描述结果类型
+      class AiAnalysisTaskDescriptionResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能描述任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionInput`
+        # @param Output: 智能描述任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDescriptionOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskDescriptionInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskDescriptionOutput.new
             @Output.deserialize(params['Output'])
           end
         end
@@ -1380,6 +1468,33 @@ module TencentCloud
         end
       end
 
+      # 分段信息。
+      class AiParagraphInfo < TencentCloud::Common::AbstractModel
+        # @param Summary: 分段摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Summary: String
+        # @param StartTimeOffset: 分段起始时间点，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 分段结束时间点，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTimeOffset: Float
+
+        attr_accessor :Summary, :StartTimeOffset, :EndTimeOffset
+
+        def initialize(summary=nil, starttimeoffset=nil, endtimeoffset=nil)
+          @Summary = summary
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+        end
+      end
+
       # 视频质检输入参数类型
       class AiQualityControlTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频质检模板 ID 。暂时可以直接使用 预设模板ID 10，后面控制台支持用户配置自定义模板。
@@ -1559,8 +1674,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2023, 10
-        deprecate :OutputStorage=, :none, 2023, 10
+        deprecate :OutputStorage, :none, 2023, 12
+        deprecate :OutputStorage=, :none, 2023, 12
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -13134,6 +13249,38 @@ module TencentCloud
         def deserialize(params)
           @CoverPath = params['CoverPath']
           @Confidence = params['Confidence']
+        end
+      end
+
+      # 智能描述信息
+      class MediaAiAnalysisDescriptionItem < TencentCloud::Common::AbstractModel
+        # @param Description: 智能描述。
+        # @type Description: String
+        # @param Confidence: 智能描述的可信度，取值范围是 0 到 100。
+        # @type Confidence: Float
+        # @param Paragraphs: 分段结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paragraphs: Array
+
+        attr_accessor :Description, :Confidence, :Paragraphs
+
+        def initialize(description=nil, confidence=nil, paragraphs=nil)
+          @Description = description
+          @Confidence = confidence
+          @Paragraphs = paragraphs
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @Confidence = params['Confidence']
+          unless params['Paragraphs'].nil?
+            @Paragraphs = []
+            params['Paragraphs'].each do |i|
+              aiparagraphinfo_tmp = AiParagraphInfo.new
+              aiparagraphinfo_tmp.deserialize(i)
+              @Paragraphs << aiparagraphinfo_tmp
+            end
+          end
         end
       end
 
