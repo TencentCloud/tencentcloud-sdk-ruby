@@ -9714,10 +9714,14 @@ module TencentCloud
         # @param SubPageCode: 副页编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubPageCode: String
+        # @param FuelType: 燃料种类
 
-        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FuelType: String
 
-        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil)
+        attr_accessor :PlateNo, :FileNo, :AllowNum, :TotalMass, :CurbWeight, :LoadQuality, :ExternalSize, :Marks, :Record, :TotalQuasiMass, :SubPageCode, :FuelType
+
+        def initialize(plateno=nil, fileno=nil, allownum=nil, totalmass=nil, curbweight=nil, loadquality=nil, externalsize=nil, marks=nil, record=nil, totalquasimass=nil, subpagecode=nil, fueltype=nil)
           @PlateNo = plateno
           @FileNo = fileno
           @AllowNum = allownum
@@ -9729,6 +9733,7 @@ module TencentCloud
           @Record = record
           @TotalQuasiMass = totalquasimass
           @SubPageCode = subpagecode
+          @FuelType = fueltype
         end
 
         def deserialize(params)
@@ -9743,6 +9748,7 @@ module TencentCloud
           @Record = params['Record']
           @TotalQuasiMass = params['TotalQuasiMass']
           @SubPageCode = params['SubPageCode']
+          @FuelType = params['FuelType']
         end
       end
 

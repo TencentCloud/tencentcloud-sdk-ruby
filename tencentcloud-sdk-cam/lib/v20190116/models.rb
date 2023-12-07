@@ -2086,8 +2086,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2023, 11
-        deprecate :Idps=, :none, 2023, 11
+        deprecate :Idps, :none, 2023, 12
+        deprecate :Idps=, :none, 2023, 12
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -4510,7 +4510,7 @@ module TencentCloud
         # @type UserType: Integer
         # @param LastLoginIp: 最近登录IP
         # @type LastLoginIp: String
-        # @param LastLoginTime: 最近登录时间
+        # @param LastLoginTime: 最近登录时间，回参为空，即为未登录过控制台
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastLoginTime: String
 

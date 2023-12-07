@@ -16551,21 +16551,25 @@ module TencentCloud
 
       # 资源删除选项
       class ResourceDeleteOption < TencentCloud::Common::AbstractModel
-        # @param ResourceType: 资源类型，例如CBS
+        # @param ResourceType: 资源类型，例如CBS、CLB、CVM
         # @type ResourceType: String
-        # @param DeleteMode: 集群删除时资源的删除模式：terminate（销毁），retain （保留）
+        # @param DeleteMode: 集群删除时CBS资源的删除模式：terminate（销毁），retain （保留）。其他资源默认为销毁。
         # @type DeleteMode: String
+        # @param SkipDeletionProtection: 是否跳过开启删除保护的资源，默认false，设置为true时不清理开启了删除保护的资源，clb有终端节点的情况也属于开了删除保护。
+        # @type SkipDeletionProtection: Boolean
 
-        attr_accessor :ResourceType, :DeleteMode
+        attr_accessor :ResourceType, :DeleteMode, :SkipDeletionProtection
 
-        def initialize(resourcetype=nil, deletemode=nil)
+        def initialize(resourcetype=nil, deletemode=nil, skipdeletionprotection=nil)
           @ResourceType = resourcetype
           @DeleteMode = deletemode
+          @SkipDeletionProtection = skipdeletionprotection
         end
 
         def deserialize(params)
           @ResourceType = params['ResourceType']
           @DeleteMode = params['DeleteMode']
+          @SkipDeletionProtection = params['SkipDeletionProtection']
         end
       end
 

@@ -7256,7 +7256,7 @@ module TencentCloud
       #                 "columnStart":1,
       #                 "columnEnd":1,
       #                 "content":"123",
-      #                 "style": "{\"color\": \"#b50000\", \"fontSize\": 12,\"bold\": true,\"align\": \"CENTER\"}"
+      #                 "style": {"color": "#b50000", "fontSize": 12,"bold": true,"align": "CENTER"}
       #             },
       #             {
       #                 "rowStart":2,
@@ -7264,7 +7264,7 @@ module TencentCloud
       #                 "columnStart":1,
       #                 "columnEnd":2,
       #                 "content":"456",
-      #                 "style": "{\"color\": \"#b50000\", \"fontSize\": 12,\"bold\": true,\"align\": \"LEFT\"}"
+      #                 "style": {"color": "#b50000", "fontSize": 12,"bold": true,"align": "LEFT"}
       #             },
       #             {
       #                 "rowStart":3,
@@ -7272,7 +7272,7 @@ module TencentCloud
       #                 "columnStart":3,
       #                 "columnEnd":3,
       #                 "content":"789",
-      #                 "style": "{\"color\": \"#b500bf\", \"fontSize\": 12,\"bold\": false,\"align\": \"RIGHT\"}"
+      #                 "style": {"color": "#b500bf", "fontSize": 12,"bold": false,"align": "RIGHT"}
       #             }
       #         ]
       #     }
@@ -8058,10 +8058,20 @@ module TencentCloud
         # true-是
         # false-否
         # @type IsPromoter: Boolean
+        # @param ApproverVerifyTypes: 签署人查看合同校验方式, 支持的类型如下:
+        # <ul><li> 1 :实名认证查看</li>
+        # <li> 2 :手机号校验查看</li></ul>
+        # @type ApproverVerifyTypes: Array
+        # @param ApproverSignTypes: 签署人进行合同签署时的认证方式，支持的类型如下:
+        # <ul><li> 1 :人脸认证</li>
+        # <li> 2 :签署密码</li>
+        # <li> 3 :运营商三要素认证</li>
+        # <li> 4 :UKey认证</li></ul>
+        # @type ApproverSignTypes: Array
 
-        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter
+        attr_accessor :RecipientId, :RecipientType, :Description, :RoleName, :RequireValidation, :RequireSign, :SignType, :RoutingOrder, :IsPromoter, :ApproverVerifyTypes, :ApproverSignTypes
 
-        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil)
+        def initialize(recipientid=nil, recipienttype=nil, description=nil, rolename=nil, requirevalidation=nil, requiresign=nil, signtype=nil, routingorder=nil, ispromoter=nil, approververifytypes=nil, approversigntypes=nil)
           @RecipientId = recipientid
           @RecipientType = recipienttype
           @Description = description
@@ -8071,6 +8081,8 @@ module TencentCloud
           @SignType = signtype
           @RoutingOrder = routingorder
           @IsPromoter = ispromoter
+          @ApproverVerifyTypes = approververifytypes
+          @ApproverSignTypes = approversigntypes
         end
 
         def deserialize(params)
@@ -8083,6 +8095,8 @@ module TencentCloud
           @SignType = params['SignType']
           @RoutingOrder = params['RoutingOrder']
           @IsPromoter = params['IsPromoter']
+          @ApproverVerifyTypes = params['ApproverVerifyTypes']
+          @ApproverSignTypes = params['ApproverSignTypes']
         end
       end
 
