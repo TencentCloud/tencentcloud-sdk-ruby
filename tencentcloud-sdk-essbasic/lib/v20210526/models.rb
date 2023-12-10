@@ -4023,6 +4023,87 @@ module TencentCloud
         end
       end
 
+      # 渠道企业信息
+      class ChannelOrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationId: 电子签企业Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationId: String
+        # @param OrganizationOpenId: 电子签企业OpenId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationOpenId: String
+        # @param OrganizationName: 企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+        # @param UnifiedSocialCreditCode: 企业信用代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnifiedSocialCreditCode: String
+        # @param LegalName: 法人姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalName: String
+        # @param LegalOpenId: 法人OpenId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LegalOpenId: String
+        # @param AdminName: 超管姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminName: String
+        # @param AdminOpenId: 超管OpenId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminOpenId: String
+        # @param AdminMobile: 超管手机号，脱敏后返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminMobile: String
+        # @param AuthorizationStatus: 企业认证状态字段。值如下：
+        # <ul>
+        #   <li>**"UNVERIFIED"**： 未认证的企业</li>
+        #   <li>**"VERIFYINGLEGALPENDINGAUTHORIZATION"**： 认证中待法人授权的企业</li>
+        #   <li>**"VERIFYINGAUTHORIZATIONFILEPENDING"**： 认证中授权书审核中的企业</li>
+        #   <li>**"VERIFYINGAUTHORIZATIONFILEREJECT"**： 认证中授权书已驳回的企业</li>
+        #   <li>**"VERIFYING"**： 认证中的企业</li>
+        #   <li>**"VERIFIED"**： 已认证的企业</li>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationStatus: String
+        # @param AuthorizationType: 企业认证方式字段。值如下：
+        # <ul>
+        #   <li>**"AuthorizationInit"**： 暂未选择授权方式</li>
+        #   <li>**"AuthorizationFile"**： 授权书</li>
+        #   <li>**"AuthorizationLegalPerson"**： 法人授权超管</li>
+        #   <li>**"AuthorizationLegalIdentity"**： 法人直接认证</li>
+        # </ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationType: String
+
+        attr_accessor :OrganizationId, :OrganizationOpenId, :OrganizationName, :UnifiedSocialCreditCode, :LegalName, :LegalOpenId, :AdminName, :AdminOpenId, :AdminMobile, :AuthorizationStatus, :AuthorizationType
+
+        def initialize(organizationid=nil, organizationopenid=nil, organizationname=nil, unifiedsocialcreditcode=nil, legalname=nil, legalopenid=nil, adminname=nil, adminopenid=nil, adminmobile=nil, authorizationstatus=nil, authorizationtype=nil)
+          @OrganizationId = organizationid
+          @OrganizationOpenId = organizationopenid
+          @OrganizationName = organizationname
+          @UnifiedSocialCreditCode = unifiedsocialcreditcode
+          @LegalName = legalname
+          @LegalOpenId = legalopenid
+          @AdminName = adminname
+          @AdminOpenId = adminopenid
+          @AdminMobile = adminmobile
+          @AuthorizationStatus = authorizationstatus
+          @AuthorizationType = authorizationtype
+        end
+
+        def deserialize(params)
+          @OrganizationId = params['OrganizationId']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OrganizationName = params['OrganizationName']
+          @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
+          @LegalName = params['LegalName']
+          @LegalOpenId = params['LegalOpenId']
+          @AdminName = params['AdminName']
+          @AdminOpenId = params['AdminOpenId']
+          @AdminMobile = params['AdminMobile']
+          @AuthorizationStatus = params['AuthorizationStatus']
+          @AuthorizationType = params['AuthorizationType']
+        end
+      end
+
       # 角色信息
       class ChannelRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色ID,为32位字符串
@@ -5604,6 +5685,95 @@ module TencentCloud
         def deserialize(params)
           @ReportUrl = params['ReportUrl']
           @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeChannelOrganizations请求参数结构体
+      class DescribeChannelOrganizationsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+
+        # 渠道应用标识: Agent.AppId
+        # 第三方平台子客企业标识: Agent.ProxyOrganizationOpenId
+        # 第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 200。
+        # @type Limit: Integer
+        # @param OrganizationOpenId: 子客OrganizationOpenId，定向查询某个子客的企业数据。
+        # @type OrganizationOpenId: String
+        # @param AuthorizationStatusList: 企业认证状态过滤字段。可值如下：
+        # <ul>
+        #   <li>**"UNVERIFIED"**： 未认证的企业</li>
+        #   <li>**"VERIFYINGLEGALPENDINGAUTHORIZATION"**： 认证中待法人授权的企业</li>
+        #   <li>**"VERIFYINGAUTHORIZATIONFILEPENDING"**： 认证中授权书审核中的企业</li>
+        #   <li>**"VERIFYINGAUTHORIZATIONFILEREJECT"**： 认证中授权书已驳回的企业</li>
+        #   <li>**"VERIFYING"**： 认证中的企业</li>
+        #   <li>**"VERIFIED"**： 已认证的企业</li>
+        # </ul>
+        # @type AuthorizationStatusList: Array
+        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页。 页码从 0 开始，即首页为 0，最大20000。
+        # @type Offset: Integer
+
+        attr_accessor :Agent, :Limit, :OrganizationOpenId, :AuthorizationStatusList, :Offset
+
+        def initialize(agent=nil, limit=nil, organizationopenid=nil, authorizationstatuslist=nil, offset=nil)
+          @Agent = agent
+          @Limit = limit
+          @OrganizationOpenId = organizationopenid
+          @AuthorizationStatusList = authorizationstatuslist
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Limit = params['Limit']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @AuthorizationStatusList = params['AuthorizationStatusList']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeChannelOrganizations返回参数结构体
+      class DescribeChannelOrganizationsResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelOrganizationInfos: 企业企业信息列表。
+        # @type ChannelOrganizationInfos: Array
+        # @param Offset: 指定分页返回第几页的数据。页码从 0 开始，即首页为 0，最大20000。
+        # @type Offset: Integer
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 200。
+        # @type Limit: Integer
+        # @param Total: 符合条件的企业数量。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelOrganizationInfos, :Offset, :Limit, :Total, :RequestId
+
+        def initialize(channelorganizationinfos=nil, offset=nil, limit=nil, total=nil, requestid=nil)
+          @ChannelOrganizationInfos = channelorganizationinfos
+          @Offset = offset
+          @Limit = limit
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ChannelOrganizationInfos'].nil?
+            @ChannelOrganizationInfos = []
+            params['ChannelOrganizationInfos'].each do |i|
+              channelorganizationinfo_tmp = ChannelOrganizationInfo.new
+              channelorganizationinfo_tmp.deserialize(i)
+              @ChannelOrganizationInfos << channelorganizationinfo_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

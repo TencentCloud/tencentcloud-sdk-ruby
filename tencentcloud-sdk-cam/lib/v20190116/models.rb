@@ -3848,15 +3848,18 @@ module TencentCloud
         # @type Wechat: Integer
         # @param Custom: 自定义
         # @type Custom: Integer
+        # @param Mail: 邮箱
+        # @type Mail: Integer
 
-        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom
+        attr_accessor :Phone, :Token, :Stoken, :Wechat, :Custom, :Mail
 
-        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil)
+        def initialize(phone=nil, token=nil, stoken=nil, wechat=nil, custom=nil, mail=nil)
           @Phone = phone
           @Token = token
           @Stoken = stoken
           @Wechat = wechat
           @Custom = custom
+          @Mail = mail
         end
 
         def deserialize(params)
@@ -3865,6 +3868,7 @@ module TencentCloud
           @Stoken = params['Stoken']
           @Wechat = params['Wechat']
           @Custom = params['Custom']
+          @Mail = params['Mail']
         end
       end
 

@@ -2635,6 +2635,49 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceSupportFeature请求参数结构体
+      class DescribeInstanceSupportFeatureRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
+        # 示例值：crs-asdasdas
+        # @type InstanceId: String
+        # @param FeatureName: 功能特性名称
+        # - read-local-node-only 就近接入功能
+        # - multi-account 多账号功能
+        # @type FeatureName: String
+
+        attr_accessor :InstanceId, :FeatureName
+
+        def initialize(instanceid=nil, featurename=nil)
+          @InstanceId = instanceid
+          @FeatureName = featurename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FeatureName = params['FeatureName']
+        end
+      end
+
+      # DescribeInstanceSupportFeature返回参数结构体
+      class DescribeInstanceSupportFeatureResponse < TencentCloud::Common::AbstractModel
+        # @param Support: 是否支持
+        # @type Support: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Support, :RequestId
+
+        def initialize(support=nil, requestid=nil)
+          @Support = support
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Support = params['Support']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceZoneInfo请求参数结构体
       class DescribeInstanceZoneInfoRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
@@ -5509,6 +5552,60 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceAvailabilityZones请求参数结构体
+      class ModifyInstanceAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****，请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param SwitchOption: 切换时间。
+        # - 1：维护时间窗切换。
+        # - 2：立即切换。
+        # @type SwitchOption: Integer
+        # @param NodeSet: 实例的节点信息，包含节点 ID、节点类型、节点可用区 ID等。具体信息，请参见[RedisNodeInfo ](https://cloud.tencent.com/document/product/239/20022)。
+        # 单可用区实例无需传NodeId，多可用区实例NodeId必传
+        # @type NodeSet: Array
+
+        attr_accessor :InstanceId, :SwitchOption, :NodeSet
+
+        def initialize(instanceid=nil, switchoption=nil, nodeset=nil)
+          @InstanceId = instanceid
+          @SwitchOption = switchoption
+          @NodeSet = nodeset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SwitchOption = params['SwitchOption']
+          unless params['NodeSet'].nil?
+            @NodeSet = []
+            params['NodeSet'].each do |i|
+              redisnodeinfo_tmp = RedisNodeInfo.new
+              redisnodeinfo_tmp.deserialize(i)
+              @NodeSet << redisnodeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyInstanceAvailabilityZones返回参数结构体
+      class ModifyInstanceAvailabilityZonesResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceParams请求参数结构体
       class ModifyInstanceParamsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -6887,6 +6984,39 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SwitchAccessNewInstance请求参数结构体
+      class SwitchAccessNewInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
+        # 示例值：crs-asdasdas
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # SwitchAccessNewInstance返回参数结构体
+      class SwitchAccessNewInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

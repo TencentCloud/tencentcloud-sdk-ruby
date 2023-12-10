@@ -1793,6 +1793,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询渠道子客企业信息
+
+        # @param request: Request instance for DescribeChannelOrganizations.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelOrganizationsRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeChannelOrganizationsResponse`
+        def DescribeChannelOrganizations(request)
+          body = send_request('DescribeChannelOrganizations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeChannelOrganizationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 生成渠道子客用印申请审批小程序链接，链接类型（通过H5唤起小程序或通过APP跳转的方式查看）
 
         # @param request: Request instance for DescribeChannelSealPolicyWorkflowUrl.

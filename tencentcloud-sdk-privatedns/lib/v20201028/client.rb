@@ -581,6 +581,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询异步绑定vpc操作状态
+
+        # @param request: Request instance for QueryAsyncBindVpcStatus.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::QueryAsyncBindVpcStatusRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::QueryAsyncBindVpcStatusResponse`
+        def QueryAsyncBindVpcStatus(request)
+          body = send_request('QueryAsyncBindVpcStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryAsyncBindVpcStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通私有域解析
 
         # @param request: Request instance for SubscribePrivateZoneService.

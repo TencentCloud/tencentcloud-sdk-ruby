@@ -17,6 +17,33 @@
 module TencentCloud
   module Monitor
     module V20180724
+      # 策略过滤条件
+      class AlarmConditionFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Expression: 表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expression: String
+        # @param Dimensions: 过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: String
+
+        attr_accessor :Type, :Expression, :Dimensions
+
+        def initialize(type=nil, expression=nil, dimensions=nil)
+          @Type = type
+          @Expression = expression
+          @Dimensions = dimensions
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Expression = params['Expression']
+          @Dimensions = params['Dimensions']
+        end
+      end
+
       # 告警事件
       class AlarmEvent < TencentCloud::Common::AbstractModel
         # @param EventName: 事件名
@@ -38,6 +65,28 @@ module TencentCloud
           @EventName = params['EventName']
           @Description = params['Description']
           @Namespace = params['Namespace']
+        end
+      end
+
+      # 聚合条件
+      class AlarmGroupByItem < TencentCloud::Common::AbstractModel
+        # @param Id: Item Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
         end
       end
 
@@ -488,6 +537,12 @@ module TencentCloud
         # @param TagInstances: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagInstances: Array
+        # @param Filter: 过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filter: :class:`Tencentcloud::Monitor.v20180724.models.AlarmConditionFilter`
+        # @param GroupBy: 聚合条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupBy: Array
         # @param FilterDimensionsParam: 策略关联的过滤维度信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterDimensionsParam: String
@@ -510,9 +565,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportAlarmTag: Integer
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag
 
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -542,6 +597,8 @@ module TencentCloud
           @RuleType = ruletype
           @OriginId = originid
           @TagInstances = taginstances
+          @Filter = filter
+          @GroupBy = groupby
           @FilterDimensionsParam = filterdimensionsparam
           @IsOneClick = isoneclick
           @OneClickStatus = oneclickstatus
@@ -609,6 +666,18 @@ module TencentCloud
               taginstance_tmp = TagInstance.new
               taginstance_tmp.deserialize(i)
               @TagInstances << taginstance_tmp
+            end
+          end
+          unless params['Filter'].nil?
+            @Filter = AlarmConditionFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          unless params['GroupBy'].nil?
+            @GroupBy = []
+            params['GroupBy'].each do |i|
+              alarmgroupbyitem_tmp = AlarmGroupByItem.new
+              alarmgroupbyitem_tmp.deserialize(i)
+              @GroupBy << alarmgroupbyitem_tmp
             end
           end
           @FilterDimensionsParam = params['FilterDimensionsParam']

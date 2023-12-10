@@ -1749,6 +1749,48 @@ module TencentCloud
         end
       end
 
+      # QueryAsyncBindVpcStatus请求参数结构体
+      class QueryAsyncBindVpcStatusRequest < TencentCloud::Common::AbstractModel
+        # @param UniqId: 唯一ID
+        # @type UniqId: String
+
+        attr_accessor :UniqId
+
+        def initialize(uniqid=nil)
+          @UniqId = uniqid
+        end
+
+        def deserialize(params)
+          @UniqId = params['UniqId']
+        end
+      end
+
+      # QueryAsyncBindVpcStatus返回参数结构体
+      class QueryAsyncBindVpcStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: processing 处理中，success 执行成功，
+        # fail 执行失败
+        # @type Status: String
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorMsg, :RequestId
+
+        def initialize(status=nil, errormsg=nil, requestid=nil)
+          @Status = status
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SubscribePrivateZoneService请求参数结构体
       class SubscribePrivateZoneServiceRequest < TencentCloud::Common::AbstractModel
 

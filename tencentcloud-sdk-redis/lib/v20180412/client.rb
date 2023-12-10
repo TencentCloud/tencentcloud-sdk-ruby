@@ -1013,6 +1013,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceSupportFeature）用于查询实例支持的功能特性。
+
+        # @param request: Request instance for DescribeInstanceSupportFeature.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceSupportFeatureRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeInstanceSupportFeatureResponse`
+        def DescribeInstanceSupportFeature(request)
+          body = send_request('DescribeInstanceSupportFeature', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceSupportFeatureResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeInstanceZoneInfo）用于查询 Redis 节点详细信息。
 
         # @param request: Request instance for DescribeInstanceZoneInfo.
@@ -1781,6 +1805,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyInstanceAvailabilityZones）用于变更实例可用区
+
+        # @param request: Request instance for ModifyInstanceAvailabilityZones.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceAvailabilityZonesRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyInstanceAvailabilityZonesResponse`
+        def ModifyInstanceAvailabilityZones(request)
+          body = send_request('ModifyInstanceAvailabilityZones', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceAvailabilityZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
 
         # @param request: Request instance for ModifyInstanceParams.
@@ -2055,6 +2103,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StartupInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（SwitchAccessNewInstance）针对处于时间窗口中待切换操作的实例，用户可主动发起该操作。
+
+        # @param request: Request instance for SwitchAccessNewInstance.
+        # @type request: :class:`Tencentcloud::redis::V20180412::SwitchAccessNewInstanceRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::SwitchAccessNewInstanceResponse`
+        def SwitchAccessNewInstance(request)
+          body = send_request('SwitchAccessNewInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchAccessNewInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
