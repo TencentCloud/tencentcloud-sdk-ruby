@@ -1231,32 +1231,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口未使用
-
-        # 查询自定义账号
-
-        # @param request: Request instance for DescribeCustomAccounts.
-        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeCustomAccountsRequest`
-        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeCustomAccountsResponse`
-        def DescribeCustomAccounts(request)
-          body = send_request('DescribeCustomAccounts', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCustomAccountsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询实例公网访问入口状态
 
         # @param request: Request instance for DescribeExternalEndpointStatus.

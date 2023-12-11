@@ -1876,6 +1876,50 @@ module TencentCloud
         end
       end
 
+      # CreateCLSLogConfig请求参数结构体
+      class CreateCLSLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param LogConfig: 日志采集配置的json表达
+        # @type LogConfig: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogsetId: CLS日志集ID
+        # @type LogsetId: String
+        # @param ClusterType: 当前集群类型支持tke、eks
+        # @type ClusterType: String
+
+        attr_accessor :LogConfig, :ClusterId, :LogsetId, :ClusterType
+
+        def initialize(logconfig=nil, clusterid=nil, logsetid=nil, clustertype=nil)
+          @LogConfig = logconfig
+          @ClusterId = clusterid
+          @LogsetId = logsetid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @LogConfig = params['LogConfig']
+          @ClusterId = params['ClusterId']
+          @LogsetId = params['LogsetId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # CreateCLSLogConfig返回参数结构体
+      class CreateCLSLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateClusterEndpoint请求参数结构体
       class CreateClusterEndpointRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -3001,6 +3045,51 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateEksLogConfig请求参数结构体
+      class CreateEksLogConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogConfig: 日志采集配置的json表达
+        # @type LogConfig: String
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+
+        attr_accessor :ClusterId, :LogConfig, :LogsetId
+
+        def initialize(clusterid=nil, logconfig=nil, logsetid=nil)
+          @ClusterId = clusterid
+          @LogConfig = logconfig
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogConfig = params['LogConfig']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # CreateEksLogConfig返回参数结构体
+      class CreateEksLogConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志采集topicid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicId, :RequestId
+
+        def initialize(topicid=nil, requestid=nil)
+          @TopicId = topicid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
           @RequestId = params['RequestId']
         end
       end

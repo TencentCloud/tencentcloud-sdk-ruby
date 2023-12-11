@@ -11199,7 +11199,7 @@ module TencentCloud
         # @type Name: String
         # @param Status: 状态
         # @type Status: Integer
-        # @param Advance: 高级模式
+        # @param Advance: 高级模式（是否使用Session检测），0表示不启用，1表示启用
         # @type Advance: String
         # @param Limit: CC检测阈值
         # @type Limit: String
@@ -11207,9 +11207,9 @@ module TencentCloud
         # @type Interval: String
         # @param Url: 检测Url
         # @type Url: String
-        # @param MatchFunc: 匹配方法
+        # @param MatchFunc: 匹配方法，0表示等于，1表示前缀匹配，2表示包含
         # @type MatchFunc: Integer
-        # @param ActionType: 动作
+        # @param ActionType: 动作，20表示观察，21表示人机识别，22表示拦截，23表示精准拦截
         # @type ActionType: String
         # @param Priority: 优先级
         # @type Priority: Integer
@@ -11217,7 +11217,7 @@ module TencentCloud
         # @type ValidTime: Integer
         # @param OptionsArr: 附加参数
         # @type OptionsArr: String
-        # @param Edition: waf版本
+        # @param Edition: waf版本，sparta-waf或者clb-waf
         # @type Edition: String
         # @param Type: 操作类型
         # @type Type: Integer

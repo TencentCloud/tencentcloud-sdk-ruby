@@ -568,7 +568,7 @@ module TencentCloud
         # @type DeleteTime: Integer
         # @param CreateTime: 创建日期。
         # @type CreateTime: Integer
-        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型。
+        # @param SecretType: 0 --  用户自定义凭据类型；1 -- 数据库凭据类型；2 -- SSH密钥对凭据类型；3 -- 云API密钥（AKSK）凭据类型（使用此功能需要联系云助手单独开启白名单）；4 -- Redis类型凭据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretType: Integer
         # @param ProductName: 云产品名称。
@@ -659,7 +659,12 @@ module TencentCloud
 
       # DescribeSupportedProducts返回参数结构体
       class DescribeSupportedProductsResponse < TencentCloud::Common::AbstractModel
-        # @param Products: 支持的产品列表。
+        # @param Products: 支持的所有云产品列表。
+        # 每种云产品与凭据类型的对应关系如下：
+        # 当SecretType为1时，支持的云产品列表包括：Mysql、Tdsql-mysql、Tdsql_C_Mysql；
+        # 当SecretType为2时，支持的产品列表为：Cvm；
+        # 当SecretType为3时，支持的产品列表为：Cam（此功能的使用需要联系云助手单独开始白名单）；
+        # 当SecretType为4时，支持的产品列表为：Redis。
         # @type Products: Array
         # @param TotalCount: 支持的产品个数
         # @type TotalCount: Integer
@@ -1017,9 +1022,10 @@ module TencentCloud
         # @type SecretType: Integer
         # @param ProductName: 此参数仅在SecretType参数值为1时生效，
         # 当SecretType值为1时：
-        # 如果ProductName值为空，则表示查询所有类型的云产品凭据
-        # 如果ProductName值为Mysql，则表示查询Mysql数据库凭据
-        # 如果ProductName值为Tdsql-mysql，则表示查询Tdsql（Mysql版本）的凭据
+        # 如果ProductName值为空，则表示查询所有类型的云产品凭据；
+        # 如果ProductName值为某个指定的云产品值如Mysql时，则表示查询Mysql数据库凭据；
+        # 如果ProductName值为多个云产品值，如：Mysql,Tdsql-mysql,Tdsql_C_Mysql（多个值以英文逗号,分隔开）则表示查询三种云产品类型的凭据；
+        # 支持的云产品列表请通过接口：DescribeSupportedProducts进行查询。
         # @type ProductName: String
 
         attr_accessor :Offset, :Limit, :OrderType, :State, :SearchSecretName, :TagFilters, :SecretType, :ProductName

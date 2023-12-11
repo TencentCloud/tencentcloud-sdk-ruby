@@ -1718,16 +1718,16 @@ module TencentCloud
       class CreateExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param Kind: 类型
+        # @param Kind: 类型(可通过 DescribePrometheusIntegrations 接口获取，取每一项中的 ExporterType 字段)
         # @type Kind: String
         # @param Content: 集成配置
         # @type Content: String
-        # @param KubeType: Kubernetes 集群类型，取值如下：
+        # @param KubeType: Kubernetes 集群类型，可不填，取值如下：
         # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群<EKS> </li>
-        # <li> 3= Prometheus管理的弹性集群<MEKS> </li>
+        # <li> 2=弹性集群(EKS) </li>
+        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 集群 ID，可不填
         # @type ClusterId: String
 
         attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId
@@ -2347,13 +2347,13 @@ module TencentCloud
       class CreatePrometheusMultiTenantInstancePostPayModeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceName: 实例名
         # @type InstanceName: String
-        # @param VpcId: VPC ID
+        # @param VpcId: VPC ID(可通过 vpc:DescribeVpcs 接口获取，与实例同地域)
         # @type VpcId: String
-        # @param SubnetId: 子网 ID
+        # @param SubnetId: 子网 ID(可通过 vpc:DescribeSubnets 接口获取)
         # @type SubnetId: String
         # @param DataRetentionTime: 数据存储时间（单位天），限制值为15，30，45之一
         # @type DataRetentionTime: Integer
-        # @param Zone: 可用区
+        # @param Zone: 可用区(与子网同可用区)
         # @type Zone: String
         # @param TagSpecification: 实例的标签
         # @type TagSpecification: Array
@@ -2452,11 +2452,11 @@ module TencentCloud
 
       # CreatePrometheusScrapeJob请求参数结构体
       class CreatePrometheusScrapeJobRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Prometheus 实例 ID，例如：prom-abcd1234
+        # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
-        # @param AgentId: Agent ID，例如：agent-abcd1234，可在控制台 Agent 管理中获取
+        # @param AgentId: Agent ID(可通过DescribePrometheusAgents 接口获取)
         # @type AgentId: String
-        # @param Config: 抓取任务配置，格式：job_name:xx
+        # @param Config: 抓取任务配置
         # @type Config: String
 
         attr_accessor :InstanceId, :AgentId, :Config
@@ -2537,7 +2537,7 @@ module TencentCloud
       class CreateRecordingRuleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 聚合规则名称
         # @type Name: String
-        # @param Group: 聚合规则组内容，格式为 yaml
+        # @param Group: 聚合规则组内容，格式为 yaml，通过 base64 进行编码。
         # @type Group: String
         # @param InstanceId: Prometheus 实例 ID
         # @type InstanceId: String
@@ -2854,16 +2854,16 @@ module TencentCloud
       class DeleteExporterIntegrationRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param Kind: 类型
+        # @param Kind: 类型(可通过 DescribeExporterIntegrations获取)
         # @type Kind: String
         # @param Name: 名字
         # @type Name: String
         # @param KubeType: Kubernetes 集群类型，取值如下：
         # <li> 1= 容器集群(TKE) </li>
-        # <li> 2=弹性集群<EKS> </li>
-        # <li> 3= Prometheus管理的弹性集群<MEKS> </li>
+        # <li> 2=弹性集群(EKS) </li>
+        # <li> 3= Prometheus管理的弹性集群(MEKS) </li>
         # @type KubeType: Integer
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 集群 ID，可不填
         # @type ClusterId: String
 
         attr_accessor :InstanceId, :Kind, :Name, :KubeType, :ClusterId
@@ -3216,9 +3216,9 @@ module TencentCloud
       class DeletePrometheusScrapeJobsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
-        # @param AgentId: Agent ID
+        # @param AgentId: Agent ID(可通过 DescribePrometheusAgents 接口获取)
         # @type AgentId: String
-        # @param JobIds: 任务 ID 列表
+        # @param JobIds: 任务 ID 列表(可通过 DescribePrometheusScrapeJobs 接口获取)
         # @type JobIds: Array
 
         attr_accessor :InstanceId, :AgentId, :JobIds
@@ -14132,6 +14132,13 @@ module TencentCloud
         # @param InstanceId: 实例 ID
         # @type InstanceId: String
         # @param IntegrationCodes: Prometheus 集成项 Code，升级对应的 Dashboard，取值如下：
+        # <li>qcloud</li>
+        # <li>cvm_process_exporter</li>
+        # <li>cvm_node_exporter</li>
+        # <li>cvm</li>
+        # <li>kubernetes</li>
+        # <li>cdwch</li>
+        # <li>rocketmq</li>
         # <li>spring_mvc</li>
         # <li>mysql</li>
         # <li>go</li>
@@ -14149,6 +14156,8 @@ module TencentCloud
         # <li>tps</li>
         # <li>istio</li>
         # <li>etcd</li>
+        # <li>pts</li>
+        # <li>kong</li>
         # @type IntegrationCodes: Array
 
         attr_accessor :InstanceId, :IntegrationCodes

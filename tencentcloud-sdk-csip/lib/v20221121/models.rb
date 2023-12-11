@@ -2512,6 +2512,100 @@ module TencentCloud
         end
       end
 
+      # DescribeNICAssets请求参数结构体
+      class DescribeNICAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤参数
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+
+        attr_accessor :Filter
+
+        def initialize(filter=nil)
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # DescribeNICAssets返回参数结构体
+      class DescribeNICAssetsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 列表
+        # @type Data: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RegionList: 地域列表
+        # @type RegionList: Array
+        # @param AssetTypeList: 资产类型列表
+        # @type AssetTypeList: Array
+        # @param VpcList: vpc列表
+        # @type VpcList: Array
+        # @param AppIdList: appid列表
+        # @type AppIdList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RegionList, :AssetTypeList, :VpcList, :AppIdList, :RequestId
+
+        def initialize(data=nil, totalcount=nil, regionlist=nil, assettypelist=nil, vpclist=nil, appidlist=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RegionList = regionlist
+          @AssetTypeList = assettypelist
+          @VpcList = vpclist
+          @AppIdList = appidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              nicasset_tmp = NICAsset.new
+              nicasset_tmp.deserialize(i)
+              @Data << nicasset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          unless params['RegionList'].nil?
+            @RegionList = []
+            params['RegionList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @RegionList << filterdataobject_tmp
+            end
+          end
+          unless params['AssetTypeList'].nil?
+            @AssetTypeList = []
+            params['AssetTypeList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @AssetTypeList << filterdataobject_tmp
+            end
+          end
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @VpcList << filterdataobject_tmp
+            end
+          end
+          unless params['AppIdList'].nil?
+            @AppIdList = []
+            params['AppIdList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @AppIdList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicIpAssets请求参数结构体
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: filte过滤条件
@@ -4730,6 +4824,128 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 网卡资产
+      class NICAsset < TencentCloud::Common::AbstractModel
+        # @param AppId: appid
+        # @type AppId: String
+        # @param Uin: uin
+        # @type Uin: String
+        # @param AssetId: 资产ID
+        # @type AssetId: String
+        # @param AssetName: 资产名
+        # @type AssetName: String
+        # @param AssetType: 资产类型
+        # @type AssetType: String
+        # @param PrivateIp: 私有ip
+        # @type PrivateIp: String
+        # @param PublicIp: 公网ip
+        # @type PublicIp: String
+        # @param Region: 区域
+        # @type Region: String
+        # @param VpcId: 私有网络id
+        # @type VpcId: String
+        # @param VpcName: 私有网络名
+        # @type VpcName: String
+        # @param Tag: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tag: Array
+        # @param OutboundPeakBandwidth: 出向峰值带宽
+        # @type OutboundPeakBandwidth: String
+        # @param InboundPeakBandwidth: 入向峰值带宽
+        # @type InboundPeakBandwidth: String
+        # @param OutboundCumulativeFlow: 出站累计流量
+        # @type OutboundCumulativeFlow: String
+        # @param InboundCumulativeFlow: 入站累计流量
+        # @type InboundCumulativeFlow: String
+        # @param NetworkAttack: 网络攻击
+        # @type NetworkAttack: Integer
+        # @param ExposedPort: 暴露端口
+        # @type ExposedPort: Integer
+        # @param ExposedVUL: 暴露漏洞
+        # @type ExposedVUL: Integer
+        # @param ConfigureRisk: 配置风险
+        # @type ConfigureRisk: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ScanTask: 任务数
+        # @type ScanTask: Integer
+        # @param LastScanTime: 最后扫描时间
+        # @type LastScanTime: String
+        # @param Nick: 昵称
+        # @type Nick: String
+        # @param IsCore: 是否核心
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCore: Integer
+        # @param IsNewAsset: 是否新资产 1新
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsNewAsset: Integer
+
+        attr_accessor :AppId, :Uin, :AssetId, :AssetName, :AssetType, :PrivateIp, :PublicIp, :Region, :VpcId, :VpcName, :Tag, :OutboundPeakBandwidth, :InboundPeakBandwidth, :OutboundCumulativeFlow, :InboundCumulativeFlow, :NetworkAttack, :ExposedPort, :ExposedVUL, :ConfigureRisk, :CreateTime, :ScanTask, :LastScanTime, :Nick, :IsCore, :IsNewAsset
+
+        def initialize(appid=nil, uin=nil, assetid=nil, assetname=nil, assettype=nil, privateip=nil, publicip=nil, region=nil, vpcid=nil, vpcname=nil, tag=nil, outboundpeakbandwidth=nil, inboundpeakbandwidth=nil, outboundcumulativeflow=nil, inboundcumulativeflow=nil, networkattack=nil, exposedport=nil, exposedvul=nil, configurerisk=nil, createtime=nil, scantask=nil, lastscantime=nil, nick=nil, iscore=nil, isnewasset=nil)
+          @AppId = appid
+          @Uin = uin
+          @AssetId = assetid
+          @AssetName = assetname
+          @AssetType = assettype
+          @PrivateIp = privateip
+          @PublicIp = publicip
+          @Region = region
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @Tag = tag
+          @OutboundPeakBandwidth = outboundpeakbandwidth
+          @InboundPeakBandwidth = inboundpeakbandwidth
+          @OutboundCumulativeFlow = outboundcumulativeflow
+          @InboundCumulativeFlow = inboundcumulativeflow
+          @NetworkAttack = networkattack
+          @ExposedPort = exposedport
+          @ExposedVUL = exposedvul
+          @ConfigureRisk = configurerisk
+          @CreateTime = createtime
+          @ScanTask = scantask
+          @LastScanTime = lastscantime
+          @Nick = nick
+          @IsCore = iscore
+          @IsNewAsset = isnewasset
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @Uin = params['Uin']
+          @AssetId = params['AssetId']
+          @AssetName = params['AssetName']
+          @AssetType = params['AssetType']
+          @PrivateIp = params['PrivateIp']
+          @PublicIp = params['PublicIp']
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          unless params['Tag'].nil?
+            @Tag = []
+            params['Tag'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tag << tag_tmp
+            end
+          end
+          @OutboundPeakBandwidth = params['OutboundPeakBandwidth']
+          @InboundPeakBandwidth = params['InboundPeakBandwidth']
+          @OutboundCumulativeFlow = params['OutboundCumulativeFlow']
+          @InboundCumulativeFlow = params['InboundCumulativeFlow']
+          @NetworkAttack = params['NetworkAttack']
+          @ExposedPort = params['ExposedPort']
+          @ExposedVUL = params['ExposedVUL']
+          @ConfigureRisk = params['ConfigureRisk']
+          @CreateTime = params['CreateTime']
+          @ScanTask = params['ScanTask']
+          @LastScanTime = params['LastScanTime']
+          @Nick = params['Nick']
+          @IsCore = params['IsCore']
+          @IsNewAsset = params['IsNewAsset']
         end
       end
 

@@ -55,7 +55,7 @@ module TencentCloud
 
       # AbortJob请求参数结构体
       class AbortJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
+        # @param JobId: 待停止的压测任务的 ID（所有的压测任务 ID 可以从 DescribeJobs 接口获取）
         # @type JobId: String
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -101,7 +101,7 @@ module TencentCloud
       class AdjustJobSpeedRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
         # @type JobId: String
-        # @param TargetRequestsPerSecond: 目标RPS
+        # @param TargetRequestsPerSecond: 目标 RPS。其取值应大于起始 RPS，并且小于最大 RPS
         # @type TargetRequestsPerSecond: Integer
 
         attr_accessor :JobId, :TargetRequestsPerSecond
@@ -498,11 +498,11 @@ module TencentCloud
 
       # CreateAlertChannel请求参数结构体
       class CreateAlertChannelRequest < TencentCloud::Common::AbstractModel
-        # @param NoticeId: Notice ID
+        # @param NoticeId: monitor 服务的告警通知模板的 NoticeId，可从 monitor 服务的云 API 的 DescribeAlarmNotices 接口响应里的 Id 字段获取。（CreateAlertChannel 接口的入参里用于标识一个告警通知模板的 AMPConsumerId 与 NoticeId 二选一即可）
         # @type NoticeId: String
         # @param ProjectId: 项目 ID
         # @type ProjectId: String
-        # @param AMPConsumerId: AMP Consumer ID
+        # @param AMPConsumerId: monitor 服务的告警通知模板的 AMPConsumerId，可从 monitor 服务的云 API 的 DescribeAlarmNotices 接口响应里的 AMPConsumerId 字段获取。（CreateAlertChannel 接口的入参里用于标识一个告警通知模板的 AMPConsumerId 与 NoticeId 二选一即可）
         # @type AMPConsumerId: String
 
         attr_accessor :NoticeId, :ProjectId, :AMPConsumerId
@@ -610,7 +610,7 @@ module TencentCloud
 
       # CreateFile请求参数结构体
       class CreateFileRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 文件 ID
+        # @param FileId: 文件 ID。其值应为前序步骤上传该文件到 cos 桶后，文件在 cos 桶中的相应目录
         # @type FileId: String
         # @param ProjectId: 项目 ID
         # @type ProjectId: String
@@ -1124,7 +1124,7 @@ module TencentCloud
       class DeleteAlertChannelRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目 ID
         # @type ProjectId: String
-        # @param NoticeId: Notice ID
+        # @param NoticeId: 待删除的通知渠道的 Notice ID（所有通知渠道的 Notice ID 可以从 DescribeAlertChannels 接口获取）
         # @type NoticeId: String
 
         attr_accessor :ProjectId, :NoticeId
@@ -1196,7 +1196,7 @@ module TencentCloud
       class DeleteFilesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目 ID
         # @type ProjectId: String
-        # @param FileIds: 文件 ID 数组
+        # @param FileIds: 待删除的文件的 ID（所有文件 ID 可从接口 DescribeFiles 获取）
         # @type FileIds: Array
 
         attr_accessor :ProjectId, :FileIds
@@ -1230,7 +1230,7 @@ module TencentCloud
 
       # DeleteJobs请求参数结构体
       class DeleteJobsRequest < TencentCloud::Common::AbstractModel
-        # @param JobIds: 任务ID数组
+        # @param JobIds: 待删除的任务的 ID（所有任务的 ID 可以从 DescribeJobs 获取）
         # @type JobIds: Array
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -1887,9 +1887,9 @@ module TencentCloud
         # @type JobId: String
         # @param ScenarioId: 场景ID
         # @type ScenarioId: String
-        # @param Metric: 指标名称
+        # @param Metric: 指标名。取值范围参见 DescribeMetricLabelWithValues 接口返回的所有指标名
         # @type Metric: String
-        # @param LabelName: 查询标签名称
+        # @param LabelName: 标签名。取值范围参见 DescribeMetricLabelWithValues 接口返回的指标及其支持的标签名
         # @type LabelName: String
         # @param ProjectId: 项目ID
         # @type ProjectId: String
@@ -2247,13 +2247,13 @@ module TencentCloud
 
       # DescribeSampleBatchQuery请求参数结构体
       class DescribeSampleBatchQueryRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: job id
+        # @param JobId: 压测任务的 ID
         # @type JobId: String
-        # @param ScenarioId: 场景id
+        # @param ScenarioId: 场景的 ID
         # @type ScenarioId: String
         # @param Queries: 查询指标数组
         # @type Queries: Array
-        # @param ProjectId: 项目ID
+        # @param ProjectId: 项目的 ID
         # @type ProjectId: String
 
         attr_accessor :JobId, :ScenarioId, :Queries, :ProjectId
@@ -2495,11 +2495,11 @@ module TencentCloud
         # @type ProjectId: String
         # @param ScenarioId: 场景ID
         # @type ScenarioId: String
-        # @param Metric: 指标名字
+        # @param Metric: 指标名。取值范围参见 DescribeMetricLabelWithValues 接口返回的所有指标名
         # @type Metric: String
-        # @param Aggregation: 聚合函数
+        # @param Aggregation: 聚合函数。取值范围：Rate,Count,Avg,P90,P95,P99,Gauge
         # @type Aggregation: String
-        # @param Filters: 指标过滤
+        # @param Filters: 用标签过滤规则来过滤指标，规则中包含标签名 LabelName、标签值 LabelValue、操作符 Operator（0代表相等，1代表不等）
         # @type Filters: Array
         # @param GroupBy: 分组
         # @type GroupBy: Array
@@ -2564,13 +2564,13 @@ module TencentCloud
         # @type JobId: String
         # @param ScenarioId: 场景Id
         # @type ScenarioId: String
-        # @param Metric: 指标名
+        # @param Metric: 指标名。取值范围参见 DescribeMetricLabelWithValues 接口返回的所有指标名
         # @type Metric: String
-        # @param Aggregation: 聚合条件
+        # @param Aggregation: 聚合函数。取值范围：Rate,Count,Avg,P90,P95,P99,Gauge
         # @type Aggregation: String
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param Labels: 过滤条件
+        # @param Labels: 标签过滤条件。各指标支持的标签参见 DescribeMetricLabelWithValues 接口返回的所有指标及其支持的标签
         # @type Labels: Array
 
         attr_accessor :JobId, :ScenarioId, :Metric, :Aggregation, :ProjectId, :Labels
@@ -3172,11 +3172,11 @@ module TencentCloud
       class InternalMetricQuery < TencentCloud::Common::AbstractModel
         # @param Metric: 指标名
         # @type Metric: String
-        # @param Aggregation: 聚合函数
+        # @param Aggregation: 聚合函数。取值范围：Rate,Count,Avg,P90,P95,P99,Gauge
         # @type Aggregation: String
         # @param Labels: deprecated, 请使用Filters
         # @type Labels: Array
-        # @param Filters: 指标过滤
+        # @param Filters: 用标签过滤规则来过滤指标，规则中包含标签名 LabelName、标签值 LabelValue、操作符 Operator（0代表相等，1代表不等）
         # @type Filters: Array
         # @param GroupBy: 指标分组
         # @type GroupBy: Array
@@ -3503,9 +3503,9 @@ module TencentCloud
 
       # 包含labelName 和labelValue
       class Label < TencentCloud::Common::AbstractModel
-        # @param LabelName: label名字
+        # @param LabelName: 标签名
         # @type LabelName: String
-        # @param LabelValue: label值
+        # @param LabelValue: 标签值
         # @type LabelValue: String
 
         attr_accessor :LabelName, :LabelValue
@@ -4858,7 +4858,7 @@ module TencentCloud
 
       # UpdateFileScenarioRelation请求参数结构体
       class UpdateFileScenarioRelationRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 文件 ID
+        # @param FileId: 文件 ID。其值应为前序步骤上传该文件到 cos 桶后，文件在 cos 桶中的相应目录
         # @type FileId: String
         # @param ProjectId: 项目 ID
         # @type ProjectId: String
@@ -5003,7 +5003,7 @@ module TencentCloud
         # @type Name: String
         # @param Description: 场景描述
         # @type Description: String
-        # @param Type: 压测引擎类型
+        # @param Type: 压测场景的模式类型。取值范围：pts-http 代表简单模式，pts-js 代表脚本模式，pts-jmeter 代表 JMeter 模式。
         # @type Type: String
         # @param Load: 施压配置
         # @type Load: :class:`Tencentcloud::Pts.v20210728.models.Load`

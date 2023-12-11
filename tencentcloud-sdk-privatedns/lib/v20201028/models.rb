@@ -1768,7 +1768,7 @@ module TencentCloud
       # QueryAsyncBindVpcStatus返回参数结构体
       class QueryAsyncBindVpcStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: processing 处理中，success 执行成功，
-        # fail 执行失败
+        # failed 执行失败
         # @type Status: String
         # @param ErrorMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。

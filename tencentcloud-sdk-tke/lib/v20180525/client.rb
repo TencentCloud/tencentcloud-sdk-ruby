@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建日志采集配置
+
+        # @param request: Request instance for CreateCLSLogConfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateCLSLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateCLSLogConfigResponse`
+        def CreateCLSLogConfig(request)
+          body = send_request('CreateCLSLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建集群
 
         # @param request: Request instance for CreateCluster.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateEdgeLogConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为弹性集群创建日志采集配置
+
+        # @param request: Request instance for CreateEksLogConfig.
+        # @type request: :class:`Tencentcloud::tke::V20180525::CreateEksLogConfigRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::CreateEksLogConfigResponse`
+        def CreateEksLogConfig(request)
+          body = send_request('CreateEksLogConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEksLogConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

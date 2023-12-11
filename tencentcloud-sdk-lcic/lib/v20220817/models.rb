@@ -3979,7 +3979,7 @@ module TencentCloud
         # @param RoomId: 房间ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoomId: Integer
-        # @param Status: 房间状态。0 未开始 ；1进行中  ；2 已结束
+        # @param Status: 房间状态。0 未开始 ；1进行中  ；2 已结束；3已过期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StartTime: 开始时间
@@ -4038,10 +4038,13 @@ module TencentCloud
         # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableAutoStart: Integer
+        # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordBackground: String
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -4063,6 +4066,7 @@ module TencentCloud
           @LiveType = livetype
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
+          @RecordBackground = recordbackground
         end
 
         def deserialize(params)
@@ -4087,6 +4091,7 @@ module TencentCloud
           @LiveType = params['LiveType']
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
+          @RecordBackground = params['RecordBackground']
         end
       end
 
