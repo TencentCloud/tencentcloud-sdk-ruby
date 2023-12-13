@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 新建cc防护的地域封禁配置
+        # 新建CC防护的地域封禁配置
 
         # @param request: Request instance for CreateCcGeoIPBlockConfig.
         # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateCcGeoIPBlockConfigRequest`
@@ -1337,6 +1337,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDefaultAlarmThresholdResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取IP封堵列表
+
+        # @param request: Request instance for DescribeIpBlockList.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeIpBlockListRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeIpBlockListResponse`
+        def DescribeIpBlockList(request)
+          body = send_request('DescribeIpBlockList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpBlockListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -221,6 +221,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (StartInstance) 用于主动启动实例。
+
+        # @param request: Request instance for StartInstance.
+        # @type request: :class:`Tencentcloud::hai::V20230812::StartInstanceRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::StartInstanceResponse`
+        def StartInstance(request)
+          body = send_request('StartInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (StopInstance) 用于主动关闭实例。
+
+        # @param request: Request instance for StopInstance.
+        # @type request: :class:`Tencentcloud::hai::V20230812::StopInstanceRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::StopInstanceResponse`
+        def StopInstance(request)
+          body = send_request('StopInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (TerminateInstances) 用于主动退还实例。
 
         # @param request: Request instance for TerminateInstances.

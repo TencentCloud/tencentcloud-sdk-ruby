@@ -5283,7 +5283,7 @@ module TencentCloud
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费</li><br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不自动续费，且不通知</li><br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
@@ -6761,17 +6761,35 @@ module TencentCloud
         # @type InstanceId: String
         # @param BlueprintId: 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         # @type BlueprintId: String
+        # @param Containers: 要创建的容器配置列表。
+        # @type Containers: Array
+        # @param LoginConfiguration: 实例登录信息配置。默认缺失情况下代表用户选择实例创建后设置登录密码或绑定密钥。
+        # @type LoginConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.LoginConfiguration`
 
-        attr_accessor :InstanceId, :BlueprintId
+        attr_accessor :InstanceId, :BlueprintId, :Containers, :LoginConfiguration
 
-        def initialize(instanceid=nil, blueprintid=nil)
+        def initialize(instanceid=nil, blueprintid=nil, containers=nil, loginconfiguration=nil)
           @InstanceId = instanceid
           @BlueprintId = blueprintid
+          @Containers = containers
+          @LoginConfiguration = loginconfiguration
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BlueprintId = params['BlueprintId']
+          unless params['Containers'].nil?
+            @Containers = []
+            params['Containers'].each do |i|
+              dockercontainerconfiguration_tmp = DockerContainerConfiguration.new
+              dockercontainerconfiguration_tmp.deserialize(i)
+              @Containers << dockercontainerconfiguration_tmp
+            end
+          end
+          unless params['LoginConfiguration'].nil?
+            @LoginConfiguration = LoginConfiguration.new
+            @LoginConfiguration.deserialize(params['LoginConfiguration'])
+          end
         end
       end
 

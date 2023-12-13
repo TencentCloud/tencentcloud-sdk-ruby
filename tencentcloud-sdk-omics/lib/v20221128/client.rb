@@ -221,7 +221,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询任务详情文件。
+        # 获取任务详情文件。
 
         # @param request: Request instance for GetRunMetadataFile.
         # @type request: :class:`Tencentcloud::omics::V20221128::GetRunMetadataFileRequest`

@@ -875,6 +875,92 @@ module TencentCloud
         end
       end
 
+      # StartInstance请求参数结构体
+      class StartInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param DryRun: 默认为False，True代表只验证接口连通性
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceId, :DryRun
+
+        def initialize(instanceid=nil, dryrun=nil)
+          @InstanceId = instanceid
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # StartInstance返回参数结构体
+      class StartInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: task任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopInstance请求参数结构体
+      class StopInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StopMode: hai实例关机的模式，目前仅支持关机不收费：
+        # STOP_CHARGE -- 关闭hai实例，释放计算资源，停止收取计算资源的费用。
+        # 注意：默认值为STOP_CHARGE
+        # @type StopMode: String
+        # @param DryRun: 默认为False，True代表只验证接口连通性
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceId, :StopMode, :DryRun
+
+        def initialize(instanceid=nil, stopmode=nil, dryrun=nil)
+          @InstanceId = instanceid
+          @StopMode = stopmode
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StopMode = params['StopMode']
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # StopInstance返回参数结构体
+      class StopInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: task任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了操作系统所在块设备即系统盘的信息
       class SystemDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_BSSD：通用性SSD云硬盘<br><br>默认取值：当前有库存的硬盘类型。

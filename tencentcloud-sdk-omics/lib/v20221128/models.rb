@@ -839,6 +839,9 @@ module TencentCloud
       class GetRunMetadataFileRequest < TencentCloud::Common::AbstractModel
         # @param RunUuid: 任务Uuid。
         # @type RunUuid: String
+        # @param ProjectId: 项目ID。
+        # （不填使用指定地域下的默认项目）
+        # @type ProjectId: String
         # @param Key: 需要获取的文件名。
 
         # 默认支持以下文件：
@@ -850,22 +853,32 @@ module TencentCloud
         # - execution_trace.txt
         # - pipeline_dag.html
         # @type Key: String
-        # @param ProjectId: 项目ID。
-        # （不填使用指定地域下的默认项目）
-        # @type ProjectId: String
+        # @param Keys: 需要批量获取的文件名。
 
-        attr_accessor :RunUuid, :Key, :ProjectId
+        # 默认支持以下文件：
+        # - nextflow.log
 
-        def initialize(runuuid=nil, key=nil, projectid=nil)
+        # 提交时NFOption中report指定为true时，额外支持以下文件：
+        # - execution_report.html
+        # - execution_timeline.html
+        # - execution_trace.txt
+        # - pipeline_dag.html
+        # @type Keys: Array
+
+        attr_accessor :RunUuid, :ProjectId, :Key, :Keys
+
+        def initialize(runuuid=nil, projectid=nil, key=nil, keys=nil)
           @RunUuid = runuuid
-          @Key = key
           @ProjectId = projectid
+          @Key = key
+          @Keys = keys
         end
 
         def deserialize(params)
           @RunUuid = params['RunUuid']
-          @Key = params['Key']
           @ProjectId = params['ProjectId']
+          @Key = params['Key']
+          @Keys = params['Keys']
         end
       end
 
@@ -873,18 +886,23 @@ module TencentCloud
       class GetRunMetadataFileResponse < TencentCloud::Common::AbstractModel
         # @param CosSignedUrl: 文件预签名链接，一分钟内有效。
         # @type CosSignedUrl: String
+        # @param CosSignedUrls: 批量文件预签名链接，一分钟内有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosSignedUrls: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CosSignedUrl, :RequestId
+        attr_accessor :CosSignedUrl, :CosSignedUrls, :RequestId
 
-        def initialize(cossignedurl=nil, requestid=nil)
+        def initialize(cossignedurl=nil, cossignedurls=nil, requestid=nil)
           @CosSignedUrl = cossignedurl
+          @CosSignedUrls = cossignedurls
           @RequestId = requestid
         end
 
         def deserialize(params)
           @CosSignedUrl = params['CosSignedUrl']
+          @CosSignedUrls = params['CosSignedUrls']
           @RequestId = params['RequestId']
         end
       end

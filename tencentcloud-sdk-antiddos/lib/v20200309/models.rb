@@ -4213,6 +4213,44 @@ module TencentCloud
         end
       end
 
+      # DescribeIpBlockList请求参数结构体
+      class DescribeIpBlockListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIpBlockList返回参数结构体
+      class DescribeIpBlockListResponse < TencentCloud::Common::AbstractModel
+        # @param List: IP封堵列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :List, :RequestId
+
+        def initialize(list=nil, requestid=nil)
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              ipblockdata_tmp = IpBlockData.new
+              ipblockdata_tmp.deserialize(i)
+              @List << ipblockdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeL7RulesBySSLCertId请求参数结构体
       class DescribeL7RulesBySSLCertIdRequest < TencentCloud::Common::AbstractModel
         # @param Status: 域名状态，可取bindable, binded, opened, closed, all，all表示全部状态
@@ -6092,6 +6130,42 @@ module TencentCloud
         def deserialize(params)
           @EipList = params['EipList']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # IP封堵记录
+      class IpBlockData < TencentCloud::Common::AbstractModel
+        # @param Status: 状态（Blocked：被封堵；UnBlocking：解封中；UnBlockFailed：解封失败）
+        # @type Status: String
+        # @param Ip: 资源IP
+        # @type Ip: String
+        # @param BlockTime: 封堵时间
+        # @type BlockTime: String
+        # @param UnBlockTime: 解封时间（预计解封时间）
+        # @type UnBlockTime: String
+        # @param ActionType: 解封类型（user：自助解封；auto：自动解封； update：升级解封；bind：绑定高防包解封）
+        # @type ActionType: String
+        # @param ProtectFlag: 高防标记，0：非高防，1：高防
+        # @type ProtectFlag: Integer
+
+        attr_accessor :Status, :Ip, :BlockTime, :UnBlockTime, :ActionType, :ProtectFlag
+
+        def initialize(status=nil, ip=nil, blocktime=nil, unblocktime=nil, actiontype=nil, protectflag=nil)
+          @Status = status
+          @Ip = ip
+          @BlockTime = blocktime
+          @UnBlockTime = unblocktime
+          @ActionType = actiontype
+          @ProtectFlag = protectflag
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Ip = params['Ip']
+          @BlockTime = params['BlockTime']
+          @UnBlockTime = params['UnBlockTime']
+          @ActionType = params['ActionType']
+          @ProtectFlag = params['ProtectFlag']
         end
       end
 

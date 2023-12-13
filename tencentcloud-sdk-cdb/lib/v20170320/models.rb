@@ -4577,17 +4577,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param BackupId: 实例的备份ID，可通过DescribeBackups接口查询备份的ID。
         # @type BackupId: Integer
+        # @param BackupType: 备份类型 data: 数据备份 binlog:日志备份，默认为data
+        # @type BackupType: String
 
-        attr_accessor :InstanceId, :BackupId
+        attr_accessor :InstanceId, :BackupId, :BackupType
 
-        def initialize(instanceid=nil, backupid=nil)
+        def initialize(instanceid=nil, backupid=nil, backuptype=nil)
           @InstanceId = instanceid
           @BackupId = backupid
+          @BackupType = backuptype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupId = params['BackupId']
+          @BackupType = params['BackupType']
         end
       end
 
