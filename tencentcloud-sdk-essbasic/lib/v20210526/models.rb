@@ -4769,6 +4769,83 @@ module TencentCloud
         end
       end
 
+      # CreateBatchOrganizationRegistrationTasks请求参数结构体
+      class CreateBatchOrganizationRegistrationTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param RegistrationOrganizations: 当前应用下子客的组织机构注册信息。
+        # 一次最多支持10条认证流
+        # @type RegistrationOrganizations: Array
+        # @param Endpoint: 生成链接的类型：
+        # <ul><li>**PC**：(默认)web控制台链接, 需要在PC浏览器中打开</li>
+        # <li>**CHANNEL**：H5跳转到电子签小程序链接, 一般用于发送短信中带的链接, 打开后进入腾讯电子签小程序</li>
+        # <li>**SHORT_URL**：H5跳转到电子签小程序链接的短链形式, 一般用于发送短信中带的链接, 打开后进入腾讯电子签小程序</li>
+        # <li>**APP**：第三方APP或小程序跳转电子签小程序链接, 一般用于贵方小程序或者APP跳转过来,  打开后进入腾讯电子签小程序</li></ul>
+        # 示例值：PC
+        # @type Endpoint: String
+
+        attr_accessor :Agent, :RegistrationOrganizations, :Endpoint
+
+        def initialize(agent=nil, registrationorganizations=nil, endpoint=nil)
+          @Agent = agent
+          @RegistrationOrganizations = registrationorganizations
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['RegistrationOrganizations'].nil?
+            @RegistrationOrganizations = []
+            params['RegistrationOrganizations'].each do |i|
+              registrationorganizationinfo_tmp = RegistrationOrganizationInfo.new
+              registrationorganizationinfo_tmp.deserialize(i)
+              @RegistrationOrganizations << registrationorganizationinfo_tmp
+            end
+          end
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # CreateBatchOrganizationRegistrationTasks返回参数结构体
+      class CreateBatchOrganizationRegistrationTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 生成注册链接的任务Id，
+        # 根据这个id， 调用DescribeBatchOrganizationRegistrationUrls 获取生成的链接，进入认证流程
+        # 若存在其中任意一条链接错误，则返回具体的错误描述, 不会返回TaskId
+        # @type TaskId: String
+        # @param ErrorMessages: 批量生成企业认证链接的详细错误信息，
+        # 顺序与输入参数保持一致。
+        # 若企业认证均成功生成，则不返回错误信息；
+        # 若存在任何错误，则返回具体的错误描述。
+        # @type ErrorMessages: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :ErrorMessages, :RequestId
+
+        def initialize(taskid=nil, errormessages=nil, requestid=nil)
+          @TaskId = taskid
+          @ErrorMessages = errormessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ErrorMessages = params['ErrorMessages']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateChannelFlowEvidenceReport请求参数结构体
       class CreateChannelFlowEvidenceReportRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -5538,6 +5615,64 @@ module TencentCloud
         def deserialize(params)
           @DepartmentId = params['DepartmentId']
           @DepartmentName = params['DepartmentName']
+        end
+      end
+
+      # DescribeBatchOrganizationRegistrationUrls请求参数结构体
+      class DescribeBatchOrganizationRegistrationUrlsRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param TaskId: 通过接口CreateBatchOrganizationRegistrationTasks创建企业批量认证链接任得到的任务Id
+        # @type TaskId: String
+
+        attr_accessor :Agent, :TaskId
+
+        def initialize(agent=nil, taskid=nil)
+          @Agent = agent
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeBatchOrganizationRegistrationUrls返回参数结构体
+      class DescribeBatchOrganizationRegistrationUrlsResponse < TencentCloud::Common::AbstractModel
+        # @param OrganizationAuthUrls: 企业批量注册链接信息
+        # @type OrganizationAuthUrls: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrganizationAuthUrls, :RequestId
+
+        def initialize(organizationauthurls=nil, requestid=nil)
+          @OrganizationAuthUrls = organizationauthurls
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OrganizationAuthUrls'].nil?
+            @OrganizationAuthUrls = []
+            params['OrganizationAuthUrls'].each do |i|
+              organizationauthurl_tmp = OrganizationAuthUrl.new
+              organizationauthurl_tmp.deserialize(i)
+              @OrganizationAuthUrls << organizationauthurl_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7868,6 +8003,30 @@ module TencentCloud
         end
       end
 
+      # 企业批量注册链接信息
+      class OrganizationAuthUrl < TencentCloud::Common::AbstractModel
+        # @param AuthUrl: 跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表
+        # <table> <thead> <tr> <th>子客企业状态</th> <th>子客企业员工状态</th> <th>Endpoint</th> <th>链接有效期限</th> </tr> </thead>  <tbody> <tr> <td>企业未激活</td> <td>员工未认证</td> <td>PC</td> <td>5分钟</td>  </tr>  <tr> <td>企业未激活</td> <td>员工未认证</td> <td>CHANNEL/SHORT_URL/APP</td> <td>一年</td>  </tr>  <tr> <td>企业已激活</td> <td>员工未认证</td> <td>PC</td> <td>5分钟</td>  </tr> <tr> <td>企业已激活</td> <td>员工未认证</td> <td>CHANNEL/SHORT_URL/APP</td> <td>一年</td>  </tr>  <tr> <td>企业已激活</td> <td>员工已认证</td> <td>PC</td> <td>5分钟</td>  </tr>  <tr> <td>企业已激活</td> <td>员工已认证</td> <td>CHANNEL/SHORT_URL/APP</td> <td>一年</td>  </tr> </tbody> </table>
+        # 注：
+        # `1.链接仅单次有效，每次登录需要需要重新创建新的链接`
+        # `2.创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义`
+        # @type AuthUrl: String
+        # @param ErrorMessage: 企业批量注册的错误信息，例如：企业三要素不通过
+        # @type ErrorMessage: String
+
+        attr_accessor :AuthUrl, :ErrorMessage
+
+        def initialize(authurl=nil, errormessage=nil)
+          @AuthUrl = authurl
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @AuthUrl = params['AuthUrl']
+          @ErrorMessage = params['ErrorMessage']
+        end
+      end
+
       # 机构信息
       class OrganizationInfo < TencentCloud::Common::AbstractModel
         # @param OrganizationOpenId: 用户在渠道的机构编号
@@ -8318,6 +8477,70 @@ module TencentCloud
               @Components << filledcomponent_tmp
             end
           end
+        end
+      end
+
+      # 企业认证信息参数， 需要保证这些参数跟营业执照中的信息一致。
+      class RegistrationOrganizationInfo < TencentCloud::Common::AbstractModel
+        # @param OrganizationName: 组织机构名称。
+        # 请确认该名称与企业营业执照中注册的名称一致。
+        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # @type OrganizationName: String
+        # @param OrganizationOpenId: 机构在贵司业务系统中的唯一标识，用于与腾讯电子签企业账号进行映射，确保在同一应用内不会出现重复。
+        # 该标识最大长度为64位字符串，仅支持包含26个英文字母和数字0-9的字符。
+        # @type OrganizationOpenId: String
+        # @param OpenId: 员工在贵司业务系统中的唯一身份标识，用于与腾讯电子签账号进行映射，确保在同一应用内不会出现重复。
+        # 该标识最大长度为64位字符串，仅支持包含26个英文字母和数字0-9的字符。
+        # @type OpenId: String
+        # @param UniformSocialCreditCode: 组织机构企业统一社会信用代码。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的统一社会信用代码一致。
+        # @type UniformSocialCreditCode: String
+        # @param LegalName: 组织机构法人的姓名。
+        # 请确认该企业统一社会信用代码与企业营业执照中注册的法人姓名一致。
+        # @type LegalName: String
+        # @param Address: 组织机构企业注册地址。
+        # 请确认该企业注册地址与企业营业执照中注册的地址一致。
+        # @type Address: String
+        # @param AdminName: 组织机构超管姓名。
+        # 在注册流程中，必须是超管本人进行操作。
+        # 如果法人做为超管管理组织机构,超管姓名就是法人姓名
+        # @type AdminName: String
+        # @param AdminMobile: 组织机构超管姓名。
+        # 在注册流程中，这个手机号必须跟操作人在电子签注册的个人手机号一致。
+        # @type AdminMobile: String
+        # @param AuthorizationTypes: 可选的此企业允许的授权方式, 可以设置的方式有:
+        # 1：上传授权书+对公打款
+        # 2：法人授权/认证  会根据当前操作人的身份判定,如果当前操作人是法人,则是法人认证, 如果当前操作人不是法人,则走法人授权
+
+        # 注:
+        # `1. 当前仅支持一种认证方式`
+        # `2. 如果当前的企业类型是政府/事业单位, 则只支持上传授权书+对公打款`
+        # @type AuthorizationTypes: Array
+
+        attr_accessor :OrganizationName, :OrganizationOpenId, :OpenId, :UniformSocialCreditCode, :LegalName, :Address, :AdminName, :AdminMobile, :AuthorizationTypes
+
+        def initialize(organizationname=nil, organizationopenid=nil, openid=nil, uniformsocialcreditcode=nil, legalname=nil, address=nil, adminname=nil, adminmobile=nil, authorizationtypes=nil)
+          @OrganizationName = organizationname
+          @OrganizationOpenId = organizationopenid
+          @OpenId = openid
+          @UniformSocialCreditCode = uniformsocialcreditcode
+          @LegalName = legalname
+          @Address = address
+          @AdminName = adminname
+          @AdminMobile = adminmobile
+          @AuthorizationTypes = authorizationtypes
+        end
+
+        def deserialize(params)
+          @OrganizationName = params['OrganizationName']
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OpenId = params['OpenId']
+          @UniformSocialCreditCode = params['UniformSocialCreditCode']
+          @LegalName = params['LegalName']
+          @Address = params['Address']
+          @AdminName = params['AdminName']
+          @AdminMobile = params['AdminMobile']
+          @AuthorizationTypes = params['AuthorizationTypes']
         end
       end
 

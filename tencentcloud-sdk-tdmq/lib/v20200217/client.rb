@@ -1783,6 +1783,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取在线消费端详情
+
+        # @param request: Request instance for DescribeRocketMQConsumerConnectionDetail.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQConsumerConnectionDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQConsumerConnectionDetailResponse`
+        def DescribeRocketMQConsumerConnectionDetail(request)
+          body = send_request('DescribeRocketMQConsumerConnectionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQConsumerConnectionDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定消费组下当前客户端的连接情况
 
         # @param request: Request instance for DescribeRocketMQConsumerConnections.

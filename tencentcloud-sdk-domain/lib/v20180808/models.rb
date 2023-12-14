@@ -1401,6 +1401,8 @@ module TencentCloud
       class DomainBatchDetailSet < TencentCloud::Common::AbstractModel
         # @param Id: 详情ID
         # @type Id: Integer
+        # @param Action: 类型  new: 注册域名 batch_transfer_prohibition_on:开启禁止转移  batch_transfer_prohibition_off:关闭禁止转移 batch_update_prohibition_on:开启禁止更新   batch_update_prohibition_off:关闭禁止更新
+        # @type Action: String
         # @param Domain: 域名
         # @type Domain: String
         # @param Status: 执行状态：
@@ -1415,25 +1417,32 @@ module TencentCloud
         # @type CreatedOn: String
         # @param UpdatedOn: 更新时间
         # @type UpdatedOn: String
+        # @param BigDealId: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealId: String
 
-        attr_accessor :Id, :Domain, :Status, :Reason, :CreatedOn, :UpdatedOn
+        attr_accessor :Id, :Action, :Domain, :Status, :Reason, :CreatedOn, :UpdatedOn, :BigDealId
 
-        def initialize(id=nil, domain=nil, status=nil, reason=nil, createdon=nil, updatedon=nil)
+        def initialize(id=nil, action=nil, domain=nil, status=nil, reason=nil, createdon=nil, updatedon=nil, bigdealid=nil)
           @Id = id
+          @Action = action
           @Domain = domain
           @Status = status
           @Reason = reason
           @CreatedOn = createdon
           @UpdatedOn = updatedon
+          @BigDealId = bigdealid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @Action = params['Action']
           @Domain = params['Domain']
           @Status = params['Status']
           @Reason = params['Reason']
           @CreatedOn = params['CreatedOn']
           @UpdatedOn = params['UpdatedOn']
+          @BigDealId = params['BigDealId']
         end
       end
 
@@ -1449,14 +1458,23 @@ module TencentCloud
         # @type Status: String
         # @param CreatedOn: 提交时间
         # @type CreatedOn: String
+        # @param Success: 批量操作成功个数
+        # @type Success: Integer
+        # @param Doing: 批量操作处理中个数
+        # @type Doing: Integer
+        # @param Failed: 批量操作失败个数
+        # @type Failed: Integer
 
-        attr_accessor :LogId, :Number, :Status, :CreatedOn
+        attr_accessor :LogId, :Number, :Status, :CreatedOn, :Success, :Doing, :Failed
 
-        def initialize(logid=nil, number=nil, status=nil, createdon=nil)
+        def initialize(logid=nil, number=nil, status=nil, createdon=nil, success=nil, doing=nil, failed=nil)
           @LogId = logid
           @Number = number
           @Status = status
           @CreatedOn = createdon
+          @Success = success
+          @Doing = doing
+          @Failed = failed
         end
 
         def deserialize(params)
@@ -1464,6 +1482,9 @@ module TencentCloud
           @Number = params['Number']
           @Status = params['Status']
           @CreatedOn = params['CreatedOn']
+          @Success = params['Success']
+          @Doing = params['Doing']
+          @Failed = params['Failed']
         end
       end
 

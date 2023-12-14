@@ -5270,6 +5270,77 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQConsumerConnectionDetail请求参数结构体
+      class DescribeRocketMQConsumerConnectionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间名称
+        # @type NamespaceId: String
+        # @param GroupId: 消费组名称
+        # @type GroupId: String
+        # @param ClientId: 消费端实例ID
+        # @type ClientId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数目
+        # @type Limit: Integer
+        # @param FilterType: 按主题类型过滤查询结果，可选择Normal, GlobalOrder, PartitionedOrder, Retry, Transaction, DeadLetter
+        # @type FilterType: Array
+
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :ClientId, :Offset, :Limit, :FilterType
+
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, clientid=nil, offset=nil, limit=nil, filtertype=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @GroupId = groupid
+          @ClientId = clientid
+          @Offset = offset
+          @Limit = limit
+          @FilterType = filtertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @GroupId = params['GroupId']
+          @ClientId = params['ClientId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FilterType = params['FilterType']
+        end
+      end
+
+      # DescribeRocketMQConsumerConnectionDetail返回参数结构体
+      class DescribeRocketMQConsumerConnectionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Details: 消费端主题信息列表
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Details, :RequestId
+
+        def initialize(totalcount=nil, details=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              rocketmqconsumertopic_tmp = RocketMQConsumerTopic.new
+              rocketmqconsumertopic_tmp.deserialize(i)
+              @Details << rocketmqconsumertopic_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQConsumerConnections请求参数结构体
       class DescribeRocketMQConsumerConnectionsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -9948,6 +10019,43 @@ module TencentCloud
           @Language = params['Language']
           @Accumulative = params['Accumulative']
           @Version = params['Version']
+        end
+      end
+
+      # 消费者详情中的主题信息
+      class RocketMQConsumerTopic < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Type: 主题类型，Default表示普通，GlobalOrder表示全局顺序，PartitionedOrder表示局部顺序，Transaction表示事务，Retry表示重试，DeadLetter表示死信
+        # @type Type: String
+        # @param PartitionNum: 分区数
+        # @type PartitionNum: Integer
+        # @param Accumulative: 消息堆积数
+        # @type Accumulative: Integer
+        # @param LastConsumptionTime: 最后消费时间，以毫秒为单位
+        # @type LastConsumptionTime: Integer
+        # @param SubRule: 订阅规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubRule: String
+
+        attr_accessor :Topic, :Type, :PartitionNum, :Accumulative, :LastConsumptionTime, :SubRule
+
+        def initialize(topic=nil, type=nil, partitionnum=nil, accumulative=nil, lastconsumptiontime=nil, subrule=nil)
+          @Topic = topic
+          @Type = type
+          @PartitionNum = partitionnum
+          @Accumulative = accumulative
+          @LastConsumptionTime = lastconsumptiontime
+          @SubRule = subrule
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Type = params['Type']
+          @PartitionNum = params['PartitionNum']
+          @Accumulative = params['Accumulative']
+          @LastConsumptionTime = params['LastConsumptionTime']
+          @SubRule = params['SubRule']
         end
       end
 
