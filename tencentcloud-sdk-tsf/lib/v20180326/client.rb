@@ -413,7 +413,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建参数模板,并返回模板详细信息
+        # 创建参数模版，并返回模版详细信息
 
         # @param request: Request instance for CreateConfigTemplateWithDetailResp.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateConfigTemplateWithDetailRespRequest`

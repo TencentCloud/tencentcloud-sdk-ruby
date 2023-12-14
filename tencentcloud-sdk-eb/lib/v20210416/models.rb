@@ -320,7 +320,7 @@ module TencentCloud
         # @type Description: String
         # @param Enable: 使能开关
         # @type Enable: Boolean
-        # @param Type: 类型
+        # @param Type: 连接器类型，目前支持以下类型:apigw/ckafka/dts/tdmq
         # @type Type: String
 
         attr_accessor :ConnectionDescription, :EventBusId, :ConnectionName, :Description, :Enable, :Type

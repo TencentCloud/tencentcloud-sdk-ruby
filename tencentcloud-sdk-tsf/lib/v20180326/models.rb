@@ -7703,7 +7703,7 @@ module TencentCloud
 
       # DescribeDeliveryConfigByGroupId返回参数结构体
       class DescribeDeliveryConfigByGroupIdResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 投递kafak配置项
+        # @param Result: 投递kafka配置项
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.SimpleKafkaDeliveryConfig`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9247,9 +9247,9 @@ module TencentCloud
         # @type EndTime: String
         # @param Period: 查询时间粒度，单位秒。可选值：60、3600、86400。
         # @type Period: Integer
-        # @param MetricDimensions: 查询指标维度
+        # @param MetricDimensions: 查询指标维度, 不能为空。可选 NamespaceId, GroupId, InstanceId, OperationName, ServiceName, PeerServiceName, PeerOperationName
         # @type MetricDimensions: Array
-        # @param Metrics: 查询指标名
+        # @param Metrics: 查询指标名， 不能为空。仅支持 range_count_duratioin 为 key 下的 sum 方法
         # @type Metrics: Array
         # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
         # @type Kind: String
@@ -9291,7 +9291,7 @@ module TencentCloud
 
       # DescribeInvocationMetricScatterPlot返回参数结构体
       class DescribeInvocationMetricScatterPlotResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 多值时间抽统计指标
+        # @param Result: 多值时间统计指标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.InvocationMetricScatterPlot`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

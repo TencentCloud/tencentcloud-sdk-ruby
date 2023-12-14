@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例列表
+        # 获取集群列表
 
         # @param request: Request instance for DescribeInstances.
         # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeInstancesRequest`
