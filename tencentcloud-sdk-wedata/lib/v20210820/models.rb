@@ -3455,10 +3455,16 @@ module TencentCloud
         # @param ColumnFamiliesFieldSet: HBase列簇属性集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColumnFamiliesFieldSet: Array
+        # @param DictionaryId: 对应码表字典ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictionaryId: String
+        # @param DictionaryName: 对应码表字典名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DictionaryName: String
 
-        attr_accessor :NameEn, :NameCn, :Type, :Description, :Position, :IsPartition, :Name, :ColumnFamiliesFieldSet
+        attr_accessor :NameEn, :NameCn, :Type, :Description, :Position, :IsPartition, :Name, :ColumnFamiliesFieldSet, :DictionaryId, :DictionaryName
 
-        def initialize(nameen=nil, namecn=nil, type=nil, description=nil, position=nil, ispartition=nil, name=nil, columnfamiliesfieldset=nil)
+        def initialize(nameen=nil, namecn=nil, type=nil, description=nil, position=nil, ispartition=nil, name=nil, columnfamiliesfieldset=nil, dictionaryid=nil, dictionaryname=nil)
           @NameEn = nameen
           @NameCn = namecn
           @Type = type
@@ -3467,6 +3473,8 @@ module TencentCloud
           @IsPartition = ispartition
           @Name = name
           @ColumnFamiliesFieldSet = columnfamiliesfieldset
+          @DictionaryId = dictionaryid
+          @DictionaryName = dictionaryname
         end
 
         def deserialize(params)
@@ -3485,6 +3493,8 @@ module TencentCloud
               @ColumnFamiliesFieldSet << pair_tmp
             end
           end
+          @DictionaryId = params['DictionaryId']
+          @DictionaryName = params['DictionaryName']
         end
       end
 
@@ -5377,18 +5387,21 @@ module TencentCloud
         # @type AutoRun: Boolean
         # @param ProjectId: 项目ID
         # @type ProjectId: String
+        # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
+        # @type RequestFromSource: String
         # @param AlarmWays: 告警方式:email-邮件;sms-短信;wecom-企业微信
         # @type AlarmWays: String
         # @param AlarmRecipientTypes: 告警对象:1-项目管理员，2-任务责任人
         # @type AlarmRecipientTypes: String
 
-        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :AlarmWays, :AlarmRecipientTypes
+        attr_accessor :Task, :NeedCheckParentSubmitted, :AutoRun, :ProjectId, :RequestFromSource, :AlarmWays, :AlarmRecipientTypes
 
-        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, alarmways=nil, alarmrecipienttypes=nil)
+        def initialize(task=nil, needcheckparentsubmitted=nil, autorun=nil, projectid=nil, requestfromsource=nil, alarmways=nil, alarmrecipienttypes=nil)
           @Task = task
           @NeedCheckParentSubmitted = needcheckparentsubmitted
           @AutoRun = autorun
           @ProjectId = projectid
+          @RequestFromSource = requestfromsource
           @AlarmWays = alarmways
           @AlarmRecipientTypes = alarmrecipienttypes
         end
@@ -5401,6 +5414,7 @@ module TencentCloud
           @NeedCheckParentSubmitted = params['NeedCheckParentSubmitted']
           @AutoRun = params['AutoRun']
           @ProjectId = params['ProjectId']
+          @RequestFromSource = params['RequestFromSource']
           @AlarmWays = params['AlarmWays']
           @AlarmRecipientTypes = params['AlarmRecipientTypes']
         end
@@ -34723,11 +34737,14 @@ module TencentCloud
       class UploadContentRequest < TencentCloud::Common::AbstractModel
         # @param ScriptRequestInfo: 脚本上传信息
         # @type ScriptRequestInfo: :class:`Tencentcloud::Wedata.v20210820.models.ScriptRequestInfo`
+        # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
+        # @type RequestFromSource: String
 
-        attr_accessor :ScriptRequestInfo
+        attr_accessor :ScriptRequestInfo, :RequestFromSource
 
-        def initialize(scriptrequestinfo=nil)
+        def initialize(scriptrequestinfo=nil, requestfromsource=nil)
           @ScriptRequestInfo = scriptrequestinfo
+          @RequestFromSource = requestfromsource
         end
 
         def deserialize(params)
@@ -34735,6 +34752,7 @@ module TencentCloud
             @ScriptRequestInfo = ScriptRequestInfo.new
             @ScriptRequestInfo.deserialize(params['ScriptRequestInfo'])
           end
+          @RequestFromSource = params['RequestFromSource']
         end
       end
 

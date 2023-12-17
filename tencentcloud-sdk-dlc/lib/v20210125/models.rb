@@ -771,15 +771,19 @@ module TencentCloud
       class CancelSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: 批任务唯一标识
         # @type BatchId: String
+        # @param CustomKey: 用户自定义主键，若不为空，则使用该值进行查询
+        # @type CustomKey: String
 
-        attr_accessor :BatchId
+        attr_accessor :BatchId, :CustomKey
 
-        def initialize(batchid=nil)
+        def initialize(batchid=nil, customkey=nil)
           @BatchId = batchid
+          @CustomKey = customkey
         end
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @CustomKey = params['CustomKey']
         end
       end
 
@@ -2288,10 +2292,12 @@ module TencentCloud
         # @type Arguments: Array
         # @param IsInherit: 是否继承集群的资源类配置：0：不继承（默认），1：继承集群；
         # @type IsInherit: Integer
+        # @param CustomKey: 用户自定义主键，需唯一
+        # @type CustomKey: String
 
-        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments, :IsInherit
+        attr_accessor :DataEngineName, :ExecuteSQL, :DriverSize, :ExecutorSize, :ExecutorNumbers, :ExecutorMaxNumbers, :TimeoutInSecond, :SessionId, :SessionName, :Arguments, :IsInherit, :CustomKey
 
-        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil, isinherit=nil)
+        def initialize(dataenginename=nil, executesql=nil, driversize=nil, executorsize=nil, executornumbers=nil, executormaxnumbers=nil, timeoutinsecond=nil, sessionid=nil, sessionname=nil, arguments=nil, isinherit=nil, customkey=nil)
           @DataEngineName = dataenginename
           @ExecuteSQL = executesql
           @DriverSize = driversize
@@ -2303,6 +2309,7 @@ module TencentCloud
           @SessionName = sessionname
           @Arguments = arguments
           @IsInherit = isinherit
+          @CustomKey = customkey
         end
 
         def deserialize(params)
@@ -2324,6 +2331,7 @@ module TencentCloud
             end
           end
           @IsInherit = params['IsInherit']
+          @CustomKey = params['CustomKey']
         end
       end
 
@@ -6034,15 +6042,19 @@ module TencentCloud
       class DescribeSparkSessionBatchSQLRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: SparkSQL唯一标识
         # @type BatchId: String
+        # @param CustomKey: 用户自定义主键, 若不为空，则按照该值查询
+        # @type CustomKey: String
 
-        attr_accessor :BatchId
+        attr_accessor :BatchId, :CustomKey
 
-        def initialize(batchid=nil)
+        def initialize(batchid=nil, customkey=nil)
           @BatchId = batchid
+          @CustomKey = customkey
         end
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @CustomKey = params['CustomKey']
         end
       end
 
@@ -6086,15 +6098,19 @@ module TencentCloud
       class DescribeSparkSessionBatchSqlLogRequest < TencentCloud::Common::AbstractModel
         # @param BatchId: SparkSQL唯一标识
         # @type BatchId: String
+        # @param CustomKey: 用户自定义主键，若不为空，则按照该值进行查询
+        # @type CustomKey: String
 
-        attr_accessor :BatchId
+        attr_accessor :BatchId, :CustomKey
 
-        def initialize(batchid=nil)
+        def initialize(batchid=nil, customkey=nil)
           @BatchId = batchid
+          @CustomKey = customkey
         end
 
         def deserialize(params)
           @BatchId = params['BatchId']
+          @CustomKey = params['CustomKey']
         end
       end
 
@@ -11321,7 +11337,7 @@ module TencentCloud
       class UpdateUserDataEngineConfigRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineId: 引擎ID
         # @type DataEngineId: String
-        # @param DataEngineConfigPairs: 引擎配置项
+        # @param DataEngineConfigPairs: 用户自定义引擎配置项集合。该参数需要传用户需要添加的全部配置项，例如，已有配置项k1:v1，添加k2:v2，需要传[k1:v1,k2:v2]。
         # @type DataEngineConfigPairs: Array
         # @param SessionResourceTemplate: 作业引擎资源配置模版
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`

@@ -3739,7 +3739,7 @@ module TencentCloud
         # <li>ddos_attackBandwidth：攻击带宽曲线；</li>
         # <li>ddos_attackPackageRate：攻击包速率曲线。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点集合，此参数必填。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID列表，不填默认选择全部策略ID。
         # @type PolicyIds: Array
@@ -3812,19 +3812,19 @@ module TencentCloud
 
       # DescribeDDoSAttackEvent请求参数结构体
       class DescribeDDoSAttackEventRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间。
+        # @param StartTime: 开始时间，时间范围为 30 天。
         # @type StartTime: String
-        # @param EndTime: 结束时间。
+        # @param EndTime: 结束时间，时间范围为 30 天。
         # @type EndTime: String
         # @param PolicyIds: ddos策略组集合，不填默认选择全部策略。
         # @type PolicyIds: Array
-        # @param ZoneIds: 站点集合，此参数必填，不填默认查询为空。
+        # @param ZoneIds: 站点集合，此参数必填。
         # @type ZoneIds: Array
         # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
         # @type Limit: Integer
         # @param Offset: 分页的偏移量，默认值为0。
         # @type Offset: Integer
-        # @param ShowDetail: 是否展示详细信息。
+        # @param ShowDetail: 展示攻击详情的参数，若填false，默认只返回攻击次数，不返回攻击详情；若填true，返回攻击详情。
         # @type ShowDetail: Boolean
         # @param Area: 数据归属地区，取值有：
         # <li>overseas：全球（除中国大陆地区）数据；</li>
@@ -3915,7 +3915,7 @@ module TencentCloud
         # <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
         # <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点ID集合，不填默认选择全部站点。
+        # @param ZoneIds: 站点ID集合，此参数必填。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID集合，不填默认选择全部策略ID。
         # @type PolicyIds: Array

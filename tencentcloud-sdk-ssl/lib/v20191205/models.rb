@@ -2609,10 +2609,14 @@ module TencentCloud
         # @type FilterExpiring: Integer
         # @param Hostable: 是否可托管，可选值：1 = 可托管，0 =  不可托管。
         # @type Hostable: Integer
+        # @param Tags: 筛选指定标签的证书
+        # @type Tags: Array
+        # @param IsPendingIssue: //是否筛选等待签发的证书，传1是筛选，0和null不筛选
+        # @type IsPendingIssue: Integer
 
-        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable
+        attr_accessor :Offset, :Limit, :SearchKey, :CertificateType, :ProjectId, :ExpirationSort, :CertificateStatus, :Deployable, :Upload, :Renew, :FilterSource, :IsSM, :FilterExpiring, :Hostable, :Tags, :IsPendingIssue
 
-        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil, hostable=nil)
+        def initialize(offset=nil, limit=nil, searchkey=nil, certificatetype=nil, projectid=nil, expirationsort=nil, certificatestatus=nil, deployable=nil, upload=nil, renew=nil, filtersource=nil, issm=nil, filterexpiring=nil, hostable=nil, tags=nil, ispendingissue=nil)
           @Offset = offset
           @Limit = limit
           @SearchKey = searchkey
@@ -2627,6 +2631,8 @@ module TencentCloud
           @IsSM = issm
           @FilterExpiring = filterexpiring
           @Hostable = hostable
+          @Tags = tags
+          @IsPendingIssue = ispendingissue
         end
 
         def deserialize(params)
@@ -2644,6 +2650,15 @@ module TencentCloud
           @IsSM = params['IsSM']
           @FilterExpiring = params['FilterExpiring']
           @Hostable = params['Hostable']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tags_tmp = Tags.new
+              tags_tmp.deserialize(i)
+              @Tags << tags_tmp
+            end
+          end
+          @IsPendingIssue = params['IsPendingIssue']
         end
       end
 

@@ -211,6 +211,62 @@ module TencentCloud
         end
       end
 
+      # 企业扩展服务授权列表详情
+      class AuthInfoDetail < TencentCloud::Common::AbstractModel
+        # @param Type: 扩展服务类型，和入参一致
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 扩展服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param HasAuthUserList: 授权员工列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAuthUserList: Array
+        # @param HasAuthOrganizationList: 授权企业列表（企业自动签时，该字段有值）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasAuthOrganizationList: Array
+        # @param AuthUserTotal: 授权员工列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthUserTotal: Integer
+        # @param AuthOrganizationTotal: 授权企业列表总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthOrganizationTotal: Integer
+
+        attr_accessor :Type, :Name, :HasAuthUserList, :HasAuthOrganizationList, :AuthUserTotal, :AuthOrganizationTotal
+
+        def initialize(type=nil, name=nil, hasauthuserlist=nil, hasauthorganizationlist=nil, authusertotal=nil, authorganizationtotal=nil)
+          @Type = type
+          @Name = name
+          @HasAuthUserList = hasauthuserlist
+          @HasAuthOrganizationList = hasauthorganizationlist
+          @AuthUserTotal = authusertotal
+          @AuthOrganizationTotal = authorganizationtotal
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          unless params['HasAuthUserList'].nil?
+            @HasAuthUserList = []
+            params['HasAuthUserList'].each do |i|
+              hasauthuser_tmp = HasAuthUser.new
+              hasauthuser_tmp.deserialize(i)
+              @HasAuthUserList << hasauthuser_tmp
+            end
+          end
+          unless params['HasAuthOrganizationList'].nil?
+            @HasAuthOrganizationList = []
+            params['HasAuthOrganizationList'].each do |i|
+              hasauthorganization_tmp = HasAuthOrganization.new
+              hasauthorganization_tmp.deserialize(i)
+              @HasAuthOrganizationList << hasauthorganization_tmp
+            end
+          end
+          @AuthUserTotal = params['AuthUserTotal']
+          @AuthOrganizationTotal = params['AuthOrganizationTotal']
+        end
+      end
+
       # 授权用户
       class AuthorizedUser < TencentCloud::Common::AbstractModel
         # @param OpenId: 第三方应用平台的用户openid
@@ -316,8 +372,6 @@ module TencentCloud
         # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的回调通知模块。
         # @type UserData: String
         # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
-
-        # 注:`此功能为白名单功能，使用前请联系对接的客户经理沟通。`
         # @type CcInfos: Array
         # @param NeedCreateReview: 发起方企业的签署人进行发起操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
 
@@ -969,10 +1023,16 @@ module TencentCloud
         # <ul><li>默认情况下，认证校验方式为人脸和密码认证</li>
         # <li>您可以传递多种值，表示可用多种认证校验方式。</li></ul>
         # @type ApproverSignTypes: Array
+        # @param SignTypeSelector: 生成H5签署链接时，你可以指定签署方签署合同的认证校验方式的选择模式，可传递一下值：
+        # <ul><li>**0**：签署方自行选择，签署方可以从预先指定的认证方式中自由选择；</li>
+        # <li>**1**：自动按顺序首位推荐，签署方无需选择，系统会优先推荐使用第一种认证方式。</li></ul>
+        # 注：
+        # `不指定该值时，默认为签署方自行选择。`
+        # @type SignTypeSelector: Integer
 
-        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes
+        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector
 
-        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil)
+        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil)
           @FlowApproverInfo = flowapproverinfo
           @Agent = agent
           @FlowIds = flowids
@@ -980,6 +1040,7 @@ module TencentCloud
           @JumpUrl = jumpurl
           @SignatureTypes = signaturetypes
           @ApproverSignTypes = approversigntypes
+          @SignTypeSelector = signtypeselector
         end
 
         def deserialize(params)
@@ -996,6 +1057,7 @@ module TencentCloud
           @JumpUrl = params['JumpUrl']
           @SignatureTypes = params['SignatureTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
+          @SignTypeSelector = params['SignTypeSelector']
         end
       end
 
@@ -5310,6 +5372,72 @@ module TencentCloud
         end
       end
 
+      # CreatePartnerAutoSignAuthUrl请求参数结构体
+      class CreatePartnerAutoSignAuthUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param AuthorizedOrganizationId: 被授企业id，和AuthorizedOrganizationName二选一，不能同时为空
+        # 注：`被授权企业必须和当前企业在同一应用号下`
+        # @type AuthorizedOrganizationId: String
+        # @param AuthorizedOrganizationName: 被授权企业名，和AuthorizedOrganizationId二选一，不能同时为空
+        # 注：`被授权企业必须和当前企业在同一应用号下`
+        # @type AuthorizedOrganizationName: String
+
+        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName
+
+        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil)
+          @Agent = agent
+          @AuthorizedOrganizationId = authorizedorganizationid
+          @AuthorizedOrganizationName = authorizedorganizationname
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
+          @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
+        end
+      end
+
+      # CreatePartnerAutoSignAuthUrl返回参数结构体
+      class CreatePartnerAutoSignAuthUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 授权链接，以短链形式返回，短链的有效期参考回参中的 ExpiredTime。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param MiniAppPath: 从客户小程序或者客户APP跳转至腾讯电子签小程序进行批量签署的跳转路径
+        # @type MiniAppPath: String
+        # @param ExpireTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :MiniAppPath, :ExpireTime, :RequestId
+
+        def initialize(url=nil, miniapppath=nil, expiretime=nil, requestid=nil)
+          @Url = url
+          @MiniAppPath = miniapppath
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @MiniAppPath = params['MiniAppPath']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSealByImage请求参数结构体
       class CreateSealByImageRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -5359,7 +5487,8 @@ module TencentCloud
         # @param SealSize: 印章尺寸取值描述, 可以选择的尺寸如下:
         # <ul><li> **42_42**: 圆形企业公章直径42mm, 当SealStyle是圆形的时候才有效</li>
         # <li> **40_40**: 圆形企业印章直径40mm, 当SealStyle是圆形的时候才有效</li>
-        # <li> **45_30**: 椭圆形印章45mm x 30mm, 当SealStyle是椭圆的时候才有效</li></ul>
+        # <li> **45_30**: 椭圆形印章45mm x 30mm, 当SealStyle是椭圆的时候才有效</li>
+        # <li> **40_30**: 椭圆形印章40mm x 30mm, 当SealStyle是椭圆的时候才有效</li></ul>
         # @type SealSize: String
         # @param TaxIdentifyCode: 企业税号
         # 注: `1.印章类型SealType是INVOICE类型时，此参数才会生效`
@@ -5975,6 +6104,73 @@ module TencentCloud
 
         def deserialize(params)
           @WorkflowUrl = params['WorkflowUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtendedServiceAuthDetail请求参数结构体
+      class DescribeExtendedServiceAuthDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ExtendServiceType: 要查询的扩展服务类型。
+        # 如下所示：
+        # <ul><li> AUTO_SIGN：企业静默签署</li>
+        # <li>BATCH_SIGN：批量签署</li>
+        # </ul>
+        # @type ExtendServiceType: String
+        # @param Limit: 指定每页返回的数据条数，和Offset参数配合使用。 注：`1.默认值为20，单页做大值为200。`
+        # @type Limit: Integer
+        # @param Offset: 查询结果分页返回，指定从第几页返回数据，和Limit参数配合使用。 注：`1.offset从0开始，即第一页为0。` `2.默认从第一页返回。`
+        # @type Offset: Integer
+
+        attr_accessor :Agent, :ExtendServiceType, :Limit, :Offset
+
+        def initialize(agent=nil, extendservicetype=nil, limit=nil, offset=nil)
+          @Agent = agent
+          @ExtendServiceType = extendservicetype
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @ExtendServiceType = params['ExtendServiceType']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeExtendedServiceAuthDetail返回参数结构体
+      class DescribeExtendedServiceAuthDetailResponse < TencentCloud::Common::AbstractModel
+        # @param AuthInfoDetail: 服务授权的信息列表，根据查询类型返回特定扩展服务的开通和授权状况。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthInfoDetail: :class:`Tencentcloud::Essbasic.v20210526.models.AuthInfoDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthInfoDetail, :RequestId
+
+        def initialize(authinfodetail=nil, requestid=nil)
+          @AuthInfoDetail = authinfodetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AuthInfoDetail'].nil?
+            @AuthInfoDetail = AuthInfoDetail.new
+            @AuthInfoDetail.deserialize(params['AuthInfoDetail'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6906,13 +7102,19 @@ module TencentCloud
 
         # 注: `如果是用模板发起, 优先使用此处上传的, 如果不传则用模板的配置的`
         # @type ApproverRoleName: String
+        # @param SignTypeSelector: 生成H5签署链接时，你可以指定签署方签署合同的认证校验方式的选择模式，可传递一下值：
+        # <ul><li>**0**：签署方自行选择，签署方可以从预先指定的认证方式中自由选择；</li>
+        # <li>**1**：自动按顺序首位推荐，签署方无需选择，系统会优先推荐使用第一种认证方式。</li></ul>
+        # 注：
+        # `不指定该值时，默认为签署方自行选择。`
+        # @type SignTypeSelector: Integer
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName, :SignTypeSelector
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2023, 12
         deprecate :CallbackUrl=, :none, 2023, 12
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil, signtypeselector=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -6937,6 +7139,7 @@ module TencentCloud
           @NotifyType = notifytype
           @AddSignComponentsLimits = addsigncomponentslimits
           @ApproverRoleName = approverrolename
+          @SignTypeSelector = signtypeselector
         end
 
         def deserialize(params)
@@ -6981,6 +7184,7 @@ module TencentCloud
             end
           end
           @ApproverRoleName = params['ApproverRoleName']
+          @SignTypeSelector = params['SignTypeSelector']
         end
       end
 
@@ -7725,6 +7929,62 @@ module TencentCloud
         def deserialize(params)
           @DownLoadUrl = params['DownLoadUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 授权企业列表（目前仅用于“企业自动签 -> 合作企业授权”）
+      class HasAuthOrganization < TencentCloud::Common::AbstractModel
+        # @param OrganizationOpenId: 授权企业openid，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationOpenId: String
+        # @param OrganizationName: 授权企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrganizationName: String
+        # @param AuthorizedOrganizationOpenId: 被授权企业openid，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizedOrganizationOpenId: String
+        # @param AuthorizedOrganizationName: 被授权企业名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizedOrganizationName: String
+        # @param AuthorizeTime: 授权时间，格式为时间戳，单位s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizeTime: Integer
+
+        attr_accessor :OrganizationOpenId, :OrganizationName, :AuthorizedOrganizationOpenId, :AuthorizedOrganizationName, :AuthorizeTime
+
+        def initialize(organizationopenid=nil, organizationname=nil, authorizedorganizationopenid=nil, authorizedorganizationname=nil, authorizetime=nil)
+          @OrganizationOpenId = organizationopenid
+          @OrganizationName = organizationname
+          @AuthorizedOrganizationOpenId = authorizedorganizationopenid
+          @AuthorizedOrganizationName = authorizedorganizationname
+          @AuthorizeTime = authorizetime
+        end
+
+        def deserialize(params)
+          @OrganizationOpenId = params['OrganizationOpenId']
+          @OrganizationName = params['OrganizationName']
+          @AuthorizedOrganizationOpenId = params['AuthorizedOrganizationOpenId']
+          @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
+          @AuthorizeTime = params['AuthorizeTime']
+        end
+      end
+
+      # 被授权的用户信息
+      class HasAuthUser < TencentCloud::Common::AbstractModel
+        # @param OpenId: 第三方应用平台自定义，对应第三方平台子客企业员工的唯一标识。
+
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+
+        attr_accessor :OpenId
+
+        def initialize(openid=nil)
+          @OpenId = openid
+        end
+
+        def deserialize(params)
+          @OpenId = params['OpenId']
         end
       end
 

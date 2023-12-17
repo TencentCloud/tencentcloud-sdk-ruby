@@ -2301,7 +2301,7 @@ module TencentCloud
 
       # CreatePrometheusGlobalNotification请求参数结构体
       class CreatePrometheusGlobalNotificationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID(可通过 DescribePrometheusInstances 接口获取)
         # @type InstanceId: String
         # @param Notification: 告警通知渠道
         # @type Notification: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusNotificationItem`
@@ -3043,11 +3043,11 @@ module TencentCloud
 
       # DeletePrometheusAlertPolicy请求参数结构体
       class DeletePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例ID(可通过 DescribePrometheusInstances 接口获取)
         # @type InstanceId: String
-        # @param AlertIds: 告警策略id列表
+        # @param AlertIds: 告警策略ID列表(可通过 DescribePrometheusAlertPolicy 接口获取)
         # @type AlertIds: Array
-        # @param Names: 告警策略名称
+        # @param Names: 告警策略名称(可通过 DescribePrometheusAlertPolicy 接口获取)，名称完全相同的告警策略才会删除
         # @type Names: Array
 
         attr_accessor :InstanceId, :AlertIds, :Names
@@ -7267,17 +7267,20 @@ module TencentCloud
         # @type Agents: Array
         # @param Total: 被关联集群总量
         # @type Total: Integer
-        # @param IsFirstBind: 是否为首次绑定，需要安装预聚合规则
+        # @param IsFirstBind: 是否为首次绑定，如果是首次绑定则需要安装预聚合规则
         # @type IsFirstBind: Boolean
+        # @param ImageNeedUpdate: 实例组件是否需要更新镜像版本
+        # @type ImageNeedUpdate: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Agents, :Total, :IsFirstBind, :RequestId
+        attr_accessor :Agents, :Total, :IsFirstBind, :ImageNeedUpdate, :RequestId
 
-        def initialize(agents=nil, total=nil, isfirstbind=nil, requestid=nil)
+        def initialize(agents=nil, total=nil, isfirstbind=nil, imageneedupdate=nil, requestid=nil)
           @Agents = agents
           @Total = total
           @IsFirstBind = isfirstbind
+          @ImageNeedUpdate = imageneedupdate
           @RequestId = requestid
         end
 
@@ -7292,6 +7295,7 @@ module TencentCloud
           end
           @Total = params['Total']
           @IsFirstBind = params['IsFirstBind']
+          @ImageNeedUpdate = params['ImageNeedUpdate']
           @RequestId = params['RequestId']
         end
       end
@@ -7332,17 +7336,20 @@ module TencentCloud
         # @type RawJobs: Array
         # @param Probes: Probes
         # @type Probes: Array
+        # @param ImageNeedUpdate: 实例组件是否需要升级
+        # @type ImageNeedUpdate: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes, :RequestId
+        attr_accessor :Config, :ServiceMonitors, :PodMonitors, :RawJobs, :Probes, :ImageNeedUpdate, :RequestId
 
-        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil, requestid=nil)
+        def initialize(config=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, probes=nil, imageneedupdate=nil, requestid=nil)
           @Config = config
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
           @Probes = probes
+          @ImageNeedUpdate = imageneedupdate
           @RequestId = requestid
         end
 
@@ -7380,6 +7387,7 @@ module TencentCloud
               @Probes << prometheusconfigitem_tmp
             end
           end
+          @ImageNeedUpdate = params['ImageNeedUpdate']
           @RequestId = params['RequestId']
         end
       end
@@ -8134,28 +8142,29 @@ module TencentCloud
       class DescribePrometheusTargetsTMPRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
         # @type InstanceId: String
-        # @param ClusterType: 集群类型
-        # @type ClusterType: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: 集成容器服务填绑定的集群id；
+        # 集成中心填 non-cluster
         # @type ClusterId: String
+        # @param ClusterType: 集群类型(可不填)
+        # @type ClusterType: String
         # @param Filters: 过滤条件，当前支持
         # Name=state
         # Value=up, down, unknown
         # @type Filters: Array
 
-        attr_accessor :InstanceId, :ClusterType, :ClusterId, :Filters
+        attr_accessor :InstanceId, :ClusterId, :ClusterType, :Filters
 
-        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, filters=nil)
+        def initialize(instanceid=nil, clusterid=nil, clustertype=nil, filters=nil)
           @InstanceId = instanceid
-          @ClusterType = clustertype
           @ClusterId = clusterid
+          @ClusterType = clustertype
           @Filters = filters
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @ClusterType = params['ClusterType']
           @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -10608,16 +10617,20 @@ module TencentCloud
         # @type PodMonitors: Array
         # @param RawJobs: prometheus原生Job配置
         # @type RawJobs: Array
+        # @param UpdateImage: 0: 更新实例组件镜像版本；
+        # 1: 不更新实例组件镜像版本
+        # @type UpdateImage: Integer
 
-        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs
+        attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :UpdateImage
 
-        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil)
+        def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, updateimage=nil)
           @InstanceId = instanceid
           @ClusterType = clustertype
           @ClusterId = clusterid
           @ServiceMonitors = servicemonitors
           @PodMonitors = podmonitors
           @RawJobs = rawjobs
+          @UpdateImage = updateimage
         end
 
         def deserialize(params)
@@ -10648,6 +10661,7 @@ module TencentCloud
               @RawJobs << prometheusconfigitem_tmp
             end
           end
+          @UpdateImage = params['UpdateImage']
         end
       end
 
@@ -11923,12 +11937,36 @@ module TencentCloud
 
       # prometheus一个job的targets
       class PrometheusJobTargets < TencentCloud::Common::AbstractModel
+        # @param Targets: 该Job的targets列表
+        # @type Targets: Array
+        # @param JobName: job的名称
+        # @type JobName: String
+        # @param Total: targets总数
+        # @type Total: Integer
+        # @param Up: 健康的target总数
+        # @type Up: Integer
 
+        attr_accessor :Targets, :JobName, :Total, :Up
 
-        def initialize()
+        def initialize(targets=nil, jobname=nil, total=nil, up=nil)
+          @Targets = targets
+          @JobName = jobname
+          @Total = total
+          @Up = up
         end
 
         def deserialize(params)
+          unless params['Targets'].nil?
+            @Targets = []
+            params['Targets'].each do |i|
+              prometheustarget_tmp = PrometheusTarget.new
+              prometheustarget_tmp.deserialize(i)
+              @Targets << prometheustarget_tmp
+            end
+          end
+          @JobName = params['JobName']
+          @Total = params['Total']
+          @Up = params['Up']
         end
       end
 
@@ -12263,6 +12301,17 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # prometheus一个抓取目标的信息
+      class PrometheusTarget < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

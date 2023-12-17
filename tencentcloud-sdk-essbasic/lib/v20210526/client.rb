@@ -1707,6 +1707,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建他方自动签授权链接，通过该链接可进入小程序进行合作方企业的自动签授权，若当前企业未开通企业自动签，通过该链接会先引导开通本企业自动签。
+        # 该接口效果同控制台： 企业设置-> 扩展服务 -> 企业自动签署 -> 合作企业方授权
+
+
+
+        # 注:
+        # 1. <font color='red'>所在企业的超管、法人才有权限调用此接口</font>(Agent.ProxyOperator.OpenId 需要传递超管或者法人的OpenId)
+        # 2. 已经在授权中或者授权成功的企业，无法重复授权
+
+        # @param request: Request instance for CreatePartnerAutoSignAuthUrl.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::CreatePartnerAutoSignAuthUrlRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::CreatePartnerAutoSignAuthUrlResponse`
+        def CreatePartnerAutoSignAuthUrl(request)
+          body = send_request('CreatePartnerAutoSignAuthUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePartnerAutoSignAuthUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 1. 可以**通过图片**为子客企业代创建印章，图片最大5MB
 
         # 2. 可以**系统创建**子客企业代创建印章, 系统创建的印章样子下图(样式可以调整)
@@ -1898,6 +1929,36 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeChannelSealPolicyWorkflowUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询企业扩展服务的授权详情（列表），当前支持查询以下内容：
+
+        # 1. **企业自动签**
+        # 2. **批量签署**
+
+
+        # 注: <font color='red'>所在企业的超管、法人才有权限调用此接口</font>(Agent.ProxyOperator.OpenId 需要传递超管或者法人的OpenId)
+
+        # @param request: Request instance for DescribeExtendedServiceAuthDetail.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::DescribeExtendedServiceAuthDetailRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::DescribeExtendedServiceAuthDetailResponse`
+        def DescribeExtendedServiceAuthDetail(request)
+          body = send_request('DescribeExtendedServiceAuthDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtendedServiceAuthDetailResponse.new
             model.deserialize(response['Response'])
             model
           else

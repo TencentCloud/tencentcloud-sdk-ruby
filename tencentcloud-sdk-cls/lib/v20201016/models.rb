@@ -1869,7 +1869,7 @@ module TencentCloud
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文；
         # 默认为minimalist_log
         # @type LogType: String
-        # @param Compress: supported: "", "gzip", "lzop", "snappy”; 默认空
+        # @param Compress: supported: "", "gzip", "lzop", "snappy"; 默认空
         # @type Compress: String
         # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`

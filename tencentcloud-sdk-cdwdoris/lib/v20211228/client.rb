@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 根据实例ID查询某个实例的具体信息
+        # 根据集群ID查询某个集群的具体信息
 
         # @param request: Request instance for DescribeInstance.
         # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeInstanceRequest`
@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取实例节点信息列表
+        # 获取集群节点信息列表
 
         # @param request: Request instance for DescribeInstanceNodes.
         # @type request: :class:`Tencentcloud::cdwdoris::V20211228::DescribeInstanceNodesRequest`

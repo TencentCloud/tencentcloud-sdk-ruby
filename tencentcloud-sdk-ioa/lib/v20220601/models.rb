@@ -81,17 +81,29 @@ module TencentCloud
         # @param Paging: 数据分页信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paging: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 业务响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
 
-        attr_accessor :Paging
+        attr_accessor :Paging, :Items
 
-        def initialize(paging=nil)
+        def initialize(paging=nil, items=nil)
           @Paging = paging
+          @Items = items
         end
 
         def deserialize(params)
           unless params['Paging'].nil?
             @Paging = Paging.new
             @Paging.deserialize(params['Paging'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              devicedetail_tmp = DeviceDetail.new
+              devicedetail_tmp.deserialize(i)
+              @Items << devicedetail_tmp
+            end
           end
         end
       end
@@ -197,6 +209,233 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务响应数据
+      class DeviceDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 设备ID(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Mid: 设备唯一标识符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mid: String
+        # @param Name: 终端名（设备名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param GroupId: 设备所在分组ID(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param OsType: OS平台(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsType: Integer
+        # @param Ip: 设备IP地址（出口IP）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param OnlineStatus: 在线状态 2 在线 0，1 离线(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnlineStatus: Integer
+        # @param Version: 客户端版本号-大整数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param StrVersion: 客户端版本号-点分字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrVersion: String
+        # @param Itime: 首次在线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Itime: String
+        # @param ConnActiveTime: 最后一次在线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnActiveTime: String
+        # @param Locked: 设备是否加锁 1 锁定 0 2 非锁定(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Locked: Integer
+        # @param LocalIpList: 设备本地IP列表, 包括IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalIpList: String
+        # @param HostId: 主机ID(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostId: Integer
+        # @param GroupName: 设备所属分组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param GroupNamePath: 设备所属分组路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupNamePath: String
+        # @param CriticalVulListCount: 未修复高危漏洞数(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CriticalVulListCount: Integer
+        # @param ComputerName: 设备名 和Name相同，保留参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputerName: String
+        # @param DomainName: 登录域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainName: String
+        # @param MacAddr: MAC地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MacAddr: String
+        # @param VulCount: 漏洞数(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulCount: Integer
+        # @param RiskCount: 病毒风险数(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCount: Integer
+        # @param VirusVer: 病毒库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirusVer: String
+        # @param VulVersion: 漏洞库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulVersion: String
+        # @param SysRepVersion: 系统修复引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SysRepVersion: String
+        # @param VulCriticalList: 高危补丁列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulCriticalList: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: String
+        # @param UserName: 终端用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param FirewallStatus: 防火墙状态(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirewallStatus: Integer
+        # @param SerialNum: SN序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SerialNum: String
+        # @param DeviceStrategyVer: 设备管控策略版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceStrategyVer: String
+        # @param NGNStrategyVer: NGN策略版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NGNStrategyVer: String
+        # @param IOAUserName: 最近登录账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IOAUserName: String
+        # @param DeviceNewStrategyVer: 设备管控新策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceNewStrategyVer: String
+        # @param NGNNewStrategyVer: NGN策略新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NGNNewStrategyVer: String
+        # @param HostName: 主机名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param BaseBoardSn: 主板序列号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BaseBoardSn: String
+        # @param AccountUsers: 绑定账户只有名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountUsers: String
+        # @param IdentityStrategyVer: 身份策略版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityStrategyVer: String
+        # @param IdentityNewStrategyVer: 身份策略新版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityNewStrategyVer: String
+        # @param AccountGroupName: 最近登录账号部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupName: String
+        # @param AccountName: 登录账号姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountName: String
+        # @param AccountGroupId: 账号组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId
+
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil)
+          @Id = id
+          @Mid = mid
+          @Name = name
+          @GroupId = groupid
+          @OsType = ostype
+          @Ip = ip
+          @OnlineStatus = onlinestatus
+          @Version = version
+          @StrVersion = strversion
+          @Itime = itime
+          @ConnActiveTime = connactivetime
+          @Locked = locked
+          @LocalIpList = localiplist
+          @HostId = hostid
+          @GroupName = groupname
+          @GroupNamePath = groupnamepath
+          @CriticalVulListCount = criticalvullistcount
+          @ComputerName = computername
+          @DomainName = domainname
+          @MacAddr = macaddr
+          @VulCount = vulcount
+          @RiskCount = riskcount
+          @VirusVer = virusver
+          @VulVersion = vulversion
+          @SysRepVersion = sysrepversion
+          @VulCriticalList = vulcriticallist
+          @Tags = tags
+          @UserName = username
+          @FirewallStatus = firewallstatus
+          @SerialNum = serialnum
+          @DeviceStrategyVer = devicestrategyver
+          @NGNStrategyVer = ngnstrategyver
+          @IOAUserName = ioausername
+          @DeviceNewStrategyVer = devicenewstrategyver
+          @NGNNewStrategyVer = ngnnewstrategyver
+          @HostName = hostname
+          @BaseBoardSn = baseboardsn
+          @AccountUsers = accountusers
+          @IdentityStrategyVer = identitystrategyver
+          @IdentityNewStrategyVer = identitynewstrategyver
+          @AccountGroupName = accountgroupname
+          @AccountName = accountname
+          @AccountGroupId = accountgroupid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Mid = params['Mid']
+          @Name = params['Name']
+          @GroupId = params['GroupId']
+          @OsType = params['OsType']
+          @Ip = params['Ip']
+          @OnlineStatus = params['OnlineStatus']
+          @Version = params['Version']
+          @StrVersion = params['StrVersion']
+          @Itime = params['Itime']
+          @ConnActiveTime = params['ConnActiveTime']
+          @Locked = params['Locked']
+          @LocalIpList = params['LocalIpList']
+          @HostId = params['HostId']
+          @GroupName = params['GroupName']
+          @GroupNamePath = params['GroupNamePath']
+          @CriticalVulListCount = params['CriticalVulListCount']
+          @ComputerName = params['ComputerName']
+          @DomainName = params['DomainName']
+          @MacAddr = params['MacAddr']
+          @VulCount = params['VulCount']
+          @RiskCount = params['RiskCount']
+          @VirusVer = params['VirusVer']
+          @VulVersion = params['VulVersion']
+          @SysRepVersion = params['SysRepVersion']
+          @VulCriticalList = params['VulCriticalList']
+          @Tags = params['Tags']
+          @UserName = params['UserName']
+          @FirewallStatus = params['FirewallStatus']
+          @SerialNum = params['SerialNum']
+          @DeviceStrategyVer = params['DeviceStrategyVer']
+          @NGNStrategyVer = params['NGNStrategyVer']
+          @IOAUserName = params['IOAUserName']
+          @DeviceNewStrategyVer = params['DeviceNewStrategyVer']
+          @NGNNewStrategyVer = params['NGNNewStrategyVer']
+          @HostName = params['HostName']
+          @BaseBoardSn = params['BaseBoardSn']
+          @AccountUsers = params['AccountUsers']
+          @IdentityStrategyVer = params['IdentityStrategyVer']
+          @IdentityNewStrategyVer = params['IdentityNewStrategyVer']
+          @AccountGroupName = params['AccountGroupName']
+          @AccountName = params['AccountName']
+          @AccountGroupId = params['AccountGroupId']
         end
       end
 

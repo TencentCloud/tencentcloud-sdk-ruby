@@ -2606,6 +2606,62 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationUserInfo请求参数结构体
+      class DescribeOrganizationUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 过滤内容
+        # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
+        # @param NotSupportCloud: 不支持多云
+        # @type NotSupportCloud: Boolean
+
+        attr_accessor :Filter, :NotSupportCloud
+
+        def initialize(filter=nil, notsupportcloud=nil)
+          @Filter = filter
+          @NotSupportCloud = notsupportcloud
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = Filter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @NotSupportCloud = params['NotSupportCloud']
+        end
+      end
+
+      # DescribeOrganizationUserInfo返回参数结构体
+      class DescribeOrganizationUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 集团用户列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              organizationuserinfo_tmp = OrganizationUserInfo.new
+              organizationuserinfo_tmp.deserialize(i)
+              @Data << organizationuserinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePublicIpAssets请求参数结构体
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
         # @param Filter: filte过滤条件
@@ -4946,6 +5002,130 @@ module TencentCloud
           @Nick = params['Nick']
           @IsCore = params['IsCore']
           @IsNewAsset = params['IsNewAsset']
+        end
+      end
+
+      # 集团账号成员详情
+      class OrganizationUserInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: 成员账号Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param NickName: 成员账号名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NickName: String
+        # @param NodeName: 部门节点名称，账号所属部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeName: String
+        # @param AssetCount: 资产数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetCount: Integer
+        # @param RiskCount: 风险数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RiskCount: Integer
+        # @param AttackCount: 攻击数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackCount: Integer
+        # @param Role: Member/Admin/;成员或者管理员
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Role: String
+        # @param MemberId: 成员账号id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberId: String
+        # @param AppId: 成员账号Appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param JoinType: 账号加入方式,create/invite
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JoinType: String
+        # @param CFWProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFWProtect: String
+        # @param WAFProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WAFProtect: String
+        # @param CWPProtect: 空则未开启，否则不同字符串对应不同版本，common为通用，不区分版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CWPProtect: String
+        # @param Enable: 1启用，0未启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param CSIPProtect: "Free"       //免费版  "Advanced"   //高级版 "Enterprise" //企业版 "Ultimate"   //旗舰版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CSIPProtect: String
+        # @param QuotaConsumer: 1为配额消耗者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaConsumer: Integer
+        # @param CloudType: 账户类型，0为腾讯云账户，1为AWS账户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudType: Integer
+        # @param SyncFrequency: 0为缺省值，1为10分钟，2为1小时，3为24小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SyncFrequency: Integer
+        # @param IsExpired: 多云账户是否过期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExpired: Boolean
+        # @param PermissionList: 多云账户 权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PermissionList: Array
+        # @param AuthType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthType: Integer
+        # @param TcMemberType: 0 腾讯云集团账户
+        # 1 腾讯云接入账户
+        # 2 非腾讯云
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TcMemberType: Integer
+
+        attr_accessor :Uin, :NickName, :NodeName, :AssetCount, :RiskCount, :AttackCount, :Role, :MemberId, :AppId, :JoinType, :CFWProtect, :WAFProtect, :CWPProtect, :Enable, :CSIPProtect, :QuotaConsumer, :CloudType, :SyncFrequency, :IsExpired, :PermissionList, :AuthType, :TcMemberType
+
+        def initialize(uin=nil, nickname=nil, nodename=nil, assetcount=nil, riskcount=nil, attackcount=nil, role=nil, memberid=nil, appid=nil, jointype=nil, cfwprotect=nil, wafprotect=nil, cwpprotect=nil, enable=nil, csipprotect=nil, quotaconsumer=nil, cloudtype=nil, syncfrequency=nil, isexpired=nil, permissionlist=nil, authtype=nil, tcmembertype=nil)
+          @Uin = uin
+          @NickName = nickname
+          @NodeName = nodename
+          @AssetCount = assetcount
+          @RiskCount = riskcount
+          @AttackCount = attackcount
+          @Role = role
+          @MemberId = memberid
+          @AppId = appid
+          @JoinType = jointype
+          @CFWProtect = cfwprotect
+          @WAFProtect = wafprotect
+          @CWPProtect = cwpprotect
+          @Enable = enable
+          @CSIPProtect = csipprotect
+          @QuotaConsumer = quotaconsumer
+          @CloudType = cloudtype
+          @SyncFrequency = syncfrequency
+          @IsExpired = isexpired
+          @PermissionList = permissionlist
+          @AuthType = authtype
+          @TcMemberType = tcmembertype
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @NickName = params['NickName']
+          @NodeName = params['NodeName']
+          @AssetCount = params['AssetCount']
+          @RiskCount = params['RiskCount']
+          @AttackCount = params['AttackCount']
+          @Role = params['Role']
+          @MemberId = params['MemberId']
+          @AppId = params['AppId']
+          @JoinType = params['JoinType']
+          @CFWProtect = params['CFWProtect']
+          @WAFProtect = params['WAFProtect']
+          @CWPProtect = params['CWPProtect']
+          @Enable = params['Enable']
+          @CSIPProtect = params['CSIPProtect']
+          @QuotaConsumer = params['QuotaConsumer']
+          @CloudType = params['CloudType']
+          @SyncFrequency = params['SyncFrequency']
+          @IsExpired = params['IsExpired']
+          @PermissionList = params['PermissionList']
+          @AuthType = params['AuthType']
+          @TcMemberType = params['TcMemberType']
         end
       end
 
