@@ -3097,7 +3097,7 @@ module TencentCloud
 
       # 目标端为kakfa时添加的同步选项字段
       class KafkaOption < TencentCloud::Common::AbstractModel
-        # @param DataType: 投递到kafka的数据类型，如Avro,Json
+        # @param DataType: 投递到kafka的数据类型，如Avro,Json,canal-pb,canal-json
         # @type DataType: String
         # @param TopicType: 同步topic策略，如Single（集中投递到单topic）,Multi (自定义topic名称)
         # @type TopicType: String
@@ -3843,7 +3843,7 @@ module TencentCloud
         # @param KafkaOption: kafka同步选项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaOption: :class:`Tencentcloud::Dts.v20211206.models.KafkaOption`
-        # @param RateLimitOption: 任务限速信息、该字段仅用作出参、入参该字段无效
+        # @param RateLimitOption: 任务限速信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RateLimitOption: :class:`Tencentcloud::Dts.v20211206.models.RateLimitOption`
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
@@ -4037,37 +4037,37 @@ module TencentCloud
 
       # 迁移和同步任务限速的详细信息
       class RateLimitOption < TencentCloud::Common::AbstractModel
-        # @param CurrentDumpThread: 当前生效的全量导出线程数
+        # @param CurrentDumpThread: 当前生效的全量导出线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentDumpThread: Integer
-        # @param DefaultDumpThread: 默认的全量导出线程数
+        # @param DefaultDumpThread: 默认的全量导出线程数，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultDumpThread: Integer
-        # @param CurrentDumpRps: 当前生效的全量导出Rps
+        # @param CurrentDumpRps: 当前生效的全量导出Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentDumpRps: Integer
-        # @param DefaultDumpRps: 默认的全量导出Rps
+        # @param DefaultDumpRps: 默认的全量导出Rps，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultDumpRps: Integer
-        # @param CurrentLoadThread: 当前生效的全量导入线程数
+        # @param CurrentLoadThread: 当前生效的全量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentLoadThread: Integer
-        # @param DefaultLoadThread: 默认的全量导入线程数
+        # @param DefaultLoadThread: 默认的全量导入线程数，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultLoadThread: Integer
-        # @param CurrentLoadRps: 当前生效的全量导入Rps
+        # @param CurrentLoadRps: 当前生效的全量导入Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentLoadRps: Integer
-        # @param DefaultLoadRps: 默认的全量导入Rps
+        # @param DefaultLoadRps: 默认的全量导入Rps，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultLoadRps: Integer
-        # @param CurrentSinkerThread: 当前生效的增量导入线程数
+        # @param CurrentSinkerThread: 当前生效的增量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为128
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentSinkerThread: Integer
-        # @param DefaultSinkerThread: 默认的增量导入线程数
+        # @param DefaultSinkerThread: 默认的增量导入线程数，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DefaultSinkerThread: Integer
-        # @param HasUserSetRateLimit: enum:"no"/"yes"、no表示用户未设置过限速、yes表示设置过限速
+        # @param HasUserSetRateLimit: enum:"no"/"yes"、no表示用户未设置过限速、yes表示设置过限速，该字段仅在出参有意义
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasUserSetRateLimit: String
 

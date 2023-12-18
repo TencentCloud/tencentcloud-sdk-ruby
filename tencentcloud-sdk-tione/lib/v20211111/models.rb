@@ -6504,10 +6504,13 @@ module TencentCloud
         # @param ModelFormat: 模型格式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelFormat: String
+        # @param IsPrivateModel: 是否为私有化大模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPrivateModel: Boolean
 
-        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType, :ModelFormat
+        attr_accessor :ModelVersionId, :ModelId, :ModelName, :ModelVersion, :ModelSource, :CosPathInfo, :AlgorithmFramework, :ModelType, :ModelFormat, :IsPrivateModel
 
-        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil, modelformat=nil)
+        def initialize(modelversionid=nil, modelid=nil, modelname=nil, modelversion=nil, modelsource=nil, cospathinfo=nil, algorithmframework=nil, modeltype=nil, modelformat=nil, isprivatemodel=nil)
           @ModelVersionId = modelversionid
           @ModelId = modelid
           @ModelName = modelname
@@ -6517,6 +6520,7 @@ module TencentCloud
           @AlgorithmFramework = algorithmframework
           @ModelType = modeltype
           @ModelFormat = modelformat
+          @IsPrivateModel = isprivatemodel
         end
 
         def deserialize(params)
@@ -6532,6 +6536,7 @@ module TencentCloud
           @AlgorithmFramework = params['AlgorithmFramework']
           @ModelType = params['ModelType']
           @ModelFormat = params['ModelFormat']
+          @IsPrivateModel = params['IsPrivateModel']
         end
       end
 
@@ -8352,13 +8357,14 @@ module TencentCloud
         # @param Question: 问题描述
         # @type Question: String
         # @param ModelVersion: 会话模型版本。
-        # 多行业客服大模型：填写demo_big_model_version_id。
-        # 默认为demo_big_model_version_id，即多行业客服大模型。
+        # 金融大模型：填写sn-finllm-13b-chat-v1。
+        # 默认为sn-finllm-13b-chat-v1，即金融大模型。
         # @type ModelVersion: String
-        # @param Mode: 使用模式(仅多场景客服大模型支持)。
+        # @param Mode: 使用模式。
         # 通用问答：填写General。
         # 搜索增强问答：填写WithSearchPlugin。
         # 默认为General，即通用问答。
+        # 当前可体验模型仅支持General。
         # @type Mode: String
         # @param SearchSource: 搜索来源。仅当Mode为WithSearchPlugin时生效。
         # 预置文稿库：填写Preset。自定义：填写Custom。
@@ -10523,8 +10529,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2023, 11
-        deprecate :StatefulSetCondition=, :none, 2023, 11
+        deprecate :StatefulSetCondition, :none, 2023, 12
+        deprecate :StatefulSetCondition=, :none, 2023, 12
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

@@ -1462,10 +1462,12 @@ module TencentCloud
         # @type Uuid: Integer
         # @param Description: 描述
         # @type Description: String
+        # @param ParamTemplateId: 端口协议组ID
+        # @type ParamTemplateId: String
 
-        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description
+        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId
 
-        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil, paramtemplateid=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @TargetContent = targetcontent
@@ -1478,6 +1480,7 @@ module TencentCloud
           @Enable = enable
           @Uuid = uuid
           @Description = description
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -1493,6 +1496,7 @@ module TencentCloud
           @Enable = params['Enable']
           @Uuid = params['Uuid']
           @Description = params['Description']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -1528,10 +1532,12 @@ module TencentCloud
         # @type RuleSource: Integer
         # @param LogId: 告警Id
         # @type LogId: String
+        # @param ParamTemplateId: 端都协议组ID
+        # @type ParamTemplateId: String
 
-        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Uuid, :Enable, :Description, :Scope, :RuleSource, :LogId
+        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Uuid, :Enable, :Description, :Scope, :RuleSource, :LogId, :ParamTemplateId
 
-        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, uuid=nil, enable=nil, description=nil, scope=nil, rulesource=nil, logid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, uuid=nil, enable=nil, description=nil, scope=nil, rulesource=nil, logid=nil, paramtemplateid=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @TargetContent = targetcontent
@@ -1547,6 +1553,7 @@ module TencentCloud
           @Scope = scope
           @RuleSource = rulesource
           @LogId = logid
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -1565,6 +1572,7 @@ module TencentCloud
           @Scope = params['Scope']
           @RuleSource = params['RuleSource']
           @LogId = params['LogId']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -2266,10 +2274,16 @@ module TencentCloud
         # @param InternetBorderUuid: 互联网边界防火墙使用的内部规则id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetBorderUuid: String
+        # @param ParamTemplateName: 协议端口组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamTemplateName: String
+        # @param ParamTemplateId: 协议端口组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamTemplateId: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2297,6 +2311,8 @@ module TencentCloud
           @BetaList = betalist
           @Scope = scope
           @InternetBorderUuid = internetborderuuid
+          @ParamTemplateName = paramtemplatename
+          @ParamTemplateId = paramtemplateid
         end
 
         def deserialize(params)
@@ -2334,6 +2350,8 @@ module TencentCloud
           end
           @Scope = params['Scope']
           @InternetBorderUuid = params['InternetBorderUuid']
+          @ParamTemplateName = params['ParamTemplateName']
+          @ParamTemplateId = params['ParamTemplateId']
         end
       end
 
@@ -9296,10 +9314,16 @@ module TencentCloud
         # @param BetaList: beta任务详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BetaList: Array
+        # @param ParamTemplateId: 端口协议组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamTemplateId: String
+        # @param ParamTemplateName: 端口协议组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamTemplateName: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Uuid, :Enable, :EdgeId, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Uuid, :Enable, :EdgeId, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, uuid=nil, enable=nil, edgeid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, uuid=nil, enable=nil, edgeid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -9319,6 +9343,8 @@ module TencentCloud
           @FwGroupId = fwgroupid
           @FwGroupName = fwgroupname
           @BetaList = betalist
+          @ParamTemplateId = paramtemplateid
+          @ParamTemplateName = paramtemplatename
         end
 
         def deserialize(params)
@@ -9348,6 +9374,8 @@ module TencentCloud
               @BetaList << betainfobyacl_tmp
             end
           end
+          @ParamTemplateId = params['ParamTemplateId']
+          @ParamTemplateName = params['ParamTemplateName']
         end
       end
 

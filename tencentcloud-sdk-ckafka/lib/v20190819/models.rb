@@ -2236,7 +2236,7 @@ module TencentCloud
         # @type ClusterId: Integer
         # @param RenewFlag: 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # @type RenewFlag: Integer
-        # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
+        # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1、3.2.3], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession"
         # @type SpecificationsType: String
@@ -2334,8 +2334,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2023, 11
-        deprecate :DeleteRouteTimestamp=, :none, 2023, 11
+        deprecate :DeleteRouteTimestamp, :none, 2023, 12
+        deprecate :DeleteRouteTimestamp=, :none, 2023, 12
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -11794,8 +11794,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2023, 11
-        deprecate :Exflag=, :none, 2023, 11
+        deprecate :Exflag, :none, 2023, 12
+        deprecate :Exflag=, :none, 2023, 12
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

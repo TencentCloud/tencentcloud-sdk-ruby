@@ -98,17 +98,22 @@ module TencentCloud
         # @param Classification: 通知等级列表，["Remind","Serious"]表示该通知模板仅接收提醒和严重类别的告警
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Classification: Array
+        # @param PolicyId: 模板对应的策略id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: String
 
-        attr_accessor :NoticeId, :Classification
+        attr_accessor :NoticeId, :Classification, :PolicyId
 
-        def initialize(noticeid=nil, classification=nil)
+        def initialize(noticeid=nil, classification=nil, policyid=nil)
           @NoticeId = noticeid
           @Classification = classification
+          @PolicyId = policyid
         end
 
         def deserialize(params)
           @NoticeId = params['NoticeId']
           @Classification = params['Classification']
+          @PolicyId = params['PolicyId']
         end
       end
 

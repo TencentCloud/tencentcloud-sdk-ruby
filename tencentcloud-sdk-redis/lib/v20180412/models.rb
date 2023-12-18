@@ -1303,7 +1303,7 @@ module TencentCloud
         # @type IpComparisonSymbol: String
         # @param LimitVpc: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，显示该参数。
         # @type LimitVpc: Array
-        # @param LimitIp: 自定义的可下载备份文件的 VPC ID。当参数**LimitType**为**Customize **时，显示该参数。
+        # @param LimitIp: 自定义的可下载备份文件的 VPC IP 地址。当参数**LimitType**为**Customize **时，显示该参数。
         # @type LimitIp: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

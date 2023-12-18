@@ -6418,16 +6418,19 @@ module TencentCloud
         # @type FilterType: Array
         # @param FilterName: 按主题名称搜索，支持模糊查询
         # @type FilterName: String
+        # @param FilterGroup: 按订阅消费组名称过滤
+        # @type FilterGroup: String
 
-        attr_accessor :Offset, :Limit, :ClusterId, :NamespaceId, :FilterType, :FilterName
+        attr_accessor :Offset, :Limit, :ClusterId, :NamespaceId, :FilterType, :FilterName, :FilterGroup
 
-        def initialize(offset=nil, limit=nil, clusterid=nil, namespaceid=nil, filtertype=nil, filtername=nil)
+        def initialize(offset=nil, limit=nil, clusterid=nil, namespaceid=nil, filtertype=nil, filtername=nil, filtergroup=nil)
           @Offset = offset
           @Limit = limit
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @FilterType = filtertype
           @FilterName = filtername
+          @FilterGroup = filtergroup
         end
 
         def deserialize(params)
@@ -6437,6 +6440,7 @@ module TencentCloud
           @NamespaceId = params['NamespaceId']
           @FilterType = params['FilterType']
           @FilterName = params['FilterName']
+          @FilterGroup = params['FilterGroup']
         end
       end
 
@@ -8919,10 +8923,14 @@ module TencentCloud
         # @param PrometheusEndpointInfo: Prometheus信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrometheusEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PrometheusEndpointInfo`
+        # @param WebConsoleDomainEndpoint: http://amqp-k3eb47gm.dashboard.rabbitmq.cq.public.tencenttdmq.com:15672/
+        # 公网域名接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebConsoleDomainEndpoint: String
 
-        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint
 
-        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil)
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @WebConsoleEndpoint = webconsoleendpoint
           @WebConsoleUsername = webconsoleusername
@@ -8935,6 +8943,7 @@ module TencentCloud
           @VpcWebConsoleSwitchStatus = vpcwebconsoleswitchstatus
           @PublicDataStreamStatus = publicdatastreamstatus
           @PrometheusEndpointInfo = prometheusendpointinfo
+          @WebConsoleDomainEndpoint = webconsoledomainendpoint
         end
 
         def deserialize(params)
@@ -8953,6 +8962,7 @@ module TencentCloud
             @PrometheusEndpointInfo = PrometheusEndpointInfo.new
             @PrometheusEndpointInfo.deserialize(params['PrometheusEndpointInfo'])
           end
+          @WebConsoleDomainEndpoint = params['WebConsoleDomainEndpoint']
         end
       end
 

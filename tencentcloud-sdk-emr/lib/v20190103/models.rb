@@ -1006,18 +1006,20 @@ module TencentCloud
       # CreateInstance请求参数结构体
       class CreateInstanceRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
-        # <li>16：表示EMR-V2.3.0。</li>
-        # <li>20：表示EMR-V2.5.0。</li>
-        # <li>25：表示EMR-V3.1.0。</li>
-        # <li>27：表示KAFKA-V1.0.0。</li>
-        # <li>30：表示EMR-V2.6.0。</li>
-        # <li>33 :   表示EMR-V3.2.1。</li>
-        # <li>34 :   表示EMR-V3.3.0。</li>
-        # <li>36 :   表示STARROCKS-V1.0.0。</li>
-        # <li>37 :   表示EMR-V3.4.0。</li>
-        # <li>38 :   表示EMR-V2.7.0。</li>
-        # <li>39 :   表示STARROCKS-V1.1.0。</li>
-        # <li>41 :   表示DRUID-V1.1.0。</li>
+        # 51:表示STARROCKS-V1.4.0
+        # 54:表示STARROCKS-V2.0.0
+        # 27:表示KAFKA-V1.0.0
+        # 50:表示KAFKA-V2.0.0
+        # 16:表示EMR-V2.3.0
+        # 20:表示EMR-V2.5.0
+        # 30:表示EMR-V2.6.0
+        # 38:表示EMR-V2.7.0
+        # 25:表示EMR-V3.1.0
+        # 33:表示EMR-V3.2.1
+        # 34:表示EMR-V3.3.0
+        # 37:表示EMR-V3.4.0
+        # 44:表示EMR-V3.5.0
+        # 53:表示EMR-V3.6.0
         # @type ProductId: Integer
         # @param Software: 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
         # 填写实例值：hive、flink。
@@ -5400,10 +5402,12 @@ module TencentCloud
         # @type CosSecretKey: String
         # @param AppId: cos的appid，已废弃
         # @type AppId: String
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :Path, :Args, :Bucket, :Region, :Domain, :RunOrder, :WhenRun, :CosFileName, :CosFileURI, :CosSecretId, :CosSecretKey, :AppId
+        attr_accessor :Path, :Args, :Bucket, :Region, :Domain, :RunOrder, :WhenRun, :CosFileName, :CosFileURI, :CosSecretId, :CosSecretKey, :AppId, :Remark
 
-        def initialize(path=nil, args=nil, bucket=nil, region=nil, domain=nil, runorder=nil, whenrun=nil, cosfilename=nil, cosfileuri=nil, cossecretid=nil, cossecretkey=nil, appid=nil)
+        def initialize(path=nil, args=nil, bucket=nil, region=nil, domain=nil, runorder=nil, whenrun=nil, cosfilename=nil, cosfileuri=nil, cossecretid=nil, cossecretkey=nil, appid=nil, remark=nil)
           @Path = path
           @Args = args
           @Bucket = bucket
@@ -5416,6 +5420,7 @@ module TencentCloud
           @CosSecretId = cossecretid
           @CosSecretKey = cossecretkey
           @AppId = appid
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -5431,6 +5436,7 @@ module TencentCloud
           @CosSecretId = params['CosSecretId']
           @CosSecretKey = params['CosSecretKey']
           @AppId = params['AppId']
+          @Remark = params['Remark']
         end
       end
 

@@ -505,10 +505,13 @@ module TencentCloud
         # @param WecomGroup: 企业微信群，0：未设置，1：成功，2：失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WecomGroup: Integer
+        # @param LarkGroup: 飞书群，0：未设置，1：成功，2：失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkGroup: Integer
 
-        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http, :WecomGroup
+        attr_accessor :AlarmId, :AlarmReceiver, :Email, :Sms, :Wechat, :Voice, :Wecom, :Http, :WecomGroup, :LarkGroup
 
-        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil, wecomgroup=nil)
+        def initialize(alarmid=nil, alarmreceiver=nil, email=nil, sms=nil, wechat=nil, voice=nil, wecom=nil, http=nil, wecomgroup=nil, larkgroup=nil)
           @AlarmId = alarmid
           @AlarmReceiver = alarmreceiver
           @Email = email
@@ -518,6 +521,7 @@ module TencentCloud
           @Wecom = wecom
           @Http = http
           @WecomGroup = wecomgroup
+          @LarkGroup = larkgroup
         end
 
         def deserialize(params)
@@ -530,6 +534,7 @@ module TencentCloud
           @Wecom = params['Wecom']
           @Http = params['Http']
           @WecomGroup = params['WecomGroup']
+          @LarkGroup = params['LarkGroup']
         end
       end
 
@@ -2582,19 +2587,23 @@ module TencentCloud
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param Event: 事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)
+        # @type Event: String
 
-        attr_accessor :TaskIds, :TaskType, :ProjectId
+        attr_accessor :TaskIds, :TaskType, :ProjectId, :Event
 
-        def initialize(taskids=nil, tasktype=nil, projectid=nil)
+        def initialize(taskids=nil, tasktype=nil, projectid=nil, event=nil)
           @TaskIds = taskids
           @TaskType = tasktype
           @ProjectId = projectid
+          @Event = event
         end
 
         def deserialize(params)
           @TaskIds = params['TaskIds']
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
+          @Event = params['Event']
         end
       end
 
@@ -3567,10 +3576,12 @@ module TencentCloud
         # @type VersionDesc: String
         # @param InstanceVersion: 提交版本号
         # @type InstanceVersion: Integer
+        # @param EventDesc: 前端操作类型描述
+        # @type EventDesc: String
 
-        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig, :VersionDesc, :InstanceVersion
+        attr_accessor :TaskId, :ProjectId, :CommitType, :TaskType, :ExtConfig, :VersionDesc, :InstanceVersion, :EventDesc
 
-        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil, versiondesc=nil, instanceversion=nil)
+        def initialize(taskid=nil, projectid=nil, committype=nil, tasktype=nil, extconfig=nil, versiondesc=nil, instanceversion=nil, eventdesc=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @CommitType = committype
@@ -3578,6 +3589,7 @@ module TencentCloud
           @ExtConfig = extconfig
           @VersionDesc = versiondesc
           @InstanceVersion = instanceversion
+          @EventDesc = eventdesc
         end
 
         def deserialize(params)
@@ -3595,6 +3607,7 @@ module TencentCloud
           end
           @VersionDesc = params['VersionDesc']
           @InstanceVersion = params['InstanceVersion']
+          @EventDesc = params['EventDesc']
         end
       end
 
@@ -15880,6 +15893,46 @@ module TencentCloud
         end
       end
 
+      # DescribeTableMeta请求参数结构体
+      class DescribeTableMetaRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 表唯一id
+        # @type TableId: String
+
+        attr_accessor :TableId
+
+        def initialize(tableid=nil)
+          @TableId = tableid
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+        end
+      end
+
+      # DescribeTableMeta返回参数结构体
+      class DescribeTableMetaResponse < TencentCloud::Common::AbstractModel
+        # @param TableMeta: 表的元数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableMeta: :class:`Tencentcloud::Wedata.v20210820.models.TableMeta`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableMeta, :RequestId
+
+        def initialize(tablemeta=nil, requestid=nil)
+          @TableMeta = tablemeta
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableMeta'].nil?
+            @TableMeta = TableMeta.new
+            @TableMeta.deserialize(params['TableMeta'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableMetas请求参数结构体
       class DescribeTableMetasRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 分页页码
@@ -26423,14 +26476,17 @@ module TencentCloud
         # @type Event: String
         # @param ExtConfig: 额外参数
         # @type ExtConfig: Array
+        # @param EventDesc: 前端操作类型描述
+        # @type EventDesc: String
 
-        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig
+        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig, :EventDesc
 
-        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil)
+        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil, eventdesc=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @Event = event
           @ExtConfig = extconfig
+          @EventDesc = eventdesc
         end
 
         def deserialize(params)
@@ -26445,6 +26501,7 @@ module TencentCloud
               @ExtConfig << recordfield_tmp
             end
           end
+          @EventDesc = params['EventDesc']
         end
       end
 
@@ -29653,14 +29710,17 @@ module TencentCloud
         # @type Event: String
         # @param ExtConfig: 额外参数
         # @type ExtConfig: Array
+        # @param EventDesc: 操作类型描述
+        # @type EventDesc: String
 
-        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig
+        attr_accessor :TaskId, :ProjectId, :Event, :ExtConfig, :EventDesc
 
-        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil)
+        def initialize(taskid=nil, projectid=nil, event=nil, extconfig=nil, eventdesc=nil)
           @TaskId = taskid
           @ProjectId = projectid
           @Event = event
           @ExtConfig = extconfig
+          @EventDesc = eventdesc
         end
 
         def deserialize(params)
@@ -29675,6 +29735,7 @@ module TencentCloud
               @ExtConfig << recordfield_tmp
             end
           end
+          @EventDesc = params['EventDesc']
         end
       end
 
@@ -30278,17 +30339,21 @@ module TencentCloud
         # @type TaskId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param Event: 事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)
+        # @type Event: String
 
-        attr_accessor :TaskId, :ProjectId
+        attr_accessor :TaskId, :ProjectId, :Event
 
-        def initialize(taskid=nil, projectid=nil)
+        def initialize(taskid=nil, projectid=nil, event=nil)
           @TaskId = taskid
           @ProjectId = projectid
+          @Event = event
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @ProjectId = params['ProjectId']
+          @Event = params['Event']
         end
       end
 
@@ -31112,10 +31177,13 @@ module TencentCloud
         # @param Description: 告警规则描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param LarkWebHooks: 飞书群Hook地址，多个hook地址使用,隔开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LarkWebHooks: String
 
-        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description
+        attr_accessor :TaskId, :RegularName, :RegularStatus, :AlarmLevel, :AlarmWay, :TaskType, :Id, :RegularId, :AlarmIndicator, :TriggerType, :EstimatedTime, :AlarmRecipientId, :ProjectId, :Creater, :AlarmRecipientName, :AlarmIndicatorDesc, :Operator, :NodeId, :NodeName, :AlarmIndicatorInfos, :AlarmRecipientType, :WeComHook, :UpdateTime, :OperatorUin, :TaskCount, :MonitorType, :MonitorObjectIds, :LatestAlarmInstanceId, :LatestAlarmTime, :Description, :LarkWebHooks
 
-        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil)
+        def initialize(taskid=nil, regularname=nil, regularstatus=nil, alarmlevel=nil, alarmway=nil, tasktype=nil, id=nil, regularid=nil, alarmindicator=nil, triggertype=nil, estimatedtime=nil, alarmrecipientid=nil, projectid=nil, creater=nil, alarmrecipientname=nil, alarmindicatordesc=nil, operator=nil, nodeid=nil, nodename=nil, alarmindicatorinfos=nil, alarmrecipienttype=nil, wecomhook=nil, updatetime=nil, operatoruin=nil, taskcount=nil, monitortype=nil, monitorobjectids=nil, latestalarminstanceid=nil, latestalarmtime=nil, description=nil, larkwebhooks=nil)
           @TaskId = taskid
           @RegularName = regularname
           @RegularStatus = regularstatus
@@ -31146,6 +31214,7 @@ module TencentCloud
           @LatestAlarmInstanceId = latestalarminstanceid
           @LatestAlarmTime = latestalarmtime
           @Description = description
+          @LarkWebHooks = larkwebhooks
         end
 
         def deserialize(params)
@@ -31186,6 +31255,7 @@ module TencentCloud
           @LatestAlarmInstanceId = params['LatestAlarmInstanceId']
           @LatestAlarmTime = params['LatestAlarmTime']
           @Description = params['Description']
+          @LarkWebHooks = params['LarkWebHooks']
         end
       end
 

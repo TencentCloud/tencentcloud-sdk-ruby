@@ -144,7 +144,7 @@ module TencentCloud
         #  ;(){}$>`#"\'|
         # @type PictureUrl: String
         # @param WatermarkName: 水印名称。
-        # 最长16字节。
+        # 最长30字节。
         # @type WatermarkName: String
         # @param XPosition: 显示位置，X轴偏移，单位是百分比，默认 0。
         # @type XPosition: Integer
@@ -12349,6 +12349,7 @@ module TencentCloud
         # @type Duration: Integer
         # @param ModuleCodec: 编码方式，带模块，
         # 示例：
+        # liveprocessor_ACC:  音频转码，
         # liveprocessor_H264：直播转码-H264，
         # liveprocessor_H265： 直播转码-H265，
         # topspeed_H264：极速高清-H264，
@@ -12511,7 +12512,7 @@ module TencentCloud
         # @param YPosition: 显示位置，Y轴偏移，单位是百分比，默认 0。
         # @type YPosition: Integer
         # @param WatermarkName: 水印名称。
-        # 最长16字节。
+        # 最长30字节。
         # @type WatermarkName: String
         # @param Width: 水印宽度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始宽度。
         # @type Width: Integer

@@ -2257,19 +2257,23 @@ module TencentCloud
 
       # DescribeDomainAssets请求参数结构体
       class DescribeDomainAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 安全中心自定义标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -2368,16 +2372,20 @@ module TencentCloud
 
       # DescribeGatewayAssets请求参数结构体
       class DescribeGatewayAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -2462,16 +2470,20 @@ module TencentCloud
 
       # DescribeListenerList请求参数结构体
       class DescribeListenerListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -2514,16 +2526,20 @@ module TencentCloud
 
       # DescribeNICAssets请求参数结构体
       class DescribeNICAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: 过滤参数
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -2664,19 +2680,23 @@ module TencentCloud
 
       # DescribePublicIpAssets请求参数结构体
       class DescribePublicIpAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: filte过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
         # @param Tags: 安全中心自定义标签
         # @type Tags: Array
 
-        attr_accessor :Filter, :Tags
+        attr_accessor :MemberId, :Filter, :Tags
 
-        def initialize(filter=nil, tags=nil)
+        def initialize(memberid=nil, filter=nil, tags=nil)
+          @MemberId = memberid
           @Filter = filter
           @Tags = tags
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
