@@ -2080,7 +2080,7 @@ module TencentCloud
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
         # @param AutoSignScene: 个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：处方单（医疗自动签）  </li></ul>
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>
         # 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
         # @type AutoSignScene: String
 
@@ -2279,7 +2279,7 @@ module TencentCloud
       # CreateFlowGroupByFiles请求参数结构体
       class CreateFlowGroupByFilesRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
-        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowGroupName: 合同（流程）组名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowGroupName: String
@@ -2633,7 +2633,7 @@ module TencentCloud
         # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
         # @type CcInfos: Array
         # @param AutoSignScene: 个人自动签名的使用场景包括以下, 个人自动签署(即ApproverType设置成个人自动签署时)业务此值必传：
-        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：处方单（医疗自动签）  </li></ul>
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN**：电子处方单（医疗自动签）  </li><li> **OTHER** :  通用场景</li></ul>
         # 注: `个人自动签名场景是白名单功能，使用前请与对接的客户经理联系沟通。`
         # @type AutoSignScene: String
         # @param RelatedFlowId: 暂未开放
@@ -3601,6 +3601,8 @@ module TencentCloud
 
         # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
         # @type UserData: String
+        # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
+        # @type CcInfos: :class:`Tencentcloud::Ess.v20201111.models.CcInfo`
         # @param FlowId: 合同Id：用于通过一个已发起的合同快速生成一个发起流程web链接
         # 注: `该参数必须是一个待发起审核的合同id，并且还未审核通过`
         # @type FlowId: String
@@ -3610,9 +3612,9 @@ module TencentCloud
         # @param InitiatorComponents: 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
         # @type InitiatorComponents: Array
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :FlowId, :Agent, :InitiatorComponents
+        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, flowid=nil, agent=nil, initiatorcomponents=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
@@ -3628,6 +3630,7 @@ module TencentCloud
           @NeedSignReview = needsignreview
           @NeedCreateReview = needcreatereview
           @UserData = userdata
+          @CcInfos = ccinfos
           @FlowId = flowid
           @Agent = agent
           @InitiatorComponents = initiatorcomponents
@@ -3665,6 +3668,10 @@ module TencentCloud
           @NeedSignReview = params['NeedSignReview']
           @NeedCreateReview = params['NeedCreateReview']
           @UserData = params['UserData']
+          unless params['CcInfos'].nil?
+            @CcInfos = CcInfo.new
+            @CcInfos.deserialize(params['CcInfos'])
+          end
           @FlowId = params['FlowId']
           unless params['Agent'].nil?
             @Agent = Agent.new
@@ -7712,7 +7719,7 @@ module TencentCloud
         # <li> **ProcessFailed** : 转换失败</li>
         # <li> **ProcessTimeout** : 转换文件超时</li></ul>
         # @type TaskMessage: String
-        # @param ResourceId: 资源Id，也是FileId，用于文件发起时使用
+        # @param ResourceId: 资源Id（即FileId），用于[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)
         # @type ResourceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

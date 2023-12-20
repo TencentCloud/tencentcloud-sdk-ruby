@@ -461,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定作业的事件，包括作业启动停止、运行失败、快照失败、作业异常等各种事件类型
+
+        # @param request: Request instance for DescribeJobEvents.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeJobEventsRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeJobEventsResponse`
+        def DescribeJobEvents(request)
+          body = send_request('DescribeJobEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查找Savepoint列表
 
         # @param request: Request instance for DescribeJobSavepoint.

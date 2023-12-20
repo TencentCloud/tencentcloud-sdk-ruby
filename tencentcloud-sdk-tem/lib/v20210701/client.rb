@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 生成Cos临时秘钥
+        # 生成Cos临时密钥
 
         # @param request: Request instance for CreateCosToken.
         # @type request: :class:`Tencentcloud::tem::V20210701::CreateCosTokenRequest`

@@ -2098,7 +2098,7 @@ module TencentCloud
         # @param InstanceNamePrefix: 注册实例名称前缀。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNamePrefix: String
-        # @param RegisterLimit: 该注册码允许注册的实列数目。
+        # @param RegisterLimit: 该注册码允许注册的实例数目。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RegisterLimit: Integer
         # @param ExpiredTime: 该注册码的过期时间，按照 ISO8601 标准表示，并且使用 UTC 时间。

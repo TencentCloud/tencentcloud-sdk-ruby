@@ -1679,6 +1679,80 @@ module TencentCloud
         end
       end
 
+      # DescribeJobEvents请求参数结构体
+      class DescribeJobEventsRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业的 ID
+        # @type JobId: String
+        # @param StartTimestamp: 筛选条件：起始 Unix 时间戳（秒）
+        # @type StartTimestamp: Integer
+        # @param EndTimestamp: 筛选条件：结束 Unix 时间戳（秒）
+        # @type EndTimestamp: Integer
+        # @param Types: 事件类型。如果不传则返回所有类型的数据
+        # @type Types: Array
+        # @param RunningOrderIds: 运行实例 ID 数组
+        # @type RunningOrderIds: Array
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :JobId, :StartTimestamp, :EndTimestamp, :Types, :RunningOrderIds, :WorkSpaceId
+
+        def initialize(jobid=nil, starttimestamp=nil, endtimestamp=nil, types=nil, runningorderids=nil, workspaceid=nil)
+          @JobId = jobid
+          @StartTimestamp = starttimestamp
+          @EndTimestamp = endtimestamp
+          @Types = types
+          @RunningOrderIds = runningorderids
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @StartTimestamp = params['StartTimestamp']
+          @EndTimestamp = params['EndTimestamp']
+          @Types = params['Types']
+          @RunningOrderIds = params['RunningOrderIds']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeJobEvents返回参数结构体
+      class DescribeJobEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: 该作业指定范围内的事件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Events: Array
+        # @param RunningOrderIds: 该作业指定范围内运行实例 ID 数组，仅当入参没有传入 RunningOrderIds 参数时才会返回。倒序输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningOrderIds: Array
+        # @param TotalCount: 事件的总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :RunningOrderIds, :TotalCount, :RequestId
+
+        def initialize(events=nil, runningorderids=nil, totalcount=nil, requestid=nil)
+          @Events = events
+          @RunningOrderIds = runningorderids
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              jobevent_tmp = JobEvent.new
+              jobevent_tmp.deserialize(i)
+              @Events << jobevent_tmp
+            end
+          end
+          @RunningOrderIds = params['RunningOrderIds']
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeJobSavepoint请求参数结构体
       class DescribeJobSavepointRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业 SerialId
@@ -2930,6 +3004,45 @@ module TencentCloud
           end
           @EsServerlessIndex = params['EsServerlessIndex']
           @EsServerlessSpace = params['EsServerlessSpace']
+        end
+      end
+
+      # 描述作业发生的一个事件
+      class JobEvent < TencentCloud::Common::AbstractModel
+        # @param Type: 内部定义的事件类型
+        # @type Type: String
+        # @param Description: 事件类型的说明文字
+        # @type Description: String
+        # @param Timestamp: 事件发生的 Unix 时间戳（秒）
+        # @type Timestamp: Integer
+        # @param RunningOrderId: 事件发生时的运行 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunningOrderId: Integer
+        # @param Message: 事件的一些可选说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param SolutionLink: 异常事件的排查手册链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SolutionLink: String
+
+        attr_accessor :Type, :Description, :Timestamp, :RunningOrderId, :Message, :SolutionLink
+
+        def initialize(type=nil, description=nil, timestamp=nil, runningorderid=nil, message=nil, solutionlink=nil)
+          @Type = type
+          @Description = description
+          @Timestamp = timestamp
+          @RunningOrderId = runningorderid
+          @Message = message
+          @SolutionLink = solutionlink
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Description = params['Description']
+          @Timestamp = params['Timestamp']
+          @RunningOrderId = params['RunningOrderId']
+          @Message = params['Message']
+          @SolutionLink = params['SolutionLink']
         end
       end
 

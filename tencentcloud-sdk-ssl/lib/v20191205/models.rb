@@ -4812,17 +4812,37 @@ module TencentCloud
         # @type Action: String
         # @param CreatedOn: 操作时间。
         # @type CreatedOn: String
+        # @param Uin: 主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 子账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param CertId: 证书ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+        # @param Type: 操作
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
 
-        attr_accessor :Action, :CreatedOn
+        attr_accessor :Action, :CreatedOn, :Uin, :SubAccountUin, :CertId, :Type
 
-        def initialize(action=nil, createdon=nil)
+        def initialize(action=nil, createdon=nil, uin=nil, subaccountuin=nil, certid=nil, type=nil)
           @Action = action
           @CreatedOn = createdon
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @CertId = certid
+          @Type = type
         end
 
         def deserialize(params)
           @Action = params['Action']
           @CreatedOn = params['CreatedOn']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @CertId = params['CertId']
+          @Type = params['Type']
         end
       end
 

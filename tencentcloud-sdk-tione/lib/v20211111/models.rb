@@ -4179,6 +4179,86 @@ module TencentCloud
         end
       end
 
+      # DescribeModelAccelerateVersions请求参数结构体
+      class DescribeModelAccelerateVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件
+        #     Filter.Name: 枚举值: ModelJobName (任务名称)|TrainingModelVersionId (模型版本id)
+        #     Filter.Values: 当长度为1时，支持模糊查询; 不为1时，精确查询
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100
+        # @type Filters: Array
+        # @param OrderField: 排序字段; 枚举值: CreateTime (创建时间) ；默认CreateTime
+        # @type OrderField: String
+        # @param Order: 排序方向; 枚举值: ASC | DESC；默认DESC
+        # @type Order: String
+        # @param Offset: 分页查询起始位置，如：Limit为100，第一页Offset为0，第二页Offset为100....即每页左边为闭区间; 默认0
+        # @type Offset: Integer
+        # @param Limit: 分页查询每页大小，最大20000; 默认10
+        # @type Limit: Integer
+        # @param TrainingModelId: 模型ID
+        # @type TrainingModelId: String
+
+        attr_accessor :Filters, :OrderField, :Order, :Offset, :Limit, :TrainingModelId
+
+        def initialize(filters=nil, orderfield=nil, order=nil, offset=nil, limit=nil, trainingmodelid=nil)
+          @Filters = filters
+          @OrderField = orderfield
+          @Order = order
+          @Offset = offset
+          @Limit = limit
+          @TrainingModelId = trainingmodelid
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @TrainingModelId = params['TrainingModelId']
+        end
+      end
+
+      # DescribeModelAccelerateVersions返回参数结构体
+      class DescribeModelAccelerateVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 优化模型总数； 注意接口是分页拉取的，total是指优化模型节点总数，不是本次返回中ModelAccelerateVersions数组的大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ModelAccelerateVersions: 优化模型列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelAccelerateVersions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ModelAccelerateVersions, :RequestId
+
+        def initialize(totalcount=nil, modelaccelerateversions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ModelAccelerateVersions = modelaccelerateversions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ModelAccelerateVersions'].nil?
+            @ModelAccelerateVersions = []
+            params['ModelAccelerateVersions'].each do |i|
+              modelaccelerateversion_tmp = ModelAccelerateVersion.new
+              modelaccelerateversion_tmp.deserialize(i)
+              @ModelAccelerateVersions << modelaccelerateversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeModelServiceCallInfo请求参数结构体
       class DescribeModelServiceCallInfoRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -6480,6 +6560,102 @@ module TencentCloud
         end
       end
 
+      # 优化模型版本列表
+      class ModelAccelerateVersion < TencentCloud::Common::AbstractModel
+        # @param ModelId: 模型id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelId: String
+        # @param ModelVersionId: 优化模型版本id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersionId: String
+        # @param ModelJobId: 优化任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelJobId: String
+        # @param ModelJobName: 优化任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelJobName: String
+        # @param ModelVersion: 优化后模型版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelVersion: String
+        # @param SpeedUp: 加速比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpeedUp: String
+        # @param ModelSource: 模型来源/任务名称/任务版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelSource: :class:`Tencentcloud::Tione.v20211111.models.ModelSource`
+        # @param CosPathInfo: 模型cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosPathInfo: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModelFormat: 模型规范
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelFormat: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Progress: 进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param ErrorMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param GPUType: GPU类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPUType: String
+        # @param ModelCosPath: 模型cos路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelCosPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
+
+        attr_accessor :ModelId, :ModelVersionId, :ModelJobId, :ModelJobName, :ModelVersion, :SpeedUp, :ModelSource, :CosPathInfo, :CreateTime, :ModelFormat, :Status, :Progress, :ErrorMsg, :GPUType, :ModelCosPath
+
+        def initialize(modelid=nil, modelversionid=nil, modeljobid=nil, modeljobname=nil, modelversion=nil, speedup=nil, modelsource=nil, cospathinfo=nil, createtime=nil, modelformat=nil, status=nil, progress=nil, errormsg=nil, gputype=nil, modelcospath=nil)
+          @ModelId = modelid
+          @ModelVersionId = modelversionid
+          @ModelJobId = modeljobid
+          @ModelJobName = modeljobname
+          @ModelVersion = modelversion
+          @SpeedUp = speedup
+          @ModelSource = modelsource
+          @CosPathInfo = cospathinfo
+          @CreateTime = createtime
+          @ModelFormat = modelformat
+          @Status = status
+          @Progress = progress
+          @ErrorMsg = errormsg
+          @GPUType = gputype
+          @ModelCosPath = modelcospath
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelVersionId = params['ModelVersionId']
+          @ModelJobId = params['ModelJobId']
+          @ModelJobName = params['ModelJobName']
+          @ModelVersion = params['ModelVersion']
+          @SpeedUp = params['SpeedUp']
+          unless params['ModelSource'].nil?
+            @ModelSource = ModelSource.new
+            @ModelSource.deserialize(params['ModelSource'])
+          end
+          unless params['CosPathInfo'].nil?
+            @CosPathInfo = CosPathInfo.new
+            @CosPathInfo.deserialize(params['CosPathInfo'])
+          end
+          @CreateTime = params['CreateTime']
+          @ModelFormat = params['ModelFormat']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @ErrorMsg = params['ErrorMsg']
+          @GPUType = params['GPUType']
+          unless params['ModelCosPath'].nil?
+            @ModelCosPath = CosPathInfo.new
+            @ModelCosPath.deserialize(params['ModelCosPath'])
+          end
+        end
+      end
+
       # 模型描述信息
       class ModelInfo < TencentCloud::Common::AbstractModel
         # @param ModelVersionId: 模型版本id, DescribeTrainingModelVersion查询模型接口时的id
@@ -6561,6 +6737,76 @@ module TencentCloud
         def deserialize(params)
           @ModelInputType = params['ModelInputType']
           @ModelInputDimension = params['ModelInputDimension']
+        end
+      end
+
+      # 模型来源
+      class ModelSource < TencentCloud::Common::AbstractModel
+        # @param Source: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param JobName: 来源任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobName: String
+        # @param JobVersion: 来源任务版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobVersion: String
+        # @param JobId: 来源任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobId: String
+        # @param ModelName: 模型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModelName: String
+        # @param AlgorithmFramework: 算法框架
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlgorithmFramework: String
+        # @param TrainingPreference: 训练偏好
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainingPreference: String
+        # @param ReasoningEnvironmentSource: 推理环境来源，SYSTEM/CUSTOM
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasoningEnvironmentSource: String
+        # @param ReasoningEnvironment: 推理环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasoningEnvironment: String
+        # @param ReasoningEnvironmentId: 推理环境id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasoningEnvironmentId: String
+        # @param ReasoningImageInfo: 自定义推理环境
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReasoningImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+
+        attr_accessor :Source, :JobName, :JobVersion, :JobId, :ModelName, :AlgorithmFramework, :TrainingPreference, :ReasoningEnvironmentSource, :ReasoningEnvironment, :ReasoningEnvironmentId, :ReasoningImageInfo
+
+        def initialize(source=nil, jobname=nil, jobversion=nil, jobid=nil, modelname=nil, algorithmframework=nil, trainingpreference=nil, reasoningenvironmentsource=nil, reasoningenvironment=nil, reasoningenvironmentid=nil, reasoningimageinfo=nil)
+          @Source = source
+          @JobName = jobname
+          @JobVersion = jobversion
+          @JobId = jobid
+          @ModelName = modelname
+          @AlgorithmFramework = algorithmframework
+          @TrainingPreference = trainingpreference
+          @ReasoningEnvironmentSource = reasoningenvironmentsource
+          @ReasoningEnvironment = reasoningenvironment
+          @ReasoningEnvironmentId = reasoningenvironmentid
+          @ReasoningImageInfo = reasoningimageinfo
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @JobName = params['JobName']
+          @JobVersion = params['JobVersion']
+          @JobId = params['JobId']
+          @ModelName = params['ModelName']
+          @AlgorithmFramework = params['AlgorithmFramework']
+          @TrainingPreference = params['TrainingPreference']
+          @ReasoningEnvironmentSource = params['ReasoningEnvironmentSource']
+          @ReasoningEnvironment = params['ReasoningEnvironment']
+          @ReasoningEnvironmentId = params['ReasoningEnvironmentId']
+          unless params['ReasoningImageInfo'].nil?
+            @ReasoningImageInfo = ImageInfo.new
+            @ReasoningImageInfo.deserialize(params['ReasoningImageInfo'])
+          end
         end
       end
 
