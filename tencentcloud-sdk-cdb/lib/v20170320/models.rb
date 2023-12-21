@@ -1091,10 +1091,13 @@ module TencentCloud
         # @param EncryptionFlag: 备份文件是否加密， on-加密， off-未加密
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptionFlag: String
+        # @param ExecutedGTIDSet: 备份GTID点位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutedGTIDSet: String
 
-        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag
+        attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BackupId, :Status, :FinishTime, :Creator, :StartTime, :Method, :Way, :ManualBackupName, :SaveMode, :Region, :RemoteInfo, :CosStorageType, :InstanceId, :EncryptionFlag, :ExecutedGTIDSet
 
-        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, encryptionflag=nil)
+        def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, backupid=nil, status=nil, finishtime=nil, creator=nil, starttime=nil, method=nil, way=nil, manualbackupname=nil, savemode=nil, region=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, encryptionflag=nil, executedgtidset=nil)
           @Name = name
           @Size = size
           @Date = date
@@ -1115,6 +1118,7 @@ module TencentCloud
           @CosStorageType = cosstoragetype
           @InstanceId = instanceid
           @EncryptionFlag = encryptionflag
+          @ExecutedGTIDSet = executedgtidset
         end
 
         def deserialize(params)
@@ -1145,6 +1149,7 @@ module TencentCloud
           @CosStorageType = params['CosStorageType']
           @InstanceId = params['InstanceId']
           @EncryptionFlag = params['EncryptionFlag']
+          @ExecutedGTIDSet = params['ExecutedGTIDSet']
         end
       end
 
@@ -3035,7 +3040,7 @@ module TencentCloud
       class CreateDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param DBName: 数据库名称。
+        # @param DBName: 数据库名称，长度不超过64。
         # @type DBName: String
         # @param CharacterSetName: 字符集，可选值：utf8，gbk，latin1，utf8mb4。
         # @type CharacterSetName: String
@@ -3566,7 +3571,7 @@ module TencentCloud
       class DeleteDatabaseRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
-        # @param DBName: 数据库名称。
+        # @param DBName: 数据库名称，长度不超过64。
         # @type DBName: String
 
         attr_accessor :InstanceId, :DBName
@@ -4962,15 +4967,18 @@ module TencentCloud
         # @type MinStartTime: String
         # @param MaxStartTime: binlog最晚开始时间，时间格式：2016-03-17 02:10:37
         # @type MaxStartTime: String
+        # @param ContainsMinStartTime: 返回binlog列表是否包含MinStartTime起始节点，默认为否
+        # @type ContainsMinStartTime: Boolean
 
-        attr_accessor :InstanceId, :Offset, :Limit, :MinStartTime, :MaxStartTime
+        attr_accessor :InstanceId, :Offset, :Limit, :MinStartTime, :MaxStartTime, :ContainsMinStartTime
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, minstarttime=nil, maxstarttime=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, minstarttime=nil, maxstarttime=nil, containsminstarttime=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
           @MinStartTime = minstarttime
           @MaxStartTime = maxstarttime
+          @ContainsMinStartTime = containsminstarttime
         end
 
         def deserialize(params)
@@ -4979,6 +4987,7 @@ module TencentCloud
           @Limit = params['Limit']
           @MinStartTime = params['MinStartTime']
           @MaxStartTime = params['MaxStartTime']
+          @ContainsMinStartTime = params['ContainsMinStartTime']
         end
       end
 

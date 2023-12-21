@@ -3684,10 +3684,12 @@ module TencentCloud
         # @type TagList: Array
         # @param SearchEnginePush: 是否启用搜索引擎推送
         # @type SearchEnginePush: String
+        # @param SlaveDNS: 是否开启辅助 DNS
+        # @type SlaveDNS: String
 
-        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList, :SearchEnginePush
+        attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList, :SearchEnginePush, :SlaveDNS
 
-        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil, searchenginepush=nil)
+        def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, cnamespeedup=nil, remark=nil, punycode=nil, dnsstatus=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil, searchenginepush=nil, slavedns=nil)
           @DomainId = domainid
           @Status = status
           @Grade = grade
@@ -3720,6 +3722,7 @@ module TencentCloud
           @IsSubDomain = issubdomain
           @TagList = taglist
           @SearchEnginePush = searchenginepush
+          @SlaveDNS = slavedns
         end
 
         def deserialize(params)
@@ -3762,6 +3765,7 @@ module TencentCloud
             end
           end
           @SearchEnginePush = params['SearchEnginePush']
+          @SlaveDNS = params['SlaveDNS']
         end
       end
 

@@ -3435,7 +3435,9 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 慢查询条数的偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
-        # @param Role: 节点所属角色。<ul><li>master：主节点。</li><li>slave：从节点。</li></ul>
+        # @param Role: 节点所属角色。
+        # - master：主节点。
+        # - slave：从节点。
         # @type Role: String
 
         attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset, :Role
@@ -6147,14 +6149,19 @@ module TencentCloud
         # - 1：包年包月。
         # - 0：按量计费。
         # @type PayMode: String
-        # @param EnableRepicaReadOnly: 是否支持副本只读。
+        # @param EnableRepicaReadOnly: 该参数名因存在拼写不规范的问题，建议使用**EnableReplicaReadOnly**参数取代。其含义为是否支持副本只读。
         # - true：支持副本只读。
         # - false：不支持。
         # @type EnableRepicaReadOnly: Boolean
+        # @param EnableReplicaReadOnly: 是否支持副本只读。
+        # - true：支持副本只读。
+        # - false：不支持。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableReplicaReadOnly: Boolean
 
-        attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly
+        attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly, :EnableReplicaReadOnly
 
-        def initialize(type=nil, typename=nil, minbuynum=nil, maxbuynum=nil, saleout=nil, engine=nil, version=nil, totalsize=nil, shardsize=nil, replicanum=nil, shardnum=nil, paymode=nil, enablerepicareadonly=nil)
+        def initialize(type=nil, typename=nil, minbuynum=nil, maxbuynum=nil, saleout=nil, engine=nil, version=nil, totalsize=nil, shardsize=nil, replicanum=nil, shardnum=nil, paymode=nil, enablerepicareadonly=nil, enablereplicareadonly=nil)
           @Type = type
           @TypeName = typename
           @MinBuyNum = minbuynum
@@ -6168,6 +6175,7 @@ module TencentCloud
           @ShardNum = shardnum
           @PayMode = paymode
           @EnableRepicaReadOnly = enablerepicareadonly
+          @EnableReplicaReadOnly = enablereplicareadonly
         end
 
         def deserialize(params)
@@ -6184,6 +6192,7 @@ module TencentCloud
           @ShardNum = params['ShardNum']
           @PayMode = params['PayMode']
           @EnableRepicaReadOnly = params['EnableRepicaReadOnly']
+          @EnableReplicaReadOnly = params['EnableReplicaReadOnly']
         end
       end
 

@@ -733,14 +733,17 @@ module TencentCloud
         # 说明：未检测到攻击痕迹时，返回空数组
         # 此出参仅作为结果判断的参考，实际应用仍建议使用AttackRiskLevel的结果。
         # @type AttackRiskDetailList: Array
+        # @param ExtraInfo: 额外信息
+        # @type ExtraInfo: :class:`Tencentcloud::Faceid.v20180301.models.ExtraInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttackRiskLevel, :AttackRiskDetailList, :RequestId
+        attr_accessor :AttackRiskLevel, :AttackRiskDetailList, :ExtraInfo, :RequestId
 
-        def initialize(attackrisklevel=nil, attackriskdetaillist=nil, requestid=nil)
+        def initialize(attackrisklevel=nil, attackriskdetaillist=nil, extrainfo=nil, requestid=nil)
           @AttackRiskLevel = attackrisklevel
           @AttackRiskDetailList = attackriskdetaillist
+          @ExtraInfo = extrainfo
           @RequestId = requestid
         end
 
@@ -753,6 +756,10 @@ module TencentCloud
               attackriskdetail_tmp.deserialize(i)
               @AttackRiskDetailList << attackriskdetail_tmp
             end
+          end
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = ExtraInfo.new
+            @ExtraInfo.deserialize(params['ExtraInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -1367,6 +1374,30 @@ module TencentCloud
           @Iv = params['Iv']
           @Algorithm = params['Algorithm']
           @TagList = params['TagList']
+        end
+      end
+
+      # 额外的详细信息
+      class ExtraInfo < TencentCloud::Common::AbstractModel
+        # @param RetrievalLivenessExtraInfo: 命中模板的详细信息，仅返回命中的相似度最高的模板信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetrievalLivenessExtraInfo: Array
+
+        attr_accessor :RetrievalLivenessExtraInfo
+
+        def initialize(retrievallivenessextrainfo=nil)
+          @RetrievalLivenessExtraInfo = retrievallivenessextrainfo
+        end
+
+        def deserialize(params)
+          unless params['RetrievalLivenessExtraInfo'].nil?
+            @RetrievalLivenessExtraInfo = []
+            params['RetrievalLivenessExtraInfo'].each do |i|
+              retrievallivenessextrainfo_tmp = RetrievalLivenessExtraInfo.new
+              retrievallivenessextrainfo_tmp.deserialize(i)
+              @RetrievalLivenessExtraInfo << retrievallivenessextrainfo_tmp
+            end
+          end
         end
       end
 
@@ -3529,6 +3560,33 @@ module TencentCloud
           @Description = params['Description']
           @Isp = params['Isp']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 模版检索详细信息
+      class RetrievalLivenessExtraInfo < TencentCloud::Common::AbstractModel
+        # @param HitGroup: 命中的模版类型，其中Common-公共库；Auto-自动聚类库；Owner-自建模版库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitGroup: String
+        # @param SimilarityScore: 命中的相似度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SimilarityScore: Float
+        # @param HitTemplate: 命中的模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HitTemplate: String
+
+        attr_accessor :HitGroup, :SimilarityScore, :HitTemplate
+
+        def initialize(hitgroup=nil, similarityscore=nil, hittemplate=nil)
+          @HitGroup = hitgroup
+          @SimilarityScore = similarityscore
+          @HitTemplate = hittemplate
+        end
+
+        def deserialize(params)
+          @HitGroup = params['HitGroup']
+          @SimilarityScore = params['SimilarityScore']
+          @HitTemplate = params['HitTemplate']
         end
       end
 

@@ -315,7 +315,7 @@ module TencentCloud
         # @param Region: 该字段用于标识腾讯云对象存储的托管机房的分布地区，对象存储 COS 的数据存放在这些地域的存储桶中。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Object: 该字段用于标识腾讯云对象存储的对象Key,对象z作为基本单元被存放在存储桶中；用户可以通过腾讯云控制台、API、SDK 等多种方式管理对象。有关对象的详细描述敬请参阅相应 [产品文档](https://cloud.tencent.com/document/product/436/13324)。
+        # @param Object: 该字段用于标识腾讯云对象存储的对象Key,对象作为基本单元被存放在存储桶中；用户可以通过腾讯云控制台、API、SDK 等多种方式管理对象。有关对象的详细描述敬请参阅相应 [产品文档](https://cloud.tencent.com/document/product/436/13324)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: String
 
@@ -536,15 +536,18 @@ module TencentCloud
         # @type Seed: String
         # @param CallbackUrl: 可选参数，该字段表示接受审核信息回调的地址，格式为URL链接默认格式。配置成功后，审核过程中产生的违规音频片段将通过此接口发送。回调返回内容格式请参考 [回调签名示例](https://cloud.tencent.com/document/product/1219/53257#.E7.A4.BA.E4.BE.8B2-.E5.9B.9E.E8.B0.83.E7.AD.BE.E5.90.8D.E7.A4.BA.E4.BE.8B)
         # @type CallbackUrl: String
+        # @param User: 该字段表示待检测对象对应的用户相关信息，若填入则可甄别相应违规风险用户
+        # @type User: :class:`Tencentcloud::Ams.v20201229.models.User`
 
-        attr_accessor :Tasks, :BizType, :Type, :Seed, :CallbackUrl
+        attr_accessor :Tasks, :BizType, :Type, :Seed, :CallbackUrl, :User
 
-        def initialize(tasks=nil, biztype=nil, type=nil, seed=nil, callbackurl=nil)
+        def initialize(tasks=nil, biztype=nil, type=nil, seed=nil, callbackurl=nil, user=nil)
           @Tasks = tasks
           @BizType = biztype
           @Type = type
           @Seed = seed
           @CallbackUrl = callbackurl
+          @User = user
         end
 
         def deserialize(params)
@@ -560,6 +563,10 @@ module TencentCloud
           @Type = params['Type']
           @Seed = params['Seed']
           @CallbackUrl = params['CallbackUrl']
+          unless params['User'].nil?
+            @User = User.new
+            @User.deserialize(params['User'])
+          end
         end
       end
 
@@ -1244,6 +1251,74 @@ module TencentCloud
           @Suggestion = params['Suggestion']
           @LibType = params['LibType']
           @SubLabel = params['SubLabel']
+        end
+      end
+
+      # User结果
+      class User < TencentCloud::Common::AbstractModel
+        # @param Level: 用户等级，默认0 未知 1 低 2 中 3 高
+        # @type Level: Integer
+        # @param Gender: 性别 默认0 未知 1 男性 2 女性
+        # @type Gender: Integer
+        # @param Age: 年龄 默认0 未知
+        # @type Age: Integer
+        # @param UserId: 业务用户ID 如填写，会根据账号历史恶意情况，判定消息有害结果，特别是有利于可疑恶意情况下的辅助判断。账号可以填写微信uin、QQ号、微信openid、QQopenid、字符串等。该字段和账号类别确定唯一账号。
+        # @type UserId: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param AccountType: 业务用户ID类型 "1-微信uin 2-QQ号 3-微信群uin 4-qq群号 5-微信openid 6-QQopenid 7-其它string"
+        # @type AccountType: String
+        # @param Nickname: 用户昵称
+        # @type Nickname: String
+        # @param HeadUrl: 用户头像图片链接
+        # @type HeadUrl: String
+        # @param Desc: 用户简介，长度不超过5000字
+        # @type Desc: String
+        # @param RoomId: 群聊场景房间ID
+        # @type RoomId: String
+        # @param GroupId: 群聊场景群ID
+        # @type GroupId: String
+        # @param GroupSize: 群聊场景群用户数
+        # @type GroupSize: Integer
+        # @param ReceiverId: 消息接收者ID
+        # @type ReceiverId: String
+        # @param SendTime: 消息生成时间，毫秒
+        # @type SendTime: String
+
+        attr_accessor :Level, :Gender, :Age, :UserId, :Phone, :AccountType, :Nickname, :HeadUrl, :Desc, :RoomId, :GroupId, :GroupSize, :ReceiverId, :SendTime
+
+        def initialize(level=nil, gender=nil, age=nil, userid=nil, phone=nil, accounttype=nil, nickname=nil, headurl=nil, desc=nil, roomid=nil, groupid=nil, groupsize=nil, receiverid=nil, sendtime=nil)
+          @Level = level
+          @Gender = gender
+          @Age = age
+          @UserId = userid
+          @Phone = phone
+          @AccountType = accounttype
+          @Nickname = nickname
+          @HeadUrl = headurl
+          @Desc = desc
+          @RoomId = roomid
+          @GroupId = groupid
+          @GroupSize = groupsize
+          @ReceiverId = receiverid
+          @SendTime = sendtime
+        end
+
+        def deserialize(params)
+          @Level = params['Level']
+          @Gender = params['Gender']
+          @Age = params['Age']
+          @UserId = params['UserId']
+          @Phone = params['Phone']
+          @AccountType = params['AccountType']
+          @Nickname = params['Nickname']
+          @HeadUrl = params['HeadUrl']
+          @Desc = params['Desc']
+          @RoomId = params['RoomId']
+          @GroupId = params['GroupId']
+          @GroupSize = params['GroupSize']
+          @ReceiverId = params['ReceiverId']
+          @SendTime = params['SendTime']
         end
       end
 

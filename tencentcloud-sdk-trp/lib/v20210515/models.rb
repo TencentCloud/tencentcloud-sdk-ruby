@@ -208,6 +208,9 @@ module TencentCloud
         # @type Attrs: Array
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
+        extend Gem::Deprecate
+        deprecate :Ext, :none, 2023, 12
+        deprecate :Ext=, :none, 2023, 12
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -2234,6 +2237,69 @@ module TencentCloud
         end
       end
 
+      # DescribePlanQRCodeScanRecords请求参数结构体
+      class DescribePlanQRCodeScanRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :StartTime, :EndTime, :PageNo, :PageSize
+
+        def initialize(starttime=nil, endtime=nil, pageno=nil, pagesize=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNo = pageno
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribePlanQRCodeScanRecords返回参数结构体
+      class DescribePlanQRCodeScanRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Ret: 返回码
+        # @type Ret: Integer
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Data: 数据
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ret, :Total, :Data, :RequestId
+
+        def initialize(ret=nil, total=nil, data=nil, requestid=nil)
+          @Ret = ret
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ret = params['Ret']
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              planqrcoderecord_tmp = PlanQRCodeRecord.new
+              planqrcoderecord_tmp.deserialize(i)
+              @Data << planqrcoderecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePlanQRCodes请求参数结构体
       class DescribePlanQRCodesRequest < TencentCloud::Common::AbstractModel
         # @param PlanId: 计划ID
@@ -2520,8 +2586,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2023, 10
-        deprecate :Products=, :none, 2023, 10
+        deprecate :Products, :none, 2023, 12
+        deprecate :Products=, :none, 2023, 12
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -2926,12 +2992,21 @@ module TencentCloud
 
       # 预留字段
       class Ext < TencentCloud::Common::AbstractModel
+        # @param Value: 字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
 
+        attr_accessor :Value
+        extend Gem::Deprecate
+        deprecate :Value, :none, 2023, 12
+        deprecate :Value=, :none, 2023, 12
 
-        def initialize()
+        def initialize(value=nil)
+          @Value = value
         end
 
         def deserialize(params)
+          @Value = params['Value']
         end
       end
 
@@ -3719,6 +3794,53 @@ module TencentCloud
         def deserialize(params)
           @Url = params['Url']
           @Status = params['Status']
+        end
+      end
+
+      # 安心计划二维码扫码记录
+      class PlanQRCodeRecord < TencentCloud::Common::AbstractModel
+        # @param Url: 二维码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param OpenId: OpenID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param ScanTime: 扫码时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScanTime: String
+        # @param Ip: IP 地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param Country: 国家
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Country: String
+        # @param Province: 省份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Province: String
+        # @param City: 城市
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type City: String
+
+        attr_accessor :Url, :OpenId, :ScanTime, :Ip, :Country, :Province, :City
+
+        def initialize(url=nil, openid=nil, scantime=nil, ip=nil, country=nil, province=nil, city=nil)
+          @Url = url
+          @OpenId = openid
+          @ScanTime = scantime
+          @Ip = ip
+          @Country = country
+          @Province = province
+          @City = city
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @OpenId = params['OpenId']
+          @ScanTime = params['ScanTime']
+          @Ip = params['Ip']
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
         end
       end
 
