@@ -3377,24 +3377,24 @@ module TencentCloud
 
       # DescribeBillingSpecs请求参数结构体
       class DescribeBillingSpecsRequest < TencentCloud::Common::AbstractModel
-        # @param TaskType: 枚举值：TRAIN、NOTEBOOK、INFERENCE
-        # @type TaskType: String
         # @param ChargeType: 付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月
         # @type ChargeType: String
+        # @param TaskType: 枚举值：TRAIN、NOTEBOOK、INFERENCE
+        # @type TaskType: String
         # @param ResourceType: 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘
         # @type ResourceType: String
 
-        attr_accessor :TaskType, :ChargeType, :ResourceType
+        attr_accessor :ChargeType, :TaskType, :ResourceType
 
-        def initialize(tasktype=nil, chargetype=nil, resourcetype=nil)
-          @TaskType = tasktype
+        def initialize(chargetype=nil, tasktype=nil, resourcetype=nil)
           @ChargeType = chargetype
+          @TaskType = tasktype
           @ResourceType = resourcetype
         end
 
         def deserialize(params)
-          @TaskType = params['TaskType']
           @ChargeType = params['ChargeType']
+          @TaskType = params['TaskType']
           @ResourceType = params['ResourceType']
         end
       end

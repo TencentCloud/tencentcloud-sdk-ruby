@@ -1762,6 +1762,164 @@ module TencentCloud
         end
       end
 
+      # 全电发票（航空运输电子客票行程单）
+      class ElectronicAirTransport < TencentCloud::Common::AbstractModel
+        # @param Code: 发票代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param Number: 发票号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: String
+        # @param Date: 开票日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param Amount: 金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: String
+        # @param CheckCode: 校验码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckCode: String
+        # @param Total: 价税合计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+        # @param DeductionMark: 抵扣标志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductionMark: String
+        # @param StateCode: 发票状态代码，0正常 1 未更新  2作废 3已红冲
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateCode: String
+        # @param BuyerTaxCode: 购方识别号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuyerTaxCode: String
+        # @param BuyerName: 购方名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuyerName: String
+        # @param Tax: 合计税额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tax: String
+        # @param DomesticInternationalMark: 国内国际标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomesticInternationalMark: String
+        # @param PassengerName: 旅客姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassengerName: String
+        # @param PassengerNo: 有效身份证件号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassengerNo: String
+        # @param ElectronicNumber: 电子客票号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicNumber: String
+        # @param ElectronicAirTransportDetails: 全电发票（航空运输电子客票行程单）详细信息
+
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicAirTransportDetails: Array
+
+        attr_accessor :Code, :Number, :Date, :Amount, :CheckCode, :Total, :DeductionMark, :StateCode, :BuyerTaxCode, :BuyerName, :Tax, :DomesticInternationalMark, :PassengerName, :PassengerNo, :ElectronicNumber, :ElectronicAirTransportDetails
+
+        def initialize(code=nil, number=nil, date=nil, amount=nil, checkcode=nil, total=nil, deductionmark=nil, statecode=nil, buyertaxcode=nil, buyername=nil, tax=nil, domesticinternationalmark=nil, passengername=nil, passengerno=nil, electronicnumber=nil, electronicairtransportdetails=nil)
+          @Code = code
+          @Number = number
+          @Date = date
+          @Amount = amount
+          @CheckCode = checkcode
+          @Total = total
+          @DeductionMark = deductionmark
+          @StateCode = statecode
+          @BuyerTaxCode = buyertaxcode
+          @BuyerName = buyername
+          @Tax = tax
+          @DomesticInternationalMark = domesticinternationalmark
+          @PassengerName = passengername
+          @PassengerNo = passengerno
+          @ElectronicNumber = electronicnumber
+          @ElectronicAirTransportDetails = electronicairtransportdetails
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Number = params['Number']
+          @Date = params['Date']
+          @Amount = params['Amount']
+          @CheckCode = params['CheckCode']
+          @Total = params['Total']
+          @DeductionMark = params['DeductionMark']
+          @StateCode = params['StateCode']
+          @BuyerTaxCode = params['BuyerTaxCode']
+          @BuyerName = params['BuyerName']
+          @Tax = params['Tax']
+          @DomesticInternationalMark = params['DomesticInternationalMark']
+          @PassengerName = params['PassengerName']
+          @PassengerNo = params['PassengerNo']
+          @ElectronicNumber = params['ElectronicNumber']
+          unless params['ElectronicAirTransportDetails'].nil?
+            @ElectronicAirTransportDetails = []
+            params['ElectronicAirTransportDetails'].each do |i|
+              electronicairtransportdetail_tmp = ElectronicAirTransportDetail.new
+              electronicairtransportdetail_tmp.deserialize(i)
+              @ElectronicAirTransportDetails << electronicairtransportdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 全电发票（航空运输电子客票行程单）详细信息
+      class ElectronicAirTransportDetail < TencentCloud::Common::AbstractModel
+        # @param FlightSegment: 航段序号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlightSegment: String
+        # @param StationGetOn: 始发站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StationGetOn: String
+        # @param StationGetOff: 目的站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StationGetOff: String
+        # @param Carrier: 承运人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Carrier: String
+        # @param FlightNumber: 航班号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlightNumber: String
+        # @param SeatLevel: 座位等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SeatLevel: String
+        # @param FlightDate: 承运日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlightDate: String
+        # @param DepartureTime: 起飞时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DepartureTime: String
+        # @param FareBasis: 客票级别/客票类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FareBasis: String
+
+        attr_accessor :FlightSegment, :StationGetOn, :StationGetOff, :Carrier, :FlightNumber, :SeatLevel, :FlightDate, :DepartureTime, :FareBasis
+
+        def initialize(flightsegment=nil, stationgeton=nil, stationgetoff=nil, carrier=nil, flightnumber=nil, seatlevel=nil, flightdate=nil, departuretime=nil, farebasis=nil)
+          @FlightSegment = flightsegment
+          @StationGetOn = stationgeton
+          @StationGetOff = stationgetoff
+          @Carrier = carrier
+          @FlightNumber = flightnumber
+          @SeatLevel = seatlevel
+          @FlightDate = flightdate
+          @DepartureTime = departuretime
+          @FareBasis = farebasis
+        end
+
+        def deserialize(params)
+          @FlightSegment = params['FlightSegment']
+          @StationGetOn = params['StationGetOn']
+          @StationGetOff = params['StationGetOff']
+          @Carrier = params['Carrier']
+          @FlightNumber = params['FlightNumber']
+          @SeatLevel = params['SeatLevel']
+          @FlightDate = params['FlightDate']
+          @DepartureTime = params['DepartureTime']
+          @FareBasis = params['FareBasis']
+        end
+      end
+
       # 电子发票（机票行程单）
       class ElectronicFlightTicketFull < TencentCloud::Common::AbstractModel
         # @param UserName: 旅客姓名
@@ -1870,6 +2028,138 @@ module TencentCloud
               @FlightItems << flightiteminfo_tmp
             end
           end
+        end
+      end
+
+      # 全电发票（铁路电子客票）
+      class ElectronicTrainTicket < TencentCloud::Common::AbstractModel
+        # @param BuyerName: 购方名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuyerName: String
+        # @param BuyerTaxCode: 购方识别号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuyerTaxCode: String
+        # @param Number: 发票号码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Number: String
+        # @param Date: 开票日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param TotalCN: 价税合计（中文大写）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCN: String
+        # @param Tax: 税额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tax: String
+        # @param ServiceType: 业务类型，0：退票，1:售票
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceType: String
+        # @param TimeGetOn: 出发时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeGetOn: String
+        # @param TrainNumber: 车次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainNumber: String
+        # @param Code: 发票代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
+        # @param SeatType: 席别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SeatType: String
+        # @param DateGetOn: 乘车日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateGetOn: String
+        # @param TrainCabin: 车厢
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrainCabin: String
+        # @param StationGetOn: 出发站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StationGetOn: String
+        # @param ElectronicNumber: 电子客票号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicNumber: String
+        # @param PassengerName: 姓名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassengerName: String
+        # @param PassengerNo: 证件号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PassengerNo: String
+        # @param Amount: 金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: String
+        # @param StationGetOff: 到达站
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StationGetOff: String
+        # @param TaxRate: 税率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaxRate: String
+        # @param Seat: 席位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Seat: String
+        # @param Total: 价税合计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+        # @param CheckCode: 校验码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckCode: String
+        # @param StateCode: 发票状态代码，0正常 1 未更新  2作废 3已红冲
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StateCode: String
+
+        attr_accessor :BuyerName, :BuyerTaxCode, :Number, :Date, :TotalCN, :Tax, :ServiceType, :TimeGetOn, :TrainNumber, :Code, :SeatType, :DateGetOn, :TrainCabin, :StationGetOn, :ElectronicNumber, :PassengerName, :PassengerNo, :Amount, :StationGetOff, :TaxRate, :Seat, :Total, :CheckCode, :StateCode
+
+        def initialize(buyername=nil, buyertaxcode=nil, number=nil, date=nil, totalcn=nil, tax=nil, servicetype=nil, timegeton=nil, trainnumber=nil, code=nil, seattype=nil, dategeton=nil, traincabin=nil, stationgeton=nil, electronicnumber=nil, passengername=nil, passengerno=nil, amount=nil, stationgetoff=nil, taxrate=nil, seat=nil, total=nil, checkcode=nil, statecode=nil)
+          @BuyerName = buyername
+          @BuyerTaxCode = buyertaxcode
+          @Number = number
+          @Date = date
+          @TotalCN = totalcn
+          @Tax = tax
+          @ServiceType = servicetype
+          @TimeGetOn = timegeton
+          @TrainNumber = trainnumber
+          @Code = code
+          @SeatType = seattype
+          @DateGetOn = dategeton
+          @TrainCabin = traincabin
+          @StationGetOn = stationgeton
+          @ElectronicNumber = electronicnumber
+          @PassengerName = passengername
+          @PassengerNo = passengerno
+          @Amount = amount
+          @StationGetOff = stationgetoff
+          @TaxRate = taxrate
+          @Seat = seat
+          @Total = total
+          @CheckCode = checkcode
+          @StateCode = statecode
+        end
+
+        def deserialize(params)
+          @BuyerName = params['BuyerName']
+          @BuyerTaxCode = params['BuyerTaxCode']
+          @Number = params['Number']
+          @Date = params['Date']
+          @TotalCN = params['TotalCN']
+          @Tax = params['Tax']
+          @ServiceType = params['ServiceType']
+          @TimeGetOn = params['TimeGetOn']
+          @TrainNumber = params['TrainNumber']
+          @Code = params['Code']
+          @SeatType = params['SeatType']
+          @DateGetOn = params['DateGetOn']
+          @TrainCabin = params['TrainCabin']
+          @StationGetOn = params['StationGetOn']
+          @ElectronicNumber = params['ElectronicNumber']
+          @PassengerName = params['PassengerName']
+          @PassengerNo = params['PassengerNo']
+          @Amount = params['Amount']
+          @StationGetOff = params['StationGetOff']
+          @TaxRate = params['TaxRate']
+          @Seat = params['Seat']
+          @Total = params['Total']
+          @CheckCode = params['CheckCode']
+          @StateCode = params['StateCode']
         end
       end
 
@@ -10752,7 +11042,7 @@ module TencentCloud
         end
       end
 
-      # 增值税发票信息
+      # 增值税发票、购车发票、全电发票的基础要素字段信息。
       class VatInvoice < TencentCloud::Common::AbstractModel
         # @param Code: 发票代码
         # @type Code: String
@@ -10761,12 +11051,16 @@ module TencentCloud
         # @param Date: 开票日期
         # @type Date: String
         # @param BuyerName: 购方抬头
+        # 通用机打发票类型时不返回
         # @type BuyerName: String
         # @param BuyerTaxCode: 购方税号
+        # 通用机打发票类型时不返回
         # @type BuyerTaxCode: String
         # @param BuyerAddressPhone: 购方地址电话
+        # 通用机打发票类型做不返回
         # @type BuyerAddressPhone: String
         # @param BuyerBankAccount: 购方银行账号
+        # 通用机打发票类型时不返回
         # @type BuyerBankAccount: String
         # @param SellerName: 销方名称
         # @type SellerName: String
@@ -10792,7 +11086,11 @@ module TencentCloud
         # 15：二手车销售统一发票，
         # 32：深圳区块链发票，
         # 102：通用机打电子发票
+        # 61：电子发票（航空运输电子客票行程单）
+        # 83：电子发票（铁路电子发票）
         # @type Type: String
+        # @param ElectronicType: 具体的全电发票类型：01: 全电专用发票；02：全电普通发票；03：全电火车票；04：全电机票行程单
+        # @type ElectronicType: String
         # @param CheckCode: 检验码
         # @type CheckCode: String
         # @param IsAbandoned: 是否作废（红冲）是否作废（红冲）
@@ -10829,9 +11127,9 @@ module TencentCloud
         # @param SellerAgentTaxID: 代开销售方税号
         # @type SellerAgentTaxID: String
 
-        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag, :RedLetterInvoiceMark, :IssuingTypeMark, :SellerAgentName, :SellerAgentTaxID
+        attr_accessor :Code, :Number, :Date, :BuyerName, :BuyerTaxCode, :BuyerAddressPhone, :BuyerBankAccount, :SellerName, :SellerTaxCode, :SellerAddressPhone, :SellerBankAccount, :Remark, :MachineNo, :Type, :ElectronicType, :CheckCode, :IsAbandoned, :HasSellerList, :SellerListTitle, :SellerListTax, :AmountWithoutTax, :TaxAmount, :AmountWithTax, :Items, :TaxBureau, :TrafficFreeFlag, :RedLetterInvoiceMark, :IssuingTypeMark, :SellerAgentName, :SellerAgentTaxID
 
-        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil, redletterinvoicemark=nil, issuingtypemark=nil, selleragentname=nil, selleragenttaxid=nil)
+        def initialize(code=nil, number=nil, date=nil, buyername=nil, buyertaxcode=nil, buyeraddressphone=nil, buyerbankaccount=nil, sellername=nil, sellertaxcode=nil, selleraddressphone=nil, sellerbankaccount=nil, remark=nil, machineno=nil, type=nil, electronictype=nil, checkcode=nil, isabandoned=nil, hassellerlist=nil, sellerlisttitle=nil, sellerlisttax=nil, amountwithouttax=nil, taxamount=nil, amountwithtax=nil, items=nil, taxbureau=nil, trafficfreeflag=nil, redletterinvoicemark=nil, issuingtypemark=nil, selleragentname=nil, selleragenttaxid=nil)
           @Code = code
           @Number = number
           @Date = date
@@ -10846,6 +11144,7 @@ module TencentCloud
           @Remark = remark
           @MachineNo = machineno
           @Type = type
+          @ElectronicType = electronictype
           @CheckCode = checkcode
           @IsAbandoned = isabandoned
           @HasSellerList = hassellerlist
@@ -10878,6 +11177,7 @@ module TencentCloud
           @Remark = params['Remark']
           @MachineNo = params['MachineNo']
           @Type = params['Type']
+          @ElectronicType = params['ElectronicType']
           @CheckCode = params['CheckCode']
           @IsAbandoned = params['IsAbandoned']
           @HasSellerList = params['HasSellerList']
@@ -11564,24 +11864,30 @@ module TencentCloud
 
       # VatInvoiceVerifyNew返回参数结构体
       class VatInvoiceVerifyNewResponse < TencentCloud::Common::AbstractModel
-        # @param Invoice: 增值税发票信息，详情请点击左侧链接。
+        # @param Invoice: 增值税发票、购车发票、全电发票的基础要素字段信息。
         # @type Invoice: :class:`Tencentcloud::Ocr.v20181119.models.VatInvoice`
-        # @param VehicleInvoiceInfo: 机动车销售统一发票信息
+        # @param VehicleInvoiceInfo: 机动车销售统一发票详细字段信息。
         # @type VehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.VehicleInvoiceInfo`
-        # @param UsedVehicleInvoiceInfo: 二手车销售统一发票信息
+        # @param UsedVehicleInvoiceInfo: 二手车销售统一发票详细字段信息。
         # @type UsedVehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.UsedVehicleInvoiceInfo`
-        # @param PassInvoiceInfoList: 通行费发票信息
+        # @param PassInvoiceInfoList: 通行费发票详细字段信息。
         # @type PassInvoiceInfoList: Array
+        # @param ElectronicTrainTicket: 全电发票（铁路电子客票）详细字段信息。
+        # @type ElectronicTrainTicket: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicTrainTicket`
+        # @param ElectronicAirTransport: 全电发票（航空运输电子客票行程单）详细字段信息。
+        # @type ElectronicAirTransport: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicAirTransport`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :RequestId
+        attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :ElectronicTrainTicket, :ElectronicAirTransport, :RequestId
 
-        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, requestid=nil)
+        def initialize(invoice=nil, vehicleinvoiceinfo=nil, usedvehicleinvoiceinfo=nil, passinvoiceinfolist=nil, electronictrainticket=nil, electronicairtransport=nil, requestid=nil)
           @Invoice = invoice
           @VehicleInvoiceInfo = vehicleinvoiceinfo
           @UsedVehicleInvoiceInfo = usedvehicleinvoiceinfo
           @PassInvoiceInfoList = passinvoiceinfolist
+          @ElectronicTrainTicket = electronictrainticket
+          @ElectronicAirTransport = electronicairtransport
           @RequestId = requestid
         end
 
@@ -11605,6 +11911,14 @@ module TencentCloud
               passinvoiceinfo_tmp.deserialize(i)
               @PassInvoiceInfoList << passinvoiceinfo_tmp
             end
+          end
+          unless params['ElectronicTrainTicket'].nil?
+            @ElectronicTrainTicket = ElectronicTrainTicket.new
+            @ElectronicTrainTicket.deserialize(params['ElectronicTrainTicket'])
+          end
+          unless params['ElectronicAirTransport'].nil?
+            @ElectronicAirTransport = ElectronicAirTransport.new
+            @ElectronicAirTransport.deserialize(params['ElectronicAirTransport'])
           end
           @RequestId = params['RequestId']
         end

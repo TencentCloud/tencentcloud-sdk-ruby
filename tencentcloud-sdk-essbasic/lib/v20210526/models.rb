@@ -2394,12 +2394,6 @@ module TencentCloud
 
       # ChannelCreatePrepareFlow请求参数结构体
       class ChannelCreatePrepareFlowRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
-        # <ul>
-        # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
-        # <li>模板Id</li>
-        # </ul>
-        # @type ResourceId: String
         # @param ResourceType: 资源类型，取值有：
         # <ul><li> **1**：模板</li>
         # <li> **2**：文件（默认值）</li></ul>
@@ -2416,6 +2410,12 @@ module TencentCloud
         # </ul>
         # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
+        # <ul>
+        # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
+        # <li>模板Id</li>
+        # </ul>
+        # @type ResourceId: String
         # @param FlowOption: 合同流程配置信息，用于配置发起合同时定制化如是否允许修改，某些按钮的隐藏等逻辑
         # @type FlowOption: :class:`Tencentcloud::Essbasic.v20210526.models.CreateFlowOption`
         # @param FlowApproverList: 合同签署人信息
@@ -2430,7 +2430,7 @@ module TencentCloud
         # @param Operator: 操作人（用户）信息，不用传
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
 
-        attr_accessor :ResourceId, :ResourceType, :FlowInfo, :Agent, :FlowOption, :FlowApproverList, :FlowId, :NeedPreview, :Organization, :Operator
+        attr_accessor :ResourceType, :FlowInfo, :Agent, :ResourceId, :FlowOption, :FlowApproverList, :FlowId, :NeedPreview, :Organization, :Operator
         extend Gem::Deprecate
         deprecate :NeedPreview, :none, 2023, 12
         deprecate :NeedPreview=, :none, 2023, 12
@@ -2439,11 +2439,11 @@ module TencentCloud
         deprecate :Operator, :none, 2023, 12
         deprecate :Operator=, :none, 2023, 12
 
-        def initialize(resourceid=nil, resourcetype=nil, flowinfo=nil, agent=nil, flowoption=nil, flowapproverlist=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil)
-          @ResourceId = resourceid
+        def initialize(resourcetype=nil, flowinfo=nil, agent=nil, resourceid=nil, flowoption=nil, flowapproverlist=nil, flowid=nil, needpreview=nil, organization=nil, operator=nil)
           @ResourceType = resourcetype
           @FlowInfo = flowinfo
           @Agent = agent
+          @ResourceId = resourceid
           @FlowOption = flowoption
           @FlowApproverList = flowapproverlist
           @FlowId = flowid
@@ -2453,7 +2453,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @ResourceId = params['ResourceId']
           @ResourceType = params['ResourceType']
           unless params['FlowInfo'].nil?
             @FlowInfo = BaseFlowInfo.new
@@ -2463,6 +2462,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ResourceId = params['ResourceId']
           unless params['FlowOption'].nil?
             @FlowOption = CreateFlowOption.new
             @FlowOption.deserialize(params['FlowOption'])
@@ -4390,6 +4390,8 @@ module TencentCloud
         # **3** :企业/企业员工自动签（他方企业自动签署或文件发起时的本方企业自动签）
 
         # 注：类型为3（企业/企业员工自动签）时，此接口会默认完成该签署方的签署。静默签署仅进行盖章操作，不能自动签名。
+        # 使用自动签时，请确保企业已经开通自动签功能，开通方式：控制台 -> 企业设置 -> 扩展服务 -> 企业自动签。
+        # 使用文件发起自动签时使用前请联系对接的客户经理沟通。
         # @type ApproverType: Integer
         # @param OrganizationId: 电子签平台给企业生成的企业id
         # @type OrganizationId: String

@@ -2746,6 +2746,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对点播中的音视频媒体发起音画质重生任务。
+
+        # @param request: Request instance for EnhanceMediaQuality.
+        # @type request: :class:`Tencentcloud::vod::V20180717::EnhanceMediaQualityRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::EnhanceMediaQualityResponse`
+        def EnhanceMediaQuality(request)
+          body = send_request('EnhanceMediaQuality', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnhanceMediaQualityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
 
         # @param request: Request instance for ExecuteFunction.

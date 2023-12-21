@@ -212,17 +212,6 @@ module TencentCloud
         end
       end
 
-      # 运营端命名空间bundle实体
-      class BundleSetOpt < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
       # ClearCmqQueue请求参数结构体
       class ClearCmqQueueRequest < TencentCloud::Common::AbstractModel
         # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -4053,7 +4042,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Bundle: 过滤的 bundle
         # @type Bundle: String
-        # @param OwnerBroker: bundle 所属的 broker ip 地址，支持模糊查询
+        # @param OwnerBroker: bundle 所属的 broker IP 地址，支持模糊查询
         # @type OwnerBroker: String
 
         attr_accessor :ClusterName, :TenantId, :NamespaceName, :NeedMetrics, :Limit, :Offset, :Bundle, :OwnerBroker
@@ -4085,29 +4074,18 @@ module TencentCloud
       class DescribeNamespaceBundlesOptResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录条数
         # @type TotalCount: Integer
-        # @param BundleSet: bundle列表
-        # @type BundleSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :BundleSet, :RequestId
+        attr_accessor :TotalCount, :RequestId
 
-        def initialize(totalcount=nil, bundleset=nil, requestid=nil)
+        def initialize(totalcount=nil, requestid=nil)
           @TotalCount = totalcount
-          @BundleSet = bundleset
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          unless params['BundleSet'].nil?
-            @BundleSet = []
-            params['BundleSet'].each do |i|
-              bundlesetopt_tmp = BundleSetOpt.new
-              bundlesetopt_tmp.deserialize(i)
-              @BundleSet << bundlesetopt_tmp
-            end
-          end
           @RequestId = params['RequestId']
         end
       end

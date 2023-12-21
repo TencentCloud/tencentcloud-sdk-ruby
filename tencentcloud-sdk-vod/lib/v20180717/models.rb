@@ -12595,6 +12595,94 @@ module TencentCloud
         end
       end
 
+      # 音画质重生结果文件输出。
+      class EnhanceMediaQualityOutputConfig < TencentCloud::Common::AbstractModel
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+
+        attr_accessor :MediaName, :ClassId, :ExpireTime
+
+        def initialize(medianame=nil, classid=nil, expiretime=nil)
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # EnhanceMediaQuality请求参数结构体
+      class EnhanceMediaQualityRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type FileId: String
+        # @param Definition: 音画质重生模板 ID，请联系腾讯云获取。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @type SubAppId: Integer
+        # @param OutputConfig: 音画质重生后的媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceMediaQualityOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+
+        attr_accessor :FileId, :Definition, :SubAppId, :OutputConfig, :SessionId, :SessionContext, :TasksPriority
+
+        def initialize(fileid=nil, definition=nil, subappid=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
+          @FileId = fileid
+          @Definition = definition
+          @SubAppId = subappid
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = EnhanceMediaQualityOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+        end
+      end
+
+      # EnhanceMediaQuality返回参数结构体
+      class EnhanceMediaQualityResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 音画质重生任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 事件通知内容，其中，TranscodeCompleteEvent、ConcatCompleteEvent、ClipCompleteEvent、CreateImageSpriteCompleteEvent、SnapshotByTimeOffsetCompleteEvent 为兼容 2017 版接口发起任务的事件通知。
       class EventContent < TencentCloud::Common::AbstractModel
         # @param EventHandle: 事件句柄，调用方必须调用 ConfirmEvents 来确认消息已经收到，确认有效时间 30 秒。失效后，事件可重新被获取。
