@@ -964,8 +964,6 @@ module TencentCloud
         # <li> <b>SIGN_LEGAL_PERSON_SEAL</b> : 企业法定代表人控件。</li></ul>
         # 注：` 表单域的控件不能作为印章和签名控件`
         # @type ComponentType: String
-        # @param FileIndex: <font color="red">【暂未使用】</font>控件所属文件的序号（取值为：0-N）。 目前单文件的情况下，值一直为0
-        # @type FileIndex: Integer
         # @param ComponentHeight: **在绝对定位方式和关键字定位方式下**，指定控件的高度， 控件高度是指控件在PDF文件中的高度，单位为pt（点）。
         # @type ComponentHeight: Float
         # @param ComponentWidth: **在绝对定位方式和关键字定位方式下**，指定控件宽度，控件宽度是指控件在PDF文件中的宽度，单位为pt（点）。
@@ -980,6 +978,13 @@ module TencentCloud
         # @type ComponentPosX: Float
         # @param ComponentPosY: **在绝对定位方式和关键字定位方式下**，可以指定控件纵向位置的位置，单位为pt（点）。
         # @type ComponentPosY: Float
+        # @param FileIndex: <font color="red">【暂未使用】</font>控件所属文件的序号（取值为：0-N）。 目前单文件的情况下，值一直为0
+        # @type FileIndex: Integer
+        # @param GenerateMode: 控件生成的方式：
+        # <ul><li> <b>NORMAL</b> : 绝对定位控件</li>
+        # <li> <b>FIELD</b> : 表单域</li>
+        # <li> <b>KEYWORD</b> : 关键字（设置关键字时，请确保PDF原始文件内是关键字以文字形式保存在PDF文件中，不支持对图片内文字进行关键字查找）</li></ul>
+        # @type GenerateMode: String
         # @param ComponentId: 控件唯一ID。
 
         # **在绝对定位方式方式下**，ComponentId为控件的ID，长度不能超过30，只能由中文、字母、数字和下划线组成，可以在后续的操作中使用该名称来引用控件。
@@ -1065,15 +1070,6 @@ module TencentCloud
         # <table> <thead> <tr> <th>特殊控件</th> <th>填写约束</th> </tr> </thead> <tbody> <tr> <td>企业全称控件</td> <td>企业名称中文字符中文括号</td> </tr> <tr> <td>统一社会信用代码控件</td> <td>企业注册的统一社会信用代码</td> </tr> <tr> <td>法人名称控件</td> <td>最大50个字符，2到25个汉字或者1到50个字母</td> </tr> <tr> <td>签署意见控件</td> <td>签署意见最大长度为50字符</td> </tr> <tr> <td>签署人手机号控件</td> <td>国内手机号 13,14,15,16,17,18,19号段长度11位</td> </tr> <tr> <td>签署人身份证控件</td> <td>合法的身份证号码检查</td> </tr> <tr> <td>控件名称</td> <td>控件名称最大长度为20字符，不支持表情</td> </tr> <tr> <td>单行文本控件</td> <td>只允许输入中文，英文，数字，中英文标点符号，不支持表情</td> </tr> <tr> <td>多行文本控件</td> <td>只允许输入中文，英文，数字，中英文标点符号，不支持表情</td> </tr> <tr> <td>勾选框控件</td> <td>选择填字符串true，不选填字符串false</td> </tr> <tr> <td>选择器控件</td> <td>同单行文本控件约束，填写选择值中的字符串</td> </tr> <tr> <td>数字控件</td> <td>请输入有效的数字(可带小数点)</td> </tr> <tr> <td>日期控件</td> <td>格式：yyyy年mm月dd日</td> </tr> <tr> <td>附件控件</td> <td>JPG或PNG图片，上传数量限制，1到6个，最大6个附件，填写上传的资源ID</td> </tr> <tr> <td>图片控件</td> <td>JPG或PNG图片，填写上传的图片资源ID</td> </tr> <tr> <td>邮箱控件</td> <td>有效的邮箱地址, w3c标准</td> </tr> <tr> <td>地址控件</td> <td>只允许输入中文，英文，数字，中英文标点符号，不支持表情</td> </tr> <tr> <td>省市区控件</td> <td>只允许输入中文，英文，数字，中英文标点符号，不支持表情</td> </tr> <tr> <td>性别控件</td> <td>选择值中的字符串</td> </tr> <tr> <td>学历控件</td> <td>选择值中的字符串</td> </tr> </tbody> </table>
         # 注：   `部分特殊控件需要在控制台配置模板形式创建`
         # @type ComponentValue: String
-        # @param GenerateMode: 控件生成的方式：
-        # <ul><li> <b>NORMAL</b> : 绝对定位控件</li>
-        # <li> <b>FIELD</b> : 表单域</li>
-        # <li> <b>KEYWORD</b> : 关键字（设置关键字时，请确保PDF原始文件内是关键字以文字形式保存在PDF文件中，不支持对图片内文字进行关键字查找）</li></ul>
-        # @type GenerateMode: String
-        # @param ComponentDateFontSize: <font color="red">【暂未使用】</font>日期签署控件的字号，默认为 12
-        # @type ComponentDateFontSize: Integer
-        # @param ChannelComponentId: <font color="red">【暂未使用】</font>第三方应用集成平台模板控件 ID 标识
-        # @type ChannelComponentId: String
         # @param OffsetX: **如果控件是关键字定位方式**，可以对关键字定位出来的区域进行横坐标方向的调整，单位为pt（点）。例如，如果关键字定位出来的区域偏左或偏右，可以通过调整横坐标方向的参数来使控件位置更加准确。
         # 注意： `向左调整设置为负数， 向右调整设置成正数`
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1082,10 +1078,6 @@ module TencentCloud
         # 注意： `向上调整设置为负数， 向下调整设置成正数`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OffsetY: Float
-        # @param ChannelComponentSource: <font color="red">【暂未使用】</font>第三方应用集成中子客企业控件来源。
-        # <ul><li> <b>0</b> :平台指定；</li>
-        # <li> <b>1</b> :用户自定义</li></ul>
-        # @type ChannelComponentSource: Integer
         # @param KeywordOrder: **如果控件是关键字定位方式**，指定关键字排序规则时，可以选择Positive或Reverse两种排序方式。
         # <ul><li> <b>Positive</b> :表示正序，即根据关键字在PDF文件内的顺序进行排列</li>
         # <li> <b>Reverse</b> :表示倒序，即根据关键字在PDF文件内的反序进行排列</li></ul>
@@ -1116,17 +1108,26 @@ module TencentCloud
         # <li> <b>true</b> : 可以移动和删除控件</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForbidMoveAndDelete: Boolean
+        # @param ComponentDateFontSize: <font color="red">【暂未使用】</font>日期签署控件的字号，默认为 12
+        # @type ComponentDateFontSize: Integer
+        # @param ChannelComponentId: <font color="red">【暂未使用】</font>第三方应用集成平台模板控件 ID 标识
+        # @type ChannelComponentId: String
+        # @param ChannelComponentSource: <font color="red">【暂未使用】</font>第三方应用集成中子客企业控件来源。
+        # <ul><li> <b>0</b> :平台指定；</li>
+        # <li> <b>1</b> :用户自定义</li></ul>
+        # @type ChannelComponentSource: Integer
 
-        attr_accessor :ComponentType, :FileIndex, :ComponentHeight, :ComponentWidth, :ComponentPage, :ComponentPosX, :ComponentPosY, :ComponentId, :ComponentName, :ComponentRequired, :ComponentRecipientId, :ComponentExtra, :IsFormType, :ComponentValue, :GenerateMode, :ComponentDateFontSize, :ChannelComponentId, :OffsetX, :OffsetY, :ChannelComponentSource, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :LockComponentValue, :ForbidMoveAndDelete
+        attr_accessor :ComponentType, :ComponentHeight, :ComponentWidth, :ComponentPage, :ComponentPosX, :ComponentPosY, :FileIndex, :GenerateMode, :ComponentId, :ComponentName, :ComponentRequired, :ComponentRecipientId, :ComponentExtra, :IsFormType, :ComponentValue, :OffsetX, :OffsetY, :KeywordOrder, :KeywordPage, :RelativeLocation, :KeywordIndexes, :LockComponentValue, :ForbidMoveAndDelete, :ComponentDateFontSize, :ChannelComponentId, :ChannelComponentSource
 
-        def initialize(componenttype=nil, fileindex=nil, componentheight=nil, componentwidth=nil, componentpage=nil, componentposx=nil, componentposy=nil, componentid=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, componentextra=nil, isformtype=nil, componentvalue=nil, generatemode=nil, componentdatefontsize=nil, channelcomponentid=nil, offsetx=nil, offsety=nil, channelcomponentsource=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, lockcomponentvalue=nil, forbidmoveanddelete=nil)
+        def initialize(componenttype=nil, componentheight=nil, componentwidth=nil, componentpage=nil, componentposx=nil, componentposy=nil, fileindex=nil, generatemode=nil, componentid=nil, componentname=nil, componentrequired=nil, componentrecipientid=nil, componentextra=nil, isformtype=nil, componentvalue=nil, offsetx=nil, offsety=nil, keywordorder=nil, keywordpage=nil, relativelocation=nil, keywordindexes=nil, lockcomponentvalue=nil, forbidmoveanddelete=nil, componentdatefontsize=nil, channelcomponentid=nil, channelcomponentsource=nil)
           @ComponentType = componenttype
-          @FileIndex = fileindex
           @ComponentHeight = componentheight
           @ComponentWidth = componentwidth
           @ComponentPage = componentpage
           @ComponentPosX = componentposx
           @ComponentPosY = componentposy
+          @FileIndex = fileindex
+          @GenerateMode = generatemode
           @ComponentId = componentid
           @ComponentName = componentname
           @ComponentRequired = componentrequired
@@ -1134,28 +1135,28 @@ module TencentCloud
           @ComponentExtra = componentextra
           @IsFormType = isformtype
           @ComponentValue = componentvalue
-          @GenerateMode = generatemode
-          @ComponentDateFontSize = componentdatefontsize
-          @ChannelComponentId = channelcomponentid
           @OffsetX = offsetx
           @OffsetY = offsety
-          @ChannelComponentSource = channelcomponentsource
           @KeywordOrder = keywordorder
           @KeywordPage = keywordpage
           @RelativeLocation = relativelocation
           @KeywordIndexes = keywordindexes
           @LockComponentValue = lockcomponentvalue
           @ForbidMoveAndDelete = forbidmoveanddelete
+          @ComponentDateFontSize = componentdatefontsize
+          @ChannelComponentId = channelcomponentid
+          @ChannelComponentSource = channelcomponentsource
         end
 
         def deserialize(params)
           @ComponentType = params['ComponentType']
-          @FileIndex = params['FileIndex']
           @ComponentHeight = params['ComponentHeight']
           @ComponentWidth = params['ComponentWidth']
           @ComponentPage = params['ComponentPage']
           @ComponentPosX = params['ComponentPosX']
           @ComponentPosY = params['ComponentPosY']
+          @FileIndex = params['FileIndex']
+          @GenerateMode = params['GenerateMode']
           @ComponentId = params['ComponentId']
           @ComponentName = params['ComponentName']
           @ComponentRequired = params['ComponentRequired']
@@ -1163,18 +1164,17 @@ module TencentCloud
           @ComponentExtra = params['ComponentExtra']
           @IsFormType = params['IsFormType']
           @ComponentValue = params['ComponentValue']
-          @GenerateMode = params['GenerateMode']
-          @ComponentDateFontSize = params['ComponentDateFontSize']
-          @ChannelComponentId = params['ChannelComponentId']
           @OffsetX = params['OffsetX']
           @OffsetY = params['OffsetY']
-          @ChannelComponentSource = params['ChannelComponentSource']
           @KeywordOrder = params['KeywordOrder']
           @KeywordPage = params['KeywordPage']
           @RelativeLocation = params['RelativeLocation']
           @KeywordIndexes = params['KeywordIndexes']
           @LockComponentValue = params['LockComponentValue']
           @ForbidMoveAndDelete = params['ForbidMoveAndDelete']
+          @ComponentDateFontSize = params['ComponentDateFontSize']
+          @ChannelComponentId = params['ChannelComponentId']
+          @ChannelComponentSource = params['ChannelComponentSource']
         end
       end
 
@@ -1608,6 +1608,8 @@ module TencentCloud
         # <ul>
         # <li>支持自动签传递印章，可通过指定自动签控件id，指定印章id来完成</li>
         # </ul>
+        # 注：只有在控制台编辑模板时，<font color="red">归属给发起方</font>的填写控件（如下图）才能在创建文档的时候进行内容填充。
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/a54a76a58c454593d06d8e9883ecc9b3.png)
         # @type FormFields: Array
         # @param NeedPreview: 是否为预览模式，取值如下：
         # <ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li>
@@ -1722,8 +1724,8 @@ module TencentCloud
         # <li>PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面</li>
         # <li>PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面</li>
         # <li>EXTEND_SERVICE：生成拓展服务的嵌入页面</li>
-        # <li>PREVIEW_FLOW：生成预览合同的嵌入页面</li>
-        # <li>PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面</li></ul>
+        # <li>PREVIEW_FLOW：生成预览合同的嵌入页面（支持移动端）</li>
+        # <li>PREVIEW_FLOW_DETAIL：生成查看合同详情的嵌入页面（仅支持PC端）</li></ul>
         # @type EmbedType: String
         # @param BusinessId: WEB嵌入的业务资源ID
         # <ul><li>PREVIEW_SEAL_DETAIL，必填，取值为印章id</li>

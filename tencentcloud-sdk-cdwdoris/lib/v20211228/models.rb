@@ -343,13 +343,19 @@ module TencentCloud
         # @param RestartTimeout: 超时时间 单位s
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestartTimeout: String
+        # @param GraceShutdownWaitSeconds: 内核优雅重启超时时间，如果为-1说明未设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GraceShutdownWaitSeconds: String
+        # @param CaseSensitive: 表名大小写是否敏感，0：敏感；1：不敏感，以小写进行比较；2：不敏感，表名改为以小写存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CaseSensitive: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive
         extend Gem::Deprecate
         deprecate :IfExistCatalog, :none, 2023, 12
         deprecate :IfExistCatalog=, :none, 2023, 12
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -389,6 +395,8 @@ module TencentCloud
           @IfExistCatalog = ifexistcatalog
           @Characteristic = characteristic
           @RestartTimeout = restarttimeout
+          @GraceShutdownWaitSeconds = graceshutdownwaitseconds
+          @CaseSensitive = casesensitive
         end
 
         def deserialize(params)
@@ -444,6 +452,8 @@ module TencentCloud
           @IfExistCatalog = params['IfExistCatalog']
           @Characteristic = params['Characteristic']
           @RestartTimeout = params['RestartTimeout']
+          @GraceShutdownWaitSeconds = params['GraceShutdownWaitSeconds']
+          @CaseSensitive = params['CaseSensitive']
         end
       end
 

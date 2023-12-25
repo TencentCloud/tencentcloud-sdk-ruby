@@ -204,10 +204,16 @@ module TencentCloud
         # @param CompensateCount: 补偿次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompensateCount: Integer
+        # @param RetryCount: 重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryCount: Integer
+        # @param RetryInfo: 重试信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryInfo: String
 
-        attr_accessor :StrategyName, :ScaleAction, :ActionStatus, :ActionTime, :ScaleInfo, :ExpectScaleNum, :EndTime, :StrategyType, :SpecInfo, :CompensateFlag, :CompensateCount
+        attr_accessor :StrategyName, :ScaleAction, :ActionStatus, :ActionTime, :ScaleInfo, :ExpectScaleNum, :EndTime, :StrategyType, :SpecInfo, :CompensateFlag, :CompensateCount, :RetryCount, :RetryInfo
 
-        def initialize(strategyname=nil, scaleaction=nil, actionstatus=nil, actiontime=nil, scaleinfo=nil, expectscalenum=nil, endtime=nil, strategytype=nil, specinfo=nil, compensateflag=nil, compensatecount=nil)
+        def initialize(strategyname=nil, scaleaction=nil, actionstatus=nil, actiontime=nil, scaleinfo=nil, expectscalenum=nil, endtime=nil, strategytype=nil, specinfo=nil, compensateflag=nil, compensatecount=nil, retrycount=nil, retryinfo=nil)
           @StrategyName = strategyname
           @ScaleAction = scaleaction
           @ActionStatus = actionstatus
@@ -219,6 +225,8 @@ module TencentCloud
           @SpecInfo = specinfo
           @CompensateFlag = compensateflag
           @CompensateCount = compensatecount
+          @RetryCount = retrycount
+          @RetryInfo = retryinfo
         end
 
         def deserialize(params)
@@ -233,6 +241,8 @@ module TencentCloud
           @SpecInfo = params['SpecInfo']
           @CompensateFlag = params['CompensateFlag']
           @CompensateCount = params['CompensateCount']
+          @RetryCount = params['RetryCount']
+          @RetryInfo = params['RetryInfo']
         end
       end
 
@@ -583,10 +593,21 @@ module TencentCloud
         # @param IsCvmReplace: 是否开通异常节点自动补偿
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsCvmReplace: Boolean
+        # @param ClusterTitle: 标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterTitle: String
+        # @param ConfigDetail: 集群产品配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigDetail: :class:`Tencentcloud::Emr.v20190103.models.EmrProductConfigDetail`
 
-        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace
+        attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
+        extend Gem::Deprecate
+        deprecate :Ftitle, :none, 2023, 12
+        deprecate :Ftitle=, :none, 2023, 12
+        deprecate :Config, :none, 2023, 12
+        deprecate :Config=, :none, 2023, 12
 
-        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil)
+        def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
           @ClusterId = clusterid
           @Ftitle = ftitle
@@ -629,6 +650,8 @@ module TencentCloud
           @TopologyInfoList = topologyinfolist
           @IsMultiZoneCluster = ismultizonecluster
           @IsCvmReplace = iscvmreplace
+          @ClusterTitle = clustertitle
+          @ConfigDetail = configdetail
         end
 
         def deserialize(params)
@@ -698,6 +721,11 @@ module TencentCloud
           end
           @IsMultiZoneCluster = params['IsMultiZoneCluster']
           @IsCvmReplace = params['IsCvmReplace']
+          @ClusterTitle = params['ClusterTitle']
+          unless params['ConfigDetail'].nil?
+            @ConfigDetail = EmrProductConfigDetail.new
+            @ConfigDetail.deserialize(params['ConfigDetail'])
+          end
         end
       end
 
@@ -1485,6 +1513,8 @@ module TencentCloud
         # <li>renew：表示获取所有待续费的节点信息，包括cdb信息，自动续费节点不会返回。</li>
         # 注意：现在只支持以上取值，输入其他值会导致错误。
         # @type NodeFlag: String
+        # @param ExportDb: 导出全部节点信息csv时是否携带cdb信息
+        # @type ExportDb: Boolean
         # @param Offset: 页编号，默认值为0，表示第一页。
         # @type Offset: Integer
         # @param Limit: 每页返回数量，默认值为100，最大值为100。
@@ -1498,11 +1528,12 @@ module TencentCloud
         # @param Asc: 无
         # @type Asc: Integer
 
-        attr_accessor :InstanceId, :NodeFlag, :Offset, :Limit, :HardwareResourceType, :SearchFields, :OrderField, :Asc
+        attr_accessor :InstanceId, :NodeFlag, :ExportDb, :Offset, :Limit, :HardwareResourceType, :SearchFields, :OrderField, :Asc
 
-        def initialize(instanceid=nil, nodeflag=nil, offset=nil, limit=nil, hardwareresourcetype=nil, searchfields=nil, orderfield=nil, asc=nil)
+        def initialize(instanceid=nil, nodeflag=nil, exportdb=nil, offset=nil, limit=nil, hardwareresourcetype=nil, searchfields=nil, orderfield=nil, asc=nil)
           @InstanceId = instanceid
           @NodeFlag = nodeflag
+          @ExportDb = exportdb
           @Offset = offset
           @Limit = limit
           @HardwareResourceType = hardwareresourcetype
@@ -1514,6 +1545,7 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @NodeFlag = params['NodeFlag']
+          @ExportDb = params['ExportDb']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @HardwareResourceType = params['HardwareResourceType']
@@ -2637,6 +2669,125 @@ module TencentCloud
             @PriceSpec.deserialize(params['PriceSpec'])
           end
           @SupportSpotPaid = params['SupportSpotPaid']
+        end
+      end
+
+      # EMR产品配置
+      class EmrProductConfigDetail < TencentCloud::Common::AbstractModel
+        # @param SoftInfo: 软件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftInfo: Array
+        # @param MasterNodeSize: Master节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterNodeSize: Integer
+        # @param CoreNodeSize: Core节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoreNodeSize: Integer
+        # @param TaskNodeSize: Task节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskNodeSize: Integer
+        # @param ComNodeSize: Common节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComNodeSize: Integer
+        # @param MasterResource: Master节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterResource: :class:`Tencentcloud::Emr.v20190103.models.ResourceDetail`
+        # @param CoreResource: Core节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CoreResource: :class:`Tencentcloud::Emr.v20190103.models.ResourceDetail`
+        # @param TaskResource: Task节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskResource: :class:`Tencentcloud::Emr.v20190103.models.ResourceDetail`
+        # @param ComResource: Common节点资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComResource: :class:`Tencentcloud::Emr.v20190103.models.ResourceDetail`
+        # @param OnCos: 是否使用COS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnCos: Boolean
+        # @param ChargeType: 收费类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChargeType: Integer
+        # @param RouterNodeSize: Router节点个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouterNodeSize: Integer
+        # @param SupportHA: 是否支持HA
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportHA: Boolean
+        # @param SecurityOn: 是否支持安全模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityOn: Boolean
+        # @param SecurityGroup: 安全组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroup: String
+        # @param CbsEncrypt: 是否开启Cbs加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CbsEncrypt: Integer
+        # @param ApplicationRole: 自定义应用角色。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationRole: String
+        # @param SecurityGroups: 安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroups: Array
+        # @param PublicKeyId: SSH密钥Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKeyId: String
+
+        attr_accessor :SoftInfo, :MasterNodeSize, :CoreNodeSize, :TaskNodeSize, :ComNodeSize, :MasterResource, :CoreResource, :TaskResource, :ComResource, :OnCos, :ChargeType, :RouterNodeSize, :SupportHA, :SecurityOn, :SecurityGroup, :CbsEncrypt, :ApplicationRole, :SecurityGroups, :PublicKeyId
+
+        def initialize(softinfo=nil, masternodesize=nil, corenodesize=nil, tasknodesize=nil, comnodesize=nil, masterresource=nil, coreresource=nil, taskresource=nil, comresource=nil, oncos=nil, chargetype=nil, routernodesize=nil, supportha=nil, securityon=nil, securitygroup=nil, cbsencrypt=nil, applicationrole=nil, securitygroups=nil, publickeyid=nil)
+          @SoftInfo = softinfo
+          @MasterNodeSize = masternodesize
+          @CoreNodeSize = corenodesize
+          @TaskNodeSize = tasknodesize
+          @ComNodeSize = comnodesize
+          @MasterResource = masterresource
+          @CoreResource = coreresource
+          @TaskResource = taskresource
+          @ComResource = comresource
+          @OnCos = oncos
+          @ChargeType = chargetype
+          @RouterNodeSize = routernodesize
+          @SupportHA = supportha
+          @SecurityOn = securityon
+          @SecurityGroup = securitygroup
+          @CbsEncrypt = cbsencrypt
+          @ApplicationRole = applicationrole
+          @SecurityGroups = securitygroups
+          @PublicKeyId = publickeyid
+        end
+
+        def deserialize(params)
+          @SoftInfo = params['SoftInfo']
+          @MasterNodeSize = params['MasterNodeSize']
+          @CoreNodeSize = params['CoreNodeSize']
+          @TaskNodeSize = params['TaskNodeSize']
+          @ComNodeSize = params['ComNodeSize']
+          unless params['MasterResource'].nil?
+            @MasterResource = ResourceDetail.new
+            @MasterResource.deserialize(params['MasterResource'])
+          end
+          unless params['CoreResource'].nil?
+            @CoreResource = ResourceDetail.new
+            @CoreResource.deserialize(params['CoreResource'])
+          end
+          unless params['TaskResource'].nil?
+            @TaskResource = ResourceDetail.new
+            @TaskResource.deserialize(params['TaskResource'])
+          end
+          unless params['ComResource'].nil?
+            @ComResource = ResourceDetail.new
+            @ComResource.deserialize(params['ComResource'])
+          end
+          @OnCos = params['OnCos']
+          @ChargeType = params['ChargeType']
+          @RouterNodeSize = params['RouterNodeSize']
+          @SupportHA = params['SupportHA']
+          @SecurityOn = params['SecurityOn']
+          @SecurityGroup = params['SecurityGroup']
+          @CbsEncrypt = params['CbsEncrypt']
+          @ApplicationRole = params['ApplicationRole']
+          @SecurityGroups = params['SecurityGroups']
+          @PublicKeyId = params['PublicKeyId']
         end
       end
 
@@ -5736,6 +5887,63 @@ module TencentCloud
         end
       end
 
+      # 资源详情
+      class ResourceDetail < TencentCloud::Common::AbstractModel
+        # @param Spec: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: String
+        # @param SpecName: 规格名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecName: String
+        # @param StorageType: 硬盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: Integer
+        # @param DiskType: 硬盘类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskType: String
+        # @param RootSize: 系统盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootSize: Integer
+        # @param MemSize: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
+        # @param Cpu: CPU个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param DiskSize: 硬盘大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskSize: Integer
+        # @param InstanceType: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+
+        attr_accessor :Spec, :SpecName, :StorageType, :DiskType, :RootSize, :MemSize, :Cpu, :DiskSize, :InstanceType
+
+        def initialize(spec=nil, specname=nil, storagetype=nil, disktype=nil, rootsize=nil, memsize=nil, cpu=nil, disksize=nil, instancetype=nil)
+          @Spec = spec
+          @SpecName = specname
+          @StorageType = storagetype
+          @DiskType = disktype
+          @RootSize = rootsize
+          @MemSize = memsize
+          @Cpu = cpu
+          @DiskSize = disksize
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @Spec = params['Spec']
+          @SpecName = params['SpecName']
+          @StorageType = params['StorageType']
+          @DiskType = params['DiskType']
+          @RootSize = params['RootSize']
+          @MemSize = params['MemSize']
+          @Cpu = params['Cpu']
+          @DiskSize = params['DiskSize']
+          @InstanceType = params['InstanceType']
+        end
+      end
+
       # RunJobFlow请求参数结构体
       class RunJobFlowRequest < TencentCloud::Common::AbstractModel
         # @param Name: 作业名称。
@@ -6254,14 +6462,17 @@ module TencentCloud
         # @type Args: Array
         # @param CosFileName: 脚本文件名
         # @type CosFileName: String
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :CosFileURI, :ExecutionMoment, :Args, :CosFileName
+        attr_accessor :CosFileURI, :ExecutionMoment, :Args, :CosFileName, :Remark
 
-        def initialize(cosfileuri=nil, executionmoment=nil, args=nil, cosfilename=nil)
+        def initialize(cosfileuri=nil, executionmoment=nil, args=nil, cosfilename=nil, remark=nil)
           @CosFileURI = cosfileuri
           @ExecutionMoment = executionmoment
           @Args = args
           @CosFileName = cosfilename
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -6269,14 +6480,17 @@ module TencentCloud
           @ExecutionMoment = params['ExecutionMoment']
           @Args = params['Args']
           @CosFileName = params['CosFileName']
+          @Remark = params['Remark']
         end
       end
 
       # 搜索字段
       class SearchItem < TencentCloud::Common::AbstractModel
         # @param SearchType: 支持搜索的类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchType: String
         # @param SearchValue: 支持搜索的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SearchValue: String
 
         attr_accessor :SearchType, :SearchValue
