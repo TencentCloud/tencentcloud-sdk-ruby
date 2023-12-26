@@ -17,6 +17,31 @@
 module TencentCloud
   module Mongodb
     module V20190725
+      # 修改实例节点详情
+      class AddNodeList < TencentCloud::Common::AbstractModel
+        # @param Role: 需要删除的节点角色。
+        # - SECONDARY：Mongod 节点。
+        # - READONLY：只读节点。
+        # - MONGOS：Mongos 节点。
+        # @type Role: String
+        # @param Zone: 节点所对应的可用区。
+        # - 单可用区，所有节点在同一可用区。
+        # - 多可用区：当前标准规格是三可用区分布，主从节点不在同一可用区，需注意配置新增节点对应的可用区，且新增后必须满足任意2个可用区节点数大于第3个可用区原则。
+        # @type Zone: String
+
+        attr_accessor :Role, :Zone
+
+        def initialize(role=nil, zone=nil)
+          @Role = role
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Zone = params['Zone']
+        end
+      end
+
       # AssignProject请求参数结构体
       class AssignProjectRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -2721,10 +2746,14 @@ module TencentCloud
         # @param InMaintenance: 实例配置变更的切换时间。<ul><li>0：调整完成时，立即执行变配任务。默认为0。</li><li>1：在维护时间窗内，执行变配任务。
         # <b>说明</b>：调整节点数和分片数不支持在<b>维护时间窗内</b>变更。</li></ul>
         # @type InMaintenance: Integer
+        # @param AddNodeList: 新增节点属性列表。
+        # @type AddNodeList: Array
+        # @param RemoveNodeList: 删除节点属性列表。
+        # @type RemoveNodeList: Array
 
-        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance
+        attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :AddNodeList, :RemoveNodeList
 
-        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil)
+        def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Volume = volume
@@ -2732,6 +2761,8 @@ module TencentCloud
           @NodeNum = nodenum
           @ReplicateSetNum = replicatesetnum
           @InMaintenance = inmaintenance
+          @AddNodeList = addnodelist
+          @RemoveNodeList = removenodelist
         end
 
         def deserialize(params)
@@ -2742,6 +2773,22 @@ module TencentCloud
           @NodeNum = params['NodeNum']
           @ReplicateSetNum = params['ReplicateSetNum']
           @InMaintenance = params['InMaintenance']
+          unless params['AddNodeList'].nil?
+            @AddNodeList = []
+            params['AddNodeList'].each do |i|
+              addnodelist_tmp = AddNodeList.new
+              addnodelist_tmp.deserialize(i)
+              @AddNodeList << addnodelist_tmp
+            end
+          end
+          unless params['RemoveNodeList'].nil?
+            @RemoveNodeList = []
+            params['RemoveNodeList'].each do |i|
+              removenodelist_tmp = RemoveNodeList.new
+              removenodelist_tmp.deserialize(i)
+              @RemoveNodeList << removenodelist_tmp
+            end
+          end
         end
       end
 
@@ -2938,6 +2985,38 @@ module TencentCloud
           @ReplicaSetName = params['ReplicaSetName']
           @NodeName = params['NodeName']
           @OpId = params['OpId']
+        end
+      end
+
+      # 修改实例节点详情
+      class RemoveNodeList < TencentCloud::Common::AbstractModel
+        # @param Role: 需要删除的节点角色。
+        # - SECONDARY：Mongod 节点。
+        # - READONLY：只读节点。
+        # - MONGOS：Mongos 节点。
+        # @type Role: String
+        # @param NodeName: 要删除的节点 ID。分片集群须指定一组分片要删除的节点名称即可，其余分片对改组对齐。
+
+        # - 获取方式：登录 [MongoDB控制台](https://console.cloud.tencent.com/)，在**节点管理**页签，可获取**节点 ID**。
+        # - 特别说明：分片集群同一节点上的分片，仅需指定0分片节点 ID 即可。例如：cmgo-6hfk****_0-node-primary。
+        # @type NodeName: String
+        # @param Zone: 节点所对应的可用区。
+        # - 单可用区，所有节点在同一可用区。
+        # - 多可用区：当前标准规格是三可用区分布，主从节点不在同一可用区，需注意配置所删除节点对应的可用区，且删除后必须满足任意2个可用区节点数大于第3个可用区原则。
+        # @type Zone: String
+
+        attr_accessor :Role, :NodeName, :Zone
+
+        def initialize(role=nil, nodename=nil, zone=nil)
+          @Role = role
+          @NodeName = nodename
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @NodeName = params['NodeName']
+          @Zone = params['Zone']
         end
       end
 

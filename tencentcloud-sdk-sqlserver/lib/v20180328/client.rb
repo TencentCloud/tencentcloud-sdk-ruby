@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
+        # 本接口（CreateBasicDBInstances）用于创建基础版实例 (云盘)。
 
         # @param request: Request instance for CreateBasicDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateBasicDBInstancesRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
+        # 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例 (云盘)。
 
         # @param request: Request instance for CreateBusinessDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateBusinessDBInstancesRequest`
@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateCloudDBInstances）用于创建高可用实例(虚拟机版本)。
+        # 本接口（CreateCloudDBInstances）用于创建高可用实例 (云盘)。
 
         # @param request: Request instance for CreateCloudDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudDBInstancesRequest`
@@ -341,7 +341,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateCloudReadOnlyDBInstances）用于添加只读副本实例(虚拟机版本)。
+        # 本接口（CreateCloudReadOnlyDBInstances）用于创建只读实例 (云盘)。
 
         # @param request: Request instance for CreateCloudReadOnlyDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateCloudReadOnlyDBInstancesRequest`
@@ -389,7 +389,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateDBInstances）用于创建实例。
+        # 本接口（CreateDBInstances）用于创建高可用实例 (本地盘)
 
         # @param request: Request instance for CreateDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateDBInstancesRequest`
@@ -485,7 +485,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
+        # 本接口（CreateReadOnlyDBInstances）用于创建只读实例 (本地盘)。
 
         # @param request: Request instance for CreateReadOnlyDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::CreateReadOnlyDBInstancesRequest`

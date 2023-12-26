@@ -163,10 +163,13 @@ module TencentCloud
         # @param BillMonth: 账单归属月
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BillMonth: String
+        # @param Id: 账单记录ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
 
-        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth
+        attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentSet, :PayerUin, :OwnerUin, :OperateUin, :Tags, :BusinessCode, :ProductCode, :ActionType, :RegionId, :ProjectId, :PriceInfo, :AssociatedOrder, :Formula, :FormulaUrl, :BillDay, :BillMonth, :Id
 
-        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil)
+        def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentset=nil, payeruin=nil, owneruin=nil, operateuin=nil, tags=nil, businesscode=nil, productcode=nil, actiontype=nil, regionid=nil, projectid=nil, priceinfo=nil, associatedorder=nil, formula=nil, formulaurl=nil, billday=nil, billmonth=nil, id=nil)
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
           @PayModeName = paymodename
@@ -197,6 +200,7 @@ module TencentCloud
           @FormulaUrl = formulaurl
           @BillDay = billday
           @BillMonth = billmonth
+          @Id = id
         end
 
         def deserialize(params)
@@ -247,6 +251,7 @@ module TencentCloud
           @FormulaUrl = params['FormulaUrl']
           @BillDay = params['BillDay']
           @BillMonth = params['BillMonth']
+          @Id = params['Id']
         end
       end
 
@@ -3821,6 +3826,8 @@ module TencentCloud
         # 10227 视频直播带宽(国内)
         # 100763 视频直播流量(海外)
         # 100762 视频直播宽带(海外)
+
+        # 仅支持以上产品
         # @type ProductCode: String
         # @param Domain: 查询域名 例如 www.qq.com
         # 非CDN业务查询时传入空字符串，返回的值为空
@@ -3828,15 +3835,18 @@ module TencentCloud
         # @param InstanceID: 1、如果为空，则返回EIP或CLB所有实例的明细；
         # 2、如果传入实例名，则返回该实例明细
         # @type InstanceID: String
+        # @param PayerUin: 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN
+        # @type PayerUin: String
 
-        attr_accessor :StartDate, :EndDate, :ProductCode, :Domain, :InstanceID
+        attr_accessor :StartDate, :EndDate, :ProductCode, :Domain, :InstanceID, :PayerUin
 
-        def initialize(startdate=nil, enddate=nil, productcode=nil, domain=nil, instanceid=nil)
+        def initialize(startdate=nil, enddate=nil, productcode=nil, domain=nil, instanceid=nil, payeruin=nil)
           @StartDate = startdate
           @EndDate = enddate
           @ProductCode = productcode
           @Domain = domain
           @InstanceID = instanceid
+          @PayerUin = payeruin
         end
 
         def deserialize(params)
@@ -3845,6 +3855,7 @@ module TencentCloud
           @ProductCode = params['ProductCode']
           @Domain = params['Domain']
           @InstanceID = params['InstanceID']
+          @PayerUin = params['PayerUin']
         end
       end
 

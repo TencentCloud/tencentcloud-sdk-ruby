@@ -583,6 +583,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交合同组签署流程审批结果的适用场景包括：
+
+        # 1. 在使用[通过多文件创建合同组签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByFiles)或[通过多模板创建合同组签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowGroupByTemplates)创建合同组签署流程时，若指定了以下参数 为true，则可以调用此接口提交企业内部签署审批结果。即使是自动签署也需要进行审核通过才会进行签署。
+        #   - [FlowGroupInfo.NeedSignReview](https://qian.tencent.com/developers/companyApis/dataTypes/#flowgroupinfo)
+        #   - [ApproverInfo.ApproverNeedSignReview](https://qian.tencent.com/developers/companyApis/dataTypes/#approverinfo)
+
+
+        # 2. 同一合同组，同一签署人可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+
+        # @param request: Request instance for CreateFlowGroupSignReview.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupSignReviewRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateFlowGroupSignReviewResponse`
+        def CreateFlowGroupSignReview(request)
+          body = send_request('CreateFlowGroupSignReview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFlowGroupSignReviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 指定需要批量催办的签署流程ID，批量催办合同，最多100个。需要符合以下条件的合同才可被催办：
 
         # 1. 发起合同时，**签署人的NotifyType需设置为sms**
@@ -616,9 +647,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 提交签署流程审批结果的适用场景包括：
-        # 1. 在使用模板（CreateFlow）或文件（CreateFlowByFiles）创建签署流程时，若指定了参数NeedSignReview为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。自动签署也需要进行审核通过才会进行签署。
-        # 2. 若签署流程状态正常，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+        # 提交企业流程审批结果
+        # **当前存在两种审核操作：**
+        # <ul>
+        # <li>签署审核
+        # <ul>
+        # <li>在通过接口<ul>
+        # <li>CreateFlowByFiles</li>
+        # <li>CreateFlow</li>
+        # <li>CreateFlowGroupByTemplates</li>
+        # <li>CreateFlowGroupByFiles</li>
+        # <li>CreatePrepareFlow</li>
+        # </ul>
+        # 发起签署流程时，通过指定NeedSignReview为true，则可以调用此接口，并指定operate=SignReview，以提交企业内部签署审批结果</li>
+        # <li>在通过接口
+        # <ul>
+        # <li>CreateFlowByFiles</li>
+        # <li>CreateFlow</li>
+        # <li>CreateFlowGroupByTemplates</li>
+        # <li>CreateFlowGroupByFiles</li>
+        # </ul>
+        # 发起签署流程时，通过指定签署人ApproverNeedSignReview为true，则可以调用此接口，并指定operate=SignReview，并指定RecipientId，以提交企业内部签署审批结果</li>
+        # </ul>
+        # </li>
+        # <li>发起审核
+        #  <ul>
+        # <li>通过接口CreatePrepareFlow指定发起后需要审核，那么可以调用此接口，并指定operate=CreateReview，以提交企业内部审批结果。可以多次提交审批结果，但一旦审批通过，后续提交的结果将无效
+        # </li>
+        # </ul>
+        # </li>
+        # </ul>
 
         # @param request: Request instance for CreateFlowSignReview.
         # @type request: :class:`Tencentcloud::ess::V20201111::CreateFlowSignReviewRequest`

@@ -15510,19 +15510,27 @@ module TencentCloud
         # @type CcnName: String
         # @param CcnDescription: CCN描述信息，最大长度不能超过100个字节，限制：CcnName和CcnDescription必须至少选择一个参数输入，否则报错。
         # @type CcnDescription: String
+        # @param RouteECMPFlag: 是否开启等价路由功能。`False` 不开启，`True` 开启。
+        # @type RouteECMPFlag: Boolean
+        # @param RouteOverlapFlag: 是否开启路由重叠功能。`False` 不开启，`True` 开启。
+        # @type RouteOverlapFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :RouteECMPFlag, :RouteOverlapFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, routeecmpflag=nil, routeoverlapflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
+          @RouteECMPFlag = routeecmpflag
+          @RouteOverlapFlag = routeoverlapflag
         end
 
         def deserialize(params)
           @CcnId = params['CcnId']
           @CcnName = params['CcnName']
           @CcnDescription = params['CcnDescription']
+          @RouteECMPFlag = params['RouteECMPFlag']
+          @RouteOverlapFlag = params['RouteOverlapFlag']
         end
       end
 

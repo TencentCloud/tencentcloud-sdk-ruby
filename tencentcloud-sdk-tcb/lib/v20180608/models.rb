@@ -2318,9 +2318,9 @@ module TencentCloud
         # @type WxAppId: String
         # @param DbVersion: mysql内核版本，支持5.7,8.0
         # @type DbVersion: String
-        # @param LowerCaseTableName: 0: 非大小写敏感
-        # 1: 大小写敏感
-        # 默认 0
+        # @param LowerCaseTableName: 0: 大小写敏感
+        # 1: 非大小写敏感
+        # 默认为0
         # @type LowerCaseTableName: String
 
         attr_accessor :AccountPassword, :EnvId, :WxAppId, :DbVersion, :LowerCaseTableName

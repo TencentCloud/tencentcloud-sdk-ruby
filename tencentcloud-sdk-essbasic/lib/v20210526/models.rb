@@ -2002,23 +2002,28 @@ module TencentCloud
       class ChannelCreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param FlowId: 签署流程编号
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # <ul><li>建议开发者妥善保存此流程ID，以便于顺利进行后续操作。</li>
+        # <li>可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。</li></ul>
         # @type FlowId: String
         # @param ReviewType: 企业内部审核结果
-        # PASS: 通过
-        # REJECT: 拒绝
-        # SIGN_REJECT:拒签(流程结束)
+        # <ul><li>PASS: 审核通过</li>
+        # <li>REJECT: 审核拒绝</li>
+        # <li>SIGN_REJECT:拒签(流程结束)</li></ul>
         # @type ReviewType: String
-        # @param ReviewMessage: 审核原因
-        # 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
+        # @param ReviewMessage: 审核结果原因
+        # <ul><li>字符串长度不超过200</li>
+        # <li>当ReviewType 是拒绝（REJECT） 时此字段必填。</li>
+        # <li>当ReviewType 是拒绝（SIGN_REJECT） 时此字段必填。</li></ul>
         # @type ReviewMessage: String
-        # @param RecipientId: 签署节点审核时需要指定，给个人审核时必填。
+        # @param RecipientId: 审核节点的签署人标志，用于指定当前审核的签署方
+        # <ul><li>**如果签署审核节点是个人， 此参数必填**。</li></ul>
         # @type RecipientId: String
-        # @param OperateType: 操作类型，默认：SignReview；SignReview:签署审核，CreateReview：发起审核
-        # 注：接口通过该字段区分操作类型
-        # 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
-        # 若想使用发起审核，请指定该字段为：CreateReview
-        # 若发起个人审核，则指定该字段为：SignReview
+        # @param OperateType: 流程审核操作类型，取值如下：
+        # <ul><li>**SignReview**：（默认）签署审核</li>
+        # <li>**CreateReview**：发起审核</li>
+        # <li>注意：`该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程`</li></ul>
+
         # @type OperateType: String
 
         attr_accessor :Agent, :FlowId, :ReviewType, :ReviewMessage, :RecipientId, :OperateType
@@ -4438,7 +4443,7 @@ module TencentCloud
 
         # 注: `签署方为第三方子客企业时会被置为NONE,   不会发短信通知`
         # @type NotifyType: String
-        # @param ApproverOption: 签署人配置
+        # @param ApproverOption: 签署人配置，用于控制签署人相关属性
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.CommonApproverOption`
         # @param SignComponents: 使用PDF文件直接发起合同时，签署人指定的签署控件；<br/>使用模板发起合同时，指定本企业印章签署控件的印章ID: <br/>通过ComponentId或ComponenetName指定签署控件，ComponentValue为印章ID。
         # @type SignComponents: Array
@@ -5200,6 +5205,81 @@ module TencentCloud
           @ConsoleUrl = params['ConsoleUrl']
           @IsActivated = params['IsActivated']
           @ProxyOperatorIsVerified = params['ProxyOperatorIsVerified']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateFlowGroupSignReview请求参数结构体
+      class CreateFlowGroupSignReviewRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowGroupId:   合同(流程)组的合同组Id，为32位字符串，通过接口[通过多文件创建合同组签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowGroupByFiles) 或[通过多模板创建合同组签署流程](https://qian.tencent.com/developers/partnerApis/startFlows/ChannelCreateFlowGroupByTemplates)创建合同组签署流程时返回。
+        # @type FlowGroupId: String
+        # @param ReviewType: 提交的审核结果，审核结果有下面三种情况
+        # <ul><li><b>PASS</b>: 审核通过，合同流程可以继续执行签署等操作</li>
+        # <li><b>REJECT</b>: 审核拒绝，合同流程不会变动</li>
+        # <li><b>SIGN_REJECT</b>:拒签，合同流程直接结束，合同状态变为**合同拒签**</li></ul>
+        # @type ReviewType: String
+        # @param ApproverInfo: 需要进行签署审核的签署人的个人信息或企业信息，签署方的匹配方式按照以下规则:
+
+        # 个人：二选一（选择其中任意信息组合即可）
+        # <ul><li>姓名+证件类型+证件号</li>
+        # <li>姓名+手机号</li></ul>
+
+        # 企业：二选一  （选择其中任意信息组合即可）
+        # <ul><li>企业名+姓名+证件类型+证件号</li>
+        # <li>企业名+姓名+手机号</li></ul>
+        # @type ApproverInfo: :class:`Tencentcloud::Essbasic.v20210526.models.NeedReviewApproverInfo`
+        # @param ReviewMessage: 审核不通过的原因，该字段的字符串长度不超过200个字符。
+
+        # 注：`当审核类型（ReviewType）为审核拒绝（REJECT）或拒签（SIGN_REJECT）时，审核结果原因字段必须填写`
+        # @type ReviewMessage: String
+
+        attr_accessor :Agent, :FlowGroupId, :ReviewType, :ApproverInfo, :ReviewMessage
+
+        def initialize(agent=nil, flowgroupid=nil, reviewtype=nil, approverinfo=nil, reviewmessage=nil)
+          @Agent = agent
+          @FlowGroupId = flowgroupid
+          @ReviewType = reviewtype
+          @ApproverInfo = approverinfo
+          @ReviewMessage = reviewmessage
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowGroupId = params['FlowGroupId']
+          @ReviewType = params['ReviewType']
+          unless params['ApproverInfo'].nil?
+            @ApproverInfo = NeedReviewApproverInfo.new
+            @ApproverInfo.deserialize(params['ApproverInfo'])
+          end
+          @ReviewMessage = params['ReviewMessage']
+        end
+      end
+
+      # CreateFlowGroupSignReview返回参数结构体
+      class CreateFlowGroupSignReviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -7082,7 +7162,14 @@ module TencentCloud
         # @param ApproverOption: 可以控制签署方在签署合同时能否进行某些操作，例如拒签、转交他人、是否为动态补充签署人等。
         # 详细操作可以参考开发者中心的ApproverOption结构体。
         # @type ApproverOption: :class:`Tencentcloud::Essbasic.v20210526.models.ApproverOption`
-        # @param ApproverNeedSignReview: 当前签署方进行签署操作是否需要企业内部审批，true 则为需要
+        # @param ApproverNeedSignReview: 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：
+        # <ul><li>**false**：（默认）不需要审批，直接签署。</li>
+        # <li>**true**：需要走审批流程。当到对应参与人签署时，会阻塞其签署操作，等待企业内部审批完成。</li></ul>
+        # 企业可以通过ChannelCreateFlowSignReview审批接口通知腾讯电子签平台企业内部审批结果
+        # <ul><li>如果企业通知腾讯电子签平台审核通过，签署方可继续签署动作。</li>
+        # <li>如果企业通知腾讯电子签平台审核未通过，平台将继续阻塞签署方的签署动作，直到企业通知平台审核通过。</li></ul>
+
+        # 注：`此功能可用于与企业内部的审批流程进行关联，支持手动、静默签署合同`
         # @type ApproverNeedSignReview: Boolean
         # @param ApproverVerifyTypes: 指定个人签署方查看合同的校验方式,可以传值如下:
         # <ul><li>  **1**   : （默认）人脸识别,人脸识别后才能合同内容</li>
@@ -8083,6 +8170,56 @@ module TencentCloud
         def deserialize(params)
           @OperateUrl = params['OperateUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 需要进行签署审核的签署人信息
+      class NeedReviewApproverInfo < TencentCloud::Common::AbstractModel
+        # @param ApproverType: 签署方经办人的类型，支持以下类型
+        # <ul><li> ORGANIZATION 企业（含企业自动签）</li>
+        # <li>PERSON 个人（含个人自动签）</li></ul>
+        # @type ApproverType: String
+        # @param ApproverName: 签署方经办人的姓名。 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
+        # @type ApproverName: String
+        # @param ApproverMobile: 签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。 请确认手机号所有方为此合同签署方。
+        # @type ApproverMobile: String
+        # @param ApproverIdCardType: 签署方经办人的证件类型，支持以下类型
+        # <ul><li>ID_CARD 居民身份证  (默认值)</li>
+        # <li>HONGKONG_AND_MACAO 港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)</li>
+        # <li>OTHER_CARD_TYPE 其他证件</li></ul>
+
+        # 注: `其他证件类型为白名单功能，使用前请联系对接的客户经理沟通。`
+        # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: 签署方经办人的证件号码，应符合以下规则
+        # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
+        # <li>港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。</li>
+        # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # @type ApproverIdCardNumber: String
+        # @param OrganizationName: 组织机构名称。
+        # 请确认该名称与企业营业执照中注册的名称一致。
+        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+        # 如果签署方是企业签署方(approverType = 0 或者 approverType = 3)， 则企业名称必填。
+        # @type OrganizationName: String
+
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :OrganizationName
+
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, organizationname=nil)
+          @ApproverType = approvertype
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
+          @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
+          @OrganizationName = organizationname
+        end
+
+        def deserialize(params)
+          @ApproverType = params['ApproverType']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
+          @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
+          @OrganizationName = params['OrganizationName']
         end
       end
 
@@ -9466,7 +9603,7 @@ module TencentCloud
         # @type TemplateType: Integer
         # @param IsPromoter: 是否是发起人 ,已弃用
         # @type IsPromoter: Boolean
-        # @param Creator: 模板的创建者信息，电子签系统用户ID
+        # @param Creator: 模板的创建者名字
         # @type Creator: String
         # @param CreatedOn: 模板创建的时间戳，格式为Unix标准时间戳（秒）
         # @type CreatedOn: Integer

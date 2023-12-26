@@ -4711,8 +4711,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2023, 11
-        deprecate :Decription=, :none, 2023, 11
+        deprecate :Decription, :none, 2023, 12
+        deprecate :Decription=, :none, 2023, 12
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -9596,15 +9596,9 @@ module TencentCloud
       # DescribeAssetMachineList请求参数结构体
       class DescribeAssetMachineListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
-        # <li>MachineName  主机名称
-
-
-
-        # InstanceID  实例ID
-
-
-
-        # IP   内网IP或公网IP</li>
+        # <li>MachineName  主机名称</li>
+        # <li>InstanceID  实例ID  </li>
+        # <li>IP   内网IP或公网IP</li>
         # <li>OsType - String - 是否必填：否 - windows或linux</li>
         # <li>CpuLoad - Int - 是否必填：否 -
         # 0: 未知  1: 低负载
@@ -10280,7 +10274,7 @@ module TencentCloud
         # initservice: 启动服务
         # planTask:计划任务
         # env:环境变量
-        # coremoudle:内核模块
+        # coremodule:内核模块
         # @type Types: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10650,8 +10644,8 @@ module TencentCloud
         # <li>OsType - String - 是否必填：否 - windows或linux</li>
         # <li>Status - uint64 - 是否必填：否 - 账号状态：0-禁用；1-启用</li>
         # <li>UserType - uint64 - 是否必填：否 - 账号类型：0访客用户，1标准用户，2管理员用户 仅windows</li>
-        # <li>IsDomain - uint64 - 是否必填：否 - 是否域账号：0 不是，1是 仅windows
-        # <li>IsRoot - uint64 - 是否必填：否 - 是否Root权限：0 不是，1是 仅linux
+        # <li>IsDomain - uint64 - 是否必填：否 - 是否域账号：0 不是，1是 仅windows</li>
+        # <li>IsRoot - uint64 - 是否必填：否 - 是否Root权限：0 不是，1是 仅linux</li>
         # <li>IsSudo - uint64 - 是否必填：否 - 是否Sudo权限：0 不是，1是 仅linux</li>
         # <li>IsSshLogin - uint64 - 是否必填：否 - 是否ssh登录：0 不是，1是 仅linux</li>
         # <li>ShellLoginStatus - uint64 - 是否必填：否 - 是否shell登录性，0不是；1是 仅linux</li>
@@ -15838,7 +15832,7 @@ module TencentCloud
       class DescribeFileTamperRulesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
         # <li>RuleCategory- string- 规则类别  0=系统规则，1=用户规则</li>
-        # <li>Name- String - 规则名称/li>
+        # <li>Name- String - 规则名称</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -26660,7 +26654,7 @@ module TencentCloud
         # @type Quuid: String
         # @param Filters: 过滤条件。
         # <li>Name- string - 是否必填：否 - 包名</li>
-        # <li>User- string - 是否必填：否 - 用户</li>
+        # <li>User- string - 是否必填：否 - 用户名</li>
         # @type Filters: Array
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
@@ -27343,7 +27337,7 @@ module TencentCloud
         # <li>StartTime - String - 是否必填：否 - 安装开始时间</li>
         # <li>EndTime - String - 是否必填：否 - 安装开始时间</li>
         # <li>Type - int - 是否必填：否 - 安装包类型：
-        # 1:rmp
+        # 1:rpm
         # 2:dpkg
         # 3:java
         # 4:system</li>
@@ -28469,8 +28463,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2023, 11
-        deprecate :Fileds=, :none, 2023, 11
+        deprecate :Fileds, :none, 2023, 12
+        deprecate :Fileds=, :none, 2023, 12
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters

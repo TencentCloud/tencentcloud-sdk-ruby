@@ -279,7 +279,7 @@ module TencentCloud
         # @type Templates: Array
         # @param Desc: AI 任务描述。仅支持中文、英文、数字、_、-，长度不超过128个字符
         # @type Desc: String
-        # @param CallbackUrl: AI 结果回调地址。类似 "http://ip:port/xxx或者https://domain/xxx
+        # @param CallbackUrl: AI 结果回调地址。类似 "http://ip:port/***或者https://domain/***
         # @type CallbackUrl: String
         # @param IsStartTheTask: 是否立即开启 AI 任务。"true"代表立即开启 AI 任务，"false"代表暂不开启 AI 任务，默认为 false。
         # @type IsStartTheTask: Boolean
@@ -2381,7 +2381,7 @@ module TencentCloud
         # @param DeviceId: 设备ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
-        # @param Code: 设备编码（即我们为设备生成的20位国标编码）
+        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
@@ -4400,7 +4400,7 @@ module TencentCloud
       class ListDeviceInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备 ID
         # @type DeviceId: String
-        # @param Code: 设备国标编码
+        # @param Code: 设备编码
         # @type Code: String
         # @param Status: 设备状态。0:未注册，1:在线，2:离线，3:禁用
         # @type Status: Integer
@@ -4466,7 +4466,9 @@ module TencentCloud
         # @type OrganizationId: String
         # @param IsContainSubLevel: 是否获取当前层级及子层级的设备列表，默认false
         # @type IsContainSubLevel: Boolean
-        # @param AccessProtocol: 设备接入协议。1:RTMP，2:GB，3:GW
+        # @param IsContainUser: 是否包含当前用户已关联的设备，默认false
+        # @type IsContainUser: Boolean
+        # @param AccessProtocol: 设备接入协议。1:RTMP，2:GB，3:GW，4:IVCP(私有协议)
         # @type AccessProtocol: Integer
         # @param Type: 设备类型。1:IPC，2:NVR
         # @type Type: Integer
@@ -4474,7 +4476,7 @@ module TencentCloud
         # @type Status: Integer
         # @param ClusterId: 服务节点ID
         # @type ClusterId: String
-        # @param Keyword: 模糊搜索设备关键字
+        # @param Keyword: 模糊搜索设备的关键字
         # @type Keyword: String
         # @param CurrentUin: 当前用户Uin
         # @type CurrentUin: Integer
@@ -4483,11 +4485,12 @@ module TencentCloud
         # @param PageSize: 每页数量，默认为20。
         # @type PageSize: Integer
 
-        attr_accessor :OrganizationId, :IsContainSubLevel, :AccessProtocol, :Type, :Status, :ClusterId, :Keyword, :CurrentUin, :PageNumber, :PageSize
+        attr_accessor :OrganizationId, :IsContainSubLevel, :IsContainUser, :AccessProtocol, :Type, :Status, :ClusterId, :Keyword, :CurrentUin, :PageNumber, :PageSize
 
-        def initialize(organizationid=nil, iscontainsublevel=nil, accessprotocol=nil, type=nil, status=nil, clusterid=nil, keyword=nil, currentuin=nil, pagenumber=nil, pagesize=nil)
+        def initialize(organizationid=nil, iscontainsublevel=nil, iscontainuser=nil, accessprotocol=nil, type=nil, status=nil, clusterid=nil, keyword=nil, currentuin=nil, pagenumber=nil, pagesize=nil)
           @OrganizationId = organizationid
           @IsContainSubLevel = iscontainsublevel
+          @IsContainUser = iscontainuser
           @AccessProtocol = accessprotocol
           @Type = type
           @Status = status
@@ -4501,6 +4504,7 @@ module TencentCloud
         def deserialize(params)
           @OrganizationId = params['OrganizationId']
           @IsContainSubLevel = params['IsContainSubLevel']
+          @IsContainUser = params['IsContainUser']
           @AccessProtocol = params['AccessProtocol']
           @Type = params['Type']
           @Status = params['Status']
@@ -6397,7 +6401,7 @@ module TencentCloud
         # @type Desc: String
         # @param ChannelList: 通道 ID 列表。不能添加存在于其他 AI 任务的通道，限制1000个通道。
         # @type ChannelList: Array
-        # @param CallbackUrl: AI 结果回调地址。类似 "http://ip:port/xxx或者https://domain/xxx
+        # @param CallbackUrl: AI 结果回调地址。类似 "http://ip:port/***或者https://domain/***
         # @type CallbackUrl: String
         # @param IsStartTheTask: 是否立即开启 AI 任务。"true"代表立即开启 AI 任务，"false"代表暂不开启 AI 任务，默认为 false。
         # @type IsStartTheTask: Boolean
@@ -6926,11 +6930,11 @@ module TencentCloud
 
       # 修改录像上云计划数据结构
       class UpdateRecordBackupPlanModify < TencentCloud::Common::AbstractModel
-        # @param PlanName: 录像计划名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复，不修改名称时，不需要该字段）
+        # @param PlanName: 录像上云计划名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，计划名称全局唯一，不能为空，不能重复，不修改名称时，不需要该字段）
         # @type PlanName: String
         # @param TemplateId: 录制模板ID（从查询录像上云模板列表接口ListRecordBackupTemplates中获取，不修改模板ID时，不需要该字段）
         # @type TemplateId: String
-        # @param Describe: 录像计划描述（仅支持中文、英文、数字、_、-，长度不超过128个字符， 不修改描述时，不需要该字段）
+        # @param Describe: 录像上云计划描述（仅支持中文、英文、数字、_、-，长度不超过128个字符， 不修改描述时，不需要该字段）
         # @type Describe: String
         # @param LifeCycle: 生命周期（录像文件生命周期设置，管理文件冷、热存储的时间，不修改生命周期时，不需要该字段）
         # @type LifeCycle: :class:`Tencentcloud::Iss.v20230517.models.LifeCycleData`
