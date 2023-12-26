@@ -8319,7 +8319,7 @@ module TencentCloud
         # @type MetricNames: Array
         # @param MetricLabels: 指标维度，不接受时间类型。
         # @type MetricLabels: Array
-        # @param CustomTime: 指标时间戳，默认值为SQL查询时间范围的左侧时间点，您也可以指定其他字段（类型为uinx时间，精度毫秒）为指标时间戳。
+        # @param CustomTime: 指标时间戳，默认值为SQL查询时间范围的左侧时间点，您也可以指定其他字段（类型为uinx时间、TimeStamp，精度毫秒）为指标时间戳。
         # @type CustomTime: String
         # @param CustomMetricLabels: 除了MetricLabels，您还可以使用该参数，为指标补充静态的维度。
         # 维度名以字母或下划线开头，后面可以跟字母、数字或下划线，长度小于等于1024 字节

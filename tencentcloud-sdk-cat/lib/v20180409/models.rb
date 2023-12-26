@@ -185,7 +185,7 @@ module TencentCloud
         # @type SortField: String
         # @param Ascending: true表示升序
         # @type Ascending: Boolean
-        # @param SelectedFields: 选中字段
+        # @param SelectedFields: 选中字段，如ProbeTime、TransferTime、TransferSize等。
         # @type SelectedFields: Array
         # @param Offset: 起始取数位置
         # @type Offset: Integer
@@ -223,10 +223,12 @@ module TencentCloud
         # @type City: Array
         # @param ScrollID: es scroll查询id
         # @type ScrollID: String
+        # @param QueryFlag: 详情数据下载
+        # @type QueryFlag: String
 
-        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City, :ScrollID
+        attr_accessor :BeginTime, :EndTime, :TaskType, :SortField, :Ascending, :SelectedFields, :Offset, :Limit, :TaskID, :Operators, :Districts, :ErrorTypes, :City, :ScrollID, :QueryFlag
 
-        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil, scrollid=nil)
+        def initialize(begintime=nil, endtime=nil, tasktype=nil, sortfield=nil, ascending=nil, selectedfields=nil, offset=nil, limit=nil, taskid=nil, operators=nil, districts=nil, errortypes=nil, city=nil, scrollid=nil, queryflag=nil)
           @BeginTime = begintime
           @EndTime = endtime
           @TaskType = tasktype
@@ -241,6 +243,7 @@ module TencentCloud
           @ErrorTypes = errortypes
           @City = city
           @ScrollID = scrollid
+          @QueryFlag = queryflag
         end
 
         def deserialize(params)
@@ -258,6 +261,7 @@ module TencentCloud
           @ErrorTypes = params['ErrorTypes']
           @City = params['City']
           @ScrollID = params['ScrollID']
+          @QueryFlag = params['QueryFlag']
         end
       end
 

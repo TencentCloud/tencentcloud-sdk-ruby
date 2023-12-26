@@ -321,6 +321,26 @@ module TencentCloud
         end
       end
 
+      # 注释
+      class AnnotationValue < TencentCloud::Common::AbstractModel
+        # @param Name: 注释键
+        # @type Name: String
+        # @param Value: 注释值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # app所支持的chart
       class AppChart < TencentCloud::Common::AbstractModel
         # @param Name: chart名称
@@ -2076,7 +2096,7 @@ module TencentCloud
         # @type AutoScalingGroupPara: String
         # @param LaunchConfigurePara: LaunchConfigurePara 运行参数，参考 https://cloud.tencent.com/document/product/377/20447
         # @type LaunchConfigurePara: String
-        # @param InstanceAdvancedSettings: InstanceAdvancedSettings 示例参数
+        # @param InstanceAdvancedSettings: InstanceAdvancedSettings
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
         # @param EnableAutoscale: 是否启用自动伸缩
         # @type EnableAutoscale: Boolean
@@ -2086,6 +2106,8 @@ module TencentCloud
         # @type Labels: Array
         # @param Taints: Taints互斥
         # @type Taints: Array
+        # @param Annotations: 节点Annotation 列表
+        # @type Annotations: Array
         # @param ContainerRuntime: 节点池纬度运行时类型及版本
         # @type ContainerRuntime: String
         # @param RuntimeVersion: 运行时版本
@@ -2099,9 +2121,9 @@ module TencentCloud
         # @param DeletionProtection: 删除保护开关
         # @type DeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection
+        attr_accessor :ClusterId, :AutoScalingGroupPara, :LaunchConfigurePara, :InstanceAdvancedSettings, :EnableAutoscale, :Name, :Labels, :Taints, :Annotations, :ContainerRuntime, :RuntimeVersion, :NodePoolOs, :OsCustomizeType, :Tags, :DeletionProtection
 
-        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil, deletionprotection=nil)
+        def initialize(clusterid=nil, autoscalinggrouppara=nil, launchconfigurepara=nil, instanceadvancedsettings=nil, enableautoscale=nil, name=nil, labels=nil, taints=nil, annotations=nil, containerruntime=nil, runtimeversion=nil, nodepoolos=nil, oscustomizetype=nil, tags=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @AutoScalingGroupPara = autoscalinggrouppara
           @LaunchConfigurePara = launchconfigurepara
@@ -2110,6 +2132,7 @@ module TencentCloud
           @Name = name
           @Labels = labels
           @Taints = taints
+          @Annotations = annotations
           @ContainerRuntime = containerruntime
           @RuntimeVersion = runtimeversion
           @NodePoolOs = nodepoolos
@@ -2142,6 +2165,14 @@ module TencentCloud
               taint_tmp = Taint.new
               taint_tmp.deserialize(i)
               @Taints << taint_tmp
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              annotationvalue_tmp = AnnotationValue.new
+              annotationvalue_tmp.deserialize(i)
+              @Annotations << annotationvalue_tmp
             end
           end
           @ContainerRuntime = params['ContainerRuntime']
@@ -13591,6 +13622,8 @@ module TencentCloud
         # @type Labels: Array
         # @param Taints: 污点
         # @type Taints: Array
+        # @param Annotations: 节点 Annotation 列表
+        # @type Annotations: Array
         # @param EnableAutoscale: 是否开启伸缩
         # @type EnableAutoscale: Boolean
         # @param OsName: 操作系统名称
@@ -13616,9 +13649,9 @@ module TencentCloud
         # @param PreStartUserScript: base64编码后的自定义脚本
         # @type PreStartUserScript: String
 
-        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath, :PreStartUserScript
+        attr_accessor :ClusterId, :NodePoolId, :Name, :MaxNodesNum, :MinNodesNum, :Labels, :Taints, :Annotations, :EnableAutoscale, :OsName, :OsCustomizeType, :GPUArgs, :UserScript, :IgnoreExistedNode, :ExtraArgs, :Tags, :Unschedulable, :DeletionProtection, :DockerGraphPath, :PreStartUserScript
 
-        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, gpuargs=nil, userscript=nil, ignoreexistednode=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil, dockergraphpath=nil, prestartuserscript=nil)
+        def initialize(clusterid=nil, nodepoolid=nil, name=nil, maxnodesnum=nil, minnodesnum=nil, labels=nil, taints=nil, annotations=nil, enableautoscale=nil, osname=nil, oscustomizetype=nil, gpuargs=nil, userscript=nil, ignoreexistednode=nil, extraargs=nil, tags=nil, unschedulable=nil, deletionprotection=nil, dockergraphpath=nil, prestartuserscript=nil)
           @ClusterId = clusterid
           @NodePoolId = nodepoolid
           @Name = name
@@ -13626,6 +13659,7 @@ module TencentCloud
           @MinNodesNum = minnodesnum
           @Labels = labels
           @Taints = taints
+          @Annotations = annotations
           @EnableAutoscale = enableautoscale
           @OsName = osname
           @OsCustomizeType = oscustomizetype
@@ -13660,6 +13694,14 @@ module TencentCloud
               taint_tmp = Taint.new
               taint_tmp.deserialize(i)
               @Taints << taint_tmp
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              annotationvalue_tmp = AnnotationValue.new
+              annotationvalue_tmp.deserialize(i)
+              @Annotations << annotationvalue_tmp
             end
           end
           @EnableAutoscale = params['EnableAutoscale']
@@ -14324,6 +14366,8 @@ module TencentCloud
         # @type Labels: Array
         # @param Taints: Taints 污点标记
         # @type Taints: Array
+        # @param Annotations: 节点 Annotation 列表
+        # @type Annotations: Array
         # @param NodeCountSummary: NodeCountSummary 节点列表
         # @type NodeCountSummary: :class:`Tencentcloud::Tke.v20180525.models.NodeCountSummary`
         # @param AutoscalingGroupStatus: 状态信息
@@ -14378,9 +14422,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreStartUserScript: String
 
-        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection, :ExtraArgs, :GPUArgs, :DockerGraphPath, :DataDisks, :Unschedulable, :PreStartUserScript
+        attr_accessor :NodePoolId, :Name, :ClusterInstanceId, :LifeState, :LaunchConfigurationId, :AutoscalingGroupId, :Labels, :Taints, :Annotations, :NodeCountSummary, :AutoscalingGroupStatus, :MaxNodesNum, :MinNodesNum, :DesiredNodesNum, :NodePoolOs, :OsCustomizeType, :ImageId, :DesiredPodNum, :UserScript, :Tags, :DeletionProtection, :ExtraArgs, :GPUArgs, :DockerGraphPath, :DataDisks, :Unschedulable, :PreStartUserScript
 
-        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil, extraargs=nil, gpuargs=nil, dockergraphpath=nil, datadisks=nil, unschedulable=nil, prestartuserscript=nil)
+        def initialize(nodepoolid=nil, name=nil, clusterinstanceid=nil, lifestate=nil, launchconfigurationid=nil, autoscalinggroupid=nil, labels=nil, taints=nil, annotations=nil, nodecountsummary=nil, autoscalinggroupstatus=nil, maxnodesnum=nil, minnodesnum=nil, desirednodesnum=nil, nodepoolos=nil, oscustomizetype=nil, imageid=nil, desiredpodnum=nil, userscript=nil, tags=nil, deletionprotection=nil, extraargs=nil, gpuargs=nil, dockergraphpath=nil, datadisks=nil, unschedulable=nil, prestartuserscript=nil)
           @NodePoolId = nodepoolid
           @Name = name
           @ClusterInstanceId = clusterinstanceid
@@ -14389,6 +14433,7 @@ module TencentCloud
           @AutoscalingGroupId = autoscalinggroupid
           @Labels = labels
           @Taints = taints
+          @Annotations = annotations
           @NodeCountSummary = nodecountsummary
           @AutoscalingGroupStatus = autoscalinggroupstatus
           @MaxNodesNum = maxnodesnum
@@ -14430,6 +14475,14 @@ module TencentCloud
               taint_tmp = Taint.new
               taint_tmp.deserialize(i)
               @Taints << taint_tmp
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              annotationvalue_tmp = AnnotationValue.new
+              annotationvalue_tmp.deserialize(i)
+              @Annotations << annotationvalue_tmp
             end
           end
           unless params['NodeCountSummary'].nil?

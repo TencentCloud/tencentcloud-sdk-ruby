@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取歌曲伴奏高潮的开始、结束时间，可用于抢唱
+
+        # @param request: Request instance for DescribeKTVMusicAccompanySegmentUrlVip.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVMusicAccompanySegmentUrlVipRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeKTVMusicAccompanySegmentUrlVipResponse`
+        def DescribeKTVMusicAccompanySegmentUrlVip(request)
+          body = send_request('DescribeKTVMusicAccompanySegmentUrlVip', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKTVMusicAccompanySegmentUrlVipResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过标签过滤歌曲列表。
 
         # @param request: Request instance for DescribeKTVMusicsByTag.
@@ -341,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取会员信息：获取用户是否开通会员
+
+        # @param request: Request instance for DescribeVipUserInfo.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::DescribeVipUserInfoRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::DescribeVipUserInfoResponse`
+        def DescribeVipUserInfo(request)
+          body = send_request('DescribeVipUserInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVipUserInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 销毁机器人，机器人退出 RTC 房间。
 
         # @param request: Request instance for DestroyKTVRobot.
@@ -375,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RechargeLiveVipResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 充值会员
+
+        # @param request: Request instance for RechargeVip.
+        # @type request: :class:`Tencentcloud::yinsuda::V20220527::RechargeVipRequest`
+        # @rtype: :class:`Tencentcloud::yinsuda::V20220527::RechargeVipResponse`
+        def RechargeVip(request)
+          body = send_request('RechargeVip', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RechargeVipResponse.new
             model.deserialize(response['Response'])
             model
           else

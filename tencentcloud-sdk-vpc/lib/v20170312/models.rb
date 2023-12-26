@@ -927,12 +927,15 @@ module TencentCloud
         # @type VpcId: String
         # @param Ipv6SubnetCidrBlocks: 分配 `IPv6` 子网段列表。
         # @type Ipv6SubnetCidrBlocks: Array
+        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        # @type ClientToken: String
 
-        attr_accessor :VpcId, :Ipv6SubnetCidrBlocks
+        attr_accessor :VpcId, :Ipv6SubnetCidrBlocks, :ClientToken
 
-        def initialize(vpcid=nil, ipv6subnetcidrblocks=nil)
+        def initialize(vpcid=nil, ipv6subnetcidrblocks=nil, clienttoken=nil)
           @VpcId = vpcid
           @Ipv6SubnetCidrBlocks = ipv6subnetcidrblocks
+          @ClientToken = clienttoken
         end
 
         def deserialize(params)
@@ -945,6 +948,7 @@ module TencentCloud
               @Ipv6SubnetCidrBlocks << ipv6subnetcidrblock_tmp
             end
           end
+          @ClientToken = params['ClientToken']
         end
       end
 

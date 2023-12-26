@@ -5499,7 +5499,7 @@ module TencentCloud
 
       # CreateAIAnalysisTemplate请求参数结构体
       class CreateAIAnalysisTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 音视频内容分析模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -5782,7 +5782,7 @@ module TencentCloud
       class CreateAnimatedGraphicsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Fps: 帧率，取值范围：[1, 30]，单位：Hz。
         # @type Fps: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Width: 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
         # <li>当 Width、Height 均为 0，则分辨率同源；</li>
@@ -5909,7 +5909,7 @@ module TencentCloud
         # <li>ON：是；</li>
         # <li>OFF：否。</li>
         # @type ReviewWallSwitch: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 内容审核模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -6304,7 +6304,7 @@ module TencentCloud
         # @param ColumnCount: 雪碧图中小图的列数。
         # 注意：小图的列数会影响最终大图的宽度，大图的宽度最大为15000像素，其中大图的宽度为小图列数与小图宽度的乘积。
         # @type ColumnCount: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 雪碧图模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -6459,7 +6459,7 @@ module TencentCloud
         # 2. Review：用于内容不适宜，等价于 Review.Face。
         # 3. All：包含以上全部，等价于 1+2。
         # @type Usages: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Description: 素材描述，长度限制：1024 个字符。
         # @type Description: String
@@ -6530,7 +6530,7 @@ module TencentCloud
       class CreateProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字（支持中文，不超过20个字）。
         # @type Name: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
@@ -6604,7 +6604,7 @@ module TencentCloud
 
       # CreateQualityInspectTemplate请求参数结构体
       class CreateQualityInspectTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 音画质检测模板名称。
         # @type Name: String
@@ -6724,7 +6724,7 @@ module TencentCloud
       class CreateRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Container: 输出文件封装格式，可选值：mp4、flv、hls。
         # @type Container: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 音画质重生模板名称。
         # @type Name: String
@@ -6821,7 +6821,7 @@ module TencentCloud
         # <li>Ad：广告；</li>
         # <li>Moan：娇喘。</li>
         # @type Labels: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: String
         # @param Name: 审核模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -6872,7 +6872,7 @@ module TencentCloud
         # @param RoundPlaylist: 轮播列表。
         # <li>数组长度限制：100。</li>
         # @type RoundPlaylist: Array
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 轮播播单名称，长度限制：64 个字符。
         # @type Name: String
@@ -6946,7 +6946,7 @@ module TencentCloud
         # <li>当 SampleType 为 Percent 时，指定采样间隔的百分比。</li>
         # <li>当 SampleType 为 Time 时，指定采样间隔的时间，单位为秒。</li>
         # @type SampleInterval: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 采样截图模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -7032,7 +7032,7 @@ module TencentCloud
 
       # CreateSnapshotByTimeOffsetTemplate请求参数结构体
       class CreateSnapshotByTimeOffsetTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 指定时间点截图模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -7192,7 +7192,7 @@ module TencentCloud
       class CreateSuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称，长度限制：64 个字符。只允许出现 [0-9a-zA-Z] 及 _- 字符（如 test_ABC-123），同一个用户该名称唯一。
         # @type Name: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param AudioVideoType: 播放的音视频类型，可选值：
         # <li>AdaptiveDynamicStream：自适应码流输出；</li>
@@ -7301,7 +7301,7 @@ module TencentCloud
       class CreateTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Container: 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
         # @type Container: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 转码模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -7438,7 +7438,7 @@ module TencentCloud
         # <li>text：文字水印；</li>
         # <li>svg：SVG 水印。</li>
         # @type Type: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Name: 水印模板名称，长度限制：64 个字符。
         # @type Name: String
@@ -7544,7 +7544,7 @@ module TencentCloud
         # @type Usages: Array
         # @param Words: 关键词，数组长度限制：100。
         # @type Words: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Usages, :Words, :SubAppId
@@ -7713,7 +7713,7 @@ module TencentCloud
       class DeleteAdaptiveDynamicStreamingTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 自适应转码模板唯一标识。
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Definition, :SubAppId
@@ -7857,7 +7857,7 @@ module TencentCloud
       class DeleteEnhanceMediaTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 音画质重生模板号。
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Definition, :SubAppId
@@ -8084,7 +8084,7 @@ module TencentCloud
       class DeletePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param PersonId: 素材 ID。
         # @type PersonId: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :PersonId, :SubAppId
@@ -8120,7 +8120,7 @@ module TencentCloud
       class DeleteProcedureTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 任务流名字。
         # @type Name: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Name, :SubAppId
@@ -8192,7 +8192,7 @@ module TencentCloud
       class DeleteRebuildMediaTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 视频重生模板号。
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Definition, :SubAppId
@@ -8228,7 +8228,7 @@ module TencentCloud
       class DeleteReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 审核模板唯一标识。
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Definition, :SubAppId
@@ -8264,7 +8264,7 @@ module TencentCloud
       class DeleteRoundPlayRequest < TencentCloud::Common::AbstractModel
         # @param RoundPlayId: 轮播播单唯一标识。
         # @type RoundPlayId: String
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :RoundPlayId, :SubAppId
@@ -8372,7 +8372,7 @@ module TencentCloud
       class DeleteSuperPlayerConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 播放器配置名称。
         # @type Name: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Name, :SubAppId
@@ -8444,7 +8444,7 @@ module TencentCloud
       class DeleteVodDomainRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 要删除的点播加速域名。
         # @type Domain: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Domain, :SubAppId
@@ -8516,7 +8516,7 @@ module TencentCloud
       class DeleteWordSamplesRequest < TencentCloud::Common::AbstractModel
         # @param Keywords: 关键词，数组长度限制：100 个词。
         # @type Keywords: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Keywords, :SubAppId
@@ -9140,7 +9140,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Type: 客户端上传加速类型，取值有：
         # <li> AccelerationWithHTTP：HTTP 传输方式的上传加速。</li>
@@ -9194,7 +9194,7 @@ module TencentCloud
 
       # DescribeContentReviewTemplates请求参数结构体
       class DescribeContentReviewTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Definitions: 内容审核模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
@@ -9259,7 +9259,7 @@ module TencentCloud
         # @type StartDate: String
         # @param EndDate: 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
         # @type EndDate: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :FileId, :StartDate, :EndDate, :SubAppId
@@ -9317,7 +9317,7 @@ module TencentCloud
         # <li>PlayTimes：播放次数，按播放次数统计播放 Top100 的数据。</li>
         # 默认值为Traffic。
         # @type Metric: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Date, :DomainName, :Metric, :SubAppId
@@ -9370,7 +9370,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type EndTime: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SubAppId
@@ -9464,7 +9464,7 @@ module TencentCloud
 
       # DescribeDrmKeyProviderInfo请求参数结构体
       class DescribeDrmKeyProviderInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -9504,7 +9504,7 @@ module TencentCloud
 
       # DescribeEnhanceMediaTemplates请求参数结构体
       class DescribeEnhanceMediaTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Definitions: 音画质重生模板列表。长度限制：100。
         # @type Definitions: Array
@@ -9617,7 +9617,7 @@ module TencentCloud
 
       # DescribeEventsState请求参数结构体
       class DescribeEventsStateRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -9916,7 +9916,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         # @type EndTime: String
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :SubAppId
@@ -10100,7 +10100,7 @@ module TencentCloud
         # @param LicenseType: License 类型，默认为 DRM 。目前支持的 License 类型包括：
         # <li> DRM: DRM 加密播放 License</li>
         # @type LicenseType: String
-        # @param SubAppId: 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :StartTime, :EndTime, :LicenseType, :SubAppId
@@ -10351,7 +10351,7 @@ module TencentCloud
 
       # DescribePersonSamples请求参数结构体
       class DescribePersonSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Type: 拉取的素材类型，可选值：
         # <li>UserDefine：用户自定义素材库；</li>
@@ -10465,7 +10465,7 @@ module TencentCloud
 
       # DescribeProcedureTemplates请求参数结构体
       class DescribeProcedureTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Names: 任务流模板名字过滤条件，数组长度限制：100。
         # @type Names: Array
@@ -10530,7 +10530,7 @@ module TencentCloud
 
       # DescribeQualityInspectTemplates请求参数结构体
       class DescribeQualityInspectTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Definitions: 音画质检测模板列表。长度限制：100。
         # @type Definitions: Array
@@ -10597,7 +10597,7 @@ module TencentCloud
       class DescribeRebuildMediaTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param Definitions: 视频重生模板列表。
         # @type Definitions: Array
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Type: 模板类型过滤条件，可选值：
         # <li>Preset：系统预置模板；</li>
@@ -10784,7 +10784,7 @@ module TencentCloud
 
       # DescribeRoundPlays请求参数结构体
       class DescribeRoundPlaysRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param RoundPlayIds: 轮播播单标识过滤条件，数组长度限制：100。
         # @type RoundPlayIds: Array
@@ -10973,7 +10973,7 @@ module TencentCloud
 
       # DescribeStorageData请求参数结构体
       class DescribeStorageDataRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :SubAppId
@@ -11234,7 +11234,7 @@ module TencentCloud
 
       # DescribeSuperPlayerConfigs请求参数结构体
       class DescribeSuperPlayerConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Names: 播放器配置名字过滤条件，数组长度限制：100。
         # @type Names: Array
@@ -11713,7 +11713,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页拉取的起始偏移量。默认值：0。
         # @type Offset: Integer
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :Domains, :Limit, :Offset, :SubAppId
@@ -11835,7 +11835,7 @@ module TencentCloud
 
       # DescribeWordSamples请求参数结构体
       class DescribeWordSamplesRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param Usages: <b>关键词应用场景过滤条件，可选值：</b>
         # 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
@@ -12526,7 +12526,7 @@ module TencentCloud
         # @type FileId: String
         # @param Definition: 音画质重生模板 ID。
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param StartTimeOffset: 起始偏移时间，单位：秒，不填表示从视频开始截取。
         # @type StartTimeOffset: Float
@@ -12925,7 +12925,7 @@ module TencentCloud
         # @type FunctionName: String
         # @param FunctionArg: 接口参数，具体参数格式调用时与后端协调。
         # @type FunctionArg: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
@@ -12979,7 +12979,7 @@ module TencentCloud
       class ExtractCopyRightWatermarkRequest < TencentCloud::Common::AbstractModel
         # @param Url: 需要提取水印的媒体 URL。
         # @type Url: String
-        # @param SubAppId: <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在 ExtractCopyRightWatermarkComplete 回调和任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String

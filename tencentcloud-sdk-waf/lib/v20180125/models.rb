@@ -7675,10 +7675,13 @@ module TencentCloud
         # @param MiniMaxQPS: 小程序qps峰值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MiniMaxQPS: Integer
+        # @param LastQpsExceedTime: 最近一次超量时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastQpsExceedTime: String
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -7716,6 +7719,7 @@ module TencentCloud
           @MiniPkg = minipkg
           @MiniQpsStandard = miniqpsstandard
           @MiniMaxQPS = minimaxqps
+          @LastQpsExceedTime = lastqpsexceedtime
         end
 
         def deserialize(params)
@@ -7783,6 +7787,7 @@ module TencentCloud
           end
           @MiniQpsStandard = params['MiniQpsStandard']
           @MiniMaxQPS = params['MiniMaxQPS']
+          @LastQpsExceedTime = params['LastQpsExceedTime']
         end
       end
 

@@ -407,6 +407,70 @@ module TencentCloud
         end
       end
 
+      # DescribeKTVMusicAccompanySegmentUrlVip请求参数结构体
+      class DescribeKTVMusicAccompanySegmentUrlVipRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称
+        # @type AppName: String
+        # @param UserId: 用户标识
+        # @type UserId: String
+        # @param MusicId: 歌曲 Id
+        # @type MusicId: String
+
+        attr_accessor :AppName, :UserId, :MusicId
+
+        def initialize(appname=nil, userid=nil, musicid=nil)
+          @AppName = appname
+          @UserId = userid
+          @MusicId = musicid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @MusicId = params['MusicId']
+        end
+      end
+
+      # DescribeKTVMusicAccompanySegmentUrlVip返回参数结构体
+      class DescribeKTVMusicAccompanySegmentUrlVipResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 0:成功获取 1:歌曲下架 2:无权限 3: 非包月会员 4:没有对应的链接
+        # @type Status: Integer
+        # @param Url: 伴奏链接
+        # @type Url: String
+        # @param ExtName: 伴奏类型，如mkv，mp3等
+        # @type ExtName: String
+        # @param SegmentBegin: 高潮开始时间
+        # @type SegmentBegin: Integer
+        # @param SegmentEnd: 高潮结束时间
+        # @type SegmentEnd: Integer
+        # @param FileSize: 链接文件大小 (单位:字节)
+        # @type FileSize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Url, :ExtName, :SegmentBegin, :SegmentEnd, :FileSize, :RequestId
+
+        def initialize(status=nil, url=nil, extname=nil, segmentbegin=nil, segmentend=nil, filesize=nil, requestid=nil)
+          @Status = status
+          @Url = url
+          @ExtName = extname
+          @SegmentBegin = segmentbegin
+          @SegmentEnd = segmentend
+          @FileSize = filesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Url = params['Url']
+          @ExtName = params['ExtName']
+          @SegmentBegin = params['SegmentBegin']
+          @SegmentEnd = params['SegmentEnd']
+          @FileSize = params['FileSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKTVMusicsByTag请求参数结构体
       class DescribeKTVMusicsByTagRequest < TencentCloud::Common::AbstractModel
         # @param AppName: 应用名称。
@@ -916,6 +980,62 @@ module TencentCloud
             @UserInfo = UserInfo.new
             @UserInfo.deserialize(params['UserInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVipUserInfo请求参数结构体
+      class DescribeVipUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+
+        attr_accessor :AppName, :UserId
+
+        def initialize(appname=nil, userid=nil)
+          @AppName = appname
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribeVipUserInfo返回参数结构体
+      class DescribeVipUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param IsVip: 是否是会员。（0:不是会员 1:是会员）
+        # @type IsVip: Integer
+        # @param AnchorId: 主播id
+        # @type AnchorId: String
+        # @param RoomId: 房间id
+        # @type RoomId: String
+        # @param EndTime: 会员过期时间
+        # @type EndTime: String
+        # @param Status: 会员状态。（-1:未开通过；1:已开通，未过期；2:已开通，已过期）
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsVip, :AnchorId, :RoomId, :EndTime, :Status, :RequestId
+
+        def initialize(isvip=nil, anchorid=nil, roomid=nil, endtime=nil, status=nil, requestid=nil)
+          @IsVip = isvip
+          @AnchorId = anchorid
+          @RoomId = roomid
+          @EndTime = endtime
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsVip = params['IsVip']
+          @AnchorId = params['AnchorId']
+          @RoomId = params['RoomId']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -1569,6 +1689,66 @@ module TencentCloud
             @LiveVipUserInfo = LiveVipUserInfo.new
             @LiveVipUserInfo.deserialize(params['LiveVipUserInfo'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RechargeVip请求参数结构体
+      class RechargeVipRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 应用名称。
+        # @type AppName: String
+        # @param UserId: 用户标识。
+        # @type UserId: String
+        # @param RoomId: 房间Id。
+        # @type RoomId: String
+        # @param VipDays: 充值会员天数。(取值有：31、93、186、372)
+        # @type VipDays: Integer
+        # @param AnchorId: 主播id。
+        # @type AnchorId: String
+
+        attr_accessor :AppName, :UserId, :RoomId, :VipDays, :AnchorId
+
+        def initialize(appname=nil, userid=nil, roomid=nil, vipdays=nil, anchorid=nil)
+          @AppName = appname
+          @UserId = userid
+          @RoomId = roomid
+          @VipDays = vipdays
+          @AnchorId = anchorid
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+          @VipDays = params['VipDays']
+          @AnchorId = params['AnchorId']
+        end
+      end
+
+      # RechargeVip返回参数结构体
+      class RechargeVipResponse < TencentCloud::Common::AbstractModel
+        # @param PartnerNo: 厂商订单号。
+        # @type PartnerNo: String
+        # @param OrderNo: TME订单号。
+        # @type OrderNo: String
+        # @param CreateTime: 订单创建时间。
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PartnerNo, :OrderNo, :CreateTime, :RequestId
+
+        def initialize(partnerno=nil, orderno=nil, createtime=nil, requestid=nil)
+          @PartnerNo = partnerno
+          @OrderNo = orderno
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PartnerNo = params['PartnerNo']
+          @OrderNo = params['OrderNo']
+          @CreateTime = params['CreateTime']
           @RequestId = params['RequestId']
         end
       end

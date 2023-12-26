@@ -2699,19 +2699,27 @@ module TencentCloud
 
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Memory: 实例配置变更后的内存大小，单位：GB。内存和磁盘必须同时升配或同时降配
+        # @param Memory: 实例配置变更后的内存大小。
+        # - 单位：GB。
+        # - 内存和磁盘必须同时升配或同时降配，即 Memory 与 Volume 需同时配置变更。
         # @type Memory: Integer
-        # @param Volume: 实例配置变更后的硬盘大小，单位：GB。内存和磁盘必须同时升配或同时降配。降配时，新的磁盘参数必须大于已用磁盘容量的1.2倍
+        # @param Volume: 实例配置变更后的硬盘大小，单位：GB。<ul><li>内存和磁盘必须同时升配或同时降配，即 Memory 与 Volume 需同时配置变更。</li><li>降配时，变更后的磁盘容量必须大于已用磁盘容量的1.2倍。</li></ul>
         # @type Volume: Integer
-        # @param OplogSize: 实例配置变更后oplog的大小，单位：GB，默认为磁盘空间的10%，允许设置的最小值为磁盘的10%，最大值为磁盘的90%
+        # @param OplogSize: (已废弃) 请使用ResizeOplog独立接口完成。
+
+        # 实例配置变更后 Oplog 的大小。
+        # - 单位：GB。
+        # - 默认 Oplog 占用容量为磁盘空间的10%。系统允许设置的 Oplog 容量范围为磁盘空间的[10%,90%]。
         # @type OplogSize: Integer
-        # @param NodeNum: 实例变更后的节点数，取值范围具体参照查询云数据库的售卖规格返回参数。默认为不变更节点数
+        # @param NodeNum: 实例变更后的节点数(mongod节点或mongos节点或readonly节点调整后的节点数，具体类型取决于AddNodeList或RemoveNodeList参数的节点类型)。
+        # <ul><li>副本集：取值范围请通过云数据库的售卖规格（DescribeSpecInfo）接口返回的参数 MinNodeNum 与 MaxNodeNum 获取。</li><li>分片集群：取值范围请通过云数据库的售卖规格（DescribeSpecInfo）接口返回的参数 MinReplicateSetNodeNum 与 MaxReplicateSetNodeNum 获取。</li></ul>
         # @type NodeNum: Integer
-        # @param ReplicateSetNum: 实例变更后的分片数，取值范围具体参照查询云数据库的售卖规格返回参数。只能增加不能减少，默认为不变更分片数
+        # @param ReplicateSetNum: 实例变更后的分片数。<ul><li>取值范围请通过云数据库的售卖规格（DescribeSpecInfo）接口返回的参数MinReplicateSetNum与MaxReplicateSetNum获取。</li><li>该参数只能增加不能减少。</li></ul>
         # @type ReplicateSetNum: Integer
-        # @param InMaintenance: 实例配置变更的切换时间，参数为：0(默认)、1。0-调整完成时，1-维护时间内。注：调整节点数和分片数不支持在【维护时间内】变更。
+        # @param InMaintenance: 实例配置变更的切换时间。<ul><li>0：调整完成时，立即执行变配任务。默认为0。</li><li>1：在维护时间窗内，执行变配任务。
+        # <b>说明</b>：调整节点数和分片数不支持在<b>维护时间窗内</b>变更。</li></ul>
         # @type InMaintenance: Integer
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance
@@ -2739,7 +2747,7 @@ module TencentCloud
 
       # ModifyDBInstanceSpec返回参数结构体
       class ModifyDBInstanceSpecResponse < TencentCloud::Common::AbstractModel
-        # @param DealId: 订单ID
+        # @param DealId: 订单 ID。
         # @type DealId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
