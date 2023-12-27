@@ -3304,6 +3304,113 @@ module TencentCloud
         end
       end
 
+      # 表的元数据信息
+      class ColumnBasicInfo < TencentCloud::Common::AbstractModel
+        # @param TableId: 表的全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param DatasourceId: 数据源全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatasourceName: 数据源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatabaseId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param DatabaseName: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param ColumnName: 字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param DataType: 数据类型,string/int等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataType: String
+        # @param ColumnType: 字段类型, varchar(32)/int(10)等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+        # @param ColumnDefault: 字段默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnDefault: String
+        # @param ColumnKey: 索引类型, PRI/MUL/PARTITION等,普通字段该值为空串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnKey: String
+        # @param ColumnPosition: 字段顺序标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnPosition: Integer
+        # @param ColumnComment: 字段注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnComment: String
+        # @param StoreType: 数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoreType: String
+        # @param ProjectId: 所属项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 所属项目英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param ProjectDisplayName: 所属项目中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :TableId, :DatasourceId, :DatasourceName, :DatabaseId, :DatabaseName, :TableName, :ColumnName, :DataType, :ColumnType, :ColumnDefault, :ColumnKey, :ColumnPosition, :ColumnComment, :StoreType, :ProjectId, :ProjectName, :ProjectDisplayName, :CreateTime, :UpdateTime
+
+        def initialize(tableid=nil, datasourceid=nil, datasourcename=nil, databaseid=nil, databasename=nil, tablename=nil, columnname=nil, datatype=nil, columntype=nil, columndefault=nil, columnkey=nil, columnposition=nil, columncomment=nil, storetype=nil, projectid=nil, projectname=nil, projectdisplayname=nil, createtime=nil, updatetime=nil)
+          @TableId = tableid
+          @DatasourceId = datasourceid
+          @DatasourceName = datasourcename
+          @DatabaseId = databaseid
+          @DatabaseName = databasename
+          @TableName = tablename
+          @ColumnName = columnname
+          @DataType = datatype
+          @ColumnType = columntype
+          @ColumnDefault = columndefault
+          @ColumnKey = columnkey
+          @ColumnPosition = columnposition
+          @ColumnComment = columncomment
+          @StoreType = storetype
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @ProjectDisplayName = projectdisplayname
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceName = params['DatasourceName']
+          @DatabaseId = params['DatabaseId']
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @ColumnName = params['ColumnName']
+          @DataType = params['DataType']
+          @ColumnType = params['ColumnType']
+          @ColumnDefault = params['ColumnDefault']
+          @ColumnKey = params['ColumnKey']
+          @ColumnPosition = params['ColumnPosition']
+          @ColumnComment = params['ColumnComment']
+          @StoreType = params['StoreType']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @ProjectDisplayName = params['ProjectDisplayName']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 血缘字段信息
       class ColumnLineageInfo < TencentCloud::Common::AbstractModel
         # @param Id: 血缘id
@@ -10412,6 +10519,81 @@ module TencentCloud
         end
       end
 
+      # DescribeFieldBasicInfo请求参数结构体
+      class DescribeFieldBasicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Filters: 过滤字段
+        # @type Filters: Array
+        # @param OrderFields: 排序字段
+        # @type OrderFields: Array
+
+        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields
+
+        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeFieldBasicInfo返回参数结构体
+      class DescribeFieldBasicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ColumnBasicInfoList: 字段元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnBasicInfoList: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ColumnBasicInfoList, :TotalCount, :RequestId
+
+        def initialize(columnbasicinfolist=nil, totalcount=nil, requestid=nil)
+          @ColumnBasicInfoList = columnbasicinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ColumnBasicInfoList'].nil?
+            @ColumnBasicInfoList = []
+            params['ColumnBasicInfoList'].each do |i|
+              columnbasicinfo_tmp = ColumnBasicInfo.new
+              columnbasicinfo_tmp.deserialize(i)
+              @ColumnBasicInfoList << columnbasicinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文件夹分页信息
       class DescribeFolderListData < TencentCloud::Common::AbstractModel
         # @param Items: 文件夹信息列表
@@ -15760,6 +15942,81 @@ module TencentCloud
         end
       end
 
+      # DescribeTableBasicInfo请求参数结构体
+      class DescribeTableBasicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Filters: 过滤字段
+        # @type Filters: Array
+        # @param OrderFields: 排序字段
+        # @type OrderFields: Array
+
+        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields
+
+        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTableBasicInfo返回参数结构体
+      class DescribeTableBasicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TableBasicInfoList: 表元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableBasicInfoList: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableBasicInfoList, :TotalCount, :RequestId
+
+        def initialize(tablebasicinfolist=nil, totalcount=nil, requestid=nil)
+          @TableBasicInfoList = tablebasicinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableBasicInfoList'].nil?
+            @TableBasicInfoList = []
+            params['TableBasicInfoList'].each do |i|
+              tablebasicinfo_tmp = TableBasicInfo.new
+              tablebasicinfo_tmp.deserialize(i)
+              @TableBasicInfoList << tablebasicinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTableInfoList请求参数结构体
       class DescribeTableInfoListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 表名
@@ -15814,6 +16071,80 @@ module TencentCloud
               tableinfo_tmp.deserialize(i)
               @TableInfo << tableinfo_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTableLineageInfo请求参数结构体
+      class DescribeTableLineageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Direction: 查询方向，INPUT,OUTPUT,BOTH枚举值
+        # @type Direction: String
+        # @param Data: 表信息
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.TableLineageInfo`
+        # @param InputDepth: 单次查询入度,默认 1
+        # @type InputDepth: Integer
+        # @param OutputDepth: 单次查询出度,默认 1
+        # @type OutputDepth: Integer
+        # @param ExtParams: 额外参数（传递调用方信息）
+        # @type ExtParams: Array
+        # @param IgnoreTemp: 是否过滤临时表,默认true
+        # @type IgnoreTemp: Boolean
+        # @param RecursiveSecond: 是否递归查询二级节点数目，默认为true
+        # @type RecursiveSecond: Boolean
+
+        attr_accessor :Direction, :Data, :InputDepth, :OutputDepth, :ExtParams, :IgnoreTemp, :RecursiveSecond
+
+        def initialize(direction=nil, data=nil, inputdepth=nil, outputdepth=nil, extparams=nil, ignoretemp=nil, recursivesecond=nil)
+          @Direction = direction
+          @Data = data
+          @InputDepth = inputdepth
+          @OutputDepth = outputdepth
+          @ExtParams = extparams
+          @IgnoreTemp = ignoretemp
+          @RecursiveSecond = recursivesecond
+        end
+
+        def deserialize(params)
+          @Direction = params['Direction']
+          unless params['Data'].nil?
+            @Data = TableLineageInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @InputDepth = params['InputDepth']
+          @OutputDepth = params['OutputDepth']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              lineageparamrecord_tmp = LineageParamRecord.new
+              lineageparamrecord_tmp.deserialize(i)
+              @ExtParams << lineageparamrecord_tmp
+            end
+          end
+          @IgnoreTemp = params['IgnoreTemp']
+          @RecursiveSecond = params['RecursiveSecond']
+        end
+      end
+
+      # DescribeTableLineageInfo返回参数结构体
+      class DescribeTableLineageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TableLineageBasicInfo: 表血缘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableLineageBasicInfo: :class:`Tencentcloud::Wedata.v20210820.models.TableLineageBaseInfo`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TableLineageBasicInfo, :RequestId
+
+        def initialize(tablelineagebasicinfo=nil, requestid=nil)
+          @TableLineageBasicInfo = tablelineagebasicinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TableLineageBasicInfo'].nil?
+            @TableLineageBasicInfo = TableLineageBaseInfo.new
+            @TableLineageBasicInfo.deserialize(params['TableLineageBasicInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -30447,6 +30778,158 @@ module TencentCloud
         end
       end
 
+      # 表的元数据信息
+      class TableBasicInfo < TencentCloud::Common::AbstractModel
+        # @param TableId: 表的全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param DatasourceId: 数据源全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatasourceName: 数据源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatabaseId: 数据库ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param DatabaseName: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param EngineType: 引擎/存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineType: String
+        # @param TableType: 表类型，视图，外部表等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableType: String
+        # @param ProjectId: 项目Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 所属项目英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param ProjectDisplayName: 所属项目英中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+        # @param TableOwnerId: 责任人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerId: String
+        # @param TableOwnerName: 责任人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerName: String
+        # @param StorageLocation: 存储位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageLocation: Integer
+        # @param Description: 表描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsPartitionTable: 是否分区表，0-全量表 1-分区表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartitionTable: Integer
+        # @param PartitionColumns: 分区字段list
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionColumns: Array
+        # @param StorageFormat: 存储格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageFormat: String
+        # @param StorageSize: 存储量，字节数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+        # @param StorageSizeWithUnit: 存储量，单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSizeWithUnit: String
+        # @param TotalSizeMb: 累计存储【MB】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalSizeMb: Integer
+        # @param ReplicaCount: 副本数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicaCount: Integer
+        # @param FileCount: 文件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileCount: Integer
+        # @param PartitionCount: 分区总数（包含hive，iceberg）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionCount: Integer
+        # @param PartitionFieldCount: 分区字段数量（包含hive，iceberg）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionFieldCount: Integer
+        # @param PartitionExpireDays: 生命周期-分区保留天数【分区保留策略时有效】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionExpireDays: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :TableId, :DatasourceId, :DatasourceName, :DatabaseId, :DatabaseName, :TableName, :EngineType, :TableType, :ProjectId, :ProjectName, :ProjectDisplayName, :TableOwnerId, :TableOwnerName, :StorageLocation, :Description, :IsPartitionTable, :PartitionColumns, :StorageFormat, :StorageSize, :StorageSizeWithUnit, :TotalSizeMb, :ReplicaCount, :FileCount, :PartitionCount, :PartitionFieldCount, :PartitionExpireDays, :CreateTime, :UpdateTime
+
+        def initialize(tableid=nil, datasourceid=nil, datasourcename=nil, databaseid=nil, databasename=nil, tablename=nil, enginetype=nil, tabletype=nil, projectid=nil, projectname=nil, projectdisplayname=nil, tableownerid=nil, tableownername=nil, storagelocation=nil, description=nil, ispartitiontable=nil, partitioncolumns=nil, storageformat=nil, storagesize=nil, storagesizewithunit=nil, totalsizemb=nil, replicacount=nil, filecount=nil, partitioncount=nil, partitionfieldcount=nil, partitionexpiredays=nil, createtime=nil, updatetime=nil)
+          @TableId = tableid
+          @DatasourceId = datasourceid
+          @DatasourceName = datasourcename
+          @DatabaseId = databaseid
+          @DatabaseName = databasename
+          @TableName = tablename
+          @EngineType = enginetype
+          @TableType = tabletype
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @ProjectDisplayName = projectdisplayname
+          @TableOwnerId = tableownerid
+          @TableOwnerName = tableownername
+          @StorageLocation = storagelocation
+          @Description = description
+          @IsPartitionTable = ispartitiontable
+          @PartitionColumns = partitioncolumns
+          @StorageFormat = storageformat
+          @StorageSize = storagesize
+          @StorageSizeWithUnit = storagesizewithunit
+          @TotalSizeMb = totalsizemb
+          @ReplicaCount = replicacount
+          @FileCount = filecount
+          @PartitionCount = partitioncount
+          @PartitionFieldCount = partitionfieldcount
+          @PartitionExpireDays = partitionexpiredays
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceName = params['DatasourceName']
+          @DatabaseId = params['DatabaseId']
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @EngineType = params['EngineType']
+          @TableType = params['TableType']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @ProjectDisplayName = params['ProjectDisplayName']
+          @TableOwnerId = params['TableOwnerId']
+          @TableOwnerName = params['TableOwnerName']
+          @StorageLocation = params['StorageLocation']
+          @Description = params['Description']
+          @IsPartitionTable = params['IsPartitionTable']
+          @PartitionColumns = params['PartitionColumns']
+          @StorageFormat = params['StorageFormat']
+          @StorageSize = params['StorageSize']
+          @StorageSizeWithUnit = params['StorageSizeWithUnit']
+          @TotalSizeMb = params['TotalSizeMb']
+          @ReplicaCount = params['ReplicaCount']
+          @FileCount = params['FileCount']
+          @PartitionCount = params['PartitionCount']
+          @PartitionFieldCount = params['PartitionFieldCount']
+          @PartitionExpireDays = params['PartitionExpireDays']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 规则表变量替换
       class TableConfig < TencentCloud::Common::AbstractModel
         # @param DatabaseId: 数据库Id
@@ -30557,6 +31040,127 @@ module TencentCloud
           @TableName = params['TableName']
           @OriginDatabaseName = params['OriginDatabaseName']
           @OriginSchemaName = params['OriginSchemaName']
+        end
+      end
+
+      # 表血缘详细信息
+      class TableLineageBaseInfo < TencentCloud::Common::AbstractModel
+        # @param MetastoreType: 元数据类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreType: String
+        # @param PrefixPath: 由中心节点到该节点的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
+        # @param ProjectId: 空间id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param DatasourceId: 数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param TableId: 表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param Params: 表血缘参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: Array
+        # @param ParentSet: 父节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: String
+        # @param ChildSet: 子节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: String
+        # @param ExtParams: 额外参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtParams: Array
+        # @param Id: 血缘id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param MetastoreTypeName: 元数据类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetastoreTypeName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param QualifiedName: 表全称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedName: String
+        # @param DownStreamCount: 血缘下游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 血缘上游节点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param Description: 血缘描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 血缘创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 血缘更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Tasks: 修改血缘的任务id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+
+        attr_accessor :MetastoreType, :PrefixPath, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :CreateTime, :ModifyTime, :Tasks
+
+        def initialize(metastoretype=nil, prefixpath=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, createtime=nil, modifytime=nil, tasks=nil)
+          @MetastoreType = metastoretype
+          @PrefixPath = prefixpath
+          @ProjectId = projectid
+          @DatasourceId = datasourceid
+          @TableId = tableid
+          @Params = params
+          @ParentSet = parentset
+          @ChildSet = childset
+          @ExtParams = extparams
+          @Id = id
+          @MetastoreTypeName = metastoretypename
+          @TableName = tablename
+          @QualifiedName = qualifiedname
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @Description = description
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Tasks = tasks
+        end
+
+        def deserialize(params)
+          @MetastoreType = params['MetastoreType']
+          @PrefixPath = params['PrefixPath']
+          @ProjectId = params['ProjectId']
+          @DatasourceId = params['DatasourceId']
+          @TableId = params['TableId']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              lineageparamrecord_tmp = LineageParamRecord.new
+              lineageparamrecord_tmp.deserialize(i)
+              @Params << lineageparamrecord_tmp
+            end
+          end
+          @ParentSet = params['ParentSet']
+          @ChildSet = params['ChildSet']
+          unless params['ExtParams'].nil?
+            @ExtParams = []
+            params['ExtParams'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @ExtParams << recordfield_tmp
+            end
+          end
+          @Id = params['Id']
+          @MetastoreTypeName = params['MetastoreTypeName']
+          @TableName = params['TableName']
+          @QualifiedName = params['QualifiedName']
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Tasks = params['Tasks']
         end
       end
 

@@ -964,6 +964,8 @@ module TencentCloud
       # ChannelCreateBatchCancelFlowUrl返回参数结构体
       class ChannelCreateBatchCancelFlowUrlResponse < TencentCloud::Common::AbstractModel
         # @param BatchCancelFlowUrl: 批量撤销合同的URL链接, 需要在手机端打开, 有效期24小时
+
+        # 注：<font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type BatchCancelFlowUrl: String
         # @param FailMessages: 与入参的FlowIds数组一致,   成功生成到撤销链接中,则为"",   不能撤销合同则为失败原因
         # @type FailMessages: Array
@@ -1184,13 +1186,17 @@ module TencentCloud
       class ChannelCreateBatchSignUrlResponse < TencentCloud::Common::AbstractModel
         # @param SignUrl: 批量签署链接，以短链形式返回，短链的有效期参考回参中的 ExpiredTime。
 
-        # 注: `非小程序和APP集成使用`
+        # 注:
+        # 1. 非小程序和APP集成使用
+        # 2. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type SignUrl: String
         # @param ExpiredTime: 链接过期时间以 Unix 时间戳格式表示，从生成链接时间起，往后7天有效期。过期后短链将失效，无法打开。
         # @type ExpiredTime: Integer
         # @param MiniAppPath: 从客户小程序或者客户APP跳转至腾讯电子签小程序进行批量签署的跳转路径
 
-        # 注: `小程序和APP集成使用`
+        # 注:
+        # 1. 小程序和APP集成使用
+        # 2. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type MiniAppPath: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5174,9 +5180,11 @@ module TencentCloud
       class CreateConsoleLoginUrlResponse < TencentCloud::Common::AbstractModel
         # @param ConsoleUrl: 跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表
         # <table> <thead> <tr> <th>子客企业状态</th> <th>子客企业员工状态</th> <th>Endpoint</th> <th>链接有效期限</th> </tr> </thead>  <tbody> <tr> <td>企业未激活</td> <td>员工未认证</td> <td>PC/PC_SHORT_URL</td> <td>5分钟</td>  </tr>  <tr> <td>企业未激活</td> <td>员工未认证</td> <td>CHANNEL/APP</td> <td>一年</td>  </tr>  <tr> <td>企业已激活</td> <td>员工未认证</td> <td>PC/PC_SHORT_URL</td> <td>5分钟</td>  </tr> <tr> <td>企业已激活</td> <td>员工未认证</td> <td>PC/CHANNEL/APP</td> <td>一年</td>  </tr>  <tr> <td>企业已激活</td> <td>员工已认证</td> <td>PC</td> <td>5分钟</td>  </tr>  <tr> <td>企业已激活</td> <td>员工已认证</td> <td>CHANNEL/APP</td> <td>一年</td>  </tr> </tbody> </table>
+
         # 注：
-        # `1.链接仅单次有效，每次登录需要需要重新创建新的链接`
-        # `2.创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义`
+        # 1. <font color="red">链接仅单次有效</font>，每次登录需要需要重新创建新的链接
+        # 2. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
+        # 3. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type ConsoleUrl: String
         # @param IsActivated: 子客企业是否已开通腾讯电子签，
         # <ul><li> **true** :已经开通腾讯电子签</li>
@@ -7325,10 +7333,12 @@ module TencentCloud
 
       # 签署人签署链接信息。
       class FlowApproverUrlInfo < TencentCloud::Common::AbstractModel
-        # @param SignUrl: 签署短链接。</br>
+        # @param SignUrl: 签署短链接。
+
         # 注意:
-        # - 该链接有效期为**30分钟**，同时需要注意保密，不要外泄给无关用户。
-        # - 该链接不支持小程序嵌入，仅支持**移动端浏览器**打开。
+        # 1. 该链接有效期为**30分钟**，同时需要注意保密，不要外泄给无关用户。
+        # 2. 该链接不支持小程序嵌入，仅支持**移动端浏览器**打开。
+        # 3. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type SignUrl: String
         # @param ApproverType: 签署人类型。
         # - **PERSON**: 个人
@@ -7337,10 +7347,12 @@ module TencentCloud
         # @type Name: String
         # @param Mobile: 签署人手机号。
         # @type Mobile: String
-        # @param LongUrl: 签署长链接。</br>
+        # @param LongUrl: 签署长链接。
+
         # 注意:
-        # - 该链接有效期为**30分钟**，同时需要注意保密，不要外泄给无关用户。
-        # - 该链接不支持小程序嵌入，仅支持**移动端浏览器**打开。
+        # 1. 该链接有效期为**30分钟**，同时需要注意保密，不要外泄给无关用户。
+        # 2. 该链接不支持小程序嵌入，仅支持**移动端浏览器**打开。
+        # 3. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LongUrl: String
 
@@ -9183,6 +9195,8 @@ module TencentCloud
       # 签署链接内容
       class SignUrlInfo < TencentCloud::Common::AbstractModel
         # @param SignUrl: 签署链接，过期时间为90天
+
+        # 注：<font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SignUrl: String
         # @param Deadline: 合同过期时间戳，单位秒

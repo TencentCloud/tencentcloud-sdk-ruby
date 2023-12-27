@@ -1174,36 +1174,59 @@ module TencentCloud
 
       # RetryRuns请求参数结构体
       class RetryRunsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 关联项目ID。
+        # @param ProjectId: 项目ID。（不填使用指定地域下的默认项目）
         # @type ProjectId: String
-        # @param RunUuids: 任务UUID。
+        # @param RunGroupId: 需要重试的任务批次ID。
+        # @type RunGroupId: String
+        # @param RunUuids: 需要重试的任务UUID。
         # @type RunUuids: Array
+        # @param WDLOption: WDL运行选项，不填使用被重试的任务批次运行选项。
+        # @type WDLOption: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
+        # @param NFOption: Nextflow运行选项，不填使用被重试的任务批次运行选项。
+        # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
 
-        attr_accessor :ProjectId, :RunUuids
+        attr_accessor :ProjectId, :RunGroupId, :RunUuids, :WDLOption, :NFOption
 
-        def initialize(projectid=nil, runuuids=nil)
+        def initialize(projectid=nil, rungroupid=nil, runuuids=nil, wdloption=nil, nfoption=nil)
           @ProjectId = projectid
+          @RunGroupId = rungroupid
           @RunUuids = runuuids
+          @WDLOption = wdloption
+          @NFOption = nfoption
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @RunGroupId = params['RunGroupId']
           @RunUuids = params['RunUuids']
+          unless params['WDLOption'].nil?
+            @WDLOption = RunOption.new
+            @WDLOption.deserialize(params['WDLOption'])
+          end
+          unless params['NFOption'].nil?
+            @NFOption = NFOption.new
+            @NFOption.deserialize(params['NFOption'])
+          end
         end
       end
 
       # RetryRuns返回参数结构体
       class RetryRunsResponse < TencentCloud::Common::AbstractModel
+        # @param RunGroupId: 新的任务批次ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :RunGroupId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(rungroupid=nil, requestid=nil)
+          @RunGroupId = rungroupid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @RunGroupId = params['RunGroupId']
           @RequestId = params['RequestId']
         end
       end

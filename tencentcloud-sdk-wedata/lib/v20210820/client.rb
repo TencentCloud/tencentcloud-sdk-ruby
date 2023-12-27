@@ -2971,6 +2971,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 元数据模型-字段基础信息查询接口
+
+        # @param request: Request instance for DescribeFieldBasicInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeFieldBasicInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeFieldBasicInfoResponse`
+        def DescribeFieldBasicInfo(request)
+          body = send_request('DescribeFieldBasicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFieldBasicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
         # 拉取文件夹目录
 
@@ -5019,6 +5043,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 元数据模型-表基础信息查询接口
+
+        # @param request: Request instance for DescribeTableBasicInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTableBasicInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTableBasicInfoResponse`
+        def DescribeTableBasicInfo(request)
+          body = send_request('DescribeTableBasicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableBasicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取数据表信息
 
         # @param request: Request instance for DescribeTableInfoList.
@@ -5053,6 +5101,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTableLineageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出表血缘信息
+
+        # @param request: Request instance for DescribeTableLineageInfo.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTableLineageInfoRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTableLineageInfoResponse`
+        def DescribeTableLineageInfo(request)
+          body = send_request('DescribeTableLineageInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableLineageInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

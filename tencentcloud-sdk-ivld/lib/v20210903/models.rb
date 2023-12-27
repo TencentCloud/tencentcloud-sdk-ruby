@@ -83,7 +83,7 @@ module TencentCloud
       class AppearIndexPair < TencentCloud::Common::AbstractModel
         # @param AppearIndex: 出现信息，取值范围为[1，3]
         # @type AppearIndex: Integer
-        # @param Index: AppearInfo中AppearIndex对应元素的第Index元素，从0开始技术
+        # @param Index: AppearInfo中AppearIndex对应元素的第Index元素，从0开始计数
         # @type Index: Integer
 
         attr_accessor :AppearIndex, :Index

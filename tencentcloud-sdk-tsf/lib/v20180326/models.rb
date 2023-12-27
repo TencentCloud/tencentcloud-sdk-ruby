@@ -2802,7 +2802,7 @@ module TencentCloud
 
       # ContinueRunFailedTaskBatch返回参数结构体
       class ContinueRunFailedTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 成功或失败
+        # @param Result: true：操作成功、false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
