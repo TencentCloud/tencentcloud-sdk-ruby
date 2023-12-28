@@ -2720,13 +2720,15 @@ module TencentCloud
         # @type InstanceNum: Integer
         # @param CurrentNum: 已启动实例总数
         # @type CurrentNum: Integer
+        # @param LbDns: 负载均衡DNS地址
+        # @type LbDns: String
         # @param LbIp: 负载均衡ip
         # @type LbIp: String
         # @param ClusterIp: Service ip
         # @type ClusterIp: String
-        # @param Status: 服务状态，请参考后面的的状态定义
+        # @param Status: 服务状态，请参考后面的状态定义
         # @type Status: String
-        # @param Message: 服务状态，请参考后面的的状态定义
+        # @param Message: 服务状态，请参考后面的状态定义
         # @type Message: String
         # @param Envs: 环境变量
         # @type Envs: Array
@@ -2743,11 +2745,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNotEqualServiceConfig: Boolean
 
-        attr_accessor :InstanceNum, :CurrentNum, :LbIp, :ClusterIp, :Status, :Message, :Envs, :NodePort, :SubnetId, :HealthCheckSettings, :IsNotEqualServiceConfig
+        attr_accessor :InstanceNum, :CurrentNum, :LbDns, :LbIp, :ClusterIp, :Status, :Message, :Envs, :NodePort, :SubnetId, :HealthCheckSettings, :IsNotEqualServiceConfig
 
-        def initialize(instancenum=nil, currentnum=nil, lbip=nil, clusterip=nil, status=nil, message=nil, envs=nil, nodeport=nil, subnetid=nil, healthchecksettings=nil, isnotequalserviceconfig=nil)
+        def initialize(instancenum=nil, currentnum=nil, lbdns=nil, lbip=nil, clusterip=nil, status=nil, message=nil, envs=nil, nodeport=nil, subnetid=nil, healthchecksettings=nil, isnotequalserviceconfig=nil)
           @InstanceNum = instancenum
           @CurrentNum = currentnum
+          @LbDns = lbdns
           @LbIp = lbip
           @ClusterIp = clusterip
           @Status = status
@@ -2762,6 +2765,7 @@ module TencentCloud
         def deserialize(params)
           @InstanceNum = params['InstanceNum']
           @CurrentNum = params['CurrentNum']
+          @LbDns = params['LbDns']
           @LbIp = params['LbIp']
           @ClusterIp = params['ClusterIp']
           @Status = params['Status']
@@ -2820,7 +2824,7 @@ module TencentCloud
         end
       end
 
-      # cos临时帐号信息
+      # cos临时账号信息
       class CosCredentials < TencentCloud::Common::AbstractModel
         # @param SessionToken: 会话Token
         # 注意：此字段可能返回 null，表示取不到有效值。

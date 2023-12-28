@@ -1698,7 +1698,7 @@ module TencentCloud
 
       # GetFunction请求参数结构体
       class GetFunctionRequest < TencentCloud::Common::AbstractModel
-        # @param FunctionName: 需要获取详情的函数名称
+        # @param FunctionName: 需要获取详情的函数名称，ResourceId和FunctionName只能传一个
         # @type FunctionName: String
         # @param Qualifier: 函数的版本号
         # 默认值: $LATEST
@@ -4103,12 +4103,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2023, 11
-        deprecate :ResourceId=, :none, 2023, 11
-        deprecate :BindStatus, :none, 2023, 11
-        deprecate :BindStatus=, :none, 2023, 11
-        deprecate :TriggerAttribute, :none, 2023, 11
-        deprecate :TriggerAttribute=, :none, 2023, 11
+        deprecate :ResourceId, :none, 2023, 12
+        deprecate :ResourceId=, :none, 2023, 12
+        deprecate :BindStatus, :none, 2023, 12
+        deprecate :BindStatus=, :none, 2023, 12
+        deprecate :TriggerAttribute, :none, 2023, 12
+        deprecate :TriggerAttribute=, :none, 2023, 12
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4269,12 +4269,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2023, 11
-        deprecate :ResourceId=, :none, 2023, 11
-        deprecate :BindStatus, :none, 2023, 11
-        deprecate :BindStatus=, :none, 2023, 11
-        deprecate :TriggerAttribute, :none, 2023, 11
-        deprecate :TriggerAttribute=, :none, 2023, 11
+        deprecate :ResourceId, :none, 2023, 12
+        deprecate :ResourceId=, :none, 2023, 12
+        deprecate :BindStatus, :none, 2023, 12
+        deprecate :BindStatus=, :none, 2023, 12
+        deprecate :TriggerAttribute, :none, 2023, 12
+        deprecate :TriggerAttribute=, :none, 2023, 12
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil)
           @Enable = enable
@@ -4492,10 +4492,12 @@ module TencentCloud
         # @type DnsCache: String
         # @param IntranetConfig: 内网访问配置
         # @type IntranetConfig: :class:`Tencentcloud::Scf.v20180416.models.IntranetConfigIn`
+        # @param IgnoreSysLog: 忽略系统日志上报
+        # @type IgnoreSysLog: Boolean
 
-        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams, :InstanceConcurrencyConfig, :DnsCache, :IntranetConfig
+        attr_accessor :FunctionName, :Description, :MemorySize, :Timeout, :Runtime, :Environment, :Namespace, :VpcConfig, :Role, :InstallDependency, :ClsLogsetId, :ClsTopicId, :Publish, :L5Enable, :Layers, :DeadLetterConfig, :PublicNetConfig, :CfsConfig, :InitTimeout, :ProtocolParams, :InstanceConcurrencyConfig, :DnsCache, :IntranetConfig, :IgnoreSysLog
 
-        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil, instanceconcurrencyconfig=nil, dnscache=nil, intranetconfig=nil)
+        def initialize(functionname=nil, description=nil, memorysize=nil, timeout=nil, runtime=nil, environment=nil, namespace=nil, vpcconfig=nil, role=nil, installdependency=nil, clslogsetid=nil, clstopicid=nil, publish=nil, l5enable=nil, layers=nil, deadletterconfig=nil, publicnetconfig=nil, cfsconfig=nil, inittimeout=nil, protocolparams=nil, instanceconcurrencyconfig=nil, dnscache=nil, intranetconfig=nil, ignoresyslog=nil)
           @FunctionName = functionname
           @Description = description
           @MemorySize = memorysize
@@ -4519,6 +4521,7 @@ module TencentCloud
           @InstanceConcurrencyConfig = instanceconcurrencyconfig
           @DnsCache = dnscache
           @IntranetConfig = intranetconfig
+          @IgnoreSysLog = ignoresyslog
         end
 
         def deserialize(params)
@@ -4576,6 +4579,7 @@ module TencentCloud
             @IntranetConfig = IntranetConfigIn.new
             @IntranetConfig.deserialize(params['IntranetConfig'])
           end
+          @IgnoreSysLog = params['IgnoreSysLog']
         end
       end
 

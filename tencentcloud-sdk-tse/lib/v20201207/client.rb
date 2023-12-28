@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建公网网络配置
+
+        # @param request: Request instance for CreateCloudNativeAPIGatewayPublicNetwork.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayPublicNetworkRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateCloudNativeAPIGatewayPublicNetworkResponse`
+        def CreateCloudNativeAPIGatewayPublicNetwork(request)
+          body = send_request('CreateCloudNativeAPIGatewayPublicNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCloudNativeAPIGatewayPublicNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建云原生网关路由
 
         # @param request: Request instance for CreateCloudNativeAPIGatewayRoute.
@@ -351,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudNativeAPIGatewayCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除公网网络配置
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayPublicNetwork.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayPublicNetworkRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayPublicNetworkResponse`
+        def DeleteCloudNativeAPIGatewayPublicNetwork(request)
+          body = send_request('DeleteCloudNativeAPIGatewayPublicNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayPublicNetworkResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1277,6 +1325,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改网关实例Konga网络配置
+
+        # @param request: Request instance for ModifyConsoleNetwork.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyConsoleNetworkRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyConsoleNetworkResponse`
+        def ModifyConsoleNetwork(request)
+          body = send_request('ModifyConsoleNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConsoleNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改云原生API网关实例分组基础信息
 
         # @param request: Request instance for ModifyNativeGatewayServerGroup.
@@ -1287,6 +1359,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyNativeGatewayServerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生API网关实例Kong访问策略，支持白名单或者黑名单。
+
+        # @param request: Request instance for ModifyNetworkAccessStrategy.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyNetworkAccessStrategyRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyNetworkAccessStrategyResponse`
+        def ModifyNetworkAccessStrategy(request)
+          body = send_request('ModifyNetworkAccessStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNetworkAccessStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改云原生API网关实例网络基本信息，比如带宽以及描述，只支持修改客户端公网/内网的信息。
+
+        # @param request: Request instance for ModifyNetworkBasicInfo.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyNetworkBasicInfoRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyNetworkBasicInfoResponse`
+        def ModifyNetworkBasicInfo(request)
+          body = send_request('ModifyNetworkBasicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNetworkBasicInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

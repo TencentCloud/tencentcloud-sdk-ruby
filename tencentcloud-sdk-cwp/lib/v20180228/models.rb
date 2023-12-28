@@ -13271,8 +13271,7 @@ module TencentCloud
 
       # DescribeBaselineItemInfo请求参数结构体
       class DescribeBaselineItemInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        # <li>PolicyId - int64 - 是否必填：否 - 项Id</i>
+        # @param Filters: <li>ItemId - int64 - 是否必填：否 - 项Id</li>
         # <li>Level - int - 是否必填：否 - 风险等级</li>
         # <li>ItemName - string - 是否必填：否 - 检测项名字</li>
         # <li>RuleId - int - 是否必填：否 - 规则Id</li>
@@ -40067,12 +40066,17 @@ module TencentCloud
 
       # SyncBaselineDetectSummary请求参数结构体
       class SyncBaselineDetectSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 用于计算检测中和进度的任务ID集合，一般不用传入
+        # @type TaskIds: Array
 
+        attr_accessor :TaskIds
 
-        def initialize()
+        def initialize(taskids=nil)
+          @TaskIds = taskids
         end
 
         def deserialize(params)
+          @TaskIds = params['TaskIds']
         end
       end
 

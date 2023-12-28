@@ -1089,6 +1089,49 @@ module TencentCloud
         end
       end
 
+      # CreateCloudNativeAPIGatewayPublicNetwork请求参数结构体
+      class CreateCloudNativeAPIGatewayPublicNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 分组id。
+        # @type GroupId: String
+        # @param InternetConfig: 公网负载均衡配置。
+        # @type InternetConfig: :class:`Tencentcloud::Tse.v20201207.models.InternetConfig`
+
+        attr_accessor :GatewayId, :GroupId, :InternetConfig
+
+        def initialize(gatewayid=nil, groupid=nil, internetconfig=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @InternetConfig = internetconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          unless params['InternetConfig'].nil?
+            @InternetConfig = InternetConfig.new
+            @InternetConfig.deserialize(params['InternetConfig'])
+          end
+        end
+      end
+
+      # CreateCloudNativeAPIGatewayPublicNetwork返回参数结构体
+      class CreateCloudNativeAPIGatewayPublicNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudNativeAPIGateway请求参数结构体
       class CreateCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
         # @param Name: 云原生API网关名字, 最多支持60个字符。
@@ -1895,6 +1938,52 @@ module TencentCloud
 
       # DeleteCloudNativeAPIGatewayCertificate返回参数结构体
       class DeleteCloudNativeAPIGatewayCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayPublicNetwork请求参数结构体
+      class DeleteCloudNativeAPIGatewayPublicNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 分组id，kong类型时必填
+        # @type GroupId: String
+        # @param InternetAddressVersion: 公网类型
+        # - IPV4 （默认值）
+        # - IPV6
+        # @type InternetAddressVersion: String
+        # @param Vip: 公网ip，存在多个公网时必填
+        # @type Vip: String
+
+        attr_accessor :GatewayId, :GroupId, :InternetAddressVersion, :Vip
+
+        def initialize(gatewayid=nil, groupid=nil, internetaddressversion=nil, vip=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @InternetAddressVersion = internetaddressversion
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @InternetAddressVersion = params['InternetAddressVersion']
+          @Vip = params['Vip']
+        end
+      end
+
+      # DeleteCloudNativeAPIGatewayPublicNetwork返回参数结构体
+      class DeleteCloudNativeAPIGatewayPublicNetworkResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5483,6 +5572,57 @@ module TencentCloud
         end
       end
 
+      # ModifyConsoleNetwork请求参数结构体
+      class ModifyConsoleNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param NetworkType: 网络类型：
+        # - Open 公网
+        # - Internal 内网（暂不支持）
+        # @type NetworkType: String
+        # @param Operate: 开启Konga网络，不填时默认为Open
+        # - Open，开启
+        # - Close，关闭
+        # @type Operate: String
+        # @param AccessControl: 访问控制策略
+        # @type AccessControl: :class:`Tencentcloud::Tse.v20201207.models.NetworkAccessControl`
+
+        attr_accessor :GatewayId, :NetworkType, :Operate, :AccessControl
+
+        def initialize(gatewayid=nil, networktype=nil, operate=nil, accesscontrol=nil)
+          @GatewayId = gatewayid
+          @NetworkType = networktype
+          @Operate = operate
+          @AccessControl = accesscontrol
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @NetworkType = params['NetworkType']
+          @Operate = params['Operate']
+          unless params['AccessControl'].nil?
+            @AccessControl = NetworkAccessControl.new
+            @AccessControl.deserialize(params['AccessControl'])
+          end
+        end
+      end
+
+      # ModifyConsoleNetwork返回参数结构体
+      class ModifyConsoleNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNativeGatewayServerGroup请求参数结构体
       class ModifyNativeGatewayServerGroupRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
@@ -5513,6 +5653,114 @@ module TencentCloud
 
       # ModifyNativeGatewayServerGroup返回参数结构体
       class ModifyNativeGatewayServerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNetworkAccessStrategy请求参数结构体
+      class ModifyNetworkAccessStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 分组id
+        # @type GroupId: String
+        # @param NetworkType: 网络类型：
+        # - Open 公网
+        # - Internal 内网	（暂不支持）
+        # @type NetworkType: String
+        # @param Vip: ip地址
+        # @type Vip: String
+        # @param AccessControl: 访问控制策略
+        # @type AccessControl: :class:`Tencentcloud::Tse.v20201207.models.NetworkAccessControl`
+
+        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :AccessControl
+
+        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, accesscontrol=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @NetworkType = networktype
+          @Vip = vip
+          @AccessControl = accesscontrol
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @NetworkType = params['NetworkType']
+          @Vip = params['Vip']
+          unless params['AccessControl'].nil?
+            @AccessControl = NetworkAccessControl.new
+            @AccessControl.deserialize(params['AccessControl'])
+          end
+        end
+      end
+
+      # ModifyNetworkAccessStrategy返回参数结构体
+      class ModifyNetworkAccessStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNetworkBasicInfo请求参数结构体
+      class ModifyNetworkBasicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 分组id
+        # @type GroupId: String
+        # @param NetworkType: 网络类型：
+        # - Open 公网ipv4
+        # - Open-IPv6 公网ipv6
+        # - Internal 内网
+        # @type NetworkType: String
+        # @param Vip: ip地址
+        # @type Vip: String
+        # @param InternetMaxBandwidthOut: 公网出流量带宽[1,2048]Mbps
+        # @type InternetMaxBandwidthOut: Integer
+        # @param Description: 负载均衡描述
+        # @type Description: String
+
+        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :InternetMaxBandwidthOut, :Description
+
+        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, internetmaxbandwidthout=nil, description=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @NetworkType = networktype
+          @Vip = vip
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @Description = description
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @NetworkType = params['NetworkType']
+          @Vip = params['Vip']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyNetworkBasicInfo返回参数结构体
+      class ModifyNetworkBasicInfoResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

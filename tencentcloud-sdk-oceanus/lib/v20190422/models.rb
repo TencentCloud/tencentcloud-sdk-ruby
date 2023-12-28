@@ -2818,6 +2818,76 @@ module TencentCloud
         end
       end
 
+      # GetMetaTable请求参数结构体
+      class GetMetaTableRequest < TencentCloud::Common::AbstractModel
+        # @param Catalog: Catalog名
+        # @type Catalog: String
+        # @param Database: Database名
+        # @type Database: String
+        # @param Table: Table名
+        # @type Table: String
+        # @param WorkSpaceId: 空间唯一标识
+        # @type WorkSpaceId: String
+
+        attr_accessor :Catalog, :Database, :Table, :WorkSpaceId
+
+        def initialize(catalog=nil, database=nil, table=nil, workspaceid=nil)
+          @Catalog = catalog
+          @Database = database
+          @Table = table
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @Catalog = params['Catalog']
+          @Database = params['Database']
+          @Table = params['Table']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # GetMetaTable返回参数结构体
+      class GetMetaTableResponse < TencentCloud::Common::AbstractModel
+        # @param SerialId: 元数据表唯一标识
+        # @type SerialId: String
+        # @param Catalog: Catalog名
+        # @type Catalog: String
+        # @param Database: Database名
+        # @type Database: String
+        # @param Table: Table名
+        # @type Table: String
+        # @param DDL: 建表语句,使用 Base64 编码。
+        # 例如
+        # Q1JFQVRFIFRBQkxFIGRhdGFnZW5fc291cmNlX3RhYmxlICggCiAgICBpZCBJTlQsIAogICAgbmFtZSBTVFJJTkcgCikgV0lUSCAoCidjb25uZWN0b3InPSdkYXRhZ2VuJywKJ3Jvd3MtcGVyLXNlY29uZCcgPSAnMScKKTs=
+        # @type DDL: String
+        # @param CreateTime: 场景时间
+        # @type CreateTime: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SerialId, :Catalog, :Database, :Table, :DDL, :CreateTime, :RequestId
+
+        def initialize(serialid=nil, catalog=nil, database=nil, table=nil, ddl=nil, createtime=nil, requestid=nil)
+          @SerialId = serialid
+          @Catalog = catalog
+          @Database = database
+          @Table = table
+          @DDL = ddl
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SerialId = params['SerialId']
+          @Catalog = params['Catalog']
+          @Database = params['Database']
+          @Table = params['Table']
+          @DDL = params['DDL']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 作业配置详情
       class JobConfig < TencentCloud::Common::AbstractModel
         # @param JobId: 作业Id

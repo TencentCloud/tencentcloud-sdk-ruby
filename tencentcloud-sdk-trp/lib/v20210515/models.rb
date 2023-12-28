@@ -511,7 +511,7 @@ module TencentCloud
         # @type BatchId: String
         # @param Remark: 备注
         # @type Remark: String
-        # @param MpTpl: 模版ID，或者活动ID
+        # @param MpTpl: 模板ID，或者活动ID
         # @type MpTpl: String
         # @param CloneId: 克隆批次ID，同时会复制溯源信息
         # @type CloneId: String
@@ -2423,15 +2423,18 @@ module TencentCloud
         # @type MerchantId: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param CertState: 认证状态
+        # @type CertState: Integer
 
-        attr_accessor :Name, :PageSize, :PageNumber, :MerchantId, :CorpId
+        attr_accessor :Name, :PageSize, :PageNumber, :MerchantId, :CorpId, :CertState
 
-        def initialize(name=nil, pagesize=nil, pagenumber=nil, merchantid=nil, corpid=nil)
+        def initialize(name=nil, pagesize=nil, pagenumber=nil, merchantid=nil, corpid=nil, certstate=nil)
           @Name = name
           @PageSize = pagesize
           @PageNumber = pagenumber
           @MerchantId = merchantid
           @CorpId = corpid
+          @CertState = certstate
         end
 
         def deserialize(params)
@@ -2440,6 +2443,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @MerchantId = params['MerchantId']
           @CorpId = params['CorpId']
+          @CertState = params['CertState']
         end
       end
 
@@ -3874,10 +3878,13 @@ module TencentCloud
         # @type Ext: :class:`Tencentcloud::Trp.v20210515.models.Ext`
         # @param MerchantName: 商户名称
         # @type MerchantName: String
+        # @param CertState: 认证状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertState: Integer
 
-        attr_accessor :MerchantId, :Name, :ProductId, :CorpId, :ProductCode, :Specification, :Remark, :Logo, :CreateTime, :UpdateTime, :Ext, :MerchantName
+        attr_accessor :MerchantId, :Name, :ProductId, :CorpId, :ProductCode, :Specification, :Remark, :Logo, :CreateTime, :UpdateTime, :Ext, :MerchantName, :CertState
 
-        def initialize(merchantid=nil, name=nil, productid=nil, corpid=nil, productcode=nil, specification=nil, remark=nil, logo=nil, createtime=nil, updatetime=nil, ext=nil, merchantname=nil)
+        def initialize(merchantid=nil, name=nil, productid=nil, corpid=nil, productcode=nil, specification=nil, remark=nil, logo=nil, createtime=nil, updatetime=nil, ext=nil, merchantname=nil, certstate=nil)
           @MerchantId = merchantid
           @Name = name
           @ProductId = productid
@@ -3890,6 +3897,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @Ext = ext
           @MerchantName = merchantname
+          @CertState = certstate
         end
 
         def deserialize(params)
@@ -3908,6 +3916,7 @@ module TencentCloud
             @Ext.deserialize(params['Ext'])
           end
           @MerchantName = params['MerchantName']
+          @CertState = params['CertState']
         end
       end
 
@@ -3952,10 +3961,13 @@ module TencentCloud
         # @param Version: 开通版本 lite:轻量版, basic:基础版, standard:标准版
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
+        # @param ProductCertify: 是否开启企业认证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCertify: Integer
 
-        attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :TrackType, :Version
+        attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :TrackType, :Version, :ProductCertify
 
-        def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, tracktype=nil, version=nil)
+        def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, tracktype=nil, version=nil, productcertify=nil)
           @StartTime = starttime
           @EndTime = endtime
           @QuotaId = quotaid
@@ -3969,6 +3981,7 @@ module TencentCloud
           @RiskQuota = riskquota
           @TrackType = tracktype
           @Version = version
+          @ProductCertify = productcertify
         end
 
         def deserialize(params)
@@ -3985,6 +3998,7 @@ module TencentCloud
           @RiskQuota = params['RiskQuota']
           @TrackType = params['TrackType']
           @Version = params['Version']
+          @ProductCertify = params['ProductCertify']
         end
       end
 

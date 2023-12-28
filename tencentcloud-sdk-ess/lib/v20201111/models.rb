@@ -5133,12 +5133,17 @@ module TencentCloud
         # @param ExtendServiceType: 要查询的扩展服务类型。
         # 默认为空，即查询当前支持的所有扩展服务信息。
         # 若需查询单个扩展服务的开通情况，请传递相应的值，如下所示：
-        # <ul><li>OPEN_SERVER_SIGN：企业静默签署</li>
-        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
-        # <li>MOBILE_CHECK_APPROVER：使用手机号验证签署方身份</li>
-        # <li>PAGING_SEAL：骑缝章</li>
+        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
         # <li>BATCH_SIGN：批量签署</li>
-        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li></ul>
+        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
+        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
+        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
+        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
+        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
+        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
+        # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
+        # <li>PAGING_SEAL：骑缝章</li>
+        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
         # @type ExtendServiceType: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -6452,17 +6457,25 @@ module TencentCloud
       # 扩展服务开通和授权的详细信息
       class ExtendAuthInfo < TencentCloud::Common::AbstractModel
         # @param Type: 扩展服务的类型，可能是以下值：
-        # <ul><li>OPEN_SERVER_SIGN：企业静默签署</li>
+        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
+        # <li>BATCH_SIGN：批量签署</li>
         # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
-        # <li>MOBILE_CHECK_APPROVER：使用手机号验证签署方身份</li>
+        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
+        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
+        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
+        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
+        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
+        # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
         # <li>PAGING_SEAL：骑缝章</li>
-        # <li>BATCH_SIGN：批量签署</li></ul>
+        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
         # @type Type: String
         # @param Name: 扩展服务的名称
         # @type Name: String
         # @param Status: 扩展服务的开通状态：
-        # ENABLE：开通
-        # DISABLE：未开通
+        # <ul>
+        # <li>ENABLE : 已开通</li>
+        # <li>DISABLE : 未开通</li>
+        # </ul>
         # @type Status: String
         # @param OperatorUserId: 操作扩展服务的操作人UserId，员工在腾讯电子签平台的唯一身份标识，为32位字符串。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8099,6 +8112,88 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyExtendedService请求参数结构体
+      class ModifyExtendedServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ServiceType: 要管理的拓展服务类型。
+        # <ul><li>OPEN_SERVER_SIGN：企业自动签署</li>
+        # <li>OVERSEA_SIGN：企业与港澳台居民签署合同</li>
+        # <li>AGE_LIMIT_EXPANSION：拓宽签署方年龄限制</li>
+        # <li>MOBILE_CHECK_APPROVER：个人签署方仅校验手机号</li>
+        # <li>HIDE_OPERATOR_DISPLAY：隐藏合同经办人姓名</li>
+        # <li>ORGANIZATION_OCR_FALLBACK：正楷临摹签名失败后更换其他签名类型</li>
+        # <li>ORGANIZATION_FLOW_NOTIFY_TYPE：短信通知签署方</li>
+        # <li>HIDE_ONE_KEY_SIGN：个人签署方手动签字</li>
+        # <li>PAGING_SEAL：骑缝章</li>
+        # <li>ORGANIZATION_FLOW_PASSWD_NOTIFY：签署密码开通引导</li></ul>
+        # @type ServiceType: String
+        # @param Operate: 操作类型
+        # <ul>
+        # <li>OPEN : 开通</li>
+        # <li>CLOSE : 关闭</li>
+        # </ul>
+        # @type Operate: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Endpoint: 链接跳转类型，支持以下类型
+        # <ul>
+        # <li>WEIXINAPP : 短链直接跳转到电子签小程序  (默认值)</li>
+        # <li>APP : 第三方APP或小程序跳转电子签小程序</li>
+        # </ul>
+        # @type Endpoint: String
+
+        attr_accessor :Operator, :ServiceType, :Operate, :Agent, :Endpoint
+
+        def initialize(operator=nil, servicetype=nil, operate=nil, agent=nil, endpoint=nil)
+          @Operator = operator
+          @ServiceType = servicetype
+          @Operate = operate
+          @Agent = agent
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ServiceType = params['ServiceType']
+          @Operate = params['Operate']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # ModifyExtendedService返回参数结构体
+      class ModifyExtendedServiceResponse < TencentCloud::Common::AbstractModel
+        # @param OperateUrl: 操作跳转链接，有效期24小时
+        # 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
+
+        # 当操作类型是 OPEN 且 扩展服务类型是  OPEN_SERVER_SIGN 或者 OVERSEA_SIGN 时返回操作链接，
+        # 返回的链接当前操作人（超管或法人）点击链接完成服务开通操作。
+        # @type OperateUrl: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperateUrl, :RequestId
+
+        def initialize(operateurl=nil, requestid=nil)
+          @OperateUrl = operateurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OperateUrl = params['OperateUrl']
           @RequestId = params['RequestId']
         end
       end

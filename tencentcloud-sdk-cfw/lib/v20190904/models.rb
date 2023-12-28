@@ -7788,13 +7788,13 @@ module TencentCloud
         # @type Protocol: String
         # @param Strategy: 策略, 0：观察，1：阻断，2：放行
         # @type Strategy: String
-        # @param SourceType: 访问源类型，1是IP，3是域名，4是IP地址模版，5是域名地址模版
+        # @param SourceType: 访问源类型，1是IP，3是域名，4是IP地址模板，5是域名地址模板
         # @type SourceType: Integer
         # @param Direction: 方向，0：出站，1：入站
         # @type Direction: Integer
         # @param Detail: 描述
         # @type Detail: String
-        # @param TargetType: 访问目的类型，1是IP，3是域名，4是IP地址模版，5是域名地址模版
+        # @param TargetType: 访问目的类型，1是IP，3是域名，4是IP地址模板，5是域名地址模板
         # @type TargetType: Integer
         # @param Port: 端口
         # @type Port: String
@@ -8703,18 +8703,18 @@ module TencentCloud
         end
       end
 
-      # 地址模版列表数据
+      # 地址模板列表数据
       class TemplateListInfo < TencentCloud::Common::AbstractModel
-        # @param Uuid: 模版ID
+        # @param Uuid: 模板ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uuid: String
-        # @param Name: 模版名称
+        # @param Name: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param Detail: 描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: String
-        # @param IpString: IP模版
+        # @param IpString: IP模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpString: String
         # @param InsertTime: 插入时间
@@ -8723,7 +8723,7 @@ module TencentCloud
         # @param UpdateTime: 修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param Type: 模版类型
+        # @param Type: 模板类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: Integer
         # @param RulesNum: 关联规则条数

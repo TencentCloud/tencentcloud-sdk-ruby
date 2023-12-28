@@ -749,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询元数据表
+
+        # @param request: Request instance for GetMetaTable.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::GetMetaTableRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::GetMetaTableResponse`
+        def GetMetaTable(request)
+          body = send_request('GetMetaTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetMetaTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 自定义树状结构页面拖拽文件夹
 
         # @param request: Request instance for ModifyFolder.

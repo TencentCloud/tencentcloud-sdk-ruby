@@ -930,7 +930,7 @@ module TencentCloud
         # @param ProfileList: 邮件配置详情。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProfileList: Array
-        # @param TotalCount: 邮件模版总数。
+        # @param TotalCount: 邮件模板总数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
