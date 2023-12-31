@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2023, 12
-        deprecate :SegmentSet=, :none, 2023, 12
+        deprecate :SegmentSet, :none, 2024, 1
+        deprecate :SegmentSet=, :none, 2024, 1
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -16861,8 +16861,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2023, 12
-        deprecate :Transitions=, :none, 2023, 12
+        deprecate :Transitions, :none, 2024, 1
+        deprecate :Transitions=, :none, 2024, 1
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -18573,9 +18573,9 @@ module TencentCloud
       class ModifySubAppIdInfoRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
-        # @param Name: 子应用名称，长度限制：40个字符。
+        # @param Name: 应用名称，长度限制：40个字符。
         # @type Name: String
-        # @param Description: 子应用简介，长度限制： 300个字符。
+        # @param Description: 应用简介，长度限制： 300个字符。
         # @type Description: String
 
         attr_accessor :SubAppId, :Name, :Description
@@ -18613,7 +18613,7 @@ module TencentCloud
       class ModifySubAppIdStatusRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
-        # @param Status: 子应用状态，取值范围：
+        # @param Status: 应用状态，取值范围：
         # <li>On：启用。</li>
         # <li>Off：停用。</li>
         # <li>Destroyed：销毁。</li>
@@ -20729,8 +20729,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2023, 12
-        deprecate :ProductInstanceResourceSet=, :none, 2023, 12
+        deprecate :ProductInstanceResourceSet, :none, 2024, 1
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 1
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -21021,7 +21021,7 @@ module TencentCloud
       class PullEventsRequest < TencentCloud::Common::AbstractModel
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
-        # @param SubAppId: 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
         attr_accessor :ExtInfo, :SubAppId

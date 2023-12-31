@@ -2681,7 +2681,7 @@ module TencentCloud
         # @type Zone: String
         # @param InstanceType: 实例机型。
         # @type InstanceType: String
-        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        # @param InstanceChargeType: 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br></li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br></li>`SPOTPAID`：表示竞价实例付费。
         # @type InstanceChargeType: String
         # @param NetworkCard: 网卡类型，例如：25代表25G网卡
         # @type NetworkCard: Integer
@@ -2698,7 +2698,7 @@ module TencentCloud
         # @type TypeName: String
         # @param LocalDiskTypeList: 本地磁盘规格列表。当该参数返回为空值时，表示当前情况下无法创建本地盘。
         # @type LocalDiskTypeList: Array
-        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
+        # @param Status: 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br></li>SOLD_OUT：表示实例已售罄。
         # @type Status: String
         # @param Price: 实例的售卖价格。
         # @type Price: :class:`Tencentcloud::Batch.v20170312.models.ItemPrice`
@@ -2723,7 +2723,7 @@ module TencentCloud
         # @type GpuCount: Float
         # @param Frequency: 实例的CPU主频信息
         # @type Frequency: String
-        # @param StatusCategory: 描述库存情况。取值范围： <br><li> UnderStock：表示对应库存即将售罄<br><li> NormalStock：表示对应库存供应有保障<br><li> EnoughStock：表示对应库存非常充足<br><li> WithoutStock：表示对应库存已经售罄
+        # @param StatusCategory: 描述库存情况。取值范围： <br><li> UnderStock：表示对应库存即将售罄<br></li> NormalStock：表示对应库存供应有保障<br><li> EnoughStock：表示对应库存非常充足<br></li> WithoutStock：表示对应库存已经售罄
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusCategory: String
 

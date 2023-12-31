@@ -1951,15 +1951,18 @@ module TencentCloud
         # @type Limit: Integer
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param ExtraResult: 查询额外的作业信息,例如 JobEventInfo
+        # @type ExtraResult: Array
 
-        attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId
+        attr_accessor :JobIds, :Filters, :Offset, :Limit, :WorkSpaceId, :ExtraResult
 
-        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil)
+        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil, workspaceid=nil, extraresult=nil)
           @JobIds = jobids
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @WorkSpaceId = workspaceid
+          @ExtraResult = extraresult
         end
 
         def deserialize(params)
@@ -1975,6 +1978,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @WorkSpaceId = params['WorkSpaceId']
+          @ExtraResult = params['ExtraResult']
         end
       end
 
@@ -3116,6 +3120,23 @@ module TencentCloud
         end
       end
 
+      # 事件信息
+      class JobEventInfo < TencentCloud::Common::AbstractModel
+        # @param ErrorEventTotal: 异常事件总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorEventTotal: Integer
+
+        attr_accessor :ErrorEventTotal
+
+        def initialize(erroreventtotal=nil)
+          @ErrorEventTotal = erroreventtotal
+        end
+
+        def deserialize(params)
+          @ErrorEventTotal = params['ErrorEventTotal']
+        end
+      end
+
       # 作业运行图
       class JobGraph < TencentCloud::Common::AbstractModel
         # @param Nodes: 运行图的点集合
@@ -3328,10 +3349,13 @@ module TencentCloud
         # @param Tags: 作业标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param EventInfo: 作业异常事件信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EventInfo: :class:`Tencentcloud::Oceanus.v20190422.models.JobEventInfo`
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3364,6 +3388,7 @@ module TencentCloud
           @WorkSpaceId = workspaceid
           @WorkSpaceName = workspacename
           @Tags = tags
+          @EventInfo = eventinfo
         end
 
         def deserialize(params)
@@ -3405,6 +3430,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['EventInfo'].nil?
+            @EventInfo = JobEventInfo.new
+            @EventInfo.deserialize(params['EventInfo'])
           end
         end
       end

@@ -10775,8 +10775,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2023, 12
-        deprecate :StatefulSetCondition=, :none, 2023, 12
+        deprecate :StatefulSetCondition, :none, 2024, 1
+        deprecate :StatefulSetCondition=, :none, 2024, 1
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas
