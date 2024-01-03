@@ -3248,6 +3248,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询超级节点列表
+
+        # @param request: Request instance for DescribeAssetSuperNodeList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeAssetSuperNodeListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeAssetSuperNodeListResponse`
+        def DescribeAssetSuperNodeList(request)
+          body = send_request('DescribeAssetSuperNodeList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetSuperNodeListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资产同步最近时间
 
         # @param request: Request instance for DescribeAssetSyncLastTime.
@@ -3354,6 +3378,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群节点信息
+
+        # @param request: Request instance for DescribeClusterNodes.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeClusterNodesRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeClusterNodesResponse`
+        def DescribeClusterNodes(request)
+          body = send_request('DescribeClusterNodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterNodesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5624,6 +5672,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询超级节点pod列表
+
+        # @param request: Request instance for DescribeSuperNodePodList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeSuperNodePodListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeSuperNodePodListResponse`
+        def DescribeSuperNodePodList(request)
+          body = send_request('DescribeSuperNodePodList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSuperNodePodListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询支持防御的漏洞列表
 
         # @param request: Request instance for DescribeSupportDefenceVul.
@@ -5778,6 +5850,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户的pod列表
+
+        # @param request: Request instance for DescribeUserPodList.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::DescribeUserPodListRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::DescribeUserPodListResponse`
+        def DescribeUserPodList(request)
+          body = send_request('DescribeUserPodList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserPodListResponse.new
             model.deserialize(response['Response'])
             model
           else

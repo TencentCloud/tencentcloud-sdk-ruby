@@ -1244,19 +1244,23 @@ module TencentCloud
         # @type PayMode: String
         # @param IsElastic: 是否弹性ck
         # @type IsElastic: Boolean
+        # @param CaseType: 是否是购买页面需要的spec
+        # @type CaseType: Integer
 
-        attr_accessor :Zone, :PayMode, :IsElastic
+        attr_accessor :Zone, :PayMode, :IsElastic, :CaseType
 
-        def initialize(zone=nil, paymode=nil, iselastic=nil)
+        def initialize(zone=nil, paymode=nil, iselastic=nil, casetype=nil)
           @Zone = zone
           @PayMode = paymode
           @IsElastic = iselastic
+          @CaseType = casetype
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @PayMode = params['PayMode']
           @IsElastic = params['IsElastic']
+          @CaseType = params['CaseType']
         end
       end
 

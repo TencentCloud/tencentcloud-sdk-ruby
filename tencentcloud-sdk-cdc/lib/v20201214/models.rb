@@ -664,7 +664,7 @@ module TencentCloud
         # @type Weight: Integer
         # @param PowerDrawKva: 功率要求(KW)
         # @type PowerDrawKva: Float
-        # @param ComputeFormatDesc: 显示计算资源规格详情，存储等资源不显示；对应规格
+        # @param ComputeFormatDesc: 显示计算资源规格详情，存储等资源不显示
         # @type ComputeFormatDesc: String
 
         attr_accessor :DedicatedClusterTypeId, :Description, :Name, :CreateTime, :SupportedStorageType, :SupportedUplinkGiB, :SupportedInstanceFamily, :Weight, :PowerDrawKva, :ComputeFormatDesc
@@ -1078,18 +1078,30 @@ module TencentCloud
         # @param VpnConnectionBandwidthData: vpn网关通道监控数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpnConnectionBandwidthData: Array
+        # @param HostDetailInfo: 宿主机资源概览信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostDetailInfo: Array
+        # @param HostStandbyCount: 热备宿主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostStandbyCount: Integer
+        # @param HostNormalCount: 普通宿主机数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostNormalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :RequestId
+        attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :HostDetailInfo, :HostStandbyCount, :HostNormalCount, :RequestId
 
-        def initialize(cvmcount=nil, hostcount=nil, vpnconnectionstate=nil, vpngwbandwidthdata=nil, localnetinfo=nil, vpnconnectionbandwidthdata=nil, requestid=nil)
+        def initialize(cvmcount=nil, hostcount=nil, vpnconnectionstate=nil, vpngwbandwidthdata=nil, localnetinfo=nil, vpnconnectionbandwidthdata=nil, hostdetailinfo=nil, hoststandbycount=nil, hostnormalcount=nil, requestid=nil)
           @CvmCount = cvmcount
           @HostCount = hostcount
           @VpnConnectionState = vpnconnectionstate
           @VpngwBandwidthData = vpngwbandwidthdata
           @LocalNetInfo = localnetinfo
           @VpnConnectionBandwidthData = vpnconnectionbandwidthdata
+          @HostDetailInfo = hostdetailinfo
+          @HostStandbyCount = hoststandbycount
+          @HostNormalCount = hostnormalcount
           @RequestId = requestid
         end
 
@@ -1113,6 +1125,16 @@ module TencentCloud
               @VpnConnectionBandwidthData << vpngwbandwidthdata_tmp
             end
           end
+          unless params['HostDetailInfo'].nil?
+            @HostDetailInfo = []
+            params['HostDetailInfo'].each do |i|
+              hostdetailinfo_tmp = HostDetailInfo.new
+              hostdetailinfo_tmp.deserialize(i)
+              @HostDetailInfo << hostdetailinfo_tmp
+            end
+          end
+          @HostStandbyCount = params['HostStandbyCount']
+          @HostNormalCount = params['HostNormalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1431,6 +1453,43 @@ module TencentCloud
         def deserialize(params)
           @Timestamps = params['Timestamps']
           @Values = params['Values']
+        end
+      end
+
+      # 宿主机资源的概览详细信息。
+      class HostDetailInfo < TencentCloud::Common::AbstractModel
+        # @param HostTypeFamily: 类型族
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostTypeFamily: String
+        # @param CpuTotal: 总CPU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTotal: Float
+        # @param CpuAvailable: 可用CPU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuAvailable: Float
+        # @param MemTotal: 总内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemTotal: Float
+        # @param MemAvailable: 可用内存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemAvailable: Float
+
+        attr_accessor :HostTypeFamily, :CpuTotal, :CpuAvailable, :MemTotal, :MemAvailable
+
+        def initialize(hosttypefamily=nil, cputotal=nil, cpuavailable=nil, memtotal=nil, memavailable=nil)
+          @HostTypeFamily = hosttypefamily
+          @CpuTotal = cputotal
+          @CpuAvailable = cpuavailable
+          @MemTotal = memtotal
+          @MemAvailable = memavailable
+        end
+
+        def deserialize(params)
+          @HostTypeFamily = params['HostTypeFamily']
+          @CpuTotal = params['CpuTotal']
+          @CpuAvailable = params['CpuAvailable']
+          @MemTotal = params['MemTotal']
+          @MemAvailable = params['MemAvailable']
         end
       end
 

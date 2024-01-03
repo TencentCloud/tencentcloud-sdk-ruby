@@ -4711,8 +4711,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2023, 12
-        deprecate :Decription=, :none, 2023, 12
+        deprecate :Decription, :none, 2024, 1
+        deprecate :Decription=, :none, 2024, 1
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -6134,7 +6134,7 @@ module TencentCloud
 
       # CreateMalwareWhiteList请求参数结构体
       class CreateMalwareWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param Mode: 白名单模式； 0MD5白名单，1自定义
+        # @param Mode: 白名单模式； 0 MD5白名单，1自定义
         # @type Mode: Integer
         # @param QuuidList: quuid 列表
         # @type QuuidList: Array
@@ -9601,16 +9601,16 @@ module TencentCloud
         # <li>IP   内网IP或公网IP</li>
         # <li>OsType - String - 是否必填：否 - windows或linux</li>
         # <li>CpuLoad - Int - 是否必填：否 -
-        # 0: 未知  1: 低负载
-        # 2: 中负载  3: 高负载</li>
+        # 	0: 未知  1: 低负载
+        # 	2: 中负载  3: 高负载</li>
         # <li>DiskLoad - Int - 是否必填：否 -
-        # 0: 0%或未知  1: 0%～20%
-        # 2: 20%～50%  3: 50%～80%
-        # 4: 80%～100%</li>
+        # 	0: 0%或未知  1: 0%～20%
+        # 	2: 20%～50%  3: 50%～80%
+        # 	4: 80%～100%</li>
         # <li>MemLoad - Int - 是否必填：否 -
-        # 0: 0%或未知  1: 0%～20%
-        # 2: 20%～50%  3: 50%～80%
-        # 4: 80%～100%</li>
+        # 	0: 0%或未知  1: 0%～20%
+        # 	2: 20%～50%  3: 50%～80%
+        # 	4: 80%～100%</li>
         # <li>Quuid：主机Quuid</li>
         # <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
         # @type Filters: Array
@@ -10658,8 +10658,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Order: 排序方式，asc升序 或 desc降序
         # @type Order: String
-        # @param By: 可选排序：[FirstTime|LoginTime|PasswordChangeTime|PasswordDuaTime]
-        # PasswordLockDays
+        # @param By: 可选排序：[FirstTime|LoginTime|PasswordChangeTime|PasswordDuaTime|PasswordLockDays]
         # @type By: String
 
         attr_accessor :Quuid, :Filters, :Limit, :Offset, :Order, :By
@@ -28462,8 +28461,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2023, 12
-        deprecate :Fileds=, :none, 2023, 12
+        deprecate :Fileds, :none, 2024, 1
+        deprecate :Fileds=, :none, 2024, 1
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -28752,7 +28751,9 @@ module TencentCloud
 
       # ExportJavaMemShells请求参数结构体
       class ExportJavaMemShellsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件：Keywords: ip或者主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
+        # @param Filters: 过滤条件：InstanceID、IP、
+
+        # MachineName主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
         # @type Filters: Array
         # @param Where: 导出字段
         # @type Where: Array
@@ -28779,7 +28780,7 @@ module TencentCloud
 
       # ExportJavaMemShells返回参数结构体
       class ExportJavaMemShellsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
+        # @param TaskId: 任务ID,需要到接口“异步导出任务”https://cloud.tencent.com/document/product/296/52508 获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

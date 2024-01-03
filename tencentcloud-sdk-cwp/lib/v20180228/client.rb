@@ -5504,7 +5504,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询主机相关核心文件监控规则列 表
+        # 查询主机相关核心文件监控规则列表
 
         # @param request: Request instance for DescribeMachineFileTamperRules.
         # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeMachineFileTamperRulesRequest`

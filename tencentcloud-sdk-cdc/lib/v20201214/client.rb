@@ -197,7 +197,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 专用集群宿主机信息
+        # 查询专用集群宿主机信息
 
         # @param request: Request instance for DescribeDedicatedClusterHosts.
         # @type request: :class:`Tencentcloud::cdc::V20201214::DescribeDedicatedClusterHostsRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 专用集群概览信息
+        # 查询专用集群概览信息
 
         # @param request: Request instance for DescribeDedicatedClusterOverview.
         # @type request: :class:`Tencentcloud::cdc::V20201214::DescribeDedicatedClusterOverviewRequest`

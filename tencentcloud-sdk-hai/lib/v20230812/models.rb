@@ -36,15 +36,32 @@ module TencentCloud
         # @param MinSystemDiskSize: 系统盘大小下限
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MinSystemDiskSize: Integer
+        # @param ApplicationType: 应用类型，目前该项取值可以为PRIVATE_APPLICATION或者PUBLIC_APPLICATION
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationType: String
+        # @param ApplicationState: 应用状态：CREATING-创建中；ONLINE -正常在线；DELETING -删除中；ARREARS - 欠费隔离
+        # 示例值：ONLINE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationState: String
+        # @param CreateTime: 应用创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ApplicationSize: 应用大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationSize: Integer
 
-        attr_accessor :ApplicationId, :ApplicationName, :Description, :ConfigEnvironment, :MinSystemDiskSize
+        attr_accessor :ApplicationId, :ApplicationName, :Description, :ConfigEnvironment, :MinSystemDiskSize, :ApplicationType, :ApplicationState, :CreateTime, :ApplicationSize
 
-        def initialize(applicationid=nil, applicationname=nil, description=nil, configenvironment=nil, minsystemdisksize=nil)
+        def initialize(applicationid=nil, applicationname=nil, description=nil, configenvironment=nil, minsystemdisksize=nil, applicationtype=nil, applicationstate=nil, createtime=nil, applicationsize=nil)
           @ApplicationId = applicationid
           @ApplicationName = applicationname
           @Description = description
           @ConfigEnvironment = configenvironment
           @MinSystemDiskSize = minsystemdisksize
+          @ApplicationType = applicationtype
+          @ApplicationState = applicationstate
+          @CreateTime = createtime
+          @ApplicationSize = applicationsize
         end
 
         def deserialize(params)
@@ -53,6 +70,10 @@ module TencentCloud
           @Description = params['Description']
           @ConfigEnvironment = params['ConfigEnvironment']
           @MinSystemDiskSize = params['MinSystemDiskSize']
+          @ApplicationType = params['ApplicationType']
+          @ApplicationState = params['ApplicationState']
+          @CreateTime = params['CreateTime']
+          @ApplicationSize = params['ApplicationSize']
         end
       end
 
@@ -61,9 +82,10 @@ module TencentCloud
         # @param ApplicationIds: 应用id列表
         # @type ApplicationIds: Array
         # @param Filters: 过滤器，跟ApplicationIds不能共用，支持的filter主要有：
-        # application-id，精确匹配
-        # scene-id，精确匹配
-        # application-name，模糊匹配
+        # application-id: 精确匹配;
+        # scene-id: 精确匹配;
+        # application-name: 模糊匹配;
+        # application-type: 精确匹配;
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -71,14 +93,20 @@ module TencentCloud
         # MC：1000
         # 用户：100
         # @type Limit: Integer
+        # @param OrderField: 应用列表排序的依据字段。取值范围："CREATED_TIME"：依据应用的创建时间排序。 "APPLICATION_SIZE"：依据应用的大小排序。默认按应用的创建时间排序。
+        # @type OrderField: String
+        # @param Order: 输出应用列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列。
+        # @type Order: String
 
-        attr_accessor :ApplicationIds, :Filters, :Offset, :Limit
+        attr_accessor :ApplicationIds, :Filters, :Offset, :Limit, :OrderField, :Order
 
-        def initialize(applicationids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(applicationids=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, order=nil)
           @ApplicationIds = applicationids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @OrderField = orderfield
+          @Order = order
         end
 
         def deserialize(params)
@@ -93,6 +121,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
         end
       end
 
