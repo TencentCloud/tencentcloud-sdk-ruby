@@ -2854,17 +2854,17 @@ module TencentCloud
       class GetMetaTableResponse < TencentCloud::Common::AbstractModel
         # @param SerialId: 元数据表唯一标识
         # @type SerialId: String
-        # @param Catalog: Catalog名
+        # @param Catalog: 目录名
         # @type Catalog: String
-        # @param Database: Database名
+        # @param Database: 库名
         # @type Database: String
-        # @param Table: Table名
+        # @param Table: 表名
         # @type Table: String
         # @param DDL: 建表语句,使用 Base64 编码。
         # 例如
         # Q1JFQVRFIFRBQkxFIGRhdGFnZW5fc291cmNlX3RhYmxlICggCiAgICBpZCBJTlQsIAogICAgbmFtZSBTVFJJTkcgCikgV0lUSCAoCidjb25uZWN0b3InPSdkYXRhZ2VuJywKJ3Jvd3MtcGVyLXNlY29uZCcgPSAnMScKKTs=
         # @type DDL: String
-        # @param CreateTime: 场景时间
+        # @param CreateTime: 创建时间
         # @type CreateTime: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

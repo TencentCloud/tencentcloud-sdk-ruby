@@ -1021,6 +1021,74 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceNodes请求参数结构体
+      class DescribeInstanceNodesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群实例ID
+        # @type InstanceId: String
+        # @param NodeRole: 集群角色类型，默认为 "data"数据节点
+        # @type NodeRole: String
+        # @param Offset: 分页参数，第一页为0，第二页为10
+        # @type Offset: Integer
+        # @param Limit: 分页参数，分页步长，默认为10
+        # @type Limit: Integer
+        # @param DisplayPolicy: 展现策略，All时显示所有
+        # @type DisplayPolicy: String
+        # @param ForceAll: 当true的时候返回所有节点，即Limit无限大
+        # @type ForceAll: Boolean
+
+        attr_accessor :InstanceId, :NodeRole, :Offset, :Limit, :DisplayPolicy, :ForceAll
+
+        def initialize(instanceid=nil, noderole=nil, offset=nil, limit=nil, displaypolicy=nil, forceall=nil)
+          @InstanceId = instanceid
+          @NodeRole = noderole
+          @Offset = offset
+          @Limit = limit
+          @DisplayPolicy = displaypolicy
+          @ForceAll = forceall
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeRole = params['NodeRole']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DisplayPolicy = params['DisplayPolicy']
+          @ForceAll = params['ForceAll']
+        end
+      end
+
+      # DescribeInstanceNodes返回参数结构体
+      class DescribeInstanceNodesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param InstanceNodesList: 实例节点总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNodesList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceNodesList, :RequestId
+
+        def initialize(totalcount=nil, instancenodeslist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceNodesList = instancenodeslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceNodesList'].nil?
+            @InstanceNodesList = []
+            params['InstanceNodesList'].each do |i|
+              instancenode_tmp = InstanceNode.new
+              instancenode_tmp.deserialize(i)
+              @InstanceNodesList << instancenode_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstance请求参数结构体
       class DescribeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -1391,6 +1459,30 @@ module TencentCloud
         end
       end
 
+      # 集群分组信息描述
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupName: 分组名称
+        # @type GroupName: String
+        # @param ShardName: 分片变量名称
+        # @type ShardName: String
+        # @param ReplicaName: 副本变量名称
+        # @type ReplicaName: String
+
+        attr_accessor :GroupName, :ShardName, :ReplicaName
+
+        def initialize(groupname=nil, shardname=nil, replicaname=nil)
+          @GroupName = groupname
+          @ShardName = shardname
+          @ReplicaName = replicaname
+        end
+
+        def deserialize(params)
+          @GroupName = params['GroupName']
+          @ShardName = params['ShardName']
+          @ReplicaName = params['ReplicaName']
+        end
+      end
+
       # 集群配置信息
       class InstanceConfigInfo < TencentCloud::Common::AbstractModel
         # @param ConfKey: 配置项名称
@@ -1732,6 +1824,67 @@ module TencentCloud
           @EsIndexUsername = params['EsIndexUsername']
           @EsIndexPassword = params['EsIndexPassword']
           @HasEsIndex = params['HasEsIndex']
+        end
+      end
+
+      # 实例节点描述信息
+      class InstanceNode < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Spec: 机型，如 S1
+        # @type Spec: String
+        # @param Core: cpu核数
+        # @type Core: Integer
+        # @param Memory: 内存大小
+        # @type Memory: Integer
+        # @param DiskType: 磁盘类型
+        # @type DiskType: String
+        # @param DiskSize: 磁盘大小
+        # @type DiskSize: Integer
+        # @param Cluster: 所属clickhouse cluster名称
+        # @type Cluster: String
+        # @param NodeGroups: 节点所属的分组信息
+        # @type NodeGroups: Array
+        # @param Rip: VPC IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rip: String
+        # @param IsCHProxy: ture的时候表示该节点上部署了chproxy进程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCHProxy: Boolean
+
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Cluster, :NodeGroups, :Rip, :IsCHProxy
+
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, cluster=nil, nodegroups=nil, rip=nil, ischproxy=nil)
+          @Ip = ip
+          @Spec = spec
+          @Core = core
+          @Memory = memory
+          @DiskType = disktype
+          @DiskSize = disksize
+          @Cluster = cluster
+          @NodeGroups = nodegroups
+          @Rip = rip
+          @IsCHProxy = ischproxy
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Spec = params['Spec']
+          @Core = params['Core']
+          @Memory = params['Memory']
+          @DiskType = params['DiskType']
+          @DiskSize = params['DiskSize']
+          @Cluster = params['Cluster']
+          unless params['NodeGroups'].nil?
+            @NodeGroups = []
+            params['NodeGroups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @NodeGroups << groupinfo_tmp
+            end
+          end
+          @Rip = params['Rip']
+          @IsCHProxy = params['IsCHProxy']
         end
       end
 

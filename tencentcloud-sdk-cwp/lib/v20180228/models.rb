@@ -28780,7 +28780,7 @@ module TencentCloud
 
       # ExportJavaMemShells返回参数结构体
       class ExportJavaMemShellsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID,需要到接口“异步导出任务”https://cloud.tencent.com/document/product/296/52508 获取DownloadUrl下载地址
+        # @param TaskId: 任务ID,需要到接口 <a href="https://cloud.tencent.com/document/product/296/52508" target="_blank" >异步导出任务</a>获取DownloadUrl下载地址
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

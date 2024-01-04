@@ -4008,8 +4008,8 @@ module TencentCloud
 
         attr_accessor :AdmissionTime, :DischargeTime, :AdmissionDays, :AdmissionDignosis, :AdmissionCondition, :DiagnosisTreatment, :DischargeDiagnosis, :DischargeInstruction, :AdmissionDiagnosis
         extend Gem::Deprecate
-        deprecate :AdmissionDignosis, :none, 2023, 12
-        deprecate :AdmissionDignosis=, :none, 2023, 12
+        deprecate :AdmissionDignosis, :none, 2024, 1
+        deprecate :AdmissionDignosis=, :none, 2024, 1
 
         def initialize(admissiontime=nil, dischargetime=nil, admissiondays=nil, admissiondignosis=nil, admissioncondition=nil, diagnosistreatment=nil, dischargediagnosis=nil, dischargeinstruction=nil, admissiondiagnosis=nil)
           @AdmissionTime = admissiontime
@@ -4185,6 +4185,88 @@ module TencentCloud
           @Id = params['Id']
           @Url = params['Url']
           @Base64 = params['Base64']
+        end
+      end
+
+      # ImageMaskAsyncGetResult请求参数结构体
+      class ImageMaskAsyncGetResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskID: 异步任务ID
+        # @type TaskID: String
+
+        attr_accessor :TaskID
+
+        def initialize(taskid=nil)
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+        end
+      end
+
+      # ImageMaskAsyncGetResult返回参数结构体
+      class ImageMaskAsyncGetResultResponse < TencentCloud::Common::AbstractModel
+        # @param MaskedImage: 脱敏后图片的base64编码
+        # @type MaskedImage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MaskedImage, :RequestId
+
+        def initialize(maskedimage=nil, requestid=nil)
+          @MaskedImage = maskedimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MaskedImage = params['MaskedImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImageMaskAsync请求参数结构体
+      class ImageMaskAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param Image: 图片信息,目前只支持传图片base64
+        # @type Image: :class:`Tencentcloud::Mrs.v20200910.models.ImageInfo`
+        # @param MaskFlag: 图片脱敏选项, 不传默认都脱敏
+        # @type MaskFlag: :class:`Tencentcloud::Mrs.v20200910.models.ImageMaskFlags`
+
+        attr_accessor :Image, :MaskFlag
+
+        def initialize(image=nil, maskflag=nil)
+          @Image = image
+          @MaskFlag = maskflag
+        end
+
+        def deserialize(params)
+          unless params['Image'].nil?
+            @Image = ImageInfo.new
+            @Image.deserialize(params['Image'])
+          end
+          unless params['MaskFlag'].nil?
+            @MaskFlag = ImageMaskFlags.new
+            @MaskFlag.deserialize(params['MaskFlag'])
+          end
+        end
+      end
+
+      # ImageMaskAsync返回参数结构体
+      class ImageMaskAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param TaskID: 加密任务ID
+        # @type TaskID: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskID, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskID = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskID = params['TaskID']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4674,8 +4756,8 @@ module TencentCloud
 
         attr_accessor :TableIndictors, :Version, :TableIndicators
         extend Gem::Deprecate
-        deprecate :TableIndictors, :none, 2023, 12
-        deprecate :TableIndictors=, :none, 2023, 12
+        deprecate :TableIndictors, :none, 2024, 1
+        deprecate :TableIndictors=, :none, 2024, 1
 
         def initialize(tableindictors=nil, version=nil, tableindicators=nil)
           @TableIndictors = tableindictors
@@ -6935,8 +7017,8 @@ module TencentCloud
 
         attr_accessor :Part, :Size, :Envelope, :Edge, :InnerEcho, :Gland, :Shape, :Thickness, :ShapeAttr, :CDFI, :SymDesc, :SizeStatus, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :InnerEchoDistribution, :Src, :Index, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :LymphEnlargement, :ImageFeature, :Duct, :Trend, :Operation, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2023, 12
-        deprecate :IsthmusThicknese=, :none, 2023, 12
+        deprecate :IsthmusThicknese, :none, 2024, 1
+        deprecate :IsthmusThicknese=, :none, 2024, 1
 
         def initialize(part=nil, size=nil, envelope=nil, edge=nil, innerecho=nil, gland=nil, shape=nil, thickness=nil, shapeattr=nil, cdfi=nil, symdesc=nil, sizestatus=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, innerechodistribution=nil, src=nil, index=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, lymphenlargement=nil, imagefeature=nil, duct=nil, trend=nil, operation=nil, coords=nil, isthmusthickness=nil)
           @Part = part
@@ -7527,8 +7609,8 @@ module TencentCloud
 
         attr_accessor :IncisionHealingText, :AuxiliaryExaminationText, :SpecialExamText, :OutpatientDiagnosisText, :AdmissionConditionText, :CheckAndTreatmentProcessText, :SymptomsAndSignsText, :DischargeInstructionsText, :AdmissionDiagnosisText, :SurgeryConditionText, :PathologicalDiagnosisText, :DischargeConditionText, :CheckRecordText, :ChiefComplaintText, :DischargeDiagnosisText, :MainDiseaseHistoryText, :DiseasePresentText, :PersonalHistoryText, :MenstruallHistoryText, :ObstericalHistoryText, :FamilyHistoryText, :AllergyHistoryText, :DiseaseHistoryText, :OtherDiagnosisText, :BodyExaminationText, :SpecialistExaminationText, :TreatmentResultText, :MenstrualHistoryText
         extend Gem::Deprecate
-        deprecate :MenstruallHistoryText, :none, 2023, 12
-        deprecate :MenstruallHistoryText=, :none, 2023, 12
+        deprecate :MenstruallHistoryText, :none, 2024, 1
+        deprecate :MenstruallHistoryText=, :none, 2024, 1
 
         def initialize(incisionhealingtext=nil, auxiliaryexaminationtext=nil, specialexamtext=nil, outpatientdiagnosistext=nil, admissionconditiontext=nil, checkandtreatmentprocesstext=nil, symptomsandsignstext=nil, dischargeinstructionstext=nil, admissiondiagnosistext=nil, surgeryconditiontext=nil, pathologicaldiagnosistext=nil, dischargeconditiontext=nil, checkrecordtext=nil, chiefcomplainttext=nil, dischargediagnosistext=nil, maindiseasehistorytext=nil, diseasepresenttext=nil, personalhistorytext=nil, menstruallhistorytext=nil, obstericalhistorytext=nil, familyhistorytext=nil, allergyhistorytext=nil, diseasehistorytext=nil, otherdiagnosistext=nil, bodyexaminationtext=nil, specialistexaminationtext=nil, treatmentresulttext=nil, menstrualhistorytext=nil)
           @IncisionHealingText = incisionhealingtext
@@ -10547,8 +10629,8 @@ module TencentCloud
 
         attr_accessor :DmissionCondition, :ChiefComplaint, :DiseasePresent, :SymptomsAndSigns, :AuxiliaryExamination, :BodyExamination, :SpecialistExamination, :MentalExamination, :CheckRecord, :InspectResult, :IncisionHealing, :TreatmentSuggestion, :FollowUpRequirements, :CheckAndTreatmentProcess, :SurgeryCondition, :ConditionChanges, :DischargeCondition, :PTNM, :PTNMM, :PTNMN, :PTNMT, :ECOG, :NRS, :KPS, :DeathDate, :RelapseDate, :ObservationDays, :AdmissionCondition
         extend Gem::Deprecate
-        deprecate :DmissionCondition, :none, 2023, 12
-        deprecate :DmissionCondition=, :none, 2023, 12
+        deprecate :DmissionCondition, :none, 2024, 1
+        deprecate :DmissionCondition=, :none, 2024, 1
 
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition
@@ -11131,8 +11213,8 @@ module TencentCloud
 
         attr_accessor :Type, :Part, :Size, :Multiple, :AspectRatio, :Edge, :InnerEcho, :RearEcho, :Elastic, :Shape, :ShapeAttr, :SkinMedulla, :Trend, :Calcification, :Envelope, :Enhancement, :LymphEnlargement, :LymphDoor, :Activity, :Operation, :CDFI, :Index, :SizeStatus, :InnerEchoDistribution, :InnerEchoType, :Outline, :Structure, :Density, :Vas, :Cysticwall, :Capsule, :IsthmusThicknese, :Src, :Transparent, :MriAdc, :MriDwi, :MriT1, :MriT2, :CtHu, :Suvmax, :Metabolism, :RadioactiveUptake, :SymDesc, :ImageFeature, :Coords, :IsthmusThickness
         extend Gem::Deprecate
-        deprecate :IsthmusThicknese, :none, 2023, 12
-        deprecate :IsthmusThicknese=, :none, 2023, 12
+        deprecate :IsthmusThicknese, :none, 2024, 1
+        deprecate :IsthmusThicknese=, :none, 2024, 1
 
         def initialize(type=nil, part=nil, size=nil, multiple=nil, aspectratio=nil, edge=nil, innerecho=nil, rearecho=nil, elastic=nil, shape=nil, shapeattr=nil, skinmedulla=nil, trend=nil, calcification=nil, envelope=nil, enhancement=nil, lymphenlargement=nil, lymphdoor=nil, activity=nil, operation=nil, cdfi=nil, index=nil, sizestatus=nil, innerechodistribution=nil, innerechotype=nil, outline=nil, structure=nil, density=nil, vas=nil, cysticwall=nil, capsule=nil, isthmusthicknese=nil, src=nil, transparent=nil, mriadc=nil, mridwi=nil, mrit1=nil, mrit2=nil, cthu=nil, suvmax=nil, metabolism=nil, radioactiveuptake=nil, symdesc=nil, imagefeature=nil, coords=nil, isthmusthickness=nil)
           @Type = type
