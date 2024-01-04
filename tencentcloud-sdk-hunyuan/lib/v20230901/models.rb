@@ -254,6 +254,53 @@ module TencentCloud
         end
       end
 
+      # embedding 信息，当前不支持批量，所以数组元素数目为1。
+      class EmbeddingData < TencentCloud::Common::AbstractModel
+        # @param Embedding: embedding 信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Embedding: Array
+        # @param Index: 下标。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: Integer
+        # @param Object: embedding
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Object: String
+
+        attr_accessor :Embedding, :Index, :Object
+
+        def initialize(embedding=nil, index=nil, object=nil)
+          @Embedding = embedding
+          @Index = index
+          @Object = object
+        end
+
+        def deserialize(params)
+          @Embedding = params['Embedding']
+          @Index = params['Index']
+          @Object = params['Object']
+        end
+      end
+
+      # token 使用计数。
+      class EmbeddingUsage < TencentCloud::Common::AbstractModel
+        # @param PromptTokens: 输入Token数。
+        # @type PromptTokens: Integer
+        # @param TotalTokens: 总Token数。
+        # @type TotalTokens: Integer
+
+        attr_accessor :PromptTokens, :TotalTokens
+
+        def initialize(prompttokens=nil, totaltokens=nil)
+          @PromptTokens = prompttokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @PromptTokens = params['PromptTokens']
+          @TotalTokens = params['TotalTokens']
+        end
+      end
+
       # 运行时异常信息。
       class ErrorMsg < TencentCloud::Common::AbstractModel
         # @param Msg: 错误提示信息。
@@ -273,6 +320,56 @@ module TencentCloud
         def deserialize(params)
           @Msg = params['Msg']
           @Code = params['Code']
+        end
+      end
+
+      # GetEmbedding请求参数结构体
+      class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
+        # @param Input: 输入文本。总长度不超过1024 个token, 超过则会截断最后面的内容。
+        # @type Input: String
+
+        attr_accessor :Input
+
+        def initialize(input=nil)
+          @Input = input
+        end
+
+        def deserialize(params)
+          @Input = params['Input']
+        end
+      end
+
+      # GetEmbedding返回参数结构体
+      class GetEmbeddingResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回的 embedding 信息。
+        # @type Data: Array
+        # @param Usage: token 使用计数，按照总token数量收费。
+        # @type Usage: :class:`Tencentcloud::Hunyuan.v20230901.models.EmbeddingUsage`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Usage, :RequestId
+
+        def initialize(data=nil, usage=nil, requestid=nil)
+          @Data = data
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              embeddingdata_tmp = EmbeddingData.new
+              embeddingdata_tmp.deserialize(i)
+              @Data << embeddingdata_tmp
+            end
+          end
+          unless params['Usage'].nil?
+            @Usage = EmbeddingUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

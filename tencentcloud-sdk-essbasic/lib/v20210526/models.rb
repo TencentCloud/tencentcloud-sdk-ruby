@@ -821,7 +821,7 @@ module TencentCloud
         # </ul>
         # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param QrCodeId: 需要取消签署的二维码ID，为32位字符串。由[创建一码多扫流程签署二维码](https://qian.tencent.com/developers/partnerApis/templates/ChannelCreateMultiFlowSignQRCode)返回
+        # @param QrCodeId: 需要取消的签署码ID，为32位字符串。由[创建一码多签签署码](https://qian.tencent.com/developers/partnerApis/templates/ChannelCreateMultiFlowSignQRCode)返回
         # @type QrCodeId: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
@@ -2275,9 +2275,9 @@ module TencentCloud
 
       # ChannelCreateMultiFlowSignQRCode返回参数结构体
       class ChannelCreateMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
-        # @param QrCode: 签署二维码的基本信息，用于创建二维码，用户可扫描该二维码进行签署操作。
+        # @param QrCode: 一码多签签署码的基本信息，用户可扫描该二维码进行签署操作。
         # @type QrCode: :class:`Tencentcloud::Essbasic.v20210526.models.SignQrCode`
-        # @param SignUrls: 流程签署二维码的签署信息，适用于客户系统整合二维码功能。通过链接，用户可直接访问电子签名小程序并签署合同。
+        # @param SignUrls: 一码多签签署码链接信息，适用于客户系统整合二维码功能。通过链接，用户可直接访问电子签名小程序并签署合同。
         # @type SignUrls: :class:`Tencentcloud::Essbasic.v20210526.models.SignUrl`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

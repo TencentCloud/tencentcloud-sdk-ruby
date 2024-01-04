@@ -2958,8 +2958,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 12
-        deprecate :Angel=, :none, 2023, 12
+        deprecate :Angel, :none, 2024, 1
+        deprecate :Angel=, :none, 2024, 1
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3069,8 +3069,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2023, 12
-        deprecate :Angel=, :none, 2023, 12
+        deprecate :Angel, :none, 2024, 1
+        deprecate :Angel=, :none, 2024, 1
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -8936,11 +8936,15 @@ module TencentCloud
         # WayBill -- 快递运单
         # AccountOpeningPermit -- 银行开户许可证
         # InvoiceEng -- 海外发票模版
+        # Coin --钱币识别模板
+        # OnboardingDocuments -- 入职材料识别
         # @type ConfigId: String
+        # @param EnableSealRecognize: 是否打开印章识别
+        # @type EnableSealRecognize: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :ItemNames, :ReturnFullText, :ConfigId, :EnableSealRecognize
 
-        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil)
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, itemnames=nil, returnfulltext=nil, configid=nil, enablesealrecognize=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @IsPdf = ispdf
@@ -8948,6 +8952,7 @@ module TencentCloud
           @ItemNames = itemnames
           @ReturnFullText = returnfulltext
           @ConfigId = configid
+          @EnableSealRecognize = enablesealrecognize
         end
 
         def deserialize(params)
@@ -8958,6 +8963,7 @@ module TencentCloud
           @ItemNames = params['ItemNames']
           @ReturnFullText = params['ReturnFullText']
           @ConfigId = params['ConfigId']
+          @EnableSealRecognize = params['EnableSealRecognize']
         end
       end
 

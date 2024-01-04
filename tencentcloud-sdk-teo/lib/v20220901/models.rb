@@ -1434,8 +1434,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2023, 12
-        deprecate :IgnoreCacheControl=, :none, 2023, 12
+        deprecate :IgnoreCacheControl, :none, 2024, 1
+        deprecate :IgnoreCacheControl=, :none, 2024, 1
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2379,8 +2379,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2023, 12
-        deprecate :EncodeUrl=, :none, 2023, 12
+        deprecate :EncodeUrl, :none, 2024, 1
+        deprecate :EncodeUrl=, :none, 2024, 1
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
@@ -2612,10 +2612,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2023, 12
-        deprecate :AllowDuplicates=, :none, 2023, 12
-        deprecate :JumpStart, :none, 2023, 12
-        deprecate :JumpStart=, :none, 2023, 12
+        deprecate :AllowDuplicates, :none, 2024, 1
+        deprecate :AllowDuplicates=, :none, 2024, 1
+        deprecate :JumpStart, :none, 2024, 1
+        deprecate :JumpStart=, :none, 2024, 1
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -6555,7 +6555,7 @@ module TencentCloud
         # @type GroupId: Integer
         # @param Name: 组名称。
         # @type Name: String
-        # @param Content: IP 组内容，可以填入 IP 及 IP 掩码。
+        # @param Content: IP 组内容，仅支持 IP 及 IP 掩码。
         # @type Content: Array
 
         attr_accessor :GroupId, :Name, :Content
@@ -7490,8 +7490,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2023, 12
-        deprecate :ApplyType=, :none, 2023, 12
+        deprecate :ApplyType, :none, 2024, 1
+        deprecate :ApplyType=, :none, 2024, 1
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
@@ -9344,8 +9344,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2023, 12
-        deprecate :IgnoreNameCase=, :none, 2023, 12
+        deprecate :IgnoreNameCase, :none, 2024, 1
+        deprecate :IgnoreNameCase=, :none, 2024, 1
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

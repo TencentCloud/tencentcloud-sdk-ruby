@@ -85,6 +85,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 腾讯混元-Embedding接口，可以将文本转化为高质量的向量数据。
+
+        # @param request: Request instance for GetEmbedding.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::GetEmbeddingRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::GetEmbeddingResponse`
+        def GetEmbedding(request)
+          body = send_request('GetEmbedding', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetEmbeddingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于计算文本对应Token数、字符数。
 
         # @param request: Request instance for GetTokenCount.

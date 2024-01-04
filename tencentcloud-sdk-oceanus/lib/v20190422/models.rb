@@ -2824,11 +2824,11 @@ module TencentCloud
 
       # GetMetaTable请求参数结构体
       class GetMetaTableRequest < TencentCloud::Common::AbstractModel
-        # @param Catalog: Catalog名
+        # @param Catalog: 目录名
         # @type Catalog: String
-        # @param Database: Database名
+        # @param Database: 库名
         # @type Database: String
-        # @param Table: Table名
+        # @param Table: 表名
         # @type Table: String
         # @param WorkSpaceId: 空间唯一标识
         # @type WorkSpaceId: String

@@ -2169,32 +2169,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 已上新接口，支持串行
-
-        # 单个修改互联网边界防火墙开关
-
-        # @param request: Request instance for ModifyPublicIPSwitchStatus.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyPublicIPSwitchStatusRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyPublicIPSwitchStatusResponse`
-        def ModifyPublicIPSwitchStatus(request)
-          body = send_request('ModifyPublicIPSwitchStatus', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyPublicIPSwitchStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # ModifyResourceGroup-资产中心资产组信息修改
 
 

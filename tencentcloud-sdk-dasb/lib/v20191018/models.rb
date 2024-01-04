@@ -556,13 +556,16 @@ module TencentCloud
         # @param DeviceDepartmentName: 设备部门name
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
+        # @param Size: 会话大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
 
-        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2023, 11
-        deprecate :SessTime=, :none, 2023, 11
+        deprecate :SessTime, :none, 2024, 1
+        deprecate :SessTime=, :none, 2024, 1
 
-        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
+        def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
           @Time = time
           @TimeOffset = timeoffset
@@ -579,6 +582,7 @@ module TencentCloud
           @UserDepartmentName = userdepartmentname
           @DeviceDepartmentId = devicedepartmentid
           @DeviceDepartmentName = devicedepartmentname
+          @Size = size
         end
 
         def deserialize(params)
@@ -598,6 +602,7 @@ module TencentCloud
           @UserDepartmentName = params['UserDepartmentName']
           @DeviceDepartmentId = params['DeviceDepartmentId']
           @DeviceDepartmentName = params['DeviceDepartmentName']
+          @Size = params['Size']
         end
       end
 
@@ -3754,13 +3759,16 @@ module TencentCloud
         # @param DeviceDepartmentName: 设备部门名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceDepartmentName: String
+        # @param Size: 会话大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
 
-        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName
+        attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2023, 11
-        deprecate :SessTime=, :none, 2023, 11
+        deprecate :SessTime, :none, 2024, 1
+        deprecate :SessTime=, :none, 2024, 1
 
-        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil)
+        def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time
           @UserName = username
           @RealName = realname
@@ -3781,6 +3789,7 @@ module TencentCloud
           @UserDepartmentName = userdepartmentname
           @DeviceDepartmentId = devicedepartmentid
           @DeviceDepartmentName = devicedepartmentname
+          @Size = size
         end
 
         def deserialize(params)
@@ -3804,6 +3813,7 @@ module TencentCloud
           @UserDepartmentName = params['UserDepartmentName']
           @DeviceDepartmentId = params['DeviceDepartmentId']
           @DeviceDepartmentName = params['DeviceDepartmentName']
+          @Size = params['Size']
         end
       end
 

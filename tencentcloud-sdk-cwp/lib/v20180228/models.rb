@@ -4906,10 +4906,13 @@ module TencentCloud
         # @param RiskLevel: 威胁等级：0低危，1中危，2高危
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: Integer
+        # @param DataFrom: 事件来源：0--阻断规则，1--威胁情报
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataFrom: Integer
 
-        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location, :RiskLevel
+        attr_accessor :Id, :Uuid, :MachineIp, :MachineName, :UserName, :SrcIp, :Status, :Country, :City, :Province, :CreateTime, :BanStatus, :EventType, :Count, :Quuid, :IsProVersion, :Protocol, :Port, :ModifyTime, :InstanceId, :DataStatus, :MachineExtraInfo, :Location, :RiskLevel, :DataFrom
 
-        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil, risklevel=nil)
+        def initialize(id=nil, uuid=nil, machineip=nil, machinename=nil, username=nil, srcip=nil, status=nil, country=nil, city=nil, province=nil, createtime=nil, banstatus=nil, eventtype=nil, count=nil, quuid=nil, isproversion=nil, protocol=nil, port=nil, modifytime=nil, instanceid=nil, datastatus=nil, machineextrainfo=nil, location=nil, risklevel=nil, datafrom=nil)
           @Id = id
           @Uuid = uuid
           @MachineIp = machineip
@@ -4934,6 +4937,7 @@ module TencentCloud
           @MachineExtraInfo = machineextrainfo
           @Location = location
           @RiskLevel = risklevel
+          @DataFrom = datafrom
         end
 
         def deserialize(params)
@@ -4964,6 +4968,7 @@ module TencentCloud
           end
           @Location = params['Location']
           @RiskLevel = params['RiskLevel']
+          @DataFrom = params['DataFrom']
         end
       end
 
@@ -12276,7 +12281,10 @@ module TencentCloud
 
       # DescribeBanStatus返回参数结构体
       class DescribeBanStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 阻断开关状态 0:关闭 1:开启
+        # @param Status: 阻断开关状态:
+        #  0 -- 关闭
+        #  1 -- 高级阻断
+        #  2 -- 基础阻断(只阻断情报库黑ip)
         # @type Status: Integer
         # @param ShowTips: 是否弹窗提示信息 false: 关闭，true: 开启
         # @type ShowTips: Boolean
@@ -18880,7 +18888,7 @@ module TencentCloud
         # <li>VirusName - String - 是否必填：否 - 描述筛选</li>
         # <li>CreateBeginTime - String - 是否必填：否 - 创建时间筛选-开始时间</li>
         # <li>CreateEndTime - String - 是否必填：否 - 创建时间筛选-结束时间</li>
-        # <li>Status - String - 是否必填：否 - 状态筛选 4待处理,5信任,6已隔离,10隔离中,11恢复隔离中</li>
+        # <li>Status - String - 是否必填：否 - 状态筛选 4待处理,5信任,6已隔离,10隔离中,11恢复隔离中,14 已处理</li>
         # @type Filters: Array
         # @param By: 检测排序 CreateTime
         # @type By: String

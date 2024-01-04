@@ -15693,12 +15693,15 @@ module TencentCloud
         # State为4时，有效值为: ISOLATE(隔离) DESTROED(已销毁)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubState: String
+        # @param InquireKey: 计费key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InquireKey: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :State, :CoresCnt, :AuthorizedCoresCnt, :ImageCnt, :AuthorizedImageCnt, :PurchasedAuthorizedCnt, :ExpirationTime, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :RequestId
+        attr_accessor :State, :CoresCnt, :AuthorizedCoresCnt, :ImageCnt, :AuthorizedImageCnt, :PurchasedAuthorizedCnt, :ExpirationTime, :AutomaticRenewal, :GivenAuthorizedCnt, :BeginTime, :SubState, :InquireKey, :RequestId
 
-        def initialize(state=nil, corescnt=nil, authorizedcorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, purchasedauthorizedcnt=nil, expirationtime=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, requestid=nil)
+        def initialize(state=nil, corescnt=nil, authorizedcorescnt=nil, imagecnt=nil, authorizedimagecnt=nil, purchasedauthorizedcnt=nil, expirationtime=nil, automaticrenewal=nil, givenauthorizedcnt=nil, begintime=nil, substate=nil, inquirekey=nil, requestid=nil)
           @State = state
           @CoresCnt = corescnt
           @AuthorizedCoresCnt = authorizedcorescnt
@@ -15710,6 +15713,7 @@ module TencentCloud
           @GivenAuthorizedCnt = givenauthorizedcnt
           @BeginTime = begintime
           @SubState = substate
+          @InquireKey = inquirekey
           @RequestId = requestid
         end
 
@@ -15725,6 +15729,7 @@ module TencentCloud
           @GivenAuthorizedCnt = params['GivenAuthorizedCnt']
           @BeginTime = params['BeginTime']
           @SubState = params['SubState']
+          @InquireKey = params['InquireKey']
           @RequestId = params['RequestId']
         end
       end

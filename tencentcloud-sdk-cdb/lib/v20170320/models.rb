@@ -3501,7 +3501,7 @@ module TencentCloud
 
       # DeleteAuditRuleTemplates请求参数结构体
       class DeleteAuditRuleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param RuleTemplateIds: 审计规则模版ID。
+        # @param RuleTemplateIds: 审计规则模板ID。
         # @type RuleTemplateIds: Array
 
         attr_accessor :RuleTemplateIds
@@ -9240,7 +9240,7 @@ module TencentCloud
         # @type AuditAll: Boolean
         # @param AuditRuleFilters: 审计规则。
         # @type AuditRuleFilters: Array
-        # @param RuleTemplateIds: 规则模版ID。
+        # @param RuleTemplateIds: 规则模板ID。
         # @type RuleTemplateIds: Array
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds

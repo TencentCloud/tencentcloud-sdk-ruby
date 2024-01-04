@@ -6613,51 +6613,6 @@ module TencentCloud
         end
       end
 
-      # ModifyPublicIPSwitchStatus请求参数结构体
-      class ModifyPublicIPSwitchStatusRequest < TencentCloud::Common::AbstractModel
-        # @param FireWallPublicIP: 公网IP
-        # @type FireWallPublicIP: String
-        # @param Status: 状态值，0: 关闭 ,1:开启
-        # @type Status: Integer
-
-        attr_accessor :FireWallPublicIP, :Status
-
-        def initialize(firewallpublicip=nil, status=nil)
-          @FireWallPublicIP = firewallpublicip
-          @Status = status
-        end
-
-        def deserialize(params)
-          @FireWallPublicIP = params['FireWallPublicIP']
-          @Status = params['Status']
-        end
-      end
-
-      # ModifyPublicIPSwitchStatus返回参数结构体
-      class ModifyPublicIPSwitchStatusResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnMsg: 接口返回信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ReturnMsg: String
-        # @param ReturnCode: 接口返回错误码，0请求成功  非0失败
-        # @type ReturnCode: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ReturnMsg, :ReturnCode, :RequestId
-
-        def initialize(returnmsg=nil, returncode=nil, requestid=nil)
-          @ReturnMsg = returnmsg
-          @ReturnCode = returncode
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ReturnMsg = params['ReturnMsg']
-          @ReturnCode = params['ReturnCode']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyResourceGroup请求参数结构体
       class ModifyResourceGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 组id

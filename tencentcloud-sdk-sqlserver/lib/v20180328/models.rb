@@ -2567,8 +2567,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2023, 12
-        deprecate :IsFulltextEnabled=, :none, 2023, 12
+        deprecate :IsFulltextEnabled, :none, 2024, 1
+        deprecate :IsFulltextEnabled=, :none, 2024, 1
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -3934,8 +3934,8 @@ module TencentCloud
 
       # DescribeCollationTimeZone请求参数结构体
       class DescribeCollationTimeZoneRequest < TencentCloud::Common::AbstractModel
-        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，
-        # 	CLOUD_SSD-虚拟机SSD云盘,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘,CLOUD_BASIC-虚拟机云硬盘，默认取值PM
+        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-云服务器高性能云盘，
+        # CLOUD_SSD-云服务器SSD云盘,CLOUD_HSSD-云服务器加强型SSD云盘，CLOUD_TSSD-云服务器极速型SSD云盘，CLOUD_BSSD-云服务器通用型SSD云盘,CLOUD_BASIC-云服务器云硬盘，默认取值PM
         # @type MachineType: String
 
         attr_accessor :MachineType
@@ -5066,8 +5066,8 @@ module TencentCloud
         # @type GoodsNum: Integer
         # @param DBVersion: sqlserver版本，目前所有支持的版本有：2008R2 (SQL Server 2008 R2 Enterprise)，2012SP3 (SQL Server 2012 Enterprise)，201202 (SQL Server 2012 Standard)，2014SP2 (SQL Server 2014 Enterprise)，201402 (SQL Server 2014 Standard)，2016SP1 (SQL Server 2016 Enterprise)，201602 (SQL Server 2016 Standard)，2017 (SQL Server 2017 Enterprise)，201702 (SQL Server 2017 Standard)，2019 (SQL Server 2019 Enterprise)，201902 (SQL Server 2019 Standard)。每个地域支持售卖的版本不同，可通过DescribeProductConfig接口来拉取每个地域可售卖的版本信息。不填，默认为版本2008R2。
         # @type DBVersion: String
-        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘,
-        # CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-云服务器高性能云盘，CLOUD_SSD-云服务器SSD云盘,
+        # CLOUD_HSSD-云服务器加强型SSD云盘，CLOUD_TSSD-云服务器极速型SSD云盘，CLOUD_BSSD-云服务器通用型SSD云盘
         # @type MachineType: String
 
         attr_accessor :Zone, :Memory, :Storage, :InstanceType, :InstanceChargeType, :Cpu, :Period, :GoodsNum, :DBVersion, :MachineType
@@ -5336,7 +5336,7 @@ module TencentCloud
         # @type Storage: Integer
         # @param InstanceType: 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-单节点型,BI-商业智能服务,cvmHA-新版高可用,cvmRO-新版只读
         # @type InstanceType: String
-        # @param MachineType: 购买实例的宿主机磁盘类型,CLOUD_HSSD-虚拟机加强型SSD云盘，CLOUD_TSSD-虚拟机极速型SSD云盘，CLOUD_BSSD-虚拟机通用型SSD云盘
+        # @param MachineType: 购买实例的宿主机磁盘类型,CLOUD_HSSD-云服务器加强型SSD云盘，CLOUD_TSSD-云服务器极速型SSD云盘，CLOUD_BSSD-云服务器通用型SSD云盘
         # @type MachineType: String
         # @param InstanceChargeType: 付费模式，取值支持 PREPAID（预付费），POSTPAID（后付费）。
         # @type InstanceChargeType: String
@@ -6581,8 +6581,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2023, 12
-        deprecate :Slowlogs=, :none, 2023, 12
+        deprecate :Slowlogs, :none, 2024, 1
+        deprecate :Slowlogs=, :none, 2024, 1
 
         def initialize(totalcount=nil, slowlogs=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6800,8 +6800,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2023, 12
-        deprecate :XCosSecurityToken=, :none, 2023, 12
+        deprecate :XCosSecurityToken, :none, 2024, 1
+        deprecate :XCosSecurityToken=, :none, 2024, 1
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -6879,8 +6879,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2023, 12
-        deprecate :XCosSecurityToken=, :none, 2023, 12
+        deprecate :XCosSecurityToken, :none, 2024, 1
+        deprecate :XCosSecurityToken=, :none, 2024, 1
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -8126,8 +8126,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2023, 12
-        deprecate :Errno=, :none, 2023, 12
+        deprecate :Errno, :none, 2024, 1
+        deprecate :Errno=, :none, 2024, 1
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno

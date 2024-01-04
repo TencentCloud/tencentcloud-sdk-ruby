@@ -1203,10 +1203,16 @@ module TencentCloud
         # @param ConfigAssociatedGroups: 配置项关联部署组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigAssociatedGroups: Array
+        # @param ConfigAssociatedGroupList: 配置项关联部署组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigAssociatedGroupList: Array
 
-        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups
+        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
+        extend Gem::Deprecate
+        deprecate :ConfigAssociatedGroups, :none, 2024, 1
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 1
 
-        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil)
+        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid
           @ConfigName = configname
           @ConfigPath = configpath
@@ -1217,6 +1223,7 @@ module TencentCloud
           @ConfigUpdateTime = configupdatetime
           @ConfigSchema = configschema
           @ConfigAssociatedGroups = configassociatedgroups
+          @ConfigAssociatedGroupList = configassociatedgrouplist
         end
 
         def deserialize(params)
@@ -1240,6 +1247,81 @@ module TencentCloud
               @ConfigAssociatedGroups << busineslogconfigassociatedgroup_tmp
             end
           end
+          unless params['ConfigAssociatedGroupList'].nil?
+            @ConfigAssociatedGroupList = []
+            params['ConfigAssociatedGroupList'].each do |i|
+              businesslogconfigassociatedgroup_tmp = BusinessLogConfigAssociatedGroup.new
+              businesslogconfigassociatedgroup_tmp.deserialize(i)
+              @ConfigAssociatedGroupList << businesslogconfigassociatedgroup_tmp
+            end
+          end
+        end
+      end
+
+      # 业务日志配置关联部署组信息
+      class BusinessLogConfigAssociatedGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 部署组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param ApplicationId: 部署组所属应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationId: String
+        # @param ApplicationName: 部署组所属应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationName: String
+        # @param ApplicationType: 部署组所属应用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApplicationType: String
+        # @param NamespaceId: 部署组所属命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceId: String
+        # @param NamespaceName: 部署组所属命名空间名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NamespaceName: String
+        # @param ClusterId: 部署组所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 部署组所属集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param ClusterType: 部署组所属集群类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+        # @param AssociatedTime: 部署组关联日志配置时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociatedTime: String
+
+        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ClusterType, :AssociatedTime
+
+        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, namespaceid=nil, namespacename=nil, clusterid=nil, clustername=nil, clustertype=nil, associatedtime=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @ApplicationId = applicationid
+          @ApplicationName = applicationname
+          @ApplicationType = applicationtype
+          @NamespaceId = namespaceid
+          @NamespaceName = namespacename
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterType = clustertype
+          @AssociatedTime = associatedtime
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @ApplicationId = params['ApplicationId']
+          @ApplicationName = params['ApplicationName']
+          @ApplicationType = params['ApplicationType']
+          @NamespaceId = params['NamespaceId']
+          @NamespaceName = params['NamespaceName']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterType = params['ClusterType']
+          @AssociatedTime = params['AssociatedTime']
         end
       end
 

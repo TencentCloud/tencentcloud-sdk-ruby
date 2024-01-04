@@ -1272,8 +1272,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2023, 12
-        deprecate :Option=, :none, 2023, 12
+        deprecate :Option, :none, 2024, 1
+        deprecate :Option=, :none, 2024, 1
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1327,8 +1327,6 @@ module TencentCloud
       class RunApplicationRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationId: 应用ID。
         # @type ApplicationId: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: String
         # @param Name: 任务批次名称。
         # @type Name: String
         # @param EnvironmentId: 投递环境ID。
@@ -1337,8 +1335,8 @@ module TencentCloud
         # @type InputBase64: String
         # @param CacheClearDelay: 任务缓存清理时间（小时）。不填表示不清理。
         # @type CacheClearDelay: Integer
-        # @param Option: 运行选项。
-        # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
+        # @param ProjectId: 项目ID。（不填使用指定地域下的默认项目）
+        # @type ProjectId: String
         # @param Description: 任务批次描述。
         # @type Description: String
         # @param TableId: 批量投递表格ID，不填表示单例投递。
@@ -1347,38 +1345,47 @@ module TencentCloud
         # @type TableRowUuids: Array
         # @param ApplicationVersionId: 应用版本ID。不填表示使用当前最新版本。
         # @type ApplicationVersionId: String
+        # @param Option: WDL运行选项。
+        # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
+        # @param NFOption: Nextflow运行选项。
+        # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
 
-        attr_accessor :ApplicationId, :ProjectId, :Name, :EnvironmentId, :InputBase64, :CacheClearDelay, :Option, :Description, :TableId, :TableRowUuids, :ApplicationVersionId
+        attr_accessor :ApplicationId, :Name, :EnvironmentId, :InputBase64, :CacheClearDelay, :ProjectId, :Description, :TableId, :TableRowUuids, :ApplicationVersionId, :Option, :NFOption
 
-        def initialize(applicationid=nil, projectid=nil, name=nil, environmentid=nil, inputbase64=nil, cachecleardelay=nil, option=nil, description=nil, tableid=nil, tablerowuuids=nil, applicationversionid=nil)
+        def initialize(applicationid=nil, name=nil, environmentid=nil, inputbase64=nil, cachecleardelay=nil, projectid=nil, description=nil, tableid=nil, tablerowuuids=nil, applicationversionid=nil, option=nil, nfoption=nil)
           @ApplicationId = applicationid
-          @ProjectId = projectid
           @Name = name
           @EnvironmentId = environmentid
           @InputBase64 = inputbase64
           @CacheClearDelay = cachecleardelay
-          @Option = option
+          @ProjectId = projectid
           @Description = description
           @TableId = tableid
           @TableRowUuids = tablerowuuids
           @ApplicationVersionId = applicationversionid
+          @Option = option
+          @NFOption = nfoption
         end
 
         def deserialize(params)
           @ApplicationId = params['ApplicationId']
-          @ProjectId = params['ProjectId']
           @Name = params['Name']
           @EnvironmentId = params['EnvironmentId']
           @InputBase64 = params['InputBase64']
           @CacheClearDelay = params['CacheClearDelay']
-          unless params['Option'].nil?
-            @Option = RunOption.new
-            @Option.deserialize(params['Option'])
-          end
+          @ProjectId = params['ProjectId']
           @Description = params['Description']
           @TableId = params['TableId']
           @TableRowUuids = params['TableRowUuids']
           @ApplicationVersionId = params['ApplicationVersionId']
+          unless params['Option'].nil?
+            @Option = RunOption.new
+            @Option.deserialize(params['Option'])
+          end
+          unless params['NFOption'].nil?
+            @NFOption = NFOption.new
+            @NFOption.deserialize(params['NFOption'])
+          end
         end
       end
 
