@@ -5034,12 +5034,19 @@ module TencentCloud
         # <ul><li>**1**：企业超管变更, 可以将超管换成同企业的其他员工</li>
         # <li>**2**：企业基础信息变更, 可以改企业名称 , 所在地址 , 法人名字等信息</li></ul>
         # @type ChangeType: Integer
+        # @param Endpoint: 变更链接类型：
+        # <ul>
+        # <li>**WEIXINAPP** : 创建变更短链。需要在移动端打开，会跳转到微信腾讯电子签小程序进行更换。（默认）</li>
+        # <li>**APP** : 创建变更小程序链接，可从第三方APP跳转到微信腾讯电子签小程序进行更换。</li>
+        # </ul>
+        # @type Endpoint: String
 
-        attr_accessor :Agent, :ChangeType
+        attr_accessor :Agent, :ChangeType, :Endpoint
 
-        def initialize(agent=nil, changetype=nil)
+        def initialize(agent=nil, changetype=nil, endpoint=nil)
           @Agent = agent
           @ChangeType = changetype
+          @Endpoint = endpoint
         end
 
         def deserialize(params)
@@ -5048,6 +5055,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @ChangeType = params['ChangeType']
+          @Endpoint = params['Endpoint']
         end
       end
 

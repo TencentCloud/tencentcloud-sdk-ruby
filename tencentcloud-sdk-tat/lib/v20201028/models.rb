@@ -1229,6 +1229,7 @@ module TencentCloud
         # 按照【操作系统类型】进行过滤，取值：Linux | Windows。
         # 类型：String
         # 必选：否
+
         # @type Filters: Array
         # @param Offset: 偏移量，默认为 0。
         # @type Offset: Integer

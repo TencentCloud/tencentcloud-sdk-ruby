@@ -8185,7 +8185,7 @@ module TencentCloud
         # @param AgeNorm: 标准化年龄
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgeNorm: String
-        # @param Nation: 民族
+        # @param Nation: 民族。该字段已不再使用，请从Ethnicity取值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nation: String
         # @param MarriedCode: 婚姻代码
@@ -8202,6 +8202,9 @@ module TencentCloud
         # @type BedNo: String
 
         attr_accessor :Name, :Sex, :Age, :Phone, :Address, :IdCard, :HealthCardNo, :SocialSecurityCardNo, :Birthday, :Ethnicity, :Married, :Profession, :EducationBackground, :Nationality, :BirthPlace, :MedicalInsuranceType, :AgeNorm, :Nation, :MarriedCode, :ProfessionCode, :MedicalInsuranceTypeCode, :BedNo
+        extend Gem::Deprecate
+        deprecate :Nation, :none, 2024, 1
+        deprecate :Nation=, :none, 2024, 1
 
         def initialize(name=nil, sex=nil, age=nil, phone=nil, address=nil, idcard=nil, healthcardno=nil, socialsecuritycardno=nil, birthday=nil, ethnicity=nil, married=nil, profession=nil, educationbackground=nil, nationality=nil, birthplace=nil, medicalinsurancetype=nil, agenorm=nil, nation=nil, marriedcode=nil, professioncode=nil, medicalinsurancetypecode=nil, bedno=nil)
           @Name = name

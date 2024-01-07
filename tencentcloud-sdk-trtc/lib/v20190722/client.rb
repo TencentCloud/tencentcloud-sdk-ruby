@@ -1162,6 +1162,8 @@ module TencentCloud
         end
 
         # 将一个在线媒体流推到TRTC房间。
+        # 使用此接口的前提条件：需要购买 [尊享版或旗舰版套餐包](https://cloud.tencent.com/document/product/647/85386
+        # )
 
         # @param request: Request instance for StartStreamIngest.
         # @type request: :class:`Tencentcloud::trtc::V20190722::StartStreamIngestRequest`

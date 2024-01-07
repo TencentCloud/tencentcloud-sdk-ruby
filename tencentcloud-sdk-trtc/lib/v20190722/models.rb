@@ -3835,7 +3835,7 @@ module TencentCloud
 
       # StartStreamIngest请求参数结构体
       class StartStreamIngestRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和录制的房间所对应的SdkAppId相同。
+        # @param SdkAppId: TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和TRTC的房间所对应的SdkAppId相同。
         # @type SdkAppId: Integer
         # @param RoomId: TRTC的[RoomId](https://cloud.tencent.com/document/product/647/46351#roomid)，录制的TRTC房间所对应的RoomId。
         # @type RoomId: String
@@ -3848,7 +3848,7 @@ module TencentCloud
         # @type UserId: String
         # @param UserSig: 拉流转推机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
         # @type UserSig: String
-        # @param SourceUrl: 源流URL。示例值：https://a.b/test.mp4
+        # @param SourceUrl: 【本字段已废弃，请使用 StreamUrl 字段】源流URL，支持一个地址。
         # @type SourceUrl: Array
         # @param PrivateMapKey: TRTC房间权限加密串，只有在TRTC控制台启用了高级权限控制的时候需要携带，在TRTC控制台如果开启高级权限控制后，TRTC 的后台服务系统会校验一个叫做 [PrivateMapKey] 的“权限票据”，权限票据中包含了一个加密后的 RoomId 和一个加密后的“权限位列表”。由于 PrivateMapKey 中包含 RoomId，所以只提供了 UserSig 没有提供 PrivateMapKey 时，并不能进入指定的房间。
         # @type PrivateMapKey: String
@@ -3856,10 +3856,12 @@ module TencentCloud
         # @type VideoEncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.VideoEncodeParams`
         # @param AudioEncodeParams: 音频编码参数。可选，如果不填，保持原始流的参数。
         # @type AudioEncodeParams: :class:`Tencentcloud::Trtc.v20190722.models.AudioEncodeParams`
+        # @param StreamUrl: 源流URL。历史原因本字段【必填】。
+        # @type StreamUrl: String
 
-        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :SourceUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :SourceUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :StreamUrl
 
-        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, sourceurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil)
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, sourceurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, streamurl=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RoomIdType = roomidtype
@@ -3869,6 +3871,7 @@ module TencentCloud
           @PrivateMapKey = privatemapkey
           @VideoEncodeParams = videoencodeparams
           @AudioEncodeParams = audioencodeparams
+          @StreamUrl = streamurl
         end
 
         def deserialize(params)
@@ -3887,6 +3890,7 @@ module TencentCloud
             @AudioEncodeParams = AudioEncodeParams.new
             @AudioEncodeParams.deserialize(params['AudioEncodeParams'])
           end
+          @StreamUrl = params['StreamUrl']
         end
       end
 
