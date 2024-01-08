@@ -1619,16 +1619,20 @@ module TencentCloud
         # @param Output: 语音全文识别任务输出信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskAsrFullTextResultOutput`
+        # @param Progress: 任务进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
 
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -1644,6 +1648,7 @@ module TencentCloud
             @Output = AiRecognitionTaskAsrFullTextResultOutput.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 
@@ -2497,16 +2502,20 @@ module TencentCloud
         # @param Output: 翻译任务输出信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskTransTextResultOutput`
+        # @param Progress: 任务进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
 
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -2522,6 +2531,7 @@ module TencentCloud
             @Output = AiRecognitionTaskTransTextResultOutput.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 
@@ -4124,6 +4134,8 @@ module TencentCloud
       # 音频流配置参数
       class AudioTemplateInfo < TencentCloud::Common::AbstractModel
         # @param Codec: 音频流的编码格式。
+        # 当不需要对音频进行转码时，可选值为：
+        # <li>copy。</li>
         # 当外层参数 Container 为 mp3 时，可选值为：
         # <li>libmp3lame。</li>
         # 当外层参数 Container 为 ogg 或 flac 时，可选值为：
@@ -4134,7 +4146,8 @@ module TencentCloud
         # <li>ac3。</li>
         # 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         # <li>libfdk_aac：更适合 mp4；</li>
-        # <li>libmp3lame：更适合 flv。</li>
+        # <li>libmp3lame：更适合 flv；</li>
+        # <li>mp2。</li>
         # 当外层参数 Container 为 hls 时，可选值为：
         # <li>libfdk_aac；</li>
         # <li>libmp3lame。</li>
@@ -4176,6 +4189,8 @@ module TencentCloud
       # 音频流配置参数
       class AudioTemplateInfoForUpdate < TencentCloud::Common::AbstractModel
         # @param Codec: 音频流的编码格式。
+        # 当不需要对音频进行转码时，可选值为：
+        # <li>copy。</li>
         # 当外层参数 Container 为 mp3 时，可选值为：
         # <li>libmp3lame。</li>
         # 当外层参数 Container 为 ogg 或 flac 时，可选值为：
@@ -4564,19 +4579,25 @@ module TencentCloud
         # <li>1：单声道 。</li>
         # <li>2：双声道（默认）。</li>
         # @type AudioChannel: Integer
+        # @param Bitrate: 参考码率，单位 kbps，范围：26~10000。
+        # 如果设置，编码时会尽量按该码率进行编码。
+        # 如果不设置，服务将根据音频参数自动采用合适的码率。
+        # @type Bitrate: Integer
 
-        attr_accessor :Codec, :SampleRate, :AudioChannel
+        attr_accessor :Codec, :SampleRate, :AudioChannel, :Bitrate
 
-        def initialize(codec=nil, samplerate=nil, audiochannel=nil)
+        def initialize(codec=nil, samplerate=nil, audiochannel=nil, bitrate=nil)
           @Codec = codec
           @SampleRate = samplerate
           @AudioChannel = audiochannel
+          @Bitrate = bitrate
         end
 
         def deserialize(params)
           @Codec = params['Codec']
           @SampleRate = params['SampleRate']
           @AudioChannel = params['AudioChannel']
+          @Bitrate = params['Bitrate']
         end
       end
 
@@ -5291,17 +5312,23 @@ module TencentCloud
         # @param Fps: 视频帧率，取值范围：[0, 60]，单位：Hz。
         # 默认值：0，表示和第一个视频帧率一致。
         # @type Fps: Integer
+        # @param Bitrate: 参考码率，单位 kbps，范围：50~35000。
+        # 如果设置，编码时会尽量按该码率进行编码。
+        # 如果不设置，服务将通过画面复杂度自动采用合适的码率。
+        # @type Bitrate: Integer
 
-        attr_accessor :Codec, :Fps
+        attr_accessor :Codec, :Fps, :Bitrate
 
-        def initialize(codec=nil, fps=nil)
+        def initialize(codec=nil, fps=nil, bitrate=nil)
           @Codec = codec
           @Fps = fps
+          @Bitrate = bitrate
         end
 
         def deserialize(params)
           @Codec = params['Codec']
           @Fps = params['Fps']
+          @Bitrate = params['Bitrate']
         end
       end
 

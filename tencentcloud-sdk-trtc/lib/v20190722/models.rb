@@ -2284,16 +2284,20 @@ module TencentCloud
         # 白色：0xFFFFFF。
         # 灰色：0x999999。
         # @type BackGroundColor: String
-        # @param BackgroundImageUrl: 子画面的背景图url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。
+        # @param BackgroundImageUrl: 子画面的背景图url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。支持png、jpg、jpeg、bmp、gif、webm格式。图片大小限制不超过5MB。
+        # 注：您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，子画面的背景图将不会生效。
         # @type BackgroundImageUrl: String
         # @param CustomCrop: 客户自定义裁剪，针对原始输入流裁剪
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
         # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩。不填默认为3。
         # @type BackgroundRenderMode: Integer
+        # @param TransparentUrl: 子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片大小限制不超过5MB。
+        # 注：1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模版将不会生效。
+        # @type TransparentUrl: String
 
-        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode
+        attr_accessor :UserMediaStream, :ImageWidth, :ImageHeight, :LocationX, :LocationY, :ZOrder, :RenderMode, :BackGroundColor, :BackgroundImageUrl, :CustomCrop, :BackgroundRenderMode, :TransparentUrl
 
-        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil)
+        def initialize(usermediastream=nil, imagewidth=nil, imageheight=nil, locationx=nil, locationy=nil, zorder=nil, rendermode=nil, backgroundcolor=nil, backgroundimageurl=nil, customcrop=nil, backgroundrendermode=nil, transparenturl=nil)
           @UserMediaStream = usermediastream
           @ImageWidth = imagewidth
           @ImageHeight = imageheight
@@ -2305,6 +2309,7 @@ module TencentCloud
           @BackgroundImageUrl = backgroundimageurl
           @CustomCrop = customcrop
           @BackgroundRenderMode = backgroundrendermode
+          @TransparentUrl = transparenturl
         end
 
         def deserialize(params)
@@ -2325,6 +2330,7 @@ module TencentCloud
             @CustomCrop.deserialize(params['CustomCrop'])
           end
           @BackgroundRenderMode = params['BackgroundRenderMode']
+          @TransparentUrl = params['TransparentUrl']
         end
       end
 
@@ -2511,7 +2517,8 @@ module TencentCloud
         # 白色：0xFFFFFF。
         # 灰色：0x999999。
         # @type BackGroundColor: String
-        # @param BackgroundImageUrl: 整个画布的背景图url，优先级高于BackGroundColor。
+        # @param BackgroundImageUrl: 整个画布的背景图url，优先级高于BackGroundColor。支持png、jpg、jpeg格式。图片大小限制不超过5MB。
+        # 注：您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，背景图将不会生效。
         # @type BackgroundImageUrl: String
         # @param WaterMarkList: 混流布局的水印参数。
         # @type WaterMarkList: Array
@@ -2555,6 +2562,7 @@ module TencentCloud
       # 图片水印参数。
       class McuWaterMarkImage < TencentCloud::Common::AbstractModel
         # @param WaterMarkUrl: 水印图片URL地址，支持png、jpg、jpeg格式。图片大小限制不超过5MB。
+        # 注：您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，水印图片将不会生效。
         # @type WaterMarkUrl: String
         # @param WaterMarkWidth: 水印在输出时的宽。单位为像素值。
         # @type WaterMarkWidth: Integer

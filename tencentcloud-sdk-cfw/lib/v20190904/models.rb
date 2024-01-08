@@ -3549,6 +3549,8 @@ module TencentCloud
       class DescribeIdsWhiteRuleResponse < TencentCloud::Common::AbstractModel
         # @param Total: 总条数
         # @type Total: Integer
+        # @param Data: 规则详情
+        # @type Data: Array
         # @param ReturnCode: 返回状态码 0 成功 非0不成功
         # @type ReturnCode: Integer
         # @param ReturnMsg: 返回信息  success 成功 其他 不成功
@@ -3556,10 +3558,11 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :ReturnCode, :ReturnMsg, :RequestId
+        attr_accessor :Total, :Data, :ReturnCode, :ReturnMsg, :RequestId
 
-        def initialize(total=nil, returncode=nil, returnmsg=nil, requestid=nil)
+        def initialize(total=nil, data=nil, returncode=nil, returnmsg=nil, requestid=nil)
           @Total = total
+          @Data = data
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
           @RequestId = requestid
@@ -3567,6 +3570,14 @@ module TencentCloud
 
         def deserialize(params)
           @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              idswhiteinfo_tmp = IdsWhiteInfo.new
+              idswhiteinfo_tmp.deserialize(i)
+              @Data << idswhiteinfo_tmp
+            end
+          end
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
           @RequestId = params['RequestId']
@@ -5354,6 +5365,48 @@ module TencentCloud
         def deserialize(params)
           @IP = params['IP']
           @Status = params['Status']
+        end
+      end
+
+      # 入侵防御规则白名单详情
+      class IdsWhiteInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 白名单唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param SrcIp: 源IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcIp: String
+        # @param DstIp: 目的IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstIp: String
+        # @param WhiteRuleType: 规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteRuleType: String
+        # @param FwType: 白名单生效防火墙范围： 1 边界防火墙 2 nat防火墙 4 vpc防火墙 7 = 1+2+4 所有防火墙
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FwType: Integer
+        # @param RuleId: 入侵防御规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: String
+
+        attr_accessor :Id, :SrcIp, :DstIp, :WhiteRuleType, :FwType, :RuleId
+
+        def initialize(id=nil, srcip=nil, dstip=nil, whiteruletype=nil, fwtype=nil, ruleid=nil)
+          @Id = id
+          @SrcIp = srcip
+          @DstIp = dstip
+          @WhiteRuleType = whiteruletype
+          @FwType = fwtype
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @SrcIp = params['SrcIp']
+          @DstIp = params['DstIp']
+          @WhiteRuleType = params['WhiteRuleType']
+          @FwType = params['FwType']
+          @RuleId = params['RuleId']
         end
       end
 

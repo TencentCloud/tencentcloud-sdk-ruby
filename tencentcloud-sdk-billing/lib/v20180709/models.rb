@@ -376,10 +376,10 @@ module TencentCloud
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount, :ComponentConfig
         extend Gem::Deprecate
-        deprecate :SpecifiedPrice, :none, 2023, 12
-        deprecate :SpecifiedPrice=, :none, 2023, 12
-        deprecate :SPDeduction, :none, 2023, 12
-        deprecate :SPDeduction=, :none, 2023, 12
+        deprecate :SpecifiedPrice, :none, 2024, 1
+        deprecate :SpecifiedPrice=, :none, 2024, 1
+        deprecate :SPDeduction, :none, 2024, 1
+        deprecate :SPDeduction=, :none, 2024, 1
 
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil, componentconfig=nil)
           @ComponentCodeName = componentcodename
@@ -561,8 +561,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2023, 12
-        deprecate :SPDeduction=, :none, 2023, 12
+        deprecate :SPDeduction, :none, 2024, 1
+        deprecate :SPDeduction=, :none, 2024, 1
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -740,8 +740,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2023, 12
-        deprecate :SPDeduction=, :none, 2023, 12
+        deprecate :SPDeduction, :none, 2024, 1
+        deprecate :SPDeduction=, :none, 2024, 1
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -2169,8 +2169,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2023, 12
-        deprecate :PeriodType=, :none, 2023, 12
+        deprecate :PeriodType, :none, 2024, 1
+        deprecate :PeriodType=, :none, 2024, 1
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
@@ -2307,8 +2307,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context, :PayerUin
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2023, 12
-        deprecate :PeriodType=, :none, 2023, 12
+        deprecate :PeriodType, :none, 2024, 1
+        deprecate :PeriodType=, :none, 2024, 1
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil, payeruin=nil)
           @Offset = offset
@@ -2632,8 +2632,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2023, 12
-        deprecate :PeriodType=, :none, 2023, 12
+        deprecate :PeriodType, :none, 2024, 1
+        deprecate :PeriodType=, :none, 2024, 1
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -2756,8 +2756,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2023, 12
-        deprecate :PeriodType=, :none, 2023, 12
+        deprecate :PeriodType, :none, 2024, 1
+        deprecate :PeriodType=, :none, 2024, 1
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -3802,6 +3802,126 @@ module TencentCloud
         end
       end
 
+      # 计量标准接入类产品支持API接口获取用量明细返回数据结构
+      class DescribeDosageDetail < TencentCloud::Common::AbstractModel
+        # @param Date: 日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Date: String
+        # @param Uin: 账号 ID 是用户在腾讯云的唯一账号标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param DosageType: 用量统计类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageType: String
+        # @param ProductCode: 产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCode: String
+        # @param SubProductCode: 子产品编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductCode: String
+        # @param BillingItemCode: 组件类型编码
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingItemCode: String
+        # @param SubBillingItemCode: 组件编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubBillingItemCode: String
+        # @param ProductCodeName: 产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCodeName: String
+        # @param SubProductCodeName: 子产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductCodeName: String
+        # @param BillingItemCodeName: 组件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingItemCodeName: String
+        # @param SubBillingItemCodeName: 组件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubBillingItemCodeName: String
+        # @param DosageUnit: 用量单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageUnit: String
+        # @param DosageBeginTime: 用量起始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageBeginTime: String
+        # @param DosageEndTime: 用量截止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageEndTime: String
+        # @param DosageValue: 标准用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DosageValue: Float
+        # @param DeductValue: 抵扣用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeductValue: Float
+        # @param RemainValue: 抵扣余量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemainValue: Float
+        # @param SdkAppId: sdkAppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SdkAppId: String
+        # @param AttrStr: 其他信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttrStr: Array
+        # @param SheetName: 用量模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SheetName: Array
+
+        attr_accessor :Date, :Uin, :DosageType, :ProductCode, :SubProductCode, :BillingItemCode, :SubBillingItemCode, :ProductCodeName, :SubProductCodeName, :BillingItemCodeName, :SubBillingItemCodeName, :DosageUnit, :DosageBeginTime, :DosageEndTime, :DosageValue, :DeductValue, :RemainValue, :SdkAppId, :AttrStr, :SheetName
+
+        def initialize(date=nil, uin=nil, dosagetype=nil, productcode=nil, subproductcode=nil, billingitemcode=nil, subbillingitemcode=nil, productcodename=nil, subproductcodename=nil, billingitemcodename=nil, subbillingitemcodename=nil, dosageunit=nil, dosagebegintime=nil, dosageendtime=nil, dosagevalue=nil, deductvalue=nil, remainvalue=nil, sdkappid=nil, attrstr=nil, sheetname=nil)
+          @Date = date
+          @Uin = uin
+          @DosageType = dosagetype
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @BillingItemCode = billingitemcode
+          @SubBillingItemCode = subbillingitemcode
+          @ProductCodeName = productcodename
+          @SubProductCodeName = subproductcodename
+          @BillingItemCodeName = billingitemcodename
+          @SubBillingItemCodeName = subbillingitemcodename
+          @DosageUnit = dosageunit
+          @DosageBeginTime = dosagebegintime
+          @DosageEndTime = dosageendtime
+          @DosageValue = dosagevalue
+          @DeductValue = deductvalue
+          @RemainValue = remainvalue
+          @SdkAppId = sdkappid
+          @AttrStr = attrstr
+          @SheetName = sheetname
+        end
+
+        def deserialize(params)
+          @Date = params['Date']
+          @Uin = params['Uin']
+          @DosageType = params['DosageType']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @BillingItemCode = params['BillingItemCode']
+          @SubBillingItemCode = params['SubBillingItemCode']
+          @ProductCodeName = params['ProductCodeName']
+          @SubProductCodeName = params['SubProductCodeName']
+          @BillingItemCodeName = params['BillingItemCodeName']
+          @SubBillingItemCodeName = params['SubBillingItemCodeName']
+          @DosageUnit = params['DosageUnit']
+          @DosageBeginTime = params['DosageBeginTime']
+          @DosageEndTime = params['DosageEndTime']
+          @DosageValue = params['DosageValue']
+          @DeductValue = params['DeductValue']
+          @RemainValue = params['RemainValue']
+          @SdkAppId = params['SdkAppId']
+          unless params['AttrStr'].nil?
+            @AttrStr = []
+            params['AttrStr'].each do |i|
+              jsonobject_tmp = JsonObject.new
+              jsonobject_tmp.deserialize(i)
+              @AttrStr << jsonobject_tmp
+            end
+          end
+          @SheetName = params['SheetName']
+        end
+      end
+
       # DescribeDosageDetailByDate请求参数结构体
       class DescribeDosageDetailByDateRequest < TencentCloud::Common::AbstractModel
         # @param StartDate: 查询账单开始日期，如 2019-01-01
@@ -3898,6 +4018,81 @@ module TencentCloud
           end
           @RetCode = params['RetCode']
           @RetMsg = params['RetMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDosageDetailList请求参数结构体
+      class DescribeDosageDetailListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 用量起始时间，如：2023-02-01
+        # @type StartTime: String
+        # @param EndTime: 用量截止时间，如：2023-02-28
+        # @type EndTime: String
+        # @param ProductCode: 产品编码，已支持查询的产品如下：
+        # p_ccc（云联络中心）
+        # p_rav（实时音视频）
+        # p_pstn（号码保护）
+        # p_smh（智能媒资托管）
+        # p_coding_devops（CODING DevOps）
+        # p_dsa（全球IP应用加速）
+        # @type ProductCode: String
+        # @param Offset: 数据偏移量（从0开始）
+        # @type Offset: Integer
+        # @param Limit: 单次数据量（最大3000）
+        # @type Limit: Integer
+        # @param DosageType: 用量统计类型：用量明细的数据统计汇总周期类型，包括minute-按5分钟汇总、hour-按小时汇总、day-按天汇总、month-按月汇总、comm-其他，默认查询所有类型明细，目前各产品已支持的统计类型如下：
+        # p_ccc（云联络中心）：comm、day
+        # p_rav（实时音视频）：minute、day
+        # p_pstn（号码保护）：comm
+        # p_smh（智能媒资托管）：day
+        # p_coding_devops（CODING DevOps）：comm、day
+        # p_dsa（全球IP应用加速）：minute
+        # @type DosageType: String
+
+        attr_accessor :StartTime, :EndTime, :ProductCode, :Offset, :Limit, :DosageType
+
+        def initialize(starttime=nil, endtime=nil, productcode=nil, offset=nil, limit=nil, dosagetype=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ProductCode = productcode
+          @Offset = offset
+          @Limit = limit
+          @DosageType = dosagetype
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ProductCode = params['ProductCode']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @DosageType = params['DosageType']
+        end
+      end
+
+      # DescribeDosageDetailList返回参数结构体
+      class DescribeDosageDetailListResponse < TencentCloud::Common::AbstractModel
+        # @param Record: 用量明细集合
+        # @type Record: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Record, :RequestId
+
+        def initialize(record=nil, requestid=nil)
+          @Record = record
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Record'].nil?
+            @Record = []
+            params['Record'].each do |i|
+              describedosagedetail_tmp = DescribeDosageDetail.new
+              describedosagedetail_tmp.deserialize(i)
+              @Record << describedosagedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4566,6 +4761,26 @@ module TencentCloud
         def deserialize(params)
           @GoodsName = params['GoodsName']
           @PayMode = params['PayMode']
+        end
+      end
+
+      # Json对象
+      class JsonObject < TencentCloud::Common::AbstractModel
+        # @param Key: key值
+        # @type Key: String
+        # @param Value: value值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

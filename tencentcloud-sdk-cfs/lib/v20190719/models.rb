@@ -1288,15 +1288,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: Limit 页面大小
         # @type Limit: Integer
+        # @param CreationToken: 用户自定义名称
+        # @type CreationToken: String
 
-        attr_accessor :FileSystemId, :VpcId, :SubnetId, :Offset, :Limit
+        attr_accessor :FileSystemId, :VpcId, :SubnetId, :Offset, :Limit, :CreationToken
 
-        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, offset=nil, limit=nil)
+        def initialize(filesystemid=nil, vpcid=nil, subnetid=nil, offset=nil, limit=nil, creationtoken=nil)
           @FileSystemId = filesystemid
           @VpcId = vpcid
           @SubnetId = subnetid
           @Offset = offset
           @Limit = limit
+          @CreationToken = creationtoken
         end
 
         def deserialize(params)
@@ -1305,6 +1308,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @CreationToken = params['CreationToken']
         end
       end
 

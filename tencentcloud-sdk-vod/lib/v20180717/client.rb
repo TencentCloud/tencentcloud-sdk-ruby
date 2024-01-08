@@ -260,6 +260,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 由 VOD 创建新的日志集。
+
+        # @param request: Request instance for CreateCLSLogset.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateCLSLogsetRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateCLSLogsetResponse`
+        def CreateCLSLogset(request)
+          body = send_request('CreateCLSLogset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSLogsetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建 VOD 下新的 CLS 日志主题
+
+        # @param request: Request instance for CreateCLSTopic.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateCLSTopicRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateCLSTopicResponse`
+        def CreateCLSTopic(request)
+          body = send_request('CreateCLSTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # * 用于对媒体进行分类管理；
         # * 该接口不影响既有媒体的分类，如需修改媒体分类，请调用[修改媒体文件属性](/document/product/266/31762)接口。
         # * 分类层次不可超过 4 层。
@@ -910,6 +958,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAnimatedGraphicsTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除点播开通的日志主题。
+
+        # @param request: Request instance for DeleteCLSTopic.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteCLSTopicRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteCLSTopicResponse`
+        def DeleteCLSTopic(request)
+          body = send_request('DeleteCLSTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCLSTopicResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1599,6 +1671,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCDNUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 VOD 创建的 CLS 日志集。
+
+        # @param request: Request instance for DescribeCLSLogsets.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeCLSLogsetsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeCLSLogsetsResponse`
+        def DescribeCLSLogsets(request)
+          body = send_request('DescribeCLSLogsets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSLogsetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询点播域名下日志投递的目标主题。
+
+        # @param request: Request instance for DescribeCLSPushTargets.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeCLSPushTargetsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeCLSPushTargetsResponse`
+        def DescribeCLSPushTargets(request)
+          body = send_request('DescribeCLSPushTargets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSPushTargetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 VOD 创建的 CLS 日志主题列表。
+
+        # @param request: Request instance for DescribeCLSTopics.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeCLSTopicsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeCLSTopicsResponse`
+        def DescribeCLSTopics(request)
+          body = send_request('DescribeCLSTopics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCLSTopicsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4171,6 +4315,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 为点播域名设置投递 CLS 的目标。
+
+        # @param request: Request instance for SetCLSPushTarget.
+        # @type request: :class:`Tencentcloud::vod::V20180717::SetCLSPushTargetRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::SetCLSPushTargetResponse`
+        def SetCLSPushTarget(request)
+          body = send_request('SetCLSPushTarget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetCLSPushTargetResponse.new
             model.deserialize(response['Response'])
             model
           else

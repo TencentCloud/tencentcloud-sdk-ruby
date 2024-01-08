@@ -4052,6 +4052,38 @@ module TencentCloud
         end
       end
 
+      # 日志推送目标。
+      class AreaCLSTargetInfo < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 日志集所属地区：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+        # @param TopicId: 投递的目标主题 ID。
+        # @type TopicId: String
+        # @param LogsetId: 投递的目标集 ID。
+        # @type LogsetId: String
+        # @param Switch: 日志投递状态。
+        #  ON：启用；
+        #  OFF：停用。
+        # @type Switch: String
+
+        attr_accessor :CLSRegion, :TopicId, :LogsetId, :Switch
+
+        def initialize(clsregion=nil, topicid=nil, logsetid=nil, switch=nil)
+          @CLSRegion = clsregion
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Switch = params['Switch']
+        end
+      end
+
       # 去伪影（毛刺）控制信息
       class ArtifactRepairInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 去伪影（毛刺）控制开关，可选值：
@@ -4556,6 +4588,53 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # CLS 日志集信息
+      class CLSLogsetInfo < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集 ID。
+        # @type LogsetId: String
+        # @param LogsetName: 日志集名。
+        # @type LogsetName: String
+
+        attr_accessor :LogsetId, :LogsetName
+
+        def initialize(logsetid=nil, logsetname=nil)
+          @LogsetId = logsetid
+          @LogsetName = logsetname
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @LogsetName = params['LogsetName']
+        end
+      end
+
+      # CLS日志主题信息。
+      class CLSTopicInfo < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicId: String
+        # @param TopicName: 日志主题名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicName: String
+        # @param LogsetId: 日志集 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogsetId: String
+
+        attr_accessor :TopicId, :TopicName, :LogsetId
+
+        def initialize(topicid=nil, topicname=nil, logsetid=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @LogsetId = params['LogsetId']
         end
       end
 
@@ -5855,6 +5934,90 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCLSLogset请求参数结构体
+      class CreateCLSLogsetRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 日志集所属地区：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+
+        attr_accessor :CLSRegion
+
+        def initialize(clsregion=nil)
+          @CLSRegion = clsregion
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+        end
+      end
+
+      # CreateCLSLogset返回参数结构体
+      class CreateCLSLogsetResponse < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集 ID。
+        # @type LogsetId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogsetId, :RequestId
+
+        def initialize(logsetid=nil, requestid=nil)
+          @LogsetId = logsetid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCLSTopic请求参数结构体
+      class CreateCLSTopicRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 日志集所属地区：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+        # @param TopicName: 日志主题名。
+        # @type TopicName: String
+        # @param LogsetId: 日志集 ID。
+        # @type LogsetId: String
+
+        attr_accessor :CLSRegion, :TopicName, :LogsetId
+
+        def initialize(clsregion=nil, topicname=nil, logsetid=nil)
+          @CLSRegion = clsregion
+          @TopicName = topicname
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @TopicName = params['TopicName']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # CreateCLSTopic返回参数结构体
+      class CreateCLSTopicResponse < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题 ID。
+        # @type TopicId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicId, :RequestId
+
+        def initialize(topicid=nil, requestid=nil)
+          @TopicId = topicid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
           @RequestId = params['RequestId']
         end
       end
@@ -7781,6 +7944,44 @@ module TencentCloud
         end
       end
 
+      # DeleteCLSTopic请求参数结构体
+      class DeleteCLSTopicRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 日志集所属地区：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+        # @param TopicId: 日志主题 ID。
+        # @type TopicId: String
+
+        attr_accessor :CLSRegion, :TopicId
+
+        def initialize(clsregion=nil, topicid=nil)
+          @CLSRegion = clsregion
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteCLSTopic返回参数结构体
+      class DeleteCLSTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClass请求参数结构体
       class DeleteClassRequest < TencentCloud::Common::AbstractModel
         # @param ClassId: 分类 ID
@@ -9046,6 +9247,167 @@ module TencentCloud
               statdataitem_tmp = StatDataItem.new
               statdataitem_tmp.deserialize(i)
               @Data << statdataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCLSLogsets请求参数结构体
+      class DescribeCLSLogsetsRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: CLS 日志集所属的地域，取值有：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+
+        attr_accessor :CLSRegion
+
+        def initialize(clsregion=nil)
+          @CLSRegion = clsregion
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+        end
+      end
+
+      # DescribeCLSLogsets返回参数结构体
+      class DescribeCLSLogsetsResponse < TencentCloud::Common::AbstractModel
+        # @param Logsets: 查询到的日志集列表。
+        # @type Logsets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Logsets, :RequestId
+
+        def initialize(logsets=nil, requestid=nil)
+          @Logsets = logsets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Logsets'].nil?
+            @Logsets = []
+            params['Logsets'].each do |i|
+              clslogsetinfo_tmp = CLSLogsetInfo.new
+              clslogsetinfo_tmp.deserialize(i)
+              @Logsets << clslogsetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCLSPushTargets请求参数结构体
+      class DescribeCLSPushTargetsRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 点播域名。
+        # @type Domains: Array
+        # @param SubAppId: 点播应用 ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+
+        attr_accessor :Domains, :SubAppId
+
+        def initialize(domains=nil, subappid=nil)
+          @Domains = domains
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeCLSPushTargets返回参数结构体
+      class DescribeCLSPushTargetsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 域名推送总数量。
+        # @type TotalCount: Integer
+        # @param DomainCLSTargets: 域名推送 CLS 目标列表。
+        # @type DomainCLSTargets: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DomainCLSTargets, :RequestId
+
+        def initialize(totalcount=nil, domainclstargets=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DomainCLSTargets = domainclstargets
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DomainCLSTargets'].nil?
+            @DomainCLSTargets = []
+            params['DomainCLSTargets'].each do |i|
+              domainclstargetinfo_tmp = DomainCLSTargetInfo.new
+              domainclstargetinfo_tmp.deserialize(i)
+              @DomainCLSTargets << domainclstargetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCLSTopics请求参数结构体
+      class DescribeCLSTopicsRequest < TencentCloud::Common::AbstractModel
+        # @param CLSRegion: 日志集所属地区：
+        # ap-guangzhou：广州；
+        # ap-singapore：新加坡。
+        # @type CLSRegion: String
+        # @param LogsetId: 日志主题所属日志集 ID。
+        # @type LogsetId: String
+        # @param TopicIds: 日志主题 ID 列表。如果不填，表示查询所有的日志主题。
+        # @type TopicIds: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：20，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :CLSRegion, :LogsetId, :TopicIds, :Offset, :Limit
+
+        def initialize(clsregion=nil, logsetid=nil, topicids=nil, offset=nil, limit=nil)
+          @CLSRegion = clsregion
+          @LogsetId = logsetid
+          @TopicIds = topicids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @CLSRegion = params['CLSRegion']
+          @LogsetId = params['LogsetId']
+          @TopicIds = params['TopicIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCLSTopics返回参数结构体
+      class DescribeCLSTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志主题总数量。
+        # @type TotalCount: Integer
+        # @param Topics: 日志主题列表。
+        # @type Topics: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Topics, :RequestId
+
+        def initialize(totalcount=nil, topics=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              clstopicinfo_tmp = CLSTopicInfo.new
+              clstopicinfo_tmp.deserialize(i)
+              @Topics << clstopicinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -11904,6 +12266,36 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 域名推送 CLS 目标。
+      class DomainCLSTargetInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param ChineseMainlandCLSTargetInfo: 中国大陆地区的日志推送目标。
+        # @type ChineseMainlandCLSTargetInfo: :class:`Tencentcloud::Vod.v20180717.models.AreaCLSTargetInfo`
+        # @param OutsideChineseMainlandCLSTargetInfo: 中国大陆以外地区的日志推送目标。
+        # @type OutsideChineseMainlandCLSTargetInfo: :class:`Tencentcloud::Vod.v20180717.models.AreaCLSTargetInfo`
+
+        attr_accessor :Domain, :ChineseMainlandCLSTargetInfo, :OutsideChineseMainlandCLSTargetInfo
+
+        def initialize(domain=nil, chinesemainlandclstargetinfo=nil, outsidechinesemainlandclstargetinfo=nil)
+          @Domain = domain
+          @ChineseMainlandCLSTargetInfo = chinesemainlandclstargetinfo
+          @OutsideChineseMainlandCLSTargetInfo = outsidechinesemainlandclstargetinfo
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['ChineseMainlandCLSTargetInfo'].nil?
+            @ChineseMainlandCLSTargetInfo = AreaCLSTargetInfo.new
+            @ChineseMainlandCLSTargetInfo.deserialize(params['ChineseMainlandCLSTargetInfo'])
+          end
+          unless params['OutsideChineseMainlandCLSTargetInfo'].nil?
+            @OutsideChineseMainlandCLSTargetInfo = AreaCLSTargetInfo.new
+            @OutsideChineseMainlandCLSTargetInfo.deserialize(params['OutsideChineseMainlandCLSTargetInfo'])
+          end
         end
       end
 
@@ -24419,6 +24811,56 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # SetCLSPushTarget请求参数结构体
+      class SetCLSPushTargetRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param SubAppId: 点播应用 ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        # @type SubAppId: Integer
+        # @param ChineseMainlandCLSTargetInfo: 要设置的中国大陆地区的日志推送目标。
+        # @type ChineseMainlandCLSTargetInfo: :class:`Tencentcloud::Vod.v20180717.models.AreaCLSTargetInfo`
+        # @param OutsideChineseMainlandCLSTargetInfo: 要设置的中国大陆以外地区的日志推送目标。
+        # @type OutsideChineseMainlandCLSTargetInfo: :class:`Tencentcloud::Vod.v20180717.models.AreaCLSTargetInfo`
+
+        attr_accessor :Domain, :SubAppId, :ChineseMainlandCLSTargetInfo, :OutsideChineseMainlandCLSTargetInfo
+
+        def initialize(domain=nil, subappid=nil, chinesemainlandclstargetinfo=nil, outsidechinesemainlandclstargetinfo=nil)
+          @Domain = domain
+          @SubAppId = subappid
+          @ChineseMainlandCLSTargetInfo = chinesemainlandclstargetinfo
+          @OutsideChineseMainlandCLSTargetInfo = outsidechinesemainlandclstargetinfo
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SubAppId = params['SubAppId']
+          unless params['ChineseMainlandCLSTargetInfo'].nil?
+            @ChineseMainlandCLSTargetInfo = AreaCLSTargetInfo.new
+            @ChineseMainlandCLSTargetInfo.deserialize(params['ChineseMainlandCLSTargetInfo'])
+          end
+          unless params['OutsideChineseMainlandCLSTargetInfo'].nil?
+            @OutsideChineseMainlandCLSTargetInfo = AreaCLSTargetInfo.new
+            @OutsideChineseMainlandCLSTargetInfo.deserialize(params['OutsideChineseMainlandCLSTargetInfo'])
+          end
+        end
+      end
+
+      # SetCLSPushTarget返回参数结构体
+      class SetCLSPushTargetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

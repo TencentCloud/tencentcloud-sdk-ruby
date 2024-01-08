@@ -1402,12 +1402,14 @@ module TencentCloud
         # @param SubnetId: 子网Id
         # @type SubnetId: String
         # @param VolumeSourceType: 存储的类型。取值包含：
-        #     FREE:    预付费的免费存储
-        #     CLOUD_PREMIUM： 高性能云硬盘
-        #     CLOUD_SSD： SSD云硬盘
-        #     CFS:     CFS存储，包含NFS和turbo
+        # FREE：预付费的免费存储
+        # CLOUD_PREMIUM：高性能云硬盘
+        # CLOUD_SSD：SSD云硬盘
+        # CFS：CFS存储
+        # CFS_TURBO：CFS Turbo存储
+        # GooseFSx：GooseFSx存储
         # @type VolumeSourceType: String
-        # @param VolumeSizeInGB: 存储卷大小，单位GB
+        # @param VolumeSizeInGB: 云硬盘存储卷大小，单位GB
         # @type VolumeSizeInGB: Integer
         # @param VolumeSourceCFS: CFS存储的配置
         # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
@@ -1423,18 +1425,20 @@ module TencentCloud
         # @type AutomaticStopTime: Integer
         # @param Tags: 标签配置
         # @type Tags: Array
-        # @param DataConfigs: 数据配置
+        # @param DataConfigs: 数据配置，只支持WEDATA_HDFS存储类型
         # @type DataConfigs: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param ImageType: 镜像类型
+        # @param ImageType: 镜像类型，包括SYSTEM、TCR、CCR
         # @type ImageType: String
         # @param SSHConfig: SSH配置信息
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
+        # @param VolumeSourceGooseFS: GooseFS存储配置
+        # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
 
-        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS
 
-        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil)
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConf = resourceconf
@@ -1458,6 +1462,7 @@ module TencentCloud
           @ImageInfo = imageinfo
           @ImageType = imagetype
           @SSHConfig = sshconfig
+          @VolumeSourceGooseFS = volumesourcegoosefs
         end
 
         def deserialize(params)
@@ -1512,6 +1517,10 @@ module TencentCloud
           unless params['SSHConfig'].nil?
             @SSHConfig = SSHConfig.new
             @SSHConfig.deserialize(params['SSHConfig'])
+          end
+          unless params['VolumeSourceGooseFS'].nil?
+            @VolumeSourceGooseFS = GooseFS.new
+            @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
         end
       end
@@ -1777,7 +1786,7 @@ module TencentCloud
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
         # @param TrainingMode: 训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD
         # @type TrainingMode: String
-        # @param DataConfigs: 数据配置，依赖DataSource字段
+        # @param DataConfigs: 数据配置，依赖DataSource字段，数量不超过10个
         # @type DataConfigs: Array
         # @param VpcId: VPC Id
         # @type VpcId: String
@@ -1787,13 +1796,13 @@ module TencentCloud
         # @type Output: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
         # @param LogConfig: CLS日志配置
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
-        # @param TuningParameters: 调优参数
+        # @param TuningParameters: 调优参数，不超过2048个字符
         # @type TuningParameters: String
         # @param LogEnable: 是否上报日志
         # @type LogEnable: Boolean
-        # @param Remark: 备注，最多500个字
+        # @param Remark: 备注，不超过1024个字符
         # @type Remark: String
-        # @param DataSource: 数据来源，eg：DATASET、COS、CFS、HDFS
+        # @param DataSource: 数据来源，eg：DATASET、COS、CFS、CFSTurbo、HDFS、GooseFSx
         # @type DataSource: String
         # @param CallbackUrl: 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
         # @type CallbackUrl: String
@@ -2084,7 +2093,7 @@ module TencentCloud
       class DataConfig < TencentCloud::Common::AbstractModel
         # @param MappingPath: 映射路径
         # @type MappingPath: String
-        # @param DataSourceType: DATASET、COS、CFS、HDFS、WEDATA_HDFS
+        # @param DataSourceType: DATASET、COS、CFS、CFSTurbo、GooseFSx、HDFS、WEDATA_HDFS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param DataSetSource: 来自数据集的数据
@@ -4853,6 +4862,7 @@ module TencentCloud
         # Name（名称）：notebook1
         # Id（notebook ID）：nb-123456789
         # Status（状态）：Starting / Running / Stopped / Stopping / Failed / SubmitFailed
+        # Creator（创建者 uin）：100014761913
         # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
         # ChargeStatus（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ BILLING_STORAGE（存储计费中）/ARREARS_STOP（欠费停止）
         # DefaultCodeRepoId（默认代码仓库ID）：cr-123456789
@@ -5310,7 +5320,9 @@ module TencentCloud
         # 取值范围：
         # Name（名称）：task1
         # Id（task ID）：train-23091792777383936
-        # Status（状态）：STARTING / RUNNING / STOPPING / STOPPED / FAILED / SUCCEED / SUBMIT_FAILED
+        # Status（状态）：SUBMITTING/PENDING/STARTING / RUNNING / STOPPING / STOPPED / FAILED / SUCCEED / SUBMIT_FAILED
+        # ResourceGroupId（资源组 Id）：trsg-kvvfrwl7
+        # Creator（创建者 uin）：100014761913
         # ChargeType（计费类型）：PREPAID（预付费）/ POSTPAID_BY_HOUR（后付费）
         # CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
         # @type Filters: Array
@@ -5322,7 +5334,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Order: 输出列表的排列顺序。取值范围：ASC（升序排列）/ DESC（降序排列），默认为DESC
         # @type Order: String
-        # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
+        # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" 、"UpdateTime"、"StartTime"，默认为UpdateTime
         # @type OrderField: String
 
         attr_accessor :Filters, :TagFilters, :Offset, :Limit, :Order, :OrderField
@@ -5732,15 +5744,25 @@ module TencentCloud
         # @param Id: goosefs实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
+        # @param Type: GooseFS类型，包括GooseFS和GooseFSx
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Path: GooseFSx实例需要挂载的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :Type, :Path
 
-        def initialize(id=nil)
+        def initialize(id=nil, type=nil, path=nil)
           @Id = id
+          @Type = type
+          @Path = path
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @Type = params['Type']
+          @Path = params['Path']
         end
       end
 
@@ -5831,7 +5853,9 @@ module TencentCloud
         # @param MaxReplicas: 最大实例数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxReplicas: Integer
-        # @param HpaMetrics: 扩缩容指标
+        # @param HpaMetrics: 支持：
+        # "gpu-util": GPU利用率。范围{10, 100}      "cpu-util": CPU利用率。范围{10, 100}	      "memory-util": 内存利用率。范围{10, 100}      "service-qps": 单个实例QPS值。范围{1, 5000}
+        # "concurrency-util":单个实例请求数量值。范围{1,100000}
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpaMetrics: Array
 
@@ -7059,9 +7083,9 @@ module TencentCloud
       class ModifyNotebookRequest < TencentCloud::Common::AbstractModel
         # @param Id: notebook id
         # @type Id: String
-        # @param Name: 名称
+        # @param Name: 名称。不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         # @type Name: String
-        # @param ChargeType: 计算资源付费模式 ，可选值为：
+        # @param ChargeType: （不允许修改）计算资源付费模式 ，可选值为：
         # PREPAID：预付费，即包年包月
         # POSTPAID_BY_HOUR：按小时后付费
         # @type ChargeType: String
@@ -7077,19 +7101,19 @@ module TencentCloud
         # @type RootAccess: Boolean
         # @param ResourceGroupId: 资源组ID(for预付费)
         # @type ResourceGroupId: String
-        # @param VpcId: Vpc-Id
+        # @param VpcId: （不允许修改）Vpc-Id
         # @type VpcId: String
-        # @param SubnetId: 子网Id
+        # @param SubnetId: （不允许修改）子网Id
         # @type SubnetId: String
         # @param VolumeSizeInGB: 存储卷大小，单位GB
         # @type VolumeSizeInGB: Integer
-        # @param VolumeSourceType: 存储的类型。取值包含：
+        # @param VolumeSourceType: （不允许修改）存储的类型。取值包含：
         #     FREE:    预付费的免费存储
         #     CLOUD_PREMIUM： 高性能云硬盘
         #     CLOUD_SSD： SSD云硬盘
         #     CFS:     CFS存储，包含NFS和turbo
         # @type VolumeSourceType: String
-        # @param VolumeSourceCFS: CFS存储的配置
+        # @param VolumeSourceCFS: （不允许修改）CFS存储的配置
         # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
         # @param LogConfig: 日志配置
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
@@ -7103,11 +7127,11 @@ module TencentCloud
         # @type AutomaticStopTime: Integer
         # @param Tags: 标签配置
         # @type Tags: Array
-        # @param DataConfigs: 数据配置
+        # @param DataConfigs: 数据配置，只支持WEDATA_HDFS
         # @type DataConfigs: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
-        # @param ImageType: 镜像类型
+        # @param ImageType: 镜像类型，包括SYSTEM、TCR、CCR
         # @type ImageType: String
         # @param SSHConfig: SSH配置
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
@@ -7413,10 +7437,16 @@ module TencentCloud
         # @param ImageType: 镜像类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageType: String
+        # @param SSHConfig: SSH配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
+        # @param VolumeSourceGooseFS: GooseFS存储配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
 
-        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS
 
-        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil)
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil)
           @Id = id
           @Name = name
           @LifecycleScriptId = lifecyclescriptid
@@ -7454,6 +7484,8 @@ module TencentCloud
           @DataSource = datasource
           @ImageInfo = imageinfo
           @ImageType = imagetype
+          @SSHConfig = sshconfig
+          @VolumeSourceGooseFS = volumesourcegoosefs
         end
 
         def deserialize(params)
@@ -7520,6 +7552,14 @@ module TencentCloud
             @ImageInfo.deserialize(params['ImageInfo'])
           end
           @ImageType = params['ImageType']
+          unless params['SSHConfig'].nil?
+            @SSHConfig = SSHConfig.new
+            @SSHConfig.deserialize(params['SSHConfig'])
+          end
+          unless params['VolumeSourceGooseFS'].nil?
+            @VolumeSourceGooseFS = GooseFS.new
+            @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
+          end
         end
       end
 
@@ -7531,7 +7571,7 @@ module TencentCloud
         # @param ImageUrl: 镜像地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: String
-        # @param Status: 状态
+        # @param Status: 状态。eg：creating导出中/success已完成/stopped已停止/fail异常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param CreateTime: 创建时间
@@ -7646,10 +7686,13 @@ module TencentCloud
         # @param SSHConfig: SSH配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
+        # @param VolumeSourceGooseFS: GooseFS存储配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -7676,6 +7719,7 @@ module TencentCloud
           @Message = message
           @UserTypes = usertypes
           @SSHConfig = sshconfig
+          @VolumeSourceGooseFS = volumesourcegoosefs
         end
 
         def deserialize(params)
@@ -7720,6 +7764,10 @@ module TencentCloud
           unless params['SSHConfig'].nil?
             @SSHConfig = SSHConfig.new
             @SSHConfig.deserialize(params['SSHConfig'])
+          end
+          unless params['VolumeSourceGooseFS'].nil?
+            @VolumeSourceGooseFS = GooseFS.new
+            @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
         end
       end
@@ -7881,7 +7929,7 @@ module TencentCloud
         # @param IP: pod的IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
-        # @param Status: pod状态
+        # @param Status: pod状态。eg：SUBMITTING提交中、PENDING排队中、RUNNING运行中、SUCCEEDED已完成、FAILED异常、TERMINATING停止中、TERMINATED已停止
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param StartTime: pod启动时间
@@ -8026,10 +8074,10 @@ module TencentCloud
         # @param Memory: memory 内存资源, 单位为1M (for预付费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memory: Integer
-        # @param Gpu: gpu Gpu卡资源，单位为1单位的GpuType，例如GpuType=T4时，1 Gpu = 1/100 T4卡，GpuType=vcuda时，1 Gpu = 1/100 vcuda-core (for预付费)
+        # @param Gpu: gpu Gpu卡资源，单位为1/100卡，例如GpuType=T4时，1 Gpu = 1/100 T4卡 (for预付费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Gpu: Integer
-        # @param GpuType: GpuType 卡类型 vcuda, T4,P4,V100等 (for预付费)
+        # @param GpuType: GpuType 卡类型，参考资源组上对应的卡类型。eg: H800,A800,A100,T4,P4,V100等 (for预付费)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GpuType: String
         # @param InstanceType: 计算规格 (for后付费)，可选值如下：
@@ -8075,13 +8123,13 @@ module TencentCloud
       class ResourceConfigInfo < TencentCloud::Common::AbstractModel
         # @param Role: 角色，eg：PS、WORKER、DRIVER、EXECUTOR
         # @type Role: String
-        # @param Cpu: cpu核数，1000=1核
+        # @param Cpu: cpu核数，使用资源组时需配置。单位：1/1000，即1000=1核
         # @type Cpu: Integer
-        # @param Memory: 内存，单位为MB
+        # @param Memory: 内存，使用资源组时需配置。单位为MB
         # @type Memory: Integer
-        # @param GpuType: gpu卡类型
+        # @param GpuType: gpu卡类型，使用资源组时需配置
         # @type GpuType: String
-        # @param Gpu: gpu数
+        # @param Gpu: gpu卡数，使用资源组时需配置。单位：1/100，即100=1卡
         # @type Gpu: Integer
         # @param InstanceType: 算力规格ID
         # 计算规格 (for后付费)，可选值如下：
@@ -9327,17 +9375,25 @@ module TencentCloud
         # @type EnableInstanceRpsLimit: Boolean
         # @param InstanceRpsLimit: 每个服务实例的 request per second 限速, 0 为不限流
         # @type InstanceRpsLimit: Integer
+        # @param EnableInstanceReqLimit: 是否开启单实例最大并发数限制，true or false。true 则 InstanceReqLimit 必填， false 则 InstanceReqLimit 不生效
+        # @type EnableInstanceReqLimit: Boolean
+        # @param InstanceReqLimit: 每个服务实例的最大并发
+        # @type InstanceReqLimit: Integer
 
-        attr_accessor :EnableInstanceRpsLimit, :InstanceRpsLimit
+        attr_accessor :EnableInstanceRpsLimit, :InstanceRpsLimit, :EnableInstanceReqLimit, :InstanceReqLimit
 
-        def initialize(enableinstancerpslimit=nil, instancerpslimit=nil)
+        def initialize(enableinstancerpslimit=nil, instancerpslimit=nil, enableinstancereqlimit=nil, instancereqlimit=nil)
           @EnableInstanceRpsLimit = enableinstancerpslimit
           @InstanceRpsLimit = instancerpslimit
+          @EnableInstanceReqLimit = enableinstancereqlimit
+          @InstanceReqLimit = instancereqlimit
         end
 
         def deserialize(params)
           @EnableInstanceRpsLimit = params['EnableInstanceRpsLimit']
           @InstanceRpsLimit = params['InstanceRpsLimit']
+          @EnableInstanceReqLimit = params['EnableInstanceReqLimit']
+          @InstanceReqLimit = params['InstanceReqLimit']
         end
       end
 
@@ -10024,12 +10080,23 @@ module TencentCloud
 
       # 训练数据
       class TrainingDataPoint < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamp: Integer
+        # @param Value: 训练上报的值。可以为训练指标（双精度浮点数，也可以为Epoch/Step（两者皆保证是整数）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
 
+        attr_accessor :Timestamp, :Value
 
-        def initialize()
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
         end
 
         def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
         end
       end
 
@@ -10562,7 +10629,8 @@ module TencentCloud
         # @param TrainingMode: 训练模式eg：PS_WORKER、DDP、MPI、HOROVOD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrainingMode: String
-        # @param Status: 任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
+        # @param Status: 任务状态，eg：SUBMITTING提交中、PENDING排队中、
+        # STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
         # @type Status: String
         # @param RuntimeInSeconds: 运行时长
         # 注意：此字段可能返回 null，表示取不到有效值。
