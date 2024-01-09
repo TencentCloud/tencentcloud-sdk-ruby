@@ -4719,10 +4719,12 @@ module TencentCloud
         # @type Weight: Integer
         # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         # @type Status: String
+        # @param Remark: 记录的备注信息。传空删除备注。
+        # @type Remark: String
 
-        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status
+        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark
 
-        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, recordid=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil)
+        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, recordid=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil)
           @Domain = domain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -4735,6 +4737,7 @@ module TencentCloud
           @TTL = ttl
           @Weight = weight
           @Status = status
+          @Remark = remark
         end
 
         def deserialize(params)
@@ -4750,6 +4753,7 @@ module TencentCloud
           @TTL = params['TTL']
           @Weight = params['Weight']
           @Status = params['Status']
+          @Remark = params['Remark']
         end
       end
 

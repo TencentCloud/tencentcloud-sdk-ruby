@@ -57,30 +57,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建离线日志监听，对应用户的离线日志将上报
-
-        # @param request: Request instance for CreateOfflineLogConfig.
-        # @type request: :class:`Tencentcloud::rum::V20210622::CreateOfflineLogConfigRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::CreateOfflineLogConfigResponse`
-        def CreateOfflineLogConfig(request)
-          body = send_request('CreateOfflineLogConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateOfflineLogConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建 RUM 应用（归属于某个团队）
 
         # @param request: Request instance for CreateProject.
@@ -1012,54 +988,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOfflineLogConfigsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取所有离线日志记录(最多100条)
-
-        # @param request: Request instance for DescribeOfflineLogRecords.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogRecordsRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogRecordsResponse`
-        def DescribeOfflineLogRecords(request)
-          body = send_request('DescribeOfflineLogRecords', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeOfflineLogRecordsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取对应离线日志
-
-        # @param request: Request instance for DescribeOfflineLogs.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogsRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogsResponse`
-        def DescribeOfflineLogs(request)
-          body = send_request('DescribeOfflineLogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeOfflineLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

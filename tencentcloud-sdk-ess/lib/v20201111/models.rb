@@ -3610,11 +3610,16 @@ module TencentCloud
         # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
         # <ul>
         # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
-        # <li>模板Id</li>
+        # <li>模板Id（通过控制台创建模板后获取模板Id）</li>
         # </ul>
+        # 注意：需要同时设置 ResourceType 参数指定资源类型
         # @type ResourceId: String
         # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
         # @type FlowName: String
+        # @param ResourceType: 资源类型，取值有：
+        # <ul><li> **1**：模板</li>
+        # <li> **2**：文件（默认值）</li></ul>
+        # @type ResourceType: Integer
         # @param Unordered: 合同流程的签署顺序类型：
         # <ul><li> **false**：(默认)有序签署, 本合同多个参与人需要依次签署 </li>
         # <li> **true**：无序签署, 本合同多个参与人没有先后签署限制</li></ul>
@@ -3636,10 +3641,6 @@ module TencentCloud
         # <ul><li> **OPEN**：开启（默认值）</li>
         # <li> **CLOSE**：关闭</li></ul>
         # @type IntelligentStatus: String
-        # @param ResourceType: 资源类型，取值有：
-        # <ul><li> **1**：模板</li>
-        # <li> **2**：文件（默认值）</li></ul>
-        # @type ResourceType: Integer
         # @param Components: 该字段已废弃，请使用InitiatorComponents
         # @type Components: :class:`Tencentcloud::Ess.v20201111.models.Component`
         # @param FlowOption: 发起合同个性化参数
@@ -3674,19 +3675,19 @@ module TencentCloud
         # @param InitiatorComponents: 模板或者合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
         # @type InitiatorComponents: Array
 
-        attr_accessor :Operator, :ResourceId, :FlowName, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :ResourceType, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents
+        attr_accessor :Operator, :ResourceId, :FlowName, :ResourceType, :Unordered, :Deadline, :UserFlowTypeId, :FlowType, :Approvers, :IntelligentStatus, :Components, :FlowOption, :NeedSignReview, :NeedCreateReview, :UserData, :CcInfos, :FlowId, :Agent, :InitiatorComponents
 
-        def initialize(operator=nil, resourceid=nil, flowname=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, resourcetype=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil)
+        def initialize(operator=nil, resourceid=nil, flowname=nil, resourcetype=nil, unordered=nil, deadline=nil, userflowtypeid=nil, flowtype=nil, approvers=nil, intelligentstatus=nil, components=nil, flowoption=nil, needsignreview=nil, needcreatereview=nil, userdata=nil, ccinfos=nil, flowid=nil, agent=nil, initiatorcomponents=nil)
           @Operator = operator
           @ResourceId = resourceid
           @FlowName = flowname
+          @ResourceType = resourcetype
           @Unordered = unordered
           @Deadline = deadline
           @UserFlowTypeId = userflowtypeid
           @FlowType = flowtype
           @Approvers = approvers
           @IntelligentStatus = intelligentstatus
-          @ResourceType = resourcetype
           @Components = components
           @FlowOption = flowoption
           @NeedSignReview = needsignreview
@@ -3705,6 +3706,7 @@ module TencentCloud
           end
           @ResourceId = params['ResourceId']
           @FlowName = params['FlowName']
+          @ResourceType = params['ResourceType']
           @Unordered = params['Unordered']
           @Deadline = params['Deadline']
           @UserFlowTypeId = params['UserFlowTypeId']
@@ -3718,7 +3720,6 @@ module TencentCloud
             end
           end
           @IntelligentStatus = params['IntelligentStatus']
-          @ResourceType = params['ResourceType']
           unless params['Components'].nil?
             @Components = Component.new
             @Components.deserialize(params['Components'])
@@ -5898,7 +5899,7 @@ module TencentCloud
         # 分页参数, 需要limit, offset 配合使用
         # 例如:
         # 您希望得到第三页的数据, 且每页限制最多10条
-        # 你可以使用 LIMIT 10 OFFSET 20
+        # 您可以使用 LIMIT 10 OFFSET 20
         # @type Offset: Integer
 
         attr_accessor :Operator, :Limit, :Agent, :Filters, :Offset
@@ -5939,7 +5940,7 @@ module TencentCloud
         # 分页参数, 需要limit, offset 配合使用
         # 例如:
         # 您希望得到第三页的数据, 且每页限制最多10条
-        # 你可以使用 LIMIT 10 OFFSET 20
+        # 您可以使用 LIMIT 10 OFFSET 20
         # @type Offset: Integer
         # @param Limit: 指定分页每页返回的数据条数，单页最大支持 200。
         # @type Limit: Integer

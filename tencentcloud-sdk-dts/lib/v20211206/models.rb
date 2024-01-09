@@ -581,6 +581,104 @@ module TencentCloud
         end
       end
 
+      # ConfigureSubscribeJob请求参数结构体
+      class ConfigureSubscribeJobRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+        # @param SubscribeMode: 数据订阅的类型，当 DatabaseType 不为 mongodb 时，枚举值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 DatabaseType 为 mongodb 时，枚举值为 all-全实例更新；database-订阅单库；collection-订阅单集合
+        # @type SubscribeMode: String
+        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+        # @type AccessType: String
+        # @param Endpoints: 数据库节点信息
+        # @type Endpoints: Array
+        # @param KafkaConfig: Kafka配置
+        # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
+        # @param SubscribeObjects: 订阅的数据库表信息，当 SubscribeMode 不为 all和ddl 时，SubscribeObjects 为必选参数
+        # @type SubscribeObjects: Array
+        # @param Protocol: 订阅数据格式，如：protobuf、json、avro。注意具体可选值依赖当前链路支持能力，数据格式详情参考官网的消费demo文档
+        # @type Protocol: String
+        # @param PipelineInfo: mongo选填参数：输出聚合设置。
+        # @type PipelineInfo: Array
+        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。
+        # mysql选填参数：ProcessXA-是否处理XA事务，填true处理，不填或填其他值不处理。
+        # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream，不填也是默认changeStream。
+        # 其他业务暂没有可选参数。
+        # @type ExtraAttr: Array
+
+        attr_accessor :SubscribeId, :SubscribeMode, :AccessType, :Endpoints, :KafkaConfig, :SubscribeObjects, :Protocol, :PipelineInfo, :ExtraAttr
+
+        def initialize(subscribeid=nil, subscribemode=nil, accesstype=nil, endpoints=nil, kafkaconfig=nil, subscribeobjects=nil, protocol=nil, pipelineinfo=nil, extraattr=nil)
+          @SubscribeId = subscribeid
+          @SubscribeMode = subscribemode
+          @AccessType = accesstype
+          @Endpoints = endpoints
+          @KafkaConfig = kafkaconfig
+          @SubscribeObjects = subscribeobjects
+          @Protocol = protocol
+          @PipelineInfo = pipelineinfo
+          @ExtraAttr = extraattr
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeMode = params['SubscribeMode']
+          @AccessType = params['AccessType']
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              endpointitem_tmp = EndpointItem.new
+              endpointitem_tmp.deserialize(i)
+              @Endpoints << endpointitem_tmp
+            end
+          end
+          unless params['KafkaConfig'].nil?
+            @KafkaConfig = SubscribeKafkaConfig.new
+            @KafkaConfig.deserialize(params['KafkaConfig'])
+          end
+          unless params['SubscribeObjects'].nil?
+            @SubscribeObjects = []
+            params['SubscribeObjects'].each do |i|
+              subscribeobject_tmp = SubscribeObject.new
+              subscribeobject_tmp.deserialize(i)
+              @SubscribeObjects << subscribeobject_tmp
+            end
+          end
+          @Protocol = params['Protocol']
+          unless params['PipelineInfo'].nil?
+            @PipelineInfo = []
+            params['PipelineInfo'].each do |i|
+              pipelineinfo_tmp = PipelineInfo.new
+              pipelineinfo_tmp.deserialize(i)
+              @PipelineInfo << pipelineinfo_tmp
+            end
+          end
+          unless params['ExtraAttr'].nil?
+            @ExtraAttr = []
+            params['ExtraAttr'].each do |i|
+              keyvaluepairoption_tmp = KeyValuePairOption.new
+              keyvaluepairoption_tmp.deserialize(i)
+              @ExtraAttr << keyvaluepairoption_tmp
+            end
+          end
+        end
+      end
+
+      # ConfigureSubscribeJob返回参数结构体
+      class ConfigureSubscribeJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ConfigureSyncJob请求参数结构体
       class ConfigureSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步实例id（即标识一个同步作业），形如sync-werwfs23
@@ -890,6 +988,54 @@ module TencentCloud
         end
       end
 
+      # CreateConsumerGroup请求参数结构体
+      class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例id
+        # @type SubscribeId: String
+        # @param ConsumerGroupName: 消费组名称，以数字、字母(大小写)或者_ - .开头，以数字、字母(大小写)结尾。实际生成的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}
+        # @type ConsumerGroupName: String
+        # @param AccountName: 账号名称。以数字、字母(大小写)或者_ - .开头，以数字、字母(大小写)结尾。实际生成的账户全称形如：account-#{SubscribeId}-#{AccountName}
+        # @type AccountName: String
+        # @param Password: 消费组密码，长度必须大于3
+        # @type Password: String
+        # @param Description: 消费组备注
+        # @type Description: String
+
+        attr_accessor :SubscribeId, :ConsumerGroupName, :AccountName, :Password, :Description
+
+        def initialize(subscribeid=nil, consumergroupname=nil, accountname=nil, password=nil, description=nil)
+          @SubscribeId = subscribeid
+          @ConsumerGroupName = consumergroupname
+          @AccountName = accountname
+          @Password = password
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @AccountName = params['AccountName']
+          @Password = params['Password']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateConsumerGroup返回参数结构体
+      class CreateConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMigrateCheckJob请求参数结构体
       class CreateMigrateCheckJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 数据迁移任务ID
@@ -1022,6 +1168,106 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSubscribeCheckJob请求参数结构体
+      class CreateSubscribeCheckJobRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # CreateSubscribeCheckJob返回参数结构体
+      class CreateSubscribeCheckJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSubscribe请求参数结构体
+      class CreateSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param Product: 订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)
+        # @type Product: String
+        # @param PayType: 付费方式，枚举值：0-包年包月，1-按量计费
+        # @type PayType: Integer
+        # @param Duration: 购买时长。当 payType 为包年包月时，该项需要填，单位为月，最小值为 1，最大值为 120。不填默认1
+        # @type Duration: Integer
+        # @param AutoRenew: 是否自动续费。当 payType 为包年包月时，该项需要填。枚举值：0-不自动续费，1-自动续费。默认不自动续费。按量计费设置该标识无效。
+        # @type AutoRenew: Integer
+        # @param Count: 购买数量,默认为1，最大为10
+        # @type Count: Integer
+        # @param Tags: 实例资源标签
+        # @type Tags: Array
+        # @param Name: 任务名，自定义
+        # @type Name: String
+
+        attr_accessor :Product, :PayType, :Duration, :AutoRenew, :Count, :Tags, :Name
+
+        def initialize(product=nil, paytype=nil, duration=nil, autorenew=nil, count=nil, tags=nil, name=nil)
+          @Product = product
+          @PayType = paytype
+          @Duration = duration
+          @AutoRenew = autorenew
+          @Count = count
+          @Tags = tags
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @PayType = params['PayType']
+          @Duration = params['Duration']
+          @AutoRenew = params['AutoRenew']
+          @Count = params['Count']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
+            end
+          end
+          @Name = params['Name']
+        end
+      end
+
+      # CreateSubscribe返回参数结构体
+      class CreateSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param SubscribeIds: 数据订阅实例的ID数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubscribeIds, :RequestId
+
+        def initialize(subscribeids=nil, requestid=nil)
+          @SubscribeIds = subscribeids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubscribeIds = params['SubscribeIds']
           @RequestId = params['RequestId']
         end
       end
@@ -1628,6 +1874,48 @@ module TencentCloud
         end
       end
 
+      # DeleteConsumerGroup请求参数结构体
+      class DeleteConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+        # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}。
+        # 请务必保证消费组名称正确。
+        # @type ConsumerGroupName: String
+        # @param AccountName: 账号名称。实际的账户全称形如：account-#{SubscribeId}-#{AccountName}。
+        # 请务必保证账户名称正确。
+        # @type AccountName: String
+
+        attr_accessor :SubscribeId, :ConsumerGroupName, :AccountName
+
+        def initialize(subscribeid=nil, consumergroupname=nil, accountname=nil)
+          @SubscribeId = subscribeid
+          @ConsumerGroupName = consumergroupname
+          @AccountName = accountname
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @AccountName = params['AccountName']
+        end
+      end
+
+      # DeleteConsumerGroup返回参数结构体
+      class DeleteConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCheckSyncJobResult请求参数结构体
       class DescribeCheckSyncJobResultRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步实例id（即标识一个同步作业），形如sync-werwfs23，此值必填
@@ -1835,6 +2123,61 @@ module TencentCloud
               comparetaskitem_tmp = CompareTaskItem.new
               comparetaskitem_tmp.deserialize(i)
               @Items << comparetaskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerGroups请求参数结构体
+      class DescribeConsumerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例id
+        # @type SubscribeId: String
+        # @param Offset: 返回记录的起始偏移量。默认0
+        # @type Offset: Integer
+        # @param Limit: 单次返回的记录数量。默认10
+        # @type Limit: Integer
+
+        attr_accessor :SubscribeId, :Offset, :Limit
+
+        def initialize(subscribeid=nil, offset=nil, limit=nil)
+          @SubscribeId = subscribeid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeConsumerGroups返回参数结构体
+      class DescribeConsumerGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 指定实例下的消费者组总数
+        # @type TotalCount: Integer
+        # @param Items: 消费者组列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Items << groupinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2347,6 +2690,463 @@ module TencentCloud
         end
       end
 
+      # DescribeOffsetByTime请求参数结构体
+      class DescribeOffsetByTimeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+        # @param Time: 时间点，格式为：Y-m-d h:m:s。如果输入时间比当前时间晚的多，相当于查询最新offset；如果输入时间比当前时间早的多，相当于查询最老offset；如果输入空，默认0时间，等价于查询最老offset。
+        # @type Time: String
+
+        attr_accessor :SubscribeId, :Time
+
+        def initialize(subscribeid=nil, time=nil)
+          @SubscribeId = subscribeid
+          @Time = time
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @Time = params['Time']
+        end
+      end
+
+      # DescribeOffsetByTime返回参数结构体
+      class DescribeOffsetByTimeResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 时间与Offset的对应
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              offsettimemap_tmp = OffsetTimeMap.new
+              offsettimemap_tmp.deserialize(i)
+              @Items << offsettimemap_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubscribeCheckJob请求参数结构体
+      class DescribeSubscribeCheckJobRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # DescribeSubscribeCheckJob返回参数结构体
+      class DescribeSubscribeCheckJobResponse < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例ID
+        # @type SubscribeId: String
+        # @param Message: 失败或者报错提示，成功则提示success。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Status: 任务运行状态，可能值为 running,failed,success
+        # @type Status: String
+        # @param Progress: 当前总体进度，范围 0~100
+        # @type Progress: Integer
+        # @param StepAll: 校验总步骤数
+        # @type StepAll: Integer
+        # @param StepNow: 当前执行步骤
+        # @type StepNow: Integer
+        # @param Steps: 各个步骤运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Steps: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubscribeId, :Message, :Status, :Progress, :StepAll, :StepNow, :Steps, :RequestId
+
+        def initialize(subscribeid=nil, message=nil, status=nil, progress=nil, stepall=nil, stepnow=nil, steps=nil, requestid=nil)
+          @SubscribeId = subscribeid
+          @Message = message
+          @Status = status
+          @Progress = progress
+          @StepAll = stepall
+          @StepNow = stepnow
+          @Steps = steps
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @Message = params['Message']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @StepAll = params['StepAll']
+          @StepNow = params['StepNow']
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              subscribecheckstepinfo_tmp = SubscribeCheckStepInfo.new
+              subscribecheckstepinfo_tmp.deserialize(i)
+              @Steps << subscribecheckstepinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubscribeDetail请求参数结构体
+      class DescribeSubscribeDetailRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # DescribeSubscribeDetail返回参数结构体
+      class DescribeSubscribeDetailResponse < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅的ID，形如subs-b6x64o31tm
+        # @type SubscribeId: String
+        # @param SubscribeName: 数据订阅实例的名称
+        # @type SubscribeName: String
+        # @param Product: 订阅的数据库类型，目前支持 cynosdbmysql(tdsql-c mysql版),mariadb,mongodb,mysql,percona,tdpg(tdsql postgresql版),tdsqlpercona(tdsql mysql版)
+        # @type Product: String
+        # @param InstanceId: 订阅的云数据库实例ID，只有订阅云数据库该值才有意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceStatus: 订阅的云数据库实例状态，只有订阅云数据库该值才有意义。可能值为：running, isolated, offline
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatus: String
+        # @param Status: 订阅任务计费状态，可能值为：正常normal, 隔离中isolating, 已隔离isolated, 下线中offlining, 按量转包年包月中 post2PrePayIng
+        # @type Status: String
+        # @param SubsStatus: 订阅任务状态，可能值为：未启动notStarted, 校验中checking, 校验不通过checkNotPass, 校验通过checkPass, 启动中starting, 运行中running, 异常出错error
+        # @type SubsStatus: String
+        # @param ModifyTime: 修改时间，时间格式如：Y-m-d h:m:s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param CreateTime: 创建时间，时间格式如：Y-m-d h:m:s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
+        # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param OfflineTime: 下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
+        # @param PayType: 付费方式，可能值为：0-包年包月，1-按量计费
+        # @type PayType: Integer
+        # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
+        # @type AutoRenewFlag: Integer
+        # @param Region: 任务所在地域
+        # @type Region: String
+        # @param Topic: Kafka topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Broker: Kafka服务Broker地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Broker: String
+        # @param SubscribeMode: 数据订阅的类型，当 Product 不为 mongodb 时，可能值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 Product 为 mongodb 时，可能值为 all-全实例更新；database-订阅单库；collection-订阅单集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeMode: String
+        # @param Protocol: 订阅数据格式。如果为空则用的默认格式: mysql\cynosdbmysql\mariadb\percona\tdsqlpercona\tdpg是protobuf，mongo是json。当 DatabaseType 为 mysql和cynosdbmysql 时有三种可选协议：protobuf\avro\json。数据格式详情参考官网的消费demo文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param SubscribeObjects: 订阅的数据库表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeObjects: Array
+        # @param KafkaConfig: kafka配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
+        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: String
+        # @param Endpoints: 接入类型信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoints: Array
+        # @param PipelineInfo: mongo输出聚合设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineInfo: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Errors: 订阅任务报错信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
+        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。
+        # mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
+        # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraAttr: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubscribeId, :SubscribeName, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :Topic, :Broker, :SubscribeMode, :Protocol, :SubscribeObjects, :KafkaConfig, :AccessType, :Endpoints, :PipelineInfo, :Tags, :Errors, :ExtraAttr, :RequestId
+
+        def initialize(subscribeid=nil, subscribename=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, topic=nil, broker=nil, subscribemode=nil, protocol=nil, subscribeobjects=nil, kafkaconfig=nil, accesstype=nil, endpoints=nil, pipelineinfo=nil, tags=nil, errors=nil, extraattr=nil, requestid=nil)
+          @SubscribeId = subscribeid
+          @SubscribeName = subscribename
+          @Product = product
+          @InstanceId = instanceid
+          @InstanceStatus = instancestatus
+          @Status = status
+          @SubsStatus = subsstatus
+          @ModifyTime = modifytime
+          @CreateTime = createtime
+          @IsolateTime = isolatetime
+          @ExpireTime = expiretime
+          @OfflineTime = offlinetime
+          @PayType = paytype
+          @AutoRenewFlag = autorenewflag
+          @Region = region
+          @Topic = topic
+          @Broker = broker
+          @SubscribeMode = subscribemode
+          @Protocol = protocol
+          @SubscribeObjects = subscribeobjects
+          @KafkaConfig = kafkaconfig
+          @AccessType = accesstype
+          @Endpoints = endpoints
+          @PipelineInfo = pipelineinfo
+          @Tags = tags
+          @Errors = errors
+          @ExtraAttr = extraattr
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeName = params['SubscribeName']
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @InstanceStatus = params['InstanceStatus']
+          @Status = params['Status']
+          @SubsStatus = params['SubsStatus']
+          @ModifyTime = params['ModifyTime']
+          @CreateTime = params['CreateTime']
+          @IsolateTime = params['IsolateTime']
+          @ExpireTime = params['ExpireTime']
+          @OfflineTime = params['OfflineTime']
+          @PayType = params['PayType']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Region = params['Region']
+          @Topic = params['Topic']
+          @Broker = params['Broker']
+          @SubscribeMode = params['SubscribeMode']
+          @Protocol = params['Protocol']
+          unless params['SubscribeObjects'].nil?
+            @SubscribeObjects = []
+            params['SubscribeObjects'].each do |i|
+              subscribeobject_tmp = SubscribeObject.new
+              subscribeobject_tmp.deserialize(i)
+              @SubscribeObjects << subscribeobject_tmp
+            end
+          end
+          unless params['KafkaConfig'].nil?
+            @KafkaConfig = SubscribeKafkaConfig.new
+            @KafkaConfig.deserialize(params['KafkaConfig'])
+          end
+          @AccessType = params['AccessType']
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              endpointitem_tmp = EndpointItem.new
+              endpointitem_tmp.deserialize(i)
+              @Endpoints << endpointitem_tmp
+            end
+          end
+          unless params['PipelineInfo'].nil?
+            @PipelineInfo = []
+            params['PipelineInfo'].each do |i|
+              pipelineinfo_tmp = PipelineInfo.new
+              pipelineinfo_tmp.deserialize(i)
+              @PipelineInfo << pipelineinfo_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
+            end
+          end
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              subserr_tmp = SubsErr.new
+              subserr_tmp.deserialize(i)
+              @Errors << subserr_tmp
+            end
+          end
+          unless params['ExtraAttr'].nil?
+            @ExtraAttr = []
+            params['ExtraAttr'].each do |i|
+              keyvaluepairoption_tmp = KeyValuePairOption.new
+              keyvaluepairoption_tmp.deserialize(i)
+              @ExtraAttr << keyvaluepairoption_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubscribeJobs请求参数结构体
+      class DescribeSubscribeJobsRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅 ID 筛选，精确匹配
+        # @type SubscribeId: String
+        # @param SubscribeName: 订阅名称，前缀模糊匹配
+        # @type SubscribeName: String
+        # @param InstanceId: 订阅的云上数据库实例的 ID，精确匹配
+        # @type InstanceId: String
+        # @param PayType: 计费模式筛选，可能的值：0-包年包月，1-按量计费
+        # @type PayType: Integer
+        # @param Product: 订阅的数据库产品，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
+        # @type Product: String
+        # @param Status: 数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining，按量转包年包月中 post2PrePayIng
+        # @type Status: Array
+        # @param SubsStatus: 数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error
+        # @type SubsStatus: Array
+        # @param Offset: 返回记录的起始偏移量。默认0
+        # @type Offset: Integer
+        # @param Limit: 单次返回的记录数量。默认20，最大100
+        # @type Limit: Integer
+        # @param OrderDirection: 排序方向，可选的值为"DESC"和"ASC"，默认为"DESC"，按创建时间逆序排序
+        # @type OrderDirection: String
+        # @param TagFilters: tag 过滤条件，多个 TagFilter 之间关系为且
+        # @type TagFilters: Array
+
+        attr_accessor :SubscribeId, :SubscribeName, :InstanceId, :PayType, :Product, :Status, :SubsStatus, :Offset, :Limit, :OrderDirection, :TagFilters
+
+        def initialize(subscribeid=nil, subscribename=nil, instanceid=nil, paytype=nil, product=nil, status=nil, subsstatus=nil, offset=nil, limit=nil, orderdirection=nil, tagfilters=nil)
+          @SubscribeId = subscribeid
+          @SubscribeName = subscribename
+          @InstanceId = instanceid
+          @PayType = paytype
+          @Product = product
+          @Status = status
+          @SubsStatus = subsstatus
+          @Offset = offset
+          @Limit = limit
+          @OrderDirection = orderdirection
+          @TagFilters = tagfilters
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeName = params['SubscribeName']
+          @InstanceId = params['InstanceId']
+          @PayType = params['PayType']
+          @Product = params['Product']
+          @Status = params['Status']
+          @SubsStatus = params['SubsStatus']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderDirection = params['OrderDirection']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSubscribeJobs返回参数结构体
+      class DescribeSubscribeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的实例总数
+        # @type TotalCount: Integer
+        # @param Items: 数据订阅实例的信息列表
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              subscribeinfo_tmp = SubscribeInfo.new
+              subscribeinfo_tmp.deserialize(i)
+              @Items << subscribeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSubscribeReturnable请求参数结构体
+      class DescribeSubscribeReturnableRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # DescribeSubscribeReturnable返回参数结构体
+      class DescribeSubscribeReturnableResponse < TencentCloud::Common::AbstractModel
+        # @param IsReturnable: 实例是否支持退还/退货
+        # @type IsReturnable: Boolean
+        # @param ReturnFailMessage: 不支持退还的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnFailMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsReturnable, :ReturnFailMessage, :RequestId
+
+        def initialize(isreturnable=nil, returnfailmessage=nil, requestid=nil)
+          @IsReturnable = isreturnable
+          @ReturnFailMessage = returnfailmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsReturnable = params['IsReturnable']
+          @ReturnFailMessage = params['ReturnFailMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如sync-werwfs23
@@ -2439,6 +3239,38 @@ module TencentCloud
               @JobList << syncjobinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyIsolatedSubscribe请求参数结构体
+      class DestroyIsolatedSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # DestroyIsolatedSubscribe返回参数结构体
+      class DestroyIsolatedSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2650,6 +3482,38 @@ module TencentCloud
         end
       end
 
+      # 订阅任务的kafka分区规则。符合库名和表名正则表达式的数据将按照RuleType计算该条数据将被投递的kafka分区。如果配置了多个规则，将按照配置的顺序，第一条命中的规则生效。
+      class DistributeRule < TencentCloud::Common::AbstractModel
+        # @param RuleType: 规则类型。非mongo产品的枚举值为: table-按表名分区，pk-按表名+主键分区，cols-按列名分区。mongo的枚举值为：collection-按集合名分区、collectionAndObjectId-按集合+主键分区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param DbPattern: 库名匹配规则，请填写正则表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbPattern: String
+        # @param TablePattern: 表名匹配规则，如果 DatabaseType 为 mongodb，则匹配集合名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePattern: String
+        # @param Columns: 列名。如果 RuleType 为 cols，此项必填。订阅任务会用该列的值计算分区。mongo没有按列分区，因此也不用传这个字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
+
+        attr_accessor :RuleType, :DbPattern, :TablePattern, :Columns
+
+        def initialize(ruletype=nil, dbpattern=nil, tablepattern=nil, columns=nil)
+          @RuleType = ruletype
+          @DbPattern = dbpattern
+          @TablePattern = tablepattern
+          @Columns = columns
+        end
+
+        def deserialize(params)
+          @RuleType = params['RuleType']
+          @DbPattern = params['DbPattern']
+          @TablePattern = params['TablePattern']
+          @Columns = params['Columns']
+        end
+      end
+
       # 数据同步中的选项
       class DynamicOptions < TencentCloud::Common::AbstractModel
         # @param OpTypes: 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)，PartialDDL(自定义,和DdlOptions一起起作用 )；必填、dts会用该值覆盖原有的值
@@ -2839,6 +3703,105 @@ module TencentCloud
         end
       end
 
+      # 数据订阅的实例节点信息
+      class EndpointItem < TencentCloud::Common::AbstractModel
+        # @param DatabaseRegion: 源库所在地域。如果 AccessType 为 ccn，请填vpc所在地域，因为此时不知道源库在哪个地域。其他接入方式，请填订阅任务所在地域，因为确保订阅任务与源库在同一地域是最优的网络方案。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseRegion: String
+        # @param User: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param Password: 密码。作为入参时必填，作为出参时为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param InstanceId: 目标实例ID。如果 AccessType 为 cdb，此项必填。配置InstanceId时会查询并校验实例信息。mysql的查询接口经过了鉴权，请确保子用户有 cdb:DescribeDBInstances 的接口权限。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param CvmInstanceId: 云主机ID。如果 AccessType 为 cvm，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstanceId: String
+        # @param UniqDcgId: 专线网关ID。如果 AccessType 为 dcg，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqDcgId: String
+        # @param CcnId: 云联网ID。如果 AccessType 为 ccn，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
+        # @param UniqVpnGwId: vpn网关ID。如果 AccessType 为 vpncloud，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpnGwId: String
+        # @param VpcId: VpcID。如果 AccessType 为 dcg\ccn\vpncloud\vpc，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID。如果 AccessType 为 dcg\ccn\vpncloud\vpc，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param HostName: 数据库地址，支持域名与IP。如果 AccessType 为 dcg\ccn\vpncloud\vpc\extranet\intranet，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HostName: String
+        # @param Port: 数据库端口。如果 AccessType 为 dcg\ccn\vpncloud\vpc\extranet\intranet\cvm，此项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param EncryptConn: 是否走加密传输，枚举值：UnEncrypted-不加密，Encrypted-加密。只有mysql支持，不填默认不加密，其他产品不填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptConn: String
+        # @param DatabaseNetEnv: 数据库网络环境。如果 AccessType 为 ccn 此项必填。枚举值：UserIDC-自建idc，TencentVPC-腾讯云，Aws-aws，AliYun-阿里云，Others-其他。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseNetEnv: String
+        # @param CcnOwnerUin: 云联网网关所属的主账号uin、跨账号云联网需要。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnOwnerUin: String
+        # @param ExtraAttr: 为业务添加的额外信息。参数名作key，参数值作value。 tdpg必填参数：PgDatabase-订阅的库名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraAttr: Array
+
+        attr_accessor :DatabaseRegion, :User, :Password, :InstanceId, :CvmInstanceId, :UniqDcgId, :CcnId, :UniqVpnGwId, :VpcId, :SubnetId, :HostName, :Port, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ExtraAttr
+
+        def initialize(databaseregion=nil, user=nil, password=nil, instanceid=nil, cvminstanceid=nil, uniqdcgid=nil, ccnid=nil, uniqvpngwid=nil, vpcid=nil, subnetid=nil, hostname=nil, port=nil, encryptconn=nil, databasenetenv=nil, ccnowneruin=nil, extraattr=nil)
+          @DatabaseRegion = databaseregion
+          @User = user
+          @Password = password
+          @InstanceId = instanceid
+          @CvmInstanceId = cvminstanceid
+          @UniqDcgId = uniqdcgid
+          @CcnId = ccnid
+          @UniqVpnGwId = uniqvpngwid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @HostName = hostname
+          @Port = port
+          @EncryptConn = encryptconn
+          @DatabaseNetEnv = databasenetenv
+          @CcnOwnerUin = ccnowneruin
+          @ExtraAttr = extraattr
+        end
+
+        def deserialize(params)
+          @DatabaseRegion = params['DatabaseRegion']
+          @User = params['User']
+          @Password = params['Password']
+          @InstanceId = params['InstanceId']
+          @CvmInstanceId = params['CvmInstanceId']
+          @UniqDcgId = params['UniqDcgId']
+          @CcnId = params['CcnId']
+          @UniqVpnGwId = params['UniqVpnGwId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @HostName = params['HostName']
+          @Port = params['Port']
+          @EncryptConn = params['EncryptConn']
+          @DatabaseNetEnv = params['DatabaseNetEnv']
+          @CcnOwnerUin = params['CcnOwnerUin']
+          unless params['ExtraAttr'].nil?
+            @ExtraAttr = []
+            params['ExtraAttr'].each do |i|
+              keyvaluepairoption_tmp = KeyValuePairOption.new
+              keyvaluepairoption_tmp.deserialize(i)
+              @ExtraAttr << keyvaluepairoption_tmp
+            end
+          end
+        end
+      end
+
       # 错误信息及其解决方案
       class ErrInfo < TencentCloud::Common::AbstractModel
         # @param Reason: 错误原因
@@ -2897,6 +3860,78 @@ module TencentCloud
         end
       end
 
+      # kafka消费者组详情
+      class GroupInfo < TencentCloud::Common::AbstractModel
+        # @param Account: 消费者组账号
+        # @type Account: String
+        # @param ConsumerGroupName: 消费者组名称
+        # @type ConsumerGroupName: String
+        # @param Description: 消费者组备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ConsumerGroupOffset: 消费组偏移量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区的偏移量。各分区的偏移量详见StateOfPartition字段
+        # @type ConsumerGroupOffset: Integer
+        # @param ConsumerGroupLag: 消费组未消费的数据量。该字段是为了兼容以前单Partition的情况，取值为最后一个分区未消费的数据量。各分区未消费数据量详见StateOfPartition字段
+        # @type ConsumerGroupLag: Integer
+        # @param Latency: 消费延迟(单位为秒)
+        # @type Latency: Integer
+        # @param StateOfPartition: 各分区的消费状态
+        # @type StateOfPartition: Array
+        # @param CreatedAt: 消费者组创建时间，格式为YYYY-MM-DD hh:mm:ss
+        # @type CreatedAt: String
+        # @param UpdatedAt: 消费者组修改时间，格式为YYYY-MM-DD hh:mm:ss
+        # @type UpdatedAt: String
+        # @param ConsumerGroupState: 消费者组状态，包括Dead、Empty、Stable等，只有Dead和Empty两种状态可以执行reset操作
+        # @type ConsumerGroupState: String
+        # @param PartitionAssignment: 每个消费者正在消费的分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionAssignment: Array
+
+        attr_accessor :Account, :ConsumerGroupName, :Description, :ConsumerGroupOffset, :ConsumerGroupLag, :Latency, :StateOfPartition, :CreatedAt, :UpdatedAt, :ConsumerGroupState, :PartitionAssignment
+
+        def initialize(account=nil, consumergroupname=nil, description=nil, consumergroupoffset=nil, consumergrouplag=nil, latency=nil, stateofpartition=nil, createdat=nil, updatedat=nil, consumergroupstate=nil, partitionassignment=nil)
+          @Account = account
+          @ConsumerGroupName = consumergroupname
+          @Description = description
+          @ConsumerGroupOffset = consumergroupoffset
+          @ConsumerGroupLag = consumergrouplag
+          @Latency = latency
+          @StateOfPartition = stateofpartition
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @ConsumerGroupState = consumergroupstate
+          @PartitionAssignment = partitionassignment
+        end
+
+        def deserialize(params)
+          @Account = params['Account']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @Description = params['Description']
+          @ConsumerGroupOffset = params['ConsumerGroupOffset']
+          @ConsumerGroupLag = params['ConsumerGroupLag']
+          @Latency = params['Latency']
+          unless params['StateOfPartition'].nil?
+            @StateOfPartition = []
+            params['StateOfPartition'].each do |i|
+              monitorinfo_tmp = MonitorInfo.new
+              monitorinfo_tmp.deserialize(i)
+              @StateOfPartition << monitorinfo_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @ConsumerGroupState = params['ConsumerGroupState']
+          unless params['PartitionAssignment'].nil?
+            @PartitionAssignment = []
+            params['PartitionAssignment'].each do |i|
+              partitionassignment_tmp = PartitionAssignment.new
+              partitionassignment_tmp.deserialize(i)
+              @PartitionAssignment << partitionassignment_tmp
+            end
+          end
+        end
+      end
+
       # IsolateMigrateJob请求参数结构体
       class IsolateMigrateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务id
@@ -2915,6 +3950,38 @@ module TencentCloud
 
       # IsolateMigrateJob返回参数结构体
       class IsolateMigrateJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # IsolateSubscribe请求参数结构体
+      class IsolateSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # IsolateSubscribe返回参数结构体
+      class IsolateSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3315,6 +4382,34 @@ module TencentCloud
         end
       end
 
+      # 数据数据订阅的对象，用于修改订阅对象接口。与SubscribeObject结构类似，只是类型和参数名不同。
+      class ModifiedSubscribeObject < TencentCloud::Common::AbstractModel
+        # @param ObjectsType: 订阅对象的类型，枚举值为：0-库，1-表(该值对于mongo任务来说，是集合) 。
+        # 注意：mongo只支持全实例、单库或者单集合订阅，因此该字段不要与SubscribeObjectType冲突。如：SubscribeObjectType=4，表示mongo单库订阅，那么该字段应该传0。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectsType: Integer
+        # @param DatabaseName: 订阅数据库的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param TableNames: 订阅数据库中表(或集合)的名称。如果 ObjectsType 为 1，那么此字段为必填，且不为空；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableNames: Array
+
+        attr_accessor :ObjectsType, :DatabaseName, :TableNames
+
+        def initialize(objectstype=nil, databasename=nil, tablenames=nil)
+          @ObjectsType = objectstype
+          @DatabaseName = databasename
+          @TableNames = tablenames
+        end
+
+        def deserialize(params)
+          @ObjectsType = params['ObjectsType']
+          @DatabaseName = params['DatabaseName']
+          @TableNames = params['TableNames']
+        end
+      end
+
       # ModifyCompareTaskName请求参数结构体
       class ModifyCompareTaskNameRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 迁移任务 Id
@@ -3399,6 +4494,100 @@ module TencentCloud
 
       # ModifyCompareTask返回参数结构体
       class ModifyCompareTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConsumerGroupDescription请求参数结构体
+      class ModifyConsumerGroupDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+        # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}。
+        # 请务必保证消费组名称正确。
+        # @type ConsumerGroupName: String
+        # @param AccountName: 账户名称。实际的账户全称形如：account-#{SubscribeId}-#{AccountName}。
+        # 请务必保证账户名称正确。
+        # @type AccountName: String
+        # @param Description: 修改之后的消费组描述
+        # @type Description: String
+
+        attr_accessor :SubscribeId, :ConsumerGroupName, :AccountName, :Description
+
+        def initialize(subscribeid=nil, consumergroupname=nil, accountname=nil, description=nil)
+          @SubscribeId = subscribeid
+          @ConsumerGroupName = consumergroupname
+          @AccountName = accountname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @AccountName = params['AccountName']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyConsumerGroupDescription返回参数结构体
+      class ModifyConsumerGroupDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConsumerGroupPassword请求参数结构体
+      class ModifyConsumerGroupPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+        # @param AccountName: 账号名称。实际的账户全称形如：account-#{SubscribeId}-#{AccountName}
+        # @type AccountName: String
+        # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}
+        # @type ConsumerGroupName: String
+        # @param OldPassword: 旧密码
+        # @type OldPassword: String
+        # @param NewPassword: 新密码。字符长度不小于3，不大于32
+        # @type NewPassword: String
+
+        attr_accessor :SubscribeId, :AccountName, :ConsumerGroupName, :OldPassword, :NewPassword
+
+        def initialize(subscribeid=nil, accountname=nil, consumergroupname=nil, oldpassword=nil, newpassword=nil)
+          @SubscribeId = subscribeid
+          @AccountName = accountname
+          @ConsumerGroupName = consumergroupname
+          @OldPassword = oldpassword
+          @NewPassword = newpassword
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @AccountName = params['AccountName']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @OldPassword = params['OldPassword']
+          @NewPassword = params['NewPassword']
+        end
+      end
+
+      # ModifyConsumerGroupPassword返回参数结构体
+      class ModifyConsumerGroupPasswordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3660,6 +4849,153 @@ module TencentCloud
         end
       end
 
+      # ModifySubscribeAutoRenewFlag请求参数结构体
+      class ModifySubscribeAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例ID
+        # @type SubscribeId: String
+        # @param AutoRenewFlag: 自动续费标识。1-自动续费，0-不自动续费
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :SubscribeId, :AutoRenewFlag
+
+        def initialize(subscribeid=nil, autorenewflag=nil)
+          @SubscribeId = subscribeid
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # ModifySubscribeAutoRenewFlag返回参数结构体
+      class ModifySubscribeAutoRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySubscribeName请求参数结构体
+      class ModifySubscribeNameRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的ID
+        # @type SubscribeId: String
+        # @param SubscribeName: 修改后的数据订阅实例的名称，长度限制为[1,60]
+        # @type SubscribeName: String
+
+        attr_accessor :SubscribeId, :SubscribeName
+
+        def initialize(subscribeid=nil, subscribename=nil)
+          @SubscribeId = subscribeid
+          @SubscribeName = subscribename
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeName = params['SubscribeName']
+        end
+      end
+
+      # ModifySubscribeName返回参数结构体
+      class ModifySubscribeNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySubscribeObjects请求参数结构体
+      class ModifySubscribeObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的ID
+        # @type SubscribeId: String
+        # @param SubscribeObjectType: 数据订阅的类型，非mongo任务的枚举值：0-全实例更新；1-数据更新；2-结构更新；3-数据更新+结构更新。mongo任务的枚举值：0-全实例更新；4-订阅单库；5-订阅单集合
+        # @type SubscribeObjectType: Integer
+        # @param Objects: 修改后的订阅数据库表信息。会覆盖原来的订阅对象，所以除非 SubscribeObjectType = 0或2，否则改字段必填。
+        # @type Objects: Array
+        # @param DistributeRules: kafka分区策略。如果不填，默认不修改。如果填了，会覆盖原来的策略。
+        # @type DistributeRules: Array
+        # @param DefaultRuleType: 默认分区策略。不满足DistributeRules中正则表达式的数据，将按照默认分区策略计算分区。
+        # 非mongo产品支持的默认策略: table-按表名分区，pk-按表名+主键分区。mongo的默认策略仅支持：collection-按集合名分区。
+        # 该字段与DistributeRules搭配使用。如果配置了DistributeRules，该字段也必填。如果配置了该字段，视为配置了一条DistributeRules，原来的分区策略也会被覆盖。
+        # @type DefaultRuleType: String
+        # @param PipelineInfo: mongo输出聚合设置，mongo任务可选。如果不填，默认不修改。
+        # @type PipelineInfo: Array
+
+        attr_accessor :SubscribeId, :SubscribeObjectType, :Objects, :DistributeRules, :DefaultRuleType, :PipelineInfo
+
+        def initialize(subscribeid=nil, subscribeobjecttype=nil, objects=nil, distributerules=nil, defaultruletype=nil, pipelineinfo=nil)
+          @SubscribeId = subscribeid
+          @SubscribeObjectType = subscribeobjecttype
+          @Objects = objects
+          @DistributeRules = distributerules
+          @DefaultRuleType = defaultruletype
+          @PipelineInfo = pipelineinfo
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeObjectType = params['SubscribeObjectType']
+          unless params['Objects'].nil?
+            @Objects = []
+            params['Objects'].each do |i|
+              modifiedsubscribeobject_tmp = ModifiedSubscribeObject.new
+              modifiedsubscribeobject_tmp.deserialize(i)
+              @Objects << modifiedsubscribeobject_tmp
+            end
+          end
+          unless params['DistributeRules'].nil?
+            @DistributeRules = []
+            params['DistributeRules'].each do |i|
+              distributerule_tmp = DistributeRule.new
+              distributerule_tmp.deserialize(i)
+              @DistributeRules << distributerule_tmp
+            end
+          end
+          @DefaultRuleType = params['DefaultRuleType']
+          unless params['PipelineInfo'].nil?
+            @PipelineInfo = []
+            params['PipelineInfo'].each do |i|
+              pipelineinfo_tmp = PipelineInfo.new
+              pipelineinfo_tmp.deserialize(i)
+              @PipelineInfo << pipelineinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySubscribeObjects返回参数结构体
+      class ModifySubscribeObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySyncJobConfig请求参数结构体
       class ModifySyncJobConfigRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id
@@ -3758,6 +5094,34 @@ module TencentCloud
         end
       end
 
+      # kafka消费者组的分区详情
+      class MonitorInfo < TencentCloud::Common::AbstractModel
+        # @param PartitionNo: 当前分区的编号，从0开始
+        # @type PartitionNo: Integer
+        # @param ConsumerGroupOffset: 当前分区的偏移量
+        # @type ConsumerGroupOffset: Integer
+        # @param ConsumerGroupLag: 当前分区未消费的数据量
+        # @type ConsumerGroupLag: Integer
+        # @param Latency: 当前分区的消费延迟(单位为秒)
+        # @type Latency: Integer
+
+        attr_accessor :PartitionNo, :ConsumerGroupOffset, :ConsumerGroupLag, :Latency
+
+        def initialize(partitionno=nil, consumergroupoffset=nil, consumergrouplag=nil, latency=nil)
+          @PartitionNo = partitionno
+          @ConsumerGroupOffset = consumergroupoffset
+          @ConsumerGroupLag = consumergrouplag
+          @Latency = latency
+        end
+
+        def deserialize(params)
+          @PartitionNo = params['PartitionNo']
+          @ConsumerGroupOffset = params['ConsumerGroupOffset']
+          @ConsumerGroupLag = params['ConsumerGroupLag']
+          @Latency = params['Latency']
+        end
+      end
+
       # 同步的数据库对对象描述
       class Objects < TencentCloud::Common::AbstractModel
         # @param Mode: 同步对象类型 Partial(部分对象)
@@ -3797,6 +5161,28 @@ module TencentCloud
             @OnlineDDL = OnlineDDL.new
             @OnlineDDL.deserialize(params['OnlineDDL'])
           end
+        end
+      end
+
+      # 数据订阅kafka分区中checkpoint信息
+      class OffsetTimeMap < TencentCloud::Common::AbstractModel
+        # @param PartitionNo: kafka分区编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionNo: Integer
+        # @param Offset: kafka offset
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+
+        attr_accessor :PartitionNo, :Offset
+
+        def initialize(partitionno=nil, offset=nil)
+          @PartitionNo = partitionno
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PartitionNo = params['PartitionNo']
+          @Offset = params['Offset']
         end
       end
 
@@ -3895,6 +5281,27 @@ module TencentCloud
         end
       end
 
+      # 数据订阅中kafka消费者组的分区分配情况。该数据是实时查询的，如果需要最新数据，需重新掉接口查询。
+      class PartitionAssignment < TencentCloud::Common::AbstractModel
+        # @param ClientId: 消费者的clientId
+        # @type ClientId: String
+        # @param PartitionNo: 该消费者正在消费的分区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionNo: Array
+
+        attr_accessor :ClientId, :PartitionNo
+
+        def initialize(clientid=nil, partitionno=nil)
+          @ClientId = clientid
+          @PartitionNo = partitionno
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @PartitionNo = params['PartitionNo']
+        end
+      end
+
       # PauseMigrateJob请求参数结构体
       class PauseMigrateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 数据迁移任务ID
@@ -3956,6 +5363,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # mongo输出聚合设置。输出默认 Change Event
+      class PipelineInfo < TencentCloud::Common::AbstractModel
+        # @param AggOp: 聚合运算符：$addFields、$match、$project、$replaceRoot、$redact、$replaceWith、$set、$unset。其中 $replaceWith、$set、$unset 只有当订阅实例是4.2及以上版本可选。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggOp: String
+        # @param AggCmd: 聚合表达式。必须是json格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggCmd: String
+
+        attr_accessor :AggOp, :AggCmd
+
+        def initialize(aggop=nil, aggcmd=nil)
+          @AggOp = aggop
+          @AggCmd = aggcmd
+        end
+
+        def deserialize(params)
+          @AggOp = params['AggOp']
+          @AggCmd = params['AggCmd']
         end
       end
 
@@ -4166,6 +5595,90 @@ module TencentCloud
         end
       end
 
+      # ResetConsumerGroupOffset请求参数结构体
+      class ResetConsumerGroupOffsetRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 订阅实例id
+        # @type SubscribeId: String
+        # @param TopicName: 订阅的kafka topic
+        # @type TopicName: String
+        # @param ConsumerGroupName: 消费组名称。实际的消费组全称形如：consumer-grp-#{SubscribeId}-#{ConsumerGroupName}
+        # @type ConsumerGroupName: String
+        # @param PartitionNos: 需要修改offset的分区编号
+        # @type PartitionNos: Array
+        # @param ResetMode: 重置方式。枚举值为 earliest-从最开始位置开始消费；latest-从最新位置开始消费；datetime-从指定时间前最近的checkpoint开始消费
+        # @type ResetMode: String
+        # @param ResetDatetime: 当 ResetMode 为 datetime 时，该项需要填，格式为：Y-m-d h:m:s。如果不填，默认用0时间，效果与earliest相同。
+        # @type ResetDatetime: String
+
+        attr_accessor :SubscribeId, :TopicName, :ConsumerGroupName, :PartitionNos, :ResetMode, :ResetDatetime
+
+        def initialize(subscribeid=nil, topicname=nil, consumergroupname=nil, partitionnos=nil, resetmode=nil, resetdatetime=nil)
+          @SubscribeId = subscribeid
+          @TopicName = topicname
+          @ConsumerGroupName = consumergroupname
+          @PartitionNos = partitionnos
+          @ResetMode = resetmode
+          @ResetDatetime = resetdatetime
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @TopicName = params['TopicName']
+          @ConsumerGroupName = params['ConsumerGroupName']
+          @PartitionNos = params['PartitionNos']
+          @ResetMode = params['ResetMode']
+          @ResetDatetime = params['ResetDatetime']
+        end
+      end
+
+      # ResetConsumerGroupOffset返回参数结构体
+      class ResetConsumerGroupOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetSubscribe请求参数结构体
+      class ResetSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # ResetSubscribe返回参数结构体
+      class ResetSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResizeSyncJob请求参数结构体
       class ResizeSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id
@@ -4224,6 +5737,38 @@ module TencentCloud
 
       # ResumeMigrateJob返回参数结构体
       class ResumeMigrateJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeSubscribe请求参数结构体
+      class ResumeSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # ResumeSubscribe返回参数结构体
+      class ResumeSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4515,6 +6060,38 @@ module TencentCloud
 
       # StartModifySyncJob返回参数结构体
       class StartModifySyncJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StartSubscribe请求参数结构体
+      class StartSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅实例的 ID
+        # @type SubscribeId: String
+
+        attr_accessor :SubscribeId
+
+        def initialize(subscribeid=nil)
+          @SubscribeId = subscribeid
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+        end
+      end
+
+      # StartSubscribe返回参数结构体
+      class StartSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4832,6 +6409,298 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 订阅报错信息
+      class SubsErr < TencentCloud::Common::AbstractModel
+        # @param Message: 报错信息
+        # @type Message: String
+
+        attr_accessor :Message
+
+        def initialize(message=nil)
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+        end
+      end
+
+      # 订阅校验任务的各步骤信息。
+      class SubscribeCheckStepInfo < TencentCloud::Common::AbstractModel
+        # @param StepName: 步骤名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepName: String
+        # @param StepId: 步骤Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepId: String
+        # @param StepNo: 步骤编号，从 1 开始
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StepNo: Integer
+        # @param Status: 当前步骤状态，可能值为 notStarted,running,finished,failed
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Percent: 当前步骤进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+        # @param Errors: 错误提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
+        # @param Warnings: 告警提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Warnings: Array
+
+        attr_accessor :StepName, :StepId, :StepNo, :Status, :Percent, :Errors, :Warnings
+
+        def initialize(stepname=nil, stepid=nil, stepno=nil, status=nil, percent=nil, errors=nil, warnings=nil)
+          @StepName = stepname
+          @StepId = stepid
+          @StepNo = stepno
+          @Status = status
+          @Percent = percent
+          @Errors = errors
+          @Warnings = warnings
+        end
+
+        def deserialize(params)
+          @StepName = params['StepName']
+          @StepId = params['StepId']
+          @StepNo = params['StepNo']
+          @Status = params['Status']
+          @Percent = params['Percent']
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              subscribechecksteptip_tmp = SubscribeCheckStepTip.new
+              subscribechecksteptip_tmp.deserialize(i)
+              @Errors << subscribechecksteptip_tmp
+            end
+          end
+          unless params['Warnings'].nil?
+            @Warnings = []
+            params['Warnings'].each do |i|
+              subscribechecksteptip_tmp = SubscribeCheckStepTip.new
+              subscribechecksteptip_tmp.deserialize(i)
+              @Warnings << subscribechecksteptip_tmp
+            end
+          end
+        end
+      end
+
+      # 订阅校验任务的提示信息
+      class SubscribeCheckStepTip < TencentCloud::Common::AbstractModel
+        # @param Message: 错误或告警的详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param HelpDoc: 帮助文档
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HelpDoc: String
+
+        attr_accessor :Message, :HelpDoc
+
+        def initialize(message=nil, helpdoc=nil)
+          @Message = message
+          @HelpDoc = helpdoc
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @HelpDoc = params['HelpDoc']
+        end
+      end
+
+      # 订阅实例信息
+      class SubscribeInfo < TencentCloud::Common::AbstractModel
+        # @param SubscribeId: 数据订阅的实例ID
+        # @type SubscribeId: String
+        # @param SubscribeName: 数据订阅实例的名称
+        # @type SubscribeName: String
+        # @param Topic: 订阅实例发送数据的kafka topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Topic: String
+        # @param Product: 订阅实例的类型，目前支持 cynosdbmysql,mariadb,mongodb,mysql,percona,tdpg,tdsqlpercona(tdsqlmysql)
+        # @type Product: String
+        # @param InstanceId: 订阅的数据库实例ID（如果订阅的是云数据库）如果实例不是腾讯云上的，此值为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceStatus: 云数据库状态：running 运行中，isolated 已隔离，offline 已下线。如果不是云上，此值为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceStatus: String
+        # @param Status: 数据订阅生命周期状态，可能的值为：正常 normal, 隔离中 isolating, 已隔离 isolated, 下线中 offlining, 按量转包年包月中 post2PrePayIng
+        # @type Status: String
+        # @param SubsStatus: 数据订阅状态，可能的值为：未启动 notStarted, 校验中 checking, 校验不通过 checkNotPass, 校验通过 checkPass, 启动中 starting, 运行中 running, 异常出错 error
+        # @type SubsStatus: String
+        # @param ModifyTime: 上次修改时间，时间格式如：Y-m-d h:m:s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param CreateTime: 创建时间，时间格式如：Y-m-d h:m:s
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param IsolateTime: 隔离时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolateTime: String
+        # @param ExpireTime: 包年包月任务的到期时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param OfflineTime: 下线时间，时间格式如：Y-m-d h:m:s。默认：0000-00-00 00:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
+        # @param PayType: 计费方式，0 - 包年包月，1 - 按量计费
+        # @type PayType: Integer
+        # @param AutoRenewFlag: 自动续费标识。只有当 PayType=0，该值才有意义。枚举值：0-不自动续费，1-自动续费
+        # @type AutoRenewFlag: Integer
+        # @param Region: 数据订阅实例所属地域
+        # @type Region: String
+        # @param AccessType: 接入方式。枚举值：extranet(公网) vpncloud(vpn接入) dcg(专线接入) ccn(云联网) cdb(云数据库) cvm(云主机自建) intranet(自研上云) vpc(私有网络vpc)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: String
+        # @param Endpoints: 数据库节点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoints: Array
+        # @param SubscribeVersion: 数据订阅版本, 当前只支持 kafka 版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeVersion: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Errors: 任务报错信息，如果有的话。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Errors: Array
+
+        attr_accessor :SubscribeId, :SubscribeName, :Topic, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :AccessType, :Endpoints, :SubscribeVersion, :Tags, :Errors
+
+        def initialize(subscribeid=nil, subscribename=nil, topic=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, accesstype=nil, endpoints=nil, subscribeversion=nil, tags=nil, errors=nil)
+          @SubscribeId = subscribeid
+          @SubscribeName = subscribename
+          @Topic = topic
+          @Product = product
+          @InstanceId = instanceid
+          @InstanceStatus = instancestatus
+          @Status = status
+          @SubsStatus = subsstatus
+          @ModifyTime = modifytime
+          @CreateTime = createtime
+          @IsolateTime = isolatetime
+          @ExpireTime = expiretime
+          @OfflineTime = offlinetime
+          @PayType = paytype
+          @AutoRenewFlag = autorenewflag
+          @Region = region
+          @AccessType = accesstype
+          @Endpoints = endpoints
+          @SubscribeVersion = subscribeversion
+          @Tags = tags
+          @Errors = errors
+        end
+
+        def deserialize(params)
+          @SubscribeId = params['SubscribeId']
+          @SubscribeName = params['SubscribeName']
+          @Topic = params['Topic']
+          @Product = params['Product']
+          @InstanceId = params['InstanceId']
+          @InstanceStatus = params['InstanceStatus']
+          @Status = params['Status']
+          @SubsStatus = params['SubsStatus']
+          @ModifyTime = params['ModifyTime']
+          @CreateTime = params['CreateTime']
+          @IsolateTime = params['IsolateTime']
+          @ExpireTime = params['ExpireTime']
+          @OfflineTime = params['OfflineTime']
+          @PayType = params['PayType']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @Region = params['Region']
+          @AccessType = params['AccessType']
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              endpointitem_tmp = EndpointItem.new
+              endpointitem_tmp.deserialize(i)
+              @Endpoints << endpointitem_tmp
+            end
+          end
+          @SubscribeVersion = params['SubscribeVersion']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagitem_tmp = TagItem.new
+              tagitem_tmp.deserialize(i)
+              @Tags << tagitem_tmp
+            end
+          end
+          unless params['Errors'].nil?
+            @Errors = []
+            params['Errors'].each do |i|
+              subserr_tmp = SubsErr.new
+              subserr_tmp.deserialize(i)
+              @Errors << subserr_tmp
+            end
+          end
+        end
+      end
+
+      # 订阅的kafka分区数和分区规则。mariadb，percona，tdsqlmysql，tdpg不支持自定义分区，所以DistributeRules和DefaultRuleType可以不填，但是NumberOfPartitions是必填。
+      class SubscribeKafkaConfig < TencentCloud::Common::AbstractModel
+        # @param NumberOfPartitions: kafka分区数量，枚举值为1，4，8
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberOfPartitions: Integer
+        # @param DistributeRules: 分区规则。当NumberOfPartitions > 1时，该项必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DistributeRules: Array
+        # @param DefaultRuleType: 默认分区策略。当NumberOfPartitions > 1时，该项必填。不满足DistributeRules中正则表达式的数据，将按照默认分区策略计算分区。
+        # 非mongo产品的枚举值为: table-按表名分区，pk-按表名+主键分区。mongo的枚举值为：collection-按集合名分区。
+        # 该字段与DistributeRules搭配使用，如果配置了该字段，视为配置了一条DistributeRules。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultRuleType: String
+
+        attr_accessor :NumberOfPartitions, :DistributeRules, :DefaultRuleType
+
+        def initialize(numberofpartitions=nil, distributerules=nil, defaultruletype=nil)
+          @NumberOfPartitions = numberofpartitions
+          @DistributeRules = distributerules
+          @DefaultRuleType = defaultruletype
+        end
+
+        def deserialize(params)
+          @NumberOfPartitions = params['NumberOfPartitions']
+          unless params['DistributeRules'].nil?
+            @DistributeRules = []
+            params['DistributeRules'].each do |i|
+              distributerule_tmp = DistributeRule.new
+              distributerule_tmp.deserialize(i)
+              @DistributeRules << distributerule_tmp
+            end
+          end
+          @DefaultRuleType = params['DefaultRuleType']
+        end
+      end
+
+      # 订阅的的数据库表信息，用于配置和查询订阅任务接口。
+      class SubscribeObject < TencentCloud::Common::AbstractModel
+        # @param ObjectType: 订阅数据的类型，枚举值：database-数据库，table-数据库的表(如果 DatabaseType 为 mongodb，则表示集合)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: String
+        # @param Database: 订阅的数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Database: String
+        # @param Tables: 订阅数据库中表的名称。如果 DatabaseType 为 mongodb，填集合名。mongodb只支持订阅单库或者单集合。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+
+        attr_accessor :ObjectType, :Database, :Tables
+
+        def initialize(objecttype=nil, database=nil, tables=nil)
+          @ObjectType = objecttype
+          @Database = database
+          @Tables = tables
+        end
+
+        def deserialize(params)
+          @ObjectType = params['ObjectType']
+          @Database = params['Database']
+          @Tables = params['Tables']
         end
       end
 

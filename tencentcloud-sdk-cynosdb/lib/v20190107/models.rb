@@ -2750,10 +2750,13 @@ module TencentCloud
         # @param InstanceIndexMode: 实例索引形态,可选值【mixedRowColumn（行列混存），onlyRowIndex（仅行存）】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIndexMode: String
+        # @param InstanceAbility: 当前实例支持的能力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -2807,6 +2810,7 @@ module TencentCloud
           @InstanceNetInfo = instancenetinfo
           @ResourcePackages = resourcepackages
           @InstanceIndexMode = instanceindexmode
+          @InstanceAbility = instanceability
         end
 
         def deserialize(params)
@@ -2891,6 +2895,10 @@ module TencentCloud
             end
           end
           @InstanceIndexMode = params['InstanceIndexMode']
+          unless params['InstanceAbility'].nil?
+            @InstanceAbility = InstanceAbility.new
+            @InstanceAbility.deserialize(params['InstanceAbility'])
+          end
         end
       end
 
@@ -6671,6 +6679,28 @@ module TencentCloud
         end
       end
 
+      # 实例允许的操作列表
+      class InstanceAbility < TencentCloud::Common::AbstractModel
+        # @param IsSupportForceRestart: 实例是否支持强制重启，可选值：yes：支持，no：不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportForceRestart: String
+        # @param NonsupportForceRestartReason: 不支持强制重启的原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NonsupportForceRestartReason: String
+
+        attr_accessor :IsSupportForceRestart, :NonsupportForceRestartReason
+
+        def initialize(issupportforcerestart=nil, nonsupportforcerestartreason=nil)
+          @IsSupportForceRestart = issupportforcerestart
+          @NonsupportForceRestartReason = nonsupportforcerestartreason
+        end
+
+        def deserialize(params)
+          @IsSupportForceRestart = params['IsSupportForceRestart']
+          @NonsupportForceRestartReason = params['NonsupportForceRestartReason']
+        end
+      end
+
       # 审计日志搜索条件
       class InstanceAuditLogFilter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤项。目前支持以下搜索条件：
@@ -6965,17 +6995,25 @@ module TencentCloud
         # @type ClusterId: String
         # @param DbType: 该参数已废用
         # @type DbType: String
+        # @param IsolateReasonTypes: 实例退还原因类型
+        # @type IsolateReasonTypes: Array
+        # @param IsolateReason: 实例退还原因补充
+        # @type IsolateReason: String
 
-        attr_accessor :ClusterId, :DbType
+        attr_accessor :ClusterId, :DbType, :IsolateReasonTypes, :IsolateReason
 
-        def initialize(clusterid=nil, dbtype=nil)
+        def initialize(clusterid=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil)
           @ClusterId = clusterid
           @DbType = dbtype
+          @IsolateReasonTypes = isolatereasontypes
+          @IsolateReason = isolatereason
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @DbType = params['DbType']
+          @IsolateReasonTypes = params['IsolateReasonTypes']
+          @IsolateReason = params['IsolateReason']
         end
       end
 
@@ -7013,19 +7051,27 @@ module TencentCloud
         # @type InstanceIdList: Array
         # @param DbType: 该参数已废弃
         # @type DbType: String
+        # @param IsolateReasonTypes: 实例退还原因类型
+        # @type IsolateReasonTypes: Array
+        # @param IsolateReason: 实例退还原因补充
+        # @type IsolateReason: String
 
-        attr_accessor :ClusterId, :InstanceIdList, :DbType
+        attr_accessor :ClusterId, :InstanceIdList, :DbType, :IsolateReasonTypes, :IsolateReason
 
-        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil)
+        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil)
           @ClusterId = clusterid
           @InstanceIdList = instanceidlist
           @DbType = dbtype
+          @IsolateReasonTypes = isolatereasontypes
+          @IsolateReason = isolatereason
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceIdList = params['InstanceIdList']
           @DbType = params['DbType']
+          @IsolateReasonTypes = params['IsolateReasonTypes']
+          @IsolateReason = params['IsolateReason']
         end
       end
 
@@ -10763,6 +10809,33 @@ module TencentCloud
         end
       end
 
+      # 备可用区库存信息
+      class SlaveZoneStockInfo < TencentCloud::Common::AbstractModel
+        # @param SlaveZone: 备可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZone: String
+        # @param StockCount: 备可用区的库存数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StockCount: Integer
+        # @param HasStock: 备可用区是否有库存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasStock: Boolean
+
+        attr_accessor :SlaveZone, :StockCount, :HasStock
+
+        def initialize(slavezone=nil, stockcount=nil, hasstock=nil)
+          @SlaveZone = slavezone
+          @StockCount = stockcount
+          @HasStock = hasstock
+        end
+
+        def deserialize(params)
+          @SlaveZone = params['SlaveZone']
+          @StockCount = params['StockCount']
+          @HasStock = params['HasStock']
+        end
+      end
+
       # 实例慢查询信息
       class SlowQueriesItem < TencentCloud::Common::AbstractModel
         # @param Timestamp: 执行时间戳
@@ -11428,19 +11501,31 @@ module TencentCloud
         # @type HasStock: Boolean
         # @param StockCount: 库存数量
         # @type StockCount: Integer
+        # @param SlaveZoneStockInfos: 备可用区库存信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveZoneStockInfos: Array
 
-        attr_accessor :Zone, :HasStock, :StockCount
+        attr_accessor :Zone, :HasStock, :StockCount, :SlaveZoneStockInfos
 
-        def initialize(zone=nil, hasstock=nil, stockcount=nil)
+        def initialize(zone=nil, hasstock=nil, stockcount=nil, slavezonestockinfos=nil)
           @Zone = zone
           @HasStock = hasstock
           @StockCount = stockcount
+          @SlaveZoneStockInfos = slavezonestockinfos
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @HasStock = params['HasStock']
           @StockCount = params['StockCount']
+          unless params['SlaveZoneStockInfos'].nil?
+            @SlaveZoneStockInfos = []
+            params['SlaveZoneStockInfos'].each do |i|
+              slavezonestockinfo_tmp = SlaveZoneStockInfo.new
+              slavezonestockinfo_tmp.deserialize(i)
+              @SlaveZoneStockInfos << slavezonestockinfo_tmp
+            end
+          end
         end
       end
 

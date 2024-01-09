@@ -77,46 +77,6 @@ module TencentCloud
         end
       end
 
-      # CreateOfflineLogConfig请求参数结构体
-      class CreateOfflineLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-        # @param UniqueID: 需要监听的用户唯一标示(aid 或 uin)
-        # @type UniqueID: String
-
-        attr_accessor :ProjectKey, :UniqueID
-
-        def initialize(projectkey=nil, uniqueid=nil)
-          @ProjectKey = projectkey
-          @UniqueID = uniqueid
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-          @UniqueID = params['UniqueID']
-        end
-      end
-
-      # CreateOfflineLogConfig返回参数结构体
-      class CreateOfflineLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口返回信息
-        # @type Msg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :RequestId
-
-        def initialize(msg=nil, requestid=nil)
-          @Msg = msg
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateProject请求参数结构体
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
         # @param Name: 创建的项目名(不为空且最长为 200)
@@ -3182,90 +3142,6 @@ module TencentCloud
         def deserialize(params)
           @Msg = params['Msg']
           @UniqueIDSet = params['UniqueIDSet']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOfflineLogRecords请求参数结构体
-      class DescribeOfflineLogRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-
-        attr_accessor :ProjectKey
-
-        def initialize(projectkey=nil)
-          @ProjectKey = projectkey
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-        end
-      end
-
-      # DescribeOfflineLogRecords返回参数结构体
-      class DescribeOfflineLogRecordsResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口调用信息
-        # @type Msg: String
-        # @param RecordSet: 记录 ID 数组
-        # @type RecordSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :RecordSet, :RequestId
-
-        def initialize(msg=nil, recordset=nil, requestid=nil)
-          @Msg = msg
-          @RecordSet = recordset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @RecordSet = params['RecordSet']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOfflineLogs请求参数结构体
-      class DescribeOfflineLogsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-        # @param FileIDs: 离线日志文件 id 列表
-        # @type FileIDs: Array
-
-        attr_accessor :ProjectKey, :FileIDs
-
-        def initialize(projectkey=nil, fileids=nil)
-          @ProjectKey = projectkey
-          @FileIDs = fileids
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-          @FileIDs = params['FileIDs']
-        end
-      end
-
-      # DescribeOfflineLogs返回参数结构体
-      class DescribeOfflineLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口调用返回信息
-        # @type Msg: String
-        # @param LogSet: 日志列表
-        # @type LogSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :LogSet, :RequestId
-
-        def initialize(msg=nil, logset=nil, requestid=nil)
-          @Msg = msg
-          @LogSet = logset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @LogSet = params['LogSet']
           @RequestId = params['RequestId']
         end
       end

@@ -1788,16 +1788,19 @@ module TencentCloud
         # @type GrafanaInitPassword: String
         # @param TagSpecification: 标签
         # @type TagSpecification: Array
+        # @param AutoVoucher: 是否自动选择代金券，默认为 false
+        # @type AutoVoucher: Boolean
 
-        attr_accessor :InstanceName, :VpcId, :SubnetIds, :EnableInternet, :GrafanaInitPassword, :TagSpecification
+        attr_accessor :InstanceName, :VpcId, :SubnetIds, :EnableInternet, :GrafanaInitPassword, :TagSpecification, :AutoVoucher
 
-        def initialize(instancename=nil, vpcid=nil, subnetids=nil, enableinternet=nil, grafanainitpassword=nil, tagspecification=nil)
+        def initialize(instancename=nil, vpcid=nil, subnetids=nil, enableinternet=nil, grafanainitpassword=nil, tagspecification=nil, autovoucher=nil)
           @InstanceName = instancename
           @VpcId = vpcid
           @SubnetIds = subnetids
           @EnableInternet = enableinternet
           @GrafanaInitPassword = grafanainitpassword
           @TagSpecification = tagspecification
+          @AutoVoucher = autovoucher
         end
 
         def deserialize(params)
@@ -1814,6 +1817,7 @@ module TencentCloud
               @TagSpecification << prometheustag_tmp
             end
           end
+          @AutoVoucher = params['AutoVoucher']
         end
       end
 
