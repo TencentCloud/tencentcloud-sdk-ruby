@@ -2439,7 +2439,8 @@ module TencentCloud
 
       # 转推参数。
       class McuPublishCdnParam < TencentCloud::Common::AbstractModel
-        # @param PublishCdnUrl: CDN转推URL。注：若更新转推时，URL有任何变化，都会断流重推。
+        # @param PublishCdnUrl: CDN转推URL，只支持rtmp链接。
+        # 注：若更新转推时，URL有任何变化，都会断流重推。
         # @type PublishCdnUrl: String
         # @param IsTencentCdn: 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。注意：1，为避免误产生转推费用，该参数建议明确填写，转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明；2，国内站默认只支持转推腾讯云CDN，如您有转推第三方CDN需求，请联系腾讯云技术支持。
         # @type IsTencentCdn: Integer

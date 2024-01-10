@@ -545,7 +545,7 @@ module TencentCloud
         # @type NextToken: Integer
         # @param MaxResults: 返回日志的最大条数（最大 50 条）
         # @type MaxResults: Integer
-        # @param LookupAttributes: 检索条件（目前支持 RequestId：请求 ID、EventName：事件名称、ActionType：操作类型（Write：写；Read：读）、PrincipalId：子账号、ResourceType：资源类型、ResourceName：资源名称、AccessKeyId：密钥 ID、SensitiveAction：是否敏感操作、ApiErrorCode：API 错误码、CamErrorCode：CAM 错误码、Tags：标签（AttributeValue格式：[{"key":"*","value":"*"}]）备注:检索的各个条件间是与的关系,EventName传多个值内部是或的关系）
+        # @param LookupAttributes: 检索条件（目前支持 RequestId：请求 ID、EventName：事件名称、ActionType：操作类型（Write：写；Read：读）、PrincipalId：子账号、ResourceType：资源类型、ResourceId：资源Id、ResourceName：资源名称、AccessKeyId：密钥 ID、SensitiveAction：是否敏感操作、ApiErrorCode：API 错误码、CamErrorCode：CAM 错误码、Tags：标签（AttributeValue格式：[{"key":"*","value":"*"}]）备注:检索的各个条件间是与的关系,EventName传多个值内部是或的关系）
         # @type LookupAttributes: Array
         # @param IsReturnLocation: 是否返回 IP 归属地（1 返回，0 不返回）
         # @type IsReturnLocation: Integer
@@ -1145,8 +1145,10 @@ module TencentCloud
       # 资源类型
       class Resource < TencentCloud::Common::AbstractModel
         # @param ResourceType: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceType: String
         # @param ResourceName: 资源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
 
         attr_accessor :ResourceType, :ResourceName
@@ -1244,14 +1246,22 @@ module TencentCloud
         # @type StorageName: String
         # @param StoragePrefix: 存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符
         # @type StoragePrefix: String
+        # @param StorageAccountId: 被指定存储用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageAccountId: String
+        # @param StorageAppId: 被指定存储用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageAppId: String
 
-        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix
+        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId
 
-        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil)
+        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil, storageaccountid=nil, storageappid=nil)
           @StorageType = storagetype
           @StorageRegion = storageregion
           @StorageName = storagename
           @StoragePrefix = storageprefix
+          @StorageAccountId = storageaccountid
+          @StorageAppId = storageappid
         end
 
         def deserialize(params)
@@ -1259,6 +1269,8 @@ module TencentCloud
           @StorageRegion = params['StorageRegion']
           @StorageName = params['StorageName']
           @StoragePrefix = params['StoragePrefix']
+          @StorageAccountId = params['StorageAccountId']
+          @StorageAppId = params['StorageAppId']
         end
       end
 

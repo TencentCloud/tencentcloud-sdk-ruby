@@ -57,7 +57,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建跟踪集
+        # 创建操作审计跟踪集
 
         # @param request: Request instance for CreateAuditTrack.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::CreateAuditTrackRequest`
@@ -105,7 +105,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除云审计跟踪集
+        # 删除操作审计跟踪集
 
         # @param request: Request instance for DeleteAuditTrack.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DeleteAuditTrackRequest`
@@ -153,7 +153,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云审计跟踪集详情
+        # 查询操作审计跟踪集详情
 
         # @param request: Request instance for DescribeAuditTrack.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DescribeAuditTrackRequest`
@@ -177,7 +177,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云审计跟踪集列表
+        # 查询操作审计跟踪集列表
 
         # @param request: Request instance for DescribeAuditTracks.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DescribeAuditTracksRequest`
@@ -201,7 +201,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询云审计日志
+        # 查询操作审计日志
 
         # @param request: Request instance for DescribeEvents.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::DescribeEventsRequest`
@@ -393,7 +393,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改云审计跟踪
+        # 修改操作审计跟踪集
 
         # @param request: Request instance for ModifyAuditTrack.
         # @type request: :class:`Tencentcloud::cloudaudit::V20190319::ModifyAuditTrackRequest`
