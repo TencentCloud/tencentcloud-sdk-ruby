@@ -17,638 +17,71 @@
 module TencentCloud
   module Tdid
     module V20210519
-      # CheckChain请求参数结构体
-      class CheckChainRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-        # @param AgencyName: did服务机构名称
-        # @type AgencyName: String
-
-        attr_accessor :GroupId, :ClusterId, :AgencyName
-
-        def initialize(groupid=nil, clusterid=nil, agencyname=nil)
-          @GroupId = groupid
-          @ClusterId = clusterid
-          @AgencyName = agencyname
-        end
-
-        def deserialize(params)
-          @GroupId = params['GroupId']
-          @ClusterId = params['ClusterId']
-          @AgencyName = params['AgencyName']
-        end
-      end
-
-      # CheckChain返回参数结构体
-      class CheckChainResponse < TencentCloud::Common::AbstractModel
-        # @param RoleType: 1为盟主，0为非盟主
-        # @type RoleType: Integer
-        # @param ChainId: 链ID
-        # @type ChainId: String
-        # @param AppName: 应用名称
-        # @type AppName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RoleType, :ChainId, :AppName, :RequestId
-
-        def initialize(roletype=nil, chainid=nil, appname=nil, requestid=nil)
-          @RoleType = roletype
-          @ChainId = chainid
-          @AppName = appname
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RoleType = params['RoleType']
-          @ChainId = params['ChainId']
-          @AppName = params['AppName']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateCredential请求参数结构体
-      class CreateCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param FunctionArg: 参数集合，详见示例
-        # @type FunctionArg: :class:`Tencentcloud::Tdid.v20210519.models.FunctionArg`
-        # @param TransactionArg: 参数集合，详见示例
-        # @type TransactionArg: :class:`Tencentcloud::Tdid.v20210519.models.TransactionArg`
-        # @param VersionCredential: 版本
-        # @type VersionCredential: String
-        # @param UnSigned: 是否未签名
-        # @type UnSigned: Boolean
-
-        attr_accessor :FunctionArg, :TransactionArg, :VersionCredential, :UnSigned
-
-        def initialize(functionarg=nil, transactionarg=nil, versioncredential=nil, unsigned=nil)
-          @FunctionArg = functionarg
-          @TransactionArg = transactionarg
-          @VersionCredential = versioncredential
-          @UnSigned = unsigned
-        end
-
-        def deserialize(params)
-          unless params['FunctionArg'].nil?
-            @FunctionArg = FunctionArg.new
-            @FunctionArg.deserialize(params['FunctionArg'])
-          end
-          unless params['TransactionArg'].nil?
-            @TransactionArg = TransactionArg.new
-            @TransactionArg.deserialize(params['TransactionArg'])
-          end
-          @VersionCredential = params['VersionCredential']
-          @UnSigned = params['UnSigned']
-        end
-      end
-
-      # CreateCredential返回参数结构体
-      class CreateCredentialResponse < TencentCloud::Common::AbstractModel
-        # @param CredentialData: Credential的具体信息
-        # @type CredentialData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CredentialData, :RequestId
-
-        def initialize(credentialdata=nil, requestid=nil)
-          @CredentialData = credentialdata
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CredentialData = params['CredentialData']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateSelectiveCredential请求参数结构体
-      class CreateSelectiveCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param FunctionArg: 参数集合
-        # @type FunctionArg: :class:`Tencentcloud::Tdid.v20210519.models.VerifyFunctionArg`
-        # @param PolicyId: 批露策略id
-        # @type PolicyId: Integer
-
-        attr_accessor :FunctionArg, :PolicyId
-
-        def initialize(functionarg=nil, policyid=nil)
-          @FunctionArg = functionarg
-          @PolicyId = policyid
-        end
-
-        def deserialize(params)
-          unless params['FunctionArg'].nil?
-            @FunctionArg = VerifyFunctionArg.new
-            @FunctionArg.deserialize(params['FunctionArg'])
-          end
-          @PolicyId = params['PolicyId']
-        end
-      end
-
-      # CreateSelectiveCredential返回参数结构体
-      class CreateSelectiveCredentialResponse < TencentCloud::Common::AbstractModel
-        # @param CredentialData: 凭证字符串
-        # @type CredentialData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CredentialData, :RequestId
-
-        def initialize(credentialdata=nil, requestid=nil)
-          @CredentialData = credentialdata
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CredentialData = params['CredentialData']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateTDidByPrivateKey请求参数结构体
-      class CreateTDidByPrivateKeyRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param PrivateKey: 私钥
-        # @type PrivateKey: String
-
-        attr_accessor :ClusterId, :GroupId, :PrivateKey
-
-        def initialize(clusterid=nil, groupid=nil, privatekey=nil)
-          @ClusterId = clusterid
-          @GroupId = groupid
-          @PrivateKey = privatekey
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @GroupId = params['GroupId']
-          @PrivateKey = params['PrivateKey']
-        end
-      end
-
-      # CreateTDidByPrivateKey返回参数结构体
-      class CreateTDidByPrivateKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Did: did的具体信息
-        # @type Did: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Did, :RequestId
-
-        def initialize(did=nil, requestid=nil)
-          @Did = did
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Did = params['Did']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateTDidByPublicKey请求参数结构体
-      class CreateTDidByPublicKeyRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param PublicKey: 身份公钥
-        # @type PublicKey: String
-        # @param EncryptPubKey: 加密公钥
-        # @type EncryptPubKey: String
-
-        attr_accessor :ClusterId, :GroupId, :PublicKey, :EncryptPubKey
-
-        def initialize(clusterid=nil, groupid=nil, publickey=nil, encryptpubkey=nil)
-          @ClusterId = clusterid
-          @GroupId = groupid
-          @PublicKey = publickey
-          @EncryptPubKey = encryptpubkey
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @GroupId = params['GroupId']
-          @PublicKey = params['PublicKey']
-          @EncryptPubKey = params['EncryptPubKey']
-        end
-      end
-
-      # CreateTDidByPublicKey返回参数结构体
-      class CreateTDidByPublicKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Did: did具体信息
-        # @type Did: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Did, :RequestId
-
-        def initialize(did=nil, requestid=nil)
-          @Did = did
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Did = params['Did']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # CreateTDid请求参数结构体
-      class CreateTDidRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-        # @param Relegation: 部署机构为1，否则为0
-        # @type Relegation: Integer
-
-        attr_accessor :GroupId, :ClusterId, :Relegation
-
-        def initialize(groupid=nil, clusterid=nil, relegation=nil)
-          @GroupId = groupid
-          @ClusterId = clusterid
-          @Relegation = relegation
-        end
-
-        def deserialize(params)
-          @GroupId = params['GroupId']
-          @ClusterId = params['ClusterId']
-          @Relegation = params['Relegation']
-        end
-      end
-
-      # CreateTDid返回参数结构体
-      class CreateTDidResponse < TencentCloud::Common::AbstractModel
-        # @param Did: TDID
-        # @type Did: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Did, :RequestId
-
-        def initialize(did=nil, requestid=nil)
-          @Did = did
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Did = params['Did']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 凭证链上状态信息
-      class CredentialStatus < TencentCloud::Common::AbstractModel
-        # @param CredentialId: 凭证唯一id
-        # @type CredentialId: String
-        # @param Status: 凭证状态（0：吊销；1：有效）
-        # @type Status: Integer
-        # @param Issuer: 凭证颁发者Did
-        # @type Issuer: String
-        # @param Digest: 凭证摘要
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Digest: String
-        # @param Signature: 凭证签名
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Signature: String
-        # @param TimeStamp: 更新时间戳
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TimeStamp: Integer
-
-        attr_accessor :CredentialId, :Status, :Issuer, :Digest, :Signature, :TimeStamp
-
-        def initialize(credentialid=nil, status=nil, issuer=nil, digest=nil, signature=nil, timestamp=nil)
-          @CredentialId = credentialid
-          @Status = status
-          @Issuer = issuer
-          @Digest = digest
-          @Signature = signature
-          @TimeStamp = timestamp
-        end
-
-        def deserialize(params)
-          @CredentialId = params['CredentialId']
-          @Status = params['Status']
-          @Issuer = params['Issuer']
-          @Digest = params['Digest']
-          @Signature = params['Signature']
-          @TimeStamp = params['TimeStamp']
-        end
-      end
-
-      # 创建凭证入参的FunctionArg
-      class FunctionArg < TencentCloud::Common::AbstractModel
-        # @param CptId: CPT ID
-        # @type CptId: Integer
+      # 颁发凭证的数据参数
+      class CRDLArg < TencentCloud::Common::AbstractModel
+        # @param CPTId: CPT ID
+        # @type CPTId: Integer
         # @param Issuer: 签发者 did
         # @type Issuer: String
         # @param ExpirationDate: 过期时间
         # @type ExpirationDate: String
         # @param ClaimJson: 声明
         # @type ClaimJson: String
+        # @param Type: 凭证类型
+        # @type Type: Array
+        # @param Parties: 多方签名的用户did
+        # @type Parties: Array
 
-        attr_accessor :CptId, :Issuer, :ExpirationDate, :ClaimJson
+        attr_accessor :CPTId, :Issuer, :ExpirationDate, :ClaimJson, :Type, :Parties
 
-        def initialize(cptid=nil, issuer=nil, expirationdate=nil, claimjson=nil)
-          @CptId = cptid
+        def initialize(cptid=nil, issuer=nil, expirationdate=nil, claimjson=nil, type=nil, parties=nil)
+          @CPTId = cptid
           @Issuer = issuer
           @ExpirationDate = expirationdate
           @ClaimJson = claimjson
+          @Type = type
+          @Parties = parties
         end
 
         def deserialize(params)
-          @CptId = params['CptId']
+          @CPTId = params['CPTId']
           @Issuer = params['Issuer']
           @ExpirationDate = params['ExpirationDate']
           @ClaimJson = params['ClaimJson']
-        end
-      end
-
-      # GetAuthorityIssuer请求参数结构体
-      class GetAuthorityIssuerRequest < TencentCloud::Common::AbstractModel
-        # @param Did: tdid
-        # @type Did: String
-
-        attr_accessor :Did
-
-        def initialize(did=nil)
-          @Did = did
-        end
-
-        def deserialize(params)
-          @Did = params['Did']
-        end
-      end
-
-      # GetAuthorityIssuer返回参数结构体
-      class GetAuthorityIssuerResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 名称
-        # @type Name: String
-        # @param ClusterId: 区块链网络id
-        # @type ClusterId: String
-        # @param GroupId: 区块链群组id
-        # @type GroupId: Integer
-        # @param Did: 权威机构did
-        # @type Did: String
-        # @param Remark: 机构备注信息
-        # @type Remark: String
-        # @param RegisterTime: 注册时间
-        # @type RegisterTime: String
-        # @param RecognizeTime: 认证时间
-        # @type RecognizeTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Name, :ClusterId, :GroupId, :Did, :Remark, :RegisterTime, :RecognizeTime, :RequestId
-
-        def initialize(name=nil, clusterid=nil, groupid=nil, did=nil, remark=nil, registertime=nil, recognizetime=nil, requestid=nil)
-          @Name = name
-          @ClusterId = clusterid
-          @GroupId = groupid
-          @Did = did
-          @Remark = remark
-          @RegisterTime = registertime
-          @RecognizeTime = recognizetime
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @ClusterId = params['ClusterId']
-          @GroupId = params['GroupId']
-          @Did = params['Did']
-          @Remark = params['Remark']
-          @RegisterTime = params['RegisterTime']
-          @RecognizeTime = params['RecognizeTime']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetCptInfo请求参数结构体
-      class GetCptInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CptIndex: Cpt索引
-        # @type CptIndex: Integer
-
-        attr_accessor :CptIndex
-
-        def initialize(cptindex=nil)
-          @CptIndex = cptindex
-        end
-
-        def deserialize(params)
-          @CptIndex = params['CptIndex']
-        end
-      end
-
-      # GetCptInfo返回参数结构体
-      class GetCptInfoResponse < TencentCloud::Common::AbstractModel
-        # @param CptJsonData: CptJsonData的具体信息
-        # @type CptJsonData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CptJsonData, :RequestId
-
-        def initialize(cptjsondata=nil, requestid=nil)
-          @CptJsonData = cptjsondata
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CptJsonData = params['CptJsonData']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetCredentialStatus请求参数结构体
-      class GetCredentialStatusRequest < TencentCloud::Common::AbstractModel
-        # @param CredentialId: 凭证id
-        # @type CredentialId: String
-
-        attr_accessor :CredentialId
-
-        def initialize(credentialid=nil)
-          @CredentialId = credentialid
-        end
-
-        def deserialize(params)
-          @CredentialId = params['CredentialId']
-        end
-      end
-
-      # GetCredentialStatus返回参数结构体
-      class GetCredentialStatusResponse < TencentCloud::Common::AbstractModel
-        # @param CredentialStatus: 凭证状态信息
-        # @type CredentialStatus: :class:`Tencentcloud::Tdid.v20210519.models.CredentialStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CredentialStatus, :RequestId
-
-        def initialize(credentialstatus=nil, requestid=nil)
-          @CredentialStatus = credentialstatus
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['CredentialStatus'].nil?
-            @CredentialStatus = CredentialStatus.new
-            @CredentialStatus.deserialize(params['CredentialStatus'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # GetDidDocument请求参数结构体
-      class GetDidDocumentRequest < TencentCloud::Common::AbstractModel
-        # @param Did: tdid
-        # @type Did: String
-
-        attr_accessor :Did
-
-        def initialize(did=nil)
-          @Did = did
-        end
-
-        def deserialize(params)
-          @Did = params['Did']
-        end
-      end
-
-      # GetDidDocument返回参数结构体
-      class GetDidDocumentResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 名称
-        # @type Name: String
-        # @param Document: DID文档
-        # @type Document: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Name, :Document, :RequestId
-
-        def initialize(name=nil, document=nil, requestid=nil)
-          @Name = name
-          @Document = document
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Name = params['Name']
-          @Document = params['Document']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 验证凭证签名
-      class Proof < TencentCloud::Common::AbstractModel
-        # @param Created: 创建时间
-        # @type Created: Integer
-        # @param Creator: 创建着did
-        # @type Creator: String
-        # @param SaltJson: salt值
-        # @type SaltJson: String
-        # @param SignatureValue: 签名
-        # @type SignatureValue: String
-        # @param Type: type类型
-        # @type Type: String
-
-        attr_accessor :Created, :Creator, :SaltJson, :SignatureValue, :Type
-
-        def initialize(created=nil, creator=nil, saltjson=nil, signaturevalue=nil, type=nil)
-          @Created = created
-          @Creator = creator
-          @SaltJson = saltjson
-          @SignatureValue = signaturevalue
-          @Type = type
-        end
-
-        def deserialize(params)
-          @Created = params['Created']
-          @Creator = params['Creator']
-          @SaltJson = params['SaltJson']
-          @SignatureValue = params['SignatureValue']
           @Type = params['Type']
+          @Parties = params['Parties']
         end
       end
 
-      # RegisterCpt请求参数结构体
-      class RegisterCptRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 群组ID
-        # @type GroupId: Integer
-        # @param ClusterId: 网络ID
-        # @type ClusterId: String
-        # @param CptJson: CptJson的具体信息
-        # @type CptJson: String
-        # @param CptId: cptId 不填默认自增
-        # @type CptId: Integer
+      # 链上交易信息
+      class ChainTransaction < TencentCloud::Common::AbstractModel
+        # @param TransactionHash: 交易哈希
+        # @type TransactionHash: String
 
-        attr_accessor :GroupId, :ClusterId, :CptJson, :CptId
+        attr_accessor :TransactionHash
 
-        def initialize(groupid=nil, clusterid=nil, cptjson=nil, cptid=nil)
-          @GroupId = groupid
-          @ClusterId = clusterid
-          @CptJson = cptjson
-          @CptId = cptid
+        def initialize(transactionhash=nil)
+          @TransactionHash = transactionhash
         end
 
         def deserialize(params)
-          @GroupId = params['GroupId']
-          @ClusterId = params['ClusterId']
-          @CptJson = params['CptJson']
-          @CptId = params['CptId']
+          @TransactionHash = params['TransactionHash']
         end
       end
 
-      # RegisterCpt返回参数结构体
-      class RegisterCptResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 凭证模板索引
-        # @type Id: Integer
-        # @param CptId: 凭证模板id
-        # @type CptId: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
+      # CheckNewPurchase请求参数结构体
+      class CheckNewPurchaseRequest < TencentCloud::Common::AbstractModel
 
-        attr_accessor :Id, :CptId, :RequestId
 
-        def initialize(id=nil, cptid=nil, requestid=nil)
-          @Id = id
-          @CptId = cptid
-          @RequestId = requestid
+        def initialize()
         end
 
         def deserialize(params)
-          @Id = params['Id']
-          @CptId = params['CptId']
-          @RequestId = params['RequestId']
         end
       end
 
-      # SetCredentialStatus请求参数结构体
-      class SetCredentialStatusRequest < TencentCloud::Common::AbstractModel
-        # @param CredentialStatus: 凭证状态
-        # @type CredentialStatus: :class:`Tencentcloud::Tdid.v20210519.models.CredentialStatus`
-
-        attr_accessor :CredentialStatus
-
-        def initialize(credentialstatus=nil)
-          @CredentialStatus = credentialstatus
-        end
-
-        def deserialize(params)
-          unless params['CredentialStatus'].nil?
-            @CredentialStatus = CredentialStatus.new
-            @CredentialStatus.deserialize(params['CredentialStatus'])
-          end
-        end
-      end
-
-      # SetCredentialStatus返回参数结构体
-      class SetCredentialStatusResponse < TencentCloud::Common::AbstractModel
+      # CheckNewPurchase返回参数结构体
+      class CheckNewPurchaseResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -663,48 +96,414 @@ module TencentCloud
         end
       end
 
-      # 创建凭证第二个
-      class TransactionArg < TencentCloud::Common::AbstractModel
-        # @param InvokerTDid: 凭证did
-        # @type InvokerTDid: String
+      # CreateTDidByHost请求参数结构体
+      class CreateTDidByHostRequest < TencentCloud::Common::AbstractModel
+        # @param DAPId: DID应用ID
+        # @type DAPId: Integer
+        # @param CustomAttribute: 自定义DID文档json属性
+        # @type CustomAttribute: String
 
-        attr_accessor :InvokerTDid
+        attr_accessor :DAPId, :CustomAttribute
 
-        def initialize(invokertdid=nil)
-          @InvokerTDid = invokertdid
+        def initialize(dapid=nil, customattribute=nil)
+          @DAPId = dapid
+          @CustomAttribute = customattribute
         end
 
         def deserialize(params)
-          @InvokerTDid = params['InvokerTDid']
+          @DAPId = params['DAPId']
+          @CustomAttribute = params['CustomAttribute']
         end
       end
 
-      # VerifyCredential请求参数结构体
-      class VerifyCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param FunctionArg: 参数集合
-        # @type FunctionArg: :class:`Tencentcloud::Tdid.v20210519.models.VerifyFunctionArg`
+      # CreateTDidByHost返回参数结构体
+      class CreateTDidByHostResponse < TencentCloud::Common::AbstractModel
+        # @param Did: DID标识
+        # @type Did: String
+        # @param Transaction: 链上交易信息
+        # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
 
-        attr_accessor :FunctionArg
+        attr_accessor :Did, :Transaction, :RequestId
 
-        def initialize(functionarg=nil)
-          @FunctionArg = functionarg
+        def initialize(did=nil, transaction=nil, requestid=nil)
+          @Did = did
+          @Transaction = transaction
+          @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['FunctionArg'].nil?
-            @FunctionArg = VerifyFunctionArg.new
-            @FunctionArg.deserialize(params['FunctionArg'])
+          @Did = params['Did']
+          unless params['Transaction'].nil?
+            @Transaction = ChainTransaction.new
+            @Transaction.deserialize(params['Transaction'])
           end
+          @RequestId = params['RequestId']
         end
       end
 
-      # VerifyCredential返回参数结构体
-      class VerifyCredentialResponse < TencentCloud::Common::AbstractModel
+      # CreateTDidByPubKey请求参数结构体
+      class CreateTDidByPubKeyRequest < TencentCloud::Common::AbstractModel
+        # @param DAPId: DID应用id
+        # @type DAPId: Integer
+        # @param PublicKey: pem格式的认证公钥
+        # @type PublicKey: String
+        # @param CustomAttribute: 自定义DID初始化属性json字符串
+        # @type CustomAttribute: String
+        # @param IgnoreExisted: 0:did存在返回错误，1:did存在返回该did，默认:0
+        # @type IgnoreExisted: Integer
+
+        attr_accessor :DAPId, :PublicKey, :CustomAttribute, :IgnoreExisted
+
+        def initialize(dapid=nil, publickey=nil, customattribute=nil, ignoreexisted=nil)
+          @DAPId = dapid
+          @PublicKey = publickey
+          @CustomAttribute = customattribute
+          @IgnoreExisted = ignoreexisted
+        end
+
+        def deserialize(params)
+          @DAPId = params['DAPId']
+          @PublicKey = params['PublicKey']
+          @CustomAttribute = params['CustomAttribute']
+          @IgnoreExisted = params['IgnoreExisted']
+        end
+      end
+
+      # CreateTDidByPubKey返回参数结构体
+      class CreateTDidByPubKeyResponse < TencentCloud::Common::AbstractModel
+        # @param Did: did标识
+        # @type Did: String
+        # @param Transaction: 链上交易信息
+        # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Did, :Transaction, :RequestId
+
+        def initialize(did=nil, transaction=nil, requestid=nil)
+          @Did = did
+          @Transaction = transaction
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Did = params['Did']
+          unless params['Transaction'].nil?
+            @Transaction = ChainTransaction.new
+            @Transaction.deserialize(params['Transaction'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 凭证链上状态信息
+      class CredentialState < TencentCloud::Common::AbstractModel
+        # @param Id: 凭证唯一id
+        # @type Id: String
+        # @param Status: 凭证状态（0：吊销；1：有效）
+        # @type Status: Integer
+        # @param Issuer: 凭证颁发者Did
+        # @type Issuer: String
+        # @param VCDigest: VC摘要，对应凭证Proof的vcDigest字段
+        # @type VCDigest: String
+        # @param TXDigest: 交易摘要，对应凭证Proof的txDigest字段
+        # @type TXDigest: String
+        # @param IssueTime: 颁布凭证的UTC时间戳
+        # @type IssueTime: Integer
+        # @param ExpireTime: 凭证过期的UTC时间戳
+        # @type ExpireTime: Integer
+        # @param CPTId: 凭证模板id
+        # @type CPTId: Integer
+        # @param Signature: 凭证签名
+        # @type Signature: String
+        # @param MetaDigest: 元数据摘要
+        # @type MetaDigest: String
+
+        attr_accessor :Id, :Status, :Issuer, :VCDigest, :TXDigest, :IssueTime, :ExpireTime, :CPTId, :Signature, :MetaDigest
+
+        def initialize(id=nil, status=nil, issuer=nil, vcdigest=nil, txdigest=nil, issuetime=nil, expiretime=nil, cptid=nil, signature=nil, metadigest=nil)
+          @Id = id
+          @Status = status
+          @Issuer = issuer
+          @VCDigest = vcdigest
+          @TXDigest = txdigest
+          @IssueTime = issuetime
+          @ExpireTime = expiretime
+          @CPTId = cptid
+          @Signature = signature
+          @MetaDigest = metadigest
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @Issuer = params['Issuer']
+          @VCDigest = params['VCDigest']
+          @TXDigest = params['TXDigest']
+          @IssueTime = params['IssueTime']
+          @ExpireTime = params['ExpireTime']
+          @CPTId = params['CPTId']
+          @Signature = params['Signature']
+          @MetaDigest = params['MetaDigest']
+        end
+      end
+
+      # DeactivateTDid请求参数结构体
+      class DeactivateTDidRequest < TencentCloud::Common::AbstractModel
+        # @param Did: DID标识符
+        # @type Did: String
+        # @param OperateCredential: 设置DID禁用状态的临时凭证内容，通过创建凭证接口(CreateCredential)生成并签名，凭证类型为：OperateCredential, 为安全起见凭证过期时间不适合太长，建议设置为1分钟内
+        # @type OperateCredential: String
+        # @param DAPId: DID应用Id
+        # @type DAPId: Integer
+        # @param Deactivated: 是否禁用
+        # @type Deactivated: String
+
+        attr_accessor :Did, :OperateCredential, :DAPId, :Deactivated
+
+        def initialize(did=nil, operatecredential=nil, dapid=nil, deactivated=nil)
+          @Did = did
+          @OperateCredential = operatecredential
+          @DAPId = dapid
+          @Deactivated = deactivated
+        end
+
+        def deserialize(params)
+          @Did = params['Did']
+          @OperateCredential = params['OperateCredential']
+          @DAPId = params['DAPId']
+          @Deactivated = params['Deactivated']
+        end
+      end
+
+      # DeactivateTDid返回参数结构体
+      class DeactivateTDidResponse < TencentCloud::Common::AbstractModel
+        # @param Transaction: 上链交易信息
+        # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Transaction, :RequestId
+
+        def initialize(transaction=nil, requestid=nil)
+          @Transaction = transaction
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Transaction'].nil?
+            @Transaction = ChainTransaction.new
+            @Transaction.deserialize(params['Transaction'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetCredentialState请求参数结构体
+      class GetCredentialStateRequest < TencentCloud::Common::AbstractModel
+        # @param CredentialId: 凭证唯一Id
+        # @type CredentialId: String
+        # @param DAPId: 用户应用Id
+        # @type DAPId: Integer
+
+        attr_accessor :CredentialId, :DAPId
+
+        def initialize(credentialid=nil, dapid=nil)
+          @CredentialId = credentialid
+          @DAPId = dapid
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          @DAPId = params['DAPId']
+        end
+      end
+
+      # GetCredentialState返回参数结构体
+      class GetCredentialStateResponse < TencentCloud::Common::AbstractModel
+        # @param CredentialState: 凭证状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CredentialState: :class:`Tencentcloud::Tdid.v20210519.models.CredentialState`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CredentialState, :RequestId
+
+        def initialize(credentialstate=nil, requestid=nil)
+          @CredentialState = credentialstate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CredentialState'].nil?
+            @CredentialState = CredentialState.new
+            @CredentialState.deserialize(params['CredentialState'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTDidDocument请求参数结构体
+      class GetTDidDocumentRequest < TencentCloud::Common::AbstractModel
+        # @param Did: DID标识
+        # @type Did: String
+        # @param DAPId: DID应用ID
+        # @type DAPId: Integer
+
+        attr_accessor :Did, :DAPId
+
+        def initialize(did=nil, dapid=nil)
+          @Did = did
+          @DAPId = dapid
+        end
+
+        def deserialize(params)
+          @Did = params['Did']
+          @DAPId = params['DAPId']
+        end
+      end
+
+      # GetTDidDocument返回参数结构体
+      class GetTDidDocumentResponse < TencentCloud::Common::AbstractModel
+        # @param Document: DID文档内容
+        # @type Document: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Document, :RequestId
+
+        def initialize(document=nil, requestid=nil)
+          @Document = document
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Document = params['Document']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # IssueCredential请求参数结构体
+      class IssueCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param CRDLArg: 参数集合，详见示例
+        # @type CRDLArg: :class:`Tencentcloud::Tdid.v20210519.models.CRDLArg`
+        # @param UnSigned: 是否未签名
+        # @type UnSigned: Boolean
+        # @param DAPId: DID应用id
+        # @type DAPId: Integer
+
+        attr_accessor :CRDLArg, :UnSigned, :DAPId
+
+        def initialize(crdlarg=nil, unsigned=nil, dapid=nil)
+          @CRDLArg = crdlarg
+          @UnSigned = unsigned
+          @DAPId = dapid
+        end
+
+        def deserialize(params)
+          unless params['CRDLArg'].nil?
+            @CRDLArg = CRDLArg.new
+            @CRDLArg.deserialize(params['CRDLArg'])
+          end
+          @UnSigned = params['UnSigned']
+          @DAPId = params['DAPId']
+        end
+      end
+
+      # IssueCredential返回参数结构体
+      class IssueCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param CredentialData: 可验证凭证内容
+        # @type CredentialData: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CredentialData, :RequestId
+
+        def initialize(credentialdata=nil, requestid=nil)
+          @CredentialData = credentialdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CredentialData = params['CredentialData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateCredentialState请求参数结构体
+      class UpdateCredentialStateRequest < TencentCloud::Common::AbstractModel
+        # @param DAPId: DID应用Id
+        # @type DAPId: Integer
+        # @param OperateCredential: 更新VC状态的临时凭证内容，通过创建凭证接口(CreateCredential)生成并签名，凭证类型为：OperateCredential, 为安全起见凭证过期时间不适合太长，建议设置为1分钟内
+        # @type OperateCredential: String
+
+        attr_accessor :DAPId, :OperateCredential
+
+        def initialize(dapid=nil, operatecredential=nil)
+          @DAPId = dapid
+          @OperateCredential = operatecredential
+        end
+
+        def deserialize(params)
+          @DAPId = params['DAPId']
+          @OperateCredential = params['OperateCredential']
+        end
+      end
+
+      # UpdateCredentialState返回参数结构体
+      class UpdateCredentialStateResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 更新是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # VerifyCredentials请求参数结构体
+      class VerifyCredentialsRequest < TencentCloud::Common::AbstractModel
+        # @param VerifyType: 0:仅验证签名，1:验证签名和链上状态，2, 仅验证链上状态，默认为0, 3.验证DID和凭证状态以及签名，4. 验证历史凭证有效性
+        # @type VerifyType: Integer
+        # @param CredentialData: 凭证内容
+        # @type CredentialData: String
+        # @param DAPId: DID应用id
+        # @type DAPId: Integer
+
+        attr_accessor :VerifyType, :CredentialData, :DAPId
+
+        def initialize(verifytype=nil, credentialdata=nil, dapid=nil)
+          @VerifyType = verifytype
+          @CredentialData = credentialdata
+          @DAPId = dapid
+        end
+
+        def deserialize(params)
+          @VerifyType = params['VerifyType']
+          @CredentialData = params['CredentialData']
+          @DAPId = params['DAPId']
+        end
+      end
+
+      # VerifyCredentials返回参数结构体
+      class VerifyCredentialsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 是否验证成功
         # @type Result: Boolean
         # @param VerifyCode: 验证返回码
         # @type VerifyCode: Integer
-        # @param VerifyMessage: 验证消息
+        # @param VerifyMessage: 验证结果信息
         # @type VerifyMessage: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -723,57 +522,6 @@ module TencentCloud
           @VerifyCode = params['VerifyCode']
           @VerifyMessage = params['VerifyMessage']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 验证凭证参数值
-      class VerifyFunctionArg < TencentCloud::Common::AbstractModel
-        # @param CptId: CPT ID
-        # @type CptId: Integer
-        # @param Issuer: issuer did
-        # @type Issuer: String
-        # @param ExpirationDate: 过期时间
-        # @type ExpirationDate: Integer
-        # @param ClaimJson: 声明
-        # @type ClaimJson: String
-        # @param IssuanceDate: 颁发时间
-        # @type IssuanceDate: Integer
-        # @param Context: context值
-        # @type Context: String
-        # @param Id: id值
-        # @type Id: String
-        # @param Proof: 签名值
-        # @type Proof: :class:`Tencentcloud::Tdid.v20210519.models.Proof`
-        # @param Type: type值
-        # @type Type: Array
-
-        attr_accessor :CptId, :Issuer, :ExpirationDate, :ClaimJson, :IssuanceDate, :Context, :Id, :Proof, :Type
-
-        def initialize(cptid=nil, issuer=nil, expirationdate=nil, claimjson=nil, issuancedate=nil, context=nil, id=nil, proof=nil, type=nil)
-          @CptId = cptid
-          @Issuer = issuer
-          @ExpirationDate = expirationdate
-          @ClaimJson = claimjson
-          @IssuanceDate = issuancedate
-          @Context = context
-          @Id = id
-          @Proof = proof
-          @Type = type
-        end
-
-        def deserialize(params)
-          @CptId = params['CptId']
-          @Issuer = params['Issuer']
-          @ExpirationDate = params['ExpirationDate']
-          @ClaimJson = params['ClaimJson']
-          @IssuanceDate = params['IssuanceDate']
-          @Context = params['Context']
-          @Id = params['Id']
-          unless params['Proof'].nil?
-            @Proof = Proof.new
-            @Proof.deserialize(params['Proof'])
-          end
-          @Type = params['Type']
         end
       end
 
