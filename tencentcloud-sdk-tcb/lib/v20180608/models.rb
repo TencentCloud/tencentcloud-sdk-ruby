@@ -794,14 +794,19 @@ module TencentCloud
       # nfs挂载资源
       class CloudBaseRunNfsVolumeSource < TencentCloud::Common::AbstractModel
         # @param Server: NFS挂载Server
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Server: String
         # @param Path: Server路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
         # @param ReadOnly: 是否只读
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param SecretName: secret名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecretName: String
         # @param EnableEmptyDirVolume: 临时目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableEmptyDirVolume: Boolean
 
         attr_accessor :Server, :Path, :ReadOnly, :SecretName, :EnableEmptyDirVolume
@@ -1086,12 +1091,16 @@ module TencentCloud
       # cfs挂载点
       class CloudBaseRunVolumeMount < TencentCloud::Common::AbstractModel
         # @param Name: 资源名
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
         # @param MountPath: 挂载路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MountPath: String
         # @param ReadOnly: 是否只读
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Boolean
         # @param NfsVolumes: Nfs挂载信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NfsVolumes: Array
 
         attr_accessor :Name, :MountPath, :ReadOnly, :NfsVolumes

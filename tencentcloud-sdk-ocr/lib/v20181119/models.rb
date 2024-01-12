@@ -8327,17 +8327,25 @@ module TencentCloud
         # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
         # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
+        # @param EnablePdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。
+        # @type EnablePdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl
+        attr_accessor :ImageBase64, :ImageUrl, :EnablePdf, :PdfPageNumber
 
-        def initialize(imagebase64=nil, imageurl=nil)
+        def initialize(imagebase64=nil, imageurl=nil, enablepdf=nil, pdfpagenumber=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
+          @EnablePdf = enablepdf
+          @PdfPageNumber = pdfpagenumber
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']
+          @EnablePdf = params['EnablePdf']
+          @PdfPageNumber = params['PdfPageNumber']
         end
       end
 

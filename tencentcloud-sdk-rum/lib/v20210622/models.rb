@@ -449,86 +449,6 @@ module TencentCloud
         end
       end
 
-      # DeleteOfflineLogConfig请求参数结构体
-      class DeleteOfflineLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-        # @param UniqueID: 用户唯一标示(uin or aid)
-        # @type UniqueID: String
-
-        attr_accessor :ProjectKey, :UniqueID
-
-        def initialize(projectkey=nil, uniqueid=nil)
-          @ProjectKey = projectkey
-          @UniqueID = uniqueid
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-          @UniqueID = params['UniqueID']
-        end
-      end
-
-      # DeleteOfflineLogConfig返回参数结构体
-      class DeleteOfflineLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口调用信息
-        # @type Msg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :RequestId
-
-        def initialize(msg=nil, requestid=nil)
-          @Msg = msg
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteOfflineLogRecord请求参数结构体
-      class DeleteOfflineLogRecordRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-        # @param FileID: 离线日志文件 id
-        # @type FileID: String
-
-        attr_accessor :ProjectKey, :FileID
-
-        def initialize(projectkey=nil, fileid=nil)
-          @ProjectKey = projectkey
-          @FileID = fileid
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-          @FileID = params['FileID']
-        end
-      end
-
-      # DeleteOfflineLogRecord返回参数结构体
-      class DeleteOfflineLogRecordResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口调用信息
-        # @type Msg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :RequestId
-
-        def initialize(msg=nil, requestid=nil)
-          @Msg = msg
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteProject请求参数结构体
       class DeleteProjectRequest < TencentCloud::Common::AbstractModel
         # @param ID: 需要删除的项目 ID
@@ -3102,46 +3022,6 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeOfflineLogConfigs请求参数结构体
-      class DescribeOfflineLogConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectKey: 项目唯一上报 key
-        # @type ProjectKey: String
-
-        attr_accessor :ProjectKey
-
-        def initialize(projectkey=nil)
-          @ProjectKey = projectkey
-        end
-
-        def deserialize(params)
-          @ProjectKey = params['ProjectKey']
-        end
-      end
-
-      # DescribeOfflineLogConfigs返回参数结构体
-      class DescribeOfflineLogConfigsResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 接口调用信息
-        # @type Msg: String
-        # @param UniqueIDSet: 用户唯一标示数组
-        # @type UniqueIDSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Msg, :UniqueIDSet, :RequestId
-
-        def initialize(msg=nil, uniqueidset=nil, requestid=nil)
-          @Msg = msg
-          @UniqueIDSet = uniqueidset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Msg = params['Msg']
-          @UniqueIDSet = params['UniqueIDSet']
           @RequestId = params['RequestId']
         end
       end

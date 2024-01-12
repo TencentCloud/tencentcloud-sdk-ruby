@@ -2149,6 +2149,79 @@ module TencentCloud
         end
       end
 
+      # CreatePrometheusAlertGroup请求参数结构体
+      class CreatePrometheusAlertGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: prometheus实例ID
+        # @type InstanceId: String
+        # @param GroupName: 告警分组名称，不能与其他告警分组重名
+        # @type GroupName: String
+        # @param GroupState: 告警分组状态：
+        # 2 -- 启用
+        # 3 -- 禁用
+        # 不为空时会覆盖 `Rules`字段下所有告警规则状态
+        # @type GroupState: Integer
+        # @param AMPReceivers: 云监控告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
+        # @type AMPReceivers: Array
+        # @param CustomReceiver: 自定义告警通知模板
+        # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`
+        # @param RepeatInterval: 告警通知周期（收敛时间），为空默认1h
+        # @type RepeatInterval: String
+        # @param Rules: 要创建的告警规则列表
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :GroupName, :GroupState, :AMPReceivers, :CustomReceiver, :RepeatInterval, :Rules
+
+        def initialize(instanceid=nil, groupname=nil, groupstate=nil, ampreceivers=nil, customreceiver=nil, repeatinterval=nil, rules=nil)
+          @InstanceId = instanceid
+          @GroupName = groupname
+          @GroupState = groupstate
+          @AMPReceivers = ampreceivers
+          @CustomReceiver = customreceiver
+          @RepeatInterval = repeatinterval
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupName = params['GroupName']
+          @GroupState = params['GroupState']
+          @AMPReceivers = params['AMPReceivers']
+          unless params['CustomReceiver'].nil?
+            @CustomReceiver = PrometheusAlertCustomReceiver.new
+            @CustomReceiver.deserialize(params['CustomReceiver'])
+          end
+          @RepeatInterval = params['RepeatInterval']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              prometheusalertgroupruleset_tmp = PrometheusAlertGroupRuleSet.new
+              prometheusalertgroupruleset_tmp.deserialize(i)
+              @Rules << prometheusalertgroupruleset_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePrometheusAlertGroup返回参数结构体
+      class CreatePrometheusAlertGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 创建的告警分组ID，满足正则表达式`alert-[a-z0-9]{8}`
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrometheusAlertPolicy请求参数结构体
       class CreatePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -3036,6 +3109,42 @@ module TencentCloud
 
       # DeletePolicyGroup返回参数结构体
       class DeletePolicyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePrometheusAlertGroups请求参数结构体
+      class DeletePrometheusAlertGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: prometheus实例id
+        # @type InstanceId: String
+        # @param GroupIds: 需要删除的告警分组ID，形如alert-xxxxx
+        # @type GroupIds: Array
+
+        attr_accessor :InstanceId, :GroupIds
+
+        def initialize(instanceid=nil, groupids=nil)
+          @InstanceId = instanceid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # DeletePrometheusAlertGroups返回参数结构体
+      class DeletePrometheusAlertGroupsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7178,6 +7287,73 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusAlertGroups请求参数结构体
+      class DescribePrometheusAlertGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0
+        # @type Offset: Integer
+        # @param GroupId: 告警分组ID，形如alert-xxxx。
+        # 查询给定ID的告警分组
+        # @type GroupId: String
+        # @param GroupName: 告警分组名称。
+        # 查询名称中包含给定字符串的告警分组
+        # @type GroupName: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :GroupId, :GroupName
+
+        def initialize(instanceid=nil, limit=nil, offset=nil, groupid=nil, groupname=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @GroupId = groupid
+          @GroupName = groupname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+        end
+      end
+
+      # DescribePrometheusAlertGroups返回参数结构体
+      class DescribePrometheusAlertGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param AlertGroupSet: 告警分组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlertGroupSet: Array
+        # @param TotalCount: 告警分组总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AlertGroupSet, :TotalCount, :RequestId
+
+        def initialize(alertgroupset=nil, totalcount=nil, requestid=nil)
+          @AlertGroupSet = alertgroupset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AlertGroupSet'].nil?
+            @AlertGroupSet = []
+            params['AlertGroupSet'].each do |i|
+              prometheusalertgroupset_tmp = PrometheusAlertGroupSet.new
+              prometheusalertgroupset_tmp.deserialize(i)
+              @AlertGroupSet << prometheusalertgroupset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusAlertPolicy请求参数结构体
       class DescribePrometheusAlertPolicyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -11308,6 +11484,202 @@ module TencentCloud
         end
       end
 
+      # Prometheus自定义告警通知时间段
+      class PrometheusAlertAllowTimeRange < TencentCloud::Common::AbstractModel
+        # @param Start: 从0点开始的秒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Start: String
+        # @param End: 从0点开始的秒数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type End: String
+
+        attr_accessor :Start, :End
+
+        def initialize(start=nil, _end=nil)
+          @Start = start
+          @End = _end
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+        end
+      end
+
+      # Prometheus告警自定义通知模板
+      class PrometheusAlertCustomReceiver < TencentCloud::Common::AbstractModel
+        # @param Type: 自定义通知类型
+        # alertmanager -- vpc内自建alertmanager
+        # webhook -- vpc内webhook地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Url: alertmanager/webhook地址。（prometheus实例同vpc内ip）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param AllowedTimeRanges: 允许发送告警的时间范围
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowedTimeRanges: Array
+        # @param ClusterId: alertmanager所在的内网集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterType: alertmanager所在的内网集群类型(tke/eks/tdcc)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterType: String
+
+        attr_accessor :Type, :Url, :AllowedTimeRanges, :ClusterId, :ClusterType
+
+        def initialize(type=nil, url=nil, allowedtimeranges=nil, clusterid=nil, clustertype=nil)
+          @Type = type
+          @Url = url
+          @AllowedTimeRanges = allowedtimeranges
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          unless params['AllowedTimeRanges'].nil?
+            @AllowedTimeRanges = []
+            params['AllowedTimeRanges'].each do |i|
+              prometheusalertallowtimerange_tmp = PrometheusAlertAllowTimeRange.new
+              prometheusalertallowtimerange_tmp.deserialize(i)
+              @AllowedTimeRanges << prometheusalertallowtimerange_tmp
+            end
+          end
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # 告警分组内告警规则信息
+      class PrometheusAlertGroupRuleSet < TencentCloud::Common::AbstractModel
+        # @param RuleName: 告警规则名称，同一告警分组下不允许重名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param Labels: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+        # @param Annotations: 注释列表
+
+        # 告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Annotations: Array
+        # @param Duration: 规则报警持续时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: String
+        # @param Expr: 规则表达式，可参考<a href="https://cloud.tencent.com/document/product/1416/56008">告警规则说明</a>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expr: String
+        # @param State: 告警规则状态:
+        # 2-启用
+        # 3-禁用
+        # 为空默认启用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+
+        attr_accessor :RuleName, :Labels, :Annotations, :Duration, :Expr, :State
+
+        def initialize(rulename=nil, labels=nil, annotations=nil, duration=nil, expr=nil, state=nil)
+          @RuleName = rulename
+          @Labels = labels
+          @Annotations = annotations
+          @Duration = duration
+          @Expr = expr
+          @State = state
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              prometheusrulekv_tmp = PrometheusRuleKV.new
+              prometheusrulekv_tmp.deserialize(i)
+              @Labels << prometheusrulekv_tmp
+            end
+          end
+          unless params['Annotations'].nil?
+            @Annotations = []
+            params['Annotations'].each do |i|
+              prometheusrulekv_tmp = PrometheusRuleKV.new
+              prometheusrulekv_tmp.deserialize(i)
+              @Annotations << prometheusrulekv_tmp
+            end
+          end
+          @Duration = params['Duration']
+          @Expr = params['Expr']
+          @State = params['State']
+        end
+      end
+
+      # Prometheus告警规则分组信息
+      class PrometheusAlertGroupSet < TencentCloud::Common::AbstractModel
+        # @param GroupId: 告警分组ID，满足正则表达式`alert-[a-z0-9]{8}`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param GroupName: 告警分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param AMPReceivers: 云监控告警模板ID ，返回告警模板转换后的notice ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AMPReceivers: Array
+        # @param CustomReceiver: 自定义告警模板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`
+        # @param RepeatInterval: 告警通知间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepeatInterval: String
+        # @param TemplateId: 若告警分组通过模板创建，则返回模板ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param Rules: 分组内告警规则详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param CreatedAt: 分组创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedAt: 分组更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+
+        attr_accessor :GroupId, :GroupName, :AMPReceivers, :CustomReceiver, :RepeatInterval, :TemplateId, :Rules, :CreatedAt, :UpdatedAt
+
+        def initialize(groupid=nil, groupname=nil, ampreceivers=nil, customreceiver=nil, repeatinterval=nil, templateid=nil, rules=nil, createdat=nil, updatedat=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @AMPReceivers = ampreceivers
+          @CustomReceiver = customreceiver
+          @RepeatInterval = repeatinterval
+          @TemplateId = templateid
+          @Rules = rules
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @AMPReceivers = params['AMPReceivers']
+          unless params['CustomReceiver'].nil?
+            @CustomReceiver = PrometheusAlertCustomReceiver.new
+            @CustomReceiver.deserialize(params['CustomReceiver'])
+          end
+          @RepeatInterval = params['RepeatInterval']
+          @TemplateId = params['TemplateId']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              prometheusalertgroupruleset_tmp = PrometheusAlertGroupRuleSet.new
+              prometheusalertgroupruleset_tmp.deserialize(i)
+              @Rules << prometheusalertgroupruleset_tmp
+            end
+          end
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
       # 告警渠道使用自建alertmanager的配置
       class PrometheusAlertManagerConfig < TencentCloud::Common::AbstractModel
         # @param Url: alertmanager url
@@ -13960,6 +14332,125 @@ module TencentCloud
 
       # UpdatePrometheusAgentStatus返回参数结构体
       class UpdatePrometheusAgentStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePrometheusAlertGroup请求参数结构体
+      class UpdatePrometheusAlertGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: prometheus实例ID
+        # @type InstanceId: String
+        # @param GroupId: 告警分组ID，形如alert-xxxx
+        # @type GroupId: String
+        # @param GroupName: 告警分组名称，不能与其他告警分组重名
+        # @type GroupName: String
+        # @param GroupState: 告警分组状态：
+        # 2 -- 启用
+        # 3 -- 禁用
+        # 不为空时会覆盖 `Rules`字段下所有告警规则状态
+        # @type GroupState: Integer
+        # @param AMPReceivers: 云监控告警通知模板ID列表，形如Consumer-xxxx或notice-xxxx
+        # @type AMPReceivers: Array
+        # @param CustomReceiver: 自定义告警通知模板
+        # @type CustomReceiver: :class:`Tencentcloud::Monitor.v20180724.models.PrometheusAlertCustomReceiver`
+        # @param RepeatInterval: 告警通知周期（收敛时间），为空默认1h
+        # @type RepeatInterval: String
+        # @param Rules: 要创建的告警规则列表
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :GroupId, :GroupName, :GroupState, :AMPReceivers, :CustomReceiver, :RepeatInterval, :Rules
+
+        def initialize(instanceid=nil, groupid=nil, groupname=nil, groupstate=nil, ampreceivers=nil, customreceiver=nil, repeatinterval=nil, rules=nil)
+          @InstanceId = instanceid
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupState = groupstate
+          @AMPReceivers = ampreceivers
+          @CustomReceiver = customreceiver
+          @RepeatInterval = repeatinterval
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupState = params['GroupState']
+          @AMPReceivers = params['AMPReceivers']
+          unless params['CustomReceiver'].nil?
+            @CustomReceiver = PrometheusAlertCustomReceiver.new
+            @CustomReceiver.deserialize(params['CustomReceiver'])
+          end
+          @RepeatInterval = params['RepeatInterval']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              prometheusalertgroupruleset_tmp = PrometheusAlertGroupRuleSet.new
+              prometheusalertgroupruleset_tmp.deserialize(i)
+              @Rules << prometheusalertgroupruleset_tmp
+            end
+          end
+        end
+      end
+
+      # UpdatePrometheusAlertGroup返回参数结构体
+      class UpdatePrometheusAlertGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: 更新的告警分组ID，满足正则表达式`alert-[a-z0-9]{8}`
+        # @type GroupId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :RequestId
+
+        def initialize(groupid=nil, requestid=nil)
+          @GroupId = groupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePrometheusAlertGroupState请求参数结构体
+      class UpdatePrometheusAlertGroupStateRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Prometheus 实例 ID
+        # @type InstanceId: String
+        # @param GroupIds: 告警分组ID列表，形如alert-xxxx
+        # @type GroupIds: Array
+        # @param GroupState: 告警分组状态
+        # 2 -- 启用
+        # 3 -- 禁用
+        # @type GroupState: Integer
+
+        attr_accessor :InstanceId, :GroupIds, :GroupState
+
+        def initialize(instanceid=nil, groupids=nil, groupstate=nil)
+          @InstanceId = instanceid
+          @GroupIds = groupids
+          @GroupState = groupstate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupIds = params['GroupIds']
+          @GroupState = params['GroupState']
+        end
+      end
+
+      # UpdatePrometheusAlertGroupState返回参数结构体
+      class UpdatePrometheusAlertGroupStateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -4342,13 +4342,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDstReadOnly: Boolean
         # @param ExtraAttr: 其他附加信息，对于特定库可设置额外参数，Redis可定义如下的参数:
-        # ["DstWriteMode":normal, 	目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(跟正常流程一样，不做额外动作) 	"IsDstReadOnly":true, 	是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读) 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 	"ReplTimeout":120，		复制超时时间(秒) ]
+        # ["DstWriteMode":normal, 	目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(跟正常流程一样，不做额外动作) 	"IsDstReadOnly":true, 	是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读) 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 	"ReplTimeout":120，		复制超时时间(秒)]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAttr: Array
+        # @param MigrateWay: pgsql迁移分类：logical(逻辑迁移)、physical(物理迁移)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateWay: String
 
-        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr
+        attr_accessor :DatabaseTable, :MigrateType, :Consistency, :IsMigrateAccount, :IsOverrideRoot, :IsDstReadOnly, :ExtraAttr, :MigrateWay
 
-        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil)
+        def initialize(databasetable=nil, migratetype=nil, consistency=nil, ismigrateaccount=nil, isoverrideroot=nil, isdstreadonly=nil, extraattr=nil, migrateway=nil)
           @DatabaseTable = databasetable
           @MigrateType = migratetype
           @Consistency = consistency
@@ -4356,6 +4359,7 @@ module TencentCloud
           @IsOverrideRoot = isoverrideroot
           @IsDstReadOnly = isdstreadonly
           @ExtraAttr = extraattr
+          @MigrateWay = migrateway
         end
 
         def deserialize(params)
@@ -4379,6 +4383,7 @@ module TencentCloud
               @ExtraAttr << keyvaluepairoption_tmp
             end
           end
+          @MigrateWay = params['MigrateWay']
         end
       end
 

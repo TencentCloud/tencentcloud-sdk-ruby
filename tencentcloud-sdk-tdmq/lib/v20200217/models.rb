@@ -6308,8 +6308,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2023, 12
-        deprecate :QueryDlqMsg=, :none, 2023, 12
+        deprecate :QueryDlqMsg, :none, 2024, 1
+        deprecate :QueryDlqMsg=, :none, 2024, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7015,6 +7015,113 @@ module TencentCloud
         def deserialize(params)
           @MaxExchange = params['MaxExchange']
           @UsedExchange = params['UsedExchange']
+        end
+      end
+
+      # ExportRocketMQMessageDetail请求参数结构体
+      class ExportRocketMQMessageDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param EnvironmentId: 应用命名空间
+        # @type EnvironmentId: String
+        # @param TopicName: Topic名称
+        # 如果是死信消息 isDlqMsg=true
+        # @type TopicName: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param IncludeMsgBody: 是否包含消息体
+        # @type IncludeMsgBody: Boolean
+        # @param DeadLetterMsg: 是否死信消息
+        # @type DeadLetterMsg: Boolean
+
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :IncludeMsgBody, :DeadLetterMsg
+
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, includemsgbody=nil, deadlettermsg=nil)
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @MsgId = msgid
+          @IncludeMsgBody = includemsgbody
+          @DeadLetterMsg = deadlettermsg
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @MsgId = params['MsgId']
+          @IncludeMsgBody = params['IncludeMsgBody']
+          @DeadLetterMsg = params['DeadLetterMsg']
+        end
+      end
+
+      # ExportRocketMQMessageDetail返回参数结构体
+      class ExportRocketMQMessageDetailResponse < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param BornTimestamp: 消息生成时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BornTimestamp: Integer
+        # @param StoreTimestamp: 消息存储时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoreTimestamp: Integer
+        # @param BornHost: 消息生产客户端地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BornHost: String
+        # @param MsgTag: 消息Tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgTag: String
+        # @param MsgKey: 消息Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgKey: String
+        # @param Properties: 消息属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Properties: String
+        # @param ReConsumeTimes: 消息重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReConsumeTimes: Integer
+        # @param MsgBody: Base64编码格式字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgBody: String
+        # @param MsgBodyCRC: 消息内容的CRC32 Code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgBodyCRC: Integer
+        # @param MsgBodySize: 消息体大小（单位K）
+        # 当大于2048时不返回消息
+        # @type MsgBodySize: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MsgId, :BornTimestamp, :StoreTimestamp, :BornHost, :MsgTag, :MsgKey, :Properties, :ReConsumeTimes, :MsgBody, :MsgBodyCRC, :MsgBodySize, :RequestId
+
+        def initialize(msgid=nil, borntimestamp=nil, storetimestamp=nil, bornhost=nil, msgtag=nil, msgkey=nil, properties=nil, reconsumetimes=nil, msgbody=nil, msgbodycrc=nil, msgbodysize=nil, requestid=nil)
+          @MsgId = msgid
+          @BornTimestamp = borntimestamp
+          @StoreTimestamp = storetimestamp
+          @BornHost = bornhost
+          @MsgTag = msgtag
+          @MsgKey = msgkey
+          @Properties = properties
+          @ReConsumeTimes = reconsumetimes
+          @MsgBody = msgbody
+          @MsgBodyCRC = msgbodycrc
+          @MsgBodySize = msgbodysize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @BornTimestamp = params['BornTimestamp']
+          @StoreTimestamp = params['StoreTimestamp']
+          @BornHost = params['BornHost']
+          @MsgTag = params['MsgTag']
+          @MsgKey = params['MsgKey']
+          @Properties = params['Properties']
+          @ReConsumeTimes = params['ReConsumeTimes']
+          @MsgBody = params['MsgBody']
+          @MsgBodyCRC = params['MsgBodyCRC']
+          @MsgBodySize = params['MsgBodySize']
+          @RequestId = params['RequestId']
         end
       end
 

@@ -525,10 +525,13 @@ module TencentCloud
         # @param BasicPlusFlag: 是否是基础防护加强版 0: 不是 1: 是
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BasicPlusFlag: Integer
+        # @param PlanCntFlag: 是否是商业模式优化-普惠版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PlanCntFlag: Integer
 
-        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag
+        attr_accessor :InstanceDetail, :SpecificationLimit, :Usage, :Region, :Status, :CreatedTime, :ExpiredTime, :Name, :PackInfo, :EipProductInfos, :BoundStatus, :DDoSLevel, :CCEnable, :TagInfoList, :IpCountNewFlag, :VitalityVersion, :Line, :FreeServiceBandwidth, :ElasticServiceBandwidth, :GiftServiceBandWidth, :ModifyTime, :BasicPlusFlag, :PlanCntFlag
 
-        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, freeservicebandwidth=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil)
+        def initialize(instancedetail=nil, specificationlimit=nil, usage=nil, region=nil, status=nil, createdtime=nil, expiredtime=nil, name=nil, packinfo=nil, eipproductinfos=nil, boundstatus=nil, ddoslevel=nil, ccenable=nil, taginfolist=nil, ipcountnewflag=nil, vitalityversion=nil, line=nil, freeservicebandwidth=nil, elasticservicebandwidth=nil, giftservicebandwidth=nil, modifytime=nil, basicplusflag=nil, plancntflag=nil)
           @InstanceDetail = instancedetail
           @SpecificationLimit = specificationlimit
           @Usage = usage
@@ -551,6 +554,7 @@ module TencentCloud
           @GiftServiceBandWidth = giftservicebandwidth
           @ModifyTime = modifytime
           @BasicPlusFlag = basicplusflag
+          @PlanCntFlag = plancntflag
         end
 
         def deserialize(params)
@@ -605,6 +609,7 @@ module TencentCloud
           @GiftServiceBandWidth = params['GiftServiceBandWidth']
           @ModifyTime = params['ModifyTime']
           @BasicPlusFlag = params['BasicPlusFlag']
+          @PlanCntFlag = params['PlanCntFlag']
         end
       end
 
@@ -4454,10 +4459,12 @@ module TencentCloud
         # @type FilterAssetIpList: Array
         # @param FilterBasicPlusFlag: 是否包含基础防护增强版 0: 不包含 1: 包含
         # @type FilterBasicPlusFlag: Integer
+        # @param FilterPlanCntFlag: 是否商业模式优化-普惠版 0: 包含商业模式优化-普惠版 1: 只查询商业模式优化-普惠版
+        # @type FilterPlanCntFlag: Integer
 
-        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo, :FilterAssetIpList, :FilterBasicPlusFlag
+        attr_accessor :Offset, :Limit, :FilterIp, :FilterInstanceId, :FilterRegion, :FilterName, :FilterLine, :FilterStatus, :FilterBoundStatus, :FilterInstanceIdList, :FilterEnterpriseFlag, :FilterLightFlag, :FilterChannelFlag, :FilterTag, :FilterTrialFlag, :FilterConvoy, :ExcludeAdvancedInfo, :FilterAssetIpList, :FilterBasicPlusFlag, :FilterPlanCntFlag
 
-        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil, excludeadvancedinfo=nil, filterassetiplist=nil, filterbasicplusflag=nil)
+        def initialize(offset=nil, limit=nil, filterip=nil, filterinstanceid=nil, filterregion=nil, filtername=nil, filterline=nil, filterstatus=nil, filterboundstatus=nil, filterinstanceidlist=nil, filterenterpriseflag=nil, filterlightflag=nil, filterchannelflag=nil, filtertag=nil, filtertrialflag=nil, filterconvoy=nil, excludeadvancedinfo=nil, filterassetiplist=nil, filterbasicplusflag=nil, filterplancntflag=nil)
           @Offset = offset
           @Limit = limit
           @FilterIp = filterip
@@ -4477,6 +4484,7 @@ module TencentCloud
           @ExcludeAdvancedInfo = excludeadvancedinfo
           @FilterAssetIpList = filterassetiplist
           @FilterBasicPlusFlag = filterbasicplusflag
+          @FilterPlanCntFlag = filterplancntflag
         end
 
         def deserialize(params)
@@ -4502,6 +4510,7 @@ module TencentCloud
           @ExcludeAdvancedInfo = params['ExcludeAdvancedInfo']
           @FilterAssetIpList = params['FilterAssetIpList']
           @FilterBasicPlusFlag = params['FilterBasicPlusFlag']
+          @FilterPlanCntFlag = params['FilterPlanCntFlag']
         end
       end
 
@@ -5842,7 +5851,7 @@ module TencentCloud
 
       # 高防弹性公网IP关联信息
       class EipAddressRelation < TencentCloud::Common::AbstractModel
-        # @param EipAddressRegion: 高防弹性公网IP绑定的实例地区，例如hk代表香港
+        # @param EipAddressRegion: 高防弹性公网IP绑定的实例地区，例如hk代表中国香港
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EipAddressRegion: String
         # @param EipBoundRscIns: 绑定的资源实例ID。可能是一个CVM。

@@ -3016,9 +3016,9 @@ module TencentCloud
 
       # DeleteOriginGroup请求参数结构体
       class DeleteOriginGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。
+        # @param ZoneId: 站点 ID
         # @type ZoneId: String
-        # @param GroupId: 源站组ID，此参数必填。
+        # @param GroupId: 源站组 ID，此参数必填。
         # @type GroupId: String
 
         attr_accessor :ZoneId, :GroupId

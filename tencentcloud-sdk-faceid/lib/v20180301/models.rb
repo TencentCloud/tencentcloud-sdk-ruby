@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2023, 12
-        deprecate :Idcard=, :none, 2023, 12
+        deprecate :Idcard, :none, 2024, 1
+        deprecate :Idcard=, :none, 2024, 1
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1679,19 +1679,27 @@ module TencentCloud
         # @type InfoType: String
         # @param BestFramesCount: 从活体视频中截取一定张数的最佳帧。默认为0，最大为3，超出3的最多只给3张。（InfoType需要包含3）
         # @type BestFramesCount: Integer
+        # @param IsCutIdCardImage: 是否对身份证照片进行裁边。默认为false。（InfoType需要包含2）
+        # @type IsCutIdCardImage: Boolean
+        # @param IsNeedIdCardAvatar: 是否需要从身份证中抠出头像。默认为false。（InfoType需要包含2）
+        # @type IsNeedIdCardAvatar: Boolean
 
-        attr_accessor :EidToken, :InfoType, :BestFramesCount
+        attr_accessor :EidToken, :InfoType, :BestFramesCount, :IsCutIdCardImage, :IsNeedIdCardAvatar
 
-        def initialize(eidtoken=nil, infotype=nil, bestframescount=nil)
+        def initialize(eidtoken=nil, infotype=nil, bestframescount=nil, iscutidcardimage=nil, isneedidcardavatar=nil)
           @EidToken = eidtoken
           @InfoType = infotype
           @BestFramesCount = bestframescount
+          @IsCutIdCardImage = iscutidcardimage
+          @IsNeedIdCardAvatar = isneedidcardavatar
         end
 
         def deserialize(params)
           @EidToken = params['EidToken']
           @InfoType = params['InfoType']
           @BestFramesCount = params['BestFramesCount']
+          @IsCutIdCardImage = params['IsCutIdCardImage']
+          @IsNeedIdCardAvatar = params['IsNeedIdCardAvatar']
         end
       end
 
@@ -2656,8 +2664,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2023, 12
-        deprecate :AsrResultSimilarity=, :none, 2023, 12
+        deprecate :AsrResultSimilarity, :none, 2024, 1
+        deprecate :AsrResultSimilarity=, :none, 2024, 1
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

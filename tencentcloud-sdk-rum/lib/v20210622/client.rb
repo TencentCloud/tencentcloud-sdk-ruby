@@ -229,54 +229,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
-
-        # @param request: Request instance for DeleteOfflineLogConfig.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DeleteOfflineLogConfigRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DeleteOfflineLogConfigResponse`
-        def DeleteOfflineLogConfig(request)
-          body = send_request('DeleteOfflineLogConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteOfflineLogConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除对应的离线日志记录
-
-        # @param request: Request instance for DeleteOfflineLogRecord.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DeleteOfflineLogRecordRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DeleteOfflineLogRecordResponse`
-        def DeleteOfflineLogRecord(request)
-          body = send_request('DeleteOfflineLogRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteOfflineLogRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除给定的 rum 的项目
 
         # @param request: Request instance for DeleteProject.
@@ -964,30 +916,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
-
-        # @param request: Request instance for DescribeOfflineLogConfigs.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogConfigsRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeOfflineLogConfigsResponse`
-        def DescribeOfflineLogConfigs(request)
-          body = send_request('DescribeOfflineLogConfigs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeOfflineLogConfigsResponse.new
             model.deserialize(response['Response'])
             model
           else

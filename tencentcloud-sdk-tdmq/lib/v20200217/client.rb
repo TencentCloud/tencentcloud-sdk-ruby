@@ -2287,6 +2287,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导出RocketMQ消息详情
+
+        # @param request: Request instance for ExportRocketMQMessageDetail.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::ExportRocketMQMessageDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::ExportRocketMQMessageDetailResponse`
+        def ExportRocketMQMessageDetail(request)
+          body = send_request('ExportRocketMQMessageDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportRocketMQMessageDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 输入迁移任务id和要导入的Group，导入后台
 
         # @param request: Request instance for ImportRocketMQConsumerGroups.
