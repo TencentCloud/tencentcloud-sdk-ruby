@@ -6716,6 +6716,89 @@ module TencentCloud
         end
       end
 
+      # RecognizeForeignPermanentResidentIdCard请求参数结构体
+      class RecognizeForeignPermanentResidentIdCardRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
+        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # 示例值：https://ocr-demo-1254418846.cos.ap-guangzhou.myqcloud.com/docume
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。
+        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
+        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # 支持的图片像素：需介于20-10000px之间。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param EnablePdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type EnablePdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。
+        # 示例值：1
+        # @type PdfPageNumber: Integer
+
+        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber
+
+        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @EnablePdf = enablepdf
+          @PdfPageNumber = pdfpagenumber
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @EnablePdf = params['EnablePdf']
+          @PdfPageNumber = params['PdfPageNumber']
+        end
+      end
+
+      # RecognizeForeignPermanentResidentIdCard返回参数结构体
+      class RecognizeForeignPermanentResidentIdCardResponse < TencentCloud::Common::AbstractModel
+        # @param CnName: 中文姓名。
+        # @type CnName: String
+        # @param EnName: 英文名。
+        # @type EnName: String
+        # @param Sex: 性别。
+        # @type Sex: String
+        # @param DateOfBirth: 出生日期。规范格式为 XXXX年XX月XX日。
+        # @type DateOfBirth: String
+        # @param Nationality: 国籍。
+        # @type Nationality: String
+        # @param PeriodOfValidity: 有效期限。
+        # @type PeriodOfValidity: String
+        # @param No: 证件号码。
+        # @type No: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :RequestId
+
+        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, requestid=nil)
+          @CnName = cnname
+          @EnName = enname
+          @Sex = sex
+          @DateOfBirth = dateofbirth
+          @Nationality = nationality
+          @PeriodOfValidity = periodofvalidity
+          @No = no
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CnName = params['CnName']
+          @EnName = params['EnName']
+          @Sex = params['Sex']
+          @DateOfBirth = params['DateOfBirth']
+          @Nationality = params['Nationality']
+          @PeriodOfValidity = params['PeriodOfValidity']
+          @No = params['No']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RecognizeGeneralInvoice请求参数结构体
       class RecognizeGeneralInvoiceRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。

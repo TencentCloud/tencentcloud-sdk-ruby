@@ -3694,32 +3694,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 没用到
-
-        # 获取kafka的topic信息
-
-        # @param request: Request instance for DescribeKafkaTopicInfo.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeKafkaTopicInfoRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeKafkaTopicInfoResponse`
-        def DescribeKafkaTopicInfo(request)
-          body = send_request('DescribeKafkaTopicInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeKafkaTopicInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 分页查询质量监控组
 
         # @param request: Request instance for DescribeMonitorsByPage.

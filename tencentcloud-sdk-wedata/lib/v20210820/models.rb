@@ -2828,8 +2828,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 12
-        deprecate :TaskId=, :none, 2023, 12
+        deprecate :TaskId, :none, 2024, 1
+        deprecate :TaskId=, :none, 2024, 1
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -10011,12 +10011,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2023, 12
-        deprecate :EventType=, :none, 2023, 12
-        deprecate :EventBroadcastType, :none, 2023, 12
-        deprecate :EventBroadcastType=, :none, 2023, 12
-        deprecate :Status, :none, 2023, 12
-        deprecate :Status=, :none, 2023, 12
+        deprecate :EventType, :none, 2024, 1
+        deprecate :EventType=, :none, 2024, 1
+        deprecate :EventBroadcastType, :none, 2024, 1
+        deprecate :EventBroadcastType=, :none, 2024, 1
+        deprecate :Status, :none, 2024, 1
+        deprecate :Status=, :none, 2024, 1
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -12468,42 +12468,6 @@ module TencentCloud
             end
           end
           @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeKafkaTopicInfo请求参数结构体
-      class DescribeKafkaTopicInfoRequest < TencentCloud::Common::AbstractModel
-        # @param DatasourceId: 数据源id
-        # @type DatasourceId: String
-        # @param Type: 数据源类型
-        # @type Type: String
-
-        attr_accessor :DatasourceId, :Type
-
-        def initialize(datasourceid=nil, type=nil)
-          @DatasourceId = datasourceid
-          @Type = type
-        end
-
-        def deserialize(params)
-          @DatasourceId = params['DatasourceId']
-          @Type = params['Type']
-        end
-      end
-
-      # DescribeKafkaTopicInfo返回参数结构体
-      class DescribeKafkaTopicInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -18122,8 +18086,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2023, 12
-        deprecate :DimType=, :none, 2023, 12
+        deprecate :DimType, :none, 2024, 1
+        deprecate :DimType=, :none, 2024, 1
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -29917,10 +29881,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2023, 12
-        deprecate :SourceObjectDataTypeName=, :none, 2023, 12
-        deprecate :SourceObjectValue, :none, 2023, 12
-        deprecate :SourceObjectValue=, :none, 2023, 12
+        deprecate :SourceObjectDataTypeName, :none, 2024, 1
+        deprecate :SourceObjectDataTypeName=, :none, 2024, 1
+        deprecate :SourceObjectValue, :none, 2024, 1
+        deprecate :SourceObjectValue=, :none, 2024, 1
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename

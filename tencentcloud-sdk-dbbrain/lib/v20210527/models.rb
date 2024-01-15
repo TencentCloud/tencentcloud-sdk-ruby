@@ -2561,16 +2561,22 @@ module TencentCloud
         # @type KeyType: String
         # @param Limit: 查询数目，默认为20，最大值为100。
         # @type Limit: Integer
+        # @param AsyncRequestId: 异步任务ID。当为空时，选择最近任务的ID。
+        # @type AsyncRequestId: Integer
+        # @param ShardIds: 分片节点序号列表。当列表为空时，选择所有分片节点。
+        # @type ShardIds: Array
 
-        attr_accessor :InstanceId, :Date, :Product, :SortBy, :KeyType, :Limit
+        attr_accessor :InstanceId, :Date, :Product, :SortBy, :KeyType, :Limit, :AsyncRequestId, :ShardIds
 
-        def initialize(instanceid=nil, date=nil, product=nil, sortby=nil, keytype=nil, limit=nil)
+        def initialize(instanceid=nil, date=nil, product=nil, sortby=nil, keytype=nil, limit=nil, asyncrequestid=nil, shardids=nil)
           @InstanceId = instanceid
           @Date = date
           @Product = product
           @SortBy = sortby
           @KeyType = keytype
           @Limit = limit
+          @AsyncRequestId = asyncrequestid
+          @ShardIds = shardids
         end
 
         def deserialize(params)
@@ -2580,6 +2586,8 @@ module TencentCloud
           @SortBy = params['SortBy']
           @KeyType = params['KeyType']
           @Limit = params['Limit']
+          @AsyncRequestId = params['AsyncRequestId']
+          @ShardIds = params['ShardIds']
         end
       end
 
@@ -3911,19 +3919,24 @@ module TencentCloud
         # @param KeyDelimiters: redis大key分析的自定义分割符，仅redis使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyDelimiters: Array
+        # @param ShardNum: 分片节点数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardNum: String
 
-        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters
+        attr_accessor :DailyInspection, :OverviewDisplay, :KeyDelimiters, :ShardNum
 
-        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil)
+        def initialize(dailyinspection=nil, overviewdisplay=nil, keydelimiters=nil, shardnum=nil)
           @DailyInspection = dailyinspection
           @OverviewDisplay = overviewdisplay
           @KeyDelimiters = keydelimiters
+          @ShardNum = shardnum
         end
 
         def deserialize(params)
           @DailyInspection = params['DailyInspection']
           @OverviewDisplay = params['OverviewDisplay']
           @KeyDelimiters = params['KeyDelimiters']
+          @ShardNum = params['ShardNum']
         end
       end
 
