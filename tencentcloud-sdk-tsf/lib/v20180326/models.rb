@@ -14263,10 +14263,13 @@ module TencentCloud
         # @param NamespaceIdList: 泳道已经关联部署组的命名空间列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceIdList: Array
+        # @param LaneGroupId: 泳道部署组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneGroupId: String
 
-        attr_accessor :LaneId, :LaneName, :Remark, :CreateTime, :UpdateTime, :LaneGroupList, :Entrance, :NamespaceIdList
+        attr_accessor :LaneId, :LaneName, :Remark, :CreateTime, :UpdateTime, :LaneGroupList, :Entrance, :NamespaceIdList, :LaneGroupId
 
-        def initialize(laneid=nil, lanename=nil, remark=nil, createtime=nil, updatetime=nil, lanegrouplist=nil, entrance=nil, namespaceidlist=nil)
+        def initialize(laneid=nil, lanename=nil, remark=nil, createtime=nil, updatetime=nil, lanegrouplist=nil, entrance=nil, namespaceidlist=nil, lanegroupid=nil)
           @LaneId = laneid
           @LaneName = lanename
           @Remark = remark
@@ -14275,6 +14278,7 @@ module TencentCloud
           @LaneGroupList = lanegrouplist
           @Entrance = entrance
           @NamespaceIdList = namespaceidlist
+          @LaneGroupId = lanegroupid
         end
 
         def deserialize(params)
@@ -14293,6 +14297,7 @@ module TencentCloud
           end
           @Entrance = params['Entrance']
           @NamespaceIdList = params['NamespaceIdList']
+          @LaneGroupId = params['LaneGroupId']
         end
       end
 
