@@ -1265,10 +1265,13 @@ module TencentCloud
         # @param AppId: 租户id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
+        # @param CriticalDependency: 关键路径依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CriticalDependency: String
 
-        attr_accessor :Id, :BaselineInstanceId, :BaselineType, :BaselineDataTime, :UpstreamInstanceIds, :DownstreamInstanceIds, :IsPromiseTask, :TaskId, :CurRunDate, :TaskName, :InCriticalPath, :InFirstLevel, :EstimatedCostTime, :ActualCostTime, :LatestStartTime, :ActualStartTime, :EstimatedEndTime, :LatestEndTime, :ActualEndTime, :TaskInstanceStatus, :ProjectId, :ShardKey, :CreateTime, :UpdateTime, :UserUin, :OwnerUin, :AppId
+        attr_accessor :Id, :BaselineInstanceId, :BaselineType, :BaselineDataTime, :UpstreamInstanceIds, :DownstreamInstanceIds, :IsPromiseTask, :TaskId, :CurRunDate, :TaskName, :InCriticalPath, :InFirstLevel, :EstimatedCostTime, :ActualCostTime, :LatestStartTime, :ActualStartTime, :EstimatedEndTime, :LatestEndTime, :ActualEndTime, :TaskInstanceStatus, :ProjectId, :ShardKey, :CreateTime, :UpdateTime, :UserUin, :OwnerUin, :AppId, :CriticalDependency
 
-        def initialize(id=nil, baselineinstanceid=nil, baselinetype=nil, baselinedatatime=nil, upstreaminstanceids=nil, downstreaminstanceids=nil, ispromisetask=nil, taskid=nil, currundate=nil, taskname=nil, incriticalpath=nil, infirstlevel=nil, estimatedcosttime=nil, actualcosttime=nil, lateststarttime=nil, actualstarttime=nil, estimatedendtime=nil, latestendtime=nil, actualendtime=nil, taskinstancestatus=nil, projectid=nil, shardkey=nil, createtime=nil, updatetime=nil, useruin=nil, owneruin=nil, appid=nil)
+        def initialize(id=nil, baselineinstanceid=nil, baselinetype=nil, baselinedatatime=nil, upstreaminstanceids=nil, downstreaminstanceids=nil, ispromisetask=nil, taskid=nil, currundate=nil, taskname=nil, incriticalpath=nil, infirstlevel=nil, estimatedcosttime=nil, actualcosttime=nil, lateststarttime=nil, actualstarttime=nil, estimatedendtime=nil, latestendtime=nil, actualendtime=nil, taskinstancestatus=nil, projectid=nil, shardkey=nil, createtime=nil, updatetime=nil, useruin=nil, owneruin=nil, appid=nil, criticaldependency=nil)
           @Id = id
           @BaselineInstanceId = baselineinstanceid
           @BaselineType = baselinetype
@@ -1296,6 +1299,7 @@ module TencentCloud
           @UserUin = useruin
           @OwnerUin = owneruin
           @AppId = appid
+          @CriticalDependency = criticaldependency
         end
 
         def deserialize(params)
@@ -1326,6 +1330,7 @@ module TencentCloud
           @UserUin = params['UserUin']
           @OwnerUin = params['OwnerUin']
           @AppId = params['AppId']
+          @CriticalDependency = params['CriticalDependency']
         end
       end
 
@@ -3416,9 +3421,6 @@ module TencentCloud
         # @param Id: 血缘id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
-        # @param PrefixPath: 由中心节点出发的路径信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PrefixPath: String
         # @param DatasourceId: 数据源ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceId: String
@@ -3464,6 +3466,9 @@ module TencentCloud
         # @param Description: 描述信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param PrefixPath: 由中心节点出发的路径信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
         # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
@@ -3483,11 +3488,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtParams: Array
 
-        attr_accessor :Id, :PrefixPath, :DatasourceId, :TableId, :ColumnName, :ColumnNameCn, :ColumnType, :RelationParams, :Params, :ParentId, :MetastoreType, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :CreateTime, :ModifyTime, :Tasks, :ParentSet, :ChildSet, :ExtParams
+        attr_accessor :Id, :DatasourceId, :TableId, :ColumnName, :ColumnNameCn, :ColumnType, :RelationParams, :Params, :ParentId, :MetastoreType, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ParentSet, :ChildSet, :ExtParams
 
-        def initialize(id=nil, prefixpath=nil, datasourceid=nil, tableid=nil, columnname=nil, columnnamecn=nil, columntype=nil, relationparams=nil, params=nil, parentid=nil, metastoretype=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, createtime=nil, modifytime=nil, tasks=nil, parentset=nil, childset=nil, extparams=nil)
+        def initialize(id=nil, datasourceid=nil, tableid=nil, columnname=nil, columnnamecn=nil, columntype=nil, relationparams=nil, params=nil, parentid=nil, metastoretype=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, parentset=nil, childset=nil, extparams=nil)
           @Id = id
-          @PrefixPath = prefixpath
           @DatasourceId = datasourceid
           @TableId = tableid
           @ColumnName = columnname
@@ -3503,6 +3507,7 @@ module TencentCloud
           @DownStreamCount = downstreamcount
           @UpStreamCount = upstreamcount
           @Description = description
+          @PrefixPath = prefixpath
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Tasks = tasks
@@ -3513,7 +3518,6 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
-          @PrefixPath = params['PrefixPath']
           @DatasourceId = params['DatasourceId']
           @TableId = params['TableId']
           @ColumnName = params['ColumnName']
@@ -3529,6 +3533,7 @@ module TencentCloud
           @DownStreamCount = params['DownStreamCount']
           @UpStreamCount = params['UpStreamCount']
           @Description = params['Description']
+          @PrefixPath = params['PrefixPath']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Tasks = params['Tasks']
@@ -4389,10 +4394,12 @@ module TencentCloud
         # @type COSBucket: String
         # @param COSRegion: cos region
         # @type COSRegion: String
+        # @param ConnectResult: 连接测试结果
+        # @type ConnectResult: String
 
-        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion
+        attr_accessor :Name, :Category, :Type, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :BizParams, :Params, :Description, :Display, :DatabaseName, :Instance, :Status, :ClusterId, :Collect, :COSBucket, :COSRegion, :ConnectResult
 
-        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil)
+        def initialize(name=nil, category=nil, type=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, bizparams=nil, params=nil, description=nil, display=nil, databasename=nil, instance=nil, status=nil, clusterid=nil, collect=nil, cosbucket=nil, cosregion=nil, connectresult=nil)
           @Name = name
           @Category = category
           @Type = type
@@ -4410,6 +4417,7 @@ module TencentCloud
           @Collect = collect
           @COSBucket = cosbucket
           @COSRegion = cosregion
+          @ConnectResult = connectresult
         end
 
         def deserialize(params)
@@ -4430,6 +4438,7 @@ module TencentCloud
           @Collect = params['Collect']
           @COSBucket = params['COSBucket']
           @COSRegion = params['COSRegion']
+          @ConnectResult = params['ConnectResult']
         end
       end
 
@@ -7874,17 +7883,21 @@ module TencentCloud
         # @type BaselineId: String
         # @param ProjectId: 1
         # @type ProjectId: String
+        # @param BaselineTaskId: 1
+        # @type BaselineTaskId: String
 
-        attr_accessor :BaselineId, :ProjectId
+        attr_accessor :BaselineId, :ProjectId, :BaselineTaskId
 
-        def initialize(baselineid=nil, projectid=nil)
+        def initialize(baselineid=nil, projectid=nil, baselinetaskid=nil)
           @BaselineId = baselineid
           @ProjectId = projectid
+          @BaselineTaskId = baselinetaskid
         end
 
         def deserialize(params)
           @BaselineId = params['BaselineId']
           @ProjectId = params['ProjectId']
+          @BaselineTaskId = params['BaselineTaskId']
         end
       end
 
@@ -7965,14 +7978,17 @@ module TencentCloud
         # @type UpstreamInstanceIds: String
         # @param Level: 向上展开层级
         # @type Level: Integer
+        # @param PromiseTaskId: 保障任务id
+        # @type PromiseTaskId: String
 
-        attr_accessor :BaselineInstanceId, :ProjectId, :UpstreamInstanceIds, :Level
+        attr_accessor :BaselineInstanceId, :ProjectId, :UpstreamInstanceIds, :Level, :PromiseTaskId
 
-        def initialize(baselineinstanceid=nil, projectid=nil, upstreaminstanceids=nil, level=nil)
+        def initialize(baselineinstanceid=nil, projectid=nil, upstreaminstanceids=nil, level=nil, promisetaskid=nil)
           @BaselineInstanceId = baselineinstanceid
           @ProjectId = projectid
           @UpstreamInstanceIds = upstreaminstanceids
           @Level = level
+          @PromiseTaskId = promisetaskid
         end
 
         def deserialize(params)
@@ -7980,6 +7996,7 @@ module TencentCloud
           @ProjectId = params['ProjectId']
           @UpstreamInstanceIds = params['UpstreamInstanceIds']
           @Level = params['Level']
+          @PromiseTaskId = params['PromiseTaskId']
         end
       end
 
@@ -8013,17 +8030,21 @@ module TencentCloud
         # @type BaselineInstanceId: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param PromiseTaskId: 保障任务id
+        # @type PromiseTaskId: String
 
-        attr_accessor :BaselineInstanceId, :ProjectId
+        attr_accessor :BaselineInstanceId, :ProjectId, :PromiseTaskId
 
-        def initialize(baselineinstanceid=nil, projectid=nil)
+        def initialize(baselineinstanceid=nil, projectid=nil, promisetaskid=nil)
           @BaselineInstanceId = baselineinstanceid
           @ProjectId = projectid
+          @PromiseTaskId = promisetaskid
         end
 
         def deserialize(params)
           @BaselineInstanceId = params['BaselineInstanceId']
           @ProjectId = params['ProjectId']
+          @PromiseTaskId = params['PromiseTaskId']
         end
       end
 
@@ -15297,10 +15318,12 @@ module TencentCloud
         # @type EndTime: String
         # @param InCharge: 责任人
         # @type InCharge: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
 
-        attr_accessor :ProjectId, :TaskTypeId, :ExecutionGroupId, :ExecutionGroupName, :StartTime, :EndTime, :InCharge
+        attr_accessor :ProjectId, :TaskTypeId, :ExecutionGroupId, :ExecutionGroupName, :StartTime, :EndTime, :InCharge, :WorkflowId
 
-        def initialize(projectid=nil, tasktypeid=nil, executiongroupid=nil, executiongroupname=nil, starttime=nil, endtime=nil, incharge=nil)
+        def initialize(projectid=nil, tasktypeid=nil, executiongroupid=nil, executiongroupname=nil, starttime=nil, endtime=nil, incharge=nil, workflowid=nil)
           @ProjectId = projectid
           @TaskTypeId = tasktypeid
           @ExecutionGroupId = executiongroupid
@@ -15308,6 +15331,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @InCharge = incharge
+          @WorkflowId = workflowid
         end
 
         def deserialize(params)
@@ -15318,6 +15342,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @InCharge = params['InCharge']
+          @WorkflowId = params['WorkflowId']
         end
       end
 
@@ -15365,10 +15390,16 @@ module TencentCloud
         # @type TaskType: Integer
         # @param InCharge: 1
         # @type InCharge: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
+        # @param SortItem: 排序字段
+        # @type SortItem: String
+        # @param SortType: 升序降序
+        # @type SortType: String
 
-        attr_accessor :ProjectId, :CycleUnit, :TimeUnit, :StartTime, :EndTime, :TaskType, :InCharge
+        attr_accessor :ProjectId, :CycleUnit, :TimeUnit, :StartTime, :EndTime, :TaskType, :InCharge, :WorkflowId, :SortItem, :SortType
 
-        def initialize(projectid=nil, cycleunit=nil, timeunit=nil, starttime=nil, endtime=nil, tasktype=nil, incharge=nil)
+        def initialize(projectid=nil, cycleunit=nil, timeunit=nil, starttime=nil, endtime=nil, tasktype=nil, incharge=nil, workflowid=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
           @CycleUnit = cycleunit
           @TimeUnit = timeunit
@@ -15376,6 +15407,9 @@ module TencentCloud
           @EndTime = endtime
           @TaskType = tasktype
           @InCharge = incharge
+          @WorkflowId = workflowid
+          @SortItem = sortitem
+          @SortType = sorttype
         end
 
         def deserialize(params)
@@ -15386,6 +15420,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @TaskType = params['TaskType']
           @InCharge = params['InCharge']
+          @WorkflowId = params['WorkflowId']
+          @SortItem = params['SortItem']
+          @SortType = params['SortType']
         end
       end
 
@@ -15427,14 +15464,17 @@ module TencentCloud
         # @type ProjectId: String
         # @param InCharge: 1
         # @type InCharge: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
 
-        attr_accessor :TaskType, :TypeName, :ProjectId, :InCharge
+        attr_accessor :TaskType, :TypeName, :ProjectId, :InCharge, :WorkflowId
 
-        def initialize(tasktype=nil, typename=nil, projectid=nil, incharge=nil)
+        def initialize(tasktype=nil, typename=nil, projectid=nil, incharge=nil, workflowid=nil)
           @TaskType = tasktype
           @TypeName = typename
           @ProjectId = projectid
           @InCharge = incharge
+          @WorkflowId = workflowid
         end
 
         def deserialize(params)
@@ -15442,6 +15482,7 @@ module TencentCloud
           @TypeName = params['TypeName']
           @ProjectId = params['ProjectId']
           @InCharge = params['InCharge']
+          @WorkflowId = params['WorkflowId']
         end
       end
 
@@ -15710,10 +15751,12 @@ module TencentCloud
         # @type AggregationUnit: String
         # @param AverageWindowSize: 1
         # @type AverageWindowSize: Integer
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
 
-        attr_accessor :ProjectId, :TaskTypeId, :TimeType, :TypeName, :StartTime, :EndTime, :ExecutionGroupId, :ExecutionGroupName, :InCharge, :TaskType, :StateList, :AggregationUnit, :AverageWindowSize
+        attr_accessor :ProjectId, :TaskTypeId, :TimeType, :TypeName, :StartTime, :EndTime, :ExecutionGroupId, :ExecutionGroupName, :InCharge, :TaskType, :StateList, :AggregationUnit, :AverageWindowSize, :WorkflowId
 
-        def initialize(projectid=nil, tasktypeid=nil, timetype=nil, typename=nil, starttime=nil, endtime=nil, executiongroupid=nil, executiongroupname=nil, incharge=nil, tasktype=nil, statelist=nil, aggregationunit=nil, averagewindowsize=nil)
+        def initialize(projectid=nil, tasktypeid=nil, timetype=nil, typename=nil, starttime=nil, endtime=nil, executiongroupid=nil, executiongroupname=nil, incharge=nil, tasktype=nil, statelist=nil, aggregationunit=nil, averagewindowsize=nil, workflowid=nil)
           @ProjectId = projectid
           @TaskTypeId = tasktypeid
           @TimeType = timetype
@@ -15727,6 +15770,7 @@ module TencentCloud
           @StateList = statelist
           @AggregationUnit = aggregationunit
           @AverageWindowSize = averagewindowsize
+          @WorkflowId = workflowid
         end
 
         def deserialize(params)
@@ -15743,6 +15787,7 @@ module TencentCloud
           @StateList = params['StateList']
           @AggregationUnit = params['AggregationUnit']
           @AverageWindowSize = params['AverageWindowSize']
+          @WorkflowId = params['WorkflowId']
         end
       end
 
@@ -16654,17 +16699,21 @@ module TencentCloud
         # @type ProjectId: String
         # @param InCharge: 1
         # @type InCharge: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
 
-        attr_accessor :ProjectId, :InCharge
+        attr_accessor :ProjectId, :InCharge, :WorkflowId
 
-        def initialize(projectid=nil, incharge=nil)
+        def initialize(projectid=nil, incharge=nil, workflowid=nil)
           @ProjectId = projectid
           @InCharge = incharge
+          @WorkflowId = workflowid
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @InCharge = params['InCharge']
+          @WorkflowId = params['WorkflowId']
         end
       end
 
@@ -16717,10 +16766,12 @@ module TencentCloud
         # @type Status: String
         # @param InCharge: 无
         # @type InCharge: String
+        # @param WorkflowId: 工作流ID
+        # @type WorkflowId: String
 
-        attr_accessor :ProjectId, :Type, :TaskType, :TypeName, :StartTime, :EndTime, :AggregationUnit, :CycleUnit, :Status, :InCharge
+        attr_accessor :ProjectId, :Type, :TaskType, :TypeName, :StartTime, :EndTime, :AggregationUnit, :CycleUnit, :Status, :InCharge, :WorkflowId
 
-        def initialize(projectid=nil, type=nil, tasktype=nil, typename=nil, starttime=nil, endtime=nil, aggregationunit=nil, cycleunit=nil, status=nil, incharge=nil)
+        def initialize(projectid=nil, type=nil, tasktype=nil, typename=nil, starttime=nil, endtime=nil, aggregationunit=nil, cycleunit=nil, status=nil, incharge=nil, workflowid=nil)
           @ProjectId = projectid
           @Type = type
           @TaskType = tasktype
@@ -16731,6 +16782,7 @@ module TencentCloud
           @CycleUnit = cycleunit
           @Status = status
           @InCharge = incharge
+          @WorkflowId = workflowid
         end
 
         def deserialize(params)
@@ -16744,6 +16796,7 @@ module TencentCloud
           @CycleUnit = params['CycleUnit']
           @Status = params['Status']
           @InCharge = params['InCharge']
+          @WorkflowId = params['WorkflowId']
         end
       end
 
@@ -28916,10 +28969,13 @@ module TencentCloud
         # @param CurRunTime: 实例运行时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurRunTime: String
+        # @param WaitScheduleTime: 等待调度耗时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitScheduleTime: Integer
 
-        attr_accessor :TaskId, :TaskName, :InCharge, :CycleUnit, :State, :RunTime, :CurRunTime
+        attr_accessor :TaskId, :TaskName, :InCharge, :CycleUnit, :State, :RunTime, :CurRunTime, :WaitScheduleTime
 
-        def initialize(taskid=nil, taskname=nil, incharge=nil, cycleunit=nil, state=nil, runtime=nil, curruntime=nil)
+        def initialize(taskid=nil, taskname=nil, incharge=nil, cycleunit=nil, state=nil, runtime=nil, curruntime=nil, waitscheduletime=nil)
           @TaskId = taskid
           @TaskName = taskname
           @InCharge = incharge
@@ -28927,6 +28983,7 @@ module TencentCloud
           @State = state
           @RunTime = runtime
           @CurRunTime = curruntime
+          @WaitScheduleTime = waitscheduletime
         end
 
         def deserialize(params)
@@ -28937,6 +28994,7 @@ module TencentCloud
           @State = params['State']
           @RunTime = params['RunTime']
           @CurRunTime = params['CurRunTime']
+          @WaitScheduleTime = params['WaitScheduleTime']
         end
       end
 
@@ -31133,9 +31191,6 @@ module TencentCloud
         # @param MetastoreType: 元数据类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetastoreType: String
-        # @param PrefixPath: 由中心节点到该节点的路径
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PrefixPath: String
         # @param ProjectId: 空间id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProjectId: String
@@ -31178,6 +31233,9 @@ module TencentCloud
         # @param Description: 血缘描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
+        # @param PrefixPath: 由中心节点到该节点的路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrefixPath: String
         # @param CreateTime: 血缘创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
@@ -31187,12 +31245,14 @@ module TencentCloud
         # @param Tasks: 修改血缘的任务id列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tasks: Array
+        # @param ChannelType: 模块/应用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelType: String
 
-        attr_accessor :MetastoreType, :PrefixPath, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :CreateTime, :ModifyTime, :Tasks
+        attr_accessor :MetastoreType, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ChannelType
 
-        def initialize(metastoretype=nil, prefixpath=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, createtime=nil, modifytime=nil, tasks=nil)
+        def initialize(metastoretype=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, channeltype=nil)
           @MetastoreType = metastoretype
-          @PrefixPath = prefixpath
           @ProjectId = projectid
           @DatasourceId = datasourceid
           @TableId = tableid
@@ -31207,14 +31267,15 @@ module TencentCloud
           @DownStreamCount = downstreamcount
           @UpStreamCount = upstreamcount
           @Description = description
+          @PrefixPath = prefixpath
           @CreateTime = createtime
           @ModifyTime = modifytime
           @Tasks = tasks
+          @ChannelType = channeltype
         end
 
         def deserialize(params)
           @MetastoreType = params['MetastoreType']
-          @PrefixPath = params['PrefixPath']
           @ProjectId = params['ProjectId']
           @DatasourceId = params['DatasourceId']
           @TableId = params['TableId']
@@ -31243,9 +31304,11 @@ module TencentCloud
           @DownStreamCount = params['DownStreamCount']
           @UpStreamCount = params['UpStreamCount']
           @Description = params['Description']
+          @PrefixPath = params['PrefixPath']
           @CreateTime = params['CreateTime']
           @ModifyTime = params['ModifyTime']
           @Tasks = params['Tasks']
+          @ChannelType = params['ChannelType']
         end
       end
 

@@ -860,7 +860,7 @@ module TencentCloud
 
       # DescribeLogTagValue返回参数结构体
       class DescribeLogTagValueResponse < TencentCloud::Common::AbstractModel
-        # @param Results: 索引检索维度值
+        # @param Results: 事件查询维度值结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2111,16 +2111,16 @@ module TencentCloud
 
       # SearchLog返回参数结构体
       class SearchLogResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 日志总数
+        # @param Total: 事件总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param Limit: 每页日志条数
+        # @param Limit: 每页事件条数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Limit: Integer
         # @param Page: 页码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Page: Integer
-        # @param Results: 日志检索结果
+        # @param Results: 事件查询结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

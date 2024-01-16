@@ -77,6 +77,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建共享单元，只有企业组织管理员可创建。
+
+        # @param request: Request instance for AddShareUnit.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AddShareUnitRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AddShareUnitResponse`
+        def AddShareUnit(request)
+          body = send_request('AddShareUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddShareUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加共享单元成员
+
+        # @param request: Request instance for AddShareUnitMembers.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AddShareUnitMembersRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AddShareUnitMembersResponse`
+        def AddShareUnitMembers(request)
+          body = send_request('AddShareUnitMembers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddShareUnitMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加共享单元资源
+
+        # @param request: Request instance for AddShareUnitResources.
+        # @type request: :class:`Tencentcloud::organization::V20210331::AddShareUnitResourcesRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::AddShareUnitResourcesResponse`
+        def AddShareUnitResources(request)
+          body = send_request('AddShareUnitResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddShareUnitResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定组织成员和组织管理员子账号的授权关系
 
         # @param request: Request instance for BindOrganizationMemberAuthAccount.
@@ -437,6 +509,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除共享单元。
+
+        # @param request: Request instance for DeleteShareUnit.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitResponse`
+        def DeleteShareUnit(request)
+          body = send_request('DeleteShareUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteShareUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除共享单元成员
+
+        # @param request: Request instance for DeleteShareUnitMembers.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitMembersRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitMembersResponse`
+        def DeleteShareUnitMembers(request)
+          body = send_request('DeleteShareUnitMembers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteShareUnitMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除共享单元资源
+
+        # @param request: Request instance for DeleteShareUnitResources.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitResourcesRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DeleteShareUnitResourcesResponse`
+        def DeleteShareUnitResources(request)
+          body = send_request('DeleteShareUnitResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteShareUnitResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取企业组织信息
 
         # @param request: Request instance for DescribeOrganization.
@@ -701,6 +845,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取可共享地域列表
+
+        # @param request: Request instance for DescribeShareAreas.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeShareAreasRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeShareAreasResponse`
+        def DescribeShareAreas(request)
+          body = send_request('DescribeShareAreas', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShareAreasResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取共享单元成员列表。
+
+        # @param request: Request instance for DescribeShareUnitMembers.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitMembersRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitMembersResponse`
+        def DescribeShareUnitMembers(request)
+          body = send_request('DescribeShareUnitMembers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShareUnitMembersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取共享单元资源列表。
+
+        # @param request: Request instance for DescribeShareUnitResources.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitResourcesRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitResourcesResponse`
+        def DescribeShareUnitResources(request)
+          body = send_request('DescribeShareUnitResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShareUnitResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取共享单元列表。
+
+        # @param request: Request instance for DescribeShareUnits.
+        # @type request: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitsRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::DescribeShareUnitsResponse`
+        def DescribeShareUnits(request)
+          body = send_request('DescribeShareUnits', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeShareUnitsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取组织成员访问身份列表
 
         # @param request: Request instance for ListOrganizationIdentity.
@@ -855,6 +1095,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateOrganizationNodeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新共享单元。
+
+        # @param request: Request instance for UpdateShareUnit.
+        # @type request: :class:`Tencentcloud::organization::V20210331::UpdateShareUnitRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::UpdateShareUnitResponse`
+        def UpdateShareUnit(request)
+          body = send_request('UpdateShareUnit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateShareUnitResponse.new
             model.deserialize(response['Response'])
             model
           else

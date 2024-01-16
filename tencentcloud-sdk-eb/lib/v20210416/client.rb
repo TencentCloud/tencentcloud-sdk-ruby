@@ -317,7 +317,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询日志索引维度值
+        # 前置条件：需开启事件存储；事件查询维度值
 
         # @param request: Request instance for DescribeLogTagValue.
         # @type request: :class:`Tencentcloud::eb::V20210416::DescribeLogTagValueRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 日志检索
+        # 前置条件：开启事件存储；查询历史推送事件
 
         # @param request: Request instance for SearchLog.
         # @type request: :class:`Tencentcloud::eb::V20210416::SearchLogRequest`

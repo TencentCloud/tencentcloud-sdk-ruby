@@ -2790,13 +2790,25 @@ module TencentCloud
         # @type Timestamps: Array
         # @param Values: 监控值数组，该数组和Timestamps一一对应
         # @type Values: Array
+        # @param MaxValues: 监控值数组，该数组和Timestamps一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxValues: Array
+        # @param MinValues: 监控值数组，该数组和Timestamps一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinValues: Array
+        # @param AvgValues: 监控值数组，该数组和Timestamps一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvgValues: Array
 
-        attr_accessor :Dimensions, :Timestamps, :Values
+        attr_accessor :Dimensions, :Timestamps, :Values, :MaxValues, :MinValues, :AvgValues
 
-        def initialize(dimensions=nil, timestamps=nil, values=nil)
+        def initialize(dimensions=nil, timestamps=nil, values=nil, maxvalues=nil, minvalues=nil, avgvalues=nil)
           @Dimensions = dimensions
           @Timestamps = timestamps
           @Values = values
+          @MaxValues = maxvalues
+          @MinValues = minvalues
+          @AvgValues = avgvalues
         end
 
         def deserialize(params)
@@ -2810,6 +2822,9 @@ module TencentCloud
           end
           @Timestamps = params['Timestamps']
           @Values = params['Values']
+          @MaxValues = params['MaxValues']
+          @MinValues = params['MinValues']
+          @AvgValues = params['AvgValues']
         end
       end
 
@@ -9140,16 +9155,19 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，如2018-09-22T20:51:23+08:00，默认为当前时间。 EndTime不能小于StartTime
         # @type EndTime: String
+        # @param SpecifyStatistics: 返回多种统计方式数据。avg, max, min (1,2,4)可以自由组合
+        # @type SpecifyStatistics: Integer
 
-        attr_accessor :Namespace, :MetricName, :Instances, :Period, :StartTime, :EndTime
+        attr_accessor :Namespace, :MetricName, :Instances, :Period, :StartTime, :EndTime, :SpecifyStatistics
 
-        def initialize(namespace=nil, metricname=nil, instances=nil, period=nil, starttime=nil, endtime=nil)
+        def initialize(namespace=nil, metricname=nil, instances=nil, period=nil, starttime=nil, endtime=nil, specifystatistics=nil)
           @Namespace = namespace
           @MetricName = metricname
           @Instances = instances
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
+          @SpecifyStatistics = specifystatistics
         end
 
         def deserialize(params)
@@ -9166,6 +9184,7 @@ module TencentCloud
           @Period = params['Period']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @SpecifyStatistics = params['SpecifyStatistics']
         end
       end
 

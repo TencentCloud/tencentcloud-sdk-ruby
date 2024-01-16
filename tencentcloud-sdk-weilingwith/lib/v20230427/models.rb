@@ -1494,14 +1494,17 @@ module TencentCloud
         # @type ControlData: String
         # @param ApplicationToken: 应用token
         # @type ApplicationToken: String
+        # @param IsSynchronized: 是否同步返回设备下控ack结果
+        # @type IsSynchronized: Boolean
 
-        attr_accessor :WorkspaceId, :WIDSet, :ControlData, :ApplicationToken
+        attr_accessor :WorkspaceId, :WIDSet, :ControlData, :ApplicationToken, :IsSynchronized
 
-        def initialize(workspaceid=nil, widset=nil, controldata=nil, applicationtoken=nil)
+        def initialize(workspaceid=nil, widset=nil, controldata=nil, applicationtoken=nil, issynchronized=nil)
           @WorkspaceId = workspaceid
           @WIDSet = widset
           @ControlData = controldata
           @ApplicationToken = applicationtoken
+          @IsSynchronized = issynchronized
         end
 
         def deserialize(params)
@@ -1509,6 +1512,7 @@ module TencentCloud
           @WIDSet = params['WIDSet']
           @ControlData = params['ControlData']
           @ApplicationToken = params['ApplicationToken']
+          @IsSynchronized = params['IsSynchronized']
         end
       end
 

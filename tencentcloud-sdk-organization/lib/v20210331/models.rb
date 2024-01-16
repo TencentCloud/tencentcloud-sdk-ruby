@@ -110,6 +110,148 @@ module TencentCloud
         end
       end
 
+      # AddShareUnitMembers请求参数结构体
+      class AddShareUnitMembersRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Members: 共享成员列表。最大10个。
+        # @type Members: Array
+
+        attr_accessor :UnitId, :Area, :Members
+
+        def initialize(unitid=nil, area=nil, members=nil)
+          @UnitId = unitid
+          @Area = area
+          @Members = members
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              sharemember_tmp = ShareMember.new
+              sharemember_tmp.deserialize(i)
+              @Members << sharemember_tmp
+            end
+          end
+        end
+      end
+
+      # AddShareUnitMembers返回参数结构体
+      class AddShareUnitMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddShareUnit请求参数结构体
+      class AddShareUnitRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 共享单元名称。仅支持大小写字母、数字、-、以及_的组合，3-128个字符。
+        # @type Name: String
+        # @param Area: 共享单元地域。可通过接口DescribeShareAreas获取支持共享的地域。
+        # @type Area: String
+        # @param Description: 共享单元描述。最大128个字符。
+        # @type Description: String
+
+        attr_accessor :Name, :Area, :Description
+
+        def initialize(name=nil, area=nil, description=nil)
+          @Name = name
+          @Area = area
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Area = params['Area']
+          @Description = params['Description']
+        end
+      end
+
+      # AddShareUnitResources请求参数结构体
+      class AddShareUnitResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Type: 共享资源类型。支持共享的资源类型,请参见[资源共享概述](https://cloud.tencent.com/document/product/850/59489)
+        # @type Type: String
+        # @param Resources: 共享资源列表。最大10个。
+        # @type Resources: Array
+
+        attr_accessor :UnitId, :Area, :Type, :Resources
+
+        def initialize(unitid=nil, area=nil, type=nil, resources=nil)
+          @UnitId = unitid
+          @Area = area
+          @Type = type
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          @Type = params['Type']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              productresource_tmp = ProductResource.new
+              productresource_tmp.deserialize(i)
+              @Resources << productresource_tmp
+            end
+          end
+        end
+      end
+
+      # AddShareUnitResources返回参数结构体
+      class AddShareUnitResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # AddShareUnit返回参数结构体
+      class AddShareUnitResponse < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UnitId, :RequestId
+
+        def initialize(unitid=nil, requestid=nil)
+          @UnitId = unitid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 互信主体主要信息
       class AuthNode < TencentCloud::Common::AbstractModel
         # @param RelationId: 互信主体关系ID
@@ -723,6 +865,136 @@ module TencentCloud
 
       # DeleteOrganization返回参数结构体
       class DeleteOrganizationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteShareUnitMembers请求参数结构体
+      class DeleteShareUnitMembersRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Members: 成员列表。
+        # @type Members: Array
+
+        attr_accessor :UnitId, :Area, :Members
+
+        def initialize(unitid=nil, area=nil, members=nil)
+          @UnitId = unitid
+          @Area = area
+          @Members = members
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              sharemember_tmp = ShareMember.new
+              sharemember_tmp.deserialize(i)
+              @Members << sharemember_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteShareUnitMembers返回参数结构体
+      class DeleteShareUnitMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteShareUnit请求参数结构体
+      class DeleteShareUnitRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+
+        attr_accessor :UnitId
+
+        def initialize(unitid=nil)
+          @UnitId = unitid
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+        end
+      end
+
+      # DeleteShareUnitResources请求参数结构体
+      class DeleteShareUnitResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Type: 资源类型。支持共享的资源类型。
+        # @type Type: String
+        # @param Resources: 共享资源列表。最大10个。
+        # @type Resources: Array
+
+        attr_accessor :UnitId, :Area, :Type, :Resources
+
+        def initialize(unitid=nil, area=nil, type=nil, resources=nil)
+          @UnitId = unitid
+          @Area = area
+          @Type = type
+          @Resources = resources
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          @Type = params['Type']
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              shareresource_tmp = ShareResource.new
+              shareresource_tmp.deserialize(i)
+              @Resources << shareresource_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteShareUnitResources返回参数结构体
+      class DeleteShareUnitResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteShareUnit返回参数结构体
+      class DeleteShareUnitResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1501,6 +1773,245 @@ module TencentCloud
         end
       end
 
+      # DescribeShareAreas请求参数结构体
+      class DescribeShareAreasRequest < TencentCloud::Common::AbstractModel
+        # @param Lang: 国际站：en，国内站：zh
+        # @type Lang: String
+
+        attr_accessor :Lang
+
+        def initialize(lang=nil)
+          @Lang = lang
+        end
+
+        def deserialize(params)
+          @Lang = params['Lang']
+        end
+      end
+
+      # DescribeShareAreas返回参数结构体
+      class DescribeShareAreasResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :RequestId
+
+        def initialize(items=nil, requestid=nil)
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sharearea_tmp = ShareArea.new
+              sharearea_tmp.deserialize(i)
+              @Items << sharearea_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeShareUnitMembers请求参数结构体
+      class DescribeShareUnitMembersRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50。
+        # @type Limit: Integer
+        # @param SearchKey: 搜索关键字。支持成员uin搜索。
+        # @type SearchKey: String
+
+        attr_accessor :UnitId, :Area, :Offset, :Limit, :SearchKey
+
+        def initialize(unitid=nil, area=nil, offset=nil, limit=nil, searchkey=nil)
+          @UnitId = unitid
+          @Area = area
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # DescribeShareUnitMembers返回参数结构体
+      class DescribeShareUnitMembersResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Items: 共享单元成员列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              shareunitmember_tmp = ShareUnitMember.new
+              shareunitmember_tmp.deserialize(i)
+              @Items << shareunitmember_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeShareUnitResources请求参数结构体
+      class DescribeShareUnitResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50。
+        # @type Limit: Integer
+        # @param SearchKey: 搜索关键字。支持产品资源ID搜索。
+        # @type SearchKey: String
+        # @param Type: 共享资源类型。
+        # @type Type: String
+
+        attr_accessor :UnitId, :Area, :Offset, :Limit, :SearchKey, :Type
+
+        def initialize(unitid=nil, area=nil, offset=nil, limit=nil, searchkey=nil, type=nil)
+          @UnitId = unitid
+          @Area = area
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+          @Type = type
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Area = params['Area']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeShareUnitResources返回参数结构体
+      class DescribeShareUnitResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Items: 共享单元资源列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              shareunitresource_tmp = ShareUnitResource.new
+              shareunitresource_tmp.deserialize(i)
+              @Items << shareunitresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeShareUnits请求参数结构体
+      class DescribeShareUnitsRequest < TencentCloud::Common::AbstractModel
+        # @param Area: 共享单元地域。可通过接口DescribeShareAreas获取支持共享的地域。
+        # @type Area: String
+        # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50。
+        # @type Limit: Integer
+        # @param SearchKey: 搜索关键字。支持UnitId和Name搜索。
+        # @type SearchKey: String
+
+        attr_accessor :Area, :Offset, :Limit, :SearchKey
+
+        def initialize(area=nil, offset=nil, limit=nil, searchkey=nil)
+          @Area = area
+          @Offset = offset
+          @Limit = limit
+          @SearchKey = searchkey
+        end
+
+        def deserialize(params)
+          @Area = params['Area']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SearchKey = params['SearchKey']
+        end
+      end
+
+      # DescribeShareUnits返回参数结构体
+      class DescribeShareUnitsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Items: 共享单元列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              managershareunit_tmp = ManagerShareUnit.new
+              managershareunit_tmp.deserialize(i)
+              @Items << managershareunit_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 组织身份策略
       class IdentityPolicy < TencentCloud::Common::AbstractModel
         # @param PolicyId: CAM预设策略ID。PolicyType 为预设策略时有效且必选
@@ -1593,6 +2104,58 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 我的共享单元列表详情
+      class ManagerShareUnit < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Name: 共享单元名称。
+        # @type Name: String
+        # @param Uin: 共享单元管理员Uin。
+        # @type Uin: Integer
+        # @param OwnerUin: 共享单元管理员OwnerUin。
+        # @type OwnerUin: Integer
+        # @param Area: 共享单元地域。
+        # @type Area: String
+        # @param Description: 描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ShareResourceNum: 共享单元资源数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareResourceNum: Integer
+        # @param ShareMemberNum: 共享单元成员数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareMemberNum: Integer
+
+        attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum
+
+        def initialize(unitid=nil, name=nil, uin=nil, owneruin=nil, area=nil, description=nil, createtime=nil, shareresourcenum=nil, sharemembernum=nil)
+          @UnitId = unitid
+          @Name = name
+          @Uin = uin
+          @OwnerUin = owneruin
+          @Area = area
+          @Description = description
+          @CreateTime = createtime
+          @ShareResourceNum = shareresourcenum
+          @ShareMemberNum = sharemembernum
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Name = params['Name']
+          @Uin = params['Uin']
+          @OwnerUin = params['OwnerUin']
+          @Area = params['Area']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @ShareResourceNum = params['ShareResourceNum']
+          @ShareMemberNum = params['ShareMemberNum']
         end
       end
 
@@ -2165,6 +2728,29 @@ module TencentCloud
         end
       end
 
+      # 产品资源
+      class ProductResource < TencentCloud::Common::AbstractModel
+        # @param ProductResourceId: 产品资源ID。
+        # @type ProductResourceId: String
+        # @param ResourceGrantLast: 资源六段式最后一节
+        # @type ResourceGrantLast: String
+
+        attr_accessor :ProductResourceId, :ResourceGrantLast
+        extend Gem::Deprecate
+        deprecate :ResourceGrantLast, :none, 2024, 1
+        deprecate :ResourceGrantLast=, :none, 2024, 1
+
+        def initialize(productresourceid=nil, resourcegrantlast=nil)
+          @ProductResourceId = productresourceid
+          @ResourceGrantLast = resourcegrantlast
+        end
+
+        def deserialize(params)
+          @ProductResourceId = params['ProductResourceId']
+          @ResourceGrantLast = params['ResourceGrantLast']
+        end
+      end
+
       # QuitOrganization请求参数结构体
       class QuitOrganizationRequest < TencentCloud::Common::AbstractModel
         # @param OrgId: 企业组织ID
@@ -2194,6 +2780,135 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 共享地域
+      class ShareArea < TencentCloud::Common::AbstractModel
+        # @param Name: 地域名称。
+        # @type Name: String
+        # @param Area: 地域标识。
+        # @type Area: String
+        # @param AreaId: 地域ID。
+        # @type AreaId: Integer
+
+        attr_accessor :Name, :Area, :AreaId
+
+        def initialize(name=nil, area=nil, areaid=nil)
+          @Name = name
+          @Area = area
+          @AreaId = areaid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Area = params['Area']
+          @AreaId = params['AreaId']
+        end
+      end
+
+      # 共享成员信息
+      class ShareMember < TencentCloud::Common::AbstractModel
+        # @param ShareMemberUin: 共享成员Uin。
+        # @type ShareMemberUin: Integer
+
+        attr_accessor :ShareMemberUin
+
+        def initialize(sharememberuin=nil)
+          @ShareMemberUin = sharememberuin
+        end
+
+        def deserialize(params)
+          @ShareMemberUin = params['ShareMemberUin']
+        end
+      end
+
+      # 共享资源
+      class ShareResource < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 共享资源ID。
+        # @type ResourceId: String
+        # @param ProductResourceId: 产品资源ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductResourceId: String
+
+        attr_accessor :ResourceId, :ProductResourceId
+        extend Gem::Deprecate
+        deprecate :ResourceId, :none, 2024, 1
+        deprecate :ResourceId=, :none, 2024, 1
+
+        def initialize(resourceid=nil, productresourceid=nil)
+          @ResourceId = resourceid
+          @ProductResourceId = productresourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ProductResourceId = params['ProductResourceId']
+        end
+      end
+
+      # 共享单元成员
+      class ShareUnitMember < TencentCloud::Common::AbstractModel
+        # @param ShareMemberUin: 共享成员Uin。
+        # @type ShareMemberUin: Integer
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+
+        attr_accessor :ShareMemberUin, :CreateTime
+
+        def initialize(sharememberuin=nil, createtime=nil)
+          @ShareMemberUin = sharememberuin
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @ShareMemberUin = params['ShareMemberUin']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 共享单元资源
+      class ShareUnitResource < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 共享资源ID。
+        # @type ResourceId: String
+        # @param Type: 共享资源类型。
+        # @type Type: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ProductResourceId: 产品资源ID。
+        # @type ProductResourceId: String
+        # @param SharedMemberNum: 共享单元成员数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharedMemberNum: Integer
+        # @param SharedMemberUseNum: 使用中共享单元成员数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharedMemberUseNum: Integer
+        # @param ShareManagerUin: 共享管理员OwnerUin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShareManagerUin: Integer
+
+        attr_accessor :ResourceId, :Type, :CreateTime, :ProductResourceId, :SharedMemberNum, :SharedMemberUseNum, :ShareManagerUin
+
+        def initialize(resourceid=nil, type=nil, createtime=nil, productresourceid=nil, sharedmembernum=nil, sharedmemberusenum=nil, sharemanageruin=nil)
+          @ResourceId = resourceid
+          @Type = type
+          @CreateTime = createtime
+          @ProductResourceId = productresourceid
+          @SharedMemberNum = sharedmembernum
+          @SharedMemberUseNum = sharedmemberusenum
+          @ShareManagerUin = sharemanageruin
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @ProductResourceId = params['ProductResourceId']
+          @SharedMemberNum = params['SharedMemberNum']
+          @SharedMemberUseNum = params['SharedMemberUseNum']
+          @ShareManagerUin = params['ShareManagerUin']
         end
       end
 
@@ -2375,6 +3090,46 @@ module TencentCloud
 
       # UpdateOrganizationNode返回参数结构体
       class UpdateOrganizationNodeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateShareUnit请求参数结构体
+      class UpdateShareUnitRequest < TencentCloud::Common::AbstractModel
+        # @param UnitId: 共享单元ID。
+        # @type UnitId: String
+        # @param Name: 共享单元名称。仅支持大小写字母、数字、-、以及_的组合，3-128个字符。
+        # @type Name: String
+        # @param Description: 共享单元描述。最大128个字符。
+        # @type Description: String
+
+        attr_accessor :UnitId, :Name, :Description
+
+        def initialize(unitid=nil, name=nil, description=nil)
+          @UnitId = unitid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UnitId = params['UnitId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateShareUnit返回参数结构体
+      class UpdateShareUnitResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

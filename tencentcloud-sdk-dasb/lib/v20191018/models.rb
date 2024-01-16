@@ -1468,10 +1468,12 @@ module TencentCloud
         # @type VpcCidrBlock: String
         # @param SubnetName: 需要开通服务的子网名称
         # @type SubnetName: String
+        # @param CdcClusterId: 需要开通实例所属的CDC集群ID
+        # @type CdcClusterId: String
 
-        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName
+        attr_accessor :ResourceId, :ApCode, :Zone, :VpcId, :SubnetId, :CidrBlock, :VpcName, :VpcCidrBlock, :SubnetName, :CdcClusterId
 
-        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil)
+        def initialize(resourceid=nil, apcode=nil, zone=nil, vpcid=nil, subnetid=nil, cidrblock=nil, vpcname=nil, vpccidrblock=nil, subnetname=nil, cdcclusterid=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @Zone = zone
@@ -1481,6 +1483,7 @@ module TencentCloud
           @VpcName = vpcname
           @VpcCidrBlock = vpccidrblock
           @SubnetName = subnetname
+          @CdcClusterId = cdcclusterid
         end
 
         def deserialize(params)
@@ -1493,6 +1496,7 @@ module TencentCloud
           @VpcName = params['VpcName']
           @VpcCidrBlock = params['VpcCidrBlock']
           @SubnetName = params['SubnetName']
+          @CdcClusterId = params['CdcClusterId']
         end
       end
 

@@ -56,8 +56,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2023, 12
-        deprecate :BTime=, :none, 2023, 12
+        deprecate :BTime, :none, 2024, 1
+        deprecate :BTime=, :none, 2024, 1
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -4775,10 +4775,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2023, 12
-        deprecate :VtsMin=, :none, 2023, 12
-        deprecate :VtsMax, :none, 2023, 12
-        deprecate :VtsMax=, :none, 2023, 12
+        deprecate :VtsMin, :none, 2024, 1
+        deprecate :VtsMin=, :none, 2024, 1
+        deprecate :VtsMax, :none, 2024, 1
+        deprecate :VtsMax=, :none, 2024, 1
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -4874,10 +4874,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2023, 12
-        deprecate :VtsMin=, :none, 2023, 12
-        deprecate :VtsMax, :none, 2023, 12
-        deprecate :VtsMax=, :none, 2023, 12
+        deprecate :VtsMin, :none, 2024, 1
+        deprecate :VtsMin=, :none, 2024, 1
+        deprecate :VtsMax, :none, 2024, 1
+        deprecate :VtsMax=, :none, 2024, 1
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain

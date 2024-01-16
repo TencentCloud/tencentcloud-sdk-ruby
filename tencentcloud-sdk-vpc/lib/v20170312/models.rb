@@ -11225,17 +11225,20 @@ module TencentCloud
         # @type SubnetId: String
         # @param IpAddresses: 查询是否占用的ip列表，ip需要在vpc或子网内。最多允许一次查询100个IP。
         # @type IpAddresses: Array
+        # @param Filters: 过滤条件，不支持同时指定IpAddresses和Filters参数。 支持的过滤条件如下： <li>ip-addresses：IP地址。</li> <li>resource-id：资源ID。</li>
+        # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
-        attr_accessor :VpcId, :SubnetId, :IpAddresses, :Offset, :Limit
+        attr_accessor :VpcId, :SubnetId, :IpAddresses, :Filters, :Offset, :Limit
 
-        def initialize(vpcid=nil, subnetid=nil, ipaddresses=nil, offset=nil, limit=nil)
+        def initialize(vpcid=nil, subnetid=nil, ipaddresses=nil, filters=nil, offset=nil, limit=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @IpAddresses = ipaddresses
+          @Filters = filters
           @Offset = offset
           @Limit = limit
         end
@@ -11244,6 +11247,14 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @IpAddresses = params['IpAddresses']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
