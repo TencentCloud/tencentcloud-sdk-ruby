@@ -1385,16 +1385,19 @@ module TencentCloud
         # @type EndTime: Integer
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :EventId, :StartTime, :EndTime, :UserId
+        attr_accessor :ProductId, :DeviceName, :EventId, :StartTime, :EndTime, :UserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, eventid=nil, starttime=nil, endtime=nil, userid=nil)
+        def initialize(productid=nil, devicename=nil, eventid=nil, starttime=nil, endtime=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @EventId = eventid
           @StartTime = starttime
           @EndTime = endtime
           @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -1404,6 +1407,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -2327,16 +2331,19 @@ module TencentCloud
         # 1: 已过期
         # 2:生效
         # @type Status: Integer
+        # @param ChannelId: 通道id
+        # @type ChannelId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StartTime, :ExpireTime, :PackageId, :Status, :RequestId
+        attr_accessor :StartTime, :ExpireTime, :PackageId, :Status, :ChannelId, :RequestId
 
-        def initialize(starttime=nil, expiretime=nil, packageid=nil, status=nil, requestid=nil)
+        def initialize(starttime=nil, expiretime=nil, packageid=nil, status=nil, channelid=nil, requestid=nil)
           @StartTime = starttime
           @ExpireTime = expiretime
           @PackageId = packageid
           @Status = status
+          @ChannelId = channelid
           @RequestId = requestid
         end
 
@@ -2345,6 +2352,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @PackageId = params['PackageId']
           @Status = params['Status']
+          @ChannelId = params['ChannelId']
           @RequestId = params['RequestId']
         end
       end
@@ -5900,19 +5908,23 @@ module TencentCloud
         # @type DeviceName: String
         # @param UserId: 用户ID
         # @type UserId: String
+        # @param ChannelId: 通道ID
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :UserId
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, userid=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @UserId = userid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @UserId = params['UserId']
+          @ChannelId = params['ChannelId']
         end
       end
 

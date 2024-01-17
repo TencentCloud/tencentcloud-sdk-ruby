@@ -4230,6 +4230,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSavingPlanResourceInfo请求参数结构体
+      class DescribeSavingPlanResourceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 数量，最大值为100
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param CreateStartDate: 购买开始时间，格式yyyy-MM-dd
+        # @type CreateStartDate: String
+        # @param CreateEndDate: 购买结束时间，格式yyyy-MM-dd
+        # @type CreateEndDate: String
+
+        attr_accessor :Limit, :Offset, :CreateStartDate, :CreateEndDate
+
+        def initialize(limit=nil, offset=nil, createstartdate=nil, createenddate=nil)
+          @Limit = limit
+          @Offset = offset
+          @CreateStartDate = createstartdate
+          @CreateEndDate = createenddate
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @CreateStartDate = params['CreateStartDate']
+          @CreateEndDate = params['CreateEndDate']
+        end
+      end
+
+      # DescribeSavingPlanResourceInfo返回参数结构体
+      class DescribeSavingPlanResourceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 记录数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RequestId
+
+        def initialize(total=nil, requestid=nil)
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSavingPlanUsage请求参数结构体
       class DescribeSavingPlanUsageRequest < TencentCloud::Common::AbstractModel
         # @param StartDate: 开始时间，格式yyyy-MM-dd 注：查询范围请勿超过6个月

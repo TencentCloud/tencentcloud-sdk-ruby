@@ -705,6 +705,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询节省计划详情
+
+        # @param request: Request instance for DescribeSavingPlanResourceInfo.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanResourceInfoRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeSavingPlanResourceInfoResponse`
+        def DescribeSavingPlanResourceInfo(request)
+          body = send_request('DescribeSavingPlanResourceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSavingPlanResourceInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查用当前用户明细节省计划查询时段内的使用情况
 
         # @param request: Request instance for DescribeSavingPlanUsage.

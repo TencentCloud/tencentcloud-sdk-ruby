@@ -1008,12 +1008,16 @@ module TencentCloud
 
 
         # 注：`控件ID可以在一个PDF中不可重复`
+
+        # <a href="https://qcloudimg.tencent-cloud.cn/raw/93178569d07b4d7dbbe0967ae679e35c.png" target="_blank">点击查看ComponentId在模板编辑页面的位置</a>
         # @type ComponentId: String
         # @param ComponentName: **在绝对定位方式方式下**，ComponentName为控件名，长度不能超过20，只能由中文、字母、数字和下划线组成，可以在后续的操作中使用该名称来引用控件。
 
         # **在表单域定位方式下**，ComponentName不仅为控件名，也是表单域名称。
 
         # 注：`控件名可以在一个PDF中可以重复`
+
+        # <a href="https://qcloudimg.tencent-cloud.cn/raw/93178569d07b4d7dbbe0967ae679e35c.png" target="_blank">点击查看ComponentName在模板页面的位置</a>
         # @type ComponentName: String
         # @param ComponentRequired: 如果是<b>填写控件</b>，ComponentRequired表示在填写页面此控件是否必填
         # <ul><li>false（默认）：可以不填写</li>
@@ -2059,6 +2063,9 @@ module TencentCloud
         # 发起方：腾讯公司(张三)
         # 签署方：李四
 
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/628f0928cac15d2e3bfa6088f53f5998.png)
+
         # @type CustomShowMap: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -2671,7 +2678,7 @@ module TencentCloud
         # <li> **true**：无序签署, 本合同多个参与人没有先后签署限制</li></ul>
         # 注：`请和模板中的配置保持一致`
         # @type Unordered: Boolean
-        # @param CustomShowMap: 您可以自定义腾讯电子签小程序合同列表页展示的合同内容模板，模板中支持以下变量：
+        # @param CustomShowMap: 您可以自定义**腾讯电子签小程序合同列表页**展示的合同内容模板，模板中支持以下变量：
         # <ul><li>{合同名称}   </li>
         # <li>{发起方企业} </li>
         # <li>{发起方姓名} </li>
@@ -2684,6 +2691,8 @@ module TencentCloud
         # 合同名称：租房合同
         # 发起方：腾讯公司(张三)
         # 签署方：李四
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/628f0928cac15d2e3bfa6088f53f5998.png)
 
         # @type CustomShowMap: String
         # @param NeedSignReview: 发起方企业的签署人进行签署操作前，是否需要企业内部走审批流程，取值如下：

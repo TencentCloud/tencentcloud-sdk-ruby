@@ -2710,19 +2710,24 @@ module TencentCloud
         # @param BaselineId: 基线Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BaselineId: Integer
+        # @param Code: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: String
 
-        attr_accessor :Success, :Message, :BaselineId
+        attr_accessor :Success, :Message, :BaselineId, :Code
 
-        def initialize(success=nil, message=nil, baselineid=nil)
+        def initialize(success=nil, message=nil, baselineid=nil, code=nil)
           @Success = success
           @Message = message
           @BaselineId = baselineid
+          @Code = code
         end
 
         def deserialize(params)
           @Success = params['Success']
           @Message = params['Message']
           @BaselineId = params['BaselineId']
+          @Code = params['Code']
         end
       end
 
@@ -6322,19 +6327,39 @@ module TencentCloud
         # @type FunctionId: String
         # @param ProjectId: 项目ID，必须填
         # @type ProjectId: String
+        # @param FunctionName: 函数名称
+        # @type FunctionName: String
+        # @param FunctionType: 函数类型，HIVE，SPARK，DLC，CDW_POSTGRESQL
+        # @type FunctionType: String
+        # @param DatabaseName: 数据库名
+        # @type DatabaseName: String
+        # @param SchemaName: 模式名
+        # @type SchemaName: String
+        # @param CommandFormat: 函数命令格式
+        # @type CommandFormat: String
 
-        attr_accessor :ClusterIdentifier, :FunctionId, :ProjectId
+        attr_accessor :ClusterIdentifier, :FunctionId, :ProjectId, :FunctionName, :FunctionType, :DatabaseName, :SchemaName, :CommandFormat
 
-        def initialize(clusteridentifier=nil, functionid=nil, projectid=nil)
+        def initialize(clusteridentifier=nil, functionid=nil, projectid=nil, functionname=nil, functiontype=nil, databasename=nil, schemaname=nil, commandformat=nil)
           @ClusterIdentifier = clusteridentifier
           @FunctionId = functionid
           @ProjectId = projectid
+          @FunctionName = functionname
+          @FunctionType = functiontype
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @CommandFormat = commandformat
         end
 
         def deserialize(params)
           @ClusterIdentifier = params['ClusterIdentifier']
           @FunctionId = params['FunctionId']
           @ProjectId = params['ProjectId']
+          @FunctionName = params['FunctionName']
+          @FunctionType = params['FunctionType']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @CommandFormat = params['CommandFormat']
         end
       end
 
@@ -21540,10 +21565,13 @@ module TencentCloud
         # @type ByteSpeed: Float
         # @param TotalErrorRecords: 脏数据条数
         # @type TotalErrorRecords: Integer
+        # @param WaitWriterTime: 等待数据发送到下游的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitWriterTime: Float
 
-        attr_accessor :NodeName, :DataSource, :TotalReadRecords, :TotalReadBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords
+        attr_accessor :NodeName, :DataSource, :TotalReadRecords, :TotalReadBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords, :WaitWriterTime
 
-        def initialize(nodename=nil, datasource=nil, totalreadrecords=nil, totalreadbytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil)
+        def initialize(nodename=nil, datasource=nil, totalreadrecords=nil, totalreadbytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil, waitwritertime=nil)
           @NodeName = nodename
           @DataSource = datasource
           @TotalReadRecords = totalreadrecords
@@ -21551,6 +21579,7 @@ module TencentCloud
           @RecordSpeed = recordspeed
           @ByteSpeed = bytespeed
           @TotalErrorRecords = totalerrorrecords
+          @WaitWriterTime = waitwritertime
         end
 
         def deserialize(params)
@@ -21561,6 +21590,7 @@ module TencentCloud
           @RecordSpeed = params['RecordSpeed']
           @ByteSpeed = params['ByteSpeed']
           @TotalErrorRecords = params['TotalErrorRecords']
+          @WaitWriterTime = params['WaitWriterTime']
         end
       end
 
@@ -21636,10 +21666,13 @@ module TencentCloud
         # @type ByteSpeed: Float
         # @param TotalErrorRecords: 脏数据条数
         # @type TotalErrorRecords: Integer
+        # @param WaitReaderTime: 等待上游数据发送过来的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitReaderTime: Float
 
-        attr_accessor :NodeName, :DataSource, :TotalWriteRecords, :TotalWriteBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords
+        attr_accessor :NodeName, :DataSource, :TotalWriteRecords, :TotalWriteBytes, :RecordSpeed, :ByteSpeed, :TotalErrorRecords, :WaitReaderTime
 
-        def initialize(nodename=nil, datasource=nil, totalwriterecords=nil, totalwritebytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil)
+        def initialize(nodename=nil, datasource=nil, totalwriterecords=nil, totalwritebytes=nil, recordspeed=nil, bytespeed=nil, totalerrorrecords=nil, waitreadertime=nil)
           @NodeName = nodename
           @DataSource = datasource
           @TotalWriteRecords = totalwriterecords
@@ -21647,6 +21680,7 @@ module TencentCloud
           @RecordSpeed = recordspeed
           @ByteSpeed = bytespeed
           @TotalErrorRecords = totalerrorrecords
+          @WaitReaderTime = waitreadertime
         end
 
         def deserialize(params)
@@ -21657,6 +21691,7 @@ module TencentCloud
           @RecordSpeed = params['RecordSpeed']
           @ByteSpeed = params['ByteSpeed']
           @TotalErrorRecords = params['TotalErrorRecords']
+          @WaitReaderTime = params['WaitReaderTime']
         end
       end
 
@@ -22264,10 +22299,16 @@ module TencentCloud
         # @param InstanceVersion: 版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceVersion: Integer
+        # @param ArrangeSpaceTaskId: 离线任务导入到编排空间的任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArrangeSpaceTaskId: String
+        # @param OfflineTaskStatus: 离线任务状态区分1.未提交2.已提交3.已导出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTaskStatus: Integer
 
-        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList, :SwitchResource, :ReadPhase, :InstanceVersion
+        attr_accessor :TaskName, :Description, :SyncType, :TaskType, :WorkflowId, :TaskId, :ScheduleTaskId, :TaskGroupId, :ProjectId, :CreatorUin, :OperatorUin, :OwnerUin, :AppId, :Status, :Nodes, :ExecutorId, :Config, :ExtConfig, :ExecuteContext, :Mappings, :TaskMode, :Incharge, :OfflineTaskAddEntity, :ExecutorGroupName, :InLongManagerUrl, :InLongStreamId, :InLongManagerVersion, :DataProxyUrl, :Submit, :InputDatasourceType, :OutputDatasourceType, :NumRecordsIn, :NumRecordsOut, :ReaderDelay, :NumRestarts, :CreateTime, :UpdateTime, :LastRunTime, :StopTime, :HasVersion, :Locked, :Locker, :RunningCu, :TaskAlarmRegularList, :SwitchResource, :ReadPhase, :InstanceVersion, :ArrangeSpaceTaskId, :OfflineTaskStatus
 
-        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil, switchresource=nil, readphase=nil, instanceversion=nil)
+        def initialize(taskname=nil, description=nil, synctype=nil, tasktype=nil, workflowid=nil, taskid=nil, scheduletaskid=nil, taskgroupid=nil, projectid=nil, creatoruin=nil, operatoruin=nil, owneruin=nil, appid=nil, status=nil, nodes=nil, executorid=nil, config=nil, extconfig=nil, executecontext=nil, mappings=nil, taskmode=nil, incharge=nil, offlinetaskaddentity=nil, executorgroupname=nil, inlongmanagerurl=nil, inlongstreamid=nil, inlongmanagerversion=nil, dataproxyurl=nil, submit=nil, inputdatasourcetype=nil, outputdatasourcetype=nil, numrecordsin=nil, numrecordsout=nil, readerdelay=nil, numrestarts=nil, createtime=nil, updatetime=nil, lastruntime=nil, stoptime=nil, hasversion=nil, locked=nil, locker=nil, runningcu=nil, taskalarmregularlist=nil, switchresource=nil, readphase=nil, instanceversion=nil, arrangespacetaskid=nil, offlinetaskstatus=nil)
           @TaskName = taskname
           @Description = description
           @SyncType = synctype
@@ -22315,6 +22356,8 @@ module TencentCloud
           @SwitchResource = switchresource
           @ReadPhase = readphase
           @InstanceVersion = instanceversion
+          @ArrangeSpaceTaskId = arrangespacetaskid
+          @OfflineTaskStatus = offlinetaskstatus
         end
 
         def deserialize(params)
@@ -22403,6 +22446,8 @@ module TencentCloud
           @SwitchResource = params['SwitchResource']
           @ReadPhase = params['ReadPhase']
           @InstanceVersion = params['InstanceVersion']
+          @ArrangeSpaceTaskId = params['ArrangeSpaceTaskId']
+          @OfflineTaskStatus = params['OfflineTaskStatus']
         end
       end
 
@@ -27052,10 +27097,34 @@ module TencentCloud
         # @param SourceEngineTypes: 源端对应的引擎类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceEngineTypes: Array
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TableOwnerName: 表负责人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerName: String
+        # @param ExecStrategy: 执行策略信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecStrategy: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupExecStrategy`
+        # @param Subscription: 订阅信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subscription: :class:`Tencentcloud::Wedata.v20210820.models.RuleGroupSubscribe`
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DatasourceId: 数据源 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param DatabaseId: 数据库 id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param MonitorStatus: 监控是否开启.0false,1true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorStatus: Integer
 
-        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes
+        attr_accessor :RuleId, :RuleGroupId, :TableId, :Name, :Type, :RuleTemplateId, :RuleTemplateContent, :QualityDim, :SourceObjectType, :SourceObjectDataType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :CompareRule, :AlarmLevel, :Description, :Operator, :TargetDatabaseId, :TargetDatabaseName, :TargetTableId, :TargetTableName, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :MultiSourceFlag, :WhereFlag, :TemplateSql, :SubQualityDim, :TargetObjectType, :TargetObjectDataType, :TargetObjectDataTypeName, :TargetObjectValue, :SourceEngineTypes, :TableName, :TableOwnerName, :ExecStrategy, :Subscription, :CreateTime, :DatasourceId, :DatabaseId, :MonitorStatus
 
-        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil)
+        def initialize(ruleid=nil, rulegroupid=nil, tableid=nil, name=nil, type=nil, ruletemplateid=nil, ruletemplatecontent=nil, qualitydim=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, comparerule=nil, alarmlevel=nil, description=nil, operator=nil, targetdatabaseid=nil, targetdatabasename=nil, targettableid=nil, targettablename=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, multisourceflag=nil, whereflag=nil, templatesql=nil, subqualitydim=nil, targetobjecttype=nil, targetobjectdatatype=nil, targetobjectdatatypename=nil, targetobjectvalue=nil, sourceenginetypes=nil, tablename=nil, tableownername=nil, execstrategy=nil, subscription=nil, createtime=nil, datasourceid=nil, databaseid=nil, monitorstatus=nil)
           @RuleId = ruleid
           @RuleGroupId = rulegroupid
           @TableId = tableid
@@ -27091,6 +27160,14 @@ module TencentCloud
           @TargetObjectDataTypeName = targetobjectdatatypename
           @TargetObjectValue = targetobjectvalue
           @SourceEngineTypes = sourceenginetypes
+          @TableName = tablename
+          @TableOwnerName = tableownername
+          @ExecStrategy = execstrategy
+          @Subscription = subscription
+          @CreateTime = createtime
+          @DatasourceId = datasourceid
+          @DatabaseId = databaseid
+          @MonitorStatus = monitorstatus
         end
 
         def deserialize(params)
@@ -27135,6 +27212,20 @@ module TencentCloud
           @TargetObjectDataTypeName = params['TargetObjectDataTypeName']
           @TargetObjectValue = params['TargetObjectValue']
           @SourceEngineTypes = params['SourceEngineTypes']
+          @TableName = params['TableName']
+          @TableOwnerName = params['TableOwnerName']
+          unless params['ExecStrategy'].nil?
+            @ExecStrategy = RuleGroupExecStrategy.new
+            @ExecStrategy.deserialize(params['ExecStrategy'])
+          end
+          unless params['Subscription'].nil?
+            @Subscription = RuleGroupSubscribe.new
+            @Subscription.deserialize(params['Subscription'])
+          end
+          @CreateTime = params['CreateTime']
+          @DatasourceId = params['DatasourceId']
+          @DatabaseId = params['DatabaseId']
+          @MonitorStatus = params['MonitorStatus']
         end
       end
 
@@ -27928,10 +28019,16 @@ module TencentCloud
         # @param ExecPlan: 执行计划
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecPlan: String
+        # @param RuleId: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
 
-        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan
+        attr_accessor :RuleGroupId, :MonitorType, :ExecQueue, :ExecutorGroupId, :ExecutorGroupName, :Tasks, :StartTime, :EndTime, :CycleType, :DelayTime, :CycleStep, :TaskAction, :ExecEngineType, :ExecPlan, :RuleId, :RuleName
 
-        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil)
+        def initialize(rulegroupid=nil, monitortype=nil, execqueue=nil, executorgroupid=nil, executorgroupname=nil, tasks=nil, starttime=nil, endtime=nil, cycletype=nil, delaytime=nil, cyclestep=nil, taskaction=nil, execenginetype=nil, execplan=nil, ruleid=nil, rulename=nil)
           @RuleGroupId = rulegroupid
           @MonitorType = monitortype
           @ExecQueue = execqueue
@@ -27946,6 +28043,8 @@ module TencentCloud
           @TaskAction = taskaction
           @ExecEngineType = execenginetype
           @ExecPlan = execplan
+          @RuleId = ruleid
+          @RuleName = rulename
         end
 
         def deserialize(params)
@@ -27970,6 +28069,8 @@ module TencentCloud
           @TaskAction = params['TaskAction']
           @ExecEngineType = params['ExecEngineType']
           @ExecPlan = params['ExecPlan']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
         end
       end
 
@@ -28169,14 +28270,22 @@ module TencentCloud
         # @param WebHooks: 群机器人配置的webhook信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WebHooks: Array
+        # @param RuleId: 规则Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+        # @param RuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
 
-        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :WebHooks
+        attr_accessor :RuleGroupId, :Receivers, :SubscribeType, :WebHooks, :RuleId, :RuleName
 
-        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, webhooks=nil)
+        def initialize(rulegroupid=nil, receivers=nil, subscribetype=nil, webhooks=nil, ruleid=nil, rulename=nil)
           @RuleGroupId = rulegroupid
           @Receivers = receivers
           @SubscribeType = subscribetype
           @WebHooks = webhooks
+          @RuleId = ruleid
+          @RuleName = rulename
         end
 
         def deserialize(params)
@@ -28198,6 +28307,8 @@ module TencentCloud
               @WebHooks << subscribewebhook_tmp
             end
           end
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
         end
       end
 
@@ -28452,10 +28563,16 @@ module TencentCloud
         # @param SubQualityDim: 模版子维度，0.父维度类型,1.一致性: 枚举范围一致性,2.一致性：数值范围一致性,3.一致性：字段数据相关性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubQualityDim: Integer
+        # @param ResolvedSqlExpression: sql表达式解析对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResolvedSqlExpression: :class:`Tencentcloud::Wedata.v20210820.models.SqlExpression`
+        # @param DatasourceTypes: 支持的数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceTypes: Array
 
-        attr_accessor :RuleTemplateId, :Name, :Description, :Type, :SourceObjectType, :SourceObjectDataType, :SourceContent, :SourceEngineTypes, :QualityDim, :CompareType, :CitationCount, :UserId, :UserName, :UpdateTime, :WhereFlag, :MultiSourceFlag, :SqlExpression, :SubQualityDim
+        attr_accessor :RuleTemplateId, :Name, :Description, :Type, :SourceObjectType, :SourceObjectDataType, :SourceContent, :SourceEngineTypes, :QualityDim, :CompareType, :CitationCount, :UserId, :UserName, :UpdateTime, :WhereFlag, :MultiSourceFlag, :SqlExpression, :SubQualityDim, :ResolvedSqlExpression, :DatasourceTypes
 
-        def initialize(ruletemplateid=nil, name=nil, description=nil, type=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourcecontent=nil, sourceenginetypes=nil, qualitydim=nil, comparetype=nil, citationcount=nil, userid=nil, username=nil, updatetime=nil, whereflag=nil, multisourceflag=nil, sqlexpression=nil, subqualitydim=nil)
+        def initialize(ruletemplateid=nil, name=nil, description=nil, type=nil, sourceobjecttype=nil, sourceobjectdatatype=nil, sourcecontent=nil, sourceenginetypes=nil, qualitydim=nil, comparetype=nil, citationcount=nil, userid=nil, username=nil, updatetime=nil, whereflag=nil, multisourceflag=nil, sqlexpression=nil, subqualitydim=nil, resolvedsqlexpression=nil, datasourcetypes=nil)
           @RuleTemplateId = ruletemplateid
           @Name = name
           @Description = description
@@ -28474,6 +28591,8 @@ module TencentCloud
           @MultiSourceFlag = multisourceflag
           @SqlExpression = sqlexpression
           @SubQualityDim = subqualitydim
+          @ResolvedSqlExpression = resolvedsqlexpression
+          @DatasourceTypes = datasourcetypes
         end
 
         def deserialize(params)
@@ -28495,6 +28614,11 @@ module TencentCloud
           @MultiSourceFlag = params['MultiSourceFlag']
           @SqlExpression = params['SqlExpression']
           @SubQualityDim = params['SubQualityDim']
+          unless params['ResolvedSqlExpression'].nil?
+            @ResolvedSqlExpression = SqlExpression.new
+            @ResolvedSqlExpression.deserialize(params['ResolvedSqlExpression'])
+          end
+          @DatasourceTypes = params['DatasourceTypes']
         end
       end
 
@@ -29980,6 +30104,57 @@ module TencentCloud
         def deserialize(params)
           @Time = params['Time']
           @Speed = params['Speed']
+        end
+      end
+
+      # 数据质量自定义规则时的sql表达式解析对象
+      class SqlExpression < TencentCloud::Common::AbstractModel
+        # @param TableExpressions: sql表达式表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableExpressions: Array
+        # @param ParamExpressions: sql表达式字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamExpressions: Array
+
+        attr_accessor :TableExpressions, :ParamExpressions
+
+        def initialize(tableexpressions=nil, paramexpressions=nil)
+          @TableExpressions = tableexpressions
+          @ParamExpressions = paramexpressions
+        end
+
+        def deserialize(params)
+          unless params['TableExpressions'].nil?
+            @TableExpressions = []
+            params['TableExpressions'].each do |i|
+              sqlexpressiontable_tmp = SqlExpressionTable.new
+              sqlexpressiontable_tmp.deserialize(i)
+              @TableExpressions << sqlexpressiontable_tmp
+            end
+          end
+          @ParamExpressions = params['ParamExpressions']
+        end
+      end
+
+      # 数据质量自定义规则时的sql表达式解析表对象
+      class SqlExpressionTable < TencentCloud::Common::AbstractModel
+        # @param TableExpression: sql表达式表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableExpression: String
+        # @param ColumnExpression: sql表达式字段名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnExpression: Array
+
+        attr_accessor :TableExpression, :ColumnExpression
+
+        def initialize(tableexpression=nil, columnexpression=nil)
+          @TableExpression = tableexpression
+          @ColumnExpression = columnexpression
+        end
+
+        def deserialize(params)
+          @TableExpression = params['TableExpression']
+          @ColumnExpression = params['ColumnExpression']
         end
       end
 

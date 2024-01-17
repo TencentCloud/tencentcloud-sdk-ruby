@@ -228,9 +228,9 @@ module TencentCloud
         # @param Name: 告警通知模板名称。
         # @type Name: String
         # @param Type: 告警模板的类型。可选值：
-        # <br><li> Trigger - 告警触发
-        # <br><li> Recovery - 告警恢复
-        # <br><li> All - 告警触发和告警恢复
+        # <br><li> Trigger - 告警触发</li>
+        # <br><li> Recovery - 告警恢复</li>
+        # <br><li> All - 告警触发和告警恢复</li>
         # @type Type: String
         # @param NoticeReceivers: 告警通知模板接收者信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1393,9 +1393,9 @@ module TencentCloud
         # @param Name: 通知渠道组名称。
         # @type Name: String
         # @param Type: 通知类型。可选值：
-        # <li> Trigger - 告警触发
-        # <li> Recovery - 告警恢复
-        # <li> All - 告警触发和告警恢复
+        # <li> Trigger - 告警触发 </li>
+        # <li> Recovery - 告警恢复</li>
+        # <li> All - 告警触发和告警恢复</li>
         # @type Type: String
         # @param NoticeReceivers: 通知接收对象。
         # @type NoticeReceivers: Array
@@ -3464,25 +3464,25 @@ module TencentCloud
         # @param Filters: <li> name
         # 按照【通知渠道组名称】进行过滤。
         # 类型：String
-        # 必选：否
+        # 必选：否</li>
         # <li> alarmNoticeId
         # 按照【通知渠道组ID】进行过滤。
         # 类型：String
-        # 必选：否
+        # 必选：否</li>
         # <li> uid
         # 按照【接收用户ID】进行过滤。
         # 类型：String
-        # 必选：否
+        # 必选：否</li>
         # <li> groupId
         # 按照【接收用户组ID】进行过滤。
         # 类型：String
-        # 必选：否
+        # 必选：否</li>
 
         # <li> deliverFlag
         # 按照【投递状态】进行过滤。
         # 类型：String
         # 必选：否
-        # 可选值： "1":未启用,  "2": 已启用, "3":投递异常
+        # 可选值： "1":未启用,  "2": 已启用, "3":投递异常</li>
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为5。
         # @type Filters: Array
@@ -6511,9 +6511,9 @@ module TencentCloud
         # @param Name: 通知渠道组名称。
         # @type Name: String
         # @param Type: 通知类型。可选值：
-        # <li> Trigger - 告警触发
-        # <li> Recovery - 告警恢复
-        # <li> All - 告警触发和告警恢复
+        # <li> Trigger - 告警触发</li>
+        # <li> Recovery - 告警恢复</li>
+        # <li> All - 告警触发和告警恢复</li>
         # @type Type: String
         # @param NoticeReceivers: 通知接收对象。
         # @type NoticeReceivers: Array

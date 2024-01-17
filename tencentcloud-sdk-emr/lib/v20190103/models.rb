@@ -602,10 +602,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2023, 12
-        deprecate :Ftitle=, :none, 2023, 12
-        deprecate :Config, :none, 2023, 12
-        deprecate :Config=, :none, 2023, 12
+        deprecate :Ftitle, :none, 2024, 1
+        deprecate :Ftitle=, :none, 2024, 1
+        deprecate :Config, :none, 2024, 1
+        deprecate :Config=, :none, 2024, 1
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -1895,6 +1895,70 @@ module TencentCloud
               impalaquery_tmp = ImpalaQuery.new
               impalaquery_tmp.deserialize(i)
               @Results << impalaquery_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInsightList请求参数结构体
+      class DescribeInsightListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 获取的洞察结果开始时间，此时间针对对App或者Hive查询的开始时间的过滤
+        # @type StartTime: Integer
+        # @param EndTime: 获取的洞察结果结束时间，此时间针对对App或者Hive查询的开始时间的过滤
+        # @type EndTime: Integer
+        # @param PageSize: 分页查询时的分页大小，最小1，最大100
+        # @type PageSize: Integer
+        # @param Page: 分页查询时的页号，从1开始
+        # @type Page: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageSize = pagesize
+          @Page = page
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageSize = params['PageSize']
+          @Page = params['Page']
+        end
+      end
+
+      # DescribeInsightList返回参数结构体
+      class DescribeInsightListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数，分页查询时使用
+        # @type TotalCount: Integer
+        # @param ResultList: 洞察结果数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ResultList, :RequestId
+
+        def initialize(totalcount=nil, resultlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              insightresult_tmp = InsightResult.new
+              insightresult_tmp.deserialize(i)
+              @ResultList << insightresult_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3736,6 +3800,106 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 洞察结果项
+      class InsightResult < TencentCloud::Common::AbstractModel
+        # @param ID: 当Type为HIVE时，是Hive查询ID，当Type为MAPREDUCE，SPARK，TEZ时则是YarnAppID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Type: 洞察应用的类型，HIVE,SPARK,MAPREDUCE,TEZ
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param RuleID: 洞察规则ID
+        # HIVE-ScanManyMeta:元数据扫描过多
+        # HIVE-ScanManyPartition:大表扫描
+        # HIVE-SlowCompile:编译耗时过长
+        # HIVE-UnSuitableConfig:不合理参数
+        # MAPREDUCE-MapperDataSkew:Map数据倾斜
+        # MAPREDUCE-MapperMemWaste:MapMemory资源浪费
+        # MAPREDUCE-MapperSlowTask:Map慢Task
+        # MAPREDUCE-MapperTaskGC:MapperTaskGC
+        # MAPREDUCE-MemExceeded:峰值内存超限
+        # MAPREDUCE-ReducerDataSkew:Reduce数据倾斜
+        # MAPREDUCE-ReducerMemWaste:ReduceMemory资源浪费
+        # MAPREDUCE-ReducerSlowTask:Reduce慢Task
+        # MAPREDUCE-ReducerTaskGC:ReducerTaskGC
+        # MAPREDUCE-SchedulingDelay:调度延迟
+        # SPARK-CpuWaste:CPU资源浪费
+        # SPARK-DataSkew:数据倾斜
+        # SPARK-ExecutorGC:ExecutorGC
+        # SPARK-MemExceeded:峰值内存超限
+        # SPARK-MemWaste:Memory资源浪费
+        # SPARK-ScheduleOverhead:ScheduleOverhead
+        # SPARK-ScheduleSkew:调度倾斜
+        # SPARK-SlowTask:慢Task
+        # TEZ-DataSkew:数据倾斜
+        # TEZ-MapperDataSkew:Map数据倾斜
+        # TEZ-ReducerDataSkew:Reduce数据倾斜
+        # TEZ-TezMemWaste:Memory资源浪费
+        # TEZ-TezSlowTask:慢Task
+        # TEZ-TezTaskGC:TasksGC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleID: String
+        # @param RuleName: 洞察规则名字，可参考RuleID的说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleName: String
+        # @param RuleExplain: 洞察规则解释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleExplain: String
+        # @param Detail: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: String
+        # @param Suggestion: 建议信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Suggestion: String
+        # @param Value: 洞察异常衡量值，同类型的洞察项越大越严重，不同类型的洞察项无对比意义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Integer
+        # @param ScheduleTaskExecID: 调度任务执行ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTaskExecID: String
+        # @param ScheduleFlowName: 调度流，DAG
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleFlowName: String
+        # @param ScheduleTaskName: 调度flow中的某个task节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTaskName: String
+        # @param JobConf: Yarn任务的部分核心配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobConf: String
+
+        attr_accessor :ID, :Type, :RuleID, :RuleName, :RuleExplain, :Detail, :Suggestion, :Value, :ScheduleTaskExecID, :ScheduleFlowName, :ScheduleTaskName, :JobConf
+
+        def initialize(id=nil, type=nil, ruleid=nil, rulename=nil, ruleexplain=nil, detail=nil, suggestion=nil, value=nil, scheduletaskexecid=nil, scheduleflowname=nil, scheduletaskname=nil, jobconf=nil)
+          @ID = id
+          @Type = type
+          @RuleID = ruleid
+          @RuleName = rulename
+          @RuleExplain = ruleexplain
+          @Detail = detail
+          @Suggestion = suggestion
+          @Value = value
+          @ScheduleTaskExecID = scheduletaskexecid
+          @ScheduleFlowName = scheduleflowname
+          @ScheduleTaskName = scheduletaskname
+          @JobConf = jobconf
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Type = params['Type']
+          @RuleID = params['RuleID']
+          @RuleName = params['RuleName']
+          @RuleExplain = params['RuleExplain']
+          @Detail = params['Detail']
+          @Suggestion = params['Suggestion']
+          @Value = params['Value']
+          @ScheduleTaskExecID = params['ScheduleTaskExecID']
+          @ScheduleFlowName = params['ScheduleFlowName']
+          @ScheduleTaskName = params['ScheduleTaskName']
+          @JobConf = params['JobConf']
         end
       end
 
