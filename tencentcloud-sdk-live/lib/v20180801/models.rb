@@ -1422,6 +1422,9 @@ module TencentCloud
         # @type VodRefreshType: String
         # @param CallbackUrl: 自定义回调地址。
         # 拉流转推任务相关事件会回调到该地址。
+        # 回调事件使用方法请查看：
+        # https://cloud.tencent.com/document/product/267/32744
+        # https://cloud.tencent.com/document/product/267/56208
         # @type CallbackUrl: String
         # @param ExtraCmd: 其他参数。
         # 示例: ignore_region  用于忽略传入地域, 内部按负载分配。

@@ -4003,6 +4003,8 @@ module TencentCloud
 
       # DescribeDefaultCertificates请求参数结构体
       class DescribeDefaultCertificatesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
         # @param Filters: 过滤条件，Filters.Values的上限为5。详细的过滤条件如下：
         # <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：是 </li>
         # @type Filters: Array
@@ -4011,15 +4013,17 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :ZoneId, :Filters, :Offset, :Limit
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(zoneid=nil, filters=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
           @Filters = filters
           @Offset = offset
           @Limit = limit
         end
 
         def deserialize(params)
+          @ZoneId = params['ZoneId']
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|

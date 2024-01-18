@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 购买新的MQTT实例
+
+        # @param request: Request instance for CreateMQTTInstance.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::CreateMQTTInstanceRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::CreateMQTTInstanceResponse`
+        def CreateMQTTInstance(request)
+          body = send_request('CreateMQTTInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMQTTInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加角色
 
         # @param request: Request instance for CreateRole.
@@ -312,6 +336,60 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例列表，Filters参数使用说明如下：
+        # 1. InstanceName, 名称模糊查询
+        # 2. InstanceId，实例ID查询
+        # 3. InstanceType, 实例类型查询，支持多选
+        # 3. InstanceStatus，实例状态查询，支持多选
+
+        # 当使用TagFilters查询时，Filters参数失效。
+
+        # @param request: Request instance for DescribeMQTTInstanceList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMQTTInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMQTTInstanceListResponse`
+        def DescribeMQTTInstanceList(request)
+          body = send_request('DescribeMQTTInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMQTTInstanceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 非对外接口，获取产品售卖规格
+
+        # @param request: Request instance for DescribeMQTTProductSKUList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMQTTProductSKUListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeMQTTProductSKUListResponse`
+        def DescribeMQTTProductSKUList(request)
+          body = send_request('DescribeMQTTProductSKUList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMQTTProductSKUListResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1255,9 +1255,6 @@ module TencentCloud
         # @type TaskGroupInstanceObjectId: String
         # @param TaskGroupInstanceStatus: 实例动作执行状态
         # @type TaskGroupInstanceStatus: Integer
-        # @param TaskGroupInstanceExecuteLog: 实例动作执行日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskGroupInstanceExecuteLog: String
         # @param TaskGroupInstanceCreateTime: 实例创建时间
         # @type TaskGroupInstanceCreateTime: String
         # @param TaskGroupInstanceUpdateTime: 实例更新时间
@@ -1270,6 +1267,9 @@ module TencentCloud
         # @param TaskGroupInstanceEndTime: 执行结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceEndTime: String
+        # @param TaskGroupInstanceExecuteLog: 实例动作执行日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskGroupInstanceExecuteLog: String
         # @param TaskGroupInstanceIsRedo: 实例是否可重试
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceIsRedo: Boolean
@@ -1277,18 +1277,21 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskGroupInstanceExecuteTime: Integer
 
-        attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
+        attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
+        extend Gem::Deprecate
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2024, 1
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2024, 1
 
-        def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstanceexecutelog=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
+        def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
           @TaskGroupInstanceObjectId = taskgroupinstanceobjectid
           @TaskGroupInstanceStatus = taskgroupinstancestatus
-          @TaskGroupInstanceExecuteLog = taskgroupinstanceexecutelog
           @TaskGroupInstanceCreateTime = taskgroupinstancecreatetime
           @TaskGroupInstanceUpdateTime = taskgroupinstanceupdatetime
           @TaskGroupInstanceStatusType = taskgroupinstancestatustype
           @TaskGroupInstanceStartTime = taskgroupinstancestarttime
           @TaskGroupInstanceEndTime = taskgroupinstanceendtime
+          @TaskGroupInstanceExecuteLog = taskgroupinstanceexecutelog
           @TaskGroupInstanceIsRedo = taskgroupinstanceisredo
           @TaskGroupInstanceExecuteTime = taskgroupinstanceexecutetime
         end
@@ -1297,12 +1300,12 @@ module TencentCloud
           @TaskGroupInstanceId = params['TaskGroupInstanceId']
           @TaskGroupInstanceObjectId = params['TaskGroupInstanceObjectId']
           @TaskGroupInstanceStatus = params['TaskGroupInstanceStatus']
-          @TaskGroupInstanceExecuteLog = params['TaskGroupInstanceExecuteLog']
           @TaskGroupInstanceCreateTime = params['TaskGroupInstanceCreateTime']
           @TaskGroupInstanceUpdateTime = params['TaskGroupInstanceUpdateTime']
           @TaskGroupInstanceStatusType = params['TaskGroupInstanceStatusType']
           @TaskGroupInstanceStartTime = params['TaskGroupInstanceStartTime']
           @TaskGroupInstanceEndTime = params['TaskGroupInstanceEndTime']
+          @TaskGroupInstanceExecuteLog = params['TaskGroupInstanceExecuteLog']
           @TaskGroupInstanceIsRedo = params['TaskGroupInstanceIsRedo']
           @TaskGroupInstanceExecuteTime = params['TaskGroupInstanceExecuteTime']
         end

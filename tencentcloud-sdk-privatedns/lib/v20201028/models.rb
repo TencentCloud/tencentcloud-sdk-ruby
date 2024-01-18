@@ -1588,7 +1588,8 @@ module TencentCloud
         # @type Remark: String
         # @param VpcSet: 绑定的Vpc列表
         # @type VpcSet: Array
-        # @param Status: 私有域状态：正常解析：ENABLED, 暂停解析：SUSPEND, 锁定：FROZEN
+        # @param Status: 私有域绑定VPC状态，未关联vpc：SUSPEND，已关联VPC：ENABLED
+        # ，关联VPC失败：FAILED
         # @type Status: String
         # @param DnsForwardStatus: 域名递归解析状态：开通：ENABLED, 关闭，DISABLED
         # @type DnsForwardStatus: String
@@ -1614,10 +1615,13 @@ module TencentCloud
         # @param EndPointName: 终端节点名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndPointName: String
+        # @param DeletedVpcSet: 已删除的vpc
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletedVpcSet: Array
 
-        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus, :ForwardRuleName, :ForwardRuleType, :ForwardAddress, :EndPointName
+        attr_accessor :ZoneId, :OwnerUin, :Domain, :CreatedOn, :UpdatedOn, :RecordCount, :Remark, :VpcSet, :Status, :DnsForwardStatus, :Tags, :AccountVpcSet, :IsCustomTld, :CnameSpeedupStatus, :ForwardRuleName, :ForwardRuleType, :ForwardAddress, :EndPointName, :DeletedVpcSet
 
-        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil, cnamespeedupstatus=nil, forwardrulename=nil, forwardruletype=nil, forwardaddress=nil, endpointname=nil)
+        def initialize(zoneid=nil, owneruin=nil, domain=nil, createdon=nil, updatedon=nil, recordcount=nil, remark=nil, vpcset=nil, status=nil, dnsforwardstatus=nil, tags=nil, accountvpcset=nil, iscustomtld=nil, cnamespeedupstatus=nil, forwardrulename=nil, forwardruletype=nil, forwardaddress=nil, endpointname=nil, deletedvpcset=nil)
           @ZoneId = zoneid
           @OwnerUin = owneruin
           @Domain = domain
@@ -1636,6 +1640,7 @@ module TencentCloud
           @ForwardRuleType = forwardruletype
           @ForwardAddress = forwardaddress
           @EndPointName = endpointname
+          @DeletedVpcSet = deletedvpcset
         end
 
         def deserialize(params)
@@ -1678,6 +1683,14 @@ module TencentCloud
           @ForwardRuleType = params['ForwardRuleType']
           @ForwardAddress = params['ForwardAddress']
           @EndPointName = params['EndPointName']
+          unless params['DeletedVpcSet'].nil?
+            @DeletedVpcSet = []
+            params['DeletedVpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @DeletedVpcSet << vpcinfo_tmp
+            end
+          end
         end
       end
 

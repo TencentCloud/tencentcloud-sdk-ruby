@@ -660,12 +660,15 @@ module TencentCloud
         # @type JobItems: Array
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param TargetWorkspaceId: 目标工作空间 SerialId
+        # @type TargetWorkspaceId: String
 
-        attr_accessor :JobItems, :WorkSpaceId
+        attr_accessor :JobItems, :WorkSpaceId, :TargetWorkspaceId
 
-        def initialize(jobitems=nil, workspaceid=nil)
+        def initialize(jobitems=nil, workspaceid=nil, targetworkspaceid=nil)
           @JobItems = jobitems
           @WorkSpaceId = workspaceid
+          @TargetWorkspaceId = targetworkspaceid
         end
 
         def deserialize(params)
@@ -678,6 +681,7 @@ module TencentCloud
             end
           end
           @WorkSpaceId = params['WorkSpaceId']
+          @TargetWorkspaceId = params['TargetWorkspaceId']
         end
       end
 
@@ -2981,10 +2985,16 @@ module TencentCloud
         # @param EsServerlessSpace: es空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EsServerlessSpace: String
+        # @param IndexName: es索引中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexName: String
+        # @param WorkspaceName: es空间中文
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkspaceName: String
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3015,6 +3025,8 @@ module TencentCloud
           @JobGraph = jobgraph
           @EsServerlessIndex = esserverlessindex
           @EsServerlessSpace = esserverlessspace
+          @IndexName = indexname
+          @WorkspaceName = workspacename
         end
 
         def deserialize(params)
@@ -3078,6 +3090,8 @@ module TencentCloud
           end
           @EsServerlessIndex = params['EsServerlessIndex']
           @EsServerlessSpace = params['EsServerlessSpace']
+          @IndexName = params['IndexName']
+          @WorkspaceName = params['WorkspaceName']
         end
       end
 

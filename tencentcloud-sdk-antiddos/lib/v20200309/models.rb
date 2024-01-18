@@ -463,6 +463,135 @@ module TencentCloud
         end
       end
 
+      # L7规则
+      class BGPIPL7RuleEntry < TencentCloud::Common::AbstractModel
+        # @param Protocol: 转发协议，取值[http, https]
+        # @type Protocol: String
+        # @param Domain: 转发域名
+        # @type Domain: String
+        # @param LbType: 负载均衡方式，取值[1(加权轮询)]
+        # @type LbType: Integer
+        # @param KeepEnable: 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
+        # @type KeepEnable: Integer
+        # @param KeepTime: 会话保持时间，单位秒
+        # @type KeepTime: Integer
+        # @param SourceType: 回源方式，取值[1(域名回源)，2(IP回源)]
+        # @type SourceType: Integer
+        # @param SourceList: 回源列表
+        # @type SourceList: Array
+        # @param Region: 区域码
+        # @type Region: Integer
+        # @param Id: 资源Id
+        # @type Id: String
+        # @param Ip: 资源Ip
+        # @type Ip: String
+        # @param RuleId: 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
+        # @type RuleId: String
+        # @param RuleName: 规则描述
+        # @type RuleName: String
+        # @param CertType: 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
+        # @type CertType: Integer
+        # @param SSLId: 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
+        # @type SSLId: String
+        # @param Cert: 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type Cert: String
+        # @param PrivateKey: 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
+        # @type PrivateKey: String
+        # @param Status: 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
+        # @type Status: Integer
+        # @param CCStatus: cc防护状态，取值[0(关闭), 1(开启)]
+        # @type CCStatus: Integer
+        # @param CCEnable: HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
+        # @type CCEnable: Integer
+        # @param CCThreshold: HTTPS协议的CC防护阈值（已废弃）
+        # @type CCThreshold: Integer
+        # @param CCLevel: HTTPS协议的CC防护等级
+        # @type CCLevel: String
+        # @param ModifyTime: 修改时间
+        # @type ModifyTime: String
+        # @param HttpsToHttpEnable: 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
+        # @type HttpsToHttpEnable: Integer
+        # @param VirtualPort: 接入端口值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VirtualPort: Integer
+        # @param RewriteHttps: http强制跳转https，1表示打开，0表示关闭
+        # @type RewriteHttps: Integer
+        # @param ErrCode: 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
+        # @type ErrCode: Integer
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+
+        attr_accessor :Protocol, :Domain, :LbType, :KeepEnable, :KeepTime, :SourceType, :SourceList, :Region, :Id, :Ip, :RuleId, :RuleName, :CertType, :SSLId, :Cert, :PrivateKey, :Status, :CCStatus, :CCEnable, :CCThreshold, :CCLevel, :ModifyTime, :HttpsToHttpEnable, :VirtualPort, :RewriteHttps, :ErrCode, :Version
+
+        def initialize(protocol=nil, domain=nil, lbtype=nil, keepenable=nil, keeptime=nil, sourcetype=nil, sourcelist=nil, region=nil, id=nil, ip=nil, ruleid=nil, rulename=nil, certtype=nil, sslid=nil, cert=nil, privatekey=nil, status=nil, ccstatus=nil, ccenable=nil, ccthreshold=nil, cclevel=nil, modifytime=nil, httpstohttpenable=nil, virtualport=nil, rewritehttps=nil, errcode=nil, version=nil)
+          @Protocol = protocol
+          @Domain = domain
+          @LbType = lbtype
+          @KeepEnable = keepenable
+          @KeepTime = keeptime
+          @SourceType = sourcetype
+          @SourceList = sourcelist
+          @Region = region
+          @Id = id
+          @Ip = ip
+          @RuleId = ruleid
+          @RuleName = rulename
+          @CertType = certtype
+          @SSLId = sslid
+          @Cert = cert
+          @PrivateKey = privatekey
+          @Status = status
+          @CCStatus = ccstatus
+          @CCEnable = ccenable
+          @CCThreshold = ccthreshold
+          @CCLevel = cclevel
+          @ModifyTime = modifytime
+          @HttpsToHttpEnable = httpstohttpenable
+          @VirtualPort = virtualport
+          @RewriteHttps = rewritehttps
+          @ErrCode = errcode
+          @Version = version
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          @LbType = params['LbType']
+          @KeepEnable = params['KeepEnable']
+          @KeepTime = params['KeepTime']
+          @SourceType = params['SourceType']
+          unless params['SourceList'].nil?
+            @SourceList = []
+            params['SourceList'].each do |i|
+              l4rulesource_tmp = L4RuleSource.new
+              l4rulesource_tmp.deserialize(i)
+              @SourceList << l4rulesource_tmp
+            end
+          end
+          @Region = params['Region']
+          @Id = params['Id']
+          @Ip = params['Ip']
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @CertType = params['CertType']
+          @SSLId = params['SSLId']
+          @Cert = params['Cert']
+          @PrivateKey = params['PrivateKey']
+          @Status = params['Status']
+          @CCStatus = params['CCStatus']
+          @CCEnable = params['CCEnable']
+          @CCThreshold = params['CCThreshold']
+          @CCLevel = params['CCLevel']
+          @ModifyTime = params['ModifyTime']
+          @HttpsToHttpEnable = params['HttpsToHttpEnable']
+          @VirtualPort = params['VirtualPort']
+          @RewriteHttps = params['RewriteHttps']
+          @ErrCode = params['ErrCode']
+          @Version = params['Version']
+        end
+      end
+
       # 高防包资产实例信息
       class BGPInstance < TencentCloud::Common::AbstractModel
         # @param InstanceDetail: 资产实例的详细信息
@@ -2981,6 +3110,96 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBGPIPL7Rules请求参数结构体
+      class DescribeBGPIPL7RulesRequest < TencentCloud::Common::AbstractModel
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP）
+        # @type Business: String
+        # @param StatusList: 状态搜索，选填，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
+        # @type StatusList: Array
+        # @param Domain: 域名搜索，选填，当需要搜索域名请填写
+        # @type Domain: String
+        # @param Ip: IP搜索，选填，当需要搜索IP请填写
+        # @type Ip: String
+        # @param Limit: 一页条数，默认值100，最大值100，超过100最大返回100条
+        # @type Limit: Integer
+        # @param Offset: 规则偏移量，取值为(页码-1)*一页条数
+        # @type Offset: Integer
+        # @param ProtocolList: 转发协议搜索，选填，取值[http, https, http/https]
+        # @type ProtocolList: Array
+        # @param Cname: 高防IP实例的Cname
+        # @type Cname: String
+        # @param Export: 默认为false，当为true时，将不对各个规则做策略检查，直接导出所有规则
+        # @type Export: Boolean
+
+        attr_accessor :Business, :StatusList, :Domain, :Ip, :Limit, :Offset, :ProtocolList, :Cname, :Export
+
+        def initialize(business=nil, statuslist=nil, domain=nil, ip=nil, limit=nil, offset=nil, protocollist=nil, cname=nil, export=nil)
+          @Business = business
+          @StatusList = statuslist
+          @Domain = domain
+          @Ip = ip
+          @Limit = limit
+          @Offset = offset
+          @ProtocolList = protocollist
+          @Cname = cname
+          @Export = export
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @StatusList = params['StatusList']
+          @Domain = params['Domain']
+          @Ip = params['Ip']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @ProtocolList = params['ProtocolList']
+          @Cname = params['Cname']
+          @Export = params['Export']
+        end
+      end
+
+      # DescribeBGPIPL7Rules返回参数结构体
+      class DescribeBGPIPL7RulesResponse < TencentCloud::Common::AbstractModel
+        # @param Rules: 转发规则列表
+        # @type Rules: Array
+        # @param Healths: 健康检查配置列表
+        # @type Healths: Array
+        # @param Total: 总规则数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rules, :Healths, :Total, :RequestId
+
+        def initialize(rules=nil, healths=nil, total=nil, requestid=nil)
+          @Rules = rules
+          @Healths = healths
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              bgpipl7ruleentry_tmp = BGPIPL7RuleEntry.new
+              bgpipl7ruleentry_tmp.deserialize(i)
+              @Rules << bgpipl7ruleentry_tmp
+            end
+          end
+          unless params['Healths'].nil?
+            @Healths = []
+            params['Healths'].each do |i|
+              l7rulehealth_tmp = L7RuleHealth.new
+              l7rulehealth_tmp.deserialize(i)
+              @Healths << l7rulehealth_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

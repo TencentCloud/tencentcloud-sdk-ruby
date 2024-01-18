@@ -346,37 +346,6 @@ module TencentCloud
         end
       end
 
-      # 云资源配置详情
-      class CertHostingInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书ID
-        # @type CertId: String
-        # @param RenewCertId: 已替换的新证书ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RenewCertId: String
-        # @param ResourceType: 云资源托管 ，CDN或CLB：部分开启，CDN,CLB：已开启，null：未开启托管
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ResourceType: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-
-        attr_accessor :CertId, :RenewCertId, :ResourceType, :CreateTime
-
-        def initialize(certid=nil, renewcertid=nil, resourcetype=nil, createtime=nil)
-          @CertId = certid
-          @RenewCertId = renewcertid
-          @ResourceType = resourcetype
-          @CreateTime = createtime
-        end
-
-        def deserialize(params)
-          @CertId = params['CertId']
-          @RenewCertId = params['RenewCertId']
-          @ResourceType = params['ResourceType']
-          @CreateTime = params['CreateTime']
-        end
-      end
-
       # 证书异步任务ID
       class CertTaskId < TencentCloud::Common::AbstractModel
         # @param CertId: 证书ID
@@ -4423,49 +4392,6 @@ module TencentCloud
         end
       end
 
-      # HostCertificate请求参数结构体
-      class HostCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 证书ID
-        # @type CertificateId: String
-        # @param ResourceType: 资源类型：目前仅限于CLB,CDN
-        # @type ResourceType: Array
-
-        attr_accessor :CertificateId, :ResourceType
-
-        def initialize(certificateid=nil, resourcetype=nil)
-          @CertificateId = certificateid
-          @ResourceType = resourcetype
-        end
-
-        def deserialize(params)
-          @CertificateId = params['CertificateId']
-          @ResourceType = params['ResourceType']
-        end
-      end
-
-      # HostCertificate返回参数结构体
-      class HostCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param CertHostingInfo: 云资源配置详情
-        # @type CertHostingInfo: :class:`Tencentcloud::Ssl.v20191205.models.CertHostingInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CertHostingInfo, :RequestId
-
-        def initialize(certhostinginfo=nil, requestid=nil)
-          @CertHostingInfo = certhostinginfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['CertHostingInfo'].nil?
-            @CertHostingInfo = CertHostingInfo.new
-            @CertHostingInfo.deserialize(params['CertHostingInfo'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # Lighthouse实例
       class LighthouseInstanceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -6181,8 +6107,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2023, 12
-        deprecate :Regions=, :none, 2023, 12
+        deprecate :Regions, :none, 2024, 1
+        deprecate :Regions=, :none, 2024, 1
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

@@ -917,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 高防IP获取7层规则
+
+        # @param request: Request instance for DescribeBGPIPL7Rules.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBGPIPL7RulesRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBGPIPL7RulesResponse`
+        def DescribeBGPIPL7Rules(request)
+          body = send_request('DescribeBGPIPL7Rules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBGPIPL7RulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取基础防护攻击状态
 
         # @param request: Request instance for DescribeBasicDeviceStatus.

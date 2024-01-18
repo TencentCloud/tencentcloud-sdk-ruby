@@ -29,14 +29,18 @@ module TencentCloud
         # @param NonsupportRoReason: 不支持RO实例的原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonsupportRoReason: String
+        # @param IsSupportManualSnapshot: 是否支持手动发起快照备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupportManualSnapshot: String
 
-        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason
+        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot
 
-        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil)
+        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil)
           @IsSupportSlaveZone = issupportslavezone
           @NonsupportSlaveZoneReason = nonsupportslavezonereason
           @IsSupportRo = issupportro
           @NonsupportRoReason = nonsupportroreason
+          @IsSupportManualSnapshot = issupportmanualsnapshot
         end
 
         def deserialize(params)
@@ -44,6 +48,7 @@ module TencentCloud
           @NonsupportSlaveZoneReason = params['NonsupportSlaveZoneReason']
           @IsSupportRo = params['IsSupportRo']
           @NonsupportRoReason = params['NonsupportRoReason']
+          @IsSupportManualSnapshot = params['IsSupportManualSnapshot']
         end
       end
 
@@ -193,7 +198,7 @@ module TencentCloud
         # @type Memory: Integer
         # @param ReadOnlyCount: 新增只读实例数，取值范围为(0,15]
         # @type ReadOnlyCount: Integer
-        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。当前版本已废弃。
+        # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
         # @type InstanceGrpId: String
         # @param VpcId: 所属VPC网络ID。
         # @type VpcId: String
@@ -220,6 +225,9 @@ module TencentCloud
         # @type SecurityGroupIds: Array
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds
+        extend Gem::Deprecate
+        deprecate :InstanceGrpId, :none, 2024, 1
+        deprecate :InstanceGrpId=, :none, 2024, 1
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil)
           @ClusterId = clusterid
@@ -975,15 +983,26 @@ module TencentCloud
       class CloseWanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceGrpId: 实例组id
         # @type InstanceGrpId: String
+        # @param InstanceGroupId: 实例组id
+        # @type InstanceGroupId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
 
-        attr_accessor :InstanceGrpId
+        attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
+        extend Gem::Deprecate
+        deprecate :InstanceGrpId, :none, 2024, 1
+        deprecate :InstanceGrpId=, :none, 2024, 1
 
-        def initialize(instancegrpid=nil)
+        def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
+          @InstanceGroupId = instancegroupid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @InstanceGrpId = params['InstanceGrpId']
+          @InstanceGroupId = params['InstanceGroupId']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -3053,6 +3072,122 @@ module TencentCloud
       end
 
       # 实例组信息
+      class CynosdbInstanceGroup < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户appId
+        # @type AppId: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: String
+        # @param DeletedTime: 删除时间
+        # @type DeletedTime: String
+        # @param InstanceGroupId: 实例组ID
+        # @type InstanceGroupId: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param Type: 实例组类型。ha-ha组；ro-只读组
+        # @type Type: String
+        # @param UpdatedTime: 更新时间
+        # @type UpdatedTime: String
+        # @param Vip: 内网IP
+        # @type Vip: String
+        # @param Vport: 内网端口
+        # @type Vport: Integer
+        # @param WanDomain: 外网域名
+        # @type WanDomain: String
+        # @param WanIP: 外网ip
+        # @type WanIP: String
+        # @param WanPort: 外网端口
+        # @type WanPort: Integer
+        # @param WanStatus: 外网状态
+        # @type WanStatus: String
+        # @param InstanceSet: 实例组包含实例信息
+        # @type InstanceSet: Array
+        # @param UniqVpcId: VPC的ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+        # @param OldAddrInfo: 正在回收IP信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldAddrInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.OldAddrInfo`
+        # @param ProcessingTasks: 正在进行的任务
+        # @type ProcessingTasks: Array
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param NetServiceId: biz_net_service表id
+        # @type NetServiceId: Integer
+
+        attr_accessor :AppId, :ClusterId, :CreatedTime, :DeletedTime, :InstanceGroupId, :Status, :Type, :UpdatedTime, :Vip, :Vport, :WanDomain, :WanIP, :WanPort, :WanStatus, :InstanceSet, :UniqVpcId, :UniqSubnetId, :OldAddrInfo, :ProcessingTasks, :Tasks, :NetServiceId
+
+        def initialize(appid=nil, clusterid=nil, createdtime=nil, deletedtime=nil, instancegroupid=nil, status=nil, type=nil, updatedtime=nil, vip=nil, vport=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, instanceset=nil, uniqvpcid=nil, uniqsubnetid=nil, oldaddrinfo=nil, processingtasks=nil, tasks=nil, netserviceid=nil)
+          @AppId = appid
+          @ClusterId = clusterid
+          @CreatedTime = createdtime
+          @DeletedTime = deletedtime
+          @InstanceGroupId = instancegroupid
+          @Status = status
+          @Type = type
+          @UpdatedTime = updatedtime
+          @Vip = vip
+          @Vport = vport
+          @WanDomain = wandomain
+          @WanIP = wanip
+          @WanPort = wanport
+          @WanStatus = wanstatus
+          @InstanceSet = instanceset
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+          @OldAddrInfo = oldaddrinfo
+          @ProcessingTasks = processingtasks
+          @Tasks = tasks
+          @NetServiceId = netserviceid
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @CreatedTime = params['CreatedTime']
+          @DeletedTime = params['DeletedTime']
+          @InstanceGroupId = params['InstanceGroupId']
+          @Status = params['Status']
+          @Type = params['Type']
+          @UpdatedTime = params['UpdatedTime']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @WanDomain = params['WanDomain']
+          @WanIP = params['WanIP']
+          @WanPort = params['WanPort']
+          @WanStatus = params['WanStatus']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              cynosdbinstance_tmp = CynosdbInstance.new
+              cynosdbinstance_tmp.deserialize(i)
+              @InstanceSet << cynosdbinstance_tmp
+            end
+          end
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
+          unless params['OldAddrInfo'].nil?
+            @OldAddrInfo = OldAddrInfo.new
+            @OldAddrInfo.deserialize(params['OldAddrInfo'])
+          end
+          @ProcessingTasks = params['ProcessingTasks']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @NetServiceId = params['NetServiceId']
+        end
+      end
+
+      # 实例组信息
       class CynosdbInstanceGrp < TencentCloud::Common::AbstractModel
         # @param AppId: 用户appId
         # @type AppId: Integer
@@ -4517,14 +4652,20 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param InstanceGrpInfoList: 实例组列表
         # @type InstanceGrpInfoList: Array
+        # @param InstanceGroupInfoList: 实例组列表
+        # @type InstanceGroupInfoList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :InstanceGrpInfoList, :RequestId
+        attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
+        extend Gem::Deprecate
+        deprecate :InstanceGrpInfoList, :none, 2024, 1
+        deprecate :InstanceGrpInfoList=, :none, 2024, 1
 
-        def initialize(totalcount=nil, instancegrpinfolist=nil, requestid=nil)
+        def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceGrpInfoList = instancegrpinfolist
+          @InstanceGroupInfoList = instancegroupinfolist
           @RequestId = requestid
         end
 
@@ -4536,6 +4677,14 @@ module TencentCloud
               cynosdbinstancegrp_tmp = CynosdbInstanceGrp.new
               cynosdbinstancegrp_tmp.deserialize(i)
               @InstanceGrpInfoList << cynosdbinstancegrp_tmp
+            end
+          end
+          unless params['InstanceGroupInfoList'].nil?
+            @InstanceGroupInfoList = []
+            params['InstanceGroupInfoList'].each do |i|
+              cynosdbinstancegroup_tmp = CynosdbInstanceGroup.new
+              cynosdbinstancegroup_tmp.deserialize(i)
+              @InstanceGroupInfoList << cynosdbinstancegroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4616,17 +4765,21 @@ module TencentCloud
         # @type ClusterId: String
         # @param ParamName: 参数名字
         # @type ParamName: String
+        # @param IsGlobal: 是否为全局参数
+        # @type IsGlobal: String
 
-        attr_accessor :ClusterId, :ParamName
+        attr_accessor :ClusterId, :ParamName, :IsGlobal
 
-        def initialize(clusterid=nil, paramname=nil)
+        def initialize(clusterid=nil, paramname=nil, isglobal=nil)
           @ClusterId = clusterid
           @ParamName = paramname
+          @IsGlobal = isglobal
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ParamName = params['ParamName']
+          @IsGlobal = params['IsGlobal']
         end
       end
 
@@ -4822,17 +4975,24 @@ module TencentCloud
 
       # DescribeDBSecurityGroups请求参数结构体
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例组ID。可以通过接口DescribeClusterInstanceGrps获取。
+        # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param InstanceGroupId: 实例组ID
+        # @type InstanceGroupId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :InstanceGroupId
+        extend Gem::Deprecate
+        deprecate :InstanceId, :none, 2024, 1
+        deprecate :InstanceId=, :none, 2024, 1
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
+          @InstanceGroupId = instancegroupid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @InstanceGroupId = params['InstanceGroupId']
         end
       end
 
@@ -5027,19 +5187,23 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param ParamKeyword: 参数名搜索条件，支持模糊匹配
         # @type ParamKeyword: String
+        # @param IsGlobal: 是否为全局参数
+        # @type IsGlobal: String
 
-        attr_accessor :ClusterId, :InstanceIds, :ParamKeyword
+        attr_accessor :ClusterId, :InstanceIds, :ParamKeyword, :IsGlobal
 
-        def initialize(clusterid=nil, instanceids=nil, paramkeyword=nil)
+        def initialize(clusterid=nil, instanceids=nil, paramkeyword=nil, isglobal=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @ParamKeyword = paramkeyword
+          @IsGlobal = isglobal
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceIds = params['InstanceIds']
           @ParamKeyword = params['ParamKeyword']
+          @IsGlobal = params['IsGlobal']
         end
       end
 
@@ -5203,7 +5367,7 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 返回数量，默认为 20，最大值为 100
+        # @param Limit: 返回数量，默认为 20，取值范围为(0,100]
         # @type Limit: Integer
         # @param Offset: 记录偏移量，默认值为0
         # @type Offset: Integer
@@ -5217,7 +5381,7 @@ module TencentCloud
         # @type OrderByType: String
         # @param Filters: 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         # @type Filters: Array
-        # @param DbType: 引擎类型：目前支持“MYSQL”， “POSTGRESQL”
+        # @param DbType: 引擎类型：目前支持“MYSQL”
         # @type DbType: String
         # @param Status: 实例状态, 可选值:
         # creating 创建中
@@ -7176,12 +7340,17 @@ module TencentCloud
 
       # 参数是否可修改的详细信息
       class ModifiableInfo < TencentCloud::Common::AbstractModel
+        # @param IsModifiable: 参数是否可被修改, 1:可以 0:不可以
+        # @type IsModifiable: Integer
 
+        attr_accessor :IsModifiable
 
-        def initialize()
+        def initialize(ismodifiable=nil)
+          @IsModifiable = ismodifiable
         end
 
         def deserialize(params)
+          @IsModifiable = params['IsModifiable']
         end
       end
 
@@ -8452,6 +8621,8 @@ module TencentCloud
         # @type ClusterId: String
         # @param InstanceGrpId: 实例组id
         # @type InstanceGrpId: String
+        # @param InstanceGroupId: 实例组id
+        # @type InstanceGroupId: String
         # @param Vip: 需要修改的目的ip
         # @type Vip: String
         # @param Vport: 需要修改的目的端口
@@ -8462,11 +8633,15 @@ module TencentCloud
         # @param OldIpReserveHours: 旧ip回收前的保留时间，单位小时，0表示立即回收
         # @type OldIpReserveHours: Integer
 
-        attr_accessor :ClusterId, :InstanceGrpId, :Vip, :Vport, :DbType, :OldIpReserveHours
+        attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
+        extend Gem::Deprecate
+        deprecate :InstanceGrpId, :none, 2024, 1
+        deprecate :InstanceGrpId=, :none, 2024, 1
 
-        def initialize(clusterid=nil, instancegrpid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
+        def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
           @InstanceGrpId = instancegrpid
+          @InstanceGroupId = instancegroupid
           @Vip = vip
           @Vport = vport
           @DbType = dbtype
@@ -8476,6 +8651,7 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @InstanceGrpId = params['InstanceGrpId']
+          @InstanceGroupId = params['InstanceGroupId']
           @Vip = params['Vip']
           @Vport = params['Vport']
           @DbType = params['DbType']
@@ -8968,15 +9144,26 @@ module TencentCloud
       class OpenWanRequest < TencentCloud::Common::AbstractModel
         # @param InstanceGrpId: 实例组id
         # @type InstanceGrpId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceGroupId: 实例组id
+        # @type InstanceGroupId: String
 
-        attr_accessor :InstanceGrpId
+        attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
+        extend Gem::Deprecate
+        deprecate :InstanceGrpId, :none, 2024, 1
+        deprecate :InstanceGrpId=, :none, 2024, 1
 
-        def initialize(instancegrpid=nil)
+        def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
+          @InstanceId = instanceid
+          @InstanceGroupId = instancegroupid
         end
 
         def deserialize(params)
           @InstanceGrpId = params['InstanceGrpId']
+          @InstanceId = params['InstanceId']
+          @InstanceGroupId = params['InstanceGroupId']
         end
       end
 
@@ -9488,7 +9675,7 @@ module TencentCloud
       class PolicyRule < TencentCloud::Common::AbstractModel
         # @param Action: 策略，ACCEPT或者DROP
         # @type Action: String
-        # @param CidrIp: 来源IP或IP段，例如192.168.0.0/16
+        # @param CidrIp: 来源Ip或Ip段，例如192.168.0.0/16
         # @type CidrIp: String
         # @param PortRange: 端口
         # @type PortRange: String

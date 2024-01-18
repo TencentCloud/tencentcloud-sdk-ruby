@@ -2552,10 +2552,12 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 投递数据范围的结束时间点，不能填写未来时间。如果用户不填写，默认为持续投递，即无限。
         # @type EndTime: Integer
+        # @param StorageType: cos桶存储类型
+        # @type StorageType: String
 
-        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime
+        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime, :StorageType
 
-        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, starttime=nil, endtime=nil)
+        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, starttime=nil, endtime=nil, storagetype=nil)
           @TopicId = topicid
           @Bucket = bucket
           @Prefix = prefix
@@ -2569,6 +2571,7 @@ module TencentCloud
           @FilenameMode = filenamemode
           @StartTime = starttime
           @EndTime = endtime
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -2598,6 +2601,7 @@ module TencentCloud
           @FilenameMode = params['FilenameMode']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -7521,10 +7525,12 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         # @type FilenameMode: Integer
+        # @param StorageType: cos桶类型
+        # @type StorageType: String
 
-        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode
+        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StorageType
 
-        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil)
+        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, storagetype=nil)
           @ShipperId = shipperid
           @Bucket = bucket
           @Prefix = prefix
@@ -7537,6 +7543,7 @@ module TencentCloud
           @Compress = compress
           @Content = content
           @FilenameMode = filenamemode
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -7565,6 +7572,7 @@ module TencentCloud
             @Content.deserialize(params['Content'])
           end
           @FilenameMode = params['FilenameMode']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -8850,10 +8858,13 @@ module TencentCloud
         # 4：任务运行结束
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HistoryStatus: Integer
+        # @param StorageType: cos桶类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
 
-        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus
+        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType
 
-        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil, starttime=nil, endtime=nil, progress=nil, remaintime=nil, historystatus=nil)
+        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil, starttime=nil, endtime=nil, progress=nil, remaintime=nil, historystatus=nil, storagetype=nil)
           @ShipperId = shipperid
           @TopicId = topicid
           @Bucket = bucket
@@ -8873,6 +8884,7 @@ module TencentCloud
           @Progress = progress
           @RemainTime = remaintime
           @HistoryStatus = historystatus
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -8908,6 +8920,7 @@ module TencentCloud
           @Progress = params['Progress']
           @RemainTime = params['RemainTime']
           @HistoryStatus = params['HistoryStatus']
+          @StorageType = params['StorageType']
         end
       end
 

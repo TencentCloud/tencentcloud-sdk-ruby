@@ -1013,32 +1013,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 证书托管接口已重构， 旧接口预下线， 近30天无请求
-
-        # 云资源托管
-
-        # @param request: Request instance for HostCertificate.
-        # @type request: :class:`Tencentcloud::ssl::V20191205::HostCertificateRequest`
-        # @rtype: :class:`Tencentcloud::ssl::V20191205::HostCertificateResponse`
-        def HostCertificate(request)
-          body = send_request('HostCertificate', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = HostCertificateResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用户传入证书id和备注来修改证书备注。
 
         # @param request: Request instance for ModifyCertificateAlias.

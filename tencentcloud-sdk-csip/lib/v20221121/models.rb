@@ -4856,6 +4856,42 @@ module TencentCloud
         end
       end
 
+      # ModifyOrganizationAccountStatus请求参数结构体
+      class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Status: 修改集团账号状态，1 开启， 2关闭
+        # @type Status: Integer
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyOrganizationAccountStatus返回参数结构体
+      class ModifyOrganizationAccountStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 返回值为0，则修改成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRiskCenterRiskStatus请求参数结构体
       class ModifyRiskCenterRiskStatusRequest < TencentCloud::Common::AbstractModel
         # @param RiskStatusKeys: 风险资产相关数据
