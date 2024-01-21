@@ -6175,12 +6175,19 @@ module TencentCloud
 
       # DescribeLiveTranscodeTemplates请求参数结构体
       class DescribeLiveTranscodeTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param TemplateType: 转码模板类型，默认0。
+        # 0：普通转码模板。
+        # 1：自适应码率转码模板。
+        # @type TemplateType: Integer
 
+        attr_accessor :TemplateType
 
-        def initialize()
+        def initialize(templatetype=nil)
+          @TemplateType = templatetype
         end
 
         def deserialize(params)
+          @TemplateType = params['TemplateType']
         end
       end
 

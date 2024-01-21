@@ -293,7 +293,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建实例子账号
+        # 该接口（CreateInstanceAccount）用于自定义访问实例的账号。
 
         # @param request: Request instance for CreateInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::CreateInstanceAccountRequest`

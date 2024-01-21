@@ -4939,6 +4939,96 @@ module TencentCloud
         end
       end
 
+      # ModifyRiskCenterScanTask请求参数结构体
+      class ModifyRiskCenterScanTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ScanAssetType: 0-全扫，1-指定资产扫，2-排除资产扫，3-手动填写扫；1和2则Assets字段必填，3则SelfDefiningAssets必填
+        # @type ScanAssetType: Integer
+        # @param ScanItem: 扫描项目；port/poc/weakpass/webcontent/configrisk
+        # @type ScanItem: Array
+        # @param ScanPlanType: 0-周期任务,1-立即扫描,2-定时扫描,3-自定义；0,2,3则ScanPlanContent必填
+        # @type ScanPlanType: Integer
+        # @param TaskId: 要修改的任务id
+        # @type TaskId: String
+        # @param Assets: 扫描资产信息列表
+        # @type Assets: Array
+        # @param ScanPlanContent: 扫描计划详情
+        # @type ScanPlanContent: String
+        # @param SelfDefiningAssets: ip/域名/url数组
+        # @type SelfDefiningAssets: Array
+        # @param TaskAdvanceCFG: 高级配置
+        # @type TaskAdvanceCFG: :class:`Tencentcloud::Csip.v20221121.models.TaskAdvanceCFG`
+        # @param TaskMode: 体检模式，0-标准模式，1-快速模式，2-高级模式，默认标准模式
+        # @type TaskMode: Integer
+
+        attr_accessor :TaskName, :ScanAssetType, :ScanItem, :ScanPlanType, :TaskId, :Assets, :ScanPlanContent, :SelfDefiningAssets, :TaskAdvanceCFG, :TaskMode
+
+        def initialize(taskname=nil, scanassettype=nil, scanitem=nil, scanplantype=nil, taskid=nil, assets=nil, scanplancontent=nil, selfdefiningassets=nil, taskadvancecfg=nil, taskmode=nil)
+          @TaskName = taskname
+          @ScanAssetType = scanassettype
+          @ScanItem = scanitem
+          @ScanPlanType = scanplantype
+          @TaskId = taskid
+          @Assets = assets
+          @ScanPlanContent = scanplancontent
+          @SelfDefiningAssets = selfdefiningassets
+          @TaskAdvanceCFG = taskadvancecfg
+          @TaskMode = taskmode
+        end
+
+        def deserialize(params)
+          @TaskName = params['TaskName']
+          @ScanAssetType = params['ScanAssetType']
+          @ScanItem = params['ScanItem']
+          @ScanPlanType = params['ScanPlanType']
+          @TaskId = params['TaskId']
+          unless params['Assets'].nil?
+            @Assets = []
+            params['Assets'].each do |i|
+              taskassetobject_tmp = TaskAssetObject.new
+              taskassetobject_tmp.deserialize(i)
+              @Assets << taskassetobject_tmp
+            end
+          end
+          @ScanPlanContent = params['ScanPlanContent']
+          @SelfDefiningAssets = params['SelfDefiningAssets']
+          unless params['TaskAdvanceCFG'].nil?
+            @TaskAdvanceCFG = TaskAdvanceCFG.new
+            @TaskAdvanceCFG.deserialize(params['TaskAdvanceCFG'])
+          end
+          @TaskMode = params['TaskMode']
+        end
+      end
+
+      # ModifyRiskCenterScanTask返回参数结构体
+      class ModifyRiskCenterScanTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param Status: 0，修改成功，其他失败；-1为存在资产未认证
+        # @type Status: Integer
+        # @param UnAuthAsset: 未认证资产列表
+        # @type UnAuthAsset: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :UnAuthAsset, :RequestId
+
+        def initialize(taskid=nil, status=nil, unauthasset=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @UnAuthAsset = unauthasset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @UnAuthAsset = params['UnAuthAsset']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 网卡资产
       class NICAsset < TencentCloud::Common::AbstractModel
         # @param AppId: appid

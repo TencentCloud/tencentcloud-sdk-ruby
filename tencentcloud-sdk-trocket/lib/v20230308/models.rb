@@ -217,6 +217,53 @@ module TencentCloud
         end
       end
 
+      # CreateMQTTInsPublicEndpoint请求参数结构体
+      class CreateMQTTInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :Bandwidth, :Rules
+
+        def initialize(instanceid=nil, bandwidth=nil, rules=nil)
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMQTTInsPublicEndpoint返回参数结构体
+      class CreateMQTTInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMQTTInstance请求参数结构体
       class CreateMQTTInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceType: 实例类型，
@@ -340,6 +387,106 @@ module TencentCloud
         end
       end
 
+      # CreateMQTTTopic请求参数结构体
+      class CreateMQTTTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Topic, :Remark
+
+        def initialize(instanceid=nil, topic=nil, remark=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateMQTTTopic返回参数结构体
+      class CreateMQTTTopicResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Topic, :RequestId
+
+        def initialize(instanceid=nil, topic=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMQTTUser请求参数结构体
+      class CreateMQTTUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PermWrite: 是否开启生产权限
+        # @type PermWrite: Boolean
+        # @param PermRead: 是否开启消费权限
+        # @type PermRead: Boolean
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Password: 密码，该字段为空时候则后端会默认生成
+        # @type Password: String
+
+        attr_accessor :InstanceId, :Remark, :PermWrite, :PermRead, :Username, :Password
+
+        def initialize(instanceid=nil, remark=nil, permwrite=nil, permread=nil, username=nil, password=nil)
+          @InstanceId = instanceid
+          @Remark = remark
+          @PermWrite = permwrite
+          @PermRead = permread
+          @Username = username
+          @Password = password
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Remark = params['Remark']
+          @PermWrite = params['PermWrite']
+          @PermRead = params['PermRead']
+          @Username = params['Username']
+          @Password = params['Password']
+        end
+      end
+
+      # CreateMQTTUser返回参数结构体
+      class CreateMQTTUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRole请求参数结构体
       class CreateRoleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -453,6 +600,28 @@ module TencentCloud
         end
       end
 
+      # map结构返回
+      class CustomMapEntry < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # DeleteConsumerGroup请求参数结构体
       class DeleteConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -507,6 +676,142 @@ module TencentCloud
 
       # DeleteInstance返回参数结构体
       class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMQTTInsPublicEndpoint请求参数结构体
+      class DeleteMQTTInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteMQTTInsPublicEndpoint返回参数结构体
+      class DeleteMQTTInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMQTTInstance请求参数结构体
+      class DeleteMQTTInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteMQTTInstance返回参数结构体
+      class DeleteMQTTInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMQTTTopic请求参数结构体
+      class DeleteMQTTTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+
+        attr_accessor :InstanceId, :Topic
+
+        def initialize(instanceid=nil, topic=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DeleteMQTTTopic返回参数结构体
+      class DeleteMQTTTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMQTTUser请求参数结构体
+      class DeleteMQTTUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Username: 用户名
+        # @type Username: String
+
+        attr_accessor :InstanceId, :Username
+
+        def initialize(instanceid=nil, username=nil)
+          @InstanceId = instanceid
+          @Username = username
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
+        end
+      end
+
+      # DeleteMQTTUser返回参数结构体
+      class DeleteMQTTUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -956,6 +1261,237 @@ module TencentCloud
         end
       end
 
+      # DescribeMQTTClient请求参数结构体
+      class DescribeMQTTClientRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ClientId: 客户端详情
+        # @type ClientId: String
+
+        attr_accessor :InstanceId, :ClientId
+
+        def initialize(instanceid=nil, clientid=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+        end
+      end
+
+      # DescribeMQTTClient返回参数结构体
+      class DescribeMQTTClientResponse < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端唯一标识
+        # @type ClientId: String
+        # @param ClientAddress: 客户端网络地址
+        # @type ClientAddress: String
+        # @param ProtocolVersion: MQTT 协议版本，4 表示 MQTT 3.1.1
+        # @type ProtocolVersion: Integer
+        # @param Keepalive: 保持连接时间，单位：秒
+        # @type Keepalive: Integer
+        # @param ConnectionStatus: 连接状态，CONNECTED 已连接，DISCONNECTED 未连接
+        # @type ConnectionStatus: String
+        # @param CreateTime: 客户端创建时间
+        # @type CreateTime: Integer
+        # @param ConnectTime: 上次建立连接时间
+        # @type ConnectTime: Integer
+        # @param DisconnectTime: 上次断开连接时间，仅对持久会话（cleanSession=false）并且客户端当前未连接时有意义
+        # @type DisconnectTime: Integer
+        # @param MQTTClientSubscriptions: 客户端的订阅列表
+        # @type MQTTClientSubscriptions: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientId, :ClientAddress, :ProtocolVersion, :Keepalive, :ConnectionStatus, :CreateTime, :ConnectTime, :DisconnectTime, :MQTTClientSubscriptions, :RequestId
+
+        def initialize(clientid=nil, clientaddress=nil, protocolversion=nil, keepalive=nil, connectionstatus=nil, createtime=nil, connecttime=nil, disconnecttime=nil, mqttclientsubscriptions=nil, requestid=nil)
+          @ClientId = clientid
+          @ClientAddress = clientaddress
+          @ProtocolVersion = protocolversion
+          @Keepalive = keepalive
+          @ConnectionStatus = connectionstatus
+          @CreateTime = createtime
+          @ConnectTime = connecttime
+          @DisconnectTime = disconnecttime
+          @MQTTClientSubscriptions = mqttclientsubscriptions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientAddress = params['ClientAddress']
+          @ProtocolVersion = params['ProtocolVersion']
+          @Keepalive = params['Keepalive']
+          @ConnectionStatus = params['ConnectionStatus']
+          @CreateTime = params['CreateTime']
+          @ConnectTime = params['ConnectTime']
+          @DisconnectTime = params['DisconnectTime']
+          unless params['MQTTClientSubscriptions'].nil?
+            @MQTTClientSubscriptions = []
+            params['MQTTClientSubscriptions'].each do |i|
+              mqttclientsubscription_tmp = MQTTClientSubscription.new
+              mqttclientsubscription_tmp.deserialize(i)
+              @MQTTClientSubscriptions << mqttclientsubscription_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTInsPublicEndpoints请求参数结构体
+      class DescribeMQTTInsPublicEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMQTTInsPublicEndpoints返回参数结构体
+      class DescribeMQTTInsPublicEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param Endpoints: 接入点
+        # @type Endpoints: Array
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Endpoints, :InstanceId, :Bandwidth, :Rules, :RequestId
+
+        def initialize(endpoints=nil, instanceid=nil, bandwidth=nil, rules=nil, requestid=nil)
+          @Endpoints = endpoints
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              mqttendpointitem_tmp = MQTTEndpointItem.new
+              mqttendpointitem_tmp.deserialize(i)
+              @Endpoints << mqttendpointitem_tmp
+            end
+          end
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTInsVPCEndpoints请求参数结构体
+      class DescribeMQTTInsVPCEndpointsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMQTTInsVPCEndpoints返回参数结构体
+      class DescribeMQTTInsVPCEndpointsResponse < TencentCloud::Common::AbstractModel
+        # @param Endpoints: 接入点
+        # @type Endpoints: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Endpoints, :RequestId
+
+        def initialize(endpoints=nil, requestid=nil)
+          @Endpoints = endpoints
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              mqttendpointitem_tmp = MQTTEndpointItem.new
+              mqttendpointitem_tmp.deserialize(i)
+              @Endpoints << mqttendpointitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTInstanceCert请求参数结构体
+      class DescribeMQTTInstanceCertRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMQTTInstanceCert返回参数结构体
+      class DescribeMQTTInstanceCertResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param SSLServerCertId: 服务端证书id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLServerCertId: String
+        # @param SSLCaCertId: CA证书id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SSLCaCertId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :SSLServerCertId, :SSLCaCertId, :RequestId
+
+        def initialize(instanceid=nil, sslservercertid=nil, sslcacertid=nil, requestid=nil)
+          @InstanceId = instanceid
+          @SSLServerCertId = sslservercertid
+          @SSLCaCertId = sslcacertid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SSLServerCertId = params['SSLServerCertId']
+          @SSLCaCertId = params['SSLCaCertId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMQTTInstanceList请求参数结构体
       class DescribeMQTTInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 查询条件列表
@@ -1019,6 +1555,239 @@ module TencentCloud
         end
       end
 
+      # DescribeMQTTInstance请求参数结构体
+      class DescribeMQTTInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMQTTInstance返回参数结构体
+      class DescribeMQTTInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型，
+        # EXPERIMENT 体验版
+        # BASIC 基础版
+        # PRO  专业版
+        # PLATINUM 铂金版
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param TopicNum: 主题数量
+        # @type TopicNum: Integer
+        # @param TopicNumLimit: 实例最大主题数量
+        # @type TopicNumLimit: Integer
+        # @param TpsLimit: TPS限流值
+        # @type TpsLimit: Integer
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param SkuCode: 实例规格
+        # @type SkuCode: String
+        # @param SubscriptionNumLimit: 订阅数上限
+        # @type SubscriptionNumLimit: Integer
+        # @param ClientNumLimit: 客户端数量上限
+        # @type ClientNumLimit: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :SubscriptionNumLimit, :ClientNumLimit, :RequestId
+
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, subscriptionnumlimit=nil, clientnumlimit=nil, requestid=nil)
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @TopicNum = topicnum
+          @TopicNumLimit = topicnumlimit
+          @TpsLimit = tpslimit
+          @CreatedTime = createdtime
+          @Remark = remark
+          @InstanceStatus = instancestatus
+          @SkuCode = skucode
+          @SubscriptionNumLimit = subscriptionnumlimit
+          @ClientNumLimit = clientnumlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @TopicNum = params['TopicNum']
+          @TopicNumLimit = params['TopicNumLimit']
+          @TpsLimit = params['TpsLimit']
+          @CreatedTime = params['CreatedTime']
+          @Remark = params['Remark']
+          @InstanceStatus = params['InstanceStatus']
+          @SkuCode = params['SkuCode']
+          @SubscriptionNumLimit = params['SubscriptionNumLimit']
+          @ClientNumLimit = params['ClientNumLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTMessageList请求参数结构体
+      class DescribeMQTTMessageListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param TaskRequestId: 请求任务id
+        # @type TaskRequestId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Topic, :StartTime, :EndTime, :TaskRequestId, :Offset, :Limit
+
+        def initialize(instanceid=nil, topic=nil, starttime=nil, endtime=nil, taskrequestid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskRequestId = taskrequestid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskRequestId = params['TaskRequestId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMQTTMessageList返回参数结构体
+      class DescribeMQTTMessageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 消息记录列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param TaskRequestId: 请求任务id
+        # @type TaskRequestId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :TaskRequestId, :RequestId
+
+        def initialize(totalcount=nil, data=nil, taskrequestid=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @TaskRequestId = taskrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              mqttmessageitem_tmp = MQTTMessageItem.new
+              mqttmessageitem_tmp.deserialize(i)
+              @Data << mqttmessageitem_tmp
+            end
+          end
+          @TaskRequestId = params['TaskRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTMessage请求参数结构体
+      class DescribeMQTTMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param MsgId: 消息ID
+        # @type MsgId: String
+
+        attr_accessor :InstanceId, :Topic, :MsgId
+
+        def initialize(instanceid=nil, topic=nil, msgid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @MsgId = msgid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @MsgId = params['MsgId']
+        end
+      end
+
+      # DescribeMQTTMessage返回参数结构体
+      class DescribeMQTTMessageResponse < TencentCloud::Common::AbstractModel
+        # @param Body: 消息体
+        # @type Body: String
+        # @param Properties: 详情参数
+        # @type Properties: Array
+        # @param ProduceTime: 生产时间
+        # @type ProduceTime: String
+        # @param MessageId: 消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageId: String
+        # @param ProducerAddr: 生产者地址
+        # @type ProducerAddr: String
+        # @param ShowTopicName: Topic
+        # @type ShowTopicName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Body, :Properties, :ProduceTime, :MessageId, :ProducerAddr, :ShowTopicName, :RequestId
+
+        def initialize(body=nil, properties=nil, producetime=nil, messageid=nil, produceraddr=nil, showtopicname=nil, requestid=nil)
+          @Body = body
+          @Properties = properties
+          @ProduceTime = producetime
+          @MessageId = messageid
+          @ProducerAddr = produceraddr
+          @ShowTopicName = showtopicname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Body = params['Body']
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              custommapentry_tmp = CustomMapEntry.new
+              custommapentry_tmp.deserialize(i)
+              @Properties << custommapentry_tmp
+            end
+          end
+          @ProduceTime = params['ProduceTime']
+          @MessageId = params['MessageId']
+          @ProducerAddr = params['ProducerAddr']
+          @ShowTopicName = params['ShowTopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMQTTProductSKUList请求参数结构体
       class DescribeMQTTProductSKUListRequest < TencentCloud::Common::AbstractModel
 
@@ -1057,6 +1826,192 @@ module TencentCloud
               mqttproductskuitem_tmp = MQTTProductSkuItem.new
               mqttproductskuitem_tmp.deserialize(i)
               @MQTTProductSkuList << mqttproductskuitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTTopicList请求参数结构体
+      class DescribeMQTTTopicListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMQTTTopicList返回参数结构体
+      class DescribeMQTTTopicListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 主题列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              mqtttopicitem_tmp = MQTTTopicItem.new
+              mqtttopicitem_tmp.deserialize(i)
+              @Data << mqtttopicitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTTopic请求参数结构体
+      class DescribeMQTTTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+
+        attr_accessor :InstanceId, :Topic
+
+        def initialize(instanceid=nil, topic=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DescribeMQTTTopic返回参数结构体
+      class DescribeMQTTTopicResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Topic, :Remark, :CreatedTime, :RequestId
+
+        def initialize(instanceid=nil, topic=nil, remark=nil, createdtime=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Remark = remark
+          @CreatedTime = createdtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMQTTUserList请求参数结构体
+      class DescribeMQTTUserListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Filters: 查询条件列表
+        # @type Filters: Array
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMQTTUserList返回参数结构体
+      class DescribeMQTTUserListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Data: 角色信息列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              mqttuseritem_tmp = MQTTUserItem.new
+              mqttuseritem_tmp.deserialize(i)
+              @Data << mqttuseritem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1637,6 +2592,68 @@ module TencentCloud
         end
       end
 
+      # MQTT 订阅关系
+      class MQTTClientSubscription < TencentCloud::Common::AbstractModel
+        # @param TopicFilter: topic 订阅
+        # @type TopicFilter: String
+        # @param Qos: 服务质量等级
+        # @type Qos: Integer
+
+        attr_accessor :TopicFilter, :Qos
+
+        def initialize(topicfilter=nil, qos=nil)
+          @TopicFilter = topicfilter
+          @Qos = qos
+        end
+
+        def deserialize(params)
+          @TopicFilter = params['TopicFilter']
+          @Qos = params['Qos']
+        end
+      end
+
+      # MQTTEndpoint
+      class MQTTEndpointItem < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Url: 接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+        # @param VpcId: vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Host: 主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Port: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+
+        attr_accessor :Type, :Url, :VpcId, :SubnetId, :Host, :Port
+
+        def initialize(type=nil, url=nil, vpcid=nil, subnetid=nil, host=nil, port=nil)
+          @Type = type
+          @Url = url
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Host = host
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Url = params['Url']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Host = params['Host']
+          @Port = params['Port']
+        end
+      end
+
       # MQTT 实例信息
       class MQTTInstanceItem < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1720,6 +2737,63 @@ module TencentCloud
         end
       end
 
+      # 消息记录
+      class MQTTMessageItem < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MsgId: String
+        # @param Tags: 消息tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: String
+        # @param Keys: 消息key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: String
+        # @param ProducerAddr: 客户端地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProducerAddr: String
+        # @param ProduceTime: 消息发送时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProduceTime: String
+        # @param DeadLetterResendTimes: 死信重发次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterResendTimes: Integer
+        # @param DeadLetterResendSuccessTimes: 死信重发成功次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeadLetterResendSuccessTimes: Integer
+        # @param SubTopic: 子topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubTopic: String
+        # @param Qos: 消息质量等级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qos: String
+
+        attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
+
+        def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
+          @MsgId = msgid
+          @Tags = tags
+          @Keys = keys
+          @ProducerAddr = produceraddr
+          @ProduceTime = producetime
+          @DeadLetterResendTimes = deadletterresendtimes
+          @DeadLetterResendSuccessTimes = deadletterresendsuccesstimes
+          @SubTopic = subtopic
+          @Qos = qos
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @Tags = params['Tags']
+          @Keys = params['Keys']
+          @ProducerAddr = params['ProducerAddr']
+          @ProduceTime = params['ProduceTime']
+          @DeadLetterResendTimes = params['DeadLetterResendTimes']
+          @DeadLetterResendSuccessTimes = params['DeadLetterResendSuccessTimes']
+          @SubTopic = params['SubTopic']
+          @Qos = params['Qos']
+        end
+      end
+
       # MQTT ProductSkuItem
       class MQTTProductSkuItem < TencentCloud::Common::AbstractModel
         # @param InstanceType: 类型
@@ -1779,6 +2853,71 @@ module TencentCloud
           @ProxySpecCore = params['ProxySpecCore']
           @ProxySpecMemory = params['ProxySpecMemory']
           @ProxySpecCount = params['ProxySpecCount']
+        end
+      end
+
+      # MQTT 主题详情
+      class MQTTTopicItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Remark: 主题描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Topic, :Remark
+
+        def initialize(instanceid=nil, topic=nil, remark=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Remark = params['Remark']
+        end
+      end
+
+      # MQTT集群用户信息
+      class MQTTUserItem < TencentCloud::Common::AbstractModel
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param PermRead: 是否开启消费
+        # @type PermRead: Boolean
+        # @param PermWrite: 是否开启生产
+        # @type PermWrite: Boolean
+        # @param Remark: 备注信息
+        # @type Remark: String
+        # @param CreatedTime: 创建时间，秒为单位
+        # @type CreatedTime: Integer
+        # @param ModifiedTime: 修改时间，秒为单位
+        # @type ModifiedTime: Integer
+
+        attr_accessor :Username, :Password, :PermRead, :PermWrite, :Remark, :CreatedTime, :ModifiedTime
+
+        def initialize(username=nil, password=nil, permread=nil, permwrite=nil, remark=nil, createdtime=nil, modifiedtime=nil)
+          @Username = username
+          @Password = password
+          @PermRead = permread
+          @PermWrite = permwrite
+          @Remark = remark
+          @CreatedTime = createdtime
+          @ModifiedTime = modifiedtime
+        end
+
+        def deserialize(params)
+          @Username = params['Username']
+          @Password = params['Password']
+          @PermRead = params['PermRead']
+          @PermWrite = params['PermWrite']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @ModifiedTime = params['ModifiedTime']
         end
       end
 
@@ -1891,6 +3030,221 @@ module TencentCloud
         end
       end
 
+      # ModifyMQTTInsPublicEndpoint请求参数结构体
+      class ModifyMQTTInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Bandwidth: 带宽
+        # @type Bandwidth: Integer
+        # @param Rules: 公网访问规则
+        # @type Rules: Array
+
+        attr_accessor :InstanceId, :Bandwidth, :Rules
+
+        def initialize(instanceid=nil, bandwidth=nil, rules=nil)
+          @InstanceId = instanceid
+          @Bandwidth = bandwidth
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Bandwidth = params['Bandwidth']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              publicaccessrule_tmp = PublicAccessRule.new
+              publicaccessrule_tmp.deserialize(i)
+              @Rules << publicaccessrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyMQTTInsPublicEndpoint返回参数结构体
+      class ModifyMQTTInsPublicEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMQTTInstanceCertBinding请求参数结构体
+      class ModifyMQTTInstanceCertBindingRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SSLServerCertId: 服务端证书id
+        # @type SSLServerCertId: String
+        # @param SSLCaCertId: CA证书id
+        # @type SSLCaCertId: String
+
+        attr_accessor :InstanceId, :SSLServerCertId, :SSLCaCertId
+
+        def initialize(instanceid=nil, sslservercertid=nil, sslcacertid=nil)
+          @InstanceId = instanceid
+          @SSLServerCertId = sslservercertid
+          @SSLCaCertId = sslcacertid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SSLServerCertId = params['SSLServerCertId']
+          @SSLCaCertId = params['SSLCaCertId']
+        end
+      end
+
+      # ModifyMQTTInstanceCertBinding返回参数结构体
+      class ModifyMQTTInstanceCertBindingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMQTTInstance请求参数结构体
+      class ModifyMQTTInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Name: 实例名称
+        # @type Name: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Name, :Remark
+
+        def initialize(instanceid=nil, name=nil, remark=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMQTTInstance返回参数结构体
+      class ModifyMQTTInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMQTTTopic请求参数结构体
+      class ModifyMQTTTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param Remark: 备注信息
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Topic, :Remark
+
+        def initialize(instanceid=nil, topic=nil, remark=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMQTTTopic返回参数结构体
+      class ModifyMQTTTopicResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMQTTUser请求参数结构体
+      class ModifyMQTTUserRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Username: 用户名
+        # @type Username: String
+        # @param PermRead: 是否开启消费
+        # @type PermRead: Boolean
+        # @param PermWrite: 是否开启生产
+        # @type PermWrite: Boolean
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :Username, :PermRead, :PermWrite, :Remark
+
+        def initialize(instanceid=nil, username=nil, permread=nil, permwrite=nil, remark=nil)
+          @InstanceId = instanceid
+          @Username = username
+          @PermRead = permread
+          @PermWrite = permwrite
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Username = params['Username']
+          @PermRead = params['PermRead']
+          @PermWrite = params['PermWrite']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMQTTUser返回参数结构体
+      class ModifyMQTTUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRole请求参数结构体
       class ModifyRoleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1980,6 +3334,33 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 公网访问安全规则
+      class PublicAccessRule < TencentCloud::Common::AbstractModel
+        # @param IpRule: ip网段信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpRule: String
+        # @param Allow: 允许或者拒绝
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Allow: Boolean
+        # @param Remark: 备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :IpRule, :Allow, :Remark
+
+        def initialize(iprule=nil, allow=nil, remark=nil)
+          @IpRule = iprule
+          @Allow = allow
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @IpRule = params['IpRule']
+          @Allow = params['Allow']
+          @Remark = params['Remark']
         end
       end
 

@@ -78,6 +78,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品下线
+
         # 场内抓拍上报接口
 
         # @param request: Request instance for CreateCapture.

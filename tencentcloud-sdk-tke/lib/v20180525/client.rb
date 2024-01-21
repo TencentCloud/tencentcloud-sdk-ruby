@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 给GR集群增加可用的ClusterCIDR
+        # 给GR集群增加可用的ClusterCIDR（开白才能使用此功能，如需要请联系我们）
 
         # @param request: Request instance for AddClusterCIDR.
         # @type request: :class:`Tencentcloud::tke::V20180525::AddClusterCIDRRequest`
