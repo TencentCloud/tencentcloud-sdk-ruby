@@ -3388,6 +3388,7 @@ module TencentCloud
         end
 
         # 修改即时转码模板。
+        # - 注意：即时转码模板创建后，不推荐修改，如需修改参数，推荐使用新增模板。
 
         # @param request: Request instance for ModifyJustInTimeTranscodeTemplate.
         # @type request: :class:`Tencentcloud::vod::V20180717::ModifyJustInTimeTranscodeTemplateRequest`

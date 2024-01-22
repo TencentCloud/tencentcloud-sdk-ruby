@@ -310,10 +310,13 @@ module TencentCloud
         # @param RefundMap: 退款单的原订单信息。当前仅 DescribeClientDealsByCache 接口会返回该字段
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefundMap: Array
+        # @param SubGoodsName: 子产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubGoodsName: String
 
-        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime, :ResourceIds, :RefundMap
+        attr_accessor :DealId, :DealName, :GoodsCategoryId, :OwnerUin, :AppId, :GoodsNum, :GoodsPrice, :Creater, :CreatTime, :PayEndTime, :BillId, :Payer, :DealStatus, :Status, :GoodsName, :ClientRemark, :ActionType, :VoucherDecline, :BigDealId, :ClientType, :ProjectType, :SalesUin, :PayerMode, :ActivityId, :OverdueTime, :ProductInfo, :PaymentMethod, :UpdateTime, :ResourceIds, :RefundMap, :SubGoodsName
 
-        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil, resourceids=nil, refundmap=nil)
+        def initialize(dealid=nil, dealname=nil, goodscategoryid=nil, owneruin=nil, appid=nil, goodsnum=nil, goodsprice=nil, creater=nil, creattime=nil, payendtime=nil, billid=nil, payer=nil, dealstatus=nil, status=nil, goodsname=nil, clientremark=nil, actiontype=nil, voucherdecline=nil, bigdealid=nil, clienttype=nil, projecttype=nil, salesuin=nil, payermode=nil, activityid=nil, overduetime=nil, productinfo=nil, paymentmethod=nil, updatetime=nil, resourceids=nil, refundmap=nil, subgoodsname=nil)
           @DealId = dealid
           @DealName = dealname
           @GoodsCategoryId = goodscategoryid
@@ -344,6 +347,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @ResourceIds = resourceids
           @RefundMap = refundmap
+          @SubGoodsName = subgoodsname
         end
 
         def deserialize(params)
@@ -394,6 +398,7 @@ module TencentCloud
               @RefundMap << refundmap_tmp
             end
           end
+          @SubGoodsName = params['SubGoodsName']
         end
       end
 

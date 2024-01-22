@@ -552,10 +552,31 @@ module TencentCloud
         # @param BuildPercent: ci部署进度（%）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BuildPercent: Integer
+        # @param Uin: Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param BuildFinishTime: BuildFinishTime
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildFinishTime: String
+        # @param DeployFinishTime: DeployFinishTime
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployFinishTime: String
+        # @param BuildId: BuildId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildId: String
+        # @param SourceUrl: SourceUrl
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceUrl: String
+        # @param FailReasonShort: FailReasonShort
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReasonShort: String
+        # @param FirstInitRepo: FirstInitRepo
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FirstInitRepo: String
 
-        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType, :RepoUrl, :AutoDeployOnCodeChange, :BuildPercent
+        attr_accessor :Name, :Sam, :Source, :CreateTime, :UpdateTime, :Status, :Parameters, :Type, :CIId, :CDId, :EnvId, :VersionNum, :FailReason, :RcJson, :AddonConfig, :Tags, :NetworkConfig, :ExtensionId, :FailType, :RepoUrl, :AutoDeployOnCodeChange, :BuildPercent, :Uin, :BuildFinishTime, :DeployFinishTime, :BuildId, :SourceUrl, :FailReasonShort, :FirstInitRepo
 
-        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil, repourl=nil, autodeployoncodechange=nil, buildpercent=nil)
+        def initialize(name=nil, sam=nil, source=nil, createtime=nil, updatetime=nil, status=nil, parameters=nil, type=nil, ciid=nil, cdid=nil, envid=nil, versionnum=nil, failreason=nil, rcjson=nil, addonconfig=nil, tags=nil, networkconfig=nil, extensionid=nil, failtype=nil, repourl=nil, autodeployoncodechange=nil, buildpercent=nil, uin=nil, buildfinishtime=nil, deployfinishtime=nil, buildid=nil, sourceurl=nil, failreasonshort=nil, firstinitrepo=nil)
           @Name = name
           @Sam = sam
           @Source = source
@@ -578,6 +599,13 @@ module TencentCloud
           @RepoUrl = repourl
           @AutoDeployOnCodeChange = autodeployoncodechange
           @BuildPercent = buildpercent
+          @Uin = uin
+          @BuildFinishTime = buildfinishtime
+          @DeployFinishTime = deployfinishtime
+          @BuildId = buildid
+          @SourceUrl = sourceurl
+          @FailReasonShort = failreasonshort
+          @FirstInitRepo = firstinitrepo
         end
 
         def deserialize(params)
@@ -613,6 +641,13 @@ module TencentCloud
           @RepoUrl = params['RepoUrl']
           @AutoDeployOnCodeChange = params['AutoDeployOnCodeChange']
           @BuildPercent = params['BuildPercent']
+          @Uin = params['Uin']
+          @BuildFinishTime = params['BuildFinishTime']
+          @DeployFinishTime = params['DeployFinishTime']
+          @BuildId = params['BuildId']
+          @SourceUrl = params['SourceUrl']
+          @FailReasonShort = params['FailReasonShort']
+          @FirstInitRepo = params['FirstInitRepo']
         end
       end
 
@@ -3226,7 +3261,7 @@ module TencentCloud
       class DescribeCloudBaseBuildServiceResponse < TencentCloud::Common::AbstractModel
         # @param UploadUrl: 上传url
         # @type UploadUrl: String
-        # @param UploadHeaders: 上传heder
+        # @param UploadHeaders: 上传header
         # @type UploadHeaders: Array
         # @param PackageName: 包名
         # @type PackageName: String
@@ -3366,9 +3401,9 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNum: 第几页,从0开始
         # @type PageNum: Integer
-        # @param StartTime: 起始时间 2021-03-27 12:00:00
+        # @param StartTime: 起始时间
         # @type StartTime: String
-        # @param EndTime: 终止时间 2021-03-27 12:00:00
+        # @param EndTime: 终止时间
         # @type EndTime: String
 
         attr_accessor :EnvId, :ProjectName, :PageSize, :PageNum, :StartTime, :EndTime
@@ -4533,8 +4568,8 @@ module TencentCloud
         # <li> FunctionDuration: 云函数运行时间, 单位毫秒 </li>
         # <li> DbRead: 数据库读请求数 </li>
         # <li> DbWrite: 数据库写请求数 </li>
-        # <li> DbCostTime10ms: 数据库耗时在10ms~50ms请求数 </li>
-        # <li> DbCostTime50ms: 数据库耗时在50ms~100ms请求数 </li>
+        # <li> DbCostTime10ms: 数据库耗时在10ms-50ms请求数 </li>
+        # <li> DbCostTime50ms: 数据库耗时在50ms-100ms请求数 </li>
         # <li> DbCostTime100ms: 数据库耗时在100ms以上请求数 </li>
         # <li> TkeCpuRatio: 容器CPU占用率 </li>
         # <li> TkeMemRatio: 容器内存占用率 </li>
@@ -4583,7 +4618,7 @@ module TencentCloud
         # @type MetricName: String
         # @param Period: 统计周期(单位秒), 当时间区间为1天内, 统计周期为5分钟; 当时间区间选择为1天以上, 15天以下, 统计周期为1小时; 当时间区间选择为15天以上, 180天以下, 统计周期为1天.
         # @type Period: Integer
-        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
+        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到。
         # @type Values: Array
         # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的.
         # @type Time: Array
@@ -5427,14 +5462,14 @@ module TencentCloud
         # StorageCdnOriginFlux: CDN回源流量, 单位字节
         # CDNFlux: CDN回源流量, 单位字节
         # FunctionInvocation: 云函数调用次数
-        # FunctionGBs: 云函数资源使用量, 单位Mb*Ms
+        # FunctionGBs: 云函数资源使用量, 单位MB*ms
         # FunctionFlux: 云函数流量, 单位千字节(KB)
         # FunctionError: 云函数调用错误次数
         # FunctionDuration: 云函数运行时间, 单位毫秒
         # DbRead: 数据库读请求数
         # DbWrite: 数据库写请求数
-        # DbCostTime10ms: 数据库耗时在10ms~50ms请求数
-        # DbCostTime50ms: 数据库耗时在50ms~100ms请求数
+        # DbCostTime10ms: 数据库耗时在10ms-50ms请求数
+        # DbCostTime50ms: 数据库耗时在50ms-100ms请求数
         # DbCostTime100ms: 数据库耗时在100ms以上请求数
         # TkeCpuRatio: 容器CPU占用率
         # TkeMemRatio: 容器内存占用率
@@ -5483,7 +5518,7 @@ module TencentCloud
         # @type MetricName: String
         # @param Period: 统计周期(单位秒), 当时间区间为1天内, 统计周期为5分钟; 当时间区间选择为1天以上, 15天以下, 统计周期为1小时; 当时间区间选择为15天以上, 180天以下, 统计周期为1天.
         # @type Period: Integer
-        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
+        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到。
         # @type Values: Array
         # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的.
         # @type Time: Array
@@ -8074,6 +8109,7 @@ module TencentCloud
         # @param MaxNum: 最大副本数
         # @type MaxNum: String
         # @param PolicyType: 策略类型
+        # cpu/mem
         # @type PolicyType: String
         # @param PolicyThreshold: 策略阈值
         # @type PolicyThreshold: String

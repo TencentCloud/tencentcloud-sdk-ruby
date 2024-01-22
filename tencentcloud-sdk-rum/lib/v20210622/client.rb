@@ -29,34 +29,6 @@ module TencentCloud
         end
 
 
-        # 接口请求域名： rum.tencentcloudapi.com 。
-
-        # 本接口用于创建日志下载任务
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for CreateLogExport.
-        # @type request: :class:`Tencentcloud::rum::V20210622::CreateLogExportRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::CreateLogExportResponse`
-        def CreateLogExport(request)
-          body = send_request('CreateLogExport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateLogExportResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建 RUM 应用（归属于某个团队）
 
         # @param request: Request instance for CreateProject.
@@ -187,34 +159,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口请求域名： rum.tencentcloudapi.com 。
-
-        # 本接口用于删除日志下载任务
-
-        # 默认接口请求频率限制：20次/秒。
-
-        # @param request: Request instance for DeleteLogExport.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DeleteLogExportRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DeleteLogExportResponse`
-        def DeleteLogExport(request)
-          body = send_request('DeleteLogExport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteLogExportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -864,58 +808,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeErrorResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 接口请求域名： rum.tencentcloudapi.com 。
-
-        # 本接口用于获取日志下载任务列表
-
-        # 默认接口请求频率限制：20次/秒
-
-        # @param request: Request instance for DescribeLogExports.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeLogExportsRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeLogExportsResponse`
-        def DescribeLogExports(request)
-          body = send_request('DescribeLogExports', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLogExportsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # (已下线，请用DescribeRumLogList)
-
-        # @param request: Request instance for DescribeLogList.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeLogListRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeLogListResponse`
-        def DescribeLogList(request)
-          body = send_request('DescribeLogList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLogListResponse.new
             model.deserialize(response['Response'])
             model
           else

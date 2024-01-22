@@ -371,7 +371,7 @@ module TencentCloud
         # @type CallbackUrl: String
         # @param SpeakerDiarization: 是否开启说话人分离
         # 0：不开启；
-        # 1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id，且ChannelNum=1时可用）；
+        # 1：开启（仅支持以下引擎：8k_zh/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_dialect_large，且ChannelNum=1时可用）；
         # 默认值为 0
 
         # 注意：
@@ -1266,12 +1266,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2023, 12
-        deprecate :ProjectId=, :none, 2023, 12
-        deprecate :SubServiceType, :none, 2023, 12
-        deprecate :SubServiceType=, :none, 2023, 12
-        deprecate :UsrAudioKey, :none, 2023, 12
-        deprecate :UsrAudioKey=, :none, 2023, 12
+        deprecate :ProjectId, :none, 2024, 1
+        deprecate :ProjectId=, :none, 2024, 1
+        deprecate :SubServiceType, :none, 2024, 1
+        deprecate :SubServiceType=, :none, 2024, 1
+        deprecate :UsrAudioKey, :none, 2024, 1
+        deprecate :UsrAudioKey=, :none, 2024, 1
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype

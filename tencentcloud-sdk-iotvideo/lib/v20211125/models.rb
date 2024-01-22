@@ -2299,6 +2299,57 @@ module TencentCloud
         end
       end
 
+      # DescribeCloudStorageMultiThumbnail请求参数结构体
+      class DescribeCloudStorageMultiThumbnailRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param MultiThumbnail: 多个缩略图文件名根据 | 分割
+        # @type MultiThumbnail: String
+
+        attr_accessor :ProductId, :DeviceName, :MultiThumbnail
+
+        def initialize(productid=nil, devicename=nil, multithumbnail=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @MultiThumbnail = multithumbnail
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @MultiThumbnail = params['MultiThumbnail']
+        end
+      end
+
+      # DescribeCloudStorageMultiThumbnail返回参数结构体
+      class DescribeCloudStorageMultiThumbnailResponse < TencentCloud::Common::AbstractModel
+        # @param ThumbnailURLInfoList: 缩略图访问地址
+        # @type ThumbnailURLInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ThumbnailURLInfoList, :RequestId
+
+        def initialize(thumbnailurlinfolist=nil, requestid=nil)
+          @ThumbnailURLInfoList = thumbnailurlinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ThumbnailURLInfoList'].nil?
+            @ThumbnailURLInfoList = []
+            params['ThumbnailURLInfoList'].each do |i|
+              thumbnailurlinfolist_tmp = ThumbnailURLInfoList.new
+              thumbnailurlinfolist_tmp.deserialize(i)
+              @ThumbnailURLInfoList << thumbnailurlinfolist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCloudStorageOrder请求参数结构体
       class DescribeCloudStorageOrderRequest < TencentCloud::Common::AbstractModel
         # @param OrderId: 订单id

@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 优mall产品启动下线流程
+
         # 上报相机移动、遮挡等告警信息
 
 
@@ -53,6 +55,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 上报当前场内所有相机的当前状态
 
@@ -104,6 +108,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 集团广场的多经点位告警
 
         # @param request: Request instance for CreateMultiBizAlert.
@@ -127,6 +133,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 上报所有进程监控信息
 
@@ -152,6 +160,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 上报所有服务器硬件监控信息
 
         # @param request: Request instance for CreateServerState.
@@ -175,6 +185,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 集团广场的多经点位消警
 
@@ -200,6 +212,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 删除集团广场对应的任务
 
         # @param request: Request instance for DeleteTask.
@@ -224,6 +238,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 获取集团广场对应的摄像头列表
 
         # @param request: Request instance for DescribeCameras.
@@ -247,6 +263,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 获取摄像头配置信息
         # mac不为空返回指定相机配置
@@ -274,6 +292,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 实时获取底图接口
 
         # @param request: Request instance for DescribeImage.
@@ -297,6 +317,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 获取多经点位底图
 
@@ -322,6 +344,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 查询集团广场对应的任务列表
 
         # @param request: Request instance for DescribeTasks.
@@ -345,6 +369,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 获取集团广场的点位列表
 
@@ -370,6 +396,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 集团广场的多经点位配置更新
 
         # @param request: Request instance for ModifyMultiBizConfig.
@@ -394,6 +422,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 优mall产品启动下线流程
+
         # 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
 
         # @param request: Request instance for ReportServiceRegister.
@@ -417,6 +447,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 优mall产品启动下线流程
 
         # 以图搜图
 
