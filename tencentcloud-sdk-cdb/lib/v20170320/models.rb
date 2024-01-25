@@ -5541,15 +5541,19 @@ module TencentCloud
       class DescribeDBInstanceLogToCLSRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param ClsRegion: CLS服务所在地域
+        # @type ClsRegion: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :ClsRegion
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, clsregion=nil)
           @InstanceId = instanceid
+          @ClsRegion = clsregion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @ClsRegion = params['ClsRegion']
         end
       end
 
@@ -8663,19 +8667,24 @@ module TencentCloud
         # @param LogTopicId: 日志主题ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogTopicId: String
+        # @param ClsRegion: CLS服务所在地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClsRegion: String
 
-        attr_accessor :Status, :LogSetId, :LogTopicId
+        attr_accessor :Status, :LogSetId, :LogTopicId, :ClsRegion
 
-        def initialize(status=nil, logsetid=nil, logtopicid=nil)
+        def initialize(status=nil, logsetid=nil, logtopicid=nil, clsregion=nil)
           @Status = status
           @LogSetId = logsetid
           @LogTopicId = logtopicid
+          @ClsRegion = clsregion
         end
 
         def deserialize(params)
           @Status = params['Status']
           @LogSetId = params['LogSetId']
           @LogTopicId = params['LogTopicId']
+          @ClsRegion = params['ClsRegion']
         end
       end
 
@@ -9665,7 +9674,7 @@ module TencentCloud
       class ModifyDBInstanceLogToCLSRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param LogType: 日志类型：error/slowLog
+        # @param LogType: 日志类型：error/slowlog
         # @type LogType: String
         # @param Status: 投递状态：ON/OFF
         # @type Status: String
@@ -9681,10 +9690,12 @@ module TencentCloud
         # @type Period: Integer
         # @param CreateIndex: 创建日志主题时，是否创建索引
         # @type CreateIndex: Boolean
+        # @param ClsRegion: CLS所在地域
+        # @type ClsRegion: String
 
-        attr_accessor :InstanceId, :LogType, :Status, :CreateLogset, :Logset, :CreateLogTopic, :LogTopic, :Period, :CreateIndex
+        attr_accessor :InstanceId, :LogType, :Status, :CreateLogset, :Logset, :CreateLogTopic, :LogTopic, :Period, :CreateIndex, :ClsRegion
 
-        def initialize(instanceid=nil, logtype=nil, status=nil, createlogset=nil, logset=nil, createlogtopic=nil, logtopic=nil, period=nil, createindex=nil)
+        def initialize(instanceid=nil, logtype=nil, status=nil, createlogset=nil, logset=nil, createlogtopic=nil, logtopic=nil, period=nil, createindex=nil, clsregion=nil)
           @InstanceId = instanceid
           @LogType = logtype
           @Status = status
@@ -9694,6 +9705,7 @@ module TencentCloud
           @LogTopic = logtopic
           @Period = period
           @CreateIndex = createindex
+          @ClsRegion = clsregion
         end
 
         def deserialize(params)
@@ -9706,6 +9718,7 @@ module TencentCloud
           @LogTopic = params['LogTopic']
           @Period = params['Period']
           @CreateIndex = params['CreateIndex']
+          @ClsRegion = params['ClsRegion']
         end
       end
 

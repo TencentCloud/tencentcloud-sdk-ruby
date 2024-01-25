@@ -487,8 +487,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除CLB-WAF防护域名
-        # 支持批量操作
+        # 删除负载均衡型域名，支持批量操作。
 
         # @param request: Request instance for DeleteHost.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteHostRequest`
@@ -560,7 +559,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # Saas型WAF删除防护域名
+        # SaaS型WAF删除防护域名
 
         # @param request: Request instance for DeleteSpartaProtection.
         # @type request: :class:`Tencentcloud::waf::V20180125::DeleteSpartaProtectionRequest`
@@ -1668,7 +1667,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户TLS版本
+        # 查询SaaS型WAF支持的TLS版本
 
         # @param request: Request instance for DescribeTlsVersion.
         # @type request: :class:`Tencentcloud::waf::V20180125::DescribeTlsVersionRequest`
@@ -2534,7 +2533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # clb-waf编辑防护域名配置
+        # 编辑负载均衡型WAF防护域名配置
 
         # @param request: Request instance for ModifyHost.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyHostRequest`
@@ -2558,7 +2557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # clb-waf 设置防护域名的流量模式
+        # 设置负载均衡型WAF防护域名的流量模式，切换镜像模式和清洗模式
 
         # @param request: Request instance for ModifyHostFlowMode.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyHostFlowModeRequest`
@@ -2799,7 +2798,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改域名配置
+        # 编辑SaaS型WAF域名配置
 
         # @param request: Request instance for ModifySpartaProtection.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifySpartaProtectionRequest`

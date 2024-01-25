@@ -437,28 +437,30 @@ module TencentCloud
       class AddAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param SignatureId: 规则Id
-        # @type SignatureId: String
         # @param Status: 规则状态
         # @type Status: Integer
         # @param Rules: 匹配规则项列表
         # @type Rules: Array
         # @param RuleId: 规则序号
         # @type RuleId: Integer
+        # @param SignatureId: 规则Id
+        # @type SignatureId: String
+        # @param SignatureIds: 加白的规则ID列表
+        # @type SignatureIds: Array
 
-        attr_accessor :Domain, :SignatureId, :Status, :Rules, :RuleId
+        attr_accessor :Domain, :Status, :Rules, :RuleId, :SignatureId, :SignatureIds
 
-        def initialize(domain=nil, signatureid=nil, status=nil, rules=nil, ruleid=nil)
+        def initialize(domain=nil, status=nil, rules=nil, ruleid=nil, signatureid=nil, signatureids=nil)
           @Domain = domain
-          @SignatureId = signatureid
           @Status = status
           @Rules = rules
           @RuleId = ruleid
+          @SignatureId = signatureid
+          @SignatureIds = signatureids
         end
 
         def deserialize(params)
           @Domain = params['Domain']
-          @SignatureId = params['SignatureId']
           @Status = params['Status']
           unless params['Rules'].nil?
             @Rules = []
@@ -469,6 +471,8 @@ module TencentCloud
             end
           end
           @RuleId = params['RuleId']
+          @SignatureId = params['SignatureId']
+          @SignatureIds = params['SignatureIds']
         end
       end
 
@@ -750,7 +754,7 @@ module TencentCloud
         # @type IsGray: Integer
         # @param GrayAreas: 待废弃，可不填。灰度的地区
         # @type GrayAreas: Array
-        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。
+        # @param HttpsRewrite: 必填项，是否开启HTTP强制跳转到HTTPS。
         # 0：不强制跳转
         # 1：开启强制跳转
         # @type HttpsRewrite: Integer
@@ -758,7 +762,7 @@ module TencentCloud
         # @type UpstreamDomain: String
         # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
         # @type SrcList: Array
-        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。
+        # @param IsHttp2: 必填项，是否开启HTTP2，需要开启HTTPS协议支持。
         # 0：关闭
         # 1：开启
         # @type IsHttp2: Integer
@@ -774,23 +778,23 @@ module TencentCloud
         # clb-waf：负载均衡型WAF
         # cdn-waf：CDN上的Web防护能力
         # @type Edition: String
-        # @param IsKeepAlive: 是否开启长连接。
+        # @param IsKeepAlive: 必填项，是否开启长连接。
         # 0： 短连接
         # 1： 长连接
         # @type IsKeepAlive: String
-        # @param InstanceID: 域名所属实例id
+        # @param InstanceID: 必填项，域名所属实例id
         # @type InstanceID: String
         # @param Anycast: 待废弃，目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
-        # @param ActiveCheck: 是否开启主动健康检测。
+        # @param ActiveCheck: 必填项，是否开启主动健康检测。
         # 0：不开启
         # 1：开启
         # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
         # @type TLSVersion: Integer
-        # @param CipherTemplate: 加密套件模板。
+        # @param CipherTemplate: 必填项，加密套件模板。
         # 0：不支持选择，使用默认模板
         # 1：通用型模板
         # 2：安全型模板
@@ -814,10 +818,14 @@ module TencentCloud
         # 0：关闭
         # 1：开启
         # @type XFFReset: Integer
+        # @param Note: 域名备注信息
+        # @type Note: String
+        # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
+        # @type UpstreamHost: String
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Ports, :Edition, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, ports=nil, edition=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -852,6 +860,8 @@ module TencentCloud
           @SniType = snitype
           @SniHost = snihost
           @XFFReset = xffreset
+          @Note = note
+          @UpstreamHost = upstreamhost
         end
 
         def deserialize(params)
@@ -896,6 +906,8 @@ module TencentCloud
           @SniType = params['SniType']
           @SniHost = params['SniHost']
           @XFFReset = params['XFFReset']
+          @Note = params['Note']
+          @UpstreamHost = params['UpstreamHost']
         end
       end
 
@@ -1561,25 +1573,25 @@ module TencentCloud
         end
       end
 
-      # clb域名详情
+      # 负载均衡型WAF域名详情
       class ClbDomainsInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名id
+        # @param DomainId: 域名唯一ID
         # @type DomainId: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: 域名所属实例ID
         # @type InstanceId: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: 域名所属实例名
         # @type InstanceName: String
-        # @param Edition: waf类型
+        # @param Edition: 域名所属实例类型
         # @type Edition: String
-        # @param IsCdn: 是否是cdn
+        # @param IsCdn: waf前是否部署有七层代理服务。 0：没有部署代理服务 1：有部署代理服务，waf将使用XFF获取客户端IP 2：有部署代理服务，waf将使用remote_addr获取客户端IP 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
-        # @param LoadBalancerSet: 负载均衡算法
+        # @param LoadBalancerSet: 负载均衡类型为clb时，对应的负载均衡器信息
         # @type LoadBalancerSet: Array
-        # @param FlowMode: 镜像模式
+        # @param FlowMode: 负载均衡型WAF的流量模式，1：清洗模式，0：镜像模式
         # @type FlowMode: Integer
-        # @param State: 绑定clb状态
+        # @param State: 域名绑定负载均衡器状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: Integer
         # @param AlbType: 负载均衡类型，clb或者apisix
@@ -1588,16 +1600,19 @@ module TencentCloud
         # @param IpHeaders: IsCdn=3时，表示自定义header
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
-        # @param CdcClusters: cdc类型会增加集群信息
+        # @param CdcClusters: cdc-clb-waf类型WAF的CDC集群信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: String
         # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
+        # @param Note: 域名备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType
+        attr_accessor :Domain, :DomainId, :InstanceId, :InstanceName, :Edition, :IsCdn, :LoadBalancerSet, :FlowMode, :State, :AlbType, :IpHeaders, :CdcClusters, :CloudType, :Note
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, instancename=nil, edition=nil, iscdn=nil, loadbalancerset=nil, flowmode=nil, state=nil, albtype=nil, ipheaders=nil, cdcclusters=nil, cloudtype=nil, note=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -1611,6 +1626,7 @@ module TencentCloud
           @IpHeaders = ipheaders
           @CdcClusters = cdcclusters
           @CloudType = cloudtype
+          @Note = note
         end
 
         def deserialize(params)
@@ -1634,6 +1650,7 @@ module TencentCloud
           @IpHeaders = params['IpHeaders']
           @CdcClusters = params['CdcClusters']
           @CloudType = params['CloudType']
+          @Note = params['Note']
         end
       end
 
@@ -2348,7 +2365,7 @@ module TencentCloud
 
       # DeleteHost返回参数结构体
       class DeleteHostResponse < TencentCloud::Common::AbstractModel
-        # @param Success: 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
+        # @param Success: 域名删除结果。Code表示状态码，Message表示详细信息。
         # @type Success: :class:`Tencentcloud::Waf.v20180125.models.ResponseCode`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2381,15 +2398,18 @@ module TencentCloud
         # @type DeleteAll: Boolean
         # @param SourceType: 是否为多域名黑白名单
         # @type SourceType: String
+        # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单
+        # @type ActionType: Integer
 
-        attr_accessor :Domain, :Items, :IsId, :DeleteAll, :SourceType
+        attr_accessor :Domain, :Items, :IsId, :DeleteAll, :SourceType, :ActionType
 
-        def initialize(domain=nil, items=nil, isid=nil, deleteall=nil, sourcetype=nil)
+        def initialize(domain=nil, items=nil, isid=nil, deleteall=nil, sourcetype=nil, actiontype=nil)
           @Domain = domain
           @Items = items
           @IsId = isid
           @DeleteAll = deleteall
           @SourceType = sourcetype
+          @ActionType = actiontype
         end
 
         def deserialize(params)
@@ -2398,6 +2418,7 @@ module TencentCloud
           @IsId = params['IsId']
           @DeleteAll = params['DeleteAll']
           @SourceType = params['SourceType']
+          @ActionType = params['ActionType']
         end
       end
 
@@ -2478,7 +2499,7 @@ module TencentCloud
         # @type Domains: Array
         # @param Edition: 实例类型
         # @type Edition: String
-        # @param InstanceID: 实例id
+        # @param InstanceID: 必填项。域名所属实例ID
         # @type InstanceID: String
 
         attr_accessor :Domains, :Edition, :InstanceID
@@ -3649,13 +3670,13 @@ module TencentCloud
       class DescribeCertificateVerifyResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param CertType: 证书类型
+        # @param CertType: 证书类型。 0：仅配置HTTP监听端口，没有证书 1：证书来源为自有证书 2：证书来源为托管证书
         # @type CertType: Integer
-        # @param Certificate: 证书公钥
+        # @param Certificate: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Certificate: String
-        # @param CertID: 证书ID
+        # @param CertID: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type CertID: String
-        # @param PrivateKey: 私钥信息
+        # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
         # @type PrivateKey: String
 
         attr_accessor :Domain, :CertType, :Certificate, :CertID, :PrivateKey
@@ -3679,13 +3700,19 @@ module TencentCloud
 
       # DescribeCertificateVerifyResult返回参数结构体
       class DescribeCertificateVerifyResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态码
+        # @param Status: 状态码。
+        # 0：证书正常
+        # 310：证书异常
+        # 311：证书过期
+        # 312：证书即将过期
         # @type Status: Integer
         # @param Detail: 错误详情
         # @type Detail: Array
         # @param NotAfter: 过期时间
         # @type NotAfter: String
-        # @param Changed: 证书是否改变:1有改变，0没有改变
+        # @param Changed: 证书是否改变。
+        # 0：未变化
+        # 1：有变化
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Changed: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5946,18 +5973,23 @@ module TencentCloud
         # @type DenyTimeThreshold: Integer
         # @param DefenseStatus: 自动封禁状态
         # @type DefenseStatus: Integer
+        # @param Source: 数据来源Source字段 custom-自定义(默认)、batch-domain-批量域名
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
         # @param HWState: 重保护网域名状态
         # @type HWState: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus, :HWState, :RequestId
+        attr_accessor :AttackThreshold, :TimeThreshold, :DenyTimeThreshold, :DefenseStatus, :Source, :HWState, :RequestId
 
-        def initialize(attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil, hwstate=nil, requestid=nil)
+        def initialize(attackthreshold=nil, timethreshold=nil, denytimethreshold=nil, defensestatus=nil, source=nil, hwstate=nil, requestid=nil)
           @AttackThreshold = attackthreshold
           @TimeThreshold = timethreshold
           @DenyTimeThreshold = denytimethreshold
           @DefenseStatus = defensestatus
+          @Source = source
           @HWState = hwstate
           @RequestId = requestid
         end
@@ -5967,6 +5999,7 @@ module TencentCloud
           @TimeThreshold = params['TimeThreshold']
           @DenyTimeThreshold = params['DenyTimeThreshold']
           @DefenseStatus = params['DefenseStatus']
+          @Source = params['Source']
           @HWState = params['HWState']
           @RequestId = params['RequestId']
         end
@@ -6144,68 +6177,157 @@ module TencentCloud
         # @type InstanceId: String
         # @param Cname: cname地址
         # @type Cname: String
-        # @param Edition: 实例类型,sparta-waf表示saaswaf实例域名,clb-waf表示clbwaf实例域名,cdc-clb-waf表示CDC环境下clbwaf实例域名,cdn-waf表示cdnwaf实例域名
+        # @param Edition: 域名所属实例类型。
+        # sparta-waf：SaaS型WAF实例
+        # clb-waf：负载均衡型WAF实例
+        # cdc-clb-waf：CDC环境下负载均衡型WAF实例
         # @type Edition: String
-        # @param Region: 地域
+        # @param Region: 地域。
+        # "多伦多": "ca"
+        # "广州": "gz"
+        # "成都": "cd"
+        # "福州": "fzec"
+        # "深圳": "szx"
+        # "印度": "in"
+        # "济南": "jnec"
+        # "重庆": "cq"
+        # "天津": "tsn"
+        # "欧洲东北": "ru"
+        # "南京": "nj"
+        # "美国硅谷": "usw"
+        # "泰国": "th"
+        # "广州Open": "gzopen"
+        # "深圳金融": "szjr"
+        # "法兰克福": "de"
+        # "日本": "jp"
+        # "弗吉尼亚": "use"
+        # "北京": "bj"
+        # "香港": "hk"
+        # "杭州": "hzec"
+        # "北京金融": "bjjr"
+        # "上海金融": "shjr"
+        # "台北": "tpe"
+        # "首尔": "kr"
+        # "上海": "sh"
+        # "新加坡": "sg"
+        # "清远": "qy"
         # @type Region: String
         # @param InstanceName: 实例名
         # @type InstanceName: String
-        # @param ClsStatus: 日志包
+        # @param ClsStatus: 访问日志开关状态。
+        # 0：关闭
+        # 1：开启
         # @type ClsStatus: Integer
-        # @param FlowMode: clbwaf使用模式,0镜像模式 1清洗模式
+        # @param FlowMode: 负载均衡型WAF使用模式。
+        # 0：镜像模式
+        # 1：清洗模式
         # @type FlowMode: Integer
-        # @param Status: waf开关,0关闭 1开启
+        # @param Status: waf开关状态。
+        # 0：关闭
+        # 1：开启
         # @type Status: Integer
-        # @param Mode: 规则引擎防护模式,0观察模式 1拦截模式
+        # @param Mode: 规则引擎防护模式。
+        # 0：观察模式
+        # 1：拦截模式
         # @type Mode: Integer
-        # @param Engine: 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
+        # @param Engine: 规则引擎和AI引擎防护模式联合状态。
+        # 1:初始状态,规则引擎拦截&&AI引擎未操作开关状态
+        # 10：规则引擎观察&&AI引擎关闭模式
+        # 11：规则引擎观察&&AI引擎观察模式
+        # 12：规则引擎观察&&AI引擎拦截模式
+        # 20：规则引擎拦截&&AI引擎关闭模式
+        # 21：规则引擎拦截&&AI引擎观察模式
+        # 22：规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
-        # @param CCList: CC列表
+        # @param CCList: 沙箱集群回源出口IP列表
         # @type CCList: Array
-        # @param RsList: 回源ip
+        # @param RsList: 生产集群回源出口IP列表
         # @type RsList: Array
         # @param Ports: 服务端口配置
         # @type Ports: Array
-        # @param LoadBalancerSet: 负载均衡器
+        # @param LoadBalancerSet: 负载均衡器相关配置
         # @type LoadBalancerSet: Array
         # @param AppId: 用户id
         # @type AppId: Integer
-        # @param State: clbwaf域名监听器状态,0操作成功 4正在绑定LB 6正在解绑LB 7解绑LB失败 8绑定LB失败 10内部错误
+        # @param State: 负载均衡型WAF域名LB监听器状态。
+        # 0：操作成功
+        # 4：正在绑定LB
+        # 6：正在解绑LB
+        # 7：解绑LB失败
+        # 8：绑定LB失败
+        # 10：内部错误
         # @type State: Integer
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param Ipv6Status: Ipv6开关状态,0关闭 1开启
+        # @param Ipv6Status: Ipv6开关状态。
+        # 0：关闭
+        # 1：开启
         # @type Ipv6Status: Integer
-        # @param BotStatus: BOT开关状态,0关闭 1开启
+        # @param BotStatus: BOT开关状态。
+        # 0：关闭
+        # 1：关闭
+        # 2：开启
+        # 3：开启
         # @type BotStatus: Integer
-        # @param Level: 版本信息
+        # @param Level: 实例版本信息。
+        # 101：小微敏捷版
+        # 102：小微超轻版
+        # 2：高级版
+        # 3：企业版
+        # 4：旗舰版
+        # 6：独享版
         # @type Level: Integer
-        # @param PostCLSStatus: 是否开启投递CLS功能,0关闭 1开启
+        # @param PostCLSStatus: 投递CLS状态。
+        # 0：关闭
+        # 1：开启
         # @type PostCLSStatus: Integer
-        # @param PostCKafkaStatus: 是否开启投递CKafka功能,0关闭 1开启
+        # @param PostCKafkaStatus: 投递CKafka状态。
+        # 0：关闭
+        # 1：开启
         # @type PostCKafkaStatus: Integer
-        # @param CdcClusters: cdc实例域名接入的集群信息,非cdc实例忽略
+        # @param CdcClusters: cdc实例域名接入的集群信息,非cdc实例忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: String
-        # @param ApiStatus: api安全开关状态,0关闭 1开启
+        # @param ApiStatus: api安全开关状态。
+        # 0：关闭
+        # 1：开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiStatus: Integer
-        # @param AlbType: 应用型负载均衡类型,clb或者apisix，默认clb
+        # @param AlbType: 应用型负载均衡类型，默认clb。
+        # clb：七层负载均衡器类型
+        # apisix：apisix网关型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
-        # @param SgState: 安全组状态,0不展示 1非腾讯云源站 2安全组绑定失败 3安全组发生变更
+        # @param SgState: 安全组状态。
+        # 0：不展示
+        # 1：非腾讯云源站
+        # 2：安全组绑定失败
+        # 3：安全组发生变更
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgState: Integer
         # @param SgDetail: 安全组状态的详细解释
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SgDetail: String
-        # @param CloudType: 域名类型:hybrid表示混合云域名，public表示公有云域名
+        # @param CloudType: 域名云环境。hybrid：混合云域名
+        # public：公有云域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
+        # @param Note: 域名备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
+        # @param SrcList: SAASWAF源站IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcList: Array
+        # @param UpstreamDomainList: SAASWAF源站域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamDomainList: Array
+        # @param SgID: 安全组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SgID: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType
+        attr_accessor :Domain, :DomainId, :InstanceId, :Cname, :Edition, :Region, :InstanceName, :ClsStatus, :FlowMode, :Status, :Mode, :Engine, :CCList, :RsList, :Ports, :LoadBalancerSet, :AppId, :State, :CreateTime, :Ipv6Status, :BotStatus, :Level, :PostCLSStatus, :PostCKafkaStatus, :CdcClusters, :ApiStatus, :AlbType, :SgState, :SgDetail, :CloudType, :Note, :SrcList, :UpstreamDomainList, :SgID
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, cname=nil, edition=nil, region=nil, instancename=nil, clsstatus=nil, flowmode=nil, status=nil, mode=nil, engine=nil, cclist=nil, rslist=nil, ports=nil, loadbalancerset=nil, appid=nil, state=nil, createtime=nil, ipv6status=nil, botstatus=nil, level=nil, postclsstatus=nil, postckafkastatus=nil, cdcclusters=nil, apistatus=nil, albtype=nil, sgstate=nil, sgdetail=nil, cloudtype=nil, note=nil, srclist=nil, upstreamdomainlist=nil, sgid=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -6236,6 +6358,10 @@ module TencentCloud
           @SgState = sgstate
           @SgDetail = sgdetail
           @CloudType = cloudtype
+          @Note = note
+          @SrcList = srclist
+          @UpstreamDomainList = upstreamdomainlist
+          @SgID = sgid
         end
 
         def deserialize(params)
@@ -6283,6 +6409,10 @@ module TencentCloud
           @SgState = params['SgState']
           @SgDetail = params['SgDetail']
           @CloudType = params['CloudType']
+          @Note = params['Note']
+          @SrcList = params['SrcList']
+          @UpstreamDomainList = params['UpstreamDomainList']
+          @SgID = params['SgID']
         end
       end
 
@@ -6348,99 +6478,153 @@ module TencentCloud
         end
       end
 
-      # saas域名详情
+      # SaaS型WAF域名详情
       class DomainsPartInfo < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名id
+        # @param DomainId: 域名唯一ID
         # @type DomainId: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: 域名所属实例唯一ID
         # @type InstanceId: String
-        # @param Edition: 类型
+        # @param Edition: 域名所属实例类型
         # @type Edition: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: 域名所属实例名
         # @type InstanceName: String
         # @param Cert: 证书
         # @type Cert: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param Engine: AI防御模式
+        # @param Engine: 规则引擎和AI引擎防护模式联合状态。
+        # 1:初始状态,规则引擎拦截&&AI引擎未操作开关状态
+        # 10：规则引擎观察&&AI引擎关闭模式
+        # 11：规则引擎观察&&AI引擎观察模式
+        # 12：规则引擎观察&&AI引擎拦截模式
+        # 20：规则引擎拦截&&AI引擎关闭模式
+        # 21：规则引擎拦截&&AI引擎观察模式
+        # 22：规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
-        # @param HttpsRewrite: 是否开启httpRewrite
+        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。
+        # 0：不强制跳转
+        # 1：开启强制跳转
         # @type HttpsRewrite: Integer
-        # @param HttpsUpstreamPort: https回源端口
+        # @param HttpsUpstreamPort: HTTPS回源端口
         # @type HttpsUpstreamPort: String
-        # @param IsCdn: 是否是cdn
+        # @param IsCdn: waf前是否部署有七层代理服务。
+        # 0：没有部署代理服务
+        # 1：有部署代理服务，waf将使用XFF获取客户端IP
+        # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
+        # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
-        # @param IsGray: 是否开启gray
+        # @param IsGray: 是否开启灰度，已废弃。
         # @type IsGray: Integer
-        # @param IsHttp2: 是否是http2
+        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。
+        # 0：关闭
+        # 1：开启
         # @type IsHttp2: Integer
-        # @param IsWebsocket: 是否开启websocket
+        # @param IsWebsocket: 是否开启WebSocket支持。
+        # 0：关闭
+        # 1：开启
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 负载均衡
+        # @param LoadBalance: 回源负载均衡策略。
+        # 0：轮询
+        # 1：IP hash
+        # 2：加权轮询
         # @type LoadBalance: Integer
-        # @param Mode: 防御模式
+        # @param Mode: 防护模式。
+        # 0：观察模式
+        # 1：拦截模式
         # @type Mode: Integer
-        # @param PrivateKey: 私钥
+        # @param PrivateKey: 自有证书的私钥
         # @type PrivateKey: String
-        # @param SSLId: ssl id
+        # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type SSLId: String
-        # @param UpstreamDomain: 回源域名
+        # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
         # @type UpstreamDomain: String
-        # @param UpstreamType: 回源类型
+        # @param UpstreamType: 回源类型。
+        # 0：通过IP回源
+        # 1：通过域名回源
         # @type UpstreamType: Integer
-        # @param SrcList: 回源ip
+        # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
         # @type SrcList: Array
-        # @param Ports: 服务端口配置
+        # @param Ports: 域名端口配置
         # @type Ports: Array
-        # @param CertType: 证书类型
+        # @param CertType: 证书类型。
+        # 0：仅配置HTTP监听端口，没有证书
+        # 1：证书来源为自有证书
+        # 2：证书来源为托管证书
         # @type CertType: Integer
-        # @param UpstreamScheme: 回源方式
+        # @param UpstreamScheme: 服务配置有HTTPS端口时，HTTPS的回源协议。
+        # http：使用http协议回源，和HttpsUpstreamPort配合使用
+        # https：使用https协议回源
         # @type UpstreamScheme: String
-        # @param Cls: 日志包
+        # @param Cls: 日志包是否开启。
+        # 0：关闭
+        # 1：开启
         # @type Cls: Integer
-        # @param Cname: 一级cname
+        # @param Cname: 接入Cname，SaaS型域名使用此Cname进行接入
         # @type Cname: String
-        # @param IsKeepAlive: 是否长连接
+        # @param IsKeepAlive: 是否开启长连接。
+        # 0： 短连接
+        # 1： 长连接
         # @type IsKeepAlive: Integer
-        # @param ActiveCheck: 是否开启主动健康检测，1表示开启，0表示不开启
+        # @param ActiveCheck: 是否开启主动健康检测。
+        # 0：不开启
+        # 1：开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TLSVersion: Integer
-        # @param Ciphers: 加密套件信息
+        # @param Ciphers: 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ciphers: Array
-        # @param CipherTemplate: 模板
+        # @param CipherTemplate: 加密套件模板。
+        # 0：不支持选择，使用默认模板
+        # 1：通用型模板
+        # 2：安全型模板
+        # 3：自定义模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CipherTemplate: Integer
-        # @param ProxyReadTimeout: 300s
+        # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyReadTimeout: Integer
-        # @param ProxySendTimeout: 300s
+        # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxySendTimeout: Integer
-        # @param SniType: 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        # @param SniType: WAF回源时的SNI类型。
+        # 0：关闭SNI，不配置client_hello中的server_name
+        # 1：开启SNI，client_hello中的server_name为防护域名
+        # 2：开启SNI，SNI为域名回源时的源站域名
+        # 3：开启SNI，SNI为自定义域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SniType: Integer
-        # @param SniHost: SniType=3时，需要填此参数，表示自定义的host；
+        # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SniHost: String
-        # @param Weights: 无
+        # @param Weights: 回源IP权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weights: Array
         # @param IpHeaders: IsCdn=3时，表示自定义header
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
-        # @param XFFReset: 0:关闭xff重置；1:开启xff重置
+        # @param XFFReset: 是否开启XFF重置。
+        # 0：关闭
+        # 1：开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XFFReset: Integer
+        # @param Note: 域名备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
+        # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpstreamHost: String
+        # @param Level: 防护规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Level: String
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -6479,6 +6663,9 @@ module TencentCloud
           @Weights = weights
           @IpHeaders = ipheaders
           @XFFReset = xffreset
+          @Note = note
+          @UpstreamHost = upstreamhost
+          @Level = level
         end
 
         def deserialize(params)
@@ -6527,6 +6714,9 @@ module TencentCloud
           @Weights = params['Weights']
           @IpHeaders = params['IpHeaders']
           @XFFReset = params['XFFReset']
+          @Note = params['Note']
+          @UpstreamHost = params['UpstreamHost']
+          @Level = params['Level']
         end
       end
 
@@ -7391,56 +7581,87 @@ module TencentCloud
         end
       end
 
-      # clb-waf防护域名
+      # 负载均衡型WAF域名信息
       class HostRecord < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名ID
+        # @param DomainId: 域名唯一ID
         # @type DomainId: String
         # @param MainDomain: 主域名，入参时为空
         # @type MainDomain: String
-        # @param Mode: 规则引擎防护模式，0 观察模式，1拦截模式
+        # @param Mode: 规则引擎防护模式。
+        # 0：观察模式
+        # 1：拦截模式
         # @type Mode: Integer
-        # @param Status: waf和LD的绑定，0：没有绑定，1：绑定
+        # @param Status: waf和负载均衡器的绑定关系。
+        # 0：未绑定
+        # 1：已绑定
         # @type Status: Integer
-        # @param State: 域名状态，0：正常，1：未检测到流量，2：即将过期，3：过期
+        # @param State: clbwaf域名监听器状态。
+        # 0：操作成功
+        # 4：正在绑定LB
+        # 6：正在解绑LB
+        # 7：解绑LB失败
+        # 8：绑定LB失败
+        # 10：内部错误
         # @type State: Integer
-        # @param Engine: 规则引擎和AI引擎防护模式联合状态,10规则引擎观察&&AI引擎关闭模式 11规则引擎观察&&AI引擎观察模式 12规则引擎观察&&AI引擎拦截模式 20规则引擎拦截&&AI引擎关闭模式 21规则引擎拦截&&AI引擎观察模式 22规则引擎拦截&&AI引擎拦截模式
+        # @param Engine: 规则引擎和AI引擎防护模式联合状态。
+        # 1:初始状态,规则引擎拦截&&AI引擎未操作开关状态
+        # 10：规则引擎观察&&AI引擎关闭模式
+        # 11：规则引擎观察&&AI引擎观察模式
+        # 12：规则引擎观察&&AI引擎拦截模式
+        # 20：规则引擎拦截&&AI引擎关闭模式
+        # 21：规则引擎拦截&&AI引擎观察模式
+        # 22：规则引擎拦截&&AI引擎拦截模式
         # @type Engine: Integer
-        # @param IsCdn: 是否开启代理，0：不开启，1：开启
+        # @param IsCdn: waf前是否部署有七层代理服务。 0：没有部署代理服务 1：有部署代理服务，waf将使用XFF获取客户端IP 2：有部署代理服务，waf将使用remote_addr获取客户端IP 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
-        # @param LoadBalancerSet: 绑定的LB列表
+        # @param LoadBalancerSet: 绑定的负载均衡器信息列表
         # @type LoadBalancerSet: Array
-        # @param Region: 域名绑定的LB的地域，以,分割多个地域
+        # @param Region: 域名绑定的LB的地域，以逗号分割多个地域
         # @type Region: String
-        # @param Edition: 产品分类，取值为：sparta-waf、clb-waf、cdn-waf
+        # @param Edition: 域名所属实例类型。负载均衡型WAF为"clb-waf"
         # @type Edition: String
-        # @param FlowMode: WAF的流量模式，1：清洗模式，0：镜像模式
+        # @param FlowMode: 负载均衡型WAF域名的流量模式。
+        # 1：清洗模式
+        # 0：镜像模式
         # @type FlowMode: Integer
-        # @param ClsStatus: 是否开启访问日志，1：开启，0：关闭
+        # @param ClsStatus: 是否开启访问日志。
+        # 1：开启
+        # 0：关闭
         # @type ClsStatus: Integer
         # @param Level: 防护等级，可选值100,200,300
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: Integer
-        # @param CdcClusters: 域名需要下发到的cdc集群列表
+        # @param CdcClusters: 域名需要下发到的cdc集群列表。仅CDC场景下填充
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdcClusters: Array
-        # @param AlbType: 应用型负载均衡类型: clb或者apisix，默认clb
+        # @param AlbType: 应用型负载均衡类型，默认clb。
+        # clb：七层负载均衡器类型
+        # apisix：apisix网关型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AlbType: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpHeaders: Array
-        # @param EngineType: 规则引擎类型， 1: menshen,   2:tiga
+        # @param EngineType: 规则引擎类型。
+        # 1: menshen
+        # 2: tiga
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineType: Integer
-        # @param CloudType: 云类型:public:公有云；private:私有云;hybrid:混合云
+        # @param CloudType: 云类型。
+        # public:公有云
+        # private:私有云
+        # hybrid:混合云
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudType: String
+        # @param Note: 域名备注信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Note: String
 
-        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType
+        attr_accessor :Domain, :DomainId, :MainDomain, :Mode, :Status, :State, :Engine, :IsCdn, :LoadBalancerSet, :Region, :Edition, :FlowMode, :ClsStatus, :Level, :CdcClusters, :AlbType, :IpHeaders, :EngineType, :CloudType, :Note
 
-        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil, cloudtype=nil)
+        def initialize(domain=nil, domainid=nil, maindomain=nil, mode=nil, status=nil, state=nil, engine=nil, iscdn=nil, loadbalancerset=nil, region=nil, edition=nil, flowmode=nil, clsstatus=nil, level=nil, cdcclusters=nil, albtype=nil, ipheaders=nil, enginetype=nil, cloudtype=nil, note=nil)
           @Domain = domain
           @DomainId = domainid
           @MainDomain = maindomain
@@ -7460,6 +7681,7 @@ module TencentCloud
           @IpHeaders = ipheaders
           @EngineType = enginetype
           @CloudType = cloudtype
+          @Note = note
         end
 
         def deserialize(params)
@@ -7489,6 +7711,7 @@ module TencentCloud
           @IpHeaders = params['IpHeaders']
           @EngineType = params['EngineType']
           @CloudType = params['CloudType']
+          @Note = params['Note']
         end
       end
 
@@ -8030,6 +8253,34 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
         # @param Region: 地区
+        # "多伦多": "ca",
+        #     "广州": "gz",
+        #     "成都": "cd",
+        #     "福州": "fzec",
+        #     "深圳": "szx",
+        #     "印度": "in",
+        #     "济南": "jnec",
+        #     "重庆": "cq",
+        #     "天津": "tsn",
+        #     "欧洲东北": "ru",
+        #     "南京": "nj",
+        #     "美国硅谷": "usw",
+        #     "泰国": "th",
+        #     "广州Open": "gzopen",
+        #     "深圳金融": "szjr",
+        #     "法兰克福": "de",
+        #     "日本": "jp",
+        #     "弗吉尼亚": "use",
+        #     "北京": "bj",
+        #     "香港": "hk",
+        #     "杭州": "hzec",
+        #     "北京金融": "bjjr",
+        #     "上海金融": "shjr",
+        #     "台北": "tpe",
+        #     "首尔": "kr",
+        #     "上海": "sh",
+        #     "新加坡": "sg",
+        #     "清远": "qy"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
         # @param Vip: 接入IP
@@ -8545,27 +8796,29 @@ module TencentCloud
         # @type RuleId: Integer
         # @param Domain: 域名
         # @type Domain: String
-        # @param SignatureId: 规则Id
-        # @type SignatureId: String
         # @param Status: 规则状态
         # @type Status: Integer
         # @param Rules: 匹配规则项列表
         # @type Rules: Array
+        # @param SignatureId: 规则Id
+        # @type SignatureId: String
+        # @param SignatureIds: 编辑的加白的规则ID列表
+        # @type SignatureIds: Array
 
-        attr_accessor :RuleId, :Domain, :SignatureId, :Status, :Rules
+        attr_accessor :RuleId, :Domain, :Status, :Rules, :SignatureId, :SignatureIds
 
-        def initialize(ruleid=nil, domain=nil, signatureid=nil, status=nil, rules=nil)
+        def initialize(ruleid=nil, domain=nil, status=nil, rules=nil, signatureid=nil, signatureids=nil)
           @RuleId = ruleid
           @Domain = domain
-          @SignatureId = signatureid
           @Status = status
           @Rules = rules
+          @SignatureId = signatureid
+          @SignatureIds = signatureids
         end
 
         def deserialize(params)
           @RuleId = params['RuleId']
           @Domain = params['Domain']
-          @SignatureId = params['SignatureId']
           @Status = params['Status']
           unless params['Rules'].nil?
             @Rules = []
@@ -8575,6 +8828,8 @@ module TencentCloud
               @Rules << userwhiteruleitem_tmp
             end
           end
+          @SignatureId = params['SignatureId']
+          @SignatureIds = params['SignatureIds']
         end
       end
 
@@ -8600,37 +8855,41 @@ module TencentCloud
 
       # ModifyBotStatus请求参数结构体
       class ModifyBotStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
-        # @type Domain: String
         # @param Category: 类别
         # @type Category: String
         # @param Status: 状态
         # @type Status: String
+        # @param Domain: 域名
+        # @type Domain: String
         # @param InstanceID: 实例id
         # @type InstanceID: String
         # @param IsVersionFour: 是否是bot4.0版本
         # @type IsVersionFour: Boolean
         # @param BotVersion: 传入Bot版本号，场景化版本为"4.1.0"
         # @type BotVersion: String
+        # @param DomainList: 批量开启BOT开关的域名列表
+        # @type DomainList: Array
 
-        attr_accessor :Domain, :Category, :Status, :InstanceID, :IsVersionFour, :BotVersion
+        attr_accessor :Category, :Status, :Domain, :InstanceID, :IsVersionFour, :BotVersion, :DomainList
 
-        def initialize(domain=nil, category=nil, status=nil, instanceid=nil, isversionfour=nil, botversion=nil)
-          @Domain = domain
+        def initialize(category=nil, status=nil, domain=nil, instanceid=nil, isversionfour=nil, botversion=nil, domainlist=nil)
           @Category = category
           @Status = status
+          @Domain = domain
           @InstanceID = instanceid
           @IsVersionFour = isversionfour
           @BotVersion = botversion
+          @DomainList = domainlist
         end
 
         def deserialize(params)
-          @Domain = params['Domain']
           @Category = params['Category']
           @Status = params['Status']
+          @Domain = params['Domain']
           @InstanceID = params['InstanceID']
           @IsVersionFour = params['IsVersionFour']
           @BotVersion = params['BotVersion']
+          @DomainList = params['DomainList']
         end
       end
 
@@ -8639,18 +8898,32 @@ module TencentCloud
         # @param Data: 正常情况为null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
+        # @param UnSupportedList: 未购买BOT的域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnSupportedList: Array
+        # @param FailDomainList: 已购买但操作失败的域名列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailDomainList: Array
+        # @param Count: 成功数目
+        # @type Count: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :RequestId
+        attr_accessor :Data, :UnSupportedList, :FailDomainList, :Count, :RequestId
 
-        def initialize(data=nil, requestid=nil)
+        def initialize(data=nil, unsupportedlist=nil, faildomainlist=nil, count=nil, requestid=nil)
           @Data = data
+          @UnSupportedList = unsupportedlist
+          @FailDomainList = faildomainlist
+          @Count = count
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Data = params['Data']
+          @UnSupportedList = params['UnSupportedList']
+          @FailDomainList = params['FailDomainList']
+          @Count = params['Count']
           @RequestId = params['RequestId']
         end
       end
@@ -9106,7 +9379,9 @@ module TencentCloud
         # @type Domain: String
         # @param DomainId: 域名ID
         # @type DomainId: String
-        # @param FlowMode: WAF流量模式，1：清洗模式，0：镜像模式（默认）
+        # @param FlowMode: WAF流量模式。
+        # 0：镜像模式（默认）
+        # 1：清洗模式
         # @type FlowMode: Integer
         # @param InstanceID: 实例ID
         # @type InstanceID: String
@@ -9217,7 +9492,7 @@ module TencentCloud
       class ModifyHostRequest < TencentCloud::Common::AbstractModel
         # @param Host: 编辑的域名配置信息
         # @type Host: :class:`Tencentcloud::Waf.v20180125.models.HostRecord`
-        # @param InstanceID: 实例id
+        # @param InstanceID: 实例唯一ID
         # @type InstanceID: String
 
         attr_accessor :Host, :InstanceID
@@ -9518,20 +9793,26 @@ module TencentCloud
       class ModifyObjectRequest < TencentCloud::Common::AbstractModel
         # @param ObjectId: 修改对象标识
         # @type ObjectId: String
-        # @param OpType: 改动作类型:Status修改开关，InstanceId绑定实例
+        # @param OpType: 改动作类型:Status修改开关，InstanceId绑定实例, Proxy设置代理状态
         # @type OpType: String
         # @param Status: 新的Waf开关状态，如果和已有状态相同认为修改成功
         # @type Status: Integer
         # @param InstanceId: 新的实例ID，如果和已绑定的实例相同认为修改成功
         # @type InstanceId: String
+        # @param Proxy: 是否开启代理，0:不开启,1:以XFF的第一个IP地址作为客户端IP,2:以remote_addr作为客户端IP,3:从指定的头部字段获取客户端IP，字段通过IpHeaders字段给出(OpType为Status或Proxy时，该值有效)
+        # @type Proxy: Integer
+        # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header(OpType为Status或Proxy时，该值有效)
+        # @type IpHeaders: Array
 
-        attr_accessor :ObjectId, :OpType, :Status, :InstanceId
+        attr_accessor :ObjectId, :OpType, :Status, :InstanceId, :Proxy, :IpHeaders
 
-        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil)
+        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil, proxy=nil, ipheaders=nil)
           @ObjectId = objectid
           @OpType = optype
           @Status = status
           @InstanceId = instanceid
+          @Proxy = proxy
+          @IpHeaders = ipheaders
         end
 
         def deserialize(params)
@@ -9539,6 +9820,8 @@ module TencentCloud
           @OpType = params['OpType']
           @Status = params['Status']
           @InstanceId = params['InstanceId']
+          @Proxy = params['Proxy']
+          @IpHeaders = params['IpHeaders']
         end
       end
 
@@ -9648,74 +9931,112 @@ module TencentCloud
       class ModifySpartaProtectionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param DomainId: 域名ID
+        # @param DomainId: 必填项。域名唯一ID
         # @type DomainId: String
-        # @param CertType: 证书类型，0表示没有证书，CertType=1表示自有证书,2 为托管证书
+        # @param CertType: 必填项。证书类型。
+        # 0：仅配置HTTP监听端口，没有证书
+        # 1：证书来源为自有证书
+        # 2：证书来源为托管证书
         # @type CertType: Integer
-        # @param Cert: CertType=1时，需要填次参数，表示证书内容
+        # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Cert: String
-        # @param PrivateKey: CertType=1时，需要填次参数，表示证书的私钥
+        # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
         # @type PrivateKey: String
-        # @param SSLId: CertType=2时，需要填次参数，表示证书的ID
+        # @param SSLId: CertType为2时，需要填充此参数，表示腾讯云SSL平台托管的证书id
         # @type SSLId: String
-        # @param IsCdn: 表示是否开启了CDN代理
+        # @param IsCdn: 必填项。waf前是否部署有七层代理服务。
+        # 0：没有部署代理服务
+        # 1：有部署代理服务，waf将使用XFF获取客户端IP
+        # 2：有部署代理服务，waf将使用remote_addr获取客户端IP
+        # 3：有部署代理服务，waf将使用ip_headers中的自定义header获取客户端IP
         # @type IsCdn: Integer
-        # @param UpstreamScheme: HTTPS回源协议
+        # @param UpstreamScheme: 服务配置有HTTPS端口时，HTTPS的回源协议。
+        # http：使用http协议回源，和HttpsUpstreamPort配合使用
+        # https：使用https协议回源
         # @type UpstreamScheme: String
         # @param HttpsUpstreamPort: HTTPS回源端口,仅UpstreamScheme为http时需要填当前字段
         # @type HttpsUpstreamPort: String
-        # @param HttpsRewrite: 表示是否强制跳转到HTTPS，1表示开启，0表示不开启
+        # @param HttpsRewrite: 必填项。是否开启HTTP强制跳转到HTTPS。
+        # 0：不强制跳转
+        # 1：开启强制跳转
         # @type HttpsRewrite: Integer
-        # @param UpstreamType: 回源类型，0表示通过IP回源,1 表示通过域名回源
+        # @param UpstreamType: 必填项。回源类型。
+        # 0：通过IP回源
+        # 1：通过域名回源
         # @type UpstreamType: Integer
-        # @param UpstreamDomain: UpstreamType=1时，填次字段表示回源域名
+        # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
         # @type UpstreamDomain: String
-        # @param SrcList: UpstreamType=0时，填次字段表示回源ip
+        # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
         # @type SrcList: Array
-        # @param IsHttp2: 是否开启HTTP2，1表示开启，0表示不开启http2。开启HTTP2需要HTTPS支持
+        # @param IsHttp2: 必填项。是否开启HTTP2，需要开启HTTPS协议支持。
+        # 0：关闭
+        # 1：开启
         # @type IsHttp2: Integer
-        # @param IsWebsocket: 是否开启WebSocket， 1：开启WebSocket，0：不开启WebSocket
+        # @param IsWebsocket: 必填项。是否开启WebSocket支持。
+        # 0：关闭
+        # 1：开启
         # @type IsWebsocket: Integer
-        # @param LoadBalance: 负载均衡策略，0表示轮徇，1表示IP hash
+        # @param LoadBalance: 必填项。回源负载均衡策略。
+        # 0：轮询
+        # 1：IP hash
+        # 2：加权轮询
         # @type LoadBalance: Integer
-        # @param IsGray: 是否灰度
+        # @param IsGray: 待废弃，可不填。是否开启灰度，0表示不开启灰度。
         # @type IsGray: Integer
-        # @param Edition: WAF版本
+        # @param Edition: 域名所属实例类型
         # @type Edition: String
-        # @param Ports: 端口信息
+        # @param Ports: 必填项。端口信息，可通过DescribeDomains接口获取具体参数信息。
         # @type Ports: Array
-        # @param IsKeepAlive: 长短连接标志，仅IP回源时有效
+        # @param IsKeepAlive: 必填项。是否开启长连接。
+        # 0： 短连接
+        # 1： 长连接
         # @type IsKeepAlive: String
-        # @param InstanceID: 实例id
+        # @param InstanceID: 必填项。域名所属实例id
         # @type InstanceID: String
-        # @param Anycast: 是否为Anycast ip类型：1 Anycast 0 普通ip
+        # @param Anycast: 必填项，待废弃。目前填0即可。anycast IP类型开关： 0 普通IP 1 Anycast IP
         # @type Anycast: Integer
-        # @param Weights: src的权重
+        # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
-        # @param ActiveCheck: 是否开启源站的主动健康检测，1表示开启，0表示不开启
+        # @param ActiveCheck: 必填项，是否开启主动健康检测。
+        # 0：不开启
+        # 1：开启
         # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
         # @type TLSVersion: Integer
         # @param Ciphers: 加密套件信息
         # @type Ciphers: Array
-        # @param CipherTemplate: 0:不支持选择：默认模板  1:通用型模板 2:安全型模板 3:自定义模板
+        # @param CipherTemplate: 必填项。加密套件模板。
+        # 0：不支持选择，使用默认模板
+        # 1：通用型模板
+        # 2：安全型模板
+        # 3：自定义模板
         # @type CipherTemplate: Integer
-        # @param ProxyReadTimeout: 300s
+        # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # @type ProxyReadTimeout: Integer
-        # @param ProxySendTimeout: 300s
+        # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
         # @type ProxySendTimeout: Integer
-        # @param SniType: 0:关闭SNI；1:开启SNI，SNI=源请求host；2:开启SNI，SNI=修改为源站host；3：开启SNI，自定义host，SNI=SniHost；
+        # @param SniType: WAF回源时的SNI类型。
+        # 0：关闭SNI，不配置client_hello中的server_name
+        # 1：开启SNI，client_hello中的server_name为防护域名
+        # 2：开启SNI，SNI为域名回源时的源站域名
+        # 3：开启SNI，SNI为自定义域名
         # @type SniType: Integer
-        # @param SniHost: SniType=3时，需要填此参数，表示自定义的host；
+        # @param SniHost: SniType为3时，需要填此参数，表示自定义的SNI；
         # @type SniHost: String
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header
         # @type IpHeaders: Array
-        # @param XFFReset: 0:关闭xff重置；1:开启xff重置，只有在IsCdn=0时可以开启
+        # @param XFFReset: 必填项。是否开启XFF重置。
+        # 0：关闭
+        # 1：开启
         # @type XFFReset: Integer
+        # @param Note: 域名备注信息
+        # @type Note: String
+        # @param UpstreamHost: 自定义回源Host。默认为空字符串，表示使用防护域名作为回源Host。
+        # @type UpstreamHost: String
 
-        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset
+        attr_accessor :Domain, :DomainId, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :InstanceID, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost
 
-        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil)
+        def initialize(domain=nil, domainid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, instanceid=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil)
           @Domain = domain
           @DomainId = domainid
           @CertType = certtype
@@ -9749,6 +10070,8 @@ module TencentCloud
           @SniHost = snihost
           @IpHeaders = ipheaders
           @XFFReset = xffreset
+          @Note = note
+          @UpstreamHost = upstreamhost
         end
 
         def deserialize(params)
@@ -9792,6 +10115,8 @@ module TencentCloud
           @SniHost = params['SniHost']
           @IpHeaders = params['IpHeaders']
           @XFFReset = params['XFFReset']
+          @Note = params['Note']
+          @UpstreamHost = params['UpstreamHost']
         end
       end
 
@@ -10109,10 +10434,19 @@ module TencentCloud
         # @param WxAccess: 小程序 qps
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WxAccess: Integer
+        # @param WxCount: 小程序请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WxCount: Integer
+        # @param WxUp: 小程序上行带宽峰值，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WxUp: Integer
+        # @param WxDown: 小程序下行带宽峰值，单位B
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WxDown: Integer
 
-        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL, :WxAccess
+        attr_accessor :Time, :Access, :Up, :Down, :Attack, :Cc, :BotAccess, :StatusServerError, :StatusClientError, :StatusRedirect, :StatusOk, :UpstreamServerError, :UpstreamClientError, :UpstreamRedirect, :BlackIP, :Tamper, :Leak, :ACL, :WxAccess, :WxCount, :WxUp, :WxDown
 
-        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil, blackip=nil, tamper=nil, leak=nil, acl=nil, wxaccess=nil)
+        def initialize(time=nil, access=nil, up=nil, down=nil, attack=nil, cc=nil, botaccess=nil, statusservererror=nil, statusclienterror=nil, statusredirect=nil, statusok=nil, upstreamservererror=nil, upstreamclienterror=nil, upstreamredirect=nil, blackip=nil, tamper=nil, leak=nil, acl=nil, wxaccess=nil, wxcount=nil, wxup=nil, wxdown=nil)
           @Time = time
           @Access = access
           @Up = up
@@ -10132,6 +10466,9 @@ module TencentCloud
           @Leak = leak
           @ACL = acl
           @WxAccess = wxaccess
+          @WxCount = wxcount
+          @WxUp = wxup
+          @WxDown = wxdown
         end
 
         def deserialize(params)
@@ -10154,6 +10491,9 @@ module TencentCloud
           @Leak = params['Leak']
           @ACL = params['ACL']
           @WxAccess = params['WxAccess']
+          @WxCount = params['WxCount']
+          @WxUp = params['WxUp']
+          @WxDown = params['WxDown']
         end
       end
 

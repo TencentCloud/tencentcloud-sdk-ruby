@@ -688,6 +688,7 @@ module TencentCloud
         # <li>**OrgEssAuth**: 签署企业实名</li>
         # <li>**FlowNotify**: 短信通知</li>
         # <li>**AuthService**: 企业工商信息查询</li>
+        # <li>**NoAuthSign**: 形式签</li>
         # </ul>
         # @type QuotaType: String
         # @param UseCount: 合同使用量
@@ -2014,16 +2015,22 @@ module TencentCloud
 
       # ChannelCreateFlowSignReview请求参数结构体
       class ChannelCreateFlowSignReviewRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param FlowId: 合同流程ID，为32位字符串。
-        # <ul><li>建议开发者妥善保存此流程ID，以便于顺利进行后续操作。</li>
-        # <li>可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。</li></ul>
         # @type FlowId: String
         # @param ReviewType: 企业内部审核结果
-        # <ul><li>PASS: 审核通过</li>
-        # <li>REJECT: 审核拒绝</li>
-        # <li>SIGN_REJECT:拒签(流程结束)</li></ul>
+        # <ul><li>PASS: 审核通过（流程可以继续签署或者发起）</li>
+        # <li>REJECT: 审核拒绝（流程状态不变，可以继续调用审核接口通过审核）</li>
+        # <li>SIGN_REJECT:拒签(流程终止，流程状态变为拒签状态)</li></ul>
         # @type ReviewType: String
         # @param ReviewMessage: 审核结果原因
         # <ul><li>字符串长度不超过200</li>
@@ -3415,6 +3422,7 @@ module TencentCloud
         # <li>**OrgEssAuth**: 签署企业实名</li>
         # <li>**FlowNotify**: 短信通知</li>
         # <li>**AuthService**: 企业工商信息查询</li>
+        # <li>**NoAuthSign**: 形式签</li>
         # </ul>
         # @type QuotaType: String
         # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
@@ -7159,8 +7167,9 @@ module TencentCloud
         # @type ApproverType: String
         # @param RecipientId: 签署流程签署人在模板中对应的签署人Id；在非单方签署、以及非B2C签署的场景下必传，用于指定当前签署方在签署流程中的位置；
         # @type RecipientId: String
-        # @param Deadline: 本签署人在此合同流程的签署截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为合同流程创建后的365天时截止。
-        # 如果在签署截止时间前未完成签署，则合同状态会变为已过期，导致合同作废。
+        # @param Deadline: 签署人的签署截止时间，格式为Unix标准时间戳（秒）
+
+        # 注: `若不设置此参数，则默认使用合同的截止时间，此参数暂不支持合同组子合同`
         # @type Deadline: Integer
         # @param CallbackUrl: 签署完回调url，最大长度1000个字符
         # @type CallbackUrl: String
@@ -8202,6 +8211,58 @@ module TencentCloud
 
         def deserialize(params)
           @OperateUrl = params['OperateUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFlowDeadline请求参数结构体
+      class ModifyFlowDeadlineRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # <ul><li>建议开发者妥善保存此流程ID，以便于顺利进行后续操作。</li>
+        # <li>可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。</li></ul>
+        # @type FlowId: String
+        # @param Deadline: 签署流程或签署人新的签署截止时间，格式为Unix标准时间戳（秒）
+        # @type Deadline: Integer
+        # @param RecipientId: 签署方角色编号，为32位字符串
+        # <ul><li>若指定了此参数，则只调整签署流程中此签署人的签署截止时间，否则调整合同整体的签署截止时间（合同截止时间+发起时未设置签署人截止时间的参与人的签署截止时间）</li>
+        # <li>通过[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)发起合同，或通过[模板发起合同-创建电子文档](https://qian.tencent.com/developers/companyApis/startFlows/CreateDocument)时，返回参数[Approvers](https://qian.tencent.com/developers/companyApis/dataTypes/#approveritem)会返回此信息，建议开发者妥善保存</li>
+        # <li>也可通过[查询合同流程的详情信息](https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo)接口查询签署人的RecipientId编号</li></ul>
+        # @type RecipientId: String
+
+        attr_accessor :Agent, :FlowId, :Deadline, :RecipientId
+
+        def initialize(agent=nil, flowid=nil, deadline=nil, recipientid=nil)
+          @Agent = agent
+          @FlowId = flowid
+          @Deadline = deadline
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @FlowId = params['FlowId']
+          @Deadline = params['Deadline']
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # ModifyFlowDeadline返回参数结构体
+      class ModifyFlowDeadlineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

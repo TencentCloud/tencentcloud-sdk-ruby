@@ -379,7 +379,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 您可以查询转推任务的状态。
+        # 您可以查询输入在线媒体流任务的状态。
 
         # @param request: Request instance for DescribeStreamIngest.
         # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeStreamIngestRequest`
@@ -1259,7 +1259,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止一个拉流转推任务。
+        # 停止一个输入在线媒体流任务。
 
         # @param request: Request instance for StopStreamIngest.
         # @type request: :class:`Tencentcloud::trtc::V20190722::StopStreamIngestRequest`

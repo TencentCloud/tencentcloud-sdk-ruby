@@ -269,16 +269,22 @@ module TencentCloud
         # @type Type: Integer
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
-        # @param IsDelay: 是否延迟下发，1则延迟下发，否则立即下发
+        # @param IsDelay: （IsDelay为老版参数，新版无需输入）是否延迟下发，1则延迟下发，否则立即下发
         # @type IsDelay: Integer
+        # @param From: 来源 默认空 覆盖导入是 batch_import_cover
+        # @type From: String
+        # @param IsUseId: 是否使用id 默认不需要
+        # @type IsUseId: Integer
 
-        attr_accessor :Data, :Type, :ClientToken, :IsDelay
+        attr_accessor :Data, :Type, :ClientToken, :IsDelay, :From, :IsUseId
 
-        def initialize(data=nil, type=nil, clienttoken=nil, isdelay=nil)
+        def initialize(data=nil, type=nil, clienttoken=nil, isdelay=nil, from=nil, isuseid=nil)
           @Data = data
           @Type = type
           @ClientToken = clienttoken
           @IsDelay = isdelay
+          @From = from
+          @IsUseId = isuseid
         end
 
         def deserialize(params)
@@ -293,6 +299,8 @@ module TencentCloud
           @Type = params['Type']
           @ClientToken = params['ClientToken']
           @IsDelay = params['IsDelay']
+          @From = params['From']
+          @IsUseId = params['IsUseId']
         end
       end
 
@@ -533,15 +541,24 @@ module TencentCloud
 
       # 入侵防御放通封禁规则
       class BlockIgnoreRule < TencentCloud::Common::AbstractModel
+        # @param RuleType: 1 封禁 2外部IP 3域名 4情报 5assets 6udf  7入侵防御规则id （2-7属于白名单类型）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: Integer
+        # @param Ioc: 规则ip或白名单内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ioc: String
+        # @param IocName: 资产实例名称、自定义策略名称等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IocName: String
+        # @param IocInfo: 白名单信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IocInfo: String
         # @param Domain: 域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
         # @param IP: IP
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
-        # @param Ioc: 规则ip
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Ioc: String
         # @param Level: 危险等级
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Level: String
@@ -551,6 +568,9 @@ module TencentCloud
         # @param Direction: 方向：1入站，0出站
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Direction: Integer
+        # @param DirectionList: 所有方向聚合成字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectionList: String
         # @param Protocol: 协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
@@ -584,16 +604,26 @@ module TencentCloud
         # @param Comment: 备注
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Comment: String
+        # @param LastHitTime: 上次命中时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastHitTime: String
+        # @param CustomRule: 自定义规则细节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
 
-        attr_accessor :Domain, :IP, :Ioc, :Level, :EventName, :Direction, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment
+        attr_accessor :RuleType, :Ioc, :IocName, :IocInfo, :Domain, :IP, :Level, :EventName, :Direction, :DirectionList, :Protocol, :Address, :Action, :StartTime, :EndTime, :IgnoreReason, :Source, :UniqueId, :MatchTimes, :Country, :Comment, :LastHitTime, :CustomRule
 
-        def initialize(domain=nil, ip=nil, ioc=nil, level=nil, eventname=nil, direction=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil)
+        def initialize(ruletype=nil, ioc=nil, iocname=nil, iocinfo=nil, domain=nil, ip=nil, level=nil, eventname=nil, direction=nil, directionlist=nil, protocol=nil, address=nil, action=nil, starttime=nil, endtime=nil, ignorereason=nil, source=nil, uniqueid=nil, matchtimes=nil, country=nil, comment=nil, lasthittime=nil, customrule=nil)
+          @RuleType = ruletype
+          @Ioc = ioc
+          @IocName = iocname
+          @IocInfo = iocinfo
           @Domain = domain
           @IP = ip
-          @Ioc = ioc
           @Level = level
           @EventName = eventname
           @Direction = direction
+          @DirectionList = directionlist
           @Protocol = protocol
           @Address = address
           @Action = action
@@ -605,15 +635,21 @@ module TencentCloud
           @MatchTimes = matchtimes
           @Country = country
           @Comment = comment
+          @LastHitTime = lasthittime
+          @CustomRule = customrule
         end
 
         def deserialize(params)
+          @RuleType = params['RuleType']
+          @Ioc = params['Ioc']
+          @IocName = params['IocName']
+          @IocInfo = params['IocInfo']
           @Domain = params['Domain']
           @IP = params['IP']
-          @Ioc = params['Ioc']
           @Level = params['Level']
           @EventName = params['EventName']
           @Direction = params['Direction']
+          @DirectionList = params['DirectionList']
           @Protocol = params['Protocol']
           @Address = params['Address']
           @Action = params['Action']
@@ -625,6 +661,11 @@ module TencentCloud
           @MatchTimes = params['MatchTimes']
           @Country = params['Country']
           @Comment = params['Comment']
+          @LastHitTime = params['LastHitTime']
+          unless params['CustomRule'].nil?
+            @CustomRule = CustomWhiteRule.new
+            @CustomRule.deserialize(params['CustomRule'])
+          end
         end
       end
 
@@ -1464,10 +1505,12 @@ module TencentCloud
         # @type Description: String
         # @param ParamTemplateId: 端口协议组ID
         # @type ParamTemplateId: String
+        # @param InternalUuid: 内部id
+        # @type InternalUuid: Integer
 
-        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId
+        attr_accessor :SourceContent, :SourceType, :TargetContent, :TargetType, :Protocol, :RuleAction, :Port, :Direction, :OrderIndex, :Enable, :Uuid, :Description, :ParamTemplateId, :InternalUuid
 
-        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil, paramtemplateid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, targetcontent=nil, targettype=nil, protocol=nil, ruleaction=nil, port=nil, direction=nil, orderindex=nil, enable=nil, uuid=nil, description=nil, paramtemplateid=nil, internaluuid=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @TargetContent = targetcontent
@@ -1481,6 +1524,7 @@ module TencentCloud
           @Uuid = uuid
           @Description = description
           @ParamTemplateId = paramtemplateid
+          @InternalUuid = internaluuid
         end
 
         def deserialize(params)
@@ -1497,6 +1541,7 @@ module TencentCloud
           @Uuid = params['Uuid']
           @Description = params['Description']
           @ParamTemplateId = params['ParamTemplateId']
+          @InternalUuid = params['InternalUuid']
         end
       end
 
@@ -1708,6 +1753,38 @@ module TencentCloud
         def deserialize(params)
           @FwGroupId = params['FwGroupId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义白名单规则
+      class CustomWhiteRule < TencentCloud::Common::AbstractModel
+        # @param SrcIP: 访问源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcIP: String
+        # @param DstIP: 访问目的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstIP: String
+        # @param IdsRuleName: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdsRuleName: String
+        # @param IdsRuleId: 规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdsRuleId: String
+
+        attr_accessor :SrcIP, :DstIP, :IdsRuleName, :IdsRuleId
+
+        def initialize(srcip=nil, dstip=nil, idsrulename=nil, idsruleid=nil)
+          @SrcIP = srcip
+          @DstIP = dstip
+          @IdsRuleName = idsrulename
+          @IdsRuleId = idsruleid
+        end
+
+        def deserialize(params)
+          @SrcIP = params['SrcIP']
+          @DstIP = params['DstIP']
+          @IdsRuleName = params['IdsRuleName']
+          @IdsRuleId = params['IdsRuleId']
         end
       end
 
@@ -2280,10 +2357,16 @@ module TencentCloud
         # @param ParamTemplateId: 协议端口组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateId: String
+        # @param SourceName: 访问源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceName: String
+        # @param TargetName: 访问目的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetName: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2313,6 +2396,8 @@ module TencentCloud
           @InternetBorderUuid = internetborderuuid
           @ParamTemplateName = paramtemplatename
           @ParamTemplateId = paramtemplateid
+          @SourceName = sourcename
+          @TargetName = targetname
         end
 
         def deserialize(params)
@@ -2352,6 +2437,8 @@ module TencentCloud
           @InternetBorderUuid = params['InternetBorderUuid']
           @ParamTemplateName = params['ParamTemplateName']
           @ParamTemplateId = params['ParamTemplateId']
+          @SourceName = params['SourceName']
+          @TargetName = params['TargetName']
         end
       end
 
@@ -2826,35 +2913,40 @@ module TencentCloud
         # @type Offset: Integer
         # @param Direction: 方向：1互联网入站，0互联网出站，3内网，空 全部方向
         # @type Direction: String
-        # @param RuleType: 规则类型：1封禁，2放通
-        # @type RuleType: Integer
         # @param Order: 排序类型：desc降序，asc正序
         # @type Order: String
         # @param By: 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
         # @type By: String
         # @param SearchValue: 搜索参数，json格式字符串，空则传"{}"，域名：domain，危险等级：level，放通原因：ignore_reason，安全事件来源：rule_source，地理位置：address，模糊搜索：common
         # @type SearchValue: String
+        # @param RuleType: 规则类型：1封禁，2放通
+        # @type RuleType: Integer
+        # @param ShowType: blocklist 封禁列表
+        # whitelist 白名单列表
+        # @type ShowType: String
 
-        attr_accessor :Limit, :Offset, :Direction, :RuleType, :Order, :By, :SearchValue
+        attr_accessor :Limit, :Offset, :Direction, :Order, :By, :SearchValue, :RuleType, :ShowType
 
-        def initialize(limit=nil, offset=nil, direction=nil, ruletype=nil, order=nil, by=nil, searchvalue=nil)
+        def initialize(limit=nil, offset=nil, direction=nil, order=nil, by=nil, searchvalue=nil, ruletype=nil, showtype=nil)
           @Limit = limit
           @Offset = offset
           @Direction = direction
-          @RuleType = ruletype
           @Order = order
           @By = by
           @SearchValue = searchvalue
+          @RuleType = ruletype
+          @ShowType = showtype
         end
 
         def deserialize(params)
           @Limit = params['Limit']
           @Offset = params['Offset']
           @Direction = params['Direction']
-          @RuleType = params['RuleType']
           @Order = params['Order']
           @By = params['By']
           @SearchValue = params['SearchValue']
+          @RuleType = params['RuleType']
+          @ShowType = params['ShowType']
         end
       end
 
@@ -2870,17 +2962,20 @@ module TencentCloud
         # @type ReturnMsg: String
         # @param SourceList: 安全事件来源下拉框
         # @type SourceList: Array
+        # @param RuleTypeDataList: 对应规则类型的数量，示例：[0,122,30,55,12,232,0]，封禁0个，IP地址122个，域名30个，威胁情报55个，资产实例12个，自定义策略232个，入侵防御规则0个
+        # @type RuleTypeDataList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :SourceList, :RequestId
+        attr_accessor :Data, :Total, :ReturnCode, :ReturnMsg, :SourceList, :RuleTypeDataList, :RequestId
 
-        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, sourcelist=nil, requestid=nil)
+        def initialize(data=nil, total=nil, returncode=nil, returnmsg=nil, sourcelist=nil, ruletypedatalist=nil, requestid=nil)
           @Data = data
           @Total = total
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
           @SourceList = sourcelist
+          @RuleTypeDataList = ruletypedatalist
           @RequestId = requestid
         end
 
@@ -2897,6 +2992,7 @@ module TencentCloud
           @ReturnCode = params['ReturnCode']
           @ReturnMsg = params['ReturnMsg']
           @SourceList = params['SourceList']
+          @RuleTypeDataList = params['RuleTypeDataList']
           @RequestId = params['RequestId']
         end
       end
@@ -8135,10 +8231,12 @@ module TencentCloud
         # @param ParameterName: 模板名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParameterName: String
+        # @param ProtocolPortName: 端口协议类型参数模板名称
+        # @type ProtocolPortName: String
 
-        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction, :ProtocolPortType, :Uuid, :Region, :AssetGroupNameIn, :AssetGroupNameOut, :ParameterName
+        attr_accessor :OrderIndex, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Detail, :BothWay, :Id, :Status, :IsNew, :VpcId, :SubnetId, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ServiceTemplateId, :BothWayInfo, :Direction, :ProtocolPortType, :Uuid, :Region, :AssetGroupNameIn, :AssetGroupNameOut, :ParameterName, :ProtocolPortName
 
-        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil, protocolporttype=nil, uuid=nil, region=nil, assetgroupnamein=nil, assetgroupnameout=nil, parametername=nil)
+        def initialize(orderindex=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, detail=nil, bothway=nil, id=nil, status=nil, isnew=nil, vpcid=nil, subnetid=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, servicetemplateid=nil, bothwayinfo=nil, direction=nil, protocolporttype=nil, uuid=nil, region=nil, assetgroupnamein=nil, assetgroupnameout=nil, parametername=nil, protocolportname=nil)
           @OrderIndex = orderindex
           @SourceId = sourceid
           @SourceType = sourcetype
@@ -8167,6 +8265,7 @@ module TencentCloud
           @AssetGroupNameIn = assetgroupnamein
           @AssetGroupNameOut = assetgroupnameout
           @ParameterName = parametername
+          @ProtocolPortName = protocolportname
         end
 
         def deserialize(params)
@@ -8205,6 +8304,7 @@ module TencentCloud
           @AssetGroupNameIn = params['AssetGroupNameIn']
           @AssetGroupNameOut = params['AssetGroupNameOut']
           @ParameterName = params['ParameterName']
+          @ProtocolPortName = params['ProtocolPortName']
         end
       end
 
@@ -8274,10 +8374,12 @@ module TencentCloud
         # @param Enable: （入参时、Enable已弃用；由通用配置中新增规则启用状态控制）
         # 规则状态，true表示启用，false表示禁用
         # @type Enable: String
+        # @param Uid: 规则对应的唯一内部id
+        # @type Uid: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable, :Uid
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil, id=nil, enable=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil, id=nil, enable=nil, uid=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -8290,6 +8392,7 @@ module TencentCloud
           @ServiceTemplateId = servicetemplateid
           @Id = id
           @Enable = enable
+          @Uid = uid
         end
 
         def deserialize(params)
@@ -8305,6 +8408,7 @@ module TencentCloud
           @ServiceTemplateId = params['ServiceTemplateId']
           @Id = params['Id']
           @Enable = params['Enable']
+          @Uid = params['Uid']
         end
       end
 
@@ -9328,10 +9432,16 @@ module TencentCloud
         # @param ParamTemplateName: 端口协议组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamTemplateName: String
+        # @param TargetName: 访问目的名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetName: String
+        # @param SourceName: 访问源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceName: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Uuid, :Enable, :EdgeId, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Uuid, :Enable, :EdgeId, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, uuid=nil, enable=nil, edgeid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, uuid=nil, enable=nil, edgeid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -9353,6 +9463,8 @@ module TencentCloud
           @BetaList = betalist
           @ParamTemplateId = paramtemplateid
           @ParamTemplateName = paramtemplatename
+          @TargetName = targetname
+          @SourceName = sourcename
         end
 
         def deserialize(params)
@@ -9384,6 +9496,8 @@ module TencentCloud
           end
           @ParamTemplateId = params['ParamTemplateId']
           @ParamTemplateName = params['ParamTemplateName']
+          @TargetName = params['TargetName']
+          @SourceName = params['SourceName']
         end
       end
 

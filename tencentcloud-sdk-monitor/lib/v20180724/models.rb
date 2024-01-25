@@ -7865,15 +7865,19 @@ module TencentCloud
         # @param EksClusterId: 实例eks集群ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EksClusterId: String
+        # @param SecurityGroupId: eks集群内pod的安全组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Steps, :EksClusterId, :RequestId
+        attr_accessor :Status, :Steps, :EksClusterId, :SecurityGroupId, :RequestId
 
-        def initialize(status=nil, steps=nil, eksclusterid=nil, requestid=nil)
+        def initialize(status=nil, steps=nil, eksclusterid=nil, securitygroupid=nil, requestid=nil)
           @Status = status
           @Steps = steps
           @EksClusterId = eksclusterid
+          @SecurityGroupId = securitygroupid
           @RequestId = requestid
         end
 
@@ -7888,6 +7892,7 @@ module TencentCloud
             end
           end
           @EksClusterId = params['EksClusterId']
+          @SecurityGroupId = params['SecurityGroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -11468,10 +11473,13 @@ module TencentCloud
         # @param Name: agent名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
+        # @param EnableExternal: 是否已开启公网访问，true 开启，false 未开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableExternal: Boolean
 
-        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason, :Name
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason, :Name, :EnableExternal
 
-        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil, name=nil)
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil, name=nil, enableexternal=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Status = status
@@ -11481,6 +11489,7 @@ module TencentCloud
           @VpcId = vpcid
           @FailedReason = failedreason
           @Name = name
+          @EnableExternal = enableexternal
         end
 
         def deserialize(params)
@@ -11500,6 +11509,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @FailedReason = params['FailedReason']
           @Name = params['Name']
+          @EnableExternal = params['EnableExternal']
         end
       end
 

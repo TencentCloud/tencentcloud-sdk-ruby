@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建跑批任务
+        # 创建批量预测任务
 
         # @param request: Request instance for CreateBatchTask.
         # @type request: :class:`Tencentcloud::tione::V20211111::CreateBatchTaskRequest`
@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除跑批任务
+        # 删除批量预测任务
 
         # @param request: Request instance for DeleteBatchTask.
         # @type request: :class:`Tencentcloud::tione::V20211111::DeleteBatchTaskRequest`
@@ -533,7 +533,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询跑批任务
+        # 查询批量预测任务
 
         # @param request: Request instance for DescribeBatchTask.
         # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskRequest`
@@ -557,7 +557,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询跑批实例列表
+        # 查询批量预测任务实例列表
 
         # @param request: Request instance for DescribeBatchTaskInstances.
         # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTaskInstancesRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量预测任务列表信息
+        # 查询批量预测任务列表信息
 
         # @param request: Request instance for DescribeBatchTasks.
         # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBatchTasksRequest`
@@ -1685,7 +1685,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止跑批任务
+        # 停止批量预测任务
 
         # @param request: Request instance for StopBatchTask.
         # @type request: :class:`Tencentcloud::tione::V20211111::StopBatchTaskRequest`

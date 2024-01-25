@@ -137,19 +137,23 @@ module TencentCloud
         # @type Channel: Integer
         # @param BitRate: 音频码率，取值范围[8,500]，单位为kbps。
         # @type BitRate: Integer
+        # @param Volume: 音量，取值范围[0,300]。默认100，表示原始音量；0表示静音。
+        # @type Volume: Integer
 
-        attr_accessor :SampleRate, :Channel, :BitRate
+        attr_accessor :SampleRate, :Channel, :BitRate, :Volume
 
-        def initialize(samplerate=nil, channel=nil, bitrate=nil)
+        def initialize(samplerate=nil, channel=nil, bitrate=nil, volume=nil)
           @SampleRate = samplerate
           @Channel = channel
           @BitRate = bitrate
+          @Volume = volume
         end
 
         def deserialize(params)
           @SampleRate = params['SampleRate']
           @Channel = params['Channel']
           @BitRate = params['BitRate']
+          @Volume = params['Volume']
         end
       end
 
@@ -3853,9 +3857,9 @@ module TencentCloud
         # 0: 字符串类型的RoomId
         # 1: 32位整型的RoomId（默认）
         # @type RoomIdType: Integer
-        # @param UserId: 拉流转推机器人的UserId，用于进房发起拉流转推任务。
+        # @param UserId: 输入在线媒体流机器人的UserId，用于进房发起拉流转推任务。
         # @type UserId: String
-        # @param UserSig: 拉流转推机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
+        # @param UserSig: 输入在线媒体流机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码，具体计算方法请参考TRTC计算[UserSig](https://cloud.tencent.com/document/product/647/45910#UserSig)的方案。
         # @type UserSig: String
         # @param SourceUrl: 【本字段已废弃，请使用 StreamUrl 字段】源流URL，支持一个地址。
         # @type SourceUrl: Array
@@ -3905,7 +3909,7 @@ module TencentCloud
 
       # StartStreamIngest返回参数结构体
       class StartStreamIngestResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 拉流转推的任务 ID。任务 ID 是对一次拉流转推生命周期过程的唯一标识，结束任务时会失去意义。任务 ID 需要业务保存下来，作为下次针对这个任务操作的参数。
+        # @param TaskId: 输入在线媒体流的任务 ID。任务 ID 是对一次输入在线媒体流生命周期过程的唯一标识，结束任务时会失去意义。任务 ID 需要业务保存下来，作为下次针对这个任务操作的参数。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

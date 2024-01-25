@@ -3194,10 +3194,16 @@ module TencentCloud
         # @param NumRowsFetchedFromCache: 从缓存中获取的数据行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRowsFetchedFromCache: Integer
+        # @param SessionId: 会话ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param PerNodePeakMemoryBytesSum: 单节点内存峰值和(Bytes)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PerNodePeakMemoryBytesSum: Integer
 
-        attr_accessor :Statement, :Id, :StartTime, :Duration, :EndTime, :State, :RowsFetched, :User, :DefaultDB, :Coordinator, :MaxNodePeakMemoryUsage, :QueryType, :ScanHDFSRows, :ScanKUDURows, :ScanRowsTotal, :TotalBytesRead, :TotalBytesSent, :TotalCpuTime, :TotalInnerBytesSent, :TotalScanBytesSent, :EstimatedPerHostMemBytes, :NumRowsFetchedFromCache
+        attr_accessor :Statement, :Id, :StartTime, :Duration, :EndTime, :State, :RowsFetched, :User, :DefaultDB, :Coordinator, :MaxNodePeakMemoryUsage, :QueryType, :ScanHDFSRows, :ScanKUDURows, :ScanRowsTotal, :TotalBytesRead, :TotalBytesSent, :TotalCpuTime, :TotalInnerBytesSent, :TotalScanBytesSent, :EstimatedPerHostMemBytes, :NumRowsFetchedFromCache, :SessionId, :PerNodePeakMemoryBytesSum
 
-        def initialize(statement=nil, id=nil, starttime=nil, duration=nil, endtime=nil, state=nil, rowsfetched=nil, user=nil, defaultdb=nil, coordinator=nil, maxnodepeakmemoryusage=nil, querytype=nil, scanhdfsrows=nil, scankudurows=nil, scanrowstotal=nil, totalbytesread=nil, totalbytessent=nil, totalcputime=nil, totalinnerbytessent=nil, totalscanbytessent=nil, estimatedperhostmembytes=nil, numrowsfetchedfromcache=nil)
+        def initialize(statement=nil, id=nil, starttime=nil, duration=nil, endtime=nil, state=nil, rowsfetched=nil, user=nil, defaultdb=nil, coordinator=nil, maxnodepeakmemoryusage=nil, querytype=nil, scanhdfsrows=nil, scankudurows=nil, scanrowstotal=nil, totalbytesread=nil, totalbytessent=nil, totalcputime=nil, totalinnerbytessent=nil, totalscanbytessent=nil, estimatedperhostmembytes=nil, numrowsfetchedfromcache=nil, sessionid=nil, pernodepeakmemorybytessum=nil)
           @Statement = statement
           @Id = id
           @StartTime = starttime
@@ -3220,6 +3226,8 @@ module TencentCloud
           @TotalScanBytesSent = totalscanbytessent
           @EstimatedPerHostMemBytes = estimatedperhostmembytes
           @NumRowsFetchedFromCache = numrowsfetchedfromcache
+          @SessionId = sessionid
+          @PerNodePeakMemoryBytesSum = pernodepeakmemorybytessum
         end
 
         def deserialize(params)
@@ -3245,6 +3253,8 @@ module TencentCloud
           @TotalScanBytesSent = params['TotalScanBytesSent']
           @EstimatedPerHostMemBytes = params['EstimatedPerHostMemBytes']
           @NumRowsFetchedFromCache = params['NumRowsFetchedFromCache']
+          @SessionId = params['SessionId']
+          @PerNodePeakMemoryBytesSum = params['PerNodePeakMemoryBytesSum']
         end
       end
 

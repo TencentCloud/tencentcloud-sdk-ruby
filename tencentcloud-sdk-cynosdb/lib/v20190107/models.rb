@@ -371,6 +371,59 @@ module TencentCloud
         end
       end
 
+      # 查询审计实例的过滤条件
+      class AuditInstanceFilters < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤条件值。支持InstanceId-实例ID，InstanceName-实例名称，ProjectId-项目ID，TagKey-标签键，Tag-标签（以竖线分割，例：Tagkey|Tagvalue）。
+        # @type Name: String
+        # @param ExactMatch: true表示精确查找，false表示模糊匹配。
+        # @type ExactMatch: Boolean
+        # @param Values: 筛选值
+        # @type Values: Array
+
+        attr_accessor :Name, :ExactMatch, :Values
+
+        def initialize(name=nil, exactmatch=nil, values=nil)
+          @Name = name
+          @ExactMatch = exactmatch
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ExactMatch = params['ExactMatch']
+          @Values = params['Values']
+        end
+      end
+
+      # 审计实例详情
+      class AuditInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param TagList: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+
+        attr_accessor :ProjectId, :TagList
+
+        def initialize(projectid=nil, taglist=nil)
+          @ProjectId = projectid
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+        end
+      end
+
       # 审计日志详细信息
       class AuditLog < TencentCloud::Common::AbstractModel
         # @param AffectRows: 影响行数。
@@ -3864,6 +3917,77 @@ module TencentCloud
         end
       end
 
+      # DescribeAuditInstanceList请求参数结构体
+      class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param AuditSwitch: 实例审计开启的状态。1-已开启审计；0-未开启审计。
+        # @type AuditSwitch: Integer
+        # @param Filters: 查询实例列表的过滤条件。
+        # @type Filters: Array
+        # @param AuditMode: 实例的审计规则模式。1-规则审计；0-全审计。
+        # @type AuditMode: Integer
+        # @param Limit: 单次请求返回的数量。默认值为30，最大值为 20000。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认值为 0。
+        # @type Offset: Integer
+
+        attr_accessor :AuditSwitch, :Filters, :AuditMode, :Limit, :Offset
+
+        def initialize(auditswitch=nil, filters=nil, auditmode=nil, limit=nil, offset=nil)
+          @AuditSwitch = auditswitch
+          @Filters = filters
+          @AuditMode = auditmode
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @AuditSwitch = params['AuditSwitch']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              auditinstancefilters_tmp = AuditInstanceFilters.new
+              auditinstancefilters_tmp.deserialize(i)
+              @Filters << auditinstancefilters_tmp
+            end
+          end
+          @AuditMode = params['AuditMode']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAuditInstanceList返回参数结构体
+      class DescribeAuditInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的实例总数。
+        # @type TotalCount: Integer
+        # @param Items: 审计实例详细信息列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              instanceauditstatus_tmp = InstanceAuditStatus.new
+              instanceauditstatus_tmp.deserialize(i)
+              @Items << instanceauditstatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAuditLogFiles请求参数结构体
       class DescribeAuditLogFilesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -6951,6 +7075,84 @@ module TencentCloud
               @RuleTemplates << ruletemplateinfo_tmp
             end
           end
+        end
+      end
+
+      # 实例审计详情信息
+      class InstanceAuditStatus < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param AuditStatus: 审计状态。ON-表示审计已开启，OFF-表示审计关闭。
+        # @type AuditStatus: String
+        # @param LogExpireDay: 日志保留时长。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: 高频存储时长。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighLogExpireDay: Integer
+        # @param LowLogExpireDay: 低频存储时长。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLogExpireDay: Integer
+        # @param BillingAmount: 日志存储量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingAmount: Float
+        # @param HighRealStorage: 高频存储量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighRealStorage: Float
+        # @param LowRealStorage: 低频存储量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowRealStorage: Float
+        # @param AuditAll: 是否为全审计。true-表示全审计。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditAll: Boolean
+        # @param CreateAt: 审计开通时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateAt: String
+        # @param InstanceInfo: 实例相关信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.AuditInstanceInfo`
+        # @param RealStorage: 总存储量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealStorage: Float
+        # @param RuleTemplateIds: 实例所应用的规则模板。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateIds: Array
+
+        attr_accessor :InstanceId, :AuditStatus, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :AuditAll, :CreateAt, :InstanceInfo, :RealStorage, :RuleTemplateIds
+
+        def initialize(instanceid=nil, auditstatus=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, auditall=nil, createat=nil, instanceinfo=nil, realstorage=nil, ruletemplateids=nil)
+          @InstanceId = instanceid
+          @AuditStatus = auditstatus
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+          @LowLogExpireDay = lowlogexpireday
+          @BillingAmount = billingamount
+          @HighRealStorage = highrealstorage
+          @LowRealStorage = lowrealstorage
+          @AuditAll = auditall
+          @CreateAt = createat
+          @InstanceInfo = instanceinfo
+          @RealStorage = realstorage
+          @RuleTemplateIds = ruletemplateids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AuditStatus = params['AuditStatus']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @LowLogExpireDay = params['LowLogExpireDay']
+          @BillingAmount = params['BillingAmount']
+          @HighRealStorage = params['HighRealStorage']
+          @LowRealStorage = params['LowRealStorage']
+          @AuditAll = params['AuditAll']
+          @CreateAt = params['CreateAt']
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = AuditInstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @RealStorage = params['RealStorage']
+          @RuleTemplateIds = params['RuleTemplateIds']
         end
       end
 

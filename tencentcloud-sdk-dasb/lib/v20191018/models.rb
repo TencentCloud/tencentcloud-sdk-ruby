@@ -109,10 +109,13 @@ module TencentCloud
         # @param ACTemplateSet: 关联的数据库高危命令列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ACTemplateSet: Array
+        # @param WhiteCmds: 关联的白命令命令
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WhiteCmds: Array
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -142,6 +145,7 @@ module TencentCloud
           @Department = department
           @AllowAccessCredential = allowaccesscredential
           @ACTemplateSet = actemplateset
+          @WhiteCmds = whitecmds
         end
 
         def deserialize(params)
@@ -219,6 +223,7 @@ module TencentCloud
               @ACTemplateSet << actemplate_tmp
             end
           end
+          @WhiteCmds = params['WhiteCmds']
         end
       end
 
@@ -4491,10 +4496,13 @@ module TencentCloud
         # @param Status: 状态 与Filter中一致
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param AclVersion: 权限版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclVersion: Integer
 
-        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :Status
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :Status, :AclVersion
 
-        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, status=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, status=nil, aclversion=nil)
           @UserName = username
           @RealName = realname
           @Id = id
@@ -4510,6 +4518,7 @@ module TencentCloud
           @ActiveStatus = activestatus
           @LockStatus = lockstatus
           @Status = status
+          @AclVersion = aclversion
         end
 
         def deserialize(params)
@@ -4538,6 +4547,7 @@ module TencentCloud
           @ActiveStatus = params['ActiveStatus']
           @LockStatus = params['LockStatus']
           @Status = params['Status']
+          @AclVersion = params['AclVersion']
         end
       end
 

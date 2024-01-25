@@ -216,10 +216,14 @@ module TencentCloud
         # @type AddSignComponentsLimits: Array
         # @param SignInstructionContent: 签署须知：支持传入富文本，最长字数：500个中文字符
         # @type SignInstructionContent: String
+        # @param Deadline: 签署人的签署截止时间，格式为Unix标准时间戳（秒）
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent
+        # 注: `若不设置此参数，则默认使用合同的截止时间，此参数暂不支持合同组子合同`
+        # @type Deadline: Integer
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil)
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent, :Deadline
+
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil, deadline=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -241,6 +245,7 @@ module TencentCloud
           @ApproverNeedSignReview = approverneedsignreview
           @AddSignComponentsLimits = addsigncomponentslimits
           @SignInstructionContent = signinstructioncontent
+          @Deadline = deadline
         end
 
         def deserialize(params)
@@ -282,6 +287,7 @@ module TencentCloud
             end
           end
           @SignInstructionContent = params['SignInstructionContent']
+          @Deadline = params['Deadline']
         end
       end
 
@@ -7199,13 +7205,18 @@ module TencentCloud
         # 注：
         # `不指定该值时，默认为签署方自行选择。`
         # @type SignTypeSelector: Integer
+        # @param Deadline: Deadline
+        # 签署人的签署截止时间，格式为Unix标准时间戳（秒）
 
-        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector
+        # 注: `若不设置此参数，则默认使用合同的截止时间，此参数暂不支持合同组子合同`
+        # @type Deadline: Integer
+
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId, :VerifyChannel, :NotifyType, :IsFullText, :PreReadTime, :UserId, :Required, :ApproverSource, :CustomApproverTag, :RegisterInfo, :ApproverOption, :JumpUrl, :SignId, :ApproverNeedSignReview, :SignComponents, :Components, :ComponentLimitType, :ApproverVerifyTypes, :ApproverSignTypes, :SignTypeSelector, :Deadline
         extend Gem::Deprecate
         deprecate :JumpUrl, :none, 2024, 1
         deprecate :JumpUrl=, :none, 2024, 1
 
-        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil)
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil, verifychannel=nil, notifytype=nil, isfulltext=nil, prereadtime=nil, userid=nil, required=nil, approversource=nil, customapprovertag=nil, registerinfo=nil, approveroption=nil, jumpurl=nil, signid=nil, approverneedsignreview=nil, signcomponents=nil, components=nil, componentlimittype=nil, approververifytypes=nil, approversigntypes=nil, signtypeselector=nil, deadline=nil)
           @ApproverType = approvertype
           @OrganizationName = organizationname
           @ApproverName = approvername
@@ -7232,6 +7243,7 @@ module TencentCloud
           @ApproverVerifyTypes = approververifytypes
           @ApproverSignTypes = approversigntypes
           @SignTypeSelector = signtypeselector
+          @Deadline = deadline
         end
 
         def deserialize(params)
@@ -7281,6 +7293,7 @@ module TencentCloud
           @ApproverVerifyTypes = params['ApproverVerifyTypes']
           @ApproverSignTypes = params['ApproverSignTypes']
           @SignTypeSelector = params['SignTypeSelector']
+          @Deadline = params['Deadline']
         end
       end
 
@@ -8246,6 +8259,66 @@ module TencentCloud
 
         def deserialize(params)
           @OperateUrl = params['OperateUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyFlowDeadline请求参数结构体
+      class ModifyFlowDeadlineRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # <ul><li>建议开发者妥善保存此流程ID，以便于顺利进行后续操作。</li>
+        # <li>可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。</li></ul>
+        # @type FlowId: String
+        # @param Deadline: 签署流程或签署人新的签署截止时间，格式为Unix标准时间戳（秒）
+        # @type Deadline: Integer
+        # @param Agent: 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param RecipientId: 签署方角色编号，为32位字符串
+        # <ul><li>若指定了此参数，则只调整签署流程中此签署人的签署截止时间，否则调整合同整体的签署截止时间（合同截止时间+发起时未设置签署人截止时间的参与人的签署截止时间）</li>
+        # <li>通过[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)发起合同，或通过[模板发起合同-创建电子文档](https://qian.tencent.com/developers/companyApis/startFlows/CreateDocument)时，返回参数[Approvers](https://qian.tencent.com/developers/companyApis/dataTypes/#approveritem)会返回此信息，建议开发者妥善保存</li>
+        # <li>也可通过[查询合同流程的详情信息](https://qian.tencent.com/developers/companyApis/queryFlows/DescribeFlowInfo)接口查询签署人的RecipientId编号</li></ul>
+        # @type RecipientId: String
+
+        attr_accessor :Operator, :FlowId, :Deadline, :Agent, :RecipientId
+
+        def initialize(operator=nil, flowid=nil, deadline=nil, agent=nil, recipientid=nil)
+          @Operator = operator
+          @FlowId = flowid
+          @Deadline = deadline
+          @Agent = agent
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @FlowId = params['FlowId']
+          @Deadline = params['Deadline']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # ModifyFlowDeadline返回参数结构体
+      class ModifyFlowDeadlineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

@@ -144,11 +144,11 @@ module TencentCloud
         end
       end
 
-      # 跑批任务详情
+      # 批量预测任务详情
       class BatchTaskDetail < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
-        # @param BatchTaskName: 跑批任务名称
+        # @param BatchTaskName: 批量预测任务名称
         # @type BatchTaskName: String
         # @param Uin: 主账号uin
         # @type Uin: String
@@ -212,7 +212,12 @@ module TencentCloud
         # @param EndTime: 任务结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @param ChargeStatus: 计费状态，取值范围:
+        # BILLING: 计费中
+        # NOT_BILLING: 未计费
+        # WHITELIST_USING: 白名单使用中
+        # WHITELIST_STOP: 白名单到期
+        # ARREARS_STOP: 欠费停止
         # @type ChargeStatus: String
         # @param LatestInstanceId: 最近一次实例ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -384,9 +389,9 @@ module TencentCloud
 
       # 出参类型
       class BatchTaskSetItem < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
-        # @param BatchTaskName: 跑批任务名称
+        # @param BatchTaskName: 批量预测任务名称
         # @type BatchTaskName: String
         # @param ModelInfo: 模型信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -395,7 +400,12 @@ module TencentCloud
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
         # @param ChargeType: 计费模式
         # @type ChargeType: String
-        # @param ChargeStatus: 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        # @param ChargeStatus: 计费状态，取值范围:
+        # BILLING: 计费中
+        # NOT_BILLING: 未计费
+        # WHITELIST_USING: 白名单使用中
+        # WHITELIST_STOP: 白名单到期
+        # ARREARS_STOP: 欠费停止
         # @type ChargeStatus: String
         # @param ResourceGroupId: 包年包月资源组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -405,20 +415,21 @@ module TencentCloud
         # @param Tags: 标签配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param Status: 任务状态
+        # @param Status: 任务状态, 取值范围:
+        # INIT, STARTING, RUNNING, FAILED, STOPPING, STOPPED, SUCCEED
         # @type Status: String
         # @param RuntimeInSeconds: 运行时长
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RuntimeInSeconds: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 任务创建时间
         # @type CreateTime: String
-        # @param StartTime: 开始时间
+        # @param StartTime: 任务开始运行时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 任务结束时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 任务更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param Outputs: 输出
@@ -428,7 +439,7 @@ module TencentCloud
         # @type ResourceGroupName: String
         # @param FailureReason: 失败原因
         # @type FailureReason: String
-        # @param BillingInfo: 计费金额信息，eg：2.00元/小时 (for 按量计费)
+        # @param BillingInfo: 按量计费信息
         # @type BillingInfo: String
 
         attr_accessor :BatchTaskId, :BatchTaskName, :ModelInfo, :ImageInfo, :ChargeType, :ChargeStatus, :ResourceGroupId, :ResourceConfigInfo, :Tags, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :EndTime, :UpdateTime, :Outputs, :ResourceGroupName, :FailureReason, :BillingInfo
@@ -847,13 +858,13 @@ module TencentCloud
 
       # CreateBatchTask请求参数结构体
       class CreateBatchTaskRequest < TencentCloud::Common::AbstractModel
-        # @param BatchTaskName: 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @param BatchTaskName: 批量预测任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         # @type BatchTaskName: String
         # @param ChargeType: 计费模式，eg：PREPAID 包年包月；POSTPAID_BY_HOUR 按量计费
         # @type ChargeType: String
         # @param ResourceConfigInfo: 资源配置
         # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
-        # @param Outputs: 结果输出
+        # @param Outputs: 结果输出存储信息
         # @type Outputs: Array
         # @param LogEnable: 是否上报日志
         # @type LogEnable: Boolean
@@ -887,6 +898,11 @@ module TencentCloud
         # @type CallbackUrl: String
 
         attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark, :CallbackUrl
+        extend Gem::Deprecate
+        deprecate :JobType, :none, 2024, 1
+        deprecate :JobType=, :none, 2024, 1
+        deprecate :CronInfo, :none, 2024, 1
+        deprecate :CronInfo=, :none, 2024, 1
 
         def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil, callbackurl=nil)
           @BatchTaskName = batchtaskname
@@ -974,7 +990,7 @@ module TencentCloud
 
       # CreateBatchTask返回参数结构体
       class CreateBatchTaskResponse < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2520,7 +2536,7 @@ module TencentCloud
 
       # DeleteBatchTask请求参数结构体
       class DeleteBatchTaskRequest < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
 
         attr_accessor :BatchTaskId
@@ -2937,7 +2953,7 @@ module TencentCloud
 
       # DescribeBatchTaskInstances请求参数结构体
       class DescribeBatchTaskInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务id
+        # @param BatchTaskId: 批量预测任务id
         # @type BatchTaskId: String
 
         attr_accessor :BatchTaskId
@@ -2953,7 +2969,7 @@ module TencentCloud
 
       # DescribeBatchTaskInstances返回参数结构体
       class DescribeBatchTaskInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param BatchInstances: 实例集
+        # @param BatchInstances: 批量预测实例结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchInstances: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -2981,7 +2997,7 @@ module TencentCloud
 
       # DescribeBatchTask请求参数结构体
       class DescribeBatchTaskRequest < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
 
         attr_accessor :BatchTaskId
@@ -2997,7 +3013,7 @@ module TencentCloud
 
       # DescribeBatchTask返回参数结构体
       class DescribeBatchTaskResponse < TencentCloud::Common::AbstractModel
-        # @param BatchTaskDetail: 跑批任务详情
+        # @param BatchTaskDetail: 批量预测任务详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTaskDetail: :class:`Tencentcloud::Tione.v20211111.models.BatchTaskDetail`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -3021,24 +3037,24 @@ module TencentCloud
 
       # DescribeBatchTasks请求参数结构体
       class DescribeBatchTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
+        # @param Filters: 过滤器
 
-        # 取值范围：
-        # Name（名称）：task1
-        # Id（task ID）：train-23091792777383936
-        # Status（状态）：STARTING / RUNNING / STOPPING / STOPPED / FAILED / SUCCEED / SUBMIT_FAILED
-        # ChargeType（计费类型）：PREPAID 包年包月 / POSTPAID_BY_HOUR 按量计费
-        # CHARGE_STATUS（计费状态）：NOT_BILLING（未开始计费）/ BILLING（计费中）/ ARREARS_STOP（欠费停止）
+        # Name支持的取值范围：
+        # BatchTaskId, BatchTaskName, Status, ModelVersionId
+
+        # 其中Status 的有效取值范围:
+        # INIT, STARTING, RUNNING, FAILED, STOPPING, STOPPED, SUCCEED
         # @type Filters: Array
-        # @param TagFilters: 标签过滤器，eg：[{ "TagKey": "TagKeyA", "TagValue": ["TagValueA"] }]
+        # @param TagFilters: 标签过滤器
         # @type TagFilters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为10，最大为50
+        # @param Limit: 限制数目，默认为20
         # @type Limit: Integer
         # @param Order: 输出列表的排列顺序。取值范围：ASC（升序排列）/ DESC（降序排列），默认为DESC
         # @type Order: String
-        # @param OrderField: 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
+        # @param OrderField: 排序字段。当前仅支持 "CreateTime"。
+        # 不传此字段则按照DB默认排序结果返回
         # @type OrderField: String
 
         attr_accessor :Filters, :TagFilters, :Offset, :Limit, :Order, :OrderField
@@ -3078,9 +3094,9 @@ module TencentCloud
 
       # DescribeBatchTasks返回参数结构体
       class DescribeBatchTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数量
+        # @param TotalCount: 批量预测任务总数
         # @type TotalCount: Integer
-        # @param BatchTaskSet: 任务集
+        # @param BatchTaskSet: 批量预测任务列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTaskSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -9629,7 +9645,7 @@ module TencentCloud
 
       # StopBatchTask请求参数结构体
       class StopBatchTaskRequest < TencentCloud::Common::AbstractModel
-        # @param BatchTaskId: 跑批任务ID
+        # @param BatchTaskId: 批量预测任务ID
         # @type BatchTaskId: String
 
         attr_accessor :BatchTaskId

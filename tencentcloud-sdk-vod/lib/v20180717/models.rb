@@ -10663,6 +10663,8 @@ module TencentCloud
         # <li> VideoClassification:  视频智能分类</li>
         # <li> VideoCover: 视频智能封面</li>
         # <li> VideoSegment: 视频智能拆条</li>
+        # <li> VideoProduce: 视频制作</li>
+        # <li> MediaCast: 媒体转推</li>
         # <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         # @type Type: String
 
@@ -13176,10 +13178,13 @@ module TencentCloud
         # @param QualityEnhanceCompleteEvent: 音画质重生完成事件，当事件类型为 QualityEnhanceComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEnhanceCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.QualityEnhanceTask`
+        # @param MediaCastStatusChangedEvent: 媒体转推状态变化事件，当事件类型为 MediaCastStatusChanged 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MediaCastStatusChangedEvent: :class:`Tencentcloud::Vod.v20180717.models.MediaCastEvent`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -13206,6 +13211,7 @@ module TencentCloud
           @DescribeFileAttributesCompleteEvent = describefileattributescompleteevent
           @QualityInspectCompleteEvent = qualityinspectcompleteevent
           @QualityEnhanceCompleteEvent = qualityenhancecompleteevent
+          @MediaCastStatusChangedEvent = mediacaststatuschangedevent
         end
 
         def deserialize(params)
@@ -13306,6 +13312,10 @@ module TencentCloud
           unless params['QualityEnhanceCompleteEvent'].nil?
             @QualityEnhanceCompleteEvent = QualityEnhanceTask.new
             @QualityEnhanceCompleteEvent.deserialize(params['QualityEnhanceCompleteEvent'])
+          end
+          unless params['MediaCastStatusChangedEvent'].nil?
+            @MediaCastStatusChangedEvent = MediaCastEvent.new
+            @MediaCastStatusChangedEvent.deserialize(params['MediaCastStatusChangedEvent'])
           end
         end
       end
@@ -15465,6 +15475,31 @@ module TencentCloud
           @Category = params['Category']
           @Status = params['Status']
           @StorageClass = params['StorageClass']
+        end
+      end
+
+      # 媒体转推事件通知消息。
+      class MediaCastEvent < TencentCloud::Common::AbstractModel
+        # @param CastId: 媒体转推 ID。
+        # @type CastId: String
+        # @param Status: 转推状态，取值有：
+        # <li>Working ：运行中；</li>
+        # <li>Scheduled ：等待定时时间到达后启动；</li>
+        # <li>Stopped ：已经停止转推；</li>
+        # <li>Idle ：空闲。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :CastId, :Status
+
+        def initialize(castid=nil, status=nil)
+          @CastId = castid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CastId = params['CastId']
+          @Status = params['Status']
         end
       end
 

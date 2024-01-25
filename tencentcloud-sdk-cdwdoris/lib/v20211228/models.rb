@@ -1826,10 +1826,19 @@ module TencentCloud
         # @param IsQuery: 是否是查询，0：否，1：查询语句
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsQuery: Integer
+        # @param ResultBytesMB: ResultBytes的MB格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultBytesMB: Float
+        # @param MemoryUsageMB: MemoryUsage的MB表示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemoryUsageMB: Float
+        # @param DurationSec: DurationMs的秒表示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DurationSec: Float
 
-        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery
+        attr_accessor :OsUser, :InitialQueryId, :Sql, :QueryStartTime, :DurationMs, :ReadRows, :ResultRows, :ResultBytes, :MemoryUsage, :InitialAddress, :DbName, :IsQuery, :ResultBytesMB, :MemoryUsageMB, :DurationSec
 
-        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil)
+        def initialize(osuser=nil, initialqueryid=nil, sql=nil, querystarttime=nil, durationms=nil, readrows=nil, resultrows=nil, resultbytes=nil, memoryusage=nil, initialaddress=nil, dbname=nil, isquery=nil, resultbytesmb=nil, memoryusagemb=nil, durationsec=nil)
           @OsUser = osuser
           @InitialQueryId = initialqueryid
           @Sql = sql
@@ -1842,6 +1851,9 @@ module TencentCloud
           @InitialAddress = initialaddress
           @DbName = dbname
           @IsQuery = isquery
+          @ResultBytesMB = resultbytesmb
+          @MemoryUsageMB = memoryusagemb
+          @DurationSec = durationsec
         end
 
         def deserialize(params)
@@ -1857,6 +1869,9 @@ module TencentCloud
           @InitialAddress = params['InitialAddress']
           @DbName = params['DbName']
           @IsQuery = params['IsQuery']
+          @ResultBytesMB = params['ResultBytesMB']
+          @MemoryUsageMB = params['MemoryUsageMB']
+          @DurationSec = params['DurationSec']
         end
       end
 
