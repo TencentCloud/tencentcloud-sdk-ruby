@@ -9222,6 +9222,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainPostAction请求参数结构体
+      class ModifyDomainPostActionRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: www.tx.com
+        # @type Domain: String
+        # @param PostCLSAction: 0-关闭投递，1-开启投递
+        # @type PostCLSAction: Integer
+        # @param PostCKafkaAction: 0-关闭投递，1-开启投递
+        # @type PostCKafkaAction: Integer
+
+        attr_accessor :Domain, :PostCLSAction, :PostCKafkaAction
+
+        def initialize(domain=nil, postclsaction=nil, postckafkaaction=nil)
+          @Domain = domain
+          @PostCLSAction = postclsaction
+          @PostCKafkaAction = postckafkaaction
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @PostCLSAction = params['PostCLSAction']
+          @PostCKafkaAction = params['PostCKafkaAction']
+        end
+      end
+
+      # ModifyDomainPostAction返回参数结构体
+      class ModifyDomainPostActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainWhiteRule请求参数结构体
       class ModifyDomainWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要更改的规则的域名

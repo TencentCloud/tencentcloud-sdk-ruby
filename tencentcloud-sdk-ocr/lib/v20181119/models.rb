@@ -2255,6 +2255,43 @@ module TencentCloud
         end
       end
 
+      # 敏感数据加密
+      class Encryption < TencentCloud::Common::AbstractModel
+        # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅数据加密 文档。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CiphertextBlob: String
+        # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Iv: String
+        # @param Algorithm: 加密使用的算法（支持'AES-256-CBC'、'SM4-GCM'），不传默认为'AES-256-CBC'
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Algorithm: String
+        # @param TagList: SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+        # @param EncryptList: 在使用加密服务时，指定要被加密的字段。本接口默认为EncryptedBody
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptList: Array
+
+        attr_accessor :CiphertextBlob, :Iv, :Algorithm, :TagList, :EncryptList
+
+        def initialize(ciphertextblob=nil, iv=nil, algorithm=nil, taglist=nil, encryptlist=nil)
+          @CiphertextBlob = ciphertextblob
+          @Iv = iv
+          @Algorithm = algorithm
+          @TagList = taglist
+          @EncryptList = encryptlist
+        end
+
+        def deserialize(params)
+          @CiphertextBlob = params['CiphertextBlob']
+          @Iv = params['Iv']
+          @Algorithm = params['Algorithm']
+          @TagList = params['TagList']
+          @EncryptList = params['EncryptList']
+        end
+      end
+
       # EnglishOCR请求参数结构体
       class EnglishOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -4532,17 +4569,22 @@ module TencentCloud
         # @type ImageBase64: String
         # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
 
-        attr_accessor :ImageBase64, :RetImage
+        attr_accessor :ImageBase64, :RetImage, :ImageUrl
 
-        def initialize(imagebase64=nil, retimage=nil)
+        def initialize(imagebase64=nil, retimage=nil, imageurl=nil)
           @ImageBase64 = imagebase64
           @RetImage = retimage
+          @ImageUrl = imageurl
         end
 
         def deserialize(params)
           @ImageBase64 = params['ImageBase64']
           @RetImage = params['RetImage']
+          @ImageUrl = params['ImageUrl']
         end
       end
 
@@ -5943,10 +5985,22 @@ module TencentCloud
         # @type DateOfIssuance: String
         # @param DateOfExpiration: 截止日期（护照信息页识别结果）
         # @type DateOfExpiration: String
+        # @param Signature: 持证人签名（护照信息页识别结果）
 
-        attr_accessor :Type, :IssuingCountry, :PassportID, :Surname, :GivenName, :Name, :Nationality, :DateOfBirth, :Sex, :DateOfIssuance, :DateOfExpiration
+        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @type Signature: String
+        # @param IssuePlace: 签发地点（护照信息页识别结果）
 
-        def initialize(type=nil, issuingcountry=nil, passportid=nil, surname=nil, givenname=nil, name=nil, nationality=nil, dateofbirth=nil, sex=nil, dateofissuance=nil, dateofexpiration=nil)
+        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @type IssuePlace: String
+        # @param IssuingAuthority: 签发机关（护照信息页识别结果）
+
+        # 仅中国大陆护照支持返回此字段，港澳台及境外护照不支持
+        # @type IssuingAuthority: String
+
+        attr_accessor :Type, :IssuingCountry, :PassportID, :Surname, :GivenName, :Name, :Nationality, :DateOfBirth, :Sex, :DateOfIssuance, :DateOfExpiration, :Signature, :IssuePlace, :IssuingAuthority
+
+        def initialize(type=nil, issuingcountry=nil, passportid=nil, surname=nil, givenname=nil, name=nil, nationality=nil, dateofbirth=nil, sex=nil, dateofissuance=nil, dateofexpiration=nil, signature=nil, issueplace=nil, issuingauthority=nil)
           @Type = type
           @IssuingCountry = issuingcountry
           @PassportID = passportid
@@ -5958,6 +6012,9 @@ module TencentCloud
           @Sex = sex
           @DateOfIssuance = dateofissuance
           @DateOfExpiration = dateofexpiration
+          @Signature = signature
+          @IssuePlace = issueplace
+          @IssuingAuthority = issuingauthority
         end
 
         def deserialize(params)
@@ -5972,6 +6029,9 @@ module TencentCloud
           @Sex = params['Sex']
           @DateOfIssuance = params['DateOfIssuance']
           @DateOfExpiration = params['DateOfExpiration']
+          @Signature = params['Signature']
+          @IssuePlace = params['IssuePlace']
+          @IssuingAuthority = params['IssuingAuthority']
         end
       end
 
@@ -6712,6 +6772,164 @@ module TencentCloud
           @Warn = params['Warn']
           @TareKG = params['TareKG']
           @TareLB = params['TareLB']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RecognizeEncryptedIDCardOCR请求参数结构体
+      class RecognizeEncryptedIDCardOCRRequest < TencentCloud::Common::AbstractModel
+        # @param EncryptedBody: 请求体被加密后的密文，本接口只支持加密传输
+        # @type EncryptedBody: String
+        # @param Encryption: 敏感数据加密信息。对传入信息有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @type Encryption: :class:`Tencentcloud::Ocr.v20181119.models.Encryption`
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        # 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @type ImageUrl: String
+        # @param CardSide: FRONT：身份证有照片的一面（人像面），
+        # BACK：身份证有国徽的一面（国徽面），
+        # 该参数如果不填，将为您自动判断身份证正反面。
+        # @type CardSide: String
+        # @param Config: 以下可选字段均为bool 类型，默认false：
+        # CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）
+        # CropPortrait，人像照片裁剪（自动抠取身份证头像区域）
+        # CopyWarn，复印件告警
+        # BorderCheckWarn，边框和框内遮挡告警
+        # ReshootWarn，翻拍告警
+        # DetectPsWarn，疑似存在PS痕迹告警
+        # TempIdWarn，临时身份证告警
+        # InvalidDateWarn，身份证有效日期不合法告警
+        # Quality，图片质量分数（评价图片的模糊程度）
+        # MultiCardDetect，是否开启正反面同框识别（仅支持二代身份证正反页同框识别或临时身份证正反页同框识别）
+        # ReflectWarn，是否开启反光检测
+
+        # SDK 设置方式参考：
+        # Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
+        # API 3.0 Explorer 设置方式参考：
+        # Config = {"CropIdCard":true,"CropPortrait":true}
+        # @type Config: String
+        # @param EnableRecognitionRectify: 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
+        # @type EnableRecognitionRectify: Boolean
+        # @param EnableReflectDetail: 默认值为false。
+
+        # 此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的"ReflectWarn":true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。
+        # @type EnableReflectDetail: Boolean
+
+        attr_accessor :EncryptedBody, :Encryption, :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail
+
+        def initialize(encryptedbody=nil, encryption=nil, imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil)
+          @EncryptedBody = encryptedbody
+          @Encryption = encryption
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @CardSide = cardside
+          @Config = config
+          @EnableRecognitionRectify = enablerecognitionrectify
+          @EnableReflectDetail = enablereflectdetail
+        end
+
+        def deserialize(params)
+          @EncryptedBody = params['EncryptedBody']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @CardSide = params['CardSide']
+          @Config = params['Config']
+          @EnableRecognitionRectify = params['EnableRecognitionRectify']
+          @EnableReflectDetail = params['EnableReflectDetail']
+        end
+      end
+
+      # RecognizeEncryptedIDCardOCR返回参数结构体
+      class RecognizeEncryptedIDCardOCRResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 姓名（人像面）
+        # @type Name: String
+        # @param Sex: 性别（人像面）
+        # @type Sex: String
+        # @param Nation: 民族（人像面）
+        # @type Nation: String
+        # @param Birth: 出生日期（人像面）
+        # @type Birth: String
+        # @param Address: 地址（人像面）
+        # @type Address: String
+        # @param IdNum: 身份证号（人像面）
+        # @type IdNum: String
+        # @param Authority: 发证机关（国徽面）
+        # @type Authority: String
+        # @param ValidDate: 证件有效期（国徽面）
+        # @type ValidDate: String
+        # @param AdvancedInfo: 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
+        # IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
+        # Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
+
+        # Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
+        # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
+
+        # WarnInfos，告警信息，Code 告警码列表和释义：
+        # -9100	身份证有效日期不合法告警，
+        # -9101	身份证边框不完整告警，
+        # -9102	身份证复印件告警，
+        # -9103	身份证翻拍告警，
+        # -9105	身份证框内遮挡告警，
+        # -9104	临时身份证告警，
+        # -9106	身份证疑似存在PS痕迹告警，
+        # -9107       身份证反光告警。
+        # @type AdvancedInfo: String
+        # @param ReflectDetailInfos: 反光点覆盖区域详情结果，具体内容请点击左侧链接
+        # @type ReflectDetailInfos: Array
+        # @param EncryptedBody: 加密后的数据
+        # @type EncryptedBody: String
+        # @param Encryption: 敏感数据加密信息
+        # @type Encryption: :class:`Tencentcloud::Ocr.v20181119.models.Encryption`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :ReflectDetailInfos, :EncryptedBody, :Encryption, :RequestId
+
+        def initialize(name=nil, sex=nil, nation=nil, birth=nil, address=nil, idnum=nil, authority=nil, validdate=nil, advancedinfo=nil, reflectdetailinfos=nil, encryptedbody=nil, encryption=nil, requestid=nil)
+          @Name = name
+          @Sex = sex
+          @Nation = nation
+          @Birth = birth
+          @Address = address
+          @IdNum = idnum
+          @Authority = authority
+          @ValidDate = validdate
+          @AdvancedInfo = advancedinfo
+          @ReflectDetailInfos = reflectdetailinfos
+          @EncryptedBody = encryptedbody
+          @Encryption = encryption
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Sex = params['Sex']
+          @Nation = params['Nation']
+          @Birth = params['Birth']
+          @Address = params['Address']
+          @IdNum = params['IdNum']
+          @Authority = params['Authority']
+          @ValidDate = params['ValidDate']
+          @AdvancedInfo = params['AdvancedInfo']
+          unless params['ReflectDetailInfos'].nil?
+            @ReflectDetailInfos = []
+            params['ReflectDetailInfos'].each do |i|
+              reflectdetailinfo_tmp = ReflectDetailInfo.new
+              reflectdetailinfo_tmp.deserialize(i)
+              @ReflectDetailInfos << reflectdetailinfo_tmp
+            end
+          end
+          @EncryptedBody = params['EncryptedBody']
+          unless params['Encryption'].nil?
+            @Encryption = Encryption.new
+            @Encryption.deserialize(params['Encryption'])
+          end
           @RequestId = params['RequestId']
         end
       end

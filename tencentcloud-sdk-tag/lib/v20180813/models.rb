@@ -349,19 +349,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页偏移量。
         # @type Offset: Integer
+        # @param ProjectId: 按项目ID筛选，大于0
+        # @type ProjectId: Integer
+        # @param ProjectName: 按项目名称筛选
+        # @type ProjectName: String
 
-        attr_accessor :AllList, :Limit, :Offset
+        attr_accessor :AllList, :Limit, :Offset, :ProjectId, :ProjectName
 
-        def initialize(alllist=nil, limit=nil, offset=nil)
+        def initialize(alllist=nil, limit=nil, offset=nil, projectid=nil, projectname=nil)
           @AllList = alllist
           @Limit = limit
           @Offset = offset
+          @ProjectId = projectid
+          @ProjectName = projectname
         end
 
         def deserialize(params)
           @AllList = params['AllList']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
         end
       end
 

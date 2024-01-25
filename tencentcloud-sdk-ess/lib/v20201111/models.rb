@@ -1626,12 +1626,13 @@ module TencentCloud
       class CreateDocumentRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TemplateId: 用户配置的合同模板ID，会基于此模板创建合同文档，为32位字符串。
+
+        # [点击查看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/253071cc2f7becb063c7cf71b37b7861.png)
+        # @type TemplateId: String
         # @param FlowId: 合同流程ID，为32位字符串。
         # 此接口的合同流程ID需要由[创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlow)接口创建得到。
         # @type FlowId: String
-        # @param TemplateId: 用户配置的合同模板ID，会基于此模板创建合同文档，为32位字符串。
-        # 可登录腾讯电子签控制台，在 "模板"->"模板中心"->"列表展示设置"选中模板 ID 中查看某个模板的TemplateId(在页面中展示为模板ID)。
-        # @type TemplateId: String
         # @param FileNames: 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起。设置后流程对应的文件名称当前设置的值。
         # @type FileNames: Array
         # @param FormFields: 电子文档的填写控件的填充内容。具体方式可以参考[FormField](https://qian.tencent.com/developers/companyApis/dataTypes/#formfield)结构体的定义。
@@ -1659,12 +1660,12 @@ module TencentCloud
         # @param ClientToken: 已废弃字段，客户端Token，保持接口幂等性,最大长度64个字符
         # @type ClientToken: String
 
-        attr_accessor :Operator, :FlowId, :TemplateId, :FileNames, :FormFields, :NeedPreview, :PreviewType, :Agent, :ClientToken
+        attr_accessor :Operator, :TemplateId, :FlowId, :FileNames, :FormFields, :NeedPreview, :PreviewType, :Agent, :ClientToken
 
-        def initialize(operator=nil, flowid=nil, templateid=nil, filenames=nil, formfields=nil, needpreview=nil, previewtype=nil, agent=nil, clienttoken=nil)
+        def initialize(operator=nil, templateid=nil, flowid=nil, filenames=nil, formfields=nil, needpreview=nil, previewtype=nil, agent=nil, clienttoken=nil)
           @Operator = operator
-          @FlowId = flowid
           @TemplateId = templateid
+          @FlowId = flowid
           @FileNames = filenames
           @FormFields = formfields
           @NeedPreview = needpreview
@@ -1678,8 +1679,8 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
-          @FlowId = params['FlowId']
           @TemplateId = params['TemplateId']
+          @FlowId = params['FlowId']
           @FileNames = params['FileNames']
           unless params['FormFields'].nil?
             @FormFields = []
@@ -2171,9 +2172,10 @@ module TencentCloud
       class CreateFlowByFilesResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 合同流程ID，为32位字符串。
         # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
-        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
 
         # 注: 如果是预览模式(即NeedPreview设置为true)时, 此处不会有值返回。
+
+        # [点击产看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
         # @type FlowId: String
         # @param PreviewUrl: 合同预览链接URL。
 
@@ -2797,7 +2799,7 @@ module TencentCloud
         # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
 
         # 注:
-        # 此返回的合同流程ID，需再次调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateDocument" target="_blank">创建电子文档</a>和<a href="https://qian.tencent.com/developers/companyApis/startFlows/StartFlow" target="_blank">发起签署流程</a>接口将合同开始后，合同才能进入签署环节
+        # 此返回的合同流程ID，需再次调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateDocument" target="_blank">创建电子文档</a>和<a href="https://qian.tencent.com/developers/companyApis/startFlows/StartFlow" target="_blank">发起签署流程</a>接口将合同开始后，合同才能进入签署环节，[点击产看FlowId在控制台中的位置（只在进如签署环节后有效）](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
 
         # @type FlowId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -5375,6 +5377,8 @@ module TencentCloud
         # 如果某个合同流程ID不存在，系统会跳过此ID的查询，继续查询剩余存在的合同流程。
 
         # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+
+        # [点击产看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
         # @type FlowIds: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -5558,6 +5562,11 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowIds: 需要查询的流程ID列表，最多可传入100个ID。
         # 如果要查询合同组的信息，则不需要传入此参数，只需传入 FlowGroupId 参数即可。
+
+
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+
+        # [点击产看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
         # @type FlowIds: Array
         # @param Agent: 代理企业和员工的信息。 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`

@@ -2174,6 +2174,131 @@ module TencentCloud
         end
       end
 
+      # CreateL4Proxy请求参数结构体
+      class CreateL4ProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyName: 四层代理实例名称，可输入 1-50 个字符，允许的字符为 a-z、0-9、-，且 - 不能单独注册或连续使用，不能放在开头或结尾。创建完成后不支持修改。
+        # @type ProxyName: String
+        # @param Area: 四层代理实例加速区域。
+        # <li>mainland：中国大陆可用区；</li>
+        # <li>overseas：全球可用区（不含中国大陆）；</li>
+        # <li>global：全球可用区。</li>
+        # @type Area: String
+        # @param Ipv6: 是否开启 IPv6 访问，不填写时默认为 off。该配置仅在部分加速区域和安全防护配置下支持开启，详情请参考 [新建四层代理实例](https://cloud.tencent.com/document/product/1552/90025) 。取值为：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+
+        # @type Ipv6: String
+        # @param StaticIp: 是否开启固定 IP，不填写时默认为 off。该配置仅在部分加速区域和安全防护配置下支持开启，详情请参考 [新建四层代理实例](https://cloud.tencent.com/document/product/1552/90025) 。取值为：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type StaticIp: String
+        # @param AccelerateMainland: 是否开启中国大陆网络优化，不填写时默认为 off。该配置仅在部分加速区域和安全防护配置下支持开启，详情请参考 [新建四层代理实例](https://cloud.tencent.com/document/product/1552/90025) 。取值为：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type AccelerateMainland: String
+        # @param DDosProtectionConfig: L3/L4 DDoS 防护配置，不填写时默认使用平台默认防护选项。详情参考 [独立 DDoS 防护](https://cloud.tencent.com/document/product/1552/95994)。
+        # @type DDosProtectionConfig: :class:`Tencentcloud::Teo.v20220901.models.DDosProtectionConfig`
+
+        attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
+
+        def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
+          @ZoneId = zoneid
+          @ProxyName = proxyname
+          @Area = area
+          @Ipv6 = ipv6
+          @StaticIp = staticip
+          @AccelerateMainland = acceleratemainland
+          @DDosProtectionConfig = ddosprotectionconfig
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyName = params['ProxyName']
+          @Area = params['Area']
+          @Ipv6 = params['Ipv6']
+          @StaticIp = params['StaticIp']
+          @AccelerateMainland = params['AccelerateMainland']
+          unless params['DDosProtectionConfig'].nil?
+            @DDosProtectionConfig = DDosProtectionConfig.new
+            @DDosProtectionConfig.deserialize(params['DDosProtectionConfig'])
+          end
+        end
+      end
+
+      # CreateL4Proxy返回参数结构体
+      class CreateL4ProxyResponse < TencentCloud::Common::AbstractModel
+        # @param ProxyId: 四层实例 ID。
+        # @type ProxyId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProxyId, :RequestId
+
+        def initialize(proxyid=nil, requestid=nil)
+          @ProxyId = proxyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProxyId = params['ProxyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateL4ProxyRules请求参数结构体
+      class CreateL4ProxyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param L4ProxyRules: 转发规则列表。单次最多支持 200 条转发规则。
+        # 注意：L4ProxyRule 在此处使用时，Protocol、PortRange、OriginType、OriginValue、OriginPortRange 为必填字段；ClientIPPassThroughMode、SessionPersist、SessionPersistTime、RuleTag 均为选填字段；RuleId、Status 请勿填写。
+        # @type L4ProxyRules: Array
+
+        attr_accessor :ZoneId, :ProxyId, :L4ProxyRules
+
+        def initialize(zoneid=nil, proxyid=nil, l4proxyrules=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @L4ProxyRules = l4proxyrules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          unless params['L4ProxyRules'].nil?
+            @L4ProxyRules = []
+            params['L4ProxyRules'].each do |i|
+              l4proxyrule_tmp = L4ProxyRule.new
+              l4proxyrule_tmp.deserialize(i)
+              @L4ProxyRules << l4proxyrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateL4ProxyRules返回参数结构体
+      class CreateL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param L4ProxyRuleIds: 新增转发规则的 ID，以数组的形式返回。
+        # @type L4ProxyRuleIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :L4ProxyRuleIds, :RequestId
+
+        def initialize(l4proxyruleids=nil, requestid=nil)
+          @L4ProxyRuleIds = l4proxyruleids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @L4ProxyRuleIds = params['L4ProxyRuleIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOriginGroup请求参数结构体
       class CreateOriginGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID
@@ -2794,6 +2919,40 @@ module TencentCloud
         end
       end
 
+      # 适用于四层代理或 Web 站点服务的独立 DDoS 防护规格配置。
+      class DDosProtectionConfig < TencentCloud::Common::AbstractModel
+        # @param LevelMainland: 中国大陆地区独立 DDoS 防护的规格。详情请参考 [独立 DDoS 防护相关费用](https://cloud.tencent.com/document/product/1552/94162)
+        # <li>PLATFORM：平台默认防护，即不开启独立 DDoS 防护；</li>
+        # <li>BASE30_MAX300：开启独立 DDoS 防护，提供 30 Gbps 保底防护带宽，可配置最高 300 Gpbs 弹性防护带宽；</li>
+        # <li>BASE60_MAX600：开启独立 DDoS 防护，提供 60 Gbps 保底防护带宽，可配置最高 600 Gpbs 弹性防护带宽。</li>不填写参数时，取默认值 PLATFORM。
+        # @type LevelMainland: String
+        # @param MaxBandwidthMainland: 中国大陆地区独立 DDoS 防护的弹性防护带宽配置。
+        # 仅当开启中国大陆区域独立 DDos 防护时有效（详见 LevelMainland 参数配置），且取值范围有如下限制：
+        # <li>开启中国大陆地区独立 DDoS 防护，使用 30 Gbps 保底防护带宽规格时（ LevelMainland 参数值为 BASE30_MAX300 ）：有效取值范围为 30 至 300，单位为 Gbps；</li>
+        # <li>开启中国大陆地区独立 DDoS 防护，使用 60 Gbps 保底防护带宽规格时（ LevelMainland 参数值为 BASE60_MAX600 ）：有效取值范围为 60 至 600，单位为 Gbps；</li>
+        # <li>使用平台默认防护（ LevelMainland 参数值为 PLATFORM ）：不支持配置，本参数值无效。</li>
+        # @type MaxBandwidthMainland: Integer
+        # @param LevelOverseas: 全球（除中国大陆以外）地区独立 DDoS 防护的规格。
+        # <li>PLATFORM：平台默认防护，即不开启独立 DDoS 防护；</li>
+        # <li>ANYCAST300：开启独立 DDoS 防护，提供合计最大 300 Gbps 防护带宽；</li>
+        # <li>ANYCAST_ALLIN：开启独立 DDoS 防护，使用全部可用防护资源进行防护。</li>不填写参数时，取默认值 PLATFORM。
+        # @type LevelOverseas: String
+
+        attr_accessor :LevelMainland, :MaxBandwidthMainland, :LevelOverseas
+
+        def initialize(levelmainland=nil, maxbandwidthmainland=nil, leveloverseas=nil)
+          @LevelMainland = levelmainland
+          @MaxBandwidthMainland = maxbandwidthmainland
+          @LevelOverseas = leveloverseas
+        end
+
+        def deserialize(params)
+          @LevelMainland = params['LevelMainland']
+          @MaxBandwidthMainland = params['MaxBandwidthMainland']
+          @LevelOverseas = params['LevelOverseas']
+        end
+      end
+
       # https 服务端证书配置
       class DefaultServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。
@@ -3002,6 +3161,82 @@ module TencentCloud
 
       # DeleteApplicationProxyRule返回参数结构体
       class DeleteApplicationProxyRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteL4Proxy请求参数结构体
+      class DeleteL4ProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+
+        attr_accessor :ZoneId, :ProxyId
+
+        def initialize(zoneid=nil, proxyid=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+        end
+      end
+
+      # DeleteL4Proxy返回参数结构体
+      class DeleteL4ProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteL4ProxyRules请求参数结构体
+      class DeleteL4ProxyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param RuleIds: 转发规则 ID 列表。单次最多支持 200 条转发规则。
+        # @type RuleIds: Array
+
+        attr_accessor :ZoneId, :ProxyId, :RuleIds
+
+        def initialize(zoneid=nil, proxyid=nil, ruleids=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @RuleIds = ruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @RuleIds = params['RuleIds']
+        end
+      end
+
+      # DeleteL4ProxyRules返回参数结构体
+      class DeleteL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4345,6 +4580,146 @@ module TencentCloud
               identification_tmp = Identification.new
               identification_tmp.deserialize(i)
               @Identifications << identification_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeL4Proxy请求参数结构体
+      class DescribeL4ProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 四层代理实例所属站点的 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量，不填写时默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有四层代理实例信息。详细的过滤条件如下：
+        # <li>proxy-id：按照四层代理实例 ID 进行过滤；</li>
+        # <li>ddos-protection-type：按照安全防护类型进行过滤。</li>
+
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeL4Proxy返回参数结构体
+      class DescribeL4ProxyResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 四层代理实例的数量。
+        # @type TotalCount: Integer
+        # @param L4Proxies: 四层代理实例列表。
+        # @type L4Proxies: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :L4Proxies, :RequestId
+
+        def initialize(totalcount=nil, l4proxies=nil, requestid=nil)
+          @TotalCount = totalcount
+          @L4Proxies = l4proxies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['L4Proxies'].nil?
+            @L4Proxies = []
+            params['L4Proxies'].each do |i|
+              l4proxy_tmp = L4Proxy.new
+              l4proxy_tmp.deserialize(i)
+              @L4Proxies << l4proxy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeL4ProxyRules请求参数结构体
+      class DescribeL4ProxyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param Offset: 分页查询偏移量，不填写时默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values的上限为20。不填写时返回当前四层实例下所有的规则信息，详细的过滤条件如下：
+        #  <li>rule-tag：按照规则标签对四层代理实例下的规则进行过滤。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :ProxyId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, proxyid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeL4ProxyRules返回参数结构体
+      class DescribeL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 转发规则总数。
+        # @type TotalCount: Integer
+        # @param L4ProxyRules: 转发规则列表。
+        # @type L4ProxyRules: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :L4ProxyRules, :RequestId
+
+        def initialize(totalcount=nil, l4proxyrules=nil, requestid=nil)
+          @TotalCount = totalcount
+          @L4ProxyRules = l4proxyrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['L4ProxyRules'].nil?
+            @L4ProxyRules = []
+            params['L4ProxyRules'].each do |i|
+              l4proxyrule_tmp = L4ProxyRule.new
+              l4proxyrule_tmp.deserialize(i)
+              @L4ProxyRules << l4proxyrule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6951,6 +7326,178 @@ module TencentCloud
         end
       end
 
+      # 四层代理实例。
+      class L4Proxy < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param ProxyName: 四层代理实例名称。
+        # @type ProxyName: String
+        # @param Area: 四层代理实例的加速区域。
+        # <li>mainland：中国大陆可用区；</li>
+        # <li>overseas： 全球可用区（不含中国大陆）；</li>
+        #  <li>global：全球可用区。</li>
+        # @type Area: String
+        # @param Cname: 接入 CNAME。
+        # @type Cname: String
+        # @param Ips: 开启固定 IP 后，该值会返回对应的接入 IP；未开启时，该值为空。
+        # @type Ips: Array
+        # @param Status: 四层代理实例状态。
+        # <li>online：已启用；</li>
+        # <li>offline：已停用；</li>
+        # <li>progress：部署中；</li>
+        # <li>stopping：停用中；</li>
+        # <li>banned：已封禁；</li>
+        # <li>fail：部署失败/停用失败。</li>
+        # @type Status: String
+        # @param Ipv6: 是否开启 IPv6 访问。
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Ipv6: String
+        # @param StaticIp: 是否开启固定 IP。
+        #  <li>on：开启；</li> <li>off：关闭。</li>
+        # @type StaticIp: String
+        # @param AccelerateMainland: 是否开启中国大陆网络优化。
+        #  <li>on：开启</li> <li>off：关闭</li>
+        # @type AccelerateMainland: String
+        # @param DDosProtectionConfig: 安全防护配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DDosProtectionConfig: :class:`Tencentcloud::Teo.v20220901.models.DDosProtectionConfig`
+        # @param L4ProxyRuleCount: 四层代理实例下的转发规则数量。
+        # @type L4ProxyRuleCount: Integer
+        # @param UpdateTime: 最新变更时间。
+        # @type UpdateTime: String
+
+        attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
+
+        def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @ProxyName = proxyname
+          @Area = area
+          @Cname = cname
+          @Ips = ips
+          @Status = status
+          @Ipv6 = ipv6
+          @StaticIp = staticip
+          @AccelerateMainland = acceleratemainland
+          @DDosProtectionConfig = ddosprotectionconfig
+          @L4ProxyRuleCount = l4proxyrulecount
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @ProxyName = params['ProxyName']
+          @Area = params['Area']
+          @Cname = params['Cname']
+          @Ips = params['Ips']
+          @Status = params['Status']
+          @Ipv6 = params['Ipv6']
+          @StaticIp = params['StaticIp']
+          @AccelerateMainland = params['AccelerateMainland']
+          unless params['DDosProtectionConfig'].nil?
+            @DDosProtectionConfig = DDosProtectionConfig.new
+            @DDosProtectionConfig.deserialize(params['DDosProtectionConfig'])
+          end
+          @L4ProxyRuleCount = params['L4ProxyRuleCount']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 四层代理转发规则详情。
+      class L4ProxyRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则 ID。
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数请勿填写；在 ModifyL4ProxyRules 作为入参使用时，该参数必填。
+        # @type RuleId: String
+        # @param Protocol: 转发协议。取值有：
+        # <li>TCP：TCP 协议；</li>
+        # <li>UDP：UDP 协议。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
+        # @type Protocol: String
+        # @param PortRange: 转发端口，支持按照以下形式填写：
+        # <li>单端口，如：80；</li>
+        # <li>端口段，如：81-85。表示 81、82、83、84、85 五个端口。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
+        # @type PortRange: Array
+        # @param OriginType: 源站类型，取值有：
+        # <li>IP_DOMAIN：IP/域名源站；</li>
+        # <li>ORIGIN_GROUP：源站组；</li>
+        # <li>LB：负载均衡，当前仅白名单开放。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
+        # @type OriginType: String
+        # @param OriginValue: 源站地址：
+        # <li>当 OriginType 为 IP_DOMAIN 时，填写 IP 或域名，如 8.8.8.8 或 test.com ；</li>
+        # <li>当 OriginType 为 ORIGIN_GROUP 时，填写源站组 ID，如 og-537y24vf5b41；</li>
+        # <li>当 OriginType 为 LB 时，填写负载均衡实例 ID，如 lb-2qwk30xf7s9g。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
+        # @type OriginValue: Array
+        # @param OriginPortRange: 源站端口，支持按照以下形式填写：
+        # <li>单端口，如：80；</li>
+        # <li>端口段，如：81-85，表示 81、82、83、84、85 五个端口。填写端口段时，则需要与转发端口段长度保持一致，例如转发端口：80-90，则转发端口：90-100。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数必填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写时表示不修改。
+        # @type OriginPortRange: String
+        # @param ClientIPPassThroughMode: 传递客户端 IP 的形式，取值有：
+        # <li>TOA：TOA（仅 Protocol = TCP 时可选）；</li>
+        # <li>PPV1：Proxy Protocol 传递，协议版本 V1（仅 Protocol = TCP 时可选）；</li>
+        # <li>PPV2：Proxy Protocol 传递，协议版本 V2；</li>
+        # <li>SPP：Simple Proxy Protocol 传递，（仅 Protocol = UDP 时可选）；</li>
+        # <li>OFF：不传递。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数选填，不填写时默认为 OFF；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写表示不修改。
+        # @type ClientIPPassThroughMode: String
+        # @param SessionPersist: 是否开启会话保持，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数选填，不填写时默认为 off；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写表示不修改。
+        # @type SessionPersist: String
+        # @param SessionPersistTime: 会话保持时间，取值范围为 30-3600，单位为秒。
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数选填，仅当 SessionPersist = on 时，该值才会生效，且当 SessionPersist = on ，该值不填写默认为 3600；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写表示不修改。
+        # @type SessionPersistTime: Integer
+        # @param RuleTag: 规则标签。可输入1-50 个任意字符。
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules 作为入参使用时，该参数选填；在 ModifyL4ProxyRules 作为入参使用时，该参数选填，不填写表示不修改。
+        # @type RuleTag: String
+        # @param Status: 规则状态，取值有：
+        # <li>online：已启用；</li>
+        # <li>offline：已停用；</li>
+        # <li>progress：部署中；</li>
+        # <li>stopping：停用中；</li>
+        # <li>fail：部署失败/停用失败。</li>
+        # 注意：L4ProxyRule 在 CreateL4ProxyRules、ModifyL4ProxyRules 作为入参使用时，该参数请勿填写。
+        # @type Status: String
+
+        attr_accessor :RuleId, :Protocol, :PortRange, :OriginType, :OriginValue, :OriginPortRange, :ClientIPPassThroughMode, :SessionPersist, :SessionPersistTime, :RuleTag, :Status
+
+        def initialize(ruleid=nil, protocol=nil, portrange=nil, origintype=nil, originvalue=nil, originportrange=nil, clientippassthroughmode=nil, sessionpersist=nil, sessionpersisttime=nil, ruletag=nil, status=nil)
+          @RuleId = ruleid
+          @Protocol = protocol
+          @PortRange = portrange
+          @OriginType = origintype
+          @OriginValue = originvalue
+          @OriginPortRange = originportrange
+          @ClientIPPassThroughMode = clientippassthroughmode
+          @SessionPersist = sessionpersist
+          @SessionPersistTime = sessionpersisttime
+          @RuleTag = ruletag
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Protocol = params['Protocol']
+          @PortRange = params['PortRange']
+          @OriginType = params['OriginType']
+          @OriginValue = params['OriginValue']
+          @OriginPortRange = params['OriginPortRange']
+          @ClientIPPassThroughMode = params['ClientIPPassThroughMode']
+          @SessionPersist = params['SessionPersist']
+          @SessionPersistTime = params['SessionPersistTime']
+          @RuleTag = params['RuleTag']
+          @Status = params['Status']
+        end
+      end
+
       # 七层离线日志详细信息。
       class L7OfflineLog < TencentCloud::Common::AbstractModel
         # @param Domain: 离线日志域名。
@@ -7525,6 +8072,190 @@ module TencentCloud
 
       # ModifyHostsCertificate返回参数结构体
       class ModifyHostsCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL4Proxy请求参数结构体
+      class ModifyL4ProxyRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 应用 ID。
+        # @type ProxyId: String
+        # @param Ipv6: 是否开启 IPv6 访问。 不填该参数时，表示不修改该配置。该配置仅在部分加速区域和安全防护配置下支持开启，详情请参考 [新建四层代理实例](https://cloud.tencent.com/document/product/1552/90025) 。取值为：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Ipv6: String
+        # @param AccelerateMainland: 是否开启中国大陆网络优化。不填该参数时，表示不修改该配置。该配置仅在部分加速区域和安全防护配置下支持开启，详情请参考 [新建四层代理实例](https://cloud.tencent.com/document/product/1552/90025) 。取值为：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type AccelerateMainland: String
+
+        attr_accessor :ZoneId, :ProxyId, :Ipv6, :AccelerateMainland
+
+        def initialize(zoneid=nil, proxyid=nil, ipv6=nil, acceleratemainland=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @Ipv6 = ipv6
+          @AccelerateMainland = acceleratemainland
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @Ipv6 = params['Ipv6']
+          @AccelerateMainland = params['AccelerateMainland']
+        end
+      end
+
+      # ModifyL4Proxy返回参数结构体
+      class ModifyL4ProxyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL4ProxyRules请求参数结构体
+      class ModifyL4ProxyRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param L4ProxyRules: 转发规则列表。单次最多支持 200 条转发规则。
+        # 注意：L4ProxyRule 在此处使用时，RuleId 为必填字段；Protocol、PortRange、OriginType、OriginValue、OriginPortRange、ClientIPPassThroughMode、SessionPersist、SessionPersistTime、RuleTag 均为选填字段，不填写表示不修改；Status 请勿填写。
+        # @type L4ProxyRules: Array
+
+        attr_accessor :ZoneId, :ProxyId, :L4ProxyRules
+
+        def initialize(zoneid=nil, proxyid=nil, l4proxyrules=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @L4ProxyRules = l4proxyrules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          unless params['L4ProxyRules'].nil?
+            @L4ProxyRules = []
+            params['L4ProxyRules'].each do |i|
+              l4proxyrule_tmp = L4ProxyRule.new
+              l4proxyrule_tmp.deserialize(i)
+              @L4ProxyRules << l4proxyrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyL4ProxyRules返回参数结构体
+      class ModifyL4ProxyRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL4ProxyRulesStatus请求参数结构体
+      class ModifyL4ProxyRulesStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param RuleIds: 转发规则 ID 列表。单次最多支持 200 条转发规则。
+        # @type RuleIds: Array
+        # @param Status: 转发规则状态，取值有：
+        # <li>online：启用；</li>
+        # <li>offline：停用。</li>
+        # @type Status: String
+
+        attr_accessor :ZoneId, :ProxyId, :RuleIds, :Status
+
+        def initialize(zoneid=nil, proxyid=nil, ruleids=nil, status=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @RuleIds = ruleids
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @RuleIds = params['RuleIds']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyL4ProxyRulesStatus返回参数结构体
+      class ModifyL4ProxyRulesStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyL4ProxyStatus请求参数结构体
+      class ModifyL4ProxyStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ProxyId: 四层代理实例 ID。
+        # @type ProxyId: String
+        # @param Status: 四层代理实例状态，取值有：
+        # <li>online：启用；</li>
+        # <li>offline：停用。</li>
+        # @type Status: String
+
+        attr_accessor :ZoneId, :ProxyId, :Status
+
+        def initialize(zoneid=nil, proxyid=nil, status=nil)
+          @ZoneId = zoneid
+          @ProxyId = proxyid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProxyId = params['ProxyId']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyL4ProxyStatus返回参数结构体
+      class ModifyL4ProxyStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

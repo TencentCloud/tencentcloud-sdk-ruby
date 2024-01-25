@@ -247,6 +247,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建四层代理实例。
+
+        # @param request: Request instance for CreateL4Proxy.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateL4ProxyRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateL4ProxyResponse`
+        def CreateL4Proxy(request)
+          body = send_request('CreateL4Proxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateL4ProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于创建四层代理实例规则，支持单条或者批量创建。
+
+        # @param request: Request instance for CreateL4ProxyRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateL4ProxyRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateL4ProxyRulesResponse`
+        def CreateL4ProxyRules(request)
+          body = send_request('CreateL4ProxyRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateL4ProxyRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建源站组，以源站组的方式管理业务源站。此处配置的源站组可于**添加加速域名**和**四层代理**等功能中引用。
 
         # @param request: Request instance for CreateOriginGroup.
@@ -525,6 +573,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteApplicationProxyRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除四层代理实例。
+
+        # @param request: Request instance for DeleteL4Proxy.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteL4ProxyRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteL4ProxyResponse`
+        def DeleteL4Proxy(request)
+          body = send_request('DeleteL4Proxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteL4ProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除四层代理转发规则，支持单条或者批量操作。
+
+        # @param request: Request instance for DeleteL4ProxyRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteL4ProxyRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteL4ProxyRulesResponse`
+        def DeleteL4ProxyRules(request)
+          body = send_request('DeleteL4ProxyRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteL4ProxyRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1053,6 +1149,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIdentificationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询四层代理实例列表。
+
+        # @param request: Request instance for DescribeL4Proxy.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeL4ProxyRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeL4ProxyResponse`
+        def DescribeL4Proxy(request)
+          body = send_request('DescribeL4Proxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeL4ProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询四层代理实例下的规则列表。
+
+        # @param request: Request instance for DescribeL4ProxyRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeL4ProxyRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeL4ProxyRulesResponse`
+        def DescribeL4ProxyRules(request)
+          body = send_request('DescribeL4ProxyRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeL4ProxyRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1703,6 +1847,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyHostsCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于修改四层代理实例的配置。
+
+        # @param request: Request instance for ModifyL4Proxy.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyResponse`
+        def ModifyL4Proxy(request)
+          body = send_request('ModifyL4Proxy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL4ProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于修改四层代理转发规则，支持单条或者批量修改。
+
+        # @param request: Request instance for ModifyL4ProxyRules.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyRulesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyRulesResponse`
+        def ModifyL4ProxyRules(request)
+          body = send_request('ModifyL4ProxyRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL4ProxyRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于启用/停用四层代理转发规则状态，支持单条或者批量操作。
+
+        # @param request: Request instance for ModifyL4ProxyRulesStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyRulesStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyRulesStatusResponse`
+        def ModifyL4ProxyRulesStatus(request)
+          body = send_request('ModifyL4ProxyRulesStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL4ProxyRulesStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于启用/停用四层代理实例。
+
+        # @param request: Request instance for ModifyL4ProxyStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyL4ProxyStatusResponse`
+        def ModifyL4ProxyStatus(request)
+          body = send_request('ModifyL4ProxyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyL4ProxyStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

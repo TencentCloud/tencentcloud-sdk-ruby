@@ -8744,7 +8744,8 @@ module TencentCloud
         # @type Module: String
         # @param Namespace: 命名空间，目前支持QCE/TKE2(Conditions必填),QCE/KEEWIDB,QCE/CAMP
         # @type Namespace: String
-        # @param MetricNames: 指标名列表
+        # @param MetricNames: 指标名列表，相关指标信息可参考对应 云产品指标文档
+        # https://cloud.tencent.com/document/product/248/62458
         # @type MetricNames: Array
         # @param Conditions: 维度条件，操作符支持=、in
         # 配置文档参考：https://cloud.tencent.com/document/product/248/53821

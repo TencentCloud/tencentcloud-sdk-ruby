@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建技能组
+        # 新建技能组
 
         # @param request: Request instance for CreateCCCSkillGroup.
         # @type request: :class:`Tencentcloud::ccc::V20200210::CreateCCCSkillGroupRequest`
