@@ -1376,15 +1376,19 @@ module TencentCloud
       class DeleteCertificateRequest < TencentCloud::Common::AbstractModel
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
+        # @param IsCheckResource: 删除时是否检查证书关联了云资源。默认不检查。如选择检查(需要授权服务角色SSL_QCSLinkedRoleInReplaceLoadCertificate)删除将变成异步,接口会返回异步任务ID。需使用DescribeDeleteCertificatesTaskResult接口查询删除是否成功。
+        # @type IsCheckResource: Boolean
 
-        attr_accessor :CertificateId
+        attr_accessor :CertificateId, :IsCheckResource
 
-        def initialize(certificateid=nil)
+        def initialize(certificateid=nil, ischeckresource=nil)
           @CertificateId = certificateid
+          @IsCheckResource = ischeckresource
         end
 
         def deserialize(params)
           @CertificateId = params['CertificateId']
+          @IsCheckResource = params['IsCheckResource']
         end
       end
 
@@ -1392,18 +1396,23 @@ module TencentCloud
       class DeleteCertificateResponse < TencentCloud::Common::AbstractModel
         # @param DeleteResult: 删除结果（true：删除成功，false：删除失败）
         # @type DeleteResult: Boolean
+        # @param TaskId: 异步删除的任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeleteResult, :RequestId
+        attr_accessor :DeleteResult, :TaskId, :RequestId
 
-        def initialize(deleteresult=nil, requestid=nil)
+        def initialize(deleteresult=nil, taskid=nil, requestid=nil)
           @DeleteResult = deleteresult
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DeleteResult = params['DeleteResult']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

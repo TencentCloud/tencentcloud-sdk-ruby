@@ -945,6 +945,46 @@ module TencentCloud
         end
       end
 
+      # 计费数据项
+      class BillingData < TencentCloud::Common::AbstractModel
+        # @param Time: 时间。
+        # @type Time: String
+        # @param Value: 数值。
+        # @type Value: Integer
+
+        attr_accessor :Time, :Value
+
+        def initialize(time=nil, value=nil)
+          @Time = time
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Value = params['Value']
+        end
+      end
+
+      # 计费数据过滤条件。
+      class BillingDataFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 参数名称。
+        # @type Type: String
+        # @param Value: 参数值。
+        # @type Value: String
+
+        attr_accessor :Type, :Value
+
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # BindSecurityTemplateToEntity请求参数结构体
       class BindSecurityTemplateToEntityRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 需要绑定或解绑的策略模板所属站点 ID。
@@ -3784,6 +3824,99 @@ module TencentCloud
               planinfo_tmp = PlanInfo.new
               planinfo_tmp.deserialize(i)
               @PlanInfo << planinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBillingData请求参数结构体
+      class DescribeBillingDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。
+        # @type EndTime: String
+        # @param ZoneIds: 站点 ID 集合，此参数必填。
+        # @type ZoneIds: Array
+        # @param MetricName: 指标列表，取值有：
+        # <li>acc_flux: 内容加速流量，单位为 Byte；</li>
+        # <li>smt_flux: 智能加速流量，单位为 Byte；</li>
+        # <li>l4_flux: 四层加速流量，单位为 Byte；</li>
+        # <li>sec_flux: 独立防护流量，单位为 Byte；</li>
+        # <li>zxctg_flux: 中国大陆网络优化流量，单位为 Byte；</li>
+        # <li>acc_bandwidth: 内容加速带宽，单位为 bps；</li>
+        # <li>smt_bandwidth: 智能加速带宽，单位为 bps；</li>
+        # <li>l4_bandwidth: 四层加速带宽，单位为 bps；</li>
+        # <li>sec_bandwidth: 独立防护带宽，单位为 bps；</li>
+        # <li>zxctg_bandwidth: 中国大陆网络优化带宽，单位为 bps；</li>
+        # <li>sec_request_clean: HTTP/HTTPS 请求，单位为次；</li>
+        # <li>smt_request_clean: 智能加速请求，单位为次；</li>
+        # <li>quic_request: QUIC 请求，单位为次；</li>
+        # <li>bot_request_clean: Bot 请求，单位为次；</li>
+        # <li>cls_count: 实时日志推送条数，单位为条；</li>
+        # <li>ddos_bandwidth: 弹性 DDoS 防护带宽，单位为 bps。</li>
+        # @type MetricName: String
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>5min：5 分钟粒度；</li>
+        # <li>hour：1 小时粒度；</li>
+        # <li>day：1 天粒度。</li>
+        # @type Interval: String
+        # @param Filters: 过滤条件，详细的过滤条件取值如下：
+        # <li>host<br>   按照【<strong>域名</strong>】进行过滤。示例值：test.example.com。<br>   类型：String<br>   必选：否</li>
+        # <li>proxy-id<br>   按照【<strong>四层代理实例 ID</strong>】进行过滤。示例值：sid-2rugn89bkla9。<br>   类型：String<br>   必选：否</li>
+        # <li>region-id<br>   按照【<strong>计费大区</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项如下：<br>   CH：中国大陆境内<br>   AF：非洲<br>   AS1：亚太一区<br>   AS2：亚太二区<br>   AS3：亚太三区<br>   EU：欧洲<br>   MidEast：中东<br>   NA：北美<br>   SA：南美</li>
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :ZoneIds, :MetricName, :Interval, :Filters
+
+        def initialize(starttime=nil, endtime=nil, zoneids=nil, metricname=nil, interval=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ZoneIds = zoneids
+          @MetricName = metricname
+          @Interval = interval
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ZoneIds = params['ZoneIds']
+          @MetricName = params['MetricName']
+          @Interval = params['Interval']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              billingdatafilter_tmp = BillingDataFilter.new
+              billingdatafilter_tmp.deserialize(i)
+              @Filters << billingdatafilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeBillingData返回参数结构体
+      class DescribeBillingDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据点列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              billingdata_tmp = BillingData.new
+              billingdata_tmp.deserialize(i)
+              @Data << billingdata_tmp
             end
           end
           @RequestId = params['RequestId']

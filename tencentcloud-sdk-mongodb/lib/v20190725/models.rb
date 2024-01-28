@@ -2190,6 +2190,9 @@ module TencentCloud
         # @type InstanceStatusDesc: String
         # @param RealInstanceId: 实例对应的物理实例id，回档并替换过的实例有不同的InstanceId和RealInstanceId，从barad获取监控数据等场景下需要用物理id获取
         # @type RealInstanceId: String
+        # @param ZoneList: 实例当前可用区信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneList: Array
         # @param MongosNodeNum: mongos节点个数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MongosNodeNum: Integer
@@ -2215,9 +2218,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadonlyNodeNum: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :PayMode, :ProjectId, :ClusterType, :Region, :Zone, :NetType, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :DeadLine, :MongoVersion, :Memory, :Volume, :CpuNum, :MachineType, :SecondaryNum, :ReplicationSetNum, :AutoRenewFlag, :UsedVolume, :MaintenanceStart, :MaintenanceEnd, :ReplicaSets, :ReadonlyInstances, :StandbyInstances, :CloneInstances, :RelatedInstance, :Tags, :InstanceVer, :ClusterVer, :Protocol, :InstanceType, :InstanceStatusDesc, :RealInstanceId, :MongosNodeNum, :MongosMemory, :MongosCpuNum, :ConfigServerNodeNum, :ConfigServerMemory, :ConfigServerVolume, :ConfigServerCpuNum, :ReadonlyNodeNum
+        attr_accessor :InstanceId, :InstanceName, :PayMode, :ProjectId, :ClusterType, :Region, :Zone, :NetType, :VpcId, :SubnetId, :Status, :Vip, :Vport, :CreateTime, :DeadLine, :MongoVersion, :Memory, :Volume, :CpuNum, :MachineType, :SecondaryNum, :ReplicationSetNum, :AutoRenewFlag, :UsedVolume, :MaintenanceStart, :MaintenanceEnd, :ReplicaSets, :ReadonlyInstances, :StandbyInstances, :CloneInstances, :RelatedInstance, :Tags, :InstanceVer, :ClusterVer, :Protocol, :InstanceType, :InstanceStatusDesc, :RealInstanceId, :ZoneList, :MongosNodeNum, :MongosMemory, :MongosCpuNum, :ConfigServerNodeNum, :ConfigServerMemory, :ConfigServerVolume, :ConfigServerCpuNum, :ReadonlyNodeNum
 
-        def initialize(instanceid=nil, instancename=nil, paymode=nil, projectid=nil, clustertype=nil, region=nil, zone=nil, nettype=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, deadline=nil, mongoversion=nil, memory=nil, volume=nil, cpunum=nil, machinetype=nil, secondarynum=nil, replicationsetnum=nil, autorenewflag=nil, usedvolume=nil, maintenancestart=nil, maintenanceend=nil, replicasets=nil, readonlyinstances=nil, standbyinstances=nil, cloneinstances=nil, relatedinstance=nil, tags=nil, instancever=nil, clusterver=nil, protocol=nil, instancetype=nil, instancestatusdesc=nil, realinstanceid=nil, mongosnodenum=nil, mongosmemory=nil, mongoscpunum=nil, configservernodenum=nil, configservermemory=nil, configservervolume=nil, configservercpunum=nil, readonlynodenum=nil)
+        def initialize(instanceid=nil, instancename=nil, paymode=nil, projectid=nil, clustertype=nil, region=nil, zone=nil, nettype=nil, vpcid=nil, subnetid=nil, status=nil, vip=nil, vport=nil, createtime=nil, deadline=nil, mongoversion=nil, memory=nil, volume=nil, cpunum=nil, machinetype=nil, secondarynum=nil, replicationsetnum=nil, autorenewflag=nil, usedvolume=nil, maintenancestart=nil, maintenanceend=nil, replicasets=nil, readonlyinstances=nil, standbyinstances=nil, cloneinstances=nil, relatedinstance=nil, tags=nil, instancever=nil, clusterver=nil, protocol=nil, instancetype=nil, instancestatusdesc=nil, realinstanceid=nil, zonelist=nil, mongosnodenum=nil, mongosmemory=nil, mongoscpunum=nil, configservernodenum=nil, configservermemory=nil, configservervolume=nil, configservercpunum=nil, readonlynodenum=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @PayMode = paymode
@@ -2256,6 +2259,7 @@ module TencentCloud
           @InstanceType = instancetype
           @InstanceStatusDesc = instancestatusdesc
           @RealInstanceId = realinstanceid
+          @ZoneList = zonelist
           @MongosNodeNum = mongosnodenum
           @MongosMemory = mongosmemory
           @MongosCpuNum = mongoscpunum
@@ -2343,6 +2347,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @InstanceStatusDesc = params['InstanceStatusDesc']
           @RealInstanceId = params['RealInstanceId']
+          @ZoneList = params['ZoneList']
           @MongosNodeNum = params['MongosNodeNum']
           @MongosMemory = params['MongosMemory']
           @MongosCpuNum = params['MongosCpuNum']

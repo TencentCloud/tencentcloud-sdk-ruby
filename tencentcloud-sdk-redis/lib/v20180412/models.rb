@@ -4331,16 +4331,18 @@ module TencentCloud
         # @type Storage: Integer
         # @param StorageSlope: 容量倾斜率。
         # @type StorageSlope: Float
-        # @param Runid: 实例运行时节点 ID。
+        # @param Runid: 该字段因拼写不规范问题，建议使用RunId取代。含义：实例运行时节点 ID。
         # @type Runid: String
+        # @param RunId: 实例运行时节点 ID。
+        # @type RunId: String
         # @param Connected: 服务状态。
         # - 0：down。
         # - 1：on。
         # @type Connected: Integer
 
-        attr_accessor :ShardName, :ShardId, :Role, :Keys, :Slots, :Storage, :StorageSlope, :Runid, :Connected
+        attr_accessor :ShardName, :ShardId, :Role, :Keys, :Slots, :Storage, :StorageSlope, :Runid, :RunId, :Connected
 
-        def initialize(shardname=nil, shardid=nil, role=nil, keys=nil, slots=nil, storage=nil, storageslope=nil, runid=nil, connected=nil)
+        def initialize(shardname=nil, shardid=nil, role=nil, keys=nil, slots=nil, storage=nil, storageslope=nil, runid=nil, runid=nil, connected=nil)
           @ShardName = shardname
           @ShardId = shardid
           @Role = role
@@ -4349,6 +4351,7 @@ module TencentCloud
           @Storage = storage
           @StorageSlope = storageslope
           @Runid = runid
+          @RunId = runid
           @Connected = connected
         end
 
@@ -4361,6 +4364,7 @@ module TencentCloud
           @Storage = params['Storage']
           @StorageSlope = params['StorageSlope']
           @Runid = params['Runid']
+          @RunId = params['RunId']
           @Connected = params['Connected']
         end
       end
@@ -4754,9 +4758,12 @@ module TencentCloud
         # @param PasswordFree: 免密实例标识（内部参数，用户可忽略）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PasswordFree: Integer
-        # @param Vip6: 内部参数，用户可忽略。
+        # @param Vip6: 该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
+        # @param IPv6: 内部参数，用户可忽略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6: String
         # @param ReadOnly: 实例只读标识（内部参数，用户可忽略）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadOnly: Integer
@@ -4800,9 +4807,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpgradeRedisVersion: String
 
-        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion
+        attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion
 
-        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil)
+        def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil)
           @InstanceName = instancename
           @InstanceId = instanceid
           @Appid = appid
@@ -4844,6 +4851,7 @@ module TencentCloud
           @NetLimit = netlimit
           @PasswordFree = passwordfree
           @Vip6 = vip6
+          @IPv6 = ipv6
           @ReadOnly = readonly
           @RemainBandwidthDuration = remainbandwidthduration
           @DiskSize = disksize
@@ -4916,6 +4924,7 @@ module TencentCloud
           @NetLimit = params['NetLimit']
           @PasswordFree = params['PasswordFree']
           @Vip6 = params['Vip6']
+          @IPv6 = params['IPv6']
           @ReadOnly = params['ReadOnly']
           @RemainBandwidthDuration = params['RemainBandwidthDuration']
           @DiskSize = params['DiskSize']
@@ -5071,9 +5080,12 @@ module TencentCloud
         # @type Role: String
         # @param Vip: 实例 VIP 地址。
         # @type Vip: String
-        # @param Vip6: 内部参数，用户可忽略。
+        # @param Vip6: 该参数存在命名不规范问题，建议用参数IPv6取代。内部参数，用户可忽略。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vip6: String
+        # @param IPv6: 内部参数，用户可忽略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPv6: String
         # @param VpcID: VPC 网络ID，如：75101。
         # @type VpcID: Integer
         # @param VPort: 实例端口。
@@ -5099,9 +5111,9 @@ module TencentCloud
         # @param UpdateTime: 复制组中实例更新的时间。
         # @type UpdateTime: String
 
-        attr_accessor :AppId, :InstanceId, :InstanceName, :RegionId, :ZoneId, :RedisReplicasNum, :RedisShardNum, :RedisShardSize, :DiskSize, :Engine, :Role, :Vip, :Vip6, :VpcID, :VPort, :Status, :GrocerySysId, :ProductType, :CreateTime, :UpdateTime
+        attr_accessor :AppId, :InstanceId, :InstanceName, :RegionId, :ZoneId, :RedisReplicasNum, :RedisShardNum, :RedisShardSize, :DiskSize, :Engine, :Role, :Vip, :Vip6, :IPv6, :VpcID, :VPort, :Status, :GrocerySysId, :ProductType, :CreateTime, :UpdateTime
 
-        def initialize(appid=nil, instanceid=nil, instancename=nil, regionid=nil, zoneid=nil, redisreplicasnum=nil, redisshardnum=nil, redisshardsize=nil, disksize=nil, engine=nil, role=nil, vip=nil, vip6=nil, vpcid=nil, vport=nil, status=nil, grocerysysid=nil, producttype=nil, createtime=nil, updatetime=nil)
+        def initialize(appid=nil, instanceid=nil, instancename=nil, regionid=nil, zoneid=nil, redisreplicasnum=nil, redisshardnum=nil, redisshardsize=nil, disksize=nil, engine=nil, role=nil, vip=nil, vip6=nil, ipv6=nil, vpcid=nil, vport=nil, status=nil, grocerysysid=nil, producttype=nil, createtime=nil, updatetime=nil)
           @AppId = appid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -5115,6 +5127,7 @@ module TencentCloud
           @Role = role
           @Vip = vip
           @Vip6 = vip6
+          @IPv6 = ipv6
           @VpcID = vpcid
           @VPort = vport
           @Status = status
@@ -5138,6 +5151,7 @@ module TencentCloud
           @Role = params['Role']
           @Vip = params['Vip']
           @Vip6 = params['Vip6']
+          @IPv6 = params['IPv6']
           @VpcID = params['VpcID']
           @VPort = params['VPort']
           @Status = params['Status']

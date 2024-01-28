@@ -2612,10 +2612,13 @@ module TencentCloud
         # @param IsSupportOutsideCluster: 当前集群的应用场景是否支持体外客户端
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportOutsideCluster: Boolean
+        # @param IsDedicatedCluster: 是否专有集群场景集群
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDedicatedCluster: Boolean
 
-        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster
+        attr_accessor :ClusterId, :StatusDesc, :ClusterName, :ZoneId, :AppId, :AddTime, :RunTime, :MasterIp, :EmrVersion, :ChargeType, :Id, :ProductId, :ProjectId, :RegionId, :SubnetId, :VpcId, :Zone, :Status, :Tags, :AlarmInfo, :IsWoodpeckerCluster, :VpcName, :SubnetName, :UniqVpcId, :UniqSubnetId, :ClusterClass, :IsMultiZoneCluster, :IsHandsCluster, :OutSideSoftInfo, :IsSupportOutsideCluster, :IsDedicatedCluster
 
-        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil)
+        def initialize(clusterid=nil, statusdesc=nil, clustername=nil, zoneid=nil, appid=nil, addtime=nil, runtime=nil, masterip=nil, emrversion=nil, chargetype=nil, id=nil, productid=nil, projectid=nil, regionid=nil, subnetid=nil, vpcid=nil, zone=nil, status=nil, tags=nil, alarminfo=nil, iswoodpeckercluster=nil, vpcname=nil, subnetname=nil, uniqvpcid=nil, uniqsubnetid=nil, clusterclass=nil, ismultizonecluster=nil, ishandscluster=nil, outsidesoftinfo=nil, issupportoutsidecluster=nil, isdedicatedcluster=nil)
           @ClusterId = clusterid
           @StatusDesc = statusdesc
           @ClusterName = clustername
@@ -2646,6 +2649,7 @@ module TencentCloud
           @IsHandsCluster = ishandscluster
           @OutSideSoftInfo = outsidesoftinfo
           @IsSupportOutsideCluster = issupportoutsidecluster
+          @IsDedicatedCluster = isdedicatedcluster
         end
 
         def deserialize(params)
@@ -2693,6 +2697,7 @@ module TencentCloud
             end
           end
           @IsSupportOutsideCluster = params['IsSupportOutsideCluster']
+          @IsDedicatedCluster = params['IsDedicatedCluster']
         end
       end
 
