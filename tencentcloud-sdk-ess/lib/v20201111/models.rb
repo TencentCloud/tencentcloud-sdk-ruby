@@ -748,9 +748,11 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowId: 合同流程ID, 为32位字符串。
 
-        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # 可登录腾讯电子签控制台，[点击产看FlowId在控制台中的位置](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
         # @type FlowId: String
-        # @param CancelMessage: 撤销此合同流程的原因，最多支持200个字符长度。只能由中文、字母、数字、中文标点和英文标点组成（不支持表情）。
+        # @param CancelMessage: 撤销此合同流程的**撤销理由**，最多支持200个字符长度。只能由中文、字母、数字、中文标点和英文标点组成（不支持表情）。
+
+        # ![image](https://dyn.ess.tencent.cn/guide/capi/channel_ChannelCancelFlow.png)
         # @type CancelMessage: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -1243,7 +1245,7 @@ module TencentCloud
         # <br/>注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param FlowIds: 需要执行撤回的流程(合同)的编号列表，最多100个.
-        # <br>列表中的流程(合同)编号不要重复.
+        # 列表中的流程(合同)编号不要重复.
         # @type FlowIds: Array
         # @param Agent: 代理企业和员工的信息。
         # <br/>在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -4078,7 +4080,10 @@ module TencentCloud
         # @type PathType: Integer
         # @param AutoJumpBack: 签署完成后是否自动回跳
         # <ul><li>**false**：否, 签署完成不会自动跳转回来(默认)</li><li>**true**：是, 签署完成会自动跳转回来</li></ul>
-        # 注:  ` 该参数只针对"APP" 类型的签署链接有效`
+
+        # 注:
+        # 1. 该参数<font color="red">只针对APP</font> 类型的签署链接有效
+        # 2. <font color="red">手机应用APP 或 微信小程序需要监控界面的返回走后序逻辑</font>, 微信小程序的文档可以参考[这个](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object)
         # @type AutoJumpBack: Boolean
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -7773,16 +7778,20 @@ module TencentCloud
       # style String 为字体风格设置 风格支持： font : 目前支持 黑体、宋体; fontSize： 6-72; color：000000-FFFFFF  字符串形如：  "#FFFFFF" 或者 "0xFFFFFF"; bold ： 是否加粗， true ： 加粗 false： 不加粗; align: 对其方式， 支持 LEFT / RIGHT / CENTER
       class FormField < TencentCloud::Common::AbstractModel
         # @param ComponentValue: 控件填充vaule，ComponentType和传入值类型对应关系：
-        # TEXT - 文本内容
-        # MULTI_LINE_TEXT - 文本内容
-        # CHECK_BOX - true/false
-        # FILL_IMAGE、ATTACHMENT - 附件的FileId，需要通过UploadFiles接口上传获取
-        # SELECTOR - 选项值
-        # DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
+        # TEXT ：  文本内容
+        # MULTI_LINE_TEXT ：文本内容
+        # CHECK_BOX ：true/false
+        # FILL_IMAGE、ATTACHMENT ： 附件的FileId，需要通过UploadFiles接口上传获取
+        # SELECTOR ： 选项值
+        # DYNAMIC_TABLE ：传入json格式的表格内容，具体见数据结构[点击查看](https://qian.tencent.com/developers/company/dynamic_table)
         # @type ComponentValue: String
         # @param ComponentId: 控件id，和ComponentName选择一项传入即可
+
+        # <a href="https://dyn.ess.tencent.cn/guide/apivideo/component_name.mp4" target="_blank">点击查看在模版中找到控件ID的方式</a>
         # @type ComponentId: String
         # @param ComponentName: 控件名字，最大长度不超过30字符，和ComponentId选择一项传入即可
+
+        # <a href="https://dyn.ess.tencent.cn/guide/apivideo/component_name.mp4" target="_blank">点击查看在模版中找到控件名字的方式</a>
         # @type ComponentName: String
 
         attr_accessor :ComponentValue, :ComponentId, :ComponentName

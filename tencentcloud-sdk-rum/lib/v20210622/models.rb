@@ -1984,7 +1984,8 @@ module TencentCloud
         # @param GroupByType: group by 参数值枚举1:1m  2:5m  3:30m  4:1h
         #  5:1d
         # @type GroupByType: Integer
-        # @param IsNewData: 无需关注，是否查询zhiyan
+        # @param IsNewData: 1: 查询智研
+        # 0: 走旧逻辑，已下线，勿使用
         # @type IsNewData: Integer
 
         attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType, :IsNewData

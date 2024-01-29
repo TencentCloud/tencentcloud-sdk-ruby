@@ -1687,7 +1687,7 @@ module TencentCloud
 
       # 网络详细信息
       class NetDetails < TencentCloud::Common::AbstractModel
-        # @param Current: 流量值（bit）
+        # @param Current: 流量值（byte）
         # @type Current: Float
         # @param Time: 时间点，单位：s
         # @type Time: String

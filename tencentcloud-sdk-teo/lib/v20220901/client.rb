@@ -175,7 +175,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建应用代理
+        # 本接口为旧版，如需调用请尽快迁移至新版 [创建四层代理实例](https://cloud.tencent.com/document/product/1552/103417) 。
 
         # @param request: Request instance for CreateApplicationProxy.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateApplicationProxyRequest`
@@ -199,7 +199,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建应用代理规则
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [创建四层代理转发规则
+        # ](https://cloud.tencent.com/document/product/1552/103416) 。
 
         # @param request: Request instance for CreateApplicationProxyRule.
         # @type request: :class:`Tencentcloud::teo::V20220901::CreateApplicationProxyRuleRequest`
@@ -539,7 +540,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除应用代理
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [删除四层代理实例
+        # ](https://cloud.tencent.com/document/product/1552/103415) 。
 
         # @param request: Request instance for DeleteApplicationProxy.
         # @type request: :class:`Tencentcloud::teo::V20220901::DeleteApplicationProxyRequest`
@@ -563,7 +565,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除应用代理规则
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [删除四层代理转发规则](https://cloud.tencent.com/document/product/1552/103414) 。
 
         # @param request: Request instance for DeleteApplicationProxyRule.
         # @type request: :class:`Tencentcloud::teo::V20220901::DeleteApplicationProxyRuleRequest`
@@ -827,7 +829,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询应用代理列表。
+        # 本接口为旧版，如需调用请尽快迁移至新版，新版接口中将四层代理实例列表的查询和四层转发规则的查询拆分成两个接口，详情请参考 [查询四层代理实例列表](https://cloud.tencent.com/document/product/1552/103413) 和 [查询四层代理转发规则列表](https://cloud.tencent.com/document/product/1552/103412)。
 
         # @param request: Request instance for DescribeApplicationProxies.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeApplicationProxiesRequest`
@@ -1211,7 +1213,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询四层代理实例下的规则列表。
+        # 查询四层代理实例下的转发规则列表。
 
         # @param request: Request instance for DescribeL4ProxyRules.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeL4ProxyRulesRequest`
@@ -1763,7 +1765,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改应用代理
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [修改四层代理实例
+        # ](https://cloud.tencent.com/document/product/1552/103411) 。
 
         # @param request: Request instance for ModifyApplicationProxy.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyApplicationProxyRequest`
@@ -1787,7 +1790,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改应用代理规则
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [修改四层代理转发规则
+        # ](https://cloud.tencent.com/document/product/1552/103410) 。
 
         # @param request: Request instance for ModifyApplicationProxyRule.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyApplicationProxyRuleRequest`
@@ -1811,7 +1815,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改应用代理规则的状态
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [修改四层代理转发规则状态
+        # ](https://cloud.tencent.com/document/product/1552/103409) 。
 
         # @param request: Request instance for ModifyApplicationProxyRuleStatus.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyApplicationProxyRuleStatusRequest`
@@ -1835,7 +1840,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改应用代理的状态
+        # 本接口为旧版，如需调用请尽快迁移至新版，详情请参考 [修改四层代理实例状态](https://cloud.tencent.com/document/product/1552/103408) 。
 
         # @param request: Request instance for ModifyApplicationProxyStatus.
         # @type request: :class:`Tencentcloud::teo::V20220901::ModifyApplicationProxyStatusRequest`

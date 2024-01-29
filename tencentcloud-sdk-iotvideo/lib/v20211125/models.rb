@@ -3308,14 +3308,17 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页拉取偏移
         # @type Offset: Integer
+        # @param ChannelId: 通道id
+        # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :Limit, :Offset
+        attr_accessor :ProductId, :DeviceName, :Limit, :Offset, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil)
+        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Limit = limit
           @Offset = offset
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -3323,6 +3326,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ChannelId = params['ChannelId']
         end
       end
 
@@ -5752,10 +5756,12 @@ module TencentCloud
         # @param OrderId: 订单id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
+        # @param ChannelId: 通道id
+        # @type ChannelId: Integer
 
-        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt, :PackageId, :OrderId
+        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt, :PackageId, :OrderId, :ChannelId
 
-        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil, packageid=nil, orderid=nil)
+        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil, packageid=nil, orderid=nil, channelid=nil)
           @Status = status
           @CSType = cstype
           @CSShiftDuration = csshiftduration
@@ -5764,6 +5770,7 @@ module TencentCloud
           @UpdatedAt = updatedat
           @PackageId = packageid
           @OrderId = orderid
+          @ChannelId = channelid
         end
 
         def deserialize(params)
@@ -5775,6 +5782,7 @@ module TencentCloud
           @UpdatedAt = params['UpdatedAt']
           @PackageId = params['PackageId']
           @OrderId = params['OrderId']
+          @ChannelId = params['ChannelId']
         end
       end
 
