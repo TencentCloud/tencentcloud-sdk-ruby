@@ -297,6 +297,69 @@ module TencentCloud
         end
       end
 
+      # 告警屏蔽任务配置
+      class AlarmShieldInfo < TencentCloud::Common::AbstractModel
+        # @param AlarmNoticeId: 通知渠道组Id
+        # @type AlarmNoticeId: String
+        # @param TaskId: 屏蔽规则id
+        # @type TaskId: String
+        # @param StartTime: 屏蔽开始时间（秒级时间戳）。
+        # @type StartTime: Integer
+        # @param EndTime: 屏蔽结束时间（秒级时间戳）。
+        # @type EndTime: Integer
+        # @param Type: 屏蔽类型。1：屏蔽所有通知，2：按照Rule参数屏蔽匹配规则的通知。
+        # @type Type: Integer
+        # @param Rule: 屏蔽规则，当Type为2时必填。规则填写方式详见[产品文档](https://cloud.tencent.com/document/product/614/103178#rule)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: String
+        # @param Reason: 屏蔽原因。
+        # @type Reason: String
+        # @param Source: 规则创建来源。
+        # 1. 控制台，2.api，3.告警通知
+        # @type Source: Integer
+        # @param Operator: 操作者。
+        # @type Operator: String
+        # @param Status: 规则状态。
+        # 0：暂未生效，1：生效中，2：已失效
+        # @type Status: Integer
+        # @param CreateTime: 规则创建时间。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 规则更新时间。
+        # @type UpdateTime: Integer
+
+        attr_accessor :AlarmNoticeId, :TaskId, :StartTime, :EndTime, :Type, :Rule, :Reason, :Source, :Operator, :Status, :CreateTime, :UpdateTime
+
+        def initialize(alarmnoticeid=nil, taskid=nil, starttime=nil, endtime=nil, type=nil, rule=nil, reason=nil, source=nil, operator=nil, status=nil, createtime=nil, updatetime=nil)
+          @AlarmNoticeId = alarmnoticeid
+          @TaskId = taskid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Rule = rule
+          @Reason = reason
+          @Source = source
+          @Operator = operator
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @AlarmNoticeId = params['AlarmNoticeId']
+          @TaskId = params['TaskId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Rule = params['Rule']
+          @Reason = params['Reason']
+          @Source = params['Source']
+          @Operator = params['Operator']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 告警对象
       class AlarmTarget < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID。
@@ -1633,6 +1696,62 @@ module TencentCloud
 
         def deserialize(params)
           @AlarmId = params['AlarmId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAlarmShield请求参数结构体
+      class CreateAlarmShieldRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmNoticeId: 通知渠道组id。
+        # @type AlarmNoticeId: String
+        # @param StartTime: 屏蔽开始时间（秒级时间戳）。
+        # @type StartTime: Integer
+        # @param EndTime: 屏蔽结束时间（秒级时间戳）。
+        # @type EndTime: Integer
+        # @param Type: 屏蔽类型。1：屏蔽所有通知，2：按照Rule参数屏蔽匹配规则的通知。
+        # @type Type: Integer
+        # @param Reason: 屏蔽原因。
+        # @type Reason: String
+        # @param Rule: 屏蔽规则，当Type为2时必填。规则填写方式详见[产品文档](https://cloud.tencent.com/document/product/614/103178#rule)。
+        # @type Rule: String
+
+        attr_accessor :AlarmNoticeId, :StartTime, :EndTime, :Type, :Reason, :Rule
+
+        def initialize(alarmnoticeid=nil, starttime=nil, endtime=nil, type=nil, reason=nil, rule=nil)
+          @AlarmNoticeId = alarmnoticeid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Reason = reason
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @AlarmNoticeId = params['AlarmNoticeId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Reason = params['Reason']
+          @Rule = params['Rule']
+        end
+      end
+
+      # CreateAlarmShield返回参数结构体
+      class CreateAlarmShieldResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 屏蔽规则ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2995,6 +3114,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAlarmShield请求参数结构体
+      class DeleteAlarmShieldRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 屏蔽规则id。
+        # @type TaskId: String
+        # @param AlarmNoticeId: 通知渠道组id。
+        # @type AlarmNoticeId: String
+
+        attr_accessor :TaskId, :AlarmNoticeId
+
+        def initialize(taskid=nil, alarmnoticeid=nil)
+          @TaskId = taskid
+          @AlarmNoticeId = alarmnoticeid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @AlarmNoticeId = params['AlarmNoticeId']
+        end
+      end
+
+      # DeleteAlarmShield返回参数结构体
+      class DeleteAlarmShieldResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConfigExtra请求参数结构体
       class DeleteConfigExtraRequest < TencentCloud::Common::AbstractModel
         # @param ConfigExtraId: 采集规则扩展配置ID
@@ -3545,6 +3700,74 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAlarmShields请求参数结构体
+      class DescribeAlarmShieldsRequest < TencentCloud::Common::AbstractModel
+        # @param AlarmNoticeId: 通知渠道组id。
+        # @type AlarmNoticeId: String
+        # @param Filters: - taskId:按照【规则id】进行过滤。类型：String  必选：否
+        # - status:按照【规则状态】进行过滤。类型：String。 支持 0:暂未生效，1:生效中，2:已失效。 必选：否
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :AlarmNoticeId, :Filters, :Offset, :Limit
+
+        def initialize(alarmnoticeid=nil, filters=nil, offset=nil, limit=nil)
+          @AlarmNoticeId = alarmnoticeid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AlarmNoticeId = params['AlarmNoticeId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAlarmShields返回参数结构体
+      class DescribeAlarmShieldsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的规则总数目
+        # @type TotalCount: Integer
+        # @param AlarmShields: 告警屏蔽规则详情
+        # @type AlarmShields: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AlarmShields, :RequestId
+
+        def initialize(totalcount=nil, alarmshields=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AlarmShields = alarmshields
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AlarmShields'].nil?
+            @AlarmShields = []
+            params['AlarmShields'].each do |i|
+              alarmshieldinfo_tmp = AlarmShieldInfo.new
+              alarmshieldinfo_tmp.deserialize(i)
+              @AlarmShields << alarmshieldinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6739,6 +6962,66 @@ module TencentCloud
 
       # ModifyAlarm返回参数结构体
       class ModifyAlarmResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAlarmShield请求参数结构体
+      class ModifyAlarmShieldRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 屏蔽规则ID。
+        # @type TaskId: String
+        # @param AlarmNoticeId: 通知渠道组id。
+        # @type AlarmNoticeId: String
+        # @param StartTime: 屏蔽开始时间（秒级时间戳）。
+        # @type StartTime: Integer
+        # @param EndTime: 屏蔽结束时间（秒级时间戳）。
+        # @type EndTime: Integer
+        # @param Type: 屏蔽类型。1：屏蔽所有通知，2：按照Rule参数屏蔽匹配规则的通知。
+        # @type Type: Integer
+        # @param Rule: 屏蔽规则，当Type为2时必填。规则填写方式详见[产品文档](https://cloud.tencent.com/document/product/614/103178#rule)。
+        # @type Rule: String
+        # @param Reason: 屏蔽原因。
+        # @type Reason: String
+        # @param Status: 规则状态。只有规则状态为生效中（status:1）时，才能将其修改为已失效（status:2）。
+        # @type Status: Integer
+
+        attr_accessor :TaskId, :AlarmNoticeId, :StartTime, :EndTime, :Type, :Rule, :Reason, :Status
+
+        def initialize(taskid=nil, alarmnoticeid=nil, starttime=nil, endtime=nil, type=nil, rule=nil, reason=nil, status=nil)
+          @TaskId = taskid
+          @AlarmNoticeId = alarmnoticeid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+          @Rule = rule
+          @Reason = reason
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @AlarmNoticeId = params['AlarmNoticeId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @Rule = params['Rule']
+          @Reason = params['Reason']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyAlarmShield返回参数结构体
+      class ModifyAlarmShieldResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

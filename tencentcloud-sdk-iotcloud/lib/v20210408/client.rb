@@ -1637,6 +1637,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（UpdateOtaTask）当固件升级大任务处于没有在全部成功的状态时，可修改为取消状态，取消部分或全部设备的升级;或其它允许的可修改的状态
+
+        # @param request: Request instance for UpdateOtaTaskStatus.
+        # @type request: :class:`Tencentcloud::iotcloud::V20210408::UpdateOtaTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotcloud::V20210408::UpdateOtaTaskStatusResponse`
+        def UpdateOtaTaskStatus(request)
+          body = send_request('UpdateOtaTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOtaTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新私有CA证书
 
         # @param request: Request instance for UpdatePrivateCA.

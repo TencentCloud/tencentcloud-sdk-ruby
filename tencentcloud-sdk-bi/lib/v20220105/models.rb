@@ -51,6 +51,9 @@ module TencentCloud
 
       # ApplyEmbedInterval返回参数结构体
       class ApplyEmbedIntervalResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 额外参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -63,9 +66,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -73,6 +77,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = ApplyEmbedTokenInfo.new
@@ -293,6 +301,9 @@ module TencentCloud
 
       # CreateDatasourceCloud返回参数结构体
       class CreateDatasourceCloudResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 成功无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.IdDTO`
@@ -305,9 +316,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -315,6 +327,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           unless params['Data'].nil?
             @Data = IdDTO.new
             @Data.deserialize(params['Data'])
@@ -415,6 +431,9 @@ module TencentCloud
 
       # CreateDatasource返回参数结构体
       class CreateDatasourceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 数据源id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.IdDTO`
@@ -427,9 +446,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -437,6 +457,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           unless params['Data'].nil?
             @Data = IdDTO.new
             @Data.deserialize(params['Data'])
@@ -493,6 +517,9 @@ module TencentCloud
 
       # CreateEmbedToken返回参数结构体
       class CreateEmbedTokenResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -505,9 +532,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -515,6 +543,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = EmbedTokenInfo.new
@@ -563,6 +595,9 @@ module TencentCloud
 
       # CreateProject返回参数结构体
       class CreateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 额外数据
         # @type Extra: String
         # @param Data: 数据
@@ -572,9 +607,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -582,6 +618,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = Data.new
@@ -636,6 +676,9 @@ module TencentCloud
 
       # CreateUserRoleProject返回参数结构体
       class CreateUserRoleProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -648,9 +691,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -658,6 +702,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = DataId.new
@@ -708,6 +756,9 @@ module TencentCloud
 
       # CreateUserRole返回参数结构体
       class CreateUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -720,9 +771,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -730,6 +782,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = DataId.new
@@ -1016,6 +1072,9 @@ module TencentCloud
 
       # DeleteDatasource返回参数结构体
       class DeleteDatasourceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
@@ -1026,9 +1085,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -1036,6 +1096,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Data = params['Data']
           @Extra = params['Extra']
           @Msg = params['Msg']
@@ -1069,6 +1133,9 @@ module TencentCloud
 
       # DeleteProject返回参数结构体
       class DeleteProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: ”“
         # @type Extra: String
         # @param Data: ""
@@ -1080,9 +1147,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -1090,6 +1158,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
@@ -1119,6 +1191,9 @@ module TencentCloud
 
       # DeleteUserRoleProject返回参数结构体
       class DeleteUserRoleProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1131,9 +1206,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -1141,6 +1217,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
@@ -1166,6 +1246,9 @@ module TencentCloud
 
       # DeleteUserRole返回参数结构体
       class DeleteUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1178,9 +1261,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -1188,6 +1272,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
@@ -1237,6 +1325,9 @@ module TencentCloud
 
       # DescribeDatasourceList返回参数结构体
       class DescribeDatasourceListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 列表详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.DatasourceInfoData`
@@ -1247,9 +1338,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -1257,6 +1349,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           unless params['Data'].nil?
             @Data = DatasourceInfoData.new
             @Data.deserialize(params['Data'])
@@ -1289,6 +1385,9 @@ module TencentCloud
 
       # DescribeProjectInfo返回参数结构体
       class DescribeProjectInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: ""
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1301,9 +1400,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Msg, :Data, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
 
-        def initialize(extra=nil, msg=nil, data=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Msg = msg
           @Data = data
@@ -1311,6 +1411,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Msg = params['Msg']
           unless params['Data'].nil?
@@ -1355,6 +1459,9 @@ module TencentCloud
 
       # DescribeProjectList返回参数结构体
       class DescribeProjectListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1367,9 +1474,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Msg, :Data, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
 
-        def initialize(extra=nil, msg=nil, data=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Msg = msg
           @Data = data
@@ -1377,6 +1485,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Msg = params['Msg']
           unless params['Data'].nil?
@@ -1417,6 +1529,9 @@ module TencentCloud
 
       # DescribeUserProjectList返回参数结构体
       class DescribeUserProjectListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.CorpUserListData`
@@ -1429,9 +1544,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -1439,6 +1555,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           unless params['Data'].nil?
             @Data = CorpUserListData.new
             @Data.deserialize(params['Data'])
@@ -1463,16 +1583,19 @@ module TencentCloud
         # @type Keyword: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param IsOnlyBindAppUser: 是否只获取绑定企微应用的
+        # @type IsOnlyBindAppUser: Boolean
 
-        attr_accessor :PageNo, :PageSize, :AllPage, :UserType, :Keyword, :ProjectId
+        attr_accessor :PageNo, :PageSize, :AllPage, :UserType, :Keyword, :ProjectId, :IsOnlyBindAppUser
 
-        def initialize(pageno=nil, pagesize=nil, allpage=nil, usertype=nil, keyword=nil, projectid=nil)
+        def initialize(pageno=nil, pagesize=nil, allpage=nil, usertype=nil, keyword=nil, projectid=nil, isonlybindappuser=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @AllPage = allpage
           @UserType = usertype
           @Keyword = keyword
           @ProjectId = projectid
+          @IsOnlyBindAppUser = isonlybindappuser
         end
 
         def deserialize(params)
@@ -1482,11 +1605,15 @@ module TencentCloud
           @UserType = params['UserType']
           @Keyword = params['Keyword']
           @ProjectId = params['ProjectId']
+          @IsOnlyBindAppUser = params['IsOnlyBindAppUser']
         end
       end
 
       # DescribeUserRoleList返回参数结构体
       class DescribeUserRoleListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1499,9 +1626,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -1509,6 +1637,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = UserRoleListData.new
@@ -1527,24 +1659,31 @@ module TencentCloud
         # @type PageSize: Integer
         # @param ProjectId: 项目ID
         # @type ProjectId: Integer
+        # @param IsOnlyBindAppUser: 是否只获取绑定企微应用的
+        # @type IsOnlyBindAppUser: Boolean
 
-        attr_accessor :PageNo, :PageSize, :ProjectId
+        attr_accessor :PageNo, :PageSize, :ProjectId, :IsOnlyBindAppUser
 
-        def initialize(pageno=nil, pagesize=nil, projectid=nil)
+        def initialize(pageno=nil, pagesize=nil, projectid=nil, isonlybindappuser=nil)
           @PageNo = pageno
           @PageSize = pagesize
           @ProjectId = projectid
+          @IsOnlyBindAppUser = isonlybindappuser
         end
 
         def deserialize(params)
           @PageNo = params['PageNo']
           @PageSize = params['PageSize']
           @ProjectId = params['ProjectId']
+          @IsOnlyBindAppUser = params['IsOnlyBindAppUser']
         end
       end
 
       # DescribeUserRoleProjectList返回参数结构体
       class DescribeUserRoleProjectListResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -1557,9 +1696,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -1567,6 +1707,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           unless params['Data'].nil?
             @Data = UserRoleListData.new
@@ -1656,6 +1800,51 @@ module TencentCloud
           @UserCorpId = params['UserCorpId']
           @UserId = params['UserId']
           @TicketNum = params['TicketNum']
+        end
+      end
+
+      # 自定义错误信息对象
+      class ErrorInfo < TencentCloud::Common::AbstractModel
+        # @param ErrorTip: 错误说明字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorTip: String
+        # @param ErrorMessage: 原始异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param ErrorLevel: 错误等级字段
+        # ERROR
+        # WARN
+        # INFO
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorLevel: String
+        # @param DocLink: 指引文档链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocLink: String
+        # @param FAQ: 快速指引说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FAQ: String
+        # @param ReservedField: 预留字段1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReservedField: String
+
+        attr_accessor :ErrorTip, :ErrorMessage, :ErrorLevel, :DocLink, :FAQ, :ReservedField
+
+        def initialize(errortip=nil, errormessage=nil, errorlevel=nil, doclink=nil, faq=nil, reservedfield=nil)
+          @ErrorTip = errortip
+          @ErrorMessage = errormessage
+          @ErrorLevel = errorlevel
+          @DocLink = doclink
+          @FAQ = faq
+          @ReservedField = reservedfield
+        end
+
+        def deserialize(params)
+          @ErrorTip = params['ErrorTip']
+          @ErrorMessage = params['ErrorMessage']
+          @ErrorLevel = params['ErrorLevel']
+          @DocLink = params['DocLink']
+          @FAQ = params['FAQ']
+          @ReservedField = params['ReservedField']
         end
       end
 
@@ -1794,6 +1983,9 @@ module TencentCloud
 
       # ModifyDatasourceCloud返回参数结构体
       class ModifyDatasourceCloudResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 成功无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
@@ -1806,9 +1998,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -1816,6 +2009,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Data = params['Data']
           @Extra = params['Extra']
           @Msg = params['Msg']
@@ -1917,6 +2114,9 @@ module TencentCloud
 
       # ModifyDatasource返回参数结构体
       class ModifyDatasourceResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Data: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
@@ -1929,9 +2129,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :Extra, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Data, :Extra, :Msg, :RequestId
 
-        def initialize(data=nil, extra=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, data=nil, extra=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Data = data
           @Extra = extra
           @Msg = msg
@@ -1939,6 +2140,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Data = params['Data']
           @Extra = params['Extra']
           @Msg = params['Msg']
@@ -1996,6 +2201,9 @@ module TencentCloud
 
       # ModifyProject返回参数结构体
       class ModifyProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 额外信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -2008,9 +2216,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Data, :Msg, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Data, :Msg, :RequestId
 
-        def initialize(extra=nil, data=nil, msg=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, data=nil, msg=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Data = data
           @Msg = msg
@@ -2018,6 +2227,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Data = params['Data']
           @Msg = params['Msg']
@@ -2037,15 +2250,18 @@ module TencentCloud
         # @type Email: String
         # @param UserName: 用户名
         # @type UserName: String
+        # @param AppUserId: 企业微信应用用户id
+        # @type AppUserId: String
 
-        attr_accessor :ProjectId, :UserId, :RoleIdList, :Email, :UserName
+        attr_accessor :ProjectId, :UserId, :RoleIdList, :Email, :UserName, :AppUserId
 
-        def initialize(projectid=nil, userid=nil, roleidlist=nil, email=nil, username=nil)
+        def initialize(projectid=nil, userid=nil, roleidlist=nil, email=nil, username=nil, appuserid=nil)
           @ProjectId = projectid
           @UserId = userid
           @RoleIdList = roleidlist
           @Email = email
           @UserName = username
+          @AppUserId = appuserid
         end
 
         def deserialize(params)
@@ -2054,11 +2270,15 @@ module TencentCloud
           @RoleIdList = params['RoleIdList']
           @Email = params['Email']
           @UserName = params['UserName']
+          @AppUserId = params['AppUserId']
         end
       end
 
       # ModifyUserRoleProject返回参数结构体
       class ModifyUserRoleProjectResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -2071,9 +2291,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Msg, :Data, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
 
-        def initialize(extra=nil, msg=nil, data=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Msg = msg
           @Data = data
@@ -2081,6 +2302,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Msg = params['Msg']
           @Data = params['Data']
@@ -2102,16 +2327,19 @@ module TencentCloud
         # @type PhoneNumber: String
         # @param AreaCode: 手机区号
         # @type AreaCode: String
+        # @param AppUserId: 企业微信应用用户id
+        # @type AppUserId: String
 
-        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode
+        attr_accessor :UserId, :RoleIdList, :Email, :UserName, :PhoneNumber, :AreaCode, :AppUserId
 
-        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil)
+        def initialize(userid=nil, roleidlist=nil, email=nil, username=nil, phonenumber=nil, areacode=nil, appuserid=nil)
           @UserId = userid
           @RoleIdList = roleidlist
           @Email = email
           @UserName = username
           @PhoneNumber = phonenumber
           @AreaCode = areacode
+          @AppUserId = appuserid
         end
 
         def deserialize(params)
@@ -2121,11 +2349,15 @@ module TencentCloud
           @UserName = params['UserName']
           @PhoneNumber = params['PhoneNumber']
           @AreaCode = params['AreaCode']
+          @AppUserId = params['AppUserId']
         end
       end
 
       # ModifyUserRole返回参数结构体
       class ModifyUserRoleResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
         # @param Extra: 扩展
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
@@ -2138,9 +2370,10 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Extra, :Msg, :Data, :RequestId
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
 
-        def initialize(extra=nil, msg=nil, data=nil, requestid=nil)
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
           @Extra = extra
           @Msg = msg
           @Data = data
@@ -2148,6 +2381,10 @@ module TencentCloud
         end
 
         def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
           @Extra = params['Extra']
           @Msg = params['Msg']
           @Data = params['Data']
@@ -2479,10 +2716,25 @@ module TencentCloud
         # @param Mobile: 手机号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mobile: String
+        # @param AppId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param AppUserId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserId: String
+        # @param AppUserAliasName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserAliasName: String
+        # @param AppUserName: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserName: String
+        # @param InValidateAppRange: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InValidateAppRange: Boolean
 
-        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :Mobile
+        attr_accessor :UserId, :UserName, :CorpId, :Email, :LastLogin, :Status, :FirstModify, :PhoneNumber, :AreaCode, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :GlobalUserName, :Mobile, :AppId, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange
 
-        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, mobile=nil)
+        def initialize(userid=nil, username=nil, corpid=nil, email=nil, lastlogin=nil, status=nil, firstmodify=nil, phonenumber=nil, areacode=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, globalusername=nil, mobile=nil, appid=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil)
           @UserId = userid
           @UserName = username
           @CorpId = corpid
@@ -2498,6 +2750,11 @@ module TencentCloud
           @UpdatedAt = updatedat
           @GlobalUserName = globalusername
           @Mobile = mobile
+          @AppId = appid
+          @AppUserId = appuserid
+          @AppUserAliasName = appuseraliasname
+          @AppUserName = appusername
+          @InValidateAppRange = invalidateapprange
         end
 
         def deserialize(params)
@@ -2516,6 +2773,11 @@ module TencentCloud
           @UpdatedAt = params['UpdatedAt']
           @GlobalUserName = params['GlobalUserName']
           @Mobile = params['Mobile']
+          @AppId = params['AppId']
+          @AppUserId = params['AppUserId']
+          @AppUserAliasName = params['AppUserAliasName']
+          @AppUserName = params['AppUserName']
+          @InValidateAppRange = params['InValidateAppRange']
         end
       end
 
@@ -2679,10 +2941,22 @@ module TencentCloud
         # @param CorpAdmin: 是否为企业管理员
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CorpAdmin: Boolean
+        # @param AppUserId: 企微用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserId: String
+        # @param AppUserAliasName: 昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserAliasName: String
+        # @param AppUserName: 应用用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppUserName: String
+        # @param InValidateAppRange: 是否在可见范围内
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InValidateAppRange: Boolean
 
-        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin
+        attr_accessor :Id, :RoleList, :RoleIdList, :UserId, :UserName, :CorpId, :Email, :CreatedUser, :CreatedAt, :UpdatedUser, :UpdatedAt, :LastLogin, :Status, :PhoneNumber, :AreaCode, :RootAccount, :CorpAdmin, :AppUserId, :AppUserAliasName, :AppUserName, :InValidateAppRange
 
-        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil)
+        def initialize(id=nil, rolelist=nil, roleidlist=nil, userid=nil, username=nil, corpid=nil, email=nil, createduser=nil, createdat=nil, updateduser=nil, updatedat=nil, lastlogin=nil, status=nil, phonenumber=nil, areacode=nil, rootaccount=nil, corpadmin=nil, appuserid=nil, appuseraliasname=nil, appusername=nil, invalidateapprange=nil)
           @Id = id
           @RoleList = rolelist
           @RoleIdList = roleidlist
@@ -2700,6 +2974,10 @@ module TencentCloud
           @AreaCode = areacode
           @RootAccount = rootaccount
           @CorpAdmin = corpadmin
+          @AppUserId = appuserid
+          @AppUserAliasName = appuseraliasname
+          @AppUserName = appusername
+          @InValidateAppRange = invalidateapprange
         end
 
         def deserialize(params)
@@ -2727,6 +3005,10 @@ module TencentCloud
           @AreaCode = params['AreaCode']
           @RootAccount = params['RootAccount']
           @CorpAdmin = params['CorpAdmin']
+          @AppUserId = params['AppUserId']
+          @AppUserAliasName = params['AppUserAliasName']
+          @AppUserName = params['AppUserName']
+          @InValidateAppRange = params['InValidateAppRange']
         end
       end
 

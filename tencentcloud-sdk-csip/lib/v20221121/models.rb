@@ -5275,6 +5275,34 @@ module TencentCloud
         end
       end
 
+      # 端口风险高级配置项
+      class PortRiskAdvanceCFGParamItem < TencentCloud::Common::AbstractModel
+        # @param PortSets: 端口集合,以逗号分隔
+        # @type PortSets: String
+        # @param CheckType: 检测项类型，0-系统定义，1-用户自定义
+        # @type CheckType: Integer
+        # @param Detail: 检测项描述
+        # @type Detail: String
+        # @param Enable: 是否启用，1-启用，0-禁用
+        # @type Enable: Integer
+
+        attr_accessor :PortSets, :CheckType, :Detail, :Enable
+
+        def initialize(portsets=nil, checktype=nil, detail=nil, enable=nil)
+          @PortSets = portsets
+          @CheckType = checktype
+          @Detail = detail
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @PortSets = params['PortSets']
+          @CheckType = params['CheckType']
+          @Detail = params['Detail']
+          @Enable = params['Enable']
+        end
+      end
+
       # 端口视角的端口风险对象
       class PortViewPortRisk < TencentCloud::Common::AbstractModel
         # @param NoHandleCount: 影响资产
@@ -6067,6 +6095,8 @@ module TencentCloud
 
       # 任务高级配置
       class TaskAdvanceCFG < TencentCloud::Common::AbstractModel
+        # @param PortRisk: 端口风险高级配置
+        # @type PortRisk: Array
         # @param VulRisk: 漏洞风险高级配置
         # @type VulRisk: Array
         # @param WeakPwdRisk: 弱口令风险高级配置
@@ -6074,15 +6104,24 @@ module TencentCloud
         # @param CFGRisk: 配置风险高级配置
         # @type CFGRisk: Array
 
-        attr_accessor :VulRisk, :WeakPwdRisk, :CFGRisk
+        attr_accessor :PortRisk, :VulRisk, :WeakPwdRisk, :CFGRisk
 
-        def initialize(vulrisk=nil, weakpwdrisk=nil, cfgrisk=nil)
+        def initialize(portrisk=nil, vulrisk=nil, weakpwdrisk=nil, cfgrisk=nil)
+          @PortRisk = portrisk
           @VulRisk = vulrisk
           @WeakPwdRisk = weakpwdrisk
           @CFGRisk = cfgrisk
         end
 
         def deserialize(params)
+          unless params['PortRisk'].nil?
+            @PortRisk = []
+            params['PortRisk'].each do |i|
+              portriskadvancecfgparamitem_tmp = PortRiskAdvanceCFGParamItem.new
+              portriskadvancecfgparamitem_tmp.deserialize(i)
+              @PortRisk << portriskadvancecfgparamitem_tmp
+            end
+          end
           unless params['VulRisk'].nil?
             @VulRisk = []
             params['VulRisk'].each do |i|

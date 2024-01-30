@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2023, 11
-        deprecate :ActivityRelatedInstanceSet=, :none, 2023, 11
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 1
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 1
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2632,8 +2632,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2023, 11
-        deprecate :AutomationService=, :none, 2023, 11
+        deprecate :AutomationService, :none, 2024, 1
+        deprecate :AutomationService=, :none, 2024, 1
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3001,7 +3001,7 @@ module TencentCloud
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         # @type Period: Integer
-        # @param RenewFlag: 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        # @param RenewFlag: 自动续费标识。取值范围：<li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         # @type RenewFlag: String
 
         attr_accessor :Period, :RenewFlag
@@ -3212,11 +3212,9 @@ module TencentCloud
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
         # @param ImageId: 镜像ID。
         # @type ImageId: String
-        # @param LaunchConfigurationStatus: 启动配置当前状态。取值范围：<br><li>NORMAL：正常<br><li>IMAGE_ABNORMAL：启动配置镜像异常<br><li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常<br><li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常<br>
+        # @param LaunchConfigurationStatus: 启动配置当前状态。取值范围：<li>NORMAL：正常</li><li>IMAGE_ABNORMAL：启动配置镜像异常</li><li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常</li><li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常</li>
         # @type LaunchConfigurationStatus: String
-        # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
-        # <br><li>POSTPAID_BY_HOUR：按小时后付费
-        # <br><li>SPOTPAID：竞价付费
+        # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。<li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li>
         # @type InstanceChargeType: String
         # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3242,19 +3240,19 @@ module TencentCloud
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param DiskTypePolicy: 云盘类型选择策略。取值范围：
-        # <br><li>ORIGINAL：使用设置的云盘类型
-        # <br><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型
+        # @param DiskTypePolicy: 云盘类型选择策略。取值范围：<li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用区下可用的云盘类型</li>
         # @type DiskTypePolicy: String
         # @param HpcClusterId: 高性能计算集群ID。<br>
         # 注意：此字段默认为空。
         # @type HpcClusterId: String
         # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
+        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @type DisasterRecoverGroupIds: Array
 
-        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible
+        attr_accessor :ProjectId, :LaunchConfigurationId, :LaunchConfigurationName, :InstanceType, :SystemDisk, :DataDisks, :LoginSettings, :InternetAccessible, :SecurityGroupIds, :AutoScalingGroupAbstractSet, :UserData, :CreatedTime, :EnhancedService, :ImageId, :LaunchConfigurationStatus, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :InstanceTags, :Tags, :VersionNumber, :UpdatedTime, :CamRoleName, :LastOperationInstanceTypesCheckPolicy, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds
 
-        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil)
+        def initialize(projectid=nil, launchconfigurationid=nil, launchconfigurationname=nil, instancetype=nil, systemdisk=nil, datadisks=nil, loginsettings=nil, internetaccessible=nil, securitygroupids=nil, autoscalinggroupabstractset=nil, userdata=nil, createdtime=nil, enhancedservice=nil, imageid=nil, launchconfigurationstatus=nil, instancechargetype=nil, instancemarketoptions=nil, instancetypes=nil, instancetags=nil, tags=nil, versionnumber=nil, updatedtime=nil, camrolename=nil, lastoperationinstancetypescheckpolicy=nil, hostnamesettings=nil, instancenamesettings=nil, instancechargeprepaid=nil, disktypepolicy=nil, hpcclusterid=nil, ipv6internetaccessible=nil, disasterrecovergroupids=nil)
           @ProjectId = projectid
           @LaunchConfigurationId = launchconfigurationid
           @LaunchConfigurationName = launchconfigurationname
@@ -3285,6 +3283,7 @@ module TencentCloud
           @DiskTypePolicy = disktypepolicy
           @HpcClusterId = hpcclusterid
           @IPv6InternetAccessible = ipv6internetaccessible
+          @DisasterRecoverGroupIds = disasterrecovergroupids
         end
 
         def deserialize(params)
@@ -3373,6 +3372,7 @@ module TencentCloud
             @IPv6InternetAccessible = IPv6InternetAccessible.new
             @IPv6InternetAccessible.deserialize(params['IPv6InternetAccessible'])
           end
+          @DisasterRecoverGroupIds = params['DisasterRecoverGroupIds']
         end
       end
 

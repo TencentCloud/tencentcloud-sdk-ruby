@@ -581,30 +581,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取PerformanceProject信息
-
-        # @param request: Request instance for DescribeDataPerformanceProject.
-        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataPerformanceProjectRequest`
-        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataPerformanceProjectResponse`
-        def DescribeDataPerformanceProject(request)
-          body = send_request('DescribeDataPerformanceProject', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDataPerformanceProjectResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取PvUrlInfo信息
 
         # @param request: Request instance for DescribeDataPvUrlInfo.

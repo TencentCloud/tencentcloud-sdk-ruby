@@ -2016,15 +2016,19 @@ module TencentCloud
       class DescribeRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间Id。
         # @type RoomId: Integer
+        # @param RTMPStreamingURL: 请求RTMP推流链接，0：否，1：是，默认为0。
+        # @type RTMPStreamingURL: Integer
 
-        attr_accessor :RoomId
+        attr_accessor :RoomId, :RTMPStreamingURL
 
-        def initialize(roomid=nil)
+        def initialize(roomid=nil, rtmpstreamingurl=nil)
           @RoomId = roomid
+          @RTMPStreamingURL = rtmpstreamingurl
         end
 
         def deserialize(params)
           @RoomId = params['RoomId']
+          @RTMPStreamingURL = params['RTMPStreamingURL']
         end
       end
 
@@ -2102,12 +2106,14 @@ module TencentCloud
         # @type EnableAutoStart: Integer
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # @type RecordBackground: String
+        # @param RTMPStreamingURL: RTMP推流链接
+        # @type RTMPStreamingURL: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2135,6 +2141,7 @@ module TencentCloud
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
           @RecordBackground = recordbackground
+          @RTMPStreamingURL = rtmpstreamingurl
           @RequestId = requestid
         end
 
@@ -2166,6 +2173,7 @@ module TencentCloud
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
           @RecordBackground = params['RecordBackground']
+          @RTMPStreamingURL = params['RTMPStreamingURL']
           @RequestId = params['RequestId']
         end
       end

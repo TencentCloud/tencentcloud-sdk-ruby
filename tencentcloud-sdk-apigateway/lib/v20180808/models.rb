@@ -6142,14 +6142,18 @@ module TencentCloud
         # @type Status: Integer
         # @param VersionName: 运行版本。
         # @type VersionName: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
 
-        attr_accessor :EnvironmentName, :Url, :Status, :VersionName
+        attr_accessor :EnvironmentName, :Url, :Status, :VersionName, :CreateTime
 
-        def initialize(environmentname=nil, url=nil, status=nil, versionname=nil)
+        def initialize(environmentname=nil, url=nil, status=nil, versionname=nil, createtime=nil)
           @EnvironmentName = environmentname
           @Url = url
           @Status = status
           @VersionName = versionname
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -6157,6 +6161,7 @@ module TencentCloud
           @Url = params['Url']
           @Status = params['Status']
           @VersionName = params['VersionName']
+          @CreateTime = params['CreateTime']
         end
       end
 

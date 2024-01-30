@@ -902,10 +902,13 @@ module TencentCloud
         # @param LicenseIds: 已经绑定licenseId列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseIds: Array
+        # @param MonthlyRemainTime: 每月license的限定时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonthlyRemainTime: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds
+        attr_accessor :DeviceId, :DeviceName, :LicenseCount, :RemainDay, :ExpireTime, :Duration, :LicenseIds, :MonthlyRemainTime
 
-        def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil)
+        def initialize(deviceid=nil, devicename=nil, licensecount=nil, remainday=nil, expiretime=nil, duration=nil, licenseids=nil, monthlyremaintime=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @LicenseCount = licensecount
@@ -913,6 +916,7 @@ module TencentCloud
           @ExpireTime = expiretime
           @Duration = duration
           @LicenseIds = licenseids
+          @MonthlyRemainTime = monthlyremaintime
         end
 
         def deserialize(params)
@@ -923,6 +927,7 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Duration = params['Duration']
           @LicenseIds = params['LicenseIds']
+          @MonthlyRemainTime = params['MonthlyRemainTime']
         end
       end
 
@@ -1086,16 +1091,19 @@ module TencentCloud
         # @type UnBound: Integer
         # @param Expire: 过期授权
         # @type Expire: Integer
+        # @param MonthlyExpire: 当月用量超时授权个数
+        # @type MonthlyExpire: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Valid, :Bound, :UnBound, :Expire, :RequestId
+        attr_accessor :Valid, :Bound, :UnBound, :Expire, :MonthlyExpire, :RequestId
 
-        def initialize(valid=nil, bound=nil, unbound=nil, expire=nil, requestid=nil)
+        def initialize(valid=nil, bound=nil, unbound=nil, expire=nil, monthlyexpire=nil, requestid=nil)
           @Valid = valid
           @Bound = bound
           @UnBound = unbound
           @Expire = expire
+          @MonthlyExpire = monthlyexpire
           @RequestId = requestid
         end
 
@@ -1104,6 +1112,7 @@ module TencentCloud
           @Bound = params['Bound']
           @UnBound = params['UnBound']
           @Expire = params['Expire']
+          @MonthlyExpire = params['MonthlyExpire']
           @RequestId = params['RequestId']
         end
       end
@@ -1118,14 +1127,17 @@ module TencentCloud
         # @type ProjectId: String
         # @param DeviceId: DeviceId
         # @type DeviceId: String
+        # @param Status: license状态：0:未绑定；1:已绑定；2:已停服；3:已退费
+        # @type Status: Integer
 
-        attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId
+        attr_accessor :PageNum, :PageSize, :ProjectId, :DeviceId, :Status
 
-        def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
+        def initialize(pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil, status=nil)
           @PageNum = pagenum
           @PageSize = pagesize
           @ProjectId = projectid
           @DeviceId = deviceid
+          @Status = status
         end
 
         def deserialize(params)
@@ -1133,6 +1145,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @ProjectId = params['ProjectId']
           @DeviceId = params['DeviceId']
+          @Status = params['Status']
         end
       end
 

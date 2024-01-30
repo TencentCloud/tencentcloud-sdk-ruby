@@ -90,7 +90,7 @@ module TencentCloud
 
       # 扩容策略
       class AutoScalerPolicy < TencentCloud::Common::AbstractModel
-        # @param Type: 类型，Pods或Percent
+        # @param Type: 类型，Pods
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Value: 数量
@@ -117,13 +117,13 @@ module TencentCloud
 
       # 指标伸缩的规则
       class AutoScalerRules < TencentCloud::Common::AbstractModel
-        # @param StabilizationWindowSeconds: 稳定窗口时间
+        # @param StabilizationWindowSeconds: 稳定窗口时间，扩容时默认0，缩容时默认300
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StabilizationWindowSeconds: Integer
         # @param SelectPolicy: 选择策略依据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SelectPolicy: String
-        # @param Policies: 扩容策略
+        # @param Policies: 扩缩容策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Policies: Array
 
@@ -802,6 +802,8 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
+        deprecate :Enabled, :none, 2024, 1
+        deprecate :Enabled=, :none, 2024, 1
         deprecate :CreateTime, :none, 2024, 1
         deprecate :CreateTime=, :none, 2024, 1
         deprecate :ModifyTime, :none, 2024, 1
@@ -847,12 +849,14 @@ module TencentCloud
       # 弹性伸缩配置指标
       class CloudNativeAPIGatewayStrategyAutoScalerConfigMetric < TencentCloud::Common::AbstractModel
         # @param Type: 指标类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # - Resource
         # @type Type: String
         # @param ResourceName: 指标资源名称
+        # - cpu
+        # - memory
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceName: String
-        # @param TargetType: 指标目标类型
+        # @param TargetType: 指标目标类型，目前只支持百分比Utilization
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
         # @param TargetValue: 指标目标值
@@ -896,6 +900,8 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
+        deprecate :Enabled, :none, 2024, 1
+        deprecate :Enabled=, :none, 2024, 1
         deprecate :CreateTime, :none, 2024, 1
         deprecate :CreateTime=, :none, 2024, 1
         deprecate :ModifyTime, :none, 2024, 1
@@ -935,10 +941,10 @@ module TencentCloud
         # @param StartAt: 定时伸缩开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartAt: String
-        # @param TargetReplicas: 定时伸缩目标节点数
+        # @param TargetReplicas: 定时伸缩目标节点数，不超过指标伸缩中定义的最大节点数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetReplicas: Integer
-        # @param Crontab: 定时伸缩cron表达式
+        # @param Crontab: 定时伸缩cron表达式，无需输入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Crontab: String
 
@@ -1118,16 +1124,24 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayPublicNetwork返回参数结构体
       class CreateCloudNativeAPIGatewayPublicNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreatePublicNetworkResult`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = CreatePublicNetworkResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1837,6 +1851,33 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建kong客户端公网结果
+      class CreatePublicNetworkResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GroupId: 分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param NetworkId: 客户端公网网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkId: String
+
+        attr_accessor :GatewayId, :GroupId, :NetworkId
+
+        def initialize(gatewayid=nil, groupid=nil, networkid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @NetworkId = networkid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @NetworkId = params['NetworkId']
         end
       end
 

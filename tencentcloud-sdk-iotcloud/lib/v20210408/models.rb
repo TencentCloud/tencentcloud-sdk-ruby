@@ -60,10 +60,12 @@ module TencentCloud
         # @type DeviceNames: Array
         # @param TimeoutInterval: 固件升级任务，默认超时时间。 最小取值60秒，最大为3600秒
         # @type TimeoutInterval: Integer
+        # @param Type: 固件升级任务类型，默认静态升级值为空或1，动态升级值为7。
+        # @type Type: Integer
 
-        attr_accessor :ProductId, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval
+        attr_accessor :ProductId, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval, :Type
 
-        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil)
+        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil, type=nil)
           @ProductId = productid
           @FirmwareVersion = firmwareversion
           @FirmwareOriVersion = firmwareoriversion
@@ -73,6 +75,7 @@ module TencentCloud
           @FileSize = filesize
           @DeviceNames = devicenames
           @TimeoutInterval = timeoutinterval
+          @Type = type
         end
 
         def deserialize(params)
@@ -85,6 +88,7 @@ module TencentCloud
           @FileSize = params['FileSize']
           @DeviceNames = params['DeviceNames']
           @TimeoutInterval = params['TimeoutInterval']
+          @Type = params['Type']
         end
       end
 
@@ -255,8 +259,8 @@ module TencentCloud
 
         attr_accessor :Content, :DeviceName, :ProductId, :RequestId, :Result, :Scene, :Time, :Userid, :UserId
         extend Gem::Deprecate
-        deprecate :Userid, :none, 2023, 11
-        deprecate :Userid=, :none, 2023, 11
+        deprecate :Userid, :none, 2024, 1
+        deprecate :Userid=, :none, 2024, 1
 
         def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil, userid=nil)
           @Content = content
@@ -1250,8 +1254,8 @@ module TencentCloud
 
         attr_accessor :DeviceName, :Online, :LoginTime, :Version, :LastUpdateTime, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :ConnIP, :NbiotDeviceID, :LoraDevEui, :LoraMoteType, :LogLevel, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :NBIoTDeviceID, :RequestId
         extend Gem::Deprecate
-        deprecate :NbiotDeviceID, :none, 2023, 11
-        deprecate :NbiotDeviceID=, :none, 2023, 11
+        deprecate :NbiotDeviceID, :none, 2024, 1
+        deprecate :NbiotDeviceID=, :none, 2024, 1
 
         def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil, requestid=nil)
           @DeviceName = devicename
@@ -2568,8 +2572,8 @@ module TencentCloud
 
         attr_accessor :DeviceName, :Online, :LoginTime, :Version, :DeviceCert, :DevicePsk, :Tags, :DeviceType, :Imei, :Isp, :NbiotDeviceID, :ConnIP, :LastUpdateTime, :LoraDevEui, :LoraMoteType, :FirstOnlineTime, :LastOfflineTime, :CreateTime, :LogLevel, :CertState, :EnableState, :Labels, :ClientIP, :FirmwareUpdateTime, :CreateUserId, :NBIoTDeviceID
         extend Gem::Deprecate
-        deprecate :NbiotDeviceID, :none, 2023, 11
-        deprecate :NbiotDeviceID=, :none, 2023, 11
+        deprecate :NbiotDeviceID, :none, 2024, 1
+        deprecate :NbiotDeviceID=, :none, 2024, 1
 
         def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil)
           @DeviceName = devicename
@@ -2878,14 +2882,17 @@ module TencentCloud
         # @type FirmwareName: String
         # @param FirmwareDescription: 固件描述
         # @type FirmwareDescription: String
+        # @param FirmwareUserDefined: 固件用户自定义配置信息
+        # @type FirmwareUserDefined: String
 
-        attr_accessor :ProductId, :FirmwareVersion, :FirmwareName, :FirmwareDescription
+        attr_accessor :ProductId, :FirmwareVersion, :FirmwareName, :FirmwareDescription, :FirmwareUserDefined
 
-        def initialize(productid=nil, firmwareversion=nil, firmwarename=nil, firmwaredescription=nil)
+        def initialize(productid=nil, firmwareversion=nil, firmwarename=nil, firmwaredescription=nil, firmwareuserdefined=nil)
           @ProductId = productid
           @FirmwareVersion = firmwareversion
           @FirmwareName = firmwarename
           @FirmwareDescription = firmwaredescription
+          @FirmwareUserDefined = firmwareuserdefined
         end
 
         def deserialize(params)
@@ -2893,6 +2900,7 @@ module TencentCloud
           @FirmwareVersion = params['FirmwareVersion']
           @FirmwareName = params['FirmwareName']
           @FirmwareDescription = params['FirmwareDescription']
+          @FirmwareUserDefined = params['FirmwareUserDefined']
         end
       end
 
@@ -3627,8 +3635,8 @@ module TencentCloud
 
         attr_accessor :ProductDescription, :EncryptionType, :Region, :ProductType, :Format, :Platform, :Appeui, :ModelId, :ModelName, :ProductKey, :RegisterType, :ProductSecret, :RegisterLimit, :OriginProductId, :PrivateCAName, :OriginUserId, :DeviceLimit, :ForbiddenStatus, :AppEUI
         extend Gem::Deprecate
-        deprecate :Appeui, :none, 2023, 11
-        deprecate :Appeui=, :none, 2023, 11
+        deprecate :Appeui, :none, 2024, 1
+        deprecate :Appeui=, :none, 2024, 1
 
         def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil, appeui=nil)
           @ProductDescription = productdescription
@@ -4563,6 +4571,46 @@ module TencentCloud
         end
       end
 
+      # UpdateOtaTaskStatus请求参数结构体
+      class UpdateOtaTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TaskId: 固件升级任务ID
+        # @type TaskId: Integer
+        # @param Status: 固件任务取消状态
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :TaskId, :Status
+
+        def initialize(productid=nil, taskid=nil, status=nil)
+          @ProductId = productid
+          @TaskId = taskid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateOtaTaskStatus返回参数结构体
+      class UpdateOtaTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdatePrivateCA请求参数结构体
       class UpdatePrivateCARequest < TencentCloud::Common::AbstractModel
         # @param CertName: CA证书名称
@@ -4756,16 +4804,19 @@ module TencentCloud
         # @type FirmwareName: String
         # @param FirmwareDescription: 固件描述
         # @type FirmwareDescription: String
+        # @param FirmwareUserDefined: 固件用户自定义配置信息
+        # @type FirmwareUserDefined: String
 
-        attr_accessor :ProductId, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription
+        attr_accessor :ProductId, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription, :FirmwareUserDefined
 
-        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil)
+        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil, firmwareuserdefined=nil)
           @ProductId = productid
           @FirmwareVersion = firmwareversion
           @Md5sum = md5sum
           @FileSize = filesize
           @FirmwareName = firmwarename
           @FirmwareDescription = firmwaredescription
+          @FirmwareUserDefined = firmwareuserdefined
         end
 
         def deserialize(params)
@@ -4775,6 +4826,7 @@ module TencentCloud
           @FileSize = params['FileSize']
           @FirmwareName = params['FirmwareName']
           @FirmwareDescription = params['FirmwareDescription']
+          @FirmwareUserDefined = params['FirmwareUserDefined']
         end
       end
 

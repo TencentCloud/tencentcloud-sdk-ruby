@@ -2960,6 +2960,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # DescribeAttackEventInfo 接口替代
+
         # 网络攻击日志详情
 
         # @param request: Request instance for DescribeAttackLogInfo.

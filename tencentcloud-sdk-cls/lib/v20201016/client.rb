@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建告警屏蔽规则。
+
+        # @param request: Request instance for CreateAlarmShield.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateAlarmShieldRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateAlarmShieldResponse`
+        def CreateAlarmShield(request)
+          body = send_request('CreateAlarmShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建采集规则配置
 
         # @param request: Request instance for CreateConfig.
@@ -581,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于删除告警屏蔽规则。
+
+        # @param request: Request instance for DeleteAlarmShield.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteAlarmShieldRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteAlarmShieldResponse`
+        def DeleteAlarmShield(request)
+          body = send_request('DeleteAlarmShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAlarmShieldResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除采集规则配置
 
         # @param request: Request instance for DeleteConfig.
@@ -927,6 +975,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmNoticesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取告警屏蔽配置规则
+
+        # @param request: Request instance for DescribeAlarmShields.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeAlarmShieldsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeAlarmShieldsResponse`
+        def DescribeAlarmShields(request)
+          body = send_request('DescribeAlarmShields', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAlarmShieldsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1623,6 +1695,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAlarmNoticeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改告警屏蔽规则。
+
+        # @param request: Request instance for ModifyAlarmShield.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyAlarmShieldRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyAlarmShieldResponse`
+        def ModifyAlarmShield(request)
+          body = send_request('ModifyAlarmShield', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAlarmShieldResponse.new
             model.deserialize(response['Response'])
             model
           else

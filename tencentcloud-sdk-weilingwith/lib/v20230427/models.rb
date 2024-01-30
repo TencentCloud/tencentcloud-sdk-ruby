@@ -2640,10 +2640,14 @@ module TencentCloud
         # @type Field: :class:`Tencentcloud::Weilingwith.v20230427.models.CustomField`
         # @param GroupIdSet: 分组id列表，非必填
         # @type GroupIdSet: Array
+        # @param IsActive: 是否激活，默认全部，"1"激活，"0"未激活
+        # @type IsActive: String
+        # @param IsCamera: 是否为摄像头，默认全部，"true"摄像头，"false"非摄像头
+        # @type IsCamera: String
 
-        attr_accessor :WorkspaceId, :PageNumber, :PageSize, :ApplicationToken, :DeviceTypeSet, :ProductIdSet, :TagIdSet, :SpaceCodeSet, :DeviceTagSet, :WIDSet, :Field, :GroupIdSet
+        attr_accessor :WorkspaceId, :PageNumber, :PageSize, :ApplicationToken, :DeviceTypeSet, :ProductIdSet, :TagIdSet, :SpaceCodeSet, :DeviceTagSet, :WIDSet, :Field, :GroupIdSet, :IsActive, :IsCamera
 
-        def initialize(workspaceid=nil, pagenumber=nil, pagesize=nil, applicationtoken=nil, devicetypeset=nil, productidset=nil, tagidset=nil, spacecodeset=nil, devicetagset=nil, widset=nil, field=nil, groupidset=nil)
+        def initialize(workspaceid=nil, pagenumber=nil, pagesize=nil, applicationtoken=nil, devicetypeset=nil, productidset=nil, tagidset=nil, spacecodeset=nil, devicetagset=nil, widset=nil, field=nil, groupidset=nil, isactive=nil, iscamera=nil)
           @WorkspaceId = workspaceid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -2656,6 +2660,8 @@ module TencentCloud
           @WIDSet = widset
           @Field = field
           @GroupIdSet = groupidset
+          @IsActive = isactive
+          @IsCamera = iscamera
         end
 
         def deserialize(params)
@@ -2674,6 +2680,8 @@ module TencentCloud
             @Field.deserialize(params['Field'])
           end
           @GroupIdSet = params['GroupIdSet']
+          @IsActive = params['IsActive']
+          @IsCamera = params['IsCamera']
         end
       end
 
@@ -4692,7 +4700,7 @@ module TencentCloud
         # @param ProductName: 产品名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductName: String
-        # @param ProductAbility: 产品能力:信令数据、音视频。第0位表示信令数据、第1表示音视频 ，默认为1（信令数据）
+        # @param ProductAbility: 产品能力:信令数据、音视频。二进制数值中第0位表示信令数据、第1位表示音视频 。1（信令数据），3（具有信令数据以及音视频能力）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductAbility: Integer
         # @param SpaceInfoSet: 设备位置信息
@@ -4734,10 +4742,16 @@ module TencentCloud
         # @param GroupInfo: 分组信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupInfo: String
+        # @param DeviceStatus: 通信在/离线状态（online=normal+fault，offline）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceStatus: String
+        # @param Status: 设备业务状态（normal、fault、offline）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
 
-        attr_accessor :WID, :DeviceName, :DeviceTypeCode, :DeviceTypeName, :ProductId, :ProductName, :ProductAbility, :SpaceInfoSet, :ModelId, :ModelName, :DeviceTagSet, :IsActive, :ActiveTime, :IsLive, :ParentWID, :ParentWIDName, :SN, :Location, :FieldList, :GroupInfo
+        attr_accessor :WID, :DeviceName, :DeviceTypeCode, :DeviceTypeName, :ProductId, :ProductName, :ProductAbility, :SpaceInfoSet, :ModelId, :ModelName, :DeviceTagSet, :IsActive, :ActiveTime, :IsLive, :ParentWID, :ParentWIDName, :SN, :Location, :FieldList, :GroupInfo, :DeviceStatus, :Status
 
-        def initialize(wid=nil, devicename=nil, devicetypecode=nil, devicetypename=nil, productid=nil, productname=nil, productability=nil, spaceinfoset=nil, modelid=nil, modelname=nil, devicetagset=nil, isactive=nil, activetime=nil, islive=nil, parentwid=nil, parentwidname=nil, sn=nil, location=nil, fieldlist=nil, groupinfo=nil)
+        def initialize(wid=nil, devicename=nil, devicetypecode=nil, devicetypename=nil, productid=nil, productname=nil, productability=nil, spaceinfoset=nil, modelid=nil, modelname=nil, devicetagset=nil, isactive=nil, activetime=nil, islive=nil, parentwid=nil, parentwidname=nil, sn=nil, location=nil, fieldlist=nil, groupinfo=nil, devicestatus=nil, status=nil)
           @WID = wid
           @DeviceName = devicename
           @DeviceTypeCode = devicetypecode
@@ -4758,6 +4772,8 @@ module TencentCloud
           @Location = location
           @FieldList = fieldlist
           @GroupInfo = groupinfo
+          @DeviceStatus = devicestatus
+          @Status = status
         end
 
         def deserialize(params)
@@ -4798,6 +4814,8 @@ module TencentCloud
             end
           end
           @GroupInfo = params['GroupInfo']
+          @DeviceStatus = params['DeviceStatus']
+          @Status = params['Status']
         end
       end
 
@@ -6250,7 +6268,7 @@ module TencentCloud
         # @param ProductType: 产品型号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductType: String
-        # @param ProductAbility: 产品能力:信令数据、音视频，用二进制表示，第0位表示信令数据、第1表示音视频 ，默认为1（信令数据）
+        # @param ProductAbility: 产品能力:信令数据、音视频。二进制数值中第0位表示信令数据、第1位表示音视频 。1（信令数据），3（具有信令数据以及音视频能力）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductAbility: Integer
         # @param Manufacturer: 生产厂商
