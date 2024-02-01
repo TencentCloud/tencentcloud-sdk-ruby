@@ -2225,13 +2225,18 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ReportType: 指定申请的报告类型，可选类型如下：
+        # <ul><li> **0** :合同签署报告（默认）</li>
+        # <li> **1** :公证处核验报告</li></ul>
+        # @type ReportType: Integer
 
-        attr_accessor :Operator, :FlowId, :Agent
+        attr_accessor :Operator, :FlowId, :Agent, :ReportType
 
-        def initialize(operator=nil, flowid=nil, agent=nil)
+        def initialize(operator=nil, flowid=nil, agent=nil, reporttype=nil)
           @Operator = operator
           @FlowId = flowid
           @Agent = agent
+          @ReportType = reporttype
         end
 
         def deserialize(params)
@@ -2244,6 +2249,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ReportType = params['ReportType']
         end
       end
 
@@ -5510,13 +5516,18 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param ReportType: 指定申请的报告类型，可选类型如下：
+        # <ul><li> **0** :合同签署报告（默认）</li>
+        # <li> **1** :公证处核验报告</li></ul>
+        # @type ReportType: Integer
 
-        attr_accessor :Operator, :ReportId, :Agent
+        attr_accessor :Operator, :ReportId, :Agent, :ReportType
 
-        def initialize(operator=nil, reportid=nil, agent=nil)
+        def initialize(operator=nil, reportid=nil, agent=nil, reporttype=nil)
           @Operator = operator
           @ReportId = reportid
           @Agent = agent
+          @ReportType = reporttype
         end
 
         def deserialize(params)
@@ -5529,6 +5540,7 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @ReportType = params['ReportType']
         end
       end
 

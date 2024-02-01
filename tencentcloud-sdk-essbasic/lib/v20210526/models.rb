@@ -4968,16 +4968,21 @@ module TencentCloud
         # @type FlowId: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param ReportType: 指定申请的报告类型，可选类型如下：
+        # <ul><li> **0** :合同签署报告（默认）</li>
+        # <li> **1** :公证处核验报告</li></ul>
+        # @type ReportType: Integer
 
-        attr_accessor :Agent, :FlowId, :Operator
+        attr_accessor :Agent, :FlowId, :Operator, :ReportType
         extend Gem::Deprecate
         deprecate :Operator, :none, 2024, 1
         deprecate :Operator=, :none, 2024, 1
 
-        def initialize(agent=nil, flowid=nil, operator=nil)
+        def initialize(agent=nil, flowid=nil, operator=nil, reporttype=nil)
           @Agent = agent
           @FlowId = flowid
           @Operator = operator
+          @ReportType = reporttype
         end
 
         def deserialize(params)
@@ -4990,6 +4995,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @ReportType = params['ReportType']
         end
       end
 
@@ -5728,6 +5734,8 @@ module TencentCloud
         # <li> **APP** :第三方App或小程序跳转电子签小程序的path, App或者小程序跳转适合此类型</li>
         # <li> **LONGURL2WEIXINAPP** :跳转电子签小程序的链接, H5跳转适合此类型，此时返回长链</li></ul>
 
+        # **注：**动态签署人场景，如果签署链接类型设置为`APP`，则仅支持跳转到封面页。
+
         # 详细使用场景可以参数接口说明中的 **主要使用场景可以更加EndPoint分类如下**
         # @type Endpoint: String
         # @param GenerateType: 签署链接生成类型，可以选择的类型如下
@@ -6052,16 +6060,21 @@ module TencentCloud
         # @type ReportId: String
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param ReportType: 指定申请的报告类型，可选类型如下：
+        # <ul><li> **0** :合同签署报告（默认）</li>
+        # <li> **1** :公证处核验报告</li></ul>
+        # @type ReportType: Integer
 
-        attr_accessor :Agent, :ReportId, :Operator
+        attr_accessor :Agent, :ReportId, :Operator, :ReportType
         extend Gem::Deprecate
         deprecate :Operator, :none, 2024, 1
         deprecate :Operator=, :none, 2024, 1
 
-        def initialize(agent=nil, reportid=nil, operator=nil)
+        def initialize(agent=nil, reportid=nil, operator=nil, reporttype=nil)
           @Agent = agent
           @ReportId = reportid
           @Operator = operator
+          @ReportType = reporttype
         end
 
         def deserialize(params)
@@ -6074,6 +6087,7 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @ReportType = params['ReportType']
         end
       end
 
