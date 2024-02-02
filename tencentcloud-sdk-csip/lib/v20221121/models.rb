@@ -381,6 +381,40 @@ module TencentCloud
         end
       end
 
+      # 资产类型和实例类型的映射
+      class AssetInstanceTypeMap < TencentCloud::Common::AbstractModel
+        # @param Text: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Text: String
+        # @param Value: 资产类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param InstanceTypeList: 资产类型和实例类型映射关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceTypeList: Array
+
+        attr_accessor :Text, :Value, :InstanceTypeList
+
+        def initialize(text=nil, value=nil, instancetypelist=nil)
+          @Text = text
+          @Value = value
+          @InstanceTypeList = instancetypelist
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Value = params['Value']
+          unless params['InstanceTypeList'].nil?
+            @InstanceTypeList = []
+            params['InstanceTypeList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @InstanceTypeList << filterdataobject_tmp
+            end
+          end
+        end
+      end
+
       # 安全中心资产标签
       class AssetTag < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签的key值,可以是字母、数字、下划线
@@ -1099,10 +1133,46 @@ module TencentCloud
         # @param IsNewAsset: 1新资产；0 非新资产
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsNewAsset: Integer
+        # @param CVMAgentStatus: 0 未安装  1安装 2:安装中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMAgentStatus: Integer
+        # @param CVMStatus: 1:开启 0:未开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMStatus: Integer
+        # @param DefenseModel: 1:客户端已安装 0：未安装 2: Agentless
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefenseModel: Integer
+        # @param TatStatus: 1:已安装 0:未安装
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TatStatus: Integer
+        # @param CpuTrend: cpu趋势图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuTrend: Array
+        # @param MemoryTrend: 内存趋势图
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemoryTrend: Array
+        # @param AgentStatus: 1:agent在线 0:agent离线 2:主机离线
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentStatus: Integer
+        # @param CloseDefenseCount: 本月防护关闭次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloseDefenseCount: Integer
+        # @param InstanceState: 运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
+        # @param SecurityGroupIds: 安全组数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecurityGroupIds: Array
+        # @param AgentMemRss: 物理内存占用KB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentMemRss: Integer
+        # @param AgentCpuPer: CPU使用率百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentCpuPer: Float
 
-        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset
+        attr_accessor :AssetId, :AssetName, :AssetType, :Region, :CWPStatus, :AssetCreateTime, :PublicIp, :PrivateIp, :VpcId, :VpcName, :AppId, :Uin, :NickName, :AvailableArea, :IsCore, :SubnetId, :SubnetName, :InstanceUuid, :InstanceQUuid, :OsName, :PartitionCount, :CPUInfo, :CPUSize, :CPULoad, :MemorySize, :MemoryLoad, :DiskSize, :DiskLoad, :AccountCount, :ProcessCount, :AppCount, :PortCount, :Attack, :Access, :Intercept, :InBandwidth, :OutBandwidth, :InFlow, :OutFlow, :LastScanTime, :NetWorkOut, :PortRisk, :VulnerabilityRisk, :ConfigurationRisk, :ScanTask, :Tag, :MemberId, :Os, :RiskExposure, :BASAgentStatus, :IsNewAsset, :CVMAgentStatus, :CVMStatus, :DefenseModel, :TatStatus, :CpuTrend, :MemoryTrend, :AgentStatus, :CloseDefenseCount, :InstanceState, :SecurityGroupIds, :AgentMemRss, :AgentCpuPer
 
-        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil)
+        def initialize(assetid=nil, assetname=nil, assettype=nil, region=nil, cwpstatus=nil, assetcreatetime=nil, publicip=nil, privateip=nil, vpcid=nil, vpcname=nil, appid=nil, uin=nil, nickname=nil, availablearea=nil, iscore=nil, subnetid=nil, subnetname=nil, instanceuuid=nil, instancequuid=nil, osname=nil, partitioncount=nil, cpuinfo=nil, cpusize=nil, cpuload=nil, memorysize=nil, memoryload=nil, disksize=nil, diskload=nil, accountcount=nil, processcount=nil, appcount=nil, portcount=nil, attack=nil, access=nil, intercept=nil, inbandwidth=nil, outbandwidth=nil, inflow=nil, outflow=nil, lastscantime=nil, networkout=nil, portrisk=nil, vulnerabilityrisk=nil, configurationrisk=nil, scantask=nil, tag=nil, memberid=nil, os=nil, riskexposure=nil, basagentstatus=nil, isnewasset=nil, cvmagentstatus=nil, cvmstatus=nil, defensemodel=nil, tatstatus=nil, cputrend=nil, memorytrend=nil, agentstatus=nil, closedefensecount=nil, instancestate=nil, securitygroupids=nil, agentmemrss=nil, agentcpuper=nil)
           @AssetId = assetid
           @AssetName = assetname
           @AssetType = assettype
@@ -1154,6 +1224,18 @@ module TencentCloud
           @RiskExposure = riskexposure
           @BASAgentStatus = basagentstatus
           @IsNewAsset = isnewasset
+          @CVMAgentStatus = cvmagentstatus
+          @CVMStatus = cvmstatus
+          @DefenseModel = defensemodel
+          @TatStatus = tatstatus
+          @CpuTrend = cputrend
+          @MemoryTrend = memorytrend
+          @AgentStatus = agentstatus
+          @CloseDefenseCount = closedefensecount
+          @InstanceState = instancestate
+          @SecurityGroupIds = securitygroupids
+          @AgentMemRss = agentmemrss
+          @AgentCpuPer = agentcpuper
         end
 
         def deserialize(params)
@@ -1215,6 +1297,32 @@ module TencentCloud
           @RiskExposure = params['RiskExposure']
           @BASAgentStatus = params['BASAgentStatus']
           @IsNewAsset = params['IsNewAsset']
+          @CVMAgentStatus = params['CVMAgentStatus']
+          @CVMStatus = params['CVMStatus']
+          @DefenseModel = params['DefenseModel']
+          @TatStatus = params['TatStatus']
+          unless params['CpuTrend'].nil?
+            @CpuTrend = []
+            params['CpuTrend'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @CpuTrend << element_tmp
+            end
+          end
+          unless params['MemoryTrend'].nil?
+            @MemoryTrend = []
+            params['MemoryTrend'].each do |i|
+              element_tmp = Element.new
+              element_tmp.deserialize(i)
+              @MemoryTrend << element_tmp
+            end
+          end
+          @AgentStatus = params['AgentStatus']
+          @CloseDefenseCount = params['CloseDefenseCount']
+          @InstanceState = params['InstanceState']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @AgentMemRss = params['AgentMemRss']
+          @AgentCpuPer = params['AgentCpuPer']
         end
       end
 
@@ -1859,16 +1967,20 @@ module TencentCloud
 
       # DescribeCVMAssets请求参数结构体
       class DescribeCVMAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param Filter: -
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :Filter
+        attr_accessor :MemberId, :Filter
 
-        def initialize(filter=nil)
+        def initialize(memberid=nil, filter=nil)
+          @MemberId = memberid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -1911,12 +2023,15 @@ module TencentCloud
         # @param OsList: os列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OsList: Array
+        # @param AssetMapInstanceTypeList: 资产类型和实例类型的对应关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetMapInstanceTypeList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :RequestId
+        attr_accessor :Total, :Data, :RegionList, :DefenseStatusList, :VpcList, :AssetTypeList, :SystemTypeList, :IpTypeList, :AppIdList, :ZoneList, :OsList, :AssetMapInstanceTypeList, :RequestId
 
-        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, requestid=nil)
+        def initialize(total=nil, data=nil, regionlist=nil, defensestatuslist=nil, vpclist=nil, assettypelist=nil, systemtypelist=nil, iptypelist=nil, appidlist=nil, zonelist=nil, oslist=nil, assetmapinstancetypelist=nil, requestid=nil)
           @Total = total
           @Data = data
           @RegionList = regionlist
@@ -1928,6 +2043,7 @@ module TencentCloud
           @AppIdList = appidlist
           @ZoneList = zonelist
           @OsList = oslist
+          @AssetMapInstanceTypeList = assetmapinstancetypelist
           @RequestId = requestid
         end
 
@@ -2011,6 +2127,14 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @OsList << filterdataobject_tmp
+            end
+          end
+          unless params['AssetMapInstanceTypeList'].nil?
+            @AssetMapInstanceTypeList = []
+            params['AssetMapInstanceTypeList'].each do |i|
+              assetinstancetypemap_tmp = AssetInstanceTypeMap.new
+              assetinstancetypemap_tmp.deserialize(i)
+              @AssetMapInstanceTypeList << assetinstancetypemap_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4067,19 +4191,23 @@ module TencentCloud
 
       # DescribeVULRiskAdvanceCFGList请求参数结构体
       class DescribeVULRiskAdvanceCFGListRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
         # @param TaskId: 任务ID
         # @type TaskId: String
         # @param Filter: 过滤条件
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :TaskId, :Filter
+        attr_accessor :MemberId, :TaskId, :Filter
 
-        def initialize(taskid=nil, filter=nil)
+        def initialize(memberid=nil, taskid=nil, filter=nil)
+          @MemberId = memberid
           @TaskId = taskid
           @Filter = filter
         end
 
         def deserialize(params)
+          @MemberId = params['MemberId']
           @TaskId = params['TaskId']
           unless params['Filter'].nil?
             @Filter = Filter.new
@@ -4104,17 +4232,21 @@ module TencentCloud
         # @param CheckFromLists: 识别来源过滤列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CheckFromLists: Array
+        # @param VulTagList: 漏洞标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VulTagList: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Data, :TotalCount, :RiskLevelLists, :VULTypeLists, :CheckFromLists, :RequestId
+        attr_accessor :Data, :TotalCount, :RiskLevelLists, :VULTypeLists, :CheckFromLists, :VulTagList, :RequestId
 
-        def initialize(data=nil, totalcount=nil, risklevellists=nil, vultypelists=nil, checkfromlists=nil, requestid=nil)
+        def initialize(data=nil, totalcount=nil, risklevellists=nil, vultypelists=nil, checkfromlists=nil, vultaglist=nil, requestid=nil)
           @Data = data
           @TotalCount = totalcount
           @RiskLevelLists = risklevellists
           @VULTypeLists = vultypelists
           @CheckFromLists = checkfromlists
+          @VulTagList = vultaglist
           @RequestId = requestid
         end
 
@@ -4150,6 +4282,14 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @CheckFromLists << filterdataobject_tmp
+            end
+          end
+          unless params['VulTagList'].nil?
+            @VulTagList = []
+            params['VulTagList'].each do |i|
+              filterdataobject_tmp = FilterDataObject.new
+              filterdataobject_tmp.deserialize(i)
+              @VulTagList << filterdataobject_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4450,6 +4590,28 @@ module TencentCloud
           @VerifyTXTRecord = params['VerifyTXTRecord']
           @VerifyStatus = params['VerifyStatus']
           @BotAccessCount = params['BotAccessCount']
+        end
+      end
+
+      # 统计条目
+      class Element < TencentCloud::Common::AbstractModel
+        # @param Key: 统计类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 统计对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -5437,27 +5599,27 @@ module TencentCloud
       class RiskCenterStatusKey < TencentCloud::Common::AbstractModel
         # @param Id: 风险ID
         # @type Id: String
-        # @param AppId: APP ID
-        # @type AppId: String
         # @param PublicIPDomain: 公网IP/域名
         # @type PublicIPDomain: String
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param AppId: APP ID
+        # @type AppId: String
 
-        attr_accessor :Id, :AppId, :PublicIPDomain, :InstanceId
+        attr_accessor :Id, :PublicIPDomain, :InstanceId, :AppId
 
-        def initialize(id=nil, appid=nil, publicipdomain=nil, instanceid=nil)
+        def initialize(id=nil, publicipdomain=nil, instanceid=nil, appid=nil)
           @Id = id
-          @AppId = appid
           @PublicIPDomain = publicipdomain
           @InstanceId = instanceid
+          @AppId = appid
         end
 
         def deserialize(params)
           @Id = params['Id']
-          @AppId = params['AppId']
           @PublicIPDomain = params['PublicIPDomain']
           @InstanceId = params['InstanceId']
+          @AppId = params['AppId']
         end
       end
 
@@ -5907,6 +6069,39 @@ module TencentCloud
         def deserialize(params)
           @Title = params['Title']
           @Body = params['Body']
+        end
+      end
+
+      # 产品支持情况
+      class ServiceSupport < TencentCloud::Common::AbstractModel
+        # @param ServiceName: 产品名称:
+        # "cfw_waf_virtual", "cwp_detect", "cwp_defense", "cwp_fix"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param SupportHandledCount: 已处理的资产总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportHandledCount: Integer
+        # @param SupportTotalCount: 支持的资产总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportTotalCount: Integer
+        # @param IsSupport: 是否支持该产品1支持；0不支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSupport: Boolean
+
+        attr_accessor :ServiceName, :SupportHandledCount, :SupportTotalCount, :IsSupport
+
+        def initialize(servicename=nil, supporthandledcount=nil, supporttotalcount=nil, issupport=nil)
+          @ServiceName = servicename
+          @SupportHandledCount = supporthandledcount
+          @SupportTotalCount = supporttotalcount
+          @IsSupport = issupport
+        end
+
+        def deserialize(params)
+          @ServiceName = params['ServiceName']
+          @SupportHandledCount = params['SupportHandledCount']
+          @SupportTotalCount = params['SupportTotalCount']
+          @IsSupport = params['IsSupport']
         end
       end
 
@@ -6420,10 +6615,28 @@ module TencentCloud
         # @param ImpactComponent: 影响组件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImpactComponent: String
+        # @param Payload: 漏洞Payload
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Payload: String
+        # @param References: 技术参考
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type References: String
+        # @param CVSS: cvss评分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVSS: String
+        # @param AttackHeat: 攻击热度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttackHeat: String
+        # @param ServiceSupport: 安全产品支持情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceSupport: Array
+        # @param RecentScanTime: 最新检测时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecentScanTime: String
 
-        attr_accessor :RiskId, :VULName, :RiskLevel, :CheckFrom, :Enable, :VULType, :ImpactVersion, :CVE, :VULTag, :FixMethod, :ReleaseTime, :EMGCVulType, :VULDescribe, :ImpactComponent
+        attr_accessor :RiskId, :VULName, :RiskLevel, :CheckFrom, :Enable, :VULType, :ImpactVersion, :CVE, :VULTag, :FixMethod, :ReleaseTime, :EMGCVulType, :VULDescribe, :ImpactComponent, :Payload, :References, :CVSS, :AttackHeat, :ServiceSupport, :RecentScanTime
 
-        def initialize(riskid=nil, vulname=nil, risklevel=nil, checkfrom=nil, enable=nil, vultype=nil, impactversion=nil, cve=nil, vultag=nil, fixmethod=nil, releasetime=nil, emgcvultype=nil, vuldescribe=nil, impactcomponent=nil)
+        def initialize(riskid=nil, vulname=nil, risklevel=nil, checkfrom=nil, enable=nil, vultype=nil, impactversion=nil, cve=nil, vultag=nil, fixmethod=nil, releasetime=nil, emgcvultype=nil, vuldescribe=nil, impactcomponent=nil, payload=nil, references=nil, cvss=nil, attackheat=nil, servicesupport=nil, recentscantime=nil)
           @RiskId = riskid
           @VULName = vulname
           @RiskLevel = risklevel
@@ -6438,6 +6651,12 @@ module TencentCloud
           @EMGCVulType = emgcvultype
           @VULDescribe = vuldescribe
           @ImpactComponent = impactcomponent
+          @Payload = payload
+          @References = references
+          @CVSS = cvss
+          @AttackHeat = attackheat
+          @ServiceSupport = servicesupport
+          @RecentScanTime = recentscantime
         end
 
         def deserialize(params)
@@ -6455,6 +6674,19 @@ module TencentCloud
           @EMGCVulType = params['EMGCVulType']
           @VULDescribe = params['VULDescribe']
           @ImpactComponent = params['ImpactComponent']
+          @Payload = params['Payload']
+          @References = params['References']
+          @CVSS = params['CVSS']
+          @AttackHeat = params['AttackHeat']
+          unless params['ServiceSupport'].nil?
+            @ServiceSupport = []
+            params['ServiceSupport'].each do |i|
+              servicesupport_tmp = ServiceSupport.new
+              servicesupport_tmp.deserialize(i)
+              @ServiceSupport << servicesupport_tmp
+            end
+          end
+          @RecentScanTime = params['RecentScanTime']
         end
       end
 

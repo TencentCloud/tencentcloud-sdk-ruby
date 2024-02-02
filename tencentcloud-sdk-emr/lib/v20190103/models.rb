@@ -602,10 +602,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2024, 1
-        deprecate :Ftitle=, :none, 2024, 1
-        deprecate :Config, :none, 2024, 1
-        deprecate :Config=, :none, 2024, 1
+        deprecate :Ftitle, :none, 2024, 2
+        deprecate :Ftitle=, :none, 2024, 2
+        deprecate :Config, :none, 2024, 2
+        deprecate :Config=, :none, 2024, 2
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil)
           @Id = id
@@ -1518,6 +1518,7 @@ module TencentCloud
         # @param Offset: 页编号，默认值为0，表示第一页。
         # @type Offset: Integer
         # @param Limit: 每页返回数量，默认值为100，最大值为100。
+        # 如果offset和limit都不填，或者都填0，则返回全部数据
         # @type Limit: Integer
         # @param HardwareResourceType: 资源类型:支持all/host/pod，默认为all
         # @type HardwareResourceType: String
@@ -1698,7 +1699,7 @@ module TencentCloud
         # @type IsAsc: Integer
         # @param Offset: 页号
         # @type Offset: Integer
-        # @param Limit: 页容量
+        # @param Limit: 页容量，范围为[10,100]
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Queues, :Users, :ApplicationTypes, :GroupBy, :OrderBy, :IsAsc, :Offset, :Limit
@@ -2024,7 +2025,8 @@ module TencentCloud
         # @type DisplayStrategy: String
         # @param Offset: 页编号，默认值为0，表示第一页。
         # @type Offset: Integer
-        # @param Limit: 每页返回数量，默认值为10，最大值为100。
+        # @param Limit: 每页返回数量，默认值为100，最大值为100。
+        # 如果limit和offset都为0，则查询全部记录；
         # @type Limit: Integer
         # @param OrderField: 排序字段。取值范围：<li>clusterId：表示按照实例ID排序。</li><li>addTime：表示按照实例创建时间排序。</li><li>status：表示按照实例的状态码排序。</li>
         # @type OrderField: String
@@ -2103,7 +2105,7 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param Offset: 页编号，默认值为0，表示第一页。
         # @type Offset: Integer
-        # @param Limit: 每页返回数量，默认值为10，最大值为100。
+        # @param Limit: 每页返回数量，默认值为100，最大值为100。
         # @type Limit: Integer
         # @param ProjectId: 建议必填-1，表示拉取所有项目下的集群。
         # 不填默认值为0，表示拉取默认项目下的集群。
@@ -2287,7 +2289,8 @@ module TencentCloud
         # @type InstanceId: String
         # @param PageNo: 页码
         # @type PageNo: Integer
-        # @param PageSize: 分页的大小
+        # @param PageSize: 分页的大小。
+        # 默认查询全部；PageNo和PageSize不合理的设置，都是查询全部
         # @type PageSize: Integer
         # @param UserManagerFilter: 查询用户列表过滤器
         # @type UserManagerFilter: :class:`Tencentcloud::Emr.v20190103.models.UserManagerFilter`

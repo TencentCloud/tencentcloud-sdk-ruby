@@ -3704,7 +3704,7 @@ module TencentCloud
         # day：天粒度，指定查询区间大于 31 天，可返回天粒度明细数据
         # @type Interval: String
         # @param Detail: 多域名查询时，默认（false)返回多个域名的汇总数据
-        # 可按需指定为 true，返回每一个 Domain 的明细数据（statusCode 指标暂不支持）
+        # 可按需指定为 true，返回每一个 Domain 的明细数据（statusCode、2xx、3xx、4xx、5xx 指标暂不支持）
         # @type Detail: Boolean
         # @param Isp: 查询中国境内CDN数据时，指定运营商查询，不填充表示查询所有运营商
         # 运营商编码可以查看 [运营商编码映射](https://cloud.tencent.com/document/product/228/6316#.E5.8C.BA.E5.9F.9F-.2F-.E8.BF.90.E8.90.A5.E5.95.86.E6.98.A0.E5.B0.84.E8.A1.A8)
@@ -4951,7 +4951,7 @@ module TencentCloud
         # day：天粒度，指定查询区间大于 31 天，可返回天粒度明细数据
         # @type Interval: String
         # @param Detail: Domains 传入多个时，默认（false)返回多个域名的汇总数据
-        # 可按需指定为 true，返回每一个 Domain 的明细数据（statusCode 指标暂不支持）
+        # 可按需指定为 true，返回每一个 Domain 的明细数据（statusCode、2xx、3xx、4xx、5xx 指标暂不支持）
         # @type Detail: Boolean
         # @param Area: 指定服务地域查询，不填充表示查询中国境内 CDN 数据
         # mainland：指定查询中国境内 CDN 数据

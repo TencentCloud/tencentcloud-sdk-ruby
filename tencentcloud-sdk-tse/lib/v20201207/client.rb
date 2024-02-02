@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 弹性伸缩策略批量绑定网关分组
+
+        # @param request: Request instance for BindAutoScalerResourceStrategyToGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::BindAutoScalerResourceStrategyToGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::BindAutoScalerResourceStrategyToGroupsResponse`
+        def BindAutoScalerResourceStrategyToGroups(request)
+          body = send_request('BindAutoScalerResourceStrategyToGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindAutoScalerResourceStrategyToGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭 WAF 防护
 
         # @param request: Request instance for CloseWafProtection.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CloseWafProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建弹性伸缩策略
+
+        # @param request: Request instance for CreateAutoScalerResourceStrategy.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateAutoScalerResourceStrategyRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateAutoScalerResourceStrategyResponse`
+        def CreateAutoScalerResourceStrategy(request)
+          body = send_request('CreateAutoScalerResourceStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAutoScalerResourceStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -317,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除弹性伸缩策略
+
+        # @param request: Request instance for DeleteAutoScalerResourceStrategy.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteAutoScalerResourceStrategyRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteAutoScalerResourceStrategyResponse`
+        def DeleteAutoScalerResourceStrategy(request)
+          body = send_request('DeleteAutoScalerResourceStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAutoScalerResourceStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除云原生API网关实例
 
         # @param request: Request instance for DeleteCloudNativeAPIGateway.
@@ -567,6 +639,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteWafDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看弹性伸缩策略列表
+
+        # @param request: Request instance for DescribeAutoScalerResourceStrategies.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeAutoScalerResourceStrategiesRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeAutoScalerResourceStrategiesResponse`
+        def DescribeAutoScalerResourceStrategies(request)
+          body = send_request('DescribeAutoScalerResourceStrategies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoScalerResourceStrategiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看弹性伸缩策略绑定的网关分组
+
+        # @param request: Request instance for DescribeAutoScalerResourceStrategyBindingGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeAutoScalerResourceStrategyBindingGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeAutoScalerResourceStrategyBindingGroupsResponse`
+        def DescribeAutoScalerResourceStrategyBindingGroups(request)
+          body = send_request('DescribeAutoScalerResourceStrategyBindingGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoScalerResourceStrategyBindingGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -989,6 +1109,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云原生API网关实例公网详情
+
+        # @param request: Request instance for DescribePublicNetwork.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribePublicNetworkRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribePublicNetworkResponse`
+        def DescribePublicNetwork(request)
+          body = send_request('DescribePublicNetwork', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePublicNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询引擎实例访问地址
 
         # @param request: Request instance for DescribeSREInstanceAccessAddress.
@@ -1143,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeZookeeperServerInterfacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新弹性伸缩策略
+
+        # @param request: Request instance for ModifyAutoScalerResourceStrategy.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyAutoScalerResourceStrategyRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyAutoScalerResourceStrategyResponse`
+        def ModifyAutoScalerResourceStrategy(request)
+          body = send_request('ModifyAutoScalerResourceStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoScalerResourceStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1455,6 +1623,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OpenWafProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 弹性伸缩策略批量解绑网关分组
+
+        # @param request: Request instance for UnbindAutoScalerResourceStrategyFromGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::UnbindAutoScalerResourceStrategyFromGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::UnbindAutoScalerResourceStrategyFromGroupsResponse`
+        def UnbindAutoScalerResourceStrategyFromGroups(request)
+          body = send_request('UnbindAutoScalerResourceStrategyFromGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindAutoScalerResourceStrategyFromGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -4711,8 +4711,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 1
-        deprecate :Decription=, :none, 2024, 1
+        deprecate :Decription, :none, 2024, 2
+        deprecate :Decription=, :none, 2024, 2
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -19512,20 +19512,38 @@ module TencentCloud
         # @type NetAttackEnable: Integer
         # @param NetAttackAlarmStatus: 0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略
         # @type NetAttackAlarmStatus: Integer
+        # @param Scope: 1 全部旗舰版主机，0 InstanceIds列表主机
+        # @type Scope: Integer
+        # @param InstanceIds: 自选主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIds: Array
+        # @param ExcludeInstanceIds: 自选排除主机
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeInstanceIds: Array
+        # @param AutoInclude: 新增资产自动包含 0 不包含 1包含
+        # @type AutoInclude: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus, :RequestId
+        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus, :Scope, :InstanceIds, :ExcludeInstanceIds, :AutoInclude, :RequestId
 
-        def initialize(netattackenable=nil, netattackalarmstatus=nil, requestid=nil)
+        def initialize(netattackenable=nil, netattackalarmstatus=nil, scope=nil, instanceids=nil, excludeinstanceids=nil, autoinclude=nil, requestid=nil)
           @NetAttackEnable = netattackenable
           @NetAttackAlarmStatus = netattackalarmstatus
+          @Scope = scope
+          @InstanceIds = instanceids
+          @ExcludeInstanceIds = excludeinstanceids
+          @AutoInclude = autoinclude
           @RequestId = requestid
         end
 
         def deserialize(params)
           @NetAttackEnable = params['NetAttackEnable']
           @NetAttackAlarmStatus = params['NetAttackAlarmStatus']
+          @Scope = params['Scope']
+          @InstanceIds = params['InstanceIds']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
+          @AutoInclude = params['AutoInclude']
           @RequestId = params['RequestId']
         end
       end
@@ -24404,16 +24422,27 @@ module TencentCloud
         # @type Quuids: Array
         # @param FlagshipCount: 当前旗舰版主机数量
         # @type FlagshipCount: Integer
+        # @param InstanceIds: 影响主机id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIds: Array
+        # @param AutoInclude: 新增旗舰版主机自动加入;1是，0否
+        # @type AutoInclude: Integer
+        # @param ExcludeInstanceIds: 排除的主机id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeInstanceIds: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Enable, :Scope, :Quuids, :FlagshipCount, :RequestId
+        attr_accessor :Enable, :Scope, :Quuids, :FlagshipCount, :InstanceIds, :AutoInclude, :ExcludeInstanceIds, :RequestId
 
-        def initialize(enable=nil, scope=nil, quuids=nil, flagshipcount=nil, requestid=nil)
+        def initialize(enable=nil, scope=nil, quuids=nil, flagshipcount=nil, instanceids=nil, autoinclude=nil, excludeinstanceids=nil, requestid=nil)
           @Enable = enable
           @Scope = scope
           @Quuids = quuids
           @FlagshipCount = flagshipcount
+          @InstanceIds = instanceids
+          @AutoInclude = autoinclude
+          @ExcludeInstanceIds = excludeinstanceids
           @RequestId = requestid
         end
 
@@ -24422,6 +24451,9 @@ module TencentCloud
           @Scope = params['Scope']
           @Quuids = params['Quuids']
           @FlagshipCount = params['FlagshipCount']
+          @InstanceIds = params['InstanceIds']
+          @AutoInclude = params['AutoInclude']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
           @RequestId = params['RequestId']
         end
       end
@@ -28469,8 +28501,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 1
-        deprecate :Fileds=, :none, 2024, 1
+        deprecate :Fileds, :none, 2024, 2
+        deprecate :Fileds=, :none, 2024, 2
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -34661,17 +34693,33 @@ module TencentCloud
         # @type NetAttackEnable: Integer
         # @param NetAttackAlarmStatus: 0 新增告警事件默认待处理，1新增告警事件默认已处理，3新增告警事件默认忽略
         # @type NetAttackAlarmStatus: Integer
+        # @param Scope: 1 全部旗舰版主机，0 Quuids列表主机
+        # @type Scope: Integer
+        # @param InstanceIds: 自选主机
+        # @type InstanceIds: Array
+        # @param ExcludeInstanceIds: 自选排除的主机
+        # @type ExcludeInstanceIds: Array
+        # @param AutoInclude: 新增资产自动包含 0 不包含 1包含
+        # @type AutoInclude: Integer
 
-        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus
+        attr_accessor :NetAttackEnable, :NetAttackAlarmStatus, :Scope, :InstanceIds, :ExcludeInstanceIds, :AutoInclude
 
-        def initialize(netattackenable=nil, netattackalarmstatus=nil)
+        def initialize(netattackenable=nil, netattackalarmstatus=nil, scope=nil, instanceids=nil, excludeinstanceids=nil, autoinclude=nil)
           @NetAttackEnable = netattackenable
           @NetAttackAlarmStatus = netattackalarmstatus
+          @Scope = scope
+          @InstanceIds = instanceids
+          @ExcludeInstanceIds = excludeinstanceids
+          @AutoInclude = autoinclude
         end
 
         def deserialize(params)
           @NetAttackEnable = params['NetAttackEnable']
           @NetAttackAlarmStatus = params['NetAttackAlarmStatus']
+          @Scope = params['Scope']
+          @InstanceIds = params['InstanceIds']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
+          @AutoInclude = params['AutoInclude']
         end
       end
 
@@ -35103,21 +35151,33 @@ module TencentCloud
         # @type Enable: Integer
         # @param Scope: 1 全部旗舰版主机，0 Quuids列表主机
         # @type Scope: Integer
-        # @param Quuids: 作用弄范围内旗舰版主机列表
+        # @param Quuids: 作用范围内旗舰版主机列表
         # @type Quuids: Array
+        # @param ExcludeInstanceIds: 排除作用范围内旗舰版主机列表
+        # @type ExcludeInstanceIds: Array
+        # @param AutoInclude: 新增资产自动包含 0 不包含 1包含
+        # @type AutoInclude: Integer
+        # @param InstanceIds: 作用范围内旗舰版主机列表
+        # @type InstanceIds: Array
 
-        attr_accessor :Enable, :Scope, :Quuids
+        attr_accessor :Enable, :Scope, :Quuids, :ExcludeInstanceIds, :AutoInclude, :InstanceIds
 
-        def initialize(enable=nil, scope=nil, quuids=nil)
+        def initialize(enable=nil, scope=nil, quuids=nil, excludeinstanceids=nil, autoinclude=nil, instanceids=nil)
           @Enable = enable
           @Scope = scope
           @Quuids = quuids
+          @ExcludeInstanceIds = excludeinstanceids
+          @AutoInclude = autoinclude
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
           @Enable = params['Enable']
           @Scope = params['Scope']
           @Quuids = params['Quuids']
+          @ExcludeInstanceIds = params['ExcludeInstanceIds']
+          @AutoInclude = params['AutoInclude']
+          @InstanceIds = params['InstanceIds']
         end
       end
 

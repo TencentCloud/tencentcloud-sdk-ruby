@@ -4582,9 +4582,9 @@ module TencentCloud
         # <li> FunctionThrottle: 云函数受限次数 </li>
         # <li> FunctionProvisionedConcurrency: 云函数预置并发 </li>
         # @type MetricName: String
-        # @param StartTime: 开始时间，如2018-08-24 10:50:00, 开始时间需要早于结束时间至少五分钟(原因是因为目前统计粒度最小是5分钟).
+        # @param StartTime: 开始时间，如2018-08-24 10:50:00, 开始时间需要早于结束时间至少五分钟(原因是因为目前统计粒度最小是5分钟)
         # @type StartTime: String
-        # @param EndTime: 结束时间，如2018-08-24 10:50:00, 结束时间需要晚于开始时间至少五分钟(原因是因为目前统计粒度最小是5分钟)..
+        # @param EndTime: 结束时间，如2018-08-24 10:50:00, 结束时间需要晚于开始时间至少五分钟(原因是因为目前统计粒度最小是5分钟)
         # @type EndTime: String
         # @param ResourceID: 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocation, FunctionGBs, FunctionFlux, FunctionError, FunctionDuration)、容器托管（服务名称）, 如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传.如果想查询数据库某个集合相关信息，传入集合名称
         # @type ResourceID: String
@@ -4610,19 +4610,19 @@ module TencentCloud
 
       # DescribeCurveData返回参数结构体
       class DescribeCurveDataResponse < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间, 会根据数据的统计周期进行取整.
+        # @param StartTime: 开始时间, 会根据数据的统计周期进行取整
         # @type StartTime: String
-        # @param EndTime: 结束时间, 会根据数据的统计周期进行取整.
+        # @param EndTime: 结束时间, 会根据数据的统计周期进行取整
         # @type EndTime: String
-        # @param MetricName: 指标名.
+        # @param MetricName: 指标名
         # @type MetricName: String
-        # @param Period: 统计周期(单位秒), 当时间区间为1天内, 统计周期为5分钟; 当时间区间选择为1天以上, 15天以下, 统计周期为1小时; 当时间区间选择为15天以上, 180天以下, 统计周期为1天.
+        # @param Period: 统计周期(单位秒), 当时间区间为1天内, 统计周期为5分钟; 当时间区间选择为1天以上, 15天以下, 统计周期为1小时; 当时间区间选择为15天以上, 180天以下, 统计周期为1天
         # @type Period: Integer
-        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到。
+        # @param Values: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到
         # @type Values: Array
-        # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的.
+        # @param Time: 时间数据, 标识监控数据Values中的点是哪个时间段上报的
         # @type Time: Array
-        # @param NewValues: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
+        # @param NewValues: 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到
         # @type NewValues: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

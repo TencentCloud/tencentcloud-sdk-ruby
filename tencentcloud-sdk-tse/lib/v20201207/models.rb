@@ -149,6 +149,50 @@ module TencentCloud
         end
       end
 
+      # BindAutoScalerResourceStrategyToGroups请求参数结构体
+      class BindAutoScalerResourceStrategyToGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param GroupIds: 网关分组ID列表
+        # @type GroupIds: Array
+
+        attr_accessor :GatewayId, :StrategyId, :GroupIds
+
+        def initialize(gatewayid=nil, strategyid=nil, groupids=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # BindAutoScalerResourceStrategyToGroups返回参数结构体
+      class BindAutoScalerResourceStrategyToGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 服务治理引擎绑定的kubernetes信息
       class BoundK8SInfo < TencentCloud::Common::AbstractModel
         # @param BoundClusterId: 绑定的kubernetes集群ID
@@ -739,8 +783,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2024, 1
-        deprecate :MaxReplicas=, :none, 2024, 1
+        deprecate :MaxReplicas, :none, 2024, 2
+        deprecate :MaxReplicas=, :none, 2024, 2
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -802,16 +846,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 1
-        deprecate :Enabled=, :none, 2024, 1
-        deprecate :CreateTime, :none, 2024, 1
-        deprecate :CreateTime=, :none, 2024, 1
-        deprecate :ModifyTime, :none, 2024, 1
-        deprecate :ModifyTime=, :none, 2024, 1
-        deprecate :StrategyId, :none, 2024, 1
-        deprecate :StrategyId=, :none, 2024, 1
-        deprecate :AutoScalerId, :none, 2024, 1
-        deprecate :AutoScalerId=, :none, 2024, 1
+        deprecate :Enabled, :none, 2024, 2
+        deprecate :Enabled=, :none, 2024, 2
+        deprecate :CreateTime, :none, 2024, 2
+        deprecate :CreateTime=, :none, 2024, 2
+        deprecate :ModifyTime, :none, 2024, 2
+        deprecate :ModifyTime=, :none, 2024, 2
+        deprecate :StrategyId, :none, 2024, 2
+        deprecate :StrategyId=, :none, 2024, 2
+        deprecate :AutoScalerId, :none, 2024, 2
+        deprecate :AutoScalerId=, :none, 2024, 2
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -880,6 +924,46 @@ module TencentCloud
         end
       end
 
+      # 策略绑定的网关分组信息
+      class CloudNativeAPIGatewayStrategyBindingGroupInfo < TencentCloud::Common::AbstractModel
+        # @param GroupId: 网关分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param NodeConfig: 节点配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
+        # @param BindTime: 绑定时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindTime: String
+        # @param GroupName: 网关分组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Status: 绑定状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :GroupId, :NodeConfig, :BindTime, :GroupName, :Status
+
+        def initialize(groupid=nil, nodeconfig=nil, bindtime=nil, groupname=nil, status=nil)
+          @GroupId = groupid
+          @NodeConfig = nodeconfig
+          @BindTime = bindtime
+          @GroupName = groupname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['NodeConfig'].nil?
+            @NodeConfig = CloudNativeAPIGatewayNodeConfig.new
+            @NodeConfig.deserialize(params['NodeConfig'])
+          end
+          @BindTime = params['BindTime']
+          @GroupName = params['GroupName']
+          @Status = params['Status']
+        end
+      end
+
       # 定时伸缩策略配置
       class CloudNativeAPIGatewayStrategyCronScalerConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启定时伸缩
@@ -900,14 +984,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 1
-        deprecate :Enabled=, :none, 2024, 1
-        deprecate :CreateTime, :none, 2024, 1
-        deprecate :CreateTime=, :none, 2024, 1
-        deprecate :ModifyTime, :none, 2024, 1
-        deprecate :ModifyTime=, :none, 2024, 1
-        deprecate :StrategyId, :none, 2024, 1
-        deprecate :StrategyId=, :none, 2024, 1
+        deprecate :Enabled, :none, 2024, 2
+        deprecate :Enabled=, :none, 2024, 2
+        deprecate :CreateTime, :none, 2024, 2
+        deprecate :CreateTime=, :none, 2024, 2
+        deprecate :ModifyTime, :none, 2024, 2
+        deprecate :ModifyTime=, :none, 2024, 2
+        deprecate :StrategyId, :none, 2024, 2
+        deprecate :StrategyId=, :none, 2024, 2
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -987,6 +1071,88 @@ module TencentCloud
         end
       end
 
+      # CreateAutoScalerResourceStrategy请求参数结构体
+      class CreateAutoScalerResourceStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param Config: 指标伸缩配置
+        # @type Config: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyAutoScalerConfig`
+        # @param CronScalerConfig: 定时伸缩配置列表
+        # @type CronScalerConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
+        # @param MaxReplicas: 最大节点数
+        # @type MaxReplicas: Integer
+        # @param CronConfig: 定时伸缩配置
+        # @type CronConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
+
+        attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
+        extend Gem::Deprecate
+        deprecate :CronScalerConfig, :none, 2024, 2
+        deprecate :CronScalerConfig=, :none, 2024, 2
+        deprecate :MaxReplicas, :none, 2024, 2
+        deprecate :MaxReplicas=, :none, 2024, 2
+
+        def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
+          @GatewayId = gatewayid
+          @StrategyName = strategyname
+          @Description = description
+          @Config = config
+          @CronScalerConfig = cronscalerconfig
+          @MaxReplicas = maxreplicas
+          @CronConfig = cronconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyName = params['StrategyName']
+          @Description = params['Description']
+          unless params['Config'].nil?
+            @Config = CloudNativeAPIGatewayStrategyAutoScalerConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['CronScalerConfig'].nil?
+            @CronScalerConfig = CloudNativeAPIGatewayStrategyCronScalerConfig.new
+            @CronScalerConfig.deserialize(params['CronScalerConfig'])
+          end
+          @MaxReplicas = params['MaxReplicas']
+          unless params['CronConfig'].nil?
+            @CronConfig = CloudNativeAPIGatewayStrategyCronScalerConfig.new
+            @CronConfig.deserialize(params['CronConfig'])
+          end
+        end
+      end
+
+      # CreateAutoScalerResourceStrategy返回参数结构体
+      class CreateAutoScalerResourceStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param StrategyId: 策略Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :StrategyId, :RequestId
+        extend Gem::Deprecate
+        deprecate :Result, :none, 2024, 2
+        deprecate :Result=, :none, 2024, 2
+
+        def initialize(result=nil, strategyid=nil, requestid=nil)
+          @Result = result
+          @StrategyId = strategyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @StrategyId = params['StrategyId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudNativeAPIGatewayCanaryRule请求参数结构体
       class CreateCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 ID
@@ -1047,10 +1213,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2024, 1
-        deprecate :Key=, :none, 2024, 1
-        deprecate :Crt, :none, 2024, 1
-        deprecate :Crt=, :none, 2024, 1
+        deprecate :Key, :none, 2024, 2
+        deprecate :Key=, :none, 2024, 2
+        deprecate :Crt, :none, 2024, 2
+        deprecate :Crt=, :none, 2024, 2
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -1378,8 +1544,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 1
-        deprecate :ForceHttps=, :none, 2024, 1
+        deprecate :ForceHttps, :none, 2024, 2
+        deprecate :ForceHttps=, :none, 2024, 2
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -1917,6 +2083,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAutoScalerResourceStrategy请求参数结构体
+      class DeleteAutoScalerResourceStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+
+        attr_accessor :GatewayId, :StrategyId
+
+        def initialize(gatewayid=nil, strategyid=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+        end
+      end
+
+      # DeleteAutoScalerResourceStrategy返回参数结构体
+      class DeleteAutoScalerResourceStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudNativeAPIGatewayCanaryRule请求参数结构体
       class DeleteCloudNativeAPIGatewayCanaryRuleRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 ID
@@ -2384,6 +2590,100 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoScalerResourceStrategies请求参数结构体
+      class DescribeAutoScalerResourceStrategiesRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+
+        attr_accessor :GatewayId, :StrategyId
+
+        def initialize(gatewayid=nil, strategyid=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+        end
+      end
+
+      # DescribeAutoScalerResourceStrategies返回参数结构体
+      class DescribeAutoScalerResourceStrategiesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生API网关实例弹性伸缩策略列表响应结果。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.ListCloudNativeAPIGatewayStrategyResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ListCloudNativeAPIGatewayStrategyResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoScalerResourceStrategyBindingGroups请求参数结构体
+      class DescribeAutoScalerResourceStrategyBindingGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询数量限制
+        # @type Limit: Integer
+
+        attr_accessor :GatewayId, :StrategyId, :Offset, :Limit
+
+        def initialize(gatewayid=nil, strategyid=nil, offset=nil, limit=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAutoScalerResourceStrategyBindingGroups返回参数结构体
+      class DescribeAutoScalerResourceStrategyBindingGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 云原生API网关实例策略绑定网关分组列表响应结果
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.ListCloudNativeAPIGatewayStrategyBindingGroupInfoResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = ListCloudNativeAPIGatewayStrategyBindingGroupInfoResult.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3559,6 +3859,84 @@ module TencentCloud
         end
       end
 
+      # DescribePublicNetwork请求参数结构体
+      class DescribePublicNetworkRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 云原生API网关实例ID。
+        # @type GatewayId: String
+        # @param GroupId: 网关分组ID
+        # @type GroupId: String
+        # @param NetworkId: 网络ID
+        # @type NetworkId: String
+
+        attr_accessor :GatewayId, :GroupId, :NetworkId
+
+        def initialize(gatewayid=nil, groupid=nil, networkid=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @NetworkId = networkid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          @NetworkId = params['NetworkId']
+        end
+      end
+
+      # DescribePublicNetwork返回参数结构体
+      class DescribePublicNetworkResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取云原生API网关公网详情响应结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tse.v20201207.models.DescribePublicNetworkResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribePublicNetworkResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询客户端公网信息
+      class DescribePublicNetworkResult < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GroupId: 网关分组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param PublicNetwork: 客户端公网信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicNetwork: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayConfig`
+
+        attr_accessor :GatewayId, :GroupId, :PublicNetwork
+
+        def initialize(gatewayid=nil, groupid=nil, publicnetwork=nil)
+          @GatewayId = gatewayid
+          @GroupId = groupid
+          @PublicNetwork = publicnetwork
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GroupId = params['GroupId']
+          unless params['PublicNetwork'].nil?
+            @PublicNetwork = CloudNativeAPIGatewayConfig.new
+            @PublicNetwork.deserialize(params['PublicNetwork'])
+          end
+        end
+      end
+
       # DescribeSREInstanceAccessAddress请求参数结构体
       class DescribeSREInstanceAccessAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 注册引擎实例Id
@@ -3852,8 +4230,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2024, 1
-        deprecate :Type=, :none, 2024, 1
+        deprecate :Type, :none, 2024, 2
+        deprecate :Type=, :none, 2024, 2
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -4511,8 +4889,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2024, 1
-        deprecate :Pages=, :none, 2024, 1
+        deprecate :Pages, :none, 2024, 2
+        deprecate :Pages=, :none, 2024, 2
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -4670,8 +5048,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 1
-        deprecate :ForceHttps=, :none, 2024, 1
+        deprecate :ForceHttps, :none, 2024, 2
+        deprecate :ForceHttps=, :none, 2024, 2
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -5156,6 +5534,60 @@ module TencentCloud
         end
       end
 
+      # 获取云原生API网关实例策略绑定网关分组列表响应结果。
+      class ListCloudNativeAPIGatewayStrategyBindingGroupInfoResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
+        # @param GroupInfos: 云原生API网关实例策略绑定网关分组列表
+        # @type GroupInfos: Array
+
+        attr_accessor :TotalCount, :GroupInfos
+
+        def initialize(totalcount=nil, groupinfos=nil)
+          @TotalCount = totalcount
+          @GroupInfos = groupinfos
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['GroupInfos'].nil?
+            @GroupInfos = []
+            params['GroupInfos'].each do |i|
+              cloudnativeapigatewaystrategybindinggroupinfo_tmp = CloudNativeAPIGatewayStrategyBindingGroupInfo.new
+              cloudnativeapigatewaystrategybindinggroupinfo_tmp.deserialize(i)
+              @GroupInfos << cloudnativeapigatewaystrategybindinggroupinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 获取云原生API网关实例策略响应结果。
+      class ListCloudNativeAPIGatewayStrategyResult < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数。
+        # @type TotalCount: Integer
+        # @param StrategyList: 云原生API网关实例策略列表。
+        # @type StrategyList: Array
+
+        attr_accessor :TotalCount, :StrategyList
+
+        def initialize(totalcount=nil, strategylist=nil)
+          @TotalCount = totalcount
+          @StrategyList = strategylist
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['StrategyList'].nil?
+            @StrategyList = []
+            params['StrategyList'].each do |i|
+              cloudnativeapigatewaystrategy_tmp = CloudNativeAPIGatewayStrategy.new
+              cloudnativeapigatewaystrategy_tmp.deserialize(i)
+              @StrategyList << cloudnativeapigatewaystrategy_tmp
+            end
+          end
+        end
+      end
+
       # 列表过滤条件，模糊匹配
       class ListFilter < TencentCloud::Common::AbstractModel
         # @param Key: 过滤字段
@@ -5173,6 +5605,84 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ModifyAutoScalerResourceStrategy请求参数结构体
+      class ModifyAutoScalerResourceStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param Description: 策略描述
+        # @type Description: String
+        # @param Config: 指标伸缩配置
+        # @type Config: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyAutoScalerConfig`
+        # @param CronScalerConfig: 定时伸缩配置
+        # @type CronScalerConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
+        # @param MaxReplicas: 最大节点数
+        # @type MaxReplicas: Integer
+        # @param CronConfig: 指标伸缩配置
+        # @type CronConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayStrategyCronScalerConfig`
+
+        attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
+        extend Gem::Deprecate
+        deprecate :CronScalerConfig, :none, 2024, 2
+        deprecate :CronScalerConfig=, :none, 2024, 2
+        deprecate :MaxReplicas, :none, 2024, 2
+        deprecate :MaxReplicas=, :none, 2024, 2
+
+        def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+          @StrategyName = strategyname
+          @Description = description
+          @Config = config
+          @CronScalerConfig = cronscalerconfig
+          @MaxReplicas = maxreplicas
+          @CronConfig = cronconfig
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+          @StrategyName = params['StrategyName']
+          @Description = params['Description']
+          unless params['Config'].nil?
+            @Config = CloudNativeAPIGatewayStrategyAutoScalerConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          unless params['CronScalerConfig'].nil?
+            @CronScalerConfig = CloudNativeAPIGatewayStrategyCronScalerConfig.new
+            @CronScalerConfig.deserialize(params['CronScalerConfig'])
+          end
+          @MaxReplicas = params['MaxReplicas']
+          unless params['CronConfig'].nil?
+            @CronConfig = CloudNativeAPIGatewayStrategyCronScalerConfig.new
+            @CronConfig.deserialize(params['CronConfig'])
+          end
+        end
+      end
+
+      # ModifyAutoScalerResourceStrategy返回参数结构体
+      class ModifyAutoScalerResourceStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5246,10 +5756,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2024, 1
-        deprecate :Name=, :none, 2024, 1
-        deprecate :BindDomains, :none, 2024, 1
-        deprecate :BindDomains=, :none, 2024, 1
+        deprecate :Name, :none, 2024, 2
+        deprecate :Name=, :none, 2024, 2
+        deprecate :BindDomains, :none, 2024, 2
+        deprecate :BindDomains=, :none, 2024, 2
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -5433,8 +5943,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 1
-        deprecate :ForceHttps=, :none, 2024, 1
+        deprecate :ForceHttps, :none, 2024, 2
+        deprecate :ForceHttps=, :none, 2024, 2
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -6609,6 +7119,50 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @Capacity = params['Capacity']
+        end
+      end
+
+      # UnbindAutoScalerResourceStrategyFromGroups请求参数结构体
+      class UnbindAutoScalerResourceStrategyFromGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关实例ID
+        # @type GatewayId: String
+        # @param StrategyId: 策略ID
+        # @type StrategyId: String
+        # @param GroupIds: 网关分组ID列表
+        # @type GroupIds: Array
+
+        attr_accessor :GatewayId, :StrategyId, :GroupIds
+
+        def initialize(gatewayid=nil, strategyid=nil, groupids=nil)
+          @GatewayId = gatewayid
+          @StrategyId = strategyid
+          @GroupIds = groupids
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @StrategyId = params['StrategyId']
+          @GroupIds = params['GroupIds']
+        end
+      end
+
+      # UnbindAutoScalerResourceStrategyFromGroups返回参数结构体
+      class UnbindAutoScalerResourceStrategyFromGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

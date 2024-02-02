@@ -341,7 +341,7 @@ module TencentCloud
         # @param DeviceId: 设备iD
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeviceId: String
-        # @param Code: 设备编码（即我们为设备生成的20位国标编码）
+        # @param Code: 设备编码（国标设备即我们为设备生成的20位国标编码，rtmp 设备为10 位设备编码）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Code: String
         # @param Name: 设备名称
@@ -1141,9 +1141,9 @@ module TencentCloud
       class AddUserDeviceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 设备名称，仅支持中文、英文、数字、_、-，长度不超过32个字符；（设备名称无需全局唯一，可以重复）
         # @type Name: String
-        # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW）
+        # @param AccessProtocol: 设备接入协议（1:RTMP,2:GB,3:GW,4:IVCP）
         # @type AccessProtocol: Integer
-        # @param Type: 设备类型，1:IPC,2:NVR；（若设备接入协议选择RTMP，则设备类型只能选择IPC）
+        # @param Type: 设备类型，1:IPC,2:NVR；（若设备接入协议选择RTMP,IVCP，则设备类型只能选择IPC）
         # @type Type: Integer
         # @param OrganizationId: 设备所属组织ID，从查询组织接口DescribeOrganization中获取
         # @type OrganizationId: String
@@ -1165,10 +1165,12 @@ module TencentCloud
         # @type Port: Integer
         # @param Username: 设备用户名（仅网关接入需要）
         # @type Username: String
+        # @param SNCode: 设备 SN，仅IVCP 协议设备需要
+        # @type SNCode: String
 
-        attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username
+        attr_accessor :Name, :AccessProtocol, :Type, :OrganizationId, :ClusterId, :TransportProtocol, :Password, :Description, :GatewayId, :ProtocolType, :Ip, :Port, :Username, :SNCode
 
-        def initialize(name=nil, accessprotocol=nil, type=nil, organizationid=nil, clusterid=nil, transportprotocol=nil, password=nil, description=nil, gatewayid=nil, protocoltype=nil, ip=nil, port=nil, username=nil)
+        def initialize(name=nil, accessprotocol=nil, type=nil, organizationid=nil, clusterid=nil, transportprotocol=nil, password=nil, description=nil, gatewayid=nil, protocoltype=nil, ip=nil, port=nil, username=nil, sncode=nil)
           @Name = name
           @AccessProtocol = accessprotocol
           @Type = type
@@ -1182,6 +1184,7 @@ module TencentCloud
           @Ip = ip
           @Port = port
           @Username = username
+          @SNCode = sncode
         end
 
         def deserialize(params)
@@ -1198,6 +1201,7 @@ module TencentCloud
           @Ip = params['Ip']
           @Port = params['Port']
           @Username = params['Username']
+          @SNCode = params['SNCode']
         end
       end
 

@@ -899,10 +899,10 @@ module TencentCloud
 
         attr_accessor :BatchTaskName, :ChargeType, :ResourceConfigInfo, :Outputs, :LogEnable, :JobType, :CronInfo, :ResourceGroupId, :Tags, :ModelInfo, :ImageInfo, :CodePackage, :StartCmd, :DataConfigs, :LogConfig, :VpcId, :SubnetId, :Remark, :CallbackUrl
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2024, 1
-        deprecate :JobType=, :none, 2024, 1
-        deprecate :CronInfo, :none, 2024, 1
-        deprecate :CronInfo=, :none, 2024, 1
+        deprecate :JobType, :none, 2024, 2
+        deprecate :JobType=, :none, 2024, 2
+        deprecate :CronInfo, :none, 2024, 2
+        deprecate :CronInfo=, :none, 2024, 2
 
         def initialize(batchtaskname=nil, chargetype=nil, resourceconfiginfo=nil, outputs=nil, logenable=nil, jobtype=nil, croninfo=nil, resourcegroupid=nil, tags=nil, modelinfo=nil, imageinfo=nil, codepackage=nil, startcmd=nil, dataconfigs=nil, logconfig=nil, vpcid=nil, subnetid=nil, remark=nil, callbackurl=nil)
           @BatchTaskName = batchtaskname
@@ -2517,6 +2517,28 @@ module TencentCloud
         end
       end
 
+      # 默认内网调用信息
+      class DefaultInnerCallInfo < TencentCloud::Common::AbstractModel
+        # @param VpcIds: 可以进行调用的VPC-ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcIds: Array
+        # @param InnerHttpAddr: 默认内网调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerHttpAddr: String
+
+        attr_accessor :VpcIds, :InnerHttpAddr
+
+        def initialize(vpcids=nil, innerhttpaddr=nil)
+          @VpcIds = vpcids
+          @InnerHttpAddr = innerhttpaddr
+        end
+
+        def deserialize(params)
+          @VpcIds = params['VpcIds']
+          @InnerHttpAddr = params['InnerHttpAddr']
+        end
+      end
+
       # 默认Nginx网关结构
       class DefaultNginxGatewayCallInfo < TencentCloud::Common::AbstractModel
         # @param Host: host
@@ -3138,7 +3160,7 @@ module TencentCloud
         # @type Filters: Array
         # @param Offset: 分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10....即每页左边为闭区间; 默认0
         # @type Offset: Integer
-        # @param Limit: 分页查询每页大小，最大30; 默认20
+        # @param Limit: 分页查询每页大小，默认20
         # @type Limit: Integer
         # @param Order: 排序方向; 枚举值: ASC | DESC；默认DESC
         # @type Order: String
@@ -3212,7 +3234,9 @@ module TencentCloud
 
       # DescribeBillingResourceGroups请求参数结构体
       class DescribeBillingResourceGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 资源组类型; 枚举值 TRAIN:训练 INFERENCE:推理
+        # @param Type: 资源组类型;
+        # 枚举值:
+        # 空: 通用, TRAIN: 训练, INFERENCE: 推理
         # @type Type: String
         # @param Filters: Filter.Name: 枚举值: ResourceGroupId (资源组id列表)
         #                     ResourceGroupName (资源组名称列表)
@@ -3223,8 +3247,7 @@ module TencentCloud
         # @type TagFilters: Array
         # @param Offset: 偏移量，默认为0；分页查询起始位置，如：Limit为100，第一页Offset为0，第二页OffSet为100....即每页左边为闭区间
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为30;
-        # 注意：小于0则默认为20；大于30则默认为30
+        # @param Limit: 分页查询每页大小，默认20
         # @type Limit: Integer
         # @param SearchWord: 支持模糊查找资源组id和资源组名
         # @type SearchWord: String
@@ -6124,14 +6147,18 @@ module TencentCloud
         # @param InnerHttpsAddr: 内网https调用地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InnerHttpsAddr: Array
+        # @param State: 私有连接状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
 
-        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr
+        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State
 
-        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil)
+        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @InnerHttpAddr = innerhttpaddr
           @InnerHttpsAddr = innerhttpsaddr
+          @State = state
         end
 
         def deserialize(params)
@@ -6139,6 +6166,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @InnerHttpAddr = params['InnerHttpAddr']
           @InnerHttpsAddr = params['InnerHttpsAddr']
+          @State = params['State']
         end
       end
 
@@ -6238,12 +6266,20 @@ module TencentCloud
         # @param ServiceEIPInfo: 共享弹性网卡信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceEIPInfo: Array
+        # @param PrivateLinkInfos: 私有连接信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateLinkInfos: Array
+        # @param DefaultInnerCallInfos: 默认内网调用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultInnerCallInfos: Array
 
-        attr_accessor :IngressPrivateLinkInfo, :ServiceEIPInfo
+        attr_accessor :IngressPrivateLinkInfo, :ServiceEIPInfo, :PrivateLinkInfos, :DefaultInnerCallInfos
 
-        def initialize(ingressprivatelinkinfo=nil, serviceeipinfo=nil)
+        def initialize(ingressprivatelinkinfo=nil, serviceeipinfo=nil, privatelinkinfos=nil, defaultinnercallinfos=nil)
           @IngressPrivateLinkInfo = ingressprivatelinkinfo
           @ServiceEIPInfo = serviceeipinfo
+          @PrivateLinkInfos = privatelinkinfos
+          @DefaultInnerCallInfos = defaultinnercallinfos
         end
 
         def deserialize(params)
@@ -6257,6 +6293,22 @@ module TencentCloud
               serviceeipinfo_tmp = ServiceEIPInfo.new
               serviceeipinfo_tmp.deserialize(i)
               @ServiceEIPInfo << serviceeipinfo_tmp
+            end
+          end
+          unless params['PrivateLinkInfos'].nil?
+            @PrivateLinkInfos = []
+            params['PrivateLinkInfos'].each do |i|
+              privatelinkinfo_tmp = PrivateLinkInfo.new
+              privatelinkinfo_tmp.deserialize(i)
+              @PrivateLinkInfos << privatelinkinfo_tmp
+            end
+          end
+          unless params['DefaultInnerCallInfos'].nil?
+            @DefaultInnerCallInfos = []
+            params['DefaultInnerCallInfos'].each do |i|
+              defaultinnercallinfo_tmp = DefaultInnerCallInfo.new
+              defaultinnercallinfo_tmp.deserialize(i)
+              @DefaultInnerCallInfos << defaultinnercallinfo_tmp
             end
           end
         end
@@ -8026,6 +8078,43 @@ module TencentCloud
         end
       end
 
+      # 私有连接信息
+      class PrivateLinkInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有连接所在的VPCID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 私有连接所在的子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param InnerHttpAddr: HTTP内网调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerHttpAddr: Array
+        # @param InnerHttpsAddr: HTTPS内网调用地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InnerHttpsAddr: Array
+        # @param State: 私有连接状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+
+        attr_accessor :VpcId, :SubnetId, :InnerHttpAddr, :InnerHttpsAddr, :State
+
+        def initialize(vpcid=nil, subnetid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, state=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @InnerHttpAddr = innerhttpaddr
+          @InnerHttpsAddr = innerhttpsaddr
+          @State = state
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @InnerHttpAddr = params['InnerHttpAddr']
+          @InnerHttpsAddr = params['InnerHttpsAddr']
+          @State = params['State']
+        end
+      end
+
       # PushTrainingMetrics请求参数结构体
       class PushTrainingMetricsRequest < TencentCloud::Common::AbstractModel
         # @param Data: 指标数据
@@ -8782,10 +8871,10 @@ module TencentCloud
         # @param BusinessStatus: 服务的业务状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessStatus: String
-        # @param ServiceLimit: 已废弃
+        # @param ServiceLimit: 已废弃,以ServiceInfo中的对应为准
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
-        # @param ScheduledAction: 已废弃
+        # @param ScheduledAction: 已废弃,以ServiceInfo中的对应为准
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
         # @param CreateFailedReason: 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
@@ -8819,10 +8908,18 @@ module TencentCloud
         # @param LatestVersion: 服务组下服务的最高版本号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestVersion: String
+        # @param ResourceGroupSWType: 资源组类别 托管 NORMAL，纳管 SW
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupSWType: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType
+        extend Gem::Deprecate
+        deprecate :ServiceLimit, :none, 2024, 2
+        deprecate :ServiceLimit=, :none, 2024, 2
+        deprecate :ScheduledAction, :none, 2024, 2
+        deprecate :ScheduledAction=, :none, 2024, 2
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -8852,6 +8949,7 @@ module TencentCloud
           @CreateSource = createsource
           @Version = version
           @LatestVersion = latestversion
+          @ResourceGroupSWType = resourcegroupswtype
         end
 
         def deserialize(params)
@@ -8900,6 +8998,7 @@ module TencentCloud
           @CreateSource = params['CreateSource']
           @Version = params['Version']
           @LatestVersion = params['LatestVersion']
+          @ResourceGroupSWType = params['ResourceGroupSWType']
         end
       end
 
@@ -8926,10 +9025,13 @@ module TencentCloud
         # @param AppSecret: 调用secret
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppSecret: String
+        # @param AuthorizationEnable: 鉴权是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthorizationEnable: Boolean
 
-        attr_accessor :ServiceGroupId, :InnerHttpAddr, :InnerHttpsAddr, :OuterHttpAddr, :OuterHttpsAddr, :AppKey, :AppSecret
+        attr_accessor :ServiceGroupId, :InnerHttpAddr, :InnerHttpsAddr, :OuterHttpAddr, :OuterHttpsAddr, :AppKey, :AppSecret, :AuthorizationEnable
 
-        def initialize(servicegroupid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, outerhttpaddr=nil, outerhttpsaddr=nil, appkey=nil, appsecret=nil)
+        def initialize(servicegroupid=nil, innerhttpaddr=nil, innerhttpsaddr=nil, outerhttpaddr=nil, outerhttpsaddr=nil, appkey=nil, appsecret=nil, authorizationenable=nil)
           @ServiceGroupId = servicegroupid
           @InnerHttpAddr = innerhttpaddr
           @InnerHttpsAddr = innerhttpsaddr
@@ -8937,6 +9039,7 @@ module TencentCloud
           @OuterHttpsAddr = outerhttpsaddr
           @AppKey = appkey
           @AppSecret = appsecret
+          @AuthorizationEnable = authorizationenable
         end
 
         def deserialize(params)
@@ -8947,6 +9050,7 @@ module TencentCloud
           @OuterHttpsAddr = params['OuterHttpsAddr']
           @AppKey = params['AppKey']
           @AppSecret = params['AppSecret']
+          @AuthorizationEnable = params['AuthorizationEnable']
         end
       end
 
@@ -9065,10 +9169,16 @@ module TencentCloud
         #      UPDATE_FAILED 更新失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WeightUpdateStatus: String
+        # @param ReplicasCount: 服务组下运行的pod数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicasCount: Integer
+        # @param AvailableReplicasCount: 服务组下期望的pod数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableReplicasCount: Integer
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -9085,6 +9195,8 @@ module TencentCloud
           @BillingInfo = billinginfo
           @CreateSource = createsource
           @WeightUpdateStatus = weightupdatestatus
+          @ReplicasCount = replicascount
+          @AvailableReplicasCount = availablereplicascount
         end
 
         def deserialize(params)
@@ -9118,6 +9230,8 @@ module TencentCloud
           @BillingInfo = params['BillingInfo']
           @CreateSource = params['CreateSource']
           @WeightUpdateStatus = params['WeightUpdateStatus']
+          @ReplicasCount = params['ReplicasCount']
+          @AvailableReplicasCount = params['AvailableReplicasCount']
         end
       end
 
@@ -9203,9 +9317,6 @@ module TencentCloud
         # @param Weight: 权重
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param PodList: 实例列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type PodList: Array
         # @param ResourceTotal: 资源总量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTotal: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
@@ -9234,6 +9345,9 @@ module TencentCloud
         # @param ScheduledAction: 定时停止的配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledAction: String
+        # @param PodList: 实例列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodList: Array
         # @param Pods: Pod列表信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Pods: :class:`Tencentcloud::Tione.v20211111.models.Pod`
@@ -9259,9 +9373,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceEIP: :class:`Tencentcloud::Tione.v20211111.models.ServiceEIP`
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :PodList, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP
+        extend Gem::Deprecate
+        deprecate :PodList, :none, 2024, 2
+        deprecate :PodList=, :none, 2024, 2
+        deprecate :Pods, :none, 2024, 2
+        deprecate :Pods=, :none, 2024, 2
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, podlist=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -9274,7 +9393,6 @@ module TencentCloud
           @HorizontalPodAutoscaler = horizontalpodautoscaler
           @Status = status
           @Weight = weight
-          @PodList = podlist
           @ResourceTotal = resourcetotal
           @OldReplicas = oldreplicas
           @HybridBillingPrepaidReplicas = hybridbillingprepaidreplicas
@@ -9284,6 +9402,7 @@ module TencentCloud
           @CronScaleJobs = cronscalejobs
           @ScaleStrategy = scalestrategy
           @ScheduledAction = scheduledaction
+          @PodList = podlist
           @Pods = pods
           @PodInfos = podinfos
           @ServiceLimit = servicelimit
@@ -9332,7 +9451,6 @@ module TencentCloud
             @Status.deserialize(params['Status'])
           end
           @Weight = params['Weight']
-          @PodList = params['PodList']
           unless params['ResourceTotal'].nil?
             @ResourceTotal = ResourceInfo.new
             @ResourceTotal.deserialize(params['ResourceTotal'])
@@ -9352,6 +9470,7 @@ module TencentCloud
           end
           @ScaleStrategy = params['ScaleStrategy']
           @ScheduledAction = params['ScheduledAction']
+          @PodList = params['PodList']
           unless params['Pods'].nil?
             @Pods = Pod.new
             @Pods.deserialize(params['Pods'])
@@ -10859,8 +10978,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2024, 1
-        deprecate :StatefulSetCondition=, :none, 2024, 1
+        deprecate :StatefulSetCondition, :none, 2024, 2
+        deprecate :StatefulSetCondition=, :none, 2024, 2
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

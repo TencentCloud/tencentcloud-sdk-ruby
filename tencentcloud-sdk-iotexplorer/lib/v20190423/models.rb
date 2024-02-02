@@ -4161,7 +4161,7 @@ module TencentCloud
       class InstanceDetail < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
         # @type InstanceId: String
-        # @param InstanceType: 实例类型（0 公共实例 1 标准企业实例 2专享企业实例）
+        # @param InstanceType: 实例类型（0 公共实例 1 标准企业实例 2新企业实例3新公共实例）
         # @type InstanceType: Integer
         # @param Region: 地域字母缩写
         # @type Region: String
@@ -4169,7 +4169,7 @@ module TencentCloud
         # @type ZoneId: String
         # @param TotalDeviceNum: 支持设备总数
         # @type TotalDeviceNum: Integer
-        # @param UsedDeviceNum: 以注册设备数
+        # @param UsedDeviceNum: 已注册设备数
         # @type UsedDeviceNum: Integer
         # @param ProjectNum: 项目数
         # @type ProjectNum: Integer
@@ -4187,10 +4187,16 @@ module TencentCloud
         # @param ActivateDevice: 激活设备数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivateDevice: Integer
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Status: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :InstanceId, :InstanceType, :Region, :ZoneId, :TotalDeviceNum, :UsedDeviceNum, :ProjectNum, :ProductNum, :CreateTime, :UpdateTime, :ExpireTime, :TotalDevice, :ActivateDevice
+        attr_accessor :InstanceId, :InstanceType, :Region, :ZoneId, :TotalDeviceNum, :UsedDeviceNum, :ProjectNum, :ProductNum, :CreateTime, :UpdateTime, :ExpireTime, :TotalDevice, :ActivateDevice, :Description, :Status
 
-        def initialize(instanceid=nil, instancetype=nil, region=nil, zoneid=nil, totaldevicenum=nil, useddevicenum=nil, projectnum=nil, productnum=nil, createtime=nil, updatetime=nil, expiretime=nil, totaldevice=nil, activatedevice=nil)
+        def initialize(instanceid=nil, instancetype=nil, region=nil, zoneid=nil, totaldevicenum=nil, useddevicenum=nil, projectnum=nil, productnum=nil, createtime=nil, updatetime=nil, expiretime=nil, totaldevice=nil, activatedevice=nil, description=nil, status=nil)
           @InstanceId = instanceid
           @InstanceType = instancetype
           @Region = region
@@ -4204,6 +4210,8 @@ module TencentCloud
           @ExpireTime = expiretime
           @TotalDevice = totaldevice
           @ActivateDevice = activatedevice
+          @Description = description
+          @Status = status
         end
 
         def deserialize(params)
@@ -4220,6 +4228,8 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @TotalDevice = params['TotalDevice']
           @ActivateDevice = params['ActivateDevice']
+          @Description = params['Description']
+          @Status = params['Status']
         end
       end
 
@@ -5306,10 +5316,13 @@ module TencentCloud
         # @param BindStrategy: 绑定策略（1：强踢；2：非强踢；0：表示无意义）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BindStrategy: Integer
+        # @param DeviceCount: 设备数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceCount: Integer
 
-        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy
+        attr_accessor :ProductId, :ProductName, :CategoryId, :EncryptionType, :NetType, :DataProtocol, :ProductDesc, :DevStatus, :CreateTime, :UpdateTime, :Region, :ProductType, :ProjectId, :ModuleId, :EnableProductScript, :CreateUserId, :CreatorNickName, :BindStrategy, :DeviceCount
 
-        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil)
+        def initialize(productid=nil, productname=nil, categoryid=nil, encryptiontype=nil, nettype=nil, dataprotocol=nil, productdesc=nil, devstatus=nil, createtime=nil, updatetime=nil, region=nil, producttype=nil, projectid=nil, moduleid=nil, enableproductscript=nil, createuserid=nil, creatornickname=nil, bindstrategy=nil, devicecount=nil)
           @ProductId = productid
           @ProductName = productname
           @CategoryId = categoryid
@@ -5328,6 +5341,7 @@ module TencentCloud
           @CreateUserId = createuserid
           @CreatorNickName = creatornickname
           @BindStrategy = bindstrategy
+          @DeviceCount = devicecount
         end
 
         def deserialize(params)
@@ -5349,6 +5363,7 @@ module TencentCloud
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
           @BindStrategy = params['BindStrategy']
+          @DeviceCount = params['DeviceCount']
         end
       end
 
@@ -6227,10 +6242,12 @@ module TencentCloud
         # @type FirmwareDescription: String
         # @param FwType: 固件升级模块；可选值 mcu|moudule
         # @type FwType: String
+        # @param FirmwareUserDefined: 固件用户自定义配置信息
+        # @type FirmwareUserDefined: String
 
-        attr_accessor :ProductID, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription, :FwType
+        attr_accessor :ProductID, :FirmwareVersion, :Md5sum, :FileSize, :FirmwareName, :FirmwareDescription, :FwType, :FirmwareUserDefined
 
-        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil, fwtype=nil)
+        def initialize(productid=nil, firmwareversion=nil, md5sum=nil, filesize=nil, firmwarename=nil, firmwaredescription=nil, fwtype=nil, firmwareuserdefined=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
           @Md5sum = md5sum
@@ -6238,6 +6255,7 @@ module TencentCloud
           @FirmwareName = firmwarename
           @FirmwareDescription = firmwaredescription
           @FwType = fwtype
+          @FirmwareUserDefined = firmwareuserdefined
         end
 
         def deserialize(params)
@@ -6248,6 +6266,7 @@ module TencentCloud
           @FirmwareName = params['FirmwareName']
           @FirmwareDescription = params['FirmwareDescription']
           @FwType = params['FwType']
+          @FirmwareUserDefined = params['FirmwareUserDefined']
         end
       end
 

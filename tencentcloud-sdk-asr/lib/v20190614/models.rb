@@ -1266,12 +1266,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2024, 1
-        deprecate :ProjectId=, :none, 2024, 1
-        deprecate :SubServiceType, :none, 2024, 1
-        deprecate :SubServiceType=, :none, 2024, 1
-        deprecate :UsrAudioKey, :none, 2024, 1
-        deprecate :UsrAudioKey=, :none, 2024, 1
+        deprecate :ProjectId, :none, 2024, 2
+        deprecate :ProjectId=, :none, 2024, 2
+        deprecate :SubServiceType, :none, 2024, 2
+        deprecate :SubServiceType=, :none, 2024, 2
+        deprecate :UsrAudioKey, :none, 2024, 2
+        deprecate :UsrAudioKey=, :none, 2024, 2
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype
@@ -1646,6 +1646,79 @@ module TencentCloud
         def deserialize(params)
           @VoicePrintId = params['VoicePrintId']
           @SpeakerNick = params['SpeakerNick']
+        end
+      end
+
+      # 音频声纹比对结果，包含比对分数
+      class VoicePrintCompareData < TencentCloud::Common::AbstractModel
+        # @param Score: 匹配度 取值范围(0.0 - 100.0)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Score: String
+        # @param Decision: 验证结果 0: 未通过 1: 通过
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Decision: Integer
+
+        attr_accessor :Score, :Decision
+
+        def initialize(score=nil, decision=nil)
+          @Score = score
+          @Decision = decision
+        end
+
+        def deserialize(params)
+          @Score = params['Score']
+          @Decision = params['Decision']
+        end
+      end
+
+      # VoicePrintCompare请求参数结构体
+      class VoicePrintCompareRequest < TencentCloud::Common::AbstractModel
+        # @param VoiceFormat: 音频格式 0: pcm, 1: wav；pcm和wav音频无损压缩，识别准确度更高
+        # @type VoiceFormat: Integer
+        # @param SampleRate: 音频采样率，目前仅支持16k，请填写16000
+        # @type SampleRate: Integer
+        # @param SrcAudioData: 对比源音频数据, 音频要求：base64 编码,16k采样率， 16bit位深，pcm或者wav格式， 单声道，音频时长不超过30秒的音频，base64编码数据大小不超过2M
+        # @type SrcAudioData: String
+        # @param DestAudioData: 对比目标音频数据, 音频要求：base64 编码,16k采样率， 16bit位深，pcm或者wav格式， 单声道，音频时长不超过30秒的音频，base64编码数据大小不超过2M
+        # @type DestAudioData: String
+
+        attr_accessor :VoiceFormat, :SampleRate, :SrcAudioData, :DestAudioData
+
+        def initialize(voiceformat=nil, samplerate=nil, srcaudiodata=nil, destaudiodata=nil)
+          @VoiceFormat = voiceformat
+          @SampleRate = samplerate
+          @SrcAudioData = srcaudiodata
+          @DestAudioData = destaudiodata
+        end
+
+        def deserialize(params)
+          @VoiceFormat = params['VoiceFormat']
+          @SampleRate = params['SampleRate']
+          @SrcAudioData = params['SrcAudioData']
+          @DestAudioData = params['DestAudioData']
+        end
+      end
+
+      # VoicePrintCompare返回参数结构体
+      class VoicePrintCompareResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 音频声纹比对结果，包含相似度打分
+        # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintCompareData`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = VoicePrintCompareData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

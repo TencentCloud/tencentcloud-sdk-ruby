@@ -989,7 +989,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取database列表
+        # 获取集群数据库列表
 
         # @param request: Request instance for DescribeClusterDatabases.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeClusterDatabasesRequest`
@@ -2909,7 +2909,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SearchClusterDatabases)搜索集群database列表
+        # 本接口(SearchClusterDatabases)搜索集群数据库列表
 
         # @param request: Request instance for SearchClusterDatabases.
         # @type request: :class:`Tencentcloud::cynosdb::V20190107::SearchClusterDatabasesRequest`

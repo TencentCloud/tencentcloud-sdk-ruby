@@ -822,10 +822,13 @@ module TencentCloud
         # @param AuditStatus: 审核状态：0-未审核 1-审核中 2-审核成功 3-审核失败
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuditStatus: Integer
+        # @param OfflineTime: 下线时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OfflineTime: String
 
-        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus, :AuditStatus
+        attr_accessor :FakeURLId, :BrandName, :Origin, :FakeURL, :FakeDomain, :Heat, :BlockStatus, :BlockNote, :OfflineStatus, :OfflineNote, :IP, :IPLocation, :WebCompany, :WebAttribute, :WebName, :WebICP, :WebCreateTime, :WebExpireTime, :InsertTime, :CertificationStatus, :Snapshot, :AccountStatus, :AuditStatus, :OfflineTime
 
-        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil, auditstatus=nil)
+        def initialize(fakeurlid=nil, brandname=nil, origin=nil, fakeurl=nil, fakedomain=nil, heat=nil, blockstatus=nil, blocknote=nil, offlinestatus=nil, offlinenote=nil, ip=nil, iplocation=nil, webcompany=nil, webattribute=nil, webname=nil, webicp=nil, webcreatetime=nil, webexpiretime=nil, inserttime=nil, certificationstatus=nil, snapshot=nil, accountstatus=nil, auditstatus=nil, offlinetime=nil)
           @FakeURLId = fakeurlid
           @BrandName = brandname
           @Origin = origin
@@ -849,6 +852,7 @@ module TencentCloud
           @Snapshot = snapshot
           @AccountStatus = accountstatus
           @AuditStatus = auditstatus
+          @OfflineTime = offlinetime
         end
 
         def deserialize(params)
@@ -875,6 +879,7 @@ module TencentCloud
           @Snapshot = params['Snapshot']
           @AccountStatus = params['AccountStatus']
           @AuditStatus = params['AuditStatus']
+          @OfflineTime = params['OfflineTime']
         end
       end
 

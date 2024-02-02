@@ -112,10 +112,12 @@ module TencentCloud
         # @type PackageId: String
         # @param DeleteDnsAutoRecord: 签发后是否删除自动域名验证记录， 默认为否；仅域名为DNS_AUTO验证类型支持传参
         # @type DeleteDnsAutoRecord: Boolean
+        # @param DnsNames: 域名数组（多域名证书可以上传）。
+        # @type DnsNames: Array
 
-        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId, :DeleteDnsAutoRecord
+        attr_accessor :DvAuthMethod, :DomainName, :ProjectId, :PackageType, :ContactEmail, :ContactPhone, :ValidityPeriod, :CsrEncryptAlgo, :CsrKeyParameter, :CsrKeyPassword, :Alias, :OldCertificateId, :PackageId, :DeleteDnsAutoRecord, :DnsNames
 
-        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil, deletednsautorecord=nil)
+        def initialize(dvauthmethod=nil, domainname=nil, projectid=nil, packagetype=nil, contactemail=nil, contactphone=nil, validityperiod=nil, csrencryptalgo=nil, csrkeyparameter=nil, csrkeypassword=nil, _alias=nil, oldcertificateid=nil, packageid=nil, deletednsautorecord=nil, dnsnames=nil)
           @DvAuthMethod = dvauthmethod
           @DomainName = domainname
           @ProjectId = projectid
@@ -130,6 +132,7 @@ module TencentCloud
           @OldCertificateId = oldcertificateid
           @PackageId = packageid
           @DeleteDnsAutoRecord = deletednsautorecord
+          @DnsNames = dnsnames
         end
 
         def deserialize(params)
@@ -147,6 +150,7 @@ module TencentCloud
           @OldCertificateId = params['OldCertificateId']
           @PackageId = params['PackageId']
           @DeleteDnsAutoRecord = params['DeleteDnsAutoRecord']
+          @DnsNames = params['DnsNames']
         end
       end
 
@@ -6115,8 +6119,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2024, 1
-        deprecate :Regions=, :none, 2024, 1
+        deprecate :Regions, :none, 2024, 2
+        deprecate :Regions=, :none, 2024, 2
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
