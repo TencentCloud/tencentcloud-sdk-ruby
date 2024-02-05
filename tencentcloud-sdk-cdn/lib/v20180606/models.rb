@@ -3865,7 +3865,7 @@ module TencentCloud
       # DescribeCdnDomainLogs返回参数结构体
       class DescribeCdnDomainLogsResponse < TencentCloud::Common::AbstractModel
         # @param DomainLogs: 日志包下载链接。
-        # 下载内容是gz后缀的压缩包，解压后是无扩展名的文本文件。
+        # 下载内容是gz后缀的压缩包，解压后是无扩展名的文本文件。链接有效期1天。
         # @type DomainLogs: Array
         # @param TotalCount: 查询到的总条数
         # @type TotalCount: Integer

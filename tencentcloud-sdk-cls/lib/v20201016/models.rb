@@ -5926,6 +5926,26 @@ module TencentCloud
         end
       end
 
+      # 日志内容高亮描述信息
+      class HighLightItem < TencentCloud::Common::AbstractModel
+        # @param Key: 高亮的日志Key
+        # @type Key: String
+        # @param Values: 高亮的语法
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
       # 直方图详细信息
       class HistogramInfo < TencentCloud::Common::AbstractModel
         # @param Count: 统计周期内的日志条数
@@ -6237,10 +6257,13 @@ module TencentCloud
         # @param IndexStatus: 日志创建索引异常原因(仅在日志创建索引异常时有值)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
+        # @param HighLights: 日志内容的高亮描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighLights: Array
 
-        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName, :RawLog, :IndexStatus
+        attr_accessor :Source, :Filename, :Content, :PkgId, :PkgLogId, :BTime, :HostName, :RawLog, :IndexStatus, :HighLights
 
-        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil, hostname=nil, rawlog=nil, indexstatus=nil)
+        def initialize(source=nil, filename=nil, content=nil, pkgid=nil, pkglogid=nil, btime=nil, hostname=nil, rawlog=nil, indexstatus=nil, highlights=nil)
           @Source = source
           @Filename = filename
           @Content = content
@@ -6250,6 +6273,7 @@ module TencentCloud
           @HostName = hostname
           @RawLog = rawlog
           @IndexStatus = indexstatus
+          @HighLights = highlights
         end
 
         def deserialize(params)
@@ -6262,6 +6286,14 @@ module TencentCloud
           @HostName = params['HostName']
           @RawLog = params['RawLog']
           @IndexStatus = params['IndexStatus']
+          unless params['HighLights'].nil?
+            @HighLights = []
+            params['HighLights'].each do |i|
+              highlightitem_tmp = HighLightItem.new
+              highlightitem_tmp.deserialize(i)
+              @HighLights << highlightitem_tmp
+            end
+          end
         end
       end
 
@@ -9353,26 +9385,26 @@ module TencentCloud
         end
       end
 
-      # 日志主题信息
+      # 主题基本信息
       class TopicInfo < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
         # @type LogsetId: String
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 主题ID
         # @type TopicId: String
-        # @param TopicName: 日志主题名称
+        # @param TopicName: 主题名称
         # @type TopicName: String
         # @param PartitionCount: 主题分区个数
         # @type PartitionCount: Integer
-        # @param Index: 是否开启索引
+        # @param Index: 主题是否开启索引（主题类型需为日志主题）
         # @type Index: Boolean
-        # @param AssumerName: 云产品标识，日志主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
+        # @param AssumerName: 云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssumerName: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param Status: 日主主题是否开启采集
+        # @param Status: 主题是否开启采集
         # @type Status: Boolean
-        # @param Tags: 日志主题绑定的标签信息
+        # @param Tags: 主题绑定的标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param AutoSplit: 该主题是否开启自动分裂
@@ -9381,7 +9413,7 @@ module TencentCloud
         # @param MaxSplitPartitions: 若开启自动分裂的话，该主题能够允许的最大分区数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxSplitPartitions: Integer
-        # @param StorageType: 日主题的存储类型
+        # @param StorageType: 主题的存储类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageType: String
         # @param Period: 生命周期，单位天，可取值范围1~3600。取值为3640时代表永久保存
@@ -9390,11 +9422,11 @@ module TencentCloud
         # @param SubAssumerName: 云产品二级标识，日志主题由其它云产品创建时，该字段会显示云产品名称及其日志类型的二级分类，例如TKE-Audit、TKE-Event。部分云产品仅有云产品标识(AssumerName)，无该字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAssumerName: String
-        # @param Describes: 日志主题描述
+        # @param Describes: 主题描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Describes: String
-        # @param HotPeriod: 开启日志沉降，热存储的生命周期， hotPeriod < Period。
-        # 热存储为 hotPeriod, 冷存储则为 Period-hotPeriod。
+        # @param HotPeriod: 开启日志沉降，标准存储的生命周期， hotPeriod < Period。
+        # 标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HotPeriod: Integer
         # @param BizType: 主题类型。
