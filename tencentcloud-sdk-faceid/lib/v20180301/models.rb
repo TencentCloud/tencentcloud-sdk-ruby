@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2024, 1
-        deprecate :Idcard=, :none, 2024, 1
+        deprecate :Idcard, :none, 2024, 2
+        deprecate :Idcard=, :none, 2024, 2
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1050,7 +1050,7 @@ module TencentCloud
 
       # 核身文本信息
       class DetectInfoText < TencentCloud::Common::AbstractModel
-        # @param ErrCode: 本次流程最终验证结果。0为成功
+        # @param ErrCode: 本次流程最终验证结果。0为成功（仅包含活体人脸核身结果，不包含意愿核身结果）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrCode: Integer
         # @param ErrMsg: 本次流程最终验证结果描述。（仅描述用，文案更新时不会通知。）
@@ -2664,8 +2664,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2024, 1
-        deprecate :AsrResultSimilarity=, :none, 2024, 1
+        deprecate :AsrResultSimilarity, :none, 2024, 2
+        deprecate :AsrResultSimilarity=, :none, 2024, 2
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
           @IntentionVerifyVideo = intentionverifyvideo

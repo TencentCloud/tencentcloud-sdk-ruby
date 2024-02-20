@@ -2503,6 +2503,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新服务级账号密码
+
+        # @param request: Request instance for ModifyServiceAccountPassword.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::ModifyServiceAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::ModifyServiceAccountPasswordResponse`
+        def ModifyServiceAccountPassword(request)
+          body = send_request('ModifyServiceAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceAccountPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新版本保留规则
 
         # @param request: Request instance for ModifyTagRetentionRule.

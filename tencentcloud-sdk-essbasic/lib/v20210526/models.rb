@@ -435,104 +435,6 @@ module TencentCloud
         end
       end
 
-      # 用户计费使用情况详情
-      class BillUsageDetail < TencentCloud::Common::AbstractModel
-        # @param FlowId: 合同流程ID，为32位字符串。
-        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FlowId: String
-        # @param OperatorName: 合同经办人名称
-        # 如果有多个经办人用分号隔开。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OperatorName: String
-        # @param CreateOrganizationName: 发起方组织机构名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateOrganizationName: String
-        # @param FlowName: 合同流程的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成。
-        # 该名称还将用于合同签署完成后的下载文件名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FlowName: String
-        # @param Status: 当前合同状态,如下是状态码对应的状态。
-        # 0-还没有发起
-        # 1-等待签署
-        # 2-部分签署
-        # 3-拒签
-        # 4-已签署
-        # 5-已过期
-        # 6-已撤销
-        # 7-还没有预发起
-        # 8-等待填写
-        # 9-部分填写
-        # 10-拒填
-        # 11-已解除
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: Integer
-        # @param QuotaType: 套餐类型
-        # 对应关系如下
-        # CloudEnterprise-企业版合同
-        # SingleSignature-单方签章
-        # CloudProve-签署报告
-        # CloudOnlineSign-腾讯会议在线签约
-        # ChannelWeCard-微工卡
-        # SignFlow-合同套餐
-        # SignFace-签署意愿（人脸识别）
-        # SignPassword-签署意愿（密码）
-        # SignSMS-签署意愿（短信）
-        # PersonalEssAuth-签署人实名（腾讯电子签认证）
-        # PersonalThirdAuth-签署人实名（信任第三方认证）
-        # OrgEssAuth-签署企业实名
-        # FlowNotify-短信通知
-        # AuthService-企业工商信息查询
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type QuotaType: String
-        # @param UseCount: 合同使用量
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UseCount: Integer
-        # @param CostTime: 消耗的时间戳，格式为Unix标准时间戳（秒）。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CostTime: Integer
-        # @param QuotaName: 消耗的套餐名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type QuotaName: String
-        # @param CostType: 消耗类型
-        # 1.扣费 2.撤销返还
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CostType: Integer
-        # @param Remark: 备注
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Remark: String
-
-        attr_accessor :FlowId, :OperatorName, :CreateOrganizationName, :FlowName, :Status, :QuotaType, :UseCount, :CostTime, :QuotaName, :CostType, :Remark
-
-        def initialize(flowid=nil, operatorname=nil, createorganizationname=nil, flowname=nil, status=nil, quotatype=nil, usecount=nil, costtime=nil, quotaname=nil, costtype=nil, remark=nil)
-          @FlowId = flowid
-          @OperatorName = operatorname
-          @CreateOrganizationName = createorganizationname
-          @FlowName = flowname
-          @Status = status
-          @QuotaType = quotatype
-          @UseCount = usecount
-          @CostTime = costtime
-          @QuotaName = quotaname
-          @CostType = costtype
-          @Remark = remark
-        end
-
-        def deserialize(params)
-          @FlowId = params['FlowId']
-          @OperatorName = params['OperatorName']
-          @CreateOrganizationName = params['CreateOrganizationName']
-          @FlowName = params['FlowName']
-          @Status = params['Status']
-          @QuotaType = params['QuotaType']
-          @UseCount = params['UseCount']
-          @CostTime = params['CostTime']
-          @QuotaName = params['QuotaName']
-          @CostType = params['CostType']
-          @Remark = params['Remark']
-        end
-      end
-
       # 抄送信息
       class CcInfo < TencentCloud::Common::AbstractModel
         # @param Mobile: 被抄送人手机号，大陆11位手机号
@@ -3188,7 +3090,11 @@ module TencentCloud
         # @param Agent: 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param ThemeType: 主题类型<br/>EMBED_WEB_THEME：嵌入式主题
-        # <br/>目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
+        # <ul>
+        # <li>EMBED_WEB_THEME，web页面嵌入的主题风格配置</li>
+        # <li>COMPANY_AUTHENTICATE，子客认证主题配置， 对当前第三方应用号生效，
+        # 目前支持的有，背景图替换，隐藏企业认证页面导航栏和隐藏企业认证顶部logo</li>
+        # </ul>
         # @type ThemeType: String
         # @param WebThemeConfig: 主题配置
         # @type WebThemeConfig: :class:`Tencentcloud::Essbasic.v20210526.models.WebThemeConfig`
@@ -5736,7 +5642,7 @@ module TencentCloud
 
         # **注：**动态签署人场景，如果签署链接类型设置为`APP`，则仅支持跳转到封面页。
 
-        # 详细使用场景可以参数接口说明中的 **主要使用场景可以更加EndPoint分类如下**
+        # 详细使用场景可以参考接口描述说明中的 **主要使用场景EndPoint分类**
         # @type Endpoint: String
         # @param GenerateType: 签署链接生成类型，可以选择的类型如下
 
@@ -5953,91 +5859,6 @@ module TencentCloud
               organizationauthurl_tmp = OrganizationAuthUrl.new
               organizationauthurl_tmp.deserialize(i)
               @OrganizationAuthUrls << organizationauthurl_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeBillUsageDetail请求参数结构体
-      class DescribeBillUsageDetailRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
-        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间字符串，格式为yyyymmdd,时间跨度不能大于31天
-        # @type EndTime: String
-        # @param QuotaType: 查询的套餐类型 （选填 ）不传则查询所有套餐；
-        # 对应关系如下
-        # CloudEnterprise-企业版合同
-        # SingleSignature-单方签章
-        # CloudProve-签署报告
-        # CloudOnlineSign-腾讯会议在线签约
-        # ChannelWeCard-微工卡
-        # SignFlow-合同套餐
-        # SignFace-签署意愿（人脸识别）
-        # SignPassword-签署意愿（密码）
-        # SignSMS-签署意愿（短信）
-        # PersonalEssAuth-签署人实名（腾讯电子签认证）
-        # PersonalThirdAuth-签署人实名（信任第三方认证）
-        # OrgEssAuth-签署企业实名
-        # FlowNotify-短信通知
-        # AuthService-企业工商信息查询
-        # @type QuotaType: String
-        # @param Offset: 指定分页返回第几页的数据，如果不传默认返回第一页，页码从 0 开始，即首页为 0
-        # @type Offset: Integer
-        # @param Limit: 指定分页每页返回的数据条数，如果不传默认为 50，单页最大支持 50。
-        # @type Limit: Integer
-
-        attr_accessor :Agent, :StartTime, :EndTime, :QuotaType, :Offset, :Limit
-
-        def initialize(agent=nil, starttime=nil, endtime=nil, quotatype=nil, offset=nil, limit=nil)
-          @Agent = agent
-          @StartTime = starttime
-          @EndTime = endtime
-          @QuotaType = quotatype
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @QuotaType = params['QuotaType']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeBillUsageDetail返回参数结构体
-      class DescribeBillUsageDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 返回查询记录总数
-        # @type Total: Integer
-        # @param Details: 消耗记录详情
-        # @type Details: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :Details, :RequestId
-
-        def initialize(total=nil, details=nil, requestid=nil)
-          @Total = total
-          @Details = details
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['Details'].nil?
-            @Details = []
-            params['Details'].each do |i|
-              billusagedetail_tmp = BillUsageDetail.new
-              billusagedetail_tmp.deserialize(i)
-              @Details << billusagedetail_tmp
             end
           end
           @RequestId = params['RequestId']

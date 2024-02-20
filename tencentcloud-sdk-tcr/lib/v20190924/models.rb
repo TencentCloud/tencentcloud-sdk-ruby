@@ -5388,6 +5388,54 @@ module TencentCloud
         end
       end
 
+      # ModifyServiceAccountPassword请求参数结构体
+      class ModifyServiceAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例Id
+        # @type RegistryId: String
+        # @param Name: 服务级账号名
+        # @type Name: String
+        # @param Random: 是否随机生成密码
+        # @type Random: Boolean
+        # @param Password: 服务级账号密码，长度在8到20之间且需包含至少一个大写字符，一个小写字符和一个数字
+        # @type Password: String
+
+        attr_accessor :RegistryId, :Name, :Random, :Password
+
+        def initialize(registryid=nil, name=nil, random=nil, password=nil)
+          @RegistryId = registryid
+          @Name = name
+          @Random = random
+          @Password = password
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Name = params['Name']
+          @Random = params['Random']
+          @Password = params['Password']
+        end
+      end
+
+      # ModifyServiceAccountPassword返回参数结构体
+      class ModifyServiceAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param Password: 自定义用户密码，仅展示一次，请注意留存
+        # @type Password: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Password, :RequestId
+
+        def initialize(password=nil, requestid=nil)
+          @Password = password
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Password = params['Password']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyServiceAccount请求参数结构体
       class ModifyServiceAccountRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
