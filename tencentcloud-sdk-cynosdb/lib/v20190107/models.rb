@@ -916,6 +916,271 @@ module TencentCloud
         end
       end
 
+      # 任务信息
+      class BizTaskInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 任务id
+        # @type ID: Integer
+        # @param AppId: 用户appid
+        # @type AppId: Integer
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param DelayTime: 延迟执行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayTime: String
+        # @param ErrMsg: 任务失败信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param FlowId: 异步任务流id
+        # @type FlowId: Integer
+        # @param Input: 任务输入信息
+        # @type Input: String
+        # @param InstanceGrpId: 实例组id
+        # @type InstanceGrpId: String
+        # @param InstanceGroupId: 实例组id
+        # @type InstanceGroupId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ObjectId: 任务操作对象id
+        # @type ObjectId: String
+        # @param ObjectType: 任务操作对象类型
+        # @type ObjectType: String
+        # @param Operator: 操作者uin
+        # @type Operator: String
+        # @param Output: 任务输出信息
+        # @type Output: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param TaskType: 任务类型
+        # @type TaskType: String
+        # @param TriggerTaskId: 触发本任务的父任务ID
+        # @type TriggerTaskId: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param StartTime: 任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # @type EndTime: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param Process: 任务进度
+        # @type Process: Integer
+        # @param ModifyParamsData: 修改参数任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyParamsData: Array
+        # @param CreateClustersData: 创建集群任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateClustersData: :class:`Tencentcloud::Cynosdb.v20190107.models.CreateClustersData`
+        # @param RollbackData: 集群回档任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollbackData: :class:`Tencentcloud::Cynosdb.v20190107.models.RollbackData`
+        # @param ModifyInstanceData: 实例变配任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyInstanceData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyInstanceData`
+        # @param ManualBackupData: 手动备份任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ManualBackupData: :class:`Tencentcloud::Cynosdb.v20190107.models.ManualBackupData`
+        # @param ModifyDbVersionData: 修改内核版本任务信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyDbVersionData: :class:`Tencentcloud::Cynosdb.v20190107.models.ModifyDbVersionData`
+        # @param ClusterSlaveData: 集群可用区信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterSlaveData: :class:`Tencentcloud::Cynosdb.v20190107.models.ClusterSlaveData`
+        # @param SwitchClusterLogBin: 转换集群日志
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchClusterLogBin: :class:`Tencentcloud::Cynosdb.v20190107.models.SwitchClusterLogBin`
+        # @param ModifyInstanceParamsData: 修改实例参数数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyInstanceParamsData: :class:`Tencentcloud::Cynosdb.v20190107.models.BizTaskModifyParamsData`
+        # @param TaskMaintainInfo: 维护时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskMaintainInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.TaskMaintainInfo`
+
+        attr_accessor :ID, :AppId, :ClusterId, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo
+        extend Gem::Deprecate
+        deprecate :InstanceGrpId, :none, 2024, 2
+        deprecate :InstanceGrpId=, :none, 2024, 2
+
+        def initialize(id=nil, appid=nil, clusterid=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil)
+          @ID = id
+          @AppId = appid
+          @ClusterId = clusterid
+          @CreateTime = createtime
+          @DelayTime = delaytime
+          @ErrMsg = errmsg
+          @FlowId = flowid
+          @Input = input
+          @InstanceGrpId = instancegrpid
+          @InstanceGroupId = instancegroupid
+          @InstanceId = instanceid
+          @ObjectId = objectid
+          @ObjectType = objecttype
+          @Operator = operator
+          @Output = output
+          @Status = status
+          @TaskType = tasktype
+          @TriggerTaskId = triggertaskid
+          @UpdateTime = updatetime
+          @StartTime = starttime
+          @EndTime = endtime
+          @ClusterName = clustername
+          @InstanceName = instancename
+          @Process = process
+          @ModifyParamsData = modifyparamsdata
+          @CreateClustersData = createclustersdata
+          @RollbackData = rollbackdata
+          @ModifyInstanceData = modifyinstancedata
+          @ManualBackupData = manualbackupdata
+          @ModifyDbVersionData = modifydbversiondata
+          @ClusterSlaveData = clusterslavedata
+          @SwitchClusterLogBin = switchclusterlogbin
+          @ModifyInstanceParamsData = modifyinstanceparamsdata
+          @TaskMaintainInfo = taskmaintaininfo
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @CreateTime = params['CreateTime']
+          @DelayTime = params['DelayTime']
+          @ErrMsg = params['ErrMsg']
+          @FlowId = params['FlowId']
+          @Input = params['Input']
+          @InstanceGrpId = params['InstanceGrpId']
+          @InstanceGroupId = params['InstanceGroupId']
+          @InstanceId = params['InstanceId']
+          @ObjectId = params['ObjectId']
+          @ObjectType = params['ObjectType']
+          @Operator = params['Operator']
+          @Output = params['Output']
+          @Status = params['Status']
+          @TaskType = params['TaskType']
+          @TriggerTaskId = params['TriggerTaskId']
+          @UpdateTime = params['UpdateTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ClusterName = params['ClusterName']
+          @InstanceName = params['InstanceName']
+          @Process = params['Process']
+          unless params['ModifyParamsData'].nil?
+            @ModifyParamsData = []
+            params['ModifyParamsData'].each do |i|
+              modifyparamsdata_tmp = ModifyParamsData.new
+              modifyparamsdata_tmp.deserialize(i)
+              @ModifyParamsData << modifyparamsdata_tmp
+            end
+          end
+          unless params['CreateClustersData'].nil?
+            @CreateClustersData = CreateClustersData.new
+            @CreateClustersData.deserialize(params['CreateClustersData'])
+          end
+          unless params['RollbackData'].nil?
+            @RollbackData = RollbackData.new
+            @RollbackData.deserialize(params['RollbackData'])
+          end
+          unless params['ModifyInstanceData'].nil?
+            @ModifyInstanceData = ModifyInstanceData.new
+            @ModifyInstanceData.deserialize(params['ModifyInstanceData'])
+          end
+          unless params['ManualBackupData'].nil?
+            @ManualBackupData = ManualBackupData.new
+            @ManualBackupData.deserialize(params['ManualBackupData'])
+          end
+          unless params['ModifyDbVersionData'].nil?
+            @ModifyDbVersionData = ModifyDbVersionData.new
+            @ModifyDbVersionData.deserialize(params['ModifyDbVersionData'])
+          end
+          unless params['ClusterSlaveData'].nil?
+            @ClusterSlaveData = ClusterSlaveData.new
+            @ClusterSlaveData.deserialize(params['ClusterSlaveData'])
+          end
+          unless params['SwitchClusterLogBin'].nil?
+            @SwitchClusterLogBin = SwitchClusterLogBin.new
+            @SwitchClusterLogBin.deserialize(params['SwitchClusterLogBin'])
+          end
+          unless params['ModifyInstanceParamsData'].nil?
+            @ModifyInstanceParamsData = BizTaskModifyParamsData.new
+            @ModifyInstanceParamsData.deserialize(params['ModifyInstanceParamsData'])
+          end
+          unless params['TaskMaintainInfo'].nil?
+            @TaskMaintainInfo = TaskMaintainInfo.new
+            @TaskMaintainInfo.deserialize(params['TaskMaintainInfo'])
+          end
+        end
+      end
+
+      # 实例参数修改任务详情
+      class BizTaskModifyInstanceParam < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ModifyInstanceParamList: 实例参数修改任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyInstanceParamList: Array
+
+        attr_accessor :InstanceId, :ModifyInstanceParamList
+
+        def initialize(instanceid=nil, modifyinstanceparamlist=nil)
+          @InstanceId = instanceid
+          @ModifyInstanceParamList = modifyinstanceparamlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ModifyInstanceParamList'].nil?
+            @ModifyInstanceParamList = []
+            params['ModifyInstanceParamList'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @ModifyInstanceParamList << modifyparamitem_tmp
+            end
+          end
+        end
+      end
+
+      # 修改参数任务数据
+      class BizTaskModifyParamsData < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterParamList: 集群参数修改数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterParamList: Array
+        # @param ModifyInstanceParams: 实例参数修改数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyInstanceParams: Array
+
+        attr_accessor :ClusterId, :ClusterParamList, :ModifyInstanceParams
+
+        def initialize(clusterid=nil, clusterparamlist=nil, modifyinstanceparams=nil)
+          @ClusterId = clusterid
+          @ClusterParamList = clusterparamlist
+          @ModifyInstanceParams = modifyinstanceparams
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ClusterParamList'].nil?
+            @ClusterParamList = []
+            params['ClusterParamList'].each do |i|
+              modifyparamitem_tmp = ModifyParamItem.new
+              modifyparamitem_tmp.deserialize(i)
+              @ClusterParamList << modifyparamitem_tmp
+            end
+          end
+          unless params['ModifyInstanceParams'].nil?
+            @ModifyInstanceParams = []
+            params['ModifyInstanceParams'].each do |i|
+              biztaskmodifyinstanceparam_tmp = BizTaskModifyInstanceParam.new
+              biztaskmodifyinstanceparam_tmp.deserialize(i)
+              @ModifyInstanceParams << biztaskmodifyinstanceparam_tmp
+            end
+          end
+        end
+      end
+
       # CloseAuditService请求参数结构体
       class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1188,6 +1453,38 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @ClusterId = params['ClusterId']
           @InstanceId = params['InstanceId']
+        end
+      end
+
+      # 集群从可用区信息
+      class ClusterSlaveData < TencentCloud::Common::AbstractModel
+        # @param OldMasterZone: 旧主可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldMasterZone: String
+        # @param OldSlaveZone: 旧从可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OldSlaveZone: Array
+        # @param NewMasterZone: 新主可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewMasterZone: String
+        # @param NewSlaveZone: 新从可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NewSlaveZone: Array
+
+        attr_accessor :OldMasterZone, :OldSlaveZone, :NewMasterZone, :NewSlaveZone
+
+        def initialize(oldmasterzone=nil, oldslavezone=nil, newmasterzone=nil, newslavezone=nil)
+          @OldMasterZone = oldmasterzone
+          @OldSlaveZone = oldslavezone
+          @NewMasterZone = newmasterzone
+          @NewSlaveZone = newslavezone
+        end
+
+        def deserialize(params)
+          @OldMasterZone = params['OldMasterZone']
+          @OldSlaveZone = params['OldSlaveZone']
+          @NewMasterZone = params['NewMasterZone']
+          @NewSlaveZone = params['NewSlaveZone']
         end
       end
 
@@ -1522,6 +1819,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建集群任务信息
+      class CreateClustersData < TencentCloud::Common::AbstractModel
+        # @param Cpu: 实例CPU
+        # @type Cpu: Integer
+        # @param Memory: 实例内存
+        # @type Memory: Integer
+        # @param StorageLimit: 集群存储上限
+        # @type StorageLimit: Integer
+
+        attr_accessor :Cpu, :Memory, :StorageLimit
+
+        def initialize(cpu=nil, memory=nil, storagelimit=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @StorageLimit = storagelimit
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @StorageLimit = params['StorageLimit']
         end
       end
 
@@ -6474,6 +6795,76 @@ module TencentCloud
         end
       end
 
+      # DescribeTasks请求参数结构体
+      class DescribeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param StartTimeBegin: 任务开始时间起始值
+        # @type StartTimeBegin: String
+        # @param StartTimeEnd: 任务开始时间结束值
+        # @type StartTimeEnd: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param Limit: 查询列表长度
+        # @type Limit: Integer
+        # @param Offset: 查询列表偏移量
+        # @type Offset: Integer
+
+        attr_accessor :StartTimeBegin, :StartTimeEnd, :Filters, :Limit, :Offset
+
+        def initialize(starttimebegin=nil, starttimeend=nil, filters=nil, limit=nil, offset=nil)
+          @StartTimeBegin = starttimebegin
+          @StartTimeEnd = starttimeend
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @StartTimeBegin = params['StartTimeBegin']
+          @StartTimeEnd = params['StartTimeEnd']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeTasks返回参数结构体
+      class DescribeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 任务列表总条数
+        # @type TotalCount: Integer
+        # @param TaskList: 任务列表
+        # @type TaskList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TaskList, :RequestId
+
+        def initialize(totalcount=nil, tasklist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TaskList = tasklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              biztaskinfo_tmp = BizTaskInfo.new
+              biztaskinfo_tmp.deserialize(i)
+              @TaskList << biztaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeZones请求参数结构体
       class DescribeZonesRequest < TencentCloud::Common::AbstractModel
         # @param IncludeVirtualZones: 是否包含虚拟区
@@ -7540,6 +7931,30 @@ module TencentCloud
         end
       end
 
+      # 手动备份任务信息
+      class ManualBackupData < TencentCloud::Common::AbstractModel
+        # @param BackupType: 备份类型。snapshot-快照备份
+        # @type BackupType: String
+        # @param BackupMethod: 备份方式。auto-自动备份，manual-手动
+        # @type BackupMethod: String
+        # @param SnapshotTime: 备份时间
+        # @type SnapshotTime: String
+
+        attr_accessor :BackupType, :BackupMethod, :SnapshotTime
+
+        def initialize(backuptype=nil, backupmethod=nil, snapshottime=nil)
+          @BackupType = backuptype
+          @BackupMethod = backupmethod
+          @SnapshotTime = snapshottime
+        end
+
+        def deserialize(params)
+          @BackupType = params['BackupType']
+          @BackupMethod = params['BackupMethod']
+          @SnapshotTime = params['SnapshotTime']
+        end
+      end
+
       # 参数是否可修改的详细信息
       class ModifiableInfo < TencentCloud::Common::AbstractModel
         # @param IsModifiable: 参数是否可被修改, 1:可以 0:不可以
@@ -8367,6 +8782,70 @@ module TencentCloud
         end
       end
 
+      # 修改数据库内核版本任务信息
+      class ModifyDbVersionData < TencentCloud::Common::AbstractModel
+        # @param OldVersion: 修改前版本
+        # @type OldVersion: String
+        # @param NewVersion: 修改后版本
+        # @type NewVersion: String
+        # @param UpgradeType: 升级方式
+        # @type UpgradeType: String
+
+        attr_accessor :OldVersion, :NewVersion, :UpgradeType
+
+        def initialize(oldversion=nil, newversion=nil, upgradetype=nil)
+          @OldVersion = oldversion
+          @NewVersion = newversion
+          @UpgradeType = upgradetype
+        end
+
+        def deserialize(params)
+          @OldVersion = params['OldVersion']
+          @NewVersion = params['NewVersion']
+          @UpgradeType = params['UpgradeType']
+        end
+      end
+
+      # 实例变配任务信息
+      class ModifyInstanceData < TencentCloud::Common::AbstractModel
+        # @param Cpu: 变配后CPU
+        # @type Cpu: Integer
+        # @param Memory: 变配后内存
+        # @type Memory: Integer
+        # @param StorageLimit: 变配后存储上限
+        # @type StorageLimit: Integer
+        # @param OldCpu: 变配前CPU
+        # @type OldCpu: Integer
+        # @param OldMemory: 变配前内存
+        # @type OldMemory: Integer
+        # @param OldStorageLimit: 变配前存储上限
+        # @type OldStorageLimit: Integer
+        # @param UpgradeType: 升级方式。升级完成后切换或维护时间内切换
+        # @type UpgradeType: String
+
+        attr_accessor :Cpu, :Memory, :StorageLimit, :OldCpu, :OldMemory, :OldStorageLimit, :UpgradeType
+
+        def initialize(cpu=nil, memory=nil, storagelimit=nil, oldcpu=nil, oldmemory=nil, oldstoragelimit=nil, upgradetype=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @StorageLimit = storagelimit
+          @OldCpu = oldcpu
+          @OldMemory = oldmemory
+          @OldStorageLimit = oldstoragelimit
+          @UpgradeType = upgradetype
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @StorageLimit = params['StorageLimit']
+          @OldCpu = params['OldCpu']
+          @OldMemory = params['OldMemory']
+          @OldStorageLimit = params['OldStorageLimit']
+          @UpgradeType = params['UpgradeType']
+        end
+      end
+
       # ModifyInstanceName请求参数结构体
       class ModifyInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -8586,6 +9065,30 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 修改参数信息
+      class ModifyParamsData < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名
+        # @type Name: String
+        # @param OldValue: 修改前参数值
+        # @type OldValue: String
+        # @param CurValue: 修改后参数值
+        # @type CurValue: String
+
+        attr_accessor :Name, :OldValue, :CurValue
+
+        def initialize(name=nil, oldvalue=nil, curvalue=nil)
+          @Name = name
+          @OldValue = oldvalue
+          @CurValue = curvalue
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @OldValue = params['OldValue']
+          @CurValue = params['CurValue']
         end
       end
 
@@ -10692,6 +11195,90 @@ module TencentCloud
         end
       end
 
+      # 回档任务信息
+      class RollbackData < TencentCloud::Common::AbstractModel
+        # @param Cpu: 实例CPU
+        # @type Cpu: Integer
+        # @param Memory: 实例内存
+        # @type Memory: Integer
+        # @param StorageLimit: 集群存储上限
+        # @type StorageLimit: Integer
+        # @param OriginalClusterId: 原集群id
+        # @type OriginalClusterId: String
+        # @param OriginalClusterName: 原集群名
+        # @type OriginalClusterName: String
+        # @param RollbackStrategy: 回档方式
+        # @type RollbackStrategy: String
+        # @param SnapshotTime: 快照时间
+        # @type SnapshotTime: String
+        # @param MinCpu: 回档到serverlessls集群时最小CPU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinCpu: Integer
+        # @param MaxCpu: 回档到serverlessls集群时最大CPU
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxCpu: Integer
+        # @param SnapShotId: 快照ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapShotId: Integer
+        # @param RollbackDatabases: 回档数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollbackDatabases: Array
+        # @param RollbackTables: 回档数据表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RollbackTables: Array
+        # @param BackupFileName: 备份文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupFileName: String
+
+        attr_accessor :Cpu, :Memory, :StorageLimit, :OriginalClusterId, :OriginalClusterName, :RollbackStrategy, :SnapshotTime, :MinCpu, :MaxCpu, :SnapShotId, :RollbackDatabases, :RollbackTables, :BackupFileName
+
+        def initialize(cpu=nil, memory=nil, storagelimit=nil, originalclusterid=nil, originalclustername=nil, rollbackstrategy=nil, snapshottime=nil, mincpu=nil, maxcpu=nil, snapshotid=nil, rollbackdatabases=nil, rollbacktables=nil, backupfilename=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @StorageLimit = storagelimit
+          @OriginalClusterId = originalclusterid
+          @OriginalClusterName = originalclustername
+          @RollbackStrategy = rollbackstrategy
+          @SnapshotTime = snapshottime
+          @MinCpu = mincpu
+          @MaxCpu = maxcpu
+          @SnapShotId = snapshotid
+          @RollbackDatabases = rollbackdatabases
+          @RollbackTables = rollbacktables
+          @BackupFileName = backupfilename
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @StorageLimit = params['StorageLimit']
+          @OriginalClusterId = params['OriginalClusterId']
+          @OriginalClusterName = params['OriginalClusterName']
+          @RollbackStrategy = params['RollbackStrategy']
+          @SnapshotTime = params['SnapshotTime']
+          @MinCpu = params['MinCpu']
+          @MaxCpu = params['MaxCpu']
+          @SnapShotId = params['SnapShotId']
+          unless params['RollbackDatabases'].nil?
+            @RollbackDatabases = []
+            params['RollbackDatabases'].each do |i|
+              rollbackdatabase_tmp = RollbackDatabase.new
+              rollbackdatabase_tmp.deserialize(i)
+              @RollbackDatabases << rollbackdatabase_tmp
+            end
+          end
+          unless params['RollbackTables'].nil?
+            @RollbackTables = []
+            params['RollbackTables'].each do |i|
+              rollbacktable_tmp = RollbackTable.new
+              rollbacktable_tmp.deserialize(i)
+              @RollbackTables << rollbacktable_tmp
+            end
+          end
+          @BackupFileName = params['BackupFileName']
+        end
+      end
+
       # 回滚数据库信息
       class RollbackDatabase < TencentCloud::Common::AbstractModel
         # @param OldDatabase: 旧数据库名称
@@ -11281,6 +11868,23 @@ module TencentCloud
         end
       end
 
+      # 转换集群log bin开关
+      class SwitchClusterLogBin < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
       # SwitchClusterVpc请求参数结构体
       class SwitchClusterVpcRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -11473,6 +12077,33 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # TaskMaintainInfo
+      class TaskMaintainInfo < TencentCloud::Common::AbstractModel
+        # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainStartTime: Integer
+        # @param MaintainDuration: 持续的时间(单位：秒)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainDuration: Integer
+        # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaintainWeekDays: Array
+
+        attr_accessor :MaintainStartTime, :MaintainDuration, :MaintainWeekDays
+
+        def initialize(maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil)
+          @MaintainStartTime = maintainstarttime
+          @MaintainDuration = maintainduration
+          @MaintainWeekDays = maintainweekdays
+        end
+
+        def deserialize(params)
+          @MaintainStartTime = params['MaintainStartTime']
+          @MaintainDuration = params['MaintainDuration']
+          @MaintainWeekDays = params['MaintainWeekDays']
         end
       end
 

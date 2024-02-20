@@ -6290,10 +6290,12 @@ module TencentCloud
         # @type Zone: String
         # @param SubnetId: 子网，默认是集群创建时的子网
         # @type SubnetId: String
+        # @param ScaleOutServiceConfGroupsInfo: 扩容指定配置组
+        # @type ScaleOutServiceConfGroupsInfo: Array
 
-        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId
+        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo
 
-        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil)
+        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil)
           @InstanceChargeType = instancechargetype
           @InstanceId = instanceid
           @ScaleOutNodeConfig = scaleoutnodeconfig
@@ -6313,6 +6315,7 @@ module TencentCloud
           @ResourceSpec = resourcespec
           @Zone = zone
           @SubnetId = subnetid
+          @ScaleOutServiceConfGroupsInfo = scaleoutserviceconfgroupsinfo
         end
 
         def deserialize(params)
@@ -6361,6 +6364,14 @@ module TencentCloud
           end
           @Zone = params['Zone']
           @SubnetId = params['SubnetId']
+          unless params['ScaleOutServiceConfGroupsInfo'].nil?
+            @ScaleOutServiceConfGroupsInfo = []
+            params['ScaleOutServiceConfGroupsInfo'].each do |i|
+              scaleoutserviceconfgroupsinfo_tmp = ScaleOutServiceConfGroupsInfo.new
+              scaleoutserviceconfgroupsinfo_tmp.deserialize(i)
+              @ScaleOutServiceConfGroupsInfo << scaleoutserviceconfgroupsinfo_tmp
+            end
+          end
         end
       end
 
@@ -6602,6 +6613,27 @@ module TencentCloud
         def deserialize(params)
           @NodeFlag = params['NodeFlag']
           @NodeCount = params['NodeCount']
+        end
+      end
+
+      # 扩容指定配置组
+      class ScaleOutServiceConfGroupsInfo < TencentCloud::Common::AbstractModel
+        # @param ServiceComponentName: 组件版本名称 如 HDFS-2.8.5
+        # @type ServiceComponentName: String
+        # @param ConfGroupName: 配置组名 如hdfs-core-defaultGroup    ConfGroupName参数传入 代表配置组维度
+        #                                                              ConfGroupName参数不传 默认 代表集群维度
+        # @type ConfGroupName: String
+
+        attr_accessor :ServiceComponentName, :ConfGroupName
+
+        def initialize(servicecomponentname=nil, confgroupname=nil)
+          @ServiceComponentName = servicecomponentname
+          @ConfGroupName = confgroupname
+        end
+
+        def deserialize(params)
+          @ServiceComponentName = params['ServiceComponentName']
+          @ConfGroupName = params['ConfGroupName']
         end
       end
 

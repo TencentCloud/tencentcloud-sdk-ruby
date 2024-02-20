@@ -1184,7 +1184,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取帐户信息
+        # 获取账户信息
 
         # @param request: Request instance for DescribeUserDetail.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::DescribeUserDetailRequest`

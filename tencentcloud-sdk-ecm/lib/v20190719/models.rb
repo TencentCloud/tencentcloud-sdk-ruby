@@ -8624,10 +8624,14 @@ module TencentCloud
         # @type PerDataDisk: Integer
         # @param MaxModuleNum: 总模块数量
         # @type MaxModuleNum: Integer
+        # @param CBSSupported: 是否支持cbs
+        # @type CBSSupported: Boolean
+        # @param DiskNumLimit: 磁盘数量限制
+        # @type DiskNumLimit: Integer
 
-        attr_accessor :MaxBandwidth, :MaxSystemDiskSize, :MinBandwidth, :MinSystemDiskSize, :MaxDataDiskSize, :MinDataDiskSize, :SuggestBandwidth, :SuggestDataDiskSize, :SuggestSystemDiskSize, :MaxVcpu, :MinVcpu, :MaxVcpuPerReq, :PerBandwidth, :PerDataDisk, :MaxModuleNum
+        attr_accessor :MaxBandwidth, :MaxSystemDiskSize, :MinBandwidth, :MinSystemDiskSize, :MaxDataDiskSize, :MinDataDiskSize, :SuggestBandwidth, :SuggestDataDiskSize, :SuggestSystemDiskSize, :MaxVcpu, :MinVcpu, :MaxVcpuPerReq, :PerBandwidth, :PerDataDisk, :MaxModuleNum, :CBSSupported, :DiskNumLimit
 
-        def initialize(maxbandwidth=nil, maxsystemdisksize=nil, minbandwidth=nil, minsystemdisksize=nil, maxdatadisksize=nil, mindatadisksize=nil, suggestbandwidth=nil, suggestdatadisksize=nil, suggestsystemdisksize=nil, maxvcpu=nil, minvcpu=nil, maxvcpuperreq=nil, perbandwidth=nil, perdatadisk=nil, maxmodulenum=nil)
+        def initialize(maxbandwidth=nil, maxsystemdisksize=nil, minbandwidth=nil, minsystemdisksize=nil, maxdatadisksize=nil, mindatadisksize=nil, suggestbandwidth=nil, suggestdatadisksize=nil, suggestsystemdisksize=nil, maxvcpu=nil, minvcpu=nil, maxvcpuperreq=nil, perbandwidth=nil, perdatadisk=nil, maxmodulenum=nil, cbssupported=nil, disknumlimit=nil)
           @MaxBandwidth = maxbandwidth
           @MaxSystemDiskSize = maxsystemdisksize
           @MinBandwidth = minbandwidth
@@ -8643,6 +8647,8 @@ module TencentCloud
           @PerBandwidth = perbandwidth
           @PerDataDisk = perdatadisk
           @MaxModuleNum = maxmodulenum
+          @CBSSupported = cbssupported
+          @DiskNumLimit = disknumlimit
         end
 
         def deserialize(params)
@@ -8661,6 +8667,8 @@ module TencentCloud
           @PerBandwidth = params['PerBandwidth']
           @PerDataDisk = params['PerDataDisk']
           @MaxModuleNum = params['MaxModuleNum']
+          @CBSSupported = params['CBSSupported']
+          @DiskNumLimit = params['DiskNumLimit']
         end
       end
 
@@ -9054,16 +9062,20 @@ module TencentCloud
         # @type City: :class:`Tencentcloud::Ecm.v20190719.models.City`
         # @param RegionInfo: 实例所在的Region的信息。
         # @type RegionInfo: :class:`Tencentcloud::Ecm.v20190719.models.RegionInfo`
+        # @param Ipv6Supported: 实例是否支持ipv6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6Supported: Boolean
 
-        attr_accessor :ZoneInfo, :Country, :Area, :Province, :City, :RegionInfo
+        attr_accessor :ZoneInfo, :Country, :Area, :Province, :City, :RegionInfo, :Ipv6Supported
 
-        def initialize(zoneinfo=nil, country=nil, area=nil, province=nil, city=nil, regioninfo=nil)
+        def initialize(zoneinfo=nil, country=nil, area=nil, province=nil, city=nil, regioninfo=nil, ipv6supported=nil)
           @ZoneInfo = zoneinfo
           @Country = country
           @Area = area
           @Province = province
           @City = city
           @RegionInfo = regioninfo
+          @Ipv6Supported = ipv6supported
         end
 
         def deserialize(params)
@@ -9091,6 +9103,7 @@ module TencentCloud
             @RegionInfo = RegionInfo.new
             @RegionInfo.deserialize(params['RegionInfo'])
           end
+          @Ipv6Supported = params['Ipv6Supported']
         end
       end
 
@@ -11330,15 +11343,19 @@ module TencentCloud
         # @type PrivateIpAddresses: Array
         # @param Ipv6AddressCount: 为弹性网卡指定随机生成的 IPv6 地址数量。
         # @type Ipv6AddressCount: Integer
+        # @param Ipv6SubnetIds: runInstances接口创建三网ipv6地址使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ipv6SubnetIds: Array
 
-        attr_accessor :VpcId, :SubnetId, :AsVpcGateway, :PrivateIpAddresses, :Ipv6AddressCount
+        attr_accessor :VpcId, :SubnetId, :AsVpcGateway, :PrivateIpAddresses, :Ipv6AddressCount, :Ipv6SubnetIds
 
-        def initialize(vpcid=nil, subnetid=nil, asvpcgateway=nil, privateipaddresses=nil, ipv6addresscount=nil)
+        def initialize(vpcid=nil, subnetid=nil, asvpcgateway=nil, privateipaddresses=nil, ipv6addresscount=nil, ipv6subnetids=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @AsVpcGateway = asvpcgateway
           @PrivateIpAddresses = privateipaddresses
           @Ipv6AddressCount = ipv6addresscount
+          @Ipv6SubnetIds = ipv6subnetids
         end
 
         def deserialize(params)
@@ -11347,6 +11364,7 @@ module TencentCloud
           @AsVpcGateway = params['AsVpcGateway']
           @PrivateIpAddresses = params['PrivateIpAddresses']
           @Ipv6AddressCount = params['Ipv6AddressCount']
+          @Ipv6SubnetIds = params['Ipv6SubnetIds']
         end
       end
 

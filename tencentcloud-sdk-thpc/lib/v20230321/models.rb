@@ -1205,7 +1205,7 @@ module TencentCloud
       class DescribeQueuesResponse < TencentCloud::Common::AbstractModel
         # @param QueueSet: 队列概览信息列表。
         # @type QueueSet: Array
-        # @param TotalCount: 符合条件的节点数量。
+        # @param TotalCount: 符合条件的队列数量。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

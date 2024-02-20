@@ -1414,8 +1414,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2024, 1
-        deprecate :DefaultDataEngine=, :none, 2024, 1
+        deprecate :DefaultDataEngine, :none, 2024, 2
+        deprecate :DefaultDataEngine=, :none, 2024, 2
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -10943,10 +10943,13 @@ module TencentCloud
         # @type DisplayFormat: String
         # @param TotalTime: 任务耗时，单位： ms
         # @type TotalTime: Integer
+        # @param QueryResultTime: 获取结果消耗的时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QueryResultTime: Float
 
-        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime
+        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime, :QueryResultTime
 
-        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil, totaltime=nil)
+        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil, totaltime=nil, queryresulttime=nil)
           @TaskId = taskid
           @DatasourceConnectionName = datasourceconnectionname
           @DatabaseName = databasename
@@ -10966,6 +10969,7 @@ module TencentCloud
           @ProgressDetail = progressdetail
           @DisplayFormat = displayformat
           @TotalTime = totaltime
+          @QueryResultTime = queryresulttime
         end
 
         def deserialize(params)
@@ -10995,6 +10999,7 @@ module TencentCloud
           @ProgressDetail = params['ProgressDetail']
           @DisplayFormat = params['DisplayFormat']
           @TotalTime = params['TotalTime']
+          @QueryResultTime = params['QueryResultTime']
         end
       end
 

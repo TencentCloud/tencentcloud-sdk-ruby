@@ -1648,7 +1648,7 @@ module TencentCloud
         # @param FlowId: 合同流程ID，为32位字符串。
         # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
 
-        # [点击产看FlowId在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/05af26573d5106763b4cfbb9f7c64b41.png)
+        # [点击查看FlowId在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/05af26573d5106763b4cfbb9f7c64b41.png)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: String
         # @param Approvers: 签署方信息，如角色ID、角色名称等
@@ -2572,7 +2572,7 @@ module TencentCloud
         # @param NeedRelievedFlowId: 待解除的签署流程编号(即原签署流程的编号)。
 
 
-        # [点击产看流程编号在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/05af26573d5106763b4cfbb9f7c64b41.png)
+        # [点击查看流程编号在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/05af26573d5106763b4cfbb9f7c64b41.png)
         # @type NeedRelievedFlowId: String
         # @param ReliveInfo: 解除协议内容, 包括解除理由等信息。
         # @type ReliveInfo: :class:`Tencentcloud::Essbasic.v20210526.models.RelieveInfo`
@@ -6395,7 +6395,7 @@ module TencentCloud
 
         # 可以通过<a href="https://qian.tencent.com/developers/partnerApis/accounts/CreateConsoleLoginUrl" target="_blank">生成子客登录链接</a>登录企业控制台, 在企业模板中得到合同模板ID。
 
-        # [点击产看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/e988be12bf28a89b4716aed4502c2e02.png)
+        # [点击查看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/e988be12bf28a89b4716aed4502c2e02.png)
         # @type TemplateId: String
         # @param ContentType: 查询模板的内容
 
@@ -6410,7 +6410,7 @@ module TencentCloud
         # 4. `若传递此参数，分页参数(Limit,Offset)无效`
 
 
-        # [点击产看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/e988be12bf28a89b4716aed4502c2e02.png)
+        # [点击查看模板Id在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/e988be12bf28a89b4716aed4502c2e02.png)
         # @type TemplateIds: Array
         # @param Limit: 指定每页返回的数据条数，和Offset参数配合使用。
 

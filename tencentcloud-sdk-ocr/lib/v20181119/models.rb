@@ -6989,12 +6989,16 @@ module TencentCloud
         # @type PeriodOfValidity: String
         # @param No: 证件号码。
         # @type No: String
+        # @param PreviousNumber: 曾持证件号码。
+        # @type PreviousNumber: String
+        # @param IssuedAuthority: 签发机关。
+        # @type IssuedAuthority: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :RequestId
+        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :PreviousNumber, :IssuedAuthority, :RequestId
 
-        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, requestid=nil)
+        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, previousnumber=nil, issuedauthority=nil, requestid=nil)
           @CnName = cnname
           @EnName = enname
           @Sex = sex
@@ -7002,6 +7006,8 @@ module TencentCloud
           @Nationality = nationality
           @PeriodOfValidity = periodofvalidity
           @No = no
+          @PreviousNumber = previousnumber
+          @IssuedAuthority = issuedauthority
           @RequestId = requestid
         end
 
@@ -7013,6 +7019,8 @@ module TencentCloud
           @Nationality = params['Nationality']
           @PeriodOfValidity = params['PeriodOfValidity']
           @No = params['No']
+          @PreviousNumber = params['PreviousNumber']
+          @IssuedAuthority = params['IssuedAuthority']
           @RequestId = params['RequestId']
         end
       end
@@ -11406,6 +11414,8 @@ module TencentCloud
         # 102：通用机打电子发票
         # 61：电子发票（航空运输电子客票行程单）
         # 83：电子发票（铁路电子发票）
+        # 0915：全电纸质（二手车统一销售发票）
+        # 0903：全电纸质（机动车统一发票）
         # @type Type: String
         # @param ElectronicType: 具体的全电发票类型：01: 全电专用发票；02：全电普通发票；03：全电火车票；04：全电机票行程单
         # @type ElectronicType: String
