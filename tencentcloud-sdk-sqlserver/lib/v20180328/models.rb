@@ -2570,7 +2570,7 @@ module TencentCloud
         deprecate :IsFulltextEnabled, :none, 2024, 1
         deprecate :IsFulltextEnabled=, :none, 2024, 1
 
-        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, isfulltextenabled=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
+        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
           @CollationName = collationname
           @IsAutoCleanupOn = isautocleanupon
@@ -2578,7 +2578,6 @@ module TencentCloud
           @IsCdcEnabled = iscdcenabled
           @IsDbChainingOn = isdbchainingon
           @IsEncrypted = isencrypted
-          @IsFulltextEnabled = isfulltextenabled
           @IsMirroring = ismirroring
           @IsPublished = ispublished
           @IsReadCommittedSnapshotOn = isreadcommittedsnapshoton
@@ -2601,7 +2600,6 @@ module TencentCloud
           @IsCdcEnabled = params['IsCdcEnabled']
           @IsDbChainingOn = params['IsDbChainingOn']
           @IsEncrypted = params['IsEncrypted']
-          @IsFulltextEnabled = params['IsFulltextEnabled']
           @IsMirroring = params['IsMirroring']
           @IsPublished = params['IsPublished']
           @IsReadCommittedSnapshotOn = params['IsReadCommittedSnapshotOn']
@@ -6584,23 +6582,14 @@ module TencentCloud
         deprecate :Slowlogs, :none, 2024, 1
         deprecate :Slowlogs=, :none, 2024, 1
 
-        def initialize(totalcount=nil, slowlogs=nil, slowlogs=nil, requestid=nil)
+        def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
-          @Slowlogs = slowlogs
           @SlowLogs = slowlogs
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
-          unless params['Slowlogs'].nil?
-            @Slowlogs = []
-            params['Slowlogs'].each do |i|
-              slowloginfo_tmp = SlowlogInfo.new
-              slowloginfo_tmp.deserialize(i)
-              @Slowlogs << slowloginfo_tmp
-            end
-          end
           unless params['SlowLogs'].nil?
             @SlowLogs = []
             params['SlowLogs'].each do |i|

@@ -307,11 +307,10 @@ module TencentCloud
         deprecate :Idcard, :none, 2024, 2
         deprecate :Idcard=, :none, 2024, 2
 
-        def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
+        def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
           @Seq = seq
           @IdCard = idcard
-          @Idcard = idcard
           @Name = name
           @Sim = sim
           @IsNeedCharge = isneedcharge
@@ -324,7 +323,6 @@ module TencentCloud
           @ReqTime = params['ReqTime']
           @Seq = params['Seq']
           @IdCard = params['IdCard']
-          @Idcard = params['Idcard']
           @Name = params['Name']
           @Sim = params['Sim']
           @IsNeedCharge = params['IsNeedCharge']
@@ -2495,6 +2493,7 @@ module TencentCloud
         # -803: "用户主动关闭链接/异常断开链接"
         # -998: "系统数据异常"
         # -999: "系统未知错误，请联系人工核实"
+        # 若在人脸核身过程失败、未进入意愿确认过程，则该参数返回为空，请参考人脸核身错误码结果（DetectInfoText.ErrCode)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinalResultDetailCode: Integer
         # @param FinalResultMessage: 意愿核身错误信息
@@ -2590,6 +2589,7 @@ module TencentCloud
         # -803: "用户主动关闭链接/异常断开链接"
         # -998: "系统数据异常"
         # -999: "系统未知错误，请联系人工核实"
+        # 若在人脸核身过程失败、未进入意愿确认过程，则该参数返回为空，请参考人脸核身错误码结果（DetectInfoText.ErrCode)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinalResultDetailCode: Integer
         # @param FinalResultMessage: 意愿核身错误信息

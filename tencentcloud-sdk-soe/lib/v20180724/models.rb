@@ -650,13 +650,14 @@ module TencentCloud
         # @type TextMode: Integer
         # @param Keyword: 主题词和关键词
         # @type Keyword: String
-        # @param COSBucketURL: 音频存储路径，支持通过子路径指定文件夹名称
+        # @param COSBucketURL: 音频存储模式，此参数已废弃，无需设置；
+        # 注：有存储需求的用户建议自行存储至腾讯云COS[对象存储](https://cloud.tencent.com/product/cos)使用。
         # @type COSBucketURL: String
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
         extend Gem::Deprecate
-        deprecate :StorageMode, :none, 2023, 10
-        deprecate :StorageMode=, :none, 2023, 10
+        deprecate :StorageMode, :none, 2024, 2
+        deprecate :StorageMode=, :none, 2024, 2
 
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
@@ -737,8 +738,8 @@ module TencentCloud
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         extend Gem::Deprecate
-        deprecate :AudioUrl, :none, 2023, 10
-        deprecate :AudioUrl=, :none, 2023, 10
+        deprecate :AudioUrl, :none, 2024, 2
+        deprecate :AudioUrl=, :none, 2024, 2
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

@@ -262,7 +262,7 @@ module TencentCloud
         deprecate :Userid, :none, 2024, 1
         deprecate :Userid=, :none, 2024, 1
 
-        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil, userid=nil)
+        def initialize(content=nil, devicename=nil, productid=nil, requestid=nil, result=nil, scene=nil, time=nil, userid=nil)
           @Content = content
           @DeviceName = devicename
           @ProductId = productid
@@ -270,7 +270,6 @@ module TencentCloud
           @Result = result
           @Scene = scene
           @Time = time
-          @Userid = userid
           @UserId = userid
         end
 
@@ -282,7 +281,6 @@ module TencentCloud
           @Result = params['Result']
           @Scene = params['Scene']
           @Time = params['Time']
-          @Userid = params['Userid']
           @UserId = params['UserId']
         end
       end
@@ -1257,7 +1255,7 @@ module TencentCloud
         deprecate :NbiotDeviceID, :none, 2024, 1
         deprecate :NbiotDeviceID=, :none, 2024, 1
 
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, nbiotdeviceid=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil, requestid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, lastupdatetime=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, loradeveui=nil, loramotetype=nil, loglevel=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil, requestid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -1270,7 +1268,6 @@ module TencentCloud
           @Imei = imei
           @Isp = isp
           @ConnIP = connip
-          @NbiotDeviceID = nbiotdeviceid
           @LoraDevEui = loradeveui
           @LoraMoteType = loramotetype
           @LogLevel = loglevel
@@ -1307,7 +1304,6 @@ module TencentCloud
           @Imei = params['Imei']
           @Isp = params['Isp']
           @ConnIP = params['ConnIP']
-          @NbiotDeviceID = params['NbiotDeviceID']
           @LoraDevEui = params['LoraDevEui']
           @LoraMoteType = params['LoraMoteType']
           @LogLevel = params['LogLevel']
@@ -2575,7 +2571,7 @@ module TencentCloud
         deprecate :NbiotDeviceID, :none, 2024, 1
         deprecate :NbiotDeviceID=, :none, 2024, 1
 
-        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, nbiotdeviceid=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil)
+        def initialize(devicename=nil, online=nil, logintime=nil, version=nil, devicecert=nil, devicepsk=nil, tags=nil, devicetype=nil, imei=nil, isp=nil, connip=nil, lastupdatetime=nil, loradeveui=nil, loramotetype=nil, firstonlinetime=nil, lastofflinetime=nil, createtime=nil, loglevel=nil, certstate=nil, enablestate=nil, labels=nil, clientip=nil, firmwareupdatetime=nil, createuserid=nil, nbiotdeviceid=nil)
           @DeviceName = devicename
           @Online = online
           @LoginTime = logintime
@@ -2586,7 +2582,6 @@ module TencentCloud
           @DeviceType = devicetype
           @Imei = imei
           @Isp = isp
-          @NbiotDeviceID = nbiotdeviceid
           @ConnIP = connip
           @LastUpdateTime = lastupdatetime
           @LoraDevEui = loradeveui
@@ -2622,7 +2617,6 @@ module TencentCloud
           @DeviceType = params['DeviceType']
           @Imei = params['Imei']
           @Isp = params['Isp']
-          @NbiotDeviceID = params['NbiotDeviceID']
           @ConnIP = params['ConnIP']
           @LastUpdateTime = params['LastUpdateTime']
           @LoraDevEui = params['LoraDevEui']
@@ -3638,14 +3632,13 @@ module TencentCloud
         deprecate :Appeui, :none, 2024, 1
         deprecate :Appeui=, :none, 2024, 1
 
-        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, appeui=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil, appeui=nil)
+        def initialize(productdescription=nil, encryptiontype=nil, region=nil, producttype=nil, format=nil, platform=nil, modelid=nil, modelname=nil, productkey=nil, registertype=nil, productsecret=nil, registerlimit=nil, originproductid=nil, privatecaname=nil, originuserid=nil, devicelimit=nil, forbiddenstatus=nil, appeui=nil)
           @ProductDescription = productdescription
           @EncryptionType = encryptiontype
           @Region = region
           @ProductType = producttype
           @Format = format
           @Platform = platform
-          @Appeui = appeui
           @ModelId = modelid
           @ModelName = modelname
           @ProductKey = productkey
@@ -3667,7 +3660,6 @@ module TencentCloud
           @ProductType = params['ProductType']
           @Format = params['Format']
           @Platform = params['Platform']
-          @Appeui = params['Appeui']
           @ModelId = params['ModelId']
           @ModelName = params['ModelName']
           @ProductKey = params['ProductKey']

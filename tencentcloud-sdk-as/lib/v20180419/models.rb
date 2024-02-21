@@ -64,8 +64,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2024, 1
-        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 1
+        deprecate :ActivityRelatedInstanceSet, :none, 2024, 2
+        deprecate :ActivityRelatedInstanceSet=, :none, 2024, 2
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2632,8 +2632,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2024, 1
-        deprecate :AutomationService=, :none, 2024, 1
+        deprecate :AutomationService, :none, 2024, 2
+        deprecate :AutomationService=, :none, 2024, 2
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -4211,7 +4211,7 @@ module TencentCloud
         # @type ScalingPolicyName: String
         # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<br><li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。
+        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。</li>
         # @type AdjustmentValue: Integer
         # @param Cooldown: 冷却时间，仅适用于简单策略，单位为秒。
         # @type Cooldown: Integer

@@ -1373,15 +1373,13 @@ module TencentCloud
         deprecate :Txid, :none, 2023, 11
         deprecate :Txid=, :none, 2023, 11
 
-        def initialize(txid=nil, events=nil, txid=nil, requestid=nil)
-          @Txid = txid
+        def initialize(events=nil, txid=nil, requestid=nil)
           @Events = events
           @TxId = txid
           @RequestId = requestid
         end
 
         def deserialize(params)
-          @Txid = params['Txid']
           @Events = params['Events']
           @TxId = params['TxId']
           @RequestId = params['RequestId']

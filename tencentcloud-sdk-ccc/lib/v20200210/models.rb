@@ -608,14 +608,13 @@ module TencentCloud
         deprecate :Uui, :none, 2024, 1
         deprecate :Uui=, :none, 2024, 1
 
-        def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil, uui=nil)
+        def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
           @UserId = userid
           @Callee = callee
           @Caller = caller
           @Callers = callers
           @IsForceUseMobile = isforceusemobile
-          @Uui = uui
           @UUI = uui
         end
 
@@ -626,7 +625,6 @@ module TencentCloud
           @Caller = params['Caller']
           @Callers = params['Callers']
           @IsForceUseMobile = params['IsForceUseMobile']
-          @Uui = params['Uui']
           @UUI = params['UUI']
         end
       end
@@ -2166,11 +2164,10 @@ module TencentCloud
         deprecate :VoipCallInCount, :none, 2024, 1
         deprecate :VoipCallInCount=, :none, 2024, 1
 
-        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
+        def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
           @TelCallInCount = telcallincount
           @SeatUsedCount = seatusedcount
-          @VoipCallInCount = voipcallincount
           @VOIPCallInCount = voipcallincount
           @AsrOfflineCount = asrofflinecount
           @AsrRealtimeCount = asrrealtimecount
@@ -2181,7 +2178,6 @@ module TencentCloud
           @TelCallOutCount = params['TelCallOutCount']
           @TelCallInCount = params['TelCallInCount']
           @SeatUsedCount = params['SeatUsedCount']
-          @VoipCallInCount = params['VoipCallInCount']
           @VOIPCallInCount = params['VOIPCallInCount']
           @AsrOfflineCount = params['AsrOfflineCount']
           @AsrRealtimeCount = params['AsrRealtimeCount']
@@ -3772,7 +3768,7 @@ module TencentCloud
         deprecate :Uui, :none, 2024, 1
         deprecate :Uui=, :none, 2024, 1
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -3800,7 +3796,6 @@ module TencentCloud
           @SessionId = sessionid
           @ProtectedCaller = protectedcaller
           @ProtectedCallee = protectedcallee
-          @Uui = uui
           @UUI = uui
           @IVRKeyPressedEx = ivrkeypressedex
           @AsrUrl = asrurl
@@ -3856,7 +3851,6 @@ module TencentCloud
           @SessionId = params['SessionId']
           @ProtectedCaller = params['ProtectedCaller']
           @ProtectedCallee = params['ProtectedCallee']
-          @Uui = params['Uui']
           @UUI = params['UUI']
           unless params['IVRKeyPressedEx'].nil?
             @IVRKeyPressedEx = []

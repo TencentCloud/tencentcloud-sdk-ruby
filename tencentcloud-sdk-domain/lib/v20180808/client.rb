@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于清除多余的预定域名信息
+
+        # @param request: Request instance for DeleteReservedPreDomainInfo.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DeleteReservedPreDomainInfoRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DeleteReservedPreDomainInfoResponse`
+        def DeleteReservedPreDomainInfo(request)
+          body = send_request('DeleteReservedPreDomainInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReservedPreDomainInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( DeleteTemplate ) 用于删除信息模板。
 
         # @param request: Request instance for DeleteTemplate.
@@ -485,6 +509,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用户服务商提前获取预释放域名数据，查询数据根据结束时间进行倒序。
+
+        # @param request: Request instance for DescribePreDomainList.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribePreDomainListRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribePreDomainListResponse`
+        def DescribePreDomainList(request)
+          body = send_request('DescribePreDomainList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePreDomainListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 合作商用于查询预约预释放状态信息内容
+
+        # @param request: Request instance for DescribeReservedPreDomainInfo.
+        # @type request: :class:`Tencentcloud::domain::V20180808::DescribeReservedPreDomainInfoRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::DescribeReservedPreDomainInfoResponse`
+        def DescribeReservedPreDomainInfo(request)
+          body = send_request('DescribeReservedPreDomainInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReservedPreDomainInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (DescribeTemplate) 用于获取模板信息。
 
         # @param request: Request instance for DescribeTemplate.
@@ -639,6 +711,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewDomainBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于合作商对预释放域名进行预留。
+
+        # @param request: Request instance for ReservedPreDomains.
+        # @type request: :class:`Tencentcloud::domain::V20180808::ReservedPreDomainsRequest`
+        # @rtype: :class:`Tencentcloud::domain::V20180808::ReservedPreDomainsResponse`
+        def ReservedPreDomains(request)
+          body = send_request('ReservedPreDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReservedPreDomainsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -738,6 +738,38 @@ module TencentCloud
         end
       end
 
+      # DeleteReservedPreDomainInfo请求参数结构体
+      class DeleteReservedPreDomainInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceIdList: 资源ID列表
+        # @type ResourceIdList: Array
+
+        attr_accessor :ResourceIdList
+
+        def initialize(resourceidlist=nil)
+          @ResourceIdList = resourceidlist
+        end
+
+        def deserialize(params)
+          @ResourceIdList = params['ResourceIdList']
+        end
+      end
+
+      # DeleteReservedPreDomainInfo返回参数结构体
+      class DeleteReservedPreDomainInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTemplate请求参数结构体
       class DeleteTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 模板ID
@@ -1179,6 +1211,120 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePreDomainList请求参数结构体
+      class DescribePreDomainListRequest < TencentCloud::Common::AbstractModel
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param Size: 条数
+        # @type Size: Integer
+
+        attr_accessor :Page, :Size
+
+        def initialize(page=nil, size=nil)
+          @Page = page
+          @Size = size
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @Size = params['Size']
+        end
+      end
+
+      # DescribePreDomainList返回参数结构体
+      class DescribePreDomainListResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedDomainList: 预释放预约列表数据
+        # @type ReservedDomainList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedDomainList, :Total, :RequestId
+
+        def initialize(reserveddomainlist=nil, total=nil, requestid=nil)
+          @ReservedDomainList = reserveddomainlist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReservedDomainList'].nil?
+            @ReservedDomainList = []
+            params['ReservedDomainList'].each do |i|
+              reserveddomaininfo_tmp = ReservedDomainInfo.new
+              reserveddomaininfo_tmp.deserialize(i)
+              @ReservedDomainList << reserveddomaininfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReservedPreDomainInfo请求参数结构体
+      class DescribeReservedPreDomainInfoRequest < TencentCloud::Common::AbstractModel
+        # @param DomainList: 域名,每次最多支持500条域名查询
+        # @type DomainList: Array
+        # @param ReservedStatus: 状态，用于筛选，可不填写(1. 预定成功 2. 预定失败（预定失败Reason字段将会被赋值）3. 域名交割中 4. 域名交割完成)
+        # @type ReservedStatus: Integer
+        # @param ReservedTimeSort: 根据预约时间排序，仅支持："desc","asc"。
+        # @type ReservedTimeSort: String
+        # @param Limit: 条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :DomainList, :ReservedStatus, :ReservedTimeSort, :Limit, :Offset
+
+        def initialize(domainlist=nil, reservedstatus=nil, reservedtimesort=nil, limit=nil, offset=nil)
+          @DomainList = domainlist
+          @ReservedStatus = reservedstatus
+          @ReservedTimeSort = reservedtimesort
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+          @ReservedStatus = params['ReservedStatus']
+          @ReservedTimeSort = params['ReservedTimeSort']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeReservedPreDomainInfo返回参数结构体
+      class DescribeReservedPreDomainInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ReservedPreDomainInfoList: 预释放预约列表
+        # @type ReservedPreDomainInfoList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReservedPreDomainInfoList, :Total, :RequestId
+
+        def initialize(reservedpredomaininfolist=nil, total=nil, requestid=nil)
+          @ReservedPreDomainInfoList = reservedpredomaininfolist
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReservedPreDomainInfoList'].nil?
+            @ReservedPreDomainInfoList = []
+            params['ReservedPreDomainInfoList'].each do |i|
+              reservedpredomaininfo_tmp = ReservedPreDomainInfo.new
+              reservedpredomaininfo_tmp.deserialize(i)
+              @ReservedPreDomainInfoList << reservedpredomaininfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -1685,6 +1831,28 @@ module TencentCloud
         end
       end
 
+      # 失败预约预释放域名信息
+      class FailReservedDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param FailReason: 预约失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+
+        attr_accessor :Domain, :FailReason
+
+        def initialize(domain=nil, failreason=nil)
+          @Domain = domain
+          @FailReason = failreason
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @FailReason = params['FailReason']
+        end
+      end
+
       # ModifyCustomDnsHost请求参数结构体
       class ModifyCustomDnsHostRequest < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名实例ID
@@ -1984,6 +2152,138 @@ module TencentCloud
 
         def deserialize(params)
           @LogId = params['LogId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询预释放预约列表域名详情
+      class ReservedDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RegTime: 注册时间
+        # @type RegTime: String
+        # @param ExpireTime: 到期时间
+        # @type ExpireTime: String
+        # @param RenewEndTime: 续费时间结束
+        # @type RenewEndTime: String
+        # @param RestoreEndTime: 赎回结束时间
+        # @type RestoreEndTime: String
+        # @param ReservedEndTime: 域名预约结束时间
+        # @type ReservedEndTime: String
+
+        attr_accessor :Domain, :RegTime, :ExpireTime, :RenewEndTime, :RestoreEndTime, :ReservedEndTime
+
+        def initialize(domain=nil, regtime=nil, expiretime=nil, renewendtime=nil, restoreendtime=nil, reservedendtime=nil)
+          @Domain = domain
+          @RegTime = regtime
+          @ExpireTime = expiretime
+          @RenewEndTime = renewendtime
+          @RestoreEndTime = restoreendtime
+          @ReservedEndTime = reservedendtime
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RegTime = params['RegTime']
+          @ExpireTime = params['ExpireTime']
+          @RenewEndTime = params['RenewEndTime']
+          @RestoreEndTime = params['RestoreEndTime']
+          @ReservedEndTime = params['ReservedEndTime']
+        end
+      end
+
+      # 预约预释放域名详情信息
+      class ReservedPreDomainInfo < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param ReservedStatus: 1. 预定成功 2. 预定失败（预定失败Reason字段将会被赋值）3. 域名交割中 4. 域名交割完成
+        # @type ReservedStatus: Integer
+        # @param FailReason: 域名预定失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param ChangeOwnerTime: 预计变更所有权时间（仅用于参考，实际时间会存在误差）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChangeOwnerTime: String
+        # @param RegTime: 注册时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegTime: String
+        # @param ExpireTime: 到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param ResourceId: 资源ID，用于删除资源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+
+        attr_accessor :Domain, :ReservedStatus, :FailReason, :ChangeOwnerTime, :RegTime, :ExpireTime, :ResourceId
+
+        def initialize(domain=nil, reservedstatus=nil, failreason=nil, changeownertime=nil, regtime=nil, expiretime=nil, resourceid=nil)
+          @Domain = domain
+          @ReservedStatus = reservedstatus
+          @FailReason = failreason
+          @ChangeOwnerTime = changeownertime
+          @RegTime = regtime
+          @ExpireTime = expiretime
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @ReservedStatus = params['ReservedStatus']
+          @FailReason = params['FailReason']
+          @ChangeOwnerTime = params['ChangeOwnerTime']
+          @RegTime = params['RegTime']
+          @ExpireTime = params['ExpireTime']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # ReservedPreDomains请求参数结构体
+      class ReservedPreDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainList: 预约预释放域名列表
+        # @type DomainList: Array
+        # @param TemplateId: 模版ID
+        # @type TemplateId: String
+
+        attr_accessor :DomainList, :TemplateId
+
+        def initialize(domainlist=nil, templateid=nil)
+          @DomainList = domainlist
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # ReservedPreDomains返回参数结构体
+      class ReservedPreDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param SucDomainList: 预定成功域名列表
+        # @type SucDomainList: Array
+        # @param FailDomainList: 预定失败域名列表
+        # @type FailDomainList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SucDomainList, :FailDomainList, :RequestId
+
+        def initialize(sucdomainlist=nil, faildomainlist=nil, requestid=nil)
+          @SucDomainList = sucdomainlist
+          @FailDomainList = faildomainlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SucDomainList = params['SucDomainList']
+          unless params['FailDomainList'].nil?
+            @FailDomainList = []
+            params['FailDomainList'].each do |i|
+              failreserveddomaininfo_tmp = FailReservedDomainInfo.new
+              failreserveddomaininfo_tmp.deserialize(i)
+              @FailDomainList << failreserveddomaininfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

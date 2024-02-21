@@ -1476,8 +1476,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 1
-        deprecate :IgnoreCacheControl=, :none, 2024, 1
+        deprecate :IgnoreCacheControl, :none, 2024, 2
+        deprecate :IgnoreCacheControl=, :none, 2024, 2
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2546,8 +2546,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 1
-        deprecate :EncodeUrl=, :none, 2024, 1
+        deprecate :EncodeUrl, :none, 2024, 2
+        deprecate :EncodeUrl=, :none, 2024, 2
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
@@ -2779,10 +2779,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 1
-        deprecate :AllowDuplicates=, :none, 2024, 1
-        deprecate :JumpStart, :none, 2024, 1
-        deprecate :JumpStart=, :none, 2024, 1
+        deprecate :AllowDuplicates, :none, 2024, 2
+        deprecate :AllowDuplicates=, :none, 2024, 2
+        deprecate :JumpStart, :none, 2024, 2
+        deprecate :JumpStart=, :none, 2024, 2
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -3866,9 +3866,9 @@ module TencentCloud
         # <li>day：1 天粒度。</li>
         # @type Interval: String
         # @param Filters: 过滤条件，详细的过滤条件取值如下：
-        # <li>host<br>   按照【<strong>域名</strong>】进行过滤。示例值：test.example.com。<br>   类型：String<br>   必选：否</li>
-        # <li>proxy-id<br>   按照【<strong>四层代理实例 ID</strong>】进行过滤。示例值：sid-2rugn89bkla9。<br>   类型：String<br>   必选：否</li>
-        # <li>region-id<br>   按照【<strong>计费大区</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项如下：<br>   CH：中国大陆境内<br>   AF：非洲<br>   AS1：亚太一区<br>   AS2：亚太二区<br>   AS3：亚太三区<br>   EU：欧洲<br>   MidEast：中东<br>   NA：北美<br>   SA：南美</li>
+        # <li>host：按照域名进行过滤。示例值：test.example.com。<br></li>
+        # <li>proxy-id：按照四层代理实例 ID 进行过滤。示例值：sid-2rugn89bkla9。<br></li>
+        # <li>region-id：按照计费大区进行过滤。可选项如下：<br>  CH：中国大陆境内<br>  AF：非洲<br>  AS1：亚太一区<br>  AS2：亚太二区<br>  AS3：亚太三区<br>  EU：欧洲<br>  MidEast：中东<br>  NA：北美<br>  SA：南美</li>
         # @type Filters: Array
 
         attr_accessor :StartTime, :EndTime, :ZoneIds, :MetricName, :Interval, :Filters
@@ -8180,8 +8180,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 1
-        deprecate :ApplyType=, :none, 2024, 1
+        deprecate :ApplyType, :none, 2024, 2
+        deprecate :ApplyType=, :none, 2024, 2
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
@@ -10218,8 +10218,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 1
-        deprecate :IgnoreNameCase=, :none, 2024, 1
+        deprecate :IgnoreNameCase, :none, 2024, 2
+        deprecate :IgnoreNameCase=, :none, 2024, 2
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

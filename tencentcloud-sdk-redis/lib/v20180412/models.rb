@@ -3470,16 +3470,19 @@ module TencentCloud
       class DescribeSlowLogResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 慢查询总数。
         # @type TotalCount: Integer
-        # @param InstanceSlowlogDetail: 慢查询详情。
+        # @param InstanceSlowlogDetail: 该参数存在命名不规范问题，建议用参数InstanceSlowLogDetail取代。慢查询详情。
         # @type InstanceSlowlogDetail: Array
+        # @param InstanceSlowLogDetail: 慢查询详情。
+        # @type InstanceSlowLogDetail: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :InstanceSlowlogDetail, :RequestId
+        attr_accessor :TotalCount, :InstanceSlowlogDetail, :InstanceSlowLogDetail, :RequestId
 
-        def initialize(totalcount=nil, instanceslowlogdetail=nil, requestid=nil)
+        def initialize(totalcount=nil, instanceslowlogdetail=nil, instanceslowlogdetail=nil, requestid=nil)
           @TotalCount = totalcount
           @InstanceSlowlogDetail = instanceslowlogdetail
+          @InstanceSlowLogDetail = instanceslowlogdetail
           @RequestId = requestid
         end
 
@@ -3491,6 +3494,14 @@ module TencentCloud
               instanceslowlogdetail_tmp = InstanceSlowlogDetail.new
               instanceslowlogdetail_tmp.deserialize(i)
               @InstanceSlowlogDetail << instanceslowlogdetail_tmp
+            end
+          end
+          unless params['InstanceSlowLogDetail'].nil?
+            @InstanceSlowLogDetail = []
+            params['InstanceSlowLogDetail'].each do |i|
+              instanceslowlogdetail_tmp = InstanceSlowlogDetail.new
+              instanceslowlogdetail_tmp.deserialize(i)
+              @InstanceSlowLogDetail << instanceslowlogdetail_tmp
             end
           end
           @RequestId = params['RequestId']

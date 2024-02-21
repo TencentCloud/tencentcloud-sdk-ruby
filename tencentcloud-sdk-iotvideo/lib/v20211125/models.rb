@@ -3308,16 +3308,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页拉取偏移
         # @type Offset: Integer
+        # @param CSUserId: 用户id
+        # @type CSUserId: String
         # @param ChannelId: 通道id
         # @type ChannelId: Integer
 
-        attr_accessor :ProductId, :DeviceName, :Limit, :Offset, :ChannelId
+        attr_accessor :ProductId, :DeviceName, :Limit, :Offset, :CSUserId, :ChannelId
 
-        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil, channelid=nil)
+        def initialize(productid=nil, devicename=nil, limit=nil, offset=nil, csuserid=nil, channelid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Limit = limit
           @Offset = offset
+          @CSUserId = csuserid
           @ChannelId = channelid
         end
 
@@ -3326,6 +3329,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @CSUserId = params['CSUserId']
           @ChannelId = params['ChannelId']
         end
       end
@@ -5758,10 +5762,13 @@ module TencentCloud
         # @type OrderId: String
         # @param ChannelId: 通道id
         # @type ChannelId: Integer
+        # @param CSUserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CSUserId: String
 
-        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt, :PackageId, :OrderId, :ChannelId
+        attr_accessor :Status, :CSType, :CSShiftDuration, :CSExpiredTime, :CreatedAt, :UpdatedAt, :PackageId, :OrderId, :ChannelId, :CSUserId
 
-        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil, packageid=nil, orderid=nil, channelid=nil)
+        def initialize(status=nil, cstype=nil, csshiftduration=nil, csexpiredtime=nil, createdat=nil, updatedat=nil, packageid=nil, orderid=nil, channelid=nil, csuserid=nil)
           @Status = status
           @CSType = cstype
           @CSShiftDuration = csshiftduration
@@ -5771,6 +5778,7 @@ module TencentCloud
           @PackageId = packageid
           @OrderId = orderid
           @ChannelId = channelid
+          @CSUserId = csuserid
         end
 
         def deserialize(params)
@@ -5783,6 +5791,7 @@ module TencentCloud
           @PackageId = params['PackageId']
           @OrderId = params['OrderId']
           @ChannelId = params['ChannelId']
+          @CSUserId = params['CSUserId']
         end
       end
 
