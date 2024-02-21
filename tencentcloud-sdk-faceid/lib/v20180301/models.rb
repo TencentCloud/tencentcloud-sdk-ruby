@@ -307,10 +307,10 @@ module TencentCloud
         deprecate :Idcard, :none, 2024, 2
         deprecate :Idcard=, :none, 2024, 2
 
-        def initialize(reqtime=nil, seq=nil, idcard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
+        def initialize(reqtime=nil, seq=nil, idCard=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
           @Seq = seq
-          @IdCard = idcard
+          @IdCard = idCard
           @Idcard = idcard
           @Name = name
           @Sim = sim
