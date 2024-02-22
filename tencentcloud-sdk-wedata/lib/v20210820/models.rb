@@ -691,6 +691,33 @@ module TencentCloud
         end
       end
 
+      # aiops基础信息
+      class AttributeItemDTO < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Key, :Value, :Description
+
+        def initialize(key=nil, value=nil, description=nil)
+          @Key = key
+          @Value = value
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Description = params['Description']
+        end
+      end
+
       # AttributeItemVO参数
       class AttributeItemDsVO < TencentCloud::Common::AbstractModel
         # @param Key: Key值
@@ -2842,8 +2869,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 1
-        deprecate :TaskId=, :none, 2024, 1
+        deprecate :TaskId, :none, 2024, 2
+        deprecate :TaskId=, :none, 2024, 2
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -10106,12 +10133,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 1
-        deprecate :EventType=, :none, 2024, 1
-        deprecate :EventBroadcastType, :none, 2024, 1
-        deprecate :EventBroadcastType=, :none, 2024, 1
-        deprecate :Status, :none, 2024, 1
-        deprecate :Status=, :none, 2024, 1
+        deprecate :EventType, :none, 2024, 2
+        deprecate :EventType=, :none, 2024, 2
+        deprecate :EventBroadcastType, :none, 2024, 2
+        deprecate :EventBroadcastType=, :none, 2024, 2
+        deprecate :Status, :none, 2024, 2
+        deprecate :Status=, :none, 2024, 2
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -18216,8 +18243,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 1
-        deprecate :DimType=, :none, 2024, 1
+        deprecate :DimType, :none, 2024, 2
+        deprecate :DimType=, :none, 2024, 2
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -20958,6 +20985,100 @@ module TencentCloud
         end
       end
 
+      # 实例生命周期详情
+      class InstanceLifeCycleOpsDto < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param CurRunDate: 数据时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurRunDate: String
+        # @param LifeRound: 实例生命次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeRound: Integer
+        # @param RunType: 运行类型 重跑/补录/周期/非周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunType: String
+        # @param Tries: 重跑次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tries: Integer
+        # @param InstanceLifeDetailDtoList: 实例生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceLifeDetailDtoList: Array
+        # @param RunnerState: Runner运行状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunnerState: String
+        # @param ErrorDesc: 错误码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorDesc: String
+        # @param ErrorCodeLevel: 错误告警级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCodeLevel: String
+        # @param InstanceLogListOpsDto: 实例日志简略信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceLogListOpsDto: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogInfo`
+
+        attr_accessor :TaskId, :CurRunDate, :LifeRound, :RunType, :Tries, :InstanceLifeDetailDtoList, :RunnerState, :ErrorDesc, :ErrorCodeLevel, :InstanceLogListOpsDto
+
+        def initialize(taskid=nil, currundate=nil, liferound=nil, runtype=nil, tries=nil, instancelifedetaildtolist=nil, runnerstate=nil, errordesc=nil, errorcodelevel=nil, instanceloglistopsdto=nil)
+          @TaskId = taskid
+          @CurRunDate = currundate
+          @LifeRound = liferound
+          @RunType = runtype
+          @Tries = tries
+          @InstanceLifeDetailDtoList = instancelifedetaildtolist
+          @RunnerState = runnerstate
+          @ErrorDesc = errordesc
+          @ErrorCodeLevel = errorcodelevel
+          @InstanceLogListOpsDto = instanceloglistopsdto
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @CurRunDate = params['CurRunDate']
+          @LifeRound = params['LifeRound']
+          @RunType = params['RunType']
+          @Tries = params['Tries']
+          unless params['InstanceLifeDetailDtoList'].nil?
+            @InstanceLifeDetailDtoList = []
+            params['InstanceLifeDetailDtoList'].each do |i|
+              instancelifedetaildto_tmp = InstanceLifeDetailDto.new
+              instancelifedetaildto_tmp.deserialize(i)
+              @InstanceLifeDetailDtoList << instancelifedetaildto_tmp
+            end
+          end
+          @RunnerState = params['RunnerState']
+          @ErrorDesc = params['ErrorDesc']
+          @ErrorCodeLevel = params['ErrorCodeLevel']
+          unless params['InstanceLogListOpsDto'].nil?
+            @InstanceLogListOpsDto = InstanceLogInfo.new
+            @InstanceLogListOpsDto.deserialize(params['InstanceLogListOpsDto'])
+          end
+        end
+      end
+
+      # 实例生命周期detail
+      class InstanceLifeDetailDto < TencentCloud::Common::AbstractModel
+        # @param State: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param StartTime: 该状态开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+
+        attr_accessor :State, :StartTime
+
+        def initialize(state=nil, starttime=nil)
+          @State = state
+          @StartTime = starttime
+        end
+
+        def deserialize(params)
+          @State = params['State']
+          @StartTime = params['StartTime']
+        end
+      end
+
       # 离线运维实例列表
       class InstanceList < TencentCloud::Common::AbstractModel
         # @param CostTime: 耗费时间
@@ -21121,10 +21242,13 @@ module TencentCloud
         # @param CodeFileName: 实例代码文件，为空表示对应代码文件不存在，可能是因为执行机未升级/对应类型任务无代码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeFileName: String
+        # @param ExtensionInfo: 扩展属性
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtensionInfo: Array
 
-        attr_accessor :TaskId, :CurRunDate, :Tries, :LastUpdate, :BrokerIp, :FileSize, :OriginFileName, :CreateTime, :InstanceLogType, :TaskName, :CostTime, :InstanceStatus, :CodeFileName
+        attr_accessor :TaskId, :CurRunDate, :Tries, :LastUpdate, :BrokerIp, :FileSize, :OriginFileName, :CreateTime, :InstanceLogType, :TaskName, :CostTime, :InstanceStatus, :CodeFileName, :ExtensionInfo
 
-        def initialize(taskid=nil, currundate=nil, tries=nil, lastupdate=nil, brokerip=nil, filesize=nil, originfilename=nil, createtime=nil, instancelogtype=nil, taskname=nil, costtime=nil, instancestatus=nil, codefilename=nil)
+        def initialize(taskid=nil, currundate=nil, tries=nil, lastupdate=nil, brokerip=nil, filesize=nil, originfilename=nil, createtime=nil, instancelogtype=nil, taskname=nil, costtime=nil, instancestatus=nil, codefilename=nil, extensioninfo=nil)
           @TaskId = taskid
           @CurRunDate = currundate
           @Tries = tries
@@ -21138,6 +21262,7 @@ module TencentCloud
           @CostTime = costtime
           @InstanceStatus = instancestatus
           @CodeFileName = codefilename
+          @ExtensionInfo = extensioninfo
         end
 
         def deserialize(params)
@@ -21154,6 +21279,14 @@ module TencentCloud
           @CostTime = params['CostTime']
           @InstanceStatus = params['InstanceStatus']
           @CodeFileName = params['CodeFileName']
+          unless params['ExtensionInfo'].nil?
+            @ExtensionInfo = []
+            params['ExtensionInfo'].each do |i|
+              attributeitemdto_tmp = AttributeItemDTO.new
+              attributeitemdto_tmp.deserialize(i)
+              @ExtensionInfo << attributeitemdto_tmp
+            end
+          end
         end
       end
 
@@ -21452,10 +21585,28 @@ module TencentCloud
         # @param ExecutorGroupName: 资源组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutorGroupName: String
+        # @param RelatedInstanceList: 关联实例信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedInstanceList: Array
+        # @param RelatedInstanceSize: 关联实例信息数量，不和RelatedInstanceList强关联。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedInstanceSize: Integer
+        # @param OwnerId: ownerId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerId: String
+        # @param UserId: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+        # @param InstanceLifeCycleOpsDto: 实例生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceLifeCycleOpsDto: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLifeCycleOpsDto`
+        # @param RetryAttempts: 自动重试次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryAttempts: Integer
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -21510,6 +21661,12 @@ module TencentCloud
           @InstanceKey = instancekey
           @ExecutorGroupId = executorgroupid
           @ExecutorGroupName = executorgroupname
+          @RelatedInstanceList = relatedinstancelist
+          @RelatedInstanceSize = relatedinstancesize
+          @OwnerId = ownerid
+          @UserId = userid
+          @InstanceLifeCycleOpsDto = instancelifecycleopsdto
+          @RetryAttempts = retryattempts
         end
 
         def deserialize(params)
@@ -21570,6 +21727,22 @@ module TencentCloud
           @InstanceKey = params['InstanceKey']
           @ExecutorGroupId = params['ExecutorGroupId']
           @ExecutorGroupName = params['ExecutorGroupName']
+          unless params['RelatedInstanceList'].nil?
+            @RelatedInstanceList = []
+            params['RelatedInstanceList'].each do |i|
+              instanceopsdto_tmp = InstanceOpsDto.new
+              instanceopsdto_tmp.deserialize(i)
+              @RelatedInstanceList << instanceopsdto_tmp
+            end
+          end
+          @RelatedInstanceSize = params['RelatedInstanceSize']
+          @OwnerId = params['OwnerId']
+          @UserId = params['UserId']
+          unless params['InstanceLifeCycleOpsDto'].nil?
+            @InstanceLifeCycleOpsDto = InstanceLifeCycleOpsDto.new
+            @InstanceLifeCycleOpsDto.deserialize(params['InstanceLifeCycleOpsDto'])
+          end
+          @RetryAttempts = params['RetryAttempts']
         end
       end
 
@@ -30152,10 +30325,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2024, 1
-        deprecate :SourceObjectDataTypeName=, :none, 2024, 1
-        deprecate :SourceObjectValue, :none, 2024, 1
-        deprecate :SourceObjectValue=, :none, 2024, 1
+        deprecate :SourceObjectDataTypeName, :none, 2024, 2
+        deprecate :SourceObjectDataTypeName=, :none, 2024, 2
+        deprecate :SourceObjectValue, :none, 2024, 2
+        deprecate :SourceObjectValue=, :none, 2024, 2
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename

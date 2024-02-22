@@ -1209,8 +1209,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2024, 1
-        deprecate :ConfigAssociatedGroups=, :none, 2024, 1
+        deprecate :ConfigAssociatedGroups, :none, 2024, 2
+        deprecate :ConfigAssociatedGroups=, :none, 2024, 2
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil)
           @ConfigId = configid

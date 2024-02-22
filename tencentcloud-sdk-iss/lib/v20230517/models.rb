@@ -1276,7 +1276,7 @@ module TencentCloud
       class BatchOperateDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备 ID 数组（从获取设备列表接口ListDevices中获取）
         # @type DeviceIds: Array
-        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除）
+        # @param Cmd: 操作命令（enable：启用；disable：禁用；delete：删除；upgrade：固件升级；reset：恢复出厂设置；reboot：重启）
         # @type Cmd: String
 
         attr_accessor :DeviceIds, :Cmd
@@ -5529,20 +5529,29 @@ module TencentCloud
       class ListTasksRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码，默认为1
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量，默认为10
+        # @param PageSize: 每页数量，默认为20
         # @type PageSize: Integer
-        # @param Operation: 默认不根据该字段进行筛选，否则根据设备操作类型进行筛选，对应任务的Action字段，批量任务操作类型以Batch开头。目前值有：BatchDeleteUserDevice，BatchDisableDevice，BatchEnableDevice，DeleteUserDevice，DisableDevice，EnableDevice
+        # @param Operation: 默认不根据该字段进行筛选，否则根据设备操作类型进行筛选，目前值有：BatchDeleteUserDevice，BatchDisableDevice，BatchEnableDevice，
+        # BatchUpgradeDevice，
+        # BatchResetDevice,
+        # BatchRebootDevice
         # @type Operation: String
-        # @param Status: 默认不根据该字段进行筛选，否则根据任务状态进行筛选。状态码：1-NEW，2-RUNNING，3-COMPLETED，4-FAILED
+        # @param Status: 默认不根据该字段进行筛选，否则根据任务状态进行筛选。状态码：1-未执行，2-执行中，3-完成，4-取消
         # @type Status: Integer
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
 
-        attr_accessor :PageNumber, :PageSize, :Operation, :Status
+        attr_accessor :PageNumber, :PageSize, :Operation, :Status, :BeginTime, :EndTime
 
-        def initialize(pagenumber=nil, pagesize=nil, operation=nil, status=nil)
+        def initialize(pagenumber=nil, pagesize=nil, operation=nil, status=nil, begintime=nil, endtime=nil)
           @PageNumber = pagenumber
           @PageSize = pagesize
           @Operation = operation
           @Status = status
+          @BeginTime = begintime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -5550,6 +5559,8 @@ module TencentCloud
           @PageSize = params['PageSize']
           @Operation = params['Operation']
           @Status = params['Status']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -6266,10 +6277,22 @@ module TencentCloud
         # @type UpdatedAt: String
         # @param Runtime: 任务运行时间，单位ms
         # @type Runtime: Integer
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param ChannelId: 通道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
+        # @param ChannelName: 通道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelName: String
 
-        attr_accessor :SubTaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :ResourceId, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime
+        attr_accessor :SubTaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :ResourceId, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime, :DeviceId, :DeviceName, :ChannelId, :ChannelName
 
-        def initialize(subtaskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, resourceid=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil)
+        def initialize(subtaskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, resourceid=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil, deviceid=nil, devicename=nil, channelid=nil, channelname=nil)
           @SubTaskId = subtaskid
           @Status = status
           @FailReason = failreason
@@ -6281,6 +6304,10 @@ module TencentCloud
           @CreatedAt = createdat
           @UpdatedAt = updatedat
           @Runtime = runtime
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @ChannelName = channelname
         end
 
         def deserialize(params)
@@ -6295,6 +6322,10 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @Runtime = params['Runtime']
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
         end
       end
 
@@ -6333,10 +6364,22 @@ module TencentCloud
         # @type UpdatedAt: String
         # @param Runtime: 任务运行时间，单位ms
         # @type Runtime: Integer
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: String
+        # @param DeviceName: 设备名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param ChannelId: 通道ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelId: String
+        # @param ChannelName:  通道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelName: String
 
-        attr_accessor :TaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :TaskType, :ResourceId, :Total, :SuccessCount, :FailCount, :RunningCount, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime
+        attr_accessor :TaskId, :Status, :FailReason, :Progress, :Action, :ActionZhDesc, :TaskType, :ResourceId, :Total, :SuccessCount, :FailCount, :RunningCount, :StartedAt, :CreatedAt, :UpdatedAt, :Runtime, :DeviceId, :DeviceName, :ChannelId, :ChannelName
 
-        def initialize(taskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, tasktype=nil, resourceid=nil, total=nil, successcount=nil, failcount=nil, runningcount=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil)
+        def initialize(taskid=nil, status=nil, failreason=nil, progress=nil, action=nil, actionzhdesc=nil, tasktype=nil, resourceid=nil, total=nil, successcount=nil, failcount=nil, runningcount=nil, startedat=nil, createdat=nil, updatedat=nil, runtime=nil, deviceid=nil, devicename=nil, channelid=nil, channelname=nil)
           @TaskId = taskid
           @Status = status
           @FailReason = failreason
@@ -6353,6 +6396,10 @@ module TencentCloud
           @CreatedAt = createdat
           @UpdatedAt = updatedat
           @Runtime = runtime
+          @DeviceId = deviceid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @ChannelName = channelname
         end
 
         def deserialize(params)
@@ -6372,6 +6419,10 @@ module TencentCloud
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
           @Runtime = params['Runtime']
+          @DeviceId = params['DeviceId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
         end
       end
 

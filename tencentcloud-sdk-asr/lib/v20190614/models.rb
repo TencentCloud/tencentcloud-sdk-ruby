@@ -253,6 +253,9 @@ module TencentCloud
         # @type TagInfos: Array
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
+        extend Gem::Deprecate
+        deprecate :TagInfos, :none, 2024, 2
+        deprecate :TagInfos=, :none, 2024, 2
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -869,6 +872,9 @@ module TencentCloud
         # @type Offset: Integer
 
         attr_accessor :TagInfos, :Limit, :Offset
+        extend Gem::Deprecate
+        deprecate :TagInfos, :none, 2024, 2
+        deprecate :TagInfos=, :none, 2024, 2
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos

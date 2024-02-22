@@ -6418,19 +6418,23 @@ module TencentCloud
         # @type NextToken: String
         # @param MaxResults: 返回结果的最大行数，范围0~1000，默认为1000.
         # @type MaxResults: Integer
+        # @param IsTransformDataType: 是否转化数据类型
+        # @type IsTransformDataType: Boolean
 
-        attr_accessor :TaskId, :NextToken, :MaxResults
+        attr_accessor :TaskId, :NextToken, :MaxResults, :IsTransformDataType
 
-        def initialize(taskid=nil, nexttoken=nil, maxresults=nil)
+        def initialize(taskid=nil, nexttoken=nil, maxresults=nil, istransformdatatype=nil)
           @TaskId = taskid
           @NextToken = nexttoken
           @MaxResults = maxresults
+          @IsTransformDataType = istransformdatatype
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @NextToken = params['NextToken']
           @MaxResults = params['MaxResults']
+          @IsTransformDataType = params['IsTransformDataType']
         end
       end
 

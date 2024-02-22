@@ -17,6 +17,43 @@
 module TencentCloud
   module Dts
     module V20211206
+      # 数据库不一致的详情，mongodb业务用到
+      class AdvancedObjectsItem < TencentCloud::Common::AbstractModel
+        # @param ObjectType: 对象类型,可能得值有：account,index,shardkey,schema
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ObjectType: String
+        # @param SrcChunk: 源端分块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcChunk: String
+        # @param DstChunk: 目标端分块
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstChunk: String
+        # @param SrcItem: 源端值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcItem: String
+        # @param DstItem: 目标端值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstItem: String
+
+        attr_accessor :ObjectType, :SrcChunk, :DstChunk, :SrcItem, :DstItem
+
+        def initialize(objecttype=nil, srcchunk=nil, dstchunk=nil, srcitem=nil, dstitem=nil)
+          @ObjectType = objecttype
+          @SrcChunk = srcchunk
+          @DstChunk = dstchunk
+          @SrcItem = srcitem
+          @DstItem = dstitem
+        end
+
+        def deserialize(params)
+          @ObjectType = params['ObjectType']
+          @SrcChunk = params['SrcChunk']
+          @DstChunk = params['DstChunk']
+          @SrcItem = params['SrcItem']
+          @DstItem = params['DstItem']
+        end
+      end
+
       # 检查步骤
       class CheckStep < TencentCloud::Common::AbstractModel
         # @param StepNo: 步骤编号
@@ -236,12 +273,24 @@ module TencentCloud
         # @param Skipped: 跳过校验的表详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Skipped: :class:`Tencentcloud::Dts.v20211206.models.SkippedDetail`
+        # @param DifferenceAdvancedObjects: 数据库不一致的详情，mongodb业务用到
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DifferenceAdvancedObjects: :class:`Tencentcloud::Dts.v20211206.models.DifferenceAdvancedObjectsDetail`
+        # @param DifferenceData: 数据不一致的详情，mongodb业务用到
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DifferenceData: :class:`Tencentcloud::Dts.v20211206.models.DifferenceDataDetail`
+        # @param DifferenceRow: 数据行不一致的详情，mongodb业务用到
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DifferenceRow: :class:`Tencentcloud::Dts.v20211206.models.DifferenceRowDetail`
 
-        attr_accessor :Difference, :Skipped
+        attr_accessor :Difference, :Skipped, :DifferenceAdvancedObjects, :DifferenceData, :DifferenceRow
 
-        def initialize(difference=nil, skipped=nil)
+        def initialize(difference=nil, skipped=nil, differenceadvancedobjects=nil, differencedata=nil, differencerow=nil)
           @Difference = difference
           @Skipped = skipped
+          @DifferenceAdvancedObjects = differenceadvancedobjects
+          @DifferenceData = differencedata
+          @DifferenceRow = differencerow
         end
 
         def deserialize(params)
@@ -252,6 +301,18 @@ module TencentCloud
           unless params['Skipped'].nil?
             @Skipped = SkippedDetail.new
             @Skipped.deserialize(params['Skipped'])
+          end
+          unless params['DifferenceAdvancedObjects'].nil?
+            @DifferenceAdvancedObjects = DifferenceAdvancedObjectsDetail.new
+            @DifferenceAdvancedObjects.deserialize(params['DifferenceAdvancedObjects'])
+          end
+          unless params['DifferenceData'].nil?
+            @DifferenceData = DifferenceDataDetail.new
+            @DifferenceData.deserialize(params['DifferenceData'])
+          end
+          unless params['DifferenceRow'].nil?
+            @DifferenceRow = DifferenceRowDetail.new
+            @DifferenceRow.deserialize(params['DifferenceRow'])
           end
         end
       end
@@ -3391,6 +3452,111 @@ module TencentCloud
         end
       end
 
+      # 数据库不一致的详情，mongodb业务用到
+      class DifferenceAdvancedObjectsDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 不一致详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              advancedobjectsitem_tmp = AdvancedObjectsItem.new
+              advancedobjectsitem_tmp.deserialize(i)
+              @Items << advancedobjectsitem_tmp
+            end
+          end
+        end
+      end
+
+      # 数据不一致详情
+      class DifferenceData < TencentCloud::Common::AbstractModel
+        # @param Db: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Db: String
+        # @param Table: 集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: String
+        # @param SrcChunk: 源端ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcChunk: String
+        # @param DstChunk: 目标端ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstChunk: String
+        # @param SrcItem: 源端值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcItem: String
+        # @param DstItem: 目标端值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstItem: String
+        # @param UpdatedAt: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+
+        attr_accessor :Db, :Table, :SrcChunk, :DstChunk, :SrcItem, :DstItem, :UpdatedAt
+
+        def initialize(db=nil, table=nil, srcchunk=nil, dstchunk=nil, srcitem=nil, dstitem=nil, updatedat=nil)
+          @Db = db
+          @Table = table
+          @SrcChunk = srcchunk
+          @DstChunk = dstchunk
+          @SrcItem = srcitem
+          @DstItem = dstitem
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Table = params['Table']
+          @SrcChunk = params['SrcChunk']
+          @DstChunk = params['DstChunk']
+          @SrcItem = params['SrcItem']
+          @DstItem = params['DstItem']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # mongodb数据不一致性详情
+      class DifferenceDataDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: mongo数据不一致详细列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              differencedata_tmp = DifferenceData.new
+              differencedata_tmp.deserialize(i)
+              @Items << differencedata_tmp
+            end
+          end
+        end
+      end
+
       # 数据不一致的表详情
       class DifferenceDetail < TencentCloud::Common::AbstractModel
         # @param TotalCount: 数据不一致的表数量
@@ -3479,6 +3645,35 @@ module TencentCloud
           @UpperBoundary = params['UpperBoundary']
           @CostTime = params['CostTime']
           @FinishedAt = params['FinishedAt']
+        end
+      end
+
+      # mongodb行数校验不一致性详情结果
+      class DifferenceRowDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 不一致总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 不一致列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              rowscountdifference_tmp = RowsCountDifference.new
+              rowscountdifference_tmp.deserialize(i)
+              @Items << rowscountdifference_tmp
+            end
+          end
         end
       end
 
@@ -5839,6 +6034,38 @@ module TencentCloud
         def deserialize(params)
           @RoleName = params['RoleName']
           @NewRoleName = params['NewRoleName']
+        end
+      end
+
+      # mongodb行校验不一致详细信息
+      class RowsCountDifference < TencentCloud::Common::AbstractModel
+        # @param Db: 数据库名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Db: String
+        # @param Table: 集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Table: String
+        # @param SrcCount: 源端行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcCount: Integer
+        # @param DstCount: 目标端行数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DstCount: Integer
+
+        attr_accessor :Db, :Table, :SrcCount, :DstCount
+
+        def initialize(db=nil, table=nil, srccount=nil, dstcount=nil)
+          @Db = db
+          @Table = table
+          @SrcCount = srccount
+          @DstCount = dstcount
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Table = params['Table']
+          @SrcCount = params['SrcCount']
+          @DstCount = params['DstCount']
         end
       end
 

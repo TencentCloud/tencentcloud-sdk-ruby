@@ -2332,7 +2332,7 @@ module TencentCloud
 
       # EnableRestProxy请求参数结构体
       class EnableRestProxyRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 对应于appid
+        # @param ClusterId: 集群 ID。
         # @type ClusterId: String
 
         attr_accessor :ClusterId

@@ -777,7 +777,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 当restful api为关闭状态时，可以通过此接口开启restful apu
+        # 当restful api为关闭状态时，可以通过此接口开启restful api。
 
         # @param request: Request instance for EnableRestProxy.
         # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::EnableRestProxyRequest`
