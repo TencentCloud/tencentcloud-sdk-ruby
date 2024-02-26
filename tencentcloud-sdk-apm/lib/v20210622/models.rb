@@ -382,11 +382,11 @@ module TencentCloud
         # @type Name: String
         # @param Description: 实例描述信息
         # @type Description: String
-        # @param TraceDuration: Trace数据保存时长
+        # @param TraceDuration: Trace数据保存时长，单位为天默认存储为3天
         # @type TraceDuration: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
-        # @param SpanDailyCounters: 实例上报额度值
+        # @param SpanDailyCounters: 实例上报额度值，默认赋值为0表示不限制上报额度
         # @type SpanDailyCounters: Integer
         # @param PayMode: 实例的计费模式
         # @type PayMode: Integer

@@ -569,10 +569,13 @@ module TencentCloud
         # @param IsSupportAlarmTag: 是否支持告警标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSupportAlarmTag: Integer
+        # @param TagOperation: 多标签交/并集关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagOperation: String
 
-        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag
+        attr_accessor :PolicyId, :PolicyName, :Remark, :MonitorType, :Enable, :UseSum, :ProjectId, :ProjectName, :Namespace, :ConditionTemplateId, :Condition, :EventCondition, :NoticeIds, :Notices, :TriggerTasks, :ConditionsTemp, :LastEditUin, :UpdateTime, :InsertTime, :Region, :NamespaceShowName, :IsDefault, :CanSetDefault, :InstanceGroupId, :InstanceSum, :InstanceGroupName, :RuleType, :OriginId, :TagInstances, :Filter, :GroupBy, :FilterDimensionsParam, :IsOneClick, :OneClickStatus, :AdvancedMetricNumber, :IsBindAll, :Tags, :IsSupportAlarmTag, :TagOperation
 
-        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil)
+        def initialize(policyid=nil, policyname=nil, remark=nil, monitortype=nil, enable=nil, usesum=nil, projectid=nil, projectname=nil, namespace=nil, conditiontemplateid=nil, condition=nil, eventcondition=nil, noticeids=nil, notices=nil, triggertasks=nil, conditionstemp=nil, lastedituin=nil, updatetime=nil, inserttime=nil, region=nil, namespaceshowname=nil, isdefault=nil, cansetdefault=nil, instancegroupid=nil, instancesum=nil, instancegroupname=nil, ruletype=nil, originid=nil, taginstances=nil, filter=nil, groupby=nil, filterdimensionsparam=nil, isoneclick=nil, oneclickstatus=nil, advancedmetricnumber=nil, isbindall=nil, tags=nil, issupportalarmtag=nil, tagoperation=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @Remark = remark
@@ -611,6 +614,7 @@ module TencentCloud
           @IsBindAll = isbindall
           @Tags = tags
           @IsSupportAlarmTag = issupportalarmtag
+          @TagOperation = tagoperation
         end
 
         def deserialize(params)
@@ -699,6 +703,7 @@ module TencentCloud
             end
           end
           @IsSupportAlarmTag = params['IsSupportAlarmTag']
+          @TagOperation = params['TagOperation']
         end
       end
 
@@ -1074,10 +1079,12 @@ module TencentCloud
         # @type EbEventFlag: Integer
         # @param EbSubject: 事件配置的告警
         # @type EbSubject: String
+        # @param TagOperation: 标识标签取交/并集关系
+        # @type TagOperation: String
 
-        attr_accessor :Module, :PolicyId, :GroupId, :ServiceType, :Tag, :InstanceGroupId, :BatchTag, :EbEventFlag, :EbSubject
+        attr_accessor :Module, :PolicyId, :GroupId, :ServiceType, :Tag, :InstanceGroupId, :BatchTag, :EbEventFlag, :EbSubject, :TagOperation
 
-        def initialize(_module=nil, policyid=nil, groupid=nil, servicetype=nil, tag=nil, instancegroupid=nil, batchtag=nil, ebeventflag=nil, ebsubject=nil)
+        def initialize(_module=nil, policyid=nil, groupid=nil, servicetype=nil, tag=nil, instancegroupid=nil, batchtag=nil, ebeventflag=nil, ebsubject=nil, tagoperation=nil)
           @Module = _module
           @PolicyId = policyid
           @GroupId = groupid
@@ -1087,6 +1094,7 @@ module TencentCloud
           @BatchTag = batchtag
           @EbEventFlag = ebeventflag
           @EbSubject = ebsubject
+          @TagOperation = tagoperation
         end
 
         def deserialize(params)
@@ -1109,6 +1117,7 @@ module TencentCloud
           end
           @EbEventFlag = params['EbEventFlag']
           @EbSubject = params['EbSubject']
+          @TagOperation = params['TagOperation']
         end
       end
 

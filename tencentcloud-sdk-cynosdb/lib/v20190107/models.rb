@@ -5075,6 +5075,53 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterInstanceGroups请求参数结构体
+      class DescribeClusterInstanceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeClusterInstanceGroups返回参数结构体
+      class DescribeClusterInstanceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例组个数
+        # @type TotalCount: Integer
+        # @param InstanceGroupInfoList: 实例组列表
+        # @type InstanceGroupInfoList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InstanceGroupInfoList, :RequestId
+
+        def initialize(totalcount=nil, instancegroupinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InstanceGroupInfoList = instancegroupinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InstanceGroupInfoList'].nil?
+            @InstanceGroupInfoList = []
+            params['InstanceGroupInfoList'].each do |i|
+              cynosdbinstancegroup_tmp = CynosdbInstanceGroup.new
+              cynosdbinstancegroup_tmp.deserialize(i)
+              @InstanceGroupInfoList << cynosdbinstancegroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterInstanceGrps请求参数结构体
       class DescribeClusterInstanceGrpsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

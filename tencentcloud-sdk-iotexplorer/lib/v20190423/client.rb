@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取设备固件信息
+
+        # @param request: Request instance for DescribeDeviceFirmWare.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceFirmWareRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceFirmWareResponse`
+        def DescribeDeviceFirmWare(request)
+          body = send_request('DescribeDeviceFirmWare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceFirmWareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取实时位置解析
 
         # @param request: Request instance for DescribeDeviceLocationSolve.

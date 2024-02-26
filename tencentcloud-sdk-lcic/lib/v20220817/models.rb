@@ -543,7 +543,8 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Name: 用户名称。
         # @type Name: String
-        # @param OriginId: 用户在客户系统的Id，需要在同一应用下唯一。
+        # @param OriginId: 用户在客户系统的Id，需要在同一应用下唯一。入参为空时默认赋值为UserId
+        # 。
         # @type OriginId: String
         # @param Avatar: 用户头像。
         # @type Avatar: String

@@ -1755,14 +1755,22 @@ module TencentCloud
         # @type AutoRenewFlag: Boolean
         # @param PackageRegion: 区域标识，0：国内，1：国外
         # @type PackageRegion: Integer
+        # @param AutoVoucher: 是否自动选择代金券，默认false。
+        # 有多张券时的选择策略：按照可支付订单全部金额的券，先到期的券，可抵扣金额最大的券，余额最小的券，现金券 这个优先级进行扣券，且最多只抵扣一张券。
+        # @type AutoVoucher: Boolean
+        # @param VoucherIds: 指定代金券ID。自动选择代金券时此参数无效。目前只允许传入一张代金券。
+        # 注：若指定的代金券不符合订单抵扣条件，则正常支付，不扣券
+        # @type VoucherIds: Array
 
-        attr_accessor :PackageType, :DeviceList, :AutoRenewFlag, :PackageRegion
+        attr_accessor :PackageType, :DeviceList, :AutoRenewFlag, :PackageRegion, :AutoVoucher, :VoucherIds
 
-        def initialize(packagetype=nil, devicelist=nil, autorenewflag=nil, packageregion=nil)
+        def initialize(packagetype=nil, devicelist=nil, autorenewflag=nil, packageregion=nil, autovoucher=nil, voucherids=nil)
           @PackageType = packagetype
           @DeviceList = devicelist
           @AutoRenewFlag = autorenewflag
           @PackageRegion = packageregion
+          @AutoVoucher = autovoucher
+          @VoucherIds = voucherids
         end
 
         def deserialize(params)
@@ -1770,6 +1778,8 @@ module TencentCloud
           @DeviceList = params['DeviceList']
           @AutoRenewFlag = params['AutoRenewFlag']
           @PackageRegion = params['PackageRegion']
+          @AutoVoucher = params['AutoVoucher']
+          @VoucherIds = params['VoucherIds']
         end
       end
 

@@ -648,19 +648,27 @@ module TencentCloud
         # @type Name: String
         # @param Remark: 高性能计算集群备注。
         # @type Remark: String
+        # @param HpcClusterType: 高性能计算集群类型。
+        # @type HpcClusterType: String
+        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
+        # @type HpcClusterBusinessId: String
 
-        attr_accessor :Zone, :Name, :Remark
+        attr_accessor :Zone, :Name, :Remark, :HpcClusterType, :HpcClusterBusinessId
 
-        def initialize(zone=nil, name=nil, remark=nil)
+        def initialize(zone=nil, name=nil, remark=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
           @Zone = zone
           @Name = name
           @Remark = remark
+          @HpcClusterType = hpcclustertype
+          @HpcClusterBusinessId = hpcclusterbusinessid
         end
 
         def deserialize(params)
           @Zone = params['Zone']
           @Name = params['Name']
           @Remark = params['Remark']
+          @HpcClusterType = params['HpcClusterType']
+          @HpcClusterBusinessId = params['HpcClusterBusinessId']
         end
       end
 
@@ -1415,6 +1423,38 @@ module TencentCloud
         end
       end
 
+      # DeleteInstancesActionTimer请求参数结构体
+      class DeleteInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
+        # @param ActionTimerIds: 定时任务ID列表，可以通过DescribeInstancesActionTimer接口查询。只能删除未执行的定时任务。
+        # @type ActionTimerIds: Array
+
+        attr_accessor :ActionTimerIds
+
+        def initialize(actiontimerids=nil)
+          @ActionTimerIds = actiontimerids
+        end
+
+        def deserialize(params)
+          @ActionTimerIds = params['ActionTimerIds']
+        end
+      end
+
+      # DeleteInstancesActionTimer返回参数结构体
+      class DeleteInstancesActionTimerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteKeyPairs请求参数结构体
       class DeleteKeyPairsRequest < TencentCloud::Common::AbstractModel
         # @param KeyIds: 一个或多个待操作的密钥对ID。每次请求批量密钥对的上限为100。<br>可以通过以下方式获取可用的密钥ID：<br><li>通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。</li><br><li>通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。</li>
@@ -1878,15 +1918,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 本次请求量, 默认值20。
         # @type Limit: Integer
+        # @param HpcClusterType: 高性能计算集群类型。
+        # @type HpcClusterType: String
+        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
+        # @type HpcClusterBusinessId: String
 
-        attr_accessor :HpcClusterIds, :Name, :Zone, :Offset, :Limit
+        attr_accessor :HpcClusterIds, :Name, :Zone, :Offset, :Limit, :HpcClusterType, :HpcClusterBusinessId
 
-        def initialize(hpcclusterids=nil, name=nil, zone=nil, offset=nil, limit=nil)
+        def initialize(hpcclusterids=nil, name=nil, zone=nil, offset=nil, limit=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
           @HpcClusterIds = hpcclusterids
           @Name = name
           @Zone = zone
           @Offset = offset
           @Limit = limit
+          @HpcClusterType = hpcclustertype
+          @HpcClusterBusinessId = hpcclusterbusinessid
         end
 
         def deserialize(params)
@@ -1895,6 +1941,8 @@ module TencentCloud
           @Zone = params['Zone']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @HpcClusterType = params['HpcClusterType']
+          @HpcClusterBusinessId = params['HpcClusterBusinessId']
         end
       end
 
@@ -2302,6 +2350,69 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceVncUrl = params['InstanceVncUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstancesActionTimer请求参数结构体
+      class DescribeInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
+        # @param ActionTimerIds: 定时任务ID列表。
+        # @type ActionTimerIds: Array
+        # @param InstanceIds: 按照一个或者多个实例ID查询。
+        # @type InstanceIds: Array
+        # @param TimerAction: 定时任务执行时间，格式如：2018-05-01 19:00:00，必须大于当前时间5分钟。
+        # @type TimerAction: String
+        # @param EndActionTime: 执行时间的结束范围，用于条件筛选，格式如2018-05-01 19:00:00。
+        # @type EndActionTime: String
+        # @param StartActionTime: 执行时间的开始范围，用于条件筛选，格式如2018-05-01 19:00:00。
+        # @type StartActionTime: String
+        # @param StatusList: 定时任务状态列表。<br><li>UNDO：未执行<br><li>DOING：正在执行<br><li>DONE：执行完成。
+        # @type StatusList: Array
+
+        attr_accessor :ActionTimerIds, :InstanceIds, :TimerAction, :EndActionTime, :StartActionTime, :StatusList
+
+        def initialize(actiontimerids=nil, instanceids=nil, timeraction=nil, endactiontime=nil, startactiontime=nil, statuslist=nil)
+          @ActionTimerIds = actiontimerids
+          @InstanceIds = instanceids
+          @TimerAction = timeraction
+          @EndActionTime = endactiontime
+          @StartActionTime = startactiontime
+          @StatusList = statuslist
+        end
+
+        def deserialize(params)
+          @ActionTimerIds = params['ActionTimerIds']
+          @InstanceIds = params['InstanceIds']
+          @TimerAction = params['TimerAction']
+          @EndActionTime = params['EndActionTime']
+          @StartActionTime = params['StartActionTime']
+          @StatusList = params['StatusList']
+        end
+      end
+
+      # DescribeInstancesActionTimer返回参数结构体
+      class DescribeInstancesActionTimerResponse < TencentCloud::Common::AbstractModel
+        # @param ActionTimers: 定时任务信息列表。
+        # @type ActionTimers: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActionTimers, :RequestId
+
+        def initialize(actiontimers=nil, requestid=nil)
+          @ActionTimers = actiontimers
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ActionTimers'].nil?
+            @ActionTimers = []
+            params['ActionTimers'].each do |i|
+              actiontimer_tmp = ActionTimer.new
+              actiontimer_tmp.deserialize(i)
+              @ActionTimers << actiontimer_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3815,10 +3926,16 @@ module TencentCloud
         # @param InstanceIds: 集群内实例ID列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceIds: Array
+        # @param HpcClusterType: 高性能计算集群类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HpcClusterType: String
+        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HpcClusterBusinessId: String
 
-        attr_accessor :HpcClusterId, :Name, :Remark, :CvmQuotaTotal, :Zone, :CurrentNum, :CreateTime, :InstanceIds
+        attr_accessor :HpcClusterId, :Name, :Remark, :CvmQuotaTotal, :Zone, :CurrentNum, :CreateTime, :InstanceIds, :HpcClusterType, :HpcClusterBusinessId
 
-        def initialize(hpcclusterid=nil, name=nil, remark=nil, cvmquotatotal=nil, zone=nil, currentnum=nil, createtime=nil, instanceids=nil)
+        def initialize(hpcclusterid=nil, name=nil, remark=nil, cvmquotatotal=nil, zone=nil, currentnum=nil, createtime=nil, instanceids=nil, hpcclustertype=nil, hpcclusterbusinessid=nil)
           @HpcClusterId = hpcclusterid
           @Name = name
           @Remark = remark
@@ -3827,6 +3944,8 @@ module TencentCloud
           @CurrentNum = currentnum
           @CreateTime = createtime
           @InstanceIds = instanceids
+          @HpcClusterType = hpcclustertype
+          @HpcClusterBusinessId = hpcclusterbusinessid
         end
 
         def deserialize(params)
@@ -3838,6 +3957,8 @@ module TencentCloud
           @CurrentNum = params['CurrentNum']
           @CreateTime = params['CreateTime']
           @InstanceIds = params['InstanceIds']
+          @HpcClusterType = params['HpcClusterType']
+          @HpcClusterBusinessId = params['HpcClusterBusinessId']
         end
       end
 
@@ -4066,6 +4187,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ImportInstancesActionTimer请求参数结构体
+      class ImportInstancesActionTimerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例id列表，可以通过DescribeInstances接口查询到。
+        # @type InstanceIds: Array
+        # @param ActionTimer: 定时器任务信息，目前仅支持定时销毁。
+        # @type ActionTimer: :class:`Tencentcloud::Cvm.v20170312.models.ActionTimer`
+
+        attr_accessor :InstanceIds, :ActionTimer
+
+        def initialize(instanceids=nil, actiontimer=nil)
+          @InstanceIds = instanceids
+          @ActionTimer = actiontimer
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          unless params['ActionTimer'].nil?
+            @ActionTimer = ActionTimer.new
+            @ActionTimer.deserialize(params['ActionTimer'])
+          end
+        end
+      end
+
+      # ImportInstancesActionTimer返回参数结构体
+      class ImportInstancesActionTimerResponse < TencentCloud::Common::AbstractModel
+        # @param ActionTimerIds: 定时器id列表
+        # @type ActionTimerIds: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ActionTimerIds, :RequestId
+
+        def initialize(actiontimerids=nil, requestid=nil)
+          @ActionTimerIds = actiontimerids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ActionTimerIds = params['ActionTimerIds']
           @RequestId = params['RequestId']
         end
       end

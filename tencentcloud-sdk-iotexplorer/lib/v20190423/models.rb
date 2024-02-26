@@ -1750,6 +1750,46 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceFirmWare请求参数结构体
+      class DescribeDeviceFirmWareRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID。
+        # @type ProductId: String
+        # @param DeviceName: 设备名称。
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeDeviceFirmWare返回参数结构体
+      class DescribeDeviceFirmWareResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 固件信息
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceLocationSolve请求参数结构体
       class DescribeDeviceLocationSolveRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
