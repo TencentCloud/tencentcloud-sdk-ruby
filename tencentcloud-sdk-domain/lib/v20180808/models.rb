@@ -2241,7 +2241,7 @@ module TencentCloud
       class ReservedPreDomainsRequest < TencentCloud::Common::AbstractModel
         # @param DomainList: 预约预释放域名列表
         # @type DomainList: Array
-        # @param TemplateId: 模版ID
+        # @param TemplateId: 模板ID
         # @type TemplateId: String
 
         attr_accessor :DomainList, :TemplateId

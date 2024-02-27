@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 1
-        deprecate :SegmentSet=, :none, 2024, 1
+        deprecate :SegmentSet, :none, 2024, 2
+        deprecate :SegmentSet=, :none, 2024, 2
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4343,10 +4343,11 @@ module TencentCloud
         # <li>48000</li>
         # 单位：Hz。
         # @type SampleRate: Integer
-        # @param AudioChannel: 音频通道方式，可选值：
+        # @param AudioChannel: 音频通道，可选值：
         # <li>1：单通道</li>
         # <li>2：双通道</li>
         # <li>6：立体声</li>
+        # <li>0：音频声道数和原始音频保持一致</li>
         # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # 默认值：2。
         # @type AudioChannel: Integer
@@ -4399,10 +4400,11 @@ module TencentCloud
         # <li>48000</li>
         # 单位：Hz。
         # @type SampleRate: Integer
-        # @param AudioChannel: 音频通道方式，可选值：
+        # @param AudioChannel: 音频通道，可选值：
         # <li>1：单通道</li>
         # <li>2：双通道</li>
         # <li>6：立体声</li>
+        # <li>0：音频声道数和原始音频保持一致</li>
         # 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         # @type AudioChannel: Integer
 
@@ -17288,8 +17290,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 1
-        deprecate :Transitions=, :none, 2024, 1
+        deprecate :Transitions, :none, 2024, 2
+        deprecate :Transitions=, :none, 2024, 2
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -21156,8 +21158,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 1
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 1
+        deprecate :ProductInstanceResourceSet, :none, 2024, 2
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 2
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype

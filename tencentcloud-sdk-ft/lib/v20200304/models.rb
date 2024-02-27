@@ -87,7 +87,7 @@ module TencentCloud
         # 非腾讯云存储的Url速度和稳定性可能受一定影响。
         # 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         # @type Url: String
-        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
+        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。默认值为base64。
         # @type RspImgType: String
 
         attr_accessor :AgeInfos, :Image, :Url, :RspImgType

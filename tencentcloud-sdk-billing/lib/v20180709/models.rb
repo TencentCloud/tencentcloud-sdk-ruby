@@ -70,6 +70,472 @@ module TencentCloud
         end
       end
 
+      # 成本分析交易类型复杂类型
+      class AnalyseActionTypeDetail < TencentCloud::Common::AbstractModel
+        # @param ActionType: 交易类型code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionType: String
+        # @param ActionTypeName: 交易类型Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionTypeName: String
+
+        attr_accessor :ActionType, :ActionTypeName
+
+        def initialize(actiontype=nil, actiontypename=nil)
+          @ActionType = actiontype
+          @ActionTypeName = actiontypename
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @ActionTypeName = params['ActionTypeName']
+        end
+      end
+
+      # 成本分析金额返回数据模型
+      class AnalyseAmountDetail < TencentCloud::Common::AbstractModel
+        # @param Key: 费用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Display: 是否展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Display: Integer
+
+        attr_accessor :Key, :Display
+
+        def initialize(key=nil, display=nil)
+          @Key = key
+          @Display = display
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Display = params['Display']
+        end
+      end
+
+      # 成本分析产品返回复杂类型
+      class AnalyseBusinessDetail < TencentCloud::Common::AbstractModel
+        # @param BusinessCode: 产品码code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCode: String
+        # @param BusinessCodeName: 产品名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCodeName: String
+
+        attr_accessor :BusinessCode, :BusinessCodeName
+
+        def initialize(businesscode=nil, businesscodename=nil)
+          @BusinessCode = businesscode
+          @BusinessCodeName = businesscodename
+        end
+
+        def deserialize(params)
+          @BusinessCode = params['BusinessCode']
+          @BusinessCodeName = params['BusinessCodeName']
+        end
+      end
+
+      # 成本分析过滤框复杂类型
+      class AnalyseConditionDetail < TencentCloud::Common::AbstractModel
+        # @param Business: 产品
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Business: Array
+        # @param Project: 项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Project: Array
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: Array
+        # @param PayMode: 计费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Array
+        # @param ActionType: 交易类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionType: Array
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: Array
+        # @param OwnerUin: 资源所有者Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUin: Array
+        # @param Amount: 费用类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Amount: Array
+
+        attr_accessor :Business, :Project, :Region, :PayMode, :ActionType, :Zone, :OwnerUin, :Amount
+
+        def initialize(business=nil, project=nil, region=nil, paymode=nil, actiontype=nil, zone=nil, owneruin=nil, amount=nil)
+          @Business = business
+          @Project = project
+          @Region = region
+          @PayMode = paymode
+          @ActionType = actiontype
+          @Zone = zone
+          @OwnerUin = owneruin
+          @Amount = amount
+        end
+
+        def deserialize(params)
+          unless params['Business'].nil?
+            @Business = []
+            params['Business'].each do |i|
+              analysebusinessdetail_tmp = AnalyseBusinessDetail.new
+              analysebusinessdetail_tmp.deserialize(i)
+              @Business << analysebusinessdetail_tmp
+            end
+          end
+          unless params['Project'].nil?
+            @Project = []
+            params['Project'].each do |i|
+              analyseprojectdetail_tmp = AnalyseProjectDetail.new
+              analyseprojectdetail_tmp.deserialize(i)
+              @Project << analyseprojectdetail_tmp
+            end
+          end
+          unless params['Region'].nil?
+            @Region = []
+            params['Region'].each do |i|
+              analyseregiondetail_tmp = AnalyseRegionDetail.new
+              analyseregiondetail_tmp.deserialize(i)
+              @Region << analyseregiondetail_tmp
+            end
+          end
+          unless params['PayMode'].nil?
+            @PayMode = []
+            params['PayMode'].each do |i|
+              analysepaymodedetail_tmp = AnalysePayModeDetail.new
+              analysepaymodedetail_tmp.deserialize(i)
+              @PayMode << analysepaymodedetail_tmp
+            end
+          end
+          unless params['ActionType'].nil?
+            @ActionType = []
+            params['ActionType'].each do |i|
+              analyseactiontypedetail_tmp = AnalyseActionTypeDetail.new
+              analyseactiontypedetail_tmp.deserialize(i)
+              @ActionType << analyseactiontypedetail_tmp
+            end
+          end
+          unless params['Zone'].nil?
+            @Zone = []
+            params['Zone'].each do |i|
+              analysezonedetail_tmp = AnalyseZoneDetail.new
+              analysezonedetail_tmp.deserialize(i)
+              @Zone << analysezonedetail_tmp
+            end
+          end
+          unless params['OwnerUin'].nil?
+            @OwnerUin = []
+            params['OwnerUin'].each do |i|
+              analyseowneruindetail_tmp = AnalyseOwnerUinDetail.new
+              analyseowneruindetail_tmp.deserialize(i)
+              @OwnerUin << analyseowneruindetail_tmp
+            end
+          end
+          unless params['Amount'].nil?
+            @Amount = []
+            params['Amount'].each do |i|
+              analyseamountdetail_tmp = AnalyseAmountDetail.new
+              analyseamountdetail_tmp.deserialize(i)
+              @Amount << analyseamountdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 成本分析查询条件
+      class AnalyseConditions < TencentCloud::Common::AbstractModel
+        # @param BusinessCodes: 产品名称代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessCodes: String
+        # @param ProductCodes: 子产品名称代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCodes: String
+        # @param ComponentCode: 组件类型代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentCode: String
+        # @param ZoneIds: 可用区ID：资源所属可用区ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: String
+        # @param RegionIds: 地域ID:资源所属地域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionIds: String
+        # @param ProjectIds: 项目ID:资源所属项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectIds: String
+        # @param PayModes: 计费模式 prePay(表示包年包月)/postPay(表示按量计费)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayModes: String
+        # @param ActionTypes: 交易类型，查询交易类型（请使用交易类型code入参）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionTypes: String
+        # @param Tags: 分账标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: String
+        # @param FeeType: 费用类型，查询费用类型（请使用费用类型code入参)入参枚举如下：
+        # cashPayAmount:现金
+        # incentivePayAmount:赠送金
+        # voucherPayAmount:优惠券
+        # tax:税金
+        # costBeforeTax:税前价
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FeeType: String
+        # @param PayerUins: 查询成本分析数据的用户UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayerUins: String
+        # @param OwnerUins: 使用资源的用户UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUins: String
+        # @param ConsumptionTypes: 消耗类型，查询消耗类型（请使用消耗类型code入参）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumptionTypes: String
+
+        attr_accessor :BusinessCodes, :ProductCodes, :ComponentCode, :ZoneIds, :RegionIds, :ProjectIds, :PayModes, :ActionTypes, :Tags, :FeeType, :PayerUins, :OwnerUins, :ConsumptionTypes
+
+        def initialize(businesscodes=nil, productcodes=nil, componentcode=nil, zoneids=nil, regionids=nil, projectids=nil, paymodes=nil, actiontypes=nil, tags=nil, feetype=nil, payeruins=nil, owneruins=nil, consumptiontypes=nil)
+          @BusinessCodes = businesscodes
+          @ProductCodes = productcodes
+          @ComponentCode = componentcode
+          @ZoneIds = zoneids
+          @RegionIds = regionids
+          @ProjectIds = projectids
+          @PayModes = paymodes
+          @ActionTypes = actiontypes
+          @Tags = tags
+          @FeeType = feetype
+          @PayerUins = payeruins
+          @OwnerUins = owneruins
+          @ConsumptionTypes = consumptiontypes
+        end
+
+        def deserialize(params)
+          @BusinessCodes = params['BusinessCodes']
+          @ProductCodes = params['ProductCodes']
+          @ComponentCode = params['ComponentCode']
+          @ZoneIds = params['ZoneIds']
+          @RegionIds = params['RegionIds']
+          @ProjectIds = params['ProjectIds']
+          @PayModes = params['PayModes']
+          @ActionTypes = params['ActionTypes']
+          @Tags = params['Tags']
+          @FeeType = params['FeeType']
+          @PayerUins = params['PayerUins']
+          @OwnerUins = params['OwnerUins']
+          @ConsumptionTypes = params['ConsumptionTypes']
+        end
+      end
+
+      # 成本分析数据复杂类型
+      class AnalyseDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 时间
+        # @type Name: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param TimeDetail: 日期明细金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeDetail: Array
+
+        attr_accessor :Name, :Total, :TimeDetail
+
+        def initialize(name=nil, total=nil, timedetail=nil)
+          @Name = name
+          @Total = total
+          @TimeDetail = timedetail
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Total = params['Total']
+          unless params['TimeDetail'].nil?
+            @TimeDetail = []
+            params['TimeDetail'].each do |i|
+              analysetimedetail_tmp = AnalyseTimeDetail.new
+              analysetimedetail_tmp.deserialize(i)
+              @TimeDetail << analysetimedetail_tmp
+            end
+          end
+        end
+      end
+
+      # 成本分析表头数据复杂类型
+      class AnalyseHeaderDetail < TencentCloud::Common::AbstractModel
+        # @param HeadDetail: 表头日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeadDetail: Array
+        # @param Name: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Total: 总计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
+
+        attr_accessor :HeadDetail, :Name, :Total
+
+        def initialize(headdetail=nil, name=nil, total=nil)
+          @HeadDetail = headdetail
+          @Name = name
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['HeadDetail'].nil?
+            @HeadDetail = []
+            params['HeadDetail'].each do |i|
+              analyseheadertimedetail_tmp = AnalyseHeaderTimeDetail.new
+              analyseheadertimedetail_tmp.deserialize(i)
+              @HeadDetail << analyseheadertimedetail_tmp
+            end
+          end
+          @Name = params['Name']
+          @Total = params['Total']
+        end
+      end
+
+      # 成本分析header表头数据
+      class AnalyseHeaderTimeDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # 成本分析使用者uin复杂类型
+      class AnalyseOwnerUinDetail < TencentCloud::Common::AbstractModel
+        # @param OwnerUin: 使用者uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUin: String
+
+        attr_accessor :OwnerUin
+
+        def initialize(owneruin=nil)
+          @OwnerUin = owneruin
+        end
+
+        def deserialize(params)
+          @OwnerUin = params['OwnerUin']
+        end
+      end
+
+      # 成本分析支付方式复杂类型
+      class AnalysePayModeDetail < TencentCloud::Common::AbstractModel
+        # @param PayMode: 计费模式code
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: String
+        # @param PayModeName: 计费模式Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayModeName: String
+
+        attr_accessor :PayMode, :PayModeName
+
+        def initialize(paymode=nil, paymodename=nil)
+          @PayMode = paymode
+          @PayModeName = paymodename
+        end
+
+        def deserialize(params)
+          @PayMode = params['PayMode']
+          @PayModeName = params['PayModeName']
+        end
+      end
+
+      # 成本分析项目返回复杂类型
+      class AnalyseProjectDetail < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 默认项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+
+        attr_accessor :ProjectId, :ProjectName
+
+        def initialize(projectid=nil, projectname=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+        end
+      end
+
+      # 成本分析地域返回复杂类型
+      class AnalyseRegionDetail < TencentCloud::Common::AbstractModel
+        # @param RegionId: 地域id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: String
+        # @param RegionName: 地域名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionName: String
+
+        attr_accessor :RegionId, :RegionName
+
+        def initialize(regionid=nil, regionname=nil)
+          @RegionId = regionid
+          @RegionName = regionname
+        end
+
+        def deserialize(params)
+          @RegionId = params['RegionId']
+          @RegionName = params['RegionName']
+        end
+      end
+
+      # 成本分返回值复杂类型
+      class AnalyseTimeDetail < TencentCloud::Common::AbstractModel
+        # @param Time: 日期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: String
+        # @param Money: 金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Money: String
+
+        attr_accessor :Time, :Money
+
+        def initialize(time=nil, money=nil)
+          @Time = time
+          @Money = money
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Money = params['Money']
+        end
+      end
+
+      # 成本分析可用区复杂类型
+      class AnalyseZoneDetail < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 可用区id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param ZoneName: 可用区Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneName: String
+
+        attr_accessor :ZoneId, :ZoneName
+
+        def initialize(zoneid=nil, zonename=nil)
+          @ZoneId = zoneid
+          @ZoneName = zonename
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+        end
+      end
+
       # 适用商品信息
       class ApplicableProducts < TencentCloud::Common::AbstractModel
         # @param GoodsName: 适用商品名称，值为“全产品通用”或商品名称组成的string，以","分割。
@@ -3327,6 +3793,135 @@ module TencentCloud
         end
       end
 
+      # DescribeCostExplorerSummary请求参数结构体
+      class DescribeCostExplorerSummaryRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss
+        # @type BeginTime: String
+        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss
+        # @type EndTime: String
+        # @param BillType: 账单类型：1-费用账单、2-消耗账单
+        # @type BillType: String
+        # @param PeriodType: 统计周期：日-day，月-month；
+        # @type PeriodType: String
+        # @param Dimensions: 分类维度（数据汇总维度），查询分类维度（请使用分类维度code入参）入参枚举值：
+        # default=仅总计
+        # feeType=费用类型
+        # billType=账单类型
+        # business=产品
+        # product=子产品
+        # region=地域
+        # zone=可用区
+        # actionType=交易类型
+        # payMode =计费模式
+        # tags=标签
+        # project =项目
+        # payerUin=支付者账号
+        # ownerUin=使用者账号
+        # @type Dimensions: String
+        # @param FeeType: 费用类型：cost-总费用，totalCost-原价费用
+        # @type FeeType: String
+        # @param PageSize: 数量，每页最大值为100
+        # @type PageSize: Integer
+        # @param PageNo: 起始页，当PageNo=1表示第一页， PageNo=2表示第二页，依次类推。
+        # @type PageNo: Integer
+        # @param TagKeyStr: 分账标签值
+        # @type TagKeyStr: String
+        # @param NeedConditionValue: 是否需要筛选框， 1-表示需要， 0-表示不需要，若不传默认不需要。
+        # @type NeedConditionValue: String
+        # @param Conditions: 筛选参数
+        # @type Conditions: :class:`Tencentcloud::Billing.v20180709.models.AnalyseConditions`
+
+        attr_accessor :BeginTime, :EndTime, :BillType, :PeriodType, :Dimensions, :FeeType, :PageSize, :PageNo, :TagKeyStr, :NeedConditionValue, :Conditions
+
+        def initialize(begintime=nil, endtime=nil, billtype=nil, periodtype=nil, dimensions=nil, feetype=nil, pagesize=nil, pageno=nil, tagkeystr=nil, needconditionvalue=nil, conditions=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @BillType = billtype
+          @PeriodType = periodtype
+          @Dimensions = dimensions
+          @FeeType = feetype
+          @PageSize = pagesize
+          @PageNo = pageno
+          @TagKeyStr = tagkeystr
+          @NeedConditionValue = needconditionvalue
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @BillType = params['BillType']
+          @PeriodType = params['PeriodType']
+          @Dimensions = params['Dimensions']
+          @FeeType = params['FeeType']
+          @PageSize = params['PageSize']
+          @PageNo = params['PageNo']
+          @TagKeyStr = params['TagKeyStr']
+          @NeedConditionValue = params['NeedConditionValue']
+          unless params['Conditions'].nil?
+            @Conditions = AnalyseConditions.new
+            @Conditions.deserialize(params['Conditions'])
+          end
+        end
+      end
+
+      # DescribeCostExplorerSummary返回参数结构体
+      class DescribeCostExplorerSummaryResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 数据条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Header: 表头信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Header: :class:`Tencentcloud::Billing.v20180709.models.AnalyseHeaderDetail`
+        # @param Detail: 数据明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: Array
+        # @param TotalDetail: 数据总计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalDetail: :class:`Tencentcloud::Billing.v20180709.models.AnalyseDetail`
+        # @param ConditionValue: 筛选框
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionValue: :class:`Tencentcloud::Billing.v20180709.models.AnalyseConditionDetail`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Header, :Detail, :TotalDetail, :ConditionValue, :RequestId
+
+        def initialize(total=nil, header=nil, detail=nil, totaldetail=nil, conditionvalue=nil, requestid=nil)
+          @Total = total
+          @Header = header
+          @Detail = detail
+          @TotalDetail = totaldetail
+          @ConditionValue = conditionvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Header'].nil?
+            @Header = AnalyseHeaderDetail.new
+            @Header.deserialize(params['Header'])
+          end
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              analysedetail_tmp = AnalyseDetail.new
+              analysedetail_tmp.deserialize(i)
+              @Detail << analysedetail_tmp
+            end
+          end
+          unless params['TotalDetail'].nil?
+            @TotalDetail = AnalyseDetail.new
+            @TotalDetail.deserialize(params['TotalDetail'])
+          end
+          unless params['ConditionValue'].nil?
+            @ConditionValue = AnalyseConditionDetail.new
+            @ConditionValue.deserialize(params['ConditionValue'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCostSummaryByProduct请求参数结构体
       class DescribeCostSummaryByProductRequest < TencentCloud::Common::AbstractModel
         # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -3688,7 +4283,7 @@ module TencentCloud
         # 11：代付拒绝
         # 12：支付中
         # @type Status: Integer
-        # @param OrderId: 订单号
+        # @param OrderId: 子订单号
         # @type OrderId: String
         # @param BigDealId: 大订单号
         # @type BigDealId: String

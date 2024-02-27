@@ -5924,17 +5924,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param ForReadonlyInstance: 该值默认为False，表示当传入只读实例ID时，查询操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True。
         # @type ForReadonlyInstance: Boolean
+        # @param OpResourceId: 变更集群版实例只读组时，InstanceId传实例id，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @type OpResourceId: String
 
-        attr_accessor :InstanceId, :ForReadonlyInstance
+        attr_accessor :InstanceId, :ForReadonlyInstance, :OpResourceId
 
-        def initialize(instanceid=nil, forreadonlyinstance=nil)
+        def initialize(instanceid=nil, forreadonlyinstance=nil, opresourceid=nil)
           @InstanceId = instanceid
           @ForReadonlyInstance = forreadonlyinstance
+          @OpResourceId = opresourceid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ForReadonlyInstance = params['ForReadonlyInstance']
+          @OpResourceId = params['OpResourceId']
         end
       end
 
@@ -10675,8 +10679,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2024, 1
-        deprecate :IsSucess=, :none, 2024, 1
+        deprecate :IsSucess, :none, 2024, 2
+        deprecate :IsSucess=, :none, 2024, 2
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid

@@ -554,7 +554,7 @@ module TencentCloud
         # @type Url: String
         # @param FilterDegree: 滤镜效果，取值[0,100]，0表示无效果，100表示满滤镜效果。默认值为80。
         # @type FilterDegree: Integer
-        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
+        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。默认为base64。
         # @type RspImgType: String
 
         attr_accessor :FilterType, :Image, :Url, :FilterDegree, :RspImgType
@@ -618,7 +618,7 @@ module TencentCloud
         # @type Url: String
         # @param FilterDegree: 滤镜效果，取值[0,100]，0表示无效果，100表示满滤镜效果。默认值为80。
         # @type FilterDegree: Integer
-        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
+        # @param RspImgType: 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。默认值为base64。
         # @type RspImgType: String
 
         attr_accessor :FilterType, :Image, :Url, :FilterDegree, :RspImgType

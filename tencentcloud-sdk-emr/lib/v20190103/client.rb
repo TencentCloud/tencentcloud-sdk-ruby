@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 添加扩缩容规则，按负载和时间
+
+        # @param request: Request instance for AddMetricScaleStrategy.
+        # @type request: :class:`Tencentcloud::emr::V20190103::AddMetricScaleStrategyRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::AddMetricScaleStrategyResponse`
+        def AddMetricScaleStrategy(request)
+          body = send_request('AddMetricScaleStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddMetricScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口支持安装了OpenLdap组件的集群。
         # 新增用户列表（用户管理）。
 
@@ -102,6 +126,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除自动扩缩容规则，后台销毁根据该规则扩缩容出来的节点
+
+        # @param request: Request instance for DeleteAutoScaleStrategy.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DeleteAutoScaleStrategyRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DeleteAutoScaleStrategyResponse`
+        def DeleteAutoScaleStrategy(request)
+          body = send_request('DeleteAutoScaleStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAutoScaleStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户列表（用户管理）
 
         # @param request: Request instance for DeleteUserManagerUserList.
@@ -126,6 +174,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取自动扩缩容全局配置
+
+        # @param request: Request instance for DescribeAutoScaleGroupGlobalConf.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleGroupGlobalConfRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleGroupGlobalConfResponse`
+        def DescribeAutoScaleGroupGlobalConf(request)
+          body = send_request('DescribeAutoScaleGroupGlobalConf', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoScaleGroupGlobalConfResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群的自动扩缩容的详细记录
 
         # @param request: Request instance for DescribeAutoScaleRecords.
@@ -136,6 +208,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAutoScaleRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取自动扩缩容规则
+
+        # @param request: Request instance for DescribeAutoScaleStrategies.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleStrategiesRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeAutoScaleStrategiesResponse`
+        def DescribeAutoScaleStrategies(request)
+          body = send_request('DescribeAutoScaleStrategies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoScaleStrategiesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -569,6 +665,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquiryPriceUpdateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自动扩缩容规则
+
+        # @param request: Request instance for ModifyAutoScaleStrategy.
+        # @type request: :class:`Tencentcloud::emr::V20190103::ModifyAutoScaleStrategyRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::ModifyAutoScaleStrategyResponse`
+        def ModifyAutoScaleStrategy(request)
+          body = send_request('ModifyAutoScaleStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoScaleStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else

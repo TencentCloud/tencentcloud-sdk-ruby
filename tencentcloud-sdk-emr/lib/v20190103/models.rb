@@ -17,6 +17,49 @@
 module TencentCloud
   module Emr
     module V20190103
+      # AddMetricScaleStrategy请求参数结构体
+      class AddMetricScaleStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StrategyType: 1表示按负载规则扩容，2表示按时间规则扩容。
+        # @type StrategyType: Integer
+        # @param TimeAutoScaleStrategy: 按时间扩缩容的规则。
+        # @type TimeAutoScaleStrategy: :class:`Tencentcloud::Emr.v20190103.models.TimeAutoScaleStrategy`
+
+        attr_accessor :InstanceId, :StrategyType, :TimeAutoScaleStrategy
+
+        def initialize(instanceid=nil, strategytype=nil, timeautoscalestrategy=nil)
+          @InstanceId = instanceid
+          @StrategyType = strategytype
+          @TimeAutoScaleStrategy = timeautoscalestrategy
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StrategyType = params['StrategyType']
+          unless params['TimeAutoScaleStrategy'].nil?
+            @TimeAutoScaleStrategy = TimeAutoScaleStrategy.new
+            @TimeAutoScaleStrategy.deserialize(params['TimeAutoScaleStrategy'])
+          end
+        end
+      end
+
+      # AddMetricScaleStrategy返回参数结构体
+      class AddMetricScaleStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddUsersForUserManager请求参数结构体
       class AddUsersForUserManagerRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群字符串ID
@@ -243,6 +286,49 @@ module TencentCloud
           @CompensateCount = params['CompensateCount']
           @RetryCount = params['RetryCount']
           @RetryInfo = params['RetryInfo']
+        end
+      end
+
+      # 弹性扩缩容规格配置
+      class AutoScaleResourceConf < TencentCloud::Common::AbstractModel
+        # @param Id: 配置ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param ClusterId: 集群实例ID。
+        # @type ClusterId: Integer
+        # @param ScaleLowerBound: 自动扩缩容保留最小实例数。
+        # @type ScaleLowerBound: Integer
+        # @param ScaleUpperBound: 自动扩缩容最大实例数。
+        # @type ScaleUpperBound: Integer
+        # @param StrategyType: 扩容规则类型，1为按负载指标扩容规则，2为按时间扩容规则
+        # @type StrategyType: Integer
+        # @param NextTimeCanScale: 下次能可扩容时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextTimeCanScale: Integer
+        # @param GraceDownFlag: 优雅缩容开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GraceDownFlag: Boolean
+
+        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag
+
+        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil)
+          @Id = id
+          @ClusterId = clusterid
+          @ScaleLowerBound = scalelowerbound
+          @ScaleUpperBound = scaleupperbound
+          @StrategyType = strategytype
+          @NextTimeCanScale = nexttimecanscale
+          @GraceDownFlag = gracedownflag
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ClusterId = params['ClusterId']
+          @ScaleLowerBound = params['ScaleLowerBound']
+          @ScaleUpperBound = params['ScaleUpperBound']
+          @StrategyType = params['StrategyType']
+          @NextTimeCanScale = params['NextTimeCanScale']
+          @GraceDownFlag = params['GraceDownFlag']
         end
       end
 
@@ -1356,6 +1442,72 @@ module TencentCloud
         end
       end
 
+      # 弹性扩缩容按天重复任务描述
+      class DayRepeatStrategy < TencentCloud::Common::AbstractModel
+        # @param ExecuteAtTimeOfDay: 重复任务执行的具体时刻，例如"01:02:00"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteAtTimeOfDay: String
+        # @param Step: 每隔Step天执行一次
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Integer
+
+        attr_accessor :ExecuteAtTimeOfDay, :Step
+
+        def initialize(executeattimeofday=nil, step=nil)
+          @ExecuteAtTimeOfDay = executeattimeofday
+          @Step = step
+        end
+
+        def deserialize(params)
+          @ExecuteAtTimeOfDay = params['ExecuteAtTimeOfDay']
+          @Step = params['Step']
+        end
+      end
+
+      # DeleteAutoScaleStrategy请求参数结构体
+      class DeleteAutoScaleStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StrategyType: 自动扩缩容规则类型，1表示按照负载指标扩缩容，2表示按照时间规则扩缩容。
+        # @type StrategyType: Integer
+        # @param StrategyId: 规则ID。
+        # @type StrategyId: Integer
+        # @param GroupId: 伸缩组Id
+        # @type GroupId: Integer
+
+        attr_accessor :InstanceId, :StrategyType, :StrategyId, :GroupId
+
+        def initialize(instanceid=nil, strategytype=nil, strategyid=nil, groupid=nil)
+          @InstanceId = instanceid
+          @StrategyType = strategytype
+          @StrategyId = strategyid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StrategyType = params['StrategyType']
+          @StrategyId = params['StrategyId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteAutoScaleStrategy返回参数结构体
+      class DeleteAutoScaleStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUserManagerUserList请求参数结构体
       class DeleteUserManagerUserListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -1431,6 +1583,55 @@ module TencentCloud
         end
       end
 
+      # DescribeAutoScaleGroupGlobalConf请求参数结构体
+      class DescribeAutoScaleGroupGlobalConfRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAutoScaleGroupGlobalConf返回参数结构体
+      class DescribeAutoScaleGroupGlobalConfResponse < TencentCloud::Common::AbstractModel
+        # @param GroupGlobalConfs: 集群所有伸缩组全局信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupGlobalConfs: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupGlobalConfs, :TotalCount, :RequestId
+
+        def initialize(groupglobalconfs=nil, totalcount=nil, requestid=nil)
+          @GroupGlobalConfs = groupglobalconfs
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GroupGlobalConfs'].nil?
+            @GroupGlobalConfs = []
+            params['GroupGlobalConfs'].each do |i|
+              groupglobalconfs_tmp = GroupGlobalConfs.new
+              groupglobalconfs_tmp.deserialize(i)
+              @GroupGlobalConfs << groupglobalconfs_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAutoScaleRecords请求参数结构体
       class DescribeAutoScaleRecordsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1491,6 +1692,54 @@ module TencentCloud
               autoscalerecord_tmp = AutoScaleRecord.new
               autoscalerecord_tmp.deserialize(i)
               @RecordList << autoscalerecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoScaleStrategies请求参数结构体
+      class DescribeAutoScaleStrategiesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param GroupId: 伸缩组id
+        # @type GroupId: Integer
+
+        attr_accessor :InstanceId, :GroupId
+
+        def initialize(instanceid=nil, groupid=nil)
+          @InstanceId = instanceid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DescribeAutoScaleStrategies返回参数结构体
+      class DescribeAutoScaleStrategiesResponse < TencentCloud::Common::AbstractModel
+        # @param TimeBasedAutoScaleStrategies: 按时间伸缩规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeBasedAutoScaleStrategies: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TimeBasedAutoScaleStrategies, :RequestId
+
+        def initialize(timebasedautoscalestrategies=nil, requestid=nil)
+          @TimeBasedAutoScaleStrategies = timebasedautoscalestrategies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TimeBasedAutoScaleStrategies'].nil?
+            @TimeBasedAutoScaleStrategies = []
+            params['TimeBasedAutoScaleStrategies'].each do |i|
+              timeautoscalestrategy_tmp = TimeAutoScaleStrategy.new
+              timeautoscalestrategy_tmp.deserialize(i)
+              @TimeBasedAutoScaleStrategies << timeautoscalestrategy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -3060,6 +3309,41 @@ module TencentCloud
         end
       end
 
+      # 集群所有伸缩组全局参数信息
+      class GroupGlobalConfs < TencentCloud::Common::AbstractModel
+        # @param GroupGlobalConf: 伸缩组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupGlobalConf: :class:`Tencentcloud::Emr.v20190103.models.AutoScaleResourceConf`
+        # @param CurrentNodes: 当前伸缩组扩容出来的节点数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentNodes: Integer
+        # @param CurrentPostPaidNodes: 当前伸缩组扩容出来的后付费节点数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentPostPaidNodes: Integer
+        # @param CurrentSpotPaidNodes: 当前伸缩组扩容出来的竞价实例节点数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentSpotPaidNodes: Integer
+
+        attr_accessor :GroupGlobalConf, :CurrentNodes, :CurrentPostPaidNodes, :CurrentSpotPaidNodes
+
+        def initialize(groupglobalconf=nil, currentnodes=nil, currentpostpaidnodes=nil, currentspotpaidnodes=nil)
+          @GroupGlobalConf = groupglobalconf
+          @CurrentNodes = currentnodes
+          @CurrentPostPaidNodes = currentpostpaidnodes
+          @CurrentSpotPaidNodes = currentspotpaidnodes
+        end
+
+        def deserialize(params)
+          unless params['GroupGlobalConf'].nil?
+            @GroupGlobalConf = AutoScaleResourceConf.new
+            @GroupGlobalConf.deserialize(params['GroupGlobalConf'])
+          end
+          @CurrentNodes = params['CurrentNodes']
+          @CurrentPostPaidNodes = params['CurrentPostPaidNodes']
+          @CurrentSpotPaidNodes = params['CurrentSpotPaidNodes']
+        end
+      end
+
       # Hive查询详情
       class HiveQuery < TencentCloud::Common::AbstractModel
         # @param Statement: 查询语句
@@ -4150,6 +4434,57 @@ module TencentCloud
         end
       end
 
+      # ModifyAutoScaleStrategy请求参数结构体
+      class ModifyAutoScaleStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param StrategyType: 自动扩缩容规则类型，1表示按负载指标扩缩容，2表示按时间扩缩容。
+        # @type StrategyType: Integer
+        # @param TimeAutoScaleStrategies: 按时间扩缩容的规则。
+        # @type TimeAutoScaleStrategies: Array
+        # @param GroupId: 伸缩组Id
+        # @type GroupId: Integer
+
+        attr_accessor :InstanceId, :StrategyType, :TimeAutoScaleStrategies, :GroupId
+
+        def initialize(instanceid=nil, strategytype=nil, timeautoscalestrategies=nil, groupid=nil)
+          @InstanceId = instanceid
+          @StrategyType = strategytype
+          @TimeAutoScaleStrategies = timeautoscalestrategies
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StrategyType = params['StrategyType']
+          unless params['TimeAutoScaleStrategies'].nil?
+            @TimeAutoScaleStrategies = []
+            params['TimeAutoScaleStrategies'].each do |i|
+              timeautoscalestrategy_tmp = TimeAutoScaleStrategy.new
+              timeautoscalestrategy_tmp.deserialize(i)
+              @TimeAutoScaleStrategies << timeautoscalestrategy_tmp
+            end
+          end
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # ModifyAutoScaleStrategy返回参数结构体
+      class ModifyAutoScaleStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResourcePools请求参数结构体
       class ModifyResourcePoolsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: emr集群id
@@ -4463,6 +4798,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 定时伸缩每月重复任务策略
+      class MonthRepeatStrategy < TencentCloud::Common::AbstractModel
+        # @param ExecuteAtTimeOfDay: 重复任务执行的具体时刻，例如"01:02:00"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteAtTimeOfDay: String
+        # @param DaysOfMonthRange: 每月中的天数时间段描述，长度只能为2，例如[2,10]表示每月2-10号。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DaysOfMonthRange: Array
+
+        attr_accessor :ExecuteAtTimeOfDay, :DaysOfMonthRange
+
+        def initialize(executeattimeofday=nil, daysofmonthrange=nil)
+          @ExecuteAtTimeOfDay = executeattimeofday
+          @DaysOfMonthRange = daysofmonthrange
+        end
+
+        def deserialize(params)
+          @ExecuteAtTimeOfDay = params['ExecuteAtTimeOfDay']
+          @DaysOfMonthRange = params['DaysOfMonthRange']
         end
       end
 
@@ -4995,6 +5352,23 @@ module TencentCloud
               @LocalDataDisk << diskspecinfo_tmp
             end
           end
+        end
+      end
+
+      # 弹性扩缩容执行一次规则上下文
+      class NotRepeatStrategy < TencentCloud::Common::AbstractModel
+        # @param ExecuteAt: 该次任务执行的具体完整时间，格式为"2020-07-13 00:00:00"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteAt: String
+
+        attr_accessor :ExecuteAt
+
+        def initialize(executeat=nil)
+          @ExecuteAt = executeat
+        end
+
+        def deserialize(params)
+          @ExecuteAt = params['ExecuteAt']
         end
       end
 
@@ -5970,6 +6344,59 @@ module TencentCloud
           @ExpireTime = params['ExpireTime']
           @Spec = params['Spec']
           @StorageType = params['StorageType']
+        end
+      end
+
+      # 定时伸缩任务策略
+      class RepeatStrategy < TencentCloud::Common::AbstractModel
+        # @param RepeatType: 取值范围"DAY","DOW","DOM","NONE"，分别表示按天重复、按周重复、按月重复和一次执行。
+        # @type RepeatType: String
+        # @param DayRepeat: 按天重复规则，当RepeatType为"DAY"时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayRepeat: :class:`Tencentcloud::Emr.v20190103.models.DayRepeatStrategy`
+        # @param WeekRepeat: 按周重复规则，当RepeatType为"DOW"时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeekRepeat: :class:`Tencentcloud::Emr.v20190103.models.WeekRepeatStrategy`
+        # @param MonthRepeat: 按月重复规则，当RepeatType为"DOM"时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonthRepeat: :class:`Tencentcloud::Emr.v20190103.models.MonthRepeatStrategy`
+        # @param NotRepeat: 一次执行规则，当RepeatType为"NONE"时有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NotRepeat: :class:`Tencentcloud::Emr.v20190103.models.NotRepeatStrategy`
+        # @param Expire: 规则过期时间，超过该时间后，规则将自动置为暂停状态，形式为"2020-07-23 00:00:00"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Expire: String
+
+        attr_accessor :RepeatType, :DayRepeat, :WeekRepeat, :MonthRepeat, :NotRepeat, :Expire
+
+        def initialize(repeattype=nil, dayrepeat=nil, weekrepeat=nil, monthrepeat=nil, notrepeat=nil, expire=nil)
+          @RepeatType = repeattype
+          @DayRepeat = dayrepeat
+          @WeekRepeat = weekrepeat
+          @MonthRepeat = monthrepeat
+          @NotRepeat = notrepeat
+          @Expire = expire
+        end
+
+        def deserialize(params)
+          @RepeatType = params['RepeatType']
+          unless params['DayRepeat'].nil?
+            @DayRepeat = DayRepeatStrategy.new
+            @DayRepeat.deserialize(params['DayRepeat'])
+          end
+          unless params['WeekRepeat'].nil?
+            @WeekRepeat = WeekRepeatStrategy.new
+            @WeekRepeat.deserialize(params['WeekRepeat'])
+          end
+          unless params['MonthRepeat'].nil?
+            @MonthRepeat = MonthRepeatStrategy.new
+            @MonthRepeat.deserialize(params['MonthRepeat'])
+          end
+          unless params['NotRepeat'].nil?
+            @NotRepeat = NotRepeatStrategy.new
+            @NotRepeat.deserialize(params['NotRepeat'])
+          end
+          @Expire = params['Expire']
         end
       end
 
@@ -7117,6 +7544,132 @@ module TencentCloud
         end
       end
 
+      # 时间扩缩容规则
+      class TimeAutoScaleStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyName: 策略名字，集群内唯一。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param IntervalTime: 策略触发后的冷却时间，该段时间内，将不能触发弹性扩缩容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntervalTime: Integer
+        # @param ScaleAction: 扩缩容动作，1表示扩容，2表示缩容。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleAction: Integer
+        # @param ScaleNum: 扩缩容数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleNum: Integer
+        # @param StrategyStatus: 规则状态，1表示有效，2表示无效，3表示暂停。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyStatus: Integer
+        # @param Priority: 规则优先级，越小越高。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param RetryValidTime: 当多条规则同时触发，其中某些未真正执行时，在该时间范围内，将会重试。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryValidTime: Integer
+        # @param RepeatStrategy: 时间扩缩容重复策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RepeatStrategy: :class:`Tencentcloud::Emr.v20190103.models.RepeatStrategy`
+        # @param StrategyId: 策略唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: Integer
+        # @param GraceDownFlag: 优雅缩容开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GraceDownFlag: Boolean
+        # @param GraceDownTime: 优雅缩容等待时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GraceDownTime: Integer
+        # @param Tags: 绑定标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ConfigGroupAssigned: 预设配置组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigGroupAssigned: String
+        # @param MeasureMethod: 扩容资源计算方法，"DEFAULT","INSTANCE", "CPU", "MEMORYGB"。
+        # "DEFAULT"表示默认方式，与"INSTANCE"意义相同。
+        # "INSTANCE"表示按照节点计算，默认方式。
+        # "CPU"表示按照机器的核数计算。
+        # "MEMORYGB"表示按照机器内存数计算。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MeasureMethod: String
+        # @param TerminatePolicy: 销毁策略, "DEFAULT",默认销毁策略，由缩容规则触发缩容，"TIMING"表示定时销毁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TerminatePolicy: String
+        # @param MaxUse: 最长使用时间， 秒数，最短1小时，最长24小时
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxUse: Integer
+        # @param SoftDeployInfo: 节点部署服务列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftDeployInfo: Array
+        # @param ServiceNodeInfo: 启动进程列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceNodeInfo: Array
+        # @param CompensateFlag: 补偿扩容，0表示不开启，1表示开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompensateFlag: Integer
+        # @param GroupId: 伸缩组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+
+        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId
+
+        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil)
+          @StrategyName = strategyname
+          @IntervalTime = intervaltime
+          @ScaleAction = scaleaction
+          @ScaleNum = scalenum
+          @StrategyStatus = strategystatus
+          @Priority = priority
+          @RetryValidTime = retryvalidtime
+          @RepeatStrategy = repeatstrategy
+          @StrategyId = strategyid
+          @GraceDownFlag = gracedownflag
+          @GraceDownTime = gracedowntime
+          @Tags = tags
+          @ConfigGroupAssigned = configgroupassigned
+          @MeasureMethod = measuremethod
+          @TerminatePolicy = terminatepolicy
+          @MaxUse = maxuse
+          @SoftDeployInfo = softdeployinfo
+          @ServiceNodeInfo = servicenodeinfo
+          @CompensateFlag = compensateflag
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @StrategyName = params['StrategyName']
+          @IntervalTime = params['IntervalTime']
+          @ScaleAction = params['ScaleAction']
+          @ScaleNum = params['ScaleNum']
+          @StrategyStatus = params['StrategyStatus']
+          @Priority = params['Priority']
+          @RetryValidTime = params['RetryValidTime']
+          unless params['RepeatStrategy'].nil?
+            @RepeatStrategy = RepeatStrategy.new
+            @RepeatStrategy.deserialize(params['RepeatStrategy'])
+          end
+          @StrategyId = params['StrategyId']
+          @GraceDownFlag = params['GraceDownFlag']
+          @GraceDownTime = params['GraceDownTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @ConfigGroupAssigned = params['ConfigGroupAssigned']
+          @MeasureMethod = params['MeasureMethod']
+          @TerminatePolicy = params['TerminatePolicy']
+          @MaxUse = params['MaxUse']
+          @SoftDeployInfo = params['SoftDeployInfo']
+          @ServiceNodeInfo = params['ServiceNodeInfo']
+          @CompensateFlag = params['CompensateFlag']
+          @GroupId = params['GroupId']
+        end
+      end
+
       # 集群节点拓扑信息
       class TopologyInfo < TencentCloud::Common::AbstractModel
         # @param ZoneId: 可用区ID
@@ -7333,6 +7886,28 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # 定时扩容每周重复任务策略
+      class WeekRepeatStrategy < TencentCloud::Common::AbstractModel
+        # @param ExecuteAtTimeOfDay: 重复任务执行的具体时刻，例如"01:02:00"
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecuteAtTimeOfDay: String
+        # @param DaysOfWeek: 每周几的数字描述，例如，[1,3,4]表示每周周一、周三、周四。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DaysOfWeek: Array
+
+        attr_accessor :ExecuteAtTimeOfDay, :DaysOfWeek
+
+        def initialize(executeattimeofday=nil, daysofweek=nil)
+          @ExecuteAtTimeOfDay = executeattimeofday
+          @DaysOfWeek = daysofweek
+        end
+
+        def deserialize(params)
+          @ExecuteAtTimeOfDay = params['ExecuteAtTimeOfDay']
+          @DaysOfWeek = params['DaysOfWeek']
         end
       end
 
