@@ -362,6 +362,49 @@ module TencentCloud
         end
       end
 
+      # CheckAccountDelete请求参数结构体
+      class CheckAccountDeleteRequest < TencentCloud::Common::AbstractModel
+        # @param MemberUin: 成员uin。
+        # @type MemberUin: Integer
+
+        attr_accessor :MemberUin
+
+        def initialize(memberuin=nil)
+          @MemberUin = memberuin
+        end
+
+        def deserialize(params)
+          @MemberUin = params['MemberUin']
+        end
+      end
+
+      # CheckAccountDelete返回参数结构体
+      class CheckAccountDeleteResponse < TencentCloud::Common::AbstractModel
+        # @param AllowDelete: 成员是否允许删除。 true-是、false-否
+        # @type AllowDelete: Boolean
+        # @param NotAllowReason: 不允许删除原因。
+        # @type NotAllowReason: :class:`Tencentcloud::Organization.v20210331.models.NotAllowReason`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AllowDelete, :NotAllowReason, :RequestId
+
+        def initialize(allowdelete=nil, notallowreason=nil, requestid=nil)
+          @AllowDelete = allowdelete
+          @NotAllowReason = notallowreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AllowDelete = params['AllowDelete']
+          unless params['NotAllowReason'].nil?
+            @NotAllowReason = NotAllowReason.new
+            @NotAllowReason.deserialize(params['NotAllowReason'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateOrganizationIdentity请求参数结构体
       class CreateOrganizationIdentityRequest < TencentCloud::Common::AbstractModel
         # @param IdentityAliasName: 身份名称
@@ -2239,6 +2282,63 @@ module TencentCloud
         end
       end
 
+      # 不允许删除的原因。
+      class NotAllowReason < TencentCloud::Common::AbstractModel
+        # @param IsCreateMember: 是否创建的成员。true-是、false-否；成员不是创建的成员不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCreateMember: Boolean
+        # @param DeletionPermission: 成员删除许可。true-开启、false-关闭；成员删除许可关闭时不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeletionPermission: Boolean
+        # @param IsAssignManager: 是否可信服务委派管理员。true-是、false-否；成员是可信服务委派管理员不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAssignManager: Boolean
+        # @param IsAuthManager: 是否主体管理员。true-是、false-否；成员是主体管理员不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsAuthManager: Boolean
+        # @param IsShareManager: 是否共享资源管理员。true-是、false-否；成员是共享资源管理员不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsShareManager: Boolean
+        # @param OperateProcess: 成员是否设置了操作审批。true-是、false-否；成员设置了操作审批时不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateProcess: Boolean
+        # @param BillingPermission: 是否允许解除成员财务权限。true-是、false-否；成员不能解除财务权限时不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingPermission: Boolean
+        # @param ExistResources: 存在的资源列表。账号存在资源时不允许删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExistResources: Array
+        # @param DetectFailedResources: 检测失败的资源列表。账号有资源检测失败时不允许删除。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetectFailedResources: Array
+
+        attr_accessor :IsCreateMember, :DeletionPermission, :IsAssignManager, :IsAuthManager, :IsShareManager, :OperateProcess, :BillingPermission, :ExistResources, :DetectFailedResources
+
+        def initialize(iscreatemember=nil, deletionpermission=nil, isassignmanager=nil, isauthmanager=nil, issharemanager=nil, operateprocess=nil, billingpermission=nil, existresources=nil, detectfailedresources=nil)
+          @IsCreateMember = iscreatemember
+          @DeletionPermission = deletionpermission
+          @IsAssignManager = isassignmanager
+          @IsAuthManager = isauthmanager
+          @IsShareManager = issharemanager
+          @OperateProcess = operateprocess
+          @BillingPermission = billingpermission
+          @ExistResources = existresources
+          @DetectFailedResources = detectfailedresources
+        end
+
+        def deserialize(params)
+          @IsCreateMember = params['IsCreateMember']
+          @DeletionPermission = params['DeletionPermission']
+          @IsAssignManager = params['IsAssignManager']
+          @IsAuthManager = params['IsAuthManager']
+          @IsShareManager = params['IsShareManager']
+          @OperateProcess = params['OperateProcess']
+          @BillingPermission = params['BillingPermission']
+          @ExistResources = params['ExistResources']
+          @DetectFailedResources = params['DetectFailedResources']
+        end
+      end
+
       # 按月获取组织财务信息
       class OrgFinancialByMonth < TencentCloud::Common::AbstractModel
         # @param Id: 记录ID。
@@ -2737,8 +2837,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2024, 1
-        deprecate :ResourceGrantLast=, :none, 2024, 1
+        deprecate :ResourceGrantLast, :none, 2024, 2
+        deprecate :ResourceGrantLast=, :none, 2024, 2
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -2833,8 +2933,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2024, 1
-        deprecate :ResourceId=, :none, 2024, 1
+        deprecate :ResourceId, :none, 2024, 2
+        deprecate :ResourceId=, :none, 2024, 2
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

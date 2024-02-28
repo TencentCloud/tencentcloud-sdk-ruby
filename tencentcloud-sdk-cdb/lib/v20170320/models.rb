@@ -9389,19 +9389,19 @@ module TencentCloud
         # @type BackupPeriodSaveCount: Integer
         # @param StartBackupPeriodSaveDate: 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
         # @type StartBackupPeriodSaveDate: String
-        # @param EnableBackupArchive: 是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+        # @param EnableBackupArchive: 是否开启数据备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
         # @type EnableBackupArchive: String
         # @param BackupArchiveDays: 数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
         # @type BackupArchiveDays: Integer
         # @param BinlogArchiveDays: 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
         # @type BinlogArchiveDays: Integer
-        # @param EnableBinlogArchive: 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+        # @param EnableBinlogArchive: 是否开启日志备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
         # @type EnableBinlogArchive: String
-        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
         # @type EnableBackupStandby: String
         # @param BackupStandbyDays: 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
         # @type BackupStandbyDays: Integer
-        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
         # @type EnableBinlogStandby: String
         # @param BinlogStandbyDays: 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
         # @type BinlogStandbyDays: Integer

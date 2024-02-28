@@ -1946,6 +1946,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyDisksBackupQuota)用于调整云硬盘备份点配额。该操作目前仅支持云硬盘类型为数据盘的云硬盘。
+
+        # @param request: Request instance for ModifyDisksBackupQuota.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksBackupQuotaRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyDisksBackupQuotaResponse`
+        def ModifyDisksBackupQuota(request)
+          body = send_request('ModifyDisksBackupQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDisksBackupQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识。
 
         # @param request: Request instance for ModifyDisksRenewFlag.
@@ -2489,6 +2513,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetInstancesPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ResizeDisks)用于扩容云硬盘。该操作目前仅支持云硬盘类型为数据盘的云硬盘。
+
+        # @param request: Request instance for ResizeDisks.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ResizeDisksRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ResizeDisksResponse`
+        def ResizeDisks(request)
+          body = send_request('ResizeDisks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResizeDisksResponse.new
             model.deserialize(response['Response'])
             model
           else

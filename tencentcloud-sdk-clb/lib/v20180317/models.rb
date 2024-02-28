@@ -7597,6 +7597,46 @@ module TencentCloud
         end
       end
 
+      # SetLoadBalancerStartStatus请求参数结构体
+      class SetLoadBalancerStartStatusRequest < TencentCloud::Common::AbstractModel
+        # @param OperationType: 操作类型。Start：启动实例，Stop：停止实例。
+        # @type OperationType: String
+        # @param LoadBalancerId: 负载均衡实例ID。
+        # @type LoadBalancerId: String
+        # @param ListenerIds: 监听器ID。如果该字段为空，则表示操作负载均衡实例，如果不为空，则表示操作监听器。
+        # @type ListenerIds: Array
+
+        attr_accessor :OperationType, :LoadBalancerId, :ListenerIds
+
+        def initialize(operationtype=nil, loadbalancerid=nil, listenerids=nil)
+          @OperationType = operationtype
+          @LoadBalancerId = loadbalancerid
+          @ListenerIds = listenerids
+        end
+
+        def deserialize(params)
+          @OperationType = params['OperationType']
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerIds = params['ListenerIds']
+        end
+      end
+
+      # SetLoadBalancerStartStatus返回参数结构体
+      class SetLoadBalancerStartStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetSecurityGroupForLoadbalancers请求参数结构体
       class SetSecurityGroupForLoadbalancersRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroup: 安全组ID，如 sg-12345678
@@ -7955,8 +7995,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2024, 1
-        deprecate :HealthStatusDetial=, :none, 2024, 1
+        deprecate :HealthStatusDetial, :none, 2024, 2
+        deprecate :HealthStatusDetial=, :none, 2024, 2
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil)
           @IP = ip

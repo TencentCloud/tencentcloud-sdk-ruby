@@ -554,7 +554,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 最大数量
         # @type Limit: Integer
-        # @param SearchWord: 查询关键字
+        # @param SearchWord: 资源ID或者资源名字模糊查询的关键字
         # @type SearchWord: String
         # @param TagFilters: 标签过滤条件
         # @type TagFilters: Array

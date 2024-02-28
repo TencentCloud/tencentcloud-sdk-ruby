@@ -2297,7 +2297,7 @@ module TencentCloud
         # @param SourceType: 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceType: String
-        # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为 ip,net,domain,template,location
+        # @param TargetType: 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为 ip,net,domain,template,location,dnsparse
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
         # @param Uuid: 规则对应的唯一id
@@ -8847,10 +8847,13 @@ module TencentCloud
         # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolType: String
+        # @param IPNum: 模板包含地址数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IPNum: Integer
 
-        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType
+        attr_accessor :Uuid, :Name, :Detail, :IpString, :InsertTime, :UpdateTime, :Type, :RulesNum, :TemplateId, :ProtocolType, :IPNum
 
-        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil, templateid=nil, protocoltype=nil)
+        def initialize(uuid=nil, name=nil, detail=nil, ipstring=nil, inserttime=nil, updatetime=nil, type=nil, rulesnum=nil, templateid=nil, protocoltype=nil, ipnum=nil)
           @Uuid = uuid
           @Name = name
           @Detail = detail
@@ -8861,6 +8864,7 @@ module TencentCloud
           @RulesNum = rulesnum
           @TemplateId = templateid
           @ProtocolType = protocoltype
+          @IPNum = ipnum
         end
 
         def deserialize(params)
@@ -8874,6 +8878,7 @@ module TencentCloud
           @RulesNum = params['RulesNum']
           @TemplateId = params['TemplateId']
           @ProtocolType = params['ProtocolType']
+          @IPNum = params['IPNum']
         end
       end
 
@@ -9371,7 +9376,7 @@ module TencentCloud
         # net：IP/CIDR(192.168.0.2)
         # domain：域名规则，例如*.qq.com
         # @type DestContent: String
-        # @param DestType: 访问目的类型，类型可以为：net，domain
+        # @param DestType: 访问目的类型，类型可以为：net，domain，dnsparse
         # @type DestType: String
         # @param Protocol: 协议，可选的值：
         # TCP

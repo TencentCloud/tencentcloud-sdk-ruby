@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 成员账号删除检查
+
+        # @param request: Request instance for CheckAccountDelete.
+        # @type request: :class:`Tencentcloud::organization::V20210331::CheckAccountDeleteRequest`
+        # @rtype: :class:`Tencentcloud::organization::V20210331::CheckAccountDeleteResponse`
+        def CheckAccountDelete(request)
+          body = send_request('CheckAccountDelete', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckAccountDeleteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建企业组织
 
         # @param request: Request instance for CreateOrganization.

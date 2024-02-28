@@ -72,15 +72,21 @@ module TencentCloud
         # @type IsAuthenticated: String
         # @param Type: 认证类型，个人0，企业1
         # @type Type: String
+        # @param Level: 大客户标识：
+        # 1004、1003、1002、1001
+
+        # 其余为普通的用户
+        # @type Level: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :IsTenPayMasked, :IsAuthenticated, :Type, :RequestId
+        attr_accessor :IsTenPayMasked, :IsAuthenticated, :Type, :Level, :RequestId
 
-        def initialize(istenpaymasked=nil, isauthenticated=nil, type=nil, requestid=nil)
+        def initialize(istenpaymasked=nil, isauthenticated=nil, type=nil, level=nil, requestid=nil)
           @IsTenPayMasked = istenpaymasked
           @IsAuthenticated = isauthenticated
           @Type = type
+          @Level = level
           @RequestId = requestid
         end
 
@@ -88,6 +94,7 @@ module TencentCloud
           @IsTenPayMasked = params['IsTenPayMasked']
           @IsAuthenticated = params['IsAuthenticated']
           @Type = params['Type']
+          @Level = params['Level']
           @RequestId = params['RequestId']
         end
       end

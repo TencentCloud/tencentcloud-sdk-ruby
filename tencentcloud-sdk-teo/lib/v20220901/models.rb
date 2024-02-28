@@ -7603,10 +7603,12 @@ module TencentCloud
         # <li>fail：部署失败/停用失败。</li>
         # 注意：L4ProxyRule 在 CreateL4ProxyRules、ModifyL4ProxyRules 作为入参使用时，该参数请勿填写。
         # @type Status: String
+        # @param BuId: BuID。
+        # @type BuId: String
 
-        attr_accessor :RuleId, :Protocol, :PortRange, :OriginType, :OriginValue, :OriginPortRange, :ClientIPPassThroughMode, :SessionPersist, :SessionPersistTime, :RuleTag, :Status
+        attr_accessor :RuleId, :Protocol, :PortRange, :OriginType, :OriginValue, :OriginPortRange, :ClientIPPassThroughMode, :SessionPersist, :SessionPersistTime, :RuleTag, :Status, :BuId
 
-        def initialize(ruleid=nil, protocol=nil, portrange=nil, origintype=nil, originvalue=nil, originportrange=nil, clientippassthroughmode=nil, sessionpersist=nil, sessionpersisttime=nil, ruletag=nil, status=nil)
+        def initialize(ruleid=nil, protocol=nil, portrange=nil, origintype=nil, originvalue=nil, originportrange=nil, clientippassthroughmode=nil, sessionpersist=nil, sessionpersisttime=nil, ruletag=nil, status=nil, buid=nil)
           @RuleId = ruleid
           @Protocol = protocol
           @PortRange = portrange
@@ -7618,6 +7620,7 @@ module TencentCloud
           @SessionPersistTime = sessionpersisttime
           @RuleTag = ruletag
           @Status = status
+          @BuId = buid
         end
 
         def deserialize(params)
@@ -7632,6 +7635,7 @@ module TencentCloud
           @SessionPersistTime = params['SessionPersistTime']
           @RuleTag = params['RuleTag']
           @Status = params['Status']
+          @BuId = params['BuId']
         end
       end
 

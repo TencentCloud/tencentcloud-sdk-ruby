@@ -1221,17 +1221,21 @@ module TencentCloud
         # @type Page: Integer
         # @param Size: 条数
         # @type Size: Integer
+        # @param EndTime: 用于结束时间筛选
+        # @type EndTime: String
 
-        attr_accessor :Page, :Size
+        attr_accessor :Page, :Size, :EndTime
 
-        def initialize(page=nil, size=nil)
+        def initialize(page=nil, size=nil, endtime=nil)
           @Page = page
           @Size = size
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @Page = params['Page']
           @Size = params['Size']
+          @EndTime = params['EndTime']
         end
       end
 

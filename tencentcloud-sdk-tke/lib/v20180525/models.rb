@@ -2642,9 +2642,9 @@ module TencentCloud
 
       # CreateECMInstances请求参数结构体
       class CreateECMInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群id
+        # @param ClusterID: 集群id，边缘集群需要先开启公网访问才能添加ecm节点
         # @type ClusterID: String
-        # @param ModuleId: 模块id
+        # @param ModuleId: 边缘模块id
         # @type ModuleId: String
         # @param ZoneInstanceCountISPSet: 需要创建实例的可用区及创建数目及运营商的列表
         # @type ZoneInstanceCountISPSet: Array
@@ -2982,7 +2982,7 @@ module TencentCloud
 
       # CreateEdgeCVMInstances请求参数结构体
       class CreateEdgeCVMInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群id
+        # @param ClusterID: 集群id，边缘集群需要先开启公网访问才能添加cvm节点
         # @type ClusterID: String
         # @param RunInstancePara: CVM创建透传参数，json化字符串格式，如需要保证扩展集群节点请求幂等性需要在此参数添加ClientToken字段，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。
         # @type RunInstancePara: String
@@ -7391,7 +7391,7 @@ module TencentCloud
 
       # DescribeEdgeClusterUpgradeInfo返回参数结构体
       class DescribeEdgeClusterUpgradeInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ComponentVersion: 可升级的集群组件和
+        # @param ComponentVersion: 可升级的集群组件及其版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComponentVersion: String
         # @param EdgeVersionCurrent: 边缘集群当前版本
@@ -10027,7 +10027,7 @@ module TencentCloud
       class DescribeTKEEdgeScriptRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param Interface: 网卡名
+        # @param Interface: 网卡名,指定边缘节点上kubelet向apiserver注册使用的网卡
         # @type Interface: String
         # @param NodeName: 节点名字
         # @type NodeName: String

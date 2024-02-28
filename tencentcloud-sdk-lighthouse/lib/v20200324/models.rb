@@ -5807,6 +5807,42 @@ module TencentCloud
         end
       end
 
+      # ModifyDisksBackupQuota请求参数结构体
+      class ModifyDisksBackupQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 云硬盘ID列表，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。列表最大长度为15。
+        # @type DiskIds: Array
+        # @param DiskBackupQuota: 云硬盘备份点配额。取值范围: [0, 500]。调整后的配额必须不小于已存在的备份点数量。
+        # @type DiskBackupQuota: Integer
+
+        attr_accessor :DiskIds, :DiskBackupQuota
+
+        def initialize(diskids=nil, diskbackupquota=nil)
+          @DiskIds = diskids
+          @DiskBackupQuota = diskbackupquota
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @DiskBackupQuota = params['DiskBackupQuota']
+        end
+      end
+
+      # ModifyDisksBackupQuota返回参数结构体
+      class ModifyDisksBackupQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDisksRenewFlag请求参数结构体
       class ModifyDisksRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 云硬盘ID列表。
@@ -6843,6 +6879,42 @@ module TencentCloud
 
       # ResetInstancesPassword返回参数结构体
       class ResetInstancesPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResizeDisks请求参数结构体
+      class ResizeDisksRequest < TencentCloud::Common::AbstractModel
+        # @param DiskIds: 云硬盘ID列表，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。列表最大长度为15。
+        # @type DiskIds: Array
+        # @param DiskSize: 扩容后的云硬盘大小。单位: GB。高性能云硬盘大小取值范围：[10, 4000] ,SSD云硬盘大小取值范围：[20, 4000]。扩容后的云硬盘大小必须大于当前云硬盘大小。
+        # @type DiskSize: Integer
+
+        attr_accessor :DiskIds, :DiskSize
+
+        def initialize(diskids=nil, disksize=nil)
+          @DiskIds = diskids
+          @DiskSize = disksize
+        end
+
+        def deserialize(params)
+          @DiskIds = params['DiskIds']
+          @DiskSize = params['DiskSize']
+        end
+      end
+
+      # ResizeDisks返回参数结构体
+      class ResizeDisksResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

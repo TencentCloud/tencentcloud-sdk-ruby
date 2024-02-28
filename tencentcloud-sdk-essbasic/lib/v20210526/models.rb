@@ -4622,8 +4622,8 @@ module TencentCloud
         # <li> <b>SELECTOR</b> : 选项值</li>
         # <li> <b>DYNAMIC_TABLE</b>  - 传入json格式的表格内容，详见说明：[数据表格](https://qian.tencent.com/developers/company/dynamic_table)</li>
         # <li> <b>DATE</b> : 默认是格式化为xxxx年xx月xx日</li>
-        # <li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取</li>
-        # <li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取</li></ul>
+        # <li> <b>SIGN_SEAL</b> : 印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li>
+        # <li> <b>SIGN_PAGING_SEAL</b> : 可以指定印章ID，于控制台查询获取，[点击查看在控制上的位置](https://qcloudimg.tencent-cloud.cn/raw/cd403a5b949fce197fd9e88bb6db1517.png)</li></ul>
 
 
         # <b>控件值约束说明</b>：
@@ -5077,8 +5077,8 @@ module TencentCloud
         # @param ProxyOperatorIdCardNumber: 子客经办人身份证
         # 注意：`如果已同步，这里非空会更新同步的经办人身份证号，暂时只支持居民身份证类型`。
         # @type ProxyOperatorIdCardNumber: String
-        # @param AutoJumpUrl: 认证完成跳转链接
-        # 注意：`只在H5生效，域名需要联系我们开白`。
+        # @param AutoJumpUrl: 认证完成跳转链接。
+        # 注意：`目前仅支持 H5 和 PC， 如果使用的是 H5，域名需要联系我们开白`。
         # @type AutoJumpUrl: String
 
         attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :Operator, :ProxyOperatorIdCardNumber, :AutoJumpUrl
@@ -7104,13 +7104,26 @@ module TencentCloud
         # 注：
         # `不指定该值时，默认为签署方自行选择。`
         # @type SignTypeSelector: Integer
+        # @param Components: 签署人在合同中的填写控件列表，列表中可支持下列多种填写控件，控件的详细定义参考开发者中心的Component结构体
+        # <ul><li>单行文本控件</li>
+        # <li>多行文本控件</li>
+        # <li>勾选框控件</li>
+        # <li>数字控件</li>
+        # <li>图片控件</li>
+        # <li>数据表格等填写控件</li></ul>
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName, :SignTypeSelector
+        # 具体使用说明可参考[为签署方指定填写控件](https%3A%2F%2Fqian.tencent.cn%2Fdevelopers%2Fpartner%2FcreateFlowByFiles%23%E4%B8%BA%E7%AD%BE%E7%BD%B2%E6%96%B9%E6%8C%87%E5%AE%9A%E5%A1%AB%E5%86%99%E6%8E%A7%E4%BB%B6)
+
+
+        # 注：`此参数仅在通过文件发起合同或者合同组时生效`
+        # @type Components: Array
+
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName, :SignTypeSelector, :Components
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 2
         deprecate :CallbackUrl=, :none, 2024, 2
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil, signtypeselector=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil, signtypeselector=nil, components=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -7136,6 +7149,7 @@ module TencentCloud
           @AddSignComponentsLimits = addsigncomponentslimits
           @ApproverRoleName = approverrolename
           @SignTypeSelector = signtypeselector
+          @Components = components
         end
 
         def deserialize(params)
@@ -7181,6 +7195,14 @@ module TencentCloud
           end
           @ApproverRoleName = params['ApproverRoleName']
           @SignTypeSelector = params['SignTypeSelector']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
         end
       end
 

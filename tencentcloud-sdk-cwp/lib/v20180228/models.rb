@@ -17075,7 +17075,7 @@ module TencentCloud
 
       # DescribeLicenseList请求参数结构体
       class DescribeLicenseListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
+        # @param Filters: 多个条件筛选时取交集
         # <li> LicenseStatus 授权状态信息,0 未使用,1 部分使用, 2 已用完, 3 不可用  4 可使用</li>
         # <li> BuyTime 购买时间</li>
         # <li> LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月</li>
@@ -17084,6 +17084,7 @@ module TencentCloud
         # <li>Keywords IP筛选</li>
         # <li>PayMode 付费模式 0 按量计费 , 1 包年包月</li>
         # <li>OrderStatus 订单状态 1 正常 2 隔离 3 销毁</li>
+        # <li>DealNames 子订单号,最大长度10个,超出会失败</li>
         # @type Filters: Array
         # @param Limit: 限制条数,默认10.
         # @type Limit: Integer

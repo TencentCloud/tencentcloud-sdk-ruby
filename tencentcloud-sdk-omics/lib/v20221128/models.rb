@@ -128,16 +128,19 @@ module TencentCloud
         # @param Type: 计算集群类型，取值范围：
         # - KUBERNETES
         # @type Type: String
+        # @param ServiceCidr: 计算集群Service CIDR，不能与VPC网段重合。
+        # @type ServiceCidr: String
         # @param ResourceQuota: 资源配额。
         # @type ResourceQuota: :class:`Tencentcloud::Omics.v20221128.models.ResourceQuota`
         # @param LimitRange: 限制范围。
         # @type LimitRange: :class:`Tencentcloud::Omics.v20221128.models.LimitRange`
 
-        attr_accessor :Zone, :Type, :ResourceQuota, :LimitRange
+        attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange
 
-        def initialize(zone=nil, type=nil, resourcequota=nil, limitrange=nil)
+        def initialize(zone=nil, type=nil, servicecidr=nil, resourcequota=nil, limitrange=nil)
           @Zone = zone
           @Type = type
+          @ServiceCidr = servicecidr
           @ResourceQuota = resourcequota
           @LimitRange = limitrange
         end
@@ -145,6 +148,7 @@ module TencentCloud
         def deserialize(params)
           @Zone = params['Zone']
           @Type = params['Type']
+          @ServiceCidr = params['ServiceCidr']
           unless params['ResourceQuota'].nil?
             @ResourceQuota = ResourceQuota.new
             @ResourceQuota.deserialize(params['ResourceQuota'])
@@ -633,6 +637,10 @@ module TencentCloud
         # @type Status: String
         # @param Available: 环境是否可用。环境需要可用才能投递计算任务。
         # @type Available: Boolean
+        # @param IsDefault: 环境是否为默认环境。
+        # @type IsDefault: Boolean
+        # @param IsManaged: 环境是否为托管环境。
+        # @type IsManaged: Boolean
         # @param Message: 环境信息。
         # @type Message: String
         # @param ResourceIds: 云资源ID。
@@ -644,9 +652,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreationTime: String
 
-        attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime
+        attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :IsDefault, :IsManaged, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime
 
-        def initialize(environmentid=nil, name=nil, description=nil, region=nil, type=nil, status=nil, available=nil, message=nil, resourceids=nil, lastworkflowuuid=nil, creationtime=nil)
+        def initialize(environmentid=nil, name=nil, description=nil, region=nil, type=nil, status=nil, available=nil, isdefault=nil, ismanaged=nil, message=nil, resourceids=nil, lastworkflowuuid=nil, creationtime=nil)
           @EnvironmentId = environmentid
           @Name = name
           @Description = description
@@ -654,6 +662,8 @@ module TencentCloud
           @Type = type
           @Status = status
           @Available = available
+          @IsDefault = isdefault
+          @IsManaged = ismanaged
           @Message = message
           @ResourceIds = resourceids
           @LastWorkflowUuid = lastworkflowuuid
@@ -668,6 +678,8 @@ module TencentCloud
           @Type = params['Type']
           @Status = params['Status']
           @Available = params['Available']
+          @IsDefault = params['IsDefault']
+          @IsManaged = params['IsManaged']
           @Message = params['Message']
           unless params['ResourceIds'].nil?
             @ResourceIds = ResourceIds.new
@@ -1071,14 +1083,21 @@ module TencentCloud
         # @param Resume: Resume。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resume: Boolean
+        # @param NFVersion: Nextflow引擎版本，取值范围：
+        # - 22.10.4
+        # - 22.10.8
+        # - 23.10.1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NFVersion: String
 
-        attr_accessor :Config, :Profile, :Report, :Resume
+        attr_accessor :Config, :Profile, :Report, :Resume, :NFVersion
 
-        def initialize(config=nil, profile=nil, report=nil, resume=nil)
+        def initialize(config=nil, profile=nil, report=nil, resume=nil, nfversion=nil)
           @Config = config
           @Profile = profile
           @Report = report
           @Resume = resume
+          @NFVersion = nfversion
         end
 
         def deserialize(params)
@@ -1086,6 +1105,7 @@ module TencentCloud
           @Profile = params['Profile']
           @Report = params['Report']
           @Resume = params['Resume']
+          @NFVersion = params['NFVersion']
         end
       end
 
@@ -1272,8 +1292,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 1
-        deprecate :Option=, :none, 2024, 1
+        deprecate :Option, :none, 2024, 2
+        deprecate :Option=, :none, 2024, 2
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -1333,8 +1353,6 @@ module TencentCloud
         # @type EnvironmentId: String
         # @param InputBase64: 任务输入JSON。需要进行base64编码。
         # @type InputBase64: String
-        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填表示不清理。
-        # @type CacheClearDelay: Integer
         # @param ProjectId: 项目ID。（不填使用指定地域下的默认项目）
         # @type ProjectId: String
         # @param Description: 任务批次描述。
@@ -1343,28 +1361,33 @@ module TencentCloud
         # @type TableId: String
         # @param TableRowUuids: 批量投递表格行UUID。不填表示表格全部行。
         # @type TableRowUuids: Array
+        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填或0表示不清理。
+        # @type CacheClearDelay: Integer
         # @param ApplicationVersionId: 应用版本ID。不填表示使用当前最新版本。
         # @type ApplicationVersionId: String
         # @param Option: WDL运行选项。
         # @type Option: :class:`Tencentcloud::Omics.v20221128.models.RunOption`
         # @param NFOption: Nextflow运行选项。
         # @type NFOption: :class:`Tencentcloud::Omics.v20221128.models.NFOption`
+        # @param WorkDir: 工作目录，使用缓存卷内的相对路径 (暂时仅支持Nextflow)
+        # @type WorkDir: String
 
-        attr_accessor :ApplicationId, :Name, :EnvironmentId, :InputBase64, :CacheClearDelay, :ProjectId, :Description, :TableId, :TableRowUuids, :ApplicationVersionId, :Option, :NFOption
+        attr_accessor :ApplicationId, :Name, :EnvironmentId, :InputBase64, :ProjectId, :Description, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir
 
-        def initialize(applicationid=nil, name=nil, environmentid=nil, inputbase64=nil, cachecleardelay=nil, projectid=nil, description=nil, tableid=nil, tablerowuuids=nil, applicationversionid=nil, option=nil, nfoption=nil)
+        def initialize(applicationid=nil, name=nil, environmentid=nil, inputbase64=nil, projectid=nil, description=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil)
           @ApplicationId = applicationid
           @Name = name
           @EnvironmentId = environmentid
           @InputBase64 = inputbase64
-          @CacheClearDelay = cachecleardelay
           @ProjectId = projectid
           @Description = description
           @TableId = tableid
           @TableRowUuids = tablerowuuids
+          @CacheClearDelay = cachecleardelay
           @ApplicationVersionId = applicationversionid
           @Option = option
           @NFOption = nfoption
+          @WorkDir = workdir
         end
 
         def deserialize(params)
@@ -1372,11 +1395,11 @@ module TencentCloud
           @Name = params['Name']
           @EnvironmentId = params['EnvironmentId']
           @InputBase64 = params['InputBase64']
-          @CacheClearDelay = params['CacheClearDelay']
           @ProjectId = params['ProjectId']
           @Description = params['Description']
           @TableId = params['TableId']
           @TableRowUuids = params['TableRowUuids']
+          @CacheClearDelay = params['CacheClearDelay']
           @ApplicationVersionId = params['ApplicationVersionId']
           unless params['Option'].nil?
             @Option = RunOption.new
@@ -1386,6 +1409,7 @@ module TencentCloud
             @NFOption = NFOption.new
             @NFOption.deserialize(params['NFOption'])
           end
+          @WorkDir = params['WorkDir']
         end
       end
 
@@ -1745,12 +1769,14 @@ module TencentCloud
         # @param InputCosUri: 任务输入COS地址。
         # （InputBase64和InputCosUri必选其一）
         # @type InputCosUri: String
-        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填表示不清理。
+        # @param CacheClearDelay: 任务缓存清理时间（小时）。不填或0表示不清理。
         # @type CacheClearDelay: Integer
+        # @param WorkDir: 工作目录，使用缓存卷内的相对路径 (暂时仅支持Nextflow)
+        # @type WorkDir: String
 
-        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay
+        attr_accessor :Name, :EnvironmentId, :GitSource, :Type, :NFOption, :ProjectId, :Description, :InputBase64, :InputCosUri, :CacheClearDelay, :WorkDir
 
-        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil)
+        def initialize(name=nil, environmentid=nil, gitsource=nil, type=nil, nfoption=nil, projectid=nil, description=nil, inputbase64=nil, inputcosuri=nil, cachecleardelay=nil, workdir=nil)
           @Name = name
           @EnvironmentId = environmentid
           @GitSource = gitsource
@@ -1761,6 +1787,7 @@ module TencentCloud
           @InputBase64 = inputbase64
           @InputCosUri = inputcosuri
           @CacheClearDelay = cachecleardelay
+          @WorkDir = workdir
         end
 
         def deserialize(params)
@@ -1780,6 +1807,7 @@ module TencentCloud
           @InputBase64 = params['InputBase64']
           @InputCosUri = params['InputCosUri']
           @CacheClearDelay = params['CacheClearDelay']
+          @WorkDir = params['WorkDir']
         end
       end
 
