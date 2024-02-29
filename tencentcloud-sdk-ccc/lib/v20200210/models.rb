@@ -17,6 +17,42 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # AbortPredictiveDialingCampaign请求参数结构体
+      class AbortPredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # AbortPredictiveDialingCampaign返回参数结构体
+      class AbortPredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 生效运营商白名单号码
       class ActiveCarrierPrivilegeNumber < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 实例Id
@@ -167,8 +203,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2024, 1
-        deprecate :SkillGroupList=, :none, 2024, 1
+        deprecate :SkillGroupList, :none, 2024, 3
+        deprecate :SkillGroupList=, :none, 2024, 3
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -605,8 +641,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 1
-        deprecate :Uui=, :none, 2024, 1
+        deprecate :Uui, :none, 2024, 3
+        deprecate :Uui=, :none, 2024, 3
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -741,6 +777,90 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePredictiveDialingCampaign请求参数结构体
+      class CreatePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Callees: 被叫列表，支持 E.164 或不带国家码形式的号码
+        # @type Callees: Array
+        # @param Callers: 主叫列表，使用管理端展示的号码格式
+        # @type Callers: Array
+        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @type CallOrder: Integer
+        # @param SkillGroupId: 使用的座席技能组 ID
+        # @type SkillGroupId: Integer
+        # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
+        # @type Priority: Integer
+        # @param ExpectedAbandonRate: 预期呼损率，百分比，5 - 50
+        # @type ExpectedAbandonRate: Integer
+        # @param RetryInterval: 呼叫重试间隔时间，单位秒，60 - 86400
+        # @type RetryInterval: Integer
+        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @type EndTime: Integer
+        # @param IVRId: 指定的 IVR Id
+        # @type IVRId: Integer
+        # @param RetryTimes: 呼叫重试次数，0 - 2
+        # @type RetryTimes: Integer
+
+        attr_accessor :SdkAppId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes
+
+        def initialize(sdkappid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil)
+          @SdkAppId = sdkappid
+          @Name = name
+          @Callees = callees
+          @Callers = callers
+          @CallOrder = callorder
+          @SkillGroupId = skillgroupid
+          @Priority = priority
+          @ExpectedAbandonRate = expectedabandonrate
+          @RetryInterval = retryinterval
+          @StartTime = starttime
+          @EndTime = endtime
+          @IVRId = ivrid
+          @RetryTimes = retrytimes
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Name = params['Name']
+          @Callees = params['Callees']
+          @Callers = params['Callers']
+          @CallOrder = params['CallOrder']
+          @SkillGroupId = params['SkillGroupId']
+          @Priority = params['Priority']
+          @ExpectedAbandonRate = params['ExpectedAbandonRate']
+          @RetryInterval = params['RetryInterval']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IVRId = params['IVRId']
+          @RetryTimes = params['RetryTimes']
+        end
+      end
+
+      # CreatePredictiveDialingCampaign返回参数结构体
+      class CreatePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param CampaignId: 生成的任务 ID
+        # @type CampaignId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CampaignId, :RequestId
+
+        def initialize(campaignid=nil, requestid=nil)
+          @CampaignId = campaignid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CampaignId = params['CampaignId']
           @RequestId = params['RequestId']
         end
       end
@@ -926,6 +1046,42 @@ module TencentCloud
 
       # DeleteExtension返回参数结构体
       class DeleteExtensionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePredictiveDialingCampaign请求参数结构体
+      class DeletePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # DeletePredictiveDialingCampaign返回参数结构体
+      class DeletePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1404,8 +1560,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SdkAppId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 1
-        deprecate :InstanceId=, :none, 2024, 1
+        deprecate :InstanceId, :none, 2024, 3
+        deprecate :InstanceId=, :none, 2024, 3
 
         def initialize(instanceid=nil, sdkappid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @InstanceId = instanceid
@@ -1670,8 +1826,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 1
-        deprecate :InstanceId=, :none, 2024, 1
+        deprecate :InstanceId, :none, 2024, 3
+        deprecate :InstanceId=, :none, 2024, 3
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -1708,8 +1864,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2024, 1
-        deprecate :IMCdrs=, :none, 2024, 1
+        deprecate :IMCdrs, :none, 2024, 3
+        deprecate :IMCdrs=, :none, 2024, 3
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -1850,6 +2006,255 @@ module TencentCloud
         end
       end
 
+      # DescribePredictiveDialingCampaign请求参数结构体
+      class DescribePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # DescribePredictiveDialingCampaign返回参数结构体
+      class DescribePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @type CallOrder: Integer
+        # @param SkillGroupId: 使用的座席技能组 ID
+        # @type SkillGroupId: Integer
+        # @param IVRId: 指定的 IVR ID
+        # @type IVRId: Integer
+        # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
+        # @type Priority: Integer
+        # @param ExpectedAbandonRate: 预期呼损率，百分比，5 - 50
+        # @type ExpectedAbandonRate: Integer
+        # @param RetryTimes: 呼叫重试次数，0 - 2
+        # @type RetryTimes: Integer
+        # @param RetryInterval: 呼叫重试间隔时间，单位秒，60 - 86400
+        # @type RetryInterval: Integer
+        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @type EndTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CampaignId, :Name, :CallOrder, :SkillGroupId, :IVRId, :Priority, :ExpectedAbandonRate, :RetryTimes, :RetryInterval, :StartTime, :EndTime, :RequestId
+
+        def initialize(campaignid=nil, name=nil, callorder=nil, skillgroupid=nil, ivrid=nil, priority=nil, expectedabandonrate=nil, retrytimes=nil, retryinterval=nil, starttime=nil, endtime=nil, requestid=nil)
+          @CampaignId = campaignid
+          @Name = name
+          @CallOrder = callorder
+          @SkillGroupId = skillgroupid
+          @IVRId = ivrid
+          @Priority = priority
+          @ExpectedAbandonRate = expectedabandonrate
+          @RetryTimes = retrytimes
+          @RetryInterval = retryinterval
+          @StartTime = starttime
+          @EndTime = endtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CampaignId = params['CampaignId']
+          @Name = params['Name']
+          @CallOrder = params['CallOrder']
+          @SkillGroupId = params['SkillGroupId']
+          @IVRId = params['IVRId']
+          @Priority = params['Priority']
+          @ExpectedAbandonRate = params['ExpectedAbandonRate']
+          @RetryTimes = params['RetryTimes']
+          @RetryInterval = params['RetryInterval']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询预测式外呼任务列表元素
+      class DescribePredictiveDialingCampaignsElement < TencentCloud::Common::AbstractModel
+        # @param CampaignId: 任务 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CampaignId: Integer
+        # @param Name: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Status: 任务状态 0 待开始 1 进行中 2 已暂停 3 已终止 4 已完成
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param StatusReason: 任务状态原因 0 正常 1 手动结束 2 超时结束
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusReason: Integer
+        # @param CalleeCount: 被叫号码个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CalleeCount: Integer
+        # @param FinishedCalleeCount: 已完成的被叫个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishedCalleeCount: Integer
+        # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param SkillGroupId: 使用的座席技能组 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkillGroupId: Integer
+
+        attr_accessor :CampaignId, :Name, :Status, :StatusReason, :CalleeCount, :FinishedCalleeCount, :Priority, :SkillGroupId
+
+        def initialize(campaignid=nil, name=nil, status=nil, statusreason=nil, calleecount=nil, finishedcalleecount=nil, priority=nil, skillgroupid=nil)
+          @CampaignId = campaignid
+          @Name = name
+          @Status = status
+          @StatusReason = statusreason
+          @CalleeCount = calleecount
+          @FinishedCalleeCount = finishedcalleecount
+          @Priority = priority
+          @SkillGroupId = skillgroupid
+        end
+
+        def deserialize(params)
+          @CampaignId = params['CampaignId']
+          @Name = params['Name']
+          @Status = params['Status']
+          @StatusReason = params['StatusReason']
+          @CalleeCount = params['CalleeCount']
+          @FinishedCalleeCount = params['FinishedCalleeCount']
+          @Priority = params['Priority']
+          @SkillGroupId = params['SkillGroupId']
+        end
+      end
+
+      # DescribePredictiveDialingCampaigns请求参数结构体
+      class DescribePredictiveDialingCampaignsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param PageSize: 分页尺寸，最大为 100
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+        # @param Name: 查询任务列表名称关键字
+        # @type Name: String
+        # @param SkillGroupId: 查询任务列表技能组 ID
+        # @type SkillGroupId: Integer
+
+        attr_accessor :SdkAppId, :PageSize, :PageNumber, :Name, :SkillGroupId
+
+        def initialize(sdkappid=nil, pagesize=nil, pagenumber=nil, name=nil, skillgroupid=nil)
+          @SdkAppId = sdkappid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @Name = name
+          @SkillGroupId = skillgroupid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @Name = params['Name']
+          @SkillGroupId = params['SkillGroupId']
+        end
+      end
+
+      # DescribePredictiveDialingCampaigns返回参数结构体
+      class DescribePredictiveDialingCampaignsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param CampaignList: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CampaignList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :CampaignList, :RequestId
+
+        def initialize(totalcount=nil, campaignlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @CampaignList = campaignlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['CampaignList'].nil?
+            @CampaignList = []
+            params['CampaignList'].each do |i|
+              describepredictivedialingcampaignselement_tmp = DescribePredictiveDialingCampaignsElement.new
+              describepredictivedialingcampaignselement_tmp.deserialize(i)
+              @CampaignList << describepredictivedialingcampaignselement_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePredictiveDialingSessions请求参数结构体
+      class DescribePredictiveDialingSessionsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 生成的任务 ID
+        # @type CampaignId: Integer
+        # @param PageSize: 分页尺寸，最大为 1000
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码，从 0 开始
+        # @type PageNumber: Integer
+
+        attr_accessor :SdkAppId, :CampaignId, :PageSize, :PageNumber
+
+        def initialize(sdkappid=nil, campaignid=nil, pagesize=nil, pagenumber=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # DescribePredictiveDialingSessions返回参数结构体
+      class DescribePredictiveDialingSessionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据总量
+        # @type TotalCount: Integer
+        # @param SessionList: 呼叫的 session id 列表，通过 https://cloud.tencent.com/document/product/679/47714 可以批量获取呼叫详细话单
+        # @type SessionList: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SessionList, :RequestId
+
+        def initialize(totalcount=nil, sessionlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SessionList = sessionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SessionList = params['SessionList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProtectedTelCdr请求参数结构体
       class DescribeProtectedTelCdrRequest < TencentCloud::Common::AbstractModel
         # @param StartTimeStamp: 起始时间戳，Unix 秒级时间戳
@@ -1895,8 +2300,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 1
-        deprecate :TelCdrs=, :none, 2024, 1
+        deprecate :TelCdrs, :none, 2024, 3
+        deprecate :TelCdrs=, :none, 2024, 3
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2161,8 +2566,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2024, 1
-        deprecate :VoipCallInCount=, :none, 2024, 1
+        deprecate :VoipCallInCount, :none, 2024, 3
+        deprecate :VoipCallInCount=, :none, 2024, 3
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -2210,8 +2615,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2024, 1
-        deprecate :InstanceId=, :none, 2024, 1
+        deprecate :InstanceId, :none, 2024, 3
+        deprecate :InstanceId=, :none, 2024, 3
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -2253,8 +2658,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2024, 1
-        deprecate :TelCdrs=, :none, 2024, 1
+        deprecate :TelCdrs, :none, 2024, 3
+        deprecate :TelCdrs=, :none, 2024, 3
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -2978,6 +3383,42 @@ module TencentCloud
         end
       end
 
+      # PausePredictiveDialingCampaign请求参数结构体
+      class PausePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # PausePredictiveDialingCampaign返回参数结构体
+      class PausePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 号码购买信息
       class PhoneNumBuyInfo < TencentCloud::Common::AbstractModel
         # @param PhoneNum: 电话号码
@@ -3050,6 +3491,42 @@ module TencentCloud
 
         def deserialize(params)
           @Password = params['Password']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumePredictiveDialingCampaign请求参数结构体
+      class ResumePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 任务 ID
+        # @type CampaignId: Integer
+
+        attr_accessor :SdkAppId, :CampaignId
+
+        def initialize(sdkappid=nil, campaignid=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+        end
+      end
+
+      # ResumePredictiveDialingCampaign返回参数结构体
+      class ResumePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3765,8 +4242,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2024, 1
-        deprecate :Uui=, :none, 2024, 1
+        deprecate :Uui, :none, 2024, 3
+        deprecate :Uui=, :none, 2024, 3
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller
@@ -3935,6 +4412,90 @@ module TencentCloud
 
       # UnbindStaffSkillGroupList返回参数结构体
       class UnbindStaffSkillGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdatePredictiveDialingCampaign请求参数结构体
+      class UpdatePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param CampaignId: 生成的任务 ID
+        # @type CampaignId: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Callees: 被叫列表，支持 E.164 或不带国家码形式的号码
+        # @type Callees: Array
+        # @param Callers: 主叫列表，使用管理端展示的号码格式
+        # @type Callers: Array
+        # @param CallOrder: 被叫呼叫顺序 0 随机 1 顺序
+        # @type CallOrder: Integer
+        # @param SkillGroupId: 使用的座席技能组 ID
+        # @type SkillGroupId: Integer
+        # @param Priority: 相同应用内多个任务运行优先级，从高到底 1 - 5
+        # @type Priority: Integer
+        # @param ExpectedAbandonRate: 预期呼损率，百分比，5 - 50
+        # @type ExpectedAbandonRate: Integer
+        # @param RetryInterval: 呼叫重试间隔时间，单位秒，60 - 86400
+        # @type RetryInterval: Integer
+        # @param StartTime: 任务启动时间，Unix 时间戳，到此时间后会自动启动任务
+        # @type StartTime: Integer
+        # @param EndTime: 任务结束时间，Unix 时间戳，到此时间后会自动终止任务
+        # @type EndTime: Integer
+        # @param IVRId: 指定的 IVR ID
+        # @type IVRId: Integer
+        # @param RetryTimes: 呼叫重试次数，0 - 2
+        # @type RetryTimes: Integer
+
+        attr_accessor :SdkAppId, :CampaignId, :Name, :Callees, :Callers, :CallOrder, :SkillGroupId, :Priority, :ExpectedAbandonRate, :RetryInterval, :StartTime, :EndTime, :IVRId, :RetryTimes
+
+        def initialize(sdkappid=nil, campaignid=nil, name=nil, callees=nil, callers=nil, callorder=nil, skillgroupid=nil, priority=nil, expectedabandonrate=nil, retryinterval=nil, starttime=nil, endtime=nil, ivrid=nil, retrytimes=nil)
+          @SdkAppId = sdkappid
+          @CampaignId = campaignid
+          @Name = name
+          @Callees = callees
+          @Callers = callers
+          @CallOrder = callorder
+          @SkillGroupId = skillgroupid
+          @Priority = priority
+          @ExpectedAbandonRate = expectedabandonrate
+          @RetryInterval = retryinterval
+          @StartTime = starttime
+          @EndTime = endtime
+          @IVRId = ivrid
+          @RetryTimes = retrytimes
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @CampaignId = params['CampaignId']
+          @Name = params['Name']
+          @Callees = params['Callees']
+          @Callers = params['Callers']
+          @CallOrder = params['CallOrder']
+          @SkillGroupId = params['SkillGroupId']
+          @Priority = params['Priority']
+          @ExpectedAbandonRate = params['ExpectedAbandonRate']
+          @RetryInterval = params['RetryInterval']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @IVRId = params['IVRId']
+          @RetryTimes = params['RetryTimes']
+        end
+      end
+
+      # UpdatePredictiveDialingCampaign返回参数结构体
+      class UpdatePredictiveDialingCampaignResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 停止预测式外呼任务
+
+        # @param request: Request instance for AbortPredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::AbortPredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::AbortPredictiveDialingCampaignResponse`
+        def AbortPredictiveDialingCampaign(request)
+          body = send_request('AbortPredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AbortPredictiveDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定号码外呼技能组
 
         # @param request: Request instance for BindNumberCallOutSkillGroup.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建预测式外呼任务
+
+        # @param request: Request instance for CreatePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::CreatePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::CreatePredictiveDialingCampaignResponse`
+        def CreatePredictiveDialingCampaign(request)
+          body = send_request('CreatePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePredictiveDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 SDK 登录 Token。
 
         # @param request: Request instance for CreateSDKLoginToken.
@@ -303,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteExtensionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除预测式外呼任务
+
+        # @param request: Request instance for DeletePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DeletePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DeletePredictiveDialingCampaignResponse`
+        def DeletePredictiveDialingCampaign(request)
+          body = send_request('DeletePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePredictiveDialingCampaignResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -655,6 +727,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询预测式外呼任务
+
+        # @param request: Request instance for DescribePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingCampaignResponse`
+        def DescribePredictiveDialingCampaign(request)
+          body = send_request('DescribePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePredictiveDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预测式外呼任务列表
+
+        # @param request: Request instance for DescribePredictiveDialingCampaigns.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingCampaignsRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingCampaignsResponse`
+        def DescribePredictiveDialingCampaigns(request)
+          body = send_request('DescribePredictiveDialingCampaigns', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePredictiveDialingCampaignsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预测式外呼呼叫列表
+
+        # @param request: Request instance for DescribePredictiveDialingSessions.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingSessionsRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribePredictiveDialingSessionsResponse`
+        def DescribePredictiveDialingSessions(request)
+          body = send_request('DescribePredictiveDialingSessions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePredictiveDialingSessionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取主被叫受保护的电话服务记录与录音
 
         # @param request: Request instance for DescribeProtectedTelCdr.
@@ -919,6 +1063,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停预测式外呼任务
+
+        # @param request: Request instance for PausePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::PausePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::PausePredictiveDialingCampaignResponse`
+        def PausePredictiveDialingCampaign(request)
+          body = send_request('PausePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PausePredictiveDialingCampaignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重置话机注册密码
 
         # @param request: Request instance for ResetExtensionPassword.
@@ -929,6 +1097,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetExtensionPasswordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复预测式外呼任务
+
+        # @param request: Request instance for ResumePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::ResumePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::ResumePredictiveDialingCampaignResponse`
+        def ResumePredictiveDialingCampaign(request)
+          body = send_request('ResumePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumePredictiveDialingCampaignResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1001,6 +1193,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindStaffSkillGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 任务未启动前，更新预测式外呼任务。
+
+        # @param request: Request instance for UpdatePredictiveDialingCampaign.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::UpdatePredictiveDialingCampaignRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::UpdatePredictiveDialingCampaignResponse`
+        def UpdatePredictiveDialingCampaign(request)
+          body = send_request('UpdatePredictiveDialingCampaign', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdatePredictiveDialingCampaignResponse.new
             model.deserialize(response['Response'])
             model
           else

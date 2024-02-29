@@ -1983,8 +1983,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2024, 2
-        deprecate :SegmentSet=, :none, 2024, 2
+        deprecate :SegmentSet, :none, 2024, 3
+        deprecate :SegmentSet=, :none, 2024, 3
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -6161,12 +6161,17 @@ module TencentCloud
 
       # CreateDomainVerifyRecord请求参数结构体
       class CreateDomainVerifyRecordRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要接入点播的加速域名。
+        # @type Domain: String
 
+        attr_accessor :Domain
 
-        def initialize()
+        def initialize(domain=nil)
+          @Domain = domain
         end
 
         def deserialize(params)
+          @Domain = params['Domain']
         end
       end
 
@@ -9774,6 +9779,57 @@ module TencentCloud
               @PlayStatFileSet << playstatfileinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDefaultDistributionConfig请求参数结构体
+      class DescribeDefaultDistributionConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :SubAppId
+
+        def initialize(subappid=nil)
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeDefaultDistributionConfig返回参数结构体
+      class DescribeDefaultDistributionConfigResponse < TencentCloud::Common::AbstractModel
+        # @param DomainName: 分发配置的域名(已废弃）。
+        # @type DomainName: String
+        # @param Domain: 分发配置的域名。
+        # @type Domain: String
+        # @param Scheme: 分发配置的协议，为 HTTP 或 HTTPS。
+        # @type Scheme: String
+        # @param PlayKey: 播放密钥，由大小写字母（a - Z）或者数字（0 - 9）组成，长度在8 - 20个字符之间。
+        # @type PlayKey: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
+        extend Gem::Deprecate
+        deprecate :DomainName, :none, 2024, 3
+        deprecate :DomainName=, :none, 2024, 3
+
+        def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
+          @DomainName = domainname
+          @Domain = domain
+          @Scheme = scheme
+          @PlayKey = playkey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DomainName = params['DomainName']
+          @Domain = params['Domain']
+          @Scheme = params['Scheme']
+          @PlayKey = params['PlayKey']
           @RequestId = params['RequestId']
         end
       end
@@ -17290,8 +17346,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2024, 2
-        deprecate :Transitions=, :none, 2024, 2
+        deprecate :Transitions, :none, 2024, 3
+        deprecate :Transitions=, :none, 2024, 3
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -17825,6 +17881,50 @@ module TencentCloud
 
       # ModifyContentReviewTemplate返回参数结构体
       class ModifyContentReviewTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDefaultDistributionConfig请求参数结构体
+      class ModifyDefaultDistributionConfigRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Domain: 分发域名，取值为点播域名列表里的域名。不填或者填空，表示不修改域名。
+        # @type Domain: String
+        # @param Scheme: 分发协议，取值为 HTTP 或者 HTTPS。
+        # @type Scheme: String
+        # @param PlayKey: 播放密钥，由大小写字母（a - Z）或者数字（0 - 9）组成，长度在8 - 20个字符之间。
+        # @type PlayKey: String
+
+        attr_accessor :SubAppId, :Domain, :Scheme, :PlayKey
+
+        def initialize(subappid=nil, domain=nil, scheme=nil, playkey=nil)
+          @SubAppId = subappid
+          @Domain = domain
+          @Scheme = scheme
+          @PlayKey = playkey
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Domain = params['Domain']
+          @Scheme = params['Scheme']
+          @PlayKey = params['PlayKey']
+        end
+      end
+
+      # ModifyDefaultDistributionConfig返回参数结构体
+      class ModifyDefaultDistributionConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -21158,8 +21258,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2024, 2
-        deprecate :ProductInstanceResourceSet=, :none, 2024, 2
+        deprecate :ProductInstanceResourceSet, :none, 2024, 3
+        deprecate :ProductInstanceResourceSet=, :none, 2024, 3
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype

@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 计费资源购买、续费下单接口
+
+        # @param request: Request instance for CreateDeals.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateDealsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateDealsResponse`
+        def CreateDeals(request)
+          body = send_request('CreateDeals', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDealsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # clb-waf中添加防护域名
 
         # @param request: Request instance for CreateHost.

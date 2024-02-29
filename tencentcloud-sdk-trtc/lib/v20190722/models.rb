@@ -2655,10 +2655,12 @@ module TencentCloud
         # @type BackGroundColor: String
         # @param DynamicPosType: 动态水印类型，默认为0。0:关闭；1:随机位置，每秒变动一次；2:边界扫描反弹，每帧变动一次。
         # @type DynamicPosType: Integer
+        # @param ZOrder: 水印在输出时的层级，不填默认为0。
+        # @type ZOrder: Integer
 
-        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor, :DynamicPosType
+        attr_accessor :Text, :WaterMarkWidth, :WaterMarkHeight, :LocationX, :LocationY, :FontSize, :FontColor, :BackGroundColor, :DynamicPosType, :ZOrder
 
-        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, dynamicpostype=nil)
+        def initialize(text=nil, watermarkwidth=nil, watermarkheight=nil, locationx=nil, locationy=nil, fontsize=nil, fontcolor=nil, backgroundcolor=nil, dynamicpostype=nil, zorder=nil)
           @Text = text
           @WaterMarkWidth = watermarkwidth
           @WaterMarkHeight = watermarkheight
@@ -2668,6 +2670,7 @@ module TencentCloud
           @FontColor = fontcolor
           @BackGroundColor = backgroundcolor
           @DynamicPosType = dynamicpostype
+          @ZOrder = zorder
         end
 
         def deserialize(params)
@@ -2680,6 +2683,7 @@ module TencentCloud
           @FontColor = params['FontColor']
           @BackGroundColor = params['BackGroundColor']
           @DynamicPosType = params['DynamicPosType']
+          @ZOrder = params['ZOrder']
         end
       end
 
@@ -3763,7 +3767,7 @@ module TencentCloud
         # @type PublishCdnParams: Array
         # @param SeiParams: 混流SEI参数
         # @type SeiParams: :class:`Tencentcloud::Trtc.v20190722.models.McuSeiParams`
-        # @param FeedBackRoomParams: 回推房间信息，和转推CDN参数必须要有一个。注：回推房间需使用特殊的SDK版本，如您有需求，请联系腾讯云技术支持。
+        # @param FeedBackRoomParams: 回推房间信息，和转推CDN参数必须要有一个。注：回推房间需使用10.4及以上SDK版本，如您有需求，请联系腾讯云技术支持。
         # @type FeedBackRoomParams: Array
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentParams, :WithTranscoding, :AudioParams, :VideoParams, :SingleSubscribeParams, :PublishCdnParams, :SeiParams, :FeedBackRoomParams

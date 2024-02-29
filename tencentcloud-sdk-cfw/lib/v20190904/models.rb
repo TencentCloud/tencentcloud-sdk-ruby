@@ -512,6 +512,73 @@ module TencentCloud
         end
       end
 
+      # 封禁列表和放通列表结构体
+      class BanAndAllowRule < TencentCloud::Common::AbstractModel
+        # @param Ioc: 封禁和放通对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ioc: String
+        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectionList: String
+        # @param EndTime: 规则截止时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param Comment: 规则评论
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CustomRule: 自定义白名单规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRule: :class:`Tencentcloud::Cfw.v20190904.models.CustomWhiteRule`
+
+        attr_accessor :Ioc, :DirectionList, :EndTime, :Comment, :CustomRule
+
+        def initialize(ioc=nil, directionlist=nil, endtime=nil, comment=nil, customrule=nil)
+          @Ioc = ioc
+          @DirectionList = directionlist
+          @EndTime = endtime
+          @Comment = comment
+          @CustomRule = customrule
+        end
+
+        def deserialize(params)
+          @Ioc = params['Ioc']
+          @DirectionList = params['DirectionList']
+          @EndTime = params['EndTime']
+          @Comment = params['Comment']
+          unless params['CustomRule'].nil?
+            @CustomRule = CustomWhiteRule.new
+            @CustomRule.deserialize(params['CustomRule'])
+          end
+        end
+      end
+
+      # 封禁列表和放通列表结构体
+      class BanAndAllowRuleDel < TencentCloud::Common::AbstractModel
+        # @param Ioc: 封禁和放通对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ioc: String
+        # @param DirectionList: 0互联网出站 1互联网入站 5内网访问源 6内网访问目的
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DirectionList: String
+        # @param RuleType: 规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: Integer
+
+        attr_accessor :Ioc, :DirectionList, :RuleType
+
+        def initialize(ioc=nil, directionlist=nil, ruletype=nil)
+          @Ioc = ioc
+          @DirectionList = directionlist
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          @Ioc = params['Ioc']
+          @DirectionList = params['DirectionList']
+          @RuleType = params['RuleType']
+        end
+      end
+
       # 规则关联的beta任务
       class BetaInfoByACL < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id
@@ -898,7 +965,7 @@ module TencentCloud
         # 2 互联网出站
         # 4 内网访问
         # @type IsolateType: Array
-        # @param OmMode: 运维模式 1 IP白名单 2 身份认证
+        # @param OmMode: 运维模式 1 IP白名单 2 身份认证  0 非运维模式
         # @type OmMode: Integer
 
         attr_accessor :HandleAssetList, :HandleTime, :AlertDirection, :IsolateType, :OmMode
@@ -1157,6 +1224,53 @@ module TencentCloud
               @List << ioclistdata_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBlockIgnoreRuleNew请求参数结构体
+      class CreateBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
+        # @param Rules: 非自定义类型规则列表
+        # @type Rules: Array
+        # @param RuleType: RuleType: 1黑名单 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
+        # @type RuleType: Integer
+        # @param CoverDuplicate: 是否覆盖重复数据，1覆盖，非1不覆盖，跳过重复数据
+        # @type CoverDuplicate: Integer
+
+        attr_accessor :Rules, :RuleType, :CoverDuplicate
+
+        def initialize(rules=nil, ruletype=nil, coverduplicate=nil)
+          @Rules = rules
+          @RuleType = ruletype
+          @CoverDuplicate = coverduplicate
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              banandallowrule_tmp = BanAndAllowRule.new
+              banandallowrule_tmp.deserialize(i)
+              @Rules << banandallowrule_tmp
+            end
+          end
+          @RuleType = params['RuleType']
+          @CoverDuplicate = params['CoverDuplicate']
+        end
+      end
+
+      # CreateBlockIgnoreRuleNew返回参数结构体
+      class CreateBlockIgnoreRuleNewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2019,6 +2133,58 @@ module TencentCloud
 
       # DeleteBlockIgnoreRuleList返回参数结构体
       class DeleteBlockIgnoreRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBlockIgnoreRuleNew请求参数结构体
+      class DeleteBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
+        # @param DeleteAll: 是否删除全部
+        # @type DeleteAll: Integer
+        # @param Rules: 规则列表
+        # @type Rules: Array
+        # @param RuleType: 封禁：1，放通：100，
+        # 主要用于全部删除时区分列表类型
+        # @type RuleType: Integer
+        # @param ShowType: blocklist 封禁列表 whitelist 白名单列表
+        # @type ShowType: String
+
+        attr_accessor :DeleteAll, :Rules, :RuleType, :ShowType
+
+        def initialize(deleteall=nil, rules=nil, ruletype=nil, showtype=nil)
+          @DeleteAll = deleteall
+          @Rules = rules
+          @RuleType = ruletype
+          @ShowType = showtype
+        end
+
+        def deserialize(params)
+          @DeleteAll = params['DeleteAll']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              banandallowruledel_tmp = BanAndAllowRuleDel.new
+              banandallowruledel_tmp.deserialize(i)
+              @Rules << banandallowruledel_tmp
+            end
+          end
+          @RuleType = params['RuleType']
+          @ShowType = params['ShowType']
+        end
+      end
+
+      # DeleteBlockIgnoreRuleNew返回参数结构体
+      class DeleteBlockIgnoreRuleNewResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6152,6 +6318,45 @@ module TencentCloud
         def deserialize(params)
           @ReturnMsg = params['ReturnMsg']
           @ReturnCode = params['ReturnCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBlockIgnoreRuleNew请求参数结构体
+      class ModifyBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
+        # @param Rule: 规则
+        # @type Rule: :class:`Tencentcloud::Cfw.v20190904.models.BanAndAllowRule`
+        # @param RuleType: RuleType: 1放通列表 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
+        # @type RuleType: Integer
+
+        attr_accessor :Rule, :RuleType
+
+        def initialize(rule=nil, ruletype=nil)
+          @Rule = rule
+          @RuleType = ruletype
+        end
+
+        def deserialize(params)
+          unless params['Rule'].nil?
+            @Rule = BanAndAllowRule.new
+            @Rule.deserialize(params['Rule'])
+          end
+          @RuleType = params['RuleType']
+        end
+      end
+
+      # ModifyBlockIgnoreRuleNew返回参数结构体
+      class ModifyBlockIgnoreRuleNewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

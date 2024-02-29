@@ -56,8 +56,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2024, 1
-        deprecate :BTime=, :none, 2024, 1
+        deprecate :BTime, :none, 2024, 3
+        deprecate :BTime=, :none, 2024, 3
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -1883,6 +1883,223 @@ module TencentCloud
 
         def deserialize(params)
           @ExportId = params['ExportId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 计费下单接口出入参Goods
+      class CreateDealsGoods < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 商品数量
+        # @type GoodsNum: Integer
+        # @param GoodsDetail: 商品明细
+        # @type GoodsDetail: :class:`Tencentcloud::Waf.v20180125.models.CreateDealsGoodsDetail`
+        # @param GoodsCategoryId: 订单类型ID，用来唯一标识一个业务的一种场景（总共三种场景：新购、配置变更、续费）
+        # 高级版: 102375(新购),102376(续费),102377(变配)
+        # 企业版 : 102378(新购),102379(续费),102380(变配)
+        # 旗舰版 : 102369(新购),102370(续费),102371(变配)
+        # 域名包 : 102372(新购),102373(续费),102374(变配)
+        # 业务扩展包 : 101040(新购),101041(续费),101042(变配)
+
+        # 高级版-CLB: 新购 101198  续费 101199 变配 101200
+        # 企业版-CLB 101204(新购),101205(续费),101206(变配)
+        # 旗舰版-CLB : 101201(新购),101202(续费),101203(变配)
+        # 域名包-CLB: 101207(新购),101208(续费),101209(变配)
+        # 业务扩展包-CLB: 101210(新购),101211(续费),101212(变配)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsCategoryId: Integer
+        # @param RegionId: 购买waf实例区域ID
+        # 1 表示购买大陆资源;
+        # 9表示购买非中国大陆资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionId: Integer
+
+        attr_accessor :GoodsNum, :GoodsDetail, :GoodsCategoryId, :RegionId
+
+        def initialize(goodsnum=nil, goodsdetail=nil, goodscategoryid=nil, regionid=nil)
+          @GoodsNum = goodsnum
+          @GoodsDetail = goodsdetail
+          @GoodsCategoryId = goodscategoryid
+          @RegionId = regionid
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          unless params['GoodsDetail'].nil?
+            @GoodsDetail = CreateDealsGoodsDetail.new
+            @GoodsDetail.deserialize(params['GoodsDetail'])
+          end
+          @GoodsCategoryId = params['GoodsCategoryId']
+          @RegionId = params['RegionId']
+        end
+      end
+
+      # 产品明细
+      class CreateDealsGoodsDetail < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 时间间隔
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 单位，支持购买d、m、y 即（日、月、年）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param SubProductCode: 子产品标签,。新购，续费必传，变配时放在oldConfig newConfig里面
+
+        # Saas 高级版 ：sp_wsm_waf_premium
+        # Saas企业版 ：sp_wsm_waf_enterprise
+        # Saas旗舰版 ：sp_wsm_waf_ultimate
+        # Saas 业务扩展包：sp_wsm_waf_qpsep
+        # Saas 域名扩展包：sp_wsm_waf_domain
+
+        # 高级版-CLB:sp_wsm_waf_premium_clb
+        # 企业版-CLB : sp_wsm_waf_enterprise_clb
+        # 旗舰版-CLB:sp_wsm_waf_ultimate_clb
+        #  业务扩展包-CLB：sp_wsm_waf_qpsep_clb
+        # 域名扩展包-CLB：sp_wsm_waf_domain_clb
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubProductCode: String
+        # @param Pid: 业务产品申请的pid（对应一个定价公式），通过pid计费查询到定价模型
+        # 高级版 ：1000827
+        # 企业版 ：1000830
+        # 旗舰版 ：1000832
+        # 域名包 : 1000834
+        # 业务扩展包 : 1000481
+        # 高级版-CLB:1001150
+        # 企业版-CLB : 1001152
+        # 旗舰版-CLB:1001154
+        # 域名包-CLB: 1001156
+        # 业务扩展包-CLB : 1001160
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pid: Integer
+        # @param InstanceName: waf实例名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param AutoRenewFlag: 1:自动续费，0:不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewFlag: Integer
+        # @param RealRegion: waf购买的实际地域信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RealRegion: Integer
+        # @param LabelTypes: 计费细项标签数组
+        # Saas 高级版  sv_wsm_waf_package_premium
+        # Saas 企业版  sv_wsm_waf_package_enterprise
+        # Saas 旗舰版  sv_wsm_waf_package_ultimate
+        # Saas 非中国大陆高级版  sv_wsm_waf_package_premium_intl
+        # Saas 非中国大陆企业版   sv_wsm_waf_package_enterprise_intl
+        # Saas 非中国大陆旗舰版  sv_wsm_waf_package_ultimate _intl
+        # Saas 业务扩展包  sv_wsm_waf_qps_ep
+        # Saas 域名扩展包  sv_wsm_waf_domain
+
+        # 高级版CLB   sv_wsm_waf_package_premium_clb
+        # 企业版CLB  sv_wsm_waf_package_enterprise_clb
+        # 旗舰版CLB   sv_wsm_waf_package_ultimate_clb
+        # 非中国大陆高级版 CLB sv_wsm_waf_package_premium_clb_intl
+        # 非中国大陆企业版CLB   sv_wsm_waf_package_premium_clb_intl
+        # 非中国大陆旗舰版CLB  sv_wsm_waf_package_ultimate_clb _intl
+        # 业务扩展包CLB sv_wsm_waf_qps_ep_clb
+        # 域名扩展包CLB  sv_wsm_waf_domain_clb
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelTypes: Array
+        # @param LabelCounts: 计费细项标签数量，一般和SvLabelType一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelCounts: Array
+        # @param CurDeadline: 变配使用，实例到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurDeadline: String
+        # @param InstanceId: 对存在的实例购买bot 或api 安全
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param ResourceId: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+
+        attr_accessor :TimeSpan, :TimeUnit, :SubProductCode, :Pid, :InstanceName, :AutoRenewFlag, :RealRegion, :LabelTypes, :LabelCounts, :CurDeadline, :InstanceId, :ResourceId
+
+        def initialize(timespan=nil, timeunit=nil, subproductcode=nil, pid=nil, instancename=nil, autorenewflag=nil, realregion=nil, labeltypes=nil, labelcounts=nil, curdeadline=nil, instanceid=nil, resourceid=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @SubProductCode = subproductcode
+          @Pid = pid
+          @InstanceName = instancename
+          @AutoRenewFlag = autorenewflag
+          @RealRegion = realregion
+          @LabelTypes = labeltypes
+          @LabelCounts = labelcounts
+          @CurDeadline = curdeadline
+          @InstanceId = instanceid
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @SubProductCode = params['SubProductCode']
+          @Pid = params['Pid']
+          @InstanceName = params['InstanceName']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @RealRegion = params['RealRegion']
+          @LabelTypes = params['LabelTypes']
+          @LabelCounts = params['LabelCounts']
+          @CurDeadline = params['CurDeadline']
+          @InstanceId = params['InstanceId']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # CreateDeals请求参数结构体
+      class CreateDealsRequest < TencentCloud::Common::AbstractModel
+        # @param Goods: 计费下单入参
+        # @type Goods: Array
+
+        attr_accessor :Goods
+
+        def initialize(goods=nil)
+          @Goods = goods
+        end
+
+        def deserialize(params)
+          unless params['Goods'].nil?
+            @Goods = []
+            params['Goods'].each do |i|
+              createdealsgoods_tmp = CreateDealsGoods.new
+              createdealsgoods_tmp.deserialize(i)
+              @Goods << createdealsgoods_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDeals返回参数结构体
+      class CreateDealsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 计费下单响应结构体
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Waf.v20180125.models.DealData`
+        # @param Status: 1:成功，0:失败
+        # @type Status: Integer
+        # @param ReturnMessage: 返回message
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReturnMessage: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Status, :ReturnMessage, :RequestId
+
+        def initialize(data=nil, status=nil, returnmessage=nil, requestid=nil)
+          @Data = data
+          @Status = status
+          @ReturnMessage = returnmessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DealData.new
+            @Data.deserialize(params['Data'])
+          end
+          @Status = params['Status']
+          @ReturnMessage = params['ReturnMessage']
           @RequestId = params['RequestId']
         end
       end
@@ -4802,10 +5019,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 1
-        deprecate :VtsMin=, :none, 2024, 1
-        deprecate :VtsMax, :none, 2024, 1
-        deprecate :VtsMax=, :none, 2024, 1
+        deprecate :VtsMin, :none, 2024, 3
+        deprecate :VtsMin=, :none, 2024, 3
+        deprecate :VtsMax, :none, 2024, 3
+        deprecate :VtsMax=, :none, 2024, 3
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -4901,10 +5118,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2024, 1
-        deprecate :VtsMin=, :none, 2024, 1
-        deprecate :VtsMax, :none, 2024, 1
-        deprecate :VtsMax=, :none, 2024, 1
+        deprecate :VtsMin, :none, 2024, 3
+        deprecate :VtsMin=, :none, 2024, 3
+        deprecate :VtsMax, :none, 2024, 3
+        deprecate :VtsMax=, :none, 2024, 3
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -6844,7 +7061,8 @@ module TencentCloud
 
       # 过滤数组
       class FiltersItemNew < TencentCloud::Common::AbstractModel
-        # @param Name: 字段名
+        # @param Name: 字段名； 过滤
+        # 子订单号过滤通过name 为：DealName； value为子订单号
         # @type Name: String
         # @param Values: 过滤值
         # @type Values: Array

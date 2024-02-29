@@ -1553,14 +1553,20 @@ module TencentCloud
         # @type ProjectId: String
         # @param DeleteKFFlag: 是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
         # @type DeleteKFFlag: Integer
+        # @param Name: 操作名称
+        # @type Name: String
+        # @param TaskNames: 本次批量操作涉及任务，用于审计
+        # @type TaskNames: Array
 
-        attr_accessor :TaskIds, :TaskType, :ProjectId, :DeleteKFFlag
+        attr_accessor :TaskIds, :TaskType, :ProjectId, :DeleteKFFlag, :Name, :TaskNames
 
-        def initialize(taskids=nil, tasktype=nil, projectid=nil, deletekfflag=nil)
+        def initialize(taskids=nil, tasktype=nil, projectid=nil, deletekfflag=nil, name=nil, tasknames=nil)
           @TaskIds = taskids
           @TaskType = tasktype
           @ProjectId = projectid
           @DeleteKFFlag = deletekfflag
+          @Name = name
+          @TaskNames = tasknames
         end
 
         def deserialize(params)
@@ -1568,6 +1574,8 @@ module TencentCloud
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
           @DeleteKFFlag = params['DeleteKFFlag']
+          @Name = params['Name']
+          @TaskNames = params['TaskNames']
         end
       end
 
@@ -2290,15 +2298,18 @@ module TencentCloud
         # @type FailedCount: Integer
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param TaskNames: 本次批量操作涉及任务，用于审计
+        # @type TaskNames: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :RequestId
+        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :TaskNames, :RequestId
 
-        def initialize(successcount=nil, failedcount=nil, totalcount=nil, requestid=nil)
+        def initialize(successcount=nil, failedcount=nil, totalcount=nil, tasknames=nil, requestid=nil)
           @SuccessCount = successcount
           @FailedCount = failedcount
           @TotalCount = totalcount
+          @TaskNames = tasknames
           @RequestId = requestid
         end
 
@@ -2306,6 +2317,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @TaskNames = params['TaskNames']
           @RequestId = params['RequestId']
         end
       end
@@ -2383,25 +2395,36 @@ module TencentCloud
 
       # BatchStartIntegrationTasks请求参数结构体
       class BatchStartIntegrationTasksRequest < TencentCloud::Common::AbstractModel
-        # @param TaskIds: 任务id
-        # @type TaskIds: Array
         # @param TaskType: 任务类型
         # @type TaskType: Integer
         # @param ProjectId: 项目id
         # @type ProjectId: String
+        # @param TaskIds: 任务id
+        # @type TaskIds: Array
+        # @param StartTaskInfoSet: 批量运行集成任务，目前仅实时集成用到了这个参数
+        # @type StartTaskInfoSet: Array
 
-        attr_accessor :TaskIds, :TaskType, :ProjectId
+        attr_accessor :TaskType, :ProjectId, :TaskIds, :StartTaskInfoSet
 
-        def initialize(taskids=nil, tasktype=nil, projectid=nil)
-          @TaskIds = taskids
+        def initialize(tasktype=nil, projectid=nil, taskids=nil, starttaskinfoset=nil)
           @TaskType = tasktype
           @ProjectId = projectid
+          @TaskIds = taskids
+          @StartTaskInfoSet = starttaskinfoset
         end
 
         def deserialize(params)
-          @TaskIds = params['TaskIds']
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
+          @TaskIds = params['TaskIds']
+          unless params['StartTaskInfoSet'].nil?
+            @StartTaskInfoSet = []
+            params['StartTaskInfoSet'].each do |i|
+              starttaskinfo_tmp = StartTaskInfo.new
+              starttaskinfo_tmp.deserialize(i)
+              @StartTaskInfoSet << starttaskinfo_tmp
+            end
+          end
         end
       end
 
@@ -2413,15 +2436,18 @@ module TencentCloud
         # @type FailedCount: Integer
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param TaskNames: 本次批量操作成功任务id，用于审计
+        # @type TaskNames: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :RequestId
+        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :TaskNames, :RequestId
 
-        def initialize(successcount=nil, failedcount=nil, totalcount=nil, requestid=nil)
+        def initialize(successcount=nil, failedcount=nil, totalcount=nil, tasknames=nil, requestid=nil)
           @SuccessCount = successcount
           @FailedCount = failedcount
           @TotalCount = totalcount
+          @TaskNames = tasknames
           @RequestId = requestid
         end
 
@@ -2429,6 +2455,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @TaskNames = params['TaskNames']
           @RequestId = params['RequestId']
         end
       end
@@ -2465,15 +2492,18 @@ module TencentCloud
         # @type FailedCount: Integer
         # @param TotalCount: 任务总数
         # @type TotalCount: Integer
+        # @param TaskNames: 本次批量操作涉及成功任务，用于审计
+        # @type TaskNames: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :RequestId
+        attr_accessor :SuccessCount, :FailedCount, :TotalCount, :TaskNames, :RequestId
 
-        def initialize(successcount=nil, failedcount=nil, totalcount=nil, requestid=nil)
+        def initialize(successcount=nil, failedcount=nil, totalcount=nil, tasknames=nil, requestid=nil)
           @SuccessCount = successcount
           @FailedCount = failedcount
           @TotalCount = totalcount
+          @TaskNames = tasknames
           @RequestId = requestid
         end
 
@@ -2481,6 +2511,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailedCount = params['FailedCount']
           @TotalCount = params['TotalCount']
+          @TaskNames = params['TaskNames']
           @RequestId = params['RequestId']
         end
       end
@@ -2625,14 +2656,17 @@ module TencentCloud
         # @type ProjectId: String
         # @param Event: 事件类型(START, STOP, SUSPEND, SUSPEND_WITHOUT_SP,RESUME, COMMIT, TIMESTAMP)
         # @type Event: String
+        # @param TaskNames: 本次批量操作涉及任务，用于审计
+        # @type TaskNames: Array
 
-        attr_accessor :TaskIds, :TaskType, :ProjectId, :Event
+        attr_accessor :TaskIds, :TaskType, :ProjectId, :Event, :TaskNames
 
-        def initialize(taskids=nil, tasktype=nil, projectid=nil, event=nil)
+        def initialize(taskids=nil, tasktype=nil, projectid=nil, event=nil, tasknames=nil)
           @TaskIds = taskids
           @TaskType = tasktype
           @ProjectId = projectid
           @Event = event
+          @TaskNames = tasknames
         end
 
         def deserialize(params)
@@ -2640,6 +2674,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
           @Event = params['Event']
+          @TaskNames = params['TaskNames']
         end
       end
 
@@ -2683,15 +2718,18 @@ module TencentCloud
         # @type ProjectId: String
         # @param InchargeIds: 责任人Id（多个责任人用小写分号隔开）
         # @type InchargeIds: String
+        # @param TaskNames: 本次批量操作涉及任务，用于审计
+        # @type TaskNames: Array
 
-        attr_accessor :TaskIds, :Incharge, :TaskType, :ProjectId, :InchargeIds
+        attr_accessor :TaskIds, :Incharge, :TaskType, :ProjectId, :InchargeIds, :TaskNames
 
-        def initialize(taskids=nil, incharge=nil, tasktype=nil, projectid=nil, inchargeids=nil)
+        def initialize(taskids=nil, incharge=nil, tasktype=nil, projectid=nil, inchargeids=nil, tasknames=nil)
           @TaskIds = taskids
           @Incharge = incharge
           @TaskType = tasktype
           @ProjectId = projectid
           @InchargeIds = inchargeids
+          @TaskNames = tasknames
         end
 
         def deserialize(params)
@@ -2700,6 +2738,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @ProjectId = params['ProjectId']
           @InchargeIds = params['InchargeIds']
+          @TaskNames = params['TaskNames']
         end
       end
 
@@ -2869,8 +2908,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2024, 2
-        deprecate :TaskId=, :none, 2024, 2
+        deprecate :TaskId, :none, 2024, 3
+        deprecate :TaskId=, :none, 2024, 3
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -10166,12 +10205,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2024, 2
-        deprecate :EventType=, :none, 2024, 2
-        deprecate :EventBroadcastType, :none, 2024, 2
-        deprecate :EventBroadcastType=, :none, 2024, 2
-        deprecate :Status, :none, 2024, 2
-        deprecate :Status=, :none, 2024, 2
+        deprecate :EventType, :none, 2024, 3
+        deprecate :EventType=, :none, 2024, 3
+        deprecate :EventBroadcastType, :none, 2024, 3
+        deprecate :EventBroadcastType=, :none, 2024, 3
+        deprecate :Status, :none, 2024, 3
+        deprecate :Status=, :none, 2024, 3
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -18284,8 +18323,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2024, 2
-        deprecate :DimType=, :none, 2024, 2
+        deprecate :DimType, :none, 2024, 3
+        deprecate :DimType=, :none, 2024, 3
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -30381,10 +30420,10 @@ module TencentCloud
 
         attr_accessor :SourceObjectDataTypeName, :SourceObjectValue, :ObjectDataTypeName, :ObjectValue, :ObjectType
         extend Gem::Deprecate
-        deprecate :SourceObjectDataTypeName, :none, 2024, 2
-        deprecate :SourceObjectDataTypeName=, :none, 2024, 2
-        deprecate :SourceObjectValue, :none, 2024, 2
-        deprecate :SourceObjectValue=, :none, 2024, 2
+        deprecate :SourceObjectDataTypeName, :none, 2024, 3
+        deprecate :SourceObjectDataTypeName=, :none, 2024, 3
+        deprecate :SourceObjectValue, :none, 2024, 3
+        deprecate :SourceObjectValue=, :none, 2024, 3
 
         def initialize(sourceobjectdatatypename=nil, sourceobjectvalue=nil, objectdatatypename=nil, objectvalue=nil, objecttype=nil)
           @SourceObjectDataTypeName = sourceobjectdatatypename
@@ -30607,6 +30646,45 @@ module TencentCloud
         def deserialize(params)
           @Data = params['Data']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量运行集成任务配置
+      class StartTaskInfo < TencentCloud::Common::AbstractModel
+        # @param Event: 批量运行任务类型，比如START，TIMESTAMP，RESTORE，RESUME等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Event: String
+        # @param TaskIds: 任务Id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskIds: Array
+        # @param Config: 批量运行任务配置，目前仅用与实时集成基于时间位点启动。基于时间位点启动，需要设置一个name=timestamp, value=具体时间戳的RecordField的配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Config: Array
+        # @param Description: 操作类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :Event, :TaskIds, :Config, :Description
+
+        def initialize(event=nil, taskids=nil, config=nil, description=nil)
+          @Event = event
+          @TaskIds = taskids
+          @Config = config
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Event = params['Event']
+          @TaskIds = params['TaskIds']
+          unless params['Config'].nil?
+            @Config = []
+            params['Config'].each do |i|
+              recordfield_tmp = RecordField.new
+              recordfield_tmp.deserialize(i)
+              @Config << recordfield_tmp
+            end
+          end
+          @Description = params['Description']
         end
       end
 

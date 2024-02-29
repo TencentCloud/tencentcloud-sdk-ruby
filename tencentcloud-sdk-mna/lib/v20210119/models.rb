@@ -32,15 +32,18 @@ module TencentCloud
         # @type Description: String
         # @param DataKey: 设备密钥
         # @type DataKey: String
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
 
-        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey
+        attr_accessor :Vendor, :SN, :DeviceName, :Description, :DataKey, :AccessScope
 
-        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil)
+        def initialize(vendor=nil, sn=nil, devicename=nil, description=nil, datakey=nil, accessscope=nil)
           @Vendor = vendor
           @SN = sn
           @DeviceName = devicename
           @Description = description
           @DataKey = datakey
+          @AccessScope = accessscope
         end
 
         def deserialize(params)
@@ -49,6 +52,7 @@ module TencentCloud
           @DeviceName = params['DeviceName']
           @Description = params['Description']
           @DataKey = params['DataKey']
+          @AccessScope = params['AccessScope']
         end
       end
 
@@ -113,14 +117,21 @@ module TencentCloud
         # @type DataKey: String
         # @param Encrypted: 是否设置预置密钥
         # @type Encrypted: Boolean
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。
+        # 具体含义：
+        # 公有云网关：即该设备只能接入公有云网关（就近接入）
+        # 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入）
+        # 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
 
-        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted
+        attr_accessor :DeviceName, :Remark, :DataKey, :Encrypted, :AccessScope
 
-        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil)
+        def initialize(devicename=nil, remark=nil, datakey=nil, encrypted=nil, accessscope=nil)
           @DeviceName = devicename
           @Remark = remark
           @DataKey = datakey
           @Encrypted = encrypted
+          @AccessScope = accessscope
         end
 
         def deserialize(params)
@@ -128,6 +139,7 @@ module TencentCloud
           @Remark = params['Remark']
           @DataKey = params['DataKey']
           @Encrypted = params['Encrypted']
+          @AccessScope = params['AccessScope']
         end
       end
 
@@ -554,15 +566,18 @@ module TencentCloud
         # @type LastTime: String
         # @param Remark: 设备的备注
         # @type Remark: String
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
 
-        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark
+        attr_accessor :DeviceId, :DeviceName, :CreateTime, :LastTime, :Remark, :AccessScope
 
-        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil)
+        def initialize(deviceid=nil, devicename=nil, createtime=nil, lasttime=nil, remark=nil, accessscope=nil)
           @DeviceId = deviceid
           @DeviceName = devicename
           @CreateTime = createtime
           @LastTime = lasttime
           @Remark = remark
+          @AccessScope = accessscope
         end
 
         def deserialize(params)
@@ -571,6 +586,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @LastTime = params['LastTime']
           @Remark = params['Remark']
+          @AccessScope = params['AccessScope']
         end
       end
 
@@ -879,6 +895,9 @@ module TencentCloud
         # @type PackageType: String
         # @param Status: 流量包状态，0：未生效，1：有效期内，2：已过期
         # @type Status: Integer
+        # @param CreateTime: 购买时间，Unix时间戳格式，单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
         # @param ActiveTime: 生效时间，Unix时间戳格式，单位：秒
         # @type ActiveTime: Integer
         # @param ExpireTime: 过期时间，Unix时间戳格式，单位：秒
@@ -891,20 +910,24 @@ module TencentCloud
         # @type CapacityRemain: Integer
         # @param RenewFlag: 自动续费标识。true代表自动续费，false代表不自动续费
         # @type RenewFlag: Boolean
+        # @param ModifyStatus: 资源包变更状态，0：未发生变配；1：变配中；2：已变配或已续费
+        # @type ModifyStatus: Integer
 
-        attr_accessor :ResourceId, :AppId, :PackageType, :Status, :ActiveTime, :ExpireTime, :DeviceList, :CapacitySize, :CapacityRemain, :RenewFlag
+        attr_accessor :ResourceId, :AppId, :PackageType, :Status, :CreateTime, :ActiveTime, :ExpireTime, :DeviceList, :CapacitySize, :CapacityRemain, :RenewFlag, :ModifyStatus
 
-        def initialize(resourceid=nil, appid=nil, packagetype=nil, status=nil, activetime=nil, expiretime=nil, devicelist=nil, capacitysize=nil, capacityremain=nil, renewflag=nil)
+        def initialize(resourceid=nil, appid=nil, packagetype=nil, status=nil, createtime=nil, activetime=nil, expiretime=nil, devicelist=nil, capacitysize=nil, capacityremain=nil, renewflag=nil, modifystatus=nil)
           @ResourceId = resourceid
           @AppId = appid
           @PackageType = packagetype
           @Status = status
+          @CreateTime = createtime
           @ActiveTime = activetime
           @ExpireTime = expiretime
           @DeviceList = devicelist
           @CapacitySize = capacitysize
           @CapacityRemain = capacityremain
           @RenewFlag = renewflag
+          @ModifyStatus = modifystatus
         end
 
         def deserialize(params)
@@ -912,12 +935,14 @@ module TencentCloud
           @AppId = params['AppId']
           @PackageType = params['PackageType']
           @Status = params['Status']
+          @CreateTime = params['CreateTime']
           @ActiveTime = params['ActiveTime']
           @ExpireTime = params['ExpireTime']
           @DeviceList = params['DeviceList']
           @CapacitySize = params['CapacitySize']
           @CapacityRemain = params['CapacityRemain']
           @RenewFlag = params['RenewFlag']
+          @ModifyStatus = params['ModifyStatus']
         end
       end
 
@@ -1144,15 +1169,21 @@ module TencentCloud
         # @type Type: Integer
         # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
         # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填默认中国大陆
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
 
-        attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
 
-        def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
           @EndTime = endtime
           @Type = type
           @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
         end
 
         def deserialize(params)
@@ -1161,6 +1192,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Type = params['Type']
           @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
         end
       end
 
@@ -1274,15 +1307,21 @@ module TencentCloud
         # @type Type: Integer
         # @param TimeGranularity: 统计时间粒度（1：按小时统计，2：按天统计）
         # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填默认中国大陆
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
 
-        attr_accessor :DeviceIds, :BeginTime, :EndTime, :Type, :TimeGranularity
+        attr_accessor :DeviceIds, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
 
-        def initialize(deviceids=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil)
+        def initialize(deviceids=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
           @DeviceIds = deviceids
           @BeginTime = begintime
           @EndTime = endtime
           @Type = type
           @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
         end
 
         def deserialize(params)
@@ -1291,6 +1330,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Type = params['Type']
           @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
         end
       end
 
@@ -1331,14 +1372,17 @@ module TencentCloud
         # @type EndTime: Integer
         # @param Metrics: 统计指标（上行速率："TxRate":bit/s，下行速率："RxRate":bit/s，丢包："Loss":%，时延："RTT":ms）
         # @type Metrics: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
 
-        attr_accessor :DeviceId, :BeginTime, :EndTime, :Metrics
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :Metrics, :GatewayType
 
-        def initialize(deviceid=nil, begintime=nil, endtime=nil, metrics=nil)
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, metrics=nil, gatewaytype=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
           @EndTime = endtime
           @Metrics = metrics
+          @GatewayType = gatewaytype
         end
 
         def deserialize(params)
@@ -1346,6 +1390,7 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @Metrics = params['Metrics']
+          @GatewayType = params['GatewayType']
         end
       end
 
@@ -1354,13 +1399,20 @@ module TencentCloud
         # @param MonitorData: 监控数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorData: Array
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM']
+        # MC=中国大陆
+        # AP=亚太
+        # EU=欧洲
+        # AM=美洲
+        # @type AccessRegion: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MonitorData, :RequestId
+        attr_accessor :MonitorData, :AccessRegion, :RequestId
 
-        def initialize(monitordata=nil, requestid=nil)
+        def initialize(monitordata=nil, accessregion=nil, requestid=nil)
           @MonitorData = monitordata
+          @AccessRegion = accessregion
           @RequestId = requestid
         end
 
@@ -1373,6 +1425,7 @@ module TencentCloud
               @MonitorData << monitordata_tmp
             end
           end
+          @AccessRegion = params['AccessRegion']
           @RequestId = params['RequestId']
         end
       end
@@ -1410,7 +1463,7 @@ module TencentCloud
 
       # GetStatisticData请求参数结构体
       class GetStatisticDataRequest < TencentCloud::Common::AbstractModel
-        # @param DeviceId: 设备ID
+        # @param DeviceId: 设备ID。若不指定设备，可传"-1"
         # @type DeviceId: String
         # @param BeginTime: 统计开始时间，单位：s
         # @type BeginTime: Integer
@@ -1420,14 +1473,20 @@ module TencentCloud
         # 1:按小时统计
         # 2:按天统计
         # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填默认中国大陆
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
 
-        attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity
+        attr_accessor :DeviceId, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType
 
-        def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil)
+        def initialize(deviceid=nil, begintime=nil, endtime=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
           @DeviceId = deviceid
           @BeginTime = begintime
           @EndTime = endtime
           @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
         end
 
         def deserialize(params)
@@ -1435,6 +1494,8 @@ module TencentCloud
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
           @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
         end
       end
 

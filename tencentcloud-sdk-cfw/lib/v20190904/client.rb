@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量添加入侵防御封禁列表、放通列表规则
+
+        # @param request: Request instance for CreateBlockIgnoreRuleNew.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::CreateBlockIgnoreRuleNewRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::CreateBlockIgnoreRuleNewResponse`
+        def CreateBlockIgnoreRuleNew(request)
+          body = send_request('CreateBlockIgnoreRuleNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlockIgnoreRuleNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建、选择vpc
 
         # @param request: Request instance for CreateChooseVpcs.
@@ -543,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteBlockIgnoreRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除入侵防御封禁列表、放通列表规则（新）
+
+        # @param request: Request instance for DeleteBlockIgnoreRuleNew.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteBlockIgnoreRuleNewRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteBlockIgnoreRuleNewResponse`
+        def DeleteBlockIgnoreRuleNew(request)
+          body = send_request('DeleteBlockIgnoreRuleNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBlockIgnoreRuleNewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1866,6 +1914,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockIgnoreRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑单条入侵防御封禁列表、放通列表规则（新）
+
+        # @param request: Request instance for ModifyBlockIgnoreRuleNew.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyBlockIgnoreRuleNewRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyBlockIgnoreRuleNewResponse`
+        def ModifyBlockIgnoreRuleNew(request)
+          body = send_request('ModifyBlockIgnoreRuleNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlockIgnoreRuleNewResponse.new
             model.deserialize(response['Response'])
             model
           else

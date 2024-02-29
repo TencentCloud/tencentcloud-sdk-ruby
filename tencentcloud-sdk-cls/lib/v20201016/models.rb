@@ -2487,14 +2487,16 @@ module TencentCloud
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
+        # @param DelayCleanupTime: 机器组中机器离线清理时间
+        # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
         # @param OSType: 系统类型，默认0，0：Linux，1: Windows
         # @type OSType: Integer
 
-        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags, :OSType
+        attr_accessor :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :DelayCleanupTime, :MetaTags, :OSType
 
-        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil, ostype=nil)
+        def initialize(groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, delaycleanuptime=nil, metatags=nil, ostype=nil)
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
           @Tags = tags
@@ -2502,6 +2504,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @DelayCleanupTime = delaycleanuptime
           @MetaTags = metatags
           @OSType = ostype
         end
@@ -2524,6 +2527,7 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          @DelayCleanupTime = params['DelayCleanupTime']
           unless params['MetaTags'].nil?
             @MetaTags = []
             params['MetaTags'].each do |i|
@@ -5428,9 +5432,9 @@ module TencentCloud
         end
       end
 
-      # 动态索引配置，启用后将自动把日志内的字段添加到键值索引字段列表中，包括日志中新增的字段。
+      # 键值索引自动配置，启用后自动将日志内的字段添加到键值索引中，包括日志中后续新增的字段。
       class DynamicIndex < TencentCloud::Common::AbstractModel
-        # @param Status: 动态索引配置开关
+        # @param Status: 键值索引自动配置开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Boolean
 
@@ -6552,14 +6556,17 @@ module TencentCloud
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceLogging: Boolean
+        # @param DelayCleanupTime: 机器组中机器离线定期清理时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
         # @param OSType: 操作系统类型，0: Linux，1: windows
         # @type OSType: Integer
 
-        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags, :OSType
+        attr_accessor :GroupId, :GroupName, :MachineGroupType, :CreateTime, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :DelayCleanupTime, :MetaTags, :OSType
 
-        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil, ostype=nil)
+        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, createtime=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, delaycleanuptime=nil, metatags=nil, ostype=nil)
           @GroupId = groupid
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
@@ -6569,6 +6576,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @DelayCleanupTime = delaycleanuptime
           @MetaTags = metatags
           @OSType = ostype
         end
@@ -6593,6 +6601,7 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          @DelayCleanupTime = params['DelayCleanupTime']
           unless params['MetaTags'].nil?
             @MetaTags = []
             params['MetaTags'].each do |i|
@@ -7676,12 +7685,14 @@ module TencentCloud
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
+        # @param DelayCleanupTime: 机器组中机器定期离线清理时间
+        # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
 
-        attr_accessor :GroupId, :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :MetaTags
+        attr_accessor :GroupId, :GroupName, :MachineGroupType, :Tags, :AutoUpdate, :UpdateStartTime, :UpdateEndTime, :ServiceLogging, :DelayCleanupTime, :MetaTags
 
-        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, metatags=nil)
+        def initialize(groupid=nil, groupname=nil, machinegrouptype=nil, tags=nil, autoupdate=nil, updatestarttime=nil, updateendtime=nil, servicelogging=nil, delaycleanuptime=nil, metatags=nil)
           @GroupId = groupid
           @GroupName = groupname
           @MachineGroupType = machinegrouptype
@@ -7690,6 +7701,7 @@ module TencentCloud
           @UpdateStartTime = updatestarttime
           @UpdateEndTime = updateendtime
           @ServiceLogging = servicelogging
+          @DelayCleanupTime = delaycleanuptime
           @MetaTags = metatags
         end
 
@@ -7712,6 +7724,7 @@ module TencentCloud
           @UpdateStartTime = params['UpdateStartTime']
           @UpdateEndTime = params['UpdateEndTime']
           @ServiceLogging = params['ServiceLogging']
+          @DelayCleanupTime = params['DelayCleanupTime']
           unless params['MetaTags'].nil?
             @MetaTags = []
             params['MetaTags'].each do |i|
@@ -8530,17 +8543,17 @@ module TencentCloud
 
       # 索引规则，FullText、KeyValue、Tag参数必须输入一个有效参数
       class RuleInfo < TencentCloud::Common::AbstractModel
-        # @param FullText: 全文索引配置, 如果为空时代表未开启全文索引
+        # @param FullText: 全文索引配置, 为空时代表未开启全文索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullText: :class:`Tencentcloud::Cls.v20201016.models.FullTextInfo`
-        # @param KeyValue: 键值索引配置，如果为空时代表未开启键值索引
+        # @param KeyValue: 键值索引配置，为空时代表未开启键值索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyValue: :class:`Tencentcloud::Cls.v20201016.models.RuleKeyValueInfo`
-        # @param Tag: 元字段索引配置，如果为空时代表未开启元字段索引
+        # @param Tag: 元字段索引配置，为空时代表未开启元字段索引
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tag: :class:`Tencentcloud::Cls.v20201016.models.RuleTagInfo`
-        # @param DynamicIndex: 动态索引配置，为空时代表未开启动态索引。
-        # 启用后将自动把日志内的字段添加到键值索引字段列表中，包括日志中新增的字段。
+        # @param DynamicIndex: 键值索引自动配置，为空时代表未开启该功能。
+        # 启用后自动将日志内的字段添加到键值索引中，包括日志中后续新增的字段。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DynamicIndex: :class:`Tencentcloud::Cls.v20201016.models.DynamicIndex`
 

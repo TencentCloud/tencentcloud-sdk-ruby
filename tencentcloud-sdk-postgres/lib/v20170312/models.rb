@@ -4592,14 +4592,17 @@ module TencentCloud
         # @type DBInstanceId: String
         # @param InstanceChargeType: 【废弃参数，不再生效】，实例计费类型。
         # @type InstanceChargeType: String
+        # @param Cpu: 实例的Cpu大小，单位Core
+        # @type Cpu: Integer
 
-        attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType
+        attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
 
-        def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil)
+        def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
           @Memory = memory
           @DBInstanceId = dbinstanceid
           @InstanceChargeType = instancechargetype
+          @Cpu = cpu
         end
 
         def deserialize(params)
@@ -4607,6 +4610,7 @@ module TencentCloud
           @Memory = params['Memory']
           @DBInstanceId = params['DBInstanceId']
           @InstanceChargeType = params['InstanceChargeType']
+          @Cpu = params['Cpu']
         end
       end
 
@@ -4822,15 +4826,18 @@ module TencentCloud
         # @type BaseBackupRetentionPeriod: Integer
         # @param BackupPeriod: 实例备份周期，按照星期维度，格式为小写星期英文单词
         # @type BackupPeriod: Array
+        # @param LogBackupRetentionPeriod: 实例日志备份保留时长，取值范围为7-1830，单位是天
+        # @type LogBackupRetentionPeriod: Integer
 
-        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod
+        attr_accessor :DBInstanceId, :MinBackupStartTime, :MaxBackupStartTime, :BaseBackupRetentionPeriod, :BackupPeriod, :LogBackupRetentionPeriod
 
-        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil)
+        def initialize(dbinstanceid=nil, minbackupstarttime=nil, maxbackupstarttime=nil, basebackupretentionperiod=nil, backupperiod=nil, logbackupretentionperiod=nil)
           @DBInstanceId = dbinstanceid
           @MinBackupStartTime = minbackupstarttime
           @MaxBackupStartTime = maxbackupstarttime
           @BaseBackupRetentionPeriod = basebackupretentionperiod
           @BackupPeriod = backupperiod
+          @LogBackupRetentionPeriod = logbackupretentionperiod
         end
 
         def deserialize(params)
@@ -4839,6 +4846,7 @@ module TencentCloud
           @MaxBackupStartTime = params['MaxBackupStartTime']
           @BaseBackupRetentionPeriod = params['BaseBackupRetentionPeriod']
           @BackupPeriod = params['BackupPeriod']
+          @LogBackupRetentionPeriod = params['LogBackupRetentionPeriod']
         end
       end
 
@@ -5276,10 +5284,12 @@ module TencentCloud
         # @type SwitchStartTime: String
         # @param SwitchEndTime: 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。
         # @type SwitchEndTime: String
+        # @param Cpu: 修改后的实例CPU大小，单位Core。
+        # @type Cpu: Integer
 
-        attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime
+        attr_accessor :DBInstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :ActivityId, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :Cpu
 
-        def initialize(dbinstanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil)
+        def initialize(dbinstanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, activityid=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, cpu=nil)
           @DBInstanceId = dbinstanceid
           @Memory = memory
           @Storage = storage
@@ -5289,6 +5299,7 @@ module TencentCloud
           @SwitchTag = switchtag
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
+          @Cpu = cpu
         end
 
         def deserialize(params)
@@ -5301,6 +5312,7 @@ module TencentCloud
           @SwitchTag = params['SwitchTag']
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
+          @Cpu = params['Cpu']
         end
       end
 

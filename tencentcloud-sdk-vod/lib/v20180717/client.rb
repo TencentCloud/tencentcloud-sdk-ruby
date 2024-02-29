@@ -1922,6 +1922,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于查询默认分发配置。
+        # * 分发域名和分发协议，即媒体文件分发 URL 中的域名和协议。媒体文件按默认分发配置进行分发。
+        # * 播放密钥，用于计算播放器签名。
+
+        # @param request: Request instance for DescribeDefaultDistributionConfig.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeDefaultDistributionConfigRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeDefaultDistributionConfigResponse`
+        def DescribeDefaultDistributionConfig(request)
+          body = send_request('DescribeDefaultDistributionConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDefaultDistributionConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中 [DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643) 的升级版本。
 
         # 如果您是新接入点播加密的用户，不要使用该 API，请参考 [视频加密综述](https://cloud.tencent.com/document/product/266/45552) 使用推荐的加密方式。
@@ -3247,6 +3273,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyContentReviewTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改默认分发配置。
+        # * 分发域名和分发协议，即媒体文件分发 URL 中的域名和协议。媒体文件按默认分发配置进行分发。
+        # * 播放密钥，用于计算播放器签名。
+
+        # @param request: Request instance for ModifyDefaultDistributionConfig.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyDefaultDistributionConfigRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyDefaultDistributionConfigResponse`
+        def ModifyDefaultDistributionConfig(request)
+          body = send_request('ModifyDefaultDistributionConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDefaultDistributionConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
