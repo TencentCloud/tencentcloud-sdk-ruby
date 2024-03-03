@@ -4189,6 +4189,49 @@ module TencentCloud
         end
       end
 
+      # DescribeTopAttackInfo请求参数结构体
+      class DescribeTopAttackInfoRequest < TencentCloud::Common::AbstractModel
+        # @param OperatedMemberId: 被调用的集团账号的成员id
+        # @type OperatedMemberId: Array
+
+        attr_accessor :OperatedMemberId
+
+        def initialize(operatedmemberid=nil)
+          @OperatedMemberId = operatedmemberid
+        end
+
+        def deserialize(params)
+          @OperatedMemberId = params['OperatedMemberId']
+        end
+      end
+
+      # DescribeTopAttackInfo返回参数结构体
+      class DescribeTopAttackInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TopAttackInfo: Top攻击类型/攻击者次数
+        # @type TopAttackInfo: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopAttackInfo, :RequestId
+
+        def initialize(topattackinfo=nil, requestid=nil)
+          @TopAttackInfo = topattackinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopAttackInfo'].nil?
+            @TopAttackInfo = []
+            params['TopAttackInfo'].each do |i|
+              tagcount_tmp = TagCount.new
+              tagcount_tmp.deserialize(i)
+              @TopAttackInfo << tagcount_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVULRiskAdvanceCFGList请求参数结构体
       class DescribeVULRiskAdvanceCFGListRequest < TencentCloud::Common::AbstractModel
         # @param MemberId: 集团账号的成员id
@@ -6263,6 +6306,28 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # 产品日志条数
+      class TagCount < TencentCloud::Common::AbstractModel
+        # @param Name: 产品名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Count: 日志条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+
+        attr_accessor :Name, :Count
+
+        def initialize(name=nil, count=nil)
+          @Name = name
+          @Count = count
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Count = params['Count']
         end
       end
 

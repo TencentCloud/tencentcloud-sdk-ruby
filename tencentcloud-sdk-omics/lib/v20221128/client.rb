@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建缓存卷。
+
+        # @param request: Request instance for CreateVolume.
+        # @type request: :class:`Tencentcloud::omics::V20221128::CreateVolumeRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::CreateVolumeResponse`
+        def CreateVolume(request)
+          body = send_request('CreateVolume', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVolumeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除环境。
 
         # @param request: Request instance for DeleteEnvironment.
@@ -63,6 +87,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteEnvironmentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除缓存卷。
+
+        # @param request: Request instance for DeleteVolume.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DeleteVolumeRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DeleteVolumeResponse`
+        def DeleteVolume(request)
+          body = send_request('DeleteVolume', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVolumeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除缓存卷数据。
+
+        # @param request: Request instance for DeleteVolumeData.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DeleteVolumeDataRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DeleteVolumeDataResponse`
+        def DeleteVolumeData(request)
+          body = send_request('DeleteVolumeData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVolumeDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询缓存卷列表。
+
+        # @param request: Request instance for DescribeVolumes.
+        # @type request: :class:`Tencentcloud::omics::V20221128::DescribeVolumesRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::DescribeVolumesResponse`
+        def DescribeVolumes(request)
+          body = send_request('DescribeVolumes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVolumesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询作业详情。
 
         # @param request: Request instance for GetRunCalls.
@@ -279,6 +375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ImportTableFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改缓存卷。
+
+        # @param request: Request instance for ModifyVolume.
+        # @type request: :class:`Tencentcloud::omics::V20221128::ModifyVolumeRequest`
+        # @rtype: :class:`Tencentcloud::omics::V20221128::ModifyVolumeResponse`
+        def ModifyVolume(request)
+          body = send_request('ModifyVolume', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyVolumeResponse.new
             model.deserialize(response['Response'])
             model
           else

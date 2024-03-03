@@ -1017,7 +1017,7 @@ module TencentCloud
         # @type OrderId: String
         # @param ChannelId: 通道ID
         # @type ChannelId: Integer
-        # @param StorageRegion: 云存存储区域，国内默认为ap-guangzhou。海外默认为东南亚ap-singapore，可选美东na-ashburn、欧洲eu-frankfurt。
+        # @param StorageRegion: 云存视频存储区域，国内默认为ap-guangzhou。海外默认为东南亚ap-singapore，可选美东na-ashburn、欧洲eu-frankfurt。
         # @type StorageRegion: String
 
         attr_accessor :ProductId, :DeviceName, :PackageId, :Override, :PackageQueue, :OrderId, :ChannelId, :StorageRegion

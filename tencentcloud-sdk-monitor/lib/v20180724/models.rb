@@ -11484,10 +11484,16 @@ module TencentCloud
         # @param EnableExternal: 是否已开启公网访问，true 开启，false 未开启
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableExternal: Boolean
+        # @param DesiredAgentNum: 采集agent期望pod数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DesiredAgentNum: Integer
+        # @param ReadyAgentNum: 采集agent已正常启动pod数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadyAgentNum: Integer
 
-        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason, :Name, :EnableExternal
+        attr_accessor :ClusterType, :ClusterId, :Status, :ClusterName, :ExternalLabels, :Region, :VpcId, :FailedReason, :Name, :EnableExternal, :DesiredAgentNum, :ReadyAgentNum
 
-        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil, name=nil, enableexternal=nil)
+        def initialize(clustertype=nil, clusterid=nil, status=nil, clustername=nil, externallabels=nil, region=nil, vpcid=nil, failedreason=nil, name=nil, enableexternal=nil, desiredagentnum=nil, readyagentnum=nil)
           @ClusterType = clustertype
           @ClusterId = clusterid
           @Status = status
@@ -11498,6 +11504,8 @@ module TencentCloud
           @FailedReason = failedreason
           @Name = name
           @EnableExternal = enableexternal
+          @DesiredAgentNum = desiredagentnum
+          @ReadyAgentNum = readyagentnum
         end
 
         def deserialize(params)
@@ -11518,6 +11526,8 @@ module TencentCloud
           @FailedReason = params['FailedReason']
           @Name = params['Name']
           @EnableExternal = params['EnableExternal']
+          @DesiredAgentNum = params['DesiredAgentNum']
+          @ReadyAgentNum = params['ReadyAgentNum']
         end
       end
 

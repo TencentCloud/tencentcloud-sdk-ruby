@@ -215,6 +215,69 @@ module TencentCloud
         end
       end
 
+      # CreateVolume请求参数结构体
+      class CreateVolumeRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境ID。
+        # @type EnvironmentId: String
+        # @param Name: 名称。
+        # @type Name: String
+        # @param Type: 缓存卷类型，取值范围：
+        # * SHARED：多点挂载共享存储
+        # @type Type: String
+        # @param Spec: 缓存卷规格，取值范围：
+
+        # - SD：通用标准型
+        # - HP：通用性能型
+        # - TB：turbo标准型
+        # - TP：turbo性能型
+        # @type Spec: String
+        # @param Description: 描述。
+        # @type Description: String
+        # @param Capacity: 缓存卷大小（GB），Turbo系列需要指定。
+        # @type Capacity: Integer
+
+        attr_accessor :EnvironmentId, :Name, :Type, :Spec, :Description, :Capacity
+
+        def initialize(environmentid=nil, name=nil, type=nil, spec=nil, description=nil, capacity=nil)
+          @EnvironmentId = environmentid
+          @Name = name
+          @Type = type
+          @Spec = spec
+          @Description = description
+          @Capacity = capacity
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Spec = params['Spec']
+          @Description = params['Description']
+          @Capacity = params['Capacity']
+        end
+      end
+
+      # CreateVolume返回参数结构体
+      class CreateVolumeResponse < TencentCloud::Common::AbstractModel
+        # @param VolumeId: 缓存卷ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VolumeId, :RequestId
+
+        def initialize(volumeid=nil, requestid=nil)
+          @VolumeId = volumeid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VolumeId = params['VolumeId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库配置。
       class DatabaseOption < TencentCloud::Common::AbstractModel
         # @param Zone: 数据库可用区。
@@ -263,6 +326,74 @@ module TencentCloud
 
         def deserialize(params)
           @WorkflowUuid = params['WorkflowUuid']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVolumeData请求参数结构体
+      class DeleteVolumeDataRequest < TencentCloud::Common::AbstractModel
+        # @param VolumeId: 缓存卷ID。
+        # @type VolumeId: String
+        # @param Path: 需要删除的路径
+        # @type Path: String
+
+        attr_accessor :VolumeId, :Path
+
+        def initialize(volumeid=nil, path=nil)
+          @VolumeId = volumeid
+          @Path = path
+        end
+
+        def deserialize(params)
+          @VolumeId = params['VolumeId']
+          @Path = params['Path']
+        end
+      end
+
+      # DeleteVolumeData返回参数结构体
+      class DeleteVolumeDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVolume请求参数结构体
+      class DeleteVolumeRequest < TencentCloud::Common::AbstractModel
+        # @param VolumeId: 缓存卷ID。
+        # @type VolumeId: String
+
+        attr_accessor :VolumeId
+
+        def initialize(volumeid=nil)
+          @VolumeId = volumeid
+        end
+
+        def deserialize(params)
+          @VolumeId = params['VolumeId']
+        end
+      end
+
+      # DeleteVolume返回参数结构体
+      class DeleteVolumeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -609,6 +740,76 @@ module TencentCloud
               @Rows << tablerow_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVolumes请求参数结构体
+      class DescribeVolumesRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境ID。
+        # @type EnvironmentId: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤器，支持过滤字段：
+        # - Name：名称
+        # - IsDefault：是否为默认
+        # @type Filters: Array
+
+        attr_accessor :EnvironmentId, :Limit, :Offset, :Filters
+
+        def initialize(environmentid=nil, limit=nil, offset=nil, filters=nil)
+          @EnvironmentId = environmentid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeVolumes返回参数结构体
+      class DescribeVolumesResponse < TencentCloud::Common::AbstractModel
+        # @param Volumes: 缓存卷。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Volumes: Array
+        # @param TotalCount: 符合条件的数量。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Volumes, :TotalCount, :RequestId
+
+        def initialize(volumes=nil, totalcount=nil, requestid=nil)
+          @Volumes = volumes
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Volumes'].nil?
+            @Volumes = []
+            params['Volumes'].each do |i|
+              volume_tmp = Volume.new
+              volume_tmp.deserialize(i)
+              @Volumes << volume_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1069,6 +1270,46 @@ module TencentCloud
         end
       end
 
+      # ModifyVolume请求参数结构体
+      class ModifyVolumeRequest < TencentCloud::Common::AbstractModel
+        # @param VolumeId: 缓存卷ID。
+        # @type VolumeId: String
+        # @param Name: 名称。
+        # @type Name: String
+        # @param Description: 描述。
+        # @type Description: String
+
+        attr_accessor :VolumeId, :Name, :Description
+
+        def initialize(volumeid=nil, name=nil, description=nil)
+          @VolumeId = volumeid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @VolumeId = params['VolumeId']
+          @Name = params['Name']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyVolume返回参数结构体
+      class ModifyVolumeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Nextflow选项。
       class NFOption < TencentCloud::Common::AbstractModel
         # @param Config: Config。
@@ -1292,8 +1533,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2024, 2
-        deprecate :Option=, :none, 2024, 2
+        deprecate :Option, :none, 2024, 3
+        deprecate :Option=, :none, 2024, 3
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -2041,6 +2282,84 @@ module TencentCloud
           @SubnetZone = params['SubnetZone']
           @VPCCIDRBlock = params['VPCCIDRBlock']
           @SubnetCIDRBlock = params['SubnetCIDRBlock']
+        end
+      end
+
+      # 缓存卷。
+      class Volume < TencentCloud::Common::AbstractModel
+        # @param VolumeId: 缓存卷ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeId: String
+        # @param Name: 名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param EnvironmentId: 环境ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvironmentId: String
+        # @param Type: 缓存卷类型，取值范围：
+        # * SHARED：多点挂载共享存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Spec: 缓存卷规格，取值范围：
+
+        # - SD：通用标准型
+        # - HP：通用性能型
+        # - TB：turbo标准型
+        # - TP：turbo性能型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: String
+        # @param Capacity: 缓存卷大小（GB）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Capacity: Integer
+        # @param Usage: 缓存卷使用量（Byte）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Usage: Integer
+        # @param BandwidthLimit: 缓存卷吞吐上限（MiB/s）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BandwidthLimit: Float
+        # @param DefaultMountPath: 默认挂载路径。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultMountPath: String
+        # @param IsDefault: 是否为默认缓存卷。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Boolean
+        # @param Status: 状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :VolumeId, :Name, :Description, :EnvironmentId, :Type, :Spec, :Capacity, :Usage, :BandwidthLimit, :DefaultMountPath, :IsDefault, :Status
+
+        def initialize(volumeid=nil, name=nil, description=nil, environmentid=nil, type=nil, spec=nil, capacity=nil, usage=nil, bandwidthlimit=nil, defaultmountpath=nil, isdefault=nil, status=nil)
+          @VolumeId = volumeid
+          @Name = name
+          @Description = description
+          @EnvironmentId = environmentid
+          @Type = type
+          @Spec = spec
+          @Capacity = capacity
+          @Usage = usage
+          @BandwidthLimit = bandwidthlimit
+          @DefaultMountPath = defaultmountpath
+          @IsDefault = isdefault
+          @Status = status
+        end
+
+        def deserialize(params)
+          @VolumeId = params['VolumeId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @EnvironmentId = params['EnvironmentId']
+          @Type = params['Type']
+          @Spec = params['Spec']
+          @Capacity = params['Capacity']
+          @Usage = params['Usage']
+          @BandwidthLimit = params['BandwidthLimit']
+          @DefaultMountPath = params['DefaultMountPath']
+          @IsDefault = params['IsDefault']
+          @Status = params['Status']
         end
       end
 

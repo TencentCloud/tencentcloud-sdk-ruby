@@ -209,8 +209,8 @@ module TencentCloud
 
         attr_accessor :BatchId, :CorpId, :BatchCode, :CodeCnt, :MerchantId, :ProductId, :BatchType, :Remark, :MpTpl, :Status, :CreateTime, :UpdateTime, :MerchantName, :ProductName, :Ext, :TplName, :Job, :ProductionDate, :ValidDate, :Attrs
         extend Gem::Deprecate
-        deprecate :Ext, :none, 2023, 12
-        deprecate :Ext=, :none, 2023, 12
+        deprecate :Ext, :none, 2024, 3
+        deprecate :Ext=, :none, 2024, 3
 
         def initialize(batchid=nil, corpid=nil, batchcode=nil, codecnt=nil, merchantid=nil, productid=nil, batchtype=nil, remark=nil, mptpl=nil, status=nil, createtime=nil, updatetime=nil, merchantname=nil, productname=nil, ext=nil, tplname=nil, job=nil, productiondate=nil, validdate=nil, attrs=nil)
           @BatchId = batchid
@@ -1572,10 +1572,12 @@ module TencentCloud
         # @type BatchType: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param Status: 批次状态
+        # @type Status: Integer
 
-        attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId
+        attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId, :Status
 
-        def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil)
+        def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil, status=nil)
           @MerchantId = merchantid
           @ProductId = productid
           @Keyword = keyword
@@ -1583,6 +1585,7 @@ module TencentCloud
           @PageNumber = pagenumber
           @BatchType = batchtype
           @CorpId = corpid
+          @Status = status
         end
 
         def deserialize(params)
@@ -1593,6 +1596,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @BatchType = params['BatchType']
           @CorpId = params['CorpId']
+          @Status = params['Status']
         end
       end
 
@@ -1643,10 +1647,12 @@ module TencentCloud
         # @type BatchType: String
         # @param CorpId: 企业ID
         # @type CorpId: Integer
+        # @param Status: 批次状态
+        # @type Status: Integer
 
-        attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId
+        attr_accessor :MerchantId, :ProductId, :Keyword, :PageSize, :PageNumber, :BatchType, :CorpId, :Status
 
-        def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil)
+        def initialize(merchantid=nil, productid=nil, keyword=nil, pagesize=nil, pagenumber=nil, batchtype=nil, corpid=nil, status=nil)
           @MerchantId = merchantid
           @ProductId = productid
           @Keyword = keyword
@@ -1654,6 +1660,7 @@ module TencentCloud
           @PageNumber = pagenumber
           @BatchType = batchtype
           @CorpId = corpid
+          @Status = status
         end
 
         def deserialize(params)
@@ -1664,6 +1671,7 @@ module TencentCloud
           @PageNumber = params['PageNumber']
           @BatchType = params['BatchType']
           @CorpId = params['CorpId']
+          @Status = params['Status']
         end
       end
 
@@ -2590,8 +2598,8 @@ module TencentCloud
 
         attr_accessor :Products, :TotalCount, :ScanLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Products, :none, 2023, 12
-        deprecate :Products=, :none, 2023, 12
+        deprecate :Products, :none, 2024, 3
+        deprecate :Products=, :none, 2024, 3
 
         def initialize(products=nil, totalcount=nil, scanlogs=nil, requestid=nil)
           @Products = products
@@ -3002,8 +3010,8 @@ module TencentCloud
 
         attr_accessor :Value
         extend Gem::Deprecate
-        deprecate :Value, :none, 2023, 12
-        deprecate :Value=, :none, 2023, 12
+        deprecate :Value, :none, 2024, 3
+        deprecate :Value=, :none, 2024, 3
 
         def initialize(value=nil)
           @Value = value

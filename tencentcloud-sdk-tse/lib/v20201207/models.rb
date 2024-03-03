@@ -783,8 +783,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2024, 2
-        deprecate :MaxReplicas=, :none, 2024, 2
+        deprecate :MaxReplicas, :none, 2024, 3
+        deprecate :MaxReplicas=, :none, 2024, 3
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -846,16 +846,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 2
-        deprecate :Enabled=, :none, 2024, 2
-        deprecate :CreateTime, :none, 2024, 2
-        deprecate :CreateTime=, :none, 2024, 2
-        deprecate :ModifyTime, :none, 2024, 2
-        deprecate :ModifyTime=, :none, 2024, 2
-        deprecate :StrategyId, :none, 2024, 2
-        deprecate :StrategyId=, :none, 2024, 2
-        deprecate :AutoScalerId, :none, 2024, 2
-        deprecate :AutoScalerId=, :none, 2024, 2
+        deprecate :Enabled, :none, 2024, 3
+        deprecate :Enabled=, :none, 2024, 3
+        deprecate :CreateTime, :none, 2024, 3
+        deprecate :CreateTime=, :none, 2024, 3
+        deprecate :ModifyTime, :none, 2024, 3
+        deprecate :ModifyTime=, :none, 2024, 3
+        deprecate :StrategyId, :none, 2024, 3
+        deprecate :StrategyId=, :none, 2024, 3
+        deprecate :AutoScalerId, :none, 2024, 3
+        deprecate :AutoScalerId=, :none, 2024, 3
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -984,14 +984,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2024, 2
-        deprecate :Enabled=, :none, 2024, 2
-        deprecate :CreateTime, :none, 2024, 2
-        deprecate :CreateTime=, :none, 2024, 2
-        deprecate :ModifyTime, :none, 2024, 2
-        deprecate :ModifyTime=, :none, 2024, 2
-        deprecate :StrategyId, :none, 2024, 2
-        deprecate :StrategyId=, :none, 2024, 2
+        deprecate :Enabled, :none, 2024, 3
+        deprecate :Enabled=, :none, 2024, 3
+        deprecate :CreateTime, :none, 2024, 3
+        deprecate :CreateTime=, :none, 2024, 3
+        deprecate :ModifyTime, :none, 2024, 3
+        deprecate :ModifyTime=, :none, 2024, 3
+        deprecate :StrategyId, :none, 2024, 3
+        deprecate :StrategyId=, :none, 2024, 3
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1090,10 +1090,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 2
-        deprecate :CronScalerConfig=, :none, 2024, 2
-        deprecate :MaxReplicas, :none, 2024, 2
-        deprecate :MaxReplicas=, :none, 2024, 2
+        deprecate :CronScalerConfig, :none, 2024, 3
+        deprecate :CronScalerConfig=, :none, 2024, 3
+        deprecate :MaxReplicas, :none, 2024, 3
+        deprecate :MaxReplicas=, :none, 2024, 3
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1137,8 +1137,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2024, 2
-        deprecate :Result=, :none, 2024, 2
+        deprecate :Result, :none, 2024, 3
+        deprecate :Result=, :none, 2024, 3
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1213,10 +1213,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2024, 2
-        deprecate :Key=, :none, 2024, 2
-        deprecate :Crt, :none, 2024, 2
-        deprecate :Crt=, :none, 2024, 2
+        deprecate :Key, :none, 2024, 3
+        deprecate :Key=, :none, 2024, 3
+        deprecate :Crt, :none, 2024, 3
+        deprecate :Crt=, :none, 2024, 3
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -1544,8 +1544,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 2
-        deprecate :ForceHttps=, :none, 2024, 2
+        deprecate :ForceHttps, :none, 2024, 3
+        deprecate :ForceHttps=, :none, 2024, 3
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -1946,6 +1946,53 @@ module TencentCloud
 
         def deserialize(params)
           @ServiceId = params['ServiceId']
+        end
+      end
+
+      # CreateGovernanceInstances请求参数结构体
+      class CreateGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceInstances: 服务实例信息。
+        # @type GovernanceInstances: Array
+
+        attr_accessor :InstanceId, :GovernanceInstances
+
+        def initialize(instanceid=nil, governanceinstances=nil)
+          @InstanceId = instanceid
+          @GovernanceInstances = governanceinstances
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceInstances'].nil?
+            @GovernanceInstances = []
+            params['GovernanceInstances'].each do |i|
+              governanceinstanceinput_tmp = GovernanceInstanceInput.new
+              governanceinstanceinput_tmp.deserialize(i)
+              @GovernanceInstances << governanceinstanceinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGovernanceInstances返回参数结构体
+      class CreateGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2481,6 +2528,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGovernanceInstances请求参数结构体
+      class DeleteGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceInstances: 要删除的服务实例信息。
+        # @type GovernanceInstances: Array
+
+        attr_accessor :InstanceId, :GovernanceInstances
+
+        def initialize(instanceid=nil, governanceinstances=nil)
+          @InstanceId = instanceid
+          @GovernanceInstances = governanceinstances
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceInstances'].nil?
+            @GovernanceInstances = []
+            params['GovernanceInstances'].each do |i|
+              governanceinstanceupdate_tmp = GovernanceInstanceUpdate.new
+              governanceinstanceupdate_tmp.deserialize(i)
+              @GovernanceInstances << governanceinstanceupdate_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceInstances返回参数结构体
+      class DeleteGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -3569,6 +3663,100 @@ module TencentCloud
         end
       end
 
+      # DescribeGovernanceInstances请求参数结构体
+      class DescribeGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 实例所在的服务名。
+        # @type Service: String
+        # @param Namespace: 实例所在命名空间名。
+        # @type Namespace: String
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param Host: 根据实例ip过滤，多个ip使用英文逗号分隔。
+        # @type Host: String
+        # @param InstanceVersion: 根据实例版本过滤。
+        # @type InstanceVersion: String
+        # @param Protocol: 根据实例协议过滤。
+        # @type Protocol: String
+        # @param HealthStatus: 根据实例健康状态过滤。false：表示不健康，true：表示健康。
+        # @type HealthStatus: Boolean
+        # @param Isolate: 根据实例隔离状态过滤。false：表示非隔离，true：表示隔离中。
+        # @type Isolate: Boolean
+        # @param Metadatas: 根据元数据信息过滤。目前只支持一组元数据键值，若传了多个键值对，只会以第一个过滤。
+        # @type Metadatas: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :Service, :Namespace, :InstanceId, :Host, :InstanceVersion, :Protocol, :HealthStatus, :Isolate, :Metadatas, :Offset, :Limit
+
+        def initialize(service=nil, namespace=nil, instanceid=nil, host=nil, instanceversion=nil, protocol=nil, healthstatus=nil, isolate=nil, metadatas=nil, offset=nil, limit=nil)
+          @Service = service
+          @Namespace = namespace
+          @InstanceId = instanceid
+          @Host = host
+          @InstanceVersion = instanceversion
+          @Protocol = protocol
+          @HealthStatus = healthstatus
+          @Isolate = isolate
+          @Metadatas = metadatas
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @InstanceId = params['InstanceId']
+          @Host = params['Host']
+          @InstanceVersion = params['InstanceVersion']
+          @Protocol = params['Protocol']
+          @HealthStatus = params['HealthStatus']
+          @Isolate = params['Isolate']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGovernanceInstances返回参数结构体
+      class DescribeGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 服务实例总数量。
+        # @type TotalCount: Integer
+        # @param Content: 服务里实例列表。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              governanceinstance_tmp = GovernanceInstance.new
+              governanceinstance_tmp.deserialize(i)
+              @Content << governanceinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例地域信息描述
       class DescribeInstanceRegionInfo < TencentCloud::Common::AbstractModel
         # @param EngineRegion: 引擎部署地域信息
@@ -4230,8 +4418,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2024, 2
-        deprecate :Type=, :none, 2024, 2
+        deprecate :Type, :none, 2024, 3
+        deprecate :Type=, :none, 2024, 3
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -4690,6 +4878,224 @@ module TencentCloud
         end
       end
 
+      # 治理中心实例信息。
+      class GovernanceInstance < TencentCloud::Common::AbstractModel
+        # @param Id: 实例id。
+        # @type Id: String
+        # @param Service: 实例所在服务名。
+        # @type Service: String
+        # @param Namespace: 实例所在命名空间名。
+        # @type Namespace: String
+        # @param Host: 实例ip地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Port: 实例端口信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: Integer
+        # @param Protocol: 通信协议。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Version: 版本信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Weight: 负载均衡权重。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param EnableHealthCheck: 是否开启健康检查。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableHealthCheck: Boolean
+        # @param Healthy: 实例是否健康。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Healthy: Boolean
+        # @param Isolate: 实例是否隔离。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Isolate: Boolean
+        # @param CreateTime: 实例创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 实例修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Metadatas: 元数据数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
+        # @param Ttl: 上报心跳间隔。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ttl: Integer
+
+        attr_accessor :Id, :Service, :Namespace, :Host, :Port, :Protocol, :Version, :Weight, :EnableHealthCheck, :Healthy, :Isolate, :CreateTime, :ModifyTime, :Metadatas, :Ttl
+
+        def initialize(id=nil, service=nil, namespace=nil, host=nil, port=nil, protocol=nil, version=nil, weight=nil, enablehealthcheck=nil, healthy=nil, isolate=nil, createtime=nil, modifytime=nil, metadatas=nil, ttl=nil)
+          @Id = id
+          @Service = service
+          @Namespace = namespace
+          @Host = host
+          @Port = port
+          @Protocol = protocol
+          @Version = version
+          @Weight = weight
+          @EnableHealthCheck = enablehealthcheck
+          @Healthy = healthy
+          @Isolate = isolate
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Metadatas = metadatas
+          @Ttl = ttl
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Host = params['Host']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @Version = params['Version']
+          @Weight = params['Weight']
+          @EnableHealthCheck = params['EnableHealthCheck']
+          @Healthy = params['Healthy']
+          @Isolate = params['Isolate']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @Ttl = params['Ttl']
+        end
+      end
+
+      # 实例信息
+      class GovernanceInstanceInput < TencentCloud::Common::AbstractModel
+        # @param Service: 实例所在服务名。
+        # @type Service: String
+        # @param Namespace: 实例服务所在命名空间。
+        # @type Namespace: String
+        # @param Weight: 实例负载均衡权重信息。不填默认为100。
+        # @type Weight: Integer
+        # @param Healthy: 实例默认健康信息。不填默认为健康。
+        # @type Healthy: Boolean
+        # @param Isolate: 实例隔离信息。不填默认为非隔离。
+        # @type Isolate: Boolean
+        # @param Host: 实例ip。
+        # @type Host: String
+        # @param Port: 实例监听端口。
+        # @type Port: Integer
+        # @param Protocol: 实例使用协议。不填默认为空。
+        # @type Protocol: String
+        # @param InstanceVersion: 实例版本。不填默认为空。
+        # @type InstanceVersion: String
+        # @param EnableHealthCheck: 是否启用健康检查。不填默认不启用。
+        # @type EnableHealthCheck: Boolean
+        # @param Ttl: 上报心跳时间间隔。若 EnableHealthCheck 为不启用，则此参数不生效；若 EnableHealthCheck 启用，此参数不填，则默认 ttl 为 5s。
+        # @type Ttl: Integer
+
+        attr_accessor :Service, :Namespace, :Weight, :Healthy, :Isolate, :Host, :Port, :Protocol, :InstanceVersion, :EnableHealthCheck, :Ttl
+
+        def initialize(service=nil, namespace=nil, weight=nil, healthy=nil, isolate=nil, host=nil, port=nil, protocol=nil, instanceversion=nil, enablehealthcheck=nil, ttl=nil)
+          @Service = service
+          @Namespace = namespace
+          @Weight = weight
+          @Healthy = healthy
+          @Isolate = isolate
+          @Host = host
+          @Port = port
+          @Protocol = protocol
+          @InstanceVersion = instanceversion
+          @EnableHealthCheck = enablehealthcheck
+          @Ttl = ttl
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Weight = params['Weight']
+          @Healthy = params['Healthy']
+          @Isolate = params['Isolate']
+          @Host = params['Host']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @InstanceVersion = params['InstanceVersion']
+          @EnableHealthCheck = params['EnableHealthCheck']
+          @Ttl = params['Ttl']
+        end
+      end
+
+      # 实例信息
+      class GovernanceInstanceUpdate < TencentCloud::Common::AbstractModel
+        # @param Service: 实例所在服务名。
+        # @type Service: String
+        # @param Namespace: 实例服务所在命名空间。
+        # @type Namespace: String
+        # @param Id: 治理中心服务实例id。
+        # @type Id: String
+        # @param Weight: 实例负载均衡权重信息。不填默认为100。
+        # @type Weight: Integer
+        # @param Healthy: 实例默认健康信息。不填默认为健康。
+        # @type Healthy: Boolean
+        # @param Isolate: 实例隔离信息。不填默认为非隔离。
+        # @type Isolate: Boolean
+        # @param Host: 实例ip。
+        # @type Host: String
+        # @param Port: 实例监听端口。
+        # @type Port: Integer
+        # @param Protocol: 实例使用协议。不填默认为空。
+        # @type Protocol: String
+        # @param InstanceVersion: 实例版本。不填默认为空。
+        # @type InstanceVersion: String
+        # @param EnableHealthCheck: 是否启用健康检查。不填默认不启用。
+        # @type EnableHealthCheck: Boolean
+        # @param Ttl: 上报心跳时间间隔。若 EnableHealthCheck 为不启用，则此参数不生效；若 EnableHealthCheck 启用，此参数不填，则默认 ttl 为 5s。
+        # @type Ttl: Integer
+        # @param Metadatas: 元数据信息。
+        # @type Metadatas: Array
+
+        attr_accessor :Service, :Namespace, :Id, :Weight, :Healthy, :Isolate, :Host, :Port, :Protocol, :InstanceVersion, :EnableHealthCheck, :Ttl, :Metadatas
+
+        def initialize(service=nil, namespace=nil, id=nil, weight=nil, healthy=nil, isolate=nil, host=nil, port=nil, protocol=nil, instanceversion=nil, enablehealthcheck=nil, ttl=nil, metadatas=nil)
+          @Service = service
+          @Namespace = namespace
+          @Id = id
+          @Weight = weight
+          @Healthy = healthy
+          @Isolate = isolate
+          @Host = host
+          @Port = port
+          @Protocol = protocol
+          @InstanceVersion = instanceversion
+          @EnableHealthCheck = enablehealthcheck
+          @Ttl = ttl
+          @Metadatas = metadatas
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Id = params['Id']
+          @Weight = params['Weight']
+          @Healthy = params['Healthy']
+          @Isolate = params['Isolate']
+          @Host = params['Host']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+          @InstanceVersion = params['InstanceVersion']
+          @EnableHealthCheck = params['EnableHealthCheck']
+          @Ttl = params['Ttl']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+        end
+      end
+
       # 实例监听端口信息
       class InstancePort < TencentCloud::Common::AbstractModel
         # @param HttpPort: 监听的 http 端口范围。
@@ -4889,8 +5295,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2024, 2
-        deprecate :Pages=, :none, 2024, 2
+        deprecate :Pages, :none, 2024, 3
+        deprecate :Pages=, :none, 2024, 3
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -5048,8 +5454,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 2
-        deprecate :ForceHttps=, :none, 2024, 2
+        deprecate :ForceHttps, :none, 2024, 3
+        deprecate :ForceHttps=, :none, 2024, 3
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil)
           @ID = id
@@ -5608,6 +6014,28 @@ module TencentCloud
         end
       end
 
+      # 元数据信息
+      class Metadata < TencentCloud::Common::AbstractModel
+        # @param Key: 元数据键名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 元数据键值。不填则默认为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyAutoScalerResourceStrategy请求参数结构体
       class ModifyAutoScalerResourceStrategyRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID
@@ -5629,10 +6057,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2024, 2
-        deprecate :CronScalerConfig=, :none, 2024, 2
-        deprecate :MaxReplicas, :none, 2024, 2
-        deprecate :MaxReplicas=, :none, 2024, 2
+        deprecate :CronScalerConfig, :none, 2024, 3
+        deprecate :CronScalerConfig=, :none, 2024, 3
+        deprecate :MaxReplicas, :none, 2024, 3
+        deprecate :MaxReplicas=, :none, 2024, 3
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -5756,10 +6184,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2024, 2
-        deprecate :Name=, :none, 2024, 2
-        deprecate :BindDomains, :none, 2024, 2
-        deprecate :BindDomains=, :none, 2024, 2
+        deprecate :Name, :none, 2024, 3
+        deprecate :Name=, :none, 2024, 3
+        deprecate :BindDomains, :none, 2024, 3
+        deprecate :BindDomains=, :none, 2024, 3
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -5943,8 +6371,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2024, 2
-        deprecate :ForceHttps=, :none, 2024, 2
+        deprecate :ForceHttps, :none, 2024, 3
+        deprecate :ForceHttps=, :none, 2024, 3
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil)
           @GatewayId = gatewayid
@@ -6170,6 +6598,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGovernanceInstances请求参数结构体
+      class ModifyGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceInstances: 服务实例信息。
+        # @type GovernanceInstances: Array
+
+        attr_accessor :InstanceId, :GovernanceInstances
+
+        def initialize(instanceid=nil, governanceinstances=nil)
+          @InstanceId = instanceid
+          @GovernanceInstances = governanceinstances
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceInstances'].nil?
+            @GovernanceInstances = []
+            params['GovernanceInstances'].each do |i|
+              governanceinstanceupdate_tmp = GovernanceInstanceUpdate.new
+              governanceinstanceupdate_tmp.deserialize(i)
+              @GovernanceInstances << governanceinstanceupdate_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGovernanceInstances返回参数结构体
+      class ModifyGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end

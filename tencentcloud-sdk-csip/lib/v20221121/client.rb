@@ -749,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询TOP攻击信息
+
+        # @param request: Request instance for DescribeTopAttackInfo.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeTopAttackInfoRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeTopAttackInfoResponse`
+        def DescribeTopAttackInfo(request)
+          body = send_request('DescribeTopAttackInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopAttackInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询漏洞风险高级配置
 
         # @param request: Request instance for DescribeVULRiskAdvanceCFGList.

@@ -2238,7 +2238,7 @@ module TencentCloud
         # @type RenewFlag: Integer
         # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1、3.2.3], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
-        # @param SpecificationsType: 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession"
+        # @param SpecificationsType: 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession",[高级版实例]填写"premium"
         # @type SpecificationsType: String
         # @param DiskSize: 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功
         # @type DiskSize: Integer
@@ -2248,7 +2248,7 @@ module TencentCloud
         # @type Partition: Integer
         # @param Tags: 标签
         # @type Tags: Array
-        # @param DiskType: 专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"
+        # @param DiskType: 专业版/高级版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"
         # @type DiskType: String
         # @param MultiZoneFlag: 是否创建跨可用区实例，当前参数为 true 时，zoneIds必填
         # @type MultiZoneFlag: Boolean
@@ -2334,8 +2334,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2024, 1
-        deprecate :DeleteRouteTimestamp=, :none, 2024, 1
+        deprecate :DeleteRouteTimestamp, :none, 2024, 3
+        deprecate :DeleteRouteTimestamp=, :none, 2024, 3
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -7192,21 +7192,21 @@ module TencentCloud
 
       # InquireCkafkaPrice请求参数结构体
       class InquireCkafkaPriceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceType: 国内站标准版填写standards2, 国际站标准版填写standard，专业版填写profession
+        # @param InstanceType: 国内站标准版填写standards2, 国际站标准版填写standard,专业版填写profession,高级版填写premium
         # @type InstanceType: String
         # @param InstanceChargeParam: 购买/续费付费类型(购买时不填的话, 默认获取购买包年包月一个月的费用)
         # @type InstanceChargeParam: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceChargeParam`
         # @param InstanceNum: 购买/续费时购买的实例数量(不填时, 默认为1个)
         # @type InstanceNum: Integer
-        # @param Bandwidth: 实例内网带宽大小, 单位MB/s (购买时必填，专业版询价时带宽信息必填)
+        # @param Bandwidth: 实例内网带宽大小, 单位MB/s (购买时必填，专业版/高级版询价时带宽信息必填)
         # @type Bandwidth: Integer
-        # @param InquiryDiskParam: 实例的硬盘购买类型以及大小 (购买时必填，专业版询价时磁盘信息必填)
+        # @param InquiryDiskParam: 实例的硬盘购买类型以及大小 (购买时必填，专业版/高级版询价时磁盘信息必填)
         # @type InquiryDiskParam: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryDiskParam`
         # @param MessageRetention: 实例消息保留时间大小, 单位小时 (购买时必填)
         # @type MessageRetention: Integer
         # @param Topic: 购买实例topic数, 单位个 (购买时必填)
         # @type Topic: Integer
-        # @param Partition: 购买实例分区数, 单位个 (购买时必填，专业版询价时带宽信息必填)
+        # @param Partition: 购买实例分区数, 单位个 (购买时必填，专业版/高级版询价时带宽信息必填)
         # @type Partition: Integer
         # @param ZoneIds: 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId
         # @type ZoneIds: Array
@@ -11794,8 +11794,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2024, 1
-        deprecate :Exflag=, :none, 2024, 1
+        deprecate :Exflag, :none, 2024, 3
+        deprecate :Exflag=, :none, 2024, 3
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid
