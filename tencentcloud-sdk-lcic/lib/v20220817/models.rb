@@ -111,12 +111,47 @@ module TencentCloud
 
       # 应用配置信息
       class AppConfig < TencentCloud::Common::AbstractModel
+        # @param ApplicationId: 应用ID
+        # @type ApplicationId: String
+        # @param AppName: 应用名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppName: String
+        # @param State: 应用状态 1正常 2停用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param AppVersion: 1试用 2轻量版 3标准版 4旗舰版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppVersion: Integer
+        # @param CreatedAt: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param Callback: 回调
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Callback: String
+        # @param CallbackKey: 回调Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CallbackKey: String
 
+        attr_accessor :ApplicationId, :AppName, :State, :AppVersion, :CreatedAt, :Callback, :CallbackKey
 
-        def initialize()
+        def initialize(applicationid=nil, appname=nil, state=nil, appversion=nil, createdat=nil, callback=nil, callbackkey=nil)
+          @ApplicationId = applicationid
+          @AppName = appname
+          @State = state
+          @AppVersion = appversion
+          @CreatedAt = createdat
+          @Callback = callback
+          @CallbackKey = callbackkey
         end
 
         def deserialize(params)
+          @ApplicationId = params['ApplicationId']
+          @AppName = params['AppName']
+          @State = params['State']
+          @AppVersion = params['AppVersion']
+          @CreatedAt = params['CreatedAt']
+          @Callback = params['Callback']
+          @CallbackKey = params['CallbackKey']
         end
       end
 
@@ -863,7 +898,7 @@ module TencentCloud
         # @type RTCAudienceNumber: Integer
         # @param AudienceType: 观看类型。互动观看 （默认）
         # @type AudienceType: Integer
-        # @param RecordLayout: 录制模板。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        # @param RecordLayout: 录制模板。房间子类型为视频+白板（SubType=videodoc）时默认为3，房间子类型为纯视频（SubType=video）时默认为0。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         # @type RecordLayout: Integer
         # @param GroupId: 房间绑定的群组ID,非空时限制组成员进入
         # @type GroupId: String
@@ -1375,15 +1410,18 @@ module TencentCloud
         # @type AppConfig: :class:`Tencentcloud::Lcic.v20220817.models.AppConfig`
         # @param SceneConfig: 场景配置
         # @type SceneConfig: Array
+        # @param TransferConfig: 转存配置
+        # @type TransferConfig: :class:`Tencentcloud::Lcic.v20220817.models.TransferItem`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SdkAppId, :AppConfig, :SceneConfig, :RequestId
+        attr_accessor :SdkAppId, :AppConfig, :SceneConfig, :TransferConfig, :RequestId
 
-        def initialize(sdkappid=nil, appconfig=nil, sceneconfig=nil, requestid=nil)
+        def initialize(sdkappid=nil, appconfig=nil, sceneconfig=nil, transferconfig=nil, requestid=nil)
           @SdkAppId = sdkappid
           @AppConfig = appconfig
           @SceneConfig = sceneconfig
+          @TransferConfig = transferconfig
           @RequestId = requestid
         end
 
@@ -1400,6 +1438,10 @@ module TencentCloud
               sceneitem_tmp.deserialize(i)
               @SceneConfig << sceneitem_tmp
             end
+          end
+          unless params['TransferConfig'].nil?
+            @TransferConfig = TransferItem.new
+            @TransferConfig.deserialize(params['TransferConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -3463,19 +3505,27 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 回调key。
         # @type CallbackKey: String
+        # @param TransferId: 转存id
+        # @type TransferId: String
+        # @param TransferUrl: 转存地址
+        # @type TransferUrl: String
 
-        attr_accessor :SdkAppId, :Callback, :CallbackKey
+        attr_accessor :SdkAppId, :Callback, :CallbackKey, :TransferId, :TransferUrl
 
-        def initialize(sdkappid=nil, callback=nil, callbackkey=nil)
+        def initialize(sdkappid=nil, callback=nil, callbackkey=nil, transferid=nil, transferurl=nil)
           @SdkAppId = sdkappid
           @Callback = callback
           @CallbackKey = callbackkey
+          @TransferId = transferid
+          @TransferUrl = transferurl
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @Callback = params['Callback']
           @CallbackKey = params['CallbackKey']
+          @TransferId = params['TransferId']
+          @TransferUrl = params['TransferUrl']
         end
       end
 
@@ -4118,12 +4168,37 @@ module TencentCloud
 
       # 场景配置
       class SceneItem < TencentCloud::Common::AbstractModel
+        # @param Scene: 场景名称
+        # @type Scene: String
+        # @param LogoUrl: logo地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogoUrl: String
+        # @param HomeUrl: 主页地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HomeUrl: String
+        # @param JSUrl: 自定义的js
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JSUrl: String
+        # @param CSSUrl: 自定义的css
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CSSUrl: String
 
+        attr_accessor :Scene, :LogoUrl, :HomeUrl, :JSUrl, :CSSUrl
 
-        def initialize()
+        def initialize(scene=nil, logourl=nil, homeurl=nil, jsurl=nil, cssurl=nil)
+          @Scene = scene
+          @LogoUrl = logourl
+          @HomeUrl = homeurl
+          @JSUrl = jsurl
+          @CSSUrl = cssurl
         end
 
         def deserialize(params)
+          @Scene = params['Scene']
+          @LogoUrl = params['LogoUrl']
+          @HomeUrl = params['HomeUrl']
+          @JSUrl = params['JSUrl']
+          @CSSUrl = params['CSSUrl']
         end
       end
 
@@ -4420,6 +4495,23 @@ module TencentCloud
 
         def deserialize(params)
           @Text = params['Text']
+        end
+      end
+
+      # 转存配置
+      class TransferItem < TencentCloud::Common::AbstractModel
+        # @param State: 转存状态， 1正常 2停用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+
+        attr_accessor :State
+
+        def initialize(state=nil)
+          @State = state
+        end
+
+        def deserialize(params)
+          @State = params['State']
         end
       end
 

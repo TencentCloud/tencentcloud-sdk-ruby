@@ -1207,6 +1207,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新技能组
+
+        # @param request: Request instance for UpdateCCCSkillGroup.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::UpdateCCCSkillGroupRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::UpdateCCCSkillGroupResponse`
+        def UpdateCCCSkillGroup(request)
+          body = send_request('UpdateCCCSkillGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCCCSkillGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 任务未启动前，更新预测式外呼任务。
 
         # @param request: Request instance for UpdatePredictiveDialingCampaign.

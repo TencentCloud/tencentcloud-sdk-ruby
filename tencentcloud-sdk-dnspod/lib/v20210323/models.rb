@@ -961,7 +961,7 @@ module TencentCloud
         # @type MX: Integer
         # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。
         # @type TTL: Integer
-        # @param Weight: 权重信息，0到100的整数。仅企业 VIP 域名可用，0 表示关闭，不传该参数，表示不设置权重信息。
+        # @param Weight: 权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。
         # @type Weight: Integer
         # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         # @type Status: String
@@ -4715,7 +4715,7 @@ module TencentCloud
         # @type MX: Integer
         # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。
         # @type TTL: Integer
-        # @param Weight: 权重信息，0到100的整数。仅企业 VIP 域名可用，0 表示关闭，不传该参数，表示不设置权重信息。
+        # @param Weight: 权重信息，0到100的整数。0 表示关闭，不传该参数，表示不设置权重信息。
         # @type Weight: Integer
         # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         # @type Status: String

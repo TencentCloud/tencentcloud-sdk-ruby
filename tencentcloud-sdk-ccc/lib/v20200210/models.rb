@@ -4426,6 +4426,54 @@ module TencentCloud
         end
       end
 
+      # UpdateCCCSkillGroup请求参数结构体
+      class UpdateCCCSkillGroupRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填）
+        # @type SdkAppId: Integer
+        # @param SkillGroupID: 技能组ID
+        # @type SkillGroupID: Integer
+        # @param SkillGroupName: 修改后的技能组名字
+        # @type SkillGroupName: String
+        # @param MaxConcurrency: 修改后的最大并发数,同振最大为2
+        # @type MaxConcurrency: Integer
+        # @param RingAll: true同振，false顺振
+        # @type RingAll: Boolean
+
+        attr_accessor :SdkAppId, :SkillGroupID, :SkillGroupName, :MaxConcurrency, :RingAll
+
+        def initialize(sdkappid=nil, skillgroupid=nil, skillgroupname=nil, maxconcurrency=nil, ringall=nil)
+          @SdkAppId = sdkappid
+          @SkillGroupID = skillgroupid
+          @SkillGroupName = skillgroupname
+          @MaxConcurrency = maxconcurrency
+          @RingAll = ringall
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SkillGroupID = params['SkillGroupID']
+          @SkillGroupName = params['SkillGroupName']
+          @MaxConcurrency = params['MaxConcurrency']
+          @RingAll = params['RingAll']
+        end
+      end
+
+      # UpdateCCCSkillGroup返回参数结构体
+      class UpdateCCCSkillGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdatePredictiveDialingCampaign请求参数结构体
       class UpdatePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc

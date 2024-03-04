@@ -1301,16 +1301,19 @@ module TencentCloud
         # @type DiscountPrice: Float
         # @param Action: 订单行为，purchase：新购，renew：续费，upgrade：升配，downgrade：降配，refund：退货退款。
         # @type Action: String
+        # @param InstanceId: 当前订单的资源Id。
+        # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :OriginalPrice, :DiscountPrice, :Action, :RequestId
+        attr_accessor :Status, :OriginalPrice, :DiscountPrice, :Action, :InstanceId, :RequestId
 
-        def initialize(status=nil, originalprice=nil, discountprice=nil, action=nil, requestid=nil)
+        def initialize(status=nil, originalprice=nil, discountprice=nil, action=nil, instanceid=nil, requestid=nil)
           @Status = status
           @OriginalPrice = originalprice
           @DiscountPrice = discountprice
           @Action = action
+          @InstanceId = instanceid
           @RequestId = requestid
         end
 
@@ -1319,6 +1322,7 @@ module TencentCloud
           @OriginalPrice = params['OriginalPrice']
           @DiscountPrice = params['DiscountPrice']
           @Action = params['Action']
+          @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
         end
       end
