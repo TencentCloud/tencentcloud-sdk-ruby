@@ -701,32 +701,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口支持删除多个集群，目前已废弃
-
-        # 删除专业集群——预付费，仅通过API 调用，支持同时删除多个集群
-
-        # @param request: Request instance for DeleteProClusters.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteProClustersRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DeleteProClustersResponse`
-        def DeleteProClusters(request)
-          body = send_request('DeleteProClusters', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteProClustersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除RabbitMQ的用户
 
         # @param request: Request instance for DeleteRabbitMQUser.
@@ -1337,6 +1311,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEnvironmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询消息轨迹
+
+        # @param request: Request instance for DescribeMqMsgTrace.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeMqMsgTraceRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeMqMsgTraceResponse`
+        def DescribeMqMsgTrace(request)
+          body = send_request('DescribeMqMsgTrace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMqMsgTraceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 消息详情
+
+        # @param request: Request instance for DescribeMsg.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeMsgRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeMsgResponse`
+        def DescribeMsg(request)
+          body = send_request('DescribeMsg', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMsgResponse.new
             model.deserialize(response['Response'])
             model
           else

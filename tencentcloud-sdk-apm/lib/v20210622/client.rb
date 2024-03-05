@@ -53,7 +53,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取Apm Agent信息
+        # 获取APM Agent信息
 
         # @param request: Request instance for DescribeApmAgent.
         # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmAgentRequest`

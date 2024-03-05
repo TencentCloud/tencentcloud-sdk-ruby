@@ -1949,45 +1949,48 @@ module TencentCloud
 
       # ModifyDirectConnectTunnelExtra请求参数结构体
       class ModifyDirectConnectTunnelExtraRequest < TencentCloud::Common::AbstractModel
-        # @param DirectConnectTunnelId: 专用通道ID
+        # @param DirectConnectTunnelId: 专用通道ID。
         # @type DirectConnectTunnelId: String
-        # @param Vlan: 专用通道的Vlan
+        # @param Vlan: 专用通道的Vlan。
         # @type Vlan: Integer
-        # @param BgpPeer: 用户侧BGP，Asn，AuthKey
+        # @param BgpPeer: Bgp参数，包括Asn，AuthKey
         # @type BgpPeer: :class:`Tencentcloud::Dc.v20180410.models.BgpPeer`
-        # @param RouteFilterPrefixes: 用户侧过滤网段地址
+        # @param RouteFilterPrefixes: 用户侧过滤网段地址。
         # @type RouteFilterPrefixes: :class:`Tencentcloud::Dc.v20180410.models.RouteFilterPrefix`
-        # @param TencentAddress: 腾讯侧互联IP
+        # @param TencentAddress: 腾讯侧互联IP。
         # @type TencentAddress: String
-        # @param TencentBackupAddress: 腾讯侧备用互联IP
+        # @param TencentBackupAddress: 腾讯侧备用互联IP。
         # @type TencentBackupAddress: String
-        # @param CustomerAddress: 用户侧互联IP
+        # @param CustomerAddress: 用户侧互联IP。
         # @type CustomerAddress: String
-        # @param Bandwidth: 专用通道带宽值
+        # @param Bandwidth: 专用通道带宽值。
         # @type Bandwidth: Integer
-        # @param EnableBGPCommunity: BGP community开关
+        # @param EnableBGPCommunity: BGP community开关。
         # @type EnableBGPCommunity: Boolean
-        # @param BfdEnable: 是否开启BFD
+        # @param BfdEnable: 是否开启BFD。
         # @type BfdEnable: Integer
-        # @param NqaEnable: 是否开启NQA
+        # @param NqaEnable: 是否开启NQA。
         # @type NqaEnable: Integer
-        # @param BfdInfo: BFD配置信息
+        # @param BfdInfo: BFD配置信息。
         # @type BfdInfo: :class:`Tencentcloud::Dc.v20180410.models.BFDInfo`
-        # @param NqaInfo: NQA配置信息
+        # @param NqaInfo: NQA配置信息。
         # @type NqaInfo: :class:`Tencentcloud::Dc.v20180410.models.NQAInfo`
-        # @param IPv6Enable: 0：停用IPv6
-        # 1: 启用IPv6
+        # @param IPv6Enable: IPV6使能。0：停用IPv6；1: 启用IPv6。
         # @type IPv6Enable: Integer
-        # @param CustomerIDCRoutes: 去往用户侧的路由信息
+        # @param CustomerIDCRoutes: 去往用户侧的路由信息。
         # @type CustomerIDCRoutes: Array
-        # @param JumboEnable: 是否开启巨帧
-        # 1：开启
-        # 0：不开启
+        # @param JumboEnable: 是否开启巨帧。1：开启；0：不开启。
         # @type JumboEnable: Integer
+        # @param TencentIPv6Address: 腾讯侧互联IPv6。
+        # @type TencentIPv6Address: String
+        # @param TencentBackupIPv6Address: 腾讯侧备用互联IPv6。
+        # @type TencentBackupIPv6Address: String
+        # @param CustomerIPv6Address: 用户侧互联IPv6。
+        # @type CustomerIPv6Address: String
 
-        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable
+        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable, :TencentIPv6Address, :TencentBackupIPv6Address, :CustomerIPv6Address
 
-        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil)
+        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, customeripv6address=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Vlan = vlan
           @BgpPeer = bgppeer
@@ -2004,6 +2007,9 @@ module TencentCloud
           @IPv6Enable = ipv6enable
           @CustomerIDCRoutes = customeridcroutes
           @JumboEnable = jumboenable
+          @TencentIPv6Address = tencentipv6address
+          @TencentBackupIPv6Address = tencentbackupipv6address
+          @CustomerIPv6Address = customeripv6address
         end
 
         def deserialize(params)
@@ -2042,6 +2048,9 @@ module TencentCloud
             end
           end
           @JumboEnable = params['JumboEnable']
+          @TencentIPv6Address = params['TencentIPv6Address']
+          @TencentBackupIPv6Address = params['TencentBackupIPv6Address']
+          @CustomerIPv6Address = params['CustomerIPv6Address']
         end
       end
 

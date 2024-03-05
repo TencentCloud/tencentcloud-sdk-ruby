@@ -224,6 +224,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 针对指定实时日志投递任务（task-id），在对应的腾讯云 CLS 日志主题中创建投递日志字段对应的键值索引。如果您在腾讯云 CLS 已经创建索引，本接口将采用合并的方式追加索引。
+
+        # @param request: Request instance for CreateCLSIndex.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateCLSIndexRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateCLSIndexResponse`
+        def CreateCLSIndex(request)
+          body = send_request('CreateCLSIndex', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCLSIndexResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 在版本管理模式下，用于创建指定配置组的新版本。版本管理功能内测中，当前仅白名单开放。
 
         # @param request: Request instance for CreateConfigGroupVersion.
@@ -380,6 +404,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePurgeTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过本接口创建实时日志投递任务。本接口有如下限制：
+        # 同一个实体（七层域名或者四层代理实例）在同种数据投递类型（LogType）和数据投递区域（Area）的组合下，只能被添加到一个实时日志投递任务中。建议先通过 [DescribeRealtimeLogDeliveryTasks](https://tcloud4api.woa.com/document/product/1657/343539?!preview&!document=1)  接口根据实体查询实时日志投递任务列表，检查实体是否已经被添加到另一实时日志投递任务中。
+
+        # @param request: Request instance for CreateRealtimeLogDeliveryTask.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateRealtimeLogDeliveryTaskRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateRealtimeLogDeliveryTaskResponse`
+        def CreateRealtimeLogDeliveryTask(request)
+          body = send_request('CreateRealtimeLogDeliveryTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRealtimeLogDeliveryTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -647,6 +696,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOriginGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过本接口删除实时日志投递任务。
+
+        # @param request: Request instance for DeleteRealtimeLogDeliveryTask.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteRealtimeLogDeliveryTaskRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteRealtimeLogDeliveryTaskResponse`
+        def DeleteRealtimeLogDeliveryTask(request)
+          body = send_request('DeleteRealtimeLogDeliveryTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRealtimeLogDeliveryTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1357,6 +1430,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过本接口查询实时日志投递任务列表。
+
+        # @param request: Request instance for DescribeRealtimeLogDeliveryTasks.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeRealtimeLogDeliveryTasksRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeRealtimeLogDeliveryTasksResponse`
+        def DescribeRealtimeLogDeliveryTasks(request)
+          body = send_request('DescribeRealtimeLogDeliveryTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRealtimeLogDeliveryTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询规则引擎规则。
 
         # @param request: Request instance for DescribeRules.
@@ -1996,6 +2093,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyOriginGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 通过本接口修改实时日志投递任务配置。本接口有如下限制：<li>不支持修改实时日志投递任务目的地类型（TaskType）；</li><li>不支持修改数据投递类型（LogType）</li><li>不支持修改数据投递区域（Area）</li><li>当原实时日志投递任务的目的地为腾讯云 CLS 时，不支持修改目的地详细配置，如日志集、日志主题。</li>
+
+        # @param request: Request instance for ModifyRealtimeLogDeliveryTask.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyRealtimeLogDeliveryTaskRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyRealtimeLogDeliveryTaskResponse`
+        def ModifyRealtimeLogDeliveryTask(request)
+          body = send_request('ModifyRealtimeLogDeliveryTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRealtimeLogDeliveryTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

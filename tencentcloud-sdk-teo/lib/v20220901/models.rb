@@ -1458,6 +1458,30 @@ module TencentCloud
         end
       end
 
+      # 实时日志投递到腾讯云 CLS 的配置信息。
+      class CLSTopic < TencentCloud::Common::AbstractModel
+        # @param LogSetId: 腾讯云 CLS 日志集 ID。
+        # @type LogSetId: String
+        # @param TopicId: 腾讯云 CLS 日志主题 ID。
+        # @type TopicId: String
+        # @param LogSetRegion: 腾讯云 CLS 日志集所在的地域。
+        # @type LogSetRegion: String
+
+        attr_accessor :LogSetId, :TopicId, :LogSetRegion
+
+        def initialize(logsetid=nil, topicid=nil, logsetregion=nil)
+          @LogSetId = logsetid
+          @TopicId = topicid
+          @LogSetRegion = logsetregion
+        end
+
+        def deserialize(params)
+          @LogSetId = params['LogSetId']
+          @TopicId = params['TopicId']
+          @LogSetRegion = params['LogSetRegion']
+        end
+      end
+
       # 缓存时间设置
       class Cache < TencentCloud::Common::AbstractModel
         # @param Switch: 缓存配置开关，取值有：
@@ -1476,8 +1500,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2024, 2
-        deprecate :IgnoreCacheControl=, :none, 2024, 2
+        deprecate :IgnoreCacheControl, :none, 2024, 3
+        deprecate :IgnoreCacheControl=, :none, 2024, 3
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2166,6 +2190,42 @@ module TencentCloud
         end
       end
 
+      # CreateCLSIndex请求参数结构体
+      class CreateCLSIndexRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TaskId: 实时日志投递任务 ID。
+        # @type TaskId: String
+
+        attr_accessor :ZoneId, :TaskId
+
+        def initialize(zoneid=nil, taskid=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CreateCLSIndex返回参数结构体
+      class CreateCLSIndexResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConfigGroupVersion请求参数结构体
       class CreateConfigGroupVersionRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -2546,8 +2606,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2024, 2
-        deprecate :EncodeUrl=, :none, 2024, 2
+        deprecate :EncodeUrl, :none, 2024, 3
+        deprecate :EncodeUrl=, :none, 2024, 3
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil)
           @ZoneId = zoneid
@@ -2594,6 +2654,126 @@ module TencentCloud
               @FailedList << failreason_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRealtimeLogDeliveryTask请求参数结构体
+      class CreateRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TaskName: 实时日志投递任务的名称，格式为数字、英文、-和_组合，最多 200 个字符。
+        # @type TaskName: String
+        # @param TaskType: 实时日志投递任务类型，取值有：
+        # <li>cls: 推送到腾讯云 CLS；</li>
+        # <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li>
+        # <li>s3：推送到 AWS S3 兼容存储桶地址。</li>
+        # @type TaskType: String
+        # @param EntityList: 实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下：
+        # <li>七层域名：domain.example.com；</li>
+        # <li>四层代理实例：sid-2s69eb5wcms7。</li>
+        # @type EntityList: Array
+        # @param LogType: 数据投递类型，取值有：
+        # <li>domain：站点加速日志；</li>
+        # <li>application：四层代理日志；</li>
+        # <li>web-rateLiming：速率限制和 CC 攻击防护日志；</li>
+        # <li>web-attack：托管规则日志；</li>
+        # <li>web-rule：自定义规则日志；</li>
+        # <li>web-bot：Bot管理日志。</li>
+        # @type LogType: String
+        # @param Area: 数据投递区域，取值有：
+        # <li>mainland：中国大陆境内；</li>
+        # <li>overseas：全球（不含中国大陆）。</li>
+        # @type Area: String
+        # @param Fields: 投递的预设字段列表。
+        # @type Fields: Array
+        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie 中提取指定字段值。自定义字段名称不能重复，且最多不能超过 200 个字段。
+        # @type CustomFields: Array
+        # @param DeliveryConditions: 日志投递的过滤条件，不填表示投递全量日志。
+        # @type DeliveryConditions: Array
+        # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填表示采样比例为 100%。
+        # @type Sample: Integer
+        # @param CLS: CLS 的配置信息。当 TaskType 取值为 cls 时，该参数必填。
+        # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
+        # @param CustomEndpoint: 自定义 HTTP 服务的配置信息。当 TaskType 取值为 custom_endpoint 时，该参数必填。
+        # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
+        # @param S3: AWS S3 兼容存储桶的配置信息。当 TaskType 取值为 s3 时，该参数必填。
+        # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+
+        attr_accessor :ZoneId, :TaskName, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CLS, :CustomEndpoint, :S3
+
+        def initialize(zoneid=nil, taskname=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, cls=nil, customendpoint=nil, s3=nil)
+          @ZoneId = zoneid
+          @TaskName = taskname
+          @TaskType = tasktype
+          @EntityList = entitylist
+          @LogType = logtype
+          @Area = area
+          @Fields = fields
+          @CustomFields = customfields
+          @DeliveryConditions = deliveryconditions
+          @Sample = sample
+          @CLS = cls
+          @CustomEndpoint = customendpoint
+          @S3 = s3
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskName = params['TaskName']
+          @TaskType = params['TaskType']
+          @EntityList = params['EntityList']
+          @LogType = params['LogType']
+          @Area = params['Area']
+          @Fields = params['Fields']
+          unless params['CustomFields'].nil?
+            @CustomFields = []
+            params['CustomFields'].each do |i|
+              customfield_tmp = CustomField.new
+              customfield_tmp.deserialize(i)
+              @CustomFields << customfield_tmp
+            end
+          end
+          unless params['DeliveryConditions'].nil?
+            @DeliveryConditions = []
+            params['DeliveryConditions'].each do |i|
+              deliverycondition_tmp = DeliveryCondition.new
+              deliverycondition_tmp.deserialize(i)
+              @DeliveryConditions << deliverycondition_tmp
+            end
+          end
+          @Sample = params['Sample']
+          unless params['CLS'].nil?
+            @CLS = CLSTopic.new
+            @CLS.deserialize(params['CLS'])
+          end
+          unless params['CustomEndpoint'].nil?
+            @CustomEndpoint = CustomEndpoint.new
+            @CustomEndpoint.deserialize(params['CustomEndpoint'])
+          end
+          unless params['S3'].nil?
+            @S3 = S3.new
+            @S3.deserialize(params['S3'])
+          end
+        end
+      end
+
+      # CreateRealtimeLogDeliveryTask返回参数结构体
+      class CreateRealtimeLogDeliveryTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建成功的任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2779,10 +2959,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2024, 2
-        deprecate :AllowDuplicates=, :none, 2024, 2
-        deprecate :JumpStart, :none, 2024, 2
-        deprecate :JumpStart=, :none, 2024, 2
+        deprecate :AllowDuplicates, :none, 2024, 3
+        deprecate :AllowDuplicates=, :none, 2024, 3
+        deprecate :JumpStart, :none, 2024, 3
+        deprecate :JumpStart=, :none, 2024, 3
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -2845,6 +3025,81 @@ module TencentCloud
             @OwnershipVerification.deserialize(params['OwnershipVerification'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实时日志投递到自定义 HTTP(S) 接口的配置信息。
+      class CustomEndpoint < TencentCloud::Common::AbstractModel
+        # @param Url: 实时日志投递的自定义 HTTP 接口地址，暂仅支持 HTTP/HTTPS 协议。
+        # @type Url: String
+        # @param AccessId: 填写自定义的 SecretId 用于生成加密签名，如果源站需要鉴权此参数必填。
+        # @type AccessId: String
+        # @param AccessKey: 填写自定义的 SecretKey 用于生成加密签名，如果源站需要鉴权此参数必填。
+        # @type AccessKey: String
+        # @param CompressType: 数据压缩类型，取值有: <li> gzip：使用 gzip 方式压缩。</li>不填表示不启用压缩。
+        # @type CompressType: String
+        # @param Protocol: POST 请求投递日志时，使用的应用层协议类型，取值有：
+        # <li>http：HTTP 协议；</li>
+        # <li>https：HTTPS 协议。</li>如果不填默认根据填写的 URL 地址解析出协议类型。
+        # @type Protocol: String
+        # @param Headers: 投递日志时携带的自定义请求头，注意 Content-Type、Accept-Encoding 不支持添加修改。
+        # @type Headers: Array
+
+        attr_accessor :Url, :AccessId, :AccessKey, :CompressType, :Protocol, :Headers
+
+        def initialize(url=nil, accessid=nil, accesskey=nil, compresstype=nil, protocol=nil, headers=nil)
+          @Url = url
+          @AccessId = accessid
+          @AccessKey = accesskey
+          @CompressType = compresstype
+          @Protocol = protocol
+          @Headers = headers
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @AccessId = params['AccessId']
+          @AccessKey = params['AccessKey']
+          @CompressType = params['CompressType']
+          @Protocol = params['Protocol']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              header_tmp = Header.new
+              header_tmp.deserialize(i)
+              @Headers << header_tmp
+            end
+          end
+        end
+      end
+
+      # 实时日志投递任务中的自定义日志字段。
+      class CustomField < TencentCloud::Common::AbstractModel
+        # @param Name: 从 HTTP 请求和响应中的指定位置提取数据，取值有：
+        # <li>ReqHeader：从 HTTP 请求头中提取指定字段值；</li>
+        # <li>RspHeader：从 HTTP 响应头中提取指定字段值；</li>
+        # <li>Cookie: 从 Cookie 中提取指定字段值。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 需要提取值的参数名称，例如：Accept-Language。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Enabled: 是否投递该字段，不填表示不投递此字段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :Value, :Enabled
+
+        def initialize(name=nil, value=nil, enabled=nil)
+          @Name = name
+          @Value = value
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Enabled = params['Enabled']
         end
       end
 
@@ -3327,6 +3582,42 @@ module TencentCloud
         end
       end
 
+      # DeleteRealtimeLogDeliveryTask请求参数结构体
+      class DeleteRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TaskId: 实时日志投递任务 ID。
+        # @type TaskId: String
+
+        attr_accessor :ZoneId, :TaskId
+
+        def initialize(zoneid=nil, taskid=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteRealtimeLogDeliveryTask返回参数结构体
+      class DeleteRealtimeLogDeliveryTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRules请求参数结构体
       class DeleteRulesRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -3464,6 +3755,32 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 实时日志投递条件，用于定义投递日志范围。DeliveryCondition 数组内多个项的关系为“或”，内层 Conditions 数组内多个项的关系为“且”。
+      class DeliveryCondition < TencentCloud::Common::AbstractModel
+        # @param Conditions: 日志过滤条件，详细的过滤条件如下：
+        # <li>EdgeResponseStatusCode：按照 EdgeOne 节点响应返回给客户端的状态码进行过滤。<br>   支持运算符：equal、great、less、great_equal、less_equal<br>   取值范围：任意大于等于 0 的整数</li>
+        # <li>OriginResponseStatusCode：按照源站响应状态码进行过滤。<br>   支持运算符：equal、great、less、great_equal、less_equal<br>   取值范围：任意大于等于 -1 的整数</li>
+        # <li>SecurityAction：按照请求命中安全规则后的最终处置动作进行过滤。<br>   支持运算符：equal<br>   可选项如下：<br>   -：未知/未命中<br>   Monitor：观察<br>   JSChallenge：JavaScript 挑战<br>   Deny：拦截<br>   Allow：放行<br>   BlockIP：IP 封禁<br>   Redirect：重定向<br>   ReturnCustomPage：返回自定义页面<br>   ManagedChallenge：托管挑战<br>   Silence：静默<br>   LongDelay：长时间等待后响应<br>   ShortDelay：短时间等待后响应</li>
+        # @type Conditions: Array
+
+        attr_accessor :Conditions
+
+        def initialize(conditions=nil)
+          @Conditions = conditions
+        end
+
+        def deserialize(params)
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @Conditions << querycondition_tmp
+            end
+          end
         end
       end
 
@@ -5249,6 +5566,76 @@ module TencentCloud
               task_tmp = Task.new
               task_tmp.deserialize(i)
               @Tasks << task_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRealtimeLogDeliveryTasks请求参数结构体
+      class DescribeRealtimeLogDeliveryTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：1000。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 zone-id 下所有实时日志投递任务信息。详细的过滤条件如下：
+        # <li>task-id：按照实时日志投递任务 ID进行过滤。不支持模糊查询。</li>
+        # <li>task-name：按照实时日志投递任务名称进行过滤。支持模糊查询，使用模糊查询时，仅支持填写一个实时日志投递任务名称。</li>
+        # <li>entity-list：按照实时日志投递任务对应的实体进行过滤。不支持模糊查询。示例值：domain.example.com 或者 sid-2s69eb5wcms7。</li>
+        # <li>task-type：按照实时日志投递任务类型进行过滤。不支持模糊查询。可选项如下：<br>   cls: 推送到腾讯云 CLS；<br>   custom_endpoint：推送到自定义 HTTP(S) 地址；<br>   s3：推送到 AWS S3 兼容存储桶地址。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              advancedfilter_tmp = AdvancedFilter.new
+              advancedfilter_tmp.deserialize(i)
+              @Filters << advancedfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRealtimeLogDeliveryTasks返回参数结构体
+      class DescribeRealtimeLogDeliveryTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合查询条件的实时日志投递任务个数。
+        # @type TotalCount: Integer
+        # @param RealtimeLogDeliveryTasks: 符合查询条件的所有实时日志投递任务列表。
+        # @type RealtimeLogDeliveryTasks: Array
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RealtimeLogDeliveryTasks, :RequestId
+
+        def initialize(totalcount=nil, realtimelogdeliverytasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RealtimeLogDeliveryTasks = realtimelogdeliverytasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RealtimeLogDeliveryTasks'].nil?
+            @RealtimeLogDeliveryTasks = []
+            params['RealtimeLogDeliveryTasks'].each do |i|
+              realtimelogdeliverytask_tmp = RealtimeLogDeliveryTask.new
+              realtimelogdeliverytask_tmp.deserialize(i)
+              @RealtimeLogDeliveryTasks << realtimelogdeliverytask_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8184,8 +8571,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2024, 2
-        deprecate :ApplyType=, :none, 2024, 2
+        deprecate :ApplyType, :none, 2024, 3
+        deprecate :ApplyType=, :none, 2024, 3
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil)
           @ZoneId = zoneid
@@ -8458,6 +8845,102 @@ module TencentCloud
 
       # ModifyOriginGroup返回参数结构体
       class ModifyOriginGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRealtimeLogDeliveryTask请求参数结构体
+      class ModifyRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param TaskId: 实时日志投递任务 ID。
+        # @type TaskId: String
+        # @param TaskName: 实时日志投递任务的名称，格式为数字、英文、-和_组合，最多 200 个字符。不填保持原有配置。
+        # @type TaskName: String
+        # @param DeliveryStatus: 实时日志投递任务的状态，取值有：
+        # <li>enabled: 启用；</li>
+        # <li>disabled: 停用。</li>不填保持原有配置。
+        # @type DeliveryStatus: String
+        # @param EntityList: 实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下：
+        # <li>七层域名：domain.example.com；</li>
+        # <li>四层代理实例：sid-2s69eb5wcms7。</li>不填保持原有配置。
+        # @type EntityList: Array
+        # @param Fields: 投递的预设字段列表。不填保持原有配置。
+        # @type Fields: Array
+        # @param CustomFields: 投递的自定义字段列表，支持在 HTTP 请求头、响应头、Cookie 中提取指定字段值。自定义字段名称不能重复，且最多不能超过 200 个字段。不填保持原有配置。
+        # @type CustomFields: Array
+        # @param DeliveryConditions: 日志投递的过滤条件。不填表示投递全量日志。
+        # @type DeliveryConditions: Array
+        # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：填写 605 表示采样比例为 60.5%。不填保持原有配置。
+        # @type Sample: Integer
+        # @param CustomEndpoint: 自定义 HTTP 服务的配置信息，不填保持原有配置。
+        # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
+        # @param S3: AWS S3 兼容存储桶的配置信息，不填保持原有配置。
+        # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+
+        attr_accessor :ZoneId, :TaskId, :TaskName, :DeliveryStatus, :EntityList, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CustomEndpoint, :S3
+
+        def initialize(zoneid=nil, taskid=nil, taskname=nil, deliverystatus=nil, entitylist=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, customendpoint=nil, s3=nil)
+          @ZoneId = zoneid
+          @TaskId = taskid
+          @TaskName = taskname
+          @DeliveryStatus = deliverystatus
+          @EntityList = entitylist
+          @Fields = fields
+          @CustomFields = customfields
+          @DeliveryConditions = deliveryconditions
+          @Sample = sample
+          @CustomEndpoint = customendpoint
+          @S3 = s3
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @DeliveryStatus = params['DeliveryStatus']
+          @EntityList = params['EntityList']
+          @Fields = params['Fields']
+          unless params['CustomFields'].nil?
+            @CustomFields = []
+            params['CustomFields'].each do |i|
+              customfield_tmp = CustomField.new
+              customfield_tmp.deserialize(i)
+              @CustomFields << customfield_tmp
+            end
+          end
+          unless params['DeliveryConditions'].nil?
+            @DeliveryConditions = []
+            params['DeliveryConditions'].each do |i|
+              deliverycondition_tmp = DeliveryCondition.new
+              deliverycondition_tmp.deserialize(i)
+              @DeliveryConditions << deliverycondition_tmp
+            end
+          end
+          @Sample = params['Sample']
+          unless params['CustomEndpoint'].nil?
+            @CustomEndpoint = CustomEndpoint.new
+            @CustomEndpoint.deserialize(params['CustomEndpoint'])
+          end
+          unless params['S3'].nil?
+            @S3 = S3.new
+            @S3.deserialize(params['S3'])
+          end
+        end
+      end
+
+      # ModifyRealtimeLogDeliveryTask返回参数结构体
+      class ModifyRealtimeLogDeliveryTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9927,6 +10410,108 @@ module TencentCloud
         end
       end
 
+      # 实时日志投递任务。
+      class RealtimeLogDeliveryTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 实时日志投递任务 ID。
+        # @type TaskId: String
+        # @param TaskName: 实时日志投递任务的名称。
+        # @type TaskName: String
+        # @param DeliveryStatus: 实时日志投递任务的状态，取值有： <li>enabled: 已启用；</li> <li>disabled: 已停用；</li><li>deleted: 异常删除状态，请检查目的地腾讯云 CLS 日志集/日志主题是否已被删除。</li>
+        # @type DeliveryStatus: String
+        # @param TaskType: 实时日志投递任务类型，取值有： <li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 AWS S3 兼容存储桶地址。</li>
+        # @type TaskType: String
+        # @param EntityList: 实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下： <li>七层域名：domain.example.com；</li> <li>四层代理实例：sid-2s69eb5wcms7。</li>
+        # @type EntityList: Array
+        # @param LogType: 数据投递类型，取值有： <li>domain：站点加速日志；</li> <li>application：四层代理日志；</li> <li>web-rateLiming：速率限制和 CC 攻击防护日志；</li> <li>web-attack：托管规则日志；</li> <li>web-rule：自定义规则日志；</li> <li>web-bot：Bot管理日志。</li>
+        # @type LogType: String
+        # @param Area: 数据投递区域，取值有： <li>mainland：中国大陆境内；</li> <li>overseas：全球（不含中国大陆）。</li>
+        # @type Area: String
+        # @param Fields: 投递的预设字段列表。
+        # @type Fields: Array
+        # @param CustomFields: 投递的自定义字段列表。
+        # @type CustomFields: Array
+        # @param DeliveryConditions: 日志投递的过滤条件。
+        # @type DeliveryConditions: Array
+        # @param Sample: 采样比例，采用千分制，取值范围为1-1000，例如：605 表示采样比例为 60.5%。
+        # @type Sample: Integer
+        # @param CLS: CLS 的配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
+        # @param CustomEndpoint: 自定义 HTTP 服务的配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomEndpoint: :class:`Tencentcloud::Teo.v20220901.models.CustomEndpoint`
+        # @param S3: AWS S3 兼容存储桶的配置信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type S3: :class:`Tencentcloud::Teo.v20220901.models.S3`
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间。
+        # @type UpdateTime: String
+
+        attr_accessor :TaskId, :TaskName, :DeliveryStatus, :TaskType, :EntityList, :LogType, :Area, :Fields, :CustomFields, :DeliveryConditions, :Sample, :CLS, :CustomEndpoint, :S3, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, taskname=nil, deliverystatus=nil, tasktype=nil, entitylist=nil, logtype=nil, area=nil, fields=nil, customfields=nil, deliveryconditions=nil, sample=nil, cls=nil, customendpoint=nil, s3=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @DeliveryStatus = deliverystatus
+          @TaskType = tasktype
+          @EntityList = entitylist
+          @LogType = logtype
+          @Area = area
+          @Fields = fields
+          @CustomFields = customfields
+          @DeliveryConditions = deliveryconditions
+          @Sample = sample
+          @CLS = cls
+          @CustomEndpoint = customendpoint
+          @S3 = s3
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @DeliveryStatus = params['DeliveryStatus']
+          @TaskType = params['TaskType']
+          @EntityList = params['EntityList']
+          @LogType = params['LogType']
+          @Area = params['Area']
+          @Fields = params['Fields']
+          unless params['CustomFields'].nil?
+            @CustomFields = []
+            params['CustomFields'].each do |i|
+              customfield_tmp = CustomField.new
+              customfield_tmp.deserialize(i)
+              @CustomFields << customfield_tmp
+            end
+          end
+          unless params['DeliveryConditions'].nil?
+            @DeliveryConditions = []
+            params['DeliveryConditions'].each do |i|
+              deliverycondition_tmp = DeliveryCondition.new
+              deliverycondition_tmp.deserialize(i)
+              @DeliveryConditions << deliverycondition_tmp
+            end
+          end
+          @Sample = params['Sample']
+          unless params['CLS'].nil?
+            @CLS = CLSTopic.new
+            @CLS.deserialize(params['CLS'])
+          end
+          unless params['CustomEndpoint'].nil?
+            @CustomEndpoint = CustomEndpoint.new
+            @CustomEndpoint.deserialize(params['CustomEndpoint'])
+          end
+          unless params['S3'].nil?
+            @S3 = S3.new
+            @S3.deserialize(params['S3'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 计费资源
       class Resource < TencentCloud::Common::AbstractModel
         # @param Id: 资源 ID。
@@ -10222,8 +10807,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2024, 2
-        deprecate :IgnoreNameCase=, :none, 2024, 2
+        deprecate :IgnoreNameCase, :none, 2024, 3
+        deprecate :IgnoreNameCase=, :none, 2024, 3
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator
@@ -10483,6 +11068,42 @@ module TencentCloud
               @Properties << rulesproperties_tmp
             end
           end
+        end
+      end
+
+      # 实时日志投递到 AWS S3 兼容存储桶的配置信息。
+      class S3 < TencentCloud::Common::AbstractModel
+        # @param Endpoint: 不包含存储桶名称或路径的 URL，例如：`https://storage.googleapis.com`、`https://s3.ap-northeast-2.amazonaws.com`、`https://cos.ap-nanjing.myqcloud.com`。
+        # @type Endpoint: String
+        # @param Region: 存储桶所在的地域，例如：`ap-northeast-2`。
+        # @type Region: String
+        # @param Bucket: 存储桶名称和日志存储目录，例如：`your_bucket_name/EO-logs/`。如果存储桶中无此目录则会自动创建。
+        # @type Bucket: String
+        # @param AccessId: 访问存储桶使用的 Access Key ID。
+        # @type AccessId: String
+        # @param AccessKey: 访问存储桶使用的 secret key。
+        # @type AccessKey: String
+        # @param CompressType: 数据压缩类型，取值有: <li> gzip：gzip压缩。</li>不填表示不启用压缩。
+        # @type CompressType: String
+
+        attr_accessor :Endpoint, :Region, :Bucket, :AccessId, :AccessKey, :CompressType
+
+        def initialize(endpoint=nil, region=nil, bucket=nil, accessid=nil, accesskey=nil, compresstype=nil)
+          @Endpoint = endpoint
+          @Region = region
+          @Bucket = bucket
+          @AccessId = accessid
+          @AccessKey = accesskey
+          @CompressType = compresstype
+        end
+
+        def deserialize(params)
+          @Endpoint = params['Endpoint']
+          @Region = params['Region']
+          @Bucket = params['Bucket']
+          @AccessId = params['AccessId']
+          @AccessKey = params['AccessKey']
+          @CompressType = params['CompressType']
         end
       end
 

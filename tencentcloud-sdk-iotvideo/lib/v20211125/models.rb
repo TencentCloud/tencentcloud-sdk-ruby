@@ -4159,6 +4159,50 @@ module TencentCloud
         end
       end
 
+      # DescribeP2PInfo请求参数结构体
+      class DescribeP2PInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeP2PInfo返回参数结构体
+      class DescribeP2PInfoResponse < TencentCloud::Common::AbstractModel
+        # @param P2PInfo: xp2pinfo信息
+        # @type P2PInfo: String
+        # @param ReportTime: 上报时间
+        # @type ReportTime: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :P2PInfo, :ReportTime, :RequestId
+
+        def initialize(p2pinfo=nil, reporttime=nil, requestid=nil)
+          @P2PInfo = p2pinfo
+          @ReportTime = reporttime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @P2PInfo = params['P2PInfo']
+          @ReportTime = params['ReportTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePackageConsumeTask请求参数结构体
       class DescribePackageConsumeTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id

@@ -465,7 +465,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
+        # 修改专用通道扩展信息。
 
         # @param request: Request instance for ModifyDirectConnectTunnelExtra.
         # @type request: :class:`Tencentcloud::dc::V20180410::ModifyDirectConnectTunnelExtraRequest`

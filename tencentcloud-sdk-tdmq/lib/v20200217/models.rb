@@ -2514,46 +2514,6 @@ module TencentCloud
         end
       end
 
-      # DeleteProClusters请求参数结构体
-      class DeleteProClustersRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterIds: 集群Id列表
-        # @type ClusterIds: Array
-
-        attr_accessor :ClusterIds
-
-        def initialize(clusterids=nil)
-          @ClusterIds = clusterids
-        end
-
-        def deserialize(params)
-          @ClusterIds = params['ClusterIds']
-        end
-      end
-
-      # DeleteProClusters返回参数结构体
-      class DeleteProClustersResponse < TencentCloud::Common::AbstractModel
-        # @param DealNames: 退还实例订单号
-        # @type DealNames: Array
-        # @param ClusterIds: 集群ID
-        # @type ClusterIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DealNames, :ClusterIds, :RequestId
-
-        def initialize(dealnames=nil, clusterids=nil, requestid=nil)
-          @DealNames = dealnames
-          @ClusterIds = clusterids
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DealNames = params['DealNames']
-          @ClusterIds = params['ClusterIds']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteRabbitMQUser请求参数结构体
       class DeleteRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id
@@ -3946,6 +3906,190 @@ module TencentCloud
         end
       end
 
+      # DescribeMqMsgTrace请求参数结构体
+      class DescribeMqMsgTraceRequest < TencentCloud::Common::AbstractModel
+        # @param Protocol: pulsar、rocketmq、rabbitmq、cmq
+        # @type Protocol: String
+        # @param MsgId: 消息id
+        # @type MsgId: String
+        # @param ClusterId: 集群id，cmq为空
+        # @type ClusterId: String
+        # @param EnvironmentId: 命名空间，cmq为空
+        # @type EnvironmentId: String
+        # @param TopicName: 主题，cmq为空，rocketmq查询死信时值为groupId
+        # @type TopicName: String
+        # @param QueueName: cmq必填，其他协议填空
+        # @type QueueName: String
+        # @param GroupName: 消费组、订阅
+        # @type GroupName: String
+        # @param QueryDlqMsg: 查询死信时该值为true，只对Rocketmq有效
+        # @type QueryDlqMsg: Boolean
+
+        attr_accessor :Protocol, :MsgId, :ClusterId, :EnvironmentId, :TopicName, :QueueName, :GroupName, :QueryDlqMsg
+
+        def initialize(protocol=nil, msgid=nil, clusterid=nil, environmentid=nil, topicname=nil, queuename=nil, groupname=nil, querydlqmsg=nil)
+          @Protocol = protocol
+          @MsgId = msgid
+          @ClusterId = clusterid
+          @EnvironmentId = environmentid
+          @TopicName = topicname
+          @QueueName = queuename
+          @GroupName = groupname
+          @QueryDlqMsg = querydlqmsg
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @MsgId = params['MsgId']
+          @ClusterId = params['ClusterId']
+          @EnvironmentId = params['EnvironmentId']
+          @TopicName = params['TopicName']
+          @QueueName = params['QueueName']
+          @GroupName = params['GroupName']
+          @QueryDlqMsg = params['QueryDlqMsg']
+        end
+      end
+
+      # DescribeMqMsgTrace返回参数结构体
+      class DescribeMqMsgTraceResponse < TencentCloud::Common::AbstractModel
+        # @param Result: [
+        #     {
+        #         "Stage": "produce",
+        #         "Data": {
+        #             "ProducerName": "生产者名",
+        #             "ProduceTime": "消息生产时间",
+        #             "ProducerAddr": "客户端地址",
+        #             "Duration": "耗时ms",
+        #             "Status": "状态（0：成功，1：失败）"
+        #         }
+        #     },
+        #     {
+        #         "Stage": "persist",
+        #         "Data": {
+        #             "PersistTime": "存储时间",
+        #             "Duration": "耗时ms",
+        #             "Status": "状态（0：成功，1：失败）"
+        #         }
+        #     },
+        #     {
+        #         "Stage": "consume",
+        #         "Data": {
+        #             "TotalCount": 2,
+        #             "RocketMqConsumeLogs": [
+        #                 {
+        #                     "ConsumerGroup": "消费组",
+        #                     "ConsumeModel": "消费模式",
+        #                     "ConsumerAddr": "消费者地址",
+        #                     "ConsumeTime": "推送时间",
+        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
+        #                 },
+        #                 {
+        #                     "ConsumerGroup": "消费组",
+        #                     "ConsumeModel": "消费模式",
+        #                     "ConsumerAddr": "消费者地址",
+        #                     "ConsumeTime": "推送时间",
+        #                     "Status": "状态（0:已推送未确认, 2:已确认, 3:转入重试, 4:已重试未确认, 5:已转入死信队列）"
+        #                 }
+        #             ]
+        #         }
+        #     }
+        # ]
+        # @type Result: Array
+        # @param ShowTopicName: 消息轨迹页展示的topic名称
+        # @type ShowTopicName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :ShowTopicName, :RequestId
+
+        def initialize(result=nil, showtopicname=nil, requestid=nil)
+          @Result = result
+          @ShowTopicName = showtopicname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = []
+            params['Result'].each do |i|
+              traceresult_tmp = TraceResult.new
+              traceresult_tmp.deserialize(i)
+              @Result << traceresult_tmp
+            end
+          end
+          @ShowTopicName = params['ShowTopicName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMsg请求参数结构体
+      class DescribeMsgRequest < TencentCloud::Common::AbstractModel
+        # @param EnvironmentId: 环境（命名空间）名称。
+        # @type EnvironmentId: String
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param TopicName: 主题名。
+        # @type TopicName: String
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+
+        attr_accessor :EnvironmentId, :MsgId, :TopicName, :ClusterId
+
+        def initialize(environmentid=nil, msgid=nil, topicname=nil, clusterid=nil)
+          @EnvironmentId = environmentid
+          @MsgId = msgid
+          @TopicName = topicname
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @EnvironmentId = params['EnvironmentId']
+          @MsgId = params['MsgId']
+          @TopicName = params['TopicName']
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DescribeMsg返回参数结构体
+      class DescribeMsgResponse < TencentCloud::Common::AbstractModel
+        # @param Properties: 消息属性。
+        # @type Properties: String
+        # @param Body: 消息体。
+        # @type Body: String
+        # @param BatchId: 批次ID。
+        # @type BatchId: String
+        # @param ProduceTime: 生产时间。
+        # @type ProduceTime: String
+        # @param MsgId: 消息ID。
+        # @type MsgId: String
+        # @param ProducerName: 生产者名称。
+        # @type ProducerName: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Properties, :Body, :BatchId, :ProduceTime, :MsgId, :ProducerName, :RequestId
+
+        def initialize(properties=nil, body=nil, batchid=nil, producetime=nil, msgid=nil, producername=nil, requestid=nil)
+          @Properties = properties
+          @Body = body
+          @BatchId = batchid
+          @ProduceTime = producetime
+          @MsgId = msgid
+          @ProducerName = producername
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Properties = params['Properties']
+          @Body = params['Body']
+          @BatchId = params['BatchId']
+          @ProduceTime = params['ProduceTime']
+          @MsgId = params['MsgId']
+          @ProducerName = params['ProducerName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMsgTrace请求参数结构体
       class DescribeMsgTraceRequest < TencentCloud::Common::AbstractModel
         # @param EnvironmentId: 环境（命名空间）。
@@ -4652,6 +4796,7 @@ module TencentCloud
         # @param QueueType: 队列类型筛选，不填或 "all"：classic 和 quorum 队列；"classic"：筛选 classic 队列；"quorum"：筛选 quorum 队列
         # @type QueueType: String
         # @param SortElement: 排序依据的字段：
+        # ConsumerNumber - 在线消费者数量；
         # MessageHeapCount - 消息堆积数；
         # MessageRateInOut - 生产消费速率之和；
         # MessageRateIn - 生产速率；
@@ -6308,8 +6453,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2024, 1
-        deprecate :QueryDlqMsg=, :none, 2024, 1
+        deprecate :QueryDlqMsg, :none, 2024, 3
+        deprecate :QueryDlqMsg=, :none, 2024, 3
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -8786,10 +8931,13 @@ module TencentCloud
         # @param CanEditRoute: 是否可以修改路由
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanEditRoute: Boolean
+        # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingLabelVersion: String
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute
+        attr_accessor :ClusterId, :ClusterName, :Remark, :CreateTime, :Status, :Version, :NodeDistribution, :MaxStorage, :CanEditRoute, :BillingLabelVersion
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, createtime=nil, status=nil, version=nil, nodedistribution=nil, maxstorage=nil, caneditroute=nil, billinglabelversion=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -8799,6 +8947,7 @@ module TencentCloud
           @NodeDistribution = nodedistribution
           @MaxStorage = maxstorage
           @CanEditRoute = caneditroute
+          @BillingLabelVersion = billinglabelversion
         end
 
         def deserialize(params)
@@ -8818,6 +8967,7 @@ module TencentCloud
           end
           @MaxStorage = params['MaxStorage']
           @CanEditRoute = params['CanEditRoute']
+          @BillingLabelVersion = params['BillingLabelVersion']
         end
       end
 
@@ -8902,10 +9052,13 @@ module TencentCloud
         # @param CreateTime: 集群创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param BillingLabelVersion: 代表是专业版和小规格专业版的不同计费规格PULSAR.P1固定存储PULSAR.P2弹性存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingLabelVersion: String
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :ConfigDisplay, :MaxTps, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ScalableTps, :VpcId, :SubnetId, :MaxBandWidth, :Tags, :CreateTime, :BillingLabelVersion
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, configdisplay=nil, maxtps=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, scalabletps=nil, vpcid=nil, subnetid=nil, maxbandwidth=nil, tags=nil, createtime=nil, billinglabelversion=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -8924,6 +9077,7 @@ module TencentCloud
           @MaxBandWidth = maxbandwidth
           @Tags = tags
           @CreateTime = createtime
+          @BillingLabelVersion = billinglabelversion
         end
 
         def deserialize(params)
@@ -8952,6 +9106,7 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+          @BillingLabelVersion = params['BillingLabelVersion']
         end
       end
 
@@ -9331,10 +9486,16 @@ module TencentCloud
         # @param MessageRateOut: 消息消费速率，每秒
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageRateOut: Float
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
 
-        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut
+        attr_accessor :QueueName, :Remark, :ConsumerDetail, :QueueType, :MessageHeapCount, :MessageRateIn, :MessageRateOut, :CreateTime, :ModifyTime
 
-        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil)
+        def initialize(queuename=nil, remark=nil, consumerdetail=nil, queuetype=nil, messageheapcount=nil, messageratein=nil, messagerateout=nil, createtime=nil, modifytime=nil)
           @QueueName = queuename
           @Remark = remark
           @ConsumerDetail = consumerdetail
@@ -9342,6 +9503,8 @@ module TencentCloud
           @MessageHeapCount = messageheapcount
           @MessageRateIn = messageratein
           @MessageRateOut = messagerateout
+          @CreateTime = createtime
+          @ModifyTime = modifytime
         end
 
         def deserialize(params)
@@ -9355,6 +9518,8 @@ module TencentCloud
           @MessageHeapCount = params['MessageHeapCount']
           @MessageRateIn = params['MessageRateIn']
           @MessageRateOut = params['MessageRateOut']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
         end
       end
 
@@ -9442,10 +9607,16 @@ module TencentCloud
         # @param ClusterStatus: 实例状态，0表示创建中，1表示正常，2表示隔离中，3表示已销毁，4 - 异常, 5 - 发货失败
         # 为了和计费区分开，额外开启一个状态位，用于显示。
         # @type ClusterStatus: Integer
+        # @param PublicAccessEndpoint: 公网接入点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicAccessEndpoint: String
+        # @param Vpcs: VPC 接入点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vpcs: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :NodeCount, :ConfigDisplay, :MaxTps, :MaxBandWidth, :MaxStorage, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :ClusterStatus, :PublicAccessEndpoint, :Vpcs
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, nodecount=nil, configdisplay=nil, maxtps=nil, maxbandwidth=nil, maxstorage=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, clusterstatus=nil, publicaccessendpoint=nil, vpcs=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -9462,6 +9633,8 @@ module TencentCloud
           @SpecName = specname
           @ExceptionInformation = exceptioninformation
           @ClusterStatus = clusterstatus
+          @PublicAccessEndpoint = publicaccessendpoint
+          @Vpcs = vpcs
         end
 
         def deserialize(params)
@@ -9481,6 +9654,15 @@ module TencentCloud
           @SpecName = params['SpecName']
           @ExceptionInformation = params['ExceptionInformation']
           @ClusterStatus = params['ClusterStatus']
+          @PublicAccessEndpoint = params['PublicAccessEndpoint']
+          unless params['Vpcs'].nil?
+            @Vpcs = []
+            params['Vpcs'].each do |i|
+              vpcendpointinfo_tmp = VpcEndpointInfo.new
+              vpcendpointinfo_tmp.deserialize(i)
+              @Vpcs << vpcendpointinfo_tmp
+            end
+          end
         end
       end
 

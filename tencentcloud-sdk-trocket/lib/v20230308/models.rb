@@ -1139,7 +1139,6 @@ module TencentCloud
         # BASIC 基础版
         # PRO  专业版
         # PLATINUM 铂金版
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param InstanceId: 实例ID
         # @type InstanceId: String
@@ -1187,12 +1186,29 @@ module TencentCloud
         # @type SkuCode: String
         # @param PayMode: 计费模式
         # @type PayMode: String
+        # @param ScaledTpsEnabled: 是否开启弹性TPS
+        # @type ScaledTpsEnabled: Boolean
+        # @param RenewFlag: 是否自动续费
+        # @type RenewFlag: Integer
+        # @param ExpiryTime: 到期时间
+        # @type ExpiryTime: Integer
+        # @param RoleNumLimit: 角色数量限制
+        # @type RoleNumLimit: Integer
+        # @param AclEnabled: 是否开启 ACL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AclEnabled: Boolean
+        # @param TopicNumLowerLimit: topic个数免费额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumLowerLimit: Integer
+        # @param TopicNumUpperLimit: 最大可设置的topic个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicNumUpperLimit: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :ScaledTpsEnabled, :RenewFlag, :ExpiryTime, :RoleNumLimit, :AclEnabled, :TopicNumLowerLimit, :TopicNumUpperLimit, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, scaledtpsenabled=nil, renewflag=nil, expirytime=nil, rolenumlimit=nil, aclenabled=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1216,6 +1232,13 @@ module TencentCloud
           @InstanceStatus = instancestatus
           @SkuCode = skucode
           @PayMode = paymode
+          @ScaledTpsEnabled = scaledtpsenabled
+          @RenewFlag = renewflag
+          @ExpiryTime = expirytime
+          @RoleNumLimit = rolenumlimit
+          @AclEnabled = aclenabled
+          @TopicNumLowerLimit = topicnumlowerlimit
+          @TopicNumUpperLimit = topicnumupperlimit
           @RequestId = requestid
         end
 
@@ -1257,6 +1280,13 @@ module TencentCloud
           @InstanceStatus = params['InstanceStatus']
           @SkuCode = params['SkuCode']
           @PayMode = params['PayMode']
+          @ScaledTpsEnabled = params['ScaledTpsEnabled']
+          @RenewFlag = params['RenewFlag']
+          @ExpiryTime = params['ExpiryTime']
+          @RoleNumLimit = params['RoleNumLimit']
+          @AclEnabled = params['AclEnabled']
+          @TopicNumLowerLimit = params['TopicNumLowerLimit']
+          @TopicNumUpperLimit = params['TopicNumUpperLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -2285,9 +2315,10 @@ module TencentCloud
 
       # 接入点信息
       class Endpoint < TencentCloud::Common::AbstractModel
-        # @param Type: 接入点类型，
-        # VPC，
-        # PUBLIC 公网
+        # @param Type: 接入点类型，枚举值如下
+        # VPC: VPC;
+        # PUBLIC: 公网;
+        # INTERNAL: 支撑网;
         # @type Type: String
         # @param Status: 状态，
         # OPEN 开启，
