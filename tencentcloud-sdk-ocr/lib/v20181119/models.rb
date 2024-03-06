@@ -2995,8 +2995,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 2
-        deprecate :Angel=, :none, 2024, 2
+        deprecate :Angel, :none, 2024, 3
+        deprecate :Angel=, :none, 2024, 3
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3106,8 +3106,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2024, 2
-        deprecate :Angel=, :none, 2024, 2
+        deprecate :Angel, :none, 2024, 3
+        deprecate :Angel=, :none, 2024, 3
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4609,7 +4609,7 @@ module TencentCloud
         # -9102	证照复印件告警（包括黑白复印件、彩色复印件）
         # -9106       证件遮挡告警
         # @type Warn: Array
-        # @param Image: 证件图片
+        # @param Image: 证件中的人像图片base64
         # @type Image: String
         # @param AdvancedInfo: 扩展字段:
         # {

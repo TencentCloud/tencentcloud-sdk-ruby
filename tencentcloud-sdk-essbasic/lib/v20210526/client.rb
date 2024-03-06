@@ -1340,6 +1340,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于在使用视频认证方式签署合同后，获取用户的签署人脸认证视频。
+
+        # 1. 该接口**仅适用于在H5端签署**的合同，**在通过视频认证后**获取人脸图片。
+        # 2. 该接口**不支持小程序端**的签署人脸图片获取。
+        # 3. 请在**签署完成后的三天内**获取人脸图片，**过期后将无法获取**。
+
+        # **注意：该接口需要开通白名单，请联系客户经理开通后使用。**
+
+        # @param request: Request instance for ChannelDescribeSignFaceVideo.
+        # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeSignFaceVideoRequest`
+        # @rtype: :class:`Tencentcloud::essbasic::V20210526::ChannelDescribeSignFaceVideoResponse`
+        def ChannelDescribeSignFaceVideo(request)
+          body = send_request('ChannelDescribeSignFaceVideo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ChannelDescribeSignFaceVideoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过此接口获取个人用户自动签的开通状态。
 
         # 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`

@@ -1411,12 +1411,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2023, 11
-        deprecate :BusinessName=, :none, 2023, 11
-        deprecate :BusinessDept, :none, 2023, 11
-        deprecate :BusinessDept=, :none, 2023, 11
-        deprecate :BusinessOwner, :none, 2023, 11
-        deprecate :BusinessOwner=, :none, 2023, 11
+        deprecate :BusinessName, :none, 2024, 3
+        deprecate :BusinessName=, :none, 2024, 3
+        deprecate :BusinessDept, :none, 2024, 3
+        deprecate :BusinessDept=, :none, 2024, 3
+        deprecate :BusinessOwner, :none, 2024, 3
+        deprecate :BusinessOwner=, :none, 2024, 3
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -2185,10 +2185,17 @@ module TencentCloud
         # @type Password: String
         # @param ResourceName: 资源名称，1-60个字符。
         # @type ResourceName: String
+        # @param InstanceType: 实例类型
+        # databse
+        # sid
+        # serviceName
+        # @type InstanceType: String
+        # @param InstanceValue: 实例值
+        # @type InstanceValue: String
 
-        attr_accessor :DspaId, :MetaType, :ResourceRegion, :ResourceId, :ResourceVip, :ResourceVPort, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :ResourceAccessType, :UserName, :Password, :ResourceName
+        attr_accessor :DspaId, :MetaType, :ResourceRegion, :ResourceId, :ResourceVip, :ResourceVPort, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :ResourceAccessType, :UserName, :Password, :ResourceName, :InstanceType, :InstanceValue
 
-        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, resourceid=nil, resourcevip=nil, resourcevport=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, resourceaccesstype=nil, username=nil, password=nil, resourcename=nil)
+        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, resourceid=nil, resourcevip=nil, resourcevport=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, resourceaccesstype=nil, username=nil, password=nil, resourcename=nil, instancetype=nil, instancevalue=nil)
           @DspaId = dspaid
           @MetaType = metatype
           @ResourceRegion = resourceregion
@@ -2201,6 +2208,8 @@ module TencentCloud
           @UserName = username
           @Password = password
           @ResourceName = resourcename
+          @InstanceType = instancetype
+          @InstanceValue = instancevalue
         end
 
         def deserialize(params)
@@ -2216,6 +2225,8 @@ module TencentCloud
           @UserName = params['UserName']
           @Password = params['Password']
           @ResourceName = params['ResourceName']
+          @InstanceType = params['InstanceType']
+          @InstanceValue = params['InstanceValue']
         end
       end
 
@@ -5965,17 +5976,21 @@ module TencentCloud
         # @type DspaId: String
         # @param DataSourceId: 数据源ID
         # @type DataSourceId: String
+        # @param DataSourceType: 数据源类型
+        # @type DataSourceType: String
 
-        attr_accessor :DspaId, :DataSourceId
+        attr_accessor :DspaId, :DataSourceId, :DataSourceType
 
-        def initialize(dspaid=nil, datasourceid=nil)
+        def initialize(dspaid=nil, datasourceid=nil, datasourcetype=nil)
           @DspaId = dspaid
           @DataSourceId = datasourceid
+          @DataSourceType = datasourcetype
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @DataSourceId = params['DataSourceId']
+          @DataSourceType = params['DataSourceType']
         end
       end
 
@@ -6394,17 +6409,25 @@ module TencentCloud
         # @type DspaId: String
         # @param ComplianceId: 合规组id
         # @type ComplianceId: Integer
+        # @param BuildType: 云上还是自建
+        # @type BuildType: String
+        # @param DataSourceType: 数据源类型
+        # @type DataSourceType: String
 
-        attr_accessor :DspaId, :ComplianceId
+        attr_accessor :DspaId, :ComplianceId, :BuildType, :DataSourceType
 
-        def initialize(dspaid=nil, complianceid=nil)
+        def initialize(dspaid=nil, complianceid=nil, buildtype=nil, datasourcetype=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
+          @BuildType = buildtype
+          @DataSourceType = datasourcetype
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @ComplianceId = params['ComplianceId']
+          @BuildType = params['BuildType']
+          @DataSourceType = params['DataSourceType']
         end
       end
 
@@ -6752,19 +6775,23 @@ module TencentCloud
         # @type ComplianceId: Integer
         # @param DataSourceType: 数据源类型，不填默认过滤非自建的所有关系型数据源类型，填selfbuilt-db只过滤自建类型
         # @type DataSourceType: String
+        # @param BuildType: 自建还是云上
+        # @type BuildType: String
 
-        attr_accessor :DspaId, :ComplianceId, :DataSourceType
+        attr_accessor :DspaId, :ComplianceId, :DataSourceType, :BuildType
 
-        def initialize(dspaid=nil, complianceid=nil, datasourcetype=nil)
+        def initialize(dspaid=nil, complianceid=nil, datasourcetype=nil, buildtype=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
           @DataSourceType = datasourcetype
+          @BuildType = buildtype
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @ComplianceId = params['ComplianceId']
           @DataSourceType = params['DataSourceType']
+          @BuildType = params['BuildType']
         end
       end
 
@@ -7840,10 +7867,18 @@ module TencentCloud
         # @param CategoryFullPath: 分类路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CategoryFullPath: String
+        # @param IdentifyType: 0-系统识别
+        # 1-人工识别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentifyType: Integer
+        # @param CheckStatus: 0-系统识别
+        # 1-人工识别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckStatus: Integer
 
-        attr_accessor :BucketName, :FileName, :RuleName, :SensitiveDataCount, :CategoryName, :LevelRiskName, :KMSEncrypted, :FileType, :FileSize, :LevelRiskScore, :DataSourceId, :RuleId, :ResourceRegion, :CategoryId, :LevelId, :FileResultId, :DataSourceName, :CategoryFullPath
+        attr_accessor :BucketName, :FileName, :RuleName, :SensitiveDataCount, :CategoryName, :LevelRiskName, :KMSEncrypted, :FileType, :FileSize, :LevelRiskScore, :DataSourceId, :RuleId, :ResourceRegion, :CategoryId, :LevelId, :FileResultId, :DataSourceName, :CategoryFullPath, :IdentifyType, :CheckStatus
 
-        def initialize(bucketname=nil, filename=nil, rulename=nil, sensitivedatacount=nil, categoryname=nil, levelriskname=nil, kmsencrypted=nil, filetype=nil, filesize=nil, levelriskscore=nil, datasourceid=nil, ruleid=nil, resourceregion=nil, categoryid=nil, levelid=nil, fileresultid=nil, datasourcename=nil, categoryfullpath=nil)
+        def initialize(bucketname=nil, filename=nil, rulename=nil, sensitivedatacount=nil, categoryname=nil, levelriskname=nil, kmsencrypted=nil, filetype=nil, filesize=nil, levelriskscore=nil, datasourceid=nil, ruleid=nil, resourceregion=nil, categoryid=nil, levelid=nil, fileresultid=nil, datasourcename=nil, categoryfullpath=nil, identifytype=nil, checkstatus=nil)
           @BucketName = bucketname
           @FileName = filename
           @RuleName = rulename
@@ -7862,6 +7897,8 @@ module TencentCloud
           @FileResultId = fileresultid
           @DataSourceName = datasourcename
           @CategoryFullPath = categoryfullpath
+          @IdentifyType = identifytype
+          @CheckStatus = checkstatus
         end
 
         def deserialize(params)
@@ -7883,6 +7920,8 @@ module TencentCloud
           @FileResultId = params['FileResultId']
           @DataSourceName = params['DataSourceName']
           @CategoryFullPath = params['CategoryFullPath']
+          @IdentifyType = params['IdentifyType']
+          @CheckStatus = params['CheckStatus']
         end
       end
 
@@ -8860,15 +8899,19 @@ module TencentCloud
         # @param ResourceRegion: 资源所在地域
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRegion: String
+        # @param DataSourceType: 无
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceType: String
 
-        attr_accessor :DataSourceId, :Condition, :ProxyAddress, :DataSourceName, :ResourceRegion
+        attr_accessor :DataSourceId, :Condition, :ProxyAddress, :DataSourceName, :ResourceRegion, :DataSourceType
 
-        def initialize(datasourceid=nil, condition=nil, proxyaddress=nil, datasourcename=nil, resourceregion=nil)
+        def initialize(datasourceid=nil, condition=nil, proxyaddress=nil, datasourcename=nil, resourceregion=nil, datasourcetype=nil)
           @DataSourceId = datasourceid
           @Condition = condition
           @ProxyAddress = proxyaddress
           @DataSourceName = datasourcename
           @ResourceRegion = resourceregion
+          @DataSourceType = datasourcetype
         end
 
         def deserialize(params)
@@ -8877,6 +8920,7 @@ module TencentCloud
           @ProxyAddress = params['ProxyAddress']
           @DataSourceName = params['DataSourceName']
           @ResourceRegion = params['ResourceRegion']
+          @DataSourceType = params['DataSourceType']
         end
       end
 
@@ -9500,10 +9544,16 @@ module TencentCloud
         # @type ResourceAuthType: String
         # @param ResourceAuthAccount: 授权账号名
         # @type ResourceAuthAccount: String
+        # @param InstanceType: x
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceValue: x
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceValue: String
 
-        attr_accessor :ResourceId, :ResourceName, :ResourceVip, :ResourceVPort, :ResourceCreateTime, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :MetaType, :ResourceRegion, :ResourceSyncTime, :AuthStatus, :BuildType, :MasterInsId, :ResourceVpcId, :ResourceSubnetId, :Protocol, :ResourceVersion, :ResourceAuthType, :ResourceAuthAccount
+        attr_accessor :ResourceId, :ResourceName, :ResourceVip, :ResourceVPort, :ResourceCreateTime, :ResourceUniqueVpcId, :ResourceUniqueSubnetId, :MetaType, :ResourceRegion, :ResourceSyncTime, :AuthStatus, :BuildType, :MasterInsId, :ResourceVpcId, :ResourceSubnetId, :Protocol, :ResourceVersion, :ResourceAuthType, :ResourceAuthAccount, :InstanceType, :InstanceValue
 
-        def initialize(resourceid=nil, resourcename=nil, resourcevip=nil, resourcevport=nil, resourcecreatetime=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, metatype=nil, resourceregion=nil, resourcesynctime=nil, authstatus=nil, buildtype=nil, masterinsid=nil, resourcevpcid=nil, resourcesubnetid=nil, protocol=nil, resourceversion=nil, resourceauthtype=nil, resourceauthaccount=nil)
+        def initialize(resourceid=nil, resourcename=nil, resourcevip=nil, resourcevport=nil, resourcecreatetime=nil, resourceuniquevpcid=nil, resourceuniquesubnetid=nil, metatype=nil, resourceregion=nil, resourcesynctime=nil, authstatus=nil, buildtype=nil, masterinsid=nil, resourcevpcid=nil, resourcesubnetid=nil, protocol=nil, resourceversion=nil, resourceauthtype=nil, resourceauthaccount=nil, instancetype=nil, instancevalue=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @ResourceVip = resourcevip
@@ -9523,6 +9573,8 @@ module TencentCloud
           @ResourceVersion = resourceversion
           @ResourceAuthType = resourceauthtype
           @ResourceAuthAccount = resourceauthaccount
+          @InstanceType = instancetype
+          @InstanceValue = instancevalue
         end
 
         def deserialize(params)
@@ -9545,6 +9597,8 @@ module TencentCloud
           @ResourceVersion = params['ResourceVersion']
           @ResourceAuthType = params['ResourceAuthType']
           @ResourceAuthAccount = params['ResourceAuthAccount']
+          @InstanceType = params['InstanceType']
+          @InstanceValue = params['InstanceValue']
         end
       end
 
@@ -10640,8 +10694,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :RiskLatestTableId, :Status, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2023, 11
-        deprecate :RiskLatestTableId=, :none, 2023, 11
+        deprecate :RiskLatestTableId, :none, 2024, 3
+        deprecate :RiskLatestTableId=, :none, 2024, 3
 
         def initialize(dspaid=nil, risklatesttableid=nil, status=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid
@@ -10920,14 +10974,23 @@ module TencentCloud
         # @type FileResultId: Integer
         # @param IsSetNonSensitiveFile: 是否设置为非敏感文件
         # @type IsSetNonSensitiveFile: Boolean
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param BucketName: 桶名
+        # @type BucketName: String
+        # @param DataSourceId: 数据源id
+        # @type DataSourceId: String
 
-        attr_accessor :DspaId, :ComplianceId, :FileResultId, :IsSetNonSensitiveFile
+        attr_accessor :DspaId, :ComplianceId, :FileResultId, :IsSetNonSensitiveFile, :FileName, :BucketName, :DataSourceId
 
-        def initialize(dspaid=nil, complianceid=nil, fileresultid=nil, issetnonsensitivefile=nil)
+        def initialize(dspaid=nil, complianceid=nil, fileresultid=nil, issetnonsensitivefile=nil, filename=nil, bucketname=nil, datasourceid=nil)
           @DspaId = dspaid
           @ComplianceId = complianceid
           @FileResultId = fileresultid
           @IsSetNonSensitiveFile = issetnonsensitivefile
+          @FileName = filename
+          @BucketName = bucketname
+          @DataSourceId = datasourceid
         end
 
         def deserialize(params)
@@ -10935,6 +10998,9 @@ module TencentCloud
           @ComplianceId = params['ComplianceId']
           @FileResultId = params['FileResultId']
           @IsSetNonSensitiveFile = params['IsSetNonSensitiveFile']
+          @FileName = params['FileName']
+          @BucketName = params['BucketName']
+          @DataSourceId = params['DataSourceId']
         end
       end
 

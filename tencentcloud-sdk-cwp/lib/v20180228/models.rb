@@ -4711,8 +4711,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2024, 2
-        deprecate :Decription=, :none, 2024, 2
+        deprecate :Decription, :none, 2024, 3
+        deprecate :Decription=, :none, 2024, 3
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -28502,8 +28502,8 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2024, 2
-        deprecate :Fileds=, :none, 2024, 2
+        deprecate :Fileds, :none, 2024, 3
+        deprecate :Fileds=, :none, 2024, 3
 
         def initialize(filters=nil, fileds=nil, fields=nil)
           @Filters = filters
@@ -34054,7 +34054,7 @@ module TencentCloud
 
       # ModifyLogKafkaAccess请求参数结构体
       class ModifyLogKafkaAccessRequest < TencentCloud::Common::AbstractModel
-        # @param KafkaEnvName: 实例名称 如 云镜测试环境
+        # @param KafkaEnvName: 实例名称 如 主机安全测试环境
         # @type KafkaEnvName: String
         # @param KafkaId: 实例ID
         # @type KafkaId: String
@@ -34201,7 +34201,7 @@ module TencentCloud
 
       # ModifyLogKafkaState请求参数结构体
       class ModifyLogKafkaStateRequest < TencentCloud::Common::AbstractModel
-        # @param KafkaEnvName: 实例名称 如 云镜测试环境
+        # @param KafkaEnvName: 实例名称 如 主机安全测试环境
         # @type KafkaEnvName: String
         # @param KafkaId: 实例ID
         # @type KafkaId: String

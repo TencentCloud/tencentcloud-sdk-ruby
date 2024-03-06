@@ -567,8 +567,8 @@ module TencentCloud
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 1
-        deprecate :SessTime=, :none, 2024, 1
+        deprecate :SessTime, :none, 2024, 3
+        deprecate :SessTime=, :none, 2024, 3
 
         def initialize(cmd=nil, time=nil, timeoffset=nil, action=nil, sid=nil, username=nil, account=nil, instanceid=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Cmd = cmd
@@ -3055,6 +3055,66 @@ module TencentCloud
         end
       end
 
+      # ModifyOAuthSetting请求参数结构体
+      class ModifyOAuthSettingRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启OAuth认证，false-不开启，true-开启。
+        # @type Enable: Boolean
+        # @param AuthMethod: OAuth认证方式。
+        # @type AuthMethod: String
+        # @param ClientId: OAuth认证客户端Id
+        # @type ClientId: String
+        # @param ClientSecret: OAuth认证客户端密钥
+        # @type ClientSecret: String
+        # @param CodeUrl: 获取OAuth认证授权码URL
+        # @type CodeUrl: String
+        # @param TokenUrl: 获取OAuth令牌URL
+        # @type TokenUrl: String
+        # @param UserInfoUrl: 获取OAuth用户信息URL
+        # @type UserInfoUrl: String
+        # @param Scopes: 使用Okta认证时指定范围。为空时默认使用 openid、profile、email。
+        # @type Scopes: Array
+
+        attr_accessor :Enable, :AuthMethod, :ClientId, :ClientSecret, :CodeUrl, :TokenUrl, :UserInfoUrl, :Scopes
+
+        def initialize(enable=nil, authmethod=nil, clientid=nil, clientsecret=nil, codeurl=nil, tokenurl=nil, userinfourl=nil, scopes=nil)
+          @Enable = enable
+          @AuthMethod = authmethod
+          @ClientId = clientid
+          @ClientSecret = clientsecret
+          @CodeUrl = codeurl
+          @TokenUrl = tokenurl
+          @UserInfoUrl = userinfourl
+          @Scopes = scopes
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @AuthMethod = params['AuthMethod']
+          @ClientId = params['ClientId']
+          @ClientSecret = params['ClientSecret']
+          @CodeUrl = params['CodeUrl']
+          @TokenUrl = params['TokenUrl']
+          @UserInfoUrl = params['UserInfoUrl']
+          @Scopes = params['Scopes']
+        end
+      end
+
+      # ModifyOAuthSetting返回参数结构体
+      class ModifyOAuthSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResource请求参数结构体
       class ModifyResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 需要开通服务的资源ID
@@ -3774,8 +3834,8 @@ module TencentCloud
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size
         extend Gem::Deprecate
-        deprecate :SessTime, :none, 2024, 1
-        deprecate :SessTime=, :none, 2024, 1
+        deprecate :SessTime, :none, 2024, 3
+        deprecate :SessTime=, :none, 2024, 3
 
         def initialize(time=nil, username=nil, realname=nil, instanceid=nil, devicename=nil, publicip=nil, privateip=nil, cmd=nil, action=nil, sid=nil, timeoffset=nil, account=nil, fromip=nil, sessiontime=nil, sesstime=nil, confirmtime=nil, userdepartmentid=nil, userdepartmentname=nil, devicedepartmentid=nil, devicedepartmentname=nil, size=nil)
           @Time = time

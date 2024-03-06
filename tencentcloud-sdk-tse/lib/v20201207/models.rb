@@ -5798,10 +5798,13 @@ module TencentCloud
         # @param HealthStatus: upstream健康状态HEALTHY（健康）, UNHEALTHY（异常）, HEALTHCHECKS_OFF（未开启）和NONE（不支持健康检查）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthStatus: String
+        # @param ScfCamAuthEnable: 云函数是否开启CAM鉴权，不填时默认为开启(true)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScfCamAuthEnable: Boolean
 
-        attr_accessor :Host, :Port, :SourceID, :Namespace, :ServiceName, :Targets, :SourceType, :ScfType, :ScfNamespace, :ScfLambdaName, :ScfLambdaQualifier, :SlowStart, :Algorithm, :AutoScalingGroupID, :AutoScalingCvmPort, :AutoScalingTatCmdStatus, :AutoScalingHookStatus, :SourceName, :RealSourceType, :HealthStatus
+        attr_accessor :Host, :Port, :SourceID, :Namespace, :ServiceName, :Targets, :SourceType, :ScfType, :ScfNamespace, :ScfLambdaName, :ScfLambdaQualifier, :SlowStart, :Algorithm, :AutoScalingGroupID, :AutoScalingCvmPort, :AutoScalingTatCmdStatus, :AutoScalingHookStatus, :SourceName, :RealSourceType, :HealthStatus, :ScfCamAuthEnable
 
-        def initialize(host=nil, port=nil, sourceid=nil, namespace=nil, servicename=nil, targets=nil, sourcetype=nil, scftype=nil, scfnamespace=nil, scflambdaname=nil, scflambdaqualifier=nil, slowstart=nil, algorithm=nil, autoscalinggroupid=nil, autoscalingcvmport=nil, autoscalingtatcmdstatus=nil, autoscalinghookstatus=nil, sourcename=nil, realsourcetype=nil, healthstatus=nil)
+        def initialize(host=nil, port=nil, sourceid=nil, namespace=nil, servicename=nil, targets=nil, sourcetype=nil, scftype=nil, scfnamespace=nil, scflambdaname=nil, scflambdaqualifier=nil, slowstart=nil, algorithm=nil, autoscalinggroupid=nil, autoscalingcvmport=nil, autoscalingtatcmdstatus=nil, autoscalinghookstatus=nil, sourcename=nil, realsourcetype=nil, healthstatus=nil, scfcamauthenable=nil)
           @Host = host
           @Port = port
           @SourceID = sourceid
@@ -5822,6 +5825,7 @@ module TencentCloud
           @SourceName = sourcename
           @RealSourceType = realsourcetype
           @HealthStatus = healthstatus
+          @ScfCamAuthEnable = scfcamauthenable
         end
 
         def deserialize(params)
@@ -5852,6 +5856,7 @@ module TencentCloud
           @SourceName = params['SourceName']
           @RealSourceType = params['RealSourceType']
           @HealthStatus = params['HealthStatus']
+          @ScfCamAuthEnable = params['ScfCamAuthEnable']
         end
       end
 
@@ -7930,10 +7935,13 @@ module TencentCloud
         # @param UnhealthyHttpStatuses: 异常HTTP状态码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnhealthyHttpStatuses: Array
+        # @param IgnoreZeroWeightNodes: 健康检查屏蔽权重为0的节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreZeroWeightNodes: Boolean
 
-        attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses
+        attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes
 
-        def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil)
+        def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck
           @ActiveHealthCheck = activehealthcheck
           @EnablePassiveHealthCheck = enablepassivehealthcheck
@@ -7943,6 +7951,7 @@ module TencentCloud
           @Timeouts = timeouts
           @HealthyHttpStatuses = healthyhttpstatuses
           @UnhealthyHttpStatuses = unhealthyhttpstatuses
+          @IgnoreZeroWeightNodes = ignorezeroweightnodes
         end
 
         def deserialize(params)
@@ -7961,6 +7970,7 @@ module TencentCloud
           @Timeouts = params['Timeouts']
           @HealthyHttpStatuses = params['HealthyHttpStatuses']
           @UnhealthyHttpStatuses = params['UnhealthyHttpStatuses']
+          @IgnoreZeroWeightNodes = params['IgnoreZeroWeightNodes']
         end
       end
 

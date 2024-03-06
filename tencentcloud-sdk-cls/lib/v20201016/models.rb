@@ -59,10 +59,23 @@ module TencentCloud
 
       # 告警多维分析一些配置信息
       class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
-        # @param Key: 键
+        # @param Key: 键。支持以下key：
+        # SyntaxRule：语法规则，value支持 0：Lucene语法；1： CQL语法。
+        # QueryIndex：执行语句序号。value支持  -1：自定义； 1：执行语句1； 2：执行语句2。
+        # CustomQuery：检索语句。 QueryIndex为-1时有效且必填，value示例： "* | select count(*) as count"。
+        # Fields：字段。value支持 __SOURCE__；__FILENAME__；__HOSTNAME__；__TIMESTAMP__；__INDEX_STATUS__；__PKG_LOGID__；__TOPIC__。
+        # Format：显示形式。value支持 1：每条日志一行；2：每条日志每个字段一行。
+        # Limit：最大日志条数。 value示例： 5。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Value: 值
+        # @param Value: 值。
+        # 键对应值如下：
+        # SyntaxRule：语法规则，value支持 0：Lucene语法；1： CQL语法。
+        # QueryIndex：执行语句序号。value支持  -1：自定义； 1：执行语句1； 2：执行语句2。
+        # CustomQuery：检索语句。 QueryIndex为-1时有效且必填，value示例： "* | select count(*) as count"。
+        # Fields：字段。value支持 __SOURCE__；__FILENAME__；__HOSTNAME__；__TIMESTAMP__；__INDEX_STATUS__；__PKG_LOGID__；__TOPIC__。
+        # Format：显示形式。value支持 1：每条日志一行；2：每条日志每个字段一行。
+        # Limit：最大日志条数。 value示例： 5。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
@@ -586,8 +599,6 @@ module TencentCloud
         # "Value": "1"  //0：Lucene语法 ，1： CQL语法
         # }
 
-
-
         # 当Analysis的Type字段为field（top5）时,  支持
         #  {
         #     "Key": "QueryIndex",
@@ -886,6 +897,59 @@ module TencentCloud
         end
       end
 
+      # 采集配置信息
+      class CollectConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 指定采集类型的采集配置名称信息。
+        # <li>当CollectInfo中Type为0：表示元数据配置，name为元数据名称。
+        # 目前支持"container_id"，"container_name"，"image_name"，"namespace"，"pod_uid"，"pod_name"，"pod_ip"。
+        # </li>
+        # <li>当CollectInfo中Type为1：指定pod label，name为指定pod label名称。</li>
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # 采集配置信息
+      class CollectInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 采集类型，必填字段。
+        # <li>0：元数据配置。</li>
+        # <li>1：指定Pod Label。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param CollectConfigs: 指定采集类型的采集配置信息。
+        # <li>当Type为0时，CollectConfigs不允许为空。</li>
+        # <li>当Type为1时，CollectConfigs为空时，表示选择所有Pod Label；否则CollectConfigs为指定Pod Label。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectConfigs: Array
+
+        attr_accessor :Type, :CollectConfigs
+
+        def initialize(type=nil, collectconfigs=nil)
+          @Type = type
+          @CollectConfigs = collectconfigs
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['CollectConfigs'].nil?
+            @CollectConfigs = []
+            params['CollectConfigs'].each do |i|
+              collectconfig_tmp = CollectConfig.new
+              collectconfig_tmp.deserialize(i)
+              @CollectConfigs << collectconfig_tmp
+            end
+          end
+        end
+      end
+
       # 日志分析的列属性
       class Column < TencentCloud::Common::AbstractModel
         # @param Name: 列的名字
@@ -974,6 +1038,9 @@ module TencentCloud
         # @param TopicName: 日志主题name
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicName: String
+        # @param CollectInfos: 采集相关配置信息。详情见 CollectInfo复杂类型配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectInfos: Array
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
         # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
@@ -982,9 +1049,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: String
 
-        attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
+        attr_accessor :ConfigExtraId, :Name, :TopicId, :Type, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :LogType, :ExtractRule, :ExcludePaths, :UpdateTime, :CreateTime, :UserDefineRule, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :CollectInfos, :AdvancedConfig
 
-        def initialize(configextraid=nil, name=nil, topicid=nil, type=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, logtype=nil, extractrule=nil, excludepaths=nil, updatetime=nil, createtime=nil, userdefinerule=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
+        def initialize(configextraid=nil, name=nil, topicid=nil, type=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, logtype=nil, extractrule=nil, excludepaths=nil, updatetime=nil, createtime=nil, userdefinerule=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, collectinfos=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
           @Name = name
           @TopicId = topicid
@@ -1004,6 +1071,7 @@ module TencentCloud
           @LogsetId = logsetid
           @LogsetName = logsetname
           @TopicName = topicname
+          @CollectInfos = collectinfos
           @AdvancedConfig = advancedconfig
         end
 
@@ -1046,6 +1114,14 @@ module TencentCloud
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @TopicName = params['TopicName']
+          unless params['CollectInfos'].nil?
+            @CollectInfos = []
+            params['CollectInfos'].each do |i|
+              collectinfo_tmp = CollectInfo.new
+              collectinfo_tmp.deserialize(i)
+              @CollectInfos << collectinfo_tmp
+            end
+          end
           @AdvancedConfig = params['AdvancedConfig']
         end
       end
@@ -1135,26 +1211,47 @@ module TencentCloud
 
       # 投递任务出入参 Content
       class ConsumerContent < TencentCloud::Common::AbstractModel
-        # @param EnableTag: 是否投递 TAG 信息
+        # @param EnableTag: 是否投递 TAG 信息。
+        # 当EnableTag为true时，表示投递TAG元信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableTag: Boolean
         # @param MetaFields: 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_，\_\_TIMESTAMP\_\_，\_\_HOSTNAME\_\_和\_\_PKGID\_\_
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
-        # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
+        # @param TagJsonNotTiled: 当EnableTag为true时，必须填写TagJsonNotTiled字段。
+        # TagJsonNotTiled用于标识tag信息是否json平铺。
+
+        # TagJsonNotTiled为true时不平铺，示例：
+        # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+        # 不平铺：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+
+        # TagJsonNotTiled为false时平铺，示例：
+        # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+        # 平铺：`{"__TAG__.fieldA":200,"__TAG__.fieldB":"text"}`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagJsonNotTiled: Boolean
-        # @param TimestampAccuracy: 投递时间戳精度，可选项 [1:秒；2:毫秒] ，默认是秒
+        # @param TimestampAccuracy: 投递时间戳精度，可选项 [1：秒；2：毫秒] ，默认是1。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimestampAccuracy: Integer
+        # @param JsonType: 投递Json格式。
+        # JsonType为0：和原始日志一致，不转义。示例：
+        # 日志原文：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
+        # 投递到Ckafka：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
 
-        attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled, :TimestampAccuracy
+        # JsonType为1：转义。示例：
+        # 日志原文：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
+        # 投递到Ckafka：`{"a":"aa","b":"{\"b1\":\"b1b1\", \"c1\":\"c1c1\"}"}`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JsonType: Integer
 
-        def initialize(enabletag=nil, metafields=nil, tagjsonnottiled=nil, timestampaccuracy=nil)
+        attr_accessor :EnableTag, :MetaFields, :TagJsonNotTiled, :TimestampAccuracy, :JsonType
+
+        def initialize(enabletag=nil, metafields=nil, tagjsonnottiled=nil, timestampaccuracy=nil, jsontype=nil)
           @EnableTag = enabletag
           @MetaFields = metafields
           @TagJsonNotTiled = tagjsonnottiled
           @TimestampAccuracy = timestampaccuracy
+          @JsonType = jsontype
         end
 
         def deserialize(params)
@@ -1162,6 +1259,7 @@ module TencentCloud
           @MetaFields = params['MetaFields']
           @TagJsonNotTiled = params['TagJsonNotTiled']
           @TimestampAccuracy = params['TimestampAccuracy']
+          @JsonType = params['JsonType']
         end
       end
 
@@ -1965,13 +2063,15 @@ module TencentCloud
       class CreateConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题 ID
         # @type TopicId: String
-        # @param NeedContent: 是否投递日志的元数据信息，默认为 true
+        # @param NeedContent: 是否投递日志的元数据信息，默认为 true。
+        # 当NeedContent为true时：字段Content有效。
+        # 当NeedContent为false时：字段Content无效。
         # @type NeedContent: Boolean
         # @param Content: 如果需要投递元数据信息，元数据信息的描述
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
-        # @param Compression: 投递时压缩方式，取值0，2，3。[0:NONE；2:SNAPPY；3:LZ4]
+        # @param Compression: 投递时压缩方式，取值0，2，3。[0：NONE；2：SNAPPY；3：LZ4]
         # @type Compression: Integer
 
         attr_accessor :TopicId, :NeedContent, :Content, :Ckafka, :Compression
@@ -2023,10 +2123,9 @@ module TencentCloud
         # @type LogsetId: String
         # @param Name: 投递任务名称
         # @type Name: String
-        # @param Bucket: COS存储桶。
-        # 存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
+        # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
         # @type Bucket: String
-        # @param BucketRegion: COS存储桶所在地域。地域和访问域名：https://cloud.tencent.com/document/product/436/6224
+        # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
         # @param Prefix: COS文件所在文件夹的前缀
         # @type Prefix: String
@@ -2091,7 +2190,7 @@ module TencentCloud
 
       # CreateDataTransform请求参数结构体
       class CreateDataTransformRequest < TencentCloud::Common::AbstractModel
-        # @param FuncType: 任务类型. 1: 指定主题；2:动态创建
+        # @param FuncType: 任务类型. 1: 指定主题；2:动态创建。详情请参考[创建加工任务文档](https://cloud.tencent.com/document/product/614/63940)。
         # @type FuncType: Integer
         # @param SrcTopicId: 源日志主题
         # @type SrcTopicId: String
@@ -2099,25 +2198,26 @@ module TencentCloud
         # @type Name: String
         # @param EtlContent: 加工语句
         # @type EtlContent: String
-        # @param TaskType: 加工类型  1 使用源日志主题中的随机数据，进行加工预览 :2 使用用户自定义测试数据，进行加工预览 3 创建真实加工任务
+        # @param TaskType: 加工类型。
+        # 1：使用源日志主题中的随机数据，进行加工预览；2：使用用户自定义测试数据，进行加工预览；3：创建真实加工任务。
         # @type TaskType: Integer
+        # @param DstResources: 加工任务目的topic_id以及别名,当FuncType=1时，该参数必填，当FuncType=2时，无需填写。
+        # @type DstResources: Array
         # @param EnableFlag: 任务启动状态.   默认为1:开启,  2:关闭
         # @type EnableFlag: Integer
-        # @param DstResources: 加工任务目的topic_id以及别名,当FuncType=1时，该参数必填，当FuncType=2时，无需填写
-        # @type DstResources: Array
         # @param PreviewLogStatistics: 用于预览加工结果的测试数据
         # @type PreviewLogStatistics: Array
 
-        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :EnableFlag, :DstResources, :PreviewLogStatistics
+        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics
 
-        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, enableflag=nil, dstresources=nil, previewlogstatistics=nil)
+        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil)
           @FuncType = functype
           @SrcTopicId = srctopicid
           @Name = name
           @EtlContent = etlcontent
           @TaskType = tasktype
-          @EnableFlag = enableflag
           @DstResources = dstresources
+          @EnableFlag = enableflag
           @PreviewLogStatistics = previewlogstatistics
         end
 
@@ -2127,7 +2227,6 @@ module TencentCloud
           @Name = params['Name']
           @EtlContent = params['EtlContent']
           @TaskType = params['TaskType']
-          @EnableFlag = params['EnableFlag']
           unless params['DstResources'].nil?
             @DstResources = []
             params['DstResources'].each do |i|
@@ -2136,6 +2235,7 @@ module TencentCloud
               @DstResources << datatransformresouceinfo_tmp
             end
           end
+          @EnableFlag = params['EnableFlag']
           unless params['PreviewLogStatistics'].nil?
             @PreviewLogStatistics = []
             params['PreviewLogStatistics'].each do |i|
@@ -2764,14 +2864,17 @@ module TencentCloud
         # @type MaxSplitPartitions: Integer
         # @param StorageType: 日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。
         # @type StorageType: String
-        # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存
+        # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存。
+        # 不传此值，默认获取该日志主题对应日志集的Period值（当获取失败时默认为30天）。
         # @type Period: Integer
         # @param Describes: 日志主题描述
         # @type Describes: String
         # @param HotPeriod: 0：关闭日志沉降。
-        # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        # 非0：开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
+        # 仅在StorageType为 hot 时生效。
         # @type HotPeriod: Integer
-        # @param IsWebTracking: 免鉴权开关； false: 关闭 true： 开启
+        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
+        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
 
         attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :IsWebTracking
@@ -4268,7 +4371,7 @@ module TencentCloud
 
         # <br><li> tag:tagKey
 
-        # 按照【标签键值对】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。
+        # 按照【标签键值对】进行过滤。tagKey使用具体的标签键进行替换。使用请参考示例二。
 
         # 类型：String
 
@@ -4662,7 +4765,7 @@ module TencentCloud
 
       # DescribeKafkaUser请求参数结构体
       class DescribeKafkaUserRequest < TencentCloud::Common::AbstractModel
-        # @param UserName: kafka消费用户名
+        # @param UserName: kafka用户名。
         # @type UserName: String
 
         attr_accessor :UserName
@@ -4678,7 +4781,7 @@ module TencentCloud
 
       # DescribeKafkaUser返回参数结构体
       class DescribeKafkaUserResponse < TencentCloud::Common::AbstractModel
-        # @param UserName: kafka消费用户名
+        # @param UserName: 如果返回不为空，代表用户名UserName已经创建成功。
         # @type UserName: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4702,13 +4805,14 @@ module TencentCloud
         # @type TopicId: String
         # @param BTime: 日志时间,  格式: YYYY-mm-dd HH:MM:SS.FFF
         # @type BTime: String
-        # @param PkgId: 日志包序号
+        # @param PkgId: 日志包序号。SearchLog接口返回信息中Results结构体中的PkgId。
         # @type PkgId: String
-        # @param PkgLogId: 日志包内一条日志的序号
+        # @param PkgLogId: 日志包内一条日志的序号。
+        # SearchLog接口返回信息中Results结构中的PkgLogId。
         # @type PkgLogId: Integer
-        # @param PrevLogs: 上文日志条数,  默认值10
+        # @param PrevLogs: 前${PrevLogs}条日志，默认值10。
         # @type PrevLogs: Integer
-        # @param NextLogs: 下文日志条数,  默认值10
+        # @param NextLogs: 后${NextLogs}条日志，默认值10。
         # @type NextLogs: Integer
 
         attr_accessor :TopicId, :BTime, :PkgId, :PkgLogId, :PrevLogs, :NextLogs
@@ -4736,9 +4840,9 @@ module TencentCloud
       class DescribeLogContextResponse < TencentCloud::Common::AbstractModel
         # @param LogContextInfos: 日志上下文信息集合
         # @type LogContextInfos: Array
-        # @param PrevOver: 上文日志是否已经返回
+        # @param PrevOver: 上文日志是否已经返回完成（当PrevOver为false，表示有上文日志还未全部返回）。
         # @type PrevOver: Boolean
-        # @param NextOver: 下文日志是否已经返回
+        # @param NextOver: 下文日志是否已经返回完成（当NextOver为false，表示有下文日志还未全部返回）。
         # @type NextOver: Boolean
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5074,7 +5178,7 @@ module TencentCloud
       class DescribeMachinesResponse < TencentCloud::Common::AbstractModel
         # @param Machines: 机器状态信息组
         # @type Machines: Array
-        # @param AutoUpdate: 机器组是否开启自动升级功能
+        # @param AutoUpdate: 机器组是否开启自动升级功能。 0：未开启自动升级；1：开启了自动升级。
         # @type AutoUpdate: Integer
         # @param UpdateStartTime: 机器组自动升级功能预设开始时间
         # @type UpdateStartTime: String
@@ -5174,8 +5278,8 @@ module TencentCloud
         # <li>dstTopicName按照【目标日志主题名称】进行过滤，模糊匹配。类型：String。必选：否</li>
         # <li>srcTopicId按照【源日志主题ID】进行过滤。类型：String。必选：否</li>
         # <li>dstTopicId按照【目标日志主题ID】进行过滤。类型：String。必选：否</li>
-        # <li>bizType按照【主题类型】进行过滤,0日志主题 1指标主题。类型：String。必选：否</li>
-        # <li>status按照【任务状态】进行过滤，1:运行 2:停止。类型：String。必选：否</li>
+        # <li>bizType按照【主题类型】进行过滤，0日志主题 1指标主题。类型：String。必选：否</li>
+        # <li>status按照【任务状态】进行过滤，1：运行；2：停止。类型：String。必选：否</li>
         # <li>taskName按照【任务名称】进行过滤，模糊匹配。类型：String。必选：否</li>
         # <li>taskId按照【任务ID】进行过滤，模糊匹配。类型：String。必选：否</li>
         # @type Filters: Array
@@ -5521,7 +5625,7 @@ module TencentCloud
         # @type From: Integer
         # @param To: 日志导出结束时间
         # @type To: Integer
-        # @param CosPath: 日志导出路径
+        # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
         # @type CosPath: String
         # @param CreateTime: 日志导出创建时间
         # @type CreateTime: String
@@ -5568,22 +5672,22 @@ module TencentCloud
 
       # 日志提取规则
       class ExtractRuleInfo < TencentCloud::Common::AbstractModel
-        # @param TimeKey: 时间字段的key名字，time_key和time_format必须成对出现
+        # @param TimeKey: 时间字段的key名字，TikeKey和TimeFormat必须成对出现
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeKey: String
         # @param TimeFormat: 时间字段的格式，参考c语言的strftime函数对于时间的格式说明输出参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeFormat: String
-        # @param Delimiter: 分隔符类型日志的分隔符，只有log_type为delimiter_log时有效
+        # @param Delimiter: 分隔符类型日志的分隔符，只有LogType为delimiter_log时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Delimiter: String
-        # @param LogRegex: 整条日志匹配规则，只有log_type为fullregex_log时有效
+        # @param LogRegex: 整条日志匹配规则，只有LogType为fullregex_log时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogRegex: String
-        # @param BeginRegex: 行首匹配规则，只有log_type为multiline_log或fullregex_log时有效
+        # @param BeginRegex: 行首匹配规则，只有LogType为multiline_log或fullregex_log时有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginRegex: String
-        # @param Keys: 取的每个字段的key名字，为空的key代表丢弃这个字段，只有log_type为delimiter_log时有效，json_log的日志使用json本身的key。限制100个。
+        # @param Keys: 取的每个字段的key名字，为空的key代表丢弃这个字段，只有LogType为delimiter_log时有效，json_log的日志使用json本身的key。限制100个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keys: Array
         # @param FilterKeyRegex: 需要过滤日志的key，及其对应的regex
@@ -5595,7 +5699,7 @@ module TencentCloud
         # @param UnMatchLogKey: 失败日志的key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnMatchLogKey: String
-        # @param Backtracking: 增量采集模式下的回溯数据量，默认-1（全量采集）
+        # @param Backtracking: 增量采集模式下的回溯数据量，默认-1（全量采集）；其他非负数表示增量采集（从最新的位置，往前采集${Backtracking}字节（Byte）的日志）最大支持1073741824（1G）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backtracking: Integer
         # @param IsGBK: 是否为Gbk编码.   0: 否, 1: 是
@@ -5805,7 +5909,10 @@ module TencentCloud
         # @type Context: String
         # @param Sort: 执行详情是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         # @type Sort: String
-        # @param UseNewAnalysis: 如果Query包含SQL语句，UseNewAnalysis为true时响应参数AnalysisRecords和Columns有效， UseNewAnalysis为false时响应参数AnalysisResults和ColNames有效
+        # @param UseNewAnalysis: 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效；
+        # 为false代表使用老的检索结果返回方式，输出AnalysisResults和ColNames有效；
+        # 两种返回方式在编码格式上有少量区别，建议使用true。
+        # 示例值：false
         # @type UseNewAnalysis: Boolean
 
         attr_accessor :From, :To, :Query, :Limit, :Context, :Sort, :UseNewAnalysis
@@ -5849,11 +5956,11 @@ module TencentCloud
         # 当Query字段有SQL语句时，可能返回null。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Results: Array
-        # @param AnalysisResults: 执行详情统计分析结果。当Query字段有SQL语句时，返回sql统计结果，否则可能返回null。
+        # @param AnalysisResults: 执行详情统计分析结果。当Query字段有SQL语句时，返回SQL统计结果，否则可能返回null。
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisResults: Array
-        # @param AnalysisRecords: 执行详情统计分析结果; UseNewAnalysis为true有效
+        # @param AnalysisRecords: 执行详情统计分析结果；UseNewAnalysis为true有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisRecords: Array
         # @param Columns: 分析结果的列名， UseNewAnalysis为true有效
@@ -6023,7 +6130,7 @@ module TencentCloud
 
       # kafka协议消费内容
       class KafkaConsumerContent < TencentCloud::Common::AbstractModel
-        # @param Format: 消费格式 0:全文；1:json
+        # @param Format: 消费数据格式。 0：原始内容；1：JSON。
         # @type Format: Integer
         # @param EnableTag: 是否投递 TAG 信息
         # Format为0时，此字段不需要赋值
@@ -6032,14 +6139,29 @@ module TencentCloud
         # 、\_\_TIMESTAMP\_\_、\_\_HOSTNAME\_\_、\_\_PKGID\_\_
         # Format为0时，此字段不需要赋值
         # @type MetaFields: Array
-        # @param TagTransaction: tag数据处理方式：
-        # 1:不平铺（默认值）
-        # 2:平铺
+        # @param TagTransaction: tag数据处理方式：1:不平铺（默认值）；2:平铺。
+
+        # 不平铺示例：
+        # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+        # 不平铺：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+
+        # 平铺示例：
+        # TAG信息：`{"__TAG__":{"fieldA":200,"fieldB":"text"}}`
+        # 平铺：`{"__TAG__.fieldA":200,"__TAG__.fieldB":"text"}`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagTransaction: Integer
         # @param JsonType: 消费数据Json格式：
         # 1：不转义（默认格式）
         # 2：转义
+
+        # 投递Json格式。
+        # JsonType为1：和原始日志一致，不转义。示例：
+        # 日志原文：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
+        # 投递到Ckafka：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
+
+        # JsonType为2：转义。示例：
+        # 日志原文：`{"a":"aa", "b":{"b1":"b1b1", "c1":"c1c1"}}`
+        # 投递到Ckafka：`{"a":"aa","b":"{\"b1\":\"b1b1\", \"c1\":\"c1c1\"}"}`
         # @type JsonType: Integer
 
         attr_accessor :Format, :EnableTag, :MetaFields, :TagTransaction, :JsonType
@@ -6128,7 +6250,7 @@ module TencentCloud
         # @param ConsumerGroupName: 用户Kafka消费组名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerGroupName: String
-        # @param Status: 状态   status 1: 运行中, 2: 暂停 ...
+        # @param Status: 状态 ，1：运行中；2：暂停。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
@@ -6649,11 +6771,13 @@ module TencentCloud
         # @type AutoUpdate: Integer
         # @param Version: 机器当前版本号。
         # @type Version: String
-        # @param UpdateStatus: 机器升级功能状态。
+        # @param UpdateStatus: 机器升级功能状态。 0：升级成功；1：升级中；-1：升级失败。
         # @type UpdateStatus: Integer
         # @param ErrCode: 机器升级结果标识。
+        # 0：成功；1200：升级成功；其他值表示异常。
         # @type ErrCode: Integer
         # @param ErrMsg: 机器升级结果信息。
+        # “ok”：成功；“update success”：升级成功；其他值为失败原因。
         # @type ErrMsg: String
 
         attr_accessor :Ip, :InstanceID, :Status, :OfflineTime, :AutoUpdate, :Version, :UpdateStatus, :ErrCode, :ErrMsg
@@ -7284,13 +7408,15 @@ module TencentCloud
         # @type TopicId: String
         # @param Effective: 投递任务是否生效，默认不生效
         # @type Effective: Boolean
-        # @param NeedContent: 是否投递日志的元数据信息，默认为 false
+        # @param NeedContent: 是否投递日志的元数据信息，默认为 true。
+        # 当NeedContent为true时：字段Content有效。
+        # 当NeedContent为false时：字段Content无效。
         # @type NeedContent: Boolean
         # @param Content: 如果需要投递元数据信息，元数据信息的描述
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
         # @param Ckafka: CKafka的描述
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
-        # @param Compression: 投递时压缩方式，取值0，2，3。[0:NONE；2:SNAPPY；3:LZ4]
+        # @param Compression: 投递时压缩方式，取值0，2，3。[0：NONE；2：SNAPPY；3：LZ4]
         # @type Compression: Integer
 
         attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka, :Compression
@@ -7928,7 +8054,8 @@ module TencentCloud
         # @type TopicName: String
         # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，并且不能有重复的键值对。
         # @type Tags: Array
-        # @param Status: 该日志主题是否开始采集
+        # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
+        # 控制台目前不支持修改此参数。
         # @type Status: Boolean
         # @param AutoSplit: 是否开启自动分裂
         # @type AutoSplit: Boolean
@@ -7941,7 +8068,8 @@ module TencentCloud
         # @param HotPeriod: 0：关闭日志沉降。
         # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
         # @type HotPeriod: Integer
-        # @param IsWebTracking: 免鉴权开关； false: 关闭 true: 开启
+        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
+        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
 
         attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking
@@ -8293,7 +8421,7 @@ module TencentCloud
         # @param ServerAddr: 服务地址。
         # KafkaType为1时ServerAddr必填
         # @type ServerAddr: String
-        # @param IsEncryptionAddr: ServerAddr是否为加密连接。。
+        # @param IsEncryptionAddr: ServerAddr是否为加密连接。
         # KafkaType为1时有效。
         # @type IsEncryptionAddr: Boolean
         # @param Protocol: 加密访问协议。
@@ -8791,11 +8919,9 @@ module TencentCloud
         # @type LogsetId: String
         # @param Name: 投递任务名称
         # @type Name: String
-        # @param Bucket: 存储桶。
-        # 存储桶命名规范：https://cloud.tencent.com/document/product/436/13312
+        # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
         # @type Bucket: String
-        # @param BucketRegion: 存储桶所在地域。
-        # 地域和访问域名：https://cloud.tencent.com/document/product/436/6224
+        # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
         # @param Prefix: cos文件所在文件夹的前缀
         # @type Prefix: String
@@ -9381,8 +9507,30 @@ module TencentCloud
       class TopicIdAndRegion < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题id
         # @type TopicId: String
-        # @param RegionId: 日志主题id 所在的地域id
-        # 地域ID - 访问链接查看详情：https://iwiki.woa.com/pages/viewpage.action?pageId=780556968#id-地域码表-一.region大区（标准地域）
+        # @param RegionId: 日志主题id所在的地域id。
+
+        # id,地域,简称信息如下：
+        # - 1,   广州,ap-guangzhou
+        # - 4,   上海,ap-shanghai
+        # - 5,   中国香港,ap-hongkong
+        # - 6,   多伦多,na-toronto
+        # - 7,   上海金融,ap-shanghai-fsi
+        # - 8,   北京,ap-beijing
+        # - 9,   新加坡,ap-singapore
+        # - 11,  深圳金融,ap-shenzhen-fsi
+        # - 15,  硅谷,na-siliconvalley
+        # - 16,  成都,ap-chengdu
+        # - 17,  法兰克福,eu-frankfurt
+        # - 18,  首尔,ap-seoul
+        # - 19,  重庆,ap-chongqing
+        # - 21,  孟买,ap-mumbai
+        # - 22,  弗吉尼亚,na-ashburn
+        # - 23,  曼谷,ap-bangkok
+        # - 25,  东京,ap-tokyo
+        # - 33,  南京,ap-nanjing
+        # - 46,  北京金融,ap-beijing-fsi
+        # - 72,  雅加达,ap-jakarta
+        # - 74,  圣保罗,sa-saopaulo
         # @type RegionId: Integer
 
         attr_accessor :TopicId, :RegionId
@@ -9415,7 +9563,9 @@ module TencentCloud
         # @type AssumerName: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param Status: 主题是否开启采集
+        # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
+        # 创建日志主题时默认开启，可通过SDK调用ModifyTopic修改此字段。
+        # 控制台目前不支持修改此参数。
         # @type Status: Boolean
         # @param Tags: 主题绑定的标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -9447,9 +9597,8 @@ module TencentCloud
         # - 1: 指标主题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizType: Integer
-        # @param IsWebTracking: 免鉴权开关。
-        # - false: 关闭
-        # - true: 开启
+        # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
+        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWebTracking: Boolean
 

@@ -3856,6 +3856,8 @@ module TencentCloud
         # @param StaffNumber: 坐席工号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaffNumber: String
+        # @param RoleId: 用户角色id
+        # @type RoleId: Integer
         # @param SkillGroupList: 所属技能组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupList: Array
@@ -3863,14 +3865,15 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTimestamp: Integer
 
-        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :SkillGroupList, :LastModifyTimestamp
+        attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :SkillGroupList, :LastModifyTimestamp
 
-        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, skillgrouplist=nil, lastmodifytimestamp=nil)
+        def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, skillgrouplist=nil, lastmodifytimestamp=nil)
           @Name = name
           @Mail = mail
           @Phone = phone
           @Nick = nick
           @StaffNumber = staffnumber
+          @RoleId = roleid
           @SkillGroupList = skillgrouplist
           @LastModifyTimestamp = lastmodifytimestamp
         end
@@ -3881,6 +3884,7 @@ module TencentCloud
           @Phone = params['Phone']
           @Nick = params['Nick']
           @StaffNumber = params['StaffNumber']
+          @RoleId = params['RoleId']
           unless params['SkillGroupList'].nil?
             @SkillGroupList = []
             params['SkillGroupList'].each do |i|

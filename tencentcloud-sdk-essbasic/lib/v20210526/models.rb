@@ -3767,6 +3767,83 @@ module TencentCloud
         end
       end
 
+      # ChannelDescribeSignFaceVideo请求参数结构体
+      class ChannelDescribeSignFaceVideoRequest < TencentCloud::Common::AbstractModel
+        # @param FlowId: 合同流程ID，为32位字符串。
+        # 建议开发者妥善保存此流程ID，以便于顺利进行后续操作。
+        # 可登录腾讯电子签控制台，在 "合同"->"合同中心" 中查看某个合同的FlowId(在页面中展示为合同ID)。
+        # @type FlowId: String
+        # @param SignId: 签署参与人在本流程中的编号ID(每个流程不同)，可用此ID来定位签署参与人在本流程的签署节点，也可用于后续创建签署链接等操作。
+        # @type SignId: String
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+
+        # 此接口下面信息必填。
+        # <ul>
+        # <li>渠道应用标识:  Agent.AppId</li>
+        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
+        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
+        # </ul>
+        # 第三方平台子客企业和员工必须已经经过实名认证
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+
+        attr_accessor :FlowId, :SignId, :Agent
+
+        def initialize(flowid=nil, signid=nil, agent=nil)
+          @FlowId = flowid
+          @SignId = signid
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @SignId = params['SignId']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ChannelDescribeSignFaceVideo返回参数结构体
+      class ChannelDescribeSignFaceVideoResponse < TencentCloud::Common::AbstractModel
+        # @param VideoData: 核身视频结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoData: :class:`Tencentcloud::Essbasic.v20210526.models.DetectInfoVideoData`
+        # @param IntentionQuestionResult: 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionQuestionResult: :class:`Tencentcloud::Essbasic.v20210526.models.IntentionQuestionResult`
+        # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionActionResult: :class:`Tencentcloud::Essbasic.v20210526.models.IntentionActionResult`
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VideoData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
+
+        def initialize(videodata=nil, intentionquestionresult=nil, intentionactionresult=nil, requestid=nil)
+          @VideoData = videodata
+          @IntentionQuestionResult = intentionquestionresult
+          @IntentionActionResult = intentionactionresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VideoData'].nil?
+            @VideoData = DetectInfoVideoData.new
+            @VideoData.deserialize(params['VideoData'])
+          end
+          unless params['IntentionQuestionResult'].nil?
+            @IntentionQuestionResult = IntentionQuestionResult.new
+            @IntentionQuestionResult.deserialize(params['IntentionQuestionResult'])
+          end
+          unless params['IntentionActionResult'].nil?
+            @IntentionActionResult = IntentionActionResult.new
+            @IntentionActionResult.deserialize(params['IntentionActionResult'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChannelDescribeUserAutoSignStatus请求参数结构体
       class ChannelDescribeUserAutoSignStatusRequest < TencentCloud::Common::AbstractModel
         # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
@@ -6630,6 +6707,25 @@ module TencentCloud
         end
       end
 
+      # 视频认证结果
+      class DetectInfoVideoData < TencentCloud::Common::AbstractModel
+        # @param LiveNessVideo: 活体视频的base64编码，mp4格式
+
+        # 注:`需进行base64解码获取活体视频文件`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LiveNessVideo: String
+
+        attr_accessor :LiveNessVideo
+
+        def initialize(livenessvideo=nil)
+          @LiveNessVideo = livenessvideo
+        end
+
+        def deserialize(params)
+          @LiveNessVideo = params['LiveNessVideo']
+        end
+      end
+
       # 签署流程下载信息
       class DownloadFlowInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 文件夹名称
@@ -7122,13 +7218,19 @@ module TencentCloud
 
         # 注：`此参数仅在通过文件发起合同或者合同组时生效`
         # @type Components: Array
+        # @param Intention: 视频核身意图配置，可指定问答模式或者点头模式的语音文本。
 
-        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName, :SignTypeSelector, :Components
+        # 注:
+        #  `1.视频认证为白名单功能，使用前请联系对接的客户经理沟通。`
+        # `2.使用视频认证必须指定签署认证方式为人脸（即ApproverSignTypes）。`
+        # @type Intention: :class:`Tencentcloud::Essbasic.v20210526.models.Intention`
+
+        attr_accessor :Name, :IdCardType, :IdCardNumber, :Mobile, :OrganizationName, :NotChannelOrganization, :OpenId, :OrganizationOpenId, :ApproverType, :RecipientId, :Deadline, :CallbackUrl, :SignComponents, :ComponentLimitType, :PreReadTime, :JumpUrl, :ApproverOption, :ApproverNeedSignReview, :ApproverVerifyTypes, :ApproverSignTypes, :SignId, :NotifyType, :AddSignComponentsLimits, :ApproverRoleName, :SignTypeSelector, :Components, :Intention
         extend Gem::Deprecate
         deprecate :CallbackUrl, :none, 2024, 3
         deprecate :CallbackUrl=, :none, 2024, 3
 
-        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil, signtypeselector=nil, components=nil)
+        def initialize(name=nil, idcardtype=nil, idcardnumber=nil, mobile=nil, organizationname=nil, notchannelorganization=nil, openid=nil, organizationopenid=nil, approvertype=nil, recipientid=nil, deadline=nil, callbackurl=nil, signcomponents=nil, componentlimittype=nil, prereadtime=nil, jumpurl=nil, approveroption=nil, approverneedsignreview=nil, approververifytypes=nil, approversigntypes=nil, signid=nil, notifytype=nil, addsigncomponentslimits=nil, approverrolename=nil, signtypeselector=nil, components=nil, intention=nil)
           @Name = name
           @IdCardType = idcardtype
           @IdCardNumber = idcardnumber
@@ -7155,6 +7257,7 @@ module TencentCloud
           @ApproverRoleName = approverrolename
           @SignTypeSelector = signtypeselector
           @Components = components
+          @Intention = intention
         end
 
         def deserialize(params)
@@ -7207,6 +7310,10 @@ module TencentCloud
               component_tmp.deserialize(i)
               @Components << component_tmp
             end
+          end
+          unless params['Intention'].nil?
+            @Intention = Intention.new
+            @Intention.deserialize(params['Intention'])
           end
         end
       end
@@ -8027,6 +8134,156 @@ module TencentCloud
 
         def deserialize(params)
           @OpenId = params['OpenId']
+        end
+      end
+
+      # 视频核身意图配置，可指定问答模式或者点头模式的语音文本。
+
+      # 注: `视频认证为白名单功能，使用前请联系对接的客户经理沟通。`
+      class Intention < TencentCloud::Common::AbstractModel
+        # @param IntentionType: 视频认证类型，支持以下类型
+        # <ul><li>1 : 问答模式</li>
+        # <li>2 : 点头模式</li></ul>
+
+        # 注: `视频认证为白名单功能，使用前请联系对接的客户经理沟通。`
+        # @type IntentionType: Integer
+        # @param IntentionQuestions: 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
+        # @type IntentionQuestions: Array
+        # @param IntentionActions: 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。当前仅支持一个提示文本。
+        # @type IntentionActions: Array
+
+        attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions
+
+        def initialize(intentiontype=nil, intentionquestions=nil, intentionactions=nil)
+          @IntentionType = intentiontype
+          @IntentionQuestions = intentionquestions
+          @IntentionActions = intentionactions
+        end
+
+        def deserialize(params)
+          @IntentionType = params['IntentionType']
+          unless params['IntentionQuestions'].nil?
+            @IntentionQuestions = []
+            params['IntentionQuestions'].each do |i|
+              intentionquestion_tmp = IntentionQuestion.new
+              intentionquestion_tmp.deserialize(i)
+              @IntentionQuestions << intentionquestion_tmp
+            end
+          end
+          unless params['IntentionActions'].nil?
+            @IntentionActions = []
+            params['IntentionActions'].each do |i|
+              intentionaction_tmp = IntentionAction.new
+              intentionaction_tmp.deserialize(i)
+              @IntentionActions << intentionaction_tmp
+            end
+          end
+        end
+      end
+
+      # 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。当前仅支持一个提示文本。
+      class IntentionAction < TencentCloud::Common::AbstractModel
+        # @param Text: 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为150个字符。
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
+      # 意愿核身点头确认模式结果
+      class IntentionActionResult < TencentCloud::Common::AbstractModel
+        # @param Details: 意愿核身结果详细数据，与每段点头确认过程一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Details: Array
+
+        attr_accessor :Details
+
+        def initialize(details=nil)
+          @Details = details
+        end
+
+        def deserialize(params)
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              intentionactionresultdetail_tmp = IntentionActionResultDetail.new
+              intentionactionresultdetail_tmp.deserialize(i)
+              @Details << intentionactionresultdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 意愿核身点头确认模式结果详细数据
+      class IntentionActionResultDetail < TencentCloud::Common::AbstractModel
+        # @param Video: 视频base64编码（其中包含全程提示文本和点头音频，mp4格式）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Video: String
+
+        attr_accessor :Video
+
+        def initialize(video=nil)
+          @Video = video
+        end
+
+        def deserialize(params)
+          @Video = params['Video']
+        end
+      end
+
+      # 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
+      class IntentionQuestion < TencentCloud::Common::AbstractModel
+        # @param Question: 当选择语音问答模式时，系统自动播报的问题文本，最大长度为150个字符。
+        # @type Question: String
+        # @param Answers:  当选择语音问答模式时，用于判断用户回答是否通过的标准答案列表，传入后可自动判断用户回答文本是否在标准文本列表中。
+        # @type Answers: Array
+
+        attr_accessor :Question, :Answers
+
+        def initialize(question=nil, answers=nil)
+          @Question = question
+          @Answers = answers
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @Answers = params['Answers']
+        end
+      end
+
+      # 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
+      class IntentionQuestionResult < TencentCloud::Common::AbstractModel
+        # @param Video: 视频base64（其中包含全程问题和回答音频，mp4格式）
+
+        # 注：`需进行base64解码获取视频文件`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Video: String
+        # @param ResultCode:  和答案匹配结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultCode: Array
+        # @param AsrResult: 回答问题语音识别结果列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AsrResult: Array
+
+        attr_accessor :Video, :ResultCode, :AsrResult
+
+        def initialize(video=nil, resultcode=nil, asrresult=nil)
+          @Video = video
+          @ResultCode = resultcode
+          @AsrResult = asrresult
+        end
+
+        def deserialize(params)
+          @Video = params['Video']
+          @ResultCode = params['ResultCode']
+          @AsrResult = params['AsrResult']
         end
       end
 

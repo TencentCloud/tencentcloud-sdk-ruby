@@ -1171,11 +1171,11 @@ module TencentCloud
 
       # AssociateDirectConnectGatewayNatGateway请求参数结构体
       class AssociateDirectConnectGatewayNatGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param VpcId: VPC实例ID。形如：vpc-xxx。
         # @type VpcId: String
-        # @param NatGatewayId: NAT网关ID。
+        # @param NatGatewayId: NAT网关ID。形如：nat-xxx
         # @type NatGatewayId: String
-        # @param DirectConnectGatewayId: 专线网关ID。
+        # @param DirectConnectGatewayId: 专线网关ID。形如：dcg-xxx
         # @type DirectConnectGatewayId: String
 
         attr_accessor :VpcId, :NatGatewayId, :DirectConnectGatewayId
@@ -13114,11 +13114,11 @@ module TencentCloud
 
       # DisassociateDirectConnectGatewayNatGateway请求参数结构体
       class DisassociateDirectConnectGatewayNatGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 专线网关ID。
+        # @param VpcId: VPC实例ID。形如：vpc-xxx。
         # @type VpcId: String
-        # @param NatGatewayId: NAT网关ID。
+        # @param NatGatewayId: NAT网关ID。形如：nat-xxx
         # @type NatGatewayId: String
-        # @param DirectConnectGatewayId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @param DirectConnectGatewayId: 专线网关ID。形如：dcg-xxx
         # @type DirectConnectGatewayId: String
 
         attr_accessor :VpcId, :NatGatewayId, :DirectConnectGatewayId
@@ -14351,8 +14351,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2024, 1
-        deprecate :IntegrityAlgorith=, :none, 2024, 1
+        deprecate :IntegrityAlgorith, :none, 2024, 3
+        deprecate :IntegrityAlgorith=, :none, 2024, 3
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -16855,7 +16855,7 @@ module TencentCloud
 
       # ModifyVpcAttribute请求参数结构体
       class ModifyVpcAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
+        # @param VpcId: VPC实例ID。形如：vpc-f49l6u0z。
         # @type VpcId: String
         # @param VpcName: 私有网络名称，可任意命名，但不得超过60个字符。
         # @type VpcName: String

@@ -198,7 +198,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改Apm实例接口
+        # 修改APM实例接口
 
         # @param request: Request instance for ModifyApmInstance.
         # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmInstanceRequest`
