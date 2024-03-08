@@ -125,6 +125,222 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资源目录筛选条件
+
+        # @param request: Request instance for DescribeAllocateConditions.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocateConditionsRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocateConditionsResponse`
+        def DescribeAllocateConditions(request)
+          body = send_request('DescribeAllocateConditions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocateConditionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单筛选条件
+
+        # @param request: Request instance for DescribeAllocationBillConditions.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationBillConditionsRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationBillConditionsResponse`
+        def DescribeAllocationBillConditions(request)
+          body = send_request('DescribeAllocationBillConditions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationBillConditionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单明细
+
+        # @param request: Request instance for DescribeAllocationBillDetail.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationBillDetailRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationBillDetailResponse`
+        def DescribeAllocationBillDetail(request)
+          body = send_request('DescribeAllocationBillDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationBillDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单月概览
+
+        # @param request: Request instance for DescribeAllocationMonthOverview.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationMonthOverviewRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationMonthOverviewResponse`
+        def DescribeAllocationMonthOverview(request)
+          body = send_request('DescribeAllocationMonthOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationMonthOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单日概览
+
+        # @param request: Request instance for DescribeAllocationOverview.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationOverviewRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationOverviewResponse`
+        def DescribeAllocationOverview(request)
+          body = send_request('DescribeAllocationOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单按产品汇总
+
+        # @param request: Request instance for DescribeAllocationSummaryByBusiness.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByBusinessRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByBusinessResponse`
+        def DescribeAllocationSummaryByBusiness(request)
+          body = send_request('DescribeAllocationSummaryByBusiness', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationSummaryByBusinessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单按组件汇总
+
+        # @param request: Request instance for DescribeAllocationSummaryByItem.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByItemRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByItemResponse`
+        def DescribeAllocationSummaryByItem(request)
+          body = send_request('DescribeAllocationSummaryByItem', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationSummaryByItemResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单按资源汇总
+
+        # @param request: Request instance for DescribeAllocationSummaryByResource.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByResourceRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationSummaryByResourceResponse`
+        def DescribeAllocationSummaryByResource(request)
+          body = send_request('DescribeAllocationSummaryByResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationSummaryByResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单费用趋势
+
+        # @param request: Request instance for DescribeAllocationTrendByMonth.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeAllocationTrendByMonthRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeAllocationTrendByMonthResponse`
+        def DescribeAllocationTrendByMonth(request)
+          body = send_request('DescribeAllocationTrendByMonth', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAllocationTrendByMonthResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取账单明细数据。
         # 注意事项：
         # 1.在请求接口时，由于网络不稳定或其它异常，可能会导致请求失败。如果您遇到这种情况，我们建议您在接口请求失败时，手动发起重试操作，这样可以更好地确保您的接口请求能够成功执行。
@@ -667,6 +883,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDosageDetailListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询分账账单资源归集汇总
+
+        # @param request: Request instance for DescribeGatherResource.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeGatherResourceRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeGatherResourceResponse`
+        def DescribeGatherResource(request)
+          body = send_request('DescribeGatherResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatherResourceResponse.new
             model.deserialize(response['Response'])
             model
           else

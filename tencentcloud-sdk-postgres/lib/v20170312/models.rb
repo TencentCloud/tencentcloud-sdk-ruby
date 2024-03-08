@@ -193,7 +193,7 @@ module TencentCloud
       class BackupPlan < TencentCloud::Common::AbstractModel
         # @param BackupPeriod: 备份周期
         # @type BackupPeriod: String
-        # @param BaseBackupRetentionPeriod: 基础备份保留时长
+        # @param BaseBackupRetentionPeriod: 数据备份保留时长
         # @type BaseBackupRetentionPeriod: Integer
         # @param MinBackupStartTime: 开始备份的最早时间
         # @type MinBackupStartTime: String
@@ -225,13 +225,13 @@ module TencentCloud
         # @type LogBackupCount: Integer
         # @param LogBackupSize: 实例日志备份大小。
         # @type LogBackupSize: Integer
-        # @param ManualBaseBackupCount: 手动创建的实例基础备份数量。
+        # @param ManualBaseBackupCount: 手动创建的实例数据备份数量。
         # @type ManualBaseBackupCount: Integer
-        # @param ManualBaseBackupSize: 手动创建的实例基础备份大小。
+        # @param ManualBaseBackupSize: 手动创建的实例数据备份大小。
         # @type ManualBaseBackupSize: Integer
-        # @param AutoBaseBackupCount: 自动创建的实例基础备份数量。
+        # @param AutoBaseBackupCount: 自动创建的实例数据备份数量。
         # @type AutoBaseBackupCount: Integer
-        # @param AutoBaseBackupSize: 自动创建的实例基础备份大小。
+        # @param AutoBaseBackupSize: 自动创建的实例数据备份大小。
         # @type AutoBaseBackupSize: Integer
         # @param TotalBackupCount: 总备份数量
         # @type TotalBackupCount: Integer
@@ -265,7 +265,7 @@ module TencentCloud
         end
       end
 
-      # 数据库基础备份信息
+      # 数据库数据备份信息
       class BaseBackup < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
@@ -596,7 +596,7 @@ module TencentCloud
 
       # CreateBaseBackup返回参数结构体
       class CreateBaseBackupResponse < TencentCloud::Common::AbstractModel
-        # @param BaseBackupId: 基础备份集ID
+        # @param BaseBackupId: 数据备份集ID
         # @type BaseBackupId: String
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1782,7 +1782,7 @@ module TencentCloud
       class DeleteBaseBackupRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param BaseBackupId: 基础备份ID。
+        # @param BaseBackupId: 数据备份ID。
         # @type BaseBackupId: String
 
         attr_accessor :DBInstanceId, :BaseBackupId
@@ -2089,7 +2089,7 @@ module TencentCloud
       class DescribeAccountsResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 本次调用接口共返回了多少条数据。
         # @type TotalCount: Integer
-        # @param Details: 帐号列表详细信息。
+        # @param Details: 账号列表详细信息。
         # @type Details: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2494,9 +2494,9 @@ module TencentCloud
 
       # DescribeBaseBackups返回参数结构体
       class DescribeBaseBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询到的基础备份数量。
+        # @param TotalCount: 查询到的数据备份数量。
         # @type TotalCount: Integer
-        # @param BaseBackupSet: 基础备份详细信息列表。
+        # @param BaseBackupSet: 数据备份详细信息列表。
         # @type BaseBackupSet: Array
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4870,7 +4870,7 @@ module TencentCloud
       class ModifyBaseBackupExpireTimeRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID。
         # @type DBInstanceId: String
-        # @param BaseBackupId: 基础备份ID。
+        # @param BaseBackupId: 数据备份ID。
         # @type BaseBackupId: String
         # @param NewExpireTime: 新过期时间。
         # @type NewExpireTime: String
@@ -5807,13 +5807,13 @@ module TencentCloud
         # @param LastModifyTime: 参数最后一次修改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastModifyTime: String
-        # @param StandbyRelated: 参数存在主备制约，0：无主备制约关系，1:备机参数值需比主机大，2:主机参数值需比备机大
+        # @param StandbyRelated: 参数主备制约，0：无主备制约关系，1:备机参数值需比主机大，2:主机参数值需比备机大
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandbyRelated: Integer
-        # @param VersionRelationSet: 参数版本关联信息，存储具体内核版本下的具体参数信息
+        # @param VersionRelationSet: 参数版本关联信息，内容为相应内核版本下的参数详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionRelationSet: Array
-        # @param SpecRelationSet: 参数规格关联信息，存储具体规格下具体的参数信息
+        # @param SpecRelationSet: 参数规格关联信息，内容为相应规格下的参数详细信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpecRelationSet: Array
 
@@ -5880,7 +5880,7 @@ module TencentCloud
         end
       end
 
-      # 描述各规格下的参数信息
+      # 各规格下的参数信息
       class ParamSpecRelation < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5927,7 +5927,7 @@ module TencentCloud
         end
       end
 
-      # 描述各版本下的参数信息
+      # 各版本下的参数信息
       class ParamVersionRelation < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
         # 注意：此字段可能返回 null，表示取不到有效值。

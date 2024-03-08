@@ -155,7 +155,7 @@ module TencentCloud
         # @type ResourceIds: Array
         # @param BandwidthPackageId: 带宽包唯一标识ID，形如'bwp-xxxx'
         # @type BandwidthPackageId: String
-        # @param NetworkType: 带宽包类型，当前支持'BGP'类型，表示内部资源是BGP IP。
+        # @param NetworkType: 带宽包类型，当前支持'BGP'、'HIGH_QUALITY_BGP'、'ANYCAST'、'SINGLEISP_CUCC'、'SINGLEISP_CMCC'、'SINGLEISP_CTCC'等类型。
         # @type NetworkType: String
         # @param ResourceType: 资源类型，包括'Address', 'LoadBalance'
         # @type ResourceType: String
@@ -781,7 +781,7 @@ module TencentCloud
         # @type Ip6Addresses: Array
         # @param InternetMaxBandwidthOut: 带宽，单位Mbps。默认是1Mbps
         # @type InternetMaxBandwidthOut: Integer
-        # @param InternetChargeType: 网络计费模式。IPV6当前对标准账户类型支持"TRAFFIC_POSTPAID_BY_HOUR"，对传统账户类型支持"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
+        # @param InternetChargeType: 网络计费模式。IPV6当前支持"TRAFFIC_POSTPAID_BY_HOUR"，"BANDWIDTH_PACKAGE"。默认网络计费模式是"TRAFFIC_POSTPAID_BY_HOUR"。
         # @type InternetChargeType: String
         # @param BandwidthPackageId: 带宽包id，上移账号，申请带宽包计费模式的ipv6地址需要传入.
         # @type BandwidthPackageId: String
@@ -2807,7 +2807,7 @@ module TencentCloud
         # <li>SINGLEISP_CTCC: 中国电信共享带宽包</li>
         # <li>SINGLEISP_CUCC: 中国联通共享带宽包</li>
         # @type NetworkType: String
-        # @param ChargeType: 带宽包计费类型, 默认为: TOP5_POSTPAID_BY_MONTH, 可选值:
+        # @param ChargeType: 带宽包计费类型, 默认为: ENHANCED95_POSTPAID_BY_MONTH, 可选值:
         # <li>TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费</li>
         # <li>PERCENT95_POSTPAID_BY_MONTH: 按月后付费月95计费</li>
         # <li>FIXED_PREPAID_BY_MONTH: 包月预付费计费</li>
@@ -2818,7 +2818,7 @@ module TencentCloud
         # @type BandwidthPackageName: String
         # @param BandwidthPackageCount: 带宽包数量(传统账户类型只能填1), 标准账户类型取值范围为1~20。
         # @type BandwidthPackageCount: Integer
-        # @param InternetMaxBandwidth: 带宽包限速大小。单位：Mbps，-1表示不限速。该功能当前内测中，暂不对外开放。
+        # @param InternetMaxBandwidth: 带宽包限速大小。单位：Mbps，-1表示不限速。不同计费类型的带宽包对应不同的带宽上下限。
         # @type InternetMaxBandwidth: Integer
         # @param Tags: 需要关联的标签列表。
         # @type Tags: Array
@@ -8867,8 +8867,8 @@ module TencentCloud
       class DescribeIp6AddressesRequest < TencentCloud::Common::AbstractModel
         # @param Ip6AddressIds: 标识 IPV6 的唯一 ID 列表。IPV6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
         # @type Ip6AddressIds: Array
-        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
-        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 EIP 的 IP 地址过滤。</li>
+        # @param Filters: 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
+        # <li> address-ip - String - 是否必填：否 - （过滤条件）按照 IPV6 的 IP 地址过滤。</li>
         # <li> network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
@@ -10815,9 +10815,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。不传默认为当前时间
         # @type EndTime: String
-        # @param Offset: 分页参数
+        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 中的相关小节
         # @type Offset: Integer
-        # @param Limit: 分页参数
+        # @param Limit: 返回数量，默认为20。关于Limit的更进一步介绍请参考 API 中的相关小节。
         # @type Limit: Integer
 
         attr_accessor :TrafficPackageId, :Filters, :OrderField, :OrderType, :StartTime, :EndTime, :Offset, :Limit
@@ -12330,14 +12330,14 @@ module TencentCloud
         # <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
         # <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
         # <li>vpn-gateway-name - String - （过滤条件）VPN实例名称。</li>
-        # <li>type - String - （过滤条件）VPN网关类型：'IPSEC', 'SSL'。</li>
+        # <li>type - String - （过滤条件）VPN网关类型：'IPSEC', 'SSL', 'CCN', 'SSL_CCN'。</li>
         # <li>public-ip-address- String - （过滤条件）公网IP。</li>
         # <li>renew-flag - String - （过滤条件）网关续费类型，手动续费：'NOTIFY_AND_MANUAL_RENEW'、自动续费：'NOTIFY_AND_AUTO_RENEW'。</li>
         # <li>zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。</li>
         # @type Filters: Array
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
-        # @param Limit: 请求对象个数
+        # @param Limit: 请求对象个数，默认值为20。
         # @type Limit: Integer
 
         attr_accessor :VpnGatewayIds, :Filters, :Offset, :Limit
@@ -15155,7 +15155,7 @@ module TencentCloud
       class ModifyAddressAttributeRequest < TencentCloud::Common::AbstractModel
         # @param AddressId: 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
         # @type AddressId: String
-        # @param AddressName: 修改后的 EIP 名称。长度上限为20个字符。
+        # @param AddressName: 修改后的 EIP 名称。长度上限为128个字符。
         # @type AddressName: String
         # @param EipDirectConnection: 设定EIP是否直通，"TRUE"表示直通，"FALSE"表示非直通。注意该参数仅对EIP直通功能可见的用户可以设定。
         # @type EipDirectConnection: String
@@ -15195,7 +15195,7 @@ module TencentCloud
       class ModifyAddressInternetChargeTypeRequest < TencentCloud::Common::AbstractModel
         # @param AddressId: 弹性公网IP的唯一ID，形如eip-xxx
         # @type AddressId: String
-        # @param InternetChargeType: 弹性公网IP调整目标计费模式，只支持"BANDWIDTH_PREPAID_BY_MONTH"和"TRAFFIC_POSTPAID_BY_HOUR"
+        # @param InternetChargeType: 弹性公网IP调整目标计费模式，支持 "BANDWIDTH_PREPAID_BY_MONTH"、"TRAFFIC_POSTPAID_BY_HOUR"、"BANDWIDTH_POSTPAID_BY_HOUR"
         # @type InternetChargeType: String
         # @param InternetMaxBandwidthOut: 弹性公网IP调整目标带宽值
         # @type InternetMaxBandwidthOut: Integer
@@ -19580,7 +19580,7 @@ module TencentCloud
 
       # ReturnNormalAddresses请求参数结构体
       class ReturnNormalAddressesRequest < TencentCloud::Common::AbstractModel
-        # @param AddressIps: EIP 的 IP 地址,示例：101.35.139.183
+        # @param AddressIps: 普通公网IP 的 IP 地址,示例：101.35.139.183
         # @type AddressIps: Array
 
         attr_accessor :AddressIps

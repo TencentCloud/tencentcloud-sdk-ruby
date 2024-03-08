@@ -125,7 +125,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateBaseBackup）用于创建实例的全量备份。
+        # 本接口（CreateBaseBackup）用于创建实例的数据备份。
 
         # @param request: Request instance for CreateBaseBackup.
         # @type request: :class:`Tencentcloud::postgres::V20170312::CreateBaseBackupRequest`
@@ -343,7 +343,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteBaseBackup）用于删除实例指定全量备份。
+        # 本接口（DeleteBaseBackup）用于删除实例指定数据备份。
 
         # @param request: Request instance for DeleteBaseBackup.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteBaseBackupRequest`
@@ -679,7 +679,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeBaseBackups）用于查询基础备份列表。
+        # 本接口（DescribeBaseBackups）用于查询数据备份列表。
 
         # @param request: Request instance for DescribeBaseBackups.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeBaseBackupsRequest`
@@ -1521,7 +1521,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyAccountRemark）用于修改帐号备注。
+        # 本接口（ModifyAccountRemark）用于修改账号备注。
 
         # @param request: Request instance for ModifyAccountRemark.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyAccountRemarkRequest`
@@ -1593,7 +1593,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyBaseBackupExpireTime）用于修改实例指定全量备份的过期时间。
+        # 本接口（ModifyBaseBackupExpireTime）用于修改实例指定数据备份的过期时间。
 
         # @param request: Request instance for ModifyBaseBackupExpireTime.
         # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyBaseBackupExpireTimeRequest`

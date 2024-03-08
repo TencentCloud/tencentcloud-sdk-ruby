@@ -1217,7 +1217,7 @@ module TencentCloud
       # DDoS防护的区域封禁配置
       class CcGeoIPBlockConfig < TencentCloud::Common::AbstractModel
         # @param RegionType: 区域类型，取值[
-        # oversea(海外)
+        # oversea(境外)
         # china(国内)
         # customized(自定义地区)
         # ]
@@ -3979,7 +3979,7 @@ module TencentCloud
       class DescribeCCTrendResponse < TencentCloud::Common::AbstractModel
         # @param Count: 值个数
         # @type Count: Integer
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         # @type Business: String
         # @param Ip: 资源的IP
         # @type Ip: String
@@ -4293,7 +4293,7 @@ module TencentCloud
 
       # DescribeDDoSTrend请求参数结构体
       class DescribeDDoSTrendRequest < TencentCloud::Common::AbstractModel
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         # @type Business: String
         # @param Ip: 资源实例的IP
         # @type Ip: String
@@ -4335,7 +4335,7 @@ module TencentCloud
       class DescribeDDoSTrendResponse < TencentCloud::Common::AbstractModel
         # @param Count: 值个数
         # @type Count: Integer
-        # @param Business: 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
+        # @param Business: DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         # @type Business: String
         # @param Ip: 资源的IP
         # @type Ip: String
@@ -6302,7 +6302,7 @@ module TencentCloud
 
       # 实例7层规则
       class InsL7Rules < TencentCloud::Common::AbstractModel
-        # @param Status: 规则在中间状态态不可修改，只可在（0， 2， 8）状态可编辑。
+        # @param Status: 规则在中间状态不可修改，只可在（0， 2， 8）状态可编辑。
         # 规则状态，0: 正常运行中, 1: 配置规则中(配置生效中), 2: 配置规则失败（配置生效失败）, 3: 删除规则中(删除生效中), 5: 删除规则失败(删除失败), 6: 等待添加规则, 7: 等待删除规则, 8: 等待上传证书, 9: 规则对应的资源不存在，被隔离, 10:等待修改规则, 11:配置修改中
         # @type Status: Integer
         # @param Domain: 域名

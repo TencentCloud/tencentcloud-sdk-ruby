@@ -967,10 +967,12 @@ module TencentCloud
         # @type WorkSpaceId: String
         # @param Tags: 作业标签
         # @type Tags: Array
+        # @param Description: 作业描述
+        # @type Description: String
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags, :Description
 
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil, description=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -981,6 +983,7 @@ module TencentCloud
           @FlinkVersion = flinkversion
           @WorkSpaceId = workspaceid
           @Tags = tags
+          @Description = description
         end
 
         def deserialize(params)
@@ -1001,6 +1004,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Description = params['Description']
         end
       end
 
@@ -3366,10 +3370,13 @@ module TencentCloud
         # @param EventInfo: 作业异常事件信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventInfo: :class:`Tencentcloud::Oceanus.v20190422.models.JobEventInfo`
+        # @param Description: 描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3403,6 +3410,7 @@ module TencentCloud
           @WorkSpaceName = workspacename
           @Tags = tags
           @EventInfo = eventinfo
+          @Description = description
         end
 
         def deserialize(params)
@@ -3449,6 +3457,7 @@ module TencentCloud
             @EventInfo = JobEventInfo.new
             @EventInfo.deserialize(params['EventInfo'])
           end
+          @Description = params['Description']
         end
       end
 
@@ -3579,15 +3588,18 @@ module TencentCloud
         # @type TargetFolderId: String
         # @param WorkSpaceId: 工作空间 SerialId
         # @type WorkSpaceId: String
+        # @param Description: 作业描述
+        # @type Description: String
 
-        attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId
+        attr_accessor :JobId, :Name, :Remark, :TargetFolderId, :WorkSpaceId, :Description
 
-        def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil)
+        def initialize(jobid=nil, name=nil, remark=nil, targetfolderid=nil, workspaceid=nil, description=nil)
           @JobId = jobid
           @Name = name
           @Remark = remark
           @TargetFolderId = targetfolderid
           @WorkSpaceId = workspaceid
+          @Description = description
         end
 
         def deserialize(params)
@@ -3596,6 +3608,7 @@ module TencentCloud
           @Remark = params['Remark']
           @TargetFolderId = params['TargetFolderId']
           @WorkSpaceId = params['WorkSpaceId']
+          @Description = params['Description']
         end
       end
 

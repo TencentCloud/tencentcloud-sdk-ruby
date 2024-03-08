@@ -5706,16 +5706,31 @@ module TencentCloud
         # @type PulsarMsgId: String
         # @param QueryDlqMsg: 查询死信时该值为true，只对Rocketmq有效
         # @type QueryDlqMsg: Boolean
+        # @param QueryDeadLetterMessage: 查询死信时该值为true，只对Rocketmq有效
+        # @type QueryDeadLetterMessage: Boolean
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param Limit: 分页Limit
+        # @type Limit: Integer
+        # @param FilterTrackGroup: 根据消费组名称过滤消费详情
+        # @type FilterTrackGroup: String
 
-        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
+        extend Gem::Deprecate
+        deprecate :QueryDlqMsg, :none, 2024, 3
+        deprecate :QueryDlqMsg=, :none, 2024, 3
 
-        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil)
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
           @EnvironmentId = environmentid
           @TopicName = topicname
           @MsgId = msgid
           @PulsarMsgId = pulsarmsgid
           @QueryDlqMsg = querydlqmsg
+          @QueryDeadLetterMessage = querydeadlettermessage
+          @Offset = offset
+          @Limit = limit
+          @FilterTrackGroup = filtertrackgroup
         end
 
         def deserialize(params)
@@ -5725,6 +5740,10 @@ module TencentCloud
           @MsgId = params['MsgId']
           @PulsarMsgId = params['PulsarMsgId']
           @QueryDlqMsg = params['QueryDlqMsg']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FilterTrackGroup = params['FilterTrackGroup']
         end
       end
 
@@ -5740,18 +5759,20 @@ module TencentCloud
         # @type MsgId: String
         # @param ProducerAddr: 生产者地址
         # @type ProducerAddr: String
-        # @param MessageTracks: 消费组消费情况
+        # @param MessageTracks: 消费组消费情况列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessageTracks: Array
         # @param ShowTopicName: 详情页展示的topic名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShowTopicName: String
+        # @param MessageTracksCount: 消费组消费情况列表总数
+        # @type MessageTracksCount: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Body, :Properties, :ProduceTime, :MsgId, :ProducerAddr, :MessageTracks, :ShowTopicName, :RequestId
+        attr_accessor :Body, :Properties, :ProduceTime, :MsgId, :ProducerAddr, :MessageTracks, :ShowTopicName, :MessageTracksCount, :RequestId
 
-        def initialize(body=nil, properties=nil, producetime=nil, msgid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, requestid=nil)
+        def initialize(body=nil, properties=nil, producetime=nil, msgid=nil, produceraddr=nil, messagetracks=nil, showtopicname=nil, messagetrackscount=nil, requestid=nil)
           @Body = body
           @Properties = properties
           @ProduceTime = producetime
@@ -5759,6 +5780,7 @@ module TencentCloud
           @ProducerAddr = produceraddr
           @MessageTracks = messagetracks
           @ShowTopicName = showtopicname
+          @MessageTracksCount = messagetrackscount
           @RequestId = requestid
         end
 
@@ -5777,6 +5799,7 @@ module TencentCloud
             end
           end
           @ShowTopicName = params['ShowTopicName']
+          @MessageTracksCount = params['MessageTracksCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5944,6 +5967,91 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQPublicAccessMonitorData请求参数结构体
+      class DescribeRocketMQPublicAccessMonitorDataRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 专享集群ID
+        # @type InstanceId: String
+        # @param MetricName: 指标名称，仅支持单指标拉取。目前仅支持：ClientIntraffic; ClientOuttraffic
+        # @type MetricName: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间，默认为当前时间
+        # @type EndTime: String
+        # @param Period: 监控统计周期，如60。默认为取值为300，单位为s。
+        # @type Period: Integer
+
+        attr_accessor :InstanceId, :MetricName, :StartTime, :EndTime, :Period
+
+        def initialize(instanceid=nil, metricname=nil, starttime=nil, endtime=nil, period=nil)
+          @InstanceId = instanceid
+          @MetricName = metricname
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MetricName = params['MetricName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+        end
+      end
+
+      # DescribeRocketMQPublicAccessMonitorData返回参数结构体
+      class DescribeRocketMQPublicAccessMonitorDataResponse < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param Period: 监控统计周期，如60。默认为取值为300，单位为s。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param StartTime: 起始时间，如2018-09-22T19:51:23+08:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如2018-09-22T20:51:23+08:00，默认为当前时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param DataPoints: 数据点数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataPoints: Array
+        # @param Msg: 返回信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricName, :Period, :StartTime, :EndTime, :DataPoints, :Msg, :RequestId
+
+        def initialize(metricname=nil, period=nil, starttime=nil, endtime=nil, datapoints=nil, msg=nil, requestid=nil)
+          @MetricName = metricname
+          @Period = period
+          @StartTime = starttime
+          @EndTime = endtime
+          @DataPoints = datapoints
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Period = params['Period']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['DataPoints'].nil?
+            @DataPoints = []
+            params['DataPoints'].each do |i|
+              rocketmqdatapoint_tmp = RocketMQDataPoint.new
+              rocketmqdatapoint_tmp.deserialize(i)
+              @DataPoints << rocketmqdatapoint_tmp
+            end
+          end
+          @Msg = params['Msg']
           @RequestId = params['RequestId']
         end
       end
@@ -10336,6 +10444,28 @@ module TencentCloud
         end
       end
 
+      # 监控数据点
+      class RocketMQDataPoint < TencentCloud::Common::AbstractModel
+        # @param Timestamps: 监控值数组，该数组和Timestamps一一对应
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timestamps: Array
+        # @param Values: 监控数据点位置，比如一天按分钟划分有1440个点，每个点的序号是0 - 1439之间的一个数，当某个序号不在该数组中，说明掉点了
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Timestamps, :Values
+
+        def initialize(timestamps=nil, values=nil)
+          @Timestamps = timestamps
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Timestamps = params['Timestamps']
+          @Values = params['Values']
+        end
+      end
+
       # RocketMQ消费组信息
       class RocketMQGroup < TencentCloud::Common::AbstractModel
         # @param Name: 消费组名称
@@ -10562,7 +10692,13 @@ module TencentCloud
       class RocketMQMessageTrack < TencentCloud::Common::AbstractModel
         # @param Group: 消费者组
         # @type Group: String
-        # @param ConsumeStatus: 消费状态
+        # @param ConsumeStatus: 消费状态,
+        # CONSUMED: 已消费
+        # CONSUMED_BUT_FILTERED: 已过滤
+        # NOT_CONSUME: 未消费
+        # ENTER_RETRY: 进入重试队列
+        # ENTER_DLQ: 进入死信队列
+        # UNKNOWN: 查询不到消费状态
         # @type ConsumeStatus: String
         # @param TrackType: 消息track类型
         # @type TrackType: String

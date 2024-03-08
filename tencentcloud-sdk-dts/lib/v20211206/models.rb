@@ -648,7 +648,7 @@ module TencentCloud
         # @type SubscribeId: String
         # @param SubscribeMode: 数据订阅的类型，当 DatabaseType 不为 mongodb 时，枚举值为：all-全实例更新；dml-数据更新；ddl-结构更新；dmlAndDdl-数据更新+结构更新。当 DatabaseType 为 mongodb 时，枚举值为 all-全实例更新；database-订阅单库；collection-订阅单集合
         # @type SubscribeMode: String
-        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
         # @type AccessType: String
         # @param Endpoints: 数据库节点信息
         # @type Endpoints: Array
@@ -2940,7 +2940,7 @@ module TencentCloud
         # @param KafkaConfig: kafka配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaConfig: :class:`Tencentcloud::Dts.v20211206.models.SubscribeKafkaConfig`
-        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云主机自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
+        # @param AccessType: 源数据库接入类型，如：extranet(公网)、vpncloud(vpn接入)、dcg(专线接入)、ccn(云联网)、cdb(云数据库)、cvm(云服务器自建)、intranet(自研上云)、vpc(私有网络vpc)。注意具体可选值依赖当前链路支持能力
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccessType: String
         # @param Endpoints: 接入类型信息
@@ -5435,10 +5435,16 @@ module TencentCloud
         # @param AutoRetryTimeRangeMinutes: 自动重试的时间窗口设置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRetryTimeRangeMinutes: Integer
+        # @param FilterBeginCommit: 同步到kafka链路是否过滤掉begin和commit消息。目前仅mysql2kafka链路支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterBeginCommit: Boolean
+        # @param FilterCheckpoint: 同步到kafka链路是否过滤掉checkpoint消息。目前仅mysql2kafka链路支持
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterCheckpoint: Boolean
 
-        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes
+        attr_accessor :InitType, :DealOfExistSameTable, :ConflictHandleType, :AddAdditionalColumn, :OpTypes, :ConflictHandleOption, :DdlOptions, :KafkaOption, :RateLimitOption, :AutoRetryTimeRangeMinutes, :FilterBeginCommit, :FilterCheckpoint
 
-        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil)
+        def initialize(inittype=nil, dealofexistsametable=nil, conflicthandletype=nil, addadditionalcolumn=nil, optypes=nil, conflicthandleoption=nil, ddloptions=nil, kafkaoption=nil, ratelimitoption=nil, autoretrytimerangeminutes=nil, filterbegincommit=nil, filtercheckpoint=nil)
           @InitType = inittype
           @DealOfExistSameTable = dealofexistsametable
           @ConflictHandleType = conflicthandletype
@@ -5449,6 +5455,8 @@ module TencentCloud
           @KafkaOption = kafkaoption
           @RateLimitOption = ratelimitoption
           @AutoRetryTimeRangeMinutes = autoretrytimerangeminutes
+          @FilterBeginCommit = filterbegincommit
+          @FilterCheckpoint = filtercheckpoint
         end
 
         def deserialize(params)
@@ -5478,6 +5486,8 @@ module TencentCloud
             @RateLimitOption.deserialize(params['RateLimitOption'])
           end
           @AutoRetryTimeRangeMinutes = params['AutoRetryTimeRangeMinutes']
+          @FilterBeginCommit = params['FilterBeginCommit']
+          @FilterCheckpoint = params['FilterCheckpoint']
         end
       end
 
@@ -6909,7 +6919,7 @@ module TencentCloud
         end
       end
 
-      # 订阅的的数据库表信息，用于配置和查询订阅任务接口。
+      # 订阅的数据库表信息，用于配置和查询订阅任务接口。
       class SubscribeObject < TencentCloud::Common::AbstractModel
         # @param ObjectType: 订阅数据的类型，枚举值：database-数据库，table-数据库的表(如果 DatabaseType 为 mongodb，则表示集合)
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7390,30 +7400,34 @@ module TencentCloud
         end
       end
 
-      # 单topic和自定义topic的描述
+      # 单topic和自定义topic的描述。投递到单topic时，该数组的最后一项会被视为默认分区策略，所有未匹配到的数据都会按该策略投递，默认策略只支持 投递至partition0、按表名、表名+主键三种。
       class TopicRule < TencentCloud::Common::AbstractModel
-        # @param TopicName: topic名
+        # @param TopicName: topic名。单topic时，所有的TopicName必须相同
         # @type TopicName: String
-        # @param PartitionType: topic分区策略，如 自定义topic：Random（随机投递），集中投递到单Topic：AllInPartitionZero（全部投递至partition0）、PartitionByTable(按表名分区)、PartitionByTableAndKey(按表名加主键分区)
+        # @param PartitionType: topic分区策略，自定义topic时支持：Random（随机投递），集中投递到单Topic时支持：AllInPartitionZero（全部投递至partition0）、PartitionByTable(按表名分区)、PartitionByTableAndKey(按表名加主键分区)、PartitionByCols(按列分区)
         # @type PartitionType: String
-        # @param DbMatchMode: 库名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余库)，数组中必须有一项为‘Default’
+        # @param DbMatchMode: 库名匹配规则，如Regular（正则匹配）, Default(不符合匹配规则的剩余库)，数组中最后一项必须为‘Default’
         # @type DbMatchMode: String
-        # @param DbName: 库名，仅“自定义topic”时，DbMatchMode=Regular生效
+        # @param DbName: 库名，DbMatchMode=Regular时生效
         # @type DbName: String
-        # @param TableMatchMode: 表名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余表)，数组中必须有一项为‘Default’
+        # @param TableMatchMode: 表名匹配规则，如Regular（正则匹配）, Default(不符合匹配规则的剩余表)，数组中最后一项必须为‘Default’
         # @type TableMatchMode: String
-        # @param TableName: 表名，仅“自定义topic”时，TableMatchMode=Regular生效
+        # @param TableName: 表名，仅TableMatchMode=Regular时生效
         # @type TableName: String
+        # @param Columns: 按列分区时需要选择配置列名，可以选择多列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Columns: Array
 
-        attr_accessor :TopicName, :PartitionType, :DbMatchMode, :DbName, :TableMatchMode, :TableName
+        attr_accessor :TopicName, :PartitionType, :DbMatchMode, :DbName, :TableMatchMode, :TableName, :Columns
 
-        def initialize(topicname=nil, partitiontype=nil, dbmatchmode=nil, dbname=nil, tablematchmode=nil, tablename=nil)
+        def initialize(topicname=nil, partitiontype=nil, dbmatchmode=nil, dbname=nil, tablematchmode=nil, tablename=nil, columns=nil)
           @TopicName = topicname
           @PartitionType = partitiontype
           @DbMatchMode = dbmatchmode
           @DbName = dbname
           @TableMatchMode = tablematchmode
           @TableName = tablename
+          @Columns = columns
         end
 
         def deserialize(params)
@@ -7423,6 +7437,7 @@ module TencentCloud
           @DbName = params['DbName']
           @TableMatchMode = params['TableMatchMode']
           @TableName = params['TableName']
+          @Columns = params['Columns']
         end
       end
 

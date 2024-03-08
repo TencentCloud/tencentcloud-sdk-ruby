@@ -5568,7 +5568,7 @@ module TencentCloud
         # @type TsMax: String
         # @param TsMin: 首次执行时间
         # @type TsMin: String
-        # @param User: 帐号
+        # @param User: 账号
         # @type User: String
         # @param ExampleSql: 样例Sql
         # 注意：此字段可能返回 null，表示取不到有效值。

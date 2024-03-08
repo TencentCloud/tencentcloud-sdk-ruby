@@ -2567,8 +2567,8 @@ module TencentCloud
 
         attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2024, 1
-        deprecate :IsFulltextEnabled=, :none, 2024, 1
+        deprecate :IsFulltextEnabled, :none, 2024, 3
+        deprecate :IsFulltextEnabled=, :none, 2024, 3
 
         def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
           @IsSubscribed = issubscribed
@@ -4258,12 +4258,14 @@ module TencentCloud
         # @type TDEConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.TDEConfigAttribute`
         # @param SSLConfig: SSL加密
         # @type SSLConfig: :class:`Tencentcloud::Sqlserver.v20180328.models.SSLConfig`
+        # @param DrReadableInfo: 备机只读信息
+        # @type DrReadableInfo: :class:`Tencentcloud::Sqlserver.v20180328.models.DrReadableInfo`
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4274,6 +4276,7 @@ module TencentCloud
           @EventSaveDays = eventsavedays
           @TDEConfig = tdeconfig
           @SSLConfig = sslconfig
+          @DrReadableInfo = drreadableinfo
           @RequestId = requestid
         end
 
@@ -4293,6 +4296,10 @@ module TencentCloud
           unless params['SSLConfig'].nil?
             @SSLConfig = SSLConfig.new
             @SSLConfig.deserialize(params['SSLConfig'])
+          end
+          unless params['DrReadableInfo'].nil?
+            @DrReadableInfo = DrReadableInfo.new
+            @DrReadableInfo.deserialize(params['DrReadableInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -6579,8 +6586,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2024, 1
-        deprecate :Slowlogs=, :none, 2024, 1
+        deprecate :Slowlogs, :none, 2024, 3
+        deprecate :Slowlogs=, :none, 2024, 3
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6789,8 +6796,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 1
-        deprecate :XCosSecurityToken=, :none, 2024, 1
+        deprecate :XCosSecurityToken, :none, 2024, 3
+        deprecate :XCosSecurityToken=, :none, 2024, 3
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -6868,8 +6875,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2024, 1
-        deprecate :XCosSecurityToken=, :none, 2024, 1
+        deprecate :XCosSecurityToken, :none, 2024, 3
+        deprecate :XCosSecurityToken=, :none, 2024, 3
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7040,6 +7047,48 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 备机只读信息
+      class DrReadableInfo < TencentCloud::Common::AbstractModel
+        # @param SlaveStatus: 备机状态，enable-运行中，disable-不可用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlaveStatus: String
+        # @param ReadableStatus: 备机可读状态，enable-已开启，disable-已关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadableStatus: String
+        # @param Vip: 备机只读vip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param VPort: 备机只读端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VPort: Integer
+        # @param UniqVpcId: 备机所在私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqVpcId: String
+        # @param UniqSubnetId: 备机所在私有网络子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UniqSubnetId: String
+
+        attr_accessor :SlaveStatus, :ReadableStatus, :Vip, :VPort, :UniqVpcId, :UniqSubnetId
+
+        def initialize(slavestatus=nil, readablestatus=nil, vip=nil, vport=nil, uniqvpcid=nil, uniqsubnetid=nil)
+          @SlaveStatus = slavestatus
+          @ReadableStatus = readablestatus
+          @Vip = vip
+          @VPort = vport
+          @UniqVpcId = uniqvpcid
+          @UniqSubnetId = uniqsubnetid
+        end
+
+        def deserialize(params)
+          @SlaveStatus = params['SlaveStatus']
+          @ReadableStatus = params['ReadableStatus']
+          @Vip = params['Vip']
+          @VPort = params['VPort']
+          @UniqVpcId = params['UniqVpcId']
+          @UniqSubnetId = params['UniqSubnetId']
         end
       end
 
@@ -8115,8 +8164,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 1
-        deprecate :Errno=, :none, 2024, 1
+        deprecate :Errno, :none, 2024, 3
+        deprecate :Errno=, :none, 2024, 3
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -8137,15 +8186,19 @@ module TencentCloud
       class ModifyCloseWanIpRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例资源ID
         # @type InstanceId: String
+        # @param RoGroupId: RO只读组Id
+        # @type RoGroupId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :RoGroupId
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, rogroupid=nil)
           @InstanceId = instanceid
+          @RoGroupId = rogroupid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @RoGroupId = params['RoGroupId']
         end
       end
 
@@ -8316,15 +8369,18 @@ module TencentCloud
         # @type OldIpRetainTime: Integer
         # @param Vip: 指定VIP地址
         # @type Vip: String
+        # @param DRNetwork: 目标节点，0-修改主节点网络，1-修改备节点网络，默认取值0
+        # @type DRNetwork: Integer
 
-        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime, :Vip
+        attr_accessor :InstanceId, :NewVpcId, :NewSubnetId, :OldIpRetainTime, :Vip, :DRNetwork
 
-        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil, vip=nil)
+        def initialize(instanceid=nil, newvpcid=nil, newsubnetid=nil, oldipretaintime=nil, vip=nil, drnetwork=nil)
           @InstanceId = instanceid
           @NewVpcId = newvpcid
           @NewSubnetId = newsubnetid
           @OldIpRetainTime = oldipretaintime
           @Vip = vip
+          @DRNetwork = drnetwork
         end
 
         def deserialize(params)
@@ -8333,6 +8389,7 @@ module TencentCloud
           @NewSubnetId = params['NewSubnetId']
           @OldIpRetainTime = params['OldIpRetainTime']
           @Vip = params['Vip']
+          @DRNetwork = params['DRNetwork']
         end
       end
 
@@ -9108,15 +9165,19 @@ module TencentCloud
       class ModifyOpenWanIpRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例资源ID
         # @type InstanceId: String
+        # @param RoGroupId: RO只读组Id
+        # @type RoGroupId: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :RoGroupId
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, rogroupid=nil)
           @InstanceId = instanceid
+          @RoGroupId = rogroupid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @RoGroupId = params['RoGroupId']
         end
       end
 
@@ -9648,10 +9709,14 @@ module TencentCloud
         # @type MasterInstanceId: String
         # @param ReadOnlyInstanceSet: 只读实例副本集合
         # @type ReadOnlyInstanceSet: Array
+        # @param DnsPodDomain: RO组外网地址域名
+        # @type DnsPodDomain: String
+        # @param TgwWanVPort: RO组外网地址端口
+        # @type TgwWanVPort: Integer
 
-        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :Status, :MasterInstanceId, :ReadOnlyInstanceSet
+        attr_accessor :ReadOnlyGroupId, :ReadOnlyGroupName, :RegionId, :ZoneId, :IsOfflineDelay, :ReadOnlyMaxDelayTime, :MinReadOnlyInGroup, :Vip, :Vport, :VpcId, :SubnetId, :Status, :MasterInstanceId, :ReadOnlyInstanceSet, :DnsPodDomain, :TgwWanVPort
 
-        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, status=nil, masterinstanceid=nil, readonlyinstanceset=nil)
+        def initialize(readonlygroupid=nil, readonlygroupname=nil, regionid=nil, zoneid=nil, isofflinedelay=nil, readonlymaxdelaytime=nil, minreadonlyingroup=nil, vip=nil, vport=nil, vpcid=nil, subnetid=nil, status=nil, masterinstanceid=nil, readonlyinstanceset=nil, dnspoddomain=nil, tgwwanvport=nil)
           @ReadOnlyGroupId = readonlygroupid
           @ReadOnlyGroupName = readonlygroupname
           @RegionId = regionid
@@ -9666,6 +9731,8 @@ module TencentCloud
           @Status = status
           @MasterInstanceId = masterinstanceid
           @ReadOnlyInstanceSet = readonlyinstanceset
+          @DnsPodDomain = dnspoddomain
+          @TgwWanVPort = tgwwanvport
         end
 
         def deserialize(params)
@@ -9690,6 +9757,8 @@ module TencentCloud
               @ReadOnlyInstanceSet << readonlyinstance_tmp
             end
           end
+          @DnsPodDomain = params['DnsPodDomain']
+          @TgwWanVPort = params['TgwWanVPort']
         end
       end
 
@@ -10117,7 +10186,7 @@ module TencentCloud
 
       # ResetAccountPassword返回参数结构体
       class ResetAccountPasswordResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 修改帐号密码的异步任务流程ID
+        # @param FlowId: 修改账号密码的异步任务流程ID
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

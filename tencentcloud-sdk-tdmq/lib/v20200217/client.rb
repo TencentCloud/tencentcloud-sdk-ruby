@@ -1973,6 +1973,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 从腾讯云可观测平台拉取公网指标监控数据，目前仅支持客户端到 LB 的入带宽和出宽带指标。
+
+        # @param request: Request instance for DescribeRocketMQPublicAccessMonitorData.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQPublicAccessMonitorDataRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQPublicAccessMonitorDataResponse`
+        def DescribeRocketMQPublicAccessMonitorData(request)
+          body = send_request('DescribeRocketMQPublicAccessMonitorData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQPublicAccessMonitorDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口用于查询RocketMQ实例的公网接入信息
 
         # @param request: Request instance for DescribeRocketMQPublicAccessPoint.

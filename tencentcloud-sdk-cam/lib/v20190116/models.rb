@@ -206,7 +206,7 @@ module TencentCloud
         # @param Uin: 实体Uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uin: Integer
-        # @param RelatedType: 关联类型。1 用户关联 ； 2 用户组关联
+        # @param RelatedType: 关联类型。1 用户关联 ； 2 用户组关联 3 角色关联
         # @type RelatedType: Integer
         # @param AttachmentTime: 策略关联时间
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -751,7 +751,7 @@ module TencentCloud
       class CreatePolicyRequest < TencentCloud::Common::AbstractModel
         # @param PolicyName: 策略名称。长度为1~128个字符，可包含英文字母、数字和+=,.@-_。
         # @type PolicyName: String
-        # @param PolicyDocument: 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo
+        # @param PolicyDocument: 策略文档
         # @type PolicyDocument: String
         # @param Description: 策略描述
         # @type Description: String
@@ -2086,8 +2086,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2023, 12
-        deprecate :Idps=, :none, 2023, 12
+        deprecate :Idps, :none, 2024, 3
+        deprecate :Idps=, :none, 2024, 3
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -2114,7 +2114,7 @@ module TencentCloud
 
       # GetCustomMFATokenInfo请求参数结构体
       class GetCustomMFATokenInfoRequest < TencentCloud::Common::AbstractModel
-        # @param MFAToken: 自定义多因子验证Token
+        # @param MFAToken: 自定义多因子验证Token，针对用户自定义的安全校验方式而生成的，以供查询用户安全校验时使用。
         # @type MFAToken: String
 
         attr_accessor :MFAToken
@@ -3366,13 +3366,13 @@ module TencentCloud
 
       # ListGroupsForUser请求参数结构体
       class ListGroupsForUserRequest < TencentCloud::Common::AbstractModel
-        # @param Uid: 子用户 UID
+        # @param Uid: 子用户 UID，入参Uid和SubUin二选一
         # @type Uid: Integer
         # @param Rp: 每页数量。默认为20。
         # @type Rp: Integer
         # @param Page: 页码。默认为1。
         # @type Page: Integer
-        # @param SubUin: 子账号UIN
+        # @param SubUin: 子账号UIN，入参Uid和SubUin二选一
         # @type SubUin: Integer
 
         attr_accessor :Uid, :Rp, :Page, :SubUin
@@ -3910,11 +3910,11 @@ module TencentCloud
 
       # 登录和敏感操作flag
       class LoginActionMfaFlag < TencentCloud::Common::AbstractModel
-        # @param Phone: 手机
+        # @param Phone: 是否设置手机号为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Phone: Integer
-        # @param Stoken: 软token
+        # @param Stoken: 是否设置软token为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Stoken: Integer
-        # @param Wechat: 微信
+        # @param Wechat: 是否设置微信为登陆和敏感操作安全校验方式， 1: 设置，0: 不设置
         # @type Wechat: Integer
 
         attr_accessor :Phone, :Stoken, :Wechat
@@ -4806,7 +4806,7 @@ module TencentCloud
         # @type PolicyName: String
         # @param Description: 策略描述
         # @type Description: String
-        # @param PolicyDocument: 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo
+        # @param PolicyDocument: 策略文档
         # @type PolicyDocument: String
         # @param Alias: 预设策略备注
         # @type Alias: String

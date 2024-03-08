@@ -363,7 +363,7 @@ module TencentCloud
         # @type Host: String
         # @param Password: 账号密码，密码需要 8-32 个字符，不能以 '/' 开头，并且必须包含小写字母、大写字母、数字和符号()~!@#$%^&*-+=_|{}[]:<>,.?/。
         # @type Password: String
-        # @param ReadOnly: 是否创建为只读账号，0：否， 1：该账号的sql请求优先选择备机执行，备机不可用时选择主机执行，2：优先选择备机执行，备机不可用时操作失败。
+        # @param ReadOnly: 是否创建为只读账号，0：否:； 1：只读账号，该账号的sql请求优先选择备机执行，备机延迟时选择主机执行；2：只读账号，优先选择备机执行，备机延迟时操作报错；3：只读账号，优先选择备机执行，忽略备机延迟只读备机；
         # @type ReadOnly: Integer
         # @param Description: 账号备注，可以包含中文、英文字符、常见符号和数字，长度为0~256字符
         # @type Description: String
@@ -915,7 +915,7 @@ module TencentCloud
         # @type UpdateTime: String
         # @param ReadOnly: 只读标记，0：否， 1：该账号的sql请求优先选择备机执行，备机不可用时选择主机执行，2：优先选择备机执行，备机不可用时操作失败。
         # @type ReadOnly: Integer
-        # @param DelayThresh: 该字段对只读帐号有意义，表示选择主备延迟小于该值的备机
+        # @param DelayThresh: 该字段对只读账号有意义，表示选择主备延迟小于该值的备机
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DelayThresh: Integer
         # @param SlaveConst: 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
@@ -5213,7 +5213,7 @@ module TencentCloud
         # @type TsMax: String
         # @param TsMin: 首次执行时间
         # @type TsMin: String
-        # @param User: 帐号
+        # @param User: 账号
         # @type User: String
         # @param ExampleSql: 样例Sql
         # 注意：此字段可能返回 null，表示取不到有效值。

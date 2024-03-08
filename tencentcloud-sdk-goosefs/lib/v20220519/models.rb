@@ -375,10 +375,12 @@ module TencentCloud
         # @type Tag: Array
         # @param GooseFSxBuildElements: GooseFSx构建时要传递的参数
         # @type GooseFSxBuildElements: :class:`Tencentcloud::Goosefs.v20220519.models.GooseFSxBuildElement`
+        # @param SecurityGroupId: 客户端集群所属的安全组
+        # @type SecurityGroupId: String
 
-        attr_accessor :Type, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :GooseFSxBuildElements
+        attr_accessor :Type, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :GooseFSxBuildElements, :SecurityGroupId
 
-        def initialize(type=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, goosefsxbuildelements=nil)
+        def initialize(type=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil)
           @Type = type
           @Name = name
           @Description = description
@@ -387,6 +389,7 @@ module TencentCloud
           @Zone = zone
           @Tag = tag
           @GooseFSxBuildElements = goosefsxbuildelements
+          @SecurityGroupId = securitygroupid
         end
 
         def deserialize(params)
@@ -408,6 +411,7 @@ module TencentCloud
             @GooseFSxBuildElements = GooseFSxBuildElement.new
             @GooseFSxBuildElements.deserialize(params['GooseFSxBuildElements'])
           end
+          @SecurityGroupId = params['SecurityGroupId']
         end
       end
 
