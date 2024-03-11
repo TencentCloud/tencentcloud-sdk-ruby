@@ -8699,6 +8699,58 @@ module TencentCloud
         end
       end
 
+      # ModifyDReadable请求参数结构体
+      class ModifyDReadableRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Type: 操作类型。enable-开启备机只读，disable-关闭备机只读
+        # @type Type: String
+        # @param VpcId: 备机网络ID，不填默认和主实例保持一致
+        # @type VpcId: String
+        # @param SubnetId: 备机网络子网ID，不填默认和主实例保持一致
+        # @type SubnetId: String
+        # @param Vip: 指定的备机只读vip，不填自动分配
+        # @type Vip: String
+
+        attr_accessor :InstanceId, :Type, :VpcId, :SubnetId, :Vip
+
+        def initialize(instanceid=nil, type=nil, vpcid=nil, subnetid=nil, vip=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+        end
+      end
+
+      # ModifyDReadable返回参数结构体
+      class ModifyDReadableResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 要修改的数据库订阅发布关系集合
       class ModifyDataBaseTuple < TencentCloud::Common::AbstractModel
         # @param DatabaseTuple: 要修改的订阅关系

@@ -351,7 +351,7 @@ module TencentCloud
 
         # 限制条件：
         # 1. 本企业（发起方企业）企业签署人仅支持通过企业名称+姓名+手机号进行补充。
-        # 2. 个人签署人仅支持通过姓名+手机号进行补充。
+        # 2. 个人签署人支持通过姓名+手机号进行补充，补充动态签署人时：若个人用户已完成实名，则可通过姓名+证件号码进行补充。
 
         # @param request: Request instance for ChannelCreateFlowApprovers.
         # @type request: :class:`Tencentcloud::essbasic::V20210526::ChannelCreateFlowApproversRequest`

@@ -5818,16 +5818,22 @@ module TencentCloud
         # @type GroupName: String
         # @param QueryDLQMsg: 查询死信时该值为true
         # @type QueryDLQMsg: Boolean
+        # @param QueryDeadLetterMessage: 查询死信时该值为true
+        # @type QueryDeadLetterMessage: String
 
-        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg
+        attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
+        extend Gem::Deprecate
+        deprecate :QueryDLQMsg, :none, 2024, 3
+        deprecate :QueryDLQMsg=, :none, 2024, 3
 
-        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil)
+        def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
           @EnvironmentId = environmentid
           @TopicName = topicname
           @MsgId = msgid
           @GroupName = groupname
           @QueryDLQMsg = querydlqmsg
+          @QueryDeadLetterMessage = querydeadlettermessage
         end
 
         def deserialize(params)
@@ -5837,6 +5843,7 @@ module TencentCloud
           @MsgId = params['MsgId']
           @GroupName = params['GroupName']
           @QueryDLQMsg = params['QueryDLQMsg']
+          @QueryDeadLetterMessage = params['QueryDeadLetterMessage']
         end
       end
 

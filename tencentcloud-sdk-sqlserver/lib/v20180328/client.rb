@@ -2693,6 +2693,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyDReadable）用于开通或者关闭备机只读
+
+        # @param request: Request instance for ModifyDReadable.
+        # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDReadableRequest`
+        # @rtype: :class:`Tencentcloud::sqlserver::V20180328::ModifyDReadableResponse`
+        def ModifyDReadable(request)
+          body = send_request('ModifyDReadable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDReadableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
 
         # @param request: Request instance for ModifyDatabaseCDC.

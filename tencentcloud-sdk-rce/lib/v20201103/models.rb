@@ -19,15 +19,15 @@ module TencentCloud
     module V20201103
       # 账号信息。
       class AccountInfo < TencentCloud::Common::AbstractModel
-        # @param AccountType: 用户账号类型（默认开通QQopenid、手机号MD5；如需使用微信开放账号，则需要"提交工单"或联系对接人进行资格审核，审核通过后方可正常使用微信开放账号）
+        # @param AccountType: 用户账号类型；默认开通QQOpenId、手机号MD5权限；如果需要使用微信OpenId入参，则需要"提交工单"或联系对接人进行资格审核，审核通过后方可正常使用微信开放账号。
         # 1：QQ开放账号
         # 2：微信开放账号
-        # 8：设备号（imei/imeiMD5/idfa/idfaMd5）
-        # 10004：手机号MD5，中国大陆11位手机号进行MD5加密，取32位小写值
+        # 8：设备号，仅支持IMEI、IMEIMD5、IDFA、IDFAMD5
+        # 10004：手机号MD5，中国大陆11位手机号进行MD5加密，取32位小写值。
         # @type AccountType: Integer
-        # @param QQAccount: QQ账号信息，AccountType是1时，该字段必填。
+        # @param QQAccount: QQ账号信息，AccountType是"1"时，该字段必填。
         # @type QQAccount: :class:`Tencentcloud::Rce.v20201103.models.QQAccountInfo`
-        # @param WeChatAccount: 微信账号信息，AccountType是2时，该字段必填。
+        # @param WeChatAccount: 微信账号信息，AccountType是"2"时，该字段必填。
         # @type WeChatAccount: :class:`Tencentcloud::Rce.v20201103.models.WeChatAccountInfo`
         # @param OtherAccount: 其它账号信息，AccountType是8或10004时，该字段必填。
         # @type OtherAccount: :class:`Tencentcloud::Rce.v20201103.models.OtherAccountInfo`
@@ -211,11 +211,11 @@ module TencentCloud
 
       # 全栈式风控引擎入参
       class InputManageMarketingRisk < TencentCloud::Common::AbstractModel
-        # @param Account: 用户账号类型（默认开通 QQ 开放账号，手机 MD5 账号类型查询。如需使用微信开放账号，则需要 提交工单 由腾讯云进行资格审核，审核通过后方可正常使用微信开放账号）：
-        # 1：QQ 开放账号；
-        # 2：微信开放账号；
-        # 8：设备号（imei/imeiMD5/idfa/idfaMd5）；
-        # 10004：手机号 MD5。
+        # @param Account: 用户账号类型；默认开通QQOpenId、手机号MD5权限；如果需要使用微信OpenId入参，则需要"提交工单"或联系对接人进行资格审核，审核通过后方可正常使用微信开放账号。
+        # 1：QQ开放账号
+        # 2：微信开放账号
+        # 8：设备号，仅支持IMEI、IMEIMD5、IDFA、IDFAMD5
+        # 10004：手机号MD5，中国大陆11位手机号进行MD5加密，取32位小写值。
         # @type Account: :class:`Tencentcloud::Rce.v20201103.models.AccountInfo`
         # @param SceneCode: 场景码，用于识别和区分不同的业务场景，可在控制台上新建和管理
         # 控制台链接：https://console.cloud.tencent.com/rce/risk/strategy/scene-root
@@ -227,10 +227,9 @@ module TencentCloud
         # @type UserIp: String
         # @param PostTime: 用户操作时间戳，精确到秒。
         # @type PostTime: Integer
-        # @param UserId: 业务平台用户唯一标识。
+        # @param UserId: 业务平台用户唯一标识，支持自定义。
         # @type UserId: String
-        # @param DeviceToken: 设备指纹Devicetoken值，集成设备指纹后获取，
-        # 如果集成了相应的设备指纹，该字段必填。
+        # @param DeviceToken: 设备指纹DeviceToken值，集成设备指纹后获取；如果集成了相应的设备指纹，该字段必填。
         # @type DeviceToken: String
         # @param DeviceBusinessId: 设备指纹 BusinessId。
         # @type DeviceBusinessId: Integer
@@ -238,7 +237,7 @@ module TencentCloud
         # @type BusinessId: Integer
         # @param Nickname: 昵称，UTF-8 编码。
         # @type Nickname: String
-        # @param EmailAddress: 用户邮箱地址（非系统自动生成）。
+        # @param EmailAddress: 用户邮箱地址。
         # @type EmailAddress: String
         # @param CheckDevice: 是否识别设备异常：
         # 0：不识别。
@@ -257,10 +256,10 @@ module TencentCloud
         # @param VendorId: 手机制造商ID，如果手机注册，请带上此信息。
         # @type VendorId: String
         # @param DeviceType: 设备类型，账号类型（AccountType）为8时填写。
-        # 1:Imei；国际移动设备识别号（15-17位数字）；
-        # 2:ImeiMd5；国际移动设备识别号，通过MD5加密后取32位小写值；
-        # 3:Idfa；
-        # 4:IdfaMD5； 国际移动设备识别号，通过MD5加密后取32位小写值。
+        # 1:IMEI；国际移动设备识别号（15-17位数字）；
+        # 2:IMEIMD5；国际移动设备识别号，通过MD5加密后取32位小写值；
+        # 3:IDFA；
+        # 4:IDFAMD5；国际移动设备识别号，通过MD5加密后取32位小写值。
         # @type DeviceType: Integer
         # @param Details: 扩展字段。
         # @type Details: Array
@@ -268,10 +267,10 @@ module TencentCloud
         # @type Sponsor: :class:`Tencentcloud::Rce.v20201103.models.SponsorInfo`
         # @param OnlineScam: 详情请跳转至OnlineScamInfo查看。
         # @type OnlineScam: :class:`Tencentcloud::Rce.v20201103.models.OnlineScamInfo`
-        # @param Platform: 1：安卓；
-        # 2：iOS ；
-        # 3：H5 ；
-        # 4：小程序 。
+        # @param Platform: 1：Android
+        # 2：iOS
+        # 3：H5
+        # 4：小程序
         # @type Platform: String
 
         attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform
@@ -431,11 +430,11 @@ module TencentCloud
       # 其它账号信息。
       class OtherAccountInfo < TencentCloud::Common::AbstractModel
         # @param AccountId: 其他账号信息；
-        # AccountType是8时，填入设备号（imei/imeimd5/idfa/idfamd5）
+        # AccountType是8时，填入设备号（IMEI、IMEIMD5、IDFA、IDFAMD5）
         # AccountType是10004时，填入中国大陆标准11位手机号的MD5值
         # 注释：
         # MD5手机号加密方式，中国大陆11位手机号进行MD5加密，加密后取32位小写值
-        # imeiMD5/IdfaMd5加密方式，对imei/IdfaMd5明文进行MD5加密，加密后取32位小写值。
+        # 设备号加密方式，对IMEI、IDFA明文进行MD5加密，加密后取32位小写值。
         # @type AccountId: String
         # @param MobilePhone: MD5手机号,AccountType是10004时，此处无需重复填写。
         # @type MobilePhone: String
@@ -579,11 +578,12 @@ module TencentCloud
 
       # 全栈式风控引擎出参值
       class OutputManageMarketingRiskValue < TencentCloud::Common::AbstractModel
-        # @param UserId: 账号ID。对应输入参数：
-        # AccountType是1时，对应QQ的OpenID。
-        # AccountType是2时，对应微信的OpenID/UnionID。
-        # AccountType是8时，对应imei、idfa、imeiMD5或者idfaMD5。
-        # AccountType是10004时，对应手机号的MD5。
+        # @param UserId: 账号ID：对应输入参数。
+        # 当AccountType为1时，对应QQ的OpenId。
+        # 当AccountType为2时，对应微信的OpenId/UnionId。
+        # 当AccountType为8时，对应IMEI、IDFA、IMEIMD5或者IDFAMD5。
+        # 当AccountType为10004时，对应手机号的MD5值。
+        # 请注意：此字段可能返回null，表示无法获取有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserId: String
         # @param PostTime: 操作时间戳，单位秒（对应输入参数）。
@@ -601,32 +601,29 @@ module TencentCloud
         # reject：高风险，建议拦截
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskLevel: String
-        # @param RiskType: 风险类型，请参考官网风险类型
-        # 账号风险
-        # 1 账号信用低,账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素
-        # 11 疑似 低活跃账号,账号活跃度与正常用户有差异
-        # 2 垃圾账号 疑似批量注册小号，近期存在严重违规或大量举报
-        # 21 疑似小号 账号有疑似线上养号，小号等行为
-        # 22 疑似违规账号 账号曾有违规行为、曾被举报过、曾因违规被处罚过等
-        # 3 无效账号 送检账号参数无法成功解析，请检查微信 openid 是否有误/appid与QQopenid无法关联/微信openid权限是否有开通/手机号是否为中国大陆手机号；
-        # 4 黑名单 该账号在业务侧有过拉黑记录
-        # 5 白名单 业务自行有添加过白名单记录
-        # 行为风险
-        # 101 批量操作 存在 ip/设备/环境等因素的聚集性异常
-        # 1011 疑似 IP 属性聚集，出现 IP 聚集
-        # 1012 疑似 设备属性聚集 出现设备聚集
-        # 102 自动机 疑似自动机批量请求
-        # 103 恶意行为-网赚 疑似网赚
-        # 104 微信登录态无效 检查 WeChatAccessToken 参数，是否已经失效；
-        # 201 环境风险 环境异常 操作 ip/设备/环境存在异常。当前 ip 为非常用 ip 或恶意 ip 段
-        # 2011 疑似 非常用IP 请求 当前请求 IP 非该账号常用 IP
-        # 2012 疑似 IP 异常 使用 idc 机房 ip 或 使用代理 ip 或 使用恶意 ip 等
-        # 205 非公网有效ip 传进来的 IP 地址为内网 ip 地址或者 ip 保留地址；
-        # 设备风险
-        # 206  设备异常 该设备存在异常的使用行为
-        # 2061 疑似 非常用设备 当前请求的设备非该账号常用设备
-        # 2062 疑似 虚拟设备 请求设备为模拟器、脚本、云设备等虚拟设备
-        # 2063 疑似 群控设备 请求设备为猫池、手机墙等群控设备
+        # @param RiskType: 风险类型，可能同时命中多个风险类型
+        # 1: 账号信用低，账号近期存在因恶意被处罚历史，网络低活跃，被举报等因素。
+        # 11: 疑似低活跃账号，账号活跃度与正常用户有差异。
+        # 2: 垃圾账号，疑似批量注册小号，近期存在严重违规或大量举报。
+        # 21: 疑似小号，账号有疑似线上养号，小号等行为。
+        # 22: 疑似违规账号，账号曾有违规行为、曾被举报过、曾因违规被处罚过等。
+        # 3: 无效账号，送检账号参数无法成功解析，请检查微信 OpenId 是否有误/AppId 与 QQ OpenId 无法关联/微信 OpenId 权限是否开通/手机号是否为中国大陆手机号；
+        # 4: 黑名单，该账号在业务侧有过拉黑记录。
+        # 5: 白名单，业务自行有添加过白名单记录。
+        # 101: 批量操作，存在 IP/设备/环境等因素的聚集性异常。
+        # 1011: 疑似 IP 属性聚集，出现 IP 聚集。
+        # 1012: 疑似设备属性聚集，出现设备聚集。
+        # 102: 自动机，疑似自动机批量请求。
+        # 103: 恶意行为-网赚，疑似网赚。
+        # 104: 微信登录态无效，检查 WeChatAccessToken 参数，是否已经失效。
+        # 201: 环境风险，环境异常操作 IP/设备/环境存在异常。当前 IP 为非常用 IP 或恶意 IP 段。
+        # 2011: 疑似非常用IP，请求当前请求 IP 非该账号常用 IP。
+        # 2012: 疑似 IP 异常，使用 IDC 机房 IP 或使用代理 IP 或使用恶意 IP 等。
+        # 205: 非公网有效 IP，传进来的 IP 地址为内网 IP 地址或者 IP 保留地址。
+        # 206: 设备异常，该设备存在异常的使用行为。
+        # 2061: 疑似非常用设备，当前请求的设备非该账号常用设备。
+        # 2062: 疑似虚拟设备，请求设备为模拟器、脚本、云设备等虚拟设备。
+        # 2063: 疑似群控设备，请求设备为猫池、手机墙等群控设备。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskType: Array
         # @param ConstId: 设备指纹ID，如果集成了设备指纹，并传入了正确的DeviceToken和Platform，该字段正常输出；如果DeviceToken异常（校验不通过），则会在RiskType中返回"-1"标签，ConstId字段为空；如果没有集成设备指纹ConstId字段默认为空。
@@ -663,7 +660,7 @@ module TencentCloud
 
       # QQ账号信息。
       class QQAccountInfo < TencentCloud::Common::AbstractModel
-        # @param QQOpenId: QQ的OpenID。
+        # @param QQOpenId: QQ的OpenId。
         # @type QQOpenId: String
         # @param AppIdUser: QQ分配给网站或应用的AppId，用来唯一标识网站或应用。
         # @type AppIdUser: String
@@ -672,8 +669,8 @@ module TencentCloud
         # @param MobilePhone: 账号绑定的MD5手机号，
         # 注释：只支中国大陆11位手机号MD5加密后位的32位小写字符串。
         # @type MobilePhone: String
-        # @param DeviceId: 用户设备号，支持imei/imeiMD5/Idfa/IdfaMd5
-        # 注释：imeiMD5/IdfaMd5加密方式，对imei/IdfaMd5明文进行MD5加密，加密后取32位小写值。
+        # @param DeviceId: 用户设备号，支持IMEI、IMEIMD5、IDFA、IDFAMD5
+        # 注释：IMEIMD5、IDFAMD5加密方式，对IMEI、IDFA明文进行MD5加密，加密后取32位小写值。
         # @type DeviceId: String
 
         attr_accessor :QQOpenId, :AppIdUser, :AssociateAccount, :MobilePhone, :DeviceId
@@ -697,7 +694,7 @@ module TencentCloud
 
       # 网赚防刷相关参数
       class SponsorInfo < TencentCloud::Common::AbstractModel
-        # @param SponsorOpenId: 助力场景建议填写：活动发起人微信 OpenID
+        # @param SponsorOpenId: 助力场景建议填写：活动发起人微信OpenId。
         # @type SponsorOpenId: String
         # @param SponsorDeviceNumber: 助力场景建议填写：发起人设备号
         # @type SponsorDeviceNumber: String
@@ -729,7 +726,7 @@ module TencentCloud
 
       # 微信账号信息。
       class WeChatAccountInfo < TencentCloud::Common::AbstractModel
-        # @param WeChatOpenId: 微信的OpenID/UnionID 。
+        # @param WeChatOpenId: 微信的OpenId/UnionId。
         # @type WeChatOpenId: String
         # @param WeChatSubType: 微信开放账号类型：
         # 1：微信公众号/微信第三方登录。
@@ -745,8 +742,8 @@ module TencentCloud
         # @param MobilePhone: 账号绑定的MD5手机号，
         # 注释：只支持标准中国大陆11位手机号MD5加密后位的32位小写字符串。
         # @type MobilePhone: String
-        # @param DeviceId: 用户设备号，支持imei/imeiMD5/Idfa/IdfaMd5
-        # 注释：imeiMD5/IdfaMd5加密方式，对imei/IdfaMd5明文进行MD5加密，加密后取32位小写值。
+        # @param DeviceId: 用户设备号，支持IMEI、IMEIMD5、IDFA、IDFAMD5
+        # 注释：IMEIMD5、IDFAMD5加密方式，对IMEI、IDFA明文进行MD5加密，加密后取32位小写值。
         # @type DeviceId: String
 
         attr_accessor :WeChatOpenId, :WeChatSubType, :RandStr, :WeChatAccessToken, :AssociateAccount, :MobilePhone, :DeviceId

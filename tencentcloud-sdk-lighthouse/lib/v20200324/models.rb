@@ -630,6 +630,35 @@ module TencentCloud
         end
       end
 
+      # 用户执行TAT命令的数据结构。
+      class Command < TencentCloud::Common::AbstractModel
+        # @param Content: Base64编码后的命令内容，长度不可超过64KB。
+        # @type Content: String
+        # @param Timeout: 命令超时时间，默认60秒。取值范围[1, 86400]。
+        # @type Timeout: Integer
+        # @param WorkingDirectory: 命令执行路径，对于 SHELL 命令默认为 /root，对于 POWERSHELL 命令默认为 C:\Program Files\qcloud\tat_agent\workdir。
+        # @type WorkingDirectory: String
+        # @param Username: 在 Lighthouse 实例中执行命令的用户名称。
+        # 默认情况下，在 Linux 实例中以 root 用户执行命令；在Windows 实例中以 System 用户执行命令。
+        # @type Username: String
+
+        attr_accessor :Content, :Timeout, :WorkingDirectory, :Username
+
+        def initialize(content=nil, timeout=nil, workingdirectory=nil, username=nil)
+          @Content = content
+          @Timeout = timeout
+          @WorkingDirectory = workingdirectory
+          @Username = username
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Timeout = params['Timeout']
+          @WorkingDirectory = params['WorkingDirectory']
+          @Username = params['Username']
+        end
+      end
+
       # 容器环境变量
       class ContainerEnv < TencentCloud::Common::AbstractModel
         # @param Key: 环境变量Key
@@ -1037,10 +1066,12 @@ module TencentCloud
         # 如果标签不存在会为您自动创建标签。
         # 数组最多支持10个元素。
         # @type Tags: Array
+        # @param InitCommand: 创建实例后自动执行的命令。
+        # @type InitCommand: :class:`Tencentcloud::Lighthouse.v20200324.models.Command`
 
-        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId, :Tags
+        attr_accessor :BundleId, :BlueprintId, :InstanceChargePrepaid, :InstanceName, :InstanceCount, :Zones, :DryRun, :ClientToken, :LoginConfiguration, :Containers, :AutoVoucher, :FirewallTemplateId, :Tags, :InitCommand
 
-        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil, tags=nil)
+        def initialize(bundleid=nil, blueprintid=nil, instancechargeprepaid=nil, instancename=nil, instancecount=nil, zones=nil, dryrun=nil, clienttoken=nil, loginconfiguration=nil, containers=nil, autovoucher=nil, firewalltemplateid=nil, tags=nil, initcommand=nil)
           @BundleId = bundleid
           @BlueprintId = blueprintid
           @InstanceChargePrepaid = instancechargeprepaid
@@ -1054,6 +1085,7 @@ module TencentCloud
           @AutoVoucher = autovoucher
           @FirewallTemplateId = firewalltemplateid
           @Tags = tags
+          @InitCommand = initcommand
         end
 
         def deserialize(params)
@@ -1089,6 +1121,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['InitCommand'].nil?
+            @InitCommand = Command.new
+            @InitCommand.deserialize(params['InitCommand'])
           end
         end
       end
@@ -5205,10 +5241,12 @@ module TencentCloud
         # @param InstanceRestrictState: 实例封禁状态。取值范围：
         # <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
         # @type InstanceRestrictState: String
+        # @param InitInvocationId: 创建实例后自动执行TAT命令的调用ID。
+        # @type InitInvocationId: String
 
-        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState
+        attr_accessor :InstanceId, :BundleId, :BlueprintId, :CPU, :Memory, :InstanceName, :InstanceChargeType, :SystemDisk, :PrivateAddresses, :PublicAddresses, :InternetAccessible, :RenewFlag, :LoginSettings, :InstanceState, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :IsolatedTime, :CreatedTime, :ExpiredTime, :PlatformType, :Platform, :OsName, :Zone, :Tags, :InstanceRestrictState, :InitInvocationId
 
-        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil)
+        def initialize(instanceid=nil, bundleid=nil, blueprintid=nil, cpu=nil, memory=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, privateaddresses=nil, publicaddresses=nil, internetaccessible=nil, renewflag=nil, loginsettings=nil, instancestate=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, isolatedtime=nil, createdtime=nil, expiredtime=nil, platformtype=nil, platform=nil, osname=nil, zone=nil, tags=nil, instancerestrictstate=nil, initinvocationid=nil)
           @InstanceId = instanceid
           @BundleId = bundleid
           @BlueprintId = blueprintid
@@ -5236,6 +5274,7 @@ module TencentCloud
           @Zone = zone
           @Tags = tags
           @InstanceRestrictState = instancerestrictstate
+          @InitInvocationId = initinvocationid
         end
 
         def deserialize(params)
@@ -5282,6 +5321,7 @@ module TencentCloud
             end
           end
           @InstanceRestrictState = params['InstanceRestrictState']
+          @InitInvocationId = params['InitInvocationId']
         end
       end
 

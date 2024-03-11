@@ -6889,6 +6889,7 @@ module TencentCloud
       # - RecipientId 必须指定
       # -  通过企业微信自定义账号ID补充签署人时，ApproverSource 和 CustomUserId 必填，ApproverSource取值：WEWORKAPP
       # - 通过二要素（姓名/手机号）补充签署人时，ApproverName 和 ApproverMobile 必填，ApproverSource设置为空
+      # - 补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充
       class FillApproverInfo < TencentCloud::Common::AbstractModel
         # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
         # 模板发起合同时，该参数为必填项。
@@ -6908,16 +6909,34 @@ module TencentCloud
         # @type ApproverMobile: String
         # @param OrganizationName: 补充企业动态签署人时，需要指定对应企业名称
         # @type OrganizationName: String
+        # @param ApproverIdCardType: 签署方经办人的证件类型，支持以下类型
+        # <ul><li>ID_CARD 居民身份证</li>
+        # <li>HONGKONG_AND_MACAO 港澳居民来往内地通行证</li>
+        # <li>HONGKONG_MACAO_AND_TAIWAN 港澳台居民居住证(格式同居民身份证)</li>
+        # <li>OTHER_CARD_TYPE 其他证件</li></ul>
 
-        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName
+        # 注: `1.其他证件类型为白名单功能，使用前请联系对接的客户经理沟通。`
+        # `2.补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充。`
+        # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: 签署方经办人的证件号码，应符合以下规则
+        # <ul><li>居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
+        # <li>港澳居民来往内地通行证号码应为9位字符串，第1位为“C”，第2位为英文字母（但“I”、“O”除外），后7位为阿拉伯数字。</li>
+        # <li>港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
 
-        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil, organizationname=nil)
+        # 注：`补充个人签署方时，若该用户已在电子签完成实名则可通过指定姓名和证件类型、证件号码完成补充。`
+        # @type ApproverIdCardNumber: String
+
+        attr_accessor :RecipientId, :ApproverSource, :CustomUserId, :ApproverName, :ApproverMobile, :OrganizationName, :ApproverIdCardType, :ApproverIdCardNumber
+
+        def initialize(recipientid=nil, approversource=nil, customuserid=nil, approvername=nil, approvermobile=nil, organizationname=nil, approveridcardtype=nil, approveridcardnumber=nil)
           @RecipientId = recipientid
           @ApproverSource = approversource
           @CustomUserId = customuserid
           @ApproverName = approvername
           @ApproverMobile = approvermobile
           @OrganizationName = organizationname
+          @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
         end
 
         def deserialize(params)
@@ -6927,6 +6946,8 @@ module TencentCloud
           @ApproverName = params['ApproverName']
           @ApproverMobile = params['ApproverMobile']
           @OrganizationName = params['OrganizationName']
+          @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
         end
       end
 
@@ -9852,6 +9873,14 @@ module TencentCloud
         # 可以通过浏览器打开此链接预览模板，或者嵌入到iframe中预览模板。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PreviewUrl: String
+        # @param UserFlowType: 用户自定义合同类型。
+
+        # 返回配置模板的时候选择的合同类型。[点击查看配置的位置](https://qcloudimg.tencent-cloud.cn/raw/4a766f0540253bf2a05d50c58bd14990.png)
+
+        # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
         # @param TemplateVersion: 模板版本的编号，旨在标识其独特的版本信息，通常呈现为一串字符串，由日期和递增的数字组成
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TemplateVersion: String
@@ -9871,12 +9900,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Seals: Array
 
-        attr_accessor :TemplateId, :TemplateName, :Recipients, :Components, :SignComponents, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :CreatorId, :PreviewUrl, :TemplateVersion, :Published, :ShareTemplateId, :TemplateSeals, :Seals
+        attr_accessor :TemplateId, :TemplateName, :Recipients, :Components, :SignComponents, :Description, :DocumentResourceIds, :FileInfos, :AttachmentResourceIds, :SignOrder, :Status, :Creator, :CreatedOn, :Promoter, :TemplateType, :Available, :OrganizationId, :CreatorId, :PreviewUrl, :UserFlowType, :TemplateVersion, :Published, :ShareTemplateId, :TemplateSeals, :Seals
         extend Gem::Deprecate
         deprecate :Seals, :none, 2024, 3
         deprecate :Seals=, :none, 2024, 3
 
-        def initialize(templateid=nil, templatename=nil, recipients=nil, components=nil, signcomponents=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, creatorid=nil, previewurl=nil, templateversion=nil, published=nil, sharetemplateid=nil, templateseals=nil, seals=nil)
+        def initialize(templateid=nil, templatename=nil, recipients=nil, components=nil, signcomponents=nil, description=nil, documentresourceids=nil, fileinfos=nil, attachmentresourceids=nil, signorder=nil, status=nil, creator=nil, createdon=nil, promoter=nil, templatetype=nil, available=nil, organizationid=nil, creatorid=nil, previewurl=nil, userflowtype=nil, templateversion=nil, published=nil, sharetemplateid=nil, templateseals=nil, seals=nil)
           @TemplateId = templateid
           @TemplateName = templatename
           @Recipients = recipients
@@ -9896,6 +9925,7 @@ module TencentCloud
           @OrganizationId = organizationid
           @CreatorId = creatorid
           @PreviewUrl = previewurl
+          @UserFlowType = userflowtype
           @TemplateVersion = templateversion
           @Published = published
           @ShareTemplateId = sharetemplateid
@@ -9954,6 +9984,10 @@ module TencentCloud
           @OrganizationId = params['OrganizationId']
           @CreatorId = params['CreatorId']
           @PreviewUrl = params['PreviewUrl']
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
+          end
           @TemplateVersion = params['TemplateVersion']
           @Published = params['Published']
           @ShareTemplateId = params['ShareTemplateId']
@@ -10253,6 +10287,33 @@ module TencentCloud
           @FileIds = params['FileIds']
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户自定义合同类型， 自定义合同类型的管理可以[点击查看在控制台位置的截图](https://qcloudimg.tencent-cloud.cn/raw/85a9b2ebce07b0cd6d75d5327d538235.png)
+      class UserFlowType < TencentCloud::Common::AbstractModel
+        # @param UserFlowTypeId: 合同类型ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserFlowTypeId: String
+        # @param Name: 合同类型名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 合同类型说明
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :UserFlowTypeId, :Name, :Description
+
+        def initialize(userflowtypeid=nil, name=nil, description=nil)
+          @UserFlowTypeId = userflowtypeid
+          @Name = name
+          @Description = description
+        end
+
+        def deserialize(params)
+          @UserFlowTypeId = params['UserFlowTypeId']
+          @Name = params['Name']
+          @Description = params['Description']
         end
       end
 
