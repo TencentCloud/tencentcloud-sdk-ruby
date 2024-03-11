@@ -62,7 +62,7 @@ module TencentCloud
         # @param Info: 消息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Info: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Success, :FlowId, :Info, :RequestId
@@ -106,7 +106,7 @@ module TencentCloud
         # @type InUseRequestNum: Integer
         # @param RemainingRequestNum: 剩余调用量
         # @type RemainingRequestNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MaxRequestNum, :InUseRequestNum, :RemainingRequestNum, :RequestId

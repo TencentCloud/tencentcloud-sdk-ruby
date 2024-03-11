@@ -35,7 +35,7 @@ module TencentCloud
 
       # AcceptDirectConnectTunnel返回参数结构体
       class AcceptDirectConnectTunnelResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -146,7 +146,7 @@ module TencentCloud
         # @param InstanceId: 互联网公网地址ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InstanceId, :RequestId
@@ -338,7 +338,7 @@ module TencentCloud
       class CreateDirectConnectResponse < TencentCloud::Common::AbstractModel
         # @param DirectConnectIdSet: 物理专线的ID。
         # @type DirectConnectIdSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DirectConnectIdSet, :RequestId
@@ -468,7 +468,7 @@ module TencentCloud
       class CreateDirectConnectTunnelResponse < TencentCloud::Common::AbstractModel
         # @param DirectConnectTunnelIdSet: 专用通道ID。
         # @type DirectConnectTunnelIdSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelIdSet, :RequestId
@@ -502,7 +502,7 @@ module TencentCloud
 
       # DeleteDirectConnect返回参数结构体
       class DeleteDirectConnectResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -534,7 +534,7 @@ module TencentCloud
 
       # DeleteDirectConnectTunnel返回参数结构体
       class DeleteDirectConnectTunnelResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -580,7 +580,7 @@ module TencentCloud
         # @type AccessPointSet: Array
         # @param TotalCount: 符合接入点数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AccessPointSet, :TotalCount, :RequestId
@@ -625,7 +625,7 @@ module TencentCloud
       class DescribeDirectConnectTunnelExtraResponse < TencentCloud::Common::AbstractModel
         # @param DirectConnectTunnelExtra: 专用通道扩展信息
         # @type DirectConnectTunnelExtra: :class:`Tencentcloud::Dc.v20180410.models.DirectConnectTunnelExtra`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelExtra, :RequestId
@@ -689,7 +689,7 @@ module TencentCloud
         # @type DirectConnectTunnelSet: Array
         # @param TotalCount: 符合专用通道数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DirectConnectTunnelSet, :TotalCount, :RequestId
@@ -758,7 +758,7 @@ module TencentCloud
         # @param AllSignLaw: 用户名下物理专线是否都签署了用户协议
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllSignLaw: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DirectConnectSet, :TotalCount, :AllSignLaw, :RequestId
@@ -813,7 +813,7 @@ module TencentCloud
         # @param Ipv4OtherNum: 非BGP类型互联网地址已使用数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ipv4OtherNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ipv6PrefixLen, :Ipv4BgpQuota, :Ipv4OtherQuota, :Ipv4BgpNum, :Ipv4OtherNum, :RequestId
@@ -880,7 +880,7 @@ module TencentCloud
         # @param Subnets: 互联网公网地址列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Subnets, :RequestId
@@ -923,7 +923,7 @@ module TencentCloud
         # @param InternetAddressStatistics: 互联网公网地址统计信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InternetAddressStatistics: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InternetAddressStatistics, :RequestId
@@ -991,7 +991,7 @@ module TencentCloud
         # @type Routes: Array
         # @param TotalCount: 记录总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Routes, :TotalCount, :RequestId
@@ -1633,7 +1633,7 @@ module TencentCloud
 
       # DisableInternetAddress返回参数结构体
       class DisableInternetAddressResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1665,7 +1665,7 @@ module TencentCloud
 
       # EnableInternetAddress返回参数结构体
       class EnableInternetAddressResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1863,7 +1863,7 @@ module TencentCloud
 
       # ModifyDirectConnectAttribute返回参数结构体
       class ModifyDirectConnectAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1933,7 +1933,7 @@ module TencentCloud
 
       # ModifyDirectConnectTunnelAttribute返回参数结构体
       class ModifyDirectConnectTunnelAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2056,7 +2056,7 @@ module TencentCloud
 
       # ModifyDirectConnectTunnelExtra返回参数结构体
       class ModifyDirectConnectTunnelExtraResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2112,7 +2112,7 @@ module TencentCloud
 
       # RejectDirectConnectTunnel返回参数结构体
       class RejectDirectConnectTunnelResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2144,7 +2144,7 @@ module TencentCloud
 
       # ReleaseInternetAddress返回参数结构体
       class ReleaseInternetAddressResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

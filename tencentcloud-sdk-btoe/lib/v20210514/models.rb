@@ -64,7 +64,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 请求成功，返回存证编码,用于查询存证后续业务数据
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -121,7 +121,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 请求成功，返回存证编码,用于查询存证后续业务数据
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -186,7 +186,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 请求成功，返回存证编码,用于查询存证后续业务数据
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -235,7 +235,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 存证编码
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -284,7 +284,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 存证编码
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -337,7 +337,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 存证编码
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -402,7 +402,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 请求成功，返回存证编码,用于查询存证后续业务数据
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -467,7 +467,7 @@ module TencentCloud
         # @type BusinessId: String
         # @param EvidenceId: 请求成功，返回存证编码,用于查询存证后续业务数据
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessId, :EvidenceId, :RequestId
@@ -507,7 +507,7 @@ module TencentCloud
         # @type EvidenceId: String
         # @param EvidenceCert: 存证证书文件临时链接
         # @type EvidenceCert: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceCert, :RequestId
@@ -547,7 +547,7 @@ module TencentCloud
         # @type EvidenceId: String
         # @param EvidenceFile: 存证文件临时链接
         # @type EvidenceFile: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceFile, :RequestId
@@ -589,7 +589,7 @@ module TencentCloud
         # @type EvidenceTime: String
         # @param EvidenceTxHash: 区块链交易哈希
         # @type EvidenceTxHash: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EvidenceId, :EvidenceTime, :EvidenceTxHash, :RequestId
@@ -635,7 +635,7 @@ module TencentCloud
         # @param EvidenceId: 存证编码，仅当核验结果为true时返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EvidenceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :EvidenceTime, :EvidenceId, :RequestId
@@ -675,7 +675,7 @@ module TencentCloud
       class VerifyEvidenceHashResponse < TencentCloud::Common::AbstractModel
         # @param Result: 核验结果，true为核验成功，false为核验失败
         # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId

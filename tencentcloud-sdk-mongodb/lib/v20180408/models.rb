@@ -19,9 +19,9 @@ module TencentCloud
     module V20180408
       # AssignProject请求参数结构体
       class AssignProjectRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceIds: 实例 ID 列表。格式如：cmgo-p8vn****，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceIds: Array
-        # @param ProjectId: 项目ID
+        # @param ProjectId: 项目ID。项目 ID 具有唯一性，请[登录 MongoDB 控制台](https://console.cloud.tencent.com/mongodb)，在右上角的账户信息的下拉菜单中，选择**项目管理**，即可获取项目ID。
         # @type ProjectId: Integer
 
         attr_accessor :InstanceIds, :ProjectId
@@ -39,9 +39,9 @@ module TencentCloud
 
       # AssignProject返回参数结构体
       class AssignProjectResponse < TencentCloud::Common::AbstractModel
-        # @param FlowIds: 返回的异步任务ID列表
+        # @param FlowIds: 返回的异步任务ID列表。
         # @type FlowIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowIds, :RequestId
@@ -155,7 +155,7 @@ module TencentCloud
         # @type DealId: String
         # @param InstanceIds: 创建的实例ID列表
         # @type InstanceIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :InstanceIds, :RequestId
@@ -243,7 +243,7 @@ module TencentCloud
         # @type DealId: String
         # @param InstanceIds: 创建的实例ID列表
         # @type InstanceIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :InstanceIds, :RequestId
@@ -282,13 +282,17 @@ module TencentCloud
         # @param Clients: 客户端连接信息，包括客户端IP和对应IP的连接数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Clients: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param TotalCount: 连接数总结
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Clients, :RequestId
+        attr_accessor :Clients, :TotalCount, :RequestId
 
-        def initialize(clients=nil, requestid=nil)
+        def initialize(clients=nil, totalcount=nil, requestid=nil)
           @Clients = clients
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
@@ -301,33 +305,40 @@ module TencentCloud
               @Clients << clientconnection_tmp
             end
           end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
         # @type InstanceIds: Array
-        # @param InstanceType: 实例类型，取值范围：0-所有实例,1-正式实例，2-临时实例, 3-只读实例，-1-正式实例+只读+灾备实例
+        # @param InstanceType: 实例类型，取值范围：
+        # <ul><li>0： 所有实例</li><li>1： 正式实例</li><li>2： 临时实例</li><li>3： 只读实例</li><li>-1： 正式实例+只读+灾备实例</li></ul>
         # @type InstanceType: Integer
-        # @param ClusterType: 集群类型，取值范围：0-副本集实例，1-分片实例，-1-所有实例
+        # @param ClusterType: 集群类型，取值范围：
+        # <ul><li>0： 副本集实例</li><li>1： 正式实例</li> <li>-1： 所有实例</li></ul>
         # @type ClusterType: Integer
-        # @param Status: 实例状态，取值范围：0-待初始化，1-流程执行中，2-实例有效，-2-实例已过期
+        # @param Status: 实例状态，取值范围：
+        # <ul><li>0： 待初始化</li><li>1： 流程执行中</li> <li>2： 有效实例</li><li>-2： 已过期实例</li></ul>
         # @type Status: Array
-        # @param VpcId: 私有网络的ID，基础网络则不传该参数
+        # @param VpcId: 私有网络的ID，基础网络则不传该参数。
         # @type VpcId: String
-        # @param SubnetId: 私有网络的子网ID，基础网络则不传该参数。入参设置该参数的同时，必须设置相应的VpcId
+        # @param SubnetId: 私有网络的子网ID，基础网络则不传该参数。入参设置该参数的同时，必须设置相应的VpcId。
         # @type SubnetId: String
-        # @param PayMode: 付费类型，取值范围：0-按量计费，1-包年包月，-1-按量计费+包年包月
+        # @param PayMode: 付费类型，取值范围：
+        # <ul><li>0： 按量计费</li><li>1：包年包月</li><li>-1： 按量计费+包年包月</li></ul>
         # @type PayMode: Integer
-        # @param Limit: 单次请求返回的数量，最小值为1，最大值为100，默认值为20
+        # @param Limit: 单次请求返回的数量，最小值为1，最大值为100，默认值为20。
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认值为0
+        # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
-        # @param OrderBy: 返回结果集排序的字段，目前支持："ProjectId", "InstanceName", "CreateTime"，默认为升序排序
+        # @param OrderBy: 返回结果集排序的字段，目前支持：
+        # <ul><li>ProjectId： 按照项目ID排序</li><li>InstanceName：按照实例名称排序</li><li>CreateTime： 根据创建时间排序</li></ul>
         # @type OrderBy: String
-        # @param OrderByType: 返回结果集排序方式，目前支持："ASC"或者"DESC"
+        # @param OrderByType: 返回结果集排序方式，目前支持："ASC"或者"DESC"。
+        # <ul><li>ASC： 顺序取值</li><li>DESC：倒序取值</li></ul>
         # @type OrderByType: String
 
         attr_accessor :InstanceIds, :InstanceType, :ClusterType, :Status, :VpcId, :SubnetId, :PayMode, :Limit, :Offset, :OrderBy, :OrderByType
@@ -367,7 +378,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param InstanceDetails: 实例详细信息
         # @type InstanceDetails: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :InstanceDetails, :RequestId
@@ -434,7 +445,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param SlowLogList: 符合查询条件的慢查询日志详情。
         # @type SlowLogList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SlowLogList, :RequestId
@@ -472,7 +483,7 @@ module TencentCloud
       class DescribeSpecInfoResponse < TencentCloud::Common::AbstractModel
         # @param SpecInfoList: 实例售卖规格信息列表
         # @type SpecInfoList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SpecInfoList, :RequestId
@@ -770,7 +781,7 @@ module TencentCloud
       class RenameInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
-        # @param NewName: 实例名称
+        # @param NewName: 实例自定义名称
         # @type NewName: String
 
         attr_accessor :InstanceId, :NewName
@@ -788,7 +799,7 @@ module TencentCloud
 
       # RenameInstance返回参数结构体
       class RenameInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -806,7 +817,10 @@ module TencentCloud
       class SetAutoRenewRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceIds: Array
-        # @param AutoRenewFlag: 续费选项，取值范围：0-手动续费，1-自动续费，2-确认不续费
+        # @param AutoRenewFlag: 配置自动续费标识。
+        # - 0：手动续费。
+        # - 1：自动续费。
+        # - 2：确认不续费。
         # @type AutoRenewFlag: Integer
 
         attr_accessor :InstanceIds, :AutoRenewFlag
@@ -824,7 +838,7 @@ module TencentCloud
 
       # SetAutoRenew返回参数结构体
       class SetAutoRenewResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -842,7 +856,7 @@ module TencentCloud
       class SetPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         # @type InstanceId: String
-        # @param UserName: 实例账户名称
+        # @param UserName: 实例账户名。初始化实例密码，本参数传mongouser。
         # @type UserName: String
         # @param Password: 实例新密码，至少包含字母、数字和字符（!@#%^*()）中的两种，长度为8-16个字符
         # @type Password: String
@@ -866,7 +880,7 @@ module TencentCloud
       class SetPasswordResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 返回的异步任务ID
         # @type FlowId: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
@@ -1047,9 +1061,9 @@ module TencentCloud
 
       # TerminateDBInstance返回参数结构体
       class TerminateDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 订单ID，表示注销实例成功
+        # @param AsyncRequestId: 订单ID，表示注销实例成功。
         # @type AsyncRequestId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AsyncRequestId, :RequestId
@@ -1097,7 +1111,7 @@ module TencentCloud
       class UpgradeDBInstanceHourResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单ID
         # @type DealId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :RequestId
@@ -1145,7 +1159,7 @@ module TencentCloud
       class UpgradeDBInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单ID
         # @type DealId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :RequestId

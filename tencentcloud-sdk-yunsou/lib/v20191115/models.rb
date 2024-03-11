@@ -49,7 +49,7 @@ module TencentCloud
       class DataManipulationResponse < TencentCloud::Common::AbstractModel
         # @param Data: 数据操作结果
         # @type Data: :class:`Tencentcloud::Yunsou.v20191115.models.DataManipulationResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -241,7 +241,7 @@ module TencentCloud
       class DataSearchResponse < TencentCloud::Common::AbstractModel
         # @param Data: 检索结果
         # @type Data: :class:`Tencentcloud::Yunsou.v20191115.models.SearchResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId

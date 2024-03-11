@@ -105,7 +105,7 @@ module TencentCloud
       class CreateTtsTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 任务 id
         # @type Data: :class:`Tencentcloud::Tts.v20190823.models.CreateTtsTaskRespData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -187,7 +187,7 @@ module TencentCloud
       class DescribeTtsTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Data: 任务状态返回
         # @type Data: :class:`Tencentcloud::Tts.v20190823.models.DescribeTtsTaskStatusRespData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -323,7 +323,7 @@ module TencentCloud
         # @type SessionId: String
         # @param Subtitles: 时间戳信息，若未开启时间戳，则返回空数组。
         # @type Subtitles: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Audio, :SessionId, :Subtitles, :RequestId

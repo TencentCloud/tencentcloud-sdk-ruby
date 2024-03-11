@@ -206,7 +206,7 @@ module TencentCloud
         # @param InvalidSamples: 无效关键词列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InvalidSamples: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SampleIDs, :SuccessInfos, :DupInfos, :InvalidSamples, :RequestId
@@ -307,7 +307,7 @@ module TencentCloud
         # @type Count: Integer
         # @param Details: 每个关键词删除的结果
         # @type Details: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Count, :Details, :RequestId
@@ -397,7 +397,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Infos: 词库详情
         # @type Infos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Infos, :RequestId
@@ -464,7 +464,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Infos: 词详情
         # @type Infos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Infos, :RequestId
@@ -789,7 +789,7 @@ module TencentCloud
         # @type BusinessCode: Integer
         # @param Data: 识别结果
         # @type Data: :class:`Tencentcloud::Cms.v20190321.models.ImageData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessCode, :Data, :RequestId
@@ -1420,7 +1420,7 @@ module TencentCloud
         # @param Data: 识别结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Cms.v20190321.models.TextData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessCode, :Data, :RequestId

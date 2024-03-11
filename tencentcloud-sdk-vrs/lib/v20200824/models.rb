@@ -37,7 +37,7 @@ module TencentCloud
       class CancelVRSTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 任务ID
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.CancelVRSTaskRsp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -154,7 +154,7 @@ module TencentCloud
       class CreateVRSTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 创建任务结果
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.CreateVRSTaskRespData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -230,7 +230,7 @@ module TencentCloud
       class DescribeVRSTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Data: 声音复刻任务结果
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.DescribeVRSTaskStatusRespData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -287,7 +287,7 @@ module TencentCloud
       class DetectEnvAndSoundQualityResponse < TencentCloud::Common::AbstractModel
         # @param Data: 检测结果
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.DetectionEnvAndSoundQualityRespData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -370,7 +370,7 @@ module TencentCloud
       class DownloadVRSModelResponse < TencentCloud::Common::AbstractModel
         # @param Data: 响应
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.DownloadVRSModelRsp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -443,7 +443,7 @@ module TencentCloud
       class GetTrainingTextResponse < TencentCloud::Common::AbstractModel
         # @param Data: 文本列表
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.TrainingTexts`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -477,7 +477,7 @@ module TencentCloud
       class GetVRSVoiceTypesResponse < TencentCloud::Common::AbstractModel
         # @param Data: 复刻音色信息
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.VoiceTypeListData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId

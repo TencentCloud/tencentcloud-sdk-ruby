@@ -325,7 +325,7 @@ module TencentCloud
         # @param Result: 0 成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -417,7 +417,7 @@ module TencentCloud
       class BatchCreateAclResponse < TencentCloud::Common::AbstractModel
         # @param Result: 状态码：0-修改成功，否则修改失败
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -472,7 +472,7 @@ module TencentCloud
       class BatchModifyGroupOffsetsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -522,7 +522,7 @@ module TencentCloud
       class BatchModifyTopicAttributesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -715,7 +715,7 @@ module TencentCloud
         # @param Result: 0 成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -769,7 +769,7 @@ module TencentCloud
         # @param Result: 返回结果状态Success
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1498,7 +1498,7 @@ module TencentCloud
       class CreateAclResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1572,7 +1572,7 @@ module TencentCloud
       class CreateAclRuleResponse < TencentCloud::Common::AbstractModel
         # @param Result: 规则的唯一表示Key
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1636,7 +1636,7 @@ module TencentCloud
       class CreateCdcClusterResponse < TencentCloud::Common::AbstractModel
         # @param Result: 无
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CdcClusterResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1753,7 +1753,7 @@ module TencentCloud
       class CreateConnectResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 连接源的Id
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConnectResourceResourceIdResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1804,7 +1804,7 @@ module TencentCloud
       class CreateConsumerResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建group描述
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1922,7 +1922,7 @@ module TencentCloud
       class CreateDatahubTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 任务id
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateDatahubTaskRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1984,7 +1984,7 @@ module TencentCloud
       class CreateDatahubTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回创建结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTopicResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2158,7 +2158,7 @@ module TencentCloud
       class CreateInstancePostResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2359,7 +2359,7 @@ module TencentCloud
       class CreateInstancePreResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2406,7 +2406,7 @@ module TencentCloud
       class CreatePartitionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2513,7 +2513,7 @@ module TencentCloud
       class CreatePostPaidInstanceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePostResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2584,7 +2584,7 @@ module TencentCloud
       class CreateRouteResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2628,7 +2628,7 @@ module TencentCloud
         # @param Result: token串
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2672,7 +2672,7 @@ module TencentCloud
       class CreateTopicIpWhiteListResponse < TencentCloud::Common::AbstractModel
         # @param Result: 删除主题IP白名单结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2798,7 +2798,7 @@ module TencentCloud
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回创建结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateTopicResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2845,7 +2845,7 @@ module TencentCloud
       class CreateUserResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3356,7 +3356,7 @@ module TencentCloud
       class DeleteAclResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3399,7 +3399,7 @@ module TencentCloud
       class DeleteAclRuleResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回被删除的规则的ID
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3435,7 +3435,7 @@ module TencentCloud
       class DeleteConnectResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 连接源的Id
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConnectResourceResourceIdResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3475,7 +3475,7 @@ module TencentCloud
         # @param Result: 任务id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3514,7 +3514,7 @@ module TencentCloud
       class DeleteDatahubTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3557,7 +3557,7 @@ module TencentCloud
       class DeleteGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3596,7 +3596,7 @@ module TencentCloud
       class DeleteInstancePostResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceDeleteResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3635,7 +3635,7 @@ module TencentCloud
       class DeleteInstancePreResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3686,7 +3686,7 @@ module TencentCloud
       class DeleteRouteResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3723,7 +3723,7 @@ module TencentCloud
 
       # DeleteRouteTriggerTime返回参数结构体
       class DeleteRouteTriggerTimeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3765,7 +3765,7 @@ module TencentCloud
       class DeleteTopicIpWhiteListResponse < TencentCloud::Common::AbstractModel
         # @param Result: 删除主题IP白名单结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3808,7 +3808,7 @@ module TencentCloud
       class DeleteTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3851,7 +3851,7 @@ module TencentCloud
       class DeleteUserResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3910,7 +3910,7 @@ module TencentCloud
       class DescribeACLResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的ACL结果集对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.AclResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -3961,7 +3961,7 @@ module TencentCloud
       class DescribeAclRuleResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的AclRule结果集对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.AclRuleResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4004,7 +4004,7 @@ module TencentCloud
       class DescribeAppInfoResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的符合要求的App Id列表
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.AppIdResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4043,7 +4043,7 @@ module TencentCloud
       class DescribeCkafkaZoneResponse < TencentCloud::Common::AbstractModel
         # @param Result: 查询结果复杂对象实体
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ZoneResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4410,7 +4410,7 @@ module TencentCloud
         # @param Result: 连接源的Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeConnectResourceResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4493,7 +4493,7 @@ module TencentCloud
       class DescribeConnectResourcesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 连接源列表
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeConnectResourcesResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4548,7 +4548,7 @@ module TencentCloud
       class DescribeConsumerGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的消费分组信息
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerGroupResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4603,7 +4603,7 @@ module TencentCloud
       class DescribeDatahubGroupOffsetsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupOffsetResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4751,7 +4751,7 @@ module TencentCloud
       class DescribeDatahubTaskResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTaskRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4842,7 +4842,7 @@ module TencentCloud
       class DescribeDatahubTasksResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回任务查询结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTasksRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -4935,7 +4935,7 @@ module TencentCloud
       class DescribeDatahubTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5011,7 +5011,7 @@ module TencentCloud
         # @param Result: 主题列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescribeDatahubTopicsResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5075,7 +5075,7 @@ module TencentCloud
         # @param Result: 返回的结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5138,7 +5138,7 @@ module TencentCloud
       class DescribeGroupOffsetsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupOffsetResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5189,7 +5189,7 @@ module TencentCloud
       class DescribeGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果集列表
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5228,7 +5228,7 @@ module TencentCloud
       class DescribeInstanceAttributesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 实例属性返回结果对象。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceAttributesResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5317,7 +5317,7 @@ module TencentCloud
       class DescribeInstancesDetailResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的实例详情结果对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceDetailResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5380,7 +5380,7 @@ module TencentCloud
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5432,7 +5432,7 @@ module TencentCloud
         # @param Result: 返回地域枚举结果列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5479,7 +5479,7 @@ module TencentCloud
       class DescribeRouteResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的路由信息结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.RouteResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5518,7 +5518,7 @@ module TencentCloud
       class DescribeTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TaskStatusResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5561,7 +5561,7 @@ module TencentCloud
       class DescribeTopicAttributesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的结果对象
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicAttributesResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5616,7 +5616,7 @@ module TencentCloud
       class DescribeTopicDetailResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回的主题详情实体
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicDetailResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5671,7 +5671,7 @@ module TencentCloud
       class DescribeTopicFlowRankingResponse < TencentCloud::Common::AbstractModel
         # @param Result: 流量排行
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicFlowRankingResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5714,7 +5714,7 @@ module TencentCloud
       class DescribeTopicProduceConnectionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 链接信息返回结果集
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5774,7 +5774,7 @@ module TencentCloud
         # @param Result: 返回的结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5825,7 +5825,7 @@ module TencentCloud
       class DescribeTopicSubscribeGroupResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicSubscribeGroup`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5880,7 +5880,7 @@ module TencentCloud
       class DescribeTopicSyncReplicaResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回topic 副本详情
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicInSyncReplicaResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -5931,7 +5931,7 @@ module TencentCloud
       class DescribeUserResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果列表
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.UserResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -6633,7 +6633,7 @@ module TencentCloud
       class FetchDatahubMessageByOffsetResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerRecord`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -6684,7 +6684,7 @@ module TencentCloud
       class FetchLatestDatahubMessageListResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果。
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -6739,7 +6739,7 @@ module TencentCloud
       class FetchMessageByOffsetResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerRecord`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -6794,7 +6794,7 @@ module TencentCloud
       class FetchMessageListByOffsetResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果。注意，列表中不返回具体的消息内容（key、value），如果需要查询具体消息内容，请使用FetchMessageByOffset接口
         # @type Result: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -7295,7 +7295,7 @@ module TencentCloud
       class InquireCkafkaPriceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 出参
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InquireCkafkaPriceResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8116,7 +8116,7 @@ module TencentCloud
         # @param Result: 缩容应答
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ScalingDownResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8560,7 +8560,7 @@ module TencentCloud
       class ModifyAclRuleResponse < TencentCloud::Common::AbstractModel
         # @param Result: 规则的唯一表示Key
         # @type Result: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8685,7 +8685,7 @@ module TencentCloud
       class ModifyConnectResourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 连接源的Id
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConnectResourceResourceIdResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8729,7 +8729,7 @@ module TencentCloud
         # @param Result: 任务id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8787,7 +8787,7 @@ module TencentCloud
       class ModifyDatahubTopicResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8854,7 +8854,7 @@ module TencentCloud
       class ModifyGroupOffsetsResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -8958,7 +8958,7 @@ module TencentCloud
       class ModifyInstanceAttributesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -9009,7 +9009,7 @@ module TencentCloud
       class ModifyInstancePreResponse < TencentCloud::Common::AbstractModel
         # @param Result: 变更预付费实例配置返回结构
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -9060,7 +9060,7 @@ module TencentCloud
       class ModifyPasswordResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -9174,7 +9174,7 @@ module TencentCloud
       class ModifyTopicAttributesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回结果集
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -10113,7 +10113,7 @@ module TencentCloud
       class RenewCkafkaInstanceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 返回值
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.RenewCkafkaInstanceResp`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -10599,7 +10599,7 @@ module TencentCloud
       class SendMessageResponse < TencentCloud::Common::AbstractModel
         # @param MessageId: 消息ID列表
         # @type MessageId: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MessageId, :RequestId

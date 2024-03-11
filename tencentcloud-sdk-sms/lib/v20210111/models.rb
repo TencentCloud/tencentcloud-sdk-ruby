@@ -105,7 +105,7 @@ module TencentCloud
       class AddSmsSignResponse < TencentCloud::Common::AbstractModel
         # @param AddSignStatus: 添加签名响应
         # @type AddSignStatus: :class:`Tencentcloud::Sms.v20210111.models.AddSignStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AddSignStatus, :RequestId
@@ -162,7 +162,7 @@ module TencentCloud
       class AddSmsTemplateResponse < TencentCloud::Common::AbstractModel
         # @param AddTemplateStatus: 添加短信模板响应包体
         # @type AddTemplateStatus: :class:`Tencentcloud::Sms.v20210111.models.AddTemplateStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AddTemplateStatus, :RequestId
@@ -284,7 +284,7 @@ module TencentCloud
       class CallbackStatusStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param CallbackStatusStatistics: 回执数据统计响应包体。
         # @type CallbackStatusStatistics: :class:`Tencentcloud::Sms.v20210111.models.CallbackStatusStatistics`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CallbackStatusStatistics, :RequestId
@@ -345,7 +345,7 @@ module TencentCloud
       class DeleteSmsSignResponse < TencentCloud::Common::AbstractModel
         # @param DeleteSignStatus: 删除签名响应
         # @type DeleteSignStatus: :class:`Tencentcloud::Sms.v20210111.models.DeleteSignStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeleteSignStatus, :RequestId
@@ -384,7 +384,7 @@ module TencentCloud
       class DeleteSmsTemplateResponse < TencentCloud::Common::AbstractModel
         # @param DeleteTemplateStatus: 删除模板响应
         # @type DeleteTemplateStatus: :class:`Tencentcloud::Sms.v20210111.models.DeleteTemplateStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeleteTemplateStatus, :RequestId
@@ -444,7 +444,7 @@ module TencentCloud
       class DescribePhoneNumberInfoResponse < TencentCloud::Common::AbstractModel
         # @param PhoneNumberInfoSet: 获取号码信息。
         # @type PhoneNumberInfoSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PhoneNumberInfoSet, :RequestId
@@ -531,7 +531,7 @@ module TencentCloud
       class DescribeSmsSignListResponse < TencentCloud::Common::AbstractModel
         # @param DescribeSignListStatusSet: 获取签名信息响应
         # @type DescribeSignListStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DescribeSignListStatusSet, :RequestId
@@ -591,7 +591,7 @@ module TencentCloud
       class DescribeSmsTemplateListResponse < TencentCloud::Common::AbstractModel
         # @param DescribeTemplateStatusSet: 获取短信模板信息响应
         # @type DescribeTemplateStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DescribeTemplateStatusSet, :RequestId
@@ -746,7 +746,7 @@ module TencentCloud
       class ModifySmsSignResponse < TencentCloud::Common::AbstractModel
         # @param ModifySignStatus: 修改签名响应
         # @type ModifySignStatus: :class:`Tencentcloud::Sms.v20210111.models.ModifySignStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModifySignStatus, :RequestId
@@ -807,7 +807,7 @@ module TencentCloud
       class ModifySmsTemplateResponse < TencentCloud::Common::AbstractModel
         # @param ModifyTemplateStatus: 修改模板参数响应
         # @type ModifyTemplateStatus: :class:`Tencentcloud::Sms.v20210111.models.ModifyTemplateStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModifyTemplateStatus, :RequestId
@@ -964,7 +964,7 @@ module TencentCloud
       class PullSmsReplyStatusByPhoneNumberResponse < TencentCloud::Common::AbstractModel
         # @param PullSmsReplyStatusSet: 回复状态响应集合。
         # @type PullSmsReplyStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PullSmsReplyStatusSet, :RequestId
@@ -1011,7 +1011,7 @@ module TencentCloud
       class PullSmsReplyStatusResponse < TencentCloud::Common::AbstractModel
         # @param PullSmsReplyStatusSet: 回复状态响应集合。
         # @type PullSmsReplyStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PullSmsReplyStatusSet, :RequestId
@@ -1121,7 +1121,7 @@ module TencentCloud
       class PullSmsSendStatusByPhoneNumberResponse < TencentCloud::Common::AbstractModel
         # @param PullSmsSendStatusSet: 下发状态响应集合。
         # @type PullSmsSendStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PullSmsSendStatusSet, :RequestId
@@ -1168,7 +1168,7 @@ module TencentCloud
       class PullSmsSendStatusResponse < TencentCloud::Common::AbstractModel
         # @param PullSmsSendStatusSet: 下发状态响应集合。
         # @type PullSmsSendStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PullSmsSendStatusSet, :RequestId
@@ -1219,7 +1219,7 @@ module TencentCloud
       class ReportConversionResponse < TencentCloud::Common::AbstractModel
         # @param ReportConversionStatus: 转化率上报响应包体。
         # @type ReportConversionStatus: :class:`Tencentcloud::Sms.v20210111.models.ReportConversionStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ReportConversionStatus, :RequestId
@@ -1311,7 +1311,7 @@ module TencentCloud
       class SendSmsResponse < TencentCloud::Common::AbstractModel
         # @param SendStatusSet: 短信发送状态。
         # @type SendStatusSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SendStatusSet, :RequestId
@@ -1437,7 +1437,7 @@ module TencentCloud
       class SendStatusStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param SendStatusStatistics: 发送数据统计响应包体。
         # @type SendStatusStatistics: :class:`Tencentcloud::Sms.v20210111.models.SendStatusStatistics`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SendStatusStatistics, :RequestId
@@ -1534,7 +1534,7 @@ module TencentCloud
       class SmsPackagesStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param SmsPackagesStatisticsSet: 发送数据统计响应包体。
         # @type SmsPackagesStatisticsSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SmsPackagesStatisticsSet, :RequestId

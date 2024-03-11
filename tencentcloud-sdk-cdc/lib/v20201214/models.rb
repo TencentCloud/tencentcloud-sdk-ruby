@@ -135,7 +135,7 @@ module TencentCloud
         # @param DedicatedClusterOrderId: 专用集群订单id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DedicatedClusterOrderId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterOrderId, :RequestId
@@ -183,7 +183,7 @@ module TencentCloud
       class CreateDedicatedClusterResponse < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterId: 创建的专用集群id
         # @type DedicatedClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterId, :RequestId
@@ -315,7 +315,7 @@ module TencentCloud
       class CreateSiteResponse < TencentCloud::Common::AbstractModel
         # @param SiteId: 创建Site生成的id
         # @type SiteId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SiteId, :RequestId
@@ -734,7 +734,7 @@ module TencentCloud
 
       # DeleteDedicatedClusters返回参数结构体
       class DeleteDedicatedClustersResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -766,7 +766,7 @@ module TencentCloud
 
       # DeleteSites返回参数结构体
       class DeleteSitesResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -776,6 +776,79 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDedicatedClusterCbsStatistics请求参数结构体
+      class DescribeDedicatedClusterCbsStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param DedicatedClusterId: 查询的专用集群id
+        # @type DedicatedClusterId: String
+        # @param SetId: 云硬盘仓库id
+        # @type SetId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Period: 时间范围精度，1分钟/5分钟
+        # @type Period: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :DedicatedClusterId, :SetId, :StartTime, :EndTime, :Period, :Offset, :Limit
+
+        def initialize(dedicatedclusterid=nil, setid=nil, starttime=nil, endtime=nil, period=nil, offset=nil, limit=nil)
+          @DedicatedClusterId = dedicatedclusterid
+          @SetId = setid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Period = period
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @DedicatedClusterId = params['DedicatedClusterId']
+          @SetId = params['SetId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Period = params['Period']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDedicatedClusterCbsStatistics返回参数结构体
+      class DescribeDedicatedClusterCbsStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param SetList: 云硬盘仓库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetList: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SetList, :TotalCount, :RequestId
+
+        def initialize(setlist=nil, totalcount=nil, requestid=nil)
+          @SetList = setlist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SetList'].nil?
+            @SetList = []
+            params['SetList'].each do |i|
+              setinfo_tmp = SetInfo.new
+              setinfo_tmp.deserialize(i)
+              @SetList << setinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -800,7 +873,7 @@ module TencentCloud
       class DescribeDedicatedClusterCosCapacityResponse < TencentCloud::Common::AbstractModel
         # @param CosCapacity: 本集群内cos容量信息，单位：‘GB’
         # @type CosCapacity: :class:`Tencentcloud::Cdc.v20201214.models.CosCapacity`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CosCapacity, :RequestId
@@ -855,7 +928,7 @@ module TencentCloud
       class DescribeDedicatedClusterHostStatisticsResponse < TencentCloud::Common::AbstractModel
         # @param HostStatisticSet: 该集群内宿主机的统计信息列表
         # @type HostStatisticSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HostStatisticSet, :RequestId
@@ -909,7 +982,7 @@ module TencentCloud
         # @type HostInfoSet: Array
         # @param TotalCount: 宿主机总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HostInfoSet, :TotalCount, :RequestId
@@ -954,7 +1027,7 @@ module TencentCloud
       class DescribeDedicatedClusterInstanceTypesResponse < TencentCloud::Common::AbstractModel
         # @param DedicatedClusterInstanceTypeSet: 支持的实例规格列表
         # @type DedicatedClusterInstanceTypeSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterInstanceTypeSet, :RequestId
@@ -1019,7 +1092,7 @@ module TencentCloud
         # @type DedicatedClusterOrderSet: Array
         # @param TotalCount: 符合条件的专用集群订单总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterOrderSet, :TotalCount, :RequestId
@@ -1087,7 +1160,7 @@ module TencentCloud
         # @param HostNormalCount: 普通宿主机数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNormalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :HostDetailInfo, :HostStandbyCount, :HostNormalCount, :RequestId
@@ -1177,7 +1250,7 @@ module TencentCloud
         # @type DedicatedClusterTypeSet: Array
         # @param TotalCount: 符合条件的个数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterTypeSet, :TotalCount, :RequestId
@@ -1248,7 +1321,7 @@ module TencentCloud
         # @type DedicatedClusterSet: Array
         # @param TotalCount: 符合条件的专用集群数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DedicatedClusterSet, :TotalCount, :RequestId
@@ -1293,7 +1366,7 @@ module TencentCloud
       class DescribeDedicatedSupportedZonesResponse < TencentCloud::Common::AbstractModel
         # @param ZoneSet: 支持的可用区列表
         # @type ZoneSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ZoneSet, :RequestId
@@ -1350,7 +1423,7 @@ module TencentCloud
         # @type SiteDetailSet: Array
         # @param TotalCount: 符合条件的站点总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SiteDetailSet, :TotalCount, :RequestId
@@ -1409,7 +1482,7 @@ module TencentCloud
         # @type SiteSet: Array
         # @param TotalCount: 符合条件的站点数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SiteSet, :TotalCount, :RequestId
@@ -1717,7 +1790,7 @@ module TencentCloud
 
       # ModifyDedicatedClusterInfo返回参数结构体
       class ModifyDedicatedClusterInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1757,7 +1830,7 @@ module TencentCloud
 
       # ModifyOrderStatus返回参数结构体
       class ModifyOrderStatusResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1853,7 +1926,7 @@ module TencentCloud
 
       # ModifySiteDeviceInfo返回参数结构体
       class ModifySiteDeviceInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1917,7 +1990,7 @@ module TencentCloud
 
       # ModifySiteInfo返回参数结构体
       class ModifySiteInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1976,6 +2049,96 @@ module TencentCloud
               zoneinfo_tmp.deserialize(i)
               @Zones << zoneinfo_tmp
             end
+          end
+        end
+      end
+
+      # 云硬盘的仓库级别信息
+      class SetInfo < TencentCloud::Common::AbstractModel
+        # @param SetId: 云硬盘仓库id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetId: String
+        # @param SetName: 云硬盘仓库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetName: String
+        # @param SetType: 云硬盘仓库类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetType: String
+        # @param SetSize: 云硬盘仓库容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetSize: Float
+        # @param SetStatus: 云硬盘仓库状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetStatus: String
+        # @param CreateTime: 云硬盘仓库创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ReadTraffic: 读流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadTraffic: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param WriteTraffic: 写流量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteTraffic: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param ReadIO: 读IO
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReadIO: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param WriteIO: 写IO
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WriteIO: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param Await: 平均等待时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Await: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+        # @param Util: 利用率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Util: :class:`Tencentcloud::Cdc.v20201214.models.DetailData`
+
+        attr_accessor :SetId, :SetName, :SetType, :SetSize, :SetStatus, :CreateTime, :ReadTraffic, :WriteTraffic, :ReadIO, :WriteIO, :Await, :Util
+
+        def initialize(setid=nil, setname=nil, settype=nil, setsize=nil, setstatus=nil, createtime=nil, readtraffic=nil, writetraffic=nil, readio=nil, writeio=nil, await=nil, util=nil)
+          @SetId = setid
+          @SetName = setname
+          @SetType = settype
+          @SetSize = setsize
+          @SetStatus = setstatus
+          @CreateTime = createtime
+          @ReadTraffic = readtraffic
+          @WriteTraffic = writetraffic
+          @ReadIO = readio
+          @WriteIO = writeio
+          @Await = await
+          @Util = util
+        end
+
+        def deserialize(params)
+          @SetId = params['SetId']
+          @SetName = params['SetName']
+          @SetType = params['SetType']
+          @SetSize = params['SetSize']
+          @SetStatus = params['SetStatus']
+          @CreateTime = params['CreateTime']
+          unless params['ReadTraffic'].nil?
+            @ReadTraffic = DetailData.new
+            @ReadTraffic.deserialize(params['ReadTraffic'])
+          end
+          unless params['WriteTraffic'].nil?
+            @WriteTraffic = DetailData.new
+            @WriteTraffic.deserialize(params['WriteTraffic'])
+          end
+          unless params['ReadIO'].nil?
+            @ReadIO = DetailData.new
+            @ReadIO.deserialize(params['ReadIO'])
+          end
+          unless params['WriteIO'].nil?
+            @WriteIO = DetailData.new
+            @WriteIO.deserialize(params['WriteIO'])
+          end
+          unless params['Await'].nil?
+            @Await = DetailData.new
+            @Await.deserialize(params['Await'])
+          end
+          unless params['Util'].nil?
+            @Util = DetailData.new
+            @Util.deserialize(params['Util'])
           end
         end
       end

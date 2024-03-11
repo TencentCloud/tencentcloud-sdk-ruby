@@ -71,7 +71,7 @@ module TencentCloud
 
       # DescribeRiskAssessment返回参数结构体
       class DescribeRiskAssessmentResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -108,7 +108,7 @@ module TencentCloud
       class DescribeRiskTrendsResponse < TencentCloud::Common::AbstractModel
         # @param Data: 业务出参
         # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputFrontRiskData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -372,7 +372,7 @@ module TencentCloud
       class ManageMarketingRiskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 业务出参
         # @type Data: :class:`Tencentcloud::Rce.v20201103.models.OutputManageMarketingRisk`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId

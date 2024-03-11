@@ -392,7 +392,7 @@ module TencentCloud
         # @param CaptchaMsg: 返回操作信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SchemeColor, :Language, :SceneType, :EvilInterceptGrade, :SmartVerify, :SmartEngine, :CapType, :AppName, :DomainLimit, :MailAlarm, :TrafficThreshold, :EncryptKey, :TopFullScreen, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -474,7 +474,7 @@ module TencentCloud
         # @param CaptchaMsg: 返回信息描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :Data, :CaptchaMsg, :RequestId
@@ -546,7 +546,7 @@ module TencentCloud
         # @type TicketThroughputSum: Integer
         # @param TicketInterceptSum: 票据验证拦截量
         # @type TicketInterceptSum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
@@ -616,7 +616,7 @@ module TencentCloud
         # @param CaptchaMsg: 返回信息描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :Data, :CaptchaMsg, :RequestId
@@ -696,7 +696,7 @@ module TencentCloud
         # @param TicketInterceptSum: 票据验证拦截量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TicketInterceptSum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GetSum, :VfySuccSum, :VfySum, :AttackSum, :CaptchaMsg, :CaptchaCode, :CheckTicketSum, :TicketThroughputSum, :TicketInterceptSum, :RequestId
@@ -766,7 +766,7 @@ module TencentCloud
         # @param Data: 用户操作数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaOperDataRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
@@ -854,7 +854,7 @@ module TencentCloud
         # @param CaptchaMsg: 状态描述及验证错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :RequestId
@@ -949,7 +949,7 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManageMarketingRiskValue: :class:`Tencentcloud::Captcha.v20190722.models.OutputManageMarketingRiskValue`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :ManageMarketingRiskValue, :RequestId
@@ -1010,7 +1010,7 @@ module TencentCloud
         # @param Data: 用户操作数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaOperDataRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
@@ -1119,7 +1119,7 @@ module TencentCloud
         # @param RceResult: rce检测结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RceResult: :class:`Tencentcloud::Captcha.v20190722.models.RceResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RceResult, :RequestId
@@ -1233,7 +1233,7 @@ module TencentCloud
         # @type EvilBitmap: Integer
         # @param SubmitCaptchaTime: 提交验证码时间
         # @type SubmitCaptchaTime: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :EvilLevel, :GetCaptchaTime, :EvilBitmap, :SubmitCaptchaTime, :RequestId
@@ -1293,7 +1293,7 @@ module TencentCloud
         # @param Data: 验证码票据信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaTicketDataRes`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :Data, :RequestId
@@ -1337,7 +1337,7 @@ module TencentCloud
         # @param CaptchaMsg: 返回操作信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -1401,7 +1401,7 @@ module TencentCloud
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 验证码返回信息
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -1461,7 +1461,7 @@ module TencentCloud
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 验证码返回信息
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -1517,7 +1517,7 @@ module TencentCloud
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 验证码返回信息
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -1576,7 +1576,7 @@ module TencentCloud
         # @type CaptchaCode: Integer
         # @param CaptchaMsg: 返回信息
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :CaptchaCode, :CaptchaMsg, :RequestId
@@ -1943,7 +1943,7 @@ module TencentCloud
         # @param CaptchaMsg: 返回操作信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CaptchaMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CaptchaCode, :CaptchaMsg, :RequestId

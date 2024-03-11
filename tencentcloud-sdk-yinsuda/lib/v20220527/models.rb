@@ -81,7 +81,7 @@ module TencentCloud
       class ApplyChorusResponse < TencentCloud::Common::AbstractModel
         # @param ChorusToken: 合唱 Token。
         # @type ChorusToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ChorusToken, :RequestId
@@ -140,7 +140,7 @@ module TencentCloud
         # @type KTVMusicDetailInfoSet: Array
         # @param NotExistMusicIdSet: 不存在歌曲Id列表。
         # @type NotExistMusicIdSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KTVMusicDetailInfoSet, :NotExistMusicIdSet, :RequestId
@@ -232,7 +232,7 @@ module TencentCloud
       class CreateKTVRobotResponse < TencentCloud::Common::AbstractModel
         # @param RobotId: 机器人Id。
         # @type RobotId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RobotId, :RequestId
@@ -285,7 +285,7 @@ module TencentCloud
         # @type MatchMusicSet: Array
         # @param NotMatchRuleSet: 未匹配的规则列表。
         # @type NotMatchRuleSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MatchMusicSet, :NotMatchRuleSet, :RequestId
@@ -372,7 +372,7 @@ module TencentCloud
         # @param OtherSegments: 其它片段时间（可用于抢唱）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OtherSegments: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :Url, :ExtName, :SegmentBegin, :SegmentEnd, :FileSize, :OtherSegments, :RequestId
@@ -445,7 +445,7 @@ module TencentCloud
         # @type SegmentEnd: Integer
         # @param FileSize: 链接文件大小 (单位:字节)
         # @type FileSize: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :Url, :ExtName, :SegmentBegin, :SegmentEnd, :FileSize, :RequestId
@@ -521,7 +521,7 @@ module TencentCloud
         # @type KTVMusicInfoSet: Array
         # @param ScrollToken: 滚动标记，用于设置下次请求的 ScrollToken 参数。
         # @type ScrollToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
@@ -601,7 +601,7 @@ module TencentCloud
         # @type KTVMusicInfoSet: Array
         # @param ScrollToken: 滚动标记，用于设置下次请求的 ScrollToken 参数。
         # @type ScrollToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
@@ -667,7 +667,7 @@ module TencentCloud
         # @type PlaylistBaseInfoSet: Array
         # @param TotalCount: 歌单总数。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PlaylistBaseInfoSet, :TotalCount, :RequestId
@@ -745,7 +745,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param KTVRobotInfoSet: 机器人信息集合。
         # @type KTVRobotInfoSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KTVRobotInfoSet, :RequestId
@@ -798,7 +798,7 @@ module TencentCloud
       class DescribeKTVSuggestionsResponse < TencentCloud::Common::AbstractModel
         # @param KTVSuggestionInfoSet: 联想词信息列表。
         # @type KTVSuggestionInfoSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KTVSuggestionInfoSet, :RequestId
@@ -845,7 +845,7 @@ module TencentCloud
       class DescribeKTVTagsResponse < TencentCloud::Common::AbstractModel
         # @param TagGroupInfoSet: 标签分组列表。
         # @type TagGroupInfoSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TagGroupInfoSet, :RequestId
@@ -916,7 +916,7 @@ module TencentCloud
         # @type LiveVipTradeInfoSet: Array
         # @param TotalCount: 直播会员充值流水总数。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :LiveVipTradeInfoSet, :TotalCount, :RequestId
@@ -965,7 +965,7 @@ module TencentCloud
       class DescribeUserInfoResponse < TencentCloud::Common::AbstractModel
         # @param UserInfo: 用户信息。
         # @type UserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.UserInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :UserInfo, :RequestId
@@ -1016,7 +1016,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Status: 会员状态。（-1:未开通过；1:已开通，未过期；2:已开通，已过期）
         # @type Status: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsVip, :AnchorId, :RoomId, :EndTime, :Status, :RequestId
@@ -1066,7 +1066,7 @@ module TencentCloud
 
       # DestroyKTVRobot返回参数结构体
       class DestroyKTVRobotResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1674,7 +1674,7 @@ module TencentCloud
       class RechargeLiveVipResponse < TencentCloud::Common::AbstractModel
         # @param LiveVipUserInfo: 直播会员信息。
         # @type LiveVipUserInfo: :class:`Tencentcloud::Yinsuda.v20220527.models.LiveVipUserInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :LiveVipUserInfo, :RequestId
@@ -1733,7 +1733,7 @@ module TencentCloud
         # @type OrderNo: String
         # @param CreateTime: 订单创建时间。
         # @type CreateTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PartnerNo, :OrderNo, :CreateTime, :RequestId
@@ -1808,7 +1808,7 @@ module TencentCloud
         # @type KTVMusicInfoSet: Array
         # @param ScrollToken: 滚动标记，用于设置下次请求的 ScrollToken 参数。
         # @type ScrollToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KTVMusicInfoSet, :ScrollToken, :RequestId
@@ -2002,7 +2002,7 @@ module TencentCloud
 
       # SyncKTVRobotCommand返回参数结构体
       class SyncKTVRobotCommandResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

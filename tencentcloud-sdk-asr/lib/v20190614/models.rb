@@ -79,7 +79,7 @@ module TencentCloud
 
       # CloseAsyncRecognitionTask返回参数结构体
       class CloseAsyncRecognitionTaskResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -134,7 +134,7 @@ module TencentCloud
       class CreateAsrVocabResponse < TencentCloud::Common::AbstractModel
         # @param VocabId: 词表ID，可用于获取词表信息
         # @type VocabId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
@@ -222,7 +222,7 @@ module TencentCloud
       class CreateAsyncRecognitionTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 请求返回结果，包含本次的任务ID(TaskId)
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.Task`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -254,8 +254,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 2
-        deprecate :TagInfos=, :none, 2024, 2
+        deprecate :TagInfos, :none, 2024, 3
+        deprecate :TagInfos=, :none, 2024, 3
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -276,7 +276,7 @@ module TencentCloud
       class CreateCustomizationResponse < TencentCloud::Common::AbstractModel
         # @param ModelId: 模型ID
         # @type ModelId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
@@ -507,7 +507,7 @@ module TencentCloud
       class CreateRecTaskResponse < TencentCloud::Common::AbstractModel
         # @param Data: 录音文件识别的请求返回结果，包含结果查询需要的TaskId
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.Task`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -544,7 +544,7 @@ module TencentCloud
 
       # DeleteAsrVocab返回参数结构体
       class DeleteAsrVocabResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -576,7 +576,7 @@ module TencentCloud
 
       # DeleteCustomization返回参数结构体
       class DeleteCustomizationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -606,7 +606,7 @@ module TencentCloud
         # @param Data: 任务列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.AsyncRecognitionTasks`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -645,7 +645,7 @@ module TencentCloud
       class DescribeTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param Data: 录音文件识别的请求返回结果。
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.TaskStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -686,7 +686,7 @@ module TencentCloud
         # @type VocabId: String
         # @param WordWeightStr: 词表权重文件形式的base64值。
         # @type WordWeightStr: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VocabId, :WordWeightStr, :RequestId
@@ -724,7 +724,7 @@ module TencentCloud
       class DownloadCustomizationResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: 下载地址
         # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DownloadUrl, :RequestId
@@ -770,7 +770,7 @@ module TencentCloud
         # @type VocabList: Array
         # @param TotalCount: 热词列表总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VocabList, :TotalCount, :RequestId
@@ -827,7 +827,7 @@ module TencentCloud
         # @type UpdateTime: String
         # @param State: 热词表状态，1为默认状态即在识别时默认加载该热词表进行识别，0为初始状态
         # @type State: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Description, :VocabId, :WordWeights, :CreateTime, :UpdateTime, :State, :RequestId
@@ -873,8 +873,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2024, 2
-        deprecate :TagInfos=, :none, 2024, 2
+        deprecate :TagInfos, :none, 2024, 3
+        deprecate :TagInfos=, :none, 2024, 3
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -897,7 +897,7 @@ module TencentCloud
         # @param TotalCount: 自学习模型总量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :TotalCount, :RequestId
@@ -942,7 +942,7 @@ module TencentCloud
       class GetModelInfoResponse < TencentCloud::Common::AbstractModel
         # @param Data: 模型信息
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.Model`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1064,7 +1064,7 @@ module TencentCloud
 
       # ModifyCustomization返回参数结构体
       class ModifyCustomizationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1102,7 +1102,7 @@ module TencentCloud
       class ModifyCustomizationStateResponse < TencentCloud::Common::AbstractModel
         # @param ModelId: 自学习模型ID
         # @type ModelId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
@@ -1272,12 +1272,12 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2024, 2
-        deprecate :ProjectId=, :none, 2024, 2
-        deprecate :SubServiceType, :none, 2024, 2
-        deprecate :SubServiceType=, :none, 2024, 2
-        deprecate :UsrAudioKey, :none, 2024, 2
-        deprecate :UsrAudioKey=, :none, 2024, 2
+        deprecate :ProjectId, :none, 2024, 3
+        deprecate :ProjectId=, :none, 2024, 3
+        deprecate :SubServiceType, :none, 2024, 3
+        deprecate :SubServiceType=, :none, 2024, 3
+        deprecate :UsrAudioKey, :none, 2024, 3
+        deprecate :UsrAudioKey=, :none, 2024, 3
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
           @EngSerViceType = engservicetype
@@ -1336,7 +1336,7 @@ module TencentCloud
         # @param WordList: 词时间戳列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WordList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :AudioDuration, :WordSize, :WordList, :RequestId
@@ -1440,7 +1440,7 @@ module TencentCloud
       class SetVocabStateResponse < TencentCloud::Common::AbstractModel
         # @param VocabId: 热词表ID
         # @type VocabId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
@@ -1565,7 +1565,7 @@ module TencentCloud
       class UpdateAsrVocabResponse < TencentCloud::Common::AbstractModel
         # @param VocabId: 热词表ID
         # @type VocabId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VocabId, :RequestId
@@ -1709,7 +1709,7 @@ module TencentCloud
       class VoicePrintCompareResponse < TencentCloud::Common::AbstractModel
         # @param Data: 音频声纹比对结果，包含相似度打分
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintCompareData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1760,7 +1760,7 @@ module TencentCloud
       class VoicePrintCountResponse < TencentCloud::Common::AbstractModel
         # @param Data: 统计数据
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintCountData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1799,7 +1799,7 @@ module TencentCloud
       class VoicePrintDeleteResponse < TencentCloud::Common::AbstractModel
         # @param Data: 说话人基本信息
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1850,7 +1850,7 @@ module TencentCloud
       class VoicePrintEnrollResponse < TencentCloud::Common::AbstractModel
         # @param Data: 说话人基本数据
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1905,7 +1905,7 @@ module TencentCloud
       class VoicePrintUpdateResponse < TencentCloud::Common::AbstractModel
         # @param Data: 说话人基础数据
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -1983,7 +1983,7 @@ module TencentCloud
       class VoicePrintVerifyResponse < TencentCloud::Common::AbstractModel
         # @param Data: 说话人验证数据
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintVerifyData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId

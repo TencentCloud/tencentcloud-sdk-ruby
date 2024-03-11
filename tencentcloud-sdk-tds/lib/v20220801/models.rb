@@ -57,7 +57,7 @@ module TencentCloud
         # @type RiskInfos: Array
         # @param HistRiskInfos: 离线风险信息
         # @type HistRiskInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :RequestId
@@ -149,7 +149,7 @@ module TencentCloud
         # @type HistRiskInfos: Array
         # @param Openid: 设备匿名标识
         # @type Openid: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :RequestId
@@ -281,7 +281,7 @@ module TencentCloud
         # @type SuggestionLevel: Integer
         # @param Unionid: 图灵盾统一ID
         # @type Unionid: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RiskInfos, :HistRiskInfos, :Openid, :SceneRiskInfos, :SuggestionLevel, :Unionid, :RequestId
@@ -384,7 +384,7 @@ module TencentCloud
         # @type SystemVersion: String
         # @param SdkBuildNo: SDK版本号
         # @type SdkBuildNo: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Openid, :AppVersion, :Brand, :ClientIp, :Model, :NetworkType, :PackageName, :Platform, :SystemVersion, :SdkBuildNo, :RequestId

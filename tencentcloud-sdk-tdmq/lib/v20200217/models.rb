@@ -180,7 +180,7 @@ module TencentCloud
         # @param ErrorMsg: 如果为“”，则说明没有错误返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ErrorMsg, :RequestId
@@ -230,7 +230,7 @@ module TencentCloud
 
       # ClearCmqQueue返回参数结构体
       class ClearCmqQueueResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -266,7 +266,7 @@ module TencentCloud
 
       # ClearCmqSubscriptionFilterTags返回参数结构体
       class ClearCmqSubscriptionFilterTagsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1122,7 +1122,7 @@ module TencentCloud
       class CreateClusterResponse < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
@@ -1229,7 +1229,7 @@ module TencentCloud
       class CreateCmqQueueResponse < TencentCloud::Common::AbstractModel
         # @param QueueId: 创建成功的queueId
         # @type QueueId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :QueueId, :RequestId
@@ -1293,7 +1293,7 @@ module TencentCloud
       class CreateCmqSubscribeResponse < TencentCloud::Common::AbstractModel
         # @param SubscriptionId: 订阅id
         # @type SubscriptionId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SubscriptionId, :RequestId
@@ -1356,7 +1356,7 @@ module TencentCloud
       class CreateCmqTopicResponse < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题id
         # @type TopicId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopicId, :RequestId
@@ -1422,7 +1422,7 @@ module TencentCloud
         # @type Remark: String
         # @param NamespaceId: 命名空间ID
         # @type NamespaceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
@@ -1474,7 +1474,7 @@ module TencentCloud
 
       # CreateEnvironmentRole返回参数结构体
       class CreateEnvironmentRoleResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1562,7 +1562,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealName, :BigDealId, :ClusterId, :ClusterName, :RequestId
@@ -1629,7 +1629,7 @@ module TencentCloud
       class CreateRabbitMQUserResponse < TencentCloud::Common::AbstractModel
         # @param User: 用户名，登录时使用
         # @type User: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :User, :RequestId
@@ -1705,7 +1705,7 @@ module TencentCloud
         # @param InstanceId: 实例Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TranId, :InstanceId, :RequestId
@@ -1755,7 +1755,7 @@ module TencentCloud
       class CreateRabbitMQVirtualHostResponse < TencentCloud::Common::AbstractModel
         # @param VirtualHost: vhost名
         # @type VirtualHost: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VirtualHost, :RequestId
@@ -1795,7 +1795,7 @@ module TencentCloud
       class CreateRocketMQClusterResponse < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
@@ -1857,7 +1857,7 @@ module TencentCloud
 
       # CreateRocketMQGroup返回参数结构体
       class CreateRocketMQGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1905,7 +1905,7 @@ module TencentCloud
 
       # CreateRocketMQNamespace返回参数结构体
       class CreateRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1957,7 +1957,7 @@ module TencentCloud
 
       # CreateRocketMQTopic返回参数结构体
       class CreateRocketMQTopicResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2022,7 +2022,7 @@ module TencentCloud
       class CreateRocketMQVipInstanceResponse < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
@@ -2074,7 +2074,7 @@ module TencentCloud
         # @param EnvironmentRoleSets: 批量绑定名字空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnvironmentRoleSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleName, :Token, :Remark, :EnvironmentRoleSets, :RequestId
@@ -2151,7 +2151,7 @@ module TencentCloud
       class CreateSubscriptionResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建结果。
         # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -2238,7 +2238,7 @@ module TencentCloud
         # 4 ：死信队列；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicType: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnvironmentId, :TopicName, :Partitions, :Remark, :TopicType, :RequestId
@@ -2282,7 +2282,7 @@ module TencentCloud
       class DeleteClusterResponse < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群的ID
         # @type ClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
@@ -2316,7 +2316,7 @@ module TencentCloud
 
       # DeleteCmqQueue返回参数结构体
       class DeleteCmqQueueResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2352,7 +2352,7 @@ module TencentCloud
 
       # DeleteCmqSubscribe返回参数结构体
       class DeleteCmqSubscribeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2384,7 +2384,7 @@ module TencentCloud
 
       # DeleteCmqTopic返回参数结构体
       class DeleteCmqTopicResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2424,7 +2424,7 @@ module TencentCloud
 
       # DeleteEnvironmentRoles返回参数结构体
       class DeleteEnvironmentRolesResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2462,7 +2462,7 @@ module TencentCloud
       class DeleteEnvironmentsResponse < TencentCloud::Common::AbstractModel
         # @param EnvironmentIds: 成功删除的环境（命名空间）数组。
         # @type EnvironmentIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnvironmentIds, :RequestId
@@ -2498,7 +2498,7 @@ module TencentCloud
       class DeleteProClusterResponse < TencentCloud::Common::AbstractModel
         # @param DealName: 退还实例订单号
         # @type DealName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealName, :RequestId
@@ -2536,7 +2536,7 @@ module TencentCloud
 
       # DeleteRabbitMQUser返回参数结构体
       class DeleteRabbitMQUserResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2574,7 +2574,7 @@ module TencentCloud
         # @param InstanceId: 实例Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TranId, :InstanceId, :RequestId
@@ -2614,7 +2614,7 @@ module TencentCloud
 
       # DeleteRabbitMQVirtualHost返回参数结构体
       class DeleteRabbitMQVirtualHostResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2646,7 +2646,7 @@ module TencentCloud
 
       # DeleteRocketMQCluster返回参数结构体
       class DeleteRocketMQClusterResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2686,7 +2686,7 @@ module TencentCloud
 
       # DeleteRocketMQGroup返回参数结构体
       class DeleteRocketMQGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2722,7 +2722,7 @@ module TencentCloud
 
       # DeleteRocketMQNamespace返回参数结构体
       class DeleteRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2762,7 +2762,7 @@ module TencentCloud
 
       # DeleteRocketMQTopic返回参数结构体
       class DeleteRocketMQTopicResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2794,7 +2794,7 @@ module TencentCloud
 
       # DeleteRocketMQVipInstance返回参数结构体
       class DeleteRocketMQVipInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2832,7 +2832,7 @@ module TencentCloud
       class DeleteRolesResponse < TencentCloud::Common::AbstractModel
         # @param RoleNames: 成功删除的角色名称数组。
         # @type RoleNames: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleNames, :RequestId
@@ -2887,7 +2887,7 @@ module TencentCloud
       class DeleteSubscriptionsResponse < TencentCloud::Common::AbstractModel
         # @param SubscriptionTopicSets: 成功删除的订阅关系数组。
         # @type SubscriptionTopicSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SubscriptionTopicSets, :RequestId
@@ -2949,7 +2949,7 @@ module TencentCloud
       class DeleteTopicsResponse < TencentCloud::Common::AbstractModel
         # @param TopicSets: 被删除的主题数组。
         # @type TopicSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopicSets, :RequestId
@@ -3026,7 +3026,7 @@ module TencentCloud
         # @type ClusterList: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterList, :TotalCount, :RequestId
@@ -3101,7 +3101,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Tenants: 虚拟集群列表
         # @type Tenants: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tenants, :RequestId
@@ -3143,7 +3143,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param ClusterSet: 专享集群的列表
         # @type ClusterSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ClusterSet, :RequestId
@@ -3198,7 +3198,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param VpcSets: Vpc集合。
         # @type VpcSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VpcSets, :RequestId
@@ -3243,7 +3243,7 @@ module TencentCloud
       class DescribeClusterDetailResponse < TencentCloud::Common::AbstractModel
         # @param ClusterSet: 集群的详细信息
         # @type ClusterSet: :class:`Tencentcloud::Tdmq.v20200217.models.Cluster`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterSet, :RequestId
@@ -3307,7 +3307,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param ClusterSet: 集群信息列表
         # @type ClusterSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :ClusterSet, :RequestId
@@ -3366,7 +3366,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param QueueSet: 死信队列源队列
         # @type QueueSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :QueueSet, :RequestId
@@ -3411,7 +3411,7 @@ module TencentCloud
       class DescribeCmqQueueDetailResponse < TencentCloud::Common::AbstractModel
         # @param QueueDescribe: 队列详情列表。
         # @type QueueDescribe: :class:`Tencentcloud::Tdmq.v20200217.models.CmqQueue`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :QueueDescribe, :RequestId
@@ -3480,7 +3480,7 @@ module TencentCloud
         # @param QueueList: 队列列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QueueList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :QueueList, :RequestId
@@ -3549,7 +3549,7 @@ module TencentCloud
         # @param SubscriptionSet: Subscription属性集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :SubscriptionSet, :RequestId
@@ -3594,7 +3594,7 @@ module TencentCloud
       class DescribeCmqTopicDetailResponse < TencentCloud::Common::AbstractModel
         # @param TopicDescribe: 主题详情
         # @type TopicDescribe: :class:`Tencentcloud::Tdmq.v20200217.models.CmqTopic`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopicDescribe, :RequestId
@@ -3663,7 +3663,7 @@ module TencentCloud
         # @type TopicList: Array
         # @param TotalCount: 全量主题数量
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopicList, :TotalCount, :RequestId
@@ -3726,7 +3726,7 @@ module TencentCloud
         # @type Replicas: Integer
         # @param Remark: 备注。
         # @type Remark: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MsgTTL, :RateInByte, :RateInSize, :RetentionHours, :RetentionSize, :EnvironmentId, :Replicas, :Remark, :RequestId
@@ -3808,7 +3808,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param EnvironmentRoleSets: 命名空间角色集合。
         # @type EnvironmentRoleSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :EnvironmentRoleSets, :RequestId
@@ -3881,7 +3881,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param EnvironmentSet: 命名空间集合数组。
         # @type EnvironmentSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :EnvironmentSet, :RequestId
@@ -3997,7 +3997,7 @@ module TencentCloud
         # @type Result: Array
         # @param ShowTopicName: 消息轨迹页展示的topic名称
         # @type ShowTopicName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :ShowTopicName, :RequestId
@@ -4064,7 +4064,7 @@ module TencentCloud
         # @type MsgId: String
         # @param ProducerName: 生产者名称。
         # @type ProducerName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Properties, :Body, :BatchId, :ProduceTime, :MsgId, :ProducerName, :RequestId
@@ -4141,7 +4141,7 @@ module TencentCloud
         # @param ConsumerLogs: 消费信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConsumerLogs: :class:`Tencentcloud::Tdmq.v20200217.models.ConsumerLogs`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ProducerLog, :ServerLog, :ConsumerLogs, :RequestId
@@ -4218,7 +4218,7 @@ module TencentCloud
       class DescribeNamespaceBundlesOptResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RequestId
@@ -4256,7 +4256,7 @@ module TencentCloud
         # @type NodeState: Integer
         # @param LatestHealthCheckTime: 最近一次健康检查的时间
         # @type LatestHealthCheckTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NodeState, :LatestHealthCheckTime, :RequestId
@@ -4312,7 +4312,7 @@ module TencentCloud
         # @param StorageSize: 消息存储大小，以字节为单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageSize: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MsgRateIn, :MsgThroughputIn, :PublisherCount, :StorageSize, :RequestId
@@ -4391,7 +4391,7 @@ module TencentCloud
         # @param Publishers: 生产者信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Publishers: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Publishers, :RequestId
@@ -4442,7 +4442,7 @@ module TencentCloud
         # @param ClusterSpecInfo: 集群规格信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterSpecInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PulsarProClusterSpecInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterInfo, :NetworkAccessPointInfos, :ClusterSpecInfo, :RequestId
@@ -4512,7 +4512,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Instances: 实例信息列表
         # @type Instances: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Instances, :RequestId
@@ -4596,7 +4596,7 @@ module TencentCloud
         # @param NodeList: 集群列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NodeList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :NodeList, :RequestId
@@ -4719,7 +4719,7 @@ module TencentCloud
         # @param Node: 节点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Node: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InstanceId, :VirtualHost, :QueueName, :QueueType, :Consumers, :Durable, :AutoDelete, :Remark, :MessageTTL, :AutoExpire, :MaxLength, :MaxLengthBytes, :DeliveryLimit, :OverflowBehaviour, :DeadLetterExchange, :DeadLetterRoutingKey, :SingleActiveConsumer, :MaximumPriority, :LazyMode, :MasterLocator, :MaxInMemoryLength, :MaxInMemoryBytes, :CreateTime, :Node, :RequestId
@@ -4838,7 +4838,7 @@ module TencentCloud
         # @param TotalCount: 数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :QueueInfoList, :TotalCount, :RequestId
@@ -4905,7 +4905,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param RabbitMQUserList: 当前已创建的RabbitMQ用户列表
         # @type RabbitMQUserList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RabbitMQUserList, :RequestId
@@ -4964,7 +4964,7 @@ module TencentCloud
         # @type ExchangeQuota: :class:`Tencentcloud::Tdmq.v20200217.models.ExchangeQuota`
         # @param QueueQuota: queue配额信息
         # @type QueueQuota: :class:`Tencentcloud::Tdmq.v20200217.models.QueueQuota`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterInfo, :ClusterSpecInfo, :ClusterNetInfo, :ClusterWhiteListInfo, :VirtualHostQuota, :ExchangeQuota, :QueueQuota, :RequestId
@@ -5050,7 +5050,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Instances: 实例信息列表
         # @type Instances: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Instances, :RequestId
@@ -5106,7 +5106,7 @@ module TencentCloud
         # @param VirtualHostList: 集群列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VirtualHostList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VirtualHostList, :RequestId
@@ -5184,7 +5184,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param VirtualHostList: vhost详情列表
         # @type VirtualHostList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :VirtualHostList, :RequestId
@@ -5234,7 +5234,7 @@ module TencentCloud
         # @param ClusterStats: 集群最近使用量，即将废弃，请使用腾讯云可观测平台获取相关数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStats: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterRecentStats`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterInfo, :ClusterConfig, :ClusterStats, :RequestId
@@ -5317,7 +5317,7 @@ module TencentCloud
         # @type ClusterList: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterList, :TotalCount, :RequestId
@@ -5370,7 +5370,7 @@ module TencentCloud
       class DescribeRocketMQConsumeStatsResponse < TencentCloud::Common::AbstractModel
         # @param ConsumerStatsList: 消费详情列表
         # @type ConsumerStatsList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ConsumerStatsList, :RequestId
@@ -5439,7 +5439,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Details: 消费端主题信息列表
         # @type Details: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Details, :RequestId
@@ -5513,7 +5513,7 @@ module TencentCloud
         # @param GroupDetail: 订阅组信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupDetail: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQGroup`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Connections, :GroupDetail, :RequestId
@@ -5601,7 +5601,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Groups: 订阅组列表
         # @type Groups: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Groups, :RequestId
@@ -5667,7 +5667,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param MigrateTopics: 迁移topic列表
         # @type MigrateTopics: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :MigrateTopics, :RequestId
@@ -5767,7 +5767,7 @@ module TencentCloud
         # @type ShowTopicName: String
         # @param MessageTracksCount: 消费组消费情况列表总数
         # @type MessageTracksCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Body, :Properties, :ProduceTime, :MsgId, :ProducerAddr, :MessageTracks, :ShowTopicName, :MessageTracksCount, :RequestId
@@ -5894,7 +5894,7 @@ module TencentCloud
         # @type Result: Array
         # @param ShowTopicName: 消息轨迹页展示的topic名称
         # @type ShowTopicName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :ShowTopicName, :RequestId
@@ -5953,7 +5953,7 @@ module TencentCloud
         # @type Namespaces: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Namespaces, :TotalCount, :RequestId
@@ -6030,7 +6030,7 @@ module TencentCloud
         # @param Msg: 返回信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Msg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MetricName, :Period, :StartTime, :EndTime, :DataPoints, :Msg, :RequestId
@@ -6105,7 +6105,7 @@ module TencentCloud
         # @param PayMode: 付费模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PayMode: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :PayStatus, :AccessUrl, :Rules, :Bandwidth, :PayMode, :RequestId
@@ -6180,7 +6180,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Data: 任务列表
         # @type Data: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Data, :RequestId
@@ -6279,7 +6279,7 @@ module TencentCloud
         # @param TopicStageDistribution: 主题迁移进度分布情况
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicStageDistribution: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskName, :ClusterId, :SourceClusterName, :ConnectionType, :SourceClusterNameServer, :VpcId, :SubnetId, :EnableACL, :AccessKey, :SecretKey, :TaskError, :TaskStatus, :TaskId, :TopicTypeDistribution, :TopicStageDistribution, :RequestId
@@ -6378,7 +6378,7 @@ module TencentCloud
         # @type Groups: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Groups, :TotalCount, :RequestId
@@ -6446,7 +6446,7 @@ module TencentCloud
         # @type Topics: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Topics, :TotalCount, :RequestId
@@ -6510,7 +6510,7 @@ module TencentCloud
         # @param Subscriptions: 订阅关系列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subscriptions: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Subscriptions, :RequestId
@@ -6615,7 +6615,7 @@ module TencentCloud
         # @param TaskRequestId: 标志一次分页事务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRequestId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TopicMsgLogSets, :TaskRequestId, :RequestId
@@ -6688,7 +6688,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Topics: 主题信息列表
         # @type Topics: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Topics, :RequestId
@@ -6735,7 +6735,7 @@ module TencentCloud
         # @type ClusterInfo: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQClusterInfo`
         # @param InstanceConfig: 集群配置
         # @type InstanceConfig: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQInstanceConfig`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterInfo, :InstanceConfig, :RequestId
@@ -6798,7 +6798,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Instances: 实例信息列表
         # @type Instances: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Instances, :RequestId
@@ -6871,7 +6871,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param RoleSets: 角色数组。
         # @type RoleSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :RoleSets, :RequestId
@@ -6949,7 +6949,7 @@ module TencentCloud
         # @type SubscriptionSets: Array
         # @param TotalCount: 数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SubscriptionSets, :TotalCount, :RequestId
@@ -7024,7 +7024,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param TopicMsgLogSets: 消息日志列表。
         # @type TopicMsgLogSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TopicMsgLogSets, :RequestId
@@ -7115,7 +7115,7 @@ module TencentCloud
         # @type TopicSets: Array
         # @param TotalCount: 主题数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopicSets, :TotalCount, :RequestId
@@ -7349,7 +7349,7 @@ module TencentCloud
         # @param MsgBodySize: 消息体大小（单位K）
         # 当大于2048时不返回消息
         # @type MsgBodySize: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MsgId, :BornTimestamp, :StoreTimestamp, :BornHost, :MsgTag, :MsgKey, :Properties, :ReConsumeTimes, :MsgBody, :MsgBodyCRC, :MsgBodySize, :RequestId
@@ -7462,7 +7462,7 @@ module TencentCloud
 
       # ImportRocketMQConsumerGroups返回参数结构体
       class ImportRocketMQConsumerGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -7505,7 +7505,7 @@ module TencentCloud
 
       # ImportRocketMQTopics返回参数结构体
       class ImportRocketMQTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -7727,7 +7727,7 @@ module TencentCloud
 
       # ModifyAMQPCluster返回参数结构体
       class ModifyAMQPClusterResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -7773,7 +7773,7 @@ module TencentCloud
       class ModifyClusterResponse < TencentCloud::Common::AbstractModel
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClusterId, :RequestId
@@ -7867,7 +7867,7 @@ module TencentCloud
 
       # ModifyCmqQueueAttribute返回参数结构体
       class ModifyCmqQueueAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -7921,7 +7921,7 @@ module TencentCloud
 
       # ModifyCmqSubscriptionAttribute返回参数结构体
       class ModifyCmqSubscriptionAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -7965,7 +7965,7 @@ module TencentCloud
 
       # ModifyCmqTopicAttribute返回参数结构体
       class ModifyCmqTopicAttributeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8030,7 +8030,7 @@ module TencentCloud
         # @param NamespaceId: 命名空间ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
@@ -8082,7 +8082,7 @@ module TencentCloud
 
       # ModifyEnvironmentRole返回参数结构体
       class ModifyEnvironmentRoleResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8136,7 +8136,7 @@ module TencentCloud
       class ModifyPublicNetworkAccessPointResponse < TencentCloud::Common::AbstractModel
         # @param ModifyResult: 修改结果
         # @type ModifyResult: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModifyResult, :RequestId
@@ -8194,7 +8194,7 @@ module TencentCloud
 
       # ModifyRabbitMQUser返回参数结构体
       class ModifyRabbitMQUserResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8237,7 +8237,7 @@ module TencentCloud
         # @param InstanceId: 实例id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InstanceId, :RequestId
@@ -8283,7 +8283,7 @@ module TencentCloud
 
       # ModifyRabbitMQVirtualHost返回参数结构体
       class ModifyRabbitMQVirtualHostResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8327,7 +8327,7 @@ module TencentCloud
 
       # ModifyRocketMQCluster返回参数结构体
       class ModifyRocketMQClusterResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8383,7 +8383,7 @@ module TencentCloud
 
       # ModifyRocketMQGroup返回参数结构体
       class ModifyRocketMQGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8434,7 +8434,7 @@ module TencentCloud
         # @param OrderId: 订单号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OrderId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OrderId, :RequestId
@@ -8488,7 +8488,7 @@ module TencentCloud
 
       # ModifyRocketMQNamespace返回参数结构体
       class ModifyRocketMQNamespaceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8536,7 +8536,7 @@ module TencentCloud
 
       # ModifyRocketMQTopic返回参数结构体
       class ModifyRocketMQTopicResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8595,7 +8595,7 @@ module TencentCloud
         # @type RoleName: String
         # @param Remark: 备注说明
         # @type Remark: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleName, :Remark, :RequestId
@@ -8655,7 +8655,7 @@ module TencentCloud
         # @type Partitions: Integer
         # @param Remark: 备注，128字符以内。
         # @type Remark: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Partitions, :Remark, :RequestId
@@ -8904,7 +8904,7 @@ module TencentCloud
         # @type Result: Boolean
         # @param MsgId: 消息id
         # @type MsgId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :MsgId, :RequestId
@@ -9941,7 +9941,7 @@ module TencentCloud
         # @param MessagesPayload: BatchReceivePolicy 一次性返回的多条消息的消息内容，用 ‘###’ 来区分不同的消息内容
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MessagesPayload: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MessageID, :MessagePayload, :AckTopic, :ErrorMsg, :SubName, :MessageIDList, :MessagesPayload, :RequestId
@@ -10006,7 +10006,7 @@ module TencentCloud
         # @param Result: 结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -10060,7 +10060,7 @@ module TencentCloud
 
       # ResetRocketMQConsumerOffSet返回参数结构体
       class ResetRocketMQConsumerOffSetResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -10116,7 +10116,7 @@ module TencentCloud
 
       # RewindCmqQueue返回参数结构体
       class RewindCmqQueueResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -11346,7 +11346,7 @@ module TencentCloud
         # @param ErrorMsg: 错误消息，返回为 ""，代表没有错误
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MessageId, :ErrorMsg, :RequestId
@@ -11394,7 +11394,7 @@ module TencentCloud
         # @type Result: Boolean
         # @param MsgId: 消息id
         # @type MsgId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :MsgId, :RequestId
@@ -11457,7 +11457,7 @@ module TencentCloud
         # @param ErrorMsg: 返回的错误消息，如果返回为 “”，说明没有错误
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MessageId, :ErrorMsg, :RequestId
@@ -11505,7 +11505,7 @@ module TencentCloud
 
       # SendMsg返回参数结构体
       class SendMsgResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -11562,7 +11562,7 @@ module TencentCloud
         # @param MsgId: 消息ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MsgId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :MsgId, :RequestId
@@ -11641,7 +11641,7 @@ module TencentCloud
 
       # SetRocketMQPublicAccessPoint返回参数结构体
       class SetRocketMQPublicAccessPointResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -12047,7 +12047,7 @@ module TencentCloud
 
       # UnbindCmqDeadLetter返回参数结构体
       class UnbindCmqDeadLetterResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -12099,7 +12099,7 @@ module TencentCloud
 
       # VerifyRocketMQConsume返回参数结构体
       class VerifyRocketMQConsumeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

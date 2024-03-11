@@ -75,7 +75,7 @@ module TencentCloud
       class CreateImageModerationAsyncTaskResponse < TencentCloud::Common::AbstractModel
         # @param DataId: 该字段用于返回检测对象对应请求参数中的DataId。
         # @type DataId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DataId, :RequestId
@@ -220,7 +220,7 @@ module TencentCloud
         # @param RecognitionResults: 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecognitionResults: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Suggestion, :Label, :SubLabel, :Score, :LabelResults, :ObjectResults, :OcrResults, :LibResults, :DataId, :BizType, :Extra, :FileMD5, :RecognitionResults, :RequestId

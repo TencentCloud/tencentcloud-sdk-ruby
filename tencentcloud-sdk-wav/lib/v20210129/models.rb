@@ -776,7 +776,7 @@ module TencentCloud
 
       # CreateChannelCode返回参数结构体
       class CreateChannelCodeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -825,7 +825,7 @@ module TencentCloud
       class CreateCorpTagResponse < TencentCloud::Common::AbstractModel
         # @param TagGroup: 标签组信息
         # @type TagGroup: :class:`Tencentcloud::Wav.v20210129.models.TagGroup`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TagGroup, :RequestId
@@ -922,7 +922,7 @@ module TencentCloud
         # @type BusinessCode: Integer
         # @param BusinessMsg: 线索处理结果描述
         # @type BusinessMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessCode, :BusinessMsg, :RequestId
@@ -1923,7 +1923,7 @@ module TencentCloud
         # @param PageData: 活码列表响应参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -1976,7 +1976,7 @@ module TencentCloud
         # @param PageData: 活码列表响应参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2029,7 +2029,7 @@ module TencentCloud
         # @param PageData: 活码列表响应参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2093,7 +2093,7 @@ module TencentCloud
         # @param HasMore: 是否还有更多数据。0-否；1-是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasMore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :HasMore, :RequestId
@@ -2148,7 +2148,7 @@ module TencentCloud
         # @param PageData: 活码列表响应参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2201,7 +2201,7 @@ module TencentCloud
         # @param PageData: 会话存档列表响应参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2265,7 +2265,7 @@ module TencentCloud
         # @param HasMore: 是否还有更多数据。0-否；1-是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasMore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
@@ -2336,7 +2336,7 @@ module TencentCloud
         # @param PageData: CRM统计响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2397,7 +2397,7 @@ module TencentCloud
         # @param PageData: 外部联系人SaaS使用明细统计响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2458,7 +2458,7 @@ module TencentCloud
         # @param PageData: 潜客客户存档信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2514,7 +2514,7 @@ module TencentCloud
         # @param HasMore: 是否还有更多数据。0-否；1-是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasMore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId
@@ -2576,7 +2576,7 @@ module TencentCloud
         # @type NextCursor: String
         # @param PageData: 外部联系人详细信息
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2636,7 +2636,7 @@ module TencentCloud
         # @param FollowUser: 添加了此外部联系人的企业成员信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FollowUser: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :Customer, :FollowUser, :RequestId
@@ -2694,7 +2694,7 @@ module TencentCloud
         # @param NextCursor: 分页游标，再下次请求时填写以获取之后分页的记录，如果已经没有更多的数据则返回空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextCursor: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :RequestId
@@ -2755,7 +2755,7 @@ module TencentCloud
         # @param PageData: 外部联系人事件信息响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -2801,7 +2801,7 @@ module TencentCloud
         # @param ExternalUserIdMapping: 外部联系人映射信息, 只返回映射成功的记录
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExternalUserIdMapping: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ExternalUserIdMapping, :RequestId
@@ -2863,7 +2863,7 @@ module TencentCloud
         # @param HasMore: 是否还有更多数据。0-否；1-是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasMore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :HasMore, :RequestId
@@ -2911,7 +2911,7 @@ module TencentCloud
         # @param LicenseInfo: license响应信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LicenseInfo: :class:`Tencentcloud::Wav.v20210129.models.LicenseInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :LicenseInfo, :RequestId
@@ -2962,7 +2962,7 @@ module TencentCloud
         # @param PageData: 企业素材列表响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -3015,7 +3015,7 @@ module TencentCloud
         # @param PageData: 小程序码列表响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -3076,7 +3076,7 @@ module TencentCloud
         # @param PageData: 企业成员SaaS使用明细统计响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -3129,7 +3129,7 @@ module TencentCloud
         # @param PageData: 企业成员信息列表响应数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NextCursor, :PageData, :RequestId
@@ -3185,7 +3185,7 @@ module TencentCloud
         # @param HasMore: 是否还有更多数据。0-否；1-是。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasMore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PageData, :NextCursor, :HasMore, :RequestId

@@ -97,7 +97,7 @@ module TencentCloud
       class FileTranslateResponse < TencentCloud::Common::AbstractModel
         # @param Data: 文件翻译的请求返回结果，包含结果查询需要的TaskId
         # @type Data: :class:`Tencentcloud::Tmt.v20180321.models.Task`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -171,7 +171,7 @@ module TencentCloud
       class GetFileTranslateResponse < TencentCloud::Common::AbstractModel
         # @param Data: 任务id
         # @type Data: :class:`Tencentcloud::Tmt.v20180321.models.GetFileTranslateData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -273,7 +273,7 @@ module TencentCloud
         # @type Target: String
         # @param ImageRecord: 图片翻译结果，翻译结果按识别的文本每一行独立翻译，后续会推出按段落划分并翻译的版本
         # @type ImageRecord: :class:`Tencentcloud::Tmt.v20180321.models.ImageRecord`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SessionUuid, :Source, :Target, :ImageRecord, :RequestId
@@ -359,7 +359,7 @@ module TencentCloud
         # @param Lang: 识别出的语言种类，参考语言列表
         # <li> zh : 中文 </li> <li> en : 英文 </li><li> jp : 日语 </li> <li> kr : 韩语 </li><li> de : 德语 </li><li> fr : 法语 </li><li> es : 西班牙文 </li> <li> it : 意大利文 </li><li> tr : 土耳其文 </li><li> ru : 俄文 </li><li> pt : 葡萄牙文 </li><li> vi : 越南文 </li><li> id : 印度尼西亚文 </li><li> ms : 马来西亚文 </li><li> th : 泰文 </li>
         # @type Lang: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Lang, :RequestId
@@ -445,7 +445,7 @@ module TencentCloud
         # @type Target: String
         # @param VadSeq: 当请求的Mode参数填写bvad是，启动VadSeq。此时Seq会被设置为后台vad（静音检测）后的新序号，而VadSeq代表客户端原始Seq值
         # @type VadSeq: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SessionUuid, :RecognizeStatus, :SourceText, :TargetText, :Seq, :Source, :Target, :VadSeq, :RequestId
@@ -565,7 +565,7 @@ module TencentCloud
         # @type Target: String
         # @param TargetTextList: 翻译后的文本列表
         # @type TargetTextList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Source, :Target, :TargetTextList, :RequestId
@@ -663,7 +663,7 @@ module TencentCloud
         # @type Source: String
         # @param Target: 目标语言，详见入参Target
         # @type Target: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TargetText, :Source, :Target, :RequestId

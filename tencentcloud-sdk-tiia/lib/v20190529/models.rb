@@ -61,7 +61,7 @@ module TencentCloud
         # @type ClarityScore: Integer
         # @param AestheticScore: 综合评分。图像美观度得分， 从构图、色彩等多个艺术性维度评价图片，取值为[0, 100]，值越大，越美观。一般大于50为较美观图片，标准可以自行把握。
         # @type AestheticScore: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :LongImage, :BlackAndWhite, :SmallImage, :BigImage, :PureImage, :ClarityScore, :AestheticScore, :RequestId
@@ -429,7 +429,7 @@ module TencentCloud
 
       # CreateGroup返回参数结构体
       class CreateGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -531,7 +531,7 @@ module TencentCloud
         # **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: :class:`Tencentcloud::Tiia.v20190529.models.ObjectInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Object, :RequestId
@@ -614,7 +614,7 @@ module TencentCloud
 
         # 以上是辅助决策的参考建议，可以根据业务需求选择采纳或忽视。
         # @type CropResult: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :X, :Y, :Width, :Height, :OriginalWidth, :OriginalHeight, :CropResult, :RequestId
@@ -668,7 +668,7 @@ module TencentCloud
 
       # DeleteImages返回参数结构体
       class DeleteImagesResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -711,7 +711,7 @@ module TencentCloud
         # @param Groups: 图库信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Groups: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Groups, :RequestId
@@ -766,7 +766,7 @@ module TencentCloud
         # @type EntityId: String
         # @param ImageInfos: 图片信息。
         # @type ImageInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GroupId, :EntityId, :ImageInfos, :RequestId
@@ -839,7 +839,7 @@ module TencentCloud
         # @param Bodies: 识别到的人体属性信息。单个人体属性信息包括人体检测置信度，属性信息，人体检测框。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bodies: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Bodies, :RequestId
@@ -896,7 +896,7 @@ module TencentCloud
         # @type Confidence: Float
         # @param Type: 与图像内容最相似的恶心内容的类别，包含腐烂、密集、畸形、血腥、蛇、虫子、牙齿等。
         # @type Type: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Confidence, :Type, :RequestId
@@ -946,7 +946,7 @@ module TencentCloud
         # @param SecondTags: 二级标签结果数组。识别文件封正反面。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondTags: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FirstTags, :SecondTags, :RequestId
@@ -1040,7 +1040,7 @@ module TencentCloud
         # @param LocationLabels: 识别结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LocationLabels: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Labels, :CameraLabels, :AlbumLabels, :NewsLabels, :NoneCamLabels, :LocationLabels, :RequestId
@@ -1173,7 +1173,7 @@ module TencentCloud
         # @param Labels: 返回标签数组。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Labels: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Labels, :RequestId
@@ -1254,7 +1254,7 @@ module TencentCloud
         # 新闻版目前为测试阶段，暂不提供每个标签的一级、二级分类信息的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NewsLabels: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Labels, :CameraLabels, :AlbumLabels, :NewsLabels, :RequestId
@@ -1338,7 +1338,7 @@ module TencentCloud
         # @type Confidence: Float
         # @param Type: 图像中最可能包含的不良行为类别，包括赌博、打架斗殴、吸毒等。
         # @type Type: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Confidence, :Type, :RequestId
@@ -1384,7 +1384,7 @@ module TencentCloud
       class DetectPetResponse < TencentCloud::Common::AbstractModel
         # @param Pets: 识别出图片中的宠物信息列表。
         # @type Pets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Pets, :RequestId
@@ -1445,7 +1445,7 @@ module TencentCloud
         # @param ProductInfoList: 相似商品信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductInfoList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RegionDetected, :ProductInfo, :ProductInfoList, :RequestId
@@ -1514,7 +1514,7 @@ module TencentCloud
       class DetectProductResponse < TencentCloud::Common::AbstractModel
         # @param Products: 商品识别结果数组
         # @type Products: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Products, :RequestId
@@ -1584,7 +1584,7 @@ module TencentCloud
         # @param Bodies: 识别到的人体属性信息。单个人体属性信息包括人体检测置信度，属性信息，人体检测框。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bodies: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Bodies, :RequestId
@@ -1639,7 +1639,7 @@ module TencentCloud
       class EnhanceImageResponse < TencentCloud::Common::AbstractModel
         # @param EnhancedImage: 增强后图片的base64编码。
         # @type EnhancedImage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnhancedImage, :RequestId
@@ -2066,7 +2066,7 @@ module TencentCloud
         # @param CarTags: 车辆属性识别的结果数组，如果识别到多辆车，则会输出每辆车的top1结果。
         # 注意：置信度是指车牌信息置信度。
         # @type CarTags: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CarCoords, :CarTags, :RequestId
@@ -2133,7 +2133,7 @@ module TencentCloud
         # @type CarCoords: Array
         # @param CarTags: 车辆属性识别的结果数组，如果识别到多辆车，则会输出每辆车的top1结果。
         # @type CarTags: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CarCoords, :CarTags, :RequestId
@@ -2326,7 +2326,7 @@ module TencentCloud
         # **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Object: :class:`Tencentcloud::Tiia.v20190529.models.ObjectInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Count, :ImageInfos, :Object, :RequestId
@@ -2386,7 +2386,7 @@ module TencentCloud
 
       # UpdateImage返回参数结构体
       class UpdateImageResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

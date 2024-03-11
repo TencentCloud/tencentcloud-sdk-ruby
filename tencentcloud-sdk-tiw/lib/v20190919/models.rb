@@ -65,7 +65,7 @@ module TencentCloud
 
       # ApplyTiwTrial返回参数结构体
       class ApplyTiwTrialResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -194,7 +194,7 @@ module TencentCloud
         # @type AppName: String
         # @param SdkAppId: 应用SdkAppId
         # @type SdkAppId: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppId, :AppName, :SdkAppId, :RequestId
@@ -292,7 +292,7 @@ module TencentCloud
       class CreatePPTCheckTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 检测任务的唯一标识Id，用于查询该任务的进度以及检测结果
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
@@ -360,7 +360,7 @@ module TencentCloud
       class CreateSnapshotTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskID: 白板板书生成任务ID，只有任务创建成功的时候才会返回此字段
         # @type TaskID: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskID, :RequestId
@@ -506,7 +506,7 @@ module TencentCloud
       class CreateTranscodeResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 文档转码任务的唯一标识Id，用于查询该任务的进度以及转码结果
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
@@ -586,7 +586,7 @@ module TencentCloud
       class CreateVideoGenerationTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 视频生成的任务Id
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
@@ -690,7 +690,7 @@ module TencentCloud
       class DescribeAPIServiceResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: Json格式的响应数据
         # @type ResponseData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
@@ -723,7 +723,7 @@ module TencentCloud
         # @type ApplicationInfos: Array
         # @param AllOption: 是否包含所有的应用，0-不包含，1-包含
         # @type AllOption: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ApplicationInfos, :AllOption, :RequestId
@@ -792,7 +792,7 @@ module TencentCloud
       class DescribeApplicationUsageResponse < TencentCloud::Common::AbstractModel
         # @param Data: 画图所需的用量数据
         # @type Data: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -869,7 +869,7 @@ module TencentCloud
         # @type Buckets: Array
         # @param Context: 用于递归拉取的上下文Key，下一次请求的时候带上
         # @type Context: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :Sources, :Buckets, :Context, :RequestId
@@ -904,7 +904,7 @@ module TencentCloud
 
       # DescribeIMApplications返回参数结构体
       class DescribeIMApplicationsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -940,7 +940,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 实时录制回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -1019,7 +1019,7 @@ module TencentCloud
         # @param Interrupts: 视频流在录制过程中断流次数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interrupts: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :RecordUserId, :RecordStartTime, :RecordStopTime, :TotalTime, :ExceptionCnt, :OmittedDurations, :VideoInfos, :ReplayUrl, :Interrupts, :RequestId
@@ -1104,7 +1104,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -1161,7 +1161,7 @@ module TencentCloud
         # @param Errs: 错误列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errs: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :IsOK, :ResultUrl, :Slides, :Status, :Progress, :Errs, :RequestId
@@ -1225,7 +1225,7 @@ module TencentCloud
 
       # DescribePostpaidUsage返回参数结构体
       class DescribePostpaidUsageResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1288,7 +1288,7 @@ module TencentCloud
         # @type Metric: String
         # @param Content: 时间序列
         # @type Content: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Metric, :Content, :RequestId
@@ -1330,7 +1330,7 @@ module TencentCloud
         # @type RecordTaskSet: Array
         # @param TotalCount: 录制总任务数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordTaskSet, :TotalCount, :RequestId
@@ -1387,7 +1387,7 @@ module TencentCloud
       class DescribeRoomListResponse < TencentCloud::Common::AbstractModel
         # @param RoomList: 白板房间列表
         # @type RoomList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoomList, :RequestId
@@ -1450,7 +1450,7 @@ module TencentCloud
         # @type Total: Integer
         # @param Tasks: 任务信息列表
         # @type Tasks: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :Tasks, :RequestId
@@ -1514,7 +1514,7 @@ module TencentCloud
         # @param Result: 任务结果信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tiw.v20190919.models.SnapshotResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskID, :Status, :CreateTime, :FinishTime, :Result, :RequestId
@@ -1579,7 +1579,7 @@ module TencentCloud
       class DescribeTIWDailyUsageResponse < TencentCloud::Common::AbstractModel
         # @param Usages: 指定区间指定产品的用量汇总
         # @type Usages: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Usages, :RequestId
@@ -1650,7 +1650,7 @@ module TencentCloud
         # @type Usages: Array
         # @param Total: 用量列表总数
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Usages, :Total, :RequestId
@@ -1707,7 +1707,7 @@ module TencentCloud
         # @type Status: String
         # @param TaskId: 转码任务的唯一标识Id
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Progress, :Status, :TaskId, :RequestId
@@ -1749,7 +1749,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 文档转码回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -1833,7 +1833,7 @@ module TencentCloud
         # @param FinishedTime: 文档转码任务完成时间，单位s
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishedTime: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Pages, :Progress, :Resolution, :ResultUrl, :Status, :TaskId, :Title, :ThumbnailUrl, :ThumbnailResolution, :CompressFileUrl, :ResourceListUrl, :Ext, :CreateTime, :AssignTime, :FinishedTime, :RequestId
@@ -1894,7 +1894,7 @@ module TencentCloud
         # @type TranscodeTaskSet: Array
         # @param TotalCount: 转码总任务数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TranscodeTaskSet, :TotalCount, :RequestId
@@ -1950,7 +1950,7 @@ module TencentCloud
 
       # DescribeUsageSummary返回参数结构体
       class DescribeUsageSummaryResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2000,7 +2000,7 @@ module TencentCloud
       class DescribeUserListResponse < TencentCloud::Common::AbstractModel
         # @param UserList: 房间内的用户列表
         # @type UserList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :UserList, :RequestId
@@ -2036,7 +2036,7 @@ module TencentCloud
 
       # DescribeUserResources返回参数结构体
       class DescribeUserResourcesResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2076,7 +2076,7 @@ module TencentCloud
         # @type IsTiwOfflineRecordUser: Integer
         # @param IsAuthenticated: 用户是否实名认证
         # @type IsAuthenticated: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppId, :IsTiwUser, :IsSaaSUser, :IsTiwOfflineRecordUser, :IsAuthenticated, :RequestId
@@ -2122,7 +2122,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 录制视频生成回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -2181,7 +2181,7 @@ module TencentCloud
         # @type VideoInfos: :class:`Tencentcloud::Tiw.v20190919.models.VideoInfo`
         # @param VideoInfoList: 录制视频生成视频列表
         # @type VideoInfoList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GroupId, :RoomId, :TaskId, :Progress, :Status, :TotalTime, :VideoInfos, :VideoInfoList, :RequestId
@@ -2243,7 +2243,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 告警回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -2293,7 +2293,7 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Configs: 白板应用任务相关配置
         # @type Configs: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SdkAppId, :Configs, :RequestId
@@ -2342,7 +2342,7 @@ module TencentCloud
 
       # DescribeWhiteboardBucketConfig返回参数结构体
       class DescribeWhiteboardBucketConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2378,7 +2378,7 @@ module TencentCloud
         # @type Callback: String
         # @param CallbackKey: 白板推流回调鉴权密钥
         # @type CallbackKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Callback, :CallbackKey, :RequestId
@@ -2447,7 +2447,7 @@ module TencentCloud
         # @param Backup: 备份推流任务结果信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backup: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FinishReason, :TaskId, :Status, :RoomId, :GroupId, :PushUserId, :PushStartTime, :PushStopTime, :ExceptionCnt, :IMSyncTime, :Backup, :RequestId
@@ -2500,7 +2500,7 @@ module TencentCloud
         # @type WhiteboardPushTaskSet: Array
         # @param TotalCount: 推流总任务数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :WhiteboardPushTaskSet, :TotalCount, :RequestId
@@ -2692,7 +2692,7 @@ module TencentCloud
 
       # ModifyApplication返回参数结构体
       class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2732,7 +2732,7 @@ module TencentCloud
 
       # ModifyAutoRenewFlag返回参数结构体
       class ModifyAutoRenewFlagResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2775,7 +2775,7 @@ module TencentCloud
 
       # ModifyWhiteboardApplicationConfig返回参数结构体
       class ModifyWhiteboardApplicationConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2829,7 +2829,7 @@ module TencentCloud
 
       # ModifyWhiteboardBucketConfig返回参数结构体
       class ModifyWhiteboardBucketConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2945,7 +2945,7 @@ module TencentCloud
 
       # PauseOnlineRecord返回参数结构体
       class PauseOnlineRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3153,7 +3153,7 @@ module TencentCloud
 
       # ResumeOnlineRecord返回参数结构体
       class ResumeOnlineRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3313,7 +3313,7 @@ module TencentCloud
 
       # SetOnlineRecordCallbackKey返回参数结构体
       class SetOnlineRecordCallbackKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3349,7 +3349,7 @@ module TencentCloud
 
       # SetOnlineRecordCallback返回参数结构体
       class SetOnlineRecordCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3385,7 +3385,7 @@ module TencentCloud
 
       # SetPPTCheckCallbackKey返回参数结构体
       class SetPPTCheckCallbackKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3421,7 +3421,7 @@ module TencentCloud
 
       # SetPPTCheckCallback返回参数结构体
       class SetPPTCheckCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3457,7 +3457,7 @@ module TencentCloud
 
       # SetTranscodeCallbackKey返回参数结构体
       class SetTranscodeCallbackKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3494,7 +3494,7 @@ module TencentCloud
 
       # SetTranscodeCallback返回参数结构体
       class SetTranscodeCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3530,7 +3530,7 @@ module TencentCloud
 
       # SetVideoGenerationTaskCallbackKey返回参数结构体
       class SetVideoGenerationTaskCallbackKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3566,7 +3566,7 @@ module TencentCloud
 
       # SetVideoGenerationTaskCallback返回参数结构体
       class SetVideoGenerationTaskCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3607,7 +3607,7 @@ module TencentCloud
 
       # SetWarningCallback返回参数结构体
       class SetWarningCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3643,7 +3643,7 @@ module TencentCloud
 
       # SetWhiteboardPushCallbackKey返回参数结构体
       class SetWhiteboardPushCallbackKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3679,7 +3679,7 @@ module TencentCloud
 
       # SetWhiteboardPushCallback返回参数结构体
       class SetWhiteboardPushCallbackResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3901,7 +3901,7 @@ module TencentCloud
       class StartOnlineRecordResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 录制任务Id
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
@@ -4093,7 +4093,7 @@ module TencentCloud
         # @param Backup: 备份任务结果参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backup: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :Backup, :RequestId
@@ -4133,7 +4133,7 @@ module TencentCloud
 
       # StopOnlineRecord返回参数结构体
       class StopOnlineRecordResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4172,7 +4172,7 @@ module TencentCloud
         # @param Backup: 备份任务相关参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Backup: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Backup, :RequestId

@@ -4208,7 +4208,7 @@ module TencentCloud
       class ImageMaskAsyncGetResultResponse < TencentCloud::Common::AbstractModel
         # @param MaskedImage: 脱敏后图片的base64编码
         # @type MaskedImage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MaskedImage, :RequestId
@@ -4254,7 +4254,7 @@ module TencentCloud
       class ImageMaskAsyncResponse < TencentCloud::Common::AbstractModel
         # @param TaskID: 加密任务ID
         # @type TaskID: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskID, :RequestId
@@ -4329,7 +4329,7 @@ module TencentCloud
       class ImageMaskResponse < TencentCloud::Common::AbstractModel
         # @param MaskedImage: 脱敏后图片的Base64信息
         # @type MaskedImage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MaskedImage, :RequestId
@@ -4388,7 +4388,7 @@ module TencentCloud
         # @param TextTypeList: 分类结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextTypeList, :RequestId
@@ -4476,7 +4476,7 @@ module TencentCloud
         # @param TextTypeList: 多级分类结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TextTypeList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Template, :TextTypeList, :RequestId
@@ -10270,7 +10270,7 @@ module TencentCloud
       class TextToClassResponse < TencentCloud::Common::AbstractModel
         # @param TextTypeList: 分类结果
         # @type TextTypeList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextTypeList, :RequestId
@@ -10340,7 +10340,7 @@ module TencentCloud
       class TextToObjectResponse < TencentCloud::Common::AbstractModel
         # @param Template: 报告结构化结果
         # @type Template: :class:`Tencentcloud::Mrs.v20200910.models.Template`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Template, :RequestId
@@ -11491,7 +11491,7 @@ module TencentCloud
         # @type Block: :class:`Tencentcloud::Mrs.v20200910.models.Block`
         # @param IsBlock: 是否使用Block字段
         # @type IsBlock: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Template, :TextTypeList, :Block, :IsBlock, :RequestId
@@ -11560,7 +11560,7 @@ module TencentCloud
         # 4、加密存储的 json 结果会24小时后定时自动删除，因此TaskID 仅 24 小时内有效，请在24小时内调用接口 TurnPDFToObjectAsyncGetResult 获取对应 json 结果。
         # 5、TaskID 与腾讯云的账号绑定，通过 TurnPDFToObjectAsync 传入PDF文件和通过 TurnPDFToObjectAsyncGetResult 获取 json 结果，必须是同一个腾讯云账号。即其它人就算获取到 TaskID 也无法获取到 json 结果。
         # @type TaskID: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskID, :RequestId
@@ -11611,7 +11611,7 @@ module TencentCloud
         # @type Block: :class:`Tencentcloud::Mrs.v20200910.models.Block`
         # @param IsBlock: 是否使用Block字段
         # @type IsBlock: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Template, :TextTypeList, :Block, :IsBlock, :RequestId

@@ -62,7 +62,7 @@ module TencentCloud
         # @param Priority: 私钥的优先级，优先级数值越高，优先级越高。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FairPlayPemId, :Priority, :RequestId
@@ -117,7 +117,7 @@ module TencentCloud
 
       # CreateEncryptKeys返回参数结构体
       class CreateEncryptKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -173,7 +173,7 @@ module TencentCloud
         # @type License: String
         # @param ContentId: 加密内容的内容ID
         # @type ContentId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :License, :ContentId, :RequestId
@@ -214,7 +214,7 @@ module TencentCloud
 
       # DeleteFairPlayPem返回参数结构体
       class DeleteFairPlayPemResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -270,7 +270,7 @@ module TencentCloud
         # @param ContentId: 内容ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Keys, :SessionKey, :ContentId, :RequestId
@@ -331,7 +331,7 @@ module TencentCloud
         # @type ContentId: String
         # @param TXEncryptionToken: 加密密钥。
         # @type TXEncryptionToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ContentId, :TXEncryptionToken, :RequestId
@@ -375,7 +375,7 @@ module TencentCloud
         # @param FairPlayPems: 该账户下，所有设置的FairPlay私钥摘要信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FairPlayPems: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FairPlayPems, :RequestId
@@ -445,7 +445,7 @@ module TencentCloud
         # @param Pssh: Widevine方案的Pssh数据，Base64编码。
         # Fairplay方案无该值。
         # @type Pssh: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Keys, :SessionKey, :ContentId, :Pssh, :RequestId
@@ -612,7 +612,7 @@ module TencentCloud
         # @type ContentId: String
         # @param TXEncryptionToken: 加密密钥。
         # @type TXEncryptionToken: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ContentId, :TXEncryptionToken, :RequestId
@@ -741,7 +741,7 @@ module TencentCloud
         # @param Priority: 私钥的优先级，优先级数值越高，优先级越高。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Priority: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FairPlayPemId, :Priority, :RequestId
@@ -827,7 +827,7 @@ module TencentCloud
 
       # StartEncryption返回参数结构体
       class StartEncryptionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

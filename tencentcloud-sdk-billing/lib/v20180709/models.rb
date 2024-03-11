@@ -4015,7 +4015,7 @@ module TencentCloud
 
       # CreateAllocationTag返回参数结构体
       class CreateAllocationTagResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4081,7 +4081,7 @@ module TencentCloud
       class CreateSavingPlanOrderResponse < TencentCloud::Common::AbstractModel
         # @param BigDealId: 订单号
         # @type BigDealId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BigDealId, :RequestId
@@ -4257,7 +4257,7 @@ module TencentCloud
 
       # DeleteAllocationTag返回参数结构体
       class DeleteAllocationTagResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4310,7 +4310,7 @@ module TencentCloud
         # @type CreditBalance: Float
         # @param RealCreditBalance: 真实可用信用额度
         # @type RealCreditBalance: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
@@ -4401,7 +4401,7 @@ module TencentCloud
         # @param ActionType: 交易类型筛选列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Business, :Product, :Item, :Region, :InstanceType, :PayMode, :Project, :Tag, :OwnerUin, :OperateUin, :ActionType, :RequestId
@@ -4645,7 +4645,7 @@ module TencentCloud
         # @param AllocationTreeNode: 分账单元筛选列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllocationTreeNode: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Business, :Product, :Item, :Region, :InstanceType, :PayMode, :Project, :Tag, :OwnerUin, :OperateUin, :BillDay, :ActionType, :Component, :Zone, :AllocationTreeNode, :RequestId
@@ -4906,7 +4906,7 @@ module TencentCloud
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
         # @param Detail: 分账账单明细
         # @type Detail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Total, :Detail, :RequestId
@@ -4960,7 +4960,7 @@ module TencentCloud
         # @param Total: 分账账单概览金额汇总
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: :class:`Tencentcloud::Billing.v20180709.models.AllocationOverviewTotal`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Detail, :Total, :RequestId
@@ -5063,7 +5063,7 @@ module TencentCloud
         # @param Detail: 分账概览明细
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Total, :Detail, :RequestId
@@ -5182,7 +5182,7 @@ module TencentCloud
         # @param Detail: 分账账单按产品汇总明细
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Total, :Detail, :RequestId
@@ -5344,7 +5344,7 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Total, :Detail, :RequestId
@@ -5499,7 +5499,7 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Detail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Total, :Detail, :RequestId
@@ -5564,7 +5564,7 @@ module TencentCloud
         # @param Stat: 费用统计信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Stat: :class:`Tencentcloud::Billing.v20180709.models.AllocationStat`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Current, :Previous, :Stat, :RequestId
@@ -5704,7 +5704,7 @@ module TencentCloud
         # @param Context: 本次请求的上下文信息，可用于下一次请求的请求参数中，加快查询速度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DetailSet, :Total, :Context, :RequestId
@@ -5846,7 +5846,7 @@ module TencentCloud
         # @param Context: 本次请求的上下文信息，可用于下一次请求的请求参数中，加快查询速度
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Context: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DetailSet, :Total, :Context, :RequestId
@@ -5911,7 +5911,7 @@ module TencentCloud
         # @param DownloadUrl: 账单文件下载链接，有效时长为一小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :DownloadUrl, :RequestId
@@ -6018,7 +6018,7 @@ module TencentCloud
         # @type AgentOutAmount: Float
         # @param AdvancePayAmount: 还垫付总额，单位（分）
         # @type AdvancePayAmount: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TransactionList, :Total, :ReturnAmount, :RechargeAmount, :BlockAmount, :UnblockAmount, :DeductAmount, :AgentInAmount, :AdvanceRechargeAmount, :WithdrawAmount, :AgentOutAmount, :AdvancePayAmount, :RequestId
@@ -6160,7 +6160,7 @@ module TencentCloud
         # @param Total: 资源汇总列表总数，入参NeedRecordNum为0时不返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResourceSummarySet, :Total, :RequestId
@@ -6286,7 +6286,7 @@ module TencentCloud
         # @param Total: 资源汇总列表总数，入参NeedRecordNum为0时不返回
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResourceSummarySet, :Total, :RequestId
@@ -6342,7 +6342,7 @@ module TencentCloud
         # @param SummaryOverview: 各付费模式花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
@@ -6410,7 +6410,7 @@ module TencentCloud
         # @param SummaryOverview: 各产品花费分布
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryTotal, :SummaryOverview, :RequestId
@@ -6471,7 +6471,7 @@ module TencentCloud
         # @param SummaryOverview: 各项目花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
@@ -6527,7 +6527,7 @@ module TencentCloud
         # @param SummaryOverview: 各地域花费分布详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :RequestId
@@ -6594,7 +6594,7 @@ module TencentCloud
         # @param SummaryTotal: 总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryTotal: :class:`Tencentcloud::Billing.v20180709.models.SummaryTotal`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryOverview, :SummaryTotal, :RequestId
@@ -6654,7 +6654,7 @@ module TencentCloud
         # @type Ready: Integer
         # @param SummaryDetail: 账单多维度汇总消费详情
         # @type SummaryDetail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryDetail, :RequestId
@@ -6709,7 +6709,7 @@ module TencentCloud
         # @type Ready: Integer
         # @param SummaryDetail: 账单多维度汇总消费详情
         # @type SummaryDetail: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :SummaryDetail, :RequestId
@@ -6791,7 +6791,7 @@ module TencentCloud
         # @param Total: 记录数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DetailSet, :Total, :RequestId
@@ -6905,7 +6905,7 @@ module TencentCloud
         # @param ConditionValue: 筛选框
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConditionValue: :class:`Tencentcloud::Billing.v20180709.models.AnalyseConditionDetail`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :Header, :Detail, :TotalDetail, :ConditionValue, :RequestId
@@ -6993,7 +6993,7 @@ module TencentCloud
         # @param RecordNum: 记录数量，NeedRecordNum为0是返回null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
@@ -7071,7 +7071,7 @@ module TencentCloud
         # @type Data: Array
         # @param RecordNum: 记录数量，NeedRecordNum为0是返回null
         # @type RecordNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
@@ -7150,7 +7150,7 @@ module TencentCloud
         # @param RecordNum: 记录数量，NeedRecordNum为0是返回null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :Data, :RecordNum, :RequestId
@@ -7245,7 +7245,7 @@ module TencentCloud
         # @param Data: 资源消耗详情
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Ready, :Total, :ConditionValue, :RecordNum, :Data, :RequestId
@@ -7344,7 +7344,7 @@ module TencentCloud
         # @type Deals: Array
         # @param TotalCount: 订单总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Deals, :TotalCount, :RequestId
@@ -7397,7 +7397,7 @@ module TencentCloud
       class DescribeDosageCosDetailByDateResponse < TencentCloud::Common::AbstractModel
         # @param DetailSets: 用量数组
         # @type DetailSets: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DetailSets, :RequestId
@@ -7611,7 +7611,7 @@ module TencentCloud
         # @param RetMsg: 错误信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RetMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Unit, :DetailSets, :RetCode, :RetMsg, :RequestId
@@ -7692,7 +7692,7 @@ module TencentCloud
       class DescribeDosageDetailListResponse < TencentCloud::Common::AbstractModel
         # @param Record: 用量明细集合
         # @type Record: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Record, :RequestId
@@ -7823,7 +7823,7 @@ module TencentCloud
         # @param LastUpdateTime: 数据更新时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastUpdateTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :GatherResourceSummary, :LastUpdateTime, :RequestId
@@ -7890,7 +7890,7 @@ module TencentCloud
         # @type RateSet: Array
         # @param TotalCount: 查询命中的节省计划覆盖率明细数据总条数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DetailSet, :RateSet, :TotalCount, :RequestId
@@ -7958,7 +7958,7 @@ module TencentCloud
         # @type Overviews: Array
         # @param Total: 查询命中的节省计划总览明细数据总条数
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Overviews, :Total, :RequestId
@@ -8015,7 +8015,7 @@ module TencentCloud
       class DescribeSavingPlanResourceInfoResponse < TencentCloud::Common::AbstractModel
         # @param Total: 记录数
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :RequestId
@@ -8069,7 +8069,7 @@ module TencentCloud
         # @type Usages: Array
         # @param Total: 查询命中的节省计划总览明细数据总条数
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Usages, :Total, :RequestId
@@ -8132,7 +8132,7 @@ module TencentCloud
         # @type RecordNum: Integer
         # @param Data: 标签信息
         # @type Data: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecordNum, :Data, :RequestId
@@ -8246,7 +8246,7 @@ module TencentCloud
         # @param VoucherInfos: 代金券相关信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VoucherInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TotalBalance, :VoucherInfos, :RequestId
@@ -8310,7 +8310,7 @@ module TencentCloud
         # @param UsageRecords: 代金券使用记录细节
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsageRecords: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :TotalUsedAmount, :UsageRecords, :RequestId
@@ -8853,7 +8853,7 @@ module TencentCloud
         # @type ResourceIds: Array
         # @param BigDealIds: 此次操作支付成功的大订单号数组
         # @type BigDealIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OrderIds, :ResourceIds, :BigDealIds, :RequestId

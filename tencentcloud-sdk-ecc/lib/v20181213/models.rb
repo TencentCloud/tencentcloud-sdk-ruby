@@ -209,13 +209,13 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Ecc.v20181213.models.CompostionContext`
         # @param ResultData: 接口返回数据
         # @type ResultData: :class:`Tencentcloud::Ecc.v20181213.models.CompositionContext`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :ResultData, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2023, 9
-        deprecate :Data=, :none, 2023, 9
+        deprecate :Data, :none, 2024, 3
+        deprecate :Data=, :none, 2024, 3
 
         def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data
@@ -266,7 +266,7 @@ module TencentCloud
         # @type CorrectData: :class:`Tencentcloud::Ecc.v20181213.models.CorrectData`
         # @param Status: 任务状态，“Progressing”: 处理中（此时无结果返回）、“Finished”: 处理完成
         # @type Status: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Content, :CorrectData, :Status, :RequestId
@@ -345,7 +345,7 @@ module TencentCloud
         # @param TaskId: 任务 id，用于查询接口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :TaskId, :RequestId
@@ -428,13 +428,13 @@ module TencentCloud
         # @type Data: :class:`Tencentcloud::Ecc.v20181213.models.CompostionContext`
         # @param ResultData: 接口返回数据
         # @type ResultData: :class:`Tencentcloud::Ecc.v20181213.models.CompositionContext`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :ResultData, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2023, 9
-        deprecate :Data=, :none, 2023, 9
+        deprecate :Data, :none, 2024, 3
+        deprecate :Data=, :none, 2024, 3
 
         def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data

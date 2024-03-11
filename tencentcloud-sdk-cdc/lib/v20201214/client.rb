@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询本地专用集群云硬盘仓库信息
+
+        # @param request: Request instance for DescribeDedicatedClusterCbsStatistics.
+        # @type request: :class:`Tencentcloud::cdc::V20201214::DescribeDedicatedClusterCbsStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::cdc::V20201214::DescribeDedicatedClusterCbsStatisticsResponse`
+        def DescribeDedicatedClusterCbsStatistics(request)
+          body = send_request('DescribeDedicatedClusterCbsStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDedicatedClusterCbsStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询专用集群内cos的容量信息
 
         # @param request: Request instance for DescribeDedicatedClusterCosCapacity.

@@ -316,7 +316,7 @@ module TencentCloud
       class GetAntiFraudVipResponse < TencentCloud::Common::AbstractModel
         # @param Data: 反欺诈评分接口结果
         # @type Data: :class:`Tencentcloud::Afc.v20200226.models.AntiFraudVipRecord`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId
@@ -483,7 +483,7 @@ module TencentCloud
         # @param CodeDesc: 业务侧错误码。成功时返回Success，错误时返回具体业务错误原因。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CodeDesc: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Found, :IdFound, :RiskScore, :RiskInfo, :CodeDesc, :RequestId
@@ -627,7 +627,7 @@ module TencentCloud
         # @param Data: 业务出参
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Afc.v20200226.models.TransportGeneralInterfaceOutput`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Data, :RequestId

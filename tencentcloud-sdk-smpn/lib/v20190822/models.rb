@@ -88,7 +88,7 @@ module TencentCloud
       class CreateSmpnEpaResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: 业号码认证回应内容
         # @type ResponseData: :class:`Tencentcloud::Smpn.v20190822.models.EPAResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
@@ -134,7 +134,7 @@ module TencentCloud
       class DescribeSmpnChpResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: 终端骚扰保护回应
         # @type ResponseData: :class:`Tencentcloud::Smpn.v20190822.models.CHPResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
@@ -180,7 +180,7 @@ module TencentCloud
       class DescribeSmpnFnrResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: 虚假号码识别回应内容
         # @type ResponseData: :class:`Tencentcloud::Smpn.v20190822.models.FNRResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
@@ -226,7 +226,7 @@ module TencentCloud
       class DescribeSmpnMhmResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: 号码营销监控回应内容
         # @type ResponseData: :class:`Tencentcloud::Smpn.v20190822.models.MHMResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId
@@ -272,7 +272,7 @@ module TencentCloud
       class DescribeSmpnMrlResponse < TencentCloud::Common::AbstractModel
         # @param ResponseData: 恶意标记等级回应内容
         # @type ResponseData: :class:`Tencentcloud::Smpn.v20190822.models.MRLResponse`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResponseData, :RequestId

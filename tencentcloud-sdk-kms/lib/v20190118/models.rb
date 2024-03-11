@@ -55,7 +55,7 @@ module TencentCloud
 
       # ArchiveKey返回参数结构体
       class ArchiveKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -99,7 +99,7 @@ module TencentCloud
         # @type KeyId: String
         # @param Plaintext: 解密后的明文，base64编码
         # @type Plaintext: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
@@ -143,7 +143,7 @@ module TencentCloud
         # @type KeyId: String
         # @param Plaintext: 解密后的明文，base64编码
         # @type Plaintext: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
@@ -187,7 +187,7 @@ module TencentCloud
 
       # BindCloudResource返回参数结构体
       class BindCloudResourceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -219,7 +219,7 @@ module TencentCloud
 
       # CancelKeyArchive返回参数结构体
       class CancelKeyArchiveResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -253,7 +253,7 @@ module TencentCloud
       class CancelKeyDeletionResponse < TencentCloud::Common::AbstractModel
         # @param KeyId: 唯一标志被取消删除的CMK。
         # @type KeyId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :RequestId
@@ -336,7 +336,7 @@ module TencentCloud
         # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HsmClusterId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :Alias, :CreateTime, :Description, :KeyState, :KeyUsage, :TagCode, :TagMsg, :HsmClusterId, :RequestId
@@ -417,7 +417,7 @@ module TencentCloud
         # @param TagMsg: 标签操作的返回信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagMsg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EncryptKey, :DecryptKey, :KeyId, :TagCode, :TagMsg, :RequestId
@@ -476,7 +476,7 @@ module TencentCloud
         # @param Plaintext: 若调用时未提供 EncryptionPublicKey，该字段值为 Base64 编码的明文，需进行 Base64 解码以获取明文。
         # 若调用时提供了 EncryptionPublicKey，则该字段值为使用 EncryptionPublicKey 公钥进行非对称加密后的 Base64 编码的密文。需在 Base64 解码后，使用用户上传的公钥对应的私钥进行进一步解密，以获取明文。
         # @type Plaintext: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :RequestId
@@ -512,7 +512,7 @@ module TencentCloud
 
       # DeleteImportedKeyMaterial返回参数结构体
       class DeleteImportedKeyMaterialResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -544,7 +544,7 @@ module TencentCloud
 
       # DeleteWhiteBoxKey返回参数结构体
       class DeleteWhiteBoxKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -579,7 +579,7 @@ module TencentCloud
         # @param KeyMetadata: 密钥属性信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadata: :class:`Tencentcloud::Kms.v20190118.models.KeyMetadata`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyMetadata, :RequestId
@@ -619,7 +619,7 @@ module TencentCloud
         # @param KeyMetadatas: 返回的属性信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadatas: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyMetadatas, :RequestId
@@ -662,7 +662,7 @@ module TencentCloud
       class DescribeWhiteBoxDecryptKeyResponse < TencentCloud::Common::AbstractModel
         # @param DecryptKey: 白盒解密密钥，base64编码
         # @type DecryptKey: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DecryptKey, :RequestId
@@ -698,7 +698,7 @@ module TencentCloud
       class DescribeWhiteBoxDeviceFingerprintsResponse < TencentCloud::Common::AbstractModel
         # @param DeviceFingerprints: 设备指纹列表
         # @type DeviceFingerprints: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeviceFingerprints, :RequestId
@@ -763,7 +763,7 @@ module TencentCloud
         # @param TotalCount: 白盒密钥总数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyInfos, :TotalCount, :RequestId
@@ -808,7 +808,7 @@ module TencentCloud
       class DescribeWhiteBoxKeyResponse < TencentCloud::Common::AbstractModel
         # @param KeyInfo: 白盒密钥信息
         # @type KeyInfo: :class:`Tencentcloud::Kms.v20190118.models.WhiteboxKeyInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyInfo, :RequestId
@@ -842,7 +842,7 @@ module TencentCloud
       class DescribeWhiteBoxServiceStatusResponse < TencentCloud::Common::AbstractModel
         # @param ServiceEnabled: 用户的白盒密钥服务是否可用
         # @type ServiceEnabled: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ServiceEnabled, :RequestId
@@ -897,7 +897,7 @@ module TencentCloud
 
       # DisableKey返回参数结构体
       class DisableKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -929,7 +929,7 @@ module TencentCloud
 
       # DisableKeyRotation返回参数结构体
       class DisableKeyRotationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -961,7 +961,7 @@ module TencentCloud
 
       # DisableKeys返回参数结构体
       class DisableKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -993,7 +993,7 @@ module TencentCloud
 
       # DisableWhiteBoxKey返回参数结构体
       class DisableWhiteBoxKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1025,7 +1025,7 @@ module TencentCloud
 
       # DisableWhiteBoxKeys返回参数结构体
       class DisableWhiteBoxKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1057,7 +1057,7 @@ module TencentCloud
 
       # EnableKey返回参数结构体
       class EnableKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1093,7 +1093,7 @@ module TencentCloud
 
       # EnableKeyRotation返回参数结构体
       class EnableKeyRotationResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1125,7 +1125,7 @@ module TencentCloud
 
       # EnableKeys返回参数结构体
       class EnableKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1157,7 +1157,7 @@ module TencentCloud
 
       # EnableWhiteBoxKey返回参数结构体
       class EnableWhiteBoxKeyResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1189,7 +1189,7 @@ module TencentCloud
 
       # EnableWhiteBoxKeys返回参数结构体
       class EnableWhiteBoxKeysResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1233,7 +1233,7 @@ module TencentCloud
         # @type InitializationVector: String
         # @param CipherText: 加密后的密文，base64编码
         # @type CipherText: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InitializationVector, :CipherText, :RequestId
@@ -1281,7 +1281,7 @@ module TencentCloud
         # @type CiphertextBlob: String
         # @param KeyId: 加密使用的CMK的全局唯一标识
         # @type KeyId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :RequestId
@@ -1344,7 +1344,7 @@ module TencentCloud
         # @type Plaintext: String
         # @param CiphertextBlob: 数据密钥DataKey加密后的密文，用户需要自行保存该密文，KMS不托管用户的数据密钥。可以通过Decrypt接口从CiphertextBlob中获取数据密钥DataKey明文
         # @type CiphertextBlob: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :RequestId
@@ -1384,7 +1384,7 @@ module TencentCloud
       class GenerateRandomResponse < TencentCloud::Common::AbstractModel
         # @param Plaintext: 生成的随机数的明文，该明文使用base64编码，用户需要使用base64解码得到明文。
         # @type Plaintext: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Plaintext, :RequestId
@@ -1420,7 +1420,7 @@ module TencentCloud
       class GetKeyRotationStatusResponse < TencentCloud::Common::AbstractModel
         # @param KeyRotationEnabled: 密钥轮换是否开启
         # @type KeyRotationEnabled: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyRotationEnabled, :RequestId
@@ -1470,7 +1470,7 @@ module TencentCloud
         # @type PublicKey: String
         # @param ParametersValidTo: 该导出token和公钥的有效期，超过该时间后无法导入，需要重新调用GetParametersForImport获取。
         # @type ParametersValidTo: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :ImportToken, :PublicKey, :ParametersValidTo, :RequestId
@@ -1516,7 +1516,7 @@ module TencentCloud
         # @type PublicKey: String
         # @param PublicKeyPem: PEM格式的公钥内容。
         # @type PublicKeyPem: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :PublicKey, :PublicKeyPem, :RequestId
@@ -1552,7 +1552,7 @@ module TencentCloud
         # @param Regions: 可用region列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Regions: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Regions, :RequestId
@@ -1606,7 +1606,7 @@ module TencentCloud
         # @param SubscriptionInfo: KMS 订阅信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionInfo: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :RequestId
@@ -1668,7 +1668,7 @@ module TencentCloud
 
       # ImportKeyMaterial返回参数结构体
       class ImportKeyMaterialResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1797,7 +1797,7 @@ module TencentCloud
         # @type AsymmetricAlgorithms: Array
         # @param AsymmetricSignVerifyAlgorithms: 本地区支持的非对称签名验签算法
         # @type AsymmetricSignVerifyAlgorithms: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SymmetricAlgorithms, :AsymmetricAlgorithms, :AsymmetricSignVerifyAlgorithms, :RequestId
@@ -1904,7 +1904,7 @@ module TencentCloud
         # @param KeyMetadatas: 返回的属性信息列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyMetadatas: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :KeyMetadatas, :RequestId
@@ -1964,7 +1964,7 @@ module TencentCloud
         # @type Keys: Array
         # @param TotalCount: CMK的总数量
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Keys, :TotalCount, :RequestId
@@ -2018,7 +2018,7 @@ module TencentCloud
 
       # OverwriteWhiteBoxDeviceFingerprints返回参数结构体
       class OverwriteWhiteBoxDeviceFingerprintsResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2063,7 +2063,7 @@ module TencentCloud
         # @param PlainText: 若调用时未提供 EncryptionPublicKey，该字段值为 Base64 编码的明文，需进行 Base64 解码以获取明文。
         # 若调用时提供了 EncryptionPublicKey，则该字段值为使用 EncryptionPublicKey 公钥进行非对称加密后的 Base64 编码的密文。需在 Base64 解码后，使用用户上传的公钥对应的私钥进行进一步解密，以获取明文。
         # @type PlainText: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeyId, :PlainText, :RequestId
@@ -2107,7 +2107,7 @@ module TencentCloud
         # @type CiphertextBlob: String
         # @param KeyId: 加密使用的CMK的全局唯一标识
         # @type KeyId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :RequestId
@@ -2149,7 +2149,7 @@ module TencentCloud
       class PostQuantumCryptoSignResponse < TencentCloud::Common::AbstractModel
         # @param Signature: 签名值，Base64编码。可使用 PostQuantumCryptoVerify接口对签名值进行验证。
         # @type Signature: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Signature, :RequestId
@@ -2193,7 +2193,7 @@ module TencentCloud
       class PostQuantumCryptoVerifyResponse < TencentCloud::Common::AbstractModel
         # @param SignatureValid: 签名是否有效。true：签名有效，false：签名无效。
         # @type SignatureValid: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SignatureValid, :RequestId
@@ -2247,7 +2247,7 @@ module TencentCloud
         # @type SourceKeyId: String
         # @param ReEncrypted: true表示密文已经重新加密。同一个CMK进行重加密，在密钥没有发生轮换的情况下不会进行实际重新加密操作，返回原密文
         # @type ReEncrypted: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CiphertextBlob, :KeyId, :SourceKeyId, :ReEncrypted, :RequestId
@@ -2295,7 +2295,7 @@ module TencentCloud
         # @type DeletionDate: Integer
         # @param KeyId: 唯一标志被计划删除的CMK
         # @type KeyId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeletionDate, :KeyId, :RequestId
@@ -2345,7 +2345,7 @@ module TencentCloud
       class SignByAsymmetricKeyResponse < TencentCloud::Common::AbstractModel
         # @param Signature: 签名，Base64编码
         # @type Signature: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Signature, :RequestId
@@ -2427,7 +2427,7 @@ module TencentCloud
 
       # UnbindCloudResource返回参数结构体
       class UnbindCloudResourceResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2463,7 +2463,7 @@ module TencentCloud
 
       # UpdateAlias返回参数结构体
       class UpdateAliasResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2499,7 +2499,7 @@ module TencentCloud
 
       # UpdateKeyDescription返回参数结构体
       class UpdateKeyDescriptionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2549,7 +2549,7 @@ module TencentCloud
       class VerifyByAsymmetricKeyResponse < TencentCloud::Common::AbstractModel
         # @param SignatureValid: 签名是否有效。true：签名有效，false：签名无效。
         # @type SignatureValid: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SignatureValid, :RequestId

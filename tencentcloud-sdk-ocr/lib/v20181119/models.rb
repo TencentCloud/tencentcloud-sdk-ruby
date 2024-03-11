@@ -45,7 +45,7 @@ module TencentCloud
       class AdvertiseOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         # @type TextDetections: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :RequestId
@@ -395,7 +395,7 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angle: 图片横屏的角度(90度或270度)
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angle, :RequestId
@@ -496,7 +496,7 @@ module TencentCloud
         # @param QualityValue: 图片质量分数，请求EnableQualityValue时返回（取值范围：0-100，分数越低越模糊，建议阈值≥50）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityValue: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CardNo, :BankInfo, :ValidDate, :CardType, :CardName, :BorderCutImage, :CardNoImage, :WarningCode, :QualityValue, :RequestId
@@ -592,7 +592,7 @@ module TencentCloud
         # @type BankSlipInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BankSlipInfos, :Angle, :RequestId
@@ -685,7 +685,7 @@ module TencentCloud
         # @param Angle:  图片旋转角度(角度制)，文本的水平方向为0度；顺时针为正，角度范围是0-360度
 
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :RequestId
@@ -894,7 +894,7 @@ module TencentCloud
         # @type BusInvoiceInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusInvoiceInfos, :Angle, :RequestId
@@ -994,7 +994,7 @@ module TencentCloud
         # @type RetImageBase64: String
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BusinessCardInfos, :RetImageBase64, :Angle, :RequestId
@@ -1120,7 +1120,7 @@ module TencentCloud
       class CarInvoiceOCRResponse < TencentCloud::Common::AbstractModel
         # @param CarInvoiceInfos: 购车发票识别结果，具体内容请点击左侧链接。
         # @type CarInvoiceInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CarInvoiceInfos, :RequestId
@@ -1246,7 +1246,7 @@ module TencentCloud
       class ClassifyDetectOCRResponse < TencentCloud::Common::AbstractModel
         # @param ClassifyDetectInfos: 智能卡证分类结果。当图片类型不支持分类识别或者识别出的类型不在请求参数DiscernType指定的范围内时，返回结果中的Type字段将为空字符串，Name字段将返回"其它"
         # @type ClassifyDetectInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ClassifyDetectInfos, :RequestId
@@ -1332,7 +1332,7 @@ module TencentCloud
         # @param OperateUrl: 本次识别任务的操作URL，有效期自生成之时起共24小时
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OperateUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :OperateUrl, :RequestId
@@ -1533,7 +1533,7 @@ module TencentCloud
         # @type BackPageName: String
         # @param BackPageCardCode: 驾驶证副页证号
         # @type BackPageCardCode: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Nationality, :Address, :DateOfBirth, :DateOfFirstIssue, :Class, :StartDate, :EndDate, :CardCode, :ArchivesCode, :Record, :RecognizeWarnCode, :RecognizeWarnMsg, :IssuingAuthority, :State, :CumulativeScore, :CurrentTime, :GenerateTime, :BackPageName, :BackPageCardCode, :RequestId
@@ -1658,7 +1658,7 @@ module TencentCloud
         # @type DutyPaidProofInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DutyPaidProofInfos, :Angle, :RequestId
@@ -1728,7 +1728,7 @@ module TencentCloud
         # @type Angle: Integer
         # @param QuestionBlockInfos: 结构化方式输出，具体内容请点击左侧链接。
         # @type QuestionBlockInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EduPaperInfos, :Angle, :QuestionBlockInfos, :RequestId
@@ -2339,7 +2339,7 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
@@ -2418,7 +2418,7 @@ module TencentCloud
         # @type EnterpriseLicenseInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EnterpriseLicenseInfos, :Angle, :RequestId
@@ -2496,7 +2496,7 @@ module TencentCloud
         # @type Angle: Float
         # @param Number: 不动产权号
         # @type Number: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Obligee, :Ownership, :Location, :Unit, :Type, :Property, :Usage, :Area, :Term, :Other, :Angle, :Number, :RequestId
@@ -2591,7 +2591,7 @@ module TencentCloud
       class FinanBillOCRResponse < TencentCloud::Common::AbstractModel
         # @param FinanBillInfos: 金融票据整单识别结果，具体内容请点击左侧链接。
         # @type FinanBillInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FinanBillInfos, :RequestId
@@ -2666,7 +2666,7 @@ module TencentCloud
       class FinanBillSliceOCRResponse < TencentCloud::Common::AbstractModel
         # @param FinanBillSliceInfos: 金融票据切片识别结果，具体内容请点击左侧链接。
         # @type FinanBillSliceInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FinanBillSliceInfos, :RequestId
@@ -2753,7 +2753,7 @@ module TencentCloud
       class FlightInvoiceOCRResponse < TencentCloud::Common::AbstractModel
         # @param FlightInvoiceInfos: 机票行程单识别结果，具体内容请点击左侧链接。
         # @type FlightInvoiceInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlightInvoiceInfos, :RequestId
@@ -2913,7 +2913,7 @@ module TencentCloud
         # @type Angle: Integer
         # @param FormulaInfos: 检测到的文本信息，具体内容请点击左侧链接。
         # @type FormulaInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Angle, :FormulaInfos, :RequestId
@@ -2990,7 +2990,7 @@ module TencentCloud
         # @type Angel: Float
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
@@ -3101,7 +3101,7 @@ module TencentCloud
         # @type PdfPageSize: Integer
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
@@ -3165,7 +3165,7 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
@@ -3236,7 +3236,7 @@ module TencentCloud
         # @type Angel: Float
         # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
         # @type PdfPageSize: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :RequestId
@@ -3312,7 +3312,7 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Angel: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angel: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Angel, :RequestId
@@ -3406,7 +3406,7 @@ module TencentCloud
         # 5:超时：任务超过了可操作的24H时限
         # 6:任务识别失败
         # @type TaskState: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskState, :RequestId
@@ -3517,7 +3517,7 @@ module TencentCloud
         # -9102：证照复印件告警
         # -9103：证照翻拍告警
         # @type WarningCode: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :WarningCode, :RequestId
@@ -3613,7 +3613,7 @@ module TencentCloud
         # @type VisaNum: String
         # @param PassNo: 通行证号码
         # @type PassNo: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Birth, :Address, :IdCardNo, :CardType, :ValidDate, :Authority, :VisaNum, :PassNo, :RequestId
@@ -3742,7 +3742,7 @@ module TencentCloud
         # @type AdvancedInfo: String
         # @param ReflectDetailInfos: 反光点覆盖区域详情结果，具体内容请点击左侧链接
         # @type ReflectDetailInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :ReflectDetailInfos, :RequestId
@@ -3841,7 +3841,7 @@ module TencentCloud
         # @type ImageTag: String
         # @param Image: 图片数据，返回预处理后图像或原图像base64字符
         # @type Image: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ImageTag, :Image, :RequestId
@@ -3898,7 +3898,7 @@ module TencentCloud
         # @type Name: String
         # @param LegalPerson: 法定代表人
         # @type LegalPerson: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RegId, :ValidDate, :Location, :Name, :LegalPerson, :RequestId
@@ -3981,7 +3981,7 @@ module TencentCloud
       class InsuranceBillOCRResponse < TencentCloud::Common::AbstractModel
         # @param InsuranceBillInfos: 保险单据识别结果，具体内容请点击左侧链接。
         # @type InsuranceBillInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InsuranceBillInfos, :RequestId
@@ -4121,7 +4121,7 @@ module TencentCloud
         # @type InvoiceGeneralInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InvoiceGeneralInfos, :Angle, :RequestId
@@ -4407,7 +4407,7 @@ module TencentCloud
         # @type Color: String
         # @param LicensePlateInfos: 全部车牌信息。
         # @type LicensePlateInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateInfos, :RequestId
@@ -4531,7 +4531,7 @@ module TencentCloud
         # @type Type: String
         # @param Birthday: 出生日期（目前该字段仅支持IKAD劳工证、MyKad 身份证）
         # @type Birthday: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :RequestId
@@ -4635,7 +4635,7 @@ module TencentCloud
         # @type Type: String
         # @param PassportRecognizeInfos: 信息区证件内容
         # @type PassportRecognizeInfos: :class:`Tencentcloud::Ocr.v20181119.models.PassportRecognizeInfos`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :RequestId
@@ -4909,7 +4909,7 @@ module TencentCloud
         # @type Profile: String
         # @param MainlandTravelPermitBackInfos: 背面字段信息
         # @type MainlandTravelPermitBackInfos: :class:`Tencentcloud::Ocr.v20181119.models.MainlandTravelPermitBackInfos`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :EnglishName, :Sex, :Birthday, :IssueAuthority, :ValidDate, :Number, :IssueAddress, :IssueNumber, :Type, :Profile, :MainlandTravelPermitBackInfos, :RequestId
@@ -5133,7 +5133,7 @@ module TencentCloud
       class MixedInvoiceDetectResponse < TencentCloud::Common::AbstractModel
         # @param InvoiceDetectInfos: 检测出的票据类型列表，具体内容请点击左侧链接。
         # @type InvoiceDetectInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InvoiceDetectInfos, :RequestId
@@ -5287,7 +5287,7 @@ module TencentCloud
       class MixedInvoiceOCRResponse < TencentCloud::Common::AbstractModel
         # @param MixedInvoiceItems: 混贴票据识别结果，具体内容请点击左侧链接。
         # @type MixedInvoiceItems: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MixedInvoiceItems, :RequestId
@@ -5715,7 +5715,7 @@ module TencentCloud
         # @type Address: String
         # @param ValidDate: 有效期
         # @type ValidDate: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OrgCode, :Name, :Address, :ValidDate, :RequestId
@@ -5917,7 +5917,7 @@ module TencentCloud
         # @type FamilyName: String
         # @param FirstName: 名
         # @type FirstName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Country, :PassportNo, :Sex, :Nationality, :BirthDate, :BirthPlace, :IssueDate, :IssuePlace, :ExpiryDate, :Signature, :CodeSet, :CodeCrc, :Name, :FamilyName, :FirstName, :RequestId
@@ -6080,7 +6080,7 @@ module TencentCloud
         # @type IssueAddress: String
         # @param Birthday: 出生日期
         # @type Birthday: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :EnglishName, :Number, :Sex, :ValidDate, :IssueAuthority, :IssueAddress, :Birthday, :RequestId
@@ -6192,7 +6192,7 @@ module TencentCloud
         # @type Nature: String
         # @param Location: 房地坐落
         # @type Location: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Owner, :Possession, :RegisterTime, :Purpose, :Nature, :Location, :RequestId
@@ -6266,7 +6266,7 @@ module TencentCloud
         # @type CodeResults: Array
         # @param ImgSize: 图片大小，具体内容请点击左侧链接。
         # @type ImgSize: :class:`Tencentcloud::Ocr.v20181119.models.QrcodeImgSize`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CodeResults, :ImgSize, :RequestId
@@ -6545,7 +6545,7 @@ module TencentCloud
         # @param HasStamp: 是否有公司印章（1有 0无 空为识别不出）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasStamp: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InvoiceNum, :InvoiceCode, :Rate, :RateNum, :InvoiceType, :Province, :City, :HasStamp, :RequestId
@@ -6740,7 +6740,7 @@ module TencentCloud
         # @type TareKG: String
         # @param TareLB: 集装箱自身重量，单位：磅（LB）
         # @type TareLB: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ContainerId, :ContainerType, :GrossKG, :GrossLB, :PayloadKG, :PayloadLB, :CapacityM3, :CapacityFT3, :Warn, :TareKG, :TareLB, :RequestId
@@ -6886,7 +6886,7 @@ module TencentCloud
         # @type EncryptedBody: String
         # @param Encryption: 敏感数据加密信息
         # @type Encryption: :class:`Tencentcloud::Ocr.v20181119.models.Encryption`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Sex, :Nation, :Birth, :Address, :IdNum, :Authority, :ValidDate, :AdvancedInfo, :ReflectDetailInfos, :EncryptedBody, :Encryption, :RequestId
@@ -6993,7 +6993,7 @@ module TencentCloud
         # @type PreviousNumber: String
         # @param IssuedAuthority: 签发机关。
         # @type IssuedAuthority: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :PreviousNumber, :IssuedAuthority, :RequestId
@@ -7104,7 +7104,7 @@ module TencentCloud
         # @type MixedInvoiceItems: Array
         # @param TotalPDFCount: PDF文件总页码
         # @type TotalPDFCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MixedInvoiceItems, :TotalPDFCount, :RequestId
@@ -7183,7 +7183,7 @@ module TencentCloud
         # @type SpotName: String
         # @param VaccinationTime: 疫苗接种时间
         # @type VaccinationTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :IDNumber, :Time, :Color, :TestingInterval, :TestingResult, :TestingTime, :Vaccination, :SpotName, :VaccinationTime, :RequestId
@@ -7293,7 +7293,7 @@ module TencentCloud
         # @type Provinsi: String
         # @param Kota: 城市，Scene为V2时支持识别
         # @type Kota: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NIK, :Nama, :TempatTglLahir, :JenisKelamin, :GolDarah, :Alamat, :RTRW, :KelDesa, :Kecamatan, :Agama, :StatusPerkawinan, :Perkerjaan, :KewargaNegaraan, :BerlakuHingga, :IssuedDate, :Photo, :Provinsi, :Kota, :RequestId
@@ -7392,7 +7392,7 @@ module TencentCloud
         # @type MedicalInvoiceInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MedicalInvoiceInfos, :Angle, :RequestId
@@ -7456,7 +7456,7 @@ module TencentCloud
       class RecognizeOnlineTaxiItineraryOCRResponse < TencentCloud::Common::AbstractModel
         # @param OnlineTaxiItineraryInfos: 网约车行程单识别结果，具体内容请点击左侧链接。
         # @type OnlineTaxiItineraryInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OnlineTaxiItineraryInfos, :RequestId
@@ -7536,7 +7536,7 @@ module TencentCloud
         # @type AgencyCode: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
         # @param Birthday: 出生日期
         # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :Name, :LastName, :FirstName, :MiddleName, :Nationality, :Sex, :Address, :LicenseNo, :ExpiresDate, :AgencyCode, :Birthday, :RequestId
@@ -7651,7 +7651,7 @@ module TencentCloud
         # @type FullName: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
         # @param Birthday: 生日
         # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Birthday, :RequestId
@@ -7730,7 +7730,7 @@ module TencentCloud
         # @type Birthday: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
         # @param IssueDate: 发证日期
         # @type IssueDate: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :LicenseNumber, :FullName, :Address, :Birthday, :IssueDate, :RequestId
@@ -7816,7 +7816,7 @@ module TencentCloud
         # @type Sex: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
         # @param HeadPortrait: 人像照片Base64后的结果
         # @type HeadPortrait: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Surname, :MiddleName, :GivenName, :Address, :Birthday, :CRN, :Sex, :HeadPortrait, :RequestId
@@ -7921,7 +7921,7 @@ module TencentCloud
         # @type Address: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
         # @param PrecinctNo: 地区
         # @type PrecinctNo: :class:`Tencentcloud::Ocr.v20181119.models.TextDetectionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HeadPortrait, :VIN, :FirstName, :LastName, :Birthday, :CivilStatus, :Citizenship, :Address, :PrecinctNo, :RequestId
@@ -8024,7 +8024,7 @@ module TencentCloud
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，统一以逆时针方向旋转，逆时针为负，角度范围为-360°至0°。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
@@ -8099,7 +8099,7 @@ module TencentCloud
         # @type PdfPageSize: Integer
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，统一以逆时针方向旋转，逆时针为负，角度范围为-360°至0°。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TableDetections, :Data, :PdfPageSize, :Angle, :RequestId
@@ -8175,7 +8175,7 @@ module TencentCloud
         # @type EnLastName: String
         # @param PortraitImage: 证件人像照片抠取
         # @type PortraitImage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :Address, :Birthday, :IssueDate, :ExpirationDate, :EnLastName, :PortraitImage, :RequestId
@@ -8246,7 +8246,7 @@ module TencentCloud
         # @type RiskArea: Array
         # @param Telephone: 电话号码
         # @type Telephone: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Time, :Color, :ReachedCity, :RiskArea, :Telephone, :RequestId
@@ -8402,7 +8402,7 @@ module TencentCloud
         # @type RegistrationDate: String
         # @param FormerName: 曾用名
         # @type FormerName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HouseholdNumber, :Name, :Sex, :BirthPlace, :Nation, :NativePlace, :BirthDate, :IdCardNumber, :EducationDegree, :ServicePlace, :Household, :Address, :Signature, :IssueDate, :HomePageNumber, :HouseholderName, :Relationship, :OtherAddresses, :ReligiousBelief, :Height, :BloodType, :MaritalStatus, :VeteranStatus, :Profession, :MoveToCityInformation, :MoveToSiteInformation, :RegistrationDate, :FormerName, :RequestId
@@ -8506,7 +8506,7 @@ module TencentCloud
         # @type EndDate: String
         # @param ReleaseDate: 初始发证日期，对应网约车驾驶证字段：初始领证日期/发证日期
         # @type ReleaseDate: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :LicenseNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
@@ -8566,7 +8566,7 @@ module TencentCloud
         # @type EndDate: String
         # @param ReleaseDate: 初始发证日期，对应网约车运输证字段：初始领证日期/发证日期。
         # @type ReleaseDate: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OperationLicenseNumber, :VehicleOwner, :VehicleNumber, :StartDate, :EndDate, :ReleaseDate, :RequestId
@@ -8675,7 +8675,7 @@ module TencentCloud
         # 菱形印章：3
         # 三角形印章：4
         # @type SealShape: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SealBody, :Location, :OtherTexts, :SealInfos, :SealShape, :RequestId
@@ -8778,7 +8778,7 @@ module TencentCloud
         # @type ShipInvoiceInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ShipInvoiceInfos, :Angle, :RequestId
@@ -9195,7 +9195,7 @@ module TencentCloud
         # @type Angle: Float
         # @param StructuralItems: 识别信息
         # @type StructuralItems: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Angle, :StructuralItems, :RequestId
@@ -9296,7 +9296,7 @@ module TencentCloud
         # @type StructuralList: Array
         # @param WordList: 还原文本信息
         # @type WordList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Angle, :StructuralList, :WordList, :RequestId
@@ -9616,7 +9616,7 @@ module TencentCloud
         # @type TextDetections: Array
         # @param Data: Base64 编码后的 Excel 数据。
         # @type Data: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :Data, :RequestId
@@ -9721,7 +9721,7 @@ module TencentCloud
         # @param City: 市
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type City: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :InvoiceNum, :InvoiceCode, :Date, :Fare, :GetOnTime, :GetOffTime, :Distance, :Location, :PlateNumber, :InvoiceType, :Province, :City, :RequestId
@@ -9940,7 +9940,7 @@ module TencentCloud
       class TextDetectResponse < TencentCloud::Common::AbstractModel
         # @param HasText: 图片中是否包含文字。
         # @type HasText: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :HasText, :RequestId
@@ -10621,7 +10621,7 @@ module TencentCloud
         # @type TollInvoiceInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TollInvoiceInfos, :Angle, :RequestId
@@ -10835,7 +10835,7 @@ module TencentCloud
         # @type ReceiptNumber: String
         # @param IsReceipt: 仅供报销使用：1为是，0为否
         # @type IsReceipt: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TicketNum, :StartStation, :DestinationStation, :Date, :TrainNum, :Seat, :Name, :Price, :SeatCategory, :ID, :InvoiceType, :SerialNumber, :AdditionalCost, :HandlingFee, :LegalAmount, :TicketStation, :OriginalPrice, :InvoiceStyle, :ReceiptNumber, :IsReceipt, :RequestId
@@ -11969,7 +11969,7 @@ module TencentCloud
         # @type PdfPageSize: Integer
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VatInvoiceInfos, :Items, :PdfPageSize, :Angle, :RequestId
@@ -12204,7 +12204,7 @@ module TencentCloud
         # @type ElectronicTrainTicket: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicTrainTicket`
         # @param ElectronicAirTransport: 全电发票（航空运输电子客票行程单）详细字段信息。
         # @type ElectronicAirTransport: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicAirTransport`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :PassInvoiceInfoList, :ElectronicTrainTicket, :ElectronicAirTransport, :RequestId
@@ -12300,7 +12300,7 @@ module TencentCloud
         # @type VehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.VehicleInvoiceInfo`
         # @param UsedVehicleInvoiceInfo: 二手车销售统一发票信息
         # @type UsedVehicleInvoiceInfo: :class:`Tencentcloud::Ocr.v20181119.models.UsedVehicleInvoiceInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Invoice, :VehicleInvoiceInfo, :UsedVehicleInvoiceInfo, :RequestId
@@ -12398,7 +12398,7 @@ module TencentCloud
         # @type VatRollInvoiceInfos: Array
         # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，顺时针为正，逆时针为负。
         # @type Angle: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VatRollInvoiceInfos, :Angle, :RequestId
@@ -12586,7 +12586,7 @@ module TencentCloud
         # WARN_DRIVER_LICENSE_SCREENED_CARD 翻拍件告警
         # 注：告警信息可以同时存在多个
         # @type RecognizeWarnMsg: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FrontInfo, :BackInfo, :RecognizeWarnCode, :RecognizeWarnMsg, :RequestId
@@ -12676,7 +12676,7 @@ module TencentCloud
       class VehicleRegCertOCRResponse < TencentCloud::Common::AbstractModel
         # @param VehicleRegCertInfos: 机动车登记证书识别结果，具体内容请点击左侧链接。
         # @type VehicleRegCertInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VehicleRegCertInfos, :RequestId
@@ -12766,7 +12766,7 @@ module TencentCloud
         # @type AirTicketInfo: :class:`Tencentcloud::Ocr.v20181119.models.AirTicketInfo`
         # @param RailwayTicketInfo: 铁路电子客票
         # @type RailwayTicketInfo: :class:`Tencentcloud::Ocr.v20181119.models.RailwayTicketInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Type, :InvoiceCode, :InvoiceNumber, :IssueDate, :InvoiceCheckCode, :MachineNumber, :TaxControlCode, :Buyer, :Seller, :TaxInclusiveTotalAmount, :InvoiceClerk, :Payee, :Checker, :TaxTotalAmount, :TaxExclusiveTotalAmount, :Note, :GoodsInfos, :AirTicketInfo, :RailwayTicketInfo, :RequestId
@@ -12868,7 +12868,7 @@ module TencentCloud
       class VinOCRResponse < TencentCloud::Common::AbstractModel
         # @param Vin: 检测到的车辆 VIN 码。
         # @type Vin: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Vin, :RequestId
@@ -12927,7 +12927,7 @@ module TencentCloud
       class WaybillOCRResponse < TencentCloud::Common::AbstractModel
         # @param TextDetections: 检测到的文本信息，具体内容请点击左侧链接。
         # @type TextDetections: :class:`Tencentcloud::Ocr.v20181119.models.TextWaybill`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TextDetections, :RequestId

@@ -54,7 +54,7 @@ module TencentCloud
       class SendCodeVoiceResponse < TencentCloud::Common::AbstractModel
         # @param SendStatus: 语音验证码发送状态。
         # @type SendStatus: :class:`Tencentcloud::Vms.v20200902.models.SendStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SendStatus, :RequestId
@@ -136,7 +136,7 @@ module TencentCloud
       class SendTtsVoiceResponse < TencentCloud::Common::AbstractModel
         # @param SendStatus: 语音通知发送状态。
         # @type SendStatus: :class:`Tencentcloud::Vms.v20200902.models.SendStatus`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SendStatus, :RequestId

@@ -68,7 +68,7 @@ module TencentCloud
         # @type DenseFaceShapeSet: Array
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。本接口仅支持 “3.0“ 输入。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :DenseFaceShapeSet, :FaceModelVersion, :RequestId
@@ -154,7 +154,7 @@ module TencentCloud
         # @type FaceShapeSet: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceShapeSet, :FaceModelVersion, :RequestId
@@ -338,7 +338,7 @@ module TencentCloud
         # @type Score: Float
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :RequestId
@@ -427,7 +427,7 @@ module TencentCloud
         # @type Score: Float
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :RequestId
@@ -471,7 +471,7 @@ module TencentCloud
         # @type SucGroupNum: Integer
         # @param SucGroupIds: 成功加入的人员库列表
         # @type SucGroupIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SucGroupNum, :SucGroupIds, :RequestId
@@ -562,7 +562,7 @@ module TencentCloud
         # @type SucFaceRects: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SucFaceNum, :SucFaceIds, :RetCode, :SucIndexes, :SucFaceRects, :FaceModelVersion, :RequestId
@@ -641,7 +641,7 @@ module TencentCloud
       class CreateGroupResponse < TencentCloud::Common::AbstractModel
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FaceModelVersion, :RequestId
@@ -751,7 +751,7 @@ module TencentCloud
         # @type SimilarPersonId: String
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FaceId, :FaceRect, :SimilarPersonId, :FaceModelVersion, :RequestId
@@ -802,7 +802,7 @@ module TencentCloud
         # @type SucDeletedNum: Integer
         # @param SucFaceIds: 删除成功的人脸ID列表
         # @type SucFaceIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SucDeletedNum, :SucFaceIds, :RequestId
@@ -838,7 +838,7 @@ module TencentCloud
 
       # DeleteGroup返回参数结构体
       class DeleteGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -874,7 +874,7 @@ module TencentCloud
 
       # DeletePersonFromGroup返回参数结构体
       class DeletePersonFromGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -906,7 +906,7 @@ module TencentCloud
 
       # DeletePerson返回参数结构体
       class DeletePersonResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1164,7 +1164,7 @@ module TencentCloud
         # @type FaceDetailInfos: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceDetailInfos, :FaceModelVersion, :RequestId
@@ -1266,7 +1266,7 @@ module TencentCloud
         # @type FaceInfos: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ImageWidth, :ImageHeight, :FaceInfos, :FaceModelVersion, :RequestId
@@ -1335,7 +1335,7 @@ module TencentCloud
         # @type Score: Float
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :RequestId
@@ -1403,7 +1403,7 @@ module TencentCloud
         # @param IsLiveness: 活体检测是否通过。
         # 本字段只有FaceModelVersion为3.0时才具备参考意义。
         # @type IsLiveness: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :FaceModelVersion, :IsLiveness, :RequestId
@@ -2084,7 +2084,7 @@ module TencentCloud
         # @type FaceModelVersion: String
         # @param CreationTimestamp: Group的创建时间和日期。CreationTimestamp 的值是自 Unix 纪元时间到Group创建时间的毫秒数。
         # @type CreationTimestamp: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GroupName, :GroupId, :GroupExDescriptions, :Tag, :FaceModelVersion, :CreationTimestamp, :RequestId
@@ -2137,7 +2137,7 @@ module TencentCloud
         # @param GroupNum: 人员库总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GroupNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :GroupInfos, :GroupNum, :RequestId
@@ -2186,7 +2186,7 @@ module TencentCloud
         # @type Gender: Integer
         # @param FaceIds: 包含的人脸 ID 列表
         # @type FaceIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PersonName, :Gender, :FaceIds, :RequestId
@@ -2240,7 +2240,7 @@ module TencentCloud
         # @param FaceModelVersion: 人脸识别服务所用的算法模型版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PersonGroupInfos, :GroupNum, :FaceModelVersion, :RequestId
@@ -2289,7 +2289,7 @@ module TencentCloud
         # @type PersonNum: Integer
         # @param FaceNum: 人脸数量
         # @type FaceNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PersonNum, :FaceNum, :RequestId
@@ -2344,7 +2344,7 @@ module TencentCloud
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PersonInfos, :PersonNum, :FaceNum, :FaceModelVersion, :RequestId
@@ -2399,7 +2399,7 @@ module TencentCloud
         # @type JobInfos: Array
         # @param JobNum: 升级任务总数量。
         # @type JobNum: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobInfos, :JobNum, :RequestId
@@ -2463,7 +2463,7 @@ module TencentCloud
         # @type GroupId: String
         # @param FailedFacesUrl: 无法升级的人脸Id信息，文件格式为json。内容参见下方示例。url有效期为半小时。
         # @type FailedFacesUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EndTimestamp, :Progress, :Status, :StartTime, :FromFaceModelVersion, :ToFaceModelVersion, :GroupId, :FailedFacesUrl, :RequestId
@@ -2706,7 +2706,7 @@ module TencentCloud
 
       # ModifyGroup返回参数结构体
       class ModifyGroupResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2746,7 +2746,7 @@ module TencentCloud
 
       # ModifyPersonBaseInfo返回参数结构体
       class ModifyPersonBaseInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2793,7 +2793,7 @@ module TencentCloud
 
       # ModifyPersonGroupInfo返回参数结构体
       class ModifyPersonGroupInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3012,7 +3012,7 @@ module TencentCloud
 
       # RevertGroupFaceModelVersion返回参数结构体
       class RevertGroupFaceModelVersionResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3105,7 +3105,7 @@ module TencentCloud
         # @type FaceNum: Integer
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Results, :FaceNum, :FaceModelVersion, :RequestId
@@ -3212,7 +3212,7 @@ module TencentCloud
         # @type ResultsReturnsByGroup: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FaceNum, :ResultsReturnsByGroup, :FaceModelVersion, :RequestId
@@ -3319,7 +3319,7 @@ module TencentCloud
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Results, :PersonNum, :FaceModelVersion, :RequestId
@@ -3423,7 +3423,7 @@ module TencentCloud
         # @type ResultsReturnsByGroup: Array
         # @param FaceModelVersion: 人脸识别所用的算法模型版本。
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PersonNum, :ResultsReturnsByGroup, :FaceModelVersion, :RequestId
@@ -3474,7 +3474,7 @@ module TencentCloud
       class UpgradeGroupFaceModelVersionResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 升级任务ID，用于查询、获取升级的进度和结果。
         # @type JobId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobId, :RequestId
@@ -3589,7 +3589,7 @@ module TencentCloud
         # @type IsMatch: Boolean
         # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :IsMatch, :FaceModelVersion, :RequestId
@@ -3665,7 +3665,7 @@ module TencentCloud
         # @type IsMatch: Boolean
         # @param FaceModelVersion: 人脸识别所用的算法模型版本，是该 Person 所在的人员库的算法模型版本。在创建人员库时设置，详情可参考[算法模型版本](https://cloud.tencent.com/document/product/867/40042)
         # @type FaceModelVersion: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Score, :IsMatch, :FaceModelVersion, :RequestId

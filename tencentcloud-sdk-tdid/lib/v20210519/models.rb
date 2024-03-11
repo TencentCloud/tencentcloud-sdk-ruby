@@ -101,7 +101,7 @@ module TencentCloud
       class CreateDisclosedCredentialResponse < TencentCloud::Common::AbstractModel
         # @param CredentialData: 凭证字符串
         # @type CredentialData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CredentialData, :RequestId
@@ -168,7 +168,7 @@ module TencentCloud
       class CreatePresentationResponse < TencentCloud::Common::AbstractModel
         # @param PresentationData: 可验证表达内容
         # @type PresentationData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PresentationData, :RequestId
@@ -210,7 +210,7 @@ module TencentCloud
         # @type Did: String
         # @param Transaction: 链上交易信息
         # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Did, :Transaction, :RequestId
@@ -265,7 +265,7 @@ module TencentCloud
         # @type Did: String
         # @param Transaction: 链上交易信息
         # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Did, :Transaction, :RequestId
@@ -386,7 +386,7 @@ module TencentCloud
       class DeactivateTDidResponse < TencentCloud::Common::AbstractModel
         # @param Transaction: 上链交易信息
         # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Transaction, :RequestId
@@ -449,7 +449,7 @@ module TencentCloud
         # @param UserCounter: 用户创建资源的统计指标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserCounter: :class:`Tencentcloud::Tdid.v20210519.models.ResourceCounterData`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppCounter, :UserCounter, :RequestId
@@ -498,7 +498,7 @@ module TencentCloud
         # @param CredentialState: 凭证状态信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CredentialState: :class:`Tencentcloud::Tdid.v20210519.models.CredentialState`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CredentialState, :RequestId
@@ -545,7 +545,7 @@ module TencentCloud
         # @param ChainCnt: 部署网络子链总数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChainCnt: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppCounter, :UserCounter, :AppCnt, :DeployCnt, :ChainCnt, :RequestId
@@ -600,7 +600,7 @@ module TencentCloud
         # @param Did: DID标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Did: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Did, :RequestId
@@ -640,7 +640,7 @@ module TencentCloud
       class GetTDidDocumentResponse < TencentCloud::Common::AbstractModel
         # @param Document: DID文档内容
         # @type Document: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Document, :RequestId
@@ -680,7 +680,7 @@ module TencentCloud
       class GetTDidPubKeyResponse < TencentCloud::Common::AbstractModel
         # @param AuthPublicKeyList: DID公钥数组
         # @type AuthPublicKeyList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuthPublicKeyList, :RequestId
@@ -727,7 +727,7 @@ module TencentCloud
       class IssueCredentialResponse < TencentCloud::Common::AbstractModel
         # @param CredentialData: 可验证凭证内容
         # @type CredentialData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CredentialData, :RequestId
@@ -779,7 +779,7 @@ module TencentCloud
         # @type Description: String
         # @param RecognizeTime: 认证时间
         # @type RecognizeTime: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Name, :Did, :Status, :Description, :RecognizeTime, :RequestId
@@ -827,7 +827,7 @@ module TencentCloud
       class QueryCPTResponse < TencentCloud::Common::AbstractModel
         # @param CPTJson: 凭证模板内容
         # @type CPTJson: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CPTJson, :RequestId
@@ -919,7 +919,7 @@ module TencentCloud
       class SetTDidAttributeResponse < TencentCloud::Common::AbstractModel
         # @param Transaction: 上链交易信息
         # @type Transaction: :class:`Tencentcloud::Tdid.v20210519.models.ChainTransaction`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Transaction, :RequestId
@@ -963,7 +963,7 @@ module TencentCloud
         # @param Result: 更新是否成功
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :RequestId
@@ -1011,7 +1011,7 @@ module TencentCloud
         # @type VerifyCode: Integer
         # @param VerifyMessage: 验证结果信息
         # @type VerifyMessage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :VerifyCode, :VerifyMessage, :RequestId
@@ -1067,7 +1067,7 @@ module TencentCloud
         # @type VerifyCode: Integer
         # @param VerifyMessage: 验证消息
         # @type VerifyMessage: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Result, :VerifyCode, :VerifyMessage, :RequestId

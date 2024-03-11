@@ -70,7 +70,7 @@ module TencentCloud
         # @param ResultUrl: RspImgType 为 url 时，返回处理后的图片 url 数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
@@ -172,7 +172,7 @@ module TencentCloud
         # @type JobId: String
         # @param EstimatedProcessTime: 预估处理时间，粒度为秒
         # @type EstimatedProcessTime: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobId, :EstimatedProcessTime, :RequestId
@@ -236,7 +236,7 @@ module TencentCloud
 
       # CancelBeautifyVideoJob返回参数结构体
       class CancelBeautifyVideoJobResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -274,7 +274,7 @@ module TencentCloud
       class CreateModelResponse < TencentCloud::Common::AbstractModel
         # @param ModelId: 唇色素材ID。
         # @type ModelId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModelId, :RequestId
@@ -308,7 +308,7 @@ module TencentCloud
 
       # DeleteModel返回参数结构体
       class DeleteModelResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -377,7 +377,7 @@ module TencentCloud
         # @param ModelInfos: 素材数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ModelIdNum, :ModelInfos, :RequestId
@@ -487,7 +487,7 @@ module TencentCloud
         # @type BeautifyVideoOutput: :class:`Tencentcloud::Fmu.v20191213.models.BeautifyVideoOutput`
         # @param JobStatusCode: 当前任务状态码：1：排队中、3: 处理中、5: 处理失败、7:处理完成
         # @type JobStatusCode: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobStatus, :BeautifyVideoOutput, :JobStatusCode, :RequestId
@@ -584,7 +584,7 @@ module TencentCloud
         # @param ResultUrl: RspImgType 为 url 时，返回处理后的图片 url 数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
@@ -648,7 +648,7 @@ module TencentCloud
         # @param ResultUrl: RspImgType 为 url 时，返回处理后的图片 url 数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId
@@ -713,7 +713,7 @@ module TencentCloud
         # @type ResultImage: String
         # @param ResultUrl: RspImgType 为 url 时，返回处理后的图片 url 数据。
         # @type ResultUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ResultImage, :ResultUrl, :RequestId

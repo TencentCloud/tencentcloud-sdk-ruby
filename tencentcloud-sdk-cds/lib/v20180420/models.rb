@@ -154,7 +154,7 @@ module TencentCloud
         # @type BaseImageId: String
         # @param AiImageId: AI镜像ID
         # @type AiImageId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BaseImageId, :AiImageId, :RequestId
@@ -187,7 +187,7 @@ module TencentCloud
       class DescribeDbauditInstanceTypeResponse < TencentCloud::Common::AbstractModel
         # @param DbauditTypesSet: 数据安全审计产品规格信息列表
         # @type DbauditTypesSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DbauditTypesSet, :RequestId
@@ -240,7 +240,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param CdsAuditInstanceSet: 数据安全审计实例信息列表
         # @type CdsAuditInstanceSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :CdsAuditInstanceSet, :RequestId
@@ -280,7 +280,7 @@ module TencentCloud
       class DescribeDbauditUsedRegionsResponse < TencentCloud::Common::AbstractModel
         # @param RegionSet: 可售卖地域信息列表
         # @type RegionSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RegionSet, :RequestId
@@ -341,7 +341,7 @@ module TencentCloud
         # @type TotalPrice: Float
         # @param RealTotalCost: 真实价钱，预支费用的折扣价，单位：元
         # @type RealTotalCost: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalPrice, :RealTotalCost, :RequestId
@@ -381,7 +381,7 @@ module TencentCloud
 
       # ModifyDbauditInstancesRenewFlag返回参数结构体
       class ModifyDbauditInstancesRenewFlagResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId

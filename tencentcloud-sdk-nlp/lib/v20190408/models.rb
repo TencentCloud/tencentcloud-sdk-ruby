@@ -46,7 +46,7 @@ module TencentCloud
         # negative：负面情感
         # neutral：中性、无情感
         # @type Sentiment: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Positive, :Neutral, :Negative, :Sentiment, :RequestId
@@ -157,7 +157,7 @@ module TencentCloud
         # @param ThirdClassification: 三级分类。（请参见附录[三级分类体系表](https://cloud.tencent.com/document/product/271/94286)）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdClassification: :class:`Tencentcloud::Nlp.v20190408.models.Category`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FirstClassification, :SecondClassification, :ThirdClassification, :RequestId
@@ -214,7 +214,7 @@ module TencentCloud
         # @type Content: Array
         # @param RandomCause: 当对联随机生成时，展示随机生成原因。
         # @type RandomCause: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TopScroll, :Content, :RandomCause, :RequestId
@@ -264,7 +264,7 @@ module TencentCloud
         # @type Title: String
         # @param Content: 诗的内容。
         # @type Content: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Title, :Content, :RequestId
@@ -448,7 +448,7 @@ module TencentCloud
       class EvaluateSentenceSimilarityResponse < TencentCloud::Common::AbstractModel
         # @param ScoreList: 每个句子对的相似度分值。
         # @type ScoreList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ScoreList, :RequestId
@@ -488,7 +488,7 @@ module TencentCloud
       class EvaluateWordSimilarityResponse < TencentCloud::Common::AbstractModel
         # @param Similarity: 词相似度分值。
         # @type Similarity: Float
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Similarity, :RequestId
@@ -536,7 +536,7 @@ module TencentCloud
       class GenerateKeywordSentenceResponse < TencentCloud::Common::AbstractModel
         # @param KeywordSentenceList: 生成的句子列表。
         # @type KeywordSentenceList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeywordSentenceList, :RequestId
@@ -601,7 +601,7 @@ module TencentCloud
         # @type CompoundParticiples: Array
         # @param Entities: 实体识别结果。（请参见附录[实体类型数据](https://cloud.tencent.com/document/product/271/90592)）
         # @type Entities: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :NormalText, :BasicParticiples, :CompoundParticiples, :Entities, :RequestId
@@ -668,7 +668,7 @@ module TencentCloud
       class RetrieveSimilarWordsResponse < TencentCloud::Common::AbstractModel
         # @param WordList: 召回的相似词数组。
         # @type WordList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :WordList, :RequestId
@@ -705,7 +705,7 @@ module TencentCloud
         # @param CorrectionList: 纠错结果列表。
         # （注意仅展示错误句子的纠错结果，若句子无错则不展示，若全部待纠错句子都被认为无错，则可能返回数组为空）
         # @type CorrectionList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CorrectionList, :RequestId
@@ -789,7 +789,7 @@ module TencentCloud
       class TextEmbellishResponse < TencentCloud::Common::AbstractModel
         # @param EmbellishList: 润色结果列表。
         # @type EmbellishList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :EmbellishList, :RequestId
@@ -859,7 +859,7 @@ module TencentCloud
       class TextWritingResponse < TencentCloud::Common::AbstractModel
         # @param WritingList: 续写结果列表。
         # @type WritingList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :WritingList, :RequestId

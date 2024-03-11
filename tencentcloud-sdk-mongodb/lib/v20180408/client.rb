@@ -29,8 +29,7 @@ module TencentCloud
         end
 
 
-        # 本接口(AssignProject)用于指定云数据库实例的所属项目。
-
+        # 本接口（AssignProject）用于指定云数据库实例的所属项目。
 
         # @param request: Request instance for AssignProject.
         # @type request: :class:`Tencentcloud::mongodb::V20180408::AssignProjectRequest`
@@ -246,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SetPassword)用于设置云数据库账户的密码。
+        # 本接口(SetPassword)用于设置（初始化）MongoDB云数据库实例账户密码。
 
 
         # @param request: Request instance for SetPassword.
@@ -271,7 +270,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
+        # 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例。
 
         # @param request: Request instance for TerminateDBInstance.
         # @type request: :class:`Tencentcloud::mongodb::V20180408::TerminateDBInstanceRequest`

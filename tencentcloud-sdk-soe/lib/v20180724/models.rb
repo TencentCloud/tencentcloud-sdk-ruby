@@ -114,7 +114,7 @@ module TencentCloud
       class InitOralProcessResponse < TencentCloud::Common::AbstractModel
         # @param SessionId: 语音段唯一标识，一个完整语音一个SessionId
         # @type SessionId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SessionId, :RequestId
@@ -233,7 +233,7 @@ module TencentCloud
         # @type KeywordScores: Array
         # @param SessionId: 语音段唯一标识，一段完整语音使用一个SessionId，不同语音段的评测需要使用不同的SessionId。一般使用uuid(通用唯一识别码)来作为它的值，要尽量保证SessionId的唯一性。
         # @type SessionId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :KeywordScores, :SessionId, :RequestId
@@ -520,7 +520,7 @@ module TencentCloud
         # @param UnKeyWordHits: 负向主题词命中标志，0表示没命中，1表示命中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnKeyWordHits: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
@@ -656,8 +656,8 @@ module TencentCloud
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
         extend Gem::Deprecate
-        deprecate :StorageMode, :none, 2024, 2
-        deprecate :StorageMode=, :none, 2024, 2
+        deprecate :StorageMode, :none, 2024, 3
+        deprecate :StorageMode=, :none, 2024, 3
 
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
@@ -733,13 +733,13 @@ module TencentCloud
         # @param UnKeyWordHits: 负向主题词命中标志，0表示没命中，1表示命中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnKeyWordHits: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         extend Gem::Deprecate
-        deprecate :AudioUrl, :none, 2024, 2
-        deprecate :AudioUrl=, :none, 2024, 2
+        deprecate :AudioUrl, :none, 2024, 3
+        deprecate :AudioUrl=, :none, 2024, 3
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

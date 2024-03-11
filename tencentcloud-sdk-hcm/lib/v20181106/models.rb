@@ -48,8 +48,8 @@ module TencentCloud
 
         attr_accessor :SessionId, :Image, :HcmAppid, :Url, :SupportHorizontalImage, :RejectNonArithmeticImage, :IsAsync, :EnableDispRelatedVertical, :EnableDispMidresult, :EnablePdfRecognize, :PdfPageIndex, :LaTex, :RejectVagueArithmetic
         extend Gem::Deprecate
-        deprecate :IsAsync, :none, 2023, 11
-        deprecate :IsAsync=, :none, 2023, 11
+        deprecate :IsAsync, :none, 2024, 3
+        deprecate :IsAsync=, :none, 2024, 3
 
         def initialize(sessionid=nil, image=nil, hcmappid=nil, url=nil, supporthorizontalimage=nil, rejectnonarithmeticimage=nil, isasync=nil, enabledisprelatedvertical=nil, enabledispmidresult=nil, enablepdfrecognize=nil, pdfpageindex=nil, latex=nil, rejectvaguearithmetic=nil)
           @SessionId = sessionid
@@ -93,13 +93,13 @@ module TencentCloud
         # @type Items: Array
         # @param TaskId: 任务 id，用于查询接口
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SessionId, :Items, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2023, 11
-        deprecate :TaskId=, :none, 2023, 11
+        deprecate :TaskId, :none, 2024, 3
+        deprecate :TaskId=, :none, 2024, 3
 
         def initialize(sessionid=nil, items=nil, taskid=nil, requestid=nil)
           @SessionId = sessionid

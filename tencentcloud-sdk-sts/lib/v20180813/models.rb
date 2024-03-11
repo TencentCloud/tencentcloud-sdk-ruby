@@ -106,7 +106,7 @@ module TencentCloud
         # @type ExpiredTime: Integer
         # @param Expiration: 临时访问凭证的过期时间，以 iso8601 格式的 UTC 时间表示
         # @type Expiration: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
@@ -169,7 +169,7 @@ module TencentCloud
         # @type ExpiredTime: Integer
         # @param Expiration: 临时访问凭证的过期时间，以 ISO8601 格式的 UTC 时间表示
         # @type Expiration: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
@@ -232,7 +232,7 @@ module TencentCloud
         # @type Expiration: String
         # @param Credentials: 临时访问凭证
         # @type Credentials: :class:`Tencentcloud::Sts.v20180813.models.Credentials`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ExpiredTime, :Expiration, :Credentials, :RequestId
@@ -307,7 +307,7 @@ module TencentCloud
         # @type PrincipalId: String
         # @param Type: 身份类型。
         # @type Type: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Arn, :AccountId, :UserId, :PrincipalId, :Type, :RequestId
@@ -367,7 +367,7 @@ module TencentCloud
         # @param Expiration: 临时访问凭证有效的时间，以 iso8601 格式的 UTC 时间表示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Expiration: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Credentials, :ExpiredTime, :Expiration, :RequestId
@@ -410,7 +410,7 @@ module TencentCloud
       class QueryApiKeyResponse < TencentCloud::Common::AbstractModel
         # @param IdKeys: 密钥ID列表
         # @type IdKeys: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IdKeys, :RequestId

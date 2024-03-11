@@ -345,7 +345,7 @@ module TencentCloud
       class DescribeKBComponentResponse < TencentCloud::Common::AbstractModel
         # @param Component: 匹配的组件信息
         # @type Component: :class:`Tencentcloud::Bsca.v20210811.models.Component`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Component, :RequestId
@@ -387,7 +387,7 @@ module TencentCloud
       class DescribeKBComponentVersionListResponse < TencentCloud::Common::AbstractModel
         # @param VersionList: 该组件的版本列表信息
         # @type VersionList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VersionList, :RequestId
@@ -434,7 +434,7 @@ module TencentCloud
         # @param VulnerabilityList: 漏洞信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VulnerabilityList, :RequestId
@@ -480,7 +480,7 @@ module TencentCloud
         # @type LicenseList: Array
         # @param NormalizedLicenseExpression: 用于匹配的License表达式
         # @type NormalizedLicenseExpression: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :LicenseList, :NormalizedLicenseExpression, :RequestId
@@ -538,7 +538,7 @@ module TencentCloud
         # @param VulnerabilityDetailList: 漏洞详细信息列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityDetailList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VulnerabilityDetailList, :RequestId
@@ -718,7 +718,7 @@ module TencentCloud
         # @type PURLList: Array
         # @param Hit: 是否命中数据库。
         # @type Hit: Boolean
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :PURLList, :Hit, :RequestId
@@ -841,7 +841,7 @@ module TencentCloud
         # @type ComponentList: Array
         # @param Total: 满足搜索条件的总个数
         # @type Total: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ComponentList, :Total, :RequestId
