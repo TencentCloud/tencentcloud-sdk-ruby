@@ -682,7 +682,7 @@ module TencentCloud
         # @param Status: 绑定是否成功。
         # <ul><li>**0**：失败</li><li>**1**：成功</li></ul>
         # @type Status: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
@@ -806,7 +806,7 @@ module TencentCloud
 
       # CancelFlow返回参数结构体
       class CancelFlowResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -854,7 +854,7 @@ module TencentCloud
 
       # CancelMultiFlowSignQRCode返回参数结构体
       class CancelMultiFlowSignQRCodeResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -910,7 +910,7 @@ module TencentCloud
 
       # CancelUserAutoSignEnableUrl返回参数结构体
       class CancelUserAutoSignEnableUrlResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1310,7 +1310,7 @@ module TencentCloud
 
         # 例如:2023-07-28 17:25:59
         # @type UrlExpireOn: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :BatchCancelFlowUrl, :FailMessages, :UrlExpireOn, :RequestId
@@ -1419,7 +1419,7 @@ module TencentCloud
       class CreateBatchQuickSignUrlResponse < TencentCloud::Common::AbstractModel
         # @param FlowApproverUrlInfo: 签署人签署链接信息
         # @type FlowApproverUrlInfo: :class:`Tencentcloud::Ess.v20201111.models.FlowApproverUrlInfo`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowApproverUrlInfo, :RequestId
@@ -1546,7 +1546,7 @@ module TencentCloud
         # 1. 小程序和APP集成使用
         # 2. <font color="red">生成的链路后面不能再增加参数</font>（会出现覆盖链接中已有参数导致错误）
         # @type MiniAppPath: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SignUrl, :ExpiredTime, :MiniAppPath, :RequestId
@@ -1635,7 +1635,7 @@ module TencentCloud
       class CreateConvertTaskApiResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 接口返回的文件转换任务Id，可以调用接口<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/GetTaskResultApi" target="_blank">查询转换任务状态</a>获取转换任务的状态和转换后的文件资源Id。
         # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :RequestId
@@ -1745,7 +1745,7 @@ module TencentCloud
         # @param Approvers: 签署方信息，如角色ID、角色名称等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DocumentId, :PreviewFileUrl, :Approvers, :RequestId
@@ -1854,7 +1854,7 @@ module TencentCloud
         # @param WebUrl: 嵌入的web链接，有效期：5分钟
         # <br/>EmbedType=PREVIEW_CC_FLOW，该url为h5链接
         # @type WebUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :WebUrl, :RequestId
@@ -1911,7 +1911,7 @@ module TencentCloud
 
       # CreateExtendedServiceAuthInfos返回参数结构体
       class CreateExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -1993,7 +1993,7 @@ module TencentCloud
         # 注:`目前仅补充动态签署人时会返回补充失败的原因`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FillError: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FillError, :RequestId
@@ -2216,7 +2216,7 @@ module TencentCloud
         # @param Approvers: 签署方信息，如角色ID、角色名称等
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Approvers: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowId, :PreviewUrl, :Approvers, :RequestId
@@ -2297,7 +2297,7 @@ module TencentCloud
         # 出证的PDF下载地址请调用DescribeChannelFlowEvidenceReport接口获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReportUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ReportId, :Status, :ReportUrl, :RequestId
@@ -2383,7 +2383,7 @@ module TencentCloud
         # @param FlowIds: 合同(流程)组中子合同列表.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowGroupId, :FlowIds, :RequestId
@@ -2464,7 +2464,7 @@ module TencentCloud
         # @param FlowIds: 合同(流程)组中子合同列表.
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowGroupId, :FlowIds, :RequestId
@@ -2543,7 +2543,7 @@ module TencentCloud
 
       # CreateFlowGroupSignReview返回参数结构体
       class CreateFlowGroupSignReviewResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -2663,7 +2663,7 @@ module TencentCloud
       class CreateFlowRemindsResponse < TencentCloud::Common::AbstractModel
         # @param RemindFlowRecords: 合同催办结果的详细信息列表。
         # @type RemindFlowRecords: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RemindFlowRecords, :RequestId
@@ -2844,7 +2844,7 @@ module TencentCloud
         # 此返回的合同流程ID，需再次调用<a href="https://qian.tencent.com/developers/companyApis/startFlows/CreateDocument" target="_blank">创建电子文档</a>和<a href="https://qian.tencent.com/developers/companyApis/startFlows/StartFlow" target="_blank">发起签署流程</a>接口将合同开始后，合同才能进入签署环节，[点击查看FlowId在控制台中的位置（只在进入签署环节后有效）](https://qcloudimg.tencent-cloud.cn/raw/0a83015166cfe1cb043d14f9ec4bd75e.png)
 
         # @type FlowId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
@@ -2924,7 +2924,7 @@ module TencentCloud
 
       # CreateFlowSignReview返回参数结构体
       class CreateFlowSignReviewResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -3014,7 +3014,7 @@ module TencentCloud
       class CreateFlowSignUrlResponse < TencentCloud::Common::AbstractModel
         # @param FlowApproverUrlInfos: 签署人签署链接信息
         # @type FlowApproverUrlInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowApproverUrlInfos, :RequestId
@@ -3090,7 +3090,7 @@ module TencentCloud
       class CreateIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
         # @param DeptId: 电子签部门ID。建议开发者保存此部门ID，方便后续查询或修改部门信息。
         # @type DeptId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeptId, :RequestId
@@ -3111,20 +3111,28 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待创建员工的信息，最多不超过20个。
-        # 其中入参Mobile和DisplayName必填，OpenId、Email和Department.DepartmentId选填，其他字段暂不支持设置。
-        # 在创建企微企业员工场景下，只需传入WeworkOpenId，无需再传其他信息。
+        # @param Employees: 待创建员工的信息最多不超过20个。
+
+        # **1. 在创建企业微信员工的场景下** :  只需传入下面的参数，其他信息不支持设置。
+        # <table> <thead> <tr> <th>参数</th> <th>是否必填</th> <th>含义</th> </tr> </thead> <tbody> <tr> <td>WeworkOpenId</td> <td>是</td> <td>企业微信用户账号ID</td> </tr> </tbody> </table>
+
+        # **2. 在其他场景下** :   只需传入下面的参数，其他信息不支持设置。
+        # <table> <thead> <tr> <th>参数</th> <th>是否必填</th> <th>含义</th> </tr> </thead> <tbody> <tr> <td>DisplayName</td> <td>是</td> <td>用户的真实名字</td> </tr> <tr> <td>Mobile</td> <td>是</td> <td>用户手机号码</td> </tr> <tr> <td>OpenId</td> <td>否</td> <td>用户的自定义ID</td> </tr> <tr> <td>Email</td> <td>否</td> <td>用户的邮箱</td> </tr> <tr> <td>Department.DepartmentId</td> <td>否</td> <td>用户加入后的部门ID</td> </tr> </tbody> </table>
+
+
+        # 注: `每个手机号每天最多使用3次`
         # @type Employees: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param InvitationNotifyType: 员工邀请方式
-        # 如果是来自H5的，参数需要传递H5
-        # 短信或者企微 请传递SMS，或者不传递
+        # @param InvitationNotifyType: 员工邀请方式可通过以下方式进行设置：
+
+        # **H5**：会生成H5的链接，点击链接进入H5的认证加入企业的逻辑。
+        # **SMS（默认）**：会通过短信或企业微信消息进行邀请。如果非企业微信场景，则是企业微信消息。其他场景则是短信通知，短信中包含链接，点击后进入微信小程序进行认证加入企业的逻辑。
         # @type InvitationNotifyType: String
-        # @param JumpUrl: 回跳地址，
-        # 在认证成功之后，进行回跳，请保证回跳地址的可用性。
-        # 使用前请联系对接的客户经理沟通，提供回跳地址的域名，进行域名配置
+        # @param JumpUrl: 回跳地址，为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
+
+        # 注：`只有在员工邀请方式（InvitationNotifyType参数）为H5场景下才生效， 其他方式下设置无效。`
         # @type JumpUrl: String
 
         attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl
@@ -3163,7 +3171,7 @@ module TencentCloud
       class CreateIntegrationEmployeesResponse < TencentCloud::Common::AbstractModel
         # @param CreateEmployeeResult: 创建员工的结果。包含创建成功的数据与创建失败数据。
         # @type CreateEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.CreateStaffResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :CreateEmployeeResult, :RequestId
@@ -3244,7 +3252,7 @@ module TencentCloud
       class CreateIntegrationRoleResponse < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
         # @type RoleId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleId, :RequestId
@@ -3298,7 +3306,7 @@ module TencentCloud
       class CreateIntegrationUserRolesResponse < TencentCloud::Common::AbstractModel
         # @param FailedCreateRoleData: 绑定角色失败列表信息
         # @type FailedCreateRoleData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FailedCreateRoleData, :RequestId
@@ -3428,7 +3436,7 @@ module TencentCloud
         # @type QrCode: :class:`Tencentcloud::Ess.v20201111.models.SignQrCode`
         # @param SignUrls: 一码多签签署码的链接信息，适用于客户系统整合二维码功能。通过链接，用户可直接访问电子签名小程序并签署合同。
         # @type SignUrls: :class:`Tencentcloud::Ess.v20201111.models.SignUrl`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :QrCode, :SignUrls, :RequestId
@@ -3512,7 +3520,7 @@ module TencentCloud
         # @type SignUrl: String
         # @param ExpiredTime: 链接过期截止时间，格式为Unix标准时间戳（秒），默认为7天后截止。
         # @type ExpiredTime: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SignUrl, :ExpiredTime, :RequestId
@@ -3569,7 +3577,7 @@ module TencentCloud
         # @type Url: String
         # @param ExpiredTime: 链接过期时间。链接7天有效。
         # @type ExpiredTime: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Url, :ExpiredTime, :RequestId
@@ -3663,7 +3671,7 @@ module TencentCloud
         # 该时间格式化后会合成到个人用户证书证明图片
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidTo: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuthCertUrl, :ImageCertId, :SerialNumber, :ValidFrom, :ValidTo, :RequestId
@@ -3844,7 +3852,7 @@ module TencentCloud
         # @type Url: String
         # @param FlowId: 创建的合同id（还未实际发起），每次调用会生成新的id，用户可以记录此字段对应后续页面发起的合同，若在页面上未成功发起，则此字段无效。
         # @type FlowId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Url, :FlowId, :RequestId
@@ -3973,7 +3981,7 @@ module TencentCloud
         # @param SealId: 导入生成的印章ID，为32位字符串。
         # 建议开发者保存此印章ID，开头实名认证后，通过此 ID查询导入的印章。
         # @type SealId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
@@ -4062,7 +4070,7 @@ module TencentCloud
         # @param FlowId: 解除协议流程编号
         # `注意：这里的流程编号对应的合同是本次发起的解除协议。`
         # @type FlowId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowId, :RequestId
@@ -4198,7 +4206,7 @@ module TencentCloud
         # @type SchemeUrl: String
         # @param SchemeQrcodeUrl: 二维码，在生成动态签署人跳转封面页链接时返回
         # @type SchemeQrcodeUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SchemeUrl, :SchemeQrcodeUrl, :RequestId
@@ -4278,7 +4286,7 @@ module TencentCloud
         # @param UserIds: 最终授权成功的用户ID，在腾讯电子签平台的唯一身份标识，为32位字符串。
         # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         # @type UserIds: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :UserIds, :RequestId
@@ -4418,7 +4426,7 @@ module TencentCloud
         # 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
         # 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         # @type SealId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SealId, :RequestId
@@ -4554,7 +4562,7 @@ module TencentCloud
         # <ul><li> 空: 默认小程序端链接</li>
         # <li> **H5SIGN** : h5端链接</li></ul>
         # @type UrlType: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Url, :AppId, :AppOriginalId, :Path, :QrCode, :UrlType, :RequestId
@@ -4636,7 +4644,7 @@ module TencentCloud
         # @type Path: String
         # @param QrCode: base64格式的跳转二维码图片，可通过微信扫描后跳转到腾讯电子签小程序的开通界面。
         # @type QrCode: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AppId, :AppOriginalId, :Url, :Path, :QrCode, :RequestId
@@ -4702,7 +4710,7 @@ module TencentCloud
 
       # CreateWebThemeConfig返回参数结构体
       class CreateWebThemeConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4757,7 +4765,7 @@ module TencentCloud
 
       # DeleteExtendedServiceAuthInfos返回参数结构体
       class DeleteExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4810,7 +4818,7 @@ module TencentCloud
 
       # DeleteIntegrationDepartment返回参数结构体
       class DeleteIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -4829,9 +4837,11 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写UserId。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 待移除员工的信息。应符合以下规则：
-        # <ul><li>UserId和OpenId不可同时为空。</li>
-        # <li>若需要进行离职交接，交接人信息ReceiveUserId和ReceiveOpenId不可同时为空。否则视为不进行离职交接。</li></ul>
+        # @param Employees: 待离职员工的信息最多不超过100个。应符合以下规则：
+
+        # 1. UserId和OpenId不可同时为空，必须填写其中一个，优先使用UserId。
+
+        # 2. **若需要进行离职交接**，交接人信息ReceiveUserId和ReceiveOpenId不可同时为空，必须填写其中一个，优先使用ReceiveUserId。
         # @type Employees: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -4871,7 +4881,7 @@ module TencentCloud
         # <ul><li>**成功数据**：展示员工姓名、手机号与电子签平台UserId</li>
         # <li>**失败数据**：展示员工电子签平台UserId、第三方平台OpenId和失败原因</li></ul>
         # @type DeleteEmployeeResult: :class:`Tencentcloud::Ess.v20201111.models.DeleteStaffsResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DeleteEmployeeResult, :RequestId
@@ -4935,7 +4945,7 @@ module TencentCloud
       class DeleteIntegrationRoleUsersResponse < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
         # @type RoleId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleId, :RequestId
@@ -4997,7 +5007,7 @@ module TencentCloud
 
       # DeleteSealPolicies返回参数结构体
       class DeleteSealPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -5130,7 +5140,7 @@ module TencentCloud
         # @type Total: Integer
         # @param Details: 消耗详情
         # @type Details: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :Details, :RequestId
@@ -5203,7 +5213,7 @@ module TencentCloud
       class DescribeExtendedServiceAuthDetailResponse < TencentCloud::Common::AbstractModel
         # @param AuthInfoDetail: 服务授权的信息列表，根据查询类型返回特定扩展服务的授权状况。
         # @type AuthInfoDetail: :class:`Tencentcloud::Ess.v20201111.models.AuthInfoDetail`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuthInfoDetail, :RequestId
@@ -5271,7 +5281,7 @@ module TencentCloud
       class DescribeExtendedServiceAuthInfosResponse < TencentCloud::Common::AbstractModel
         # @param AuthInfoList: 服务开通和授权的信息列表，根据查询类型返回所有支持的扩展服务开通和授权状况，或者返回特定扩展服务的开通和授权状况。
         # @type AuthInfoList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :AuthInfoList, :RequestId
@@ -5388,7 +5398,7 @@ module TencentCloud
         # @type FileUrls: Array
         # @param TotalCount: URL数量
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FileUrls, :TotalCount, :RequestId
@@ -5455,7 +5465,7 @@ module TencentCloud
         # @param FlowBriefs: 合同流程基础信息列表，包含流程的名称、状态、创建日期等基本信息。
         # 注：`与入参 FlowIds 的顺序可能存在不一致的情况。`
         # @type FlowBriefs: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowBriefs, :RequestId
@@ -5517,7 +5527,7 @@ module TencentCloud
         # @param RecipientComponentInfos: 合同流程关联的填写控件信息，按照参与方进行分类返回。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecipientComponentInfos: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RecipientComponentInfos, :RequestId
@@ -5589,7 +5599,7 @@ module TencentCloud
         # <li>**EvidenceStatusSuccess**：  出证任务执行成功</li>
         # <li>**EvidenceStatusFailed** ： 出征任务执行失败</li></ul>
         # @type Status: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ReportUrl, :Status, :RequestId
@@ -5656,7 +5666,7 @@ module TencentCloud
         # @type FlowGroupId: String
         # @param FlowGroupName: 合同组名称，只有在查询合同组信息时才会返回。
         # @type FlowGroupName: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FlowDetailInfos, :FlowGroupId, :FlowGroupName, :RequestId
@@ -5782,7 +5792,7 @@ module TencentCloud
         # @type Templates: Array
         # @param TotalCount: 查询到的模板总数
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Templates, :TotalCount, :RequestId
@@ -5855,7 +5865,7 @@ module TencentCloud
       class DescribeIntegrationDepartmentsResponse < TencentCloud::Common::AbstractModel
         # @param Departments: 部门信息列表。部门信息根据部门排序号OrderNo降序排列，根据部门创建时间升序排列。
         # @type Departments: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Departments, :RequestId
@@ -5946,7 +5956,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param TotalCount: 符合条件的员工数量。
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Employees, :Offset, :Limit, :TotalCount, :RequestId
@@ -6051,7 +6061,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param IntegrateRoles: 企业角色信息列表。
         # @type IntegrateRoles: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Offset, :Limit, :TotalCount, :IntegrateRoles, :RequestId
@@ -6152,7 +6162,7 @@ module TencentCloud
         # @param ActivatedTotal: 已加入的子企业总数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivatedTotal: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Total, :JoinedTotal, :ActivedTotal, :ExportUrl, :List, :ActivatedTotal, :RequestId
@@ -6269,7 +6279,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Seals: 查询到的印章结果数组
         # @type Seals: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Seals, :RequestId
@@ -6341,7 +6351,7 @@ module TencentCloud
       class DescribePersonCertificateResponse < TencentCloud::Common::AbstractModel
         # @param Cert: 证书的Base64
         # @type Cert: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Cert, :RequestId
@@ -6403,7 +6413,7 @@ module TencentCloud
         # @param IntentionActionResult: 意愿核身点头确认模式的结果信息，若未使用该意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionActionResult: :class:`Tencentcloud::Ess.v20201111.models.IntentionActionResult`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VideoData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
@@ -6471,7 +6481,7 @@ module TencentCloud
         # <li> **VERIFIED** : 此个人已实名</li>
         # <li> **UNVERIFIED**: 此个人未实名</li></ul>
         # @type VerifyStatus: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VerifyStatus, :RequestId
@@ -6543,7 +6553,7 @@ module TencentCloud
 
         # <ul><li>**0**: 使用个人自动签账号许可进行开通，个人自动签账号许可有效期1年，注: `不可解绑释放更换他人`</li></ul>
         # @type LicenseType: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :IsOpen, :LicenseFrom, :LicenseTo, :LicenseType, :RequestId
@@ -6626,7 +6636,7 @@ module TencentCloud
 
       # DisableUserAutoSign返回参数结构体
       class DisableUserAutoSignResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8046,7 +8056,7 @@ module TencentCloud
         # @type TaskMessage: String
         # @param ResourceId: 资源Id（即FileId），用于[用PDF文件创建签署流程](https://qian.tencent.com/developers/companyApis/startFlows/CreateFlowByFiles)
         # @type ResourceId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskId, :TaskStatus, :TaskMessage, :ResourceId, :RequestId
@@ -8507,7 +8517,7 @@ module TencentCloud
 
       # ModifyApplicationCallbackInfo返回参数结构体
       class ModifyApplicationCallbackInfoResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8587,7 +8597,7 @@ module TencentCloud
         # 当操作类型是 OPEN 且 扩展服务类型是  OPEN_SERVER_SIGN 或者 OVERSEA_SIGN 时返回操作链接，
         # 返回的链接当前操作人（超管或法人）点击链接完成服务开通操作。
         # @type OperateUrl: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :OperateUrl, :RequestId
@@ -8649,7 +8659,7 @@ module TencentCloud
 
       # ModifyFlowDeadline返回参数结构体
       class ModifyFlowDeadlineResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8713,7 +8723,7 @@ module TencentCloud
 
       # ModifyIntegrationDepartment返回参数结构体
       class ModifyIntegrationDepartmentResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RequestId
@@ -8788,7 +8798,7 @@ module TencentCloud
       class ModifyIntegrationRoleResponse < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
         # @type RoleId: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :RoleId, :RequestId
@@ -9683,7 +9693,7 @@ module TencentCloud
         # <li> **REVIEW** : 提交审核成功, 合同需要发起审核, 发起方企业通过接口审核通过后合同才进入签署环境  `白名单功能，使用前请联系对接的客户经理沟通。`</li>
         # <li> **EXECUTING** : 已提交发起任务且PDF合同正在合成中, 等PDF合同合成成功后进入签署环节</li></ul>
         # @type Status: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
@@ -10056,7 +10066,7 @@ module TencentCloud
         # <ul><li> **0**：失败 </li>
         # <li> **1**：成功 </li></ul>
         # @type Status: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Status, :RequestId
@@ -10077,20 +10087,22 @@ module TencentCloud
         # @param Operator: 执行本接口操作的员工信息,UserId必填。
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param Employees: 员工信息，不超过100个。
-        # 根据UserId或OpenId更新员工，必填一个，优先UserId。
-        # 可更新Mobile、DisplayName、Email和Department.DepartmentId字段，其他字段暂不支持
+        # @param Employees: 需要更新的员工信息，最多不超过100个。根据UserId或OpenId更新员工信息，必须填写其中一个，优先使用UserId。
+
+        # 可更新以下字段，其他字段暂不支持
+        # <table> <thead> <tr> <th>参数</th> <th>含义</th> </tr> </thead> <tbody> <tr> <td>DisplayName</td> <td>用户的真实名字</td> </tr> <tr> <td>Mobile</td> <td>用户手机号码</td> </tr> <tr> <td>Email</td> <td>用户的邮箱</td> </tr> <tr> <td>Department.DepartmentId</td> <td>用户进入后的部门ID</td> </tr> </tbody> </table>
         # @type Employees: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
-        # @param InvitationNotifyType: 员工邀请方式
-        # 如果是来自H5的，参数需要传递H5
-        # 短信或者企微 请传递SMS，或者不传递
+        # @param InvitationNotifyType: 员工邀请方式可通过以下方式进行设置：
+
+        # **H5**：会生成H5的链接，点击链接进入H5的认证加入企业的逻辑。
+        # **SMS（默认）**：会通过短信或企业微信消息进行邀请。如果非企业微信场景，则是企业微信消息。其他场景则是短信通知，短信中包含链接，点击后进入微信小程序进行认证加入企业的逻辑。
         # @type InvitationNotifyType: String
-        # @param JumpUrl: 回跳地址，
-        # 在认证成功之后，进行回跳，请保证回跳地址的可用性。
-        # 使用前请联系对接的客户经理沟通，提供回跳地址的域名，进行域名配置。
+        # @param JumpUrl: 回跳地址，为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
+
+        # 注：`只有在员工邀请方式（InvitationNotifyType参数）为H5场景下才生效， 其他方式下设置无效。`
         # @type JumpUrl: String
 
         attr_accessor :Operator, :Employees, :Agent, :InvitationNotifyType, :JumpUrl
@@ -10131,7 +10143,7 @@ module TencentCloud
         # @type SuccessEmployeeData: Array
         # @param FailedEmployeeData: 更新失败的用户列表
         # @type FailedEmployeeData: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :SuccessEmployeeData, :FailedEmployeeData, :RequestId
@@ -10272,7 +10284,7 @@ module TencentCloud
         # @type FileIds: Array
         # @param TotalCount: 上传成功文件数量
         # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FileIds, :TotalCount, :RequestId
@@ -10443,7 +10455,7 @@ module TencentCloud
         # @type VerifySerialNo: String
         # @param PdfResourceMd5: 合同文件MD5哈希值
         # @type PdfResourceMd5: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :VerifyResult, :PdfVerifyResults, :VerifySerialNo, :PdfResourceMd5, :RequestId

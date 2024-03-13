@@ -101,6 +101,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建Serverless索引
+
+        # @param request: Request instance for CreateServerlessInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateServerlessInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateServerlessInstanceResponse`
+        def CreateServerlessInstance(request)
+          body = send_request('CreateServerlessInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateServerlessInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建Serverless索引空间
+
+        # @param request: Request instance for CreateServerlessSpaceV2.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateServerlessSpaceV2Request`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateServerlessSpaceV2Response`
+        def CreateServerlessSpaceV2(request)
+          body = send_request('CreateServerlessSpaceV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateServerlessSpaceV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除索引
 
         # @param request: Request instance for DeleteIndex.
@@ -183,6 +231,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLogstashPipelinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Serverless索引
+
+        # @param request: Request instance for DeleteServerlessInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteServerlessInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteServerlessInstanceResponse`
+        def DeleteServerlessInstance(request)
+          body = send_request('DeleteServerlessInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteServerlessInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除Serverless空间子用户
+
+        # @param request: Request instance for DeleteServerlessSpaceUser.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteServerlessSpaceUserRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteServerlessSpaceUserResponse`
+        def DeleteServerlessSpaceUser(request)
+          body = send_request('DeleteServerlessSpaceUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteServerlessSpaceUserResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -447,6 +543,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLogstashPipelinesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看Serverless空间子用户
+
+        # @param request: Request instance for DescribeServerlessSpaceUser.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeServerlessSpaceUserRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeServerlessSpaceUserResponse`
+        def DescribeServerlessSpaceUser(request)
+          body = send_request('DescribeServerlessSpaceUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServerlessSpaceUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Serverless索引空间列表
+
+        # @param request: Request instance for DescribeServerlessSpaces.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeServerlessSpacesRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeServerlessSpacesResponse`
+        def DescribeServerlessSpaces(request)
+          body = send_request('DescribeServerlessSpaces', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServerlessSpacesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -987,6 +1131,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateRequestTargetNodeTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新Serverless索引
+
+        # @param request: Request instance for UpdateServerlessInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateServerlessInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateServerlessInstanceResponse`
+        def UpdateServerlessInstance(request)
+          body = send_request('UpdateServerlessInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateServerlessInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新Serverless索引空间
+
+        # @param request: Request instance for UpdateServerlessSpace.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateServerlessSpaceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateServerlessSpaceResponse`
+        def UpdateServerlessSpace(request)
+          body = send_request('UpdateServerlessSpace', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateServerlessSpaceResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -554,6 +554,160 @@ module TencentCloud
         end
       end
 
+      # CreateServerlessInstance请求参数结构体
+      class CreateServerlessInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param VpcId: 私有网络ID
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param IndexName: 索引名，需以-AppId结尾
+        # @type IndexName: String
+        # @param IndexMetaJson: 创建的索引元数据JSON，如mappings、settings
+        # @type IndexMetaJson: String
+        # @param SpaceId: 创建索引的空间ID
+        # @type SpaceId: String
+        # @param Username: 创建索引的用户名
+        # @type Username: String
+        # @param Password: 创建索引的密码
+        # @type Password: String
+        # @param ServerlessDi: 创建数据接入
+        # @type ServerlessDi: :class:`Tencentcloud::Es.v20180416.models.ServerlessDi`
+        # @param AutoGetIp: 是否自行添加白名单ip
+        # @type AutoGetIp: Integer
+        # @param TagList: 标签信息
+        # @type TagList: Array
+        # @param KibanaWhiteIpList: kibana公网白名单
+        # @type KibanaWhiteIpList: Array
+
+        attr_accessor :Zone, :VpcId, :SubnetId, :IndexName, :IndexMetaJson, :SpaceId, :Username, :Password, :ServerlessDi, :AutoGetIp, :TagList, :KibanaWhiteIpList
+
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, indexname=nil, indexmetajson=nil, spaceid=nil, username=nil, password=nil, serverlessdi=nil, autogetip=nil, taglist=nil, kibanawhiteiplist=nil)
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @IndexName = indexname
+          @IndexMetaJson = indexmetajson
+          @SpaceId = spaceid
+          @Username = username
+          @Password = password
+          @ServerlessDi = serverlessdi
+          @AutoGetIp = autogetip
+          @TagList = taglist
+          @KibanaWhiteIpList = kibanawhiteiplist
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @IndexName = params['IndexName']
+          @IndexMetaJson = params['IndexMetaJson']
+          @SpaceId = params['SpaceId']
+          @Username = params['Username']
+          @Password = params['Password']
+          unless params['ServerlessDi'].nil?
+            @ServerlessDi = ServerlessDi.new
+            @ServerlessDi.deserialize(params['ServerlessDi'])
+          end
+          @AutoGetIp = params['AutoGetIp']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+          @KibanaWhiteIpList = params['KibanaWhiteIpList']
+        end
+      end
+
+      # CreateServerlessInstance返回参数结构体
+      class CreateServerlessInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param DealName: 订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :DealName, :RequestId
+
+        def initialize(instanceid=nil, dealname=nil, requestid=nil)
+          @InstanceId = instanceid
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateServerlessSpaceV2请求参数结构体
+      class CreateServerlessSpaceV2Request < TencentCloud::Common::AbstractModel
+        # @param VpcInfo: vpc信息
+        # @type VpcInfo: Array
+        # @param SpaceName: 索引空间名
+        # @type SpaceName: String
+        # @param Zone: 空间名称
+        # @type Zone: String
+        # @param KibanaWhiteIpList: 白名单列表
+        # @type KibanaWhiteIpList: Array
+        # @param ZoneId: 空间id
+        # @type ZoneId: Integer
+
+        attr_accessor :VpcInfo, :SpaceName, :Zone, :KibanaWhiteIpList, :ZoneId
+
+        def initialize(vpcinfo=nil, spacename=nil, zone=nil, kibanawhiteiplist=nil, zoneid=nil)
+          @VpcInfo = vpcinfo
+          @SpaceName = spacename
+          @Zone = zone
+          @KibanaWhiteIpList = kibanawhiteiplist
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfo << vpcinfo_tmp
+            end
+          end
+          @SpaceName = params['SpaceName']
+          @Zone = params['Zone']
+          @KibanaWhiteIpList = params['KibanaWhiteIpList']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # CreateServerlessSpaceV2返回参数结构体
+      class CreateServerlessSpaceV2Response < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间ID
+        # @type SpaceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SpaceId, :RequestId
+
+        def initialize(spaceid=nil, requestid=nil)
+          @SpaceId = spaceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteIndex请求参数结构体
       class DeleteIndexRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ES集群ID
@@ -692,6 +846,74 @@ module TencentCloud
 
       # DeleteLogstashPipelines返回参数结构体
       class DeleteLogstashPipelinesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteServerlessInstance请求参数结构体
+      class DeleteServerlessInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: serverless实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DeleteServerlessInstance返回参数结构体
+      class DeleteServerlessInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteServerlessSpaceUser请求参数结构体
+      class DeleteServerlessSpaceUserRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间的ID
+        # @type SpaceId: String
+        # @param Username: 创建索引的用户名
+        # @type Username: String
+
+        attr_accessor :SpaceId, :Username
+
+        def initialize(spaceid=nil, username=nil)
+          @SpaceId = spaceid
+          @Username = username
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Username = params['Username']
+        end
+      end
+
+      # DeleteServerlessSpaceUser返回参数结构体
+      class DeleteServerlessSpaceUserResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -1527,6 +1749,146 @@ module TencentCloud
         end
       end
 
+      # DescribeServerlessSpaceUser请求参数结构体
+      class DescribeServerlessSpaceUserRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: 空间的ID
+        # @type SpaceId: String
+        # @param Offset: 游标
+        # @type Offset: Integer
+        # @param Limit: 页条数
+        # @type Limit: Integer
+        # @param UserNames: 用户名列表过滤
+        # @type UserNames: Array
+        # @param UserTypes: 用户类型
+        # @type UserTypes: Array
+        # @param PrivilegeTypes: 权限类型
+        # @type PrivilegeTypes: Array
+
+        attr_accessor :SpaceId, :Offset, :Limit, :UserNames, :UserTypes, :PrivilegeTypes
+
+        def initialize(spaceid=nil, offset=nil, limit=nil, usernames=nil, usertypes=nil, privilegetypes=nil)
+          @SpaceId = spaceid
+          @Offset = offset
+          @Limit = limit
+          @UserNames = usernames
+          @UserTypes = usertypes
+          @PrivilegeTypes = privilegetypes
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @UserNames = params['UserNames']
+          @UserTypes = params['UserTypes']
+          @PrivilegeTypes = params['PrivilegeTypes']
+        end
+      end
+
+      # DescribeServerlessSpaceUser返回参数结构体
+      class DescribeServerlessSpaceUserResponse < TencentCloud::Common::AbstractModel
+        # @param ServerlessSpaceUsers: 用户数组
+        # @type ServerlessSpaceUsers: Array
+        # @param TotalCount: 用户总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServerlessSpaceUsers, :TotalCount, :RequestId
+
+        def initialize(serverlessspaceusers=nil, totalcount=nil, requestid=nil)
+          @ServerlessSpaceUsers = serverlessspaceusers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServerlessSpaceUsers'].nil?
+            @ServerlessSpaceUsers = []
+            params['ServerlessSpaceUsers'].each do |i|
+              serverlessspaceuser_tmp = ServerlessSpaceUser.new
+              serverlessspaceuser_tmp.deserialize(i)
+              @ServerlessSpaceUsers << serverlessspaceuser_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServerlessSpaces请求参数结构体
+      class DescribeServerlessSpacesRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceIds: 过滤的空间ID
+        # @type SpaceIds: Array
+        # @param SpaceNames: 过滤的空间名
+        # @type SpaceNames: Array
+        # @param Order: 排序顺序，支持升序asc、降序desc
+        # @type Order: String
+        # @param OrderBy: 排序字段，支持空间创建时间SpaceCreateTime
+        # @type OrderBy: String
+        # @param VpcIds: vpcId信息数组
+        # @type VpcIds: Array
+        # @param Offset: 分页起始
+        # @type Offset: Integer
+        # @param Limit: 分页条数
+        # @type Limit: Integer
+
+        attr_accessor :SpaceIds, :SpaceNames, :Order, :OrderBy, :VpcIds, :Offset, :Limit
+
+        def initialize(spaceids=nil, spacenames=nil, order=nil, orderby=nil, vpcids=nil, offset=nil, limit=nil)
+          @SpaceIds = spaceids
+          @SpaceNames = spacenames
+          @Order = order
+          @OrderBy = orderby
+          @VpcIds = vpcids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SpaceIds = params['SpaceIds']
+          @SpaceNames = params['SpaceNames']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+          @VpcIds = params['VpcIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeServerlessSpaces返回参数结构体
+      class DescribeServerlessSpacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param ServerlessSpaces: Serverless空间信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerlessSpaces: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ServerlessSpaces, :RequestId
+
+        def initialize(totalcount=nil, serverlessspaces=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ServerlessSpaces = serverlessspaces
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ServerlessSpaces'].nil?
+            @ServerlessSpaces = []
+            params['ServerlessSpaces'].each do |i|
+              serverlessspace_tmp = ServerlessSpace.new
+              serverlessspace_tmp.deserialize(i)
+              @ServerlessSpaces << serverlessspace_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeViews请求参数结构体
       class DescribeViewsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID
@@ -1588,6 +1950,337 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据接入信息
+      class DiData < TencentCloud::Common::AbstractModel
+        # @param DiId: 数据接入id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiId: String
+        # @param CreateTime: 数据接入创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 数据接入状态，0处理中，1正常，-2删除中，-3已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param DiDataSourceCvm: cvm数据源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiDataSourceCvm: :class:`Tencentcloud::Es.v20180416.models.DiDataSourceCvm`
+        # @param DiDataSourceTke: tke数据源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiDataSourceTke: :class:`Tencentcloud::Es.v20180416.models.DiDataSourceTke`
+        # @param DiDataSinkServerless: serverless目的端信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiDataSinkServerless: :class:`Tencentcloud::Es.v20180416.models.DiDataSinkServerless`
+        # @param DiDataSourceType: 数据接入类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiDataSourceType: String
+
+        attr_accessor :DiId, :CreateTime, :Status, :DiDataSourceCvm, :DiDataSourceTke, :DiDataSinkServerless, :DiDataSourceType
+
+        def initialize(diid=nil, createtime=nil, status=nil, didatasourcecvm=nil, didatasourcetke=nil, didatasinkserverless=nil, didatasourcetype=nil)
+          @DiId = diid
+          @CreateTime = createtime
+          @Status = status
+          @DiDataSourceCvm = didatasourcecvm
+          @DiDataSourceTke = didatasourcetke
+          @DiDataSinkServerless = didatasinkserverless
+          @DiDataSourceType = didatasourcetype
+        end
+
+        def deserialize(params)
+          @DiId = params['DiId']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          unless params['DiDataSourceCvm'].nil?
+            @DiDataSourceCvm = DiDataSourceCvm.new
+            @DiDataSourceCvm.deserialize(params['DiDataSourceCvm'])
+          end
+          unless params['DiDataSourceTke'].nil?
+            @DiDataSourceTke = DiDataSourceTke.new
+            @DiDataSourceTke.deserialize(params['DiDataSourceTke'])
+          end
+          unless params['DiDataSinkServerless'].nil?
+            @DiDataSinkServerless = DiDataSinkServerless.new
+            @DiDataSinkServerless.deserialize(params['DiDataSinkServerless'])
+          end
+          @DiDataSourceType = params['DiDataSourceType']
+        end
+      end
+
+      # 数据接入serverless目的端信息
+      class DiDataSinkServerless < TencentCloud::Common::AbstractModel
+        # @param ServerlessId: serverless实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServerlessId: String
+
+        attr_accessor :ServerlessId
+
+        def initialize(serverlessid=nil)
+          @ServerlessId = serverlessid
+        end
+
+        def deserialize(params)
+          @ServerlessId = params['ServerlessId']
+        end
+      end
+
+      # 数据接入cvm数据源信息
+      class DiDataSourceCvm < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param LogPaths: 采集路径列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogPaths: Array
+        # @param CvmInstances: cvm实例信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmInstances: Array
+        # @param CollectorId: 采集器id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectorId: String
+
+        attr_accessor :VpcId, :LogPaths, :CvmInstances, :CollectorId
+
+        def initialize(vpcid=nil, logpaths=nil, cvminstances=nil, collectorid=nil)
+          @VpcId = vpcid
+          @LogPaths = logpaths
+          @CvmInstances = cvminstances
+          @CollectorId = collectorid
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @LogPaths = params['LogPaths']
+          unless params['CvmInstances'].nil?
+            @CvmInstances = []
+            params['CvmInstances'].each do |i|
+              didatasourcecvminstance_tmp = DiDataSourceCvmInstance.new
+              didatasourcecvminstance_tmp.deserialize(i)
+              @CvmInstances << didatasourcecvminstance_tmp
+            end
+          end
+          @CollectorId = params['CollectorId']
+        end
+      end
+
+      # 数据接入cvm实例信息
+      class DiDataSourceCvmInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: cvm实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param ErrMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+
+        attr_accessor :InstanceId, :VpcId, :SubnetId, :ErrMsg
+
+        def initialize(instanceid=nil, vpcid=nil, subnetid=nil, errmsg=nil)
+          @InstanceId = instanceid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 数据接入tke数据源信息
+      class DiDataSourceTke < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param TkeId: tke实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TkeId: String
+        # @param CollectorId: 采集器id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectorId: String
+        # @param CollectorName: 采集源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectorName: String
+        # @param CollectorType: 采集器类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectorType: String
+        # @param CollectorVersion: 采集器版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CollectorVersion: String
+        # @param IncludeNamespaces: tke包含的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncludeNamespaces: Array
+        # @param ExcludeNamespaces: tke不包含的命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExcludeNamespaces: Array
+        # @param PodLabelKeys: tke pod标签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLabelKeys: Array
+        # @param PodLabelValues: tke pod标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLabelValues: Array
+        # @param ContainerName: tke容器名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param ConfigContent: tke采集器beat配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigContent: String
+        # @param InputType: /
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputType: String
+        # @param InputPath: TKE 日志采集路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputPath: String
+
+        attr_accessor :VpcId, :TkeId, :CollectorId, :CollectorName, :CollectorType, :CollectorVersion, :IncludeNamespaces, :ExcludeNamespaces, :PodLabelKeys, :PodLabelValues, :ContainerName, :ConfigContent, :InputType, :InputPath
+
+        def initialize(vpcid=nil, tkeid=nil, collectorid=nil, collectorname=nil, collectortype=nil, collectorversion=nil, includenamespaces=nil, excludenamespaces=nil, podlabelkeys=nil, podlabelvalues=nil, containername=nil, configcontent=nil, inputtype=nil, inputpath=nil)
+          @VpcId = vpcid
+          @TkeId = tkeid
+          @CollectorId = collectorid
+          @CollectorName = collectorname
+          @CollectorType = collectortype
+          @CollectorVersion = collectorversion
+          @IncludeNamespaces = includenamespaces
+          @ExcludeNamespaces = excludenamespaces
+          @PodLabelKeys = podlabelkeys
+          @PodLabelValues = podlabelvalues
+          @ContainerName = containername
+          @ConfigContent = configcontent
+          @InputType = inputtype
+          @InputPath = inputpath
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @TkeId = params['TkeId']
+          @CollectorId = params['CollectorId']
+          @CollectorName = params['CollectorName']
+          @CollectorType = params['CollectorType']
+          @CollectorVersion = params['CollectorVersion']
+          @IncludeNamespaces = params['IncludeNamespaces']
+          @ExcludeNamespaces = params['ExcludeNamespaces']
+          @PodLabelKeys = params['PodLabelKeys']
+          @PodLabelValues = params['PodLabelValues']
+          @ContainerName = params['ContainerName']
+          @ConfigContent = params['ConfigContent']
+          @InputType = params['InputType']
+          @InputPath = params['InputPath']
+        end
+      end
+
+      # 数据接入cvm数据源
+      class DiSourceCvm < TencentCloud::Common::AbstractModel
+        # @param VpcId: 数据源所属vpc id，创建后不允许修改
+        # @type VpcId: String
+        # @param CvmIds: cvm列表
+        # @type CvmIds: Array
+        # @param LogPaths: 采集路径列表，支持通配符
+        # @type LogPaths: Array
+
+        attr_accessor :VpcId, :CvmIds, :LogPaths
+
+        def initialize(vpcid=nil, cvmids=nil, logpaths=nil)
+          @VpcId = vpcid
+          @CvmIds = cvmids
+          @LogPaths = logpaths
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @CvmIds = params['CvmIds']
+          @LogPaths = params['LogPaths']
+        end
+      end
+
+      # 数据接入tke数据源
+      class DiSourceTke < TencentCloud::Common::AbstractModel
+        # @param VpcId: 数据源所属vpc id，创建后不允许修改
+        # @type VpcId: String
+        # @param TkeId: tke实例id，创建后不允许修改
+        # @type TkeId: String
+        # @param IncludeNamespaces: tke包含的命名空间
+        # @type IncludeNamespaces: Array
+        # @param ExcludeNamespaces: tke不包含的命名空间
+        # @type ExcludeNamespaces: Array
+        # @param ContainerName: tke容器名称
+        # @type ContainerName: String
+        # @param LogFilters: tke日志内容过滤
+        # @type LogFilters: String
+        # @param ConfigContent: tke beats配置项
+        # @type ConfigContent: String
+        # @param PodLabel: tke pod标签
+        # @type PodLabel: Array
+        # @param InputType: /
+        # @type InputType: String
+        # @param InputPath: tke 日志采集路径
+        # @type InputPath: String
+
+        attr_accessor :VpcId, :TkeId, :IncludeNamespaces, :ExcludeNamespaces, :ContainerName, :LogFilters, :ConfigContent, :PodLabel, :InputType, :InputPath
+
+        def initialize(vpcid=nil, tkeid=nil, includenamespaces=nil, excludenamespaces=nil, containername=nil, logfilters=nil, configcontent=nil, podlabel=nil, inputtype=nil, inputpath=nil)
+          @VpcId = vpcid
+          @TkeId = tkeid
+          @IncludeNamespaces = includenamespaces
+          @ExcludeNamespaces = excludenamespaces
+          @ContainerName = containername
+          @LogFilters = logfilters
+          @ConfigContent = configcontent
+          @PodLabel = podlabel
+          @InputType = inputtype
+          @InputPath = inputpath
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @TkeId = params['TkeId']
+          @IncludeNamespaces = params['IncludeNamespaces']
+          @ExcludeNamespaces = params['ExcludeNamespaces']
+          @ContainerName = params['ContainerName']
+          @LogFilters = params['LogFilters']
+          @ConfigContent = params['ConfigContent']
+          unless params['PodLabel'].nil?
+            @PodLabel = []
+            params['PodLabel'].each do |i|
+              disourcetkepodlabel_tmp = DiSourceTkePodLabel.new
+              disourcetkepodlabel_tmp.deserialize(i)
+              @PodLabel << disourcetkepodlabel_tmp
+            end
+          end
+          @InputType = params['InputType']
+          @InputPath = params['InputPath']
+        end
+      end
+
+      # tke pod标签
+      class DiSourceTkePodLabel < TencentCloud::Common::AbstractModel
+        # @param Key: 标签key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -2890,6 +3583,22 @@ module TencentCloud
         end
       end
 
+      # kibana公网域名白名单参数
+      class KibanaPublicAcl < TencentCloud::Common::AbstractModel
+        # @param WhiteIpList: kibana访问白名单
+        # @type WhiteIpList: Array
+
+        attr_accessor :WhiteIpList
+
+        def initialize(whiteiplist=nil)
+          @WhiteIpList = whiteiplist
+        end
+
+        def deserialize(params)
+          @WhiteIpList = params['WhiteIpList']
+        end
+      end
+
       # Kibana视图数据
       class KibanaView < TencentCloud::Common::AbstractModel
         # @param Ip: Kibana节点IP
@@ -4052,6 +4761,183 @@ module TencentCloud
         end
       end
 
+      # 创建serverless索引时创建数据接入
+      class ServerlessDi < TencentCloud::Common::AbstractModel
+        # @param DiSourceType: 数据链路采集源类型，如cvm_collector、tke_collector
+        # @type DiSourceType: String
+        # @param DiSourceCvm: cvm数据源
+        # @type DiSourceCvm: :class:`Tencentcloud::Es.v20180416.models.DiSourceCvm`
+        # @param DiSourceTke: tke数据源
+        # @type DiSourceTke: :class:`Tencentcloud::Es.v20180416.models.DiSourceTke`
+
+        attr_accessor :DiSourceType, :DiSourceCvm, :DiSourceTke
+
+        def initialize(disourcetype=nil, disourcecvm=nil, disourcetke=nil)
+          @DiSourceType = disourcetype
+          @DiSourceCvm = disourcecvm
+          @DiSourceTke = disourcetke
+        end
+
+        def deserialize(params)
+          @DiSourceType = params['DiSourceType']
+          unless params['DiSourceCvm'].nil?
+            @DiSourceCvm = DiSourceCvm.new
+            @DiSourceCvm.deserialize(params['DiSourceCvm'])
+          end
+          unless params['DiSourceTke'].nil?
+            @DiSourceTke = DiSourceTke.new
+            @DiSourceTke.deserialize(params['DiSourceTke'])
+          end
+        end
+      end
+
+      # Serverless索引空间信息
+      class ServerlessSpace < TencentCloud::Common::AbstractModel
+        # @param SpaceId: Serverless索引空间ID
+        # @type SpaceId: String
+        # @param SpaceName: Serverless索引空间名
+        # @type SpaceName: String
+        # @param Status: Serverless索引空间状态，0正常，-1已删除
+        # @type Status: Integer
+        # @param CreateTime: 创建日期
+        # @type CreateTime: String
+        # @param IndexCount: 空间内索引数量
+        # @type IndexCount: Integer
+        # @param KibanaUrl: kibana公网uri
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaUrl: String
+        # @param KibanaPrivateUrl: kibana内网url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaPrivateUrl: String
+        # @param IndexAccessUrl: 空间内网访问地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexAccessUrl: String
+        # @param KibanaPublicAcl: 空间白名单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
+        # @param KibanaEmbedUrl: 空间检索分析域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KibanaEmbedUrl: String
+        # @param DiDataList: 数据联路
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiDataList: :class:`Tencentcloud::Es.v20180416.models.DiData`
+        # @param VpcInfo: 空间vpc信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcInfo: Array
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param EnableKibanaPublicAccess: kibana公网开关，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableKibanaPublicAccess: Integer
+        # @param EnableKibanaPrivateAccess: kibana内网开关，0关闭，1开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableKibanaPrivateAccess: Integer
+        # @param AppId: 空间所属appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+
+        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId
+
+        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil)
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @Status = status
+          @CreateTime = createtime
+          @IndexCount = indexcount
+          @KibanaUrl = kibanaurl
+          @KibanaPrivateUrl = kibanaprivateurl
+          @IndexAccessUrl = indexaccessurl
+          @KibanaPublicAcl = kibanapublicacl
+          @KibanaEmbedUrl = kibanaembedurl
+          @DiDataList = didatalist
+          @VpcInfo = vpcinfo
+          @Region = region
+          @Zone = zone
+          @EnableKibanaPublicAccess = enablekibanapublicaccess
+          @EnableKibanaPrivateAccess = enablekibanaprivateaccess
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @IndexCount = params['IndexCount']
+          @KibanaUrl = params['KibanaUrl']
+          @KibanaPrivateUrl = params['KibanaPrivateUrl']
+          @IndexAccessUrl = params['IndexAccessUrl']
+          unless params['KibanaPublicAcl'].nil?
+            @KibanaPublicAcl = EsAcl.new
+            @KibanaPublicAcl.deserialize(params['KibanaPublicAcl'])
+          end
+          @KibanaEmbedUrl = params['KibanaEmbedUrl']
+          unless params['DiDataList'].nil?
+            @DiDataList = DiData.new
+            @DiDataList.deserialize(params['DiDataList'])
+          end
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcInfo << vpcinfo_tmp
+            end
+          end
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @EnableKibanaPublicAccess = params['EnableKibanaPublicAccess']
+          @EnableKibanaPrivateAccess = params['EnableKibanaPrivateAccess']
+          @AppId = params['AppId']
+        end
+      end
+
+      # ServerlessSpaceUser
+      class ServerlessSpaceUser < TencentCloud::Common::AbstractModel
+        # @param Username: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Username: String
+        # @param Password: 用户密码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Password: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 用户状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IndicesScope: 有权限的索引数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicesScope: Array
+        # @param PrivilegeType: 权限类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeType: Integer
+
+        attr_accessor :Username, :Password, :CreateTime, :Status, :IndicesScope, :PrivilegeType
+
+        def initialize(username=nil, password=nil, createtime=nil, status=nil, indicesscope=nil, privilegetype=nil)
+          @Username = username
+          @Password = password
+          @CreateTime = createtime
+          @Status = status
+          @IndicesScope = indicesscope
+          @PrivilegeType = privilegetype
+        end
+
+        def deserialize(params)
+          @Username = params['Username']
+          @Password = params['Password']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @IndicesScope = params['IndicesScope']
+          @PrivilegeType = params['PrivilegeType']
+        end
+      end
+
       # 智能运维集群配置详情
       class SettingDetail < TencentCloud::Common::AbstractModel
         # @param Key: 配置key
@@ -4884,6 +5770,112 @@ module TencentCloud
         end
       end
 
+      # UpdateServerlessInstance请求参数结构体
+      class UpdateServerlessInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: Serveless实例ID
+        # @type InstanceId: String
+        # @param UpdateMetaJson: 更新的索引元数据JSON，如mappings、settings
+        # @type UpdateMetaJson: String
+        # @param Password: 实例访问密码
+        # @type Password: String
+        # @param KibanaPrivateAccess: 开启kibana内网访问，如OPEN、CLOSE
+        # @type KibanaPrivateAccess: String
+        # @param KibanaPublicAccess: 开启kibana外网访问，如OPEN、CLOSE
+        # @type KibanaPublicAccess: String
+        # @param KibanaPublicAcl: 访问控制列表
+        # @type KibanaPublicAcl: :class:`Tencentcloud::Es.v20180416.models.KibanaPublicAcl`
+
+        attr_accessor :InstanceId, :UpdateMetaJson, :Password, :KibanaPrivateAccess, :KibanaPublicAccess, :KibanaPublicAcl
+
+        def initialize(instanceid=nil, updatemetajson=nil, password=nil, kibanaprivateaccess=nil, kibanapublicaccess=nil, kibanapublicacl=nil)
+          @InstanceId = instanceid
+          @UpdateMetaJson = updatemetajson
+          @Password = password
+          @KibanaPrivateAccess = kibanaprivateaccess
+          @KibanaPublicAccess = kibanapublicaccess
+          @KibanaPublicAcl = kibanapublicacl
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @UpdateMetaJson = params['UpdateMetaJson']
+          @Password = params['Password']
+          @KibanaPrivateAccess = params['KibanaPrivateAccess']
+          @KibanaPublicAccess = params['KibanaPublicAccess']
+          unless params['KibanaPublicAcl'].nil?
+            @KibanaPublicAcl = KibanaPublicAcl.new
+            @KibanaPublicAcl.deserialize(params['KibanaPublicAcl'])
+          end
+        end
+      end
+
+      # UpdateServerlessInstance返回参数结构体
+      class UpdateServerlessInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateServerlessSpace请求参数结构体
+      class UpdateServerlessSpaceRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: Serveless索引空间ID
+        # @type SpaceId: String
+        # @param SpaceName: Serveless索引空间名
+        # @type SpaceName: String
+        # @param KibanaPrivateAccess: kibana内网开关
+        # @type KibanaPrivateAccess: String
+        # @param KibanaPublicAccess: kibana公网开关
+        # @type KibanaPublicAccess: String
+        # @param KibanaPublicAcl: kibana公网白名单
+        # @type KibanaPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
+
+        attr_accessor :SpaceId, :SpaceName, :KibanaPrivateAccess, :KibanaPublicAccess, :KibanaPublicAcl
+
+        def initialize(spaceid=nil, spacename=nil, kibanaprivateaccess=nil, kibanapublicaccess=nil, kibanapublicacl=nil)
+          @SpaceId = spaceid
+          @SpaceName = spacename
+          @KibanaPrivateAccess = kibanaprivateaccess
+          @KibanaPublicAccess = kibanapublicaccess
+          @KibanaPublicAcl = kibanapublicacl
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
+          @KibanaPrivateAccess = params['KibanaPrivateAccess']
+          @KibanaPublicAccess = params['KibanaPublicAccess']
+          unless params['KibanaPublicAcl'].nil?
+            @KibanaPublicAcl = EsAcl.new
+            @KibanaPublicAcl.deserialize(params['KibanaPublicAcl'])
+          end
+        end
+      end
+
+      # UpdateServerlessSpace返回参数结构体
+      class UpdateServerlessSpaceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpgradeInstance请求参数结构体
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -4998,6 +5990,43 @@ module TencentCloud
         def deserialize(params)
           @DealName = params['DealName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # vpc信息
+      class VpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpcId信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: SubnetId信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param VpcUid: VpcUid信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcUid: Integer
+        # @param SubnetUid: SubnetUid 信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetUid: Integer
+        # @param AvailableIpAddressCount: 可用ip数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableIpAddressCount: Integer
+
+        attr_accessor :VpcId, :SubnetId, :VpcUid, :SubnetUid, :AvailableIpAddressCount
+
+        def initialize(vpcid=nil, subnetid=nil, vpcuid=nil, subnetuid=nil, availableipaddresscount=nil)
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VpcUid = vpcuid
+          @SubnetUid = subnetuid
+          @AvailableIpAddressCount = availableipaddresscount
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VpcUid = params['VpcUid']
+          @SubnetUid = params['SubnetUid']
+          @AvailableIpAddressCount = params['AvailableIpAddressCount']
         end
       end
 
