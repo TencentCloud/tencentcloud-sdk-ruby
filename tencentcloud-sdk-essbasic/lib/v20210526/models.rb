@@ -5526,13 +5526,19 @@ module TencentCloud
         # @param AuthorizedOrganizationName: 被授权企业名，和AuthorizedOrganizationId二选一，不能同时为空
         # 注：`被授权企业必须和当前企业在同一应用号下`
         # @type AuthorizedOrganizationName: String
+        # @param PlatformAppAuthorization: 是否给平台应用授权:
+        # - true: 是（无需设置AuthorizedOrganizationId和AuthorizedOrganizationName）
+        # - false: 否（默认）
+        #  注：该参数需要开通“基于子客授权第三方应用可文件发起子客自动签署”，请联系运营经理开通
+        # @type PlatformAppAuthorization: Boolean
 
-        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName
+        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization
 
-        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil)
+        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil)
           @Agent = agent
           @AuthorizedOrganizationId = authorizedorganizationid
           @AuthorizedOrganizationName = authorizedorganizationname
+          @PlatformAppAuthorization = platformappauthorization
         end
 
         def deserialize(params)
@@ -5542,6 +5548,7 @@ module TencentCloud
           end
           @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
           @AuthorizedOrganizationName = params['AuthorizedOrganizationName']
+          @PlatformAppAuthorization = params['PlatformAppAuthorization']
         end
       end
 

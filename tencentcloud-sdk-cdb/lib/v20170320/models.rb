@@ -7176,7 +7176,7 @@ module TencentCloud
         # @type SortBy: String
         # @param OrderBy: 升序还是降序排列。当前支持：ASC,DESC 。
         # @type OrderBy: String
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: 偏移量，默认为0，最大为9999。
         # @type Offset: Integer
         # @param Limit: 一次性返回的记录数量，默认为100，最大为400。
         # @type Limit: Integer

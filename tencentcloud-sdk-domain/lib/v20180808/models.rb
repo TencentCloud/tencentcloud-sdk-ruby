@@ -1223,19 +1223,23 @@ module TencentCloud
         # @type Size: Integer
         # @param EndTime: 用于结束时间筛选
         # @type EndTime: String
+        # @param UpTime: 用户指定上架时间筛选
+        # @type UpTime: String
 
-        attr_accessor :Page, :Size, :EndTime
+        attr_accessor :Page, :Size, :EndTime, :UpTime
 
-        def initialize(page=nil, size=nil, endtime=nil)
+        def initialize(page=nil, size=nil, endtime=nil, uptime=nil)
           @Page = page
           @Size = size
           @EndTime = endtime
+          @UpTime = uptime
         end
 
         def deserialize(params)
           @Page = params['Page']
           @Size = params['Size']
           @EndTime = params['EndTime']
+          @UpTime = params['UpTime']
         end
       end
 

@@ -51,7 +51,7 @@ module TencentCloud
         # @type MaterialInfos: Array
         # @param Count: 素材条数
         # @type Count: Integer
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :MaterialInfos, :Count, :RequestId
@@ -130,7 +130,7 @@ module TencentCloud
         # @type Image: String
         # @param ReviewResultSet: 不适宜内容识别结果
         # @type ReviewResultSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :Image, :ReviewResultSet, :RequestId
@@ -275,7 +275,7 @@ module TencentCloud
         # @param ReviewResultSet: 不适宜内容识别结果。该数组的顺序和请求中mergeinfo的顺序一致，一一对应
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewResultSet: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :FusedImage, :ReviewResultSet, :RequestId

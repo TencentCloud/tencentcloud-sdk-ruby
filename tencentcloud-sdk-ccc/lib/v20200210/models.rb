@@ -2775,7 +2775,7 @@ module TencentCloud
 
       # 批量添加客服时，返回出错客服的信息
       class ErrStaffItem < TencentCloud::Common::AbstractModel
-        # @param StaffEmail: 坐席邮箱地址
+        # @param StaffEmail: 座席邮箱地址
         # @type StaffEmail: String
         # @param Code: 错误码
         # @type Code: String
@@ -2817,9 +2817,9 @@ module TencentCloud
         # @type Status: Integer
         # @param Register: 是否注册
         # @type Register: Boolean
-        # @param Relation: 绑定坐席邮箱
+        # @param Relation: 绑定座席邮箱
         # @type Relation: String
-        # @param RelationName: 绑定坐席名称
+        # @param RelationName: 绑定座席名称
         # @type RelationName: String
 
         attr_accessor :SdkAppId, :FullExtensionId, :ExtensionId, :SkillGroupId, :ExtensionName, :CreateTime, :ModifyTime, :Status, :Register, :Relation, :RelationName
@@ -2918,10 +2918,10 @@ module TencentCloud
         # @param EndStatus: 结束状态
         # 0 异常结束
         # 1 正常结束
-        # 3 无坐席在线
-        # 17 坐席放弃接听
+        # 3 无座席在线
+        # 17 座席放弃接听
         # 100 黑名单
-        # 101 坐席手动转接
+        # 101 座席手动转接
         # 102 IVR阶段放弃
         # 108 用户超时自动结束
         # @type EndStatus: Integer
@@ -3223,13 +3223,13 @@ module TencentCloud
         # @type RingTimestamp: Integer
         # @param AcceptTimestamp: 接听时间，Unix 时间戳
         # @type AcceptTimestamp: Integer
-        # @param StaffEmail: 坐席邮箱
+        # @param StaffEmail: 座席邮箱
         # @type StaffEmail: String
-        # @param StaffNumber: 坐席工号
+        # @param StaffNumber: 座席工号
         # @type StaffNumber: String
         # @param SessionStatus: 会话状态
         # ringing 振铃中
-        # seatJoining  等待坐席接听
+        # seatJoining  等待座席接听
         # inProgress 进行中
         # finished 已完成
         # @type SessionStatus: String
@@ -3297,11 +3297,11 @@ module TencentCloud
         # @type StartTimestamp: String
         # @param AcceptTimestamp: 接听时间，Unix 时间戳
         # @type AcceptTimestamp: String
-        # @param StaffEmail: 坐席邮箱
+        # @param StaffEmail: 座席邮箱
         # @type StaffEmail: String
-        # @param StaffNumber: 坐席工号
+        # @param StaffNumber: 座席工号
         # @type StaffNumber: String
-        # @param SessionStatus: 坐席状态 inProgress 进行中
+        # @param SessionStatus: 座席状态 inProgress 进行中
         # @type SessionStatus: String
         # @param Direction: 会话呼叫方向， 0 呼入 | 1 - 呼出
         # @type Direction: Integer
@@ -3537,9 +3537,9 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Name: 应用名称
         # @type Name: String
-        # @param StaffBuyNum: 坐席购买数（还在有效期内）
+        # @param StaffBuyNum: 座席购买数（还在有效期内）
         # @type StaffBuyNum: Integer
-        # @param StaffBuyList: 坐席购买列表 （还在有效期内）
+        # @param StaffBuyList: 座席购买列表 （还在有效期内）
         # @type StaffBuyList: Array
         # @param PhoneNumBuyList: 号码购买列表
         # @type PhoneNumBuyList: Array
@@ -3582,22 +3582,22 @@ module TencentCloud
         end
       end
 
-      # 坐席用户信息
+      # 座席用户信息
       class SeatUserInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 坐席名称
+        # @param Name: 座席名称
         # @type Name: String
-        # @param Mail: 坐席邮箱
+        # @param Mail: 座席邮箱
         # @type Mail: String
         # @param StaffNumber: 工号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaffNumber: String
-        # @param Phone: 坐席电话号码（带0086前缀）
+        # @param Phone: 座席电话号码（带0086前缀）
         # @type Phone: String
-        # @param Nick: 坐席昵称
+        # @param Nick: 座席昵称
         # @type Nick: String
         # @param UserId: 用户ID
         # @type UserId: String
-        # @param SkillGroupNameList: 坐席关联的技能组列表
+        # @param SkillGroupNameList: 座席关联的技能组列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SkillGroupNameList: Array
         # @param Role: 1:管理员
@@ -3634,10 +3634,10 @@ module TencentCloud
 
       # 参与者信息
       class ServeParticipant < TencentCloud::Common::AbstractModel
-        # @param Mail: 坐席邮箱
+        # @param Mail: 座席邮箱
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mail: String
-        # @param Phone: 坐席电话
+        # @param Phone: 座席电话
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
         # @param RingTimestamp: 振铃时间戳，Unix 秒级时间戳
@@ -3649,19 +3649,19 @@ module TencentCloud
         # @param EndedTimestamp: 结束时间戳，Unix 秒级时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndedTimestamp: Integer
-        # @param RecordId: 录音 ID，能够索引到坐席侧的录音
+        # @param RecordId: 录音 ID，能够索引到座席侧的录音
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
         # @param Type: 参与者类型，"staffSeat", "outboundSeat", "staffPhoneSeat"
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param TransferFrom: 转接来源坐席信息
+        # @param TransferFrom: 转接来源座席信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferFrom: String
         # @param TransferFromType: 转接来源参与者类型，取值与 Type 一致
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferFromType: String
-        # @param TransferTo: 转接去向坐席信息
+        # @param TransferTo: 转接去向座席信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransferTo: String
         # @param TransferToType: 转接去向参与者类型，取值与 Type 一致
@@ -3745,7 +3745,7 @@ module TencentCloud
         # @param RoutePolicy: 会话分配策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RoutePolicy: String
-        # @param UsingLastSeat: 会话分配是否优先上次服务坐席
+        # @param UsingLastSeat: 会话分配是否优先上次服务座席
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsingLastSeat: Integer
         # @param MaxConcurrency: 单客服最大并发数（电话类型默认1）
@@ -3811,9 +3811,9 @@ module TencentCloud
         end
       end
 
-      # 坐席购买信息
+      # 座席购买信息
       class StaffBuyInfo < TencentCloud::Common::AbstractModel
-        # @param Num: 购买坐席数量
+        # @param Num: 购买座席数量
         # @type Num: Integer
         # @param BuyTime: 购买时间戳
         # @type BuyTime: Integer
@@ -3840,20 +3840,20 @@ module TencentCloud
         end
       end
 
-      # 带有技能组优先级的坐席信息
+      # 带有技能组优先级的座席信息
       class StaffInfo < TencentCloud::Common::AbstractModel
-        # @param Name: 坐席名称
+        # @param Name: 座席名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Mail: 坐席邮箱
+        # @param Mail: 座席邮箱
         # @type Mail: String
-        # @param Phone: 坐席电话号码
+        # @param Phone: 座席电话号码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Phone: String
-        # @param Nick: 坐席昵称
+        # @param Nick: 座席昵称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Nick: String
-        # @param StaffNumber: 坐席工号
+        # @param StaffNumber: 座席工号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StaffNumber: String
         # @param RoleId: 用户角色id
@@ -3917,7 +3917,7 @@ module TencentCloud
         end
       end
 
-      # 坐席状态补充信息
+      # 座席状态补充信息
       class StaffStatusExtra < TencentCloud::Common::AbstractModel
         # @param Type: im - 文本 | tel - 电话 | all - 全媒体
         # @type Type: String
@@ -3937,13 +3937,13 @@ module TencentCloud
         end
       end
 
-      # 坐席状态相关信息
+      # 座席状态相关信息
       class StaffStatusMetrics < TencentCloud::Common::AbstractModel
-        # @param Email: 坐席邮箱
+        # @param Email: 座席邮箱
         # @type Email: String
-        # @param Status: 坐席状态 free 示闲 | busy 忙碌 | rest 小休 | notReady 示忙 | afterCallWork 话后调整 | offline 离线
+        # @param Status: 座席状态 free 示闲 | busy 忙碌 | rest 小休 | notReady 示忙 | afterCallWork 话后调整 | offline 离线
         # @type Status: String
-        # @param StatusExtra: 坐席状态补充信息
+        # @param StatusExtra: 座席状态补充信息
         # @type StatusExtra: :class:`Tencentcloud::Ccc.v20200210.models.StaffStatusExtra`
         # @param OnlineDuration: 当天在线总时长
         # @type OnlineDuration: Integer
@@ -4071,7 +4071,7 @@ module TencentCloud
         # @param RecordId: 录音 ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordId: String
-        # @param SeatUser: 坐席信息
+        # @param SeatUser: 座席信息
         # @type SeatUser: :class:`Tencentcloud::Ccc.v20200210.models.SeatUserInfo`
         # @param EndStatus: EndStatus与EndStatusString一一对应，具体枚举如下：
 
@@ -4087,7 +4087,7 @@ module TencentCloud
 
         # 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
 
-        # 电话呼入	             105	        noSeatOnline	       无坐席在线
+        # 电话呼入	             105	        noSeatOnline	       无座席在线
 
         # 电话呼入              106	       notWorkTime	       非工作时间
 
@@ -4138,7 +4138,7 @@ module TencentCloud
         # @param IVRKeyPressed: IVR 按键信息 ，e.g. ["1","2","3"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IVRKeyPressed: Array
-        # @param HungUpSide: 挂机方 seat 坐席 user 用户 system 系统
+        # @param HungUpSide: 挂机方 seat 座席 user 用户 system 系统
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HungUpSide: String
         # @param ServeParticipants: 服务参与者列表
@@ -4161,7 +4161,7 @@ module TencentCloud
 
         # 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
 
-        # 电话呼入	             105	        noSeatOnline	       无坐席在线
+        # 电话呼入	             105	        noSeatOnline	       无座席在线
 
         # 电话呼入              106	       notWorkTime	       非工作时间
 

@@ -61,7 +61,7 @@ module TencentCloud
         # @param FailedList: 失败的任务列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobId, :FailedList, :RequestId
@@ -134,7 +134,7 @@ module TencentCloud
         # @param FailedList: 失败的任务列表及原因
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedList: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :JobId, :FailedList, :RequestId
@@ -214,7 +214,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Tasks: 任务结果列表
         # @type Tasks: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
@@ -298,7 +298,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Tasks: 任务结果列表
         # @type Tasks: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Tasks, :RequestId
@@ -360,7 +360,7 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Zones: 站点详细信息列表。
         # @type Zones: Array
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TotalCount, :Zones, :RequestId

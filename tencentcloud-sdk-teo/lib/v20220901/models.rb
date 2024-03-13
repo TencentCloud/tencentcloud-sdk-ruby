@@ -5739,6 +5739,61 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityIPGroupInfo请求参数结构体
+      class DescribeSecurityIPGroupInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点的 ID ，用于指定查询的站点范围。
+        # @type ZoneId: String
+        # @param Limit: 单次返回的最大条目数。默认值为 20 ，最大查询条目为 1000 。
+        # @type Limit: Integer
+        # @param Offset: 分页查询的起始条目偏移量。默认值为 0 。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Limit, :Offset
+
+        def initialize(zoneid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityIPGroupInfo返回参数结构体
+      class DescribeSecurityIPGroupInfoResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 返回的满足条件的 IP 组数量。
+        # @type TotalCount: Integer
+        # @param IPGroups: IP 组的详细配置信息。包含每个 IP 组的 ID 、名称和 IP /网段列表信息。
+        # @type IPGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :IPGroups, :RequestId
+
+        def initialize(totalcount=nil, ipgroups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @IPGroups = ipgroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['IPGroups'].nil?
+            @IPGroups = []
+            params['IPGroups'].each do |i|
+              ipgroup_tmp = IPGroup.new
+              ipgroup_tmp.deserialize(i)
+              @IPGroups << ipgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityTemplateBindings请求参数结构体
       class DescribeSecurityTemplateBindingsRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 要查询的站点 ID。

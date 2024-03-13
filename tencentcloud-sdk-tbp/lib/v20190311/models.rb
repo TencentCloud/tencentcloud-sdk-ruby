@@ -43,7 +43,7 @@ module TencentCloud
         # @type TaskRequestId: String
         # @param Msg: 任务信息
         # @type Msg: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :TaskRequestId, :Msg, :RequestId
@@ -143,7 +143,7 @@ module TencentCloud
         # @param WaveData: tts合成的pcm音频。二进制数组经过base64编码(暂时不返回)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaveData: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :ResponseText, :SlotInfoList, :SessionAttributes, :Question, :WaveUrl, :WaveData, :RequestId
@@ -289,7 +289,7 @@ module TencentCloud
         # @param ResponseMessage: 机器人应答。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseMessage: :class:`Tencentcloud::Tbp.v20190311.models.ResponseMessage`
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :ResultType, :ResponseMessage, :RequestId
@@ -378,7 +378,7 @@ module TencentCloud
         # @param ResponseText: 机器人对话的应答文本。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseText: String
-        # @param RequestId: 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DialogStatus, :BotName, :IntentName, :SlotInfoList, :InputText, :SessionAttributes, :ResponseText, :RequestId

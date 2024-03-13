@@ -1614,6 +1614,42 @@ module TencentCloud
         end
       end
 
+      # CreatePresignedNotebookUrl请求参数结构体
+      class CreatePresignedNotebookUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Id: Notebook ID
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # CreatePresignedNotebookUrl返回参数结构体
+      class CreatePresignedNotebookUrlResponse < TencentCloud::Common::AbstractModel
+        # @param AuthorizedUrl: 携带认证TOKEN的URL
+        # @type AuthorizedUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AuthorizedUrl, :RequestId
+
+        def initialize(authorizedurl=nil, requestid=nil)
+          @AuthorizedUrl = authorizedurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AuthorizedUrl = params['AuthorizedUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTrainingModel请求参数结构体
       class CreateTrainingModelRequest < TencentCloud::Common::AbstractModel
         # @param ImportMethod: 导入方式

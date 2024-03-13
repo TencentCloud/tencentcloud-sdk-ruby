@@ -12162,10 +12162,14 @@ module TencentCloud
         # @type SellerTaxCode: String
         # @param EnableCommonElectronic: 是否开启通用机打电子发票，默认为关闭。
         # @type EnableCommonElectronic: Boolean
+        # @param EnableTodayInvoice: 是否允许查验当日发票，默认值为false。
 
-        attr_accessor :InvoiceNo, :InvoiceDate, :InvoiceCode, :InvoiceKind, :CheckCode, :Amount, :RegionCode, :SellerTaxCode, :EnableCommonElectronic
+        # 请注意，发票从开具到录入税局需要一定的时间来更新和验证发票信息，打开后仅支持查验已成功录入到税局中的发票。
+        # @type EnableTodayInvoice: Boolean
 
-        def initialize(invoiceno=nil, invoicedate=nil, invoicecode=nil, invoicekind=nil, checkcode=nil, amount=nil, regioncode=nil, sellertaxcode=nil, enablecommonelectronic=nil)
+        attr_accessor :InvoiceNo, :InvoiceDate, :InvoiceCode, :InvoiceKind, :CheckCode, :Amount, :RegionCode, :SellerTaxCode, :EnableCommonElectronic, :EnableTodayInvoice
+
+        def initialize(invoiceno=nil, invoicedate=nil, invoicecode=nil, invoicekind=nil, checkcode=nil, amount=nil, regioncode=nil, sellertaxcode=nil, enablecommonelectronic=nil, enabletodayinvoice=nil)
           @InvoiceNo = invoiceno
           @InvoiceDate = invoicedate
           @InvoiceCode = invoicecode
@@ -12175,6 +12179,7 @@ module TencentCloud
           @RegionCode = regioncode
           @SellerTaxCode = sellertaxcode
           @EnableCommonElectronic = enablecommonelectronic
+          @EnableTodayInvoice = enabletodayinvoice
         end
 
         def deserialize(params)
@@ -12187,6 +12192,7 @@ module TencentCloud
           @RegionCode = params['RegionCode']
           @SellerTaxCode = params['SellerTaxCode']
           @EnableCommonElectronic = params['EnableCommonElectronic']
+          @EnableTodayInvoice = params['EnableTodayInvoice']
         end
       end
 

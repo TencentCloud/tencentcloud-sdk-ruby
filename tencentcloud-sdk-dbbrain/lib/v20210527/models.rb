@@ -2382,7 +2382,7 @@ module TencentCloud
         # @type Product: String
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
-        # @param SortBy: 按照某字断排序。支持值包括："AllConn"，"ActiveConn"，"Ip"。
+        # @param SortBy: 按照某字段排序。支持值包括："AllConn"，"ActiveConn"，"Ip"。
         # @type SortBy: String
         # @param OrderDirection: 排序方向。支持值包括："DESC"，"ASC"。
         # @type OrderDirection: String

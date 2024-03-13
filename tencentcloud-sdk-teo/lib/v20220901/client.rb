@@ -1502,6 +1502,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 IP 组的配置信息，包括 IP 组名称、 IP 组内容、 IP 组归属站点。
+
+        # @param request: Request instance for DescribeSecurityIPGroupInfo.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeSecurityIPGroupInfoRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeSecurityIPGroupInfoResponse`
+        def DescribeSecurityIPGroupInfo(request)
+          body = send_request('DescribeSecurityIPGroupInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityIPGroupInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定策略模板的绑定关系列表。
 
         # @param request: Request instance for DescribeSecurityTemplateBindings.

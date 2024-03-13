@@ -11847,20 +11847,24 @@ module TencentCloud
         # @type Cost: Integer
         # @param TotalCost: 询价结果，单位：分，折扣前
         # @type TotalCost: Integer
+        # @param Policy: 总的折扣，100表示100%不打折
+        # @type Policy: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Cost, :TotalCost, :RequestId
+        attr_accessor :Cost, :TotalCost, :Policy, :RequestId
 
-        def initialize(cost=nil, totalcost=nil, requestid=nil)
+        def initialize(cost=nil, totalcost=nil, policy=nil, requestid=nil)
           @Cost = cost
           @TotalCost = totalcost
+          @Policy = policy
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Cost = params['Cost']
           @TotalCost = params['TotalCost']
+          @Policy = params['Policy']
           @RequestId = params['RequestId']
         end
       end

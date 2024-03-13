@@ -4145,8 +4145,8 @@ module TencentCloud
         # IRLORO:在区间内(左开右开)
         # NRLCRO:不在区间内(左闭右开)
         # NRLORC:不在区间内(左开右闭)
-        # NRLCRC:不在在区间内(左闭右闭)
-        # NRLORO:不在在区间内(左开右开)
+        # NRLCRC:不在区间内(左闭右闭)
+        # NRLORO:不在区间内(左开右开)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
         # @param ValueComputeType: 质量统计值类型 1.绝对值  2.上升 3. 下降  4._C包含   5. N_C不包含
@@ -5433,9 +5433,9 @@ module TencentCloud
 
       # CreateRuleTemplate请求参数结构体
       class CreateRuleTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 模版类型  1.系统模版   2.自定义模版
+        # @param Type: 模板类型  1.系统模板   2.自定义模板
         # @type Type: Integer
-        # @param Name: 模版名称
+        # @param Name: 模板名称
         # @type Name: String
         # @param QualityDim: 质量检测维度 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性
         # @type QualityDim: Integer
@@ -7125,7 +7125,7 @@ module TencentCloud
       class DeleteRuleTemplateRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
         # @type ProjectId: String
-        # @param Ids: 模版Id列表
+        # @param Ids: 模板Id列表
         # @type Ids: Array
 
         attr_accessor :ProjectId, :Ids
@@ -15146,7 +15146,7 @@ module TencentCloud
 
       # DescribeRuleTemplates请求参数结构体
       class DescribeRuleTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 模版类型 1.系统模版 2.自定义模版
+        # @param Type: 模板类型 1.系统模板 2.自定义模板
         # @type Type: Integer
         # @param SourceObjectType: 1.常量 2.离线表级 2.离线字段级
         # @type SourceObjectType: Integer
@@ -15174,7 +15174,7 @@ module TencentCloud
 
       # DescribeRuleTemplates返回参数结构体
       class DescribeRuleTemplatesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则模版列表
+        # @param Data: 规则模板列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -21097,10 +21097,13 @@ module TencentCloud
         # @param InstanceLogListOpsDto: 实例日志简略信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceLogListOpsDto: :class:`Tencentcloud::Wedata.v20210820.models.InstanceLogInfo`
+        # @param InstanceState: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceState: String
 
-        attr_accessor :TaskId, :CurRunDate, :LifeRound, :RunType, :Tries, :InstanceLifeDetailDtoList, :RunnerState, :ErrorDesc, :ErrorCodeLevel, :InstanceLogListOpsDto
+        attr_accessor :TaskId, :CurRunDate, :LifeRound, :RunType, :Tries, :InstanceLifeDetailDtoList, :RunnerState, :ErrorDesc, :ErrorCodeLevel, :InstanceLogListOpsDto, :InstanceState
 
-        def initialize(taskid=nil, currundate=nil, liferound=nil, runtype=nil, tries=nil, instancelifedetaildtolist=nil, runnerstate=nil, errordesc=nil, errorcodelevel=nil, instanceloglistopsdto=nil)
+        def initialize(taskid=nil, currundate=nil, liferound=nil, runtype=nil, tries=nil, instancelifedetaildtolist=nil, runnerstate=nil, errordesc=nil, errorcodelevel=nil, instanceloglistopsdto=nil, instancestate=nil)
           @TaskId = taskid
           @CurRunDate = currundate
           @LifeRound = liferound
@@ -21111,6 +21114,7 @@ module TencentCloud
           @ErrorDesc = errordesc
           @ErrorCodeLevel = errorcodelevel
           @InstanceLogListOpsDto = instanceloglistopsdto
+          @InstanceState = instancestate
         end
 
         def deserialize(params)
@@ -21134,6 +21138,7 @@ module TencentCloud
             @InstanceLogListOpsDto = InstanceLogInfo.new
             @InstanceLogListOpsDto.deserialize(params['InstanceLogListOpsDto'])
           end
+          @InstanceState = params['InstanceState']
         end
       end
 
@@ -21145,17 +21150,27 @@ module TencentCloud
         # @param StartTime: 该状态开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
+        # @param DetailState: 实例生命周期阶段状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DetailState: String
+        # @param EndTime: 该状态结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
 
-        attr_accessor :State, :StartTime
+        attr_accessor :State, :StartTime, :DetailState, :EndTime
 
-        def initialize(state=nil, starttime=nil)
+        def initialize(state=nil, starttime=nil, detailstate=nil, endtime=nil)
           @State = state
           @StartTime = starttime
+          @DetailState = detailstate
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @State = params['State']
           @StartTime = params['StartTime']
+          @DetailState = params['DetailState']
+          @EndTime = params['EndTime']
         end
       end
 
