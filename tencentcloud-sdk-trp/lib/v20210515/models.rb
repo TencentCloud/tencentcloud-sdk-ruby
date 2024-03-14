@@ -3963,6 +3963,12 @@ module TencentCloud
         # @param RiskQuota: 风控配额
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RiskQuota: Integer
+        # @param AigcTextQuota: AI文字数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AigcTextQuota: Integer
+        # @param AigcImageQuota: AI图片数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AigcImageQuota: Integer
         # @param TrackType: 溯源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TrackType: Integer
@@ -3973,9 +3979,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductCertify: Integer
 
-        attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :TrackType, :Version, :ProductCertify
+        attr_accessor :StartTime, :EndTime, :QuotaId, :CorpId, :Services, :FactoryQuota, :ItemQuota, :TrackQuota, :SaleQuota, :ChainQuota, :RiskQuota, :AigcTextQuota, :AigcImageQuota, :TrackType, :Version, :ProductCertify
 
-        def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, tracktype=nil, version=nil, productcertify=nil)
+        def initialize(starttime=nil, endtime=nil, quotaid=nil, corpid=nil, services=nil, factoryquota=nil, itemquota=nil, trackquota=nil, salequota=nil, chainquota=nil, riskquota=nil, aigctextquota=nil, aigcimagequota=nil, tracktype=nil, version=nil, productcertify=nil)
           @StartTime = starttime
           @EndTime = endtime
           @QuotaId = quotaid
@@ -3987,6 +3993,8 @@ module TencentCloud
           @SaleQuota = salequota
           @ChainQuota = chainquota
           @RiskQuota = riskquota
+          @AigcTextQuota = aigctextquota
+          @AigcImageQuota = aigcimagequota
           @TrackType = tracktype
           @Version = version
           @ProductCertify = productcertify
@@ -4004,6 +4012,8 @@ module TencentCloud
           @SaleQuota = params['SaleQuota']
           @ChainQuota = params['ChainQuota']
           @RiskQuota = params['RiskQuota']
+          @AigcTextQuota = params['AigcTextQuota']
+          @AigcImageQuota = params['AigcImageQuota']
           @TrackType = params['TrackType']
           @Version = params['Version']
           @ProductCertify = params['ProductCertify']

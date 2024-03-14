@@ -221,6 +221,28 @@ module TencentCloud
         end
       end
 
+      # 通用的参数
+      class Arg < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Values: 值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Key, :Values
+
+        def initialize(key=nil, values=nil)
+          @Key = key
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Values = params['Values']
+        end
+      end
+
       # 弹性扩缩容记录
       class AutoScaleRecord < TencentCloud::Common::AbstractModel
         # @param StrategyName: 扩缩容规则名。
@@ -7255,14 +7277,17 @@ module TencentCloud
         # @type OpScope: :class:`Tencentcloud::Emr.v20190103.models.OpScope`
         # @param StrategyConfig: 操作策略
         # @type StrategyConfig: :class:`Tencentcloud::Emr.v20190103.models.StrategyConfig`
+        # @param StopParams: 暂停服务时用的参数
+        # @type StopParams: :class:`Tencentcloud::Emr.v20190103.models.StopParams`
 
-        attr_accessor :InstanceId, :OpType, :OpScope, :StrategyConfig
+        attr_accessor :InstanceId, :OpType, :OpScope, :StrategyConfig, :StopParams
 
-        def initialize(instanceid=nil, optype=nil, opscope=nil, strategyconfig=nil)
+        def initialize(instanceid=nil, optype=nil, opscope=nil, strategyconfig=nil, stopparams=nil)
           @InstanceId = instanceid
           @OpType = optype
           @OpScope = opscope
           @StrategyConfig = strategyconfig
+          @StopParams = stopparams
         end
 
         def deserialize(params)
@@ -7275,6 +7300,10 @@ module TencentCloud
           unless params['StrategyConfig'].nil?
             @StrategyConfig = StrategyConfig.new
             @StrategyConfig.deserialize(params['StrategyConfig'])
+          end
+          unless params['StopParams'].nil?
+            @StopParams = StopParams.new
+            @StopParams.deserialize(params['StopParams'])
           end
         end
       end
@@ -7328,6 +7357,27 @@ module TencentCloud
         end
       end
 
+      # 停止服务时的参数
+      class StopParams < TencentCloud::Common::AbstractModel
+        # @param StopPolicy: 安全模式：safe
+        # 默认模式：default
+        # @type StopPolicy: String
+        # @param ThreadCount: 线程数
+        # @type ThreadCount: Integer
+
+        attr_accessor :StopPolicy, :ThreadCount
+
+        def initialize(stoppolicy=nil, threadcount=nil)
+          @StopPolicy = stoppolicy
+          @ThreadCount = threadcount
+        end
+
+        def deserialize(params)
+          @StopPolicy = params['StopPolicy']
+          @ThreadCount = params['ThreadCount']
+        end
+      end
+
       # 重启/停止/启动服务/监控的配置
       class StrategyConfig < TencentCloud::Common::AbstractModel
         # @param RollingRestartSwitch: 0:关闭滚动重启
@@ -7343,14 +7393,18 @@ module TencentCloud
         # @param DealOnFail: 操作失败处理策略，0:失败阻塞, 1:失败自动跳过
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealOnFail: Integer
+        # @param Args: 指令需要指定的参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Args: Array
 
-        attr_accessor :RollingRestartSwitch, :BatchSize, :TimeWait, :DealOnFail
+        attr_accessor :RollingRestartSwitch, :BatchSize, :TimeWait, :DealOnFail, :Args
 
-        def initialize(rollingrestartswitch=nil, batchsize=nil, timewait=nil, dealonfail=nil)
+        def initialize(rollingrestartswitch=nil, batchsize=nil, timewait=nil, dealonfail=nil, args=nil)
           @RollingRestartSwitch = rollingrestartswitch
           @BatchSize = batchsize
           @TimeWait = timewait
           @DealOnFail = dealonfail
+          @Args = args
         end
 
         def deserialize(params)
@@ -7358,6 +7412,14 @@ module TencentCloud
           @BatchSize = params['BatchSize']
           @TimeWait = params['TimeWait']
           @DealOnFail = params['DealOnFail']
+          unless params['Args'].nil?
+            @Args = []
+            params['Args'].each do |i|
+              arg_tmp = Arg.new
+              arg_tmp.deserialize(i)
+              @Args << arg_tmp
+            end
+          end
         end
       end
 

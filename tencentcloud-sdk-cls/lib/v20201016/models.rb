@@ -1139,7 +1139,16 @@ module TencentCloud
         # @param Path: 日志采集路径
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
-        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # @param LogType: 采集的日志类型。
+        # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
+        # - delimiter_log代表：分隔符-文件日志（详见[使用分隔符提取模式采集日志](https://cloud.tencent.com/document/product/614/17420)）；
+        # - minimalist_log代表：单行全文-文件日志（详见[使用单行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17421)）；
+        # - fullregex_log代表：单行完全正则-文件日志（详见[使用单行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52365)）；
+        # - multiline_log代表：多行全文-文件日志（详见[使用多行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17422)）；
+        # - multiline_fullregex_log代表：多行完全正则-文件日志（详见[使用多行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52366)）；
+        # - user_define_log代表：组合解析（适用于多格式嵌套的日志，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)）；
+        # - service_syslog代表：syslog 采集（详见[采集 Syslog](https://cloud.tencent.com/document/product/614/81454)）；
+        # - windows_event_log代表：Windows事件日志（详见[采集 Windows 事件日志](https://cloud.tencent.com/document/product/614/96678)）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogType: String
         # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
@@ -1155,14 +1164,17 @@ module TencentCloud
         # @type UpdateTime: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
-        # @param UserDefineRule: 用户自定义解析字符串
+        # @param UserDefineRule: 用户自定义解析字符串，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserDefineRule: String
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
         # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
         # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
-        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # 样例：
+        # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
+
+        # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: String
 
@@ -2000,19 +2012,31 @@ module TencentCloud
         # @type Output: String
         # @param Path: 日志采集路径,包含文件名
         # @type Path: String
-        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # @param LogType: 采集的日志类型，默认为minimalist_log。支持以下类型：
+        # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
+        # - delimiter_log代表：分隔符-文件日志（详见[使用分隔符提取模式采集日志](https://cloud.tencent.com/document/product/614/17420)）；
+        # - minimalist_log代表：单行全文-文件日志（详见[使用单行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17421)）；
+        # - fullregex_log代表：单行完全正则-文件日志（详见[使用单行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52365)）；
+        # - multiline_log代表：多行全文-文件日志（详见[使用多行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17422)）；
+        # - multiline_fullregex_log代表：多行完全正则-文件日志（详见[使用多行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52366)）；
+        # - user_define_log代表：组合解析（适用于多格式嵌套的日志，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)）；
+        # - service_syslog代表：syslog 采集（详见[采集 Syslog](https://cloud.tencent.com/document/product/614/81454)）；
+        # - windows_event_log代表：Windows事件日志（详见[采集 Windows 事件日志](https://cloud.tencent.com/document/product/614/96678)）。
         # @type LogType: String
         # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param ExcludePaths: 采集黑名单路径列表
         # @type ExcludePaths: Array
-        # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串
+        # @param UserDefineRule: 用户自定义采集规则，Json格式序列化的字符串。当LogType为user_define_log时，必填。
         # @type UserDefineRule: String
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
         # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
         # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
-        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # 样例：
+        # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
+
+        # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # @type AdvancedConfig: String
 
         attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule, :AdvancedConfig
@@ -2463,6 +2487,8 @@ module TencentCloud
         # @type UserKafkaTopics: String
         # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
         # @type Offset: Integer
+        # @param LogRechargeRule: 日志导入规则。
+        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
         # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址，KafkaType为1时必填
@@ -2474,24 +2500,21 @@ module TencentCloud
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
         # @param ConsumerGroupName: 用户Kafka消费组名称
         # @type ConsumerGroupName: String
-        # @param LogRechargeRule: 日志导入规则。
-        # 必填字段。
-        # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
 
-        attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :LogRechargeRule
+        attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :LogRechargeRule, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName
 
-        def initialize(topicid=nil, name=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, logrechargerule=nil)
+        def initialize(topicid=nil, name=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, logrechargerule=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil)
           @TopicId = topicid
           @Name = name
           @KafkaType = kafkatype
           @UserKafkaTopics = userkafkatopics
           @Offset = offset
+          @LogRechargeRule = logrechargerule
           @KafkaInstance = kafkainstance
           @ServerAddr = serveraddr
           @IsEncryptionAddr = isencryptionaddr
           @Protocol = protocol
           @ConsumerGroupName = consumergroupname
-          @LogRechargeRule = logrechargerule
         end
 
         def deserialize(params)
@@ -2500,6 +2523,10 @@ module TencentCloud
           @KafkaType = params['KafkaType']
           @UserKafkaTopics = params['UserKafkaTopics']
           @Offset = params['Offset']
+          unless params['LogRechargeRule'].nil?
+            @LogRechargeRule = LogRechargeRuleInfo.new
+            @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
           @KafkaInstance = params['KafkaInstance']
           @ServerAddr = params['ServerAddr']
           @IsEncryptionAddr = params['IsEncryptionAddr']
@@ -2508,10 +2535,6 @@ module TencentCloud
             @Protocol.deserialize(params['Protocol'])
           end
           @ConsumerGroupName = params['ConsumerGroupName']
-          unless params['LogRechargeRule'].nil?
-            @LogRechargeRule = LogRechargeRuleInfo.new
-            @LogRechargeRule.deserialize(params['LogRechargeRule'])
-          end
         end
       end
 
@@ -7276,13 +7299,23 @@ module TencentCloud
 
       # ModifyConfig请求参数结构体
       class ModifyConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 采集规则配置ID
+        # @param ConfigId: 采集规则配置ID，通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)返回信息获取。
         # @type ConfigId: String
         # @param Name: 采集规则配置名称
         # @type Name: String
         # @param Path: 日志采集路径，包含文件名
         # @type Path: String
-        # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
+        # @param LogType: 采集的日志类型。支持以下类型：
+        # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
+        # - delimiter_log代表：分隔符-文件日志（详见[使用分隔符提取模式采集日志](https://cloud.tencent.com/document/product/614/17420)）；
+        # - minimalist_log代表：单行全文-文件日志（详见[使用单行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17421)）；
+        # - fullregex_log代表：单行完全正则-文件日志（详见[使用单行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52365)）；
+        # - multiline_log代表：多行全文-文件日志（详见[使用多行全文提取模式采集日志](https://cloud.tencent.com/document/product/614/17422)）；
+        # - multiline_fullregex_log代表：多行完全正则-文件日志（详见[使用多行-完全正则提取模式采集日志](https://cloud.tencent.com/document/product/614/52366)）；
+        # - user_define_log代表：组合解析（适用于多格式嵌套的日志，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)）；
+        # - service_syslog代表：syslog 采集（详见[采集 Syslog](https://cloud.tencent.com/document/product/614/81454)）；
+        # - windows_event_log代表：Windows事件日志（详见[采集 Windows 事件日志](https://cloud.tencent.com/document/product/614/96678)）。
+
         # @type LogType: String
         # @param ExtractRule: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRule: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
@@ -7290,13 +7323,14 @@ module TencentCloud
         # @type ExcludePaths: Array
         # @param Output: 采集配置关联的日志主题（TopicId）
         # @type Output: String
-        # @param UserDefineRule: 用户自定义解析字符串，Json格式序列化的字符串
+        # @param UserDefineRule: 用户自定义解析字符串，Json格式序列化的字符串。
         # @type UserDefineRule: String
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
         # - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
         # - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
-        # 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        # 样例：
+        # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
         # @type AdvancedConfig: String
 
         attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule, :AdvancedConfig

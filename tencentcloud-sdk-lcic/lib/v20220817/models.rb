@@ -926,10 +926,14 @@ module TencentCloud
         # @type EnableAutoStart: Integer
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # @type RecordBackground: String
+        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # @type RecordScene: String
+        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # @type RecordLang: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -957,6 +961,8 @@ module TencentCloud
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
           @RecordBackground = recordbackground
+          @RecordScene = recordscene
+          @RecordLang = recordlang
         end
 
         def deserialize(params)
@@ -987,6 +993,8 @@ module TencentCloud
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
           @RecordBackground = params['RecordBackground']
+          @RecordScene = params['RecordScene']
+          @RecordLang = params['RecordLang']
         end
       end
 
@@ -2151,12 +2159,16 @@ module TencentCloud
         # @type RecordBackground: String
         # @param RTMPStreamingURL: RTMP推流链接
         # @type RTMPStreamingURL: String
+        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # @type RecordScene: String
+        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # @type RecordLang: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2185,6 +2197,8 @@ module TencentCloud
           @EnableAutoStart = enableautostart
           @RecordBackground = recordbackground
           @RTMPStreamingURL = rtmpstreamingurl
+          @RecordScene = recordscene
+          @RecordLang = recordlang
           @RequestId = requestid
         end
 
@@ -2217,6 +2231,8 @@ module TencentCloud
           @EnableAutoStart = params['EnableAutoStart']
           @RecordBackground = params['RecordBackground']
           @RTMPStreamingURL = params['RTMPStreamingURL']
+          @RecordScene = params['RecordScene']
+          @RecordLang = params['RecordLang']
           @RequestId = params['RequestId']
         end
       end
@@ -3658,10 +3674,14 @@ module TencentCloud
         # @type RecordLiveUrl: String
         # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1的时候有效
         # @type EnableAutoStart: Integer
+        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # @type RecordScene: String
+        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # @type RecordLang: String
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -3686,6 +3706,8 @@ module TencentCloud
           @LiveType = livetype
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
+          @RecordScene = recordscene
+          @RecordLang = recordlang
         end
 
         def deserialize(params)
@@ -3713,6 +3735,8 @@ module TencentCloud
           @LiveType = params['LiveType']
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
+          @RecordScene = params['RecordScene']
+          @RecordLang = params['RecordLang']
         end
       end
 
@@ -3980,10 +4004,14 @@ module TencentCloud
         # @type EnableAutoStart: Integer
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # @type RecordBackground: String
+        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # @type RecordScene: String
+        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # @type RecordLang: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -4010,6 +4038,8 @@ module TencentCloud
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
           @RecordBackground = recordbackground
+          @RecordScene = recordscene
+          @RecordLang = recordlang
         end
 
         def deserialize(params)
@@ -4039,6 +4069,8 @@ module TencentCloud
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
           @RecordBackground = params['RecordBackground']
+          @RecordScene = params['RecordScene']
+          @RecordLang = params['RecordLang']
         end
       end
 
@@ -4112,10 +4144,16 @@ module TencentCloud
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecordBackground: String
+        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordScene: String
+        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordLang: String
 
-        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground
+        attr_accessor :Name, :RoomId, :Status, :StartTime, :EndTime, :RealStartTime, :RealEndTime, :Resolution, :MaxRTCMember, :ReplayUrl, :RecordUrl, :MaxMicNumber, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang
 
-        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil)
+        def initialize(name=nil, roomid=nil, status=nil, starttime=nil, endtime=nil, realstarttime=nil, realendtime=nil, resolution=nil, maxrtcmember=nil, replayurl=nil, recordurl=nil, maxmicnumber=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil)
           @Name = name
           @RoomId = roomid
           @Status = status
@@ -4138,6 +4176,8 @@ module TencentCloud
           @RecordLiveUrl = recordliveurl
           @EnableAutoStart = enableautostart
           @RecordBackground = recordbackground
+          @RecordScene = recordscene
+          @RecordLang = recordlang
         end
 
         def deserialize(params)
@@ -4163,6 +4203,8 @@ module TencentCloud
           @RecordLiveUrl = params['RecordLiveUrl']
           @EnableAutoStart = params['EnableAutoStart']
           @RecordBackground = params['RecordBackground']
+          @RecordScene = params['RecordScene']
+          @RecordLang = params['RecordLang']
         end
       end
 

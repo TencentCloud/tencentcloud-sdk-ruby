@@ -223,13 +223,15 @@ module TencentCloud
         # @type InstanceParams: Array
         # @param SecurityGroupIds: 安全组ID，新建只读实例时可以指定安全组。
         # @type SecurityGroupIds: Array
+        # @param UpgradeProxy: proxy同步升级
+        # @type UpgradeProxy: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeProxy`
 
-        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds
+        attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
         deprecate :InstanceGrpId, :none, 2024, 3
         deprecate :InstanceGrpId=, :none, 2024, 3
 
-        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil)
+        def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Memory = memory
@@ -246,6 +248,7 @@ module TencentCloud
           @ParamTemplateId = paramtemplateid
           @InstanceParams = instanceparams
           @SecurityGroupIds = securitygroupids
+          @UpgradeProxy = upgradeproxy
         end
 
         def deserialize(params)
@@ -272,6 +275,10 @@ module TencentCloud
             end
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+          unless params['UpgradeProxy'].nil?
+            @UpgradeProxy = UpgradeProxy.new
+            @UpgradeProxy.deserialize(params['UpgradeProxy'])
+          end
         end
       end
 
@@ -12345,10 +12352,12 @@ module TencentCloud
         # @type DealMode: Integer
         # @param UpgradeMode: NormalUpgrade：普通变配，FastUpgrade：极速变配，若变配过程判断会造成闪断，变配流程会终止。
         # @type UpgradeMode: String
+        # @param UpgradeProxy: proxy同步升级
+        # @type UpgradeProxy: :class:`Tencentcloud::Cynosdb.v20190107.models.UpgradeProxy`
 
-        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode, :UpgradeMode
+        attr_accessor :InstanceId, :Cpu, :Memory, :UpgradeType, :StorageLimit, :AutoVoucher, :DbType, :DealMode, :UpgradeMode, :UpgradeProxy
 
-        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil, upgrademode=nil)
+        def initialize(instanceid=nil, cpu=nil, memory=nil, upgradetype=nil, storagelimit=nil, autovoucher=nil, dbtype=nil, dealmode=nil, upgrademode=nil, upgradeproxy=nil)
           @InstanceId = instanceid
           @Cpu = cpu
           @Memory = memory
@@ -12358,6 +12367,7 @@ module TencentCloud
           @DbType = dbtype
           @DealMode = dealmode
           @UpgradeMode = upgrademode
+          @UpgradeProxy = upgradeproxy
         end
 
         def deserialize(params)
@@ -12370,6 +12380,10 @@ module TencentCloud
           @DbType = params['DbType']
           @DealMode = params['DealMode']
           @UpgradeMode = params['UpgradeMode']
+          unless params['UpgradeProxy'].nil?
+            @UpgradeProxy = UpgradeProxy.new
+            @UpgradeProxy.deserialize(params['UpgradeProxy'])
+          end
         end
       end
 
@@ -12400,6 +12414,41 @@ module TencentCloud
           @BigDealIds = params['BigDealIds']
           @DealNames = params['DealNames']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 添加实例或者变配实例时同步升级proxy.
+      class UpgradeProxy < TencentCloud::Common::AbstractModel
+        # @param Cpu: cpu
+        # @type Cpu: Integer
+        # @param Mem: memory
+        # @type Mem: Integer
+        # @param ProxyZones: 代理节点信息
+        # @type ProxyZones: Array
+        # @param ReloadBalance: 重新负载均衡
+        # @type ReloadBalance: String
+
+        attr_accessor :Cpu, :Mem, :ProxyZones, :ReloadBalance
+
+        def initialize(cpu=nil, mem=nil, proxyzones=nil, reloadbalance=nil)
+          @Cpu = cpu
+          @Mem = mem
+          @ProxyZones = proxyzones
+          @ReloadBalance = reloadbalance
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          unless params['ProxyZones'].nil?
+            @ProxyZones = []
+            params['ProxyZones'].each do |i|
+              proxyzone_tmp = ProxyZone.new
+              proxyzone_tmp.deserialize(i)
+              @ProxyZones << proxyzone_tmp
+            end
+          end
+          @ReloadBalance = params['ReloadBalance']
         end
       end
 

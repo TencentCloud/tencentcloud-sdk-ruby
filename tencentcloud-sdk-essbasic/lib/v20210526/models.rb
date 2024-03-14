@@ -3314,10 +3314,8 @@ module TencentCloud
         # 此接口下面信息必填。
         # <ul>
         # <li>渠道应用标识:  Agent.AppId</li>
-        # <li>第三方平台子客企业标识: Agent.ProxyOrganizationOpenId</li>
-        # <li>第三方平台子客企业中的员工标识: Agent. ProxyOperator.OpenId</li>
         # </ul>
-        # 第三方平台子客企业和员工必须已经经过实名认证
+        # 第三方平台子客企业必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
         # @param StartTime: 查询开始时间字符串，格式为yyyymmdd,时间跨度不能大于31天
         # @type StartTime: String
@@ -4209,6 +4207,67 @@ module TencentCloud
           @AdminMobile = params['AdminMobile']
           @AuthorizationStatus = params['AuthorizationStatus']
           @AuthorizationType = params['AuthorizationType']
+        end
+      end
+
+      # ChannelRenewAutoSignLicense请求参数结构体
+      class ChannelRenewAutoSignLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
+        # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
+        # @param SceneKey: 自动签使用的场景值, 可以选择的场景值如下:
+        # <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
+        # @type SceneKey: String
+        # @param UserInfo: 要查询状态的用户信息, 包括名字,身份证等
+        # @type UserInfo: :class:`Tencentcloud::Essbasic.v20210526.models.UserThreeFactor`
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+
+        attr_accessor :Agent, :SceneKey, :UserInfo, :Operator
+
+        def initialize(agent=nil, scenekey=nil, userinfo=nil, operator=nil)
+          @Agent = agent
+          @SceneKey = scenekey
+          @UserInfo = userinfo
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          @SceneKey = params['SceneKey']
+          unless params['UserInfo'].nil?
+            @UserInfo = UserThreeFactor.new
+            @UserInfo.deserialize(params['UserInfo'])
+          end
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # ChannelRenewAutoSignLicense返回参数结构体
+      class ChannelRenewAutoSignLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseTo: 续期成功后自动签许可到期时间。当且仅当已通过许可开通自动签时有值。
+
+        # 值为unix时间戳,单位为秒。
+        # @type LicenseTo: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LicenseTo, :RequestId
+
+        def initialize(licenseto=nil, requestid=nil)
+          @LicenseTo = licenseto
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LicenseTo = params['LicenseTo']
+          @RequestId = params['RequestId']
         end
       end
 

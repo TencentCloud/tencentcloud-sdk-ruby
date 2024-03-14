@@ -3896,7 +3896,7 @@ module TencentCloud
 
       # DescribeCdnIp请求参数结构体
       class DescribeCdnIpRequest < TencentCloud::Common::AbstractModel
-        # @param Ips: 需要查询的 IP 列表
+        # @param Ips: 需要查询的 IP 列表，单次可支持1-20个IP查询。
         # @type Ips: Array
 
         attr_accessor :Ips
