@@ -3510,6 +3510,44 @@ module TencentCloud
         end
       end
 
+      # DescribeBuildInImages请求参数结构体
+      class DescribeBuildInImagesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeBuildInImages返回参数结构体
+      class DescribeBuildInImagesResponse < TencentCloud::Common::AbstractModel
+        # @param BuildInImageInfos: 内置镜像详情列表
+        # @type BuildInImageInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuildInImageInfos, :RequestId
+
+        def initialize(buildinimageinfos=nil, requestid=nil)
+          @BuildInImageInfos = buildinimageinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BuildInImageInfos'].nil?
+            @BuildInImageInfos = []
+            params['BuildInImageInfos'].each do |i|
+              imageinfo_tmp = ImageInfo.new
+              imageinfo_tmp.deserialize(i)
+              @BuildInImageInfos << imageinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDatasetDetailStructured请求参数结构体
       class DescribeDatasetDetailStructuredRequest < TencentCloud::Common::AbstractModel
         # @param DatasetId: 数据集ID

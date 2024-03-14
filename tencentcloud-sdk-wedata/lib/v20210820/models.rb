@@ -31848,10 +31848,19 @@ module TencentCloud
         # @param TableType: 表类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableType: String
+        # @param DatasourceName: datasourceName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatabaseName: DatabaseName
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param DatabaseId: DatabaseId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
 
-        attr_accessor :MetastoreType, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ChannelType, :DisplayType, :EngineType, :TableType
+        attr_accessor :MetastoreType, :ProjectId, :DatasourceId, :TableId, :Params, :ParentSet, :ChildSet, :ExtParams, :Id, :MetastoreTypeName, :TableName, :QualifiedName, :DownStreamCount, :UpStreamCount, :Description, :PrefixPath, :CreateTime, :ModifyTime, :Tasks, :ChannelType, :DisplayType, :EngineType, :TableType, :DatasourceName, :DatabaseName, :DatabaseId
 
-        def initialize(metastoretype=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, channeltype=nil, displaytype=nil, enginetype=nil, tabletype=nil)
+        def initialize(metastoretype=nil, projectid=nil, datasourceid=nil, tableid=nil, params=nil, parentset=nil, childset=nil, extparams=nil, id=nil, metastoretypename=nil, tablename=nil, qualifiedname=nil, downstreamcount=nil, upstreamcount=nil, description=nil, prefixpath=nil, createtime=nil, modifytime=nil, tasks=nil, channeltype=nil, displaytype=nil, enginetype=nil, tabletype=nil, datasourcename=nil, databasename=nil, databaseid=nil)
           @MetastoreType = metastoretype
           @ProjectId = projectid
           @DatasourceId = datasourceid
@@ -31875,6 +31884,9 @@ module TencentCloud
           @DisplayType = displaytype
           @EngineType = enginetype
           @TableType = tabletype
+          @DatasourceName = datasourcename
+          @DatabaseName = databasename
+          @DatabaseId = databaseid
         end
 
         def deserialize(params)
@@ -31915,6 +31927,9 @@ module TencentCloud
           @DisplayType = params['DisplayType']
           @EngineType = params['EngineType']
           @TableType = params['TableType']
+          @DatasourceName = params['DatasourceName']
+          @DatabaseName = params['DatabaseName']
+          @DatabaseId = params['DatabaseId']
         end
       end
 
@@ -32071,10 +32086,19 @@ module TencentCloud
         # @param Location: 存储位置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
+        # @param IsPartitionTable: 判断是否是分区表1 是 0否
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartitionTable: Integer
+        # @param PartitionColumns: 分区字段 key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionColumns: Array
+        # @param PartitionExpireDays: 生命周期-分区保留天数【分区保留策略时有效】
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionExpireDays: Integer
 
-        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location
+        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays
 
-        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil)
+        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil)
           @TableId = tableid
           @TableName = tablename
           @TableOwnerName = tableownername
@@ -32125,6 +32149,9 @@ module TencentCloud
           @MetaCrawlType = metacrawltype
           @IsView = isview
           @Location = location
+          @IsPartitionTable = ispartitiontable
+          @PartitionColumns = partitioncolumns
+          @PartitionExpireDays = partitionexpiredays
         end
 
         def deserialize(params)
@@ -32191,6 +32218,9 @@ module TencentCloud
           @MetaCrawlType = params['MetaCrawlType']
           @IsView = params['IsView']
           @Location = params['Location']
+          @IsPartitionTable = params['IsPartitionTable']
+          @PartitionColumns = params['PartitionColumns']
+          @PartitionExpireDays = params['PartitionExpireDays']
         end
       end
 

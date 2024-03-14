@@ -54,6 +54,74 @@ module TencentCloud
         end
       end
 
+      # CheckMigrateIndexMetaData请求参数结构体
+      class CheckMigrateIndexMetaDataRequest < TencentCloud::Common::AbstractModel
+        # @param ServerlessId: 索引 id
+        # @type ServerlessId: String
+        # @param Snapshot: 快照名
+        # @type Snapshot: String
+        # @param CosBucket: Cos桶名
+        # @type CosBucket: String
+        # @param BasePath: BasePath路径
+        # @type BasePath: String
+        # @param ClusterInstanceId: 云上集群名
+        # @type ClusterInstanceId: String
+        # @param CommonIndexArr: 普通索引名列表
+        # @type CommonIndexArr: Array
+        # @param DataStreamArr: 自治索引名列表
+        # @type DataStreamArr: Array
+
+        attr_accessor :ServerlessId, :Snapshot, :CosBucket, :BasePath, :ClusterInstanceId, :CommonIndexArr, :DataStreamArr
+
+        def initialize(serverlessid=nil, snapshot=nil, cosbucket=nil, basepath=nil, clusterinstanceid=nil, commonindexarr=nil, datastreamarr=nil)
+          @ServerlessId = serverlessid
+          @Snapshot = snapshot
+          @CosBucket = cosbucket
+          @BasePath = basepath
+          @ClusterInstanceId = clusterinstanceid
+          @CommonIndexArr = commonindexarr
+          @DataStreamArr = datastreamarr
+        end
+
+        def deserialize(params)
+          @ServerlessId = params['ServerlessId']
+          @Snapshot = params['Snapshot']
+          @CosBucket = params['CosBucket']
+          @BasePath = params['BasePath']
+          @ClusterInstanceId = params['ClusterInstanceId']
+          @CommonIndexArr = params['CommonIndexArr']
+          @DataStreamArr = params['DataStreamArr']
+        end
+      end
+
+      # CheckMigrateIndexMetaData返回参数结构体
+      class CheckMigrateIndexMetaDataResponse < TencentCloud::Common::AbstractModel
+        # @param MappingTimeFieldCheckFailedIndexArr: 不存在于目标索引时间字段相同的字段
+        # @type MappingTimeFieldCheckFailedIndexArr: Array
+        # @param MappingTimeTypeCheckFailedIndexArr: @timestamp不为date类型，与目标索引时间字段冲突
+        # @type MappingTimeTypeCheckFailedIndexArr: Array
+        # @param SettingCheckFailedIndexArr: 索引的创建时间不在 serverless的存储周期内
+        # @type SettingCheckFailedIndexArr: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MappingTimeFieldCheckFailedIndexArr, :MappingTimeTypeCheckFailedIndexArr, :SettingCheckFailedIndexArr, :RequestId
+
+        def initialize(mappingtimefieldcheckfailedindexarr=nil, mappingtimetypecheckfailedindexarr=nil, settingcheckfailedindexarr=nil, requestid=nil)
+          @MappingTimeFieldCheckFailedIndexArr = mappingtimefieldcheckfailedindexarr
+          @MappingTimeTypeCheckFailedIndexArr = mappingtimetypecheckfailedindexarr
+          @SettingCheckFailedIndexArr = settingcheckfailedindexarr
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MappingTimeFieldCheckFailedIndexArr = params['MappingTimeFieldCheckFailedIndexArr']
+          @MappingTimeTypeCheckFailedIndexArr = params['MappingTimeTypeCheckFailedIndexArr']
+          @SettingCheckFailedIndexArr = params['SettingCheckFailedIndexArr']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 集群维度视图数据
       class ClusterView < TencentCloud::Common::AbstractModel
         # @param Health: 集群健康状态
@@ -156,6 +224,28 @@ module TencentCloud
         end
       end
 
+      # 普通索引信息列表
+      class CommonIndexInfo < TencentCloud::Common::AbstractModel
+        # @param IndexName: 普通索引名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexName: String
+        # @param IsShardComplete: 分片状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsShardComplete: Integer
+
+        attr_accessor :IndexName, :IsShardComplete
+
+        def initialize(indexname=nil, isshardcomplete=nil)
+          @IndexName = indexname
+          @IsShardComplete = isshardcomplete
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
+          @IsShardComplete = params['IsShardComplete']
+        end
+      end
+
       # ES cos自动备份信息
       class CosBackup < TencentCloud::Common::AbstractModel
         # @param IsAutoBackup: 是否开启cos自动备份
@@ -173,6 +263,127 @@ module TencentCloud
         def deserialize(params)
           @IsAutoBackup = params['IsAutoBackup']
           @BackupTime = params['BackupTime']
+        end
+      end
+
+      # 无
+      class CosSnapShotInfo < TencentCloud::Common::AbstractModel
+        # @param CosBucket: cos 桶名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucket: String
+        # @param BasePath: base path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BasePath: String
+        # @param SnapshotName: 快照名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotName: String
+        # @param State: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: String
+        # @param Version: 快照版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param CommonIndexArr: 普通索引信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonIndexArr: Array
+        # @param DataStreamArr: 自治索引信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataStreamArr: Array
+
+        attr_accessor :CosBucket, :BasePath, :SnapshotName, :State, :Version, :CommonIndexArr, :DataStreamArr
+
+        def initialize(cosbucket=nil, basepath=nil, snapshotname=nil, state=nil, version=nil, commonindexarr=nil, datastreamarr=nil)
+          @CosBucket = cosbucket
+          @BasePath = basepath
+          @SnapshotName = snapshotname
+          @State = state
+          @Version = version
+          @CommonIndexArr = commonindexarr
+          @DataStreamArr = datastreamarr
+        end
+
+        def deserialize(params)
+          @CosBucket = params['CosBucket']
+          @BasePath = params['BasePath']
+          @SnapshotName = params['SnapshotName']
+          @State = params['State']
+          @Version = params['Version']
+          unless params['CommonIndexArr'].nil?
+            @CommonIndexArr = []
+            params['CommonIndexArr'].each do |i|
+              commonindexinfo_tmp = CommonIndexInfo.new
+              commonindexinfo_tmp.deserialize(i)
+              @CommonIndexArr << commonindexinfo_tmp
+            end
+          end
+          unless params['DataStreamArr'].nil?
+            @DataStreamArr = []
+            params['DataStreamArr'].each do |i|
+              datastreaminfo_tmp = DataStreamInfo.new
+              datastreaminfo_tmp.deserialize(i)
+              @DataStreamArr << datastreaminfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCosMigrateToServerlessInstance请求参数结构体
+      class CreateCosMigrateToServerlessInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param Snapshot: 快照名
+        # @type Snapshot: String
+        # @param ServerlessId: 索引 id
+        # @type ServerlessId: String
+        # @param CosBucket: cos 桶名
+        # @type CosBucket: String
+        # @param BasePath: BasePath 路径
+        # @type BasePath: String
+        # @param ClusterInstanceId: 云上集群 id
+        # @type ClusterInstanceId: String
+        # @param CommonIndexArr: 待迁移普通索引名列表
+        # @type CommonIndexArr: Array
+        # @param DataStreamArr: 待迁移自治索引名列表
+        # @type DataStreamArr: Array
+
+        attr_accessor :Snapshot, :ServerlessId, :CosBucket, :BasePath, :ClusterInstanceId, :CommonIndexArr, :DataStreamArr
+
+        def initialize(snapshot=nil, serverlessid=nil, cosbucket=nil, basepath=nil, clusterinstanceid=nil, commonindexarr=nil, datastreamarr=nil)
+          @Snapshot = snapshot
+          @ServerlessId = serverlessid
+          @CosBucket = cosbucket
+          @BasePath = basepath
+          @ClusterInstanceId = clusterinstanceid
+          @CommonIndexArr = commonindexarr
+          @DataStreamArr = datastreamarr
+        end
+
+        def deserialize(params)
+          @Snapshot = params['Snapshot']
+          @ServerlessId = params['ServerlessId']
+          @CosBucket = params['CosBucket']
+          @BasePath = params['BasePath']
+          @ClusterInstanceId = params['ClusterInstanceId']
+          @CommonIndexArr = params['CommonIndexArr']
+          @DataStreamArr = params['DataStreamArr']
+        end
+      end
+
+      # CreateCosMigrateToServerlessInstance返回参数结构体
+      class CreateCosMigrateToServerlessInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 迁移 taskid
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -705,6 +916,28 @@ module TencentCloud
         def deserialize(params)
           @SpaceId = params['SpaceId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 自治索引信息
+      class DataStreamInfo < TencentCloud::Common::AbstractModel
+        # @param DataStreamName: 自治索引名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataStreamName: String
+        # @param IsShardComplete: 分片状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsShardComplete: Integer
+
+        attr_accessor :DataStreamName, :IsShardComplete
+
+        def initialize(datastreamname=nil, isshardcomplete=nil)
+          @DataStreamName = datastreamname
+          @IsShardComplete = isshardcomplete
+        end
+
+        def deserialize(params)
+          @DataStreamName = params['DataStreamName']
+          @IsShardComplete = params['IsShardComplete']
         end
       end
 
@@ -1885,6 +2118,61 @@ module TencentCloud
               @ServerlessSpaces << serverlessspace_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserCosSnapshotList请求参数结构体
+      class DescribeUserCosSnapshotListRequest < TencentCloud::Common::AbstractModel
+        # @param CosBucket: cos桶名
+        # @type CosBucket: String
+        # @param BasePath: bucket 桶下的备份路径
+        # @type BasePath: String
+        # @param ClusterInstanceId: 云上集群迁移集群名
+        # @type ClusterInstanceId: String
+
+        attr_accessor :CosBucket, :BasePath, :ClusterInstanceId
+
+        def initialize(cosbucket=nil, basepath=nil, clusterinstanceid=nil)
+          @CosBucket = cosbucket
+          @BasePath = basepath
+          @ClusterInstanceId = clusterinstanceid
+        end
+
+        def deserialize(params)
+          @CosBucket = params['CosBucket']
+          @BasePath = params['BasePath']
+          @ClusterInstanceId = params['ClusterInstanceId']
+        end
+      end
+
+      # DescribeUserCosSnapshotList返回参数结构体
+      class DescribeUserCosSnapshotListResponse < TencentCloud::Common::AbstractModel
+        # @param CosSnapshotInfoList: cos 快照信息列表
+        # @type CosSnapshotInfoList: Array
+        # @param TotalCount: cos 快照数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosSnapshotInfoList, :TotalCount, :RequestId
+
+        def initialize(cossnapshotinfolist=nil, totalcount=nil, requestid=nil)
+          @CosSnapshotInfoList = cossnapshotinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosSnapshotInfoList'].nil?
+            @CosSnapshotInfoList = []
+            params['CosSnapshotInfoList'].each do |i|
+              cossnapshotinfo_tmp = CosSnapShotInfo.new
+              cossnapshotinfo_tmp.deserialize(i)
+              @CosSnapshotInfoList << cossnapshotinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

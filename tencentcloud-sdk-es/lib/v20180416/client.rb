@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 检查cos迁移索引元数据
+
+        # @param request: Request instance for CheckMigrateIndexMetaData.
+        # @type request: :class:`Tencentcloud::es::V20180416::CheckMigrateIndexMetaDataRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CheckMigrateIndexMetaDataResponse`
+        def CheckMigrateIndexMetaData(request)
+          body = send_request('CheckMigrateIndexMetaData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckMigrateIndexMetaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # cos迁移流程
+
+        # @param request: Request instance for CreateCosMigrateToServerlessInstance.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateCosMigrateToServerlessInstanceRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateCosMigrateToServerlessInstanceResponse`
+        def CreateCosMigrateToServerlessInstance(request)
+          body = send_request('CreateCosMigrateToServerlessInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCosMigrateToServerlessInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建索引
 
         # @param request: Request instance for CreateIndex.
@@ -591,6 +639,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeServerlessSpacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询快照信息接口
+
+        # @param request: Request instance for DescribeUserCosSnapshotList.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeUserCosSnapshotListRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeUserCosSnapshotListResponse`
+        def DescribeUserCosSnapshotList(request)
+          body = send_request('DescribeUserCosSnapshotList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserCosSnapshotListResponse.new
             model.deserialize(response['Response'])
             model
           else

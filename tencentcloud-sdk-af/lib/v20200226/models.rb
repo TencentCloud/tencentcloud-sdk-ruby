@@ -626,9 +626,9 @@ module TencentCloud
         # @type BankCardNumber: String
         # @param UserIp: 用户请求来源 IP(五选二)
         # @type UserIp: String
-        # @param Imei: 国际移动设备识别码(五选二)
+        # @param Imei: 国际移动设备识别码，和Idfa同时传入时，只看作一个关键入参(五选二)
         # @type Imei: String
-        # @param Idfa: ios 系统广告标示符(五选二)
+        # @param Idfa: ios 系统广告标示符，和Imei同时传入时，只看作一个关键入参(五选二)
         # @type Idfa: String
         # @param Scene: 业务场景 ID，需要找技术对接
         # @type Scene: String
@@ -673,8 +673,6 @@ module TencentCloud
         # @param NameCryptoType: 姓名加密类型
         # 0：不加密（默认值）
         # 1：md5
-        # 2：sha256
-        # 3：SM3
         # @type NameCryptoType: String
 
         attr_accessor :PhoneNumber, :IdNumber, :BankCardNumber, :UserIp, :Imei, :Idfa, :Scene, :Name, :EmailAddress, :Address, :Mac, :Imsi, :AccountType, :Uid, :AppIdU, :WifiMac, :WifiSSID, :WifiBSSID, :BusinessId, :IdCryptoType, :PhoneCryptoType, :NameCryptoType
@@ -736,7 +734,7 @@ module TencentCloud
         # @type Found: Integer
         # @param IdFound: 表示该条Id能否查到：1为能查到，-1为查不到
         # @type IdFound: Integer
-        # @param RiskScore: 0~100;值越高 欺诈可能性越大
+        # @param RiskScore: 0~100;值越高 欺诈可能性越大（注：该字段真实类型为有符号整型）
         # @type RiskScore: Integer
         # @param RiskInfo: 扩展字段，对风险类型的说明
         # @type RiskInfo: Array

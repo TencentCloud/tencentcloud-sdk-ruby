@@ -2037,15 +2037,24 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，合法范围[1,100]
         # @type Limit: Integer
+        # @param State: 执行状态,ERROR等
+        # @type State: Array
+        # @param EndTimeGte: 结束时间大于的时间点
+        # @type EndTimeGte: Integer
+        # @param EndTimeLte: 结束时间小于时间点
+        # @type EndTimeLte: Integer
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :State, :EndTimeGte, :EndTimeLte
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, state=nil, endtimegte=nil, endtimelte=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Offset = offset
           @Limit = limit
+          @State = state
+          @EndTimeGte = endtimegte
+          @EndTimeLte = endtimelte
         end
 
         def deserialize(params)
@@ -2054,6 +2063,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @State = params['State']
+          @EndTimeGte = params['EndTimeGte']
+          @EndTimeLte = params['EndTimeLte']
         end
       end
 
@@ -2100,15 +2112,24 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页大小，合法范围[1,100]
         # @type Limit: Integer
+        # @param State: 执行状态，CREATED、INITIALIZED、COMPILED、RUNNING、FINISHED、EXCEPTION
+        # @type State: Array
+        # @param EndTimeGte: 结束时间大于的时间点
+        # @type EndTimeGte: Integer
+        # @param EndTimeLte: 结束时间小于的时间点
+        # @type EndTimeLte: Integer
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :State, :EndTimeGte, :EndTimeLte
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, state=nil, endtimegte=nil, endtimelte=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Offset = offset
           @Limit = limit
+          @State = state
+          @EndTimeGte = endtimegte
+          @EndTimeLte = endtimelte
         end
 
         def deserialize(params)
@@ -2117,6 +2138,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @State = params['State']
+          @EndTimeGte = params['EndTimeGte']
+          @EndTimeLte = params['EndTimeLte']
         end
       end
 

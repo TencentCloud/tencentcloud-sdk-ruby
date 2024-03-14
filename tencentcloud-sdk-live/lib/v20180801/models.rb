@@ -7015,6 +7015,69 @@ module TencentCloud
         end
       end
 
+      # DescribePullTransformPushInfo请求参数结构体
+      class DescribePullTransformPushInfoRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间点，接口查询支持两种时间格式：
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，接口查询支持两种时间格式：
+        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        # 支持最近三年的查询，查询开始和结束时间跨度不支持超过31天。
+        # @type EndTime: String
+        # @param MainlandOrOversea: 可选值：
+        # Mainland：查询国内数据，
+        # Oversea：则查询国外数据，
+        # 默认：查询国内+国外的数据。
+        # @type MainlandOrOversea: String
+
+        attr_accessor :StartTime, :EndTime, :MainlandOrOversea
+
+        def initialize(starttime=nil, endtime=nil, mainlandoroversea=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MainlandOrOversea = mainlandoroversea
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MainlandOrOversea = params['MainlandOrOversea']
+        end
+      end
+
+      # DescribePullTransformPushInfo返回参数结构体
+      class DescribePullTransformPushInfoResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 时长统计数据列表
+        # @type DataInfoList: Array
+        # @param TotalDuration: 拉流转推得总时长
+        # @type TotalDuration: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :TotalDuration, :RequestId
+
+        def initialize(datainfolist=nil, totalduration=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @TotalDuration = totalduration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              taskdurationinfo_tmp = TaskDurationInfo.new
+              taskdurationinfo_tmp.deserialize(i)
+              @DataInfoList << taskdurationinfo_tmp
+            end
+          end
+          @TotalDuration = params['TotalDuration']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePushBandwidthAndFluxList请求参数结构体
       class DescribePushBandwidthAndFluxListRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间点，精确到分钟粒度，接口查询支持两种时间格式：
@@ -11987,6 +12050,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 拉流转推任务的时长分布信息
+      class TaskDurationInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 拉流转推任务的时间点
+        # @type Time: String
+        # @param Duration: 拉流转推任务的时长，单位为分钟
+        # @type Duration: Integer
+
+        attr_accessor :Time, :Duration
+
+        def initialize(time=nil, duration=nil)
+          @Time = time
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Duration = params['Duration']
         end
       end
 

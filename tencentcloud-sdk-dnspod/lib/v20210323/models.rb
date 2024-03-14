@@ -967,10 +967,12 @@ module TencentCloud
         # @type Status: String
         # @param Remark: 备注
         # @type Remark: String
+        # @param DnssecConflictMode: 开启DNSSEC时，强制添加CNAME/URL记录
+        # @type DnssecConflictMode: String
 
-        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark
+        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode
 
-        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil)
+        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil, dnssecconflictmode=nil)
           @Domain = domain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -983,6 +985,7 @@ module TencentCloud
           @Weight = weight
           @Status = status
           @Remark = remark
+          @DnssecConflictMode = dnssecconflictmode
         end
 
         def deserialize(params)
@@ -998,6 +1001,7 @@ module TencentCloud
           @Weight = params['Weight']
           @Status = params['Status']
           @Remark = params['Remark']
+          @DnssecConflictMode = params['DnssecConflictMode']
         end
       end
 
@@ -2659,6 +2663,53 @@ module TencentCloud
         end
       end
 
+      # DescribeRecordLineCategoryList请求参数结构体
+      class DescribeRecordLineCategoryListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询线路列表的域名。
+        # @type Domain: String
+        # @param DomainId: 要查询线路列表的域名 ID。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口 DescribeDomainList 查到所有的 Domain 以及 DomainId。
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :DomainId
+
+        def initialize(domain=nil, domainid=nil)
+          @Domain = domain
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeRecordLineCategoryList返回参数结构体
+      class DescribeRecordLineCategoryListResponse < TencentCloud::Common::AbstractModel
+        # @param LineList: 按分类返回的线路列表。
+        # @type LineList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LineList, :RequestId
+
+        def initialize(linelist=nil, requestid=nil)
+          @LineList = linelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LineList'].nil?
+            @LineList = []
+            params['LineList'].each do |i|
+              lineitem_tmp = LineItem.new
+              lineitem_tmp.deserialize(i)
+              @LineList << lineitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRecordLineList请求参数结构体
       class DescribeRecordLineListRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名。
@@ -4046,6 +4097,53 @@ module TencentCloud
         end
       end
 
+      # 域名解析记录线路信息
+      class LineItem < TencentCloud::Common::AbstractModel
+        # @param LineName: 解析线路名称。
+        # @type LineName: String
+        # @param LineId: 解析线路 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineId: String
+        # @param Useful: 当前线路在当前域名下是否可用。
+        # @type Useful: Boolean
+        # @param Grade: 当前线路最低套餐等级要求。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Grade: String
+        # @param SubGroup: 当前线路分类下的子线路列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubGroup: Array
+        # @param Lines: 自定义线路分组内包含的线路。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Lines: Array
+
+        attr_accessor :LineName, :LineId, :Useful, :Grade, :SubGroup, :Lines
+
+        def initialize(linename=nil, lineid=nil, useful=nil, grade=nil, subgroup=nil, lines=nil)
+          @LineName = linename
+          @LineId = lineid
+          @Useful = useful
+          @Grade = grade
+          @SubGroup = subgroup
+          @Lines = lines
+        end
+
+        def deserialize(params)
+          @LineName = params['LineName']
+          @LineId = params['LineId']
+          @Useful = params['Useful']
+          @Grade = params['Grade']
+          unless params['SubGroup'].nil?
+            @SubGroup = []
+            params['SubGroup'].each do |i|
+              lineitem_tmp = LineItem.new
+              lineitem_tmp.deserialize(i)
+              @SubGroup << lineitem_tmp
+            end
+          end
+          @Lines = params['Lines']
+        end
+      end
+
       # 域名锁定信息
       class LockInfo < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名 ID
@@ -4721,10 +4819,12 @@ module TencentCloud
         # @type Status: String
         # @param Remark: 记录的备注信息。传空删除备注。
         # @type Remark: String
+        # @param DnssecConflictMode: 开启DNSSEC时，强制将其它记录修改为CNAME/URL记录
+        # @type DnssecConflictMode: String
 
-        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark
+        attr_accessor :Domain, :RecordType, :RecordLine, :Value, :RecordId, :DomainId, :SubDomain, :RecordLineId, :MX, :TTL, :Weight, :Status, :Remark, :DnssecConflictMode
 
-        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, recordid=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil)
+        def initialize(domain=nil, recordtype=nil, recordline=nil, value=nil, recordid=nil, domainid=nil, subdomain=nil, recordlineid=nil, mx=nil, ttl=nil, weight=nil, status=nil, remark=nil, dnssecconflictmode=nil)
           @Domain = domain
           @RecordType = recordtype
           @RecordLine = recordline
@@ -4738,6 +4838,7 @@ module TencentCloud
           @Weight = weight
           @Status = status
           @Remark = remark
+          @DnssecConflictMode = dnssecconflictmode
         end
 
         def deserialize(params)
@@ -4754,6 +4855,7 @@ module TencentCloud
           @Weight = params['Weight']
           @Status = params['Status']
           @Remark = params['Remark']
+          @DnssecConflictMode = params['DnssecConflictMode']
         end
       end
 

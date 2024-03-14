@@ -1489,7 +1489,7 @@ module TencentCloud
 
       # 数据库信息
       class DBInfo < TencentCloud::Common::AbstractModel
-        # @param Role: 表示节点角色，针对分布式数据库，如mongodb中的mongos节点
+        # @param Role: 表示节点角色，针对分布式数据库，如mongodb中的mongos节点。如数据库是tdsql，枚举值为：proxy、set
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param DbKernel: 内核版本，针对mariadb的不同内核版本等
@@ -1549,10 +1549,13 @@ module TencentCloud
         # @param TmpToken: 临时Token，可通过 获取联合身份临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48195
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TmpToken: String
+        # @param SetId: tdsql分片id。tdsql set节点必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetId: String
 
-        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken
+        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :SetId
 
-        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil)
+        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, setid=nil)
           @Role = role
           @DbKernel = dbkernel
           @Host = host
@@ -1573,6 +1576,7 @@ module TencentCloud
           @TmpSecretId = tmpsecretid
           @TmpSecretKey = tmpsecretkey
           @TmpToken = tmptoken
+          @SetId = setid
         end
 
         def deserialize(params)
@@ -1596,6 +1600,7 @@ module TencentCloud
           @TmpSecretId = params['TmpSecretId']
           @TmpSecretKey = params['TmpSecretKey']
           @TmpToken = params['TmpToken']
+          @SetId = params['SetId']
         end
       end
 
@@ -3756,7 +3761,7 @@ module TencentCloud
         # @param Region: 地域英文名，如：ap-guangzhou
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param Role: tdsql mysql版的节点类型，枚举值为proxy、set
+        # @param Role: tdsql mysql版的节点类型，枚举值为proxy、set。tdsqlmysql必填
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: String
         # @param DbKernel: 数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql

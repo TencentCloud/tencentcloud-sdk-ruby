@@ -3042,7 +3042,7 @@ module TencentCloud
         # <li>http：HTTP 协议；</li>
         # <li>https：HTTPS 协议。</li>如果不填默认根据填写的 URL 地址解析出协议类型。
         # @type Protocol: String
-        # @param Headers: 投递日志时携带的自定义请求头，注意 Content-Type、Accept-Encoding 不支持添加修改。
+        # @param Headers: 投递日志时携带的自定义请求头。若您填写的头部名称为 Content-Type 等 EdgeOne 日志推送默认携带的头部，那么您填写的头部值将覆盖默认值。头部值引用单个变量${batchSize}，以获取每次 POST 请求中包含的日志条数。
         # @type Headers: Array
 
         attr_accessor :Url, :AccessId, :AccessKey, :CompressType, :Protocol, :Headers

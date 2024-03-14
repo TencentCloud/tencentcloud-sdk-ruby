@@ -4233,10 +4233,34 @@ module TencentCloud
         # @param Status: 实例状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
+        # @param UpDownTPS: 消息上下行配置TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpDownTPS: Integer
+        # @param UpDownCurrentTPS: 当前消息上下行TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpDownCurrentTPS: Integer
+        # @param ForwardTPS: 消息转发配置TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardTPS: Integer
+        # @param ForwardCurrentTPS: 消息转发当前TPS
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardCurrentTPS: Integer
+        # @param CellNum: 实例单元数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CellNum: Integer
+        # @param BillingTag: 实例Tag
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BillingTag: String
+        # @param EverydayFreeMessageCount: 每日消息数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EverydayFreeMessageCount: Integer
+        # @param MaxDeviceOnlineCount: 最大在线设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxDeviceOnlineCount: Integer
 
-        attr_accessor :InstanceId, :InstanceType, :Region, :ZoneId, :TotalDeviceNum, :UsedDeviceNum, :ProjectNum, :ProductNum, :CreateTime, :UpdateTime, :ExpireTime, :TotalDevice, :ActivateDevice, :Description, :Status
+        attr_accessor :InstanceId, :InstanceType, :Region, :ZoneId, :TotalDeviceNum, :UsedDeviceNum, :ProjectNum, :ProductNum, :CreateTime, :UpdateTime, :ExpireTime, :TotalDevice, :ActivateDevice, :Description, :Status, :UpDownTPS, :UpDownCurrentTPS, :ForwardTPS, :ForwardCurrentTPS, :CellNum, :BillingTag, :EverydayFreeMessageCount, :MaxDeviceOnlineCount
 
-        def initialize(instanceid=nil, instancetype=nil, region=nil, zoneid=nil, totaldevicenum=nil, useddevicenum=nil, projectnum=nil, productnum=nil, createtime=nil, updatetime=nil, expiretime=nil, totaldevice=nil, activatedevice=nil, description=nil, status=nil)
+        def initialize(instanceid=nil, instancetype=nil, region=nil, zoneid=nil, totaldevicenum=nil, useddevicenum=nil, projectnum=nil, productnum=nil, createtime=nil, updatetime=nil, expiretime=nil, totaldevice=nil, activatedevice=nil, description=nil, status=nil, updowntps=nil, updowncurrenttps=nil, forwardtps=nil, forwardcurrenttps=nil, cellnum=nil, billingtag=nil, everydayfreemessagecount=nil, maxdeviceonlinecount=nil)
           @InstanceId = instanceid
           @InstanceType = instancetype
           @Region = region
@@ -4252,6 +4276,14 @@ module TencentCloud
           @ActivateDevice = activatedevice
           @Description = description
           @Status = status
+          @UpDownTPS = updowntps
+          @UpDownCurrentTPS = updowncurrenttps
+          @ForwardTPS = forwardtps
+          @ForwardCurrentTPS = forwardcurrenttps
+          @CellNum = cellnum
+          @BillingTag = billingtag
+          @EverydayFreeMessageCount = everydayfreemessagecount
+          @MaxDeviceOnlineCount = maxdeviceonlinecount
         end
 
         def deserialize(params)
@@ -4270,6 +4302,14 @@ module TencentCloud
           @ActivateDevice = params['ActivateDevice']
           @Description = params['Description']
           @Status = params['Status']
+          @UpDownTPS = params['UpDownTPS']
+          @UpDownCurrentTPS = params['UpDownCurrentTPS']
+          @ForwardTPS = params['ForwardTPS']
+          @ForwardCurrentTPS = params['ForwardCurrentTPS']
+          @CellNum = params['CellNum']
+          @BillingTag = params['BillingTag']
+          @EverydayFreeMessageCount = params['EverydayFreeMessageCount']
+          @MaxDeviceOnlineCount = params['MaxDeviceOnlineCount']
         end
       end
 

@@ -4168,7 +4168,7 @@ module TencentCloud
       class ImageInfo < TencentCloud::Common::AbstractModel
         # @param Id: 图片id
         # @type Id: Integer
-        # @param Url: 图片url
+        # @param Url: 图片url(暂不支持传图片Url信息,请使用Base64字段传递图片的Base64编码)
         # @type Url: String
         # @param Base64: 图片base64编码
         # @type Base64: String
