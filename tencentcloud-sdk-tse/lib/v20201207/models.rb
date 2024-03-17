@@ -1071,6 +1071,602 @@ module TencentCloud
         end
       end
 
+      # 配置文件
+      class ConfigFile < TencentCloud::Common::AbstractModel
+        # @param Id: 配置文件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 配置文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 配置文件命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Group: 配置文件组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param Content: 配置文件内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Format: 配置文件格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Comment: 配置文件注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Status: 配置文件状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Tags: 配置文件标签数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CreateTime: 配置文件创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreateBy: 配置文件创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateBy: String
+        # @param ModifyTime: 配置文件修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ModifyBy: 配置文件修改者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyBy: String
+        # @param ReleaseTime: 配置文件发布时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseTime: String
+        # @param ReleaseBy: 配置文件发布者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseBy: String
+
+        attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy
+
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, content=nil, format=nil, comment=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasetime=nil, releaseby=nil)
+          @Id = id
+          @Name = name
+          @Namespace = namespace
+          @Group = group
+          @Content = content
+          @Format = format
+          @Comment = comment
+          @Status = status
+          @Tags = tags
+          @CreateTime = createtime
+          @CreateBy = createby
+          @ModifyTime = modifytime
+          @ModifyBy = modifyby
+          @ReleaseTime = releasetime
+          @ReleaseBy = releaseby
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Content = params['Content']
+          @Format = params['Format']
+          @Comment = params['Comment']
+          @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              configfiletag_tmp = ConfigFileTag.new
+              configfiletag_tmp.deserialize(i)
+              @Tags << configfiletag_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @CreateBy = params['CreateBy']
+          @ModifyTime = params['ModifyTime']
+          @ModifyBy = params['ModifyBy']
+          @ReleaseTime = params['ReleaseTime']
+          @ReleaseBy = params['ReleaseBy']
+        end
+      end
+
+      # 配置文件组
+      class ConfigFileGroup < TencentCloud::Common::AbstractModel
+        # @param Id: 配置文件组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 配置文件组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Comment: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreateBy: 创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateBy: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ModifyBy: 修改者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyBy: String
+        # @param FileCount: 文件数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileCount: Integer
+        # @param UserIds: 关联用户，link_users
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIds: Array
+        # @param GroupIds: 组id，link_groups
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupIds: Array
+        # @param RemoveUserIds: remove_link_users
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveUserIds: Array
+        # @param RemoveGroupIds: remove_link_groups
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveGroupIds: Array
+        # @param Editable: 是否可编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+        # @param Owner: 归属者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param Department: 部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: String
+        # @param Business: 业务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Business: String
+        # @param ConfigFileGroupTags: 配置文件组标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFileGroupTags: Array
+
+        attr_accessor :Id, :Name, :Namespace, :Comment, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :FileCount, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :Editable, :Owner, :Department, :Business, :ConfigFileGroupTags
+
+        def initialize(id=nil, name=nil, namespace=nil, comment=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, filecount=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, editable=nil, owner=nil, department=nil, business=nil, configfilegrouptags=nil)
+          @Id = id
+          @Name = name
+          @Namespace = namespace
+          @Comment = comment
+          @CreateTime = createtime
+          @CreateBy = createby
+          @ModifyTime = modifytime
+          @ModifyBy = modifyby
+          @FileCount = filecount
+          @UserIds = userids
+          @GroupIds = groupids
+          @RemoveUserIds = removeuserids
+          @RemoveGroupIds = removegroupids
+          @Editable = editable
+          @Owner = owner
+          @Department = department
+          @Business = business
+          @ConfigFileGroupTags = configfilegrouptags
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @CreateBy = params['CreateBy']
+          @ModifyTime = params['ModifyTime']
+          @ModifyBy = params['ModifyBy']
+          @FileCount = params['FileCount']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @RemoveUserIds = params['RemoveUserIds']
+          @RemoveGroupIds = params['RemoveGroupIds']
+          @Editable = params['Editable']
+          @Owner = params['Owner']
+          @Department = params['Department']
+          @Business = params['Business']
+          unless params['ConfigFileGroupTags'].nil?
+            @ConfigFileGroupTags = []
+            params['ConfigFileGroupTags'].each do |i|
+              configfilegrouptag_tmp = ConfigFileGroupTag.new
+              configfilegrouptag_tmp.deserialize(i)
+              @ConfigFileGroupTags << configfilegrouptag_tmp
+            end
+          end
+        end
+      end
+
+      # 配置文件标签
+      class ConfigFileGroupTag < TencentCloud::Common::AbstractModel
+        # @param Key: key-value 键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: key-value 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 发布详情
+      class ConfigFilePublishInfo < TencentCloud::Common::AbstractModel
+        # @param ReleaseName: 发布名称
+        # @type ReleaseName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 发布组
+        # @type Group: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param Content: 内容
+        # @type Content: String
+        # @param Comment: 描述
+        # @type Comment: String
+        # @param Format: 格式
+        # @type Format: String
+        # @param CreateBy: 创建者
+        # @type CreateBy: String
+        # @param ModifyBy: 修改者
+        # @type ModifyBy: String
+        # @param Tags: 标签
+        # @type Tags: Array
+
+        attr_accessor :ReleaseName, :Namespace, :Group, :FileName, :Content, :Comment, :Format, :CreateBy, :ModifyBy, :Tags
+
+        def initialize(releasename=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, format=nil, createby=nil, modifyby=nil, tags=nil)
+          @ReleaseName = releasename
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @Content = content
+          @Comment = comment
+          @Format = format
+          @CreateBy = createby
+          @ModifyBy = modifyby
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ReleaseName = params['ReleaseName']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @Content = params['Content']
+          @Comment = params['Comment']
+          @Format = params['Format']
+          @CreateBy = params['CreateBy']
+          @ModifyBy = params['ModifyBy']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              configfiletag_tmp = ConfigFileTag.new
+              configfiletag_tmp.deserialize(i)
+              @Tags << configfiletag_tmp
+            end
+          end
+        end
+      end
+
+      # 配置文件发布
+      class ConfigFileRelease < TencentCloud::Common::AbstractModel
+        # @param Id: 配置文件发布id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 配置文件发布名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 配置文件发布命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Group: 配置文件发布组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param FileName: 配置文件发布文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param Content: 配置文件发布内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Comment: 配置文件发布注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Md5: 配置文件发布Md5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
+        # @param Version: 配置文件发布版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: Integer
+        # @param CreateTime: 配置文件发布创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreateBy: 配置文件发布创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateBy: String
+        # @param ModifyTime: 配置文件发布修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ModifyBy: 配置文件发布修改者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyBy: String
+        # @param ReleaseDescription: 发布描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseDescription: String
+        # @param Active: 是否生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Active: Boolean
+        # @param Format: 格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Comment, :Md5, :Version, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :Active, :Format
+
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, comment=nil, md5=nil, version=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, active=nil, format=nil)
+          @Id = id
+          @Name = name
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @Content = content
+          @Comment = comment
+          @Md5 = md5
+          @Version = version
+          @CreateTime = createtime
+          @CreateBy = createby
+          @ModifyTime = modifytime
+          @ModifyBy = modifyby
+          @ReleaseDescription = releasedescription
+          @Active = active
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @Content = params['Content']
+          @Comment = params['Comment']
+          @Md5 = params['Md5']
+          @Version = params['Version']
+          @CreateTime = params['CreateTime']
+          @CreateBy = params['CreateBy']
+          @ModifyTime = params['ModifyTime']
+          @ModifyBy = params['ModifyBy']
+          @ReleaseDescription = params['ReleaseDescription']
+          @Active = params['Active']
+          @Format = params['Format']
+        end
+      end
+
+      # 配置发布删除
+      class ConfigFileReleaseDeletion < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Group: 配置分组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param FileName: 文件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param ReleaseVersion: 发布版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseVersion: String
+
+        attr_accessor :Namespace, :Group, :FileName, :ReleaseVersion
+
+        def initialize(namespace=nil, group=nil, filename=nil, releaseversion=nil)
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @ReleaseVersion = releaseversion
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @ReleaseVersion = params['ReleaseVersion']
+        end
+      end
+
+      # 配置文件发布历史
+      class ConfigFileReleaseHistory < TencentCloud::Common::AbstractModel
+        # @param Id: 配置文件发布历史记录id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 配置文件发布历史名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 配置文件发布历史命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Group: 配置文件发布历史组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: String
+        # @param FileName: 配置文件发布历史名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileName: String
+        # @param Content: 配置文件发布历史内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Format: 配置文件发布历史格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Comment: 配置文件发布历史注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param Md5: 配置文件发布历史Md5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Md5: String
+        # @param Type: 配置文件发布历史类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Status: 配置文件发布历史状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Tags: 配置文件发布历史标签组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CreateTime: 配置文件发布创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreateBy: 配置文件发布创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateBy: String
+        # @param ModifyTime: 配置文件发布修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ModifyBy: 配置文件发布修改者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyBy: String
+        # @param ReleaseDescription: 发布描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseDescription: String
+        # @param ReleaseReason: 原因，用于失败时原因展示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReleaseReason: String
+
+        attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Format, :Comment, :Md5, :Type, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :ReleaseReason
+
+        def initialize(id=nil, name=nil, namespace=nil, group=nil, filename=nil, content=nil, format=nil, comment=nil, md5=nil, type=nil, status=nil, tags=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil, releasedescription=nil, releasereason=nil)
+          @Id = id
+          @Name = name
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @Content = content
+          @Format = format
+          @Comment = comment
+          @Md5 = md5
+          @Type = type
+          @Status = status
+          @Tags = tags
+          @CreateTime = createtime
+          @CreateBy = createby
+          @ModifyTime = modifytime
+          @ModifyBy = modifyby
+          @ReleaseDescription = releasedescription
+          @ReleaseReason = releasereason
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @Content = params['Content']
+          @Format = params['Format']
+          @Comment = params['Comment']
+          @Md5 = params['Md5']
+          @Type = params['Type']
+          @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              configfiletag_tmp = ConfigFileTag.new
+              configfiletag_tmp.deserialize(i)
+              @Tags << configfiletag_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @CreateBy = params['CreateBy']
+          @ModifyTime = params['ModifyTime']
+          @ModifyBy = params['ModifyBy']
+          @ReleaseDescription = params['ReleaseDescription']
+          @ReleaseReason = params['ReleaseReason']
+        end
+      end
+
+      # 配置文件标签
+      class ConfigFileTag < TencentCloud::Common::AbstractModel
+        # @param Key: key-value 键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: key-value 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 配置文件模板
+      class ConfigFileTemplate < TencentCloud::Common::AbstractModel
+        # @param Id: 配置文件模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 配置文件模板名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Content: 配置文件模板内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Format: 配置文件模板格式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Format: String
+        # @param Comment: 配置文件模板注释
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: 配置文件模板创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreateBy: 配置文件模板创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateBy: String
+        # @param ModifyTime: 配置文件模板修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ModifyBy: 配置文件模板修改者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyBy: String
+
+        attr_accessor :Id, :Name, :Content, :Format, :Comment, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy
+
+        def initialize(id=nil, name=nil, content=nil, format=nil, comment=nil, createtime=nil, createby=nil, modifytime=nil, modifyby=nil)
+          @Id = id
+          @Name = name
+          @Content = content
+          @Format = format
+          @Comment = comment
+          @CreateTime = createtime
+          @CreateBy = createby
+          @ModifyTime = modifytime
+          @ModifyBy = modifyby
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Content = params['Content']
+          @Format = params['Format']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @CreateBy = params['CreateBy']
+          @ModifyTime = params['ModifyTime']
+          @ModifyBy = params['ModifyBy']
+        end
+      end
+
       # CreateAutoScalerResourceStrategy请求参数结构体
       class CreateAutoScalerResourceStrategyRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关实例ID
@@ -1756,6 +2352,92 @@ module TencentCloud
         end
       end
 
+      # CreateConfigFileGroup请求参数结构体
+      class CreateConfigFileGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例 id
+        # @type InstanceId: String
+        # @param ConfigFileGroup: 配置文件组实体
+        # @type ConfigFileGroup: :class:`Tencentcloud::Tse.v20201207.models.ConfigFileGroup`
+
+        attr_accessor :InstanceId, :ConfigFileGroup
+
+        def initialize(instanceid=nil, configfilegroup=nil)
+          @InstanceId = instanceid
+          @ConfigFileGroup = configfilegroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFileGroup'].nil?
+            @ConfigFileGroup = ConfigFileGroup.new
+            @ConfigFileGroup.deserialize(params['ConfigFileGroup'])
+          end
+        end
+      end
+
+      # CreateConfigFileGroup返回参数结构体
+      class CreateConfigFileGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否创建成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConfigFile请求参数结构体
+      class CreateConfigFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE 实例id
+        # @type InstanceId: String
+        # @param ConfigFile: 配置文件列表详情
+        # @type ConfigFile: :class:`Tencentcloud::Tse.v20201207.models.ConfigFile`
+
+        attr_accessor :InstanceId, :ConfigFile
+
+        def initialize(instanceid=nil, configfile=nil)
+          @InstanceId = instanceid
+          @ConfigFile = configfile
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFile'].nil?
+            @ConfigFile = ConfigFile.new
+            @ConfigFile.deserialize(params['ConfigFile'])
+          end
+        end
+      end
+
+      # CreateConfigFile返回参数结构体
+      class CreateConfigFileResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否创建成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEngine请求参数结构体
       class CreateEngineRequest < TencentCloud::Common::AbstractModel
         # @param EngineType: 引擎类型。参考值：
@@ -1949,6 +2631,62 @@ module TencentCloud
         end
       end
 
+      # CreateGovernanceAlias请求参数结构体
+      class CreateGovernanceAliasRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param Alias: 服务别名
+        # @type Alias: String
+        # @param AliasNamespace: 服务别名命名空间
+        # @type AliasNamespace: String
+        # @param Service: 服务别名所指向的服务名
+        # @type Service: String
+        # @param Namespace: 服务别名所指向的命名空间
+        # @type Namespace: String
+        # @param Comment: 服务别名描述
+        # @type Comment: String
+
+        attr_accessor :InstanceId, :Alias, :AliasNamespace, :Service, :Namespace, :Comment
+
+        def initialize(instanceid=nil, _alias=nil, aliasnamespace=nil, service=nil, namespace=nil, comment=nil)
+          @InstanceId = instanceid
+          @Alias = _alias
+          @AliasNamespace = aliasnamespace
+          @Service = service
+          @Namespace = namespace
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Alias = params['Alias']
+          @AliasNamespace = params['AliasNamespace']
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateGovernanceAlias返回参数结构体
+      class CreateGovernanceAliasResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGovernanceInstances请求参数结构体
       class CreateGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: tse实例id。
@@ -1978,6 +2716,100 @@ module TencentCloud
 
       # CreateGovernanceInstances返回参数结构体
       class CreateGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGovernanceNamespaces请求参数结构体
+      class CreateGovernanceNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例id。
+        # @type InstanceId: String
+        # @param GovernanceNamespaces: 命名空间信息。
+        # @type GovernanceNamespaces: Array
+
+        attr_accessor :InstanceId, :GovernanceNamespaces
+
+        def initialize(instanceid=nil, governancenamespaces=nil)
+          @InstanceId = instanceid
+          @GovernanceNamespaces = governancenamespaces
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceNamespaces'].nil?
+            @GovernanceNamespaces = []
+            params['GovernanceNamespaces'].each do |i|
+              governancenamespaceinput_tmp = GovernanceNamespaceInput.new
+              governancenamespaceinput_tmp.deserialize(i)
+              @GovernanceNamespaces << governancenamespaceinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGovernanceNamespaces返回参数结构体
+      class CreateGovernanceNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGovernanceServices请求参数结构体
+      class CreateGovernanceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例 id。
+        # @type InstanceId: String
+        # @param GovernanceServices: 服务信息。
+        # @type GovernanceServices: Array
+
+        attr_accessor :InstanceId, :GovernanceServices
+
+        def initialize(instanceid=nil, governanceservices=nil)
+          @InstanceId = instanceid
+          @GovernanceServices = governanceservices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceServices'].nil?
+            @GovernanceServices = []
+            params['GovernanceServices'].each do |i|
+              governanceserviceinput_tmp = GovernanceServiceInput.new
+              governanceserviceinput_tmp.deserialize(i)
+              @GovernanceServices << governanceserviceinput_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGovernanceServices返回参数结构体
+      class CreateGovernanceServicesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建是否成功。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -2063,6 +2895,49 @@ module TencentCloud
             @Result = CreateCloudNativeAPIGatewayServerGroupResult.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOrUpdateConfigFileAndRelease请求参数结构体
+      class CreateOrUpdateConfigFileAndReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ConfigFilePublishInfo: 配置文件列表详情
+        # @type ConfigFilePublishInfo: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePublishInfo`
+
+        attr_accessor :InstanceId, :ConfigFilePublishInfo
+
+        def initialize(instanceid=nil, configfilepublishinfo=nil)
+          @InstanceId = instanceid
+          @ConfigFilePublishInfo = configfilepublishinfo
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFilePublishInfo'].nil?
+            @ConfigFilePublishInfo = ConfigFilePublishInfo.new
+            @ConfigFilePublishInfo.deserialize(params['ConfigFilePublishInfo'])
+          end
+        end
+      end
+
+      # CreateOrUpdateConfigFileAndRelease返回参数结构体
+      class CreateOrUpdateConfigFileAndReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -2500,6 +3375,145 @@ module TencentCloud
         end
       end
 
+      # DeleteConfigFileGroup请求参数结构体
+      class DeleteConfigFileGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例 id。
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 组
+        # @type Group: String
+
+        attr_accessor :InstanceId, :Namespace, :Group
+
+        def initialize(instanceid=nil, namespace=nil, group=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+        end
+      end
+
+      # DeleteConfigFileGroup返回参数结构体
+      class DeleteConfigFileGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否删除成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConfigFileReleases请求参数结构体
+      class DeleteConfigFileReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param ConfigFileReleases: 待删除配置发布详情
+        # @type ConfigFileReleases: Array
+
+        attr_accessor :InstanceId, :ConfigFileReleases
+
+        def initialize(instanceid=nil, configfilereleases=nil)
+          @InstanceId = instanceid
+          @ConfigFileReleases = configfilereleases
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFileReleases'].nil?
+            @ConfigFileReleases = []
+            params['ConfigFileReleases'].each do |i|
+              configfilereleasedeletion_tmp = ConfigFileReleaseDeletion.new
+              configfilereleasedeletion_tmp.deserialize(i)
+              @ConfigFileReleases << configfilereleasedeletion_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteConfigFileReleases返回参数结构体
+      class DeleteConfigFileReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除配置发布结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteConfigFiles请求参数结构体
+      class DeleteConfigFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 配置分组名称
+        # @type Group: String
+        # @param Name: 配置文件名称
+        # @type Name: String
+
+        attr_accessor :InstanceId, :Namespace, :Group, :Name
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @Name = name
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Name = params['Name']
+        end
+      end
+
+      # DeleteConfigFiles返回参数结构体
+      class DeleteConfigFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteEngine请求参数结构体
       class DeleteEngineRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 引擎实例 ID
@@ -2528,6 +3542,100 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGovernanceAliases请求参数结构体
+      class DeleteGovernanceAliasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceAliases: 服务别名列表
+        # @type GovernanceAliases: Array
+
+        attr_accessor :InstanceId, :GovernanceAliases
+
+        def initialize(instanceid=nil, governancealiases=nil)
+          @InstanceId = instanceid
+          @GovernanceAliases = governancealiases
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceAliases'].nil?
+            @GovernanceAliases = []
+            params['GovernanceAliases'].each do |i|
+              governancealias_tmp = GovernanceAlias.new
+              governancealias_tmp.deserialize(i)
+              @GovernanceAliases << governancealias_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceAliases返回参数结构体
+      class DeleteGovernanceAliasesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGovernanceInstancesByHost请求参数结构体
+      class DeleteGovernanceInstancesByHostRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceInstances: 要删除的服务实例信息。
+        # @type GovernanceInstances: Array
+
+        attr_accessor :InstanceId, :GovernanceInstances
+
+        def initialize(instanceid=nil, governanceinstances=nil)
+          @InstanceId = instanceid
+          @GovernanceInstances = governanceinstances
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceInstances'].nil?
+            @GovernanceInstances = []
+            params['GovernanceInstances'].each do |i|
+              governanceinstanceupdate_tmp = GovernanceInstanceUpdate.new
+              governanceinstanceupdate_tmp.deserialize(i)
+              @GovernanceInstances << governanceinstanceupdate_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceInstancesByHost返回参数结构体
+      class DeleteGovernanceInstancesByHostResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
           @RequestId = params['RequestId']
         end
       end
@@ -2562,6 +3670,100 @@ module TencentCloud
       # DeleteGovernanceInstances返回参数结构体
       class DeleteGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGovernanceNamespaces请求参数结构体
+      class DeleteGovernanceNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例 id。
+        # @type InstanceId: String
+        # @param GovernanceNamespaces: 命名空间信息。
+        # @type GovernanceNamespaces: Array
+
+        attr_accessor :InstanceId, :GovernanceNamespaces
+
+        def initialize(instanceid=nil, governancenamespaces=nil)
+          @InstanceId = instanceid
+          @GovernanceNamespaces = governancenamespaces
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceNamespaces'].nil?
+            @GovernanceNamespaces = []
+            params['GovernanceNamespaces'].each do |i|
+              governancenamespaceinput_tmp = GovernanceNamespaceInput.new
+              governancenamespaceinput_tmp.deserialize(i)
+              @GovernanceNamespaces << governancenamespaceinput_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceNamespaces返回参数结构体
+      class DeleteGovernanceNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGovernanceServices请求参数结构体
+      class DeleteGovernanceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceServices: 服务信息。
+        # @type GovernanceServices: Array
+
+        attr_accessor :InstanceId, :GovernanceServices
+
+        def initialize(instanceid=nil, governanceservices=nil)
+          @InstanceId = instanceid
+          @GovernanceServices = governanceservices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceServices'].nil?
+            @GovernanceServices = []
+            params['GovernanceServices'].each do |i|
+              governanceserviceinput_tmp = GovernanceServiceInput.new
+              governanceserviceinput_tmp.deserialize(i)
+              @GovernanceServices << governanceserviceinput_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceServices返回参数结构体
+      class DeleteGovernanceServicesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 删除服务结果。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2684,6 +3886,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAllConfigFileTemplates请求参数结构体
+      class DescribeAllConfigFileTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAllConfigFileTemplates返回参数结构体
+      class DescribeAllConfigFileTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据总数量
+        # @type TotalCount: Integer
+        # @param ConfigFileTemplates: 配置文件模板列表
+        # @type ConfigFileTemplates: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigFileTemplates, :RequestId
+
+        def initialize(totalcount=nil, configfiletemplates=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigFileTemplates = configfiletemplates
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigFileTemplates'].nil?
+            @ConfigFileTemplates = []
+            params['ConfigFileTemplates'].each do |i|
+              configfiletemplate_tmp = ConfigFileTemplate.new
+              configfiletemplate_tmp.deserialize(i)
+              @ConfigFileTemplates << configfiletemplate_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3634,6 +4883,531 @@ module TencentCloud
         end
       end
 
+      # DescribeConfigFileGroups请求参数结构体
+      class DescribeConfigFileGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id
+        # @type InstanceId: String
+        # @param Namespace: 根据命名空间过滤
+        # @type Namespace: String
+        # @param Group: 根据配置文件组名过滤
+        # @type Group: String
+        # @param FileName: 根据配置文件组名过滤
+        # @type FileName: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Namespace, :Group, :FileName, :Limit, :Offset
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, filename=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeConfigFileGroups返回参数结构体
+      class DescribeConfigFileGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数量
+        # @type TotalCount: Integer
+        # @param ConfigFileGroups: 配置文件组列表
+        # @type ConfigFileGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigFileGroups, :RequestId
+
+        def initialize(totalcount=nil, configfilegroups=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigFileGroups = configfilegroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigFileGroups'].nil?
+            @ConfigFileGroups = []
+            params['ConfigFileGroups'].each do |i|
+              configfilegroup_tmp = ConfigFileGroup.new
+              configfilegroup_tmp.deserialize(i)
+              @ConfigFileGroups << configfilegroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFileReleaseHistories请求参数结构体
+      class DescribeConfigFileReleaseHistoriesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 组
+        # @type Group: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param EndId: 发布历史记录id，用于分页优化，一般指定 EndId，就不用指定 Offset，否则分页可能不连续
+        # @type EndId: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :EndId, :Limit, :Offset
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, endid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @Name = name
+          @EndId = endid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Name = params['Name']
+          @EndId = params['EndId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeConfigFileReleaseHistories返回参数结构体
+      class DescribeConfigFileReleaseHistoriesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数据总数量
+        # @type TotalCount: Integer
+        # @param ConfigFileReleaseHistories: 配置文件发布历史列表
+        # @type ConfigFileReleaseHistories: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigFileReleaseHistories, :RequestId
+
+        def initialize(totalcount=nil, configfilereleasehistories=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigFileReleaseHistories = configfilereleasehistories
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigFileReleaseHistories'].nil?
+            @ConfigFileReleaseHistories = []
+            params['ConfigFileReleaseHistories'].each do |i|
+              configfilereleasehistory_tmp = ConfigFileReleaseHistory.new
+              configfilereleasehistory_tmp.deserialize(i)
+              @ConfigFileReleaseHistories << configfilereleasehistory_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFileRelease请求参数结构体
+      class DescribeConfigFileReleaseRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param Group: 配置分组名称
+        # @type Group: String
+        # @param Name: 配置文件名称
+        # @type Name: String
+        # @param ReleaseName: 配置文件发布名称
+        # @type ReleaseName: String
+
+        attr_accessor :InstanceId, :Namespace, :Group, :Name, :ReleaseName
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil, releasename=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @Name = name
+          @ReleaseName = releasename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Name = params['Name']
+          @ReleaseName = params['ReleaseName']
+        end
+      end
+
+      # DescribeConfigFileRelease返回参数结构体
+      class DescribeConfigFileReleaseResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigFileRelease: 配置文件发布详情
+        # @type ConfigFileRelease: :class:`Tencentcloud::Tse.v20201207.models.ConfigFileRelease`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigFileRelease, :RequestId
+
+        def initialize(configfilerelease=nil, requestid=nil)
+          @ConfigFileRelease = configfilerelease
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConfigFileRelease'].nil?
+            @ConfigFileRelease = ConfigFileRelease.new
+            @ConfigFileRelease.deserialize(params['ConfigFileRelease'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFileReleaseVersions请求参数结构体
+      class DescribeConfigFileReleaseVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 配置分组
+        # @type Group: String
+        # @param FileName: 文件名称
+        # @type FileName: String
+
+        attr_accessor :InstanceId, :Namespace, :Group, :FileName
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, filename=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+        end
+      end
+
+      # DescribeConfigFileReleaseVersions返回参数结构体
+      class DescribeConfigFileReleaseVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param ReleaseVersions: 版本信息
+        # @type ReleaseVersions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReleaseVersions, :RequestId
+
+        def initialize(releaseversions=nil, requestid=nil)
+          @ReleaseVersions = releaseversions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReleaseVersions'].nil?
+            @ReleaseVersions = []
+            params['ReleaseVersions'].each do |i|
+              releaseversion_tmp = ReleaseVersion.new
+              releaseversion_tmp.deserialize(i)
+              @ReleaseVersions << releaseversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFileReleases请求参数结构体
+      class DescribeConfigFileReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Limit: 条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 配置分组
+        # @type Group: String
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param OnlyUse: 只保护处于使用状态
+        # @type OnlyUse: Boolean
+        # @param ReleaseName: 发布名称
+        # @type ReleaseName: String
+        # @param OrderField: 排序字段，mtime/version/name
+        # ，默认version
+        # @type OrderField: String
+        # @param OrderDesc: 排序，asc/desc，默认 desc
+        # @type OrderDesc: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :Namespace, :Group, :FileName, :OnlyUse, :ReleaseName, :OrderField, :OrderDesc
+
+        def initialize(instanceid=nil, limit=nil, offset=nil, namespace=nil, group=nil, filename=nil, onlyuse=nil, releasename=nil, orderfield=nil, orderdesc=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @Namespace = namespace
+          @Group = group
+          @FileName = filename
+          @OnlyUse = onlyuse
+          @ReleaseName = releasename
+          @OrderField = orderfield
+          @OrderDesc = orderdesc
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @FileName = params['FileName']
+          @OnlyUse = params['OnlyUse']
+          @ReleaseName = params['ReleaseName']
+          @OrderField = params['OrderField']
+          @OrderDesc = params['OrderDesc']
+        end
+      end
+
+      # DescribeConfigFileReleases返回参数结构体
+      class DescribeConfigFileReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param Releases: 发布列表
+        # @type Releases: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Releases, :RequestId
+
+        def initialize(totalcount=nil, releases=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Releases = releases
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Releases'].nil?
+            @Releases = []
+            params['Releases'].each do |i|
+              configfilerelease_tmp = ConfigFileRelease.new
+              configfilerelease_tmp.deserialize(i)
+              @Releases << configfilerelease_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFile请求参数结构体
+      class DescribeConfigFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Group: 组
+        # @type Group: String
+        # @param Name: 名称
+        # @type Name: String
+
+        attr_accessor :InstanceId, :Namespace, :Group, :Name
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, name=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @Name = name
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeConfigFile返回参数结构体
+      class DescribeConfigFileResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigFile: 配置文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigFile: :class:`Tencentcloud::Tse.v20201207.models.ConfigFile`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigFile, :RequestId
+
+        def initialize(configfile=nil, requestid=nil)
+          @ConfigFile = configfile
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConfigFile'].nil?
+            @ConfigFile = ConfigFile.new
+            @ConfigFile.deserialize(params['ConfigFile'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFilesByGroup请求参数结构体
+      class DescribeConfigFilesByGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Namespace: 命名空间名
+        # @type Namespace: String
+        # @param Group: 组名
+        # @type Group: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Namespace, :Group, :Limit, :Offset
+
+        def initialize(instanceid=nil, namespace=nil, group=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Group = group
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Group = params['Group']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeConfigFilesByGroup返回参数结构体
+      class DescribeConfigFilesByGroupResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数量
+        # @type TotalCount: Integer
+        # @param ConfigFiles: 配置文件列表
+        # @type ConfigFiles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigFiles, :RequestId
+
+        def initialize(totalcount=nil, configfiles=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigFiles = configfiles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigFiles'].nil?
+            @ConfigFiles = []
+            params['ConfigFiles'].each do |i|
+              configfile_tmp = ConfigFile.new
+              configfile_tmp.deserialize(i)
+              @ConfigFiles << configfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigFiles请求参数结构体
+      class DescribeConfigFilesRequest < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间名称
+        # @type Namespace: String
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param Group: 组名
+        # @type Group: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :Namespace, :InstanceId, :Group, :Name, :Tags, :Limit, :Offset
+
+        def initialize(namespace=nil, instanceid=nil, group=nil, name=nil, tags=nil, limit=nil, offset=nil)
+          @Namespace = namespace
+          @InstanceId = instanceid
+          @Group = group
+          @Name = name
+          @Tags = tags
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Name = params['Name']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              configfiletag_tmp = ConfigFileTag.new
+              configfiletag_tmp.deserialize(i)
+              @Tags << configfiletag_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeConfigFiles返回参数结构体
+      class DescribeConfigFilesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 分页总数量
+        # @type TotalCount: Integer
+        # @param ConfigFiles: 配置文件列表
+        # @type ConfigFiles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ConfigFiles, :RequestId
+
+        def initialize(totalcount=nil, configfiles=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ConfigFiles = configfiles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ConfigFiles'].nil?
+            @ConfigFiles = []
+            params['ConfigFiles'].each do |i|
+              configfile_tmp = ConfigFile.new
+              configfile_tmp.deserialize(i)
+              @ConfigFiles << configfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取云原生API网关实例协议端口列表响应结果
       class DescribeGatewayInstancePortResult < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关ID
@@ -3660,6 +5434,81 @@ module TencentCloud
               @GatewayInstancePortList << gatewayinstanceschemeandports_tmp
             end
           end
+        end
+      end
+
+      # DescribeGovernanceAliases请求参数结构体
+      class DescribeGovernanceAliasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param Service: 服务别名所指向的服务名。
+        # @type Service: String
+        # @param Namespace: 服务别名所指向的命名空间名。
+        # @type Namespace: String
+        # @param Alias: 服务别名。
+        # @type Alias: String
+        # @param AliasNamespace: 服务别名命名空间。
+        # @type AliasNamespace: String
+        # @param Comment: 服务别名描述。
+        # @type Comment: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Service, :Namespace, :Alias, :AliasNamespace, :Comment, :Offset, :Limit
+
+        def initialize(instanceid=nil, service=nil, namespace=nil, _alias=nil, aliasnamespace=nil, comment=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Service = service
+          @Namespace = namespace
+          @Alias = _alias
+          @AliasNamespace = aliasnamespace
+          @Comment = comment
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Alias = params['Alias']
+          @AliasNamespace = params['AliasNamespace']
+          @Comment = params['Comment']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGovernanceAliases返回参数结构体
+      class DescribeGovernanceAliasesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 服务别名总数量。
+        # @type TotalCount: Integer
+        # @param Content: 服务别名列表。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              governancealias_tmp = GovernanceAlias.new
+              governancealias_tmp.deserialize(i)
+              @Content << governancealias_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3751,6 +5600,290 @@ module TencentCloud
               governanceinstance_tmp = GovernanceInstance.new
               governanceinstance_tmp.deserialize(i)
               @Content << governanceinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGovernanceNamespaces请求参数结构体
+      class DescribeGovernanceNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id
+        # @type InstanceId: String
+        # @param Name: 根据命名空间名称过滤。
+        # @type Name: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Name, :Offset, :Limit
+
+        def initialize(instanceid=nil, name=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGovernanceNamespaces返回参数结构体
+      class DescribeGovernanceNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数量。
+        # @type TotalCount: Integer
+        # @param Content: 治理中心命名空间实例列表。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              governancenamespace_tmp = GovernanceNamespace.new
+              governancenamespace_tmp.deserialize(i)
+              @Content << governancenamespace_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGovernanceServiceContractVersions请求参数结构体
+      class DescribeGovernanceServiceContractVersionsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Service: 服务名
+        # @type Service: String
+
+        attr_accessor :InstanceId, :Namespace, :Service
+
+        def initialize(instanceid=nil, namespace=nil, service=nil)
+          @InstanceId = instanceid
+          @Namespace = namespace
+          @Service = service
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Namespace = params['Namespace']
+          @Service = params['Service']
+        end
+      end
+
+      # DescribeGovernanceServiceContractVersions返回参数结构体
+      class DescribeGovernanceServiceContractVersionsResponse < TencentCloud::Common::AbstractModel
+        # @param GovernanceServiceContractVersions: 服务契约版本列表
+        # @type GovernanceServiceContractVersions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GovernanceServiceContractVersions, :RequestId
+
+        def initialize(governanceservicecontractversions=nil, requestid=nil)
+          @GovernanceServiceContractVersions = governanceservicecontractversions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GovernanceServiceContractVersions'].nil?
+            @GovernanceServiceContractVersions = []
+            params['GovernanceServiceContractVersions'].each do |i|
+              governanceservicecontractversion_tmp = GovernanceServiceContractVersion.new
+              governanceservicecontractversion_tmp.deserialize(i)
+              @GovernanceServiceContractVersions << governanceservicecontractversion_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGovernanceServiceContracts请求参数结构体
+      class DescribeGovernanceServiceContractsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 北极星引擎实例ID
+        # @type InstanceId: String
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页条数
+        # @type Limit: Integer
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Service: 服务名
+        # @type Service: String
+        # @param Name: 契约名称
+        # @type Name: String
+        # @param ContractVersion: 契约版本
+        # @type ContractVersion: String
+        # @param Protocol: 契约协议
+        # @type Protocol: String
+        # @param Brief: 是否只展示基本信息
+        # @type Brief: Boolean
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Namespace, :Service, :Name, :ContractVersion, :Protocol, :Brief
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, namespace=nil, service=nil, name=nil, contractversion=nil, protocol=nil, brief=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Namespace = namespace
+          @Service = service
+          @Name = name
+          @ContractVersion = contractversion
+          @Protocol = protocol
+          @Brief = brief
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Namespace = params['Namespace']
+          @Service = params['Service']
+          @Name = params['Name']
+          @ContractVersion = params['ContractVersion']
+          @Protocol = params['Protocol']
+          @Brief = params['Brief']
+        end
+      end
+
+      # DescribeGovernanceServiceContracts返回参数结构体
+      class DescribeGovernanceServiceContractsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Size: 返回条数
+        # @type Size: Integer
+        # @param ServiceContracts: 契约定义列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceContracts: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Size, :ServiceContracts, :RequestId
+
+        def initialize(totalcount=nil, size=nil, servicecontracts=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Size = size
+          @ServiceContracts = servicecontracts
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @Size = params['Size']
+          unless params['ServiceContracts'].nil?
+            @ServiceContracts = []
+            params['ServiceContracts'].each do |i|
+              governanceservicecontract_tmp = GovernanceServiceContract.new
+              governanceservicecontract_tmp.deserialize(i)
+              @ServiceContracts << governanceservicecontract_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGovernanceServices请求参数结构体
+      class DescribeGovernanceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 按照服务名过滤，精确匹配。
+        # @type Name: String
+        # @param Namespace: 按照命名空间过滤，精确匹配。
+        # @type Namespace: String
+        # @param Metadatas: 使用元数据过滤，目前只支持一组元组数，若传了多条，只会使用第一条元数据过滤。
+        # @type Metadatas: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+        # @param InstanceId: tse 实例 id。
+        # @type InstanceId: String
+        # @param Department: 服务所属部门。
+        # @type Department: String
+        # @param Business: 服务所属业务。
+        # @type Business: String
+        # @param Host: 服务中实例的ip，用来过滤服务。
+        # @type Host: String
+        # @param OnlyExistHealthyInstance: 是否只查询存在健康实例的服务
+        # @type OnlyExistHealthyInstance: Boolean
+
+        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance
+
+        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil)
+          @Name = name
+          @Namespace = namespace
+          @Metadatas = metadatas
+          @Offset = offset
+          @Limit = limit
+          @InstanceId = instanceid
+          @Department = department
+          @Business = business
+          @Host = host
+          @OnlyExistHealthyInstance = onlyexisthealthyinstance
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @InstanceId = params['InstanceId']
+          @Department = params['Department']
+          @Business = params['Business']
+          @Host = params['Host']
+          @OnlyExistHealthyInstance = params['OnlyExistHealthyInstance']
+        end
+      end
+
+      # DescribeGovernanceServices返回参数结构体
+      class DescribeGovernanceServicesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 服务数总量。
+        # @type TotalCount: Integer
+        # @param Content: 服务信息详情。
+        # @type Content: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Content, :RequestId
+
+        def initialize(totalcount=nil, content=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Content = content
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              governanceservice_tmp = GovernanceService.new
+              governanceservice_tmp.deserialize(i)
+              @Content << governanceservice_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4878,6 +7011,59 @@ module TencentCloud
         end
       end
 
+      # 服务别名结构信息
+      class GovernanceAlias < TencentCloud::Common::AbstractModel
+        # @param Alias: 服务别名
+        # @type Alias: String
+        # @param AliasNamespace: 服务别名命名空间
+        # @type AliasNamespace: String
+        # @param Service: 服务别名指向的服务名
+        # @type Service: String
+        # @param Namespace: 服务别名指向的服务命名空间
+        # @type Namespace: String
+        # @param Comment: 服务别名的描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: 服务别名创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 服务别名修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Id: 服务别名ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Editable: 该服务别名是否可以编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+
+        attr_accessor :Alias, :AliasNamespace, :Service, :Namespace, :Comment, :CreateTime, :ModifyTime, :Id, :Editable
+
+        def initialize(_alias=nil, aliasnamespace=nil, service=nil, namespace=nil, comment=nil, createtime=nil, modifytime=nil, id=nil, editable=nil)
+          @Alias = _alias
+          @AliasNamespace = aliasnamespace
+          @Service = service
+          @Namespace = namespace
+          @Comment = comment
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Id = id
+          @Editable = editable
+        end
+
+        def deserialize(params)
+          @Alias = params['Alias']
+          @AliasNamespace = params['AliasNamespace']
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Id = params['Id']
+          @Editable = params['Editable']
+        end
+      end
+
       # 治理中心实例信息。
       class GovernanceInstance < TencentCloud::Common::AbstractModel
         # @param Id: 实例id。
@@ -4922,10 +7108,19 @@ module TencentCloud
         # @param Ttl: 上报心跳间隔。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Ttl: Integer
+        # @param InstanceVersion: 版本信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceVersion: String
+        # @param HealthStatus: 状态信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthStatus: String
+        # @param Comment: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
 
-        attr_accessor :Id, :Service, :Namespace, :Host, :Port, :Protocol, :Version, :Weight, :EnableHealthCheck, :Healthy, :Isolate, :CreateTime, :ModifyTime, :Metadatas, :Ttl
+        attr_accessor :Id, :Service, :Namespace, :Host, :Port, :Protocol, :Version, :Weight, :EnableHealthCheck, :Healthy, :Isolate, :CreateTime, :ModifyTime, :Metadatas, :Ttl, :InstanceVersion, :HealthStatus, :Comment
 
-        def initialize(id=nil, service=nil, namespace=nil, host=nil, port=nil, protocol=nil, version=nil, weight=nil, enablehealthcheck=nil, healthy=nil, isolate=nil, createtime=nil, modifytime=nil, metadatas=nil, ttl=nil)
+        def initialize(id=nil, service=nil, namespace=nil, host=nil, port=nil, protocol=nil, version=nil, weight=nil, enablehealthcheck=nil, healthy=nil, isolate=nil, createtime=nil, modifytime=nil, metadatas=nil, ttl=nil, instanceversion=nil, healthstatus=nil, comment=nil)
           @Id = id
           @Service = service
           @Namespace = namespace
@@ -4941,6 +7136,9 @@ module TencentCloud
           @ModifyTime = modifytime
           @Metadatas = metadatas
           @Ttl = ttl
+          @InstanceVersion = instanceversion
+          @HealthStatus = healthstatus
+          @Comment = comment
         end
 
         def deserialize(params)
@@ -4966,6 +7164,9 @@ module TencentCloud
             end
           end
           @Ttl = params['Ttl']
+          @InstanceVersion = params['InstanceVersion']
+          @HealthStatus = params['HealthStatus']
+          @Comment = params['Comment']
         end
       end
 
@@ -5093,6 +7294,447 @@ module TencentCloud
               @Metadatas << metadata_tmp
             end
           end
+        end
+      end
+
+      # 服务契约接口定义
+      class GovernanceInterfaceDescription < TencentCloud::Common::AbstractModel
+        # @param ID: 契约接口ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Method: 方法名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param Path: 路径/接口名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Content: 内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param Source: 创建来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param Revision: 信息摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Name: 接口名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :ID, :Method, :Path, :Content, :Source, :Revision, :CreateTime, :ModifyTime, :Name
+
+        def initialize(id=nil, method=nil, path=nil, content=nil, source=nil, revision=nil, createtime=nil, modifytime=nil, name=nil)
+          @ID = id
+          @Method = method
+          @Path = path
+          @Content = content
+          @Source = source
+          @Revision = revision
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Method = params['Method']
+          @Path = params['Path']
+          @Content = params['Content']
+          @Source = params['Source']
+          @Revision = params['Revision']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Name = params['Name']
+        end
+      end
+
+      # 治理中心命名空间
+      class GovernanceNamespace < TencentCloud::Common::AbstractModel
+        # @param Name: 命名空间名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Comment: 命名空间描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param TotalServiceCount: 命名空间下总服务数据量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalServiceCount: Integer
+        # @param TotalHealthInstanceCount: 命名空间下总健康实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalHealthInstanceCount: Integer
+        # @param TotalInstanceCount: 命名空间下总实例数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalInstanceCount: Integer
+        # @param Id: 命名空间ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Editable: 是否可以编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+        # @param UserIds: 可以操作此命名空间的用户ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIds: Array
+        # @param GroupIds: 可以操作此命名空间的用户组ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupIds: Array
+        # @param RemoveUserIds: 移除可以操作此命名空间的用户ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveUserIds: Array
+        # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveGroupIds: Array
+
+        attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds
+
+        def initialize(name=nil, comment=nil, createtime=nil, modifytime=nil, totalservicecount=nil, totalhealthinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil)
+          @Name = name
+          @Comment = comment
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @TotalServiceCount = totalservicecount
+          @TotalHealthInstanceCount = totalhealthinstancecount
+          @TotalInstanceCount = totalinstancecount
+          @Id = id
+          @Editable = editable
+          @UserIds = userids
+          @GroupIds = groupids
+          @RemoveUserIds = removeuserids
+          @RemoveGroupIds = removegroupids
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @TotalServiceCount = params['TotalServiceCount']
+          @TotalHealthInstanceCount = params['TotalHealthInstanceCount']
+          @TotalInstanceCount = params['TotalInstanceCount']
+          @Id = params['Id']
+          @Editable = params['Editable']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @RemoveUserIds = params['RemoveUserIds']
+          @RemoveGroupIds = params['RemoveGroupIds']
+        end
+      end
+
+      # 治理中心命名空间输入参数
+      class GovernanceNamespaceInput < TencentCloud::Common::AbstractModel
+        # @param Name: 命名空间名。
+        # @type Name: String
+        # @param Comment: 描述信息。
+        # @type Comment: String
+        # @param UserIds: 新增的可以操作此命名空间的用户ID列表
+        # @type UserIds: Array
+        # @param GroupIds: 新增的可以操作此命名空间的用户组ID列表
+        # @type GroupIds: Array
+        # @param RemoveUserIds: 移除可以操作此命名空间的用户ID列表
+        # @type RemoveUserIds: Array
+        # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
+        # @type RemoveGroupIds: Array
+
+        attr_accessor :Name, :Comment, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds
+
+        def initialize(name=nil, comment=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil)
+          @Name = name
+          @Comment = comment
+          @UserIds = userids
+          @GroupIds = groupids
+          @RemoveUserIds = removeuserids
+          @RemoveGroupIds = removegroupids
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @RemoveUserIds = params['RemoveUserIds']
+          @RemoveGroupIds = params['RemoveGroupIds']
+        end
+      end
+
+      # 治理中心服务信息。
+      class GovernanceService < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名称。
+        # @type Name: String
+        # @param Namespace: 命名空间名称。
+        # @type Namespace: String
+        # @param Metadatas: 元数据信息数组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadatas: Array
+        # @param Comment: 描述信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Comment: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Department: 服务所属部门。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Department: String
+        # @param Business: 服务所属业务。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Business: String
+        # @param HealthyInstanceCount: 健康服务实例数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthyInstanceCount: Integer
+        # @param TotalInstanceCount: 服务实例总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalInstanceCount: Integer
+        # @param Id: 服务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Editable: 是否可以编辑
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Editable: Boolean
+        # @param UserIds: 可以编辑该资源的用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserIds: Array
+        # @param GroupIds: 可以编辑该资源的用户组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupIds: Array
+        # @param RemoveUserIds: 移除可以编辑该资源的用户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveUserIds: Array
+        # @param RemoveGroupIds: 移除可以编辑该资源的用户组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoveGroupIds: Array
+        # @param ExportTo: 该服务对哪些命名空间可见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExportTo: Array
+        # @param Revision: 该服务信息摘要签名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+
+        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision
+
+        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil)
+          @Name = name
+          @Namespace = namespace
+          @Metadatas = metadatas
+          @Comment = comment
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Department = department
+          @Business = business
+          @HealthyInstanceCount = healthyinstancecount
+          @TotalInstanceCount = totalinstancecount
+          @Id = id
+          @Editable = editable
+          @UserIds = userids
+          @GroupIds = groupids
+          @RemoveUserIds = removeuserids
+          @RemoveGroupIds = removegroupids
+          @ExportTo = exportto
+          @Revision = revision
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Department = params['Department']
+          @Business = params['Business']
+          @HealthyInstanceCount = params['HealthyInstanceCount']
+          @TotalInstanceCount = params['TotalInstanceCount']
+          @Id = params['Id']
+          @Editable = params['Editable']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @RemoveUserIds = params['RemoveUserIds']
+          @RemoveGroupIds = params['RemoveGroupIds']
+          @ExportTo = params['ExportTo']
+          @Revision = params['Revision']
+        end
+      end
+
+      # 服务契约定义
+      class GovernanceServiceContract < TencentCloud::Common::AbstractModel
+        # @param Name: 契约名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Namespace: 所属服务命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param ID: 契约ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Service: 所属服务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param Version: 版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Revision: 信息摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+        # @param Content: 额外内容描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Interfaces: 契约接口列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interfaces: Array
+
+        attr_accessor :Name, :Namespace, :Protocol, :ID, :Service, :Version, :Revision, :Content, :CreateTime, :ModifyTime, :Interfaces
+
+        def initialize(name=nil, namespace=nil, protocol=nil, id=nil, service=nil, version=nil, revision=nil, content=nil, createtime=nil, modifytime=nil, interfaces=nil)
+          @Name = name
+          @Namespace = namespace
+          @Protocol = protocol
+          @ID = id
+          @Service = service
+          @Version = version
+          @Revision = revision
+          @Content = content
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Interfaces = interfaces
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Protocol = params['Protocol']
+          @ID = params['ID']
+          @Service = params['Service']
+          @Version = params['Version']
+          @Revision = params['Revision']
+          @Content = params['Content']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          unless params['Interfaces'].nil?
+            @Interfaces = []
+            params['Interfaces'].each do |i|
+              governanceinterfacedescription_tmp = GovernanceInterfaceDescription.new
+              governanceinterfacedescription_tmp.deserialize(i)
+              @Interfaces << governanceinterfacedescription_tmp
+            end
+          end
+        end
+      end
+
+      # 服务契约版本信息
+      class GovernanceServiceContractVersion < TencentCloud::Common::AbstractModel
+        # @param Version: 契约版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Name: 契约名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Key: 唯一名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+
+        attr_accessor :Version, :Name, :Key
+
+        def initialize(version=nil, name=nil, key=nil)
+          @Version = version
+          @Name = name
+          @Key = key
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Name = params['Name']
+          @Key = params['Key']
+        end
+      end
+
+      # 治理中心服务入参
+      class GovernanceServiceInput < TencentCloud::Common::AbstractModel
+        # @param Name: 服务名。
+        # @type Name: String
+        # @param Namespace: 服务所属命名空间。
+        # @type Namespace: String
+        # @param Comment: 服务描述信息。
+        # @type Comment: String
+        # @param Metadatas: 服务元数据。
+        # @type Metadatas: Array
+        # @param Department: 服务所属部门。
+        # @type Department: String
+        # @param Business: 服务所属业务。
+        # @type Business: String
+        # @param UserIds: 被添加进来可以操作此命名空间的用户ID列表
+        # @type UserIds: Array
+        # @param GroupIds: 被添加进来可以操作此命名空间的用户组ID列表
+        # @type GroupIds: Array
+        # @param RemoveUserIds: 从操作此命名空间的用户组ID列表被移除的ID列表
+        # @type RemoveUserIds: Array
+        # @param RemoveGroupIds: 从可以操作此命名空间的用户组ID列表中被移除的ID列表
+        # @type RemoveGroupIds: Array
+        # @param ExportTo: 该服务对哪些命名空间可见
+        # @type ExportTo: Array
+
+        attr_accessor :Name, :Namespace, :Comment, :Metadatas, :Department, :Business, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo
+
+        def initialize(name=nil, namespace=nil, comment=nil, metadatas=nil, department=nil, business=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil)
+          @Name = name
+          @Namespace = namespace
+          @Comment = comment
+          @Metadatas = metadatas
+          @Department = department
+          @Business = business
+          @UserIds = userids
+          @GroupIds = groupids
+          @RemoveUserIds = removeuserids
+          @RemoveGroupIds = removegroupids
+          @ExportTo = exportto
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          @Comment = params['Comment']
+          unless params['Metadatas'].nil?
+            @Metadatas = []
+            params['Metadatas'].each do |i|
+              metadata_tmp = Metadata.new
+              metadata_tmp.deserialize(i)
+              @Metadatas << metadata_tmp
+            end
+          end
+          @Department = params['Department']
+          @Business = params['Business']
+          @UserIds = params['UserIds']
+          @GroupIds = params['GroupIds']
+          @RemoveUserIds = params['RemoveUserIds']
+          @RemoveGroupIds = params['RemoveGroupIds']
+          @ExportTo = params['ExportTo']
         end
       end
 
@@ -6556,6 +9198,92 @@ module TencentCloud
         end
       end
 
+      # ModifyConfigFileGroup请求参数结构体
+      class ModifyConfigFileGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id
+        # @type InstanceId: String
+        # @param ConfigFileGroup: 配置文件组
+        # @type ConfigFileGroup: :class:`Tencentcloud::Tse.v20201207.models.ConfigFileGroup`
+
+        attr_accessor :InstanceId, :ConfigFileGroup
+
+        def initialize(instanceid=nil, configfilegroup=nil)
+          @InstanceId = instanceid
+          @ConfigFileGroup = configfilegroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFileGroup'].nil?
+            @ConfigFileGroup = ConfigFileGroup.new
+            @ConfigFileGroup.deserialize(params['ConfigFileGroup'])
+          end
+        end
+      end
+
+      # ModifyConfigFileGroup返回参数结构体
+      class ModifyConfigFileGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyConfigFiles请求参数结构体
+      class ModifyConfigFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ins-df344df5
+        # @type InstanceId: String
+        # @param ConfigFile: 配置文件列表
+        # @type ConfigFile: :class:`Tencentcloud::Tse.v20201207.models.ConfigFile`
+
+        attr_accessor :InstanceId, :ConfigFile
+
+        def initialize(instanceid=nil, configfile=nil)
+          @InstanceId = instanceid
+          @ConfigFile = configfile
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFile'].nil?
+            @ConfigFile = ConfigFile.new
+            @ConfigFile.deserialize(params['ConfigFile'])
+          end
+        end
+      end
+
+      # ModifyConfigFiles返回参数结构体
+      class ModifyConfigFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 修改是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyConsoleNetwork请求参数结构体
       class ModifyConsoleNetworkRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: 云原生API网关实例ID。
@@ -6607,6 +9335,62 @@ module TencentCloud
         end
       end
 
+      # ModifyGovernanceAlias请求参数结构体
+      class ModifyGovernanceAliasRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param Alias: 服务别名
+        # @type Alias: String
+        # @param AliasNamespace: 服务别名命名空间
+        # @type AliasNamespace: String
+        # @param Service: 服务别名所指向的服务名
+        # @type Service: String
+        # @param Namespace: 服务别名所指向的命名空间
+        # @type Namespace: String
+        # @param Comment: 服务别名描述
+        # @type Comment: String
+
+        attr_accessor :InstanceId, :Alias, :AliasNamespace, :Service, :Namespace, :Comment
+
+        def initialize(instanceid=nil, _alias=nil, aliasnamespace=nil, service=nil, namespace=nil, comment=nil)
+          @InstanceId = instanceid
+          @Alias = _alias
+          @AliasNamespace = aliasnamespace
+          @Service = service
+          @Namespace = namespace
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Alias = params['Alias']
+          @AliasNamespace = params['AliasNamespace']
+          @Service = params['Service']
+          @Namespace = params['Namespace']
+          @Comment = params['Comment']
+        end
+      end
+
+      # ModifyGovernanceAlias返回参数结构体
+      class ModifyGovernanceAliasResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGovernanceInstances请求参数结构体
       class ModifyGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: tse实例id。
@@ -6637,6 +9421,100 @@ module TencentCloud
       # ModifyGovernanceInstances返回参数结构体
       class ModifyGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 修改是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGovernanceNamespaces请求参数结构体
+      class ModifyGovernanceNamespacesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse实例id。
+        # @type InstanceId: String
+        # @param GovernanceNamespaces: 命名空间信息。
+        # @type GovernanceNamespaces: Array
+
+        attr_accessor :InstanceId, :GovernanceNamespaces
+
+        def initialize(instanceid=nil, governancenamespaces=nil)
+          @InstanceId = instanceid
+          @GovernanceNamespaces = governancenamespaces
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceNamespaces'].nil?
+            @GovernanceNamespaces = []
+            params['GovernanceNamespaces'].each do |i|
+              governancenamespaceinput_tmp = GovernanceNamespaceInput.new
+              governancenamespaceinput_tmp.deserialize(i)
+              @GovernanceNamespaces << governancenamespaceinput_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGovernanceNamespaces返回参数结构体
+      class ModifyGovernanceNamespacesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGovernanceServices请求参数结构体
+      class ModifyGovernanceServicesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: tse 实例 id。
+        # @type InstanceId: String
+        # @param GovernanceServices: 服务信息。
+        # @type GovernanceServices: Array
+
+        attr_accessor :InstanceId, :GovernanceServices
+
+        def initialize(instanceid=nil, governanceservices=nil)
+          @InstanceId = instanceid
+          @GovernanceServices = governanceservices
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['GovernanceServices'].nil?
+            @GovernanceServices = []
+            params['GovernanceServices'].each do |i|
+              governanceserviceinput_tmp = GovernanceServiceInput.new
+              governanceserviceinput_tmp.deserialize(i)
+              @GovernanceServices << governanceserviceinput_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGovernanceServices返回参数结构体
+      class ModifyGovernanceServicesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7137,6 +10015,49 @@ module TencentCloud
         end
       end
 
+      # PublishConfigFiles请求参数结构体
+      class PublishConfigFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param ConfigFileReleases: 配置文件发布
+        # @type ConfigFileReleases: :class:`Tencentcloud::Tse.v20201207.models.ConfigFileRelease`
+
+        attr_accessor :InstanceId, :ConfigFileReleases
+
+        def initialize(instanceid=nil, configfilereleases=nil)
+          @InstanceId = instanceid
+          @ConfigFileReleases = configfilereleases
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ConfigFileReleases'].nil?
+            @ConfigFileReleases = ConfigFileRelease.new
+            @ConfigFileReleases.deserialize(params['ConfigFileReleases'])
+          end
+        end
+      end
+
+      # PublishConfigFiles返回参数结构体
+      class PublishConfigFilesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置文件发布是否成功
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云原生网关限流插件Qps阈值
       class QpsThreshold < TencentCloud::Common::AbstractModel
         # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
@@ -7188,6 +10109,75 @@ module TencentCloud
             end
           end
           @HttpStatus = params['HttpStatus']
+        end
+      end
+
+      # 配置发布版本信息
+      class ReleaseVersion < TencentCloud::Common::AbstractModel
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Active: 是否生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Active: Boolean
+
+        attr_accessor :Name, :Active
+
+        def initialize(name=nil, active=nil)
+          @Name = name
+          @Active = active
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Active = params['Active']
+        end
+      end
+
+      # RollbackConfigFileReleases请求参数结构体
+      class RollbackConfigFileReleasesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: TSE实例id
+        # @type InstanceId: String
+        # @param RollbackConfigFileReleases: 回滚发布
+        # @type RollbackConfigFileReleases: Array
+
+        attr_accessor :InstanceId, :RollbackConfigFileReleases
+
+        def initialize(instanceid=nil, rollbackconfigfilereleases=nil)
+          @InstanceId = instanceid
+          @RollbackConfigFileReleases = rollbackconfigfilereleases
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['RollbackConfigFileReleases'].nil?
+            @RollbackConfigFileReleases = []
+            params['RollbackConfigFileReleases'].each do |i|
+              configfilerelease_tmp = ConfigFileRelease.new
+              configfilerelease_tmp.deserialize(i)
+              @RollbackConfigFileReleases << configfilerelease_tmp
+            end
+          end
+        end
+      end
+
+      # RollbackConfigFileReleases返回参数结构体
+      class RollbackConfigFileReleasesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 回滚结果
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

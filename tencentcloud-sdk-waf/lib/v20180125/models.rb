@@ -1654,65 +1654,6 @@ module TencentCloud
         end
       end
 
-      # CLB查询对应绑定的WAF状态的结果参数
-      class ClbHostResult < TencentCloud::Common::AbstractModel
-        # @param LoadBalancer: WAF绑定的监听器实例
-        # @type LoadBalancer: :class:`Tencentcloud::Waf.v20180125.models.LoadBalancer`
-        # @param Domain: WAF绑定的域名
-        # @type Domain: String
-        # @param DomainId: WAF绑定的实例ID
-        # @type DomainId: String
-        # @param Status: 是否有绑定WAF，1：绑定了WAF，0：没有绑定WAF
-        # @type Status: Integer
-        # @param FlowMode: 绑定了WAF的情况下，WAF流量模式，1：清洗模式，0：镜像模式（默认）
-        # @type FlowMode: Integer
-
-        attr_accessor :LoadBalancer, :Domain, :DomainId, :Status, :FlowMode
-
-        def initialize(loadbalancer=nil, domain=nil, domainid=nil, status=nil, flowmode=nil)
-          @LoadBalancer = loadbalancer
-          @Domain = domain
-          @DomainId = domainid
-          @Status = status
-          @FlowMode = flowmode
-        end
-
-        def deserialize(params)
-          unless params['LoadBalancer'].nil?
-            @LoadBalancer = LoadBalancer.new
-            @LoadBalancer.deserialize(params['LoadBalancer'])
-          end
-          @Domain = params['Domain']
-          @DomainId = params['DomainId']
-          @Status = params['Status']
-          @FlowMode = params['FlowMode']
-        end
-      end
-
-      # CLB回调WAF接口（获取、删除）的参数
-      class ClbHostsParams < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例ID，如果不传次参数则默认认为操作的是整个AppId的监听器，如果此参数不为空则认为操作的是对应负载均衡实例。
-        # @type LoadBalancerId: String
-        # @param ListenerId: 负载均衡监听器ID，，如果不传次参数则默认认为操作的是整个负载均衡实例，如果此参数不为空则认为操作的是对应负载均衡监听器。
-        # @type ListenerId: String
-        # @param DomainId: WAF实例ID，，如果不传次参数则默认认为操作的是整个负载均衡监听器实例，如果此参数不为空则认为操作的是对应负载均衡监听器的某一个具体的域名。
-        # @type DomainId: String
-
-        attr_accessor :LoadBalancerId, :ListenerId, :DomainId
-
-        def initialize(loadbalancerid=nil, listenerid=nil, domainid=nil)
-          @LoadBalancerId = loadbalancerid
-          @ListenerId = listenerid
-          @DomainId = domainid
-        end
-
-        def deserialize(params)
-          @LoadBalancerId = params['LoadBalancerId']
-          @ListenerId = params['ListenerId']
-          @DomainId = params['DomainId']
-        end
-      end
-
       # Clb类型防护对象
       class ClbObject < TencentCloud::Common::AbstractModel
         # @param ObjectId: 对象ID
@@ -6251,60 +6192,6 @@ module TencentCloud
           unless params['WafAutoDenyDetails'].nil?
             @WafAutoDenyDetails = AutoDenyDetail.new
             @WafAutoDenyDetails.deserialize(params['WafAutoDenyDetails'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeWafInfo请求参数结构体
-      class DescribeWafInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Params: CLB回调WAF接口（获取、删除）的参数
-        # @type Params: Array
-
-        attr_accessor :Params
-
-        def initialize(params=nil)
-          @Params = params
-        end
-
-        def deserialize(params)
-          unless params['Params'].nil?
-            @Params = []
-            params['Params'].each do |i|
-              clbhostsparams_tmp = ClbHostsParams.new
-              clbhostsparams_tmp.deserialize(i)
-              @Params << clbhostsparams_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeWafInfo返回参数结构体
-      class DescribeWafInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 返回的WAF信息数组的长度，为0则表示没有查询到对应的信息
-        # @type Total: Integer
-        # @param HostList: 对应的WAF信息的数组。
-        # @type HostList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :HostList, :RequestId
-
-        def initialize(total=nil, hostlist=nil, requestid=nil)
-          @Total = total
-          @HostList = hostlist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['HostList'].nil?
-            @HostList = []
-            params['HostList'].each do |i|
-              clbhostresult_tmp = ClbHostResult.new
-              clbhostresult_tmp.deserialize(i)
-              @HostList << clbhostresult_tmp
-            end
           end
           @RequestId = params['RequestId']
         end

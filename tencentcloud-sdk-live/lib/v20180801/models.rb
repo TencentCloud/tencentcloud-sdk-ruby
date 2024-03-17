@@ -2145,24 +2145,20 @@ module TencentCloud
         # @type DomainName: String
         # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致。如果只绑定域名，则此处填""。
         # @type AppName: String
-        # @param StreamName: 流名称。如果只绑定域名或路径，则此处填空。
-        # @type StreamName: String
         # @param TemplateId: 指定已有的模板Id。
         # @type TemplateId: Integer
 
-        attr_accessor :DomainName, :AppName, :StreamName, :TemplateId
+        attr_accessor :DomainName, :AppName, :TemplateId
 
-        def initialize(domainname=nil, appname=nil, streamname=nil, templateid=nil)
+        def initialize(domainname=nil, appname=nil, templateid=nil)
           @DomainName = domainname
           @AppName = appname
-          @StreamName = streamname
           @TemplateId = templateid
         end
 
         def deserialize(params)
           @DomainName = params['DomainName']
           @AppName = params['AppName']
-          @StreamName = params['StreamName']
           @TemplateId = params['TemplateId']
         end
       end
